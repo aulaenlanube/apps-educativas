@@ -1,5 +1,6 @@
-import React, { useRef, useState, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import React, { useRef, useState, useMemo, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Html, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { solarSystemData } from './model/solarSystemData';
@@ -24,10 +25,227 @@ const CameraLight = () => {
             lightRef.current.position.copy(camera.position);
         }
     });
-
-    // Luz un poco más tenue para mantener contraste 3D, pero suficiente para ver detalles en sombras
     return <pointLight ref={lightRef} intensity={0.8} distance={60} decay={2} color="#ffffff" />;
 }
+
+// --- SUN CORONA GLOW ---
+const SunCorona = ({ size }) => {
+    const coronaRef = useRef();
+    const coronaRef2 = useRef();
+    const coronaRef3 = useRef();
+
+    useFrame(({ clock }) => {
+        const t = clock.getElapsedTime();
+        if (coronaRef.current) {
+            coronaRef.current.rotation.z = t * 0.05;
+            coronaRef.current.scale.setScalar(1 + Math.sin(t * 0.8) * 0.04);
+        }
+        if (coronaRef2.current) {
+            coronaRef2.current.rotation.z = -t * 0.03;
+            coronaRef2.current.scale.setScalar(1 + Math.sin(t * 0.5 + 1) * 0.06);
+        }
+        if (coronaRef3.current) {
+            coronaRef3.current.rotation.z = t * 0.02;
+            coronaRef3.current.scale.setScalar(1 + Math.sin(t * 1.2 + 2) * 0.03);
+        }
+    });
+
+    return (
+        <group>
+            {/* Inner glow */}
+            <mesh ref={coronaRef}>
+                <sphereGeometry args={[size * 1.15, 64, 64]} />
+                <meshBasicMaterial
+                    color="#FDB813"
+                    transparent
+                    opacity={0.15}
+                    side={THREE.BackSide}
+                />
+            </mesh>
+            {/* Mid glow */}
+            <mesh ref={coronaRef2}>
+                <sphereGeometry args={[size * 1.35, 48, 48]} />
+                <meshBasicMaterial
+                    color="#ff8c00"
+                    transparent
+                    opacity={0.06}
+                    side={THREE.BackSide}
+                />
+            </mesh>
+            {/* Outer halo */}
+            <mesh ref={coronaRef3}>
+                <sphereGeometry args={[size * 1.8, 32, 32]} />
+                <meshBasicMaterial
+                    color="#ff4500"
+                    transparent
+                    opacity={0.025}
+                    side={THREE.BackSide}
+                />
+            </mesh>
+            {/* Point light glow effect */}
+            <pointLight position={[0, 0, 0]} intensity={3} distance={size * 6} decay={2} color="#FDB813" />
+        </group>
+    );
+};
+
+// --- ATMOSPHERIC GLOW HALO ---
+const AtmosphereGlow = ({ size, color, intensity = 0.12 }) => {
+    const glowRef = useRef();
+
+    useFrame(({ clock }) => {
+        if (glowRef.current) {
+            const t = clock.getElapsedTime();
+            glowRef.current.scale.setScalar(1 + Math.sin(t * 0.4) * 0.01);
+        }
+    });
+
+    return (
+        <mesh ref={glowRef}>
+            <sphereGeometry args={[size * 1.08, 48, 48]} />
+            <meshBasicMaterial
+                color={color}
+                transparent
+                opacity={intensity}
+                side={THREE.BackSide}
+            />
+        </mesh>
+    );
+};
+
+// --- SHOOTING STARS ---
+const ShootingStar = () => {
+    const meshRef = useRef();
+    const trailRef = useRef();
+    const data = useMemo(() => ({
+        startPos: new THREE.Vector3(
+            (Math.random() - 0.5) * 600,
+            (Math.random() - 0.5) * 300 + 100,
+            (Math.random() - 0.5) * 600
+        ),
+        direction: new THREE.Vector3(
+            (Math.random() - 0.5) * 2,
+            -Math.random() * 1.5 - 0.5,
+            (Math.random() - 0.5) * 2
+        ).normalize(),
+        speed: 80 + Math.random() * 120,
+        delay: Math.random() * 15,
+        duration: 0.8 + Math.random() * 1.2,
+        length: 3 + Math.random() * 5,
+    }), []);
+
+    const timeRef = useRef(data.delay);
+    const activeRef = useRef(false);
+
+    useFrame((_, delta) => {
+        timeRef.current -= delta;
+
+        if (timeRef.current <= 0 && !activeRef.current) {
+            activeRef.current = true;
+            timeRef.current = data.duration;
+            if (meshRef.current) {
+                meshRef.current.position.copy(data.startPos);
+                meshRef.current.visible = true;
+            }
+            if (trailRef.current) trailRef.current.visible = true;
+        }
+
+        if (activeRef.current) {
+            timeRef.current -= delta;
+            const progress = 1 - (timeRef.current / data.duration);
+
+            if (meshRef.current) {
+                meshRef.current.position.addScaledVector(data.direction, data.speed * delta);
+                meshRef.current.material.opacity = Math.max(0, 1 - progress * progress);
+            }
+
+            if (trailRef.current) {
+                trailRef.current.position.copy(meshRef.current.position);
+                trailRef.current.position.addScaledVector(data.direction, -data.length);
+                trailRef.current.material.opacity = Math.max(0, 0.4 * (1 - progress));
+            }
+
+            if (timeRef.current <= 0) {
+                activeRef.current = false;
+                timeRef.current = 8 + Math.random() * 20; // Random next appearance
+                if (meshRef.current) meshRef.current.visible = false;
+                if (trailRef.current) trailRef.current.visible = false;
+                // Reset position
+                data.startPos.set(
+                    (Math.random() - 0.5) * 600,
+                    (Math.random() - 0.5) * 300 + 100,
+                    (Math.random() - 0.5) * 600
+                );
+            }
+        }
+    });
+
+    return (
+        <>
+            <mesh ref={meshRef} visible={false}>
+                <sphereGeometry args={[0.15, 8, 8]} />
+                <meshBasicMaterial color="#ffffff" transparent opacity={1} />
+            </mesh>
+            <mesh ref={trailRef} visible={false}>
+                <sphereGeometry args={[0.08, 6, 6]} />
+                <meshBasicMaterial color="#aaccff" transparent opacity={0.4} />
+            </mesh>
+        </>
+    );
+};
+
+const ShootingStars = () => {
+    return (
+        <group>
+            {[...Array(5)].map((_, i) => (
+                <ShootingStar key={i} />
+            ))}
+        </group>
+    );
+};
+
+// --- COSMIC DUST (Subtle floating particles) ---
+const CosmicDust = () => {
+    const pointsRef = useRef();
+    const count = 300;
+
+    const positions = useMemo(() => {
+        const pos = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+            pos[i * 3] = (Math.random() - 0.5) * 500;
+            pos[i * 3 + 1] = (Math.random() - 0.5) * 200;
+            pos[i * 3 + 2] = (Math.random() - 0.5) * 500;
+        }
+        return pos;
+    }, []);
+
+    useFrame(({ clock }) => {
+        if (pointsRef.current) {
+            pointsRef.current.rotation.y = clock.getElapsedTime() * 0.003;
+        }
+    });
+
+    return (
+        <points ref={pointsRef}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={count}
+                    array={positions}
+                    itemSize={3}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                color="#6366f1"
+                size={0.3}
+                transparent
+                opacity={0.25}
+                sizeAttenuation
+                blending={THREE.AdditiveBlending}
+                depthWrite={false}
+            />
+        </points>
+    );
+};
 
 // --- MANEJO DE ERRORES DE TEXTURA ---
 class TextureErrorBoundary extends React.Component {
@@ -53,7 +271,6 @@ class TextureErrorBoundary extends React.Component {
 }
 
 const TexturedMaterial = ({ textureUrl, emissive, emissiveIntensity, isSun }) => {
-    // useTexture lanzará un error si falla la carga, que será capturado por el ErrorBoundary
     const texture = useTexture(textureUrl);
     return (
         <meshStandardMaterial
@@ -99,25 +316,6 @@ const PlanetMaterial = ({ color, emissive, emissiveIntensity, textureUrl, isSun 
     return <ColoredMaterial color={color} emissive={emissive} emissiveIntensity={emissiveIntensity} />;
 };
 
-// --- TEXTURED RING MATERIAL ---
-const TexturedRingMaterial = ({ textureUrl }) => {
-    const texture = useTexture(textureUrl);
-    texture.rotation = -Math.PI / 2;
-    // La textura de anillos suele ser una tira horizontal (transparente a opaca a transparente)
-    // O una imagen circular completa.
-    // Si es la imagen de "2k_saturn_ring_alpha.png", normalmente es una tira vertical u horizontal que representa la opacidad/color radial.
-    // Para mapearla en un anillo 3D, necesitamos que las coordenadas UV sigan el radio.
-
-    return (
-        <meshStandardMaterial
-            map={texture}
-            side={THREE.DoubleSide}
-            transparent
-            opacity={1}
-        />
-    );
-};
-
 // --- COMPONENTE NUBES ---
 const CloudLayer = ({ textureUrl, size }) => {
     const texture = useTexture(textureUrl);
@@ -126,7 +324,7 @@ const CloudLayer = ({ textureUrl, size }) => {
         <mesh>
             <sphereGeometry args={[size * 1.015, 64, 64]} />
             <meshStandardMaterial
-                map={texture} // A veces la textura viene con color, probamos map + transparent + blending
+                map={texture}
                 transparent={true}
                 opacity={0.8}
                 blending={THREE.AdditiveBlending}
@@ -168,53 +366,17 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
     const finalOuter = outerRadius || size * 2.2;
     const ref = useRef();
 
-    // Ajustamos las UVs manualmente para que la textura se mapee radialmente
     useEffect(() => {
         if (ref.current && textureUrl) {
             const geometry = ref.current.geometry;
             const pos = geometry.attributes.position;
             const uv = geometry.attributes.uv;
-
-            // Recorremos los vértices para ajustar UVs
-            // ringGeometry crea vértices en orden radial
-            // Queremos que V vaya de 0 (radio interior) a 1 (radio exterior)
-            // U vaya de 0 a 1 alrededor del círculo (para mantener la textura continua si tuviera variación angular, aunque para anillos suele ser uniforme angularmente y variar radialmente)
-
-            // Sin embargo, para la textura de saturno que suele ser una tira, queremos que esa tira se "estire" del centro hacia afuera.
-            // Normalmente mapeamos la coordenada U o V a la distancia del centro.
-
-            // Truco simple: Rotamos el anillo plano para que miren "hacia la cámara" o modificamos la rotación
-            // Pero lo mejor es ajustar UVs:
-
-            // THREE.RingGeometry genera UVs de forma que mapea la imagen cuadrada sobre el anillo entero.
-            // Para anillos planetarios, queremos mapear una línea de píxeles (gradiente radial) a lo largo del radio.
-
-            // Solución: Usar un trick con lat/long o simplemente re-mapear UVs
-            // Vamos a probar forzando que la textura se interprete radialmente
-            // Pero como es complejo sin shaders custom, usaremos una rotación en la textura y el mapeo estándar de RingGeometry
-            // RingGeometry mapea (0,0) en el centro a (1,1) en la esquina? No, mapea el círculo inscrito.
-
             const count = pos.count;
             for (let i = 0; i < count; i++) {
                 const x = pos.getX(i);
                 const y = pos.getY(i);
-
-                // Radio actual del vértice
                 const r = Math.sqrt(x * x + y * y);
-
-                // Normalizamos r entre 0 y 1 relativo al ancho del anillo
-                // v = (r - inner) / (outer - inner)
                 const v = (r - finalInner) / (finalOuter - finalInner);
-
-                // u = ángulo / 2PI
-                const angle = Math.atan2(y, x);
-                const u = (angle / (2 * Math.PI)) + 0.5;
-
-                // Ajustamos UVs: queremos que la textura se lea a lo largo del radio.
-                // Si la imagen es horizontal (izquierda=interior, derecha=exterior), usamos U=v, V=0
-                // Si la imagen es vertical, U=0, V=v
-
-                // Asumiendo textura horizontal para el gradiente del anillo
                 uv.setXY(i, v, 0.5);
             }
             geometry.attributes.uv.needsUpdate = true;
@@ -244,6 +406,41 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
                 />
             )}
         </mesh>
+    );
+};
+
+// --- ORBIT GLOW RING ---
+const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, color = '#4f6bff' }) => {
+    if (distance <= 0 || !visible) return null;
+    const halfThickness = thickness / 2;
+    const glowRef = useRef();
+
+    useFrame(({ clock }) => {
+        if (glowRef.current) {
+            glowRef.current.material.opacity = opacity * (0.7 + Math.sin(clock.getElapsedTime() * 0.3 + distance) * 0.3);
+        }
+    });
+
+    return (
+        <group>
+            {/* Main orbit line */}
+            <mesh rotation={[-Math.PI / 2, 0, 0]}>
+                <ringGeometry args={[distance - halfThickness, distance + halfThickness, 256]} />
+                <meshBasicMaterial color="#ffffff" transparent opacity={opacity} side={THREE.DoubleSide} />
+            </mesh>
+            {/* Glow layer */}
+            <mesh ref={glowRef} rotation={[-Math.PI / 2, 0, 0]}>
+                <ringGeometry args={[distance - halfThickness * 4, distance + halfThickness * 4, 256]} />
+                <meshBasicMaterial
+                    color={color}
+                    transparent
+                    opacity={opacity * 0.4}
+                    side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
+                    depthWrite={false}
+                />
+            </mesh>
+        </group>
     );
 };
 
@@ -408,7 +605,7 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                             Reiniciar exploración
                         </button>
                         <div className="footer-info">
-                            <p className="footer-note">Simulador del Sistema Solar v2.0</p>
+                            <p className="footer-note">Simulador del Sistema Solar v3.0</p>
                             <p className="footer-credits">
                                 Texturas obtenidas de <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
                             </p>
@@ -425,25 +622,20 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
     const moonGroupRef = useRef();
     const moonMeshRef = useRef();
 
-    // Registrar referencia de la luna para la cámara
     useEffect(() => {
         if (registerRef && moonGroupRef.current) {
             registerRef(moon.id, moonGroupRef);
         }
     }, [registerRef, moon.id]);
 
-    // Estado para la órbita de la luna: Ángulo inicial aleatorio
     const initialAngle = useMemo(() => Math.random() * Math.PI * 2, []);
     const angleRef = useRef(initialAngle);
 
     useFrame((state, delta) => {
-        // Rotación de la Luna sobre sí misma
         if (moonMeshRef.current) {
             moonMeshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
         }
 
-        // Movimiento orbital de la Luna
-        // Actualizamos el ángulo basado en delta para mayor fluidez
         if (!isPaused) {
             angleRef.current += (moon.speed * 10) * simSpeed * delta;
         }
@@ -470,7 +662,6 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
                     />
                 </mesh>
 
-                {/* Hotspots de la Luna: Solo si la Luna es el cuerpo seleccionado */}
                 {isSelected === moon.id && moon.advanced?.hotspots?.map((hs, index) => {
                     const hotspotId = `${moon.id}-${index}`;
                     return (
@@ -486,7 +677,6 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
                     );
                 })}
             </group>
-            {/* Órbita visual de la luna */}
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
                 <ringGeometry args={[moon.distance - 0.03, moon.distance + 0.03, 128]} />
                 <meshBasicMaterial color="#ffffff" transparent opacity={0.15} side={THREE.DoubleSide} />
@@ -495,16 +685,114 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
     );
 };
 
+// --- ATMOSPHERE COLOR MAP ---
+const atmosphereColors = {
+    sun: null,
+    mercury: null,
+    venus: '#E3BB76',
+    earth: '#4fc3f7',
+    mars: '#ff7043',
+    jupiter: '#F9CA24',
+    saturn: '#F0932B',
+    uranus: '#7ED6DF',
+    neptune: '#5c6bc0',
+};
+
+// --- YOUTUBE VIDEO DATA (Kurzgesagt ES) ---
+const planetVideos = {
+    sun: { id: 'oHg5SJYRHA0', title: '¿Las tormentas solares pueden destruir la civilización?', label: '☀️ Tormentas Solares' },
+    mercury: { id: 'Ict4WE9Vq_E', title: 'La sustancia más peligrosa del universo: estrellas extrañas', label: '⭐ Estrellas Extrañas' },
+    venus: { id: 'vyyK3om1a10', title: 'Cómo terraformar Venus (rápidamente)', label: '🔥 Terraformar Venus' },
+    earth: { id: 'R9o6B-2u-aA', title: '¿Puede la humanidad detener un asteroide que mata planetas?', label: '☄️ Asteroides' },
+    mars: { id: 'k_B0S0T-H4Q', title: 'Construir una base en Marte es una idea horrible: ¡hagámoslo!', label: '🚀 Base en Marte' },
+    jupiter: { id: 'MXyqfK260Bw', title: 'Bombas de agujeros negros y civilizaciones de agujeros negros', label: '🕳️ Agujeros Negros' },
+    saturn: { id: 'fD69KtLjjfQ', title: 'Estrellas de neutrones: los astros más extremos', label: '💫 Estrellas de Neutrones' },
+    uranus: { id: 'EhAemz1v7dQ', title: 'La fusión nuclear: la energía del futuro', label: '⚡ Fusión Nuclear' },
+    neptune: { id: 'k_gWq_o5x_o', title: '¿Qué pasaría si la Luna se precipitara sobre la Tierra?', label: '🌙 La Luna cae' },
+};
+
+// --- VIDEO STAR HOTSPOT (3D) ---
+const VideoStarHotspot = ({ planetId, planetSize, onVideoClick }) => {
+    const videoData = planetVideos[planetId];
+    if (!videoData) return null;
+
+    // Position the star at an angle above the planet
+    const yPos = planetSize * 0.6;
+    const xPos = -planetSize * 0.85;
+
+    return (
+        <Html position={[xPos, yPos, 0]} center distanceFactor={planetId === 'sun' ? 24 : 8} style={{ pointerEvents: 'auto' }}>
+            <button
+                className="video-star-btn"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onVideoClick(videoData);
+                }}
+                title={videoData.title}
+            >
+                <svg className="video-star-svg" viewBox="0 0 24 24" width="22" height="22">
+                    <polygon
+                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                        fill="currentColor"
+                    />
+                </svg>
+                <span className="video-star-pulse-ring"></span>
+                <span className="video-star-pulse-ring delay"></span>
+            </button>
+        </Html>
+    );
+};
+
+// --- VIDEO MODAL (rendered via Portal to escape Canvas stacking context) ---
+const VideoModal = ({ video, onClose }) => {
+    if (!video) return null;
+
+    // Use Escape key to close
+    useEffect(() => {
+        const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [onClose]);
+
+    return createPortal(
+        <div className="video-modal-overlay" onClick={onClose}>
+            <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="video-modal-header">
+                    <div className="video-modal-title-group">
+                        <span className="video-modal-badge">Kurzgesagt</span>
+                        <h3>{video.title}</h3>
+                    </div>
+                    <button className="video-modal-close" onClick={onClose}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                    </button>
+                </div>
+                <div className="video-modal-player">
+                    <iframe
+                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        style={{ width: '100%', height: '100%', border: 'none' }}
+                    ></iframe>
+                </div>
+                <div className="video-modal-footer">
+                    <span className="video-modal-channel">📺 En Pocas Palabras – Kurzgesagt</span>
+                </div>
+            </div>
+        </div>,
+        document.body
+    );
+};
+
 // --- PLANETA INDIVIDUAL ---
-const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots, activeHotspots }) => {
+const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots, activeHotspots, onVideoClick }) => {
     const groupRef = useRef();
     const meshRef = useRef();
 
-    // Ángulo inicial aleatorio para que no estén todos línea
     const initialAngle = useMemo(() => Math.random() * Math.PI * 2, []);
     const angleRef = useRef(initialAngle);
 
-    // Registrar referencia
     useEffect(() => {
         if (registerRef && groupRef.current) {
             registerRef(planet.id, groupRef);
@@ -513,13 +801,11 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
 
     useFrame((state, delta) => {
         if (meshRef.current) {
-            // Rotación propia (delta based)
             meshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
         }
 
         if (planet.distance > 0) {
             if (!isPaused) {
-                // Movimiento orbital fluido con delta
                 angleRef.current += (planet.speed * 5) * simSpeed * delta;
             }
 
@@ -531,6 +817,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
     });
 
     const currentSize = planet.size;
+    const atmosphereColor = atmosphereColors[planet.id];
 
     return (
         <group ref={groupRef}>
@@ -549,11 +836,22 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     isSun={planet.id === 'sun'}
                 />
 
-                {/* Capa de Nubes (Hija del mesh para heredar rotación exacta) */}
                 {planet.cloudTextureUrl && (
                     <CloudLayer textureUrl={planet.cloudTextureUrl} size={currentSize} />
                 )}
             </mesh>
+
+            {/* Sun Corona */}
+            {planet.id === 'sun' && <SunCorona size={currentSize} />}
+
+            {/* Atmospheric glow for planets with atmosphere */}
+            {atmosphereColor && (
+                <AtmosphereGlow
+                    size={currentSize}
+                    color={atmosphereColor}
+                    intensity={planet.id === 'earth' ? 0.18 : 0.1}
+                />
+            )}
 
             {planet.hasRings && (
                 <PlanetRing
@@ -570,7 +868,6 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                 </Html>
             )}
 
-            {/* Hotspots interactivos: Solo si el planeta está seleccionado */}
             {isSelected === planet.id && planet.advanced?.hotspots?.map((hs, index) => {
                 const hotspotId = `${planet.id}-${index}`;
                 return (
@@ -586,7 +883,9 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                 );
             })}
 
-            {/* Renderizar Lunas si existen */}
+            {/* Video Star Hotspot */}
+            <VideoStarHotspot planetId={planet.id} planetSize={currentSize} onVideoClick={onVideoClick} />
+
             {planet.moons && planet.moons.map((moon) => (
                 <Moon
                     key={moon.id}
@@ -596,7 +895,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     onClick={onClick}
                     registerRef={registerRef}
                     isPaused={isPaused}
-                    isSelected={isSelected} // ID del cuerpo seleccionado
+                    isSelected={isSelected}
                     onHotspotClick={onHotspotClick}
                     visitedHotspots={visitedHotspots}
                     activeHotspots={activeHotspots}
@@ -606,20 +905,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
     );
 };
 
-// --- ORBITAS VISUALES ---
-const OrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05 }) => {
-    if (distance <= 0 || !visible) return null;
-    const halfThickness = thickness / 2;
-    return (
-        <mesh rotation={[-Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[distance - halfThickness, distance + halfThickness, 128]} />
-            <meshBasicMaterial color="#ffffff" transparent opacity={opacity} side={THREE.DoubleSide} />
-        </mesh>
-    );
-};
-
 const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot }) => {
-    // Refs para vectores reutilizables (Evita Garbage Collection)
     const currentTarget = useRef(new THREE.Vector3(0, 0, 0));
     const vec3_1 = useRef(new THREE.Vector3());
     const vec3_2 = useRef(new THREE.Vector3());
@@ -633,7 +919,6 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
     const interactionTimeoutRef = useRef(null);
     const eventsInit = useRef(false);
 
-    // Resetear interacción al cambiar de planeta para forzar el movimiento de cámara
     useEffect(() => {
         isUserInteractingRef.current = false;
         if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
@@ -642,19 +927,14 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
     useFrame(({ camera, controls }, delta) => {
         if (!controls) return;
 
-        // Inicializar eventos UNA VEZ (Hack seguro para acceder a la instancia de controles)
         if (!eventsInit.current) {
             controls.addEventListener('start', () => {
                 isUserInteractingRef.current = true;
                 if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
             });
             controls.addEventListener('end', () => {
-                // Dar un tiempo de gracia generoso después de soltar para evitar saltos inmediatos
                 interactionTimeoutRef.current = setTimeout(() => {
                     isUserInteractingRef.current = false;
-                    // Al terminar la interacción, resincronizamos el timer de rotación 
-                    // para que el movimiento automático continúe suavemente desde donde se dejó
-                    // en lugar de saltar a una posición calculada
                 }, 4000);
             });
             eventsInit.current = true;
@@ -665,19 +945,14 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
         if (selectedPlanetId && planetRefs.current[selectedPlanetId]?.current) {
             const planetGroup = planetRefs.current[selectedPlanetId].current;
 
-            // Obtener posición del mundo sin crear nueva instancia
             planetGroup.getWorldPosition(vec3_1.current);
             const targetVec = vec3_1.current;
 
-            // Suavizado del Target (seguimiento) - Más rápido para evitar lag
             currentTarget.current.lerp(targetVec, delta * 8);
             controls.target.copy(currentTarget.current);
 
-            // Parámetros de zoom ideal
             let planetData = solarSystemData.find(p => p.id === selectedPlanetId);
-            // Búsqueda en lunas si es necesario... (Optimizable si solarSystemData es plano, pero ok por ahora)
             if (!planetData) {
-                // Búsqueda rápida optimizada
                 for (let i = 0; i < solarSystemData.length; i++) {
                     const p = solarSystemData[i];
                     if (p.moons) {
@@ -693,9 +968,7 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
             const hotspotActive = !!activeHotspot;
             const idealDist = hotspotActive ? baseDist * (activeHotspot.zoom || 0.6) : baseDist * zoomFactor;
 
-            // Animación automática de zoom/rotación
             if (!isUserInteracting || hotspotActive) {
-                // Calcular dirección: (camera.position - currentTarget)
                 vec3_2.current.subVectors(camera.position, currentTarget.current).normalize();
                 const direction = vec3_2.current;
 
@@ -705,23 +978,16 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
                     direction.z = Math.sin(rotationTimer.current);
                     direction.y = activeHotspot.tilt || 0.3;
                     direction.normalize();
-                } else {
-                    // Mantener ángulo actual
-                    // No recalculamos rotationTimer constantemente para evitar saltos, 
-                    // simplemente usamos la dirección actual
                 }
 
-                // Goal Position = Target + Direction * Distance
                 vec3_3.current.copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
                 const goalPos = vec3_3.current;
 
-                // Mover cámara suavemente
                 camera.position.lerp(goalPos, delta * (hotspotActive ? 2.5 : 2.0));
             }
 
         } else {
-            // MODO SISTEMA (Vista general)
-            vec3_1.current.set(0, 0, 0); // Target al sol
+            vec3_1.current.set(0, 0, 0);
             currentTarget.current.lerp(vec3_1.current, delta * 4);
             controls.target.copy(currentTarget.current);
 
@@ -736,6 +1002,7 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
     return null;
 };
 
+// --- INFO PANEL ---
 const InfoPanel = ({ planet, level, grade, onClose }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
     if (!planet) return null;
@@ -744,10 +1011,15 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
 
     return (
         <div className={`info-panel-overlay ${showAdvanced ? 'expanded' : ''}`}>
+            <div className="info-panel-glow-border"></div>
             <div className="info-panel-card">
                 <div className="panel-header">
-                    <h2 style={{ color: planet.color }}>{planet.name}</h2>
+                    <div className="panel-header-left">
+                        <div className="planet-color-indicator" style={{ background: planet.color, boxShadow: `0 0 20px ${planet.color}` }}></div>
+                        <h2 style={{ color: planet.color }}>{planet.name}</h2>
+                    </div>
                     <button className="btn-exit-planet" onClick={onClose}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                         Salir
                     </button>
                 </div>
@@ -756,10 +1028,12 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
                     <p className="main-desc">{description}</p>
                     <div className="extra-stats">
                         <div className="stat-item">
-                            <strong>Tipo:</strong> {planet.type === 'star' ? 'Estrella' : 'Planeta'}
+                            <span className="stat-label">Tipo</span>
+                            <span className="stat-value">{planet.type === 'star' ? '⭐ Estrella' : '🪐 Planeta'}</span>
                         </div>
                         <div className="stat-item">
-                            <strong>Distancia:</strong> {planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km
+                            <span className="stat-label">Distancia al Sol</span>
+                            <span className="stat-value">{planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km</span>
                         </div>
                     </div>
 
@@ -767,7 +1041,8 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
                         className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
                         onClick={() => setShowAdvanced(!showAdvanced)}
                     >
-                        {showAdvanced ? '🔼 Menos Información' : '🧪 Composición y Datos'}
+                        <span className="btn-advanced-icon">{showAdvanced ? '🔼' : '🧪'}</span>
+                        {showAdvanced ? 'Menos Información' : 'Composición y Datos'}
                     </button>
 
                     {showAdvanced && planet.advanced && (
@@ -817,13 +1092,36 @@ const ResetModal = ({ isOpen, onConfirm, onCancel }) => {
     );
 };
 
+// --- PLANET NAV BAR ---
+const PlanetNavBar = ({ planets, selectedPlanet, onSelect }) => {
+    return (
+        <div className="planet-nav-bar">
+            {planets.map((planet) => (
+                <button
+                    key={planet.id}
+                    className={`planet-nav-item ${selectedPlanet?.id === planet.id ? 'active' : ''}`}
+                    onClick={() => onSelect(planet)}
+                    title={planet.name}
+                >
+                    <div className="planet-nav-dot" style={{
+                        background: planet.color,
+                        boxShadow: selectedPlanet?.id === planet.id ? `0 0 15px ${planet.color}, 0 0 30px ${planet.color}40` : `0 0 6px ${planet.color}60`
+                    }}></div>
+                    <span className="planet-nav-name">{planet.name}</span>
+                </button>
+            ))}
+        </div>
+    );
+};
+
 // --- COMPONENTE PRINCIPAL ---
 const SistemaSolar = ({ level, grade }) => {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
-    const [activeHotspots, setActiveHotspots] = useState({}); // Múltiples popups activos
-    const [lastClickedHotspot, setLastClickedHotspot] = useState(null); // Para la cámara
+    const [activeHotspots, setActiveHotspots] = useState({});
+    const [lastClickedHotspot, setLastClickedHotspot] = useState(null);
+    const [introVisible, setIntroVisible] = useState(true);
+    const [activeVideo, setActiveVideo] = useState(null);
 
-    // Estado inicial desde localStorage
     const [visitedHotspots, setVisitedHotspots] = useState(() => {
         try {
             const saved = localStorage.getItem('solarSystem_visited');
@@ -838,7 +1136,12 @@ const SistemaSolar = ({ level, grade }) => {
     const [isResetting, setIsResetting] = useState(false);
     const planetRefs = useRef({});
 
-    // Guardar progreso automáticamente
+    // Dismiss intro
+    useEffect(() => {
+        const timer = setTimeout(() => setIntroVisible(false), 3500);
+        return () => clearTimeout(timer);
+    }, []);
+
     useEffect(() => {
         try {
             localStorage.setItem('solarSystem_visited', JSON.stringify(visitedHotspots));
@@ -847,7 +1150,6 @@ const SistemaSolar = ({ level, grade }) => {
         }
     }, [visitedHotspots]);
 
-    // Calcular total de puntos de interés
     const totalHotspots = useMemo(() => {
         let count = 0;
         solarSystemData.forEach(planet => {
@@ -861,7 +1163,6 @@ const SistemaSolar = ({ level, grade }) => {
         return count;
     }, []);
 
-    // Configuración Global
     const [config, setConfig] = useState({
         simSpeed: 0.5,
         rotationSpeed: 0.5,
@@ -872,15 +1173,19 @@ const SistemaSolar = ({ level, grade }) => {
         orbitThickness: 0.05
     });
 
-    const handlePlanetClick = (planet) => {
+    const handleVideoClick = useCallback((videoData) => {
+        setActiveVideo(videoData);
+    }, []);
+
+    const handlePlanetClick = useCallback((planet) => {
         if (selectedPlanet?.id !== planet.id) {
             setSelectedPlanet(planet);
             setActiveHotspots({});
             setLastClickedHotspot(null);
         }
-    };
+    }, [selectedPlanet?.id]);
 
-    const handleHotspotClick = (data, hotspotId) => {
+    const handleHotspotClick = useCallback((data, hotspotId) => {
         setActiveHotspots(prev => ({
             ...prev,
             [hotspotId]: data
@@ -890,7 +1195,7 @@ const SistemaSolar = ({ level, grade }) => {
             ...prev,
             [hotspotId]: true
         }));
-    };
+    }, []);
 
     const handleResetProgress = () => {
         setShowResetModal(true);
@@ -900,7 +1205,6 @@ const SistemaSolar = ({ level, grade }) => {
         setShowResetModal(false);
         setIsResetting(true);
 
-        // Simular tiempo de animación de "reinicio de sistema"
         setTimeout(() => {
             setVisitedHotspots({});
             setActiveHotspots({});
@@ -916,17 +1220,41 @@ const SistemaSolar = ({ level, grade }) => {
         setLastClickedHotspot(null);
     };
 
-    const registerPlanetRef = (id, ref) => {
+    const registerPlanetRef = useCallback((id, ref) => {
         planetRefs.current[id] = ref;
-    };
+    }, []);
 
     const visitedCount = Object.keys(visitedHotspots).length;
 
+    // Orbit glow colors for each planet
+    const orbitColors = {
+        mercury: '#9e9e9e',
+        venus: '#e6a85c',
+        earth: '#4fc3f7',
+        mars: '#ff7043',
+        jupiter: '#ffd54f',
+        saturn: '#ffb74d',
+        uranus: '#80deea',
+        neptune: '#7986cb'
+    };
+
+    const isVideoOpen = !!activeVideo;
+
     return (
-        <div className="sistema-solar-container">
-            <div className="ui-header">
-                <h1>🌌 Sistema Solar 3D</h1>
+        <div className={`sistema-solar-container ${isVideoOpen ? 'video-active' : ''}`}>
+            {/* Cinematic intro overlay */}
+            <div className={`intro-overlay ${introVisible ? 'visible' : ''}`}>
+                <div className="intro-content">
+                    <div className="intro-icon">🌌</div>
+                    <h1 className="intro-title">Sistema Solar 3D</h1>
+                    <p className="intro-subtitle">Explora el universo</p>
+                    <div className="intro-loading-bar">
+                        <div className="intro-loading-fill"></div>
+                    </div>
+                </div>
             </div>
+
+
 
             <ConfigPanel
                 config={config}
@@ -936,13 +1264,15 @@ const SistemaSolar = ({ level, grade }) => {
                 totalCount={totalHotspots}
             />
 
-            <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows>
+            <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows frameloop={isVideoOpen ? 'never' : 'always'}>
                 <color attach="background" args={['#020205']} />
 
                 <ambientLight intensity={0.4} />
                 <pointLight position={[0, 0, 0]} intensity={1.5} distance={1000} decay={0} color="#FDB813" />
                 <CameraLight />
-                <Stars radius={350} depth={100} count={8000} factor={6} saturation={0} fade speed={1} />
+                <Stars radius={350} depth={100} count={10000} factor={6} saturation={0} fade speed={0.8} />
+                <CosmicDust />
+                <ShootingStars />
 
                 <OrbitControls
                     enablePan={!selectedPlanet}
@@ -974,12 +1304,14 @@ const SistemaSolar = ({ level, grade }) => {
                                 onHotspotClick={handleHotspotClick}
                                 visitedHotspots={visitedHotspots}
                                 activeHotspots={activeHotspots}
+                                onVideoClick={handleVideoClick}
                             />
-                            <OrbitPath
+                            <GlowOrbitPath
                                 distance={planet.distance}
                                 visible={config.showOrbits}
                                 opacity={config.orbitOpacity}
                                 thickness={config.orbitThickness}
+                                color={orbitColors[planet.id] || '#4f6bff'}
                             />
                         </React.Fragment>
                     ))}
@@ -993,10 +1325,21 @@ const SistemaSolar = ({ level, grade }) => {
                 onClose={handleClose}
             />
 
+            <PlanetNavBar
+                planets={solarSystemData}
+                selectedPlanet={selectedPlanet}
+                onSelect={handlePlanetClick}
+            />
+
             <ResetModal
                 isOpen={showResetModal}
                 onConfirm={confirmReset}
                 onCancel={() => setShowResetModal(false)}
+            />
+
+            <VideoModal
+                video={activeVideo}
+                onClose={() => setActiveVideo(null)}
             />
 
             {/* Animación de Reinicio de Sistema mejorada */}
