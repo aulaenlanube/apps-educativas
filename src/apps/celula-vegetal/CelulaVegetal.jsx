@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle } from 'lucide-react';
+import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import './CelulaVegetal.css';
 
@@ -58,7 +58,7 @@ const organelleData = [
         name: 'Cloroplastos',
         icon: '🍃',
         subtitle: 'FOTOSÍNTESIS',
-        labelPos: { x: 63, y: 20 },
+        labelPos: { x: 62, y: 25 },
         description: 'Orgánulos exclusivos de las células vegetales donde ocurre la fotosíntesis. Utilizan la luz solar para convertir agua y dióxido de carbono en azúcares (alimento).',
         functions: [
             'Realizar la fotosíntesis',
@@ -73,7 +73,7 @@ const organelleData = [
         name: 'Núcleo',
         icon: '🧬',
         subtitle: 'CENTRO DE CONTROL',
-        labelPos: { x: 22, y: 40 },
+        labelPos: { x: 22, y: 32 },
         description: 'Contiene la información genética (ADN) y dirige todas las actividades celulares. En células vegetales adultas, suele estar desplazado hacia un lado por la gran vacuola central.',
         functions: [
             'Almacenar y proteger el ADN',
@@ -102,7 +102,7 @@ const organelleData = [
         name: 'Mitocondria',
         icon: '⚡',
         subtitle: 'RESPIRACIÓN CELULAR',
-        labelPos: { x: 70, y: 16 },
+        labelPos: { x: 70, y: 23 },
         description: 'Generan la energía necesaria (ATP) para la célula a través de la respiración celular, utilizando los azúcares producidos en los cloroplastos.',
         functions: [
             'Producir energía (ATP)',
@@ -144,7 +144,7 @@ const organelleData = [
         name: 'Aparato de Golgi',
         icon: '📦',
         subtitle: 'EMPAQUETADO',
-        labelPos: { x: 60, y: 85 },
+        labelPos: { x: 60, y: 80 },
         description: 'Modifica, empaqueta y distribuye proteínas y lípidos a otros lugares de la célula o para secretarlos al exterior. También fabrica componentes de la pared celular.',
         functions: [
             'Empaquetar moléculas en vesículas',
@@ -489,33 +489,33 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             <g className={`organelle-region ${getRegionClass('reticulo-rugoso')}`}
                 onClick={(e) => { e.stopPropagation(); onSelect('reticulo-rugoso'); }}>
                 {/* Hit area */}
-                <path d="M80,255 Q100,235 130,255 Q155,275 140,255" fill="none" stroke="transparent" strokeWidth="20" />
+                <path d="M100,255 Q120,235 150,255 Q175,275 160,255" fill="none" stroke="transparent" strokeWidth="20" />
                 {/* Shadow */}
-                <path d="M82,262 Q102,242 132,262 Q157,282 142,262"
+                <path d="M102,262 Q122,242 152,262 Q177,282 162,262"
                     fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth="8" strokeLinecap="round" />
                 {/* First tube */}
-                <path d="M80,258 Q100,238 130,258 Q155,278 140,258"
+                <path d="M100,258 Q120,238 150,258 Q175,278 160,258"
                     fill="none" stroke="url(#rerGrad)" strokeWidth="7" strokeLinecap="round" opacity="0.85" />
-                <path d="M80,256 Q100,236 130,256 Q155,276 140,256"
+                <path d="M100,256 Q120,236 150,256 Q175,276 160,256"
                     fill="none" stroke="rgba(147,197,253,0.3)" strokeWidth="2" strokeLinecap="round" />
                 {/* Ribosomes on first tube */}
-                {[[85,262],[98,248],[112,256],[125,268],[138,270],[148,260]].map(([x,y], i) => (
+                {[[105,262],[118,248],[132,256],[145,268],[158,270],[168,260]].map(([x,y], i) => (
                     <circle key={`r1-${i}`} cx={x} cy={y+5} r="2.2" fill="#60a5fa" opacity="0.7" />
                 ))}
                 {/* Shadow second */}
-                <path d="M72,284 Q97,264 122,284 Q147,304 142,284"
+                <path d="M92,284 Q117,264 142,284 Q167,304 162,284"
                     fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="7" strokeLinecap="round" />
                 {/* Second tube */}
-                <path d="M70,280 Q95,260 120,280 Q145,300 140,280"
+                <path d="M90,280 Q115,260 140,280 Q165,300 160,280"
                     fill="none" stroke="url(#rerGrad)" strokeWidth="6" strokeLinecap="round" opacity="0.7" />
-                <path d="M70,278 Q95,258 120,278 Q145,298 140,278"
+                <path d="M90,278 Q115,258 140,278 Q165,298 160,278"
                     fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="1.5" strokeLinecap="round" />
                 {/* Ribosomes on second tube */}
-                {[[78,285],[90,272],[105,280],[118,292],[135,292]].map(([x,y], i) => (
+                {[[98,285],[110,272],[125,280],[138,292],[155,292]].map(([x,y], i) => (
                     <circle key={`r2-${i}`} cx={x} cy={y+4} r="2" fill="#60a5fa" opacity="0.6" />
                 ))}
                 {/* Third tube */}
-                <path d="M85,300 Q105,285 125,300 Q140,312 150,305"
+                <path d="M105,300 Q125,285 145,300 Q160,312 170,305"
                     fill="none" stroke="url(#rerGrad)" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
             </g>
 
@@ -545,7 +545,7 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             <g className={`organelle-region ${getRegionClass('cloroplasto')}`}
                 onClick={(e) => { e.stopPropagation(); onSelect('cloroplasto'); }}>
                 {/* Chloroplast 1 - upper right */}
-                <g transform="translate(380, 100) rotate(15)">
+                <g transform="translate(370, 125) rotate(15)">
                     <ellipse cx="2" cy="4" rx="42" ry="26" fill="rgba(0,0,0,0.2)" />
                     <ellipse cx="0" cy="0" rx="44" ry="28" fill="none" stroke="#15803d" strokeWidth="1.5" opacity="0.4" />
                     <ellipse cx="0" cy="0" rx="42" ry="26" fill="url(#chloroGrad)" stroke="#14532d" strokeWidth="2" />
@@ -592,22 +592,22 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             <g className={`organelle-region ${getRegionClass('mitocondria')}`}
                 onClick={(e) => { e.stopPropagation(); onSelect('mitocondria'); }}>
                 {/* Mito 1 - upper right */}
-                <g transform="rotate(-30, 420, 80)">
-                    <ellipse cx="422" cy="86" rx="32" ry="16" fill="rgba(0,0,0,0.2)" />
-                    <ellipse cx="420" cy="80" rx="35" ry="18" fill="none" stroke="#d97706" strokeWidth="1.5" opacity="0.35" />
-                    <ellipse cx="420" cy="80" rx="32" ry="16" fill="url(#mitoGrad1)" stroke="#c2410c" strokeWidth="2" />
-                    <ellipse cx="420" cy="80" rx="32" ry="16" fill="url(#mitoHighlight1)" />
+                <g transform="rotate(-30, 420, 115)">
+                    <ellipse cx="422" cy="121" rx="32" ry="16" fill="rgba(0,0,0,0.2)" />
+                    <ellipse cx="420" cy="115" rx="35" ry="18" fill="none" stroke="#d97706" strokeWidth="1.5" opacity="0.35" />
+                    <ellipse cx="420" cy="115" rx="32" ry="16" fill="url(#mitoGrad1)" stroke="#c2410c" strokeWidth="2" />
+                    <ellipse cx="420" cy="115" rx="32" ry="16" fill="url(#mitoHighlight1)" />
                     {/* Cristae */}
-                    <path d="M400,76 Q403,68 400,81 Q398,88 400,83" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
-                    <path d="M410,74 Q413,66 410,80 Q408,87 410,82" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
-                    <path d="M420,73 Q423,65 420,80 Q418,88 420,82" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
-                    <path d="M430,74 Q433,67 430,81 Q428,87 430,82" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
-                    <path d="M438,76 Q440,70 438,82 Q437,86 438,83" fill="none" stroke="#fbbf24" strokeWidth="1" opacity="0.2" />
+                    <path d="M400,111 Q403,103 400,116 Q398,123 400,118" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
+                    <path d="M410,109 Q413,101 410,115 Q408,122 410,117" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
+                    <path d="M420,108 Q423,100 420,115 Q418,123 420,117" fill="none" stroke="#fbbf24" strokeWidth="1.3" opacity="0.3" />
+                    <path d="M430,109 Q433,102 430,116 Q428,122 430,117" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
+                    <path d="M438,111 Q440,105 438,117 Q437,121 438,118" fill="none" stroke="#fbbf24" strokeWidth="1" opacity="0.2" />
                     {/* Matrix dots */}
-                    <circle cx="406" cy="78" r="1.2" fill="#fcd34d" opacity="0.2" />
-                    <circle cx="435" cy="82" r="1" fill="#fcd34d" opacity="0.15" />
+                    <circle cx="406" cy="113" r="1.2" fill="#fcd34d" opacity="0.2" />
+                    <circle cx="435" cy="117" r="1" fill="#fcd34d" opacity="0.15" />
                     {/* Specular */}
-                    <ellipse cx="412" cy="74" rx="12" ry="4" fill="rgba(255,255,255,0.08)" />
+                    <ellipse cx="412" cy="109" rx="12" ry="4" fill="rgba(255,255,255,0.08)" />
                 </g>
                 {/* Mito 2 - lower center */}
                 <g transform="rotate(10, 250, 400)">
@@ -626,7 +626,7 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             {/* === 11. APARATO DE GOLGI - stacked cisternae with vesicles === */}
             <g className={`organelle-region ${getRegionClass('golgi')}`}
                 onClick={(e) => { e.stopPropagation(); onSelect('golgi'); }} filter="url(#dropShadow)">
-                <g transform="translate(350, 415)">
+                <g transform="translate(350, 390)">
                     {/* Cisternae with 3D thickness */}
                     {[0, 12, 24, 36].map((offset, i) => (
                         <g key={i}>
@@ -666,12 +666,12 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             {/* Vesicle from Golgi to cell wall */}
             <circle r="3" fill="url(#golgiVesicle)" opacity="0.4" pointerEvents="none">
                 <animateMotion dur="8s" repeatCount="indefinite"
-                    path="M385,400 Q400,380 450,350 Q500,320 520,400" />
+                    path="M385,375 Q400,360 450,330 Q490,310 500,380" />
             </circle>
             {/* ATP from mitochondria 1 */}
             <circle r="1.8" fill="#fbbf24" opacity="0.35" pointerEvents="none">
                 <animateMotion dur="9s" repeatCount="indefinite"
-                    path="M420,80 Q380,120 350,180 Q320,240 300,250" />
+                    path="M420,115 Q380,150 350,200 Q320,250 300,260" />
             </circle>
             {/* ATP from mitochondria 2 */}
             <circle r="1.5" fill="#fbbf24" opacity="0.3" pointerEvents="none">
@@ -681,16 +681,16 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             {/* Cytoplasmic streaming (ciclosis) */}
             <circle r="1.2" fill="rgba(134,239,172,0.2)" pointerEvents="none">
                 <animateMotion dur="12s" repeatCount="indefinite"
-                    path="M100,130 Q80,250 100,380 Q150,420 300,410 Q480,390 500,250 Q490,120 380,90 Q200,80 100,130" />
+                    path="M110,140 Q90,250 110,370 Q160,410 300,400 Q470,380 490,250 Q480,130 370,100 Q210,90 110,140" />
             </circle>
             <circle r="1" fill="rgba(134,239,172,0.15)" pointerEvents="none">
                 <animateMotion dur="12s" repeatCount="indefinite" begin="4s"
-                    path="M100,130 Q80,250 100,380 Q150,420 300,410 Q480,390 500,250 Q490,120 380,90 Q200,80 100,130" />
+                    path="M110,140 Q90,250 110,370 Q160,410 300,400 Q470,380 490,250 Q480,130 370,100 Q210,90 110,140" />
             </circle>
             {/* Photosynthesis particle from chloroplast */}
             <circle r="1.5" fill="#4ade80" opacity="0.3" pointerEvents="none" filter="url(#softGlow)">
                 <animateMotion dur="6s" repeatCount="indefinite"
-                    path="M380,100 Q350,150 320,200 Q300,230 310,250" />
+                    path="M370,125 Q350,170 320,220 Q300,250 310,270" />
             </circle>
         </svg>
     );
@@ -1003,6 +1003,11 @@ const CelulaVegetal = () => {
             <header className="celula-header">
                 <div className="celula-header-left"></div>
                 <div className="mode-switcher">
+                    {zoom > 1.1 && (
+                        <button className="mode-btn reset-zoom-btn" onClick={resetView} title="Restaurar zoom">
+                            <ZoomOut size={14} /> <span>1:1</span>
+                        </button>
+                    )}
                     <button className={`mode-btn ${mode === 'explore' ? 'active' : ''}`} onClick={() => switchMode('explore')}>Explorar</button>
                     <button className={`mode-btn ${mode === 'quiz' ? 'active quiz-mode-active' : ''}`} onClick={() => switchMode('quiz')}>Test</button>
                     <button className={`mode-btn ${mode === 'match' ? 'active match-mode-active' : ''}`} onClick={() => switchMode('match')}>Reto</button>
@@ -1047,11 +1052,6 @@ const CelulaVegetal = () => {
                         );
                     })}
                 </div>
-                {zoom > 1.1 && (
-                    <div className="zoom-controls">
-                        <button className="reset-zoom" onClick={resetView}>✕ Reset Zoom</button>
-                    </div>
-                )}
             </div>
 
             {/* EXPLORE MODE: EMPTY STATE HINT */}

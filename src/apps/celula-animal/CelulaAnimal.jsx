@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle } from 'lucide-react';
+import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import './CelulaAnimal.css';
 
@@ -994,6 +994,11 @@ const CelulaAnimal = () => {
 
                 {/* Mode Switcher */}
                 <div className="mode-switcher">
+                    {zoom > 1.1 && (
+                        <button className="mode-btn reset-zoom-btn" onClick={resetView} title="Restaurar zoom">
+                            <ZoomOut size={14} /> <span>1:1</span>
+                        </button>
+                    )}
                     <button
                         className={`mode-btn ${mode === 'explore' ? 'active' : ''}`}
                         onClick={() => switchMode('explore')}
@@ -1083,16 +1088,6 @@ const CelulaAnimal = () => {
                         );
                     })}
 
-                    {/* Zoom controls overlay */}
-                    {zoom > 1.05 && (
-                        <button
-                            className="zoom-reset-btn"
-                            onClick={(e) => { e.stopPropagation(); resetView(); }}
-                            title="Restablecer zoom"
-                        >
-                            ✕ Zoom ({Math.round(zoom * 100)}%)
-                        </button>
-                    )}
                 </div>
             </div>
 
