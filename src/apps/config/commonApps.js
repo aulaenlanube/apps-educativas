@@ -320,3 +320,13 @@ export const appCelulaAnimal = {
   component: CelulaAnimal
 };
 
+import CelulaVegetal from '../celula-vegetal/CelulaVegetal';
+
+export const appCelulaVegetal = {
+  id: 'celula-vegetal',
+  name: '🌿 La Célula Vegetal',
+  description: 'Descubre las partes de la célula vegetal, la fotosíntesis y la pared celular.',
+  component: CelulaVegetal
+};
+
+

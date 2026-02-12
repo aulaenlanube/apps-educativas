@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import './CelulaAnimal.css';
 
 // ===== ORGANELLE DATA =====
@@ -945,6 +946,15 @@ const CelulaAnimal = () => {
         setMatchSelected(null);
     };
 
+    const removeMatch = (orgId) => {
+        setMatchAnswers(prev => {
+            const next = { ...prev };
+            delete next[orgId];
+            return next;
+        });
+        setMatchSelected(null);
+    };
+
     const allAnswered = matchPairs.length > 0 && Object.keys(matchAnswers).length === matchPairs.length;
 
     const submitTest = () => {
@@ -955,6 +965,14 @@ const CelulaAnimal = () => {
         const grade = Math.round((correct / matchPairs.length) * 10 * 10) / 10;
         setTestGrade(grade);
         setTestSubmitted(true);
+        if (grade >= 5) {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#2563eb', '#f59e0b', '#10b981', '#ec4899']
+            });
+        }
     };
 
     const getGradeEmoji = (grade) => {
@@ -1263,9 +1281,9 @@ const CelulaAnimal = () => {
                                                 >
                                                     <span className="match-item-icon">{org.icon}</span>
                                                     <span className="match-item-name">{org.name}</span>
+                                                    {answered && !testSubmitted && <span className="match-remove-btn" onClick={(e) => { e.stopPropagation(); removeMatch(org.id); }} title="Descartar pareja"><X size={14} /></span>}
                                                     {testSubmitted && isCorrect && <CheckCircle2 size={16} className="match-check" />}
                                                     {testSubmitted && isWrong && <XCircle size={16} className="match-wrong-icon" />}
-                                                    {answered && !testSubmitted && <span className="match-assigned-dot" />}
                                                 </button>
                                             );
                                         })}
