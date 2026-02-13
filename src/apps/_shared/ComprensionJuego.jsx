@@ -17,6 +17,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
 
     // --- NUEVO ESTADO PARA MATERIAL DE ESTUDIO ---
     const [showMaterial, setShowMaterial] = useState(false);
+    const [selectedMaterialIndex, setSelectedMaterialIndex] = useState(0);
 
     // --- Audio States ---
     const [speechRate, setSpeechRate] = useState(1);
@@ -183,9 +184,11 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     const getButtonClass = () => isSpeaking ? (isPaused ? "btn-big-audio paused" : "btn-big-audio playing") : "btn-big-audio";
     const getButtonText = () => isSpeaking ? (isPaused ? "▶️ Continuar" : "⏸️ Pausar") : "🔊 Escuchar Historia";
 
+
+
     return (
         <div className={`comprension-container font-${currentFontStyle}`}>
-            <div className="header-zone fade-in">
+            <div className="header-zone">
                 <button
                     className="btn-material-estudio"
                     onClick={() => setShowMaterial(true)}
@@ -202,7 +205,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                 </h1>
 
                 {mode === 'lectura' && (
-                    <div className="config-grid pop-in">
+                    <div className="config-grid">
                         {tipo === "escrita" && (
                             <>
                                 <div className="config-item item-wide item-grouped">
@@ -381,44 +384,65 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                 )}
             </div>
 
-            {/* --- MODAL MATERIAL DE ESTUDIO --- */}
+            {/* --- MODAL MATERIAL DE ESTUDIO (REDISEÑO TOTAL) --- */}
             {showMaterial && (
-                <div className="modal-overlay fade-in" onClick={() => setShowMaterial(false)}>
-                    <div className="modal-content pop-in" onClick={e => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h2>📚 Material de Estudio</h2>
-                            <button className="btn-close-modal" onClick={() => setShowMaterial(false)}>✖️</button>
-                        </div>
-                        <div className="modal-body">
-                            <p className="modal-intro">Aquí puedes repasar todas las historias y sus preguntas clave.</p>
-                            <div className="stories-list">
-                                {data.map((historia, index) => (
-                                    <div key={index} className="story-item">
-                                        <details>
-                                            <summary className="story-summary">
-                                                <strong>{index + 1}. {historia.titulo}</strong>
-                                            </summary>
-                                            <div className="story-detail">
-                                                <div className="story-text-block">
-                                                    <p>{historia.texto}</p>
-                                                </div>
-                                                <div className="story-questions-block">
-                                                    <h5>Preguntas:</h5>
-                                                    <ul>
-                                                        {historia.preguntas.map((q, qImg) => (
-                                                            <li key={qImg}>
-                                                                <strong>P:</strong> {q.pregunta} <br />
-                                                                <span className="answer-preview">✅ {q.opciones[q.correcta]}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </details>
-                                    </div>
-                                ))}
+                <div className="modal-overlay" onClick={() => setShowMaterial(false)}>
+                    <div className="material-modal-container" onClick={e => e.stopPropagation()}>
+                        <aside className="material-sidebar">
+                            <div className="sidebar-header">
+                                <h3>Menú de Historias</h3>
+                                <p>{data.length} ejercicios disponibles</p>
                             </div>
-                        </div>
+                            <nav className="sidebar-nav">
+                                {data.map((historia, index) => (
+                                    <button
+                                        key={index}
+                                        className={`sidebar-link ${selectedMaterialIndex === index ? 'active' : ''}`}
+                                        onClick={() => setSelectedMaterialIndex(index)}
+                                    >
+                                        <span className="link-num">{index + 1}</span>
+                                        <span className="link-text">{historia.titulo}</span>
+                                    </button>
+                                ))}
+                            </nav>
+                        </aside>
+
+                        <main className="material-view">
+                            <header className="view-header">
+                                <div className="header-info">
+                                    <span className="badge">Material Didáctico</span>
+                                    <h2>{data[selectedMaterialIndex].titulo}</h2>
+                                </div>
+                                <button className="close-material" onClick={() => setShowMaterial(false)}>✖</button>
+                            </header>
+
+                            <div className="view-body">
+                                <section className="material-text-section">
+                                    <div className="section-title">
+                                        <span className="icon">📖</span>
+                                        <h4>Texto Completo</h4>
+                                    </div>
+                                    <div className="text-content">
+                                        {data[selectedMaterialIndex].texto}
+                                    </div>
+                                </section>
+
+                                <section className="material-questions-section">
+                                    <div className="section-title">
+                                        <span className="icon">🎯</span>
+                                        <h4>Objetivos de Comprensión</h4>
+                                    </div>
+                                    <div className="questions-grid">
+                                        {data[selectedMaterialIndex].preguntas.map((q, idx) => (
+                                            <div key={idx} className="material-q-item">
+                                                <span className="q-num">{idx + 1}</span>
+                                                <p>{q.pregunta}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
+                        </main>
                     </div>
                 </div>
             )}

@@ -5,13 +5,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap');
 
-/* --- 2. CONTENEDOR PRINCIPAL --- */
+/* --- 2. RESET Y CONTENEDOR PRINCIPAL --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .comprension-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     color: #334155;
     font-family: 'Lexend', sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* --- 3. TÍTULO Y TIPOGRAFÍA --- */
@@ -87,15 +97,22 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 /* Grid de configuración adaptable */
 .config-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 15px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .config-item {
@@ -144,12 +161,11 @@
 
 /* Tamaños de las cajas */
 .item-wide {
-    flex: 1;
-    min-width: 300px;
+    flex: 1 1 300px;
 }
 
 .item-full {
-    flex: 1;
+    grid-column: 1 / -1;
     width: 100%;
 }
 
@@ -402,6 +418,17 @@ input:checked+.slider:before {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid #e2e8f0;
     position: relative;
+    width: 100%;
+    /* Asegurar que ocupe todo el ancho del contenedor */
+}
+
+/* Nuevas clases para asegurar estabilidad */
+.game-content,
+.zona-preguntas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .pregunta-badge {
@@ -556,9 +583,6 @@ input:checked+.slider:before {
 .star.filled {
     color: #fbbf24;
     filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.1));
-    animation: popStar 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    opacity: 0;
-    transform: scale(0);
 }
 
 /* Nota Numérica */
@@ -711,197 +735,85 @@ input:checked+.slider:before {
     font-weight: 600;
 }
 
-/* --- 11. ANIMACIONES --- */
-@keyframes shakeExit {
+/* --- 11. ANIMACIONES ORIGINALES: EFECTO PASO DE PÁGINA --- */
+@keyframes pageTurnExit {
     0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    10% {
-        transform: translate(-5px, -5px) rotate(-2deg);
-    }
-
-    20% {
-        transform: translate(5px, 5px) rotate(2deg);
-    }
-
-    30% {
-        transform: translate(-5px, 5px) rotate(-2deg);
-    }
-
-    40% {
-        transform: translate(5px, -5px) rotate(2deg);
-    }
-
-    50% {
-        transform: translate(0, 0) scale(1.05);
+        transform: rotateY(0deg) translateX(0);
         opacity: 1;
+        filter: blur(0);
     }
 
     100% {
-        transform: scale(0) rotate(10deg);
+        transform: rotateY(-30deg) translateX(-100px);
         opacity: 0;
+        filter: blur(10px);
     }
 }
 
-@keyframes bounceIn {
+@keyframes pageTurnEnter {
     0% {
+        transform: rotateY(30deg) translateX(100px);
         opacity: 0;
-        transform: scale(0.3) translateY(100px);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.05) translateY(-10px);
-    }
-
-    70% {
-        transform: scale(0.95) translateY(5px);
+        filter: blur(10px);
     }
 
     100% {
-        transform: scale(1) translateY(0);
-    }
-}
-
-@keyframes popStar {
-    0% {
-        transform: scale(0) rotate(-45deg);
-        opacity: 0;
-    }
-
-    70% {
-        transform: scale(1.4) rotate(10deg);
+        transform: rotateY(0deg) translateX(0);
         opacity: 1;
-    }
-
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
+        filter: blur(0);
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Added missing fadeIn */
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes popInBouncy {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-
-    60% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-
-    80% {
-        transform: scale(0.9);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Clases de utilidad */
+/* Clases de utilidad para la transición "Otra" */
 .shake-exit {
-    animation: shakeExit 0.6s ease-in forwards;
+    animation: pageTurnExit 0.6s cubic-bezier(0.645, 0.045, 0.355, 1.000) forwards;
+    transform-origin: left center;
 }
 
 .bounce-in {
-    animation: bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    animation: pageTurnEnter 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    transform-origin: right center;
 }
 
+/* El resto de animaciones se mantienen estables */
 .fade-in-up {
-    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 1;
 }
 
 .fade-out {
-    animation: fadeOut 0.3s ease-out forwards;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
+    opacity: 1;
+    transition: opacity 0.4s;
 }
 
-/* Added class */
 .pop-in {
-    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    transform: none;
+    opacity: 1;
 }
 
-/* Changed to 'both' and removed explicit opacity: 0 */
 .pop-in-bouncy {
-    animation: popInBouncy 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+    transform: none;
+    opacity: 1;
 }
 
-/* Changed to 'both' */
-.pulse-animation {
-    animation: pulse 2s infinite;
-}
+.pulse-animation {}
 
 .bounce-on-hover:hover {
-    animation: pulse 1s infinite;
+    transform: translateY(-2px);
+    transition: transform 0.2s;
+}
+
+/* Perspectiva para el efecto 3D de página */
+.game-content {
+    perspective: 1200px;
 }
 
 
-/* --- 12. MATERIAL DE ESTUDIO (MODAL) --- */
+/* --- 12. MATERIAL DE ESTUDIO (BOTÓN ORIGINAL) --- */
 .btn-material-estudio {
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     color: white;
@@ -929,151 +841,280 @@ input:checked+.slider:before {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 2vw;
 }
 
-.modal-content {
-    background: white;
-    width: 100%;
-    max-width: 800px;
-    max-height: 85vh;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+/* --- REDISEÑO TOTAL: SIDEBAR + CONTENT (INTERNAL) --- */
+.material-modal-container {
+    background: #ffffff;
+    width: 96vw;
+    max-width: 1400px;
+    height: 92vh;
+    border-radius: 24px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar Estilo Dashboard */
+.material-sidebar {
+    width: 320px;
+    background: #1e293b;
+    color: #f8fafc;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-right: 1px solid #334155;
+    flex-shrink: 0;
 }
 
-.modal-header {
-    padding: 1.5rem;
+.sidebar-header {
+    padding: 2.5rem 1.5rem;
+    background: #0f172a;
+}
+
+.sidebar-header h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    margin: 0 0 5px 0;
+    color: #3b82f6;
+}
+
+.sidebar-header p {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.sidebar-link {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-link:hover {
+    background: #334155;
+    color: #ffffff;
+}
+
+.sidebar-link.active {
+    background: #334155;
+    color: #ffffff;
+    border-left-color: #3b82f6;
+}
+
+.link-num {
+    width: 28px;
+    height: 28px;
+    background: #0f172a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.sidebar-link.active .link-num {
+    background: #3b82f6;
+}
+
+/* Vista de Contenido */
+.material-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.view-header {
+    padding: 2rem 3rem;
+    background: #ffffff;
+    border-bottom: 2px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-header h2 {
-    margin: 0;
+.header-info h2 {
     font-family: 'Fredoka One', cursive;
-    color: #334155;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin: 0.5rem 0 0 0;
+    color: #1e293b;
 }
 
-.btn-close-modal {
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #64748b;
-    transition: transform 0.2s;
+.badge {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 4px 12px;
+    border-radius: 50px;
 }
 
-.btn-close-modal:hover {
-    transform: scale(1.2);
-    color: #ef4444;
-}
-
-.modal-body {
-    padding: 2rem;
-    overflow-y: auto;
-    background: #fff;
-}
-
-.modal-intro {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-}
-
-/* Lista de Historias en el Modal */
-.story-item {
-    margin-bottom: 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.story-summary {
+.close-material {
     background: #f1f5f9;
-    padding: 1rem;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
     cursor: pointer;
-    font-weight: 600;
-    color: #334155;
-    list-style: none;
-    /* Ocultar triángulo default en algunos browsers */
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.close-material:hover {
+    background: #e11d48;
+    color: #ffffff;
+}
+
+.view-body {
+    padding: 3rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.section-title {
     display: flex;
     align-items: center;
-    outline: none;
-}
-
-.story-summary::-webkit-details-marker {
-    display: none;
-}
-
-.story-summary::after {
-    content: '+';
-    margin-left: auto;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #64748b;
-}
-
-details[open] .story-summary::after {
-    content: '-';
-}
-
-.story-detail {
-    padding: 1.5rem;
-    background: white;
-    border-top: 1px solid #e2e8f0;
-    animation: fadeInUp 0.3s ease-out;
-}
-
-.story-text-block {
+    gap: 12px;
     margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px dashed #cbd5e1;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #475569;
 }
 
-.story-questions-block h5 {
-    margin: 0 0 1rem 0;
-    color: #2563eb;
-    font-family: 'Fredoka One', cursive;
-}
-
-.story-questions-block ul {
-    list-style: none;
-    padding: 0;
+.section-title h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #64748b;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.story-questions-block li {
-    background: #f8fafc;
+.section-title .icon {
+    font-size: 1.5rem;
+}
+
+.text-content {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #334155;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.material-q-item {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+
+.q-num {
+    width: 32px;
+    height: 32px;
+    background: #0f172a;
+    color: #3b82f6;
     border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-    border-left: 3px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
 }
 
-.answer-preview {
-    display: block;
-    margin-top: 5px;
+.material-q-item p {
+    margin: 0;
     font-weight: 600;
-    color: #16a34a;
-    font-size: 0.9rem;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .material-sidebar {
+        width: 80px;
+    }
+
+    .link-text,
+    .sidebar-header h3,
+    .sidebar-header p {
+        display: none;
+    }
+
+    .material-q-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- 13. ESTILO DE SCROLLBAR MODERNO --- */
+.sidebar-nav::-webkit-scrollbar,
+.view-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+.view-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+    border: 3px solid #0f172a;
+}
+
+.view-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+    border: 3px solid #f8fafc;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+.view-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
