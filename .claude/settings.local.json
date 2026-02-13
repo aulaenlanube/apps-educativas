@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx --no-install eslint:*)"
+      "Bash(npx --no-install eslint:*)",
+      "Bash(dir:*)",
+      "Bash(npx vite build:*)",
+      "Bash(timeout 15 npx vite:*)"
     ]
   }
 }
