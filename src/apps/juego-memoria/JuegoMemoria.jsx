@@ -21,6 +21,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [category, setCategory] = useState('');
     const [errorIndex, setErrorIndex] = useState(null);
     const [errorCountdown, setErrorCountdown] = useState(null); // Visual countdown for error state
+    const [showHelp, setShowHelp] = useState(false);
 
     const timerRef = useRef(null);
 
@@ -248,6 +249,9 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                     {gameState === 'won' && "🎉 ¡Completado! (Pulsa ✨ para jugar otra vez)"}
                     {gameState === 'lost' && "❌ Tiempo agotado"}
                 </div>
+                <button className="help-btn" onClick={() => setShowHelp(true)} title="Instrucciones">
+                    ❓ Ayuda
+                </button>
                 <button className="restart-btn-new" onClick={handleNewGame} title="Nueva Partida">
                     ✨ Nueva partida
                 </button>
@@ -310,6 +314,36 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 </div>
             )}
 
+            {/* Help Modal */}
+            <AnimatePresence>
+                {showHelp && (
+                    <motion.div
+                        className="help-modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowHelp(false)}
+                    >
+                        <motion.div
+                            className="help-modal-content"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="close-help-btn" onClick={() => setShowHelp(false)}>✖</button>
+                            <h2>📜 Instrucciones</h2>
+                            <ul>
+                                <li><strong>Objetivo:</strong> Encuentra las palabras ocultas antes de que se agote el tiempo.</li>
+                                <li>Tienes <strong>5 segundos</strong> al inicio para memorizar la ubicación de las palabras.</li>
+                                <li>Haz clic en una carta (o usa los números 1-9) para revelarla.</li>
+                                <li>Si aciertas, la carta se queda visible.</li>
+                                <li>Si fallas, la carta se marcará en <strong>rojo</strong> y tendrás que esperar 2 segundos.</li>
+                            </ul>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
         </div>
     );
