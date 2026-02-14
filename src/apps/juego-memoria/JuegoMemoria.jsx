@@ -7,6 +7,8 @@ import './JuegoMemoria.css';
 const GAME_TIME = 60; // 1 minute
 const MEMORIZE_TIME = 5; // 5 seconds
 const GRID_SIZE = 9;
+const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential order for "Fixed" mode
+
 
 const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [words, setWords] = useState([]);
@@ -22,8 +24,20 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [errorIndex, setErrorIndex] = useState(null);
     const [errorCountdown, setErrorCountdown] = useState(null); // Visual countdown for error state
     const [showHelp, setShowHelp] = useState(false);
+    const [isRandomOrder, setIsRandomOrder] = useState(false); // false = Sequential (Position 1), true = Random (Position 2)
 
     const timerRef = useRef(null);
+
+    // Helper for robust shuffling
+    const shuffleArray = (array) => {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    };
+
 
     // Function to load words - Extracted to be reusable
     const fetchWords = async () => {
@@ -65,11 +79,15 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
             setCategory(selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1).replace(/-/g, ' ').replace(/_/g, ' '));
 
-            const shuffled = selectedWords.sort(() => 0.5 - Math.random());
+            // Re-shuffle the selection
+            const shuffled = shuffleArray(selectedWords);
             const selected = shuffled.slice(0, GRID_SIZE);
             setWords(selected);
 
-            const order = Array.from({ length: GRID_SIZE }, (_, i) => i).sort(() => 0.5 - Math.random());
+            // Re-shuffle order if random
+            const order = isRandomOrder
+                ? shuffleArray(Array.from({ length: GRID_SIZE }, (_, i) => i))
+                : [...FIXED_SEQUENCE]; // Use fixed non-sequential order
             setTargetOrder(order);
 
             // Reset Game Logic
@@ -188,7 +206,6 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 });
             }, 100);
 
-            // Wait 2 seconds (user requested: stay red for 2s with countdown)
             setTimeout(() => {
                 clearInterval(interval);
                 setRevealedIndex(null);
@@ -198,6 +215,13 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 // Reset progress (penalty)
                 setCorrectIndices(new Set());
                 setCurrentIndex(0);
+
+                // Additional Difficulty: Reshuffle target order on failure if in Random Mode
+                if (isRandomOrder) {
+                    // Create a new shuffled array of indices 0..GRID_SIZE-1
+                    const neOrder = shuffleArray(Array.from({ length: GRID_SIZE }, (_, i) => i));
+                    setTargetOrder(neOrder);
+                }
             }, 2000);
         }
     };
@@ -233,29 +257,22 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
             {errorMsg && <div className="error-msg">{errorMsg}</div>}
 
-            <div className="game-status-bar">
-                <div className="timer-box">
-                    <span className="timer-icon">⏱️</span>
-                    <span className="timer-val">{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
-                </div>
-                <div className="phase-indicator">
-                    {gameState === 'memorize' && <span className="blink">🧠 ¡Memoriza las posiciones!</span>}
-                    {gameState === 'playing' && (
-                        <div className="target-display">
-                            <span>Encuentra: </span>
-                            <span className="target-word-highlight">{targetWord}</span>
-                        </div>
+            {/* Target Word Display Container - Used for Memorize Instruction AND Target Word */}
+            {(gameState === 'playing' || gameState === 'memorize') && (
+                <div className="target-word-container">
+                    {gameState === 'memorize' ? (
+                        <>
+                            <span className="target-label text-yellow-400">🧠 FASE DE MEMORIZACIÓN</span>
+                            <span className="target-word text-xl blink">¡Memoriza las posiciones!</span>
+                        </>
+                    ) : (
+                        <>
+                            <span className="target-label">ENCUENTRA:</span>
+                            <span className="target-word">{targetWord}</span>
+                        </>
                     )}
-                    {gameState === 'won' && "🎉 ¡Completado! (Pulsa ✨ para jugar otra vez)"}
-                    {gameState === 'lost' && "❌ Tiempo agotado"}
                 </div>
-                <button className="help-btn" onClick={() => setShowHelp(true)} title="Instrucciones">
-                    ❓ Ayuda
-                </button>
-                <button className="restart-btn-new" onClick={handleNewGame} title="Nueva Partida">
-                    ✨ Nueva partida
-                </button>
-            </div>
+            )}
 
             <div className={`memory-grid ${gameState === 'memorize' ? 'memorizing' : ''}`}>
                 {words.map((word, idx) => {
@@ -294,25 +311,70 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 })}
             </div>
 
+            <div className="game-status-bar">
+                <div className="status-group-top">
+                    <div className="timer-box">
+                        <span className="timer-icon">⏱️</span>
+                        <span className="timer-val">{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
+                    </div>
+                    <div className="phase-indicator">
+                        {/* Status messages handled in top container now */}
+                        {gameState === 'won' && "🎉 ¡Completado! (Pulsa ✨ para jugar otra vez)"}
+                        {gameState === 'lost' && "❌ Tiempo agotado"}
+                    </div>
+                </div>
+
+                <div className="status-group-bottom">
+                    <div className="order-toggle-container">
+                        <span className="toggle-label text-xl">🎲</span>
+                        <div className="toggle-switch" onClick={() => setIsRandomOrder(prev => !prev)}>
+                            <div
+                                className={`toggle-option ${!isRandomOrder ? 'active' : ''}`}
+                                title="Modo Fijo (No Aleatorio)"
+                            >
+                                {/* Position 1 - Fixed */}
+                            </div>
+                            <div
+                                className={`toggle-option ${isRandomOrder ? 'active' : ''}`}
+                                title="Modo Aleatorio"
+                            >
+                                {/* Position 2 - Random */}
+                            </div>
+                            <div className={`toggle-slider ${isRandomOrder ? 'slide-right' : 'slide-left'}`}></div>
+                        </div>
+                    </div>
+
+                    <button className="help-btn" onClick={() => setShowHelp(true)} title="Instrucciones">
+                        ❓ Ayuda
+                    </button>
+                    <button className="restart-btn-new" onClick={handleNewGame} title="Nueva Partida">
+                        ✨ Nueva partida
+                    </button>
+                </div>
+            </div>
+
+
 
 
 
             {/* Won / Lost Messages (No Modal) */}
-            {(gameState === 'won' || gameState === 'lost') && (
-                <div className="game-result-overlay">
-                    {gameState === 'won' ? (
-                        <div className="result-msg win-msg">
-                            <h1>¡ENHORABUENA! 🎉</h1>
-                            <p>¡Has encontrado todas las palabras!</p>
-                        </div>
-                    ) : (
-                        <div className="result-msg lose-msg">
-                            <h1>¡TIEMPO AGOTADO! ⏳</h1>
-                            <p>Nota: {Math.round((correctIndices.size / GRID_SIZE) * 10)} / 10</p>
-                        </div>
-                    )}
-                </div>
-            )}
+            {
+                (gameState === 'won' || gameState === 'lost') && (
+                    <div className="game-result-overlay">
+                        {gameState === 'won' ? (
+                            <div className="result-msg win-msg">
+                                <h1>¡ENHORABUENA! 🎉</h1>
+                                <p>¡Has encontrado todas las palabras!</p>
+                            </div>
+                        ) : (
+                            <div className="result-msg lose-msg">
+                                <h1>¡TIEMPO AGOTADO! ⏳</h1>
+                                <p>Nota: {Math.round((correctIndices.size / GRID_SIZE) * 10)} / 10</p>
+                            </div>
+                        )}
+                    </div>
+                )
+            }
 
             {/* Help Modal */}
             <AnimatePresence>
@@ -340,12 +402,17 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                                 <li>Si aciertas, la carta se queda visible.</li>
                                 <li>Si fallas, la carta se marcará en <strong>rojo</strong> y tendrás que esperar 2 segundos.</li>
                             </ul>
+                            <h3 className="mt-4 mb-2 text-lg font-bold text-blue-400 border-b border-gray-700 pb-1">⚙️ Configuración (Dado 🎲)</h3>
+                            <ul>
+                                <li><strong>Izquierda (Desactivado):</strong> Modo Fijo. El orden de las palabras siempre sigue el mismo patrón (aunque no es 1-2-3..).</li>
+                                <li><strong>Derecha (Activado):</strong> Modo Aleatorio. El orden de las palabras cambia con cada error.</li>
+                            </ul>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-        </div>
+        </div >
     );
 };
 

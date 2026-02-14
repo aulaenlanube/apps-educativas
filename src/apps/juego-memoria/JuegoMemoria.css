@@ -17,13 +17,14 @@
     background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
     color: #fff;
     font-family: 'Fredoka', sans-serif;
-    overflow: hidden;
+    overflow-y: auto;
+    /* Changed from overflow: hidden to allow scrolling */
     z-index: 10;
 
     padding-top: 6rem;
-    /* Title lower */
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
+
 
 .game-title {
     font-size: clamp(1.5rem, 5vw, 3rem);
@@ -59,18 +60,123 @@
 }
 
 
+
+/* New Bar Layout for Groups */
+.status-group-top,
+.status-group-bottom {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
 .game-status-bar {
     display: flex;
-    gap: clamp(1rem, 3vw, 3rem);
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    margin-bottom: 1rem;
+    /* On mobile, we stack them */
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    /* Slightly smaller base font on mobile */
+    margin-bottom: 4rem;
+    /* Significantly increased margin-bottom */
     background: rgba(30, 41, 59, 0.4);
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
+    /* Adjusted padding */
     border-radius: 2rem;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(248, 113, 113, 0.3);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     flex-shrink: 0;
+    align-items: center;
+    /* Narrower than grid as requested */
+    width: 85%;
+    max-width: 750px;
+    box-sizing: border-box;
+    /* Include padding in width calculation */
+}
+
+
+
+/* On mobile, ensure bottom group fits */
+.status-group-bottom {
+    width: 100%;
+    justify-content: space-evenly;
+    /* Distribute items */
+    gap: 0.5rem;
+    /* Smaller gap */
+    flex-wrap: wrap;
+    /* Allow wrapping if absolutely necessary (e.g. very small fold phones) */
+}
+
+/* Adjust toggle container margins on mobile */
+.order-toggle-container {
+    margin-right: 0;
+    /* Remove right margin on mobile */
+    gap: 0.2rem;
+}
+
+/* Desktop layout */
+@media (min-width: 900px) {
+    .memory-game-container {
+        justify-content: center;
+        overflow: hidden;
+        /* Lock scroll on big screens if possible */
+    }
+
+    .game-status-bar {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 2rem;
+        padding: 0.5rem 2rem;
+        width: 85%;
+        /* Updated logic */
+        max-width: 800px;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+        /* Updated spacing */
+    }
+
+
+    .status-group-bottom {
+        width: auto;
+        justify-content: flex-end;
+        /* Align right */
+        gap: 1rem;
+        flex-wrap: nowrap;
+        /* Prevent wrapping on desktop */
+    }
+
+    .order-toggle-container {
+        margin-right: 1rem;
+    }
+}
+
+
+
+@media (max-width: 900px) {
+    .memory-game-container {
+        padding-top: 4.5rem;
+        /* Reduced top padding on mobile */
+        padding-bottom: 6rem;
+        /* Extra padding at bottom for status bar */
+    }
+
+    .category-badge {
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .game-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .memory-grid {
+        max-height: 45vh;
+        /* Even smaller on mobile */
+        gap: 0.5rem;
+    }
 }
 
 .timer-box,
@@ -101,6 +207,8 @@
 }
 
 
+
+/* Main Grid Container */
 .memory-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -111,11 +219,13 @@
     max-width: 900px;
     flex-grow: 1;
     max-height: 55vh;
-    /* Reduced height to ensure fit */
     align-content: center;
     justify-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    z-index: 5;
 }
+
+
 
 .memory-box {
     width: 100%;
@@ -730,4 +840,150 @@
     background: rgba(239, 68, 68, 0.8);
     /* Red on hover */
     transform: rotate(90deg);
+}
+
+/* Toggle Switch */
+.order-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-transform: uppercase;
+}
+
+.toggle-switch {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    width: 60px;
+    /* Smaller width */
+    height: 30px;
+    /* Smaller height */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-option {
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    /* Removed text/icon styles */
+}
+
+.toggle-option.active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    width: calc(50% - 4px);
+    background: rgba(96, 165, 250, 0.5);
+    /* Blue-ish */
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+}
+
+/* Position 1 (Left) - Fixed Order */
+.toggle-slider.slide-left {
+    left: 2px;
+    background: #475569;
+    /* Gray - indicating 'Off' or 'Fixed' */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Position 2 (Right) - Random Order */
+.toggle-slider.slide-right {
+    left: calc(50% + 2px);
+    background: #60a5fa;
+    /* Blue/Active for 'Random' dice mode */
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+}
+
+/* Target Word Container */
+/* Target Word Container */
+.target-word-container {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    /* Blue-ish */
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    /* Reduced padding */
+    margin-bottom: 1rem;
+    /* Reduced margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    /* Reduced gap */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 15px rgba(96, 165, 250, 0.2);
+    width: 90%;
+    max-width: 600px;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+    flex-shrink: 0;
+    /* Important: Prevent shrinking */
+    z-index: 20;
+    /* Ensure on top */
+    min-height: 80px;
+    /* Ensure minimum height */
+}
+
+
+.target-word-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #60a5fa;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.target-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.target-word {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 1.2;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
