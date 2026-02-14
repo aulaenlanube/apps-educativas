@@ -81,11 +81,17 @@
     gap: 0.5rem;
 }
 
+
 .timer-val {
     font-variant-numeric: tabular-nums;
     font-weight: 600;
     color: #fbbf24;
+    font-size: 1.5rem;
+    /* Increased size */
+    min-width: 60px;
+    /* Prevent jumping */
 }
+
 
 .target-word-highlight {
     color: #60a5fa;
@@ -337,9 +343,56 @@
 
 
 
+
+/* Error State Styles */
+/* Error State Styles */
+.memory-box.error .memory-card-back {
+    border: 3px solid #ef4444;
+    /* Red border */
+    background: #fee2e2 !important;
+    /* Clear Light Red background (red-100) - Force override of gradient */
+    /* No shake/transform animation as requested */
+    animation: none;
+}
+
+/* Remove the icon if it's there */
+.memory-box.error .memory-card-back::before {
+    content: none;
+}
+
+.error-countdown {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ef4444;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    /* Space between icon and number */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 65px;
+    /* Fixed width to prevent resizing */
+    font-variant-numeric: tabular-nums;
+    /* Monospaced numbers */
+}
+
+.word-text {
+    z-index: 1;
+    /* Ensure text is below countdown if they overlap, but layout should be flex */
+}
+
+
+
 .memory-grid.memorizing .memory-box:nth-child(1) {
     animation-delay: 0s;
 }
+
 
 .memory-grid.memorizing .memory-box:nth-child(2) {
     animation-delay: 0.1s;

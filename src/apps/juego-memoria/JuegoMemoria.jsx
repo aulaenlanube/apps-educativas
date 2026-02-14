@@ -19,6 +19,8 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [correctIndices, setCorrectIndices] = useState(new Set()); // Permanently revealed correct cards
     const [errorMsg, setErrorMsg] = useState(null);
     const [category, setCategory] = useState('');
+    const [errorIndex, setErrorIndex] = useState(null);
+    const [errorCountdown, setErrorCountdown] = useState(null); // Visual countdown for error state
 
     const timerRef = useRef(null);
 
@@ -119,27 +121,32 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
         }
     }, [gameState]);
 
+
     // Game Timer
     useEffect(() => {
         if (gameState === 'playing') {
             timerRef.current = setInterval(() => {
                 setTimeLeft((prev) => {
-                    if (prev <= 1) {
+                    const next = prev - 0.1;
+                    if (next <= 0) {
                         clearInterval(timerRef.current);
                         setGameState('lost');
                         return 0;
                     }
-                    return prev - 1;
+                    return parseFloat(next.toFixed(1));
                 });
-            }, 1000);
+            }, 100);
             return () => clearInterval(timerRef.current);
         } else {
             if (timerRef.current) clearInterval(timerRef.current);
         }
     }, [gameState]);
 
-    const handleBoxClick = (index) => {
 
+
+
+
+    const handleBoxClick = (index) => {
         if (gameState !== 'playing') return;
         if (correctIndices.has(index)) return; // Already solved
         if (revealedIndex !== null) return; // Wait for animation
@@ -162,20 +169,51 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
                 if (newCorrect.size >= GRID_SIZE) {
                     setGameState('won');
-                    confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, zIndex: 3000 });
+                    confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 }, zIndex: 3000 });
                 } else {
                     setCurrentIndex(prev => prev + 1);
                 }
             }, 800);
         } else {
             // Incorrect
+            setErrorIndex(index);
+            setErrorCountdown(2.0); // Start countdown at 2.0s
+
+            // Update countdown every 100ms
+            const interval = setInterval(() => {
+                setErrorCountdown(prev => {
+                    const next = prev - 0.1;
+                    return next < 0 ? 0 : parseFloat(next.toFixed(1));
+                });
+            }, 100);
+
+            // Wait 2 seconds (user requested: stay red for 2s with countdown)
             setTimeout(() => {
+                clearInterval(interval);
                 setRevealedIndex(null);
+                setErrorIndex(null);
+                setErrorCountdown(null);
+
+                // Reset progress (penalty)
                 setCorrectIndices(new Set());
                 setCurrentIndex(0);
-            }, 3000);
+            }, 2000);
         }
     };
+
+    // Keypad Support
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (gameState !== 'playing') return;
+            const key = parseInt(e.key);
+            if (!isNaN(key) && key >= 1 && key <= GRID_SIZE) {
+                handleBoxClick(key - 1);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [gameState, revealedIndex, correctIndices, targetOrder, currentIndex]);
+
 
 
     const targetWord = words.length > 0 && targetOrder.length > 0 ? words[targetOrder[currentIndex]] : '';
@@ -197,7 +235,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
             <div className="game-status-bar">
                 <div className="timer-box">
                     <span className="timer-icon">⏱️</span>
-                    <span className="timer-val">{gameState === 'memorize' ? memorizeTimeLeft : timeLeft}s</span>
+                    <span className="timer-val">{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
                 </div>
                 <div className="phase-indicator">
                     {gameState === 'memorize' && <span className="blink">🧠 ¡Memoriza las posiciones!</span>}
@@ -226,7 +264,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                     return (
                         <div
                             key={idx}
-                            className={`memory-box ${isRevealed ? 'revealed' : ''} ${correctIndices.has(idx) ? 'correct' : ''} ${gameState === 'shaking' ? 'shaking' : ''}`}
+                            className={`memory-box ${isRevealed ? 'revealed' : ''} ${correctIndices.has(idx) ? 'correct' : ''} ${gameState === 'shaking' ? 'shaking' : ''} ${errorIndex === idx ? 'error' : ''}`}
                             onClick={() => handleBoxClick(idx)}
                         >
                             <div className="memory-card-inner">
@@ -238,7 +276,13 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
                                 {/* Back: Revealed State (Face Up) */}
                                 <div className="memory-card-back">
-                                    {word}
+                                    <span className="word-text">{word}</span>
+                                    {errorIndex === idx && (
+                                        <div className="error-countdown">
+                                            <span>⏱️</span>
+                                            <span>{Number(errorCountdown).toFixed(1)}</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
