@@ -60,7 +60,7 @@ const AppRunnerPage = () => {
             : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
 
     const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('laboratorio-funciones-2d') || app.id.includes('fracciones-eso') || app.id.includes('excavacion-selectiva');
-    const isFullScreenApp = app.id.includes('sistema-solar') || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('mesa-crafteo');
+    const isFullScreenApp = app.id.includes('sistema-solar') || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('mesa-crafteo') || app.id.includes('juego-memoria');
 
     const containerClass = isFullScreenApp
         ? "w-full h-screen"
@@ -72,19 +72,19 @@ const AppRunnerPage = () => {
     const btnBackClass = isRetroApp
         ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all font-mono tracking-widest uppercase"
         : isFullScreenApp
-            ? "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-full ring-1 ring-white/10"
+            ? "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-xl ring-1 ring-white/10"
             : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0";
 
     const btnHeartClass = isRetroApp
         ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
         : isFullScreenApp
-            ? "bg-white/10 backdrop-blur-md border border-white/20 text-yellow-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all group rounded-full ring-1 ring-white/10"
+            ? "bg-white/10 backdrop-blur-md border border-white/20 text-red-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
             : "bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group";
 
     const iconHeartClass = isRetroApp
         ? "h-5 w-5 fill-transparent group-hover:fill-green-500 transition-all duration-300"
         : isFullScreenApp
-            ? "h-4 w-4 fill-transparent group-hover:fill-yellow-500 transition-all duration-300"
+            ? "h-4 w-4 fill-transparent group-hover:fill-red-500 transition-all duration-300"
             : "h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300";
 
     return (

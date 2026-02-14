@@ -1,0 +1,568 @@
+/* src/apps/juego-memoria/JuegoMemoria.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+
+
+.memory-game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    color: #fff;
+    font-family: 'Fredoka', sans-serif;
+    overflow: hidden;
+    z-index: 10;
+
+    padding-top: 6rem;
+    /* Title lower */
+    padding-bottom: 4rem;
+}
+
+.game-title {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.category-badge {
+    background: rgba(96, 165, 250, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    padding: 0.8rem 2rem;
+    border-radius: 20px;
+    font-size: clamp(1rem, 4vw, 1.8rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+.category-shake {
+    animation: vibrate 0.3s linear infinite;
+}
+
+
+.game-status-bar {
+    display: flex;
+    gap: clamp(1rem, 3vw, 3rem);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    margin-bottom: 1rem;
+    background: rgba(30, 41, 59, 0.4);
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.timer-box,
+.phase-indicator,
+.target-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timer-val {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: #fbbf24;
+}
+
+.target-word-highlight {
+    color: #60a5fa;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.5rem, 2vmin, 2rem);
+    padding: 0 1rem;
+    perspective: 1000px;
+    width: 95%;
+    max-width: 900px;
+    flex-grow: 1;
+    max-height: 55vh;
+    /* Reduced height to ensure fit */
+    align-content: center;
+    justify-items: center;
+    margin-bottom: 1rem;
+}
+
+.memory-box {
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 2/1;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+/* 3D Wrapper */
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+/* State: Revealed -> Flip */
+.memory-box.revealed .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* General Face Styles */
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* FRONT: Hidden State (Face Down) */
+.memory-card-front {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: rotateY(0deg);
+    overflow: hidden;
+}
+
+.memory-card-front::after {
+    display: none;
+}
+
+.card-number {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 10%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.01) 0px, rgba(255, 255, 255, 0.01) 2px, transparent 2px, transparent 10px);
+}
+
+/* Hover effect on Front */
+.memory-box:not(.revealed):hover .memory-card-inner {
+    transform: translateY(-5px);
+}
+
+.memory-box:not(.revealed):hover .memory-card-front {
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+}
+
+/* BACK: Revealed State (Face Up) - Content */
+.memory-card-back {
+    background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+    color: #1e293b;
+    transform: rotateY(180deg);
+    font-size: clamp(0.7rem, 2vmin, 1.4rem);
+    font-weight: 700;
+    border: 2px solid #fff;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Correct Match State */
+.memory-box.correct .memory-card-back {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    color: #166534;
+    border-color: #22c55e;
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+
+.restart-btn {
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #f43f5e, #e11d48);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(244, 63, 94, 0.6);
+}
+
+
+.restart-btn-new {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.restart-btn-new:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+
+/* Vibration Animation */
+@keyframes vibrate {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+.memory-box.shaking {
+    animation: vibrate 0.3s linear infinite;
+    /* Shaking the whole box */
+}
+
+
+/* Animations for Memorize Phase */
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+        background-color: #ffffff;
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(96, 165, 250, 0.8);
+        background-color: #eff6ff;
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+        background-color: #ffffff;
+    }
+}
+
+@keyframes shineAnim {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.3;
+    }
+
+    100% {
+        left: 200%;
+        opacity: 0;
+    }
+}
+
+
+/* .memory-grid.memorizing .memory-box removed */
+
+
+
+.memory-grid.memorizing .memory-box:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(4) {
+    animation-delay: 0.1s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(5) {
+    animation-delay: 0.2s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(7) {
+    animation-delay: 0.2s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(8) {
+    animation-delay: 0.3s;
+}
+
+.memory-grid.memorizing .memory-box:nth-child(9) {
+    animation-delay: 0.4s;
+}
+
+.memory-grid.memorizing .memory-card-back {
+    position: absolute;
+    /* Keep it absolute as per original styling, just ensuring it takes properties */
+    border: 2px solid #60a5fa;
+    /* Blue glow border */
+    /* Pulsing Glow Background */
+    animation: glowPulse 1.5s infinite alternate;
+    overflow: hidden;
+}
+
+.memory-grid.memorizing .memory-card-back::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg);
+    animation: shineAnim 2s infinite;
+}
+
+.error-msg {
+    color: #f87171;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.game-over-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.game-over-content {
+    background: #1e293b;
+    padding: 3rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+    /* Navigation Bar integration */
+    .top-nav-bar {
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 1.5rem;
+        gap: 1rem;
+        z-index: 2000;
+        pointer-events: none;
+        /* Let clicks pass through if needed, but buttons have pointer-events auto */
+    }
+
+    .top-nav-bar>* {
+        pointer-events: auto;
+    }
+
+    .btn-nav-back {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+    }
+
+    .btn-nav-back:hover {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-nav-heart {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fbbf24;
+        /* yellow-500 */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-nav-heart:hover {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+    }
+
+    .btn-nav-heart svg {
+        transition: fill 0.3s;
+    }
+
+
+
+    .game-result-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1500;
+        pointer-events: none;
+        /* Let clicks pass through so they can hit restart button */
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .result-msg {
+        background: rgba(15, 23, 42, 0.85);
+        padding: 2rem 4rem;
+        border-radius: 2rem;
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .result-msg h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .result-msg.lose-msg h1 {
+        background: linear-gradient(to right, #f87171, #ef4444);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .result-msg p {
+        font-size: 1.5rem;
+        color: #e2e8f0;
+    }
+
+
+    @keyframes popIn {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}

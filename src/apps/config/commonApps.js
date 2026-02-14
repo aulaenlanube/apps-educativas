@@ -330,3 +330,12 @@ export const appCelulaVegetal = {
 };
 
 
+
+import JuegoMemoria from '../juego-memoria/JuegoMemoria';
+
+export const appJuegoMemoria = {
+  id: 'juego-memoria',
+  name: '🧠 Juego de Memoria',
+  description: 'Memoriza las palabras y encuéntralas antes de que se acabe el tiempo.',
+  component: JuegoMemoria
+};
