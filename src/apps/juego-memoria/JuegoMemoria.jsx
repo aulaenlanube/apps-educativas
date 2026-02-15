@@ -7,7 +7,8 @@ import './JuegoMemoria.css';
 const GAME_TIME = 60; // 1 minute
 const MEMORIZE_TIME = 5; // 5 seconds
 const GRID_SIZE = 9;
-const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential order for "Fixed" mode
+const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential order for "Fixed" mode (LEGACY - NOT USED)
+
 
 
 const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
@@ -24,6 +25,17 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [errorIndex, setErrorIndex] = useState(null);
     const [errorCountdown, setErrorCountdown] = useState(null); // Visual countdown for error state
     const [showHelp, setShowHelp] = useState(false);
+    // State for Config
+    const [gridSize, setGridSize] = useState(9); // 6, 9, 12
+    const [gameTime, setGameTime] = useState(60); // 40, 60, 80
+    const [errorWaitTime, setErrorWaitTime] = useState(2); // 1, 2, 3
+    const [showSettings, setShowSettings] = useState(false);
+
+    // Config Options
+    const GRID_OPTIONS = [6, 9, 12];
+    const TIME_OPTIONS = [40, 60, 80];
+    const WAIT_OPTIONS = [1, 2, 3];
+
     const [isRandomOrder, setIsRandomOrder] = useState(false); // false = Sequential (Position 1), true = Random (Position 2)
 
     const timerRef = useRef(null);
@@ -37,6 +49,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
         }
         return newArray;
     };
+
 
 
     // Function to load words - Extracted to be reusable
@@ -53,7 +66,8 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 return;
             }
 
-            const validCategories = categories.filter(c => Array.isArray(data[c]) && data[c].length >= GRID_SIZE);
+            // Using dynamic gridSize here
+            const validCategories = categories.filter(c => Array.isArray(data[c]) && data[c].length >= gridSize);
 
             let selectedWords = [];
             let selectedCategory = '';
@@ -72,8 +86,8 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
             selectedWords = [...new Set(selectedWords)];
 
-            if (selectedWords.length < GRID_SIZE) {
-                setErrorMsg(`No hay suficientes palabras.`);
+            if (selectedWords.length < gridSize) {
+                setErrorMsg(`No hay suficientes palabras para ${gridSize} cartas.`);
                 return;
             }
 
@@ -81,13 +95,11 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
             // Re-shuffle the selection
             const shuffled = shuffleArray(selectedWords);
-            const selected = shuffled.slice(0, GRID_SIZE);
+            const selected = shuffled.slice(0, gridSize);
             setWords(selected);
 
-            // Re-shuffle order if random
-            const order = isRandomOrder
-                ? shuffleArray(Array.from({ length: GRID_SIZE }, (_, i) => i))
-                : [...FIXED_SEQUENCE]; // Use fixed non-sequential order
+            // ALWAYS START WITH A RANDOM SEQUENCE for this specific game
+            const order = shuffleArray(Array.from({ length: gridSize }, (_, i) => i));
             setTargetOrder(order);
 
             // Reset Game Logic
@@ -95,7 +107,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
             setRevealedIndex(null);
             setCurrentIndex(0);
             setMemorizeTimeLeft(MEMORIZE_TIME);
-            setTimeLeft(GAME_TIME);
+            setTimeLeft(gameTime); // Use dynamic gameTime
 
             // Start Memorize
             setGameState('memorize');
@@ -175,6 +187,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
         const currentTargetIndex = targetOrder[currentIndex]; // The index we want
 
+
         // Check if correct
         if (index === currentTargetIndex) {
             // Correct!
@@ -186,7 +199,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
                 setRevealedIndex(null);
 
-                if (newCorrect.size >= GRID_SIZE) {
+                if (newCorrect.size >= gridSize) {
                     setGameState('won');
                     confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 }, zIndex: 3000 });
                 } else {
@@ -196,7 +209,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
         } else {
             // Incorrect
             setErrorIndex(index);
-            setErrorCountdown(2.0); // Start countdown at 2.0s
+            setErrorCountdown(errorWaitTime); // Start countdown using Config
 
             // Update countdown every 100ms
             const interval = setInterval(() => {
@@ -218,20 +231,21 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
                 // Additional Difficulty: Reshuffle target order on failure if in Random Mode
                 if (isRandomOrder) {
-                    // Create a new shuffled array of indices 0..GRID_SIZE-1
-                    const neOrder = shuffleArray(Array.from({ length: GRID_SIZE }, (_, i) => i));
+                    // Create a new shuffled array of indices 0..gridSize-1
+                    const neOrder = shuffleArray(Array.from({ length: gridSize }, (_, i) => i));
                     setTargetOrder(neOrder);
                 }
-            }, 2000);
+            }, errorWaitTime * 1000); // Use Config Wait Time (ms)
         }
     };
+
 
     // Keypad Support
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (gameState !== 'playing') return;
             const key = parseInt(e.key);
-            if (!isNaN(key) && key >= 1 && key <= GRID_SIZE) {
+            if (!isNaN(key) && key >= 1 && key <= gridSize) {
                 handleBoxClick(key - 1);
             }
         };
@@ -274,7 +288,8 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                 </div>
             )}
 
-            <div className={`memory-grid ${gameState === 'memorize' ? 'memorizing' : ''}`}>
+
+            <div className={`memory-grid grid-${gridSize} ${gameState === 'memorize' ? 'memorizing' : ''}`}>
                 {words.map((word, idx) => {
                     const isRevealed = gameState === 'memorize' ||
                         revealedIndex === idx ||
@@ -319,36 +334,18 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                     </div>
                     <div className="phase-indicator">
                         {/* Status messages handled in top container now */}
-                        {gameState === 'won' && "🎉 ¡Completado! (Pulsa ✨ para jugar otra vez)"}
-                        {gameState === 'lost' && "❌ Tiempo agotado"}
                     </div>
                 </div>
 
                 <div className="status-group-bottom">
-                    <div className="order-toggle-container">
-                        <span className="toggle-label text-xl">🎲</span>
-                        <div className="toggle-switch" onClick={() => setIsRandomOrder(prev => !prev)}>
-                            <div
-                                className={`toggle-option ${!isRandomOrder ? 'active' : ''}`}
-                                title="Modo Fijo (No Aleatorio)"
-                            >
-                                {/* Position 1 - Fixed */}
-                            </div>
-                            <div
-                                className={`toggle-option ${isRandomOrder ? 'active' : ''}`}
-                                title="Modo Aleatorio"
-                            >
-                                {/* Position 2 - Random */}
-                            </div>
-                            <div className={`toggle-slider ${isRandomOrder ? 'slide-right' : 'slide-left'}`}></div>
-                        </div>
-                    </div>
-
                     <button className="help-btn" onClick={() => setShowHelp(true)} title="Instrucciones">
                         ❓ Ayuda
                     </button>
                     <button className="restart-btn-new" onClick={handleNewGame} title="Nueva Partida">
                         ✨ Nueva partida
+                    </button>
+                    <button className="settings-btn" onClick={() => setShowSettings(true)} title="Configuración">
+                        ⚙️
                     </button>
                 </div>
             </div>
@@ -356,25 +353,148 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
 
 
 
+            {/* Won / Lost Messages (Modal Style) */}
+            <AnimatePresence>
+                {(gameState === 'won' || gameState === 'lost') && (
+                    <motion.div
+                        className="game-result-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <motion.div
+                            className="result-modal-content"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                        >
+                            {gameState === 'won' ? (
+                                <div className="result-msg win-msg">
+                                    <div className="text-6xl mb-4">🎉</div>
+                                    <h1>¡ENHORABUENA!</h1>
+                                    <p>¡Has encontrado todas las palabras!</p>
+                                    <div className="final-score">
+                                        Nota: 10 / 10
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="result-msg lose-msg">
+                                    <div className="text-6xl mb-4">⏳</div>
+                                    <h1>¡TIEMPO AGOTADO!</h1>
+                                    <p>Se acabó el tiempo.</p>
+                                    <div className="final-score">
+                                        Nota: {Math.round((correctIndices.size / GRID_SIZE) * 10)} / 10
+                                    </div>
+                                </div>
+                            )}
 
-            {/* Won / Lost Messages (No Modal) */}
-            {
-                (gameState === 'won' || gameState === 'lost') && (
-                    <div className="game-result-overlay">
-                        {gameState === 'won' ? (
-                            <div className="result-msg win-msg">
-                                <h1>¡ENHORABUENA! 🎉</h1>
-                                <p>¡Has encontrado todas las palabras!</p>
+                            <button className="restart-btn-modal" onClick={handleNewGame}>
+                                ✨ Jugar de nuevo
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+
+            {/* Settings Modal */}
+            <AnimatePresence>
+                {showSettings && (
+                    <motion.div
+                        className="modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowSettings(false)}
+                    >
+                        <motion.div
+                            className="settings-modal-content"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="close-btn" onClick={() => setShowSettings(false)}>✖</button>
+                            <h2>⚙️ Configuración</h2>
+
+                            <div className="setting-group">
+                                <label>Número de Cajas:</label>
+                                <div className="slider-container">
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="2"
+                                        step="1"
+                                        value={GRID_OPTIONS.indexOf(gridSize)}
+                                        onChange={(e) => setGridSize(GRID_OPTIONS[parseInt(e.target.value)])}
+                                    />
+                                    <div className="slider-labels">
+                                        {GRID_OPTIONS.map(val => (
+                                            <span key={val} className={gridSize === val ? 'active' : ''}>{val}</span>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
-                        ) : (
-                            <div className="result-msg lose-msg">
-                                <h1>¡TIEMPO AGOTADO! ⏳</h1>
-                                <p>Nota: {Math.round((correctIndices.size / GRID_SIZE) * 10)} / 10</p>
+
+                            <div className="setting-group">
+                                <label>Tiempo de Juego:</label>
+                                <div className="options-row">
+                                    {TIME_OPTIONS.map(time => (
+                                        <button
+                                            key={time}
+                                            className={`option-btn ${gameTime === time ? 'active' : ''}`}
+                                            onClick={() => setGameTime(time)}
+                                        >
+                                            {time}s
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        )}
-                    </div>
-                )
-            }
+
+                            <div className="setting-group">
+                                <label>Tiempo de Espera (Error):</label>
+                                <div className="options-row">
+                                    {WAIT_OPTIONS.map(wait => (
+                                        <button
+                                            key={wait}
+                                            className={`option-btn ${errorWaitTime === wait ? 'active' : ''}`}
+                                            onClick={() => setErrorWaitTime(wait)}
+                                        >
+                                            {wait}s
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="setting-group">
+                                <label>Modo de Orden (Dado 🎲):</label>
+                                <div className="options-row">
+                                    <button
+                                        className={`option-btn ${!isRandomOrder ? 'active' : ''}`}
+                                        onClick={() => setIsRandomOrder(false)}
+                                    >
+                                        Fijo
+                                    </button>
+                                    <button
+                                        className={`option-btn ${isRandomOrder ? 'active' : ''}`}
+                                        onClick={() => setIsRandomOrder(true)}
+                                    >
+                                        Aleatorio
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button className="confirm-settings-btn" onClick={() => {
+                                setShowSettings(false);
+                                handleNewGame();
+                            }}>
+                                ✅ Guardar y Nueva Partida
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
 
             {/* Help Modal */}
             <AnimatePresence>
@@ -400,12 +520,12 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                                 <li>Tienes <strong>5 segundos</strong> al inicio para memorizar la ubicación de las palabras.</li>
                                 <li>Haz clic en una carta (o usa los números 1-9) para revelarla.</li>
                                 <li>Si aciertas, la carta se queda visible.</li>
-                                <li>Si fallas, la carta se marcará en <strong>rojo</strong> y tendrás que esperar 2 segundos.</li>
+                                <li>Si fallas, la carta se marcará en <strong>rojo</strong> y tendrás que esperar {errorWaitTime} segundos.</li>
                             </ul>
                             <h3 className="mt-4 mb-2 text-lg font-bold text-blue-400 border-b border-gray-700 pb-1">⚙️ Configuración (Dado 🎲)</h3>
                             <ul>
-                                <li><strong>Izquierda (Desactivado):</strong> Modo Fijo. El orden de las palabras siempre sigue el mismo patrón (aunque no es 1-2-3..).</li>
-                                <li><strong>Derecha (Activado):</strong> Modo Aleatorio. El orden de las palabras cambia con cada error.</li>
+                                <li><strong>Izquierda (Desactivado):</strong> Modo Fijo. Se genera un orden aleatorio al inicio, pero este orden se mantiene durante toda la partida. Si fallas, sigues buscando la misma palabra.</li>
+                                <li><strong>Derecha (Activado):</strong> Modo Aleatorio. El orden de las palabras se reorganiza cada vez que cometes un error, cambiando la siguiente palabra a encontrar.</li>
                             </ul>
                         </motion.div>
                     </motion.div>
