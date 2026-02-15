@@ -1,0 +1,81 @@
+.app-orientation-warning {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f172a;
+    /* Solid dark background to cover app */
+    z-index: 100000;
+    /* Extremely high z-index */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+
+/* Show only when in portrait orientation (height > width) */
+@media (orientation: portrait) {
+    .app-orientation-warning {
+        display: flex;
+    }
+}
+
+.orientation-content {
+    max-width: 90%;
+    width: 400px;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.rotate-icon {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    animation: rotatePhone 3s infinite ease-in-out;
+    display: inline-block;
+}
+
+.orientation-content h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #60a5fa;
+    /* Blue-400 */
+}
+
+.orientation-content p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    /* Slate-300 */
+}
+
+@keyframes rotatePhone {
+
+    0%,
+    10% {
+        transform: rotate(0deg);
+    }
+
+    40%,
+    60% {
+        transform: rotate(90deg);
+    }
+
+    90%,
+    100% {
+        transform: rotate(0deg);
+    }
+}

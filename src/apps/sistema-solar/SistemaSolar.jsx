@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Html, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
+import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import { solarSystemData } from './model/solarSystemData';
 import './SistemaSolar.css';
 
@@ -1457,6 +1458,7 @@ const SistemaSolar = ({ level, grade }) => {
 
     return (
         <div className={`sistema-solar-container ${isVideoOpen ? 'video-active' : ''}`}>
+            <AppOrientationWarning />
             {/* Cinematic intro overlay */}
             <div className={`intro-overlay ${introVisible ? 'visible' : ''}`}>
                 <div className="intro-content">

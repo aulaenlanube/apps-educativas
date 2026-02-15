@@ -16,6 +16,7 @@ import {
     moleculesMatch,
     layoutMoleculeFromGraph
 } from './atomConfig';
+import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import './MesaCrafteo.css';
 
 const STORAGE_KEY = 'mesa_crafteo_discoveries';
@@ -274,6 +275,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
 
     return (
         <div className="mc-app full-screen">
+            <AppOrientationWarning />
             {/* ===== FONDO / VIEWPORT 3D ===== */}
             <section className="mc-viewport-full">
                 <MoleculeBuilder3D

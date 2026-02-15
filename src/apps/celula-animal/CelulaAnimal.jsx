@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import './CelulaAnimal.css';
 
 // ===== ORGANELLE DATA =====
@@ -986,6 +987,7 @@ const CelulaAnimal = () => {
 
     return (
         <div className={`celula-app ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
+            <AppOrientationWarning />
             {/* HEADER */}
             <header className="celula-header">
                 <div className="celula-header-left">

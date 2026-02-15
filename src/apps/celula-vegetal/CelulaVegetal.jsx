@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import './CelulaVegetal.css';
 
 // ===== ORGANELLE DATA =====
@@ -392,8 +393,8 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
                 <rect x="71" y="71" width="458" height="358" rx="26" ry="26"
                     fill="none" stroke="#d97706" strokeWidth="2" opacity="0.4" />
                 {/* Phospholipid markers */}
-                {[[150,66],[250,66],[350,66],[450,66],[536,150],[536,250],[536,350],
-                  [450,434],[350,434],[250,434],[150,434],[64,350],[64,250],[64,150]].map(([x,y], i) => (
+                {[[150, 66], [250, 66], [350, 66], [450, 66], [536, 150], [536, 250], [536, 350],
+                [450, 434], [350, 434], [250, 434], [150, 434], [64, 350], [64, 250], [64, 150]].map(([x, y], i) => (
                     <circle key={i} cx={x} cy={y} r="2" fill="#fbbf24" opacity="0.3" />
                 ))}
             </g>
@@ -404,7 +405,7 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
                 <rect x="73" y="73" width="454" height="354" rx="24" ry="24" fill="url(#cytoplasmGrad)" />
                 <rect x="73" y="73" width="454" height="354" rx="24" ry="24" fill="url(#cytoHighlight)" />
                 {/* Texture particles */}
-                {[[100,120],[180,100],[480,180],[500,320],[130,380],[420,400],[250,95]].map(([x,y], i) => (
+                {[[100, 120], [180, 100], [480, 180], [500, 320], [130, 380], [420, 400], [250, 95]].map(([x, y], i) => (
                     <circle key={i} cx={x} cy={y} r="1" fill="rgba(134,239,172,0.08)" />
                 ))}
             </g>
@@ -499,8 +500,8 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
                 <path d="M100,256 Q120,236 150,256 Q175,276 160,256"
                     fill="none" stroke="rgba(147,197,253,0.3)" strokeWidth="2" strokeLinecap="round" />
                 {/* Ribosomes on first tube */}
-                {[[105,262],[118,248],[132,256],[145,268],[158,270],[168,260]].map(([x,y], i) => (
-                    <circle key={`r1-${i}`} cx={x} cy={y+5} r="2.2" fill="#60a5fa" opacity="0.7" />
+                {[[105, 262], [118, 248], [132, 256], [145, 268], [158, 270], [168, 260]].map(([x, y], i) => (
+                    <circle key={`r1-${i}`} cx={x} cy={y + 5} r="2.2" fill="#60a5fa" opacity="0.7" />
                 ))}
                 {/* Shadow second */}
                 <path d="M92,284 Q117,264 142,284 Q167,304 162,284"
@@ -511,8 +512,8 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
                 <path d="M90,278 Q115,258 140,278 Q165,298 160,278"
                     fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="1.5" strokeLinecap="round" />
                 {/* Ribosomes on second tube */}
-                {[[98,285],[110,272],[125,280],[138,292],[155,292]].map(([x,y], i) => (
-                    <circle key={`r2-${i}`} cx={x} cy={y+4} r="2" fill="#60a5fa" opacity="0.6" />
+                {[[98, 285], [110, 272], [125, 280], [138, 292], [155, 292]].map(([x, y], i) => (
+                    <circle key={`r2-${i}`} cx={x} cy={y + 4} r="2" fill="#60a5fa" opacity="0.6" />
                 ))}
                 {/* Third tube */}
                 <path d="M105,300 Q125,285 145,300 Q160,312 170,305"
@@ -630,12 +631,12 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
                     {/* Cisternae with 3D thickness */}
                     {[0, 12, 24, 36].map((offset, i) => (
                         <g key={i}>
-                            <path d={`M-35,${-10+offset} Q0,${-18+offset} 35,${-10+offset}`}
+                            <path d={`M-35,${-10 + offset} Q0,${-18 + offset} 35,${-10 + offset}`}
                                 fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="7" strokeLinecap="round" />
-                            <path d={`M-33,${-12+offset} Q0,${-20+offset} 33,${-12+offset}`}
+                            <path d={`M-33,${-12 + offset} Q0,${-20 + offset} 33,${-12 + offset}`}
                                 fill="none" stroke="url(#golgiGrad)" strokeWidth={6 - i * 0.5} strokeLinecap="round"
                                 opacity={0.9 - i * 0.1} />
-                            <path d={`M-31,${-14+offset} Q0,${-22+offset} 31,${-14+offset}`}
+                            <path d={`M-31,${-14 + offset} Q0,${-22 + offset} 31,${-14 + offset}`}
                                 fill="none" stroke="rgba(94,234,212,0.15)" strokeWidth="1.5" strokeLinecap="round" />
                         </g>
                     ))}
@@ -652,12 +653,12 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
             {/* === 12. RIBOSOMAS - two-part structures === */}
             <g className={`organelle-region ${getRegionClass('ribosoma')}`}
                 onClick={(e) => { e.stopPropagation(); onSelect('ribosoma'); }}>
-                {[[200,350],[220,340],[250,360],[400,300],[420,310],[450,280],[100,150],[120,125]].map(([x,y], i) => (
+                {[[200, 350], [220, 340], [250, 360], [400, 300], [420, 310], [450, 280], [100, 150], [120, 125]].map(([x, y], i) => (
                     <g key={i}>
                         <circle cx={x} cy={y} r="10" fill="transparent" />
-                        <ellipse cx={x} cy={y+1} rx="3.2" ry="2.3" fill="url(#riboGrad)" opacity="0.8" />
-                        <ellipse cx={x} cy={y-2} rx="2.3" ry="1.6" fill="#93c5fd" opacity="0.65" />
-                        <circle cx={x-0.8} cy={y-2.5} r="0.7" fill="rgba(255,255,255,0.3)" />
+                        <ellipse cx={x} cy={y + 1} rx="3.2" ry="2.3" fill="url(#riboGrad)" opacity="0.8" />
+                        <ellipse cx={x} cy={y - 2} rx="2.3" ry="1.6" fill="#93c5fd" opacity="0.65" />
+                        <circle cx={x - 0.8} cy={y - 2.5} r="0.7" fill="rgba(255,255,255,0.3)" />
                     </g>
                 ))}
             </g>
@@ -1000,6 +1001,7 @@ const CelulaVegetal = () => {
 
     return (
         <div className={`celula-app ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
+            <AppOrientationWarning />
             <header className="celula-header">
                 <div className="celula-header-left"></div>
                 <div className="mode-switcher">
