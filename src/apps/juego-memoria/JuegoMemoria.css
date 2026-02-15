@@ -79,8 +79,9 @@
     /* Reduced gap */
     font-size: clamp(0.9rem, 2.5vw, 1.4rem);
     /* Slightly smaller base font on mobile */
-    margin-bottom: 2rem;
-    /* Reduced margin */
+    margin-bottom: min(3rem, 5vh);
+    /* Dynamic bottom margin to prevent sticking */
+    /* Ensure it doesn't touch bottom */
     background: rgba(30, 41, 59, 0.4);
     padding: 0.3rem 1.0rem;
     /* Thinner padding */
@@ -128,6 +129,7 @@
     }
 
 
+
     .game-status-bar {
         flex-direction: row;
         justify-content: space-between;
@@ -139,7 +141,8 @@
         /* Consistent narrow width */
         max-width: 650px;
         margin-top: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: max(3rem, 5vh) !important;
+        /* Force bottom margin */
     }
 
 

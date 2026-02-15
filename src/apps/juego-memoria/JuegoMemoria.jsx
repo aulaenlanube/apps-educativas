@@ -240,18 +240,31 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     };
 
 
+
     // Keypad Support
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (gameState !== 'playing') return;
-            const key = parseInt(e.key);
-            if (!isNaN(key) && key >= 1 && key <= gridSize) {
-                handleBoxClick(key - 1);
+            const key = e.key.toLowerCase();
+
+            // Numeric keys 1-9
+            const numKey = parseInt(key);
+            if (!isNaN(numKey) && numKey >= 1 && numKey <= 9 && numKey <= gridSize) {
+                handleBoxClick(numKey - 1);
+                return;
+            }
+
+            // Alpha keys for 10, 11, 12
+            // 10 -> 'a', 11 -> 'b', 12 -> 'c' 
+            if (gridSize >= 10) {
+                if (key === 'a') handleBoxClick(9); // Index 9 is box 10
+                if (key === 'b' && gridSize >= 11) handleBoxClick(10); // Index 10 is box 11
+                if (key === 'c' && gridSize >= 12) handleBoxClick(11); // Index 11 is box 12
             }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [gameState, revealedIndex, correctIndices, targetOrder, currentIndex]);
+    }, [gameState, revealedIndex, correctIndices, targetOrder, currentIndex, gridSize]);
 
 
 
@@ -307,7 +320,9 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
                                 {/* Front: Hidden State (Face Down) */}
                                 <div className="memory-card-front">
                                     <div className="card-pattern"></div>
-                                    <span className="card-number">{idx + 1}</span>
+                                    <span className="card-number">
+                                        {idx < 9 ? idx + 1 : String.fromCharCode(65 + (idx - 9))}
+                                    </span>
                                 </div>
 
                                 {/* Back: Revealed State (Face Up) */}
