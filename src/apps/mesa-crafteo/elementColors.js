@@ -1,3 +1,4 @@
+import { FAMILIES } from "../_shared/QuimicaHelpers";
 
 // Mapa extendido de colores específicos por elemento (CPK y variaciones para contraste en fondo oscuro)
 export const ELEMENT_COLORS = {

@@ -371,10 +371,12 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                     className="mc-mission-body-v2"
                                 >
                                     <h2 className="mc-mission-name-v2">{currentTarget.name}</h2>
-                                    <button className="mc-next-btn highlight-btn" onClick={selectNextTarget} disabled={isExamMode}>
-                                        <motion.span animate={{ rotate: isShuffling ? 360 : 0 }}>🎲</motion.span>
-                                        {isExamMode ? 'En examen...' : 'Siguiente Molécula'}
-                                    </button>
+                                    {!isExamMode && (
+                                        <button className="mc-next-btn highlight-btn" onClick={selectNextTarget}>
+                                            <motion.span animate={{ rotate: isShuffling ? 360 : 0 }}>🎲</motion.span>
+                                            Siguiente Molécula
+                                        </button>
+                                    )}
                                 </motion.div>
                             </AnimatePresence>
                         </div>
