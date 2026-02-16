@@ -1,25 +1,122 @@
 [
-  ["Enciendo el ordenador.", "Espero un poco.", "Ya puedo jugar."],
-  ["Cojo el ratón con la mano.", "Muevo la flecha.", "Hago clic en el icono."],
-  ["Quiero escribir mi nombre.", "Toco las teclas.", "Aparecen las letras."],
-  ["El robot está apagado.", "Le doy al botón ON.", "Empieza a andar."],
-  ["Tengo una idea para un juego.", "Escribo el código.", "El juego funciona."],
-  ["El personaje no salta.", "Busco el fallo en el código.", "Ahora sí salta bien."],
-  ["La tablet no tiene luz.", "Enchufo el cargador.", "La batería se llena."],
-  ["Escribo un mensaje a mi abuela.", "Le doy al botón enviar.", "A ella le llega el mensaje."],
-  ["Abro el navegador.", "Escribo la palabra 'gatos'.", "Veo fotos de gatitos."],
-  ["Quiero imprimir mi dibujo.", "Pongo papel en la impresora.", "El dibujo sale en el papel."],
-  ["Paso 1: Avanzar dos pasos.", "Paso 2: Girar a la derecha.", "Paso 3: Llegar a la meta."],
-  ["Me he equivocado de letra.", "Pulso la tecla borrar.", "Escribo la letra correcta."],
-  ["Abro el programa de pintar.", "Dibujo un círculo.", "Lo coloreo de rojo."],
-  ["Quiero escuchar música.", "Me pongo los auriculares.", "Le doy al botón de Play."],
-  ["Entro en la página web.", "Escribo mi contraseña secreta.", "Ya estoy dentro."],
-  ["El bucle empieza a girar.", "Repito la acción muchas veces.", "El bucle se termina."],
-  ["Veo un vídeo divertido.", "Le doy al botón 'Me gusta'.", "Se lo enseño a papá."],
-  ["La pantalla tiene polvo.", "Paso un paño suave.", "Ahora se ve perfecta."],
-  ["Quiero salir del programa.", "Busco la cruz en la esquina.", "La ventana se cierra."],
-  ["El sonido está muy fuerte.", "Bajo el volumen.", "Ahora se oye mejor."],
-  ["Escribo un cuento bonito.", "Lo guardo en el disco.", "Así no se pierde nunca."],
-  ["Conecto la cámara al PC.", "Paso las fotos al ordenador.", "Las veo en la pantalla grande."],
-  ["Cierro todos los programas.", "Apago el ordenador.", "Hasta mañana."]
+  [
+    "Creas un nuevo archivo en tu repositorio local con 'git init'.",
+    "Añades los cambios al área de preparación con 'git add .'.",
+    "Confirmas los cambios en el historial con un mensaje en 'git commit'.",
+    "Subes tu código al servidor remoto con el comando 'git push'."
+  ],
+  [
+    "Escribes el código de tu programa en un lenguaje como C++.",
+    "El preprocesador elimina comentarios y expande macros.",
+    "El compilador traduce el código fuente a código ensamblador.",
+    "El enlazador o linker une los objetos para crear el ejecutable final."
+  ],
+  [
+    "El usuario introduce una dirección URL en el navegador.",
+    "El servidor DNS busca y devuelve la dirección IP asociada al nombre.",
+    "El navegador envía una petición HTTP al servidor con esa IP.",
+    "El servidor responde con el código HTML y la página se carga."
+  ],
+  [
+    "Defines una función recursiva con un caso base para detenerse.",
+    "La función se llama a sí misma con un problema más pequeño.",
+    "Las llamadas se apilan en la memoria hasta llegar al caso base.",
+    "La pila se desenrolla devolviendo los resultados paso a paso."
+  ],
+  [
+    "Un pirata informático envía un correo falso haciéndose pasar por el banco.",
+    "La víctima hace clic en el enlace malicioso del correo.",
+    "Se le redirige a una web falsa idéntica a la real para robar sus datos.",
+    "El atacante obtiene la contraseña y accede a la cuenta bancaria."
+  ],
+  [
+    "Diseñas el diagrama de clases con sus atributos y métodos.",
+    "Creas la clase 'Vehículo' como base con características comunes.",
+    "Creas la clase 'Coche' que hereda de 'Vehículo' y añade ruedas.",
+    "Instancias un objeto 'miCoche' a partir de la clase creada."
+  ],
+  [
+    "El sensor de temperatura detecta un valor superior al límite.",
+    "El microcontrolador Arduino lee el dato analógico del sensor.",
+    "El código decide activar el sistema de refrigeración.",
+    "El relé se cierra y el ventilador comienza a funcionar."
+  ],
+  [
+    "Declaras un bucle 'for' externo que recorre las filas de una matriz.",
+    "Dentro anidas un bucle 'for' que recorre las columnas.",
+    "Accedes a cada celda usando los índices de fila y columna [i][j].",
+    "Al terminar la fila interna, el bucle externo avanza a la siguiente."
+  ],
+  [
+    "El cliente solicita una conexión segura HTTPS al servidor web.",
+    "El servidor envía su certificado digital y su clave pública.",
+    "El cliente verifica la validez del certificado con una autoridad.",
+    "Se establece un canal cifrado para transmitir datos privados."
+  ],
+  [
+    "El motor de búsqueda envía sus robots o arañas a rastrear la web.",
+    "Las arañas siguen los enlaces y descargan el contenido de las páginas.",
+    "El contenido se analiza y se guarda en un índice gigante organizado.",
+    "Al buscar, el algoritmo clasifica los resultados más relevantes."
+  ],
+  [
+    "Un usuario intenta acceder a un sistema protegido con contraseña.",
+    "El sistema aplica una función hash a la contraseña introducida.",
+    "Se compara el hash resultante con el hash almacenado en la base de datos.",
+    "Si los hashes coinciden, se concede el acceso al usuario."
+  ],
+  [
+    "Escribes una consulta SQL 'SELECT' para pedir datos a una tabla.",
+    "Añades la cláusula 'WHERE' para filtrar solo los registros deseados.",
+    "Usas 'ORDER BY' para ordenar los resultados alfabéticamente.",
+    "La base de datos ejecuta la consulta y devuelve las filas encontradas."
+  ],
+  [
+    "Modelas un objeto 3D utilizando software CAD en el ordenador.",
+    "El software 'slicer' divide el modelo en capas finas horizontales.",
+    "La impresora 3D calienta el filamento de plástico hasta fundirlo.",
+    "El cabezal deposita el material capa a capa hasta formar la pieza."
+  ],
+  [
+    "Entrenas una red neuronal mostrándole miles de fotos de gatos.",
+    "La red ajusta los pesos de sus conexiones para minimizar el error.",
+    "Le muestras una foto nueva que nunca ha visto antes.",
+    "La red predice con un 99% de confianza que es un gato."
+  ],
+  [
+    "Un dispositivo IoT recoge datos de humedad del suelo en el campo.",
+    "Envía los datos a la nube a través de una red inalámbrica.",
+    "El servidor en la nube procesa la información y detecta sequía.",
+    "Se envía una orden automática al sistema de riego inteligente."
+  ],
+  [
+    "El sistema operativo detecta que la memoria RAM está llena.",
+    "Mueve datos inactivos de la RAM al disco duro (memoria swap).",
+    "Libera espacio en la RAM para el programa activo actual.",
+    "Si necesitas los datos antiguos, los recupera del disco duro."
+  ],
+  [
+    "Creas una estructura HTML con etiquetas semánticas como 'header' y 'footer'.",
+    "Enlazas una hoja de estilos CSS externa para definir el diseño.",
+    "Añades un script JavaScript para validar el formulario de contacto.",
+    "Abres el archivo en el navegador para comprobar la interactividad."
+  ],
+  [
+    "Un paquete de datos sale de tu ordenador hacia internet.",
+    "El router de tu casa le asigna una dirección IP pública.",
+    "El paquete salta entre varios routers intermedios en la red.",
+    "Llega a su destino final y se confirma la recepción."
+  ],
+  [
+    "Identificas un problema complejo que necesitas resolver.",
+    "Lo descompones en subproblemas más pequeños y manejables.",
+    "Buscas patrones similares en problemas que ya has resuelto antes.",
+    "Diseñas un algoritmo paso a paso para solucionar cada parte."
+  ],
+  [
+    "El procesador lee la instrucción de la dirección de memoria actual.",
+    "Decodifica la instrucción para saber qué operación realizar.",
+    "Ejecuta la operación utilizando la unidad aritmético-lógica (ALU).",
+    "Incrementa el contador de programa para leer la siguiente instrucción."
+  ]
 ]
