@@ -5,6 +5,7 @@ import { OrbitControls, Stars, Html, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import { solarSystemData } from './model/solarSystemData';
+import SolarSystemActivity from './SolarSystemActivity';
 import './SistemaSolar.css';
 
 // --- HELPER PARA DESCRIPCIONES ---
@@ -537,7 +538,7 @@ const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, co
 };
 
 // --- PANEL DE CONFIGURACIÓN ---
-const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount }) => {
+const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount, onLaunchActivity }) => {
     const [isOpen, setIsOpen] = useState(false);
     const remaining = totalCount - visitedCount;
     const percentage = Math.round((visitedCount / totalCount) * 100);
@@ -603,6 +604,11 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                     <div className="config-section">
                         <h4 className="section-title">Navegación</h4>
                         <p className="config-instruction-v2">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
+
+                        <button className="btn-launch-activity" onClick={onLaunchActivity}>
+                            <span className="btn-icon">🧩</span>
+                            Desafío de Planetas
+                        </button>
                     </div>
 
                     <div className="config-section">
@@ -637,6 +643,8 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                         </div>
                     </div>
 
+
+
                     <div className="config-section">
                         <h4 className="section-title">Visualización Avanzada</h4>
 
@@ -666,28 +674,6 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                                 onChange={(e) => setConfig({ ...config, orbitThickness: parseFloat(e.target.value) })}
                                 className="config-slider-v2"
                             />
-                        </div>
-
-                        <div className="config-toggles-v2">
-                            <label className="toggle-switch">
-                                <input
-                                    type="checkbox"
-                                    checked={config.showOrbits}
-                                    onChange={(e) => setConfig({ ...config, showOrbits: e.target.checked })}
-                                />
-                                <span className="switch-slider"></span>
-                                <span className="switch-label">Mostrar Órbitas</span>
-                            </label>
-
-                            <label className="toggle-switch">
-                                <input
-                                    type="checkbox"
-                                    checked={config.showLabels}
-                                    onChange={(e) => setConfig({ ...config, showLabels: e.target.checked })}
-                                />
-                                <span className="switch-slider"></span>
-                                <span className="switch-label">Etiquetas de Datos</span>
-                            </label>
                         </div>
                     </div>
 
@@ -1115,25 +1101,16 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
             const size = planetData?.size || 1;
             const baseDist = size * 3.5;
             const zoomFactor = 1 / (config?.zoomLevel || 1);
-            const hotspotActive = !!activeHotspot;
-            const idealDist = hotspotActive ? baseDist * (activeHotspot.zoom || 0.6) : baseDist * zoomFactor;
+            const idealDist = baseDist * zoomFactor;
 
-            if (!isUserInteracting || hotspotActive) {
+            if (!isUserInteracting) {
                 vec3_2.current.subVectors(camera.position, currentTarget.current).normalize();
                 const direction = vec3_2.current;
-
-                if (hotspotActive) {
-                    rotationTimer.current += delta * 0.3;
-                    direction.x = Math.cos(rotationTimer.current);
-                    direction.z = Math.sin(rotationTimer.current);
-                    direction.y = activeHotspot.tilt || 0.3;
-                    direction.normalize();
-                }
 
                 vec3_3.current.copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
                 const goalPos = vec3_3.current;
 
-                camera.position.lerp(goalPos, delta * (hotspotActive ? 2.5 : 2.0));
+                camera.position.lerp(goalPos, delta * 2.0);
             }
 
         } else {
@@ -1337,6 +1314,7 @@ const SistemaSolar = ({ level, grade }) => {
     const [lastClickedHotspot, setLastClickedHotspot] = useState(null);
     const [introVisible, setIntroVisible] = useState(true);
     const [activeVideo, setActiveVideo] = useState(null);
+    const [showActivity, setShowActivity] = useState(false);
 
     const [visitedHotspots, setVisitedHotspots] = useState(() => {
         try {
@@ -1479,67 +1457,75 @@ const SistemaSolar = ({ level, grade }) => {
                 onResetProgress={handleResetProgress}
                 visitedCount={visitedCount}
                 totalCount={totalHotspots}
+                onLaunchActivity={() => setShowActivity(true)}
             />
 
-            <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows frameloop={isVideoOpen ? 'never' : 'always'}>
-                <color attach="background" args={['#020205']} />
+            {showActivity && <SolarSystemActivity onClose={() => setShowActivity(false)} />}
 
-                <ambientLight intensity={0.4} />
-                <pointLight position={[0, 0, 0]} intensity={1.5} distance={1000} decay={0} color="#FDB813" />
-                <CameraLight />
-                <Stars radius={350} depth={100} count={10000} factor={6} saturation={0} fade speed={0.8} />
-                <CosmicDust />
-                <ShootingStars />
+            <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows frameloop={(isVideoOpen || showActivity) ? 'never' : 'always'}>
+                {!showActivity && (
+                    <>
+                        <color attach="background" args={['#020205']} />
 
-                <OrbitControls
-                    enablePan={!selectedPlanet}
-                    enableZoom={true}
-                    enableDamping={true}
-                    dampingFactor={0.1}
-                    makeDefault
-                />
+                        <ambientLight intensity={0.4} />
+                        <pointLight position={[0, 0, 0]} intensity={1.5} distance={1000} decay={0} color="#FDB813" />
+                        <CameraLight />
+                        <Stars radius={350} depth={100} count={10000} factor={6} saturation={0} fade speed={0.8} />
+                        <CosmicDust />
+                        <ShootingStars />
 
-                <CameraController
-                    selectedPlanetId={selectedPlanet?.id}
-                    planetRefs={planetRefs}
-                    config={config}
-                    activeHotspot={lastClickedHotspot}
-                />
+                        <OrbitControls
+                            enablePan={!selectedPlanet}
+                            enableZoom={true}
+                            enableDamping={true}
+                            dampingFactor={0.1}
+                            makeDefault
+                        />
 
-                <React.Suspense fallback={null}>
-                    {solarSystemData.map((planet) => (
-                        <React.Fragment key={planet.id}>
-                            <Planet
-                                planet={planet}
-                                isPaused={!!selectedPlanet}
-                                onClick={handlePlanetClick}
-                                registerRef={registerPlanetRef}
+                        <CameraController
+                            selectedPlanetId={selectedPlanet?.id}
+                            planetRefs={planetRefs}
+                            config={config}
+                            activeHotspot={lastClickedHotspot}
+                        />
+
+                        <React.Suspense fallback={null}>
+                            {solarSystemData.map((planet) => (
+                                <React.Fragment key={planet.id}>
+                                    <Planet
+                                        planet={planet}
+                                        isPaused={!!selectedPlanet}
+                                        onClick={handlePlanetClick}
+                                        registerRef={registerPlanetRef}
+                                        simSpeed={config.simSpeed}
+                                        rotationSpeed={config.rotationSpeed}
+                                        showLabels={config.showLabels}
+                                        isSelected={selectedPlanet?.id}
+                                        onHotspotClick={handleHotspotClick}
+                                        visitedHotspots={visitedHotspots}
+                                        activeHotspots={activeHotspots}
+                                        onVideoClick={handleVideoClick}
+                                    />
+                                    <GlowOrbitPath
+                                        distance={planet.distance}
+                                        visible={config.showOrbits}
+                                        opacity={config.orbitOpacity}
+                                        thickness={config.orbitThickness}
+                                        color={orbitColors[planet.id] || '#4f6bff'}
+                                    />
+                                </React.Fragment>
+                            ))}
+
+                            {/* Asteroid Belt between Mars and Jupiter */}
+                            <AsteroidBelt
                                 simSpeed={config.simSpeed}
-                                rotationSpeed={config.rotationSpeed}
+                                isPaused={!!selectedPlanet}
                                 showLabels={config.showLabels}
-                                isSelected={selectedPlanet?.id}
-                                onHotspotClick={handleHotspotClick}
-                                visitedHotspots={visitedHotspots}
-                                activeHotspots={activeHotspots}
-                                onVideoClick={handleVideoClick}
                             />
-                            <GlowOrbitPath
-                                distance={planet.distance}
-                                visible={config.showOrbits}
-                                opacity={config.orbitOpacity}
-                                thickness={config.orbitThickness}
-                                color={orbitColors[planet.id] || '#4f6bff'}
-                            />
-                        </React.Fragment>
-                    ))}
-
-                    {/* Asteroid Belt between Mars and Jupiter */}
-                    <AsteroidBelt
-                        simSpeed={config.simSpeed}
-                        isPaused={!!selectedPlanet}
-                        showLabels={config.showLabels}
-                    />
-                </React.Suspense>
+                        </React.Suspense>
+                    </>
+                )}
+                {showActivity && <color attach="background" args={['#010103']} />}
             </Canvas>
 
             <InfoPanel

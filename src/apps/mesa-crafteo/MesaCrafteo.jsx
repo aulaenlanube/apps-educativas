@@ -290,10 +290,37 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
             {/* ===== UI FLOTANTE ===== */}
             <div className="mc-ui-overlay">
                 {/* Botón de Ayuda Superior */}
-                <button className="mc-help-top-btn" onClick={() => setShowTutorial(true)} title="Instrucciones">
-                    <span className="mc-help-icon">❓</span>
-                    <span className="mc-help-text">Ayuda</span>
-                </button>
+                <motion.div
+                    className={`mc-top-help-container ${showFormula ? 'is-expanded' : ''}`}
+                >
+                    <div className="mc-help-clickable-area" onClick={() => setShowTutorial(true)} title="Instrucciones">
+                        <span className="mc-help-icon">❓</span>
+                        <span className="mc-help-text">Ayuda</span>
+                    </div>
+
+                    <AnimatePresence>
+                        {showFormula && currentTarget && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0, scale: 0.95 }}
+                                animate={{ height: 'auto', opacity: 1, scale: 1 }}
+                                exit={{ height: 0, opacity: 0, scale: 0.95 }}
+                                className="mc-top-formula-section"
+                            >
+                                <div className="mc-formula-divider"></div>
+                                <div className="mc-formula-reveal-header">FÓRMULA REVELADA</div>
+                                <div className="mc-formula-main-text">{currentTarget.formula}</div>
+                                <div className="mc-formula-badges-row">
+                                    {targetCounts.map(([sym, count]) => (
+                                        <span key={sym} className="mc-mini-badge"
+                                            style={{ backgroundColor: FAMILIES[elementsData.find(e => e.symbol === sym)?.category]?.color || '#666' }}>
+                                            {sym}<sub>{count}</sub>
+                                        </span>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
                 {/* --- Lado Izquierdo Superior: Título/Misión (Eliminado) --- */}
 
                 {/* --- Lado Derecho: Misión e Inventario --- */}
@@ -344,26 +371,12 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                     className="mc-mission-body-v2"
                                 >
                                     <h2 className="mc-mission-name-v2">{currentTarget.name}</h2>
-                                    {showFormula && (
-                                        <div className="mc-formula-display">
-                                            <span className="mc-formula-text">{currentTarget.formula}</span>
-                                            <div className="mc-formula-badges">
-                                                {targetCounts.map(([sym, count]) => (
-                                                    <span key={sym} className="mc-mini-badge"
-                                                        style={{ backgroundColor: FAMILIES[elementsData.find(e => e.symbol === sym)?.category]?.color || '#666' }}>
-                                                        {sym}<sub>{count}</sub>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+                                    <button className="mc-next-btn highlight-btn" onClick={selectNextTarget} disabled={isExamMode}>
+                                        <motion.span animate={{ rotate: isShuffling ? 360 : 0 }}>🎲</motion.span>
+                                        {isExamMode ? 'En examen...' : 'Siguiente Molécula'}
+                                    </button>
                                 </motion.div>
                             </AnimatePresence>
-
-                            <button className="mc-next-btn" onClick={selectNextTarget} disabled={isExamMode}>
-                                <motion.span animate={{ rotate: isShuffling ? 360 : 0 }}>🎲</motion.span>
-                                {isExamMode ? 'Pregunta en Curso' : 'Siguiente Molécula'}
-                            </button>
                         </div>
                     )}
 
