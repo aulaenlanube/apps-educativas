@@ -172,7 +172,7 @@ const SnakeDePalabras = (props) => {
   useEffect(() => {
     // El timer solo corre si estamos en 'playing'
     if (gameState !== 'playing' || isPaused) return;
-    const tickTime = Math.max(SPEED_MIN, SPEED_INITIAL - (score * 2));
+    const tickTime = Math.max(SPEED_MIN, SPEED_INITIAL - Math.floor(score / 50));
     const id = setInterval(() => {
       if (savedCallback.current) savedCallback.current();
     }, tickTime);
@@ -639,8 +639,8 @@ const SnakeDePalabras = (props) => {
                 <div className="mt-4 pt-4 border-t border-white/10 animate-in slide-in-from-bottom-2 fade-in duration-700">
                   <p className="text-xs font-bold text-red-200 mb-1 uppercase tracking-widest">Nota Examen</p>
                   <div className="text-4xl font-black text-white flex items-center justify-center gap-1">
-                    {/* Cálculo: 100,000 = 10. Máximo 10. 2 decimales. */}
-                    {Math.min(score / 5000, 10).toFixed(2)}
+                    {/* Cálculo: 10,000 = 10. Máximo 10. 2 decimales. */}
+                    {Math.min(score / 1000, 10).toFixed(2)}
                     <span className="text-lg text-white/50 font-bold mt-2">/10</span>
                   </div>
                 </div>
