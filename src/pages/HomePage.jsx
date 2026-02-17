@@ -96,7 +96,7 @@ const HomePage = () => {
             ))}
           </motion.div>
 
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-xl mx-auto mb-[-125px] relative z-20">
             <Mascot />
           </div>
         </div>

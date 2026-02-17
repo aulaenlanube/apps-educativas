@@ -226,7 +226,9 @@ const AppListPage = () => {
 
                     {appsForSubject.length > 0 ? (
                         <>
-                            <Mascot />
+                            <div className="max-w-xl mx-auto mb-[-32px]">
+                                <Mascot />
+                            </div>
                             <RandomAppSelector
                                 apps={appsForSubject}
                                 onAppSelected={handleRandomSelection}
