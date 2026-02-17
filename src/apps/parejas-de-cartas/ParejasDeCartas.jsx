@@ -19,6 +19,7 @@ const ParejasDeCartas = ({ tema }) => {
   // Nuevo estado para vidas
   const [vidas, setVidas] = useState(3);
   const [mostrarAyuda, setMostrarAyuda] = useState(false);
+  const [zoom, setZoom] = useState(1);
 
   // Datos
   const [datosCrudos, setDatosCrudos] = useState([]);
@@ -98,6 +99,7 @@ const ParejasDeCartas = ({ tema }) => {
       setVidas(3);
     }
 
+    setZoom(1); // Reiniciar zoom al empezar partida
     mezclarCartas(parejasReales);
     setFase('juego');
     colaAyudasRef.current = [];
@@ -250,6 +252,7 @@ const ParejasDeCartas = ({ tema }) => {
     setRestarting(false);
     setRevealing(false);
     setMostrarAyuda(false);
+    setZoom(1);
   };
 
   const reiniciarNivel = () => {
@@ -350,6 +353,7 @@ const ParejasDeCartas = ({ tema }) => {
 
       {(fase === 'juego' || fase === 'resumen') && (
         <div className="juego-area relative w-full flex flex-col justify-center items-center animate-fade-in gap-4">
+          <h1 className="text-3xl md:text-5xl font-black text-indigo-900 drop-shadow-sm tracking-tight mb-2 uppercase">PAREJAS DE CARTAS</h1>
 
           {/* --- BARRA DE CONTROLES SUPERIOR --- */}
           <div className="w-full max-w-[1000px] flex flex-wrap justify-center items-center px-2 z-20 gap-4 md:gap-6 mb-2">
@@ -394,9 +398,33 @@ const ParejasDeCartas = ({ tema }) => {
             >
               💡 <span className="hidden sm:inline">Ayuda</span>
             </button>
+
+            {/* BOTONES DE ZOOM */}
+            <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-2xl shadow-md border-2 border-slate-200 overflow-hidden h-[46px] md:h-[52px]">
+              <button
+                onClick={() => setZoom(prev => Math.max(0.4, prev - 0.1))}
+                className="px-4 h-full hover:bg-slate-100 text-slate-600 border-r border-slate-100 flex items-center justify-center text-xl font-bold transition-colors"
+                title="Reducir tamaño"
+              >
+                ➖
+              </button>
+              <div className="px-2 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center leading-none">
+                Tamaño<br />Tablero
+              </div>
+              <button
+                onClick={() => setZoom(prev => Math.min(1.8, prev + 0.1))}
+                className="px-4 h-full hover:bg-slate-100 text-slate-600 border-l border-slate-100 flex items-center justify-center text-xl font-bold transition-colors"
+                title="Aumentar tamaño"
+              >
+                ➕
+              </button>
+            </div>
           </div>
 
-          <div className="tablero-parejas" style={{ gridTemplateColumns: `repeat(${config.columnas}, 1fr)` }}>
+          <div className="tablero-parejas" style={{
+            gridTemplateColumns: `repeat(${config.columnas}, 1fr)`,
+            zoom: zoom
+          }}>
             {cartas.map(carta => {
               const esImagen = typeof carta.contenido === 'string' && (carta.contenido.includes('.png') || carta.contenido.includes('.webp') || carta.contenido.includes('.jpg'));
               const esTexto = typeof carta.contenido === 'string' && contieneLetras(carta.contenido);
@@ -525,7 +553,7 @@ const ParejasDeCartas = ({ tema }) => {
         <div className="overlay-ayuda-modal" onClick={() => setMostrarAyuda(false)}>
           <div className="modal-ayuda animate-pop-in" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h2 className="text-2xl font-black text-indigo-900 flex items-center gap-2">
+              <h2 className="text-2xl font-black text-indigo-900 flex items-center justify-center gap-2">
                 💡 Guía de Parejas
               </h2>
               <button

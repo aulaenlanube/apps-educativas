@@ -1,6 +1,13 @@
-/* Contenedor principal sin fondo ni color predefinido */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+.contenedor-parejas,
+.contenedor-parejas *,
+.overlay-ayuda-modal * {
+  font-family: 'Fredoka', 'Quicksand', sans-serif !important;
+}
+
 .contenedor-parejas {
-  @apply flex flex-col items-center justify-center w-full p-4 relative;
+  @apply flex flex-col justify-center w-full p-4 relative;
   min-height: 60vh;
 }
 
@@ -343,22 +350,58 @@
 }
 
 .modal-header {
-  padding: 1.5rem 2rem;
-  background: #fffbeb;
+  padding: 4rem 2rem 2rem 2rem;
+  background: #f8fafc;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: flex-end;
+  /* Lo llevamos a la parte baja del header para dejar aire arriba */
+  border-bottom: 2px solid #f1f5f9;
+  position: relative;
+  min-height: 120px;
+}
+
+.modal-header h2 {
+  color: #1e1b4b !important;
+  margin: 0;
+  font-family: 'Fredoka', sans-serif !important;
+  font-weight: 800 !important;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #fef3c7;
 }
 
 .close-modal {
-  @apply w-10 h-10 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-200 transition-colors text-xl font-bold;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  @apply w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-500 transition-all text-xl font-bold;
 }
 
 .modal-body {
   padding: 2rem;
   overflow-y: auto;
   background: #ffffff;
+}
+
+/* Scrollbar Minimalista */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
 }
 
 .par-ayuda-card {
