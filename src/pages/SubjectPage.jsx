@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { GraduationCap, ArrowLeft, Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Header from '@/components/layout/Header';
 import { esoSubjects, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 
@@ -124,24 +125,11 @@ const SubjectPage = () => {
         <title>{`Asignaturas para ${fullTitle} - EduApps`}</title>
       </Helmet>
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 min-h-screen overflow-x-hidden">
-        <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
-          <div className="container mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <GraduationCap className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
-                  <p className="text-sm text-gray-600">Apps Educativas</p>
-                </div>
-              </div>
-              <Button onClick={() => navigate('/')} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Volver al Inicio
-              </Button>
-            </div>
-          </div>
-        </header>
+        <Header>
+          <Button onClick={() => navigate('/')} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Volver al Inicio
+          </Button>
+        </Header>
         <main className="container mx-auto px-6 py-16">
           <motion.div
             key={`${level}-${grade}`}
