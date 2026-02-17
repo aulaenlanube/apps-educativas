@@ -111,17 +111,27 @@ const LluviaDePalabras = () => {
         lastSpawnTime.current = performance.now();
         setBoxAnimation({ col: null, type: null });
 
+        // Obtener claves válidas
         const allCategoriesKeys = Object.keys(configData).filter(k => k !== 'title' && k !== 'instructions');
-        const shuffledKeys = [...allCategoriesKeys].sort(() => 0.5 - Math.random());
+
+        // SHUFFLE ROBUSTO (Fisher-Yates)
+        const shuffledKeys = [...allCategoriesKeys];
+        for (let i = shuffledKeys.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledKeys[i], shuffledKeys[j]] = [shuffledKeys[j], shuffledKeys[i]];
+        }
 
         const numCategories = selectedDifficulty === 'easy' ? 2 : Math.min(3, shuffledKeys.length);
         const selectedKeys = shuffledKeys.slice(0, numCategories);
+
+        // Mezclar también los colores para que no salgan siempre en el mismo orden
+        const shuffledColors = [...CATEGORY_COLORS].sort(() => Math.random() - 0.5);
 
         const processedCategories = selectedKeys.map((key, index) => ({
             id: `cat-${index}-${Date.now()}`,
             originalId: index,
             name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' '),
-            color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
+            color: shuffledColors[index % shuffledColors.length]
         }));
 
         const processedWords = [];
@@ -212,7 +222,13 @@ const LluviaDePalabras = () => {
                     const targetCategory = categories[word.colIndex];
 
                     if (targetCategory && targetCategory.id === word.categoryId) {
-                        setScore(s => s + 10);
+                        setScore(s => {
+                            const nextS = s + 10;
+                            if (difficulty === 'hard' && nextS >= 300) {
+                                setGamePhase('gameOver');
+                            }
+                            return nextS;
+                        });
                         difficultyRef.current += 1;
                         speedRef.current = baseSpeedRef.current + (difficultyRef.current * SPEED_INCREMENT_PER_LEVEL);
                         eventHappened = { col: word.colIndex, type: 'success' };
@@ -400,23 +416,64 @@ const LluviaDePalabras = () => {
         );
     }
 
-    // 2. GAME OVER
+    // 2. GAME OVER / RESULTS
     if (gamePhase === 'gameOver') {
+        const isExam = difficulty === 'hard';
+        const correctWords = score / 10;
+        const examGrade = Math.min((correctWords / 30) * 10, 10).toFixed(1);
+        const hasPassedExam = isExam && correctWords >= 30;
+
         return (
-            <div className="flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4">
-                <h2 className="text-4xl font-bold text-slate-800">¡Juego Terminado!</h2>
-                <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 w-full max-w-xs transform rotate-1">
-                    <p className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Puntuación</p>
-                    <p className="text-6xl font-black text-slate-800">{score}</p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm justify-center">
-                    <Button variant="outline" size="lg" onClick={returnToMenu} className="gap-2 rounded-xl border-2 h-12">
-                        <Menu className="w-4 h-4" /> Elegir Nivel
-                    </Button>
-                    <Button size="lg" onClick={() => startGame(difficulty)} className="gap-2 rounded-xl h-12 bg-slate-800 hover:bg-slate-700">
-                        <RotateCcw className="w-4 h-4" /> Reintentar
-                    </Button>
-                </div>
+            <div className="flex flex-col items-center justify-center min-h-[85vh] gap-8 text-center px-4 max-w-4xl mx-auto py-10">
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="w-full flex flex-col items-center"
+                >
+                    <h2 className={`text-4xl md:text-5xl font-black mb-10 tracking-tight font-fredoka ${hasPassedExam ? 'text-green-600' : 'text-slate-800'}`}>
+                        {hasPassedExam ? "🏆 ¡EXAMEN SUPERADO!" : (isExam ? "🏁 EXAMEN FINALIZADO" : "🎮 PARTIDA TERMINADA")}
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+                        {/* CARD PUNTUACIÓN */}
+                        <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200/60 border border-slate-50 flex flex-col items-center justify-center">
+                            <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Palabras Correctas</p>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-7xl font-black text-slate-800 font-fredoka">{correctWords}</span>
+                                {isExam && <span className="text-2xl text-slate-300 font-bold">/ 30</span>}
+                            </div>
+                        </div>
+
+                        {/* CARD NOTA (Solo en examen o siempre para feedback) */}
+                        <div className={`p-8 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center border ${isExam ? 'bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-blue-200' : 'bg-white border-slate-50 shadow-slate-200/60'}`}>
+                            <p className={`text-xs font-black uppercase tracking-[0.2em] mb-4 ${isExam ? 'text-blue-100' : 'text-slate-400'}`}>Nota Final</p>
+                            <div className="flex items-baseline gap-1">
+                                <span className={`text-7xl font-black font-fredoka ${!isExam && 'text-slate-800'}`}>{examGrade}</span>
+                                <span className={`text-2xl font-bold ${isExam ? 'text-blue-300' : 'text-slate-300'}`}>/ 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {hasPassedExam && (
+                        <motion.p
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="mt-8 text-xl text-green-600 font-bold font-fredoka bg-green-50 px-6 py-2 rounded-full border border-green-100"
+                        >
+                            ¡Enhorabuena! Has conseguido todas las palabras.
+                        </motion.p>
+                    )}
+
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center mt-12">
+                        <Button variant="ghost" size="lg" onClick={returnToMenu} className="gap-2 rounded-2xl h-14 text-slate-500 hover:text-slate-800 font-bold px-8">
+                            <Menu className="w-5 h-5" /> Menú Principal
+                        </Button>
+                        <Button size="lg" onClick={() => startGame(difficulty)} className="gap-4 rounded-2xl h-14 bg-slate-900 hover:bg-slate-800 text-white font-black px-10 shadow-xl transition-all hover:scale-105 active:scale-95">
+                            <RotateCcw className="w-5 h-5" /> REINTENTAR
+                        </Button>
+                    </div>
+                </motion.div>
             </div>
         );
     }

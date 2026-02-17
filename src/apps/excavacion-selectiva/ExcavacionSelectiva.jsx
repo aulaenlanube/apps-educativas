@@ -267,17 +267,40 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
 
       {/* === PANTALLA FINAL === */}
       {gameState !== 'playing' && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/85 text-white pixel-text text-center p-4">
-          <h1 className="text-3xl md:text-5xl text-yellow-500 mb-6 drop-shadow-md animate-bounce">
-            ¡FIN DE LA PARTIDA!
-          </h1>
-          <p className="text-xl mb-8 text-gray-200">Puntuación Final: <span className="text-green-400">{score}</span></p>
-          <Button
-            onClick={() => window.location.reload()}
-            className="bg-gray-700 hover:bg-gray-600 border-b-4 border-black text-white font-bold py-4 px-8 rounded-none font-[inherit] active:border-b-0 active:mt-1 pointer-events-auto"
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/90 text-white pixel-text text-center p-4 backdrop-blur-sm">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="flex flex-col items-center"
           >
-            JUGAR OTRA VEZ
-          </Button>
+            <h1 className="text-3xl md:text-5xl text-yellow-500 mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] animate-bounce uppercase">
+              ¡Misión Finalizada!
+            </h1>
+
+            <div className="bg-slate-800/80 p-8 rounded-3xl border-4 border-slate-600 mb-8 max-w-sm w-full shadow-2xl">
+              <div className="mb-6">
+                <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-2">Puntuación XP</p>
+                <div className="text-5xl text-green-400 font-bold drop-shadow-sm">
+                  {score}
+                </div>
+              </div>
+
+              <div className="pt-6 border-t-4 border-slate-700/50">
+                <p className="text-xs text-cyan-400 uppercase tracking-[0.2em] mb-3">Nota Final</p>
+                <div className="text-6xl font-black text-cyan-500 flex items-baseline justify-center gap-1">
+                  {Math.min((score / 2000) * 10, 10).toFixed(1)}
+                  <span className="text-xl text-cyan-800">/10</span>
+                </div>
+              </div>
+            </div>
+
+            <Button
+              onClick={() => window.location.reload()}
+              className="bg-yellow-600 hover:bg-yellow-500 border-b-8 border-yellow-800 text-white font-bold py-8 px-12 rounded-xl text-xl hover:scale-105 active:border-b-0 active:mt-2 transition-all pointer-events-auto"
+            >
+              NUEVA PARTIDA
+            </Button>
+          </motion.div>
         </div>
       )}
 
