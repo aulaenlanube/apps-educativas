@@ -144,7 +144,8 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                         animate={isTalking ? { rotate: [0, 0, 0] } : {
                             rotate: [0, 0, 0, 0, 0, 0, -4, 4, -3, 3, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                         }}
-                        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut",
+                        transition={{
+                            duration: 14, repeat: Infinity, ease: "easeInOut",
                             times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1]
                         }}
                         style={{ originX: "192px", originY: "140px" }}
@@ -180,7 +181,8 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                         animate={isTalking ? { rotate: [0, 0, 0] } : {
                             rotate: [0, 0, 0, 0, 0, 0, 4, -4, 3, -3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                         }}
-                        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut",
+                        transition={{
+                            duration: 14, repeat: Infinity, ease: "easeInOut",
                             times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1]
                         }}
                         style={{ originX: "218px", originY: "140px" }}
@@ -305,7 +307,7 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                 animate={{ y: [0, 92, 0] }}
                                 transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                             />
-                            {[0,1,2,3,4,5,6,7,8,9,10,11,12,13].map(i => (
+                            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
                                 <line key={`s${i}`} x1="155" y1={12 + i * 6} x2="255" y2={12 + i * 6} stroke="rgba(255,255,255,0.015)" strokeWidth="0.5" />
                             ))}
                             {/* Rim light */}
@@ -436,12 +438,12 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                 <motion.ellipse cx="205" cy="76"
                                     fill="rgba(103,232,249,0.06)"
                                     animate={{
-                                        rx: [14, 14, 14, 18, 14, 24, 24, 14, 14, 14],
-                                        ry: [5, 5, 5, 10, 5, 13, 13, 5, 5, 5],
+                                        rx: [14, 14, 14, 18, 14, 28, 28, 14, 14, 14],
+                                        ry: [5, 5, 5, 10, 5, 15, 15, 5, 5, 5],
                                         fill: [
                                             "rgba(103,232,249,0.06)", "rgba(103,232,249,0.06)", "rgba(103,232,249,0.06)",
                                             "rgba(167,139,250,0.1)", "rgba(103,232,249,0.06)",
-                                            "rgba(251,191,36,0.12)", "rgba(251,191,36,0.12)",
+                                            "rgba(167,139,250,0.15)", "rgba(167,139,250,0.15)",
                                             "rgba(103,232,249,0.06)", "rgba(52,211,153,0.1)", "rgba(103,232,249,0.06)"
                                         ]
                                     }}
@@ -462,13 +464,13 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                             /* Same - hold */
                                             "M 192 74 Q 196 71 200 74 Q 205 77 210 74 Q 214 71 218 74",
                                             /* Big happy grin - wide and curved up */
-                                            "M 188 76 Q 196 68 205 76 Q 214 68 222 76",
+                                            "M 188 76 Q 196 70 205 76 Q 214 70 222 76",
                                             /* Return */
                                             "M 192 74 Q 196 71 200 74 Q 205 77 210 74 Q 214 71 218 74",
-                                            /* BIG LAUGH - very wide open smile */
-                                            "M 185 72 Q 190 66 195 72 Q 200 82 205 82 Q 210 82 215 72 Q 220 66 225 72",
-                                            /* Hold laugh */
-                                            "M 185 72 Q 190 66 195 72 Q 200 82 205 82 Q 210 82 215 72 Q 220 66 225 72",
+                                            /* COMPACT HUGE SMILE */
+                                            "M 186 72 Q 205 88 224 72",
+                                            /* Hold smile */
+                                            "M 186 72 Q 205 88 224 72",
                                             /* Back to smile */
                                             "M 192 74 Q 196 71 200 74 Q 205 77 210 74 Q 214 71 218 74",
                                             /* ZIGZAG - glitchy/playful */
@@ -480,7 +482,7 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                             "#67e8f9", "#67e8f9", "#67e8f9",
                                             "#a78bfa",
                                             "#67e8f9",
-                                            "#fbbf24", "#fbbf24",
+                                            "#a78bfa", "#a78bfa",
                                             "#67e8f9",
                                             "#34d399",
                                             "#67e8f9"
@@ -489,7 +491,7 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                             2.2, 2.2, 2.2,
                                             2.8,
                                             2.2,
-                                            3, 3,
+                                            3.5, 3.5,
                                             2.2,
                                             2.5,
                                             2.2
@@ -515,9 +517,10 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                             /* Grin fill */
                                             "M 188 76 Q 196 68 205 72 Q 214 68 222 76 Q 214 80 205 78 Q 196 80 188 76",
                                             "M 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76",
-                                            /* Big laugh fill - wide open cavity */
-                                            "M 185 72 Q 190 66 195 72 Q 200 82 205 82 Q 210 82 215 72 Q 220 66 225 72 Q 220 84 205 86 Q 190 84 185 72",
-                                            "M 185 72 Q 190 66 195 72 Q 200 82 205 82 Q 210 82 215 72 Q 220 66 225 72 Q 220 84 205 86 Q 190 84 185 72",
+                                            /* Huge smile fill - deep curve cavity */
+                                            "M 186 72 Q 205 88 224 72 Q 205 93 186 72",
+                                            /* Hold smile fill */
+                                            "M 186 72 Q 205 88 224 72 Q 205 93 186 72",
                                             "M 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76",
                                             "M 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76",
                                             "M 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76 Q 205 76 205 76"
@@ -526,7 +529,7 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                             "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)",
                                             "rgba(167,139,250,0.12)",
                                             "rgba(0,0,0,0)",
-                                            "rgba(15,8,30,0.6)", "rgba(15,8,30,0.6)",
+                                            "rgba(103,232,249,0.15)", "rgba(103,232,249,0.15)",
                                             "rgba(0,0,0,0)",
                                             "rgba(0,0,0,0)",
                                             "rgba(0,0,0,0)"
@@ -543,37 +546,37 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                 {/* Corner expression marks */}
                                 <motion.circle r="1.2"
                                     animate={{
-                                        cx: [191, 191, 191, 187, 191, 184, 184, 191, 188, 191],
+                                        cx: [191, 191, 191, 187, 191, 182, 182, 191, 188, 191],
                                         cy: [74, 74, 74, 76, 74, 72, 72, 74, 76, 74],
-                                        fill: ["#67e8f9", "#67e8f9", "#67e8f9", "#a78bfa", "#67e8f9", "#fbbf24", "#fbbf24", "#67e8f9", "#34d399", "#67e8f9"],
+                                        fill: ["#67e8f9", "#67e8f9", "#67e8f9", "#a78bfa", "#67e8f9", "#a78bfa", "#a78bfa", "#67e8f9", "#34d399", "#67e8f9"],
                                         opacity: [0.6, 0.6, 0.6, 0.9, 0.6, 1, 1, 0.6, 0.7, 0.6],
-                                        r: [1.2, 1.2, 1.2, 1.6, 1.2, 1.8, 1.8, 1.2, 1, 1.2]
+                                        r: [1.2, 1.2, 1.2, 1.6, 1.2, 2.2, 2.2, 1.2, 1, 1.2]
                                     }}
                                     transition={{ duration: 16, repeat: Infinity, times: [0, 0.15, 0.3, 0.35, 0.42, 0.48, 0.58, 0.65, 0.8, 1], ease: "easeInOut" }}
                                 />
                                 <motion.circle r="1.2"
                                     animate={{
-                                        cx: [219, 219, 219, 223, 219, 226, 226, 219, 222, 219],
+                                        cx: [219, 219, 219, 223, 219, 228, 228, 219, 222, 219],
                                         cy: [74, 74, 74, 76, 74, 72, 72, 74, 76, 74],
-                                        fill: ["#67e8f9", "#67e8f9", "#67e8f9", "#a78bfa", "#67e8f9", "#fbbf24", "#fbbf24", "#67e8f9", "#34d399", "#67e8f9"],
+                                        fill: ["#67e8f9", "#67e8f9", "#67e8f9", "#a78bfa", "#67e8f9", "#a78bfa", "#a78bfa", "#67e8f9", "#34d399", "#67e8f9"],
                                         opacity: [0.6, 0.6, 0.6, 0.9, 0.6, 1, 1, 0.6, 0.7, 0.6],
-                                        r: [1.2, 1.2, 1.2, 1.6, 1.2, 1.8, 1.8, 1.2, 1, 1.2]
+                                        r: [1.2, 1.2, 1.2, 1.6, 1.2, 2.2, 2.2, 1.2, 1, 1.2]
                                     }}
                                     transition={{ duration: 16, repeat: Infinity, times: [0, 0.15, 0.3, 0.35, 0.42, 0.48, 0.58, 0.65, 0.8, 1], ease: "easeInOut" }}
                                 />
 
-                                {/* Laugh lines - appear during big laugh */}
+                                {/* Laugh lines - appear during huge smile */}
                                 <motion.path fill="none" strokeLinecap="round"
                                     animate={{
                                         d: [
                                             "M 183 74 Q 183 74 183 74", "M 183 74 Q 183 74 183 74", "M 183 74 Q 183 74 183 74",
                                             "M 183 74 Q 183 74 183 74", "M 183 74 Q 183 74 183 74",
-                                            "M 181 68 Q 179 72 181 76", "M 181 68 Q 179 72 181 76",
+                                            "M 178 68 Q 174 72 178 78", "M 178 68 Q 174 72 178 78",
                                             "M 183 74 Q 183 74 183 74", "M 183 74 Q 183 74 183 74", "M 183 74 Q 183 74 183 74"
                                         ],
-                                        stroke: ["rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "#fbbf24", "#fbbf24", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)"],
-                                        strokeWidth: [0, 0, 0, 0, 0, 1.5, 1.5, 0, 0, 0],
-                                        opacity: [0, 0, 0, 0, 0, 0.7, 0.7, 0, 0, 0]
+                                        stroke: ["rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "#a78bfa", "#a78bfa", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)"],
+                                        strokeWidth: [0, 0, 0, 0, 0, 2, 2, 0, 0, 0],
+                                        opacity: [0, 0, 0, 0, 0, 0.8, 0.8, 0, 0, 0]
                                     }}
                                     transition={{ duration: 16, repeat: Infinity, times: [0, 0.15, 0.3, 0.35, 0.42, 0.48, 0.58, 0.65, 0.8, 1], ease: "easeInOut" }}
                                 />
@@ -582,12 +585,12 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                                         d: [
                                             "M 227 74 Q 227 74 227 74", "M 227 74 Q 227 74 227 74", "M 227 74 Q 227 74 227 74",
                                             "M 227 74 Q 227 74 227 74", "M 227 74 Q 227 74 227 74",
-                                            "M 229 68 Q 231 72 229 76", "M 229 68 Q 231 72 229 76",
+                                            "M 232 68 Q 236 72 232 78", "M 232 68 Q 236 72 232 78",
                                             "M 227 74 Q 227 74 227 74", "M 227 74 Q 227 74 227 74", "M 227 74 Q 227 74 227 74"
                                         ],
-                                        stroke: ["rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "#fbbf24", "#fbbf24", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)"],
-                                        strokeWidth: [0, 0, 0, 0, 0, 1.5, 1.5, 0, 0, 0],
-                                        opacity: [0, 0, 0, 0, 0, 0.7, 0.7, 0, 0, 0]
+                                        stroke: ["rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "#a78bfa", "#a78bfa", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)"],
+                                        strokeWidth: [0, 0, 0, 0, 0, 2, 2, 0, 0, 0],
+                                        opacity: [0, 0, 0, 0, 0, 0.8, 0.8, 0, 0, 0]
                                     }}
                                     transition={{ duration: 16, repeat: Infinity, times: [0, 0.15, 0.3, 0.35, 0.42, 0.48, 0.58, 0.65, 0.8, 1], ease: "easeInOut" }}
                                 />
@@ -715,13 +718,14 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                     {/* Left Arm */}
                     <motion.g
                         animate={isTalking ? {
-                            rotate: [-18, 15, -22, 18, -12, 8, -18]
+                            rotate: [-65, -85, -60, -80, -65]
                         } : {
-                            rotate: [0, 0, 0, 0, 0, 0, -15, 20, -18, 15, -10, 0, 0, 0, -2, 2, -1, 0, 0, 0]
+                            rotate: [-68, -72, -68]
                         }}
                         transition={{
-                            duration: isTalking ? 1.2 : 14, repeat: Infinity, ease: "easeInOut",
-                            ...(isTalking ? {} : { times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1] })
+                            duration: isTalking ? 2.5 : 4,
+                            repeat: Infinity,
+                            ease: "easeInOut"
                         }}
                         style={{ originX: "172px", originY: "108px" }}
                     >
@@ -754,9 +758,16 @@ const MascotOriginal = ({ isTalking, onClick }) => {
 
                         {/* Forearm - also very thick and short */}
                         <motion.g
-                            animate={isTalking ? { rotate: [6, -10, 4, -6, 6] } : { rotate: [0, 0, 0, 0, 0, 0, 5, -8, 4, -6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
-                            transition={{ duration: isTalking ? 0.8 : 14, repeat: Infinity, ease: "easeInOut",
-                                ...(isTalking ? {} : { times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1] })
+                            animate={isTalking ? {
+                                rotate: [0, -15, 5, -10, 0]
+                            } : {
+                                rotate: [-8, -12, -8]
+                            }}
+                            transition={{
+                                duration: isTalking ? 2.5 : 4,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 0.2
                             }}
                             style={{ originX: "149px", originY: "108px" }}
                         >
@@ -791,13 +802,15 @@ const MascotOriginal = ({ isTalking, onClick }) => {
                     {/* Right Arm */}
                     <motion.g
                         animate={isTalking ? {
-                            rotate: [18, -15, 22, -18, 12, -8, 18]
+                            rotate: [65, 85, 60, 80, 65]
                         } : {
-                            rotate: [0, 0, 0, 0, 0, 0, 15, -20, 18, -15, 10, 0, 0, 0, 2, -2, 1, 0, 0, 0]
+                            rotate: [68, 72, 68]
                         }}
                         transition={{
-                            duration: isTalking ? 1.2 : 14, repeat: Infinity, ease: "easeInOut", delay: 0.15,
-                            ...(isTalking ? {} : { times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1] })
+                            duration: isTalking ? 2.5 : 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.1
                         }}
                         style={{ originX: "238px", originY: "108px" }}
                     >
@@ -828,9 +841,16 @@ const MascotOriginal = ({ isTalking, onClick }) => {
 
                         {/* Forearm */}
                         <motion.g
-                            animate={isTalking ? { rotate: [-6, 10, -4, 6, -6] } : { rotate: [0, 0, 0, 0, 0, 0, -5, 8, -4, 6, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
-                            transition={{ duration: isTalking ? 0.8 : 14, repeat: Infinity, ease: "easeInOut",
-                                ...(isTalking ? {} : { times: [0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.96, 1] })
+                            animate={isTalking ? {
+                                rotate: [0, 15, -5, 10, 0]
+                            } : {
+                                rotate: [8, 12, 8]
+                            }}
+                            transition={{
+                                duration: isTalking ? 2.5 : 4,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 0.3
                             }}
                             style={{ originX: "261px", originY: "108px" }}
                         >
