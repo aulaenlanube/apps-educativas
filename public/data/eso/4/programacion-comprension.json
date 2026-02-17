@@ -2,53 +2,55 @@
     {
         "id": "1",
         "titulo": "Algoritmos y Pensamiento Computacional",
-        "texto": "Un algoritmo es una serie de pasos ordenados para resolver un problema. El PENSAMIENTO COMPUTACIONAL no es solo saber programar, sino saber descomponer un problema grande en partes pequeñas (DESCOMPOSICIÓN), encontrar patrones (RECONOCIMIENTO DE PATRONES) y eliminar los detalles irrelevantes (ABSTRACCIÓN). Antes de escribir código en un lenguaje como Python, los programadores suelen usar PSEUDOCÓDIGO o diagramas de flujo para planificar la lógica. Si el algoritmo es malo, el programa fallará aunque el código esté bien escrito.",
+        "texto": "Al alcanzar 4º de ESO, debemos entender que programar no es solo saber escribir en un lenguaje concreto, sino dominar el PENSAMIENTO COMPUTACIONAL. Un algoritmo es mucho más que una receta; es una solución lógica optimizada para resolver un problema. Este proceso mental se divide en cuatro pilares fundamentales: la DESCOMPOSICIÓN (dividir un reto enorme en tareas manejables), el RECONOCIMIENTO DE PATRONES (identificar similitudes con problemas ya resueltos), la ABSTRACCIÓN (filtrar el ruido y centrarse en lo esencial) y el DISEÑO ALGORÍTMICO.\n\nAntes de tocar una sola tecla, los ingenieros recurren al PSEUDOCÓDIGO o a los diagramas de flujo para validar sus ideas. Esto es crucial porque un error en la lógica base no se puede arreglar con el mejor código del mundo. Si el algoritmo es ineficiente o incorrecto, el programa final heredará esos fallos, consumiendo más recursos de los necesarios o dando resultados erróneos. Entrenar el cerebro para pensar de forma algorítmica es la habilidad más valiosa y duradera que cualquier perfil tecnológico puede desarrollar hoy en día.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es un algoritmo?",
+                "pregunta": "¿Cuál es la verdadera esencia del Pensamiento Computacional según el texto?",
                 "opciones": [
-                    "Un tipo de ordenador",
-                    "Una serie de pasos ordenados para resolver un problema",
-                    "Un error del sistema",
-                    "Un lenguaje de programación"
+                    "Saber desarmar físicamente un ordenador para repararlo",
+                    "Un conjunto de habilidades mentales para descomponer, abstraer y diseñar soluciones lógicas",
+                    "Aprender de memoria todos los comandos de un lenguaje de programación",
+                    "Escribir código lo más rápido posible sin usar el ratón"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿En qué consiste la 'descomposición' en pensamiento computacional?",
+                "pregunta": "¿Por qué la 'abstracción' se considera un paso crítico antes de programar?",
                 "opciones": [
-                    "En borrar el código",
-                    "En dividir un problema complejo en pequeñas partes más sencillas",
-                    "En apagar el PC",
-                    "En buscar errores"
+                    "Porque sirve para poner colores más brillantes a la interfaz",
+                    "Porque nos permite ignorar los detalles irrelevantes y centrarnos exclusivamente en la información vital del problema",
+                    "Porque es el proceso de borrar todo el código escrito hasta el momento",
+                    "Porque ayuda a que el ordenador consuma menos luz al ejecutar el programa"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué usamos para planificar la lógica antes de programar?",
+                "pregunta": "¿Qué papel juega el 'Pseudocódigo' en el desarrollo de software profesional?",
                 "opciones": [
-                    "Pintura",
-                    "Pseudocódigo o diagramas de flujo",
-                    "Calculadora",
-                    "Un libro de inglés"
+                    "Es un lenguaje secreto que solo usan los hackers más avanzados",
+                    "Es una herramienta de planificación que permite estructurar la lógica del programa en un lenguaje humano antes de codificar",
+                    "Un tipo de virus informático que ataca a los algoritmos mal diseñados",
+                    "Un componente físico que se instala en la memoria RAM"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "La abstracción sirve para:",
+                "pregunta": "¿Qué consecuencia tiene empezar a programar sin haber diseñado previamente un buen algoritmo?",
                 "opciones": [
-                    "Complicar las cosas",
-                    "Centrarse en lo importante ignorando los detalles innecesarios",
-                    "Dibujar mejor",
-                    "Sumar números"
+                    "Ninguna, el ordenador siempre corrige los fallos de lógica del programador",
+                    "El programa será ineficiente, difícil de mantener y probablemente no resolverá el problema de forma correcta",
+                    "El teclado dejará de funcionar para evitar que se cometan errores",
+                    "Se crearán archivos duplicados automáticamente en el disco duro"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Puede un buen código salvar un mal algoritmo?",
+                "pregunta": "¿A qué se refiere la 'descomposición' en el contexto del pensamiento computacional?",
                 "opciones": [
-                    "Sí",
-                    "No, el programa seguirá sin resolver el problema correctamente"
+                    "Al fallo masivo de un servidor por exceso de calor",
+                    "A la estrategia de romper un problema complejo en pequeñas partes independientes y más fáciles de solucionar",
+                    "A borrar las variables que ya no se utilizan en el código",
+                    "Al proceso de apagar el equipo correctamente al terminar la jornada"
                 ],
                 "correcta": 1
             }
@@ -57,112 +59,112 @@
     {
         "id": "2",
         "titulo": "Python: Listas y Estructuras de Datos",
-        "texto": "En Python, una LISTA es una estructura que permite guardar muchos datos bajo un mismo nombre. Se escriben entre corchetes `[ ]` y pueden contener números, textos o incluso otras listas. Para acceder a un elemento usamos su ÍNDICE, recordando siempre que en programación empezamos a contar desde el 0. Las listas son mutables, lo que significa que podemos añadir elementos con `.append()`, borrarlos o cambiarlos. Dominar las listas es esencial para manejar grandes cantidades de información, como una base de datos de alumnos.",
+        "texto": "Para que nuestras aplicaciones manejen información compleja, como un catálogo de productos o un ranking de jugadores, necesitamos estructuras potentes. En Python, las LISTAS son n-tuplas mutables que permiten almacenar colecciones ordenadas de objetos bajo una sola variable. Se definen mediante corchetes `[ ]` y su versatilidad es asombrosa: pueden contener enteros, flotantes, cadenas e incluso otras listas anidadas, creando estructuras multidimensionales.\n\nUn concepto fundamental que suele confundir a los principiantes es el direccionamiento por ÍNDICES: en la gran mayoría de lenguajes, la cuenta siempre empieza en el 0. Por tanto, el tercer elemento de la lista estará en la posición `indice[2]`. Las listas en Python son 'mutables', lo que nos da la libertad de usar métodos como `.append()` para añadir datos, `.pop()` para extraerlos o simplemente reasignar valores. Dominar estas estructuras es el primer paso para entender la gestión de bases de datos y el flujo de información en sistemas de gran escala.",
         "preguntas": [
             {
-                "pregunta": "¿Cómo se accede al primer elemento de una lista llamada 'notas'?",
+                "pregunta": "Si tienes una lista llamada `ciudades = ['Madrid', 'París', 'Roma']`, ¿cómo obtendrías el valor 'París'?",
                 "opciones": [
-                    "notas[1]",
-                    "notas[0]",
-                    "notas.first()",
-                    "notas{0}"
+                    "ciudades[1]",
+                    "ciudades[0]",
+                    "ciudades[2]",
+                    "ciudades.get('París')"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué implica técnicamente que una lista de Python sea considerada 'mutable'?",
+                "opciones": [
+                    "Que se borra sola cuando cerramos el programa",
+                    "Que su contenido y tamaño pueden modificarse dinámicamente durante la ejecución del programa",
+                    "Que solo puede contener números enteros y nada de texto",
+                    "Que el ordenador la trata como si fuera una constante fija"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué comando añade un elemento al final de la lista?",
+                "pregunta": "¿Cuál es la función exacta del método `.append()` al trabajar con estructuras de datos?",
                 "opciones": [
-                    ".add()",
-                    ".append()",
-                    ".plus()",
-                    ".insert_end()"
+                    "Borrar el primer elemento de la lista por seguridad",
+                    "Agregar un nuevo elemento al final de la lista existente",
+                    "Invertir el orden de todos los elementos de la lista",
+                    "Calcular la suma total de los números contenidos en la lista"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué significa que una lista sea 'mutable'?",
+                "pregunta": "¿Podemos guardar una lista dentro de otra lista en Python? ¿Qué nombre recibe eso?",
                 "opciones": [
-                    "Que no se puede cambiar",
-                    "Que su contenido se puede modificar una vez creada",
-                    "Que es muda",
-                    "Que es muy rápida"
+                    "No, es imposible por limitaciones de memoria",
+                    "Sí, se denominan listas anidadas o matrices multidimensionales",
+                    "Solo si ambas listas tienen el mismo número de elementos",
+                    "Sí, pero el programa irá mucho más lento"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Entre qué símbolos se definen las listas en Python?",
+                "pregunta": "¿Por qué es tan importante recordar que el índice en programación empieza por el 0?",
                 "opciones": [
-                    "Paréntesis ( )",
-                    "Corchetes [ ]",
-                    "Llaves { }",
-                    "Comillas \" \""
+                    "Para evitar errores de 'fuera de rango' (Out of Range) al intentar acceder a los datos corporativos",
+                    "Porque es una norma estética de los lenguajes modernos",
+                    "Para que el código ocupe menos espacio en la pantalla",
+                    "No es importante, el ordenador sabe a qué nos referimos"
                 ],
-                "correcta": 1
-            },
-            {
-                "pregunta": "¿Qué puede contener una lista?",
-                "opciones": [
-                    "Solo números",
-                    "Solo texto",
-                    "Cualquier tipo de dato, incluso otras listas",
-                    "Solo ceros y unos"
-                ],
-                "correcta": 2
+                "correcta": 0
             }
         ]
     },
     {
         "id": "3",
         "titulo": "Funciones: Modularidad y Reutilización",
-        "texto": "Una FUNCIÓN es un bloque de código con nombre que realiza una tarea específica (`def nombre():`). Las funciones nos permiten evitar la repetición de código (filosofía DRY: Don't Repeat Yourself). Pueden recibir PARÁMETROS (datos de entrada) y devolver un resultado con la palabra reservada `return`. Al dividir un programa en funciones, el código es más fácil de leer, de corregir y de compartir con otros programadores. Es como tener pequeñas herramientas especializadas dentro de nuestra caja de herramientas.",
+        "texto": "La elegancia en el código no se mide por su complejidad, sino por su modularidad. Las FUNCIONES son bloques de código autónomos que encapsulan una lógica específica bajo un nombre identificativo (`def nombre_funcion():`). Su adopción es la base de la filosofía técnica DRY (Don't Repeat Yourself), que establece que cada pieza de conocimiento o lógica debe tener una representación única y no duplicada en el sistema completo.\n\nUna función bien diseñada es como una caja negra: recibe PARÁMETROS (entradas de datos necesarios) y, tras procesarlos, suele devolver un resultado mediante la instrucción `return`. Esta estructura permite que el código sea testeable, legible y, sobre todo, escalable. Si un programa de 5.000 líneas necesita un cambio en el cálculo de un impuesto, y hemos usado funciones, solo modificaremos una línea; de lo contrario, tendríamos que buscar y reemplazar ese cálculo en cientos de lugares, arriesgándonos a introducir errores graves.",
         "preguntas": [
             {
-                "pregunta": "¿Qué palabra clave se usa en Python para definir una función?",
+                "pregunta": "¿Cuál es el objetivo principal de la filosofía de programación 'DRY'?",
                 "opciones": [
-                    "function",
-                    "def",
-                    "create",
-                    "start"
+                    "Escribir código que consuma muy poca energía",
+                    "Evitar la repetición innecesaria de lógica, centralizándola en funciones reutilizables",
+                    "Hacer que el código sea lo más difícil posible de copiar",
+                    "Asegurarse de que el programa funcione sin conexión a internet"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué son los parámetros de una función?",
+                "pregunta": "¿Qué diferencia fundamental hay entre usar un `print()` y un `return` dentro de una función?",
                 "opciones": [
-                    "Los errores",
-                    "Los datos que la función recibe para trabajar",
-                    "El nombre de la función",
-                    "El resultado final"
+                    "Ninguna, ambos hacen exactamente lo mismo",
+                    "`print()` solo muestra información en pantalla; `return` envía el resultado de vuelta al programa principal para poder seguir operando con él",
+                    "`return` es para números y `print()` es para texto",
+                    "`print()` cierra la función y `return` la mantiene abierta"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Para qué sirve la instrucción 'return'?",
+                "pregunta": "En Python, ¿qué ocurre si definimos una función pero nunca la 'llamamos' o invocamos?",
                 "opciones": [
-                    "Para volver al inicio",
-                    "Para devolver el resultado de la función al programa principal",
-                    "Para borrar la función",
-                    "Para imprimir en pantalla"
+                    "El ordenador detecta que no se usa y la borra del disco duro",
+                    "El código de la función se carga en memoria pero sus instrucciones nunca llegan a ejecutarse",
+                    "El programa se detiene con un error de sintaxis",
+                    "Se ejecuta automáticamente al final de todo el archivo"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "La principal ventaja de usar funciones es:",
+                "pregunta": "¿A qué nos referimos con el concepto de 'modularidad' en el desarrollo de aplicaciones?",
                 "opciones": [
-                    "Que el programa va más lento",
-                    "Que el código es más organizado, legible y reutilizable",
-                    "Que no hay que usar variables",
-                    "Que el ordenador gasta menos luz"
+                    "A construir programas como una sola pieza gigante de código",
+                    "A dividir el software en piezas o módulos independientes, fáciles de entender y debugear",
+                    "A que los programas solo funcionen en ordenadores modulares",
+                    "A utilizar solo colores oscuros en el editor de código"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué significa la filosofía DRY?",
+                "pregunta": "Si una función necesita tres datos distintos para calcular un resultado, ¿cómo se los pasamos?",
                 "opciones": [
-                    "Bebe agua",
-                    "No repitas código (Don't Repeat Yourself)",
-                    "Hazlo rápido",
-                    "Solo código difícil"
+                    "Enviándolos por correo electrónico al servidor",
+                    "A través de tres parámetros definidos en los paréntesis de la función",
+                    "Escribiéndolos en el nombre de la propia función",
+                    "No se puede, las funciones solo aceptan un dato cada vez"
                 ],
                 "correcta": 1
             }
@@ -171,110 +173,112 @@
     {
         "id": "4",
         "titulo": "Desarrollo Web: HTML y CSS",
-        "texto": "La web se construye con lenguajes diferentes. HTML proporciona la ESTRUCTURA y el contenido usando etiquetas como `<h1>` para títulos o `<p>` para párrafos. Por otro lado, CSS se encarga del ESTILO: colores, fuentes, márgenes y diseño visual. Una web profesional separa siempre el contenido de la apariencia. Mientras que el HTML define 'qué hay' en la página, el CSS define 'cómo se ve'. Gracias al diseño RESPONSIVE (usando CSS), una página web puede adaptarse automáticamente para verse bien tanto en un móvil como en un ordenador.",
+        "texto": "La construcción de una aplicación web profesional se basa en la separación estricta de responsabilidades. HTML (HyperText Markup Language) actúa como el esqueleto semántico, utilizando etiquetas jerárquicas para definir qué es cada elemento: un `<h1>` es el título supremo, una `<nav>` es la barra de navegación y un `<footer>` el pie de página. El HTML se centra exclusivamente en el significado y la estructura de los datos que mostramos al mundo.\n\nPor el contrario, el CSS (Cascading Style Sheets) es el motor de diseño. A través de selectores y reglas, definimos la estética: desde la cromática y tipografía hasta el posicionamiento con herramientas avanzadas como Grid o Flexbox. Un concepto vital en 4º de ESO es el DISEÑO RESPONSIVE: el código CSS debe ser capaz de detectar el ancho de la pantalla y reorganizar los elementos de forma fluida. Esto garantiza que nuestra web sea igual de profesional en un monitor de 27 pulgadas que en un smartphone de bolsillo, adaptando márgenes y tamaños para una usabilidad perfecta.",
         "preguntas": [
             {
-                "pregunta": "¿Qué lenguaje define la estructura de una web?",
+                "pregunta": "¿Por qué es mala práctica usar HTML para dar color o tamaño a los textos en lugar de CSS?",
                 "opciones": [
-                    "Python",
-                    "HTML",
-                    "CSS",
-                    "C++"
+                    "Porque el HTML es más caro de usar en la nube",
+                    "Porque rompe la separación de responsabilidades y hace que el mantenimiento del diseño sea una pesadilla",
+                    "Porque el HTML no admite colores, solo escalas de grises",
+                    "Porque los buscadores como Google penalizan las webs que usan mucho texto"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿De qué se encarga el lenguaje CSS?",
+                "pregunta": "En el contexto del diseño web, ¿qué es 'Flexbox' o 'Grid'?",
                 "opciones": [
-                    "De los cálculos",
-                    "Del estilo y la apariencia visual",
-                    "De guardar los datos",
-                    "De enviar correos"
+                    "Nuevos tipos de monitores ultra-delgados",
+                    "Sistemas potentes de CSS para organizar y distribuir elementos de forma flexible en el layout",
+                    "Lenguajes de programación que sustituyen al Python",
+                    "Nombres de marcas de servidores web"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Para qué sirve el diseño 'responsive'?",
+                "pregunta": "¿Qué etiqueta HTML utilizarías para que los motores de búsqueda entiendan que un trozo de texto es el encabezado más importante?",
                 "opciones": [
-                    "Para que la web cargue rápido",
-                    "Para que la web se adapte a cualquier tamaño de pantalla",
-                    "Para que tenga música",
-                    "Para que se pueda imprimir"
+                    "<p>",
+                    "<h1>",
+                    "<strong>",
+                    "<header>"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué es una etiqueta HTML?",
+                "pregunta": "¿Cómo logra una web 'Responsive' adaptarse a un teléfono móvil sin crear una web distinta?",
                 "opciones": [
-                    "Un error",
-                    "Un comando entre símbolos < > que define un elemento",
-                    "Una imagen",
-                    "Un tipo de letra"
+                    "Cambiando el hardware de la pantalla del usuario",
+                    "Mediante el uso de Media Queries en CSS que aplican diferentes estilos según el ancho de la ventana",
+                    "Pidiendo al usuario que se descargue una aplicación especial",
+                    "Eliminando automáticamente las imágenes pesadas de la web"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Dónde se ponen normalmente los estilos CSS?",
+                "pregunta": "¿Qué archivo solemos crear para guardar todas nuestras reglas de estilo en un proyecto profesional?",
                 "opciones": [
-                    "En un archivo separado .css",
-                    "Dentro de la imagen",
-                    "En el teclado",
-                    "No se ponen"
+                    "Un archivo .txt con las instrucciones",
+                    "Un archivo .css enlazado externamente al documento HTML",
+                    "Una foto del diseño pegada en la carpeta",
+                    "No se usan archivos, se escribe todo dentro de cada etiqueta"
                 ],
-                "correcta": 0
+                "correcta": 1
             }
         ]
     },
     {
         "id": "5",
         "titulo": "JavaScript: Dinamismo en la Web",
-        "texto": "Si HTML es la estructura y CSS el traje, JAVASCRIPT es el comportamiento. Es un lenguaje de programación que permite que las páginas web sean interactivas. Gracias a JS podemos hacer que aparezca un mensaje al pulsar un botón, crear galerías de fotos que se mueven o validar si un formulario está bien relleno antes de enviarlo. Se ejecuta en el NAVEGADOR del usuario (cliente), lo que permite respuestas inmediatas sin tener que refrescar la página. Hoy en día es el lenguaje más usado en el mundo para el desarrollo web frontal.",
+        "texto": "Si HTML es el esqueleto y CSS la vestimenta, JAVASCRIPT (o simplemente JS) es el sistema muscular y nervioso del navegador. Es el lenguaje que permite que la web pase de ser un documento estático a ser una aplicación interactiva. JS se ejecuta casi íntegramente en el lado del CLIENTE (el navegador del usuario), lo que permite una latencia mínima al procesar eventos como clics, desplazamientos o validaciones instantáneas de formularios.\n\nCon JavaScript podemos manipular el DOM (Document Object Model), que es la representación interna que tiene el navegador de la web. Esto significa que podemos cambiar un texto, añadir una imagen o modificar un color en tiempo real sin necesidad de recargar la página completa. Hoy en día, gracias a frameworks modernos como React o Vue, JavaScript se ha convertido en la herramienta más demandada del mercado laboral, siendo capaz incluso de controlar servidores (Node.js) o crear aplicaciones móviles híbridas.",
         "preguntas": [
             {
-                "pregunta": "¿Cuál es la función de JavaScript en una web?",
+                "pregunta": "¿Qué diferencia fundamental hay entre Java y JavaScript?",
                 "opciones": [
-                    "Poner colores",
-                    "Añadir interactividad y comportamiento dinámico",
-                    "Hacer que el texto sea más grande",
-                    "No sirve para nada"
+                    "Son exactamente el mismo lenguaje con distinto nombre según el país",
+                    "Son lenguajes totalmente distintos en sintaxis y propósito; JavaScript es principalmente para web",
+                    "Java es para ordenadores antiguos y JavaScript para modernos",
+                    "JavaScript es una versión gratuita que no requiere licencia"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Dónde se ejecuta normalmente el código JavaScript web?",
+                "pregunta": "¿Qué entendemos por 'manipular el DOM' en el contexto del desarrollo web?",
                 "opciones": [
-                    "En el servidor",
-                    "En el navegador del usuario (cliente)",
-                    "En el router",
-                    "En la nube solamente"
+                    "Apagar el ordenador del usuario de forma remota",
+                    "Usar JavaScript para alterar dinámicamente el contenido, estructura o estilo de la web mientras el usuario la ve",
+                    "Limpiar los archivos temporales del navegador",
+                    "Cambiar el nombre de dominio de la página web"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "Nombra algo que se pueda hacer con JS:",
+                "pregunta": "¿Por qué es una gran ventaja que JavaScript se ejecute en el 'Lado del Cliente'?",
                 "opciones": [
-                    "Escribir un libro",
-                    "Validar un formulario o crear animaciones interactivas",
-                    "Cambiar el hardware",
-                    "Limpiar el monitor"
+                    "Porque no consume batería en absoluto",
+                    "Porque permite una respuesta inmediata al usuario sin tener que enviar cada pequeño cambio al servidor central",
+                    "Porque hace que el router vaya más rápido",
+                    "Porque así no hace falta tener conexión a internet para ver la web"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Necesita JS refrescar la página para actuar?",
+                "pregunta": "¿Qué lenguaje utilizarías específicamente para que un botón de tu web lance una alerta de bienvenida al pulsarlo?",
                 "opciones": [
-                    "Sí",
-                    "No, puede cambiar la página al instante"
+                    "CSS",
+                    "JavaScript",
+                    "HTML",
+                    "Excel"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "JS es el lenguaje del...",
+                "pregunta": "¿Cuál de estas acciones es un ejemplo típico de uso de JS en una red social?",
                 "opciones": [
-                    "Pasado",
-                    "Lado del cliente (navegador)",
-                    "Lado del cable",
-                    "Silencio"
+                    "El color azul de la barra superior",
+                    "Que aparezca un nuevo 'Like' en pantalla al pulsar el corazón sin recargar la página",
+                    "El texto del nombre del usuario",
+                    "La descarga del navegador Chrome"
                 ],
                 "correcta": 1
             }
@@ -283,53 +287,55 @@
     {
         "id": "6",
         "titulo": "Ciberseguridad: Protegiendo los Datos",
-        "texto": "La ciberseguridad es el conjunto de técnicas para proteger nuestros sistemas y datos de ataques. Un concepto clave es la ENCRIPTACIÓN: convertir la información en un código secreto que solo quien tenga la llave puede leer. También es vital usar la AUTENTICACIÓN DE DOBLE FACTOR (2FA), que pide una segunda clave (como un SMS al móvil) para entrar en una cuenta. Nunca debemos reutilizar contraseñas ni hacer clic en enlaces sospechosos (phishing), ya que el eslabón más débil de la seguridad suele ser el propio usuario por falta de precaución.",
+        "texto": "En un mundo donde 'los datos son el nuevo petróleo', la ciberseguridad se ha vuelto una prioridad crítica de seguridad nacional y personal. El concepto central es la ENCRIPTACIÓN: el uso de algoritmos matemáticos para transformar información legible en un código que solo es descifrable mediante una clave criptográfica específica. Sin encriptación, tus compras online o tus conversaciones privadas serían visibles para cualquier intermediario en la red.\n\nAdemás de la tecnología, la ciberseguridad depende drásticamente de la higiene digital. El uso de la AUTENTICACIÓN DE DOBLE FACTOR (2FA) es hoy obligatorio para proteger cuentas críticas; añade un paso extra de verificación que impide que un atacante entre aunque consiga tu contraseña. Debemos recordar que más del 80% de las brechas de seguridad ocurren por el eslabón humano: el PHISHING (suplantación de identidad). Ser programador hoy implica diseñar sistemas 'seguros por defecto', minimizando los datos que recogemos y educando a los usuarios sobre los riesgos del entorno digital.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es la encriptación?",
+                "pregunta": "¿Cuál es la función exacta de la criptografía o encriptación en las comunicaciones actuales?",
                 "opciones": [
-                    "Borrar datos",
-                    "Codificar la información para que sea ilegible sin permiso",
-                    "Hacer una copia",
-                    "Poner una pegatina"
+                    "Borrar los mensajes después de ser leídos para ahorrar espacio",
+                    "Asegurar que solo el emisor y el receptor autorizado puedan entender el contenido de la información",
+                    "Mejorar la velocidad de envío de los correos electrónicos",
+                    "Traducir automáticamente los textos a diferentes idiomas"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Para qué sirve el doble factor (2FA)?",
+                "pregunta": "¿Por qué es tan peligroso el ataque conocido como 'Phishing'?",
                 "opciones": [
-                    "Para ir más rápido",
-                    "Para añadir una capa extra de seguridad (ej: código al móvil)",
-                    "Para que la web sea bonita",
-                    "No sirve para nada"
+                    "Porque rompe físicamente los cables del ordenador",
+                    "Porque utiliza el engaño y la ingeniería social para que el usuario entregue sus claves voluntariamente pensando que está en un sitio seguro",
+                    "Porque hace que el ventilador del PC deje de funcionar",
+                    "Porque solo afecta a las personas que saben pescar"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cómo se llama el engaño por email para robar claves?",
+                "pregunta": "¿Qué mejora de seguridad introduce realmente la 'Doble Autenticación' (2FA)?",
                 "opciones": [
-                    "Spam",
-                    "Phishing",
-                    "Shopping",
-                    "Gaming"
+                    "Te permite usar dos nombres de usuario distintos para la misma cuenta",
+                    "Requiere que el atacante posea tanto tu contraseña como tu dispositivo físico (móvil o token) simultáneamente",
+                    "Hace que la contraseña se escriba el doble de rápido",
+                    "Proporciona dos copias de seguridad de todos tus archivos"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cuál es el punto más débil de la seguridad?",
+                "pregunta": "En términos de seguridad, ¿por qué decimos que el usuario es a menudo el 'eslabón más débil'?",
                 "opciones": [
-                    "El ordenador",
-                    "El usuario (por descuidos o falta de formación)",
-                    "El cable",
-                    "La luz"
+                    "Porque los humanos somos más lentos que los microprocesadores",
+                    "Porque un sistema técnicamente perfecto puede ser vulnerado si convencen a un usuario de que comparta su clave por descuido",
+                    "Porque las personas no saben usar el teclado correctamente",
+                    "Porque los ojos se cansan al mirar mucho tiempo la pantalla"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Es buena idea usar la misma clave en todo?",
+                "pregunta": "¿Cuál es la medida más sencilla y efectiva para evitar que nos roben todas nuestras cuentas si hackean un solo sitio?",
                 "opciones": [
-                    "Sí",
-                    "No, es muy peligroso"
+                    "No entrar nunca en internet después de las diez de la noche",
+                    "No reutilizar nunca la misma contraseña en diferentes servicios o aplicaciones",
+                    "Usar contraseñas muy cortas para que sean fáciles de recordar",
+                    "Pegar la contraseña en un post-it en el lateral del monitor"
                 ],
                 "correcta": 1
             }
@@ -338,55 +344,55 @@
     {
         "id": "7",
         "titulo": "Bases de Datos y SQL",
-        "texto": "Casi todas las aplicaciones modernas necesitan guardar datos de forma organizada. Esto se hace en BASES DE DATOS relacionales. La información se guarda en TABLAS (filas y columnas), muy parecidas a una hoja de Excel pero mucho más potentes. Usamos el lenguaje SQL (Structured Query Language) para hablar con estas bases de datos. Con SQL podemos pedir el nombre de todos los usuarios que viven en Madrid o añadir un nuevo producto al catálogo. Sin bases de datos, aplicaciones como Instagram o Amazon no podrían existir.",
+        "texto": "Vivimos rodeados de información persistente: tus fotos, tus contactos y tu historial de compras no pueden desaparecer al apagar el móvil. Para gestionar este volumen masivo de datos se utilizan las BASES DE DATOS RELACIONALES. En ellas, la información se organiza en TABLAS con una estructura de filas (registros) y columnas (campos), lo que permite establecer relaciones lógicas entre diferentes tipos de datos, como relacionar a un 'Cliente' con sus respectivos 'Pedidos'.\n\nEl lenguaje universal para interactuar con estos sistemas es el SQL (Structured Query Language). SQL no es un lenguaje de programación para crear lógica compleja, sino un lenguaje de consulta especializado en INSERTAR, ACTUALIZAR, BORRAR y, sobre todo, FILTRAR datos. Por ejemplo, con una sola línea de SQL, un banco puede encontrar a todos los clientes que han hecho transferencias superiores a 1.000 € en el último mes. Sin bases de datos y SQL, la economía digital actual y las redes sociales simplemente dejarían de funcionar de forma instantánea.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es una base de datos?",
+                "pregunta": "¿Qué característica define principalmente a una Base de Datos 'Relacional'?",
                 "opciones": [
-                    "Un dibujo",
-                    "Un sistema para almacenar y organizar mucha información de forma persistente",
-                    "Un tipo de teclado",
-                    "Una memoria RAM"
+                    "Que solo puede ser usada por familiares cercanos de los programadores",
+                    "Que organiza los datos en tablas vinculadas entre sí mediante identificadores comunes",
+                    "Que los datos cambian de valor cada vez que los consultamos",
+                    "Que no funciona si no hay una buena relación con el servidor"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cómo se organiza la información en una base de datos relacional?",
+                "pregunta": "¿Para qué tipo de tareas específicas se diseñó el lenguaje SQL?",
                 "opciones": [
-                    "En círculos",
-                    "En tablas (filas y columnas)",
-                    "En un solo párrafo",
-                    "En imágenes"
+                    "Para crear animaciones interactivas en las páginas web",
+                    "Para realizar consultas, manipulaciones y gestiones sobre datos almacenados en bases relacionales",
+                    "Para diseñar el hardware de los discos duros modernos",
+                    "Para editar fotografías y vídeos en alta definición"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué lenguaje se usa para hacer consultas a los datos?",
+                "pregunta": "Si hablamos de una tabla de 'Alumnos', ¿qué representaría normalmente una 'Fila'?",
                 "opciones": [
-                    "Python",
-                    "SQL",
-                    "HTML",
-                    "C#"
+                    "Una asignatura del curso",
+                    "Un registro completo con todos los datos de un alumno específico",
+                    "El nombre de la columna solamente",
+                    "La cantidad total de alumnos de todo el centro"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué aplicación depende totalmente de una base de datos?",
+                "pregunta": "¿Cuál es la principal ventaja de una Base de Datos frente a una simple hoja de cálculo como Excel?",
                 "opciones": [
-                    "La calculadora",
-                    "Instagram o Amazon",
-                    "El bloc de notas",
-                    "El Paint"
+                    "Excel es mucho más potente para manejar millones de datos",
+                    "Las bases de datos permiten gestionar volúmenes inmensos de información, con mayor seguridad y acceso múltiple simultáneo",
+                    "Que no hace falta encender el monitor para usar una base de datos",
+                    "Que las bases de datos son gratuitas y Excel siempre es de pago"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "SQL sirve para:",
+                "pregunta": "¿Qué comando de SQL usarías si quieres BUSCAR información específica en una base de datos?",
                 "opciones": [
-                    "Dibujar",
-                    "Insertar, borrar y buscar datos",
-                    "Pintar la web",
-                    "Arreglar el PC"
+                    "INSERT",
+                    "SELECT",
+                    "DELETE",
+                    "UPDATE"
                 ],
                 "correcta": 1
             }
@@ -395,53 +401,55 @@
     {
         "id": "8",
         "titulo": "Inteligencia Artificial: Machine Learning",
-        "texto": "La Inteligencia Artificial actual se basa en el APRENDIZAJE AUTOMÁTICO o Machine Learning. En lugar de programar cada regla a mano, damos al ordenador miles de ejemplos (datos) y él mismo aprende a reconocer patrones. Por ejemplo, si le enseñamos 10.000 fotos de gatos, acabará sabiendo identificar un gato en una foto nueva. Esto se usa en el reconocimiento facial, en los traductores automáticos y en las recomendaciones de YouTube. Sin embargo, la IA depende de la calidad de los datos: si los datos tienen errores, la IA aprenderá mal.",
+        "texto": "La Inteligencia Artificial que vemos hoy en día (como ChatGPT o los filtros de Instagram) no es una conciencia digital, sino el resultado del APRENDIZAJE AUTOMÁTICO o Machine Learning. La revolución consiste en dejar de escribir reglas manuales ('si el objeto es rojo, entonces es una manzana') para pasar a entrenar modelos estadísticos. Alimentamos al ordenador con millones de datos de entrenamiento para que él mismo detecte patrones matemáticos y aprenda a clasificar o predecir información nueva.\n\nEste proceso es fascinante pero depende totalmente de la 'calidad de la dieta' del algoritmo. Si entrenamos a una IA para contratar empleados usando datos de los últimos 20 años donde hubo discriminación, la IA heredará y automatizará esa misma injusticia. Las aplicaciones son infinitas: desde coches que aprenden a conducir observando a miles de humanos, hasta sistemas médicos que detectan enfermedades analizando radiografías con una precisión superior a la de cualquier especialista humano. Entender el Machine Learning es entender cómo se construye la tecnología que tomará las decisiones del mañana.",
         "preguntas": [
             {
-                "pregunta": "¿En qué se basa el Machine Learning?",
+                "pregunta": "¿En qué se diferencia fundamentalmente el Machine Learning de la programación de reglas clásica?",
                 "opciones": [
-                    "En la magia",
-                    "En que la máquina aprende patrones a partir de muchos datos de ejemplo",
-                    "En programar millones de reglas",
-                    "En la suerte"
+                    "La programación clásica es mucho más rápida de ejecutar",
+                    "En el Machine Learning, el sistema 'aprende' los patrones a partir de los datos en lugar de seguir instrucciones fijas diseñadas por un humano",
+                    "El Machine Learning no usa matemáticas, solo intuición digital",
+                    "La programación de reglas no requiere electricidad"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué necesita una IA para aprender a identificar perros?",
+                "pregunta": "¿Por qué se dice que una IA puede ser 'tan inteligente o tan tonta' como sus datos de entrenamiento?",
                 "opciones": [
-                    "Un buen micro",
-                    "Miles de ejemplos de fotos de perros",
-                    "Un teclado nuevo",
-                    "Hablar con un perro"
+                    "Porque si los datos son antiguos, el ordenador se volverá viejo también",
+                    "Porque su capacidad para acertar depende de que los ejemplos con los que aprendió sean correctos, variados y sin sesgos",
+                    "Porque si le metemos muchos datos, el procesador se calienta y piensa menos",
+                    "No es cierto, la IA siempre acaba sabiendo la verdad por sí misma"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "Nombra un uso común de la IA hoy:",
+                "pregunta": "¿Qué tipo de tecnología utiliza un coche autónomo para saber que debe frenar ante un peatón?",
                 "opciones": [
-                    "Cámara de fotos antigua",
-                    "Reconocimiento facial o recomendaciones personalizadas",
-                    "Escribir a mano",
-                    "Jugar al parchís físico"
+                    "Un mando a distancia manejado por una persona",
+                    "Modelos de Visión Artificial entrenados mediante Machine Learning para reconocer formas humanas y predecir movimientos",
+                    "Un sistema de imanes colocados bajo la carretera",
+                    "Pura suerte y reflejos mecánicos del motor"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿De qué depende la inteligencia de la IA?",
+                "pregunta": "¿Cuál de estas aplicaciones cotidianas NO se basaría normalmente en Inteligencia Artificial avanzada?",
                 "opciones": [
-                    "De su tamaño",
-                    "De la calidad y cantidad de los datos recibidos",
-                    "Del color del PC",
-                    "De nada"
+                    "El traductor de idiomas de Google",
+                    "La calculadora de suma y resta que viene con el sistema operativo",
+                    "Los sistemas de recomendación de TikTok o YouTube",
+                    "El reconocimiento facial para desbloquear un teléfono móvil"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Puede una IA aprender cosas mal?",
+                "pregunta": "Si queremos que una IA aprenda a distinguir entre correos SPAM y correos válidos, ¿qué debemos hacer?",
                 "opciones": [
-                    "No",
-                    "Sí, si los datos originales tienen sesgos o errores"
+                    "Explicarle por voz qué es el spam",
+                    "Proporcionarle miles de ejemplos etiquetados de correos spam y correos normales para que aprenda sus diferencias",
+                    "Instalar un antivirus más caro",
+                    "No se puede, eso hay que hacerlo a mano siempre"
                 ],
                 "correcta": 1
             }
@@ -450,53 +458,55 @@
     {
         "id": "9",
         "titulo": "Ética en la Programación e IA",
-        "texto": "Ser programador conlleva una responsabilidad ética. Debemos evitar los SESGOS (prejuicios) en los algoritmos para que no discriminen a nadie por su origen, género o edad. También es vital la PRIVACIDAD: un buen programa debe pedir solo los datos necesarios y protegerlos. Además, la llegada de la IA plantea dilemas: ¿quién es responsable si un coche autónomo tiene un accidente? ¿es ético usar IA para crear noticias falsas? Como creadores de tecnología, debemos pensar en el impacto social de lo que construimos.",
+        "texto": "Como creador de tecnología en 4º de ESO, ya no eres solo un estudiante, sino un arquitecto potencial de la sociedad futura. Esto conlleva una RESPONSABILIDAD ÉTICA inmensa. Un programa no es neutral; refleja los valores de quien lo construye. Debemos ser conscientes de los SESGOS ALGORÍTMICOS: errores sistemáticos en el código o en los datos que pueden discriminar injustamente a grupos de personas por su género, piel o condición social.\n\nAdemás, la PRIVACIDAD por diseño es un derecho humano que debemos defender. Un buen programador no es el que consigue extraer más datos del usuario, sino el que construye sistemas seguros que solo piden la información estrictamente necesaria. Debemos plantearnos dilemas reales: ¿es ético crear algoritmos que fomenten la adicción a las redes sociales? ¿quién es responsable si un sistema automático comete un error médico grave? La tecnología debe estar siempre al servicio del ser humano y no al revés, buscando un impacto social positivo y transparente.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es un sesgo algorítmico?",
+                "pregunta": "¿A qué nos referimos cuando decimos que un código o algoritmo 'no es neutral'?",
                 "opciones": [
-                    "Un error de suma",
-                    "Un prejuicio en el código que causa discriminación injusta",
-                    "Un tipo de virus",
-                    "Una velocidad de internet"
+                    "A que siempre tiene errores de suma",
+                    "A que siempre refleja las decisiones, prioridades y posibles prejuicios inconscientes del programador o de los datos usados",
+                    "A que solo funciona en determinados países",
+                    "A que el código fuente es siempre de color gris"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué principio debe seguir un programa respecto a los datos?",
+                "pregunta": "¿Qué entendemos por el principio ético de 'Privacidad por Diseño'?",
                 "opciones": [
-                    "Pedir todos los posibles",
-                    "Privacidad y pedir solo lo estrictamente necesario",
-                    "Venderlos",
-                    "No pedir nada"
+                    "Ocultar el código para que nadie pueda leerlo y copiarlo",
+                    "Integrar la protección de los datos personales del usuario desde la primera fase de creación del programa",
+                    "Pedir permiso a los padres del usuario para poder instalar el software",
+                    "Borrar todo el historial de internet cada vez que se cierra la web"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "Nombra un dilema ético de la IA:",
+                "pregunta": "¿Por qué es tan peligroso que una IA utilizada en justicia o contratación tenga 'sesgos'?",
                 "opciones": [
-                    "La batería",
-                    "La responsabilidad en accidentes de coches autónomos",
-                    "El precio del teclado",
-                    "El color de la carcasa"
+                    "Porque ocupará mucha más memoria RAM",
+                    "Porque puede tomar decisiones injustas y discriminatorias contra personas basándose en prejuicios heredados de los datos",
+                    "Porque hará que el ordenador se apague antes",
+                    "Porque no es peligroso en absoluto, son solo máquinas"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Es ético usar tecnología para crear 'deepfakes' o noticias falsas?",
+                "pregunta": "¿Quién debería ser, en última instancia, el responsable ético de lo que hace un programa de ordenador?",
                 "opciones": [
-                    "Sí",
-                    "No, porque engaña a la población y destruye la confianza"
+                    "El propio ordenador, ya que él ejecuta las órdenes",
+                    "El programador y la empresa que diseñan y despliegan la tecnología",
+                    "El fabricante del teclado y del ratón",
+                    "Nadie, la tecnología es algo que ocurre por azar"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿A quién debe servir la tecnología?",
+                "pregunta": "¿Cuál de estas prácticas se considera éticamente responsable en el desarrollo de software?",
                 "opciones": [
-                    "Solo a los ricos",
-                    "A mejorar la sociedad de forma justa y responsable",
-                    "A nadie",
-                    "A las máquinas"
+                    "Vender los datos de los usuarios a terceros sin que ellos lo sepan",
+                    "Ser transparente sobre cómo funciona el algoritmo y qué datos recoge realmente",
+                    "Intentar que los usuarios pasen el máximo tiempo posible pegados a la pantalla mediante trucos psicológicos",
+                    "Ignorar las leyes de protección de datos si el programa es gratuito"
                 ],
                 "correcta": 1
             }
@@ -505,53 +515,55 @@
     {
         "id": "10",
         "titulo": "El Futuro: Computación Cuántica",
-        "texto": "Los ordenadores actuales usan bits (0 o 1). La COMPUTACIÓN CUÁNTICA usa 'qubits', que gracias a las leyes de la física pueden estar en varios estados a la vez. Esto permitirá a los futuros ordenadores resolver en minutos problemas que a los actuales les llevaría miles de años, como crear nuevos medicamentos o materiales ultra-resistentes. Aunque todavía es una tecnología experimental, los programadores del mañana tendrán que aprender nuevas formas de pensar para dominar el fascinante y extraño mundo de lo cuántico.",
+        "texto": "Estamos llegando al límite de lo que el silicio tradicional puede ofrecernos. Mientras que los ordenadores actuales (clásicos) se basan en bits de información que solo pueden ser 0 o 1, la COMPUTACIÓN CUÁNTICA revoluciona el juego con los QUBITS. Gracias a principios de la física como la superposición, un qubit puede estar en el estado 0, 1 o en ambos simultáneamente. Esto permite que el ordenador ejecute trillones de posibilidades al mismo tiempo, resolviendo en segundos problemas que a un superordenador actual le llevarían milenios.\n\nAunque hoy es una tecnología experimental, su potencial es asombroso: desde diseñar medicamentos personalizados analizando moléculas átomo a átomo, hasta crear materiales ultra-eficientes para combatir el cambio climático. Sin embargo, también plantea retos: un ordenador cuántico potente sería capaz de romper casi todas las encriptaciones de seguridad actuales. Como programadores de 4º de ESO, os tocará vivir y quizás liderar este cambio de era hacia una informática que hoy todavía nos parece ciencia ficción.",
         "preguntas": [
             {
-                "pregunta": "¿Cómo se llama la unidad básica de la computación cuántica?",
+                "pregunta": "¿Cuál es la diferencia técnica fundamental entre un bit clásico y un qubit cuántico?",
                 "opciones": [
-                    "Kilobyte",
-                    "Qubit",
-                    "Megabit",
-                    "Pixel"
+                    "El qubit es mucho más grande físicamente",
+                    "Un bit solo puede ser 0 o 1; un qubit puede representar ambos estados simultáneamente gracias a la superposición",
+                    "El bit es más rápido para navegar por internet",
+                    "El qubit no utiliza electricidad, funciona con agua"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué ventaja principal tendrá sobre la informática actual?",
+                "pregunta": "En términos de potencia de cálculo, ¿por qué es tan revolucionaria la computación cuántica?",
                 "opciones": [
-                    "Que será más barata",
-                    "Capacidad de resolver cálculos ultra-complejos en segundos",
-                    "Que no usará electricidad",
-                    "Que será redonda"
+                    "Porque permite fabricar portátiles que pesan menos de 100 gramos",
+                    "Porque su capacidad para procesar múltiples posibilidades a la vez permite resolver cálculos ultra-complejos de forma exponencialmente más rápida",
+                    "Porque no necesita monitor para mostrar los resultados",
+                    "Porque solo sirve para jugar a videojuegos de última generación"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Para qué podría ser útil en el futuro?",
+                "pregunta": "¿Cuál de estas aplicaciones se vería más beneficiada por la llegada de los ordenadores cuánticos?",
                 "opciones": [
-                    "Para jugar al Snake",
-                    "Para crear nuevos medicamentos o simular moléculas",
-                    "Para escribir emails",
-                    "Para nada"
+                    "Escribir documentos de texto en Word",
+                    "Simulación molecular avanzada para la creación de nuevos fármacos y materiales",
+                    "Ver vídeos en YouTube en calidad 4K",
+                    "Gestionar el correo electrónico del instituto"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué leyes de la ciencia utiliza esta computación?",
+                "pregunta": "¿Qué gran riesgo de seguridad plantea la computación cuántica a nivel mundial?",
                 "opciones": [
-                    "Leyes de Newton",
-                    "Leyes de la física cuántica",
-                    "Leyes de tráfico",
-                    "Leyes de la música"
+                    "Que los ordenadores se calienten demasiado y se derritan",
+                    "Que su potencia de cálculo podría descifrar fácilmente las contraseñas y encriptaciones que usamos hoy en día",
+                    "Que no habrá suficientes programadores para manejarlos",
+                    "Que internet dejará de ser gratuito"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Está ya disponible en todas las casas?",
+                "pregunta": "¿En qué etapa se encuentra actualmente la tecnología de computación cuántica?",
                 "opciones": [
-                    "Sí",
-                    "No, todavía es una tecnología experimental"
+                    "Ya está disponible en cualquier tienda de informática para uso doméstico",
+                    "Es una tecnología en fase experimental y de investigación, todavía no apta para el gran público",
+                    "Es una tecnología obsoleta que ya no se usa",
+                    "Solo se utiliza para controlar el tráfico de las ciudades"
                 ],
                 "correcta": 1
             }

@@ -2,112 +2,112 @@
     {
         "id": "1",
         "titulo": "De Bloques a Código Escrito",
-        "texto": "En 1º de ESO aprendimos a programar con bloques (Scratch). En 2nd ESO damos el salto a la CULTURA DEL CÓDIGO escrito. Lenguajes como Python o C++ usan palabras en inglés y una sintaxis muy estricta. Un error de una sola coma o un espacio (indentación) puede hacer que el programa no funcione. Esto requiere mayor precisión, pero a cambio, el código escrito es mucho más potente, rápido y profesional, permitiendo crear aplicaciones reales, sitios web y sistemas complejos de inteligencia artificial.",
+        "texto": "Durante el curso pasado, en 1º de ESO, exploramos el mundo de la lógica computacional a través de bloques visuales, como los de Scratch. Este método nos permitió entender cómo piensan las máquinas sin preocuparnos por la ortografía del código. Sin embargo, en 2º de ESO damos el salto definitivo hacia la denominada CULTURA DEL CÓDIGO escrito, donde la comunicación con el ordenador se vuelve mucho más directa, pero también más exigente.\n\nLenguajes profesionales como Python, Java o C++ no utilizan dibujos, sino palabras técnicas en inglés y una sintaxis extremadamente estricta. Aquí, un error minúsculo, como olvidar una coma, cerrar mal un paréntesis o no respetar la indentación (el espacio al inicio de la línea), puede provocar que todo el programa falle. Aunque esto requiere una disciplina y atención al detalle mucho mayor, el beneficio es enorme: el código escrito es inmensamente más potente, rápido y versátil. Es la herramienta que permite crear desde las aplicaciones que usas en tu móvil hasta complejos sistemas de inteligencia artificial o los sitios web más grandes del mundo.",
         "preguntas": [
             {
-                "pregunta": "¿Qué ventaja tiene el código escrito frente a los bloques?",
+                "pregunta": "¿Cuál es la principal diferencia entre programar con bloques y hacerlo con código escrito profesional?",
                 "opciones": [
-                    "Es más fácil de leer al principio",
-                    "Es más potente, rápido y permite crear aplicaciones reales",
-                    "No necesita pensar",
-                    "Se hace sin teclado"
+                    "El código escrito es más lento porque hay que teclear",
+                    "El código escrito permite crear aplicaciones reales, es más potente y usa una sintaxis estricta",
+                    "Los bloques son para profesionales y el código para principiantes",
+                    "No hay ninguna diferencia real más allá de los colores"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cuál es la característica principal de la sintaxis en programación?",
+                "pregunta": "¿Qué impacto tiene un pequeño error de puntuación o un espacio mal colocado en un programa de texto?",
                 "opciones": [
-                    "Es opcional",
-                    "Es muy estricta (una coma importa)",
-                    "Se puede escribir como quieras",
-                    "Solo usa dibujos"
+                    "El ordenador lo corrige automáticamente sin decir nada",
+                    "El programa puede dejar de funcionar completamente debido a la sintaxis estricta",
+                    "Solo cambia ligeramente el color de la pantalla",
+                    "Hace que el ordenador vaya más lento pero el programa sigue funcionando"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué es la indentación?",
+                "pregunta": "En el contexto del código escrito, ¿qué entendemos por 'indentación' y por qué es vital?",
                 "opciones": [
-                    "El color del fondo",
-                    "El espacio al principio de la línea para organizar el bloque de código",
-                    "Borrar el programa",
-                    "Un tipo de monitor"
+                    "Es el nombre de un nuevo lenguaje de programación",
+                    "Es el espacio en blanco al inicio de una línea que ayuda a organizar jerárquicamente el código",
+                    "Es una forma de borrar archivos innecesarios",
+                    "Es el proceso de apagar el ordenador correctamente"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿En qué idioma suelen estar basados los lenguajes de programación?",
+                "pregunta": "¿Por qué la mayoría de los lenguajes de programación utilizan palabras en inglés?",
                 "opciones": [
-                    "Español",
-                    "Inglés",
-                    "Chino",
-                    "Latín"
+                    "Porque son lenguajes inventados exclusivamente en Inglaterra",
+                    "Por estandarización internacional, permitiendo que programadores de todo el mundo colaboren",
+                    "Porque el teclado solo funciona bien con ese idioma",
+                    "Para que los alumnos de ESO tengan que estudiar más idiomas"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿A qué se parece programar con bloques?",
+                "pregunta": "¿Qué ventaja competitiva ofrece el dominio del código escrito frente a los sistemas de bloques?",
                 "opciones": [
-                    "A un puzzle",
-                    "A una novela",
-                    "A una pintura",
-                    "A una canción"
+                    "Permite montar puzzles más rápido",
+                    "Proporciona mayor precisión, velocidad de ejecución y acceso a herramientas profesionales",
+                    "No requiere pensar tanto como los bloques",
+                    "Es más barato de comprar"
                 ],
-                "correcta": 0
+                "correcta": 1
             }
         ]
     },
     {
         "id": "2",
         "titulo": "Placas Programables: Arduino",
-        "texto": "Arduino es una de las placas de hardware libre más famosas del mundo. Es un pequeño ordenador que tiene entradas y salidas de datos. En las ENTRADAS conectamos sensores (LDR, distancia); en las SALIDAS conectamos actuadores (LEDs, servomotores). Programamos la placa para que 'lea' el exterior y 'actúe' en consecuencia. Por ejemplo, un sistema de riego que lea la humedad del suelo y abra una válvula si está seco. Es la base de la cultura MAKER: hazlo tú mismo.",
+        "texto": "Arduino no es solo una placa; es el estándar global del hardware libre. Se trata de un microcontrolador que actúa como un pequeño 'cerebro' capaz de interactuar con el mundo físico. A diferencia de un ordenador personal, su función es leer datos de su entorno y dar órdenes a otros dispositivos. Posee una serie de 'pines' que se dividen principalmente en dos funciones: ENTRADAS y SALIDAS.\n\nEn las ENTRADAS conectamos dispositivos que 'sienten', llamados sensores (como un LDR para medir luz o un sensor de ultrasonidos para la distancia). En las SALIDAS conectamos los actuadores, que son los que realizan una acción física (como un LED que brilla o un servomotor que gira). Gracias a la cultura MAKER, cualquier persona puede diseñar sus propios inventos, como una persiana que se baja sola cuando hace sol o una alarma que te avisa al móvil si alguien entra en tu habitación, democratizando la tecnología y el diseño electrónico.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es Arduino?",
+                "pregunta": "¿Cuál es la función principal de una placa como Arduino en un proyecto tecnológico?",
                 "opciones": [
-                    "Un videojuego",
-                    "Una placa de hardware libre programable",
-                    "Un tipo de cable",
-                    "Un sensor de luz"
+                    "Servir de monitor para ver películas",
+                    "Actuar como un cerebro programable que procesa información de sensores y controla actuadores",
+                    "Funcionar como una batería de larga duración",
+                    "Sustituir al teclado y al ratón del ordenador principal"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué conectamos en las salidas (outputs) de una placa?",
+                "pregunta": "Si estás diseñando un robot que evita obstáculos, ¿qué tipo de componente sería el sensor de distancia?",
                 "opciones": [
-                    "Sensores",
-                    "Actuadores (LEDs, motores)",
-                    "La batería solamente",
-                    "Nada"
+                    "Un actuador",
+                    "Una entrada de datos (input)",
+                    "Una salida de datos (output)",
+                    "Una fuente de alimentación"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué significa que sea hardware libre?",
+                "pregunta": "¿Qué importancia tiene que Arduino sea considerado 'Hardware Libre'?",
                 "opciones": [
-                    "Que te lo regalan",
-                    "Que los planos son públicos y cualquiera puede estudiarlos o mejorarlos",
-                    "Que no tiene cables",
-                    "Que vuela"
+                    "Que no pesa casi nada",
+                    "Que cualquiera puede acceder a sus esquemas, fabricarlos, modificarlos y mejorarlos libremente",
+                    "Que no necesita cables para funcionar",
+                    "Que se puede usar sin saber programar"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "En un sistema de luz automática, ¿cuál sería la ENTRADA?",
+                "pregunta": "Imagina un sistema que enciende un ventilador si hace mucho calor. ¿Cuál de estos componentes sería la SALIDA?",
                 "opciones": [
-                    "La bombilla",
-                    "El LED",
-                    "El sensor de luz (LDR)",
-                    "El cable de red"
+                    "El termómetro digital",
+                    "El motor del ventilador",
+                    "El sensor de humedad",
+                    "El cable que lo conecta a la pared"
                 ],
-                "correcta": 2
+                "correcta": 1
             },
             {
-                "pregunta": "¿A qué filosofía pertenece Arduino?",
+                "pregunta": "¿Cuál es el lema o filosofía principal de la Cultura MAKER mencionada en el texto?",
                 "opciones": [
-                    "Comprar y tirar",
-                    "Cultura Maker (Do it Yourself / Hazlo tú mismo)",
-                    "Solo para ingenieros",
-                    "Pagar siempre"
+                    "Comprar los inventos ya fabricados",
+                    "Hazlo tú mismo (Do It Yourself) compartiendo conocimientos",
+                    "Contratar a un experto siempre",
+                    "Ignorar el funcionamiento interno de las máquinas"
                 ],
                 "correcta": 1
             }
@@ -116,55 +116,55 @@
     {
         "id": "3",
         "titulo": "Algoritmos y Estructura Secuencial",
-        "texto": "Un algoritmo es una receta de pasos para resolver un problema. En la estructura SECUENCIAL, las órdenes se ejecutan una detrás de otra, de arriba abajo. Es como cocinar: primero bates los huevos, luego calientas la sartén y finalmente los echas. Si cambias el orden, el resultado es un desastre. En programación informática, el ordenador sigue este camino estrictamente. Entender el flujo secuencial es el primer paso para dominar la lógica de programación y evitar errores de ejecución.",
+        "texto": "A menudo pensamos que la programación es algo mágico, pero en realidad se basa en ALGORITMOS. Un algoritmo es simplemente una lista de instrucciones finitas, claras y ordenadas para resolver un problema o realizar una tarea. En el mundo de la informática, la estructura más fundamental es la SECUENCIAL. Esto significa que el ordenador lee y ejecuta las órdenes estrictamente en el orden en que aparecen: de arriba hacia abajo y una tras otra.\n\nPodemos comparar un algoritmo con una receta de cocina o el manual para montar un mueble. Si intentas meter el bizcocho al horno antes de batir los huevos, el resultado será un desastre. En programación ocurre lo mismo: el orden de los factores sí altera el producto. Si le pides al ordenador que use un dato antes de haberlo calculado, el programa se detendrá con un error. Por eso, antes de escribir código, es crucial diseñar el flujo lógico de los pasos para asegurar que la secuencia sea coherente y eficiente.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es un algoritmo en este contexto?",
+                "pregunta": "Según el texto, ¿cómo definirías exactamente qué es un algoritmo?",
                 "opciones": [
-                    "Un virus lento",
-                    "Una serie de pasos ordenados para realizar una tarea",
-                    "El nombre de un robot",
-                    "Un error matemático"
+                    "Un error matemático difícil de solucionar",
+                    "Una serie de pasos ordenados y lógicos para completar una tarea",
+                    "El idioma en el que hablan los robots",
+                    "Una aplicación para descargar música"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cómo se ejecutan las órdenes en una estructura secuencial?",
+                "pregunta": "¿Cómo se comporta un procesador cuando ejecuta un código con estructura secuencial?",
                 "opciones": [
-                    "Todas a la vez",
-                    "De forma aleatoria",
-                    "Una tras otra, de arriba a abajo",
-                    "Al revés"
-                ],
-                "correcta": 2
-            },
-            {
-                "pregunta": "¿Qué ocurre si cambias el orden de los pasos en un algoritmo?",
-                "opciones": [
-                    "Da igual",
-                    "El programa probablemente falle o haga algo distinto",
-                    "El ordenador se apaga",
-                    "Se corrige solo"
+                    "Ejecuta todas las líneas al mismo tiempo para ganar velocidad",
+                    "Sigue las instrucciones una por una, empezando por la primera y terminando por la última",
+                    "Elige las instrucciones más fáciles primero",
+                    "Se salta las líneas que tienen errores"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿A qué se parece un algoritmo según el texto?",
+                "pregunta": "¿Qué sucede si alteramos el orden de las instrucciones en una estructura secuencial?",
                 "opciones": [
-                    "A una película",
-                    "A una receta de cocina",
-                    "A un mapa",
-                    "A una canción"
+                    "Nada, el ordenador es inteligente y entiende lo que queríamos decir",
+                    "El programa probablemente fallará o dará un resultado incorrecto",
+                    "El código se borra de la memoria automáticamente",
+                    "Se crean nuevos archivos por accidente"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Quién ejecuta las órdenes estrictamente?",
+                "pregunta": "¿Por qué el texto compara un algoritmo con una receta de cocina?",
                 "opciones": [
-                    "El programador",
-                    "El ordenador",
-                    "El usuario",
-                    "El teclado"
+                    "Para demostrar que programar es aburrido",
+                    "Para ilustrar que el orden de los pasos es crítico para obtener el resultado deseado",
+                    "Porque la mayoría de programadores son cocineros",
+                    "Porque los ordenadores consumen mucha energía térmica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el primer paso recomendado antes de empezar a teclear código en el ordenador?",
+                "opciones": [
+                    "Comprar el ordenador más caro",
+                    "Diseñar y analizar el flujo lógico de los pasos (el algoritmo)",
+                    "Instalar un antivirus",
+                    "Borrar todos los archivos de la carpeta personal"
                 ],
                 "correcta": 1
             }
@@ -173,55 +173,55 @@
     {
         "id": "4",
         "titulo": "Tipos de Datos en Programación",
-        "texto": "Para que el ordenador entienda la información, debemos decirle de qué tipo es cada dato. Los principales son: INTEGER (números enteros), FLOAT (números con decimales), STRING (cadenas de texto entre comillas) y BOOLEAN (valores de verdadero o falso). Por ejemplo, la edad de un usuario sería un 'integer', pero su nombre sería un 'string'. El ordenador reserva un espacio diferente en memoria según el tipo de dato, por lo que usarlos correctamente optimiza el programa y evita fallos al operar entre ellos.",
+        "texto": "Para que un ordenador realice operaciones, primero debe saber exactamente con qué tipo de información está trabajando. No es lo mismo sumar dos números que unir dos palabras. Los lenguajes de programación utilizan diferentes TIPOS DE DATOS para organizar la memoria de forma eficiente. Los más comunes son: INTEGER (números enteros), FLOAT (números con decimales), STRING (texto o cadenas de caracteres) y BOOLEAN (lógica binaria de verdadero o falso).\n\nCada tipo de dato ocupa un espacio distinto en la memoria RAM. Por ejemplo, si declaras una variable para guardar el nombre de un usuario, usarás un 'string' y el ordenador sabrá que debe tratarlo como texto, permitiéndote poner mayúsculas o buscar letras dentro. Si intentas realizar una operación matemática entre un número y una palabra (como sumar '5' + 'hola'), el ordenador generará un error de tipo. Aprender a elegir el dato correcto es fundamental para evitar fallos de ejecución y hacer que tus programas sean rápidos y profesionales.",
         "preguntas": [
             {
-                "pregunta": "¿Qué tipo de dato usarías para guardar el nombre de una persona?",
+                "pregunta": "Si necesitas guardar la cantidad de alumnos en una clase (ej: 25), ¿qué tipo de dato sería el más adecuado?",
                 "opciones": [
-                    "Integer",
-                    "String (cadena de texto)",
-                    "Boolean",
-                    "Float"
-                ],
-                "correcta": 1
-            },
-            {
-                "pregunta": "¿Qué es un dato tipo Boolean?",
-                "opciones": [
-                    "Un número largo",
-                    "Un valor que solo puede ser Verdadero o Falso",
-                    "Un color",
-                    "Una dirección de internet"
-                ],
-                "correcta": 1
-            },
-            {
-                "pregunta": "Si quieres guardar un precio como 19.95 €, ¿qué tipo de dato es?",
-                "opciones": [
-                    "Integer",
-                    "Float (decimal)",
-                    "String",
-                    "Booleano"
-                ],
-                "correcta": 1
-            },
-            {
-                "pregunta": "¿Cómo se suelen indicar los strings en el código?",
-                "opciones": [
-                    "Con paréntesis",
-                    "Entre comillas",
-                    "Con almohadilla",
-                    "En mayúsculas siempre"
-                ],
-                "correcta": 1
-            },
-            {
-                "pregunta": "Un número entero como el 42 es un tipo:",
-                "opciones": [
-                    "String",
-                    "Integer",
                     "Float",
-                    "Robot"
+                    "Integer (entero)",
+                    "String",
+                    "Boolean"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la característica principal de un dato de tipo String?",
+                "opciones": [
+                    "Solo puede almacenar números impares",
+                    "Almacena texto y se suele representar entre comillas",
+                    "Se utiliza para operaciones matemáticas complejas",
+                    "Solo sirve para guardar colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué situación utilizarías obligatoriamente un dato de tipo Float?",
+                "opciones": [
+                    "Para guardar el nombre de una mascota",
+                    "Para registrar un precio con céntimos o una medida precisa de altura",
+                    "Para encender y apagar una luz",
+                    "Para contar cuántas veces se pulsa un botón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué información puede almacenar una variable de tipo Boolean?",
+                "opciones": [
+                    "Cualquier número entre 0 y 100",
+                    "Únicamente dos estados: True (Verdadero) o False (Falso)",
+                    "Cadenas de texto muy largas",
+                    "Fechas y horas del sistema"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es peligroso intentar sumar un dato tipo String con un Integer?",
+                "opciones": [
+                    "Porque el ordenador podría explotar",
+                    "Porque son incompatibles para esa operación y producirán un error de tipo",
+                    "Porque se borraría el disco duro",
+                    "Porque el código cambiaría de idioma solo"
                 ],
                 "correcta": 1
             }
@@ -230,112 +230,112 @@
     {
         "id": "5",
         "titulo": "Condicionales Complejos: IF, ELSE, ELIF",
-        "texto": "Muchas veces, un simple 'si o no' no es suficiente. Usamos condicionales múltiples. Por ejemplo: 'SI la temperatura es mayor a 30, enciende el ventilador; SI NO, SI la temperatura es menor a 10, enciende la estufa; SI NO, no hagas nada'. En lenguajes como Python, el 'si no, si' se escribe como ELIF. Estas estructuras permiten que los programas y robots tomen decisiones sofisticadas basándose en múltiples sensores o condiciones del entorno, haciéndolos parecer más inteligentes.",
+        "texto": "La verdadera potencia de un programa reside en su capacidad para tomar decisiones. Sin condicionales, un programa siempre haría exactamente lo mismo. El bloque básico es el IF (SI...), que comprueba si una condición es verdadera. Sin embargo, en el mundo real, las decisiones suelen tener más de dos opciones. Para manejar estas situaciones complejas, utilizamos las estructuras ELSE (SI NO...) y el fundamental ELIF (SI NO, SI...).\n\nImagina el software de un termostato inteligente: 'SI la temperatura es mayor a 25º, enfriar; SI NO, SI (ELIF) la temperatura es menor a 18º, calentar; SI NO, mantener apagado'. En lenguajes como Python, el uso de ELIF permite encadenar infinitas posibilidades de forma ordenada. Estas ramificaciones del código permiten que las máquinas reaccionen a su entorno de forma dinámica, creando la ilusión de que el programa está 'pensando' o evaluando su situación actual mediante los sensores.",
         "preguntas": [
             {
-                "pregunta": "¿Para qué sirve el bloque ELIF (o else if)?",
+                "pregunta": "¿Qué función cumple el bloque ELIF en una estructura de control?",
                 "opciones": [
-                    "Para terminar el programa",
-                    "Para añadir otra condición específica si la primera no se cumple",
-                    "Para borrar variables",
-                    "Para repetir instrucciones"
+                    "Cierra el programa inmediatamente",
+                    "Permite comprobar una nueva condición específica si las anteriores fueron falsas",
+                    "Repite la misma instrucción muchas veces",
+                    "Sirve para cambiar el nombre de las variables"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué bloque se ejecuta si NINGUNA condición anterior es verdadera?",
+                "pregunta": "¿Cuándo se ejecutará el contenido de un bloque ELSE?",
                 "opciones": [
-                    "IF",
-                    "ELSE",
-                    "ELIF",
-                    "START"
+                    "Al principio de cada programa",
+                    "Solo si NINGUNA de las condiciones previas (IF o ELIF) ha sido verdadera",
+                    "Siempre que el usuario pulse una tecla",
+                    "Cuando el ordenador detecte una conexión a internet"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿A qué permiten estas estructuras?",
+                "pregunta": "¿Por qué decimos que los condicionales dan 'inteligencia' a los programas?",
                 "opciones": [
-                    "A dibujar mejor",
-                    "A que los programas tomen decisiones complejas",
-                    "A gastar menos luz",
-                    "A nada"
+                    "Porque hacen que el ordenador sea más rápido",
+                    "Porque permiten al software reaccionar y elegir diferentes caminos según los datos",
+                    "Porque permiten al ordenador hablar con humanos",
+                    "Porque borran los errores automáticamente"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "En un semáforo, si 'rojo' se para e 'verde' avanza, ¿qué usarías para el 'ámbar'?",
+                "pregunta": "En un semáforo inteligente, ¿cuándo usarías un bloque ELIF?",
                 "opciones": [
-                    "Un nuevo IF independiente",
-                    "Un ELIF (condición intermedia)",
-                    "Un ELSE",
-                    "Nada"
+                    "Para la luz roja solamente",
+                    "Para gestionar estados intermedios como la luz ámbar antes de llegar al final del ciclo",
+                    "Para apagar el semáforo por la noche",
+                    "Para contar cuántos coches pasan"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cómo escribimos las instrucciones que dependen de un IF?",
+                "pregunta": "¿Qué es obligatorio respetar en el código tras escribir un IF o un ELIF para que el ordenador sepa qué instrucciones dependen de ellos?",
                 "opciones": [
-                    "Debajo con indentación (sangría)",
-                    "En una hoja aparte",
-                    "A la derecha del todo",
-                    "En rojo"
+                    "Escribir en mayúsculas",
+                    "La indentación (sangría) de las líneas que van dentro del bloque",
+                    "Poner muchos puntos suspensivos",
+                    "No se necesita nada especial"
                 ],
-                "correcta": 0
+                "correcta": 1
             }
         ]
     },
     {
         "id": "6",
         "titulo": "Bucles: El poder de la repetición",
-        "texto": "Los ordenadores son muy buenos haciendo tareas repetitivas sin cansarse. Usamos bucles como FOR (repetir un número fijo de veces) y WHILE (repetir mientras se cumpla una condición). Por ejemplo, 'MIENTRAS el sensor de luz detecte oscuridad, mantén la lámpara encendida'. Debemos tener cuidado con los 'bucles infinitos', donde la condición nunca deja de cumplirse y el programa se bloquea. Un buen programador siempre asegura que el bucle tenga una forma de terminar correctamente.",
+        "texto": "Una de las tareas que más aburren a los humanos es repetir lo mismo una y otra vez. Para un ordenador, sin embargo, es su mayor virtud. En programación, los BUCLES (o loops) permiten ejecutar un mismo bloque de código múltiples veces de forma ultra-rápida. Existen dos tipos fundamentales: el bucle FOR y el bucle WHILE. El bucle FOR se utiliza cuando sabemos de antemano cuántas veces queremos repetir algo (ej: imprimir 100 veces 'Hola'), mientras que el WHILE se usa para repetir algo 'mientras' una condición sea cierta (ej: 'mientras la batería sea mayor al 5%, sigue funcionando').\n\nNo obstante, los bucles esconden un peligro: el temido 'bucle infinito'. Esto ocurre cuando la condición de un WHILE nunca deja de cumplirse, haciendo que el procesador trabaje al 100% atrapado en la misma tarea para siempre, lo que suele bloquear el programa o el sistema operativo. Un buen programador debe asegurarse siempre de que exista una 'condición de salida' o un mecanismo que permita romper la repetición cuando el objetivo se haya cumplido.",
         "preguntas": [
             {
-                "pregunta": "¿Qué bucle usarías si sabes que quieres repetir algo exactamente 10 veces?",
+                "pregunta": "Si tienes que crear un programa que dibuje 12 cuadrados iguales, ¿qué tipo de bucle sería el más eficiente?",
                 "opciones": [
-                    "WHILE",
-                    "FOR",
-                    "IF",
-                    "ELSE"
+                    "Un bucle WHILE",
+                    "Un bucle FOR (ya que conocemos el número exacto de repeticiones)",
+                    "Un bloque IF",
+                    "No usar bucles, copiar el código 12 veces"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué significa un bucle WHILE?",
+                "pregunta": "¿Cómo funciona lógicamente un bucle de tipo WHILE?",
                 "opciones": [
-                    "Repetir para siempre sin mirar",
-                    "Repetir mientras se cumpla una condición",
-                    "Hacerlo solo una vez",
-                    "Esperar un minuto"
+                    "Se ejecuta una sola vez y luego se borra",
+                    "Se repite continuamente siempre y cuando la condición establecida siga siendo verdadera",
+                    "Solo se ejecuta cuando el ordenador se enciende",
+                    "Espera un tiempo aleatorio antes de empezar"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué es un bucle infinito?",
+                "pregunta": "¿Qué consecuencia negativa tiene un 'bucle infinito' en un ordenador?",
                 "opciones": [
-                    "Un bucle muy grande",
-                    "Uno que nunca termina y bloquea el programa",
-                    "Uno que se repite 100 veces",
-                    "Uno que viaja por el espacio"
+                    "Hace que el ordenador consuma menos energía",
+                    "Bloquea el programa y satura el procesador al no poder salir nunca de la tarea",
+                    "Mejora la velocidad de internet",
+                    "Descarga actualizaciones innecesarias"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cuál es la gran ventaja de los ordenadores en este tema?",
+                "pregunta": "¿Qué elemento es fundamental incluir dentro de un bucle para que no sea infinito?",
                 "opciones": [
-                    "Que son bonitos",
-                    "Que hacen tareas repetitivas rápido y sin errores",
-                    "Que no usan electricidad",
-                    "Que saben hablar"
+                    "Muchos comentarios de texto",
+                    "Un cambio en la variable de control que haga que la condición acabe siendo falsa",
+                    "Un dibujo de un círculo",
+                    "El nombre del programador"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué debe asegurar siempre un programador?",
+                "pregunta": "¿Por qué los humanos delegan las tareas repetitivas en los ordenadores mediante bucles?",
                 "opciones": [
-                    "Que el bucle tenga una condición de salida",
-                    "Que el bucle sea muy largo",
-                    "Que no haya bucles",
-                    "Que el bucle sea de color rojo"
+                    "Porque los ordenadores no se cansan, no pierden la concentración y son extremadamente precisos",
+                    "Porque así los ordenadores no se rompen",
+                    "Porque es obligatorio por ley",
+                    "Porque los bucles solo funcionan de noche"
                 ],
                 "correcta": 0
             }
@@ -344,55 +344,55 @@
     {
         "id": "7",
         "titulo": "Funciones: Reutilizando código",
-        "texto": "Cuando una tarea se repite en muchas partes de nuestro programa, en lugar de copiar y pegar el código, creamos una FUNCIÓN. Una función es un bloque de instrucciones con un nombre (ej: 'preparar_cafe') que podemos llamar cada vez que lo necesitemos. Esto hace que el código sea mucho más corto, fácil de leer y, sobre todo, fácil de corregir. Si hay un error, solo tenemos que cambiarlo una vez dentro de la función y se arregla automáticamente en todo el programa.",
+        "texto": "A medida que los programas crecen, escribir cientos de líneas seguidas se vuelve inmanejable. Para solucionar esto, los programadores utilizan el concepto de FUNCIÓN. Una función es como una 'mini-máquina' o un subprograma que tiene un nombre y realiza una tarea muy específica. En lugar de escribir el mismo código diez veces en diferentes lugares, lo escribimos una sola vez dentro de una función y simplemente la 'llamamos' por su nombre cuando la necesitemos.\n\nEsto no solo ahorra tiempo, sino que mejora drásticamente el mantenimiento del software. Imagina que tienes una función para calcular el IVA de un producto y el gobierno cambia el porcentaje. Si no usaste funciones, tendrías que buscar y cambiar ese número en cada sitio que aparezca. Si usaste una función, solo lo corriges en un lugar y todo el programa se actualizará automáticamente. Las funciones permiten que el código sea modular, organizado y mucho más fácil de entender tanto para ti como para otros desarrolladores.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es una función?",
+                "pregunta": "¿Cuál es la definición técnica de una 'Función' en programación?",
                 "opciones": [
-                    "Un tipo de variable",
-                    "Un bloque de código con nombre que realiza una tarea específica",
-                    "Un error del sistema",
-                    "Un botón del teclado"
+                    "Un error que ocurre al encender el PC",
+                    "Un bloque de código reutilizable con un nombre que realiza una tarea concreta",
+                    "Un componente físico de la placa base",
+                    "Una tecla especial del portátil"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cuál es la ventaja principal de usar funciones?",
+                "pregunta": "¿Cómo ayuda el uso de funciones a la hora de corregir errores en un programa grande?",
                 "opciones": [
-                    "Que el ordenador corre más",
-                    "Reutilizar código y facilitar su mantenimiento",
-                    "Que tiene más colores",
-                    "Que no hay que estudiar"
+                    "Hace que los errores desaparezcan solos",
+                    "Permite corregir el fallo en un solo lugar y que el cambio se aplique a todo el programa",
+                    "Obliga a reescribir todo el código desde cero",
+                    "Envía un informe automático al fabricante"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "Si tienes un error en una tarea que aparece 10 veces, y usas funciones, ¿cuántas veces debes corregirlo?",
+                "pregunta": "¿A qué nos referimos cuando decimos que 'llamamos' a una función?",
                 "opciones": [
-                    "10 veces",
-                    "Una sola vez (dentro de la función)",
-                    "Ninguna",
-                    "Hay que borrarlo todo"
+                    "A buscarla en internet",
+                    "A escribir su nombre en el código para que el ordenador ejecute sus instrucciones",
+                    "A gritarle al micrófono del ordenador",
+                    "A instalar la función desde un disco"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cómo se ejecuta una función?",
+                "pregunta": "¿Qué ventaja tiene el código 'modular' creado con funciones?",
                 "opciones": [
-                    "Pidiéndolo por favor",
-                    "Llamándola por su nombre en el código",
-                    "Haciendo clic en la pantalla",
-                    "Al encender el PC"
+                    "Que es más colorido",
+                    "Que es más fácil de leer, organizar y compartir con otros programadores",
+                    "Que no necesita memoria RAM",
+                    "Que funciona sin electricidad"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Ayuda el uso de funciones a la legibilidad?",
+                "pregunta": "Si un programa no usara funciones, ¿cuál sería el mayor problema del programador?",
                 "opciones": [
-                    "Sí, hace el código más claro y organizado",
-                    "No, lo complica todo",
-                    "Solo si eres experto",
-                    "No importa"
+                    "El código sería extremadamente largo, repetitivo y muy difícil de mantener",
+                    "El ordenador no podría leer el archivo",
+                    "El ratón dejaría de funcionar",
+                    "La pantalla parpadearía constantemente"
                 ],
                 "correcta": 0
             }
@@ -401,169 +401,171 @@
     {
         "id": "8",
         "titulo": "Simulación y Robótica Virtual",
-        "texto": "Antes de construir un robot real, los ingenieros usan simuladores. Herramientas como Tinkercad nos permiten conectar componentes electrónicos (LEDs, baterías, placas Arduino) en la pantalla y probar el código sin miedo a que nada se queme o se rompa. La simulación ahorra tiempo y dinero, permitiendo detectar fallos en el diseño de circuitos antes de fabricarlos físicamente. Es un paso esencial en el desarrollo de cualquier proyecto tecnológico profesional hoy en día.",
+        "texto": "Construir robots e instalar circuitos electrónicos reales puede ser costoso y arriesgado; un cable mal conectado puede quemar un sensor caro en segundos. Por eso, en el ámbito profesional y educativo se utiliza la SIMULACIÓN VIRTUAL. Herramientas como Tinkercad nos ofrecen un laboratorio digital completo donde podemos arrastrar placas Arduino, sensores y actuadores a una pantalla para experimentar sin límites.\n\nEn un simulador, puedes comprobar si tu código es correcto y si tus conexiones eléctricas son seguras antes de tocar un solo componente físico. Esta etapa de prototipado virtual permite detectar fallos de diseño, ahorrar presupuesto en materiales y aprender de los errores 'gratuitamente'. Hoy en día, ninguna empresa de ingeniería avanzada (como las que diseñan coches o cohetes) fabrica nada sin haber pasado meses o años simulando cada detalle en un entorno virtual controlado.",
         "preguntas": [
             {
-                "pregunta": "¿Qué ventaja tiene usar un simulador como Tinkercad?",
+                "pregunta": "¿Por qué es recomendable usar un simulador electrónico antes de montar el circuito real?",
                 "opciones": [
-                    "Es más divertido solamente",
-                    "Permite probar circuitos y código sin riesgo de romper componentes",
-                    "Te regalan los materiales",
-                    "No hace falta código"
+                    "Porque las piezas virtuales son más potentes",
+                    "Para evitar romper componentes físicos por errores de conexión o fallos en el código",
+                    "Porque en el simulador no hace falta saber programar",
+                    "Porque los simuladores son obligatorios para aprobar"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué es un componente electrónico?",
+                "pregunta": "¿Qué es Tinkercad en el contexto de la robótica educativa?",
                 "opciones": [
-                    "Un programa de radio",
-                    "Una pieza física como un LED o un cable",
-                    "Un tipo de plástico",
-                    "Un error"
+                    "Un tipo de motor muy rápido",
+                    "Una plataforma de simulación online de circuitos y diseño 3D",
+                    "Un lenguaje de programación secreto",
+                    "Una marca de pilas para robots"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué ahorra la simulación según el texto?",
+                "pregunta": "¿Qué significa el concepto de 'prototipado virtual'?",
                 "opciones": [
-                    "Luz",
-                    "Tiempo y dinero",
-                    "Espacio en el disco",
-                    "Nada"
+                    "Comprar un robot ya montado",
+                    "Crear un modelo digital para probar el funcionamiento de una idea antes de fabricarla",
+                    "Borrar un programa antiguo",
+                    "Hacer una foto a un circuito real"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Se puede probar código en un simulador?",
+                "pregunta": "¿En qué sectores profesionales es vital la simulación según el texto?",
                 "opciones": [
-                    "Sí",
-                    "No, solo el dibujo"
+                    "Solo en la enseñanza secundaria",
+                    "En ingeniería avanzada, como la automoción o la industria aeroespacial",
+                    "En las tiendas de ropa",
+                    "En los centros de jardinería"
                 ],
-                "correcta": 0
+                "correcta": 1
             },
             {
-                "pregunta": "¿Es un paso profesional el uso de simuladores?",
+                "pregunta": "¿Qué recurso principal ahorramos al utilizar laboratorios virtuales?",
                 "opciones": [
-                    "Sí, es esencial en ingeniería moderna",
-                    "No, es solo para niños",
-                    "A veces",
-                    "Solo en medicina"
+                    "Espacio en el escritorio",
+                    "Tiempo de desarrollo y dinero en materiales dañados",
+                    "El uso del teclado",
+                    "La conexión a internet"
                 ],
-                "correcta": 0
+                "correcta": 1
             }
         ]
     },
     {
         "id": "9",
         "titulo": "La Inteligencia Artificial y el Machine Learning",
-        "texto": "La Inteligencia Artificial (IA) está cambiando la programación. Tradicionalmente, dábamos órdenes fijas; ahora con el APRENDIZAJE AUTOMÁTICO (Machine Learning), el programa aprende a partir de ejemplos. Por ejemplo, si le mostramos 10.000 fotos de gatos y 10.000 de perros, el algoritmo acaba aprendiendo a distinguirlos solo. Esto se usa en el reconocimiento facial, en los coches autónomos y en los traductores automáticos. Sin embargo, requiere una gran responsabilidad ética para evitar sesgos o usos peligrosos.",
+        "texto": "La Inteligencia Artificial (IA) no es ciencia ficción; ya está integrada en nuestra vida diaria. El cambio revolucionario que estamos viviendo es el paso de la programación tradicional (dar órdenes fijas) al APRENDIZAJE AUTOMÁTICO o Machine Learning. En lugar de escribir cada regla de forma manual, le proporcionamos a un algoritmo miles de ejemplos (datos) para que él mismo encuentre los patrones y aprenda a realizar una tarea.\n\nPor ejemplo, para que una IA reconozca una naranja, no le explicamos qué es el color naranja o la forma circular; le enseñamos 50.000 fotos de naranjas y otras 50.000 de otras frutas. Con el tiempo, la red neuronal aprende a distinguirlas con una precisión mayor a la humana. Este potencial conlleva una gran responsabilidad ética: los programadores debemos vigilar que los datos no tengan 'sesgos' (prejuicios) y que el uso de estas tecnologías sea siempre para mejorar la vida de las personas, protegiendo siempre la seguridad y la libertad individual.",
         "preguntas": [
             {
-                "pregunta": "¿En qué se diferencia el Machine Learning de la programación tradicional?",
+                "pregunta": "¿Cuál es la diferencia fundamental entre la programación clásica y el Machine Learning?",
                 "opciones": [
-                    "Es más lenta",
-                    "El programa aprende de ejemplos en lugar de órdenes fijas",
-                    "No necesita ordenadores",
-                    "La hace gente mayor"
+                    "El Machine Learning es más antiguo",
+                    "En el Machine Learning el programa aprende de patrones en los datos en lugar de seguir reglas manuales",
+                    "La programación clásica no usa ordenadores",
+                    "No hay diferencia, son dos nombres para lo mismo"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué necesita la IA para aprender a reconocer objetos?",
+                "pregunta": "Para que una IA aprenda a identificar enfermedades en radiografías, ¿qué es lo más importante?",
                 "opciones": [
-                    "Una cámara muy cara",
-                    "Miles de ejemplos (datos)",
-                    "Pintura",
-                    "Electricidad especial"
+                    "Que el ordenador sea de color blanco",
+                    "Tener una base de datos con miles de ejemplos de radiografías ya analizadas",
+                    "Que el médico sepa programar en Python",
+                    "Instalar un ventilador muy grande al servidor"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "Nombra un uso actual de la IA mencionado:",
+                "pregunta": "¿Qué significa que una IA tenga 'sesgos'?",
                 "opciones": [
-                    "Hacer bocadillos",
-                    "Reconocimiento facial y traductores",
-                    "Limpiar el suelo sola",
-                    "Volar aviones de papel"
+                    "Que funciona muy rápido",
+                    "Que tiene prejuicios o errores derivados de haber aprendido con datos incompletos o injustos",
+                    "Que se ha quedado sin memoria",
+                    "Que ha aprendido a hablar varios idiomas"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué cuidado debemos tener con la IA?",
+                "pregunta": "¿Qué es una 'red neuronal' en el contexto de la IA?",
                 "opciones": [
-                    "Que no se moje",
-                    "Cuidado ético y responsabilidad",
-                    "Que no gaste mucho",
-                    "Ninguno"
+                    "Un cable que conecta varios ordenadores",
+                    "Un modelo matemático inspirado en el cerebro humano para procesar información",
+                    "Un virus que infecta a los científicos",
+                    "La antena wifi del instituto"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Es la IA capaz de aprender sola con los datos adecuados?",
+                "pregunta": "¿Por qué la ética es tan importante para los futuros programadores de IA?",
                 "opciones": [
-                    "Sí, mediante algoritmos de entrenamiento",
-                    "No, alguien la maneja siempre por detrás",
-                    "Solo en Japón",
-                    "Solo si es nueva"
+                    "Porque es una asignatura obligatoria",
+                    "Porque las decisiones de la IA pueden afectar a la privacidad, la justicia y la seguridad de la sociedad",
+                    "Para que los robots no nos roben el trabajo",
+                    "Para que los programas sean más bonitos"
                 ],
-                "correcta": 0
+                "correcta": 1
             }
         ]
     },
     {
         "id": "10",
         "titulo": "Ciberseguridad: Proteger datos",
-        "texto": "En un mundo conectado, saber programar también implica saber protegerse. La ciberseguridad estudia cómo evitar ataques que roban información o dañan sistemas. Conceptos como la ENCRIPTACIÓN (ocultar el mensaje con un código matemático) son vitales para que tus mensajes de chat o tus datos bancarios viajen seguros. Debemos entender que en internet 'tú eres el producto' si el servicio es gratuito, y que tus datos tienen mucho valor comercial. Ser un programador responsable implica también respetar la privacidad de los usuarios.",
+        "texto": "En la era de la hiperconectividad, la información es el activo más valioso del mundo. La ciberseguridad es la disciplina que se encarga de proteger nuestros sistemas, redes y datos personales de ataques malintencionados. Uno de sus pilares es la ENCRIPTACIÓN, un proceso matemático que transforma un mensaje legible en un código indescifrable; solo el destinatario con la 'llave' correcta puede volver a convertirlo en texto.\n\nEs fundamental entender que, en internet, gran parte de lo que parece gratuito se paga con nuestra privacidad. Frases como 'si el servicio es gratis, el producto eres tú' nos recuerdan que nuestros gustos, ubicación y contactos son vendidos a empresas de publicidad. Por tanto, ser un buen programador hoy en día no solo significa saber escribir código eficiente, sino también saber proteger la integridad de los usuarios, cumplir con las leyes de protección de datos (como el RGPD) y fomentar un internet más seguro y privado para todos.",
         "preguntas": [
             {
-                "pregunta": "¿Qué es la encriptación?",
+                "pregunta": "¿En qué consiste el proceso de encriptación de datos?",
                 "opciones": [
-                    "Borrar mensajes",
-                    "Codificar la información para que sea ilegible por extraños",
-                    "Escribir muy rápido",
-                    "Poner fotos"
+                    "En borrar los archivos para que nadie los vea",
+                    "En transformar la información en un código secreto que solo puede leer quien tenga la clave autorizada",
+                    "En poner una contraseña muy larga al ordenador",
+                    "En subir los archivos a una nube pública"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué significa 'tú eres el producto' en internet?",
+                "pregunta": "¿Qué quiere decir la frase 'si el servicio es gratis, el producto eres tú'?",
                 "opciones": [
-                    "Que te venden a ti",
-                    "Que tus datos se usan para publicidad o comercio si el servicio es gratis",
-                    "Que eres muy famoso",
-                    "Que trabajas para Google"
+                    "Que te van a regalar productos por usar la aplicación",
+                    "Que la empresa gana dinero vendiendo tus datos personales y hábitos a terceros",
+                    "Que tú eres el dueño de la empresa",
+                    "Que el servicio no funciona realmente"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Qué estudia la ciberseguridad?",
+                "pregunta": "¿Cuál es el objetivo principal de la ciberseguridad?",
                 "opciones": [
-                    "Como hacer virus",
-                    "Como proteger sistemas y datos de ataques",
-                    "La velocidad de la red",
-                    "Los tipos de móviles"
+                    "Aumentar el precio de los ordenadores",
+                    "Garantizar la confidencialidad, integridad y disponibilidad de la información",
+                    "Hacer que internet sea más lento para evitar virus",
+                    "Espiar lo que hacen los demás usuarios"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Tienen valor tus datos en internet?",
+                "pregunta": "¿Qué es el RGPD mencionado en el texto?",
                 "opciones": [
-                    "No, a nadie le importan",
-                    "Sí, mucho valor comercial (publicidad)",
-                    "Solo si eres rico",
-                    "Solo si eres programador"
+                    "Un nuevo modelo de robot educativo",
+                    "El Reglamento General de Protección de Datos que protege nuestra privacidad en Europa",
+                    "Una marca de antivirus muy famosa",
+                    "El nombre de un hacker profesional"
                 ],
                 "correcta": 1
             },
             {
-                "pregunta": "¿Cuál es un deber del programador responsable?",
+                "pregunta": "¿Por qué un programador debe preocuparse por la privacidad de sus usuarios?",
                 "opciones": [
-                    "Hacer programas caros",
-                    "Respetar la privacidad de los usuarios",
-                    "Saber hackear",
-                    "Tener el mejor PC"
+                    "Porque es un deber ético y legal que protege la confianza y la seguridad de las personas",
+                    "Porque así el código ocupa menos espacio",
+                    "Porque los usuarios pagan más si hay privacidad",
+                    "No debe preocuparse, eso es trabajo de los abogados"
                 ],
-                "correcta": 1
+                "correcta": 0
             }
         ]
     }

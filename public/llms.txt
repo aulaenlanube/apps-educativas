@@ -1,5 +1,97 @@
-## Pages
-- [- EduApps`}](/applist): No description available
-- [- EduApps`}](/apprunner): No description available
-- [- EduApps`}](/course): No description available
-- [- EduApps`}](/subject): No description available
+# AulaEnLaNuBe - Ecosistema de Apps Educativas (España)
+
+Guía técnica integral del proyecto "Apps Educativas", una plataforma interactiva de alto rendimiento diseñada para estudiantes de Primaria y Secundaria (ESO).
+
+## 1. Stack Tecnológico y Dependencias Core
+
+El proyecto utiliza un stack moderno centrado en la interactividad y la experiencia de usuario:
+
+- **Frontend**: React (Vite) con Hooks (`useState`, `useEffect`, `useRef`, `useMemo`).
+- **Renderizado 3D**: `Three.js` y `@react-three/fiber` (utilizado en Sistema Solar, Células y Visualizador 3D).
+- **Animaciones**: CSS customizado con keyframes avanzados y `canvas-confetti` para feedback visual positivo.
+- **Routing**: `react-router-dom` para navegación fluida entre cursos, materias y juegos.
+- **SEO & Meta**: `react-helmet-async` para gestión dinámica de etiquetas meta.
+- **Carga Perezosa**: `React.lazy` y `Suspense` para optimizar la carga inicial.
+
+## 2. Arquitectura de Directorios
+
+### /src (Código Fuente)
+- **`/apps`**: Contenedor de todas las aplicaciones. 
+  - **`_shared/`**: El núcleo lógico. Contiene los motores de juego reutilizables (ej: `ComprensionJuego.jsx`, `RoscoUI.jsx`, `Runner.jsx`). Separar el motor de los datos permite escalar a cientos de ejercicios sin duplicar código.
+  - **`config/`**: Define qué aplicaciones están disponibles para cada curso y materia (`primariaApps.js`, `esoApps.js`).
+- **`/hooks`**: Lógica de estado compartida para juegos específicos (`useRoscoGame`, `useOrdenaLaHistoriaGame`, etc.).
+- **`/pages`**: Vistas principales: `HomePage`, `CoursePage` (selección de curso), `SubjectPage` (selección de asignatura) y `AppRunnerPage` (el contenedor que monta el juego seleccionado).
+- **`/components`**: Componentes UI atómicos y generales.
+
+### /public (Activos y Datos)
+- **`/data`**: Base de datos en formato JSON.
+  - Estructura: `/data/[etapa]/[curso]/[materia]-[tipo_juego].json`. 
+  - Ejemplo: `/data/eso/2/programacion-comprension.json`.
+- **`/textures`**: Texturas locales para aplicaciones 3D (Sistema Solar).
+
+## 3. Motores de Juego (Componentes Shared)
+
+La plataforma se basa en la inyección de datos dinámicos en motores genéricos:
+
+1.  **Comprensión (Escrita/Oral)**: `ComprensionJuego.jsx`. Gestor de lecturas dinámicas con soporte para audio, reglas de lectura táctiles y test de autoevaluación.
+2.  **Rosco**: `RoscoUI.jsx` + `useRoscoGame.js`. Simulador de Pasapalabra con gestión de temporizadores y teclado interactivo.
+3.  **Runner**: `Runner.jsx`. Juego de plataformas educativo.
+4.  **Clasificador/Intruso**: `Clasificador.jsx` y `BuscaElIntruso.jsx`. Fomentan el pensamiento categórico.
+5.  **Ordena (Historia/Frase)**: Motores de arrastrar y soltar para secuenciación lógica.
+6.  **Matemáticas**: `UniversalSumBoard.jsx`, `MayorMenorGame.jsx`, etc., para cálculo mental.
+
+## 4. Flujo de Navegación y Carga de Apps
+
+1.  **Selección**: El usuario elige Etapa -> Curso -> Materia.
+2.  **Filtro**: `SubjectPage` consulta la configuración en `src/apps/config` para mostrar las apps asignadas.
+3.  **Ejecución**: Se navega a `/apprunner?id=[appId]&level=[level]&grade=[grade]&subjectId=[subjectId]`.
+4.  **Montaje**: `AppRunnerPage` localiza la aplicación y el motor correspondiente. Si es un juego basado en datos, el motor realiza un `fetch` dinámico al JSON correspondiente en `/public/data`.
+
+## 5. Sistema de Diseño (UX/UI)
+
+- **Aroma Educativo**: Colores vivos pero armoniosos. Uso de fuentes especializadas (`Lexend`, `Fredoka One`, `Playwrite ES` para letra ligada).
+- **Mascotas Interactivas**: Componentes como `MascotOriginal.jsx` proporcionan feedback y consejos, mejorando el engagement.
+- **Accesibilidad**: 
+  - Selectores de tipografía (Imprenta, Ligada, Mayúsculas).
+  - Ajuste de velocidad de voz en comprensión oral.
+  - Guía de lectura (regla amarilla) para evitar distracciones.
+- **Responsive Web Design**: Sistema de advertencia de orientación (`AppOrientationWarning.jsx`) para asegurar que los juegos se disfruten en modo horizontal (Landscape).
+
+## 6. Modelos de Datos JSON (Estándares)
+
+Para añadir contenido, los JSON deben seguir estos esquemas:
+
+### Comprensión
+```json
+{
+  "id": "1",
+  "titulo": "...",
+  "texto": "Párrafo 1\n\nPárrafo 2...",
+  "preguntas": [
+    {
+      "pregunta": "...",
+      "opciones": ["A", "B", "C", "D"],
+      "correcta": 1
+    }
+  ]
+}
+```
+
+### Rosco
+```json
+{
+  "letra": "a",
+  "definicion": "...",
+  "palabra": "...",
+  "empieza": true
+}
+```
+
+## 7. Guía de Extensión para Desarrolladores
+
+- **Nuevos Contenidos**: Crear el archivo JSON en la carpeta correspondiente de `/public/data` y asegurarse de que el nombre coincida con el patrón esperado por el motor.
+- **Nuevas Apps**: Registrar la app en `src/apps/config/commonApps.js` y asignarla a las materias deseadas en `primariaApps.js` o `esoApps.js`.
+- **Efectos Visuales**: Utilizar `ConfettiProvider.jsx` para celebrar el éxito del alumno al completar actividades.
+
+---
+*Este proyecto está en constante evolución, priorizando siempre la calidad pedagógica y la fluidez tecnológica.*
