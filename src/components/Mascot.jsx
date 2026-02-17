@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation } from 'react-router-dom';
 import { getFrases } from './../../public/data/api';
 import MascotOriginal from './MascotOriginal';
-import MascotTeal from './MascotTeal';
 
 const Mascot = () => {
     const { level, grade, subjectId } = useParams();
@@ -15,8 +14,6 @@ const Mascot = () => {
 
     // Logic to determine if we are in a subject page
     const isSubjectPage = !!(level && grade && subjectId && location.pathname.includes('/curso/'));
-
-    const [monsterType] = useState(() => Math.random() > 0.5 ? 'original' : 'teal');
 
     useEffect(() => {
         const loadVoices = () => {
@@ -65,7 +62,7 @@ const Mascot = () => {
             if (spanishVoice) utterance.voice = spanishVoice;
             utterance.lang = 'es-ES';
             utterance.rate = 0.95;
-            utterance.pitch = monsterType === 'teal' ? 1.4 : 1.6; // Slightly deeper voice for teal
+            utterance.pitch = 1.6;
             utterance.onend = () => {
                 setCurrentMessage(null);
                 setIsTalking(false);
@@ -113,11 +110,7 @@ const Mascot = () => {
                 )}
             </AnimatePresence>
 
-            {monsterType === 'original' ? (
-                <MascotOriginal isTalking={isTalking} onClick={handleMascotClick} />
-            ) : (
-                <MascotTeal isTalking={isTalking} onClick={handleMascotClick} />
-            )}
+            <MascotOriginal isTalking={isTalking} onClick={handleMascotClick} />
         </div>
     );
 };
