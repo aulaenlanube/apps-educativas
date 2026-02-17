@@ -316,6 +316,13 @@ const RoscoUI = ({
                             <span className="text-6xl block mb-2">{winner.icon}</span>
                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
                             <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
+                            <div className="mt-4 p-3 bg-blue-50 rounded-2xl border-2 border-blue-100">
+                                <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Nota Final</p>
+                                <div className="text-4xl font-black text-blue-600">
+                                    {((winner.score / config.questionCount) * 10).toFixed(1)}
+                                    <span className="text-xl text-blue-300 ml-1">/ 10</span>
+                                </div>
+                            </div>
                             {config.useTimer && winner.timeLeft > 0 && (<p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>)}
                         </div>
                     ) : (
@@ -330,7 +337,10 @@ const RoscoUI = ({
                         <div className="bg-gray-50 rounded-xl p-4 mb-8">
                             {players.map(p => (
                                 <div key={p.id} className="flex justify-between items-center mb-2 last:mb-0 text-lg border-b last:border-0 border-gray-200 pb-2 last:pb-0">
-                                    <span className="font-bold">{p.icon} {p.name}</span>
+                                    <div className="text-left">
+                                        <div className="font-bold">{p.icon} {p.name}</div>
+                                        <div className="text-xs font-bold text-blue-500">Nota: {((p.score / config.questionCount) * 10).toFixed(1)}/10</div>
+                                    </div>
                                     <span className="font-extrabold text-blue-600">{p.score} aciertos</span>
                                 </div>
                             ))}

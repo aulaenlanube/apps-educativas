@@ -613,7 +613,12 @@ const FraccionesESO = () => {
                     </div>
 
                     <div className={`exercise-card ${isVibrating ? 'vibrate-once' : ''}`}>
-                        <div className="exercise-content">
+                        <div className="exercise-content" style={{ width: '100%' }}>
+                            {isExamMode && (
+                                <div className="exam-question-label">
+                                    {exercise?.type === 'simplificar' ? '✨ Simplifica la fracción' : SECTIONS.find(s => s.id === exercise?.type)?.name}
+                                </div>
+                            )}
                             {exercise?.type === 'sumas' && (
                                 <div className="simple-calc-container">
                                     <div className="fraction-calc complex">
