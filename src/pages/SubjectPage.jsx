@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import { esoSubjects, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
+import SubjectIcon from '@/components/SubjectIcon';
 
 const SubjectList = ({ subjects, level, grade }) => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const SubjectList = ({ subjects, level, grade }) => {
           onClick={() => handleSubjectClick(subject.id)}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="text-4xl group-hover:scale-110 transition-transform duration-300">{subject.icon}</div>
+          <SubjectIcon subjectId={subject.id} />
           <div className="relative z-10">
             <h3 className="text-xl font-bold text-gray-800">{subject.nombre}</h3>
           </div>
