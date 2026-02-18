@@ -1,127 +1,127 @@
 [
   {
     "id": 1,
-    "a": "Familia",
-    "b": "Padres e hijos"
+    "a": "👨‍👩‍👧‍👦",
+    "b": "👨‍👩‍👧‍👦"
   },
   {
     "id": 2,
-    "a": "Colegio",
-    "b": "Aprender"
+    "a": "🏠",
+    "b": "🏠"
   },
   {
     "id": 3,
-    "a": "Barrio",
-    "b": "Nuestra zona"
+    "a": "🏫",
+    "b": "🏫"
   },
   {
     "id": 4,
-    "a": "Calle",
-    "b": "Aceras y calzada"
+    "a": "🏥",
+    "b": "🏥"
   },
   {
     "id": 5,
-    "a": "Coche",
-    "b": "🚗"
+    "a": "👮",
+    "b": "👮"
   },
   {
     "id": 6,
-    "a": "Autobús",
-    "b": "🚌"
+    "a": "👮",
+    "b": "👮‍"
   },
   {
     "id": 7,
-    "a": "Tren",
-    "b": "🚂"
+    "a": "👩‍🏫",
+    "b": "👩‍🏫"
   },
   {
     "id": 8,
-    "a": "Avión",
-    "b": "✈️"
+    "a": "👨‍⚕️",
+    "b": "👨‍⚕️"
   },
   {
     "id": 9,
-    "a": "Barco",
-    "b": "🚢"
+    "a": "🚗",
+    "b": "🚗"
   },
   {
     "id": 10,
-    "a": "Policía",
-    "b": "Seguridad"
+    "a": "🚌",
+    "b": "🚌"
   },
   {
     "id": 11,
-    "a": "Bombero",
-    "b": "Extinguir fuego"
+    "a": "🚂",
+    "b": "🚂"
   },
   {
     "id": 12,
-    "a": "Médico",
-    "b": "Salud"
+    "a": "✈️",
+    "b": "✈️"
   },
   {
     "id": 13,
-    "a": "Cartero",
-    "b": "Cartas"
+    "a": "🚢",
+    "b": "🚢"
   },
   {
     "id": 14,
-    "a": "Señal de Stop",
-    "b": "Detenerse"
+    "a": "🚦",
+    "b": "🚦"
   },
   {
     "id": 15,
-    "a": "Semáforo Rojo",
-    "b": "No pasar"
+    "a": "🌍",
+    "b": "🌍"
   },
   {
     "id": 16,
-    "a": "Paso cebra",
-    "b": "Cruzar"
+    "a": "🌐",
+    "b": "🌐"
   },
   {
     "id": 17,
-    "a": "Campo",
-    "b": "Naturaleza"
+    "a": "☀️",
+    "b": "☀️"
   },
   {
     "id": 18,
-    "a": "Ciudad",
-    "b": "Edificios altos"
+    "a": "🌙",
+    "b": "🌙"
   },
   {
     "id": 19,
-    "a": "Pueblo",
-    "b": "Casas bajas"
+    "a": "🌈",
+    "b": "🌈"
   },
   {
     "id": 20,
-    "a": "Bandera España",
-    "b": "🔴🟡🔴"
+    "a": "🚩",
+    "b": "🚩"
   },
   {
     "id": 21,
-    "a": "Pasado",
-    "b": "Ayer"
+    "a": "⛪",
+    "b": "⛪"
   },
   {
     "id": 22,
-    "a": "Presente",
-    "b": "Hoy"
+    "a": "🌳",
+    "b": "🌳"
   },
   {
     "id": 23,
-    "a": "Futuro",
-    "b": "Mañana"
+    "a": "💰",
+    "b": "💰"
   },
   {
     "id": 24,
-    "a": "Semana",
-    "b": "7 días"
+    "a": "⏰",
+    "b": "⏰"
   },
   {
     "id": 25,
-    "a": "Año",
-    "b": "12 meses"
+    "a": "♻️",
+    "b": "♻️"
   }
 ]

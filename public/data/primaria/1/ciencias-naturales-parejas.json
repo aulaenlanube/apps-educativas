@@ -1,127 +1,172 @@
 [
   {
     "id": 1,
-    "a": "León",
-    "b": "🦁"
+    "a": "Perro",
+    "b": "🐶"
   },
   {
     "id": 2,
-    "a": "Elefante",
-    "b": "🐘"
+    "a": "Gato",
+    "b": "🐱"
   },
   {
     "id": 3,
+    "a": "Ratón",
+    "b": "🐭"
+  },
+  {
+    "id": 4,
+    "a": "Hámster",
+    "b": "🐹"
+  },
+  {
+    "id": 5,
+    "a": "Conejo",
+    "b": "🐰"
+  },
+  {
+    "id": 6,
+    "a": "Oso",
+    "b": "🐻"
+  },
+  {
+    "id": 7,
+    "a": "Panda",
+    "b": "🐼"
+  },
+  {
+    "id": 8,
+    "a": "Koala",
+    "b": "🐨"
+  },
+  {
+    "id": 9,
+    "a": "Tigre",
+    "b": "🐯"
+  },
+  {
+    "id": 10,
+    "a": "Vaca",
+    "b": "🐮"
+  },
+  {
+    "id": 11,
+    "a": "Cerdo",
+    "b": "🐷"
+  },
+  {
+    "id": 12,
     "a": "Rana",
     "b": "🐸"
   },
   {
-    "id": 4,
-    "a": "Mariposa",
-    "b": "🦋"
+    "id": 13,
+    "a": "Mono",
+    "b": "🐵"
   },
   {
-    "id": 5,
-    "a": "Girasol",
-    "b": "🌻"
+    "id": 14,
+    "a": "Caballo",
+    "b": "🐴"
   },
   {
-    "id": 6,
-    "a": "Árbol",
-    "b": "🌳"
-  },
-  {
-    "id": 7,
-    "a": "Seta",
-    "b": "🍄"
-  },
-  {
-    "id": 8,
-    "a": "Pez",
-    "b": "🐟"
-  },
-  {
-    "id": 9,
-    "a": "Vaca",
-    "b": "🐄"
-  },
-  {
-    "id": 10,
+    "id": 15,
     "a": "Oveja",
     "b": "🐑"
   },
   {
-    "id": 11,
-    "a": "Ser vivo",
-    "b": "Nace y crece"
-  },
-  {
-    "id": 12,
-    "a": "Mamífero",
-    "b": "Bebe leche"
-  },
-  {
-    "id": 13,
-    "a": "Ave",
-    "b": "Tiene plumas"
-  },
-  {
-    "id": 14,
-    "a": "Anfibio",
-    "b": "Piel desnuda"
-  },
-  {
-    "id": 15,
-    "a": "Olfato",
-    "b": "Nariz"
-  },
-  {
     "id": 16,
-    "a": "Vista",
-    "b": "Ojos"
+    "a": "Cabra",
+    "b": "🐐"
   },
   {
     "id": 17,
-    "a": "Gusto",
-    "b": "Lengua"
+    "a": "Elefante",
+    "b": "🐘"
   },
   {
     "id": 18,
-    "a": "Oído",
-    "b": "Orejas"
+    "a": "Camello",
+    "b": "🐪"
   },
   {
     "id": 19,
-    "a": "Tacto",
-    "b": "Mano/Piel"
+    "a": "Cocodrilo",
+    "b": "🐊"
   },
   {
     "id": 20,
-    "a": "Primavera",
-    "b": "🌸"
+    "a": "Serpiente",
+    "b": "🐍"
   },
   {
     "id": 21,
-    "a": "Verano",
-    "b": "☀️"
+    "a": "Ballena",
+    "b": "🐳"
   },
   {
     "id": 22,
-    "a": "Otoño",
-    "b": "🍂"
+    "a": "Delfín",
+    "b": "🐬"
   },
   {
     "id": 23,
-    "a": "Invierno",
-    "b": "❄️"
+    "a": "Pez",
+    "b": "🐟"
   },
   {
     "id": 24,
-    "a": "Día",
-    "b": "Sol"
+    "a": "Pulpo",
+    "b": "🐙"
   },
   {
     "id": 25,
-    "a": "Noche",
-    "b": "Luna"
+    "a": "Caracol",
+    "b": "🐌"
+  },
+  {
+    "id": 26,
+    "a": "Hormiga",
+    "b": "🐜"
+  },
+  {
+    "id": 27,
+    "a": "Abeja",
+    "b": "🐝"
+  },
+  {
+    "id": 28,
+    "a": "Mariquita",
+    "b": "🐞"
+  },
+  {
+    "id": 29,
+    "a": "Oruga",
+    "b": "🐛"
+  },
+  {
+    "id": 30,
+    "a": "Tortuga",
+    "b": "🐢"
+  },
+  {
+    "id": 31,
+    "a": "Gallina",
+    "b": "🐔"
+  },
+  {
+    "id": 32,
+    "a": "Pollo",
+    "b": "🐤"
+  },
+  {
+    "id": 33,
+    "a": "Pingüino",
+    "b": "🐧"
+  },
+  {
+    "id": 34,
+    "a": "Pájaro",
+    "b": "🐦"
   }
 ]

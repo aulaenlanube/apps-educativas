@@ -6,6 +6,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
 import Mascot from '@/components/Mascot';
+import GradeCardIcon from '@/components/GradeCardIcon';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -13,19 +14,19 @@ const HomePage = () => {
   const { setIsModalOpen } = useOutletContext();
 
   const primaryGrades = [
-    { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500', icon: '🌟' },
-    { grade: '2', title: '2º Primaria', color: 'from-orange-400 to-red-500', icon: '🎨' },
-    { grade: '3', title: '3º Primaria', color: 'from-yellow-400 to-orange-500', icon: '🚀' },
-    { grade: '4', title: '4º Primaria', color: 'from-green-400 to-yellow-500', icon: '🎯' },
-    { grade: '5', title: '5º Primaria', color: 'from-blue-400 to-green-500', icon: '🏆' },
-    { grade: '6', title: '6º Primaria', color: 'from-purple-400 to-blue-500', icon: '💎' }
+    { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500' },
+    { grade: '2', title: '2º Primaria', color: 'from-orange-400 to-red-500' },
+    { grade: '3', title: '3º Primaria', color: 'from-yellow-400 to-orange-500' },
+    { grade: '4', title: '4º Primaria', color: 'from-green-400 to-yellow-500' },
+    { grade: '5', title: '5º Primaria', color: 'from-blue-400 to-green-500' },
+    { grade: '6', title: '6º Primaria', color: 'from-purple-400 to-blue-500' }
   ];
 
   const esoGrades = [
-    { grade: '1', title: '1º ESO', color: 'from-indigo-500 to-purple-600', icon: '🔬' },
-    { grade: '2', title: '2º ESO', color: 'from-purple-500 to-pink-600', icon: '📚' },
-    { grade: '3', title: '3º ESO', color: 'from-pink-500 to-red-600', icon: '🧮' },
-    { grade: '4', title: '4º ESO', color: 'from-red-500 to-orange-600', icon: '🎓' }
+    { grade: '1', title: '1º ESO', color: 'from-indigo-500 to-purple-600' },
+    { grade: '2', title: '2º ESO', color: 'from-purple-500 to-pink-600' },
+    { grade: '3', title: '3º ESO', color: 'from-pink-500 to-red-600' },
+    { grade: '4', title: '4º ESO', color: 'from-red-500 to-orange-600' }
   ];
 
   const handleGradeClick = (level, grade) => {
@@ -130,23 +131,32 @@ const HomePage = () => {
               <motion.div
                 key={grade.grade}
                 variants={itemVariants}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.04, y: -4 }}
+                whileTap={{ scale: 0.97 }}
                 className="group"
               >
                 <div
-                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
+                  className={`bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('primaria', grade.grade)}
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 transition-transform group-hover:scale-110"></div>
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12 transition-transform group-hover:scale-110"></div>
+                  {/* Ambient decorative shapes */}
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
 
-                  <div className="relative z-10 text-center text-white">
-                    <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{grade.icon}</div>
-                    <h3 className="text-4xl font-bold mb-2">{grade.grade}º</h3>
-                    <p className="text-xl font-medium mb-6 opacity-90">Primaria</p>
-                    <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 inline-block border border-white/30 group-hover:bg-white/30 transition-colors">
-                      <span className="text-sm font-bold">Explorar</span>
+                  <div className="relative z-10 flex flex-col items-center">
+                    {/* SVG icon - hero element */}
+                    <div className="mb-4 transition-transform duration-500 group-hover:scale-110">
+                      <GradeCardIcon type="primaria" grade={grade.grade} />
+                    </div>
+                    {/* Grade info */}
+                    <div className="flex items-baseline gap-1 mb-4">
+                      <span className="text-5xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
+                      <span className="text-lg font-semibold text-white/80">Primaria</span>
+                    </div>
+                    {/* Button */}
+                    <div className="bg-white/20 backdrop-blur-md rounded-full px-8 py-2.5 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-10">
+                      <span className="text-sm font-bold text-white">Explorar</span>
                     </div>
                   </div>
                 </div>
@@ -184,23 +194,32 @@ const HomePage = () => {
               <motion.div
                 key={grade.grade}
                 variants={itemVariants}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.04, y: -4 }}
+                whileTap={{ scale: 0.97 }}
                 className="group"
               >
                 <div
-                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
+                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('eso', grade.grade)}
                 >
-                  <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -translate-y-14 translate-x-14 group-hover:scale-110 transition-transform"></div>
-                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full translate-y-10 -translate-x-10 group-hover:scale-110 transition-transform"></div>
+                  {/* Ambient decorative shapes */}
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
 
-                  <div className="relative z-10 text-center text-white">
-                    <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{grade.icon}</div>
-                    <h3 className="text-3xl font-bold mb-2">{grade.grade}º</h3>
-                    <p className="text-lg font-medium mb-6 opacity-90">ESO</p>
-                    <div className="bg-white/20 backdrop-blur-md rounded-full px-5 py-2 inline-block border border-white/30 group-hover:bg-white/30 transition-colors">
-                      <span className="text-sm font-bold">Ver Asignaturas</span>
+                  <div className="relative z-10 flex flex-col items-center">
+                    {/* SVG icon - hero element */}
+                    <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
+                      <GradeCardIcon type="eso" grade={grade.grade} />
+                    </div>
+                    {/* Grade info */}
+                    <div className="flex items-baseline gap-1 mb-3">
+                      <span className="text-4xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
+                      <span className="text-base font-semibold text-white/80">ESO</span>
+                    </div>
+                    {/* Button */}
+                    <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
+                      <span className="text-sm font-bold text-white">Ver Asignaturas</span>
                     </div>
                   </div>
                 </div>

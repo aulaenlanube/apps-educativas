@@ -2,126 +2,126 @@
   {
     "id": 1,
     "a": "A",
-    "b": "Avión"
+    "b": "a"
   },
   {
     "id": 2,
     "a": "B",
-    "b": "Barco"
+    "b": "b"
   },
   {
     "id": 3,
     "a": "C",
-    "b": "Casa"
+    "b": "c"
   },
   {
     "id": 4,
-    "a": "Abecedario",
-    "b": "A B C..."
+    "a": "D",
+    "b": "d"
   },
   {
     "id": 5,
-    "a": "Vocal",
-    "b": "a e i o u"
+    "a": "E",
+    "b": "e"
   },
   {
     "id": 6,
-    "a": "Consonante",
-    "b": "p m s t..."
+    "a": "F",
+    "b": "f"
   },
   {
     "id": 7,
-    "a": "Sílaba",
-    "b": "pa-pa"
+    "a": "G",
+    "b": "g"
   },
   {
     "id": 8,
-    "a": "Palabra",
-    "b": "Unión de sílabas"
+    "a": "H",
+    "b": "h"
   },
   {
     "id": 9,
-    "a": "Frase",
-    "b": "Varias palabras"
+    "a": "I",
+    "b": "i"
   },
   {
     "id": 10,
-    "a": "Punto final",
-    "b": "."
+    "a": "J",
+    "b": "j"
   },
   {
     "id": 11,
-    "a": "Interrogación",
-    "b": "¿?"
+    "a": "K",
+    "b": "k"
   },
   {
     "id": 12,
-    "a": "Exclamación",
-    "b": "¡!"
+    "a": "L",
+    "b": "l"
   },
   {
     "id": 13,
-    "a": "Bonito",
-    "b": "Lindo"
+    "a": "M",
+    "b": "m"
   },
   {
     "id": 14,
-    "a": "Rápido",
-    "b": "Veloz"
+    "a": "N",
+    "b": "n"
   },
   {
     "id": 15,
-    "a": "Grande",
-    "b": "Pequeño"
+    "a": "Ñ",
+    "b": "ñ"
   },
   {
     "id": 16,
-    "a": "Frío",
-    "b": "Calor"
+    "a": "O",
+    "b": "o"
   },
   {
     "id": 17,
-    "a": "Masculino",
-    "b": "El / Los"
+    "a": "P",
+    "b": "p"
   },
   {
     "id": 18,
-    "a": "Femenino",
-    "b": "La / Las"
+    "a": "Q",
+    "b": "q"
   },
   {
     "id": 19,
-    "a": "Singular",
-    "b": "Uno solo"
+    "a": "R",
+    "b": "r"
   },
   {
     "id": 20,
-    "a": "Plural",
-    "b": "Más de uno"
+    "a": "S",
+    "b": "s"
   },
   {
     "id": 21,
-    "a": "Pato",
-    "b": "Quack"
+    "a": "T",
+    "b": "t"
   },
   {
     "id": 22,
-    "a": "Perro",
-    "b": "Guau"
+    "a": "U",
+    "b": "u"
   },
   {
     "id": 23,
-    "a": "Gato",
-    "b": "Miau"
+    "a": "V",
+    "b": "v"
   },
   {
     "id": 24,
-    "a": "Vaca",
-    "b": "Muu"
+    "a": "Y",
+    "b": "y"
   },
   {
     "id": 25,
-    "a": "Gallo",
-    "b": "Kikirikí"
+    "a": "Z",
+    "b": "z"
   }
 ]
