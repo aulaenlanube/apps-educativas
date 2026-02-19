@@ -49,7 +49,8 @@ function injectStyles() {
     /* ── AnimatedBorderButton ──────────────── */
     @keyframes nb-rect-dash {
       0%   { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -200; }
+      50%  { stroke-dashoffset: -200; }
+      100% { stroke-dashoffset: 0; }
     }
     @keyframes nb-rect-glow {
       0%, 100% { opacity: 0.4; }
@@ -178,11 +179,14 @@ export const AnimatedBorderButton = ({
   onClick,
   colors = ['#A855F7', '#EC4899'],
   glowColor = 'rgba(168,85,247,0.3)',
+  shape = 'rect',
   className = '',
 }) => {
   useEffect(() => { injectStyles(); }, []);
 
+  const isArrow = shape === 'arrow';
   const gradId = `nb-rect-${colors[0].replace('#', '')}`;
+  const arrowPath = 'M 2,20 L 18,3 L 112,3 Q 118,3 118,9 L 118,31 Q 118,37 112,37 L 18,37 Z';
 
   return (
     <motion.button
@@ -198,7 +202,7 @@ export const AnimatedBorderButton = ({
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '14px 20px 14px 28px',
+        padding: isArrow ? '14px 20px 14px 28px' : '14px 20px',
         border: 'none',
         background: 'none',
         cursor: 'pointer',
@@ -206,9 +210,8 @@ export const AnimatedBorderButton = ({
         boxSizing: 'border-box',
       }}
     >
-      {/* SVG arrow border overlay */}
       <svg
-        viewBox="0 0 120 40"
+        viewBox={isArrow ? '0 0 120 40' : '0 0 100 40'}
         preserveAspectRatio="none"
         fill="none"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
@@ -219,24 +222,33 @@ export const AnimatedBorderButton = ({
             <stop offset="100%" stopColor={colors[1]} />
           </linearGradient>
         </defs>
-        {/* Arrow path: tip left, rounded rect right */}
         {/* Glow */}
-        <path
-          d="M 2,20 L 18,3 L 112,3 Q 118,3 118,9 L 118,31 Q 118,37 112,37 L 18,37 Z"
-          fill="none" stroke={glowColor} strokeWidth="2.5"
-          strokeLinejoin="round"
-          style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
-          vectorEffect="non-scaling-stroke" />
+        {isArrow ? (
+          <path d={arrowPath} fill="none" stroke={glowColor} strokeWidth="2.5"
+            strokeLinejoin="round"
+            style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
+            vectorEffect="non-scaling-stroke" />
+        ) : (
+          <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
+            fill="none" stroke={glowColor} strokeWidth="2.5"
+            style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
+            vectorEffect="non-scaling-stroke" />
+        )}
         {/* Animated dashes */}
-        <path
-          d="M 2,20 L 18,3 L 112,3 Q 118,3 118,9 L 118,31 Q 118,37 112,37 L 18,37 Z"
-          fill="none" stroke={`url(#${gradId})`} strokeWidth="1.8"
-          strokeDasharray="10 6" strokeLinecap="round" strokeLinejoin="round"
-          style={{ animation: 'nb-rect-dash 5s linear infinite' }}
-          vectorEffect="non-scaling-stroke" />
+        {isArrow ? (
+          <path d={arrowPath} fill="none" stroke={`url(#${gradId})`} strokeWidth="1.8"
+            strokeDasharray="10 6" strokeLinecap="round" strokeLinejoin="round"
+            style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
+            vectorEffect="non-scaling-stroke" />
+        ) : (
+          <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
+            fill="none" stroke={`url(#${gradId})`} strokeWidth="1.8"
+            strokeDasharray="10 6" strokeLinecap="round"
+            style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
+            vectorEffect="non-scaling-stroke" />
+        )}
       </svg>
 
-      {/* Text content */}
       <span
         style={{
           position: 'relative',
