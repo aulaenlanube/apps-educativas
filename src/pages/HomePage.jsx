@@ -136,13 +136,15 @@ const HomePage = () => {
                 className="group"
               >
                 <div
-                  className={`bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
+                  className={`bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('primaria', grade.grade)}
                 >
                   {/* Ambient decorative shapes */}
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  </div>
 
                   <div className="relative z-10 flex flex-col items-center">
                     {/* SVG icon - hero element */}
@@ -199,13 +201,15 @@ const HomePage = () => {
                 className="group"
               >
                 <div
-                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
+                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('eso', grade.grade)}
                 >
                   {/* Ambient decorative shapes */}
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  </div>
 
                   <div className="relative z-10 flex flex-col items-center">
                     {/* SVG icon - hero element */}
