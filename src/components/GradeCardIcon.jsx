@@ -759,25 +759,27 @@ const GradCap = () => (
           style={{ animation: `gc-glow 2s ease-in-out ${i * 0.3}s infinite` }} />
       ))}
     </g>
-    {/* Diploma – centered below */}
-    <g transform="translate(26 58)" style={{ transformOrigin: '40px 67px', animation: 'gc-rock 5s ease-in-out infinite' }}>
-      <rect x="0" y="0" width="28" height="18" rx="2.5" fill="#FEF3C7" />
-      <rect x="0" y="0" width="28" height="18" rx="2.5" fill="none" stroke="#D97706" strokeWidth="0.8" opacity="0.5" />
-      <rect x="2" y="2" width="24" height="14" rx="1.5" fill="none" stroke="#D97706" strokeWidth="0.5" opacity="0.25" />
-      {/* Text lines – drawing effect */}
-      <line x1="6" y1="5" x2="22" y2="5" stroke="#92400E" strokeWidth="0.8" opacity="0.25"
-        strokeDasharray="18" style={{ animation: 'gc-draw 4s ease-in-out infinite' }} />
-      <line x1="8" y1="8" x2="20" y2="8" stroke="#92400E" strokeWidth="0.6" opacity="0.2"
-        strokeDasharray="14" style={{ animation: 'gc-draw 4s ease-in-out 0.5s infinite' }} />
-      <line x1="6" y1="11" x2="18" y2="11" stroke="#92400E" strokeWidth="0.6" opacity="0.2"
-        strokeDasharray="14" style={{ animation: 'gc-draw 4s ease-in-out 1s infinite' }} />
-      {/* Seal – pulsing */}
-      <g style={{ transformOrigin: '22px 13px', animation: 'gc-pulse 2.5s ease-in-out infinite' }}>
-        <circle cx="22" cy="13" r="3" fill="#DC2626" />
-        <circle cx="22" cy="13" r="2" fill="#EF4444" />
-        <circle cx="22" cy="13" r="1" fill="#FCA5A5" />
+    {/* Diploma – centered below cap */}
+    <g transform="translate(26 58)">
+      <g style={{ transformOrigin: '14px 9px', animation: 'gc-rock 5s ease-in-out infinite' }}>
+        <rect x="0" y="0" width="28" height="18" rx="2.5" fill="#FEF3C7" />
+        <rect x="0" y="0" width="28" height="18" rx="2.5" fill="none" stroke="#D97706" strokeWidth="0.8" opacity="0.5" />
+        <rect x="2" y="2" width="24" height="14" rx="1.5" fill="none" stroke="#D97706" strokeWidth="0.5" opacity="0.25" />
+        {/* Text lines – drawing effect */}
+        <line x1="6" y1="5" x2="22" y2="5" stroke="#92400E" strokeWidth="0.8" opacity="0.25"
+          strokeDasharray="18" style={{ animation: 'gc-draw 4s ease-in-out infinite' }} />
+        <line x1="8" y1="8" x2="20" y2="8" stroke="#92400E" strokeWidth="0.6" opacity="0.2"
+          strokeDasharray="14" style={{ animation: 'gc-draw 4s ease-in-out 0.5s infinite' }} />
+        <line x1="6" y1="11" x2="18" y2="11" stroke="#92400E" strokeWidth="0.6" opacity="0.2"
+          strokeDasharray="14" style={{ animation: 'gc-draw 4s ease-in-out 1s infinite' }} />
+        {/* Seal – pulsing */}
+        <g style={{ transformOrigin: '22px 13px', animation: 'gc-pulse 2.5s ease-in-out infinite' }}>
+          <circle cx="22" cy="13" r="3" fill="#DC2626" />
+          <circle cx="22" cy="13" r="2" fill="#EF4444" />
+          <circle cx="22" cy="13" r="1" fill="#FCA5A5" />
+        </g>
+        <path d="M20 15 L19 19 M24 15 L25 19" stroke="#DC2626" strokeWidth="1" strokeLinecap="round" />
       </g>
-      <path d="M20 15 L19 19 M24 15 L25 19" stroke="#DC2626" strokeWidth="1" strokeLinecap="round" />
     </g>
     {/* Celebration sparkles */}
     <circle cx="20" cy="8" r="1.5" fill="#FBBF24" style={{ animation: 'gc-bounce 2.5s ease-in-out infinite' }} />
