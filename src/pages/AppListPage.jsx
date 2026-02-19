@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Sparkles, Folder, Dices, Zap } from 'lucide-react';
+import { Sparkles, Folder, Dices, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import NavBackButton from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 // CORRECCIÓN 1: Importamos también 'primariaSubjects'
 import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
@@ -210,9 +211,7 @@ const AppListPage = () => {
             </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
                 <Header subtitle={headerSubtitle}>
-                    <Button onClick={() => navigate(`/curso/${level}/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Asignaturas
-                    </Button>
+                    <NavBackButton variant="subjects" onClick={() => navigate(`/curso/${level}/${grade}`)} />
                 </Header>
                 <main className="container mx-auto px-6 py-16">
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
@@ -46,13 +46,13 @@ const HomePage = () => {
   return (
     <div>
       <Header>
-        <Button
-          variant="ghost"
-          className="text-gray-700 hover:text-purple-600 hover:bg-purple-50"
+        <AnimatedBorderButton
           onClick={() => setIsModalOpen(true)}
+          colors={['#A855F7', '#EC4899']}
+          glowColor="rgba(168,85,247,0.3)"
         >
           Quién soy
-        </Button>
+        </AnimatedBorderButton>
       </Header>
 
       <motion.section

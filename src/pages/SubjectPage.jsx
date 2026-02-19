@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import NavBackButton from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { esoSubjects, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
@@ -127,9 +128,7 @@ const SubjectPage = () => {
       </Helmet>
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 min-h-screen overflow-x-hidden">
         <Header>
-          <Button onClick={() => navigate('/')} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Volver al Inicio
-          </Button>
+          <NavBackButton variant="home" onClick={() => navigate('/')} />
         </Header>
         <main className="container mx-auto px-6 py-16">
           <motion.div

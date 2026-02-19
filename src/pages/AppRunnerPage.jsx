@@ -4,6 +4,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
 import DonationModal from '@/components/ui/DonationModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
@@ -105,12 +106,22 @@ const AppRunnerPage = () => {
 
                 <div className={`${isFullScreenApp ? 'absolute top-6 left-6 z-50 w-auto' : `w-full ${containerClass} relative z-10 mb-4`} flex justify-start items-center gap-3`}>
 
-                    <Button
-                        onClick={() => navigate(backPath)}
-                        className={btnBackClass}
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
-                    </Button>
+                    {isRetroApp || isFullScreenApp ? (
+                        <Button
+                            onClick={() => navigate(backPath)}
+                            className={btnBackClass}
+                        >
+                            <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
+                        </Button>
+                    ) : (
+                        <AnimatedBorderButton
+                            onClick={() => navigate(backPath)}
+                            colors={['#A855F7', '#EC4899']}
+                            glowColor="rgba(168,85,247,0.3)"
+                        >
+                            {backButtonText}
+                        </AnimatedBorderButton>
+                    )}
 
                     <Button
                         onClick={() => setIsDonationModalOpen(true)}
