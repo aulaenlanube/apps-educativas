@@ -39,6 +39,22 @@ body {
   margin-bottom: -0.1em;
 }
 
+@keyframes hero-gradient {
+  0% { background-position: 0% 50% }
+  100% { background-position: -200% 50% }
+}
+
+@keyframes hero-enter {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0) }
+  25% { transform: translateY(-5px) }
+  75% { transform: translateY(3px) }
+}
+
 .card-hover {
   @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2;
 }

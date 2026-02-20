@@ -70,9 +70,36 @@ const HomePage = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mb-8"
           >
-            <GradientTitle tag="h1" className="text-5xl md:text-7xl mb-8 leading-tight">
-              ¡Aprende Jugando!
-            </GradientTitle>
+            <h1
+              className="font-bold text-5xl md:text-7xl mb-8"
+              style={{ lineHeight: 1.4 }}
+            >
+              {'¡Aprende Jugando!'.split('').map((char, i) => (
+                char === ' '
+                  ? <span key={i}>{'\u00A0'}</span>
+                  : <span
+                      key={i}
+                      style={{
+                        display: 'inline-block',
+                        animation: `hero-float 3s ease-in-out ${i * 0.12}s infinite`,
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #2563EB)',
+                          backgroundSize: '600% 100%',
+                          backgroundClip: 'text',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          animation: `hero-enter 0.5s ease-out ${0.3 + i * 0.04}s both, hero-gradient 6s linear ${i * -0.35}s infinite`,
+                        }}
+                      >
+                        {char}
+                      </span>
+                    </span>
+              ))}
+            </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block" />
               Desde 1º de Primaria hasta 4º de ESO, ¡el aprendizaje nunca fue tan divertido!

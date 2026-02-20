@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import NavBackButton from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 // CORRECCIÓN 1: Importamos también 'primariaSubjects'
+import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 
@@ -217,7 +218,7 @@ const AppListPage = () => {
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
                         <div className="flex items-center justify-center space-x-4 mb-4">
                             <Folder className="w-10 h-10 text-blue-500" />
-                            <h1 className="text-5xl md:text-6xl font-bold gradient-text">{subjectName}</h1>
+                            <AnimatedGradientTitle className="text-5xl md:text-6xl">{subjectName}</AnimatedGradientTitle>
                             <Sparkles className="w-10 h-10 text-purple-500" />
                         </div>
                         <p className="text-xl text-gray-600 mt-4">¡Selecciona una aplicación para empezar a jugar y aprender!</p>

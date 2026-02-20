@@ -173,6 +173,54 @@ const NavBackButton = ({ variant = 'home', onClick }) => {
   );
 };
 
+/* ── Botón flecha circular con borde animado ──────────────── */
+export const NavArrowButton = ({ direction = 'left', onClick, colors = ['#6366F1', '#8B5CF6'], glowColor = 'rgba(99,102,241,0.35)' }) => {
+  useEffect(() => { injectStyles(); }, []);
+
+  const gradId = `nb-arrow-${direction}`;
+  const isLeft = direction === 'left';
+
+  return (
+    <motion.button
+      className="nb-btn"
+      onClick={onClick}
+      initial={{ scale: 0.5, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+      whileHover={{ scale: 1.12, x: isLeft ? -4 : 4 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <div className="nb-icon-wrap">
+        <svg viewBox="0 0 44 44" className="w-full h-full" fill="none">
+          <defs>
+            <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor={colors[0]} />
+              <stop offset="100%" stopColor={colors[1]} />
+            </linearGradient>
+          </defs>
+          <circle cx="22" cy="22" r="20" fill="none"
+            stroke={glowColor} strokeWidth="3"
+            style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
+          <circle cx="22" cy="22" r="20" fill="none"
+            stroke={`url(#${gradId})`} strokeWidth="2"
+            strokeDasharray="8 5" strokeLinecap="round"
+            style={{ animation: 'nb-border-spin 6s linear infinite' }} />
+          <circle cx="22" cy="22" r="17" fill="white" opacity="0.15" />
+          <g style={{ animation: 'nb-float 3s ease-in-out infinite' }}>
+            {isLeft ? (
+              <path d="M26 14 L17 22 L26 30" stroke={`url(#${gradId})`}
+                strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            ) : (
+              <path d="M18 14 L27 22 L18 30" stroke={`url(#${gradId})`}
+                strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            )}
+          </g>
+        </svg>
+      </div>
+    </motion.button>
+  );
+};
+
 /* ── Botón con borde animado rectangular ───────────────────── */
 export const AnimatedBorderButton = ({
   children,

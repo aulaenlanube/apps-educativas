@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import NavBackButton from '@/components/NavBackButton';
+import NavBackButton, { NavArrowButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
+import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
@@ -143,41 +144,21 @@ const SubjectPage = () => {
             <div className="text-center">
               <div className="flex items-center justify-center space-x-3 md:space-x-8 mb-4">
                 {prevStep && (
-                  <motion.div whileHover={{ scale: 1.1, x: -5 }} whileTap={{ scale: 0.9 }}>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)}
-                      className="rounded-full hover:bg-white/50 w-12 h-12 md:w-16 md:h-16 shrink-0 shadow-sm"
-                      title="Curso anterior"
-                    >
-                      <ChevronLeft className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
-                    </Button>
-                  </motion.div>
+                  <NavArrowButton direction="left" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
                 )}
 
                 <div className="flex items-center gap-4">
                   <motion.div animate={{ rotate: [0, 5, -5, 0] }} transition={{ repeat: Infinity, duration: 4 }}>
                     <Folder className="w-10 h-10 text-indigo-500 hidden md:block" />
                   </motion.div>
-                  <h1 className="text-5xl md:text-6xl font-black gradient-text tracking-tight uppercase whitespace-nowrap drop-shadow-sm">{fullTitle}</h1>
+                  <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap drop-shadow-sm">{fullTitle}</AnimatedGradientTitle>
                   <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 3 }}>
                     <Sparkles className="w-10 h-10 text-purple-500 hidden md:block" />
                   </motion.div>
                 </div>
 
                 {nextStep && (
-                  <motion.div whileHover={{ scale: 1.1, x: 5 }} whileTap={{ scale: 0.9 }}>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)}
-                      className="rounded-full hover:bg-white/50 w-12 h-12 md:w-16 md:h-16 shrink-0 shadow-sm"
-                      title="Siguiente curso"
-                    >
-                      <ChevronRight className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
-                    </Button>
-                  </motion.div>
+                  <NavArrowButton direction="right" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
                 )}
               </div>
               <Mascot />
