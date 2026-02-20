@@ -34,17 +34,11 @@ const injectStyles = () => {
     @keyframes gc-flipY{0%{transform:perspective(400px) rotateY(0deg)}100%{transform:perspective(400px) rotateY(360deg)}}
     @keyframes gc-flipY-swing{0%,100%{transform:perspective(400px) rotateY(-20deg)}50%{transform:perspective(400px) rotateY(20deg)}}
     @keyframes gc-prism-shift{0%{stop-color:#93C5FD}25%{stop-color:#C4B5FD}50%{stop-color:#F9A8D4}75%{stop-color:#6EE7B7}100%{stop-color:#93C5FD}}
-    @keyframes gc-lego1{0%,24%,70%,100%{transform:translate(0,0) rotate(0deg)}34%,56%{transform:translate(12px,16px) rotate(-6deg)}}
-    @keyframes gc-lego2{0%,20%,74%,100%{transform:translate(0,0) rotate(0deg)}30%,60%{transform:translate(-24px,14px) rotate(12deg)}}
-    @keyframes gc-lego3{0%,16%,78%,100%{transform:translate(0,0) rotate(0deg)}26%,64%{transform:translate(26px,-18px) rotate(-16deg)}}
-    @keyframes gc-lego4{0%,12%,82%,100%{transform:translate(0,0) rotate(0deg)}22%,68%{transform:translate(-12px,-30px) rotate(20deg)}}
-    @keyframes gc-lego5{0%,10%,84%,100%{transform:translate(0,0) rotate(0deg)}20%,70%{transform:translate(20px,24px) rotate(-28deg)}}
-    @keyframes gc-lego-shadow{0%,24%,70%,100%{transform:scaleX(1);opacity:0.06}34%,56%{transform:scaleX(1.6);opacity:0.02}}
 
     .gc-icon{animation:gc-float 4.5s ease-in-out infinite}
     .gc-icon-inner{transition:transform 0.55s cubic-bezier(0.34,1.56,0.64,1),filter 0.55s ease}
 
-    .group:hover .gc-lego .gc-icon-inner{transform:rotate(8deg) scale(1.05);filter:drop-shadow(0 0 14px rgba(239,68,68,0.55))}
+    .group:hover .gc-backpack .gc-icon-inner{transform:rotate(-8deg) scale(1.06);filter:drop-shadow(0 0 14px rgba(236,72,153,0.55))}
     .group:hover .gc-palette .gc-icon-inner{transform:rotate(-12deg);filter:drop-shadow(0 0 12px rgba(220,80,255,0.45))}
     .group:hover .gc-rocket .gc-icon-inner{transform:translateY(-12px);filter:drop-shadow(0 0 14px rgba(255,140,20,0.55))}
     .group:hover .gc-compass .gc-icon-inner{transform:rotate(20deg);filter:drop-shadow(0 0 12px rgba(255,255,255,0.45))}
@@ -135,115 +129,108 @@ const Particles = ({ type, grade }) => {
 
 /* ── SVG Icons with vivid idle animations ─────────────────────── */
 
-/* 1º Primaria – Bola de cristal mágica con destellos */
-const LegoBlocks = () => (
+/* 1º Primaria – Mochila escolar */
+const Backpack = () => (
   <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
     <defs>
-      <linearGradient id="lg-r" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#FCA5A5" />
-        <stop offset="20%" stopColor="#EF4444" />
-        <stop offset="100%" stopColor="#DC2626" />
+      <linearGradient id="bp-body" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F472B6" />
+        <stop offset="100%" stopColor="#DB2777" />
       </linearGradient>
-      <linearGradient id="lg-b" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#93C5FD" />
-        <stop offset="20%" stopColor="#3B82F6" />
-        <stop offset="100%" stopColor="#2563EB" />
+      <linearGradient id="bp-body-side" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#EC4899" />
+        <stop offset="100%" stopColor="#BE185D" />
       </linearGradient>
-      <linearGradient id="lg-g" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#86EFAC" />
-        <stop offset="20%" stopColor="#22C55E" />
-        <stop offset="100%" stopColor="#16A34A" />
+      <linearGradient id="bp-pocket" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#818CF8" />
+        <stop offset="100%" stopColor="#6366F1" />
       </linearGradient>
-      <linearGradient id="lg-y" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#FDE68A" />
-        <stop offset="20%" stopColor="#EAB308" />
-        <stop offset="100%" stopColor="#CA8A04" />
-      </linearGradient>
-      <linearGradient id="lg-o" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#FDBA74" />
-        <stop offset="20%" stopColor="#F97316" />
-        <stop offset="100%" stopColor="#EA580C" />
+      <linearGradient id="bp-strap" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F9A8D4" />
+        <stop offset="100%" stopColor="#EC4899" />
       </linearGradient>
     </defs>
 
-    {/* Ground shadow – breathes with assembly */}
-    <ellipse cx="40" cy="72" rx="28" ry="4" fill="rgba(0,0,0,0.06)"
-      style={{ transformOrigin: '40px 72px', animation: 'gc-lego-shadow 8s ease-in-out infinite' }} />
+    {/* ── Mochila – gentle sway como si colgara ── */}
+    <g transform="translate(0 3)" style={{ transformOrigin: '40px 15px', animation: 'gc-sway 4s ease-in-out infinite' }}>
 
-    {/* ── Block 1 – RED base (4 studs) ── */}
-    <g style={{ transformOrigin: '40px 62px', animation: 'gc-lego1 8s ease-in-out infinite' }}>
-      <rect x="16" y="56" width="48" height="12" rx="2.5" fill="url(#lg-r)" />
-      <rect x="16" y="56" width="48" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
-      <rect x="16" y="65" width="48" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
-      {[24, 34, 44, 54].map((cx, i) => (
-        <React.Fragment key={`rs${i}`}>
-          <circle cx={cx} cy="53" r="4" fill="#EF4444" />
-          <circle cx={cx} cy="53" r="4" fill="none" stroke="#B91C1C" strokeWidth="0.6" />
-          <circle cx={cx} cy="51.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-          <ellipse cx={cx - 0.8} cy="52" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
-        </React.Fragment>
+      {/* Asa superior */}
+      <path d="M34 12 Q34 6 40 6 Q46 6 46 12" stroke="#BE185D" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+      <path d="M35 12 Q35 7.5 40 7.5 Q45 7.5 45 12" stroke="#F9A8D4" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+
+      {/* Tirantes (detrás del cuerpo, visibles por los lados) */}
+      <path d="M20 18 Q16 22 14 38 Q13 48 16 58" stroke="url(#bp-strap)" strokeWidth="4" fill="none" strokeLinecap="round" />
+      <path d="M60 18 Q64 22 66 38 Q67 48 64 58" stroke="url(#bp-strap)" strokeWidth="4" fill="none" strokeLinecap="round" />
+      {/* Hebillas de los tirantes */}
+      <rect x="13" y="56" width="8" height="5" rx="2" fill="#FBBF24" style={{ animation: 'gc-glow 3s ease-in-out infinite' }} />
+      <rect x="59" y="56" width="8" height="5" rx="2" fill="#FBBF24" style={{ animation: 'gc-glow 3s ease-in-out 1.5s infinite' }} />
+
+      {/* Cuerpo principal */}
+      <rect x="18" y="12" width="44" height="52" rx="10" fill="url(#bp-body)" />
+      {/* Highlight lateral izquierdo */}
+      <path d="M20 18 Q18 38 20 60" stroke="rgba(255,255,255,0.2)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      {/* Sombra lateral derecho */}
+      <path d="M60 18 Q62 38 60 60" stroke="rgba(0,0,0,0.1)" strokeWidth="2" fill="none" strokeLinecap="round" />
+
+      {/* Bolsillo frontal – redondeado */}
+      <rect x="24" y="38" width="32" height="22" rx="7" fill="url(#bp-pocket)" />
+      <rect x="24" y="38" width="32" height="22" rx="7" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
+      {/* Cremallera del bolsillo */}
+      <line x1="32" y1="38" x2="48" y2="38" stroke="#C4B5FD" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Tirador de cremallera – bouncing */}
+      <g style={{ transformOrigin: '48px 38px', animation: 'gc-bounce 3s ease-in-out infinite' }}>
+        <circle cx="50" cy="38" r="2.5" fill="#FBBF24" />
+        <circle cx="49.5" cy="37.5" r="1" fill="#FDE68A" />
+      </g>
+
+      {/* Estrella decorativa en el bolsillo */}
+      <g style={{ transformOrigin: '40px 50px', animation: 'gc-breathe 3s ease-in-out infinite' }}>
+        <path d="M40 43 L42 47.5 L47 48 L43.5 51 L44.5 56 L40 53.5 L35.5 56 L36.5 51 L33 48 L38 47.5 Z"
+          fill="#FBBF24" />
+        <path d="M40 44.5 L41.5 47.8 L45 48.2 L42.5 50.5 L43.2 54 L40 52 L36.8 54 L37.5 50.5 L35 48.2 L38.5 47.8 Z"
+          fill="#FDE68A" />
+      </g>
+
+      {/* Cremallera principal (curva superior) */}
+      <path d="M24 22 Q40 18 56 22" stroke="#C4B5FD" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      {/* Dientes de cremallera */}
+      {[28, 32, 36, 40, 44, 48, 52].map((x, i) => (
+        <line key={`z${i}`} x1={x} y1={20 + Math.abs(x - 40) * 0.08} x2={x} y2={22.5 + Math.abs(x - 40) * 0.08}
+          stroke="rgba(255,255,255,0.35)" strokeWidth="1" strokeLinecap="round" />
       ))}
+      {/* Tirador cremallera principal */}
+      <g style={{ transformOrigin: '26px 22px', animation: 'gc-swing 4s ease-in-out infinite' }}>
+        <circle cx="25" cy="22" r="2" fill="#FBBF24" />
+        <circle cx="24.5" cy="21.5" r="0.8" fill="#FDE68A" />
+      </g>
+
+      {/* Detalle decorativo – franja horizontal */}
+      <rect x="22" y="30" width="36" height="3" rx="1.5" fill="rgba(255,255,255,0.15)" />
+
+      {/* Lápiz asomando por arriba */}
+      <g style={{ transformOrigin: '55px 8px', animation: 'gc-rock 3.5s ease-in-out infinite' }}>
+        <rect x="53" y="2" width="4" height="14" rx="1" fill="#22C55E" />
+        <rect x="53" y="2" width="4" height="3" rx="1" fill="#16A34A" />
+        <rect x="53" y="2" width="2" height="14" rx="0.5" fill="rgba(255,255,255,0.15)" />
+        <path d="M53 16 L55 19 L57 16 Z" fill="#FBBF24" />
+      </g>
+
+      {/* Regla asomando por arriba */}
+      <g style={{ transformOrigin: '28px 6px', animation: 'gc-rock 4s ease-in-out 0.5s infinite' }}>
+        <rect x="26" y="0" width="4" height="16" rx="0.8" fill="#60A5FA" />
+        <rect x="26" y="0" width="1.5" height="16" rx="0.5" fill="rgba(255,255,255,0.2)" />
+        {[3, 6, 9, 12].map((y, i) => (
+          <line key={`rl${i}`} x1="26" y1={y} x2={i % 2 === 0 ? '28.5' : '27.5'} y2={y}
+            stroke="rgba(255,255,255,0.4)" strokeWidth="0.5" />
+        ))}
+      </g>
     </g>
 
-    {/* ── Block 2 – BLUE (3 studs) ── */}
-    <g style={{ transformOrigin: '40px 50px', animation: 'gc-lego2 8s ease-in-out infinite' }}>
-      <rect x="22" y="44" width="36" height="12" rx="2.5" fill="url(#lg-b)" />
-      <rect x="22" y="44" width="36" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
-      <rect x="22" y="53" width="36" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
-      {[30, 40, 50].map((cx, i) => (
-        <React.Fragment key={`bs${i}`}>
-          <circle cx={cx} cy="41" r="4" fill="#3B82F6" />
-          <circle cx={cx} cy="41" r="4" fill="none" stroke="#1D4ED8" strokeWidth="0.6" />
-          <circle cx={cx} cy="39.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-          <ellipse cx={cx - 0.8} cy="40" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
-        </React.Fragment>
-      ))}
-    </g>
-
-    {/* ── Block 3 – GREEN (2 studs) ── */}
-    <g style={{ transformOrigin: '40px 38px', animation: 'gc-lego3 8s ease-in-out infinite' }}>
-      <rect x="28" y="32" width="24" height="12" rx="2.5" fill="url(#lg-g)" />
-      <rect x="28" y="32" width="24" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
-      <rect x="28" y="41" width="24" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
-      {[35, 45].map((cx, i) => (
-        <React.Fragment key={`gs${i}`}>
-          <circle cx={cx} cy="29" r="4" fill="#22C55E" />
-          <circle cx={cx} cy="29" r="4" fill="none" stroke="#15803D" strokeWidth="0.6" />
-          <circle cx={cx} cy="27.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-          <ellipse cx={cx - 0.8} cy="28" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
-        </React.Fragment>
-      ))}
-    </g>
-
-    {/* ── Block 4 – YELLOW top (1 stud) ── */}
-    <g style={{ transformOrigin: '34px 26px', animation: 'gc-lego4 8s ease-in-out infinite' }}>
-      <rect x="28" y="22" width="12" height="10" rx="2.5" fill="url(#lg-y)" />
-      <rect x="28" y="22" width="12" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
-      <rect x="28" y="29.5" width="12" height="2.5" rx="2" fill="rgba(0,0,0,0.1)" />
-      <circle cx="34" cy="19" r="4" fill="#EAB308" />
-      <circle cx="34" cy="19" r="4" fill="none" stroke="#A16207" strokeWidth="0.6" />
-      <circle cx="34" cy="17.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-      <ellipse cx="33.2" cy="18" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
-    </g>
-
-    {/* ── Block 5 – ORANGE accent (1 stud) ── */}
-    <g style={{ transformOrigin: '46px 26px', animation: 'gc-lego5 8s ease-in-out infinite' }}>
-      <rect x="40" y="22" width="12" height="10" rx="2.5" fill="url(#lg-o)" />
-      <rect x="40" y="22" width="12" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
-      <rect x="40" y="29.5" width="12" height="2.5" rx="2" fill="rgba(0,0,0,0.1)" />
-      <circle cx="46" cy="19" r="4" fill="#F97316" />
-      <circle cx="46" cy="19" r="4" fill="none" stroke="#C2410C" strokeWidth="0.6" />
-      <circle cx="46" cy="17.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-      <ellipse cx="45.2" cy="18" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
-    </g>
-
-    {/* Sparkles around the build */}
-    <circle cx="10" cy="18" r="1.8" fill="#FCD34D" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
-    <circle cx="70" cy="14" r="1.5" fill="#F87171" style={{ animation: 'gc-twinkle 3.5s ease-in-out 0.8s infinite' }} />
-    <circle cx="8" cy="50" r="1.3" fill="#60A5FA" style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.6s infinite' }} />
-    <circle cx="72" cy="52" r="1.6" fill="#4ADE80" style={{ animation: 'gc-twinkle 3.2s ease-in-out 2.4s infinite' }} />
-    <circle cx="14" cy="70" r="1.2" fill="#FB923C" style={{ animation: 'gc-twinkle 3.4s ease-in-out 3.2s infinite' }} />
-    <circle cx="66" cy="68" r="1.4" fill="#A78BFA" style={{ animation: 'gc-twinkle 2.6s ease-in-out 0.4s infinite' }} />
+    {/* Sparkles alrededor */}
+    <circle cx="6" cy="24" r="1.5" fill="#FCD34D" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="74" cy="18" r="1.3" fill="#F87171" style={{ animation: 'gc-twinkle 3.5s ease-in-out 0.8s infinite' }} />
+    <circle cx="8" cy="68" r="1.2" fill="#60A5FA" style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.6s infinite' }} />
+    <circle cx="72" cy="66" r="1.4" fill="#A78BFA" style={{ animation: 'gc-twinkle 2.6s ease-in-out 0.4s infinite' }} />
   </svg>
 );
 
@@ -859,7 +846,7 @@ const GradCap = () => (
 
 /* ── Icon map ────────────────────────────────────────────────── */
 const iconMap = {
-  'primaria-1': { Component: LegoBlocks, cls: 'gc-lego' },
+  'primaria-1': { Component: Backpack, cls: 'gc-backpack' },
   'primaria-2': { Component: Palette, cls: 'gc-palette' },
   'primaria-3': { Component: Rocket, cls: 'gc-rocket' },
   'primaria-4': { Component: Compass, cls: 'gc-compass' },
