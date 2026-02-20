@@ -27,6 +27,8 @@ export const AnimatedGradientTitle = ({ children, className = "", tag = "h1" }) 
               <span
                 style={{
                   display: 'inline-block',
+                  padding: '0 0.04em',
+                  margin: '0 -0.04em',
                   backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #2563EB)',
                   backgroundSize: '600% 100%',
                   backgroundClip: 'text',

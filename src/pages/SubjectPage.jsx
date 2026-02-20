@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import NavBackButton, { NavArrowButton } from '@/components/NavBackButton';
+import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects } from '@/apps/appList';
@@ -129,7 +129,14 @@ const SubjectPage = () => {
       </Helmet>
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 min-h-screen overflow-x-hidden">
         <Header>
-          <NavBackButton variant="home" onClick={() => navigate('/')} />
+          <AnimatedBorderButton
+            onClick={() => navigate('/')}
+            colors={['#A855F7', '#EC4899']}
+            glowColor="rgba(168,85,247,0.3)"
+            shape="arrow"
+          >
+            Inicio
+          </AnimatedBorderButton>
         </Header>
         <main className="container mx-auto px-6 py-16">
           <motion.div
