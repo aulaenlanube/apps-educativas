@@ -168,8 +168,14 @@ const SubjectPage = () => {
                   <NavArrowButton direction="right" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
                 )}
               </div>
-              <Mascot />
-              <p className="text-xl text-gray-600 mt-4">¡Selecciona una asignatura para ver las apps disponibles!</p>
+              <div className="relative inline-flex flex-col items-center mt-2">
+                <div style={{ marginBottom: '-12px', zIndex: 10, position: 'relative' }}>
+                  <Mascot />
+                </div>
+                <div className="bg-white/70 backdrop-blur-md border border-purple-200 shadow-lg rounded-2xl px-8 py-4">
+                  <p className="text-xl text-gray-600 font-medium">¡Selecciona una asignatura para ver las apps disponibles!</p>
+                </div>
+              </div>
             </div>
 
             {subjectsForCourse.length > 0 ? (
