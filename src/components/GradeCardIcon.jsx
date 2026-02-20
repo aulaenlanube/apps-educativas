@@ -34,11 +34,17 @@ const injectStyles = () => {
     @keyframes gc-flipY{0%{transform:perspective(400px) rotateY(0deg)}100%{transform:perspective(400px) rotateY(360deg)}}
     @keyframes gc-flipY-swing{0%,100%{transform:perspective(400px) rotateY(-20deg)}50%{transform:perspective(400px) rotateY(20deg)}}
     @keyframes gc-prism-shift{0%{stop-color:#93C5FD}25%{stop-color:#C4B5FD}50%{stop-color:#F9A8D4}75%{stop-color:#6EE7B7}100%{stop-color:#93C5FD}}
+    @keyframes gc-lego1{0%,24%,70%,100%{transform:translate(0,0) rotate(0deg)}34%,56%{transform:translate(12px,16px) rotate(-6deg)}}
+    @keyframes gc-lego2{0%,20%,74%,100%{transform:translate(0,0) rotate(0deg)}30%,60%{transform:translate(-24px,14px) rotate(12deg)}}
+    @keyframes gc-lego3{0%,16%,78%,100%{transform:translate(0,0) rotate(0deg)}26%,64%{transform:translate(26px,-18px) rotate(-16deg)}}
+    @keyframes gc-lego4{0%,12%,82%,100%{transform:translate(0,0) rotate(0deg)}22%,68%{transform:translate(-12px,-30px) rotate(20deg)}}
+    @keyframes gc-lego5{0%,10%,84%,100%{transform:translate(0,0) rotate(0deg)}20%,70%{transform:translate(20px,24px) rotate(-28deg)}}
+    @keyframes gc-lego-shadow{0%,24%,70%,100%{transform:scaleX(1);opacity:0.06}34%,56%{transform:scaleX(1.6);opacity:0.02}}
 
     .gc-icon{animation:gc-float 4.5s ease-in-out infinite}
     .gc-icon-inner{transition:transform 0.55s cubic-bezier(0.34,1.56,0.64,1),filter 0.55s ease}
 
-    .group:hover .gc-star .gc-icon-inner{transform:rotate(15deg);filter:drop-shadow(0 0 14px rgba(255,220,50,0.55))}
+    .group:hover .gc-lego .gc-icon-inner{transform:rotate(8deg) scale(1.05);filter:drop-shadow(0 0 14px rgba(239,68,68,0.55))}
     .group:hover .gc-palette .gc-icon-inner{transform:rotate(-12deg);filter:drop-shadow(0 0 12px rgba(220,80,255,0.45))}
     .group:hover .gc-rocket .gc-icon-inner{transform:translateY(-12px);filter:drop-shadow(0 0 14px rgba(255,140,20,0.55))}
     .group:hover .gc-compass .gc-icon-inner{transform:rotate(20deg);filter:drop-shadow(0 0 12px rgba(255,255,255,0.45))}
@@ -130,71 +136,114 @@ const Particles = ({ type, grade }) => {
 /* ── SVG Icons with vivid idle animations ─────────────────────── */
 
 /* 1º Primaria – Bola de cristal mágica con destellos */
-const Star = () => (
+const LegoBlocks = () => (
   <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
     <defs>
-      <radialGradient id="sg1" cx="0.38" cy="0.35" r="0.6">
-        <stop offset="0%" stopColor="rgba(200,180,255,0.3)" />
-        <stop offset="40%" stopColor="rgba(140,120,220,0.15)" />
-        <stop offset="100%" stopColor="rgba(80,60,180,0.08)" />
-      </radialGradient>
-      <radialGradient id="sg2" cx="0.3" cy="0.28" r="0.35">
-        <stop offset="0%" stopColor="rgba(255,255,255,0.6)" />
-        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-      </radialGradient>
-      <radialGradient id="sg3" cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0%" stopColor="rgba(255,220,100,0.4)" />
-        <stop offset="100%" stopColor="rgba(255,200,50,0)" />
-      </radialGradient>
+      <linearGradient id="lg-r" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FCA5A5" />
+        <stop offset="20%" stopColor="#EF4444" />
+        <stop offset="100%" stopColor="#DC2626" />
+      </linearGradient>
+      <linearGradient id="lg-b" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#93C5FD" />
+        <stop offset="20%" stopColor="#3B82F6" />
+        <stop offset="100%" stopColor="#2563EB" />
+      </linearGradient>
+      <linearGradient id="lg-g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#86EFAC" />
+        <stop offset="20%" stopColor="#22C55E" />
+        <stop offset="100%" stopColor="#16A34A" />
+      </linearGradient>
+      <linearGradient id="lg-y" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FDE68A" />
+        <stop offset="20%" stopColor="#EAB308" />
+        <stop offset="100%" stopColor="#CA8A04" />
+      </linearGradient>
+      <linearGradient id="lg-o" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FDBA74" />
+        <stop offset="20%" stopColor="#F97316" />
+        <stop offset="100%" stopColor="#EA580C" />
+      </linearGradient>
     </defs>
-    {/* Magical aura behind sphere – breathing */}
-    <circle cx="40" cy="34" r="34" fill="url(#sg3)" style={{ transformOrigin: '40px 34px', animation: 'gc-breathe 4s ease-in-out infinite' }} />
-    {/* Crystal ball shadow */}
-    <ellipse cx="40" cy="66" rx="18" ry="4" fill="rgba(0,0,0,0.08)" />
-    {/* Ornate base */}
-    <path d="M28 60 Q28 56 32 56 L48 56 Q52 56 52 60 L54 64 L26 64 Z" fill="rgba(255,220,100,0.7)" />
-    <path d="M30 60 Q30 57 34 57 L40 57 L40 64 L28 64 Z" fill="rgba(255,255,255,0.15)" />
-    <rect x="24" y="64" width="32" height="4" rx="2" fill="rgba(255,210,80,0.8)" />
-    <rect x="26" y="65" width="14" height="2" rx="1" fill="rgba(255,255,255,0.2)" />
-    <ellipse cx="40" cy="57" rx="4" ry="1.5" fill="rgba(255,255,255,0.15)" />
-    {/* Glass sphere */}
-    <circle cx="40" cy="32" r="26" fill="url(#sg1)" />
-    <circle cx="40" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-    <circle cx="40" cy="32" r="24" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-    {/* Glass reflection – arc */}
-    <path d="M22 20 Q28 12 40 10" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none" strokeLinecap="round" />
-    <path d="M24 24 Q28 18 36 14" stroke="rgba(255,255,255,0.2)" strokeWidth="1" fill="none" strokeLinecap="round" />
-    {/* Inner highlight */}
-    <circle cx="40" cy="32" r="18" fill="url(#sg2)" />
-    {/* Floating magical particles inside – orbiting paths */}
-    <circle cx="32" cy="24" r="2.5" fill="#FFD700" opacity="0.7"
-      style={{ transformOrigin: '40px 32px', animation: 'gc-orbit 5s linear infinite' }} />
-    <circle cx="48" cy="36" r="2" fill="#FF6B9D" opacity="0.6"
-      style={{ transformOrigin: '40px 32px', animation: 'gc-orbit2 6s linear infinite' }} />
-    <circle cx="36" cy="42" r="1.8" fill="#60A5FA" opacity="0.55"
-      style={{ transformOrigin: '40px 32px', animation: 'gc-orbit3 5.5s linear infinite' }} />
-    {/* Central star that breathes and glows */}
-    <g style={{ transformOrigin: '40px 32px', animation: 'gc-breathe 3s ease-in-out infinite' }}>
-      <path d="M40 22 L42.5 28 L49 28.5 L44 33 L46 40 L40 36 L34 40 L36 33 L31 28.5 L37.5 28 Z"
-        fill="rgba(255,220,80,0.65)" />
-      <path d="M40 25 L41.5 29 L46 29.5 L43 32 L44 37 L40 34 L36 37 L37 32 L34 29.5 L38.5 29 Z"
-        fill="rgba(255,255,200,0.45)" />
+
+    {/* Ground shadow – breathes with assembly */}
+    <ellipse cx="40" cy="72" rx="28" ry="4" fill="rgba(0,0,0,0.06)"
+      style={{ transformOrigin: '40px 72px', animation: 'gc-lego-shadow 8s ease-in-out infinite' }} />
+
+    {/* ── Block 1 – RED base (4 studs) ── */}
+    <g style={{ transformOrigin: '40px 62px', animation: 'gc-lego1 8s ease-in-out infinite' }}>
+      <rect x="16" y="56" width="48" height="12" rx="2.5" fill="url(#lg-r)" />
+      <rect x="16" y="56" width="48" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
+      <rect x="16" y="65" width="48" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
+      {[24, 34, 44, 54].map((cx, i) => (
+        <React.Fragment key={`rs${i}`}>
+          <circle cx={cx} cy="53" r="4" fill="#EF4444" />
+          <circle cx={cx} cy="53" r="4" fill="none" stroke="#B91C1C" strokeWidth="0.6" />
+          <circle cx={cx} cy="51.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+          <ellipse cx={cx - 0.8} cy="52" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
+        </React.Fragment>
+      ))}
     </g>
-    {/* Tiny sparkles rising inside the sphere */}
-    <circle cx="34" cy="38" r="1" fill="#FFF7AE" style={{ animation: 'gc-rise 3s ease-out infinite' }} />
-    <circle cx="46" cy="35" r="0.8" fill="#FFE566" style={{ animation: 'gc-rise 3.5s ease-out 0.8s infinite' }} />
-    <circle cx="40" cy="42" r="0.7" fill="#FDE68A" style={{ animation: 'gc-rise 4s ease-out 1.5s infinite' }} />
-    <circle cx="36" cy="26" r="0.6" fill="white" style={{ animation: 'gc-rise 3.2s ease-out 2s infinite' }} />
-    {/* Ripple waves emanating from sphere */}
-    <circle cx="40" cy="32" r="0" fill="none" stroke="rgba(255,215,0,0.2)" strokeWidth="0.5"
-      style={{ animation: 'gc-ripple 3.5s ease-out infinite' }} />
-    <circle cx="40" cy="32" r="0" fill="none" stroke="rgba(200,180,255,0.15)" strokeWidth="0.5"
-      style={{ animation: 'gc-ripple 3.5s ease-out 1.75s infinite' }} />
-    {/* External floating sparkles */}
-    <circle cx="10" cy="14" r="2" fill="#FFF7AE" style={{ animation: 'gc-bounce 2.5s ease-in-out infinite' }} />
-    <circle cx="70" cy="12" r="1.8" fill="#FFE566" style={{ animation: 'gc-bounce 3s ease-in-out 0.6s infinite' }} />
-    <circle cx="12" cy="50" r="1.5" fill="#FFF7AE" style={{ animation: 'gc-bounce 3.2s ease-in-out 1.2s infinite' }} />
-    <circle cx="68" cy="48" r="1.3" fill="#FFE566" style={{ animation: 'gc-bounce 2.8s ease-in-out 1.8s infinite' }} />
+
+    {/* ── Block 2 – BLUE (3 studs) ── */}
+    <g style={{ transformOrigin: '40px 50px', animation: 'gc-lego2 8s ease-in-out infinite' }}>
+      <rect x="22" y="44" width="36" height="12" rx="2.5" fill="url(#lg-b)" />
+      <rect x="22" y="44" width="36" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
+      <rect x="22" y="53" width="36" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
+      {[30, 40, 50].map((cx, i) => (
+        <React.Fragment key={`bs${i}`}>
+          <circle cx={cx} cy="41" r="4" fill="#3B82F6" />
+          <circle cx={cx} cy="41" r="4" fill="none" stroke="#1D4ED8" strokeWidth="0.6" />
+          <circle cx={cx} cy="39.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+          <ellipse cx={cx - 0.8} cy="40" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
+        </React.Fragment>
+      ))}
+    </g>
+
+    {/* ── Block 3 – GREEN (2 studs) ── */}
+    <g style={{ transformOrigin: '40px 38px', animation: 'gc-lego3 8s ease-in-out infinite' }}>
+      <rect x="28" y="32" width="24" height="12" rx="2.5" fill="url(#lg-g)" />
+      <rect x="28" y="32" width="24" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
+      <rect x="28" y="41" width="24" height="3" rx="2" fill="rgba(0,0,0,0.1)" />
+      {[35, 45].map((cx, i) => (
+        <React.Fragment key={`gs${i}`}>
+          <circle cx={cx} cy="29" r="4" fill="#22C55E" />
+          <circle cx={cx} cy="29" r="4" fill="none" stroke="#15803D" strokeWidth="0.6" />
+          <circle cx={cx} cy="27.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+          <ellipse cx={cx - 0.8} cy="28" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
+        </React.Fragment>
+      ))}
+    </g>
+
+    {/* ── Block 4 – YELLOW top (1 stud) ── */}
+    <g style={{ transformOrigin: '34px 26px', animation: 'gc-lego4 8s ease-in-out infinite' }}>
+      <rect x="28" y="22" width="12" height="10" rx="2.5" fill="url(#lg-y)" />
+      <rect x="28" y="22" width="12" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
+      <rect x="28" y="29.5" width="12" height="2.5" rx="2" fill="rgba(0,0,0,0.1)" />
+      <circle cx="34" cy="19" r="4" fill="#EAB308" />
+      <circle cx="34" cy="19" r="4" fill="none" stroke="#A16207" strokeWidth="0.6" />
+      <circle cx="34" cy="17.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+      <ellipse cx="33.2" cy="18" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
+    </g>
+
+    {/* ── Block 5 – ORANGE accent (1 stud) ── */}
+    <g style={{ transformOrigin: '46px 26px', animation: 'gc-lego5 8s ease-in-out infinite' }}>
+      <rect x="40" y="22" width="12" height="10" rx="2.5" fill="url(#lg-o)" />
+      <rect x="40" y="22" width="12" height="3" rx="2" fill="rgba(255,255,255,0.18)" />
+      <rect x="40" y="29.5" width="12" height="2.5" rx="2" fill="rgba(0,0,0,0.1)" />
+      <circle cx="46" cy="19" r="4" fill="#F97316" />
+      <circle cx="46" cy="19" r="4" fill="none" stroke="#C2410C" strokeWidth="0.6" />
+      <circle cx="46" cy="17.5" r="3" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+      <ellipse cx="45.2" cy="18" rx="1.3" ry="1" fill="rgba(255,255,255,0.35)" />
+    </g>
+
+    {/* Sparkles around the build */}
+    <circle cx="10" cy="18" r="1.8" fill="#FCD34D" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="70" cy="14" r="1.5" fill="#F87171" style={{ animation: 'gc-twinkle 3.5s ease-in-out 0.8s infinite' }} />
+    <circle cx="8" cy="50" r="1.3" fill="#60A5FA" style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.6s infinite' }} />
+    <circle cx="72" cy="52" r="1.6" fill="#4ADE80" style={{ animation: 'gc-twinkle 3.2s ease-in-out 2.4s infinite' }} />
+    <circle cx="14" cy="70" r="1.2" fill="#FB923C" style={{ animation: 'gc-twinkle 3.4s ease-in-out 3.2s infinite' }} />
+    <circle cx="66" cy="68" r="1.4" fill="#A78BFA" style={{ animation: 'gc-twinkle 2.6s ease-in-out 0.4s infinite' }} />
   </svg>
 );
 
@@ -669,6 +718,8 @@ const Atom = () => (
         <stop offset="50%" stopColor="#BAE6FD" />
         <stop offset="100%" stopColor="#7DD3FC" />
       </radialGradient>
+      {/* Elliptical orbit path for animateMotion */}
+      <path id="atom-orbit" d="M 74,40 A 34,12 0 1,1 6,40 A 34,12 0 1,1 74,40" />
     </defs>
     {/* Orbit glows – pulsing, balanced intensity */}
     <ellipse cx="40" cy="40" rx="35" ry="13" fill="none" stroke="rgba(56,189,248,0.22)" strokeWidth="5"
@@ -694,18 +745,36 @@ const Atom = () => (
       <circle cx="38" cy="41" r="2.5" fill="#818CF8" opacity="0.35" />
       <circle cx="37" cy="37" r="2.5" fill="rgba(255,255,255,0.55)" />
     </g>
-    {/* Electrons – orbiting with trails */}
-    <g style={{ transformOrigin: '40px 40px', animation: 'gc-orbit 3.5s linear infinite' }}>
-      <circle cx="40" cy="40" r="4.5" fill="#0EA5E9" style={{ transform: 'translateX(18px)' }} />
-      <circle cx="40" cy="40" r="2" fill="#67E8F9" style={{ transform: 'translateX(17px) translateY(-1px)' }} />
+    {/* Electrons – following exact orbit ellipses */}
+    {/* Electron 1 – cyan, follows horizontal orbit */}
+    <g>
+      <g>
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s">
+          <mpath href="#atom-orbit" />
+        </animateMotion>
+        <circle r="4.5" fill="#0EA5E9" />
+        <circle r="2" cx="-1" cy="-1" fill="#67E8F9" />
+      </g>
     </g>
-    <g style={{ transformOrigin: '40px 40px', animation: 'gc-orbit2 4.5s linear infinite' }}>
-      <circle cx="40" cy="40" r="4" fill="#1E40AF" transform="rotate(60 40 40)" />
-      <circle cx="39" cy="39" r="1.5" fill="#93C5FD" transform="rotate(60 40 40)" />
+    {/* Electron 2 – dark blue, follows 60° rotated orbit */}
+    <g transform="rotate(60 40 40)">
+      <g>
+        <animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s">
+          <mpath href="#atom-orbit" />
+        </animateMotion>
+        <circle r="4" fill="#1E40AF" />
+        <circle r="1.5" cx="-1" cy="-1" fill="#93C5FD" />
+      </g>
     </g>
-    <g style={{ transformOrigin: '40px 40px', animation: 'gc-orbit3 4s linear infinite' }}>
-      <circle cx="40" cy="40" r="4" fill="#10B981" transform="rotate(-60 40 40)" />
-      <circle cx="39" cy="39" r="1.5" fill="#A7F3D0" transform="rotate(-60 40 40)" />
+    {/* Electron 3 – green, follows -60° rotated orbit */}
+    <g transform="rotate(-60 40 40)">
+      <g>
+        <animateMotion dur="4s" repeatCount="indefinite" begin="-2.5s">
+          <mpath href="#atom-orbit" />
+        </animateMotion>
+        <circle r="4" fill="#10B981" />
+        <circle r="1.5" cx="-1" cy="-1" fill="#A7F3D0" />
+      </g>
     </g>
     {/* Energy ripple from nucleus */}
     <circle cx="40" cy="40" r="0" fill="none" stroke="#38BDF8" strokeWidth="0.6" opacity="0.3"
@@ -790,7 +859,7 @@ const GradCap = () => (
 
 /* ── Icon map ────────────────────────────────────────────────── */
 const iconMap = {
-  'primaria-1': { Component: Star, cls: 'gc-star' },
+  'primaria-1': { Component: LegoBlocks, cls: 'gc-lego' },
   'primaria-2': { Component: Palette, cls: 'gc-palette' },
   'primaria-3': { Component: Rocket, cls: 'gc-rocket' },
   'primaria-4': { Component: Compass, cls: 'gc-compass' },
