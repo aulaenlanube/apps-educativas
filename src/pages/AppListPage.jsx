@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Folder, Dices, Zap } from 'lucide-react';
+import { Dices, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
@@ -223,10 +223,8 @@ const AppListPage = () => {
                 </Header>
                 <main className="container mx-auto px-6 py-16">
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
-                        <div className="flex items-center justify-center space-x-4 mb-4">
-                            <Folder className="w-10 h-10 text-blue-500" />
+                        <div className="mb-4">
                             <AnimatedGradientTitle className="text-5xl md:text-6xl">{subjectName}</AnimatedGradientTitle>
-                            <Sparkles className="w-10 h-10 text-purple-500" />
                         </div>
                         <p className="text-xl text-gray-600 mt-4">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
                     </motion.div>

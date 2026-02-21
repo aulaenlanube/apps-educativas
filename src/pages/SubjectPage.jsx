@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
@@ -154,15 +154,7 @@ const SubjectPage = () => {
                   <NavArrowButton direction="left" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
                 )}
 
-                <div className="flex items-center gap-4">
-                  <motion.div animate={{ rotate: [0, 5, -5, 0] }} transition={{ repeat: Infinity, duration: 4 }}>
-                    <Folder className="w-10 h-10 text-indigo-500 hidden md:block" />
-                  </motion.div>
-                  <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap drop-shadow-sm">{fullTitle}</AnimatedGradientTitle>
-                  <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 3 }}>
-                    <Sparkles className="w-10 h-10 text-purple-500 hidden md:block" />
-                  </motion.div>
-                </div>
+                <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap drop-shadow-sm">{fullTitle}</AnimatedGradientTitle>
 
                 {nextStep && (
                   <NavArrowButton direction="right" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />

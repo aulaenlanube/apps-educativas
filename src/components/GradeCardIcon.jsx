@@ -38,6 +38,7 @@ const injectStyles = () => {
     @keyframes gc-atom-e3{0%{transform:rotate(-60deg) translateX(18px) rotate(60deg)}100%{transform:rotate(300deg) translateX(18px) rotate(-300deg)}}
     @keyframes gc-rocket-launch{0%,100%{transform:translateY(0px) rotate(0deg)}25%{transform:translateY(-3px) rotate(0.8deg)}50%{transform:translateY(-1px) rotate(0deg)}75%{transform:translateY(-4px) rotate(-0.8deg)}}
     @keyframes gc-exhaust-flare{0%,100%{transform:scaleY(0.8) scaleX(0.9);opacity:0.6}30%{transform:scaleY(1.2) scaleX(1.1);opacity:1}60%{transform:scaleY(0.95) scaleX(0.95);opacity:0.8}}
+    @keyframes gc-star-float{0%,100%{transform:translateY(0) scale(1);opacity:0.85}25%{transform:translateY(-4px) scale(1.1);opacity:1}50%{transform:translateY(-1px) scale(0.95);opacity:0.75}75%{transform:translateY(-5px) scale(1.05);opacity:0.95}}
     @keyframes gc-prism-shift{0%{stop-color:#93C5FD}25%{stop-color:#C4B5FD}50%{stop-color:#F9A8D4}75%{stop-color:#6EE7B7}100%{stop-color:#93C5FD}}
 
     .gc-icon{animation:gc-float 4.5s ease-in-out infinite}
