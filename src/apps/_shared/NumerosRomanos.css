@@ -6,8 +6,7 @@
 .roman-container {
     font-family: 'Lexend', sans-serif;
     width: 100%;
-    max-width: 1200px;
-    /* Ancho idéntico a Ordena la Frase */
+    max-width: 900px;
     background: #fff;
     padding: 30px;
     border-radius: 15px;
@@ -73,13 +72,13 @@
 
 /* --- FICHAS ROMANAS --- */
 .roman-tile {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border: 2px solid #4f46e5;
     color: #4f46e5;
     border-radius: 12px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Times New Roman', serif;
     display: flex;
@@ -241,12 +240,16 @@
 }
 
 /* Switch de Ayuda */
-.switch-container {
+.roman-container .switch-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     margin-bottom: 15px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
 }
 
 .switch {
@@ -310,11 +313,11 @@ input:checked+.slider:before {
 .roman-reference-table {
     margin: 20px auto;
     background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    border: none;
     border-radius: 12px;
     padding: 15px;
     max-width: 100%;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: none;
 }
 
 .roman-reference-table h3 {
@@ -344,7 +347,7 @@ input:checked+.slider:before {
     width: 35px;
     height: 35px;
     background: white;
-    border: 1.5px solid #4f46e5;
+    border: none;
     color: #4f46e5;
     border-radius: 6px;
     font-weight: 800;
@@ -353,7 +356,7 @@ input:checked+.slider:before {
     justify-content: center;
     font-family: 'Times New Roman', serif;
     font-size: 1.1rem;
-    box-shadow: 0 2px 0 rgba(79, 70, 229, 0.2);
+    box-shadow: none;
 }
 
 .ref-value {
@@ -394,7 +397,7 @@ input:checked+.slider:before {
 .roman-rules {
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px dashed #e2e8f0;
+    border-top: none;
     text-align: left;
 }
 
