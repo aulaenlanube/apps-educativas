@@ -41,6 +41,11 @@ const injectStyles = () => {
     @keyframes gc-star-float{0%,100%{transform:translateY(0) scale(1);opacity:0.85}25%{transform:translateY(-4px) scale(1.1);opacity:1}50%{transform:translateY(-1px) scale(0.95);opacity:0.75}75%{transform:translateY(-5px) scale(1.05);opacity:0.95}}
     @keyframes gc-appear{0%,8%{opacity:0;transform:scale(0.7)}20%{opacity:1;transform:scale(1)}80%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(0.7)}}
     @keyframes gc-stroke-draw{0%,8%{stroke-dashoffset:60}50%{stroke-dashoffset:0}80%{stroke-dashoffset:0}100%{stroke-dashoffset:60}}
+    @keyframes gc-name1{0%,4%{opacity:0;transform:translateX(-4px)}8%,75%{opacity:1;transform:translateX(0)}83%,100%{opacity:0;transform:translateX(-4px)}}
+    @keyframes gc-name2{0%,12%{opacity:0;transform:translateX(-4px)}20%,75%{opacity:1;transform:translateX(0)}83%,100%{opacity:0;transform:translateX(-4px)}}
+    @keyframes gc-name3{0%,25%{opacity:0;transform:translateX(-4px)}33%,75%{opacity:1;transform:translateX(0)}83%,100%{opacity:0;transform:translateX(-4px)}}
+    @keyframes gc-name-glow{0%,33%{filter:drop-shadow(0 0 0px transparent)}50%{filter:drop-shadow(0 0 3px rgba(99,102,241,0.6))}66%{filter:drop-shadow(0 0 0px transparent)}75%{filter:drop-shadow(0 0 3px rgba(236,72,153,0.5))}83%,100%{filter:drop-shadow(0 0 0px transparent)}}
+    @keyframes gc-line-write{0%,8%{stroke-dashoffset:30;opacity:0}16%{opacity:0.4}25%{stroke-dashoffset:0;opacity:0.4}75%{stroke-dashoffset:0;opacity:0.4}83%,100%{stroke-dashoffset:30;opacity:0}}
     @keyframes gc-prism-shift{0%{stop-color:#93C5FD}25%{stop-color:#C4B5FD}50%{stop-color:#F9A8D4}75%{stop-color:#6EE7B7}100%{stop-color:#93C5FD}}
 
     .gc-icon{animation:gc-float 4.5s ease-in-out infinite}
@@ -292,31 +297,52 @@ const Notebook = () => (
         </g>
       ))}
 
-      {/* ── Contenido izquierda: aparece progresivamente ── */}
+      {/* ── Contenido izquierda: nombres que aparecen progresivamente ── */}
 
-      {/* Título "ABC" – aparece primero */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 0s infinite' }}>
-        <text x="21" y="30" textAnchor="middle" fill="#2563EB" fontSize="6.5" fontWeight="bold" fontFamily="Fredoka, sans-serif">ABC</text>
-      </g>
-
-      {/* Líneas de texto – aparecen escalonadas */}
-      {[34, 39, 44, 49, 54, 59].map((y, i) => (
-        <line key={`tl${i}`} x1="13" y1={y} x2={30 - (i % 3) * 2} y2={y}
-          stroke="rgba(59,130,246,0.4)" strokeWidth="0.9" strokeLinecap="round"
-          strokeDasharray="60"
-          style={{ animation: `gc-stroke-draw 8s ease-in-out ${0.6 + i * 0.5}s infinite` }} />
+      {/* Líneas de pauta del cuaderno */}
+      {[30, 37, 44, 51, 58].map((y, i) => (
+        <line key={`pauta${i}`} x1="12" y1={y} x2="36" y2={y}
+          stroke="rgba(59,130,246,0.1)" strokeWidth="0.4" />
       ))}
 
-      {/* Subrayado decorativo bajo ABC */}
-      <line x1="14" y1="31.5" x2="28" y2="31.5"
-        stroke="#EC4899" strokeWidth="0.7" strokeLinecap="round"
-        strokeDasharray="60"
-        style={{ animation: 'gc-stroke-draw 8s ease-in-out 0.3s infinite' }} />
+      {/* Nombre 1: Vega – aparece primero, color azul */}
+      <g style={{ animation: 'gc-name1 10s ease-in-out infinite, gc-name-glow 10s ease-in-out infinite' }}>
+        <text x="14" y="36" fill="#2563EB" fontSize="5.5" fontWeight="bold" fontFamily="Fredoka, sans-serif">Vega</text>
+        <line x1="14" y1="37.5" x2="30" y2="37.5"
+          stroke="#2563EB" strokeWidth="0.5" strokeLinecap="round" opacity="0.3"
+          strokeDasharray="30"
+          style={{ animation: 'gc-line-write 10s ease-in-out 0s infinite' }} />
+      </g>
+
+      {/* Nombre 2: Marc – aparece segundo, color púrpura */}
+      <g style={{ animation: 'gc-name2 10s ease-in-out infinite, gc-name-glow 10s ease-in-out 1.2s infinite' }}>
+        <text x="14" y="43.5" fill="#7C3AED" fontSize="5.5" fontWeight="bold" fontFamily="Fredoka, sans-serif">Marc</text>
+        <line x1="14" y1="45" x2="29" y2="45"
+          stroke="#7C3AED" strokeWidth="0.5" strokeLinecap="round" opacity="0.3"
+          strokeDasharray="30"
+          style={{ animation: 'gc-line-write 10s ease-in-out 1.2s infinite' }} />
+      </g>
+
+      {/* Nombre 3: Anna – aparece tercero, color rosa */}
+      <g style={{ animation: 'gc-name3 10s ease-in-out infinite, gc-name-glow 10s ease-in-out 2.5s infinite' }}>
+        <text x="14" y="51" fill="#EC4899" fontSize="5.5" fontWeight="bold" fontFamily="Fredoka, sans-serif">Anna</text>
+        <line x1="14" y1="52.5" x2="30" y2="52.5"
+          stroke="#EC4899" strokeWidth="0.5" strokeLinecap="round" opacity="0.3"
+          strokeDasharray="30"
+          style={{ animation: 'gc-line-write 10s ease-in-out 2.5s infinite' }} />
+      </g>
+
+      {/* Estrellitas decorativas junto a los nombres */}
+      <g style={{ animation: 'gc-name3 10s ease-in-out infinite' }}>
+        <text x="32" y="36" fill="#FBBF24" fontSize="4" style={{ animation: 'gc-twinkle 2s ease-in-out infinite' }}>★</text>
+        <text x="30" y="43.5" fill="#FBBF24" fontSize="3.5" style={{ animation: 'gc-twinkle 2s ease-in-out 0.7s infinite' }}>★</text>
+        <text x="31" y="51" fill="#FBBF24" fontSize="4" style={{ animation: 'gc-twinkle 2s ease-in-out 1.4s infinite' }}>★</text>
+      </g>
 
       {/* ── Contenido derecha: dibujitos que aparecen ── */}
 
-      {/* Sol – aparece */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 1.5s infinite' }}>
+      {/* Sol – aparece con los nombres */}
+      <g style={{ animation: 'gc-name1 10s ease-in-out infinite' }}>
         <g style={{ transformOrigin: '56px 32px', animation: 'gc-breathe 3.5s ease-in-out infinite' }}>
           <circle cx="56" cy="32" r="4" fill="#FBBF24" />
           <circle cx="55" cy="31" r="1.5" fill="#FDE68A" opacity="0.5" />
@@ -328,23 +354,23 @@ const Notebook = () => (
         </g>
       </g>
 
-      {/* Nube – aparece */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 2.2s infinite' }}>
+      {/* Nube */}
+      <g style={{ animation: 'gc-name1 10s ease-in-out infinite' }}>
         <ellipse cx="49" cy="30" rx="4" ry="2.5" fill="#93C5FD" opacity="0.5" />
         <ellipse cx="46" cy="30" rx="2.5" ry="2" fill="#93C5FD" opacity="0.5" />
         <ellipse cx="52" cy="30" rx="2.5" ry="2" fill="#93C5FD" opacity="0.5" />
       </g>
 
-      {/* Casita – aparece */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 3s infinite' }}>
+      {/* Casita – con Marc */}
+      <g style={{ animation: 'gc-name2 10s ease-in-out infinite' }}>
         <rect x="48" y="47" width="12" height="10" rx="1" fill="#F87171" opacity="0.6" />
         <path d="M46 47 L54 40 L62 47" stroke="#DC2626" strokeWidth="1.2" fill="#FCA5A5" opacity="0.6" strokeLinejoin="round" />
         <rect x="52" y="51" width="4" height="6" rx="0.5" fill="#92400E" opacity="0.4" />
         <rect x="49" y="49" width="3" height="3" rx="0.3" fill="#93C5FD" opacity="0.5" />
       </g>
 
-      {/* Flor – aparece */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 4s infinite' }}>
+      {/* Flor – con Anna */}
+      <g style={{ animation: 'gc-name3 10s ease-in-out infinite' }}>
         <g style={{ transformOrigin: '64px 55px', animation: 'gc-sway 4s ease-in-out infinite' }}>
           <line x1="64" y1="55" x2="64" y2="63" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" />
           <circle cx="64" cy="53" r="2.5" fill="#F472B6" opacity="0.6" />
@@ -356,18 +382,18 @@ const Notebook = () => (
         </g>
       </g>
 
-      {/* Estrella – aparece última */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 5s infinite' }}>
+      {/* Corazón – con Anna */}
+      <g style={{ animation: 'gc-name3 10s ease-in-out infinite' }}>
+        <path d="M56 62 C54 59, 50 60, 52 63 L56 67 L60 63 C62 60, 58 59, 56 62 Z"
+          fill="#F87171" opacity="0.5" />
+      </g>
+
+      {/* Estrella – cuando están todos */}
+      <g style={{ animation: 'gc-name3 10s ease-in-out infinite' }}>
         <g style={{ transformOrigin: '48px 64px', animation: 'gc-pulse 3s ease-in-out infinite' }}>
           <polygon points="48,60 49.5,62.5 52,63 50,65 50.5,67.5 48,66.2 45.5,67.5 46,65 44,63 46.5,62.5"
             fill="#FBBF24" opacity="0.7" />
         </g>
-      </g>
-
-      {/* Corazón – aparece */}
-      <g style={{ animation: 'gc-appear 8s ease-in-out 5.5s infinite' }}>
-        <path d="M56 62 C54 59, 50 60, 52 63 L56 67 L60 63 C62 60, 58 59, 56 62 Z"
-          fill="#F87171" opacity="0.5" />
       </g>
     </g>
 

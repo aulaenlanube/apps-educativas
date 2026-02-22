@@ -196,20 +196,6 @@
     "solucion": "fórmula"
   },
   {
-    "id": "f4",
-    "letra": "F",
-    "tipo": "empieza",
-    "definicion": "Dos fracciones que representan la misma parte de la unidad son...",
-    "solucion": "equivalentes"
-  },
-  {
-    "id": "f5",
-    "letra": "F",
-    "tipo": "empieza",
-    "definicion": "Parte de una recta limitada por dos puntos.",
-    "solucion": "segmento"
-  },
-  {
     "id": "f5_fix",
     "letra": "F",
     "tipo": "empieza",
@@ -271,13 +257,6 @@
     "tipo": "empieza",
     "definicion": "Polígono de seis lados y seis ángulos.",
     "solucion": "hexágono"
-  },
-  {
-    "id": "h4",
-    "letra": "H",
-    "tipo": "empieza",
-    "definicion": "Medida de la distancia perpendicular desde un vértice al lado opuesto.",
-    "solucion": "altura"
   },
   {
     "id": "h5",

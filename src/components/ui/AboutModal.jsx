@@ -539,15 +539,282 @@ const glitchStyles = `
   background: white;
   animation: white-flash-out 1.2s ease-in forwards;
 }
+
+/* ═══════════════════════════════════════════════════════
+   INTERFERENCIA PERIÓDICA (idle glitch)
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes idle-glitch-modal {
+  0%   { transform: translate(-50%, -50%) skewX(0deg); filter: none; }
+  5%   { transform: translate(-50%, -50%) skewX(-4deg) scaleY(1.008); filter: hue-rotate(60deg) brightness(1.4); }
+  8%   { transform: translate(-49.2%, -50%) skewX(6deg) scaleY(0.995); filter: hue-rotate(-90deg) brightness(0.6) saturate(2.5); }
+  11%  { transform: translate(-50.8%, -50%) skewX(-2deg); filter: brightness(2.2) contrast(1.8); }
+  14%  { transform: translate(-50%, -49.5%) skewX(3deg) scaleX(1.003); filter: hue-rotate(180deg) brightness(0.4); }
+  17%  { transform: translate(-50%, -50.3%) skewX(-1deg); filter: brightness(1.6) saturate(0.2); }
+  20%  { transform: translate(-50.4%, -50%) skewX(0.5deg); filter: hue-rotate(-45deg) brightness(1.1); }
+  25%  { transform: translate(-50%, -50%) skewX(0deg); filter: none; }
+
+  /* Second micro-burst */
+  55%  { transform: translate(-50%, -50%) skewX(0deg); filter: none; }
+  58%  { transform: translate(-50.6%, -50%) skewX(3deg); filter: hue-rotate(120deg) brightness(1.8); }
+  60%  { transform: translate(-49.5%, -50.2%) skewX(-5deg) scaleY(1.005); filter: brightness(0.3) saturate(4); }
+  63%  { transform: translate(-50%, -50%) skewX(1deg); filter: brightness(1.5); }
+  66%  { transform: translate(-50%, -50%) skewX(0deg); filter: none; }
+  100% { transform: translate(-50%, -50%) skewX(0deg); filter: none; }
+}
+
+@keyframes idle-chromatic-red {
+  0%, 24%, 54%, 67%, 100% { opacity: 0; transform: translate(0, 0); }
+  5%   { opacity: 0.5; transform: translate(5px, -2px); }
+  8%   { opacity: 0.7; transform: translate(-8px, 1px); }
+  11%  { opacity: 0.3; transform: translate(6px, -1px); }
+  17%  { opacity: 0.4; transform: translate(-3px, 0); }
+  58%  { opacity: 0.6; transform: translate(7px, -2px); }
+  60%  { opacity: 0.4; transform: translate(-5px, 1px); }
+  63%  { opacity: 0.2; transform: translate(3px, 0); }
+}
+
+@keyframes idle-chromatic-blue {
+  0%, 24%, 54%, 67%, 100% { opacity: 0; transform: translate(0, 0); }
+  5%   { opacity: 0.5; transform: translate(-4px, 2px); }
+  8%   { opacity: 0.6; transform: translate(7px, -1px); }
+  11%  { opacity: 0.35; transform: translate(-5px, 1px); }
+  17%  { opacity: 0.3; transform: translate(2px, 0); }
+  58%  { opacity: 0.55; transform: translate(-6px, 2px); }
+  60%  { opacity: 0.45; transform: translate(4px, -1px); }
+  63%  { opacity: 0.15; transform: translate(-2px, 0); }
+}
+
+/* Horizontal tear slices */
+@keyframes idle-tear-slice-1 {
+  0%, 22%, 55%, 68%, 100% { clip-path: inset(0); transform: translateX(0); opacity: 0; }
+  6%   { clip-path: inset(15% 0 78% 0); transform: translateX(12px); opacity: 1; }
+  9%   { clip-path: inset(15% 0 78% 0); transform: translateX(-8px); opacity: 0.8; }
+  13%  { clip-path: inset(15% 0 78% 0); transform: translateX(4px); opacity: 0.5; }
+  59%  { clip-path: inset(35% 0 58% 0); transform: translateX(-10px); opacity: 1; }
+  62%  { clip-path: inset(35% 0 58% 0); transform: translateX(6px); opacity: 0.6; }
+}
+
+@keyframes idle-tear-slice-2 {
+  0%, 22%, 55%, 68%, 100% { clip-path: inset(0); transform: translateX(0); opacity: 0; }
+  5%   { clip-path: inset(42% 0 48% 0); transform: translateX(-15px); opacity: 1; }
+  8%   { clip-path: inset(42% 0 48% 0); transform: translateX(10px); opacity: 0.9; }
+  12%  { clip-path: inset(42% 0 48% 0); transform: translateX(-5px); opacity: 0.4; }
+  58%  { clip-path: inset(70% 0 22% 0); transform: translateX(13px); opacity: 1; }
+  61%  { clip-path: inset(70% 0 22% 0); transform: translateX(-7px); opacity: 0.7; }
+}
+
+@keyframes idle-tear-slice-3 {
+  0%, 22%, 55%, 68%, 100% { clip-path: inset(0); transform: translateX(0); opacity: 0; }
+  7%   { clip-path: inset(68% 0 25% 0); transform: translateX(18px); opacity: 1; }
+  10%  { clip-path: inset(68% 0 25% 0); transform: translateX(-12px); opacity: 0.7; }
+  14%  { clip-path: inset(68% 0 25% 0); transform: translateX(6px); opacity: 0.3; }
+  57%  { clip-path: inset(8% 0 85% 0); transform: translateX(-14px); opacity: 1; }
+  60%  { clip-path: inset(8% 0 85% 0); transform: translateX(9px); opacity: 0.5; }
+}
+
+/* CRT distortion wave */
+@keyframes idle-crt-wave {
+  0%   { top: -15%; opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { top: 110%; opacity: 0; }
+}
+
+/* Digital corruption blocks */
+@keyframes idle-corrupt-block-1 {
+  0%, 25%, 54%, 70%, 100% { opacity: 0; }
+  5%  { opacity: 0.9; background: rgba(0,255,200,0.5); top: 22%; left: 10%; width: 35%; height: 6%; }
+  8%  { opacity: 0.7; background: rgba(255,0,100,0.4); top: 22%; left: 55%; width: 40%; height: 6%; }
+  11% { opacity: 0.5; background: rgba(0,150,255,0.5); top: 60%; left: 5%; width: 50%; height: 4%; }
+  15% { opacity: 0.3; background: rgba(255,200,0,0.3); top: 45%; left: 30%; width: 45%; height: 5%; }
+  58% { opacity: 0.8; background: rgba(255,0,200,0.5); top: 75%; left: 15%; width: 30%; height: 5%; }
+  62% { opacity: 0.4; background: rgba(0,255,100,0.4); top: 30%; left: 40%; width: 35%; height: 4%; }
+}
+
+@keyframes idle-corrupt-block-2 {
+  0%, 25%, 54%, 70%, 100% { opacity: 0; }
+  6%  { opacity: 0.8; background: rgba(255,50,50,0.5); top: 50%; left: 60%; width: 30%; height: 5%; }
+  9%  { opacity: 0.6; background: rgba(50,200,255,0.4); top: 35%; left: 5%; width: 25%; height: 7%; }
+  13% { opacity: 0.4; background: rgba(200,0,255,0.3); top: 80%; left: 45%; width: 40%; height: 4%; }
+  59% { opacity: 0.7; background: rgba(0,255,255,0.5); top: 15%; left: 50%; width: 35%; height: 6%; }
+  63% { opacity: 0.3; background: rgba(255,150,0,0.4); top: 55%; left: 10%; width: 45%; height: 5%; }
+}
+
+/* Screen flicker / brightness pulse */
+@keyframes idle-screen-flicker {
+  0%, 24%, 54%, 67%, 100% { opacity: 0; }
+  5%  { opacity: 0.15; background: white; }
+  6%  { opacity: 0; }
+  8%  { opacity: 0.25; background: rgba(0,255,255,0.1); }
+  9%  { opacity: 0; }
+  11% { opacity: 0.1; background: white; }
+  12% { opacity: 0; }
+  58% { opacity: 0.2; background: white; }
+  59% { opacity: 0; }
+  60% { opacity: 0.12; background: rgba(255,0,128,0.1); }
+  61% { opacity: 0; }
+}
+
+/* Static noise burst */
+@keyframes idle-static-burst {
+  0%, 23%, 53%, 68%, 100% { opacity: 0; }
+  4%  { opacity: 0.2; background-position: 0 0; }
+  6%  { opacity: 0.35; background-position: 30px -20px; }
+  8%  { opacity: 0.15; background-position: -15px 40px; }
+  10% { opacity: 0.3; background-position: 50px 10px; }
+  12% { opacity: 0.1; background-position: -30px -30px; }
+  15% { opacity: 0.2; background-position: 20px 50px; }
+  18% { opacity: 0.05; }
+  57% { opacity: 0.25; background-position: -20px 0; }
+  59% { opacity: 0.4; background-position: 40px -30px; }
+  61% { opacity: 0.2; background-position: -10px 20px; }
+  63% { opacity: 0.3; background-position: 30px 40px; }
+  65% { opacity: 0.08; }
+}
+
+/* Horizontal sync loss lines */
+@keyframes idle-hsync-line {
+  0%   { top: -4px; opacity: 0; }
+  100% { top: calc(100% + 4px); opacity: 0; }
+}
+
+@keyframes idle-hsync-opacity {
+  0%, 100% { opacity: 0; }
+  10% { opacity: 0.8; }
+  50% { opacity: 1; }
+  90% { opacity: 0.8; }
+}
+
+/* Classes for idle interference */
+.idle-glitch-active {
+  animation: idle-glitch-modal 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) forwards !important;
+}
+
+.idle-chromatic-red {
+  position: absolute; inset: 0; border-radius: inherit;
+  mix-blend-mode: screen; z-index: 90; pointer-events: none;
+  background: rgba(255, 30, 30, 0.12);
+  animation: idle-chromatic-red 0.7s ease-out forwards;
+}
+
+.idle-chromatic-blue {
+  position: absolute; inset: 0; border-radius: inherit;
+  mix-blend-mode: screen; z-index: 90; pointer-events: none;
+  background: rgba(30, 80, 255, 0.12);
+  animation: idle-chromatic-blue 0.7s ease-out forwards;
+}
+
+.idle-tear-slice-1 {
+  position: absolute; inset: 0; border-radius: inherit;
+  z-index: 96; pointer-events: none;
+  background: inherit; mix-blend-mode: difference;
+  animation: idle-tear-slice-1 0.7s ease-out forwards;
+}
+
+.idle-tear-slice-2 {
+  position: absolute; inset: 0; border-radius: inherit;
+  z-index: 96; pointer-events: none;
+  background: inherit; mix-blend-mode: exclusion;
+  animation: idle-tear-slice-2 0.7s ease-out forwards;
+}
+
+.idle-tear-slice-3 {
+  position: absolute; inset: 0; border-radius: inherit;
+  z-index: 96; pointer-events: none;
+  background: inherit; mix-blend-mode: difference;
+  animation: idle-tear-slice-3 0.7s ease-out forwards;
+}
+
+.idle-crt-wave {
+  position: absolute; left: -5%; width: 110%; height: 25%;
+  z-index: 97; pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,0.03) 15%,
+    rgba(0,255,255,0.06) 30%,
+    rgba(255,255,255,0.12) 45%,
+    rgba(255,0,128,0.08) 55%,
+    rgba(255,255,255,0.06) 70%,
+    rgba(0,255,200,0.04) 85%,
+    transparent 100%
+  );
+  animation: idle-crt-wave 0.5s linear forwards;
+  mix-blend-mode: overlay;
+}
+
+.idle-corrupt-block-1 {
+  position: absolute; z-index: 98; pointer-events: none;
+  border-radius: 2px; mix-blend-mode: screen;
+  animation: idle-corrupt-block-1 0.7s steps(1) forwards;
+}
+
+.idle-corrupt-block-2 {
+  position: absolute; z-index: 98; pointer-events: none;
+  border-radius: 2px; mix-blend-mode: screen;
+  animation: idle-corrupt-block-2 0.7s steps(1) forwards;
+}
+
+.idle-screen-flicker {
+  position: absolute; inset: 0; z-index: 99; pointer-events: none;
+  border-radius: inherit;
+  animation: idle-screen-flicker 0.7s ease-out forwards;
+}
+
+.idle-static-burst {
+  position: absolute; inset: 0; z-index: 92; pointer-events: none;
+  border-radius: inherit; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  animation: idle-static-burst 0.7s steps(10) forwards;
+}
+
+.idle-hsync-line {
+  position: absolute; left: -5%; width: 110%; height: 3px;
+  z-index: 100; pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent 5%,
+    rgba(255,255,255,0.7) 20%,
+    rgba(0,255,255,0.4) 40%,
+    rgba(255,0,128,0.3) 60%,
+    rgba(255,255,255,0.7) 80%,
+    transparent 95%
+  );
+  mix-blend-mode: overlay;
+  animation: idle-hsync-line 0.25s linear forwards, idle-hsync-opacity 0.25s ease forwards;
+}
+
+.idle-hsync-line-2 {
+  position: absolute; left: -5%; width: 110%; height: 2px;
+  z-index: 100; pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent 10%,
+    rgba(255,200,0,0.5) 30%,
+    rgba(0,255,200,0.3) 50%,
+    rgba(255,200,0,0.5) 70%,
+    transparent 90%
+  );
+  mix-blend-mode: overlay;
+  animation: idle-hsync-line 0.3s linear 0.08s forwards, idle-hsync-opacity 0.3s ease 0.08s forwards;
+}
 `;
+
+const IDLE_GLITCH_DURATION = 700;
+const IDLE_GLITCH_MIN_INTERVAL = 3500;
+const IDLE_GLITCH_MAX_INTERVAL = 7000;
 
 const AboutModal = ({ open, onOpenChange }) => {
   // Estado interno: mantiene el modal visible durante la animación de cierre
   const [internalOpen, setInternalOpen] = useState(false);
   const [phase, setPhase] = useState('closed'); // 'closed' | 'entering' | 'open' | 'exiting'
+  const [idleGlitching, setIdleGlitching] = useState(false);
+  const idleGlitchKey = useRef(0);
   const effectKey = useRef(0);
   const exitTimerRef = useRef(null);
   const enterTimerRef = useRef(null);
+  const idleTimerRef = useRef(null);
+  const idleGlitchEndRef = useRef(null);
 
   // Cuando el padre pide abrir → animación de entrada
   useEffect(() => {
@@ -577,6 +844,35 @@ const AboutModal = ({ open, onOpenChange }) => {
     };
   }, [open]);
 
+  // Interferencia periódica mientras el modal está abierto
+  useEffect(() => {
+    if (phase !== 'open') {
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+      if (idleGlitchEndRef.current) clearTimeout(idleGlitchEndRef.current);
+      setIdleGlitching(false);
+      return;
+    }
+
+    const scheduleNext = () => {
+      const delay = IDLE_GLITCH_MIN_INTERVAL + Math.random() * (IDLE_GLITCH_MAX_INTERVAL - IDLE_GLITCH_MIN_INTERVAL);
+      idleTimerRef.current = setTimeout(() => {
+        idleGlitchKey.current += 1;
+        setIdleGlitching(true);
+        idleGlitchEndRef.current = setTimeout(() => {
+          setIdleGlitching(false);
+          scheduleNext();
+        }, IDLE_GLITCH_DURATION);
+      }, delay);
+    };
+
+    scheduleNext();
+
+    return () => {
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+      if (idleGlitchEndRef.current) clearTimeout(idleGlitchEndRef.current);
+    };
+  }, [phase]);
+
   // Interceptar el cierre del dialog para lanzar la animación
   const handleOpenChange = useCallback((newOpen) => {
     if (!newOpen) {
@@ -601,7 +897,7 @@ const AboutModal = ({ open, onOpenChange }) => {
 
           <DialogContent
             className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white rounded-2xl p-6 shadow-2xl overflow-hidden ${isEntering ? 'glitch-modal-enter' : ''
-              } ${isExiting ? 'glitch-modal-exit' : ''}`}
+              } ${isExiting ? 'glitch-modal-exit' : ''} ${idleGlitching ? 'idle-glitch-active' : ''}`}
             onEscapeKeyDown={(e) => { if (isExiting) e.preventDefault(); }}
             onPointerDownOutside={(e) => { if (isExiting) e.preventDefault(); }}
           >
@@ -633,6 +929,24 @@ const AboutModal = ({ open, onOpenChange }) => {
                 <div className="glitch-bar-out-2" />
                 <div className="glitch-noise-out" />
                 <div className="glitch-grid-out" />
+              </div>
+            )}
+
+            {/* Capas de interferencia periódica – IDLE */}
+            {idleGlitching && (
+              <div key={`idle-${idleGlitchKey.current}`}>
+                <div className="idle-chromatic-red" />
+                <div className="idle-chromatic-blue" />
+                <div className="idle-tear-slice-1" />
+                <div className="idle-tear-slice-2" />
+                <div className="idle-tear-slice-3" />
+                <div className="idle-crt-wave" />
+                <div className="idle-corrupt-block-1" />
+                <div className="idle-corrupt-block-2" />
+                <div className="idle-screen-flicker" />
+                <div className="idle-static-burst" />
+                <div className="idle-hsync-line" />
+                <div className="idle-hsync-line-2" />
               </div>
             )}
 
