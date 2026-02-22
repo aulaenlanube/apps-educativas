@@ -39,6 +39,8 @@ const injectStyles = () => {
     @keyframes gc-rocket-launch{0%,100%{transform:translateY(0px) rotate(0deg)}25%{transform:translateY(-3px) rotate(0.8deg)}50%{transform:translateY(-1px) rotate(0deg)}75%{transform:translateY(-4px) rotate(-0.8deg)}}
     @keyframes gc-exhaust-flare{0%,100%{transform:scaleY(0.8) scaleX(0.9);opacity:0.6}30%{transform:scaleY(1.2) scaleX(1.1);opacity:1}60%{transform:scaleY(0.95) scaleX(0.95);opacity:0.8}}
     @keyframes gc-star-float{0%,100%{transform:translateY(0) scale(1);opacity:0.85}25%{transform:translateY(-4px) scale(1.1);opacity:1}50%{transform:translateY(-1px) scale(0.95);opacity:0.75}75%{transform:translateY(-5px) scale(1.05);opacity:0.95}}
+    @keyframes gc-appear{0%,8%{opacity:0;transform:scale(0.7)}20%{opacity:1;transform:scale(1)}80%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(0.7)}}
+    @keyframes gc-stroke-draw{0%,8%{stroke-dashoffset:60}50%{stroke-dashoffset:0}80%{stroke-dashoffset:0}100%{stroke-dashoffset:60}}
     @keyframes gc-prism-shift{0%{stop-color:#93C5FD}25%{stop-color:#C4B5FD}50%{stop-color:#F9A8D4}75%{stop-color:#6EE7B7}100%{stop-color:#93C5FD}}
 
     .gc-icon{animation:gc-float 4.5s ease-in-out infinite}
@@ -240,7 +242,7 @@ const Backpack = () => (
   </svg>
 );
 
-/* 2º Primaria – Cuaderno abierto con lápiz */
+/* 2º Primaria – Cuaderno abierto con contenido que aparece progresivamente */
 const Notebook = () => (
   <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
     <defs>
@@ -264,10 +266,9 @@ const Notebook = () => (
     {/* ── Cuaderno abierto ── */}
     <g style={{ transformOrigin: '40px 50px', animation: 'gc-rock 6s ease-in-out infinite' }}>
 
-      {/* Contraportada verde (asoma por detrás) */}
+      {/* Contraportada verde */}
       <path d="M4 34 Q4 20 38 20 L38 72 Q4 72 4 62 Z" fill="url(#nb-cover)" />
       <path d="M76 34 Q76 20 42 20 L42 72 Q76 72 76 62 Z" fill="url(#nb-cover)" />
-      {/* Bordes de cubierta */}
       <path d="M6 22 L6 70" stroke="#047857" strokeWidth="1" opacity="0.5" />
       <path d="M74 22 L74 70" stroke="#047857" strokeWidth="1" opacity="0.5" />
 
@@ -283,7 +284,7 @@ const Notebook = () => (
       <line x1="40" y1="22" x2="40" y2="70" stroke="#D97706" strokeWidth="1.5" opacity="0.3" />
       <line x1="39" y1="22" x2="39" y2="70" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
 
-      {/* Espiral del cuaderno */}
+      {/* Espiral */}
       {[26, 32, 38, 44, 50, 56, 62].map((y, i) => (
         <g key={`sp${i}`}>
           <circle cx="40" cy={y} r="2.5" fill="none" stroke="#94A3B8" strokeWidth="1.2" />
@@ -291,67 +292,82 @@ const Notebook = () => (
         </g>
       ))}
 
-      {/* ── Contenido página izquierda: líneas de texto ── */}
-      {[28, 33, 38, 43, 48, 53, 58].map((y, i) => (
-        <line key={`tl${i}`} x1="14" y1={y} x2={28 - (i % 3)} y2={y}
-          stroke="rgba(59,130,246,0.3)" strokeWidth="0.8" strokeLinecap="round"
-          strokeDasharray={i < 5 ? 'none' : '3 2'}
-          style={i >= 5 ? { animation: `gc-draw 3s ease-in-out ${i * 0.3}s infinite` } : undefined} />
+      {/* ── Contenido izquierda: aparece progresivamente ── */}
+
+      {/* Título "ABC" – aparece primero */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 0s infinite' }}>
+        <text x="21" y="30" textAnchor="middle" fill="#2563EB" fontSize="6.5" fontWeight="bold" fontFamily="Fredoka, sans-serif">ABC</text>
+      </g>
+
+      {/* Líneas de texto – aparecen escalonadas */}
+      {[34, 39, 44, 49, 54, 59].map((y, i) => (
+        <line key={`tl${i}`} x1="13" y1={y} x2={30 - (i % 3) * 2} y2={y}
+          stroke="rgba(59,130,246,0.4)" strokeWidth="0.9" strokeLinecap="round"
+          strokeDasharray="60"
+          style={{ animation: `gc-stroke-draw 8s ease-in-out ${0.6 + i * 0.5}s infinite` }} />
       ))}
-      {/* Título "ABC" en la página izquierda */}
-      <text x="21" y="28" textAnchor="middle" fill="#2563EB" fontSize="5" fontWeight="bold" fontFamily="Fredoka, sans-serif"
-        style={{ animation: 'gc-glow 3s ease-in-out infinite' }}>ABC</text>
 
-      {/* ── Contenido página derecha: dibujitos infantiles ── */}
-      {/* Sol */}
-      <g style={{ transformOrigin: '56px 32px', animation: 'gc-breathe 3.5s ease-in-out infinite' }}>
-        <circle cx="56" cy="32" r="4" fill="#FBBF24" />
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
-          <line key={`ray${i}`} x1="56" y1="26" x2="56" y2="24"
-            stroke="#FBBF24" strokeWidth="1" strokeLinecap="round"
-            transform={`rotate(${deg} 56 32)`} />
-        ))}
+      {/* Subrayado decorativo bajo ABC */}
+      <line x1="14" y1="31.5" x2="28" y2="31.5"
+        stroke="#EC4899" strokeWidth="0.7" strokeLinecap="round"
+        strokeDasharray="60"
+        style={{ animation: 'gc-stroke-draw 8s ease-in-out 0.3s infinite' }} />
+
+      {/* ── Contenido derecha: dibujitos que aparecen ── */}
+
+      {/* Sol – aparece */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 1.5s infinite' }}>
+        <g style={{ transformOrigin: '56px 32px', animation: 'gc-breathe 3.5s ease-in-out infinite' }}>
+          <circle cx="56" cy="32" r="4" fill="#FBBF24" />
+          <circle cx="55" cy="31" r="1.5" fill="#FDE68A" opacity="0.5" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
+            <line key={`ray${i}`} x1="56" y1="26" x2="56" y2="24"
+              stroke="#FBBF24" strokeWidth="1" strokeLinecap="round"
+              transform={`rotate(${deg} 56 32)`} />
+          ))}
+        </g>
       </g>
 
-      {/* Casita */}
-      <rect x="48" y="48" width="12" height="10" rx="1" fill="#F87171" opacity="0.6" />
-      <path d="M46 48 L54 41 L62 48" stroke="#DC2626" strokeWidth="1.2" fill="#FCA5A5" opacity="0.6" strokeLinejoin="round" />
-      <rect x="52" y="52" width="4" height="6" rx="0.5" fill="#92400E" opacity="0.4" />
-      <rect x="49" y="50" width="3" height="3" rx="0.3" fill="#93C5FD" opacity="0.5" />
-
-      {/* Flor */}
-      <g style={{ transformOrigin: '64px 56px', animation: 'gc-sway 4s ease-in-out infinite' }}>
-        <line x1="64" y1="56" x2="64" y2="64" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" />
-        <circle cx="64" cy="54" r="2.5" fill="#F472B6" opacity="0.6" />
-        <circle cx="64" cy="54" r="1.2" fill="#FBBF24" opacity="0.7" />
-        {/* Pétalos */}
-        {[0, 72, 144, 216, 288].map((deg, i) => (
-          <circle key={`pt${i}`} cx="64" cy="51.5" r="1.5" fill="#F9A8D4" opacity="0.5"
-            transform={`rotate(${deg} 64 54)`} />
-        ))}
+      {/* Nube – aparece */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 2.2s infinite' }}>
+        <ellipse cx="49" cy="30" rx="4" ry="2.5" fill="#93C5FD" opacity="0.5" />
+        <ellipse cx="46" cy="30" rx="2.5" ry="2" fill="#93C5FD" opacity="0.5" />
+        <ellipse cx="52" cy="30" rx="2.5" ry="2" fill="#93C5FD" opacity="0.5" />
       </g>
 
-      {/* Nube pequeña */}
-      <g opacity="0.4">
-        <ellipse cx="50" cy="30" rx="4" ry="2.5" fill="#93C5FD" />
-        <ellipse cx="47" cy="30" rx="2.5" ry="2" fill="#93C5FD" />
-        <ellipse cx="53" cy="30" rx="2.5" ry="2" fill="#93C5FD" />
+      {/* Casita – aparece */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 3s infinite' }}>
+        <rect x="48" y="47" width="12" height="10" rx="1" fill="#F87171" opacity="0.6" />
+        <path d="M46 47 L54 40 L62 47" stroke="#DC2626" strokeWidth="1.2" fill="#FCA5A5" opacity="0.6" strokeLinejoin="round" />
+        <rect x="52" y="51" width="4" height="6" rx="0.5" fill="#92400E" opacity="0.4" />
+        <rect x="49" y="49" width="3" height="3" rx="0.3" fill="#93C5FD" opacity="0.5" />
       </g>
-    </g>
 
-    {/* ── Lápiz escribiendo – encima del cuaderno ── */}
-    <g style={{ transformOrigin: '28px 66px', animation: 'gc-swing 2.5s ease-in-out infinite' }}>
-      <g transform="rotate(-45 28 66)">
-        <rect x="25" y="32" width="6" height="34" rx="1.2" fill="#FBBF24" />
-        <rect x="25" y="32" width="6" height="5" rx="1.2" fill="#F59E0B" />
-        <rect x="25" y="32" width="2.5" height="34" rx="0.8" fill="rgba(255,255,255,0.18)" />
-        {/* Banda metálica + goma */}
-        <rect x="24.5" y="31" width="7" height="4" rx="0.5" fill="#94A3B8" />
-        <rect x="24.5" y="28" width="7" height="4" rx="1.5" fill="#F9A8D4" />
-        {/* Punta */}
-        <path d="M25 66 L28 72 L31 66 Z" fill="#FBBF24" />
-        <path d="M27 66 L28 70 L29 66 Z" fill="#FDE68A" />
-        <line x1="28" y1="69" x2="28" y2="72" stroke="#1C1917" strokeWidth="0.8" />
+      {/* Flor – aparece */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 4s infinite' }}>
+        <g style={{ transformOrigin: '64px 55px', animation: 'gc-sway 4s ease-in-out infinite' }}>
+          <line x1="64" y1="55" x2="64" y2="63" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" />
+          <circle cx="64" cy="53" r="2.5" fill="#F472B6" opacity="0.6" />
+          <circle cx="64" cy="53" r="1.2" fill="#FBBF24" opacity="0.7" />
+          {[0, 72, 144, 216, 288].map((deg, i) => (
+            <circle key={`pt${i}`} cx="64" cy="50.5" r="1.5" fill="#F9A8D4" opacity="0.5"
+              transform={`rotate(${deg} 64 53)`} />
+          ))}
+        </g>
+      </g>
+
+      {/* Estrella – aparece última */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 5s infinite' }}>
+        <g style={{ transformOrigin: '48px 64px', animation: 'gc-pulse 3s ease-in-out infinite' }}>
+          <polygon points="48,60 49.5,62.5 52,63 50,65 50.5,67.5 48,66.2 45.5,67.5 46,65 44,63 46.5,62.5"
+            fill="#FBBF24" opacity="0.7" />
+        </g>
+      </g>
+
+      {/* Corazón – aparece */}
+      <g style={{ animation: 'gc-appear 8s ease-in-out 5.5s infinite' }}>
+        <path d="M56 62 C54 59, 50 60, 52 63 L56 67 L60 63 C62 60, 58 59, 56 62 Z"
+          fill="#F87171" opacity="0.5" />
       </g>
     </g>
 
@@ -708,87 +724,179 @@ const GoldenKey = () => (
     <defs>
       <linearGradient id="ky-shaft" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#FEF3C7" />
-        <stop offset="30%" stopColor="#FCD34D" />
-        <stop offset="70%" stopColor="#F59E0B" />
+        <stop offset="25%" stopColor="#FCD34D" />
+        <stop offset="50%" stopColor="#FBBF24" />
+        <stop offset="75%" stopColor="#F59E0B" />
         <stop offset="100%" stopColor="#B45309" />
       </linearGradient>
-      <linearGradient id="ky-bow" x1="0.3" y1="0" x2="0.7" y2="1">
+      <linearGradient id="ky-bow" x1="0.2" y1="0" x2="0.8" y2="1">
         <stop offset="0%" stopColor="#FDE68A" />
-        <stop offset="50%" stopColor="#FBBF24" />
+        <stop offset="35%" stopColor="#FBBF24" />
+        <stop offset="70%" stopColor="#D97706" />
         <stop offset="100%" stopColor="#92400E" />
       </linearGradient>
-      <radialGradient id="ky-gem" cx="0.4" cy="0.35" r="0.5">
-        <stop offset="0%" stopColor="#C4B5FD" />
-        <stop offset="50%" stopColor="#8B5CF6" />
-        <stop offset="100%" stopColor="#4C1D95" />
+      <radialGradient id="ky-gem" cx="0.35" cy="0.3" r="0.55">
+        <stop offset="0%" stopColor="#E0D5FF" />
+        <stop offset="30%" stopColor="#A78BFA" />
+        <stop offset="60%" stopColor="#7C3AED" />
+        <stop offset="100%" stopColor="#3B0764" />
       </radialGradient>
       <radialGradient id="ky-glow" cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0%" stopColor="rgba(251,191,36,0.25)" />
+        <stop offset="0%" stopColor="rgba(251,191,36,0.35)" />
+        <stop offset="50%" stopColor="rgba(251,191,36,0.12)" />
         <stop offset="100%" stopColor="rgba(251,191,36,0)" />
       </radialGradient>
+      <radialGradient id="ky-magic" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0%" stopColor="rgba(167,139,250,0.4)" />
+        <stop offset="100%" stopColor="rgba(167,139,250,0)" />
+      </radialGradient>
+      <filter id="ky-blur">
+        <feGaussianBlur stdDeviation="1.5" />
+      </filter>
+      <filter id="ky-glow-f">
+        <feGaussianBlur stdDeviation="2" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
     </defs>
 
+    {/* Halo mágico exterior – púrpura */}
+    <circle cx="24" cy="34" r="24" fill="url(#ky-magic)"
+      style={{ transformOrigin: '24px 34px', animation: 'gc-breathe 5s ease-in-out infinite' }} />
     {/* Halo dorado de fondo */}
-    <circle cx="22" cy="34" r="20" fill="url(#ky-glow)"
-      style={{ transformOrigin: '22px 34px', animation: 'gc-breathe 4s ease-in-out infinite' }} />
+    <circle cx="24" cy="34" r="20" fill="url(#ky-glow)"
+      style={{ transformOrigin: '24px 34px', animation: 'gc-breathe 4s ease-in-out 0.5s infinite' }} />
+
+    {/* Rayos mágicos desde la gema */}
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+      <line key={`ray${i}`}
+        x1="24" y1="32"
+        x2={24 + 22 * Math.cos(angle * Math.PI / 180)}
+        y2={32 + 22 * Math.sin(angle * Math.PI / 180)}
+        stroke="#FBBF24" strokeWidth="0.4" opacity="0.15"
+        style={{ transformOrigin: '24px 32px', animation: `gc-glow 3s ease-in-out ${i * 0.4}s infinite` }}
+      />
+    ))}
 
     {/* Llave – flotación + rotación combinada */}
     <g style={{ transformOrigin: '40px 46px', animation: 'gc-key-float 4s ease-in-out infinite' }}>
 
       {/* ── Cabeza de la llave (bow) – anillo ornamental ── */}
-      {/* Anillo exterior */}
-      <circle cx="24" cy="32" r="16" fill="url(#ky-bow)" />
-      <circle cx="24" cy="32" r="12.5" fill="rgba(15,23,42,0.85)" />
-      {/* Brillo en anillo */}
-      <path d="M12 24 A16 16 0 0 1 36 24" fill="none" stroke="#FEF3C7" strokeWidth="1.5" opacity="0.4" />
-      {/* Borde interior */}
-      <circle cx="24" cy="32" r="12.5" fill="none" stroke="#D97706" strokeWidth="1" />
-      <circle cx="24" cy="32" r="16" fill="none" stroke="#B45309" strokeWidth="0.8" />
+      {/* Resplandor difuso del anillo */}
+      <circle cx="24" cy="32" r="18" fill="#FBBF24" opacity="0.08" filter="url(#ky-blur)" />
 
-      {/* Ornamentos en el anillo */}
-      <path d="M16 20 Q20 16 24 20 Q28 16 32 20" stroke="#FCD34D" strokeWidth="1" fill="none" />
-      <circle cx="24" cy="17" r="1.5" fill="#FCD34D" />
-      <circle cx="10" cy="32" r="1.2" fill="#FCD34D" />
-      <circle cx="38" cy="32" r="1.2" fill="#FCD34D" />
-      <path d="M16 44 Q20 48 24 44 Q28 48 32 44" stroke="#FCD34D" strokeWidth="1" fill="none" />
-      <circle cx="24" cy="47" r="1.5" fill="#FCD34D" />
+      {/* Anillo exterior con doble borde */}
+      <circle cx="24" cy="32" r="16.5" fill="url(#ky-bow)" />
+      <circle cx="24" cy="32" r="15.5" fill="none" stroke="#FDE68A" strokeWidth="0.5" opacity="0.5" />
+      <circle cx="24" cy="32" r="12" fill="rgba(55,30,100,0.75)" />
 
-      {/* Gema central – amatista */}
+      {/* Brillo especular en arco superior */}
+      <path d="M11 24 A16.5 16.5 0 0 1 37 24" fill="none" stroke="#FEF3C7" strokeWidth="2" opacity="0.35" />
+      <path d="M13 22 A14 14 0 0 1 35 22" fill="none" stroke="white" strokeWidth="0.8" opacity="0.2" />
+
+      {/* Bordes del anillo */}
+      <circle cx="24" cy="32" r="12" fill="none" stroke="#B45309" strokeWidth="0.8" />
+      <circle cx="24" cy="32" r="16.5" fill="none" stroke="#92400E" strokeWidth="0.6" />
+
+      {/* Ornamentos superiores – corona de arcos */}
+      <path d="M14 19 Q17 14 20 19 Q22 15 24 19 Q26 15 28 19 Q31 14 34 19"
+        stroke="#FCD34D" strokeWidth="0.9" fill="none" />
+      <circle cx="24" cy="16" r="2" fill="#FCD34D" />
+      <circle cx="24" cy="16" r="1" fill="#FDE68A" />
+
+      {/* Ornamentos laterales */}
+      <circle cx="9" cy="32" r="1.5" fill="#FCD34D" />
+      <circle cx="9" cy="32" r="0.7" fill="#FDE68A" />
+      <circle cx="39" cy="32" r="1.5" fill="#FCD34D" />
+      <circle cx="39" cy="32" r="0.7" fill="#FDE68A" />
+
+      {/* Ornamentos inferiores */}
+      <path d="M14 45 Q17 50 20 45 Q22 49 24 45 Q26 49 28 45 Q31 50 34 45"
+        stroke="#FCD34D" strokeWidth="0.9" fill="none" />
+      <circle cx="24" cy="48" r="2" fill="#FCD34D" />
+      <circle cx="24" cy="48" r="1" fill="#FDE68A" />
+
+      {/* Filigranas dentro del anillo oscuro */}
+      <path d="M16 28 Q20 24 24 28 Q28 24 32 28" stroke="#D97706" strokeWidth="0.5" fill="none" opacity="0.4" />
+      <path d="M16 36 Q20 40 24 36 Q28 40 32 36" stroke="#D97706" strokeWidth="0.5" fill="none" opacity="0.4" />
+      <path d="M18 26 L18 38" stroke="#D97706" strokeWidth="0.3" opacity="0.25" />
+      <path d="M30 26 L30 38" stroke="#D97706" strokeWidth="0.3" opacity="0.25" />
+
+      {/* Gema central – amatista mágica */}
       <g style={{ transformOrigin: '24px 32px', animation: 'gc-pulse 3s ease-in-out infinite' }}>
-        <circle cx="24" cy="32" r="5.5" fill="url(#ky-gem)" />
-        <circle cx="24" cy="32" r="5.5" fill="none" stroke="#FBBF24" strokeWidth="1.2" />
-        <circle cx="22.5" cy="30" r="2" fill="rgba(255,255,255,0.3)" />
-        <circle cx="26" cy="34" r="0.8" fill="rgba(255,255,255,0.15)" />
+        {/* Resplandor mágico de la gema */}
+        <circle cx="24" cy="32" r="9" fill="#8B5CF6" opacity="0.12" filter="url(#ky-blur)" />
+        {/* Gema */}
+        <circle cx="24" cy="32" r="6" fill="url(#ky-gem)" />
+        {/* Facetas */}
+        <path d="M20 29 L24 26 L28 29 L26 35 L22 35 Z" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" />
+        <path d="M24 26 L24 32 M20 29 L28 29 M22 35 L26 35" stroke="rgba(255,255,255,0.08)" strokeWidth="0.4" />
+        {/* Borde dorado */}
+        <circle cx="24" cy="32" r="6" fill="none" stroke="#FBBF24" strokeWidth="1.2" />
+        <circle cx="24" cy="32" r="6.8" fill="none" stroke="#D97706" strokeWidth="0.4" opacity="0.5" />
+        {/* Reflejos */}
+        <circle cx="22" cy="29.5" r="2.2" fill="rgba(255,255,255,0.35)" />
+        <circle cx="26.5" cy="34" r="1" fill="rgba(255,255,255,0.18)" />
+        <circle cx="21" cy="31" r="0.5" fill="white" opacity="0.4" />
       </g>
 
-      {/* ── Vástago (shaft) ── */}
-      <rect x="38" y="29" width="30" height="6" rx="2" fill="url(#ky-shaft)" />
-      <rect x="40" y="30" width="26" height="2" rx="1" fill="rgba(255,255,255,0.2)" />
-      {/* Muescas decorativas */}
-      <rect x="46" y="28" width="2" height="8" rx="1" fill="#D97706" opacity="0.4" />
-      <rect x="54" y="28" width="2" height="8" rx="1" fill="#D97706" opacity="0.4" />
+      {/* ── Vástago (shaft) – más detallado ── */}
+      <rect x="38" y="28.5" width="30" height="7" rx="2.5" fill="url(#ky-shaft)" />
+      {/* Línea de brillo central */}
+      <rect x="40" y="30" width="26" height="2.5" rx="1" fill="rgba(255,255,255,0.22)" />
+      {/* Borde superior */}
+      <line x1="39" y1="28.5" x2="68" y2="28.5" stroke="#FDE68A" strokeWidth="0.4" opacity="0.4" />
+      {/* Grabados en el vástago */}
+      <rect x="44" y="27.5" width="2.5" height="9" rx="1" fill="#D97706" opacity="0.3" />
+      <rect x="44.5" y="28" width="1.5" height="8" rx="0.8" fill="#FDE68A" opacity="0.1" />
+      <rect x="50" y="27.5" width="1.5" height="9" rx="0.8" fill="#D97706" opacity="0.25" />
+      <rect x="56" y="27.5" width="2.5" height="9" rx="1" fill="#D97706" opacity="0.3" />
+      <rect x="56.5" y="28" width="1.5" height="8" rx="0.8" fill="#FDE68A" opacity="0.1" />
 
-      {/* ── Dientes de la llave (bit) ── */}
-      <path d="M64 35 L64 44 L60 44 L60 39 L58 39 L58 35" fill="url(#ky-shaft)" />
-      <path d="M66 35 L66 48 L62 48 L62 35" fill="url(#ky-shaft)" />
-      <rect x="66" y="29" width="4" height="6" rx="1.5" fill="#F59E0B" />
-      <path d="M60 40 L60 44 L62 44" fill="rgba(255,255,255,0.15)" />
-      <path d="M62 36 L62 48 L64 48 L64 36" fill="rgba(255,255,255,0.1)" />
+      {/* ── Dientes de la llave (bit) – más elaborados ── */}
+      <path d="M63 35.5 L63 45 L59 45 L59 40 L57 40 L57 35.5" fill="url(#ky-shaft)" />
+      <path d="M65 35.5 L65 49 L61 49 L61 35.5" fill="url(#ky-shaft)" />
+      <path d="M67 35.5 L67 43 L65 43" fill="url(#ky-shaft)" />
+      <rect x="67" y="28.5" width="4" height="7" rx="2" fill="#F59E0B" />
+      <rect x="68" y="29.5" width="2" height="5" rx="1" fill="#FDE68A" opacity="0.3" />
+      {/* Reflejos en dientes */}
+      <path d="M59 41 L59 45 L61 45" fill="rgba(255,255,255,0.12)" />
+      <path d="M61 36.5 L61 49 L63 49 L63 36.5" fill="rgba(255,255,255,0.08)" />
+      <line x1="65" y1="36" x2="65" y2="43" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8" />
     </g>
 
-    {/* Destellos */}
-    <circle cx="10" cy="12" r="1.5" fill="#FDE68A" opacity="0.6"
-      style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
-    <circle cx="72" cy="20" r="1.2" fill="#FDE68A" opacity="0.5"
-      style={{ animation: 'gc-twinkle 3.5s ease-in-out 0.8s infinite' }} />
-    <circle cx="68" cy="66" r="1" fill="#FDE68A" opacity="0.4"
-      style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.6s infinite' }} />
-    <circle cx="14" cy="68" r="1.3" fill="#FDE68A" opacity="0.45"
-      style={{ animation: 'gc-twinkle 3.2s ease-in-out 2.2s infinite' }} />
+    {/* Destellos en forma de estrella de 4 puntas */}
+    {[
+      { x: 8, y: 10, s: 3, d: 0 },
+      { x: 74, y: 18, s: 2.5, d: 0.8 },
+      { x: 70, y: 65, s: 2, d: 1.6 },
+      { x: 12, y: 70, s: 2.8, d: 2.2 },
+      { x: 50, y: 8, s: 2, d: 1 },
+      { x: 4, y: 48, s: 1.8, d: 1.8 },
+    ].map((sp, i) => (
+      <g key={`sp${i}`} style={{ transformOrigin: `${sp.x}px ${sp.y}px`, animation: `gc-twinkle 3s ease-in-out ${sp.d}s infinite` }}>
+        <line x1={sp.x} y1={sp.y - sp.s} x2={sp.x} y2={sp.y + sp.s} stroke="#FDE68A" strokeWidth="1" strokeLinecap="round" />
+        <line x1={sp.x - sp.s} y1={sp.y} x2={sp.x + sp.s} y2={sp.y} stroke="#FDE68A" strokeWidth="1" strokeLinecap="round" />
+        <circle cx={sp.x} cy={sp.y} r={sp.s * 0.3} fill="#FDE68A" opacity="0.8" />
+      </g>
+    ))}
 
-    {/* Resplandor */}
-    <circle cx="30" cy="40" r="0" fill="none" stroke="rgba(251,191,36,0.15)" strokeWidth="0.5"
-      style={{ animation: 'gc-ripple 4s ease-out infinite' }} />
+    {/* Partículas mágicas flotantes */}
+    {[
+      { x: 60, y: 12, color: '#A78BFA', d: 0 },
+      { x: 76, y: 42, color: '#FCD34D', d: 0.5 },
+      { x: 16, y: 6, color: '#C4B5FD', d: 1.2 },
+      { x: 72, y: 72, color: '#FBBF24', d: 1.8 },
+      { x: 6, y: 60, color: '#DDD6FE', d: 0.7 },
+    ].map((p, i) => (
+      <circle key={`mp${i}`} cx={p.x} cy={p.y} r="1" fill={p.color}
+        style={{ animation: `gc-bounce 3.5s ease-in-out ${p.d}s infinite` }} />
+    ))}
+
+    {/* Ondas mágicas desde la gema */}
+    <circle cx="24" cy="32" r="0" fill="none" stroke="rgba(167,139,250,0.2)" strokeWidth="0.8"
+      style={{ animation: 'gc-ripple 3.5s ease-out infinite' }} />
+    <circle cx="24" cy="32" r="0" fill="none" stroke="rgba(251,191,36,0.15)" strokeWidth="0.6"
+      style={{ animation: 'gc-ripple 3.5s ease-out 1.75s infinite' }} />
   </svg>
 );
 
