@@ -7,7 +7,7 @@ import { buildColumnPlan } from '/src/apps/_shared/UniversalSumBoard';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
-const RestasPrimaria1 = () => {
+const RestasPrimaria1 = ({ onGameComplete } = {}) => {
   // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
   
@@ -153,6 +153,7 @@ const RestasPrimaria1 = () => {
   return (
     <SumasLayout
       title="Resta como en el cole (1º)"
+      onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}

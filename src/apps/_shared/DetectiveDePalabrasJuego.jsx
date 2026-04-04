@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useDetectiveDePalabras } from '../../hooks/useDetectiveDePalabras';
 import DetectiveDePalabrasUI from './DetectiveDePalabrasUI';
 
-const DetectiveDePalabrasJuego = () => {
+const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
   // Parámetros de ruta
   const { level, grade, subjectId } = useParams();
 
@@ -122,7 +122,7 @@ const DetectiveDePalabrasJuego = () => {
   }
 
   // UI unificada: gestiona práctica y test según game.isTestMode
-  return <DetectiveDePalabrasUI game={game} />;
+  return <DetectiveDePalabrasUI game={game} onGameComplete={onGameComplete} />;
 };
 
 export default DetectiveDePalabrasJuego;

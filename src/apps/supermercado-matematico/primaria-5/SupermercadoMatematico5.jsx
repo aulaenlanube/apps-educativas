@@ -57,11 +57,11 @@ const generarNuevaMision = () => {
     }
 };
 
-const SupermercadoMatematico5 = () => {
+const SupermercadoMatematico5 = ({ onGameComplete } = {}) => {
     const game = useSupermercadoGame({ generarNuevaMision, withTimer: true });
 
     if (game.isTestMode) {
-        return <TestScreen game={game} productos={productos} />;
+        return <TestScreen game={game} productos={productos} onGameComplete={onGameComplete} />;
     }
     
     return (

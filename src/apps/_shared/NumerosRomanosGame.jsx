@@ -170,7 +170,7 @@ const ROMAN_VALUES = [
 // --- COMPONENTE PRINCIPAL ---
 
 
-const NumerosRomanosGame = ({ maxNumber, title }) => {
+const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
   const [isTestMode, setIsTestMode] = useState(false);
   const [targetNumber, setTargetNumber] = useState(0);
   const [userTiles, setUserTiles] = useState([]);
@@ -324,6 +324,22 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
     }
   };
 
+
+  // Tracking
+  const trackedRef2 = useRef(false);
+  useEffect(() => {
+    if (isTestMode && testStats.finished && !trackedRef2.current) {
+      trackedRef2.current = true;
+      onGameComplete?.({
+        mode: 'test',
+        score: testStats.score,
+        maxScore: TOTAL_TEST_QUESTIONS,
+        correctAnswers: testStats.score,
+        totalQuestions: TOTAL_TEST_QUESTIONS,
+      });
+    }
+    if (!testStats.finished) trackedRef2.current = false;
+  }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
 
   // Renderizado de Resultados (Mismo contenedor)
   if (isTestMode && testStats.finished) {
@@ -567,10 +583,10 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
   );
 };
 
-export const NumerosRomanos3 = () => <NumerosRomanosGame maxNumber={20} title="Números Romanos (3º)" />;
-export const NumerosRomanos4 = () => <NumerosRomanosGame maxNumber={100} title="Números Romanos (4º)" />;
-export const NumerosRomanos5 = () => <NumerosRomanosGame maxNumber={3999} title="Números Romanos (5º)" />;
-export const NumerosRomanos6 = () => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" />;
-export const NumerosRomanosESO = () => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (ESO)" />;
+export const NumerosRomanos3 = (props) => <NumerosRomanosGame maxNumber={20} title="Números Romanos (3º)" {...props} />;
+export const NumerosRomanos4 = (props) => <NumerosRomanosGame maxNumber={100} title="Números Romanos (4º)" {...props} />;
+export const NumerosRomanos5 = (props) => <NumerosRomanosGame maxNumber={3999} title="Números Romanos (5º)" {...props} />;
+export const NumerosRomanos6 = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" {...props} />;
+export const NumerosRomanosESO = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (ESO)" {...props} />;
 
 export default NumerosRomanosGame;

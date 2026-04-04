@@ -1,8 +1,8 @@
 // src/apps/_shared/OrdenaLaFraseUI.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './OrdenaLaFraseShared.css';
 
-const OrdenaLaFraseUI = ({ game }) => {
+const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
   const cls = `ordena-frase-container font-${game.fontStyle}`;
   
@@ -78,6 +78,24 @@ const OrdenaLaFraseUI = ({ game }) => {
       </div>
     ))
   );
+
+  // Tracking
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (game.isTestMode && game.showResults && !trackedRef.current) {
+      trackedRef.current = true;
+      const correct = game.testQuestions.filter((q, i) => q.solucion === game.userAnswers[i]).length;
+      onGameComplete?.({
+        mode: 'test',
+        score: game.score,
+        maxScore: game.TOTAL_TEST_QUESTIONS * 200,
+        correctAnswers: correct,
+        totalQuestions: game.TOTAL_TEST_QUESTIONS,
+        durationSeconds: game.elapsedTime || undefined,
+      });
+    }
+    if (!game.showResults) trackedRef.current = false;
+  }, [game.isTestMode, game.showResults, game.score, game.testQuestions, game.userAnswers, game.TOTAL_TEST_QUESTIONS, game.elapsedTime, onGameComplete]);
 
   // Modo TEST: resultados
   if (game.isTestMode && game.showResults) {

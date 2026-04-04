@@ -4,7 +4,7 @@ import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
 import { getFrases } from './../../../public/data/api';
 
-const OrdenaLaFraseJuego = () => {
+const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const grade = useMemo(() => parseInt(gradeParam, 10), [gradeParam]);
 
@@ -31,7 +31,7 @@ const OrdenaLaFraseJuego = () => {
   }
 
   // Un único componente UI gestiona práctica y test
-  return <OrdenaLaFraseUI game={game} />;
+  return <OrdenaLaFraseUI game={game} onGameComplete={onGameComplete} />;
 };
 
 export default OrdenaLaFraseJuego;

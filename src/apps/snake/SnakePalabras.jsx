@@ -628,6 +628,9 @@ const SnakeDePalabras = (props) => {
           </div>
         )}
 
+        {/* Tracking */}
+        <SnakeTracker gameState={gameState} score={score} difficulty={difficulty} onGameComplete={props.onGameComplete} />
+
         {/* GAME OVER */}
         {gameState === 'gameover' && (
           <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/95 backdrop-blur-sm text-white animate-in zoom-in duration-300">
@@ -871,5 +874,23 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
     </Button>
   </>
 );
+
+function SnakeTracker({ gameState, score, difficulty, onGameComplete }) {
+  const tracked = useRef(false);
+  useEffect(() => {
+    if (gameState === 'gameover' && !tracked.current) {
+      tracked.current = true;
+      onGameComplete?.({
+        mode: difficulty === 'hard' ? 'test' : 'practice',
+        score,
+        maxScore: score,
+        correctAnswers: Math.floor(score / 10),
+        totalQuestions: Math.floor(score / 10),
+      });
+    }
+    if (gameState !== 'gameover') tracked.current = false;
+  }, [gameState, score, difficulty, onGameComplete]);
+  return null;
+}
 
 export default SnakeDePalabras;

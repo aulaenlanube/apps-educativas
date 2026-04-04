@@ -5,7 +5,7 @@ import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalS
 
 const TOTAL_TEST_QUESTIONS = 5;
 
-const SumasPrimaria3 = () => {
+const SumasPrimaria3 = ({ onGameComplete } = {}) => {
   // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
   const [showCarries, setShowCarries] = useState(true); // Ayuda con llevadas por defecto
@@ -200,6 +200,7 @@ const SumasPrimaria3 = () => {
   return (
     <SumasLayout
       title="Sumas de 3 y 4 cifras (3º)"
+      onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}

@@ -1,13 +1,14 @@
 import React from 'react';
 import ComprensionJuego from '../_shared/ComprensionJuego';
 
-const ComprensionOral = ({ level, grade, subjectId }) => {
+const ComprensionOral = ({ level, grade, subjectId, onGameComplete }) => {
     return (
-        <ComprensionJuego 
+        <ComprensionJuego
             level={level}
             grade={grade}
             subjectId={subjectId}
-            tipo="oral" 
+            tipo="oral"
+            onGameComplete={onGameComplete}
         />
     );
 };

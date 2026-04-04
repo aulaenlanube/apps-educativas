@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ConfettiProvider } from '/src/apps/_shared/ConfettiProvider';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 import App from '@/App';
 import MainLayout from '@/components/layout/MainLayout';
@@ -10,6 +11,13 @@ import HomePage from '@/pages/HomePage.jsx';
 import SubjectPage from '@/pages/SubjectPage.jsx';
 import AppListPage from '@/pages/AppListPage.jsx';
 import AppRunnerPage from '@/pages/AppRunnerPage.jsx';
+import LoginPage from '@/pages/auth/LoginPage.jsx';
+import RegisterPage from '@/pages/auth/RegisterPage.jsx';
+import DashboardPage from '@/pages/dashboard/DashboardPage.jsx';
+import ProfilePage from '@/pages/auth/ProfilePage.jsx';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import AdminPanel from '@/pages/admin/AdminPanel.jsx';
+import StudentDashboard from '@/pages/dashboard/StudentDashboard.jsx';
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -30,6 +38,40 @@ const router = createBrowserRouter(
             { index: true, element: <HomePage /> },
             { path: 'curso/:level/:grade', element: <SubjectPage /> },
             { path: 'curso/:level/:grade/:subjectId', element: <AppListPage /> },
+            { path: 'login', element: <LoginPage /> },
+            { path: 'registro', element: <RegisterPage /> },
+            {
+              path: 'perfil',
+              element: (
+                <ProtectedRoute role="teacher">
+                  <ProfilePage />
+                </ProtectedRoute>
+              )
+            },
+            {
+              path: 'dashboard',
+              element: (
+                <ProtectedRoute role="teacher">
+                  <DashboardPage />
+                </ProtectedRoute>
+              )
+            },
+            {
+              path: 'mi-panel',
+              element: (
+                <ProtectedRoute role="student">
+                  <StudentDashboard />
+                </ProtectedRoute>
+              )
+            },
+            {
+              path: 'admin',
+              element: (
+                <ProtectedRoute role="admin">
+                  <AdminPanel />
+                </ProtectedRoute>
+              )
+            },
           ],
         },
         { path: '/curso/:level/:grade/:subjectId/app/:appId', element: <AppRunnerPage /> },
@@ -43,8 +85,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <ConfettiProvider>
-        <RouterProvider router={router} />
-        <Toaster />
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </AuthProvider>
       </ConfettiProvider>
     </HelmetProvider>
   </React.StrictMode>

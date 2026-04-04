@@ -1,11 +1,12 @@
 // src/pages/AppRunnerPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
+import { useGameTracker } from '@/hooks/useGameTracker';
 import DonationModal from '@/components/ui/DonationModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
@@ -18,6 +19,7 @@ const AppRunnerPage = () => {
     const location = useLocation();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
+    const { trackGameSession, startTimer } = useGameTracker();
 
     const result = findAppById(appId, level, grade);
 
@@ -42,6 +44,20 @@ const AppRunnerPage = () => {
     // 2. State (si venimos de hacer clic en la tarjeta).
     // 3. Default (lo que diga la app por defecto, ej. Lengua).
     const activeSubjectId = paramSubjectId || location.state?.fromSubjectId || defaultSubjectId;
+
+    // Iniciar timer al montar la app
+    useEffect(() => { startTimer(); }, [startTimer]);
+
+    const onGameComplete = useCallback((data) => {
+      trackGameSession({
+        appId: app.id,
+        appName: app.name,
+        level,
+        grade,
+        subjectId: activeSubjectId,
+        ...data,
+      });
+    }, [trackGameSession, app?.id, app?.name, level, grade, activeSubjectId]);
 
     const hasSubject = activeSubjectId && activeSubjectId !== 'general';
     const backPath = hasSubject
@@ -140,6 +156,7 @@ const AppRunnerPage = () => {
                         level={level}
                         grade={grade}
                         subjectId={activeSubjectId}
+                        onGameComplete={onGameComplete}
                     />
                 </div>
             </div>

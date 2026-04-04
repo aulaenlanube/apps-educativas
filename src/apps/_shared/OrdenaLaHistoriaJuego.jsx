@@ -4,7 +4,7 @@ import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
 import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
 import { getHistorias } from './../../../public/data/api';
 
-const OrdenaLaHistoriaJuego = () => {
+const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const grade = useMemo(() => {
     const n = parseInt(gradeParam, 10);
@@ -36,7 +36,7 @@ const OrdenaLaHistoriaJuego = () => {
     return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía</div>;
 
   // Un único UI que muestra práctica o test según game.isTestMode
-  return <OrdenaLaHistoriaUI game={game} />;
+  return <OrdenaLaHistoriaUI game={game} onGameComplete={onGameComplete} />;
 };
 
 export default OrdenaLaHistoriaJuego;

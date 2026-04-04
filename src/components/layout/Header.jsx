@@ -1,9 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Shield } from 'lucide-react';
 import MascotLogo from '../ui/MascotLogo';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginButton from '@/components/auth/LoginButton';
+import UserMenu from '@/components/auth/UserMenu';
 
 const Header = ({ children, subtitle = "Apps Educativas" }) => {
   const navigate = useNavigate();
+  const { isAuthenticated, isAdmin, loading } = useAuth();
 
   return (
     <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-purple-100 sticky top-0 z-50">
@@ -23,6 +28,16 @@ const Header = ({ children, subtitle = "Apps Educativas" }) => {
           </div>
           <nav className="flex items-center gap-4">
             {children}
+            {!loading && isAdmin && (
+              <button
+                onClick={() => navigate('/admin')}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+              >
+                <Shield className="w-3.5 h-3.5" />
+                Admin
+              </button>
+            )}
+            {!loading && (isAuthenticated ? <UserMenu /> : <LoginButton />)}
           </nav>
         </div>
       </div>

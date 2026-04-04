@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import './Medidas.css';
@@ -222,7 +222,7 @@ const generateOrderProblemManual = (level, typeId, count = 3) => {
     return items;
 };
 
-const MedidasGame = ({ level, title }) => {
+const MedidasGame = ({ level, title, onGameComplete }) => {
     const [phase, setPhase] = useState('setup'); // 'setup', 'quantity', 'play'
     const [measureType, setMeasureType] = useState('longitud');
     const [gameMode, setGameMode] = useState('comparar'); // 'comparar' o 'ordenar'
@@ -411,6 +411,21 @@ const MedidasGame = ({ level, title }) => {
     };
 
     const currentConfig = MEASURE_TYPES[measureType];
+
+    const trackedRef = useRef(false);
+    useEffect(() => {
+        if (isTestMode && testStats.finished && !trackedRef.current) {
+            trackedRef.current = true;
+            onGameComplete?.({
+                mode: 'test',
+                score: testStats.score,
+                maxScore: TOTAL_TEST_QUESTIONS,
+                correctAnswers: testStats.score,
+                totalQuestions: TOTAL_TEST_QUESTIONS,
+            });
+        }
+        if (!testStats.finished) trackedRef.current = false;
+    }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
 
     if (isTestMode && testStats.finished) {
         return (
@@ -630,12 +645,12 @@ const MedidasGame = ({ level, title }) => {
     );
 };
 
-export const Medidas1 = () => <MedidasGame level={1} title="Medidas: Iniciación (1º)" />;
-export const Medidas2 = () => <MedidasGame level={2} title="Medidas: Unidades Básicas (2º)" />;
-export const Medidas3 = () => <MedidasGame level={3} title="Medidas: Conversión Simple (3º)" />;
-export const Medidas4 = () => <MedidasGame level={4} title="Medidas: Sistema Completo (4º)" />;
-export const Medidas5 = () => <MedidasGame level={5} title="Medidas: Expresiones Complejas (5º)" />;
-export const Medidas6 = () => <MedidasGame level={6} title="Medidas: Reto Experto (6º)" />;
+export const Medidas1 = (props) => <MedidasGame level={1} title="Medidas: Iniciación (1º)" {...props} />;
+export const Medidas2 = (props) => <MedidasGame level={2} title="Medidas: Unidades Básicas (2º)" {...props} />;
+export const Medidas3 = (props) => <MedidasGame level={3} title="Medidas: Conversión Simple (3º)" {...props} />;
+export const Medidas4 = (props) => <MedidasGame level={4} title="Medidas: Sistema Completo (4º)" {...props} />;
+export const Medidas5 = (props) => <MedidasGame level={5} title="Medidas: Expresiones Complejas (5º)" {...props} />;
+export const Medidas6 = (props) => <MedidasGame level={6} title="Medidas: Reto Experto (6º)" {...props} />;
 
 export { generateProblemData, generateOrderProblemManual };
 export default MedidasGame;

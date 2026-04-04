@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
 /**
@@ -12,11 +12,32 @@ const SumasLayout = ({
   practiceState,           // { feedback }
   actions,                 // { startPractice, startTest, checkPractice, nextQuestion, exitTest, onPaletteClick }
   options,                 // { showCarries, setShowCarries } (Opcional)
+  onGameComplete,          // Callback de tracking
   children                 // El tablero (Board) se pasa como hijo
 }) => {
 
   const { currentQuestionIndex, totalQuestions, showResults, score, testQuestions, userAnswers } = testState || {};
   const progressPct = testState ? ((currentQuestionIndex + 1) / totalQuestions) * 100 : 0;
+
+  // Tracking: reportar cuando se muestran resultados del test
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (showResults && !trackedRef.current) {
+      trackedRef.current = true;
+      const hits = testQuestions?.filter((q, i) => {
+        const sum = q.reduce((a, b) => a + parseInt(b), 0);
+        return userAnswers[i] === sum.toString();
+      }).length || 0;
+      onGameComplete?.({
+        mode: 'test',
+        score: score || 0,
+        maxScore: (totalQuestions || 0) * 200,
+        correctAnswers: hits,
+        totalQuestions: totalQuestions || 0,
+      });
+    }
+    if (!showResults) trackedRef.current = false;
+  }, [showResults, score, totalQuestions, testQuestions, userAnswers, onGameComplete]);
 
   return (
     <div id="app-container">

@@ -1,8 +1,8 @@
 // src/apps/_shared/OrdenaLaHistoriaUI.jsx
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useEffect } from 'react';
 import './OrdenaLaHistoriaShared.css';
 
-const OrdenaLaHistoriaUI = ({ game }) => {
+const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.currentStoryIndex + 1) / game.TOTAL_TEST_STORIES) * 100;
   
   // Refs para animación FLIP
@@ -141,9 +141,30 @@ const OrdenaLaHistoriaUI = ({ game }) => {
 
   const cls = `ordena-historia-container font-${game.fontStyle}`;
 
+  // Tracking
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (game.isTestMode && game.showResults && !trackedRef.current) {
+      trackedRef.current = true;
+      const correct = game.testQuestions.filter((story, i) => {
+        const u = game.userAnswers[i].map(f => f.texto).join();
+        const c = story.map(f => f.texto).join();
+        return u === c;
+      }).length;
+      onGameComplete?.({
+        mode: 'test',
+        score: game.score,
+        maxScore: game.TOTAL_TEST_STORIES * 200,
+        correctAnswers: correct,
+        totalQuestions: game.TOTAL_TEST_STORIES,
+        durationSeconds: game.elapsedTime || undefined,
+      });
+    }
+    if (!game.showResults) trackedRef.current = false;
+  }, [game.isTestMode, game.showResults, game.score, onGameComplete]);
+
   if (game.isTestMode) {
     if (game.showResults) {
-      // (Resultados del test...)
       const correct = game.testQuestions.filter((story, i) => {
         const u = game.userAnswers[i].map(f => f.texto).join();
         const c = story.map(f => f.texto).join();

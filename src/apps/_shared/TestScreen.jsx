@@ -1,9 +1,9 @@
 // src/apps/supermercado-primaria-X/TestScreen.jsx (CORREGIDO)
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './SupermercadoShared.css';
 
-const TestScreen = ({ game, productos }) => {
+const TestScreen = ({ game, productos, onGameComplete }) => {
     // La barra de progreso ahora refleja la pregunta actual, no la completada
     const progressPercentage = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
 
@@ -16,6 +16,26 @@ const TestScreen = ({ game, productos }) => {
         // Si tiene decimales, lo formatea a dos y usa coma
         return price.toFixed(2).replace('.', ',');
     };
+
+    const trackedRef = useRef(false);
+    useEffect(() => {
+        if (game.showResults && !trackedRef.current) {
+            trackedRef.current = true;
+            const correct = game.testQuestions.filter((q, i) => {
+                const userAnswer = parseFloat(String(game.userAnswers[i]).replace(',', '.'));
+                return Math.abs(userAnswer - q.solucion) < 0.001;
+            }).length;
+            onGameComplete?.({
+                mode: 'test',
+                score: game.score,
+                maxScore: game.TOTAL_TEST_QUESTIONS * 200,
+                correctAnswers: correct,
+                totalQuestions: game.TOTAL_TEST_QUESTIONS,
+                durationSeconds: game.elapsedTime || undefined,
+            });
+        }
+        if (!game.showResults) trackedRef.current = false;
+    }, [game.showResults, game.score, onGameComplete]);
 
     if (game.showResults) {
         const correctAnswers = game.testQuestions.filter((q, i) => {

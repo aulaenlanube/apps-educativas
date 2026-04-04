@@ -21,11 +21,11 @@ const generarNuevaMision = () => {
     return { texto: textoMision, solucion: solucionCorrecta };
 };
 
-const SupermercadoMatematico4 = () => {
+const SupermercadoMatematico4 = ({ onGameComplete } = {}) => {
     const game = useSupermercadoGame({ generarNuevaMision, withTimer: true });
 
     if (game.isTestMode) {
-        return <TestScreen game={game} productos={productos} />;
+        return <TestScreen game={game} productos={productos} onGameComplete={onGameComplete} />;
     }
     
     return (

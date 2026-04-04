@@ -10,7 +10,8 @@ const RoscoUI = ({
     startGame, config, setConfig, maxQuestions,
     animState,
     showExitConfirm, requestExit, cancelExit, confirmExit,
-    loadStudyMaterial
+    loadStudyMaterial,
+    onGameComplete
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
@@ -298,6 +299,22 @@ const RoscoUI = ({
             </div>
         );
     }
+
+    const trackedRef = useRef(false);
+    useEffect(() => {
+        if (gameState === 'finished' && !trackedRef.current) {
+            trackedRef.current = true;
+            const best = [...players].sort((a, b) => b.score - a.score)[0];
+            onGameComplete?.({
+                mode: 'test',
+                score: best?.score || 0,
+                maxScore: config.questionCount,
+                correctAnswers: best?.score || 0,
+                totalQuestions: config.questionCount,
+            });
+        }
+        if (gameState !== 'finished') trackedRef.current = false;
+    }, [gameState, players, config.questionCount, onGameComplete]);
 
     if (gameState === 'finished') {
         const sortedPlayers = [...players].sort((a, b) => b.score - a.score);

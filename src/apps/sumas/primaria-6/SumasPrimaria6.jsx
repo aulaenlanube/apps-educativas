@@ -6,7 +6,7 @@ import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalS
 const TOTAL_TEST_QUESTIONS = 5;
 const toFloat = (s) => parseFloat(s.replace(',', '.'));
 
-const SumasPrimaria6 = () => {
+const SumasPrimaria6 = ({ onGameComplete } = {}) => {
   // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0', '0']);
   const [showCarries, setShowCarries] = useState(true);
@@ -231,6 +231,7 @@ const SumasPrimaria6 = () => {
   return (
     <SumasLayout
       title="Suma con decimales (6º)"
+      onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}

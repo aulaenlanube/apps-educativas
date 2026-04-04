@@ -4,7 +4,14 @@
       "Bash(npx --no-install eslint:*)",
       "Bash(dir:*)",
       "Bash(npx vite build:*)",
-      "Bash(timeout 15 npx vite:*)"
+      "Bash(timeout 15 npx vite:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(timeout 5 tail -f C:\\\\Users\\\\edtor\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-edtor-Desktop-apps-educativas\\\\49edf2db-869c-4003-b38e-6d8a8006ec3e\\\\tasks\\\\bc2atjvp0.output)",
+      "Bash(node -e \"try { const m = require\\('lucide-react'\\); console.log\\('Shield:', typeof m.Shield\\); } catch\\(e\\) { console.log\\('Error:', e.message\\); }\")",
+      "Bash(tasklist)",
+      "Bash(taskkill //F //PID 115932)",
+      "Bash(npx vite:*)"
     ]
   }
 }

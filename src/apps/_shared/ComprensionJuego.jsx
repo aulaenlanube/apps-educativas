@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import './ComprensionShared.css';
 
-const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }) => {
+const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", onGameComplete }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -142,6 +142,13 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
             });
         }
         cambiarFase('resultado');
+        onGameComplete?.({
+            mode: 'test',
+            score: aciertos,
+            maxScore: total,
+            correctAnswers: aciertos,
+            totalQuestions: total,
+        });
     };
 
     const siguienteEjercicio = () => {

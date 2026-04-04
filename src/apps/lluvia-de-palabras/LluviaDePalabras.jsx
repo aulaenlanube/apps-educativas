@@ -36,7 +36,7 @@ const gridStyles = `
   }
 `;
 
-const LluviaDePalabras = () => {
+const LluviaDePalabras = ({ onGameComplete } = {}) => {
     const { toast } = useToast();
     const { level, grade, subjectId } = useParams();
     const navigate = useNavigate();
@@ -415,6 +415,22 @@ const LluviaDePalabras = () => {
             </div>
         );
     }
+
+    // Tracking
+    const trackedRef = useRef(false);
+    useEffect(() => {
+        if (gamePhase === 'gameOver' && !trackedRef.current) {
+            trackedRef.current = true;
+            onGameComplete?.({
+                mode: difficulty === 'hard' ? 'test' : 'practice',
+                score,
+                maxScore: score,
+                correctAnswers: score / 10,
+                totalQuestions: score / 10,
+            });
+        }
+        if (gamePhase !== 'gameOver') trackedRef.current = false;
+    }, [gamePhase, score, difficulty, onGameComplete]);
 
     // 2. GAME OVER / RESULTS
     if (gamePhase === 'gameOver') {

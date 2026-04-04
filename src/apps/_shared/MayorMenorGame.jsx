@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti'; // Asegúrate de tenerlo instalado
+import confetti from 'canvas-confetti';
 import './MayorMenor.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
@@ -215,7 +215,7 @@ const generateLevelProblem = (level) => {
 };
 
 
-const MayorMenorGame = ({ level, title }) => {
+const MayorMenorGame = ({ level, title, onGameComplete }) => {
     const [phase, setPhase] = useState('setup'); // 'setup', 'quantity', 'play'
     const [gameMode, setGameMode] = useState('comparar'); // 'comparar' o 'ordenar'
     const [orderCount, setOrderCount] = useState(3);
@@ -421,6 +421,22 @@ const MayorMenorGame = ({ level, title }) => {
         }
     };
 
+    // Tracking de resultados
+    const trackedRef = useRef(false);
+    useEffect(() => {
+        if (isTestMode && testStats.finished && !trackedRef.current) {
+            trackedRef.current = true;
+            onGameComplete?.({
+                mode: 'test',
+                score: testStats.score,
+                maxScore: TOTAL_TEST_QUESTIONS,
+                correctAnswers: testStats.score,
+                totalQuestions: TOTAL_TEST_QUESTIONS,
+            });
+        }
+        if (!testStats.finished) trackedRef.current = false;
+    }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
+
     // Renderizado de Resultados
     if (isTestMode && testStats.finished) {
         return (
@@ -585,11 +601,11 @@ const MayorMenorGame = ({ level, title }) => {
     );
 };
 
-export const MayorMenor1 = () => <MayorMenorGame level={1} title="Mayor, Menor o Igual (1º)" />;
-export const MayorMenor2 = () => <MayorMenorGame level={2} title="Comparar hasta 100 (2º)" />;
-export const MayorMenor3 = () => <MayorMenorGame level={3} title="Comparar Multiplicaciones (3º)" />;
-export const MayorMenor4 = () => <MayorMenorGame level={4} title="Operaciones Combinadas (4º)" />;
-export const MayorMenor5 = () => <MayorMenorGame level={5} title="Comparar Decimales (5º)" />;
-export const MayorMenor6 = () => <MayorMenorGame level={6} title="Reto Matemático (6º)" />;
+export const MayorMenor1 = (props) => <MayorMenorGame level={1} title="Mayor, Menor o Igual (1º)" {...props} />;
+export const MayorMenor2 = (props) => <MayorMenorGame level={2} title="Comparar hasta 100 (2º)" {...props} />;
+export const MayorMenor3 = (props) => <MayorMenorGame level={3} title="Comparar Multiplicaciones (3º)" {...props} />;
+export const MayorMenor4 = (props) => <MayorMenorGame level={4} title="Operaciones Combinadas (4º)" {...props} />;
+export const MayorMenor5 = (props) => <MayorMenorGame level={5} title="Comparar Decimales (5º)" {...props} />;
+export const MayorMenor6 = (props) => <MayorMenorGame level={6} title="Reto Matemático (6º)" {...props} />;
 
 export default MayorMenorGame;

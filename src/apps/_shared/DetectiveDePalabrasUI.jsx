@@ -1,10 +1,10 @@
 // src/apps/_shared/DetectiveDePalabrasUI.jsx
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './DetectiveDePalabrasShared.css';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
-const DetectiveDePalabrasUI = ({ game }) => {
+const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.indiceFraseActual + 1) / TOTAL_TEST_QUESTIONS) * 100;
   const cls = `detective-container font-${game.fontStyle}`;
 
@@ -39,6 +39,24 @@ const DetectiveDePalabrasUI = ({ game }) => {
   // Aux: solución transformada si el hook expone transformador
   const transformed = (s) =>
     typeof game.getTransformedSolution === 'function' ? game.getTransformedSolution(s) : s;
+
+  // Tracking
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (game.isTestMode && game.showResults && !trackedRef.current) {
+      trackedRef.current = true;
+      const correct = game.testQuestions.filter((q, i) => transformed(q.solucion) === game.userAnswers[i]).length;
+      onGameComplete?.({
+        mode: 'test',
+        score: game.score,
+        maxScore: TOTAL_TEST_QUESTIONS * 200,
+        correctAnswers: correct,
+        totalQuestions: TOTAL_TEST_QUESTIONS,
+        durationSeconds: game.elapsedTime || undefined,
+      });
+    }
+    if (!game.showResults) trackedRef.current = false;
+  }, [game.isTestMode, game.showResults, game.score, onGameComplete]);
 
   if (game.isTestMode) {
     // Resultados del test

@@ -4,7 +4,7 @@ import { getRosco } from '../../../public/data/api'; // Ajusta la ruta relativa 
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
 
-const RoscoJuego = () => {
+const RoscoJuego = ({ onGameComplete } = {}) => {
     const { level, grade, subjectId } = useParams();
     const [data, setData] = useState(null);
     const [studyMaterial, setStudyMaterial] = useState(null);
@@ -81,7 +81,7 @@ const RoscoJuego = () => {
 
     const game = useRoscoGame(data);
 
-    return <RoscoUI {...game} loadStudyMaterial={loadStudyMaterial} />;
+    return <RoscoUI {...game} loadStudyMaterial={loadStudyMaterial} onGameComplete={onGameComplete} />;
 };
 
 export default RoscoJuego;
