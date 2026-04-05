@@ -13,11 +13,13 @@ import AppListPage from '@/pages/AppListPage.jsx';
 import AppRunnerPage from '@/pages/AppRunnerPage.jsx';
 import LoginPage from '@/pages/auth/LoginPage.jsx';
 import RegisterPage from '@/pages/auth/RegisterPage.jsx';
+import RegisterFreePage from '@/pages/auth/RegisterFreePage.jsx';
 import DashboardPage from '@/pages/dashboard/DashboardPage.jsx';
 import ProfilePage from '@/pages/auth/ProfilePage.jsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import AdminPanel from '@/pages/admin/AdminPanel.jsx';
 import StudentDashboard from '@/pages/dashboard/StudentDashboard.jsx';
+import FreeUserDashboard from '@/pages/dashboard/FreeUserDashboard.jsx';
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -40,6 +42,7 @@ const router = createBrowserRouter(
             { path: 'curso/:level/:grade/:subjectId', element: <AppListPage /> },
             { path: 'login', element: <LoginPage /> },
             { path: 'registro', element: <RegisterPage /> },
+            { path: 'registro-libre', element: <RegisterFreePage /> },
             {
               path: 'perfil',
               element: (
@@ -61,6 +64,14 @@ const router = createBrowserRouter(
               element: (
                 <ProtectedRoute role="student">
                   <StudentDashboard />
+                </ProtectedRoute>
+              )
+            },
+            {
+              path: 'mi-zona',
+              element: (
+                <ProtectedRoute role="free">
+                  <FreeUserDashboard />
                 </ProtectedRoute>
               )
             },

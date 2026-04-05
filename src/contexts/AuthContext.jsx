@@ -7,14 +7,16 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [teacher, setTeacher] = useState(null);
   const [student, setStudent] = useState(null);
+  const [freeUser, setFreeUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const isTeacher = !!user && !!teacher;
+  const isTeacher = !!user && !!teacher && teacher?.role !== 'free';
+  const isFreeUser = !!user && !!freeUser;
   const isStudent = !!student;
   const isAdmin = teacher?.role === 'admin';
-  const isAuthenticated = isTeacher || isStudent;
-  const role = isAdmin ? 'admin' : isTeacher ? 'teacher' : isStudent ? 'student' : null;
-  const displayName = isTeacher ? teacher?.display_name : isStudent ? student?.display_name : null;
+  const isAuthenticated = isTeacher || isStudent || isFreeUser;
+  const role = isAdmin ? 'admin' : isTeacher ? 'teacher' : isFreeUser ? 'free' : isStudent ? 'student' : null;
+  const displayName = isTeacher ? teacher?.display_name : isFreeUser ? freeUser?.display_name : isStudent ? student?.display_name : null;
 
   const fetchTeacherProfile = useCallback(async (userId) => {
     try {
@@ -23,7 +25,15 @@ export function AuthProvider({ children }) {
         .select('*')
         .eq('id', userId)
         .single();
-      if (data) setTeacher(data);
+      if (data) {
+        if (data.role === 'free') {
+          setFreeUser(data);
+          setTeacher(null);
+        } else {
+          setTeacher(data);
+          setFreeUser(null);
+        }
+      }
     } catch {
       // Si falla (ej: columna no existe aún), no bloquear la app
     }
@@ -59,10 +69,24 @@ export function AuthProvider({ children }) {
       async (_event, session) => {
         if (session?.user) {
           setUser(session.user);
+
+          // If user just signed in via Google from the "Soy Libre" tab,
+          // update their role from default 'teacher' to 'free'
+          const pendingFree = localStorage.getItem('pending_free_google_auth');
+          if (pendingFree) {
+            localStorage.removeItem('pending_free_google_auth');
+            await supabase
+              .from('teachers')
+              .update({ role: 'free' })
+              .eq('id', session.user.id)
+              .eq('role', 'teacher'); // only update if still default
+          }
+
           await fetchTeacherProfile(session.user.id);
         } else {
           setUser(null);
           setTeacher(null);
+          setFreeUser(null);
         }
       }
     );
@@ -79,12 +103,36 @@ export function AuthProvider({ children }) {
     return { data, error };
   }
 
+  async function signUpFreeUser(email, password, displayName) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: displayName, role: 'free' } }
+    });
+    return { data, error };
+  }
+
+  async function signInFreeUser(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    return { data, error };
+  }
+
   async function signInTeacher(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     return { data, error };
   }
 
   async function signInWithGoogle() {
+    localStorage.removeItem('pending_free_google_auth');
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin }
+    });
+    return { data, error };
+  }
+
+  async function signInWithGoogleAsFree() {
+    localStorage.setItem('pending_free_google_auth', 'true');
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: window.location.origin }
@@ -140,10 +188,11 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
-    if (isTeacher) {
+    if (isTeacher || isFreeUser) {
       await supabase.auth.signOut();
       setUser(null);
       setTeacher(null);
+      setFreeUser(null);
     }
     if (isStudent) {
       setStudent(null);
@@ -152,10 +201,10 @@ export function AuthProvider({ children }) {
   }
 
   const value = {
-    user, teacher, student,
-    isTeacher, isStudent, isAdmin, isAuthenticated, role, displayName,
+    user, teacher, student, freeUser,
+    isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
-    signUpTeacher, signInTeacher, signInWithGoogle,
+    signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
     signInStudent, studentSetPassword, signOut,
     fetchTeacherProfile, updateTeacherProfile,
   };

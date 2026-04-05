@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3, Rocket } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -10,7 +10,7 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 export default function UserMenu() {
-  const { displayName, role, teacher, student, signOut } = useAuth();
+  const { displayName, role, teacher, freeUser, student, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -64,7 +64,7 @@ export default function UserMenu() {
             <div className="flex flex-col">
               <p className="text-sm font-semibold">{displayName}</p>
               <p className="text-xs text-muted-foreground">
-                {role === 'teacher' || role === 'admin' ? teacher?.email : `Alumno - ${student?.group_name}`}
+                {role === 'teacher' || role === 'admin' ? teacher?.email : role === 'free' ? freeUser?.email : `Alumno - ${student?.group_name}`}
               </p>
             </div>
           </div>
@@ -84,6 +84,16 @@ export default function UserMenu() {
             <DropdownMenuItem onClick={handleCopyCode}>
               <Copy className="mr-2 h-4 w-4" />
               Codigo: {teacher?.teacher_code}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
+        )}
+
+        {role === 'free' && (
+          <>
+            <DropdownMenuItem onClick={() => navigate('/mi-zona')}>
+              <Rocket className="mr-2 h-4 w-4" />
+              Mi Zona
             </DropdownMenuItem>
             <DropdownMenuSeparator />
           </>

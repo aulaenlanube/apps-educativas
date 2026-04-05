@@ -1,9 +1,122 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Search, GraduationCap, Users, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { Search, GraduationCap, Users, Rocket, UserPlus, X, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const PAGE_SIZE_OPTIONS = [10, 20, 50];
+
+function CreateFreeUserDialog({ open, onClose, onCreated }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    setLoading(true);
+
+    const { data, error: err } = await supabase.rpc('admin_create_free_user', {
+      p_email: email,
+      p_password: password,
+      p_display_name: name,
+    });
+
+    setLoading(false);
+
+    if (err) {
+      setError(err.message);
+      return;
+    }
+    if (data?.error) {
+      setError(data.error);
+      return;
+    }
+
+    setSuccess(`Usuario libre "${name}" creado correctamente.`);
+    setName('');
+    setEmail('');
+    setPassword('');
+    if (onCreated) onCreated();
+  };
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-md mx-4 p-6"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Rocket className="w-5 h-5 text-orange-500" />
+            <h3 className="text-lg font-bold text-slate-800">Crear Usuario Libre</h3>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <p className="text-xs text-slate-500 mb-4">
+          Crea un usuario libre ficticio. No requiere verificacion de email.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div>
+            <label className="text-sm font-medium text-slate-700">Nombre</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nombre del usuario"
+              required
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-slate-700">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email@ejemplo.com"
+              required
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-slate-700">Contrasena</label>
+            <input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Contrasena (min 6 caracteres)"
+              required
+              minLength={6}
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+
+          {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
+          {success && <p className="text-sm text-green-600 bg-green-50 rounded-lg px-3 py-2">{success}</p>}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-2.5 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white rounded-xl text-sm font-medium transition-all disabled:opacity-50"
+          >
+            {loading ? 'Creando...' : 'Crear Usuario Libre'}
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
 
 const UsersTable = ({ onSelectUser }) => {
   const [filter, setFilter] = useState('all');
@@ -14,6 +127,7 @@ const UsersTable = ({ onSelectUser }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const debounceRef = useRef(null);
+  const [showCreateFree, setShowCreateFree] = useState(false);
 
   // Debounce search
   useEffect(() => {
@@ -55,7 +169,9 @@ const UsersTable = ({ onSelectUser }) => {
   };
 
   const renderRow = (user, i) => {
-    const isTeacher = user.user_type === 'teacher';
+    const isTeacher = user.user_type === 'teacher' && user.role !== 'free';
+    const isFree = user.user_type === 'teacher' && user.role === 'free';
+    const isStudent = user.user_type === 'student';
     return (
       <motion.div
         key={`${user.user_type}-${user.id}`}
@@ -67,6 +183,10 @@ const UsersTable = ({ onSelectUser }) => {
       >
         {isTeacher ? (
           <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-sm font-bold text-blue-600 shrink-0">
+            {user.display_name?.[0]?.toUpperCase() || '?'}
+          </div>
+        ) : isFree ? (
+          <div className="w-9 h-9 rounded-full bg-orange-100 flex items-center justify-center text-sm font-bold text-orange-600 shrink-0">
             {user.display_name?.[0]?.toUpperCase() || '?'}
           </div>
         ) : (
@@ -86,14 +206,19 @@ const UsersTable = ({ onSelectUser }) => {
                 {user.role === 'admin' ? 'ADMIN' : 'DOCENTE'}
               </span>
             )}
-            {!isTeacher && (
+            {isFree && (
+              <span className="px-1.5 py-0.5 bg-orange-50 text-orange-600 text-[10px] font-bold rounded">LIBRE</span>
+            )}
+            {isStudent && (
               <span className="px-1.5 py-0.5 bg-green-50 text-green-600 text-[10px] font-bold rounded">ALUMNO</span>
             )}
           </div>
           <div className="text-xs text-slate-400 truncate">
             {isTeacher
               ? `${user.email} · Codigo: ${user.teacher_code}`
-              : `@${user.username} · ${user.group_name} · Prof: ${user.teacher_name}`
+              : isFree
+                ? user.email
+                : `@${user.username} · ${user.group_name} · Prof: ${user.teacher_name}`
             }
           </div>
         </div>
@@ -110,6 +235,12 @@ const UsersTable = ({ onSelectUser }) => {
 
   return (
     <div className="space-y-4">
+      <CreateFreeUserDialog
+        open={showCreateFree}
+        onClose={() => setShowCreateFree(false)}
+        onCreated={() => fetchUsers()}
+      />
+
       {/* Filters & search */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
@@ -122,10 +253,18 @@ const UsersTable = ({ onSelectUser }) => {
             className="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
+        <button
+          onClick={() => setShowCreateFree(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-xl text-xs font-medium hover:from-orange-600 hover:to-pink-600 transition-all shrink-0"
+        >
+          <UserPlus className="w-3.5 h-3.5" />
+          Crear Libre
+        </button>
         <div className="flex gap-1 bg-white rounded-xl p-1 border border-slate-200">
           {[
             { id: 'all', label: 'Todos' },
             { id: 'teachers', label: 'Docentes' },
+            { id: 'free', label: 'Libres' },
             { id: 'students', label: 'Alumnos' },
           ].map(f => (
             <button
@@ -152,7 +291,7 @@ const UsersTable = ({ onSelectUser }) => {
             </span>
             {data && filter === 'all' && (
               <span className="text-xs text-slate-400">
-                ({data.teachers_count} docente{data.teachers_count !== 1 ? 's' : ''}, {data.students_count} alumno{data.students_count !== 1 ? 's' : ''})
+                ({data.teachers_count} docente{data.teachers_count !== 1 ? 's' : ''}, {data.free_count || 0} libre{(data.free_count || 0) !== 1 ? 's' : ''}, {data.students_count} alumno{data.students_count !== 1 ? 's' : ''})
               </span>
             )}
           </div>

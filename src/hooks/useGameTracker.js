@@ -12,16 +12,17 @@ import { supabase } from '@/lib/supabase';
  * Si las funciones nuevas no existen aun en Supabase, usa fallback al metodo antiguo.
  */
 export function useGameTracker() {
-  const { user, student, isTeacher, isStudent } = useAuth();
+  const { user, student, isTeacher, isStudent, isFreeUser } = useAuth();
   const sessionIdRef = useRef(null);
   const completedRef = useRef(false);
   const startTimeRef = useRef(null);
 
   const getUserInfo = useCallback(() => {
     if (isTeacher && user) return { type: 'teacher', id: user.id };
+    if (isFreeUser && user) return { type: 'free', id: user.id };
     if (isStudent && student) return { type: 'student', id: student.id };
     return { type: 'anonymous', id: null };
-  }, [user, student, isTeacher, isStudent]);
+  }, [user, student, isTeacher, isStudent, isFreeUser]);
 
   /**
    * Inicia una sesion de tracking. Llamar al montar la app.
@@ -115,10 +116,10 @@ export function useGameTracker() {
     // Ruta 2 (fallback): insertar directamente como antes
     const userInfo = getUserInfo();
     try {
-      if (userInfo.type === 'teacher' && userInfo.id) {
-        // Teacher: insert directo (tiene auth de Supabase)
+      if ((userInfo.type === 'teacher' || userInfo.type === 'free') && userInfo.id) {
+        // Teacher/Free: insert directo (tiene auth de Supabase)
         await supabase.from('game_sessions').insert({
-          user_type: 'teacher',
+          user_type: userInfo.type,
           user_id: userInfo.id,
           app_id: appId,
           app_name: appName,

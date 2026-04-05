@@ -126,11 +126,11 @@ function OverviewTab({ stats }) {
 
   const mainCards = [
     { label: 'Docentes', value: stats.total_teachers, icon: '👨‍🏫' },
+    { label: 'Libres', value: stats.total_free ?? 0, icon: '🚀' },
     { label: 'Alumnos', value: stats.total_students, icon: '🎓' },
     { label: 'Grupos', value: stats.total_groups, icon: '👥' },
     { label: 'Partidas totales', value: stats.total_sessions, icon: '🎮' },
     { label: 'Partidas hoy', value: stats.sessions_today, icon: '📅' },
-    { label: 'Esta semana', value: stats.sessions_this_week, icon: '📊' },
   ];
 
   const detailCards = [
