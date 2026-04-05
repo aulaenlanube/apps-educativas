@@ -19,7 +19,7 @@ const AppRunnerPage = () => {
     const location = useLocation();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
-    const { trackGameSession, startTimer } = useGameTracker();
+    const { startSession, trackGameSession, abandonSession } = useGameTracker();
 
     const result = findAppById(appId, level, grade);
 
@@ -45,8 +45,17 @@ const AppRunnerPage = () => {
     // 3. Default (lo que diga la app por defecto, ej. Lengua).
     const activeSubjectId = paramSubjectId || location.state?.fromSubjectId || defaultSubjectId;
 
-    // Iniciar timer al montar la app
-    useEffect(() => { startTimer(); }, [startTimer]);
+    // Iniciar sesion de tracking al montar, abandonar al desmontar
+    useEffect(() => {
+      startSession({
+        appId: app.id,
+        appName: app.name,
+        level,
+        grade,
+        subjectId: activeSubjectId,
+      });
+      return () => { abandonSession(); };
+    }, [app?.id, app?.name, level, grade, activeSubjectId, startSession, abandonSession]);
 
     const onGameComplete = useCallback((data) => {
       trackGameSession({

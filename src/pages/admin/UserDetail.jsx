@@ -78,8 +78,8 @@ const UserDetail = ({ user }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: 'Partidas', value: stats.total_sessions, icon: Gamepad2, color: 'text-indigo-600' },
+            { label: 'Nota media', value: `${stats.avg_nota ?? '-'}/10`, icon: Trophy, color: 'text-amber-600' },
             { label: 'Precision', value: `${stats.avg_accuracy}%`, icon: Target, color: 'text-green-600' },
-            { label: 'Tiempo total', value: `${stats.total_time_minutes}m`, icon: Clock, color: 'text-orange-600' },
             { label: 'Apps jugadas', value: stats.apps_played, icon: Star, color: 'text-purple-600' },
           ].map((card, i) => {
             const Icon = card.icon;
@@ -133,7 +133,7 @@ const UserDetail = ({ user }) => {
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">App</th>
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">Curso</th>
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">Modo</th>
-                    <th className="px-4 py-2 text-xs font-medium text-slate-500">Puntuacion</th>
+                    <th className="px-4 py-2 text-xs font-medium text-slate-500">Nota</th>
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">Aciertos</th>
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">Duracion</th>
                     <th className="px-4 py-2 text-xs font-medium text-slate-500">Fecha</th>
@@ -153,7 +153,16 @@ const UserDetail = ({ user }) => {
                           {s.mode === 'test' ? 'Test' : 'Practica'}
                         </span>
                       </td>
-                      <td className="px-4 py-2.5 font-medium text-slate-700">{s.score}</td>
+                      <td className="px-4 py-2.5 font-medium text-slate-700">
+                        {s.nota != null ? (
+                          <span className={`px-2 py-0.5 rounded text-xs font-bold ${
+                            s.nota >= 9 ? 'bg-green-100 text-green-700'
+                            : s.nota >= 7 ? 'bg-emerald-100 text-emerald-700'
+                            : s.nota >= 5 ? 'bg-amber-100 text-amber-700'
+                            : 'bg-red-100 text-red-700'
+                          }`}>{s.nota}/10</span>
+                        ) : '-'}
+                      </td>
                       <td className="px-4 py-2.5 text-slate-500">
                         {s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '-'}
                       </td>

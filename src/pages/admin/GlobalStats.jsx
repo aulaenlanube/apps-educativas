@@ -73,7 +73,7 @@ const GlobalStats = ({ stats }) => {
                   <th className="px-4 py-2 text-xs font-medium text-slate-500">#</th>
                   <th className="px-4 py-2 text-xs font-medium text-slate-500">App</th>
                   <th className="px-4 py-2 text-xs font-medium text-slate-500">Partidas</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500">Puntuacion media</th>
+                  <th className="px-4 py-2 text-xs font-medium text-slate-500">Nota media</th>
                   <th className="px-4 py-2 text-xs font-medium text-slate-500">Popularidad</th>
                 </tr>
               </thead>
@@ -85,7 +85,7 @@ const GlobalStats = ({ stats }) => {
                       <td className="px-4 py-2.5 text-slate-400 font-bold">{i + 1}</td>
                       <td className="px-4 py-2.5 font-medium text-slate-700">{app.app_name}</td>
                       <td className="px-4 py-2.5 text-slate-600">{app.play_count}</td>
-                      <td className="px-4 py-2.5 text-slate-600">{app.avg_score ?? '-'}</td>
+                      <td className="px-4 py-2.5 text-slate-600">{app.avg_nota != null ? `${app.avg_nota}/10` : '-'}</td>
                       <td className="px-4 py-2.5 w-40">
                         <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                           <div

@@ -5,7 +5,7 @@ import Matter from 'matter-js';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square } from 'lucide-react';
 
-const OrdenaBolas = () => {
+const OrdenaBolas = ({ onGameComplete }) => {
     const { level, grade } = useParams();
 
     const sceneRef = useRef(null);
@@ -55,6 +55,24 @@ const OrdenaBolas = () => {
     };
 
     const allowedOps = getAllowedOperations();
+    const trackedRef = useRef(false);
+
+    // Tracking al terminar partida
+    useEffect(() => {
+        if ((gameState === 'won' || gameState === 'lost') && !trackedRef.current) {
+            trackedRef.current = true;
+            const won = gameState === 'won';
+            onGameComplete?.({
+                mode: 'test',
+                score: won ? config.ballCount * 100 : 0,
+                maxScore: config.ballCount * 100,
+                correctAnswers: won ? config.ballCount : 0,
+                totalQuestions: config.ballCount,
+                durationSeconds: Math.round(timeElapsed / 1000),
+            });
+        }
+        if (gameState === 'config' || gameState === 'playing') trackedRef.current = false;
+    }, [gameState, config.ballCount, timeElapsed, onGameComplete]);
 
     // Cronómetro CORREGIDO: Añadida 'key' a las dependencias
     useEffect(() => {

@@ -45,7 +45,7 @@ const generateGrassTexture = () => {
   return texture;
 };
 
-const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
+const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   const subjectPrefix = subjectId || (level === 'primaria' ? 'lengua' : 'general');
   const dataPath = `/data/${level}/${grade}/${subjectPrefix}-runner.json`;
 
@@ -57,6 +57,22 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
     blocks, timeLeft, score, gameState, mission, mineBlock,
     isSuddenDeath, combo, isFrozen, lastEvent
   } = useExcavacionSelectiva(data);
+
+  // Tracking al terminar
+  const trackedRef = React.useRef(false);
+  useEffect(() => {
+    if (gameState === 'lost' && !trackedRef.current) {
+      trackedRef.current = true;
+      onGameComplete?.({
+        mode: 'practice',
+        score,
+        maxScore: score,
+        correctAnswers: score,
+        totalQuestions: score,
+      });
+    }
+    if (gameState === 'playing') trackedRef.current = false;
+  }, [gameState, score, onGameComplete]);
 
   // Estados de control y visuales
   const [isLocked, setIsLocked] = useState(false);

@@ -7,7 +7,7 @@ import './EntrenadorTabla.css';
 import { FAMILIES, normalizeString } from '../_shared/QuimicaHelpers';
 import PeriodicTableModal from '../_shared/PeriodicTableModal';
 
-const EntrenadorTabla = () => {
+const EntrenadorTabla = ({ onGameComplete }) => {
     // Game State
     const [gameState, setGameState] = useState('setup'); // setup, playing, result
     const [elements, setElements] = useState([]);
@@ -135,6 +135,13 @@ const EntrenadorTabla = () => {
             } else {
                 setGameState('result');
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                onGameComplete?.({
+                    mode: 'test',
+                    score: session.score * 100,
+                    maxScore: session.targets.length * 100,
+                    correctAnswers: session.score,
+                    totalQuestions: session.targets.length,
+                });
             }
         }, 1200);
     };

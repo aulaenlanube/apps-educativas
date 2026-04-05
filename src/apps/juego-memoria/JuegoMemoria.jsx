@@ -11,7 +11,7 @@ const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential
 
 
 
-const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
+const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGameComplete }) => {
     const [words, setWords] = useState([]);
     const [targetOrder, setTargetOrder] = useState([]); // Random order to ask
     const [currentIndex, setCurrentIndex] = useState(0); // Index in targetOrder
@@ -39,6 +39,24 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia' }) => {
     const [isRandomOrder, setIsRandomOrder] = useState(false); // false = Sequential (Position 1), true = Random (Position 2)
 
     const timerRef = useRef(null);
+    const trackedRef = useRef(false);
+
+    // Tracking al terminar
+    useEffect(() => {
+        if ((gameState === 'won' || gameState === 'lost') && !trackedRef.current) {
+            trackedRef.current = true;
+            const won = gameState === 'won';
+            onGameComplete?.({
+                mode: 'test',
+                score: won ? correctIndices.size * 100 : 0,
+                maxScore: gridSize * 100,
+                correctAnswers: correctIndices.size,
+                totalQuestions: gridSize,
+                durationSeconds: GAME_TIME - timeLeft,
+            });
+        }
+        if (gameState === 'memorize' || gameState === 'playing') trackedRef.current = false;
+    }, [gameState, correctIndices, gridSize, timeLeft, onGameComplete]);
 
     // Helper for robust shuffling
     const shuffleArray = (array) => {

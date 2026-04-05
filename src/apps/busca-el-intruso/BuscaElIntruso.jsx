@@ -9,7 +9,7 @@ import { FaBook, FaTimes } from 'react-icons/fa';
  * BuscaElIntruso - Edición "Spectacular UI"
  * Juego de discriminación visual y semántica con estética gamificada.
  */
-const BuscaElIntruso = ({ tema }) => {
+const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const nivel = level || 'primaria';
   const curso = gradeParam || '1';
@@ -203,6 +203,15 @@ const BuscaElIntruso = ({ tema }) => {
   const finalizarTest = () => {
     detenerCronometro();
     setMostrarResumen(true);
+    const elapsed = estado.tiempoInicio ? Math.round((performance.now() - estado.tiempoInicio) / 1000) : null;
+    onGameComplete?.({
+      mode: 'test',
+      score: estado.aciertos * 100,
+      maxScore: estado.rondasTotales * 100,
+      correctAnswers: estado.aciertos,
+      totalQuestions: estado.rondasTotales,
+      durationSeconds: elapsed,
+    });
   };
 
   const activarModoLibre = () => {

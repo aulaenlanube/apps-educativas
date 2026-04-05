@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
   BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap,
-  ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle
+  ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
+  Play
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -107,7 +109,7 @@ function AppsDetail({ apps }) {
               <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Practica</th>
               <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Examen</th>
               <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Precision</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Mejor</th>
+              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Nota</th>
               <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden md:table-cell">Tiempo</th>
               <th className="px-3 py-2.5 text-xs font-medium text-slate-500 rounded-r-lg w-8"></th>
             </tr>
@@ -135,7 +137,9 @@ function AppsDetail({ apps }) {
                   <td className="px-3 py-2.5 text-center">
                     <AccuracyBadge value={app.accuracy} />
                   </td>
-                  <td className="px-3 py-2.5 text-center font-semibold text-amber-600">{app.best_score}</td>
+                  <td className="px-3 py-2.5 text-center">
+                    <NotaBadge value={app.best_nota ?? app.best_score} />
+                  </td>
                   <td className="px-3 py-2.5 text-center text-slate-500 hidden md:table-cell">{formatTime(app.total_time_seconds)}</td>
                   <td className="px-3 py-2.5 text-center">
                     {expanded === app.app_id
@@ -156,16 +160,16 @@ function AppsDetail({ apps }) {
                         >
                           <div className="bg-slate-50 px-4 py-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
                             <div>
-                              <p className="text-xs text-slate-400">Punt. media practica</p>
-                              <p className="text-sm font-bold text-slate-700">{app.avg_practice_score}</p>
+                              <p className="text-xs text-slate-400">Nota media</p>
+                              <p className="text-sm font-bold text-slate-700">{app.avg_nota ?? '-'}/10</p>
                             </div>
                             <div>
-                              <p className="text-xs text-slate-400">Punt. media examen</p>
-                              <p className="text-sm font-bold text-slate-700">{app.avg_test_score}</p>
+                              <p className="text-xs text-slate-400">Nota media examen</p>
+                              <p className="text-sm font-bold text-slate-700">{app.avg_test_nota ?? '-'}/10</p>
                             </div>
                             <div>
-                              <p className="text-xs text-slate-400">Mejor punt. examen</p>
-                              <p className="text-sm font-bold text-amber-600">{app.best_test_score}</p>
+                              <p className="text-xs text-slate-400">Mejor nota examen</p>
+                              <p className="text-sm font-bold text-amber-600">{app.best_test_nota ?? '-'}/10</p>
                             </div>
                             <div>
                               <p className="text-xs text-slate-400">Duracion media</p>
@@ -221,6 +225,20 @@ function AccuracyBadge({ value }) {
   );
 }
 
+function NotaBadge({ value }) {
+  const n = typeof value === 'number' ? value : parseFloat(value) || 0;
+  const color = n >= 9 ? 'bg-green-100 text-green-700'
+    : n >= 7 ? 'bg-emerald-100 text-emerald-700'
+    : n >= 5 ? 'bg-amber-100 text-amber-700'
+    : n > 0 ? 'bg-red-100 text-red-700'
+    : 'bg-slate-100 text-slate-400';
+  return (
+    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold ${color}`}>
+      {n > 0 ? `${n}/10` : '-'}
+    </span>
+  );
+}
+
 // ─── Recent Sessions ─────────────────────────────────────
 function RecentSessions({ sessions }) {
   if (!sessions || sessions.length === 0) return null;
@@ -232,7 +250,7 @@ function RecentSessions({ sessions }) {
           <tr className="bg-slate-50 text-left">
             <th className="px-3 py-2 text-xs font-medium text-slate-500 rounded-l-lg">App</th>
             <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center">Modo</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center">Puntuacion</th>
+            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center">Nota</th>
             <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Aciertos</th>
             <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Duracion</th>
             <th className="px-3 py-2 text-xs font-medium text-slate-500 rounded-r-lg">Fecha</th>
@@ -254,8 +272,8 @@ function RecentSessions({ sessions }) {
                   {s.mode === 'test' ? 'Examen' : 'Practica'}
                 </span>
               </td>
-              <td className="px-3 py-2 text-center font-semibold text-slate-700">
-                {s.score}{s.max_score > 0 ? `/${s.max_score}` : ''}
+              <td className="px-3 py-2 text-center">
+                <NotaBadge value={s.nota} />
               </td>
               <td className="px-3 py-2 text-center text-slate-500 hidden sm:table-cell">
                 {s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '-'}
@@ -345,6 +363,7 @@ function SubjectStats({ data }) {
 // ═══════════════════════════════════════════════════════════
 export default function StudentDashboard() {
   const { student } = useAuth();
+  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -496,8 +515,8 @@ export default function StudentDashboard() {
                 <StatCard icon={Target} label="Precision global" value={`${stats.avg_accuracy || 0}%`}
                   subValue={`${stats.total_correct || 0} de ${stats.total_questions || 0} aciertos`}
                   color="bg-green-500" delay={0.1} />
-                <StatCard icon={Trophy} label="Mejor puntuacion" value={stats.best_score || 0}
-                  subValue={`Media: ${stats.avg_practice_score || 0} (prac.) / ${stats.avg_test_score || 0} (exam.)`}
+                <StatCard icon={Trophy} label="Mejor nota" value={`${stats.best_nota ?? stats.best_score ?? 0}/10`}
+                  subValue={`Media examen: ${stats.avg_test_nota ?? '-'}/10`}
                   color="bg-amber-500" delay={0.15} />
               </div>
 
@@ -558,8 +577,8 @@ export default function StudentDashboard() {
                           <p className="text-xs text-slate-400">{app.total_plays} partidas &middot; Precision: {app.accuracy}%</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm font-bold text-slate-700">{app.best_score}</p>
-                          <p className="text-xs text-slate-400">mejor</p>
+                          <NotaBadge value={app.best_nota ?? app.best_score} />
+                          <p className="text-xs text-slate-400 mt-0.5">mejor nota</p>
                         </div>
                       </div>
                     ))}
@@ -605,12 +624,17 @@ export default function StudentDashboard() {
                   .filter(asg => taskFilter === 'all' ? true : taskFilter === 'completed' ? asg.completed : !asg.completed)
                   .map((asg) => {
                   const isOverdue = asg.due_date && new Date(asg.due_date) < new Date() && !asg.completed;
+                  const canNavigate = asg.app_id && asg.level && asg.grade && asg.subject_id;
+                  const appUrl = canNavigate
+                    ? `/curso/${asg.level}/${asg.grade}/${asg.subject_id}/app/${asg.app_id}`
+                    : null;
                   return (
                     <div
                       key={asg.id}
-                      className={`bg-white rounded-2xl p-5 border shadow-sm ${
+                      onClick={() => appUrl && navigate(appUrl)}
+                      className={`bg-white rounded-2xl p-5 border shadow-sm transition-all ${
                         asg.completed ? 'border-green-200' : isOverdue ? 'border-amber-200' : 'border-slate-100'
-                      }`}
+                      } ${appUrl ? 'cursor-pointer hover:shadow-md hover:border-purple-200' : ''}`}
                     >
                       <div className="flex items-start gap-3">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
@@ -631,7 +655,7 @@ export default function StudentDashboard() {
                           {asg.description && <p className="text-sm text-slate-400 mt-1 italic">{asg.description}</p>}
 
                           <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                            <span>Nota minima: <strong className="text-slate-600">{asg.min_score} pts</strong> en examen</span>
+                            <span>Nota minima: <strong className="text-slate-600">{asg.min_score}/10</strong> en examen</span>
                             {asg.due_date && (
                               <span className={isOverdue ? 'text-amber-600 font-medium' : ''}>
                                 Fecha limite: {new Date(asg.due_date).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}
@@ -644,18 +668,29 @@ export default function StudentDashboard() {
                             {asg.completed ? (
                               <span className="text-green-600 font-medium flex items-center gap-1">
                                 <CheckCircle2 className="w-4 h-4" />
-                                Completada - Tu mejor: {asg.best_score} pts
+                                Completada - Tu mejor nota: {asg.best_nota ?? asg.best_score}/10
                               </span>
                             ) : (
                               <span className="text-slate-500">
                                 {asg.attempts > 0
-                                  ? `${asg.attempts} intento${asg.attempts !== 1 ? 's' : ''} - Mejor: ${asg.best_score || 0} pts (faltan ${asg.min_score - (asg.best_score || 0)} pts)`
+                                  ? `${asg.attempts} intento${asg.attempts !== 1 ? 's' : ''} - Mejor nota: ${asg.best_nota ?? asg.best_score ?? 0}/10 (necesitas ${asg.min_score}/10)`
                                   : 'Aun no has intentado esta tarea'
                                 }
                               </span>
                             )}
                           </div>
                         </div>
+
+                        {/* Boton jugar */}
+                        {appUrl && (
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
+                            asg.completed
+                              ? 'bg-green-100 text-green-600'
+                              : 'bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-md'
+                          }`}>
+                            <Play className="w-5 h-5" />
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

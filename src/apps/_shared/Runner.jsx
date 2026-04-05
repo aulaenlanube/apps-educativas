@@ -20,7 +20,7 @@ const CHARACTERS = [
   { id: 2, name: "Dark", mainColor: "bg-purple-700", borderColor: "border-emerald-400", eyeColor: "bg-emerald-400", eyeBorder: "border-black", glow: "shadow-[0_0_20px_rgba(16,185,129,0.8)]" }
 ];
 
-const Runner = ({ level, grade, subjectId }) => {
+const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   const [gameState, setGameState] = useState('start');
   const [score, setScore] = useState(0);
   const [targetType, setTargetType] = useState(null);
@@ -269,6 +269,13 @@ const Runner = ({ level, grade, subjectId }) => {
     isPlayingRef.current = false;
     setGameState('gameover');
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
+    onGameComplete?.({
+      mode: 'practice',
+      score: score,
+      maxScore: score,
+      correctAnswers: score,
+      totalQuestions: score,
+    });
   };
 
   const checkAABB = (r1, r2) => {

@@ -880,12 +880,14 @@ function SnakeTracker({ gameState, score, difficulty, onGameComplete }) {
   useEffect(() => {
     if (gameState === 'gameover' && !tracked.current) {
       tracked.current = true;
+      const wordsCollected = Math.floor(score / 10);
+      const TARGET_WORDS = 30; // 30 palabras = nota 10
       onGameComplete?.({
         mode: difficulty === 'hard' ? 'test' : 'practice',
         score,
-        maxScore: score,
-        correctAnswers: Math.floor(score / 10),
-        totalQuestions: Math.floor(score / 10),
+        maxScore: TARGET_WORDS * 10,
+        correctAnswers: wordsCollected,
+        totalQuestions: TARGET_WORDS,
       });
     }
     if (gameState !== 'gameover') tracked.current = false;

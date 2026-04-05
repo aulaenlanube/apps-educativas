@@ -421,12 +421,14 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     useEffect(() => {
         if (gamePhase === 'gameOver' && !trackedRef.current) {
             trackedRef.current = true;
+            const wordsCollected = Math.floor(score / 10);
+            const TARGET_WORDS = 30; // 30 palabras = nota 10
             onGameComplete?.({
                 mode: difficulty === 'hard' ? 'test' : 'practice',
                 score,
-                maxScore: score,
-                correctAnswers: score / 10,
-                totalQuestions: score / 10,
+                maxScore: TARGET_WORDS * 10,
+                correctAnswers: wordsCollected,
+                totalQuestions: TARGET_WORDS,
             });
         }
         if (gamePhase !== 'gameOver') trackedRef.current = false;

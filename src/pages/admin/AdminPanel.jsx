@@ -124,24 +124,49 @@ const AdminPanel = () => {
 function OverviewTab({ stats }) {
   if (!stats) return null;
 
-  const cards = [
-    { label: 'Docentes', value: stats.total_teachers, color: 'bg-blue-500', icon: '👨‍🏫' },
-    { label: 'Alumnos', value: stats.total_students, color: 'bg-green-500', icon: '🎓' },
-    { label: 'Grupos', value: stats.total_groups, color: 'bg-purple-500', icon: '👥' },
-    { label: 'Partidas totales', value: stats.total_sessions, color: 'bg-orange-500', icon: '🎮' },
-    { label: 'Partidas hoy', value: stats.sessions_today, color: 'bg-pink-500', icon: '📅' },
-    { label: 'Esta semana', value: stats.sessions_this_week, color: 'bg-indigo-500', icon: '📊' },
+  const mainCards = [
+    { label: 'Docentes', value: stats.total_teachers, icon: '👨‍🏫' },
+    { label: 'Alumnos', value: stats.total_students, icon: '🎓' },
+    { label: 'Grupos', value: stats.total_groups, icon: '👥' },
+    { label: 'Partidas totales', value: stats.total_sessions, icon: '🎮' },
+    { label: 'Partidas hoy', value: stats.sessions_today, icon: '📅' },
+    { label: 'Esta semana', value: stats.sessions_this_week, icon: '📊' },
+  ];
+
+  const detailCards = [
+    { label: 'Completadas', value: stats.completed_sessions, icon: '✅' },
+    { label: 'Abandonadas', value: stats.abandoned_sessions, icon: '🚪' },
+    { label: 'Anonimas', value: stats.anonymous_sessions, icon: '👤' },
+    { label: 'Tasa abandono', value: `${stats.abandonment_rate ?? 0}%`, icon: '📉' },
+    { label: 'Duracion media', value: stats.avg_duration_seconds ? `${Math.round(stats.avg_duration_seconds / 60)}m` : '0m', icon: '⏱️' },
+    { label: 'Este mes', value: stats.sessions_this_month, icon: '📆' },
   ];
 
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {cards.map((card, i) => (
+        {mainCards.map((card, i) => (
           <motion.div
             key={card.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
+            className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm"
+          >
+            <div className="text-2xl mb-1">{card.icon}</div>
+            <div className="text-2xl font-bold text-slate-800">{card.value ?? 0}</div>
+            <div className="text-xs text-slate-500 font-medium">{card.label}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {detailCards.map((card, i) => (
+          <motion.div
+            key={card.label}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.05 }}
             className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm"
           >
             <div className="text-2xl mb-1">{card.icon}</div>
@@ -161,15 +186,22 @@ function OverviewTab({ stats }) {
         >
           <h3 className="text-lg font-bold text-slate-800 mb-4">Apps mas populares</h3>
           <div className="space-y-3">
-            {stats.top_apps.slice(0, 5).map((app, i) => {
+            {stats.top_apps.slice(0, 8).map((app, i) => {
               const maxCount = stats.top_apps[0]?.play_count || 1;
+              const abandonRate = app.play_count > 0
+                ? Math.round((app.abandoned_count || 0) / app.play_count * 100)
+                : 0;
               return (
                 <div key={app.app_id} className="flex items-center gap-3">
                   <span className="text-sm font-bold text-slate-400 w-6">#{i + 1}</span>
                   <div className="flex-1">
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-sm font-medium text-slate-700">{app.app_name}</span>
-                      <span className="text-xs text-slate-500">{app.play_count} partidas</span>
+                      <div className="flex items-center gap-3 text-xs text-slate-500">
+                        <span>{app.play_count} partidas</span>
+                        <span className="text-green-600">{app.completed_count || 0} completadas</span>
+                        {abandonRate > 0 && <span className="text-amber-600">{abandonRate}% abandono</span>}
+                      </div>
                     </div>
                     <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                       <div

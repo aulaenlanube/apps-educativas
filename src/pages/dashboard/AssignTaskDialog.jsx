@@ -21,7 +21,7 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
   const [selectedApp, setSelectedApp] = useState(null);
 
   // Other fields
-  const [minScore, setMinScore] = useState(70);
+  const [minScore, setMinScore] = useState(5);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [targetType, setTargetType] = useState(studentId ? 'student' : 'group');
@@ -69,7 +69,7 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
     setSelectedGrade(null);
     setSelectedSubject(null);
     setSelectedApp(null);
-    setMinScore(70);
+    setMinScore(5);
     setTitle('');
     setDescription('');
     setDueDate('');
@@ -273,17 +273,37 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
 
           {/* Nota minima */}
           <div className="space-y-2">
-            <Label>Nota minima en modo examen</Label>
+            <Label>Nota minima para aprobar (0-10)</Label>
             <div className="flex items-center gap-3">
-              <Input
-                type="number"
-                min={0}
-                max={10000}
-                value={minScore}
-                onChange={(e) => setMinScore(parseInt(e.target.value) || 0)}
-                className="w-28"
-              />
-              <span className="text-sm text-slate-500">puntos para superar la tarea</span>
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min={0}
+                  max={10}
+                  step={0.5}
+                  value={minScore}
+                  onChange={(e) => setMinScore(parseFloat(e.target.value))}
+                  className="w-40 accent-purple-600"
+                />
+                <span className="text-lg font-bold text-purple-700 min-w-[3ch] text-center">{minScore}</span>
+              </div>
+              <span className="text-sm text-slate-500">sobre 10 en modo examen</span>
+            </div>
+            <div className="flex gap-1.5 mt-1">
+              {[0, 3, 5, 7, 8, 9, 10].map(v => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setMinScore(v)}
+                  className={`px-2 py-0.5 rounded text-xs font-medium transition-all ${
+                    minScore === v
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                  }`}
+                >
+                  {v}
+                </button>
+              ))}
             </div>
           </div>
 

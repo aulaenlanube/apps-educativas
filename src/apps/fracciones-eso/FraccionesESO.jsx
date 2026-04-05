@@ -17,7 +17,7 @@ const SECTIONS = [
 const gcd = (a, b) => (!b ? a : gcd(b, a % b));
 const lcm = (a, b) => (a * b) / gcd(a, b);
 
-const FraccionesESO = () => {
+const FraccionesESO = ({ onGameComplete }) => {
     const [section, setSection] = useState(null);
     const [exercise, setExercise] = useState(null);
     const [userAnswer, setUserAnswer] = useState({ num: '', den: '', single: '' });
@@ -333,6 +333,13 @@ const FraccionesESO = () => {
         if (finalGrade >= 5) {
             confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
         }
+        onGameComplete?.({
+            mode: 'test',
+            score: correctCount * 100,
+            maxScore: 1200,
+            correctAnswers: correctCount,
+            totalQuestions: 12,
+        });
     };
 
     const renderHelpContent = () => {

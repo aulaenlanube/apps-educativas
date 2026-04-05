@@ -128,7 +128,7 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                       )}
 
                       <div className="flex items-center gap-3 text-xs text-slate-400">
-                        <span>Min: <strong className="text-slate-600">{asg.min_score} pts</strong> en examen</span>
+                        <span>Nota minima: <strong className="text-slate-600">{asg.min_score}/10</strong> en examen</span>
                         {asg.due_date && (
                           <span className={`flex items-center gap-1 ${isOverdue ? 'text-amber-600' : ''}`}>
                             {isOverdue ? <AlertTriangle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}

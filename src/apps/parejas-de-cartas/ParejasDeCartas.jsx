@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import './ParejasDeCartas.css';
 
-const ParejasDeCartas = ({ tema }) => {
+const ParejasDeCartas = ({ tema, onGameComplete }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const nivel = level || 'primaria';
   const curso = gradeParam || '1';
@@ -231,6 +231,7 @@ const ParejasDeCartas = ({ tema }) => {
     }
   }, [eleccionUno, eleccionDos]);
 
+  const trackedRef = useRef(false);
   useEffect(() => {
     // Victoria completa
     if (fase === 'juego' && cartas.length > 0 && cartas.every(carta => carta.matched)) {
@@ -238,6 +239,23 @@ const ParejasDeCartas = ({ tema }) => {
       confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     }
   }, [cartas, fase]);
+
+  // Tracking al entrar en resumen
+  useEffect(() => {
+    if (fase === 'resumen' && !trackedRef.current) {
+      trackedRef.current = true;
+      const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
+      const nota = Math.round((parejasEncontradas / config.parejas) * 1000);
+      onGameComplete?.({
+        mode: config.isExam ? 'test' : 'practice',
+        score: nota,
+        maxScore: 1000,
+        correctAnswers: parejasEncontradas,
+        totalQuestions: config.parejas,
+      });
+    }
+    if (fase !== 'resumen') trackedRef.current = false;
+  }, [fase, cartas, config, onGameComplete]);
 
   const resetearTurno = () => {
     setEleccionUno(null);

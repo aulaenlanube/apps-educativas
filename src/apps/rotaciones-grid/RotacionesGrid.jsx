@@ -53,7 +53,7 @@ const FIGURES = {
     ]
 };
 
-const RotacionesGrid = () => {
+const RotacionesGrid = ({ onGameComplete }) => {
     const [mode, setMode] = useState('practice');
     const [currentFigure, setCurrentFigure] = useState([]);
     const [targetRotation, setTargetRotation] = useState(90);
@@ -161,6 +161,13 @@ const RotacionesGrid = () => {
                 generateExercise();
             } else {
                 setExamFinished(true);
+                onGameComplete?.({
+                    mode: 'test',
+                    score: (examScore + (wasCorrect ? 1 : 0)) * 100,
+                    maxScore: TOTAL_EXAM_STEPS * 100,
+                    correctAnswers: examScore + (wasCorrect ? 1 : 0),
+                    totalQuestions: TOTAL_EXAM_STEPS,
+                });
             }
         }, 2000);
     };
