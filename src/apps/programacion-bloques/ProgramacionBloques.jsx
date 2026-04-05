@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { getAppContent } from '../../services/gameDataService';
 
 const ProgramacionBloques = () => {
     const { grade } = useParams();
@@ -42,9 +43,8 @@ const ProgramacionBloques = () => {
     useEffect(() => {
         const loadLevels = async () => {
             try {
-                const response = await fetch(`${import.meta.env.BASE_URL}data/eso/${grade}/programacion-bloques.json`);
-                if (!response.ok) throw new Error('Failed to load levels');
-                const data = await response.json();
+                const data = await getAppContent('bloques', 'eso', grade);
+                if (!data) throw new Error('Failed to load levels');
 
                 // Process variants if they exist
                 const processedData = data.map(level => {

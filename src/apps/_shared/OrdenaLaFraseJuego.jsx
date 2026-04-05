@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
-import { getFrases } from './../../../public/data/api';
+import { getOrdenaFrasesData } from '../../services/gameDataService';
 
 const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -18,7 +18,7 @@ const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
     const cargarContenido = async () => {
       setIsLoading(true);
       const asignatura = level === 'primaria' ? (subjectId || 'general') : subjectId;
-      const frasesData = await getFrases(level, grade, asignatura);
+      const frasesData = await getOrdenaFrasesData(level, grade, asignatura);
       setFrases(frasesData || []);
       setIsLoading(false);
     };

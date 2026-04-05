@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import { getIntrusoData } from '../../services/gameDataService';
 import './BuscaElIntruso.css';
 
 import { FaBook, FaTimes } from 'react-icons/fa';
@@ -66,42 +67,28 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   useEffect(() => {
     let vivo = true;
     setDatosJuego(null);
-    const base = import.meta.env.BASE_URL || '/';
 
-    const urls = [];
-    if (asignatura && asignatura !== 'general') {
-      urls.push(`${base}data/${nivel}/${curso}/${asignatura}-busca-el-intruso.json`);
-    }
-    urls.push(`${base}data/${nivel}/${curso}/busca-el-intruso.json`);
-
-    if (nivel === 'primaria' && curso === '1') {
-      urls.push(`${base}data/primaria/1/busca-el-intruso.json`);
-    }
-
-    const cargar = async (url) => {
-      const resp = await fetch(url);
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      return await resp.json();
-    };
+    const effectiveSubject = (asignatura && asignatura !== 'general') ? asignatura : 'general';
 
     (async () => {
-      for (const url of urls) {
-        try {
-          const datos = await cargar(url);
-          if (vivo) {
-            if (Array.isArray(datos) && typeof datos[0] === 'string') {
-              setModoLogico('visual');
-            } else {
-              setModoLogico('conceptual');
-            }
-            setDatosJuego(datos);
-            return;
-          }
-        } catch (e) {
-          console.warn(`No se pudo cargar ${url}`, e);
+      try {
+        let datos = await getIntrusoData(nivel, curso, effectiveSubject);
+        // Fallback a 'general' si no hay datos para la asignatura
+        if ((!datos || datos.length === 0) && effectiveSubject !== 'general') {
+          datos = await getIntrusoData(nivel, curso, 'general');
         }
+        if (vivo) {
+          if (Array.isArray(datos) && datos.length > 0 && typeof datos[0] === 'string') {
+            setModoLogico('visual');
+          } else {
+            setModoLogico('conceptual');
+          }
+          setDatosJuego(datos || []);
+        }
+      } catch (e) {
+        console.warn('Error cargando intruso data:', e);
+        if (vivo) setDatosJuego([]);
       }
-      if (vivo) setDatosJuego([]);
     })();
 
     return () => { vivo = false; };

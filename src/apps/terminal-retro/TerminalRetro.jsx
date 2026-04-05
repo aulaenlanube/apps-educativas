@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { getAppContent } from '../../services/gameDataService';
 
 const TerminalRetro = () => {
     const { grade } = useParams(); // Get the grade (1, 2, 3, 4) from URL
@@ -66,9 +67,8 @@ const TerminalRetro = () => {
     useEffect(() => {
         const loadLevels = async () => {
             try {
-                const response = await fetch(`${import.meta.env.BASE_URL}data/eso/${grade || '1'}/programacion-terminal-retro.json`);
-                if (response.ok) {
-                    const data = await response.json();
+                const data = await getAppContent('terminal-retro', 'eso', grade || '1');
+                if (data) {
 
                     // Process data to select one variant per level initially
                     const processedData = data.map(level => {

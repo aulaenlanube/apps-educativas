@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from "@/lib/utils";
+import { getRunnerData } from '../../services/gameDataService';
 
 // Configuración del tablero y tiempos
 const GRID_SIZE = 25;
@@ -68,14 +69,9 @@ const SnakeDePalabras = (props) => {
     if (!level || !grade || !subjectId) return;
 
     setLoading(true);
-    const dataPath = `/data/${level}/${grade}/${subjectId}-runner.json`;
-
-    fetch(dataPath)
-      .then(res => {
-        if (!res.ok) throw new Error("Archivo no encontrado");
-        return res.json();
-      })
+    getRunnerData(level, grade, subjectId)
       .then(jsonData => {
+        if (!jsonData || Object.keys(jsonData).length === 0) throw new Error("Datos no encontrados");
         setData(jsonData);
         setCategories(Object.keys(jsonData));
         setCurrentCatIndex(0);

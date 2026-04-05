@@ -6,6 +6,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDetectiveDePalabras } from '../../hooks/useDetectiveDePalabras';
+import { getDetectiveData } from '../../services/gameDataService';
 import DetectiveDePalabrasUI from './DetectiveDePalabrasUI';
 
 const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
@@ -64,44 +65,22 @@ const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
     setCargando(true);
     setError(null);
 
-    const base = import.meta.env.BASE_URL || '/';
     const nivel = level === 'primaria' ? 'primaria' : 'eso';
-    const urlSubject = asignatura && asignatura !== 'general'
-      ? `${base}data/${nivel}/${grado}/${asignatura}-detective-palabras.json`
-      : null;
-    const urlGeneric = `${base}data/${nivel}/${grado}/detective-palabras.json`;
-    const urlFallback = `${base}data/${nivel}/1/detective-palabras.json`;
-
-    const cargar = async (url) => {
-      const r = await fetch(url, { cache: 'no-cache' });
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const datos = await r.json();
-      return barajar(normalizar(datos));
-    };
+    const effectiveSubject = (asignatura && asignatura !== 'general') ? asignatura : 'general';
 
     (async () => {
       try {
-        if (urlSubject) {
-          const f = await cargar(urlSubject);
-          if (vivo) {
-            setFrasesDelNivel(f);
-            setCargando(false);
-            return;
-          }
+        let datos = await getDetectiveData(nivel, grado, effectiveSubject);
+        // Fallback a 'general' si no hay datos
+        if ((!datos || datos.length === 0) && effectiveSubject !== 'general') {
+          datos = await getDetectiveData(nivel, grado, 'general');
         }
-        const g = await cargar(urlGeneric);
-        if (vivo) {
-          setFrasesDelNivel(g);
-          setCargando(false);
-          return;
+        // Fallback a grado 1
+        if (!datos || datos.length === 0) {
+          datos = await getDetectiveData(nivel, 1, effectiveSubject);
         }
-      } catch {
-        // Continuar con fallback
-      }
-      try {
-        const fb = await cargar(urlFallback);
         if (vivo) {
-          setFrasesDelNivel(fb);
+          setFrasesDelNivel(barajar(normalizar(datos || [])));
           setCargando(false);
         }
       } catch {

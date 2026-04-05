@@ -4,6 +4,7 @@ import { ArrowLeftRight, Play, RotateCcw, Lightbulb, Pause, Home, Menu, CloudRai
 import { useToast } from '@/components/ui/use-toast';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getRunnerData } from '../../services/gameDataService';
 
 const SPAWN_RATE_START = 2000;
 const INITIAL_SPEED = 0.15;
@@ -78,10 +79,8 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                     setGamePhase('menu');
                     return;
                 }
-                const fileName = `${subjectId}-runner.json`;
-                const response = await fetch(`${import.meta.env.BASE_URL}data/${level}/${grade}/${fileName}`);
-                if (!response.ok) throw new Error(`Error loading ${fileName}`);
-                const json = await response.json();
+                const json = await getRunnerData(level, grade, subjectId);
+                if (!json || Object.keys(json).length === 0) throw new Error("Datos no encontrados");
                 setConfigData(json);
                 setGamePhase('menu');
             } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation } from 'react-router-dom';
-import { getFrases } from './../../public/data/api';
+import { getOrdenaFrasesData } from '../services/gameDataService';
 import MascotOriginal from './MascotOriginal';
 
 const Mascot = () => {
@@ -27,7 +27,7 @@ const Mascot = () => {
         const loadContent = async () => {
             if (isSubjectPage) {
                 try {
-                    const frasesData = await getFrases(level, grade, subjectId);
+                    const frasesData = await getOrdenaFrasesData(level, grade, subjectId);
                     setMessages(frasesData || []);
                 } catch (err) {
                     console.error("Error loading educational phrases:", err);

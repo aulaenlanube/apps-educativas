@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
 import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star, BookOpen, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getRunnerData } from '../../services/gameDataService';
 import './Runner.css';
 
 // --- CONFIGURACIÓN BASE ---
@@ -72,14 +73,9 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   useEffect(() => {
     if (!level || !grade || !subjectId) return;
 
-    const dataPath = `/data/${level}/${grade}/${subjectId}-runner.json`;
-
-    fetch(dataPath)
-      .then(res => {
-        if (!res.ok) throw new Error("Archivo no encontrado");
-        return res.json();
-      })
+    getRunnerData(level, grade, subjectId)
       .then(data => {
+        if (!data || Object.keys(data).length === 0) throw new Error("Datos no encontrados");
         setGameData(data);
         gameDataRef.current = data;
         randomizeMission(data);

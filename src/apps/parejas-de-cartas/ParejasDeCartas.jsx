@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
+import { getParejasData } from '../../services/gameDataService';
 import './ParejasDeCartas.css';
 
 const ParejasDeCartas = ({ tema, onGameComplete }) => {
@@ -51,13 +52,9 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
   useEffect(() => {
     const cargarDatos = async () => {
       setCargando(true);
-      const base = import.meta.env.BASE_URL || '/';
-      const url = `${base}data/${nivel}/${curso}/${asignatura}-parejas.json`;
-
       try {
-        const resp = await fetch(url);
-        if (!resp.ok) throw new Error('No se encontraron datos');
-        const datos = await resp.json();
+        const datos = await getParejasData(nivel, curso, asignatura);
+        if (!datos || datos.length === 0) throw new Error('No se encontraron datos');
         setDatosCrudos(datos);
       } catch (error) {
         console.error("Error cargando cartas:", error);

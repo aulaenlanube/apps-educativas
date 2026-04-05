@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { getAppContent } from '../../services/gameDataService';
 import './EntrenadorTabla.css';
 
 import { FAMILIES, normalizeString } from '../_shared/QuimicaHelpers';
@@ -38,10 +39,11 @@ const EntrenadorTabla = ({ onGameComplete }) => {
 
     // Initial load
     useEffect(() => {
-        fetch('/data/quimica/elementos_info.json')
-            .then(res => res.json())
+        getAppContent('elementos-quimica')
             .then(data => {
-                setElements(data.elements);
+                if (data && data.elements) {
+                    setElements(data.elements);
+                }
                 setLoading(false);
             })
             .catch(err => console.error("Error cargando elementos:", err));

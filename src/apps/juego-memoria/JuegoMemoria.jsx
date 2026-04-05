@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getRunnerData } from '../../services/gameDataService';
 import './JuegoMemoria.css';
 
 const GAME_TIME = 60; // 1 minute
@@ -74,9 +75,8 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
     const fetchWords = async () => {
         try {
             setErrorMsg(null);
-            const response = await fetch(`/data/${level}/${grade}/${subjectId}-runner.json`);
-            if (!response.ok) throw new Error("No se pudo cargar los datos");
-            const data = await response.json();
+            const data = await getRunnerData(level, grade, subjectId);
+            if (!data || Object.keys(data).length === 0) throw new Error("No se pudo cargar los datos");
 
             const categories = Object.keys(data);
             if (categories.length === 0) {

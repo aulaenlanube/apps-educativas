@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getAppContent } from '../../services/gameDataService';
 import './GeneradorPersonajes.css';
 
 const GeneradorPersonajes = () => {
@@ -20,14 +21,9 @@ const GeneradorPersonajes = () => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    const ruta = `${import.meta.env.BASE_URL}data/${level}/${grade}/generador-personajes.json`;
-    fetch(ruta, { cache: 'no-store' })
-      .then((res) => {
-        if (!res.ok) throw new Error(`No se pudo cargar ${ruta} (${res.status})`);
-        return res.json();
-      })
+    getAppContent('generador-personajes', level, grade)
       .then((data) => {
-        if (!Array.isArray(data)) throw new Error('El JSON no es un array');
+        if (!Array.isArray(data)) throw new Error('Los datos no son un array');
         setPersonajes(data);
         const uniqueCategorias = [...new Set(data.map(p => p.categoria))];
         setCategorias(uniqueCategorias);

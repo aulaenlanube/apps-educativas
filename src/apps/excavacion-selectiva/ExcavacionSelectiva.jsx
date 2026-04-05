@@ -4,6 +4,7 @@ import { PointerLockControls } from '@react-three/drei';
 import { Joystick } from 'react-joystick-component';
 import * as THREE from 'three';
 import { useExcavacionSelectiva } from '../../hooks/useExcavacionSelectiva';
+import { getRunnerData } from '../../services/gameDataService';
 import { Bloque3D } from './Bloque3D';
 import { Arbol3D } from './Arbol3D';
 import { Player } from './Player';
@@ -47,7 +48,6 @@ const generateGrassTexture = () => {
 
 const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   const subjectPrefix = subjectId || (level === 'primaria' ? 'lengua' : 'general');
-  const dataPath = `/data/${level}/${grade}/${subjectPrefix}-runner.json`;
 
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -104,11 +104,13 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   useEffect(() => {
     setData(null);
     setError(null);
-    fetch(dataPath)
-      .then(res => res.ok ? res.json() : Promise.reject("Archivo no encontrado"))
-      .then(setData)
+    getRunnerData(level, grade, subjectPrefix)
+      .then(d => {
+        if (!d || Object.keys(d).length === 0) throw new Error("Datos no encontrados");
+        setData(d);
+      })
       .catch(e => setError(e));
-  }, [dataPath]);
+  }, [level, grade, subjectPrefix]);
 
   // Efecto para mostrar el mensaje de Muerte Súbita
   useEffect(() => {

@@ -17,7 +17,13 @@
       "Read(//tmp/**)",
       "Bash(grep -l \"score\\\\|maxScore\\\\|correctAnswers\\\\|totalQuestions\\\\|onGameComplete\" /c/Users/edtor/Desktop/apps-educativas/src/apps/supermercado-matematico/primaria-*/SupermercadoMatematico*.jsx)",
       "Bash(xargs wc:*)",
-      "Read(//c/Users/edtor/.claude/projects/c--Users-edtor-Desktop-apps-educativas/49edf2db-869c-4003-b38e-6d8a8006ec3e/tool-results/**)"
+      "Read(//c/Users/edtor/.claude/projects/c--Users-edtor-Desktop-apps-educativas/49edf2db-869c-4003-b38e-6d8a8006ec3e/tool-results/**)",
+      "Bash(grep -oE '[a-z-]+\\\\.json$')",
+      "Bash(chmod +x /tmp/comparison.sh)",
+      "Bash(/tmp/comparison.sh)",
+      "Bash(node database/import-data.mjs)",
+      "Bash(node database/fix-rosco.mjs)",
+      "Bash(node -e ':*)"
     ]
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getRosco } from '../../../public/data/api'; // Ajusta la ruta relativa según corresponda
+import { getRoscoData } from '../../services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
 
@@ -13,7 +13,7 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
 
     useEffect(() => {
         const loadData = async () => {
-            const roscoData = await getRosco(level, grade, asignatura);
+            const roscoData = await getRoscoData(level, grade, asignatura);
             setData(roscoData);
         };
         loadData();
@@ -59,22 +59,16 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
             return generated;
         }
 
+        // Si no hay datos cargados, intentar cargar del servicio
         try {
-            const path = `/data/${level}/${grade}/${asignatura}-rosco-material-de-estudio.json`;
-            const response = await fetch(path);
-            if (response.ok) {
-                let material = await response.json();
-
-                // Si el JSON cargado es un array (formato crudo igual que rosco.json), lo transformamos
-                if (Array.isArray(material)) {
-                    material = generateStudyMaterialFromData(material);
-                }
-
+            const roscoData = await getRoscoData(level, grade, asignatura);
+            if (roscoData && roscoData.length > 0) {
+                const material = generateStudyMaterialFromData(roscoData);
                 setStudyMaterial(material);
                 return material;
             }
         } catch (error) {
-            console.warn("No se encontró archivo de material y no hay datos de juego disponibles.");
+            console.warn("No se pudo generar material de estudio.");
         }
         return null;
     };

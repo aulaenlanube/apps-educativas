@@ -5,6 +5,7 @@ import {
   Loader2, CheckCircle2, XCircle, Flame, Star, Trophy, RefreshCcw, ArrowRight, BookOpen, Clock, Lightbulb, SkipForward, Sparkles, LogOut, X, Home
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getRunnerData } from '../../services/gameDataService';
 
 // Constantes de configuración
 const TEST_QUESTION_COUNT = 10;
@@ -86,8 +87,7 @@ const ConfettiEffect = () => (
 
 const Clasificador = () => {
   const { level, grade, subjectId } = useParams();
-  const jsonName = subjectId ? `${subjectId}-runner` : 'general-runner';
-  const dataUrl = `/data/${level}/${grade}/${jsonName}.json`;
+  const effectiveSubject = subjectId || 'general';
 
   // --- ESTADOS ---
   const [gameMode, setGameMode] = useState('selection');
@@ -126,12 +126,9 @@ const Clasificador = () => {
   // --- CARGA DE DATOS ---
   useEffect(() => {
     setLoading(true);
-    fetch(dataUrl)
-      .then(res => {
-        if (!res.ok) throw new Error(`Error ${res.status}`);
-        return res.json();
-      })
+    getRunnerData(level, grade, effectiveSubject)
       .then(data => {
+        if (!data || Object.keys(data).length === 0) throw new Error("Datos no encontrados");
         setRawGameData(data);
         const allCats = Object.keys(data).filter(k => k !== 'title' && k !== 'instructions');
         const selectedCats = shuffleArray(allCats).slice(0, MAX_CATEGORIES);

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { FAMILIES } from '../_shared/QuimicaHelpers';
+import { getAppContent } from '../../services/gameDataService';
 import PeriodicTableModal from '../_shared/PeriodicTableModal';
 import TutorialModal from './TutorialModal';
 import { molecules } from './craftingRecipes';
@@ -64,9 +65,10 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
     }, [cursoActual]);
 
     useEffect(() => {
-        fetch('/data/quimica/elementos_info.json')
-            .then(res => res.json())
-            .then(data => setElementsData(data.elements))
+        getAppContent('elementos-quimica')
+            .then(data => {
+                if (data && data.elements) setElementsData(data.elements);
+            })
             .catch(err => console.error("Error cargando elementos:", err));
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) setDiscoveries(new Set(JSON.parse(saved)));

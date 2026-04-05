@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { getComprensionData } from '../../services/gameDataService';
 import './ComprensionShared.css';
 
 const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", onGameComplete }) => {
@@ -54,27 +55,14 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
 
     // --- CARGA DE DATOS ---
     useEffect(() => {
-        let finalPath = dataUrl;
-        if (!finalPath) {
-            if (level && grade && subjectId) {
-                finalPath = `/data/${level}/${grade}/${subjectId}-comprension.json`;
-            } else {
-                return;
-            }
-        }
+        if (!level || !grade || !subjectId) return;
 
         setLoading(true);
         setError(false);
 
-        fetch(finalPath)
-            .then(res => {
-                if (!res.ok) throw new Error("Archivo no encontrado");
-                return res.json();
-            })
+        getComprensionData(level, grade, subjectId)
             .then(jsonData => {
-                if (!jsonData || jsonData.length === 0) throw new Error("JSON vacío");
-                // Aleatorizamos para el juego, pero guardamos copia original si quisiéramos orden
-                // De momento aleatorizamos todo
+                if (!jsonData || jsonData.length === 0) throw new Error("Datos vacíos");
                 const shuffled = jsonData.sort(() => 0.5 - Math.random());
                 setData(shuffled);
                 setLoading(false);
@@ -86,7 +74,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
             });
 
         return () => detenerAudio();
-    }, [level, grade, subjectId, dataUrl]);
+    }, [level, grade, subjectId]);
 
     const detenerAudio = () => {
         if ('speechSynthesis' in window) {

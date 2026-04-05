@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getAppContent } from '../../services/gameDataService';
 import './BancoRecursosTutoria.css';
 
 const BancoRecursosTutoria = () => {
@@ -12,8 +13,7 @@ const BancoRecursosTutoria = () => {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const response = await fetch('/data/bancoRecursosTutoriaBlocks.json');
-                const data = await response.json();
+                const data = await getAppContent('banco-tutoria');
                 setBlocks(data || []);
                 setLoading(false);
             } catch (error) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
 import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
-import { getHistorias } from './../../../public/data/api';
+import { getOrdenaHistoriasData } from '../../services/gameDataService';
 
 const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -22,7 +22,7 @@ const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
     const cargar = async () => {
       setIsLoading(true);
       const asignatura = level === 'primaria' ? (subjectId || 'general') : subjectId;
-      const data = await getHistorias(level, grade, asignatura);
+      const data = await getOrdenaHistoriasData(level, grade, asignatura);
       if (!vivo) return;
       setHistorias(Array.isArray(data) ? data : []);
       setIsLoading(false);
