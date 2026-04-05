@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Users, Pencil, Trash2, Copy, Hash } from 'lucide-react';
+import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -160,30 +160,52 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-semibold text-gray-800">{group.name}</h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-semibold text-gray-800">{group.name}</h3>
+                        {group.is_owner === false && (
+                          <span className="text-[10px] font-bold bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">
+                            CO-DOCENTE
+                          </span>
+                        )}
+                      </div>
                       {group.description && (
                         <p className="text-sm text-gray-500">{group.description}</p>
                       )}
+                      {group.is_owner === false && group.owner_name && (
+                        <p className="text-xs text-gray-400">Propietario: {group.owner_name}</p>
+                      )}
                     </div>
                     <div className="flex items-center gap-1">
-                      <button
-                        onClick={(e) => openEdit(group, e)}
-                        className="p-1.5 rounded-lg hover:bg-white/50 text-gray-400 hover:text-gray-600 transition-colors"
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={(e) => openDelete(group, e)}
-                        className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      {group.is_owner !== false && (
+                        <>
+                          <button
+                            onClick={(e) => openEdit(group, e)}
+                            className="p-1.5 rounded-lg hover:bg-white/50 text-gray-400 hover:text-gray-600 transition-colors"
+                          >
+                            <Pencil className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={(e) => openDelete(group, e)}
+                            className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-1.5">
-                    <p className="text-xs text-gray-400">
-                      {group.student_count || 0} alumno{group.student_count !== 1 ? 's' : ''}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-xs text-gray-400">
+                        {group.student_count || 0} alumno{group.student_count !== 1 ? 's' : ''}
+                      </p>
+                      {group.co_teachers && group.co_teachers.length > 0 && (
+                        <span className="flex items-center gap-1 text-xs text-blue-500">
+                          <GraduationCap className="w-3 h-3" />
+                          +{group.co_teachers.length} prof
+                        </span>
+                      )}
+                    </div>
                     {group.group_code && (
                       <button
                         onClick={(e) => handleCopyCode(group.group_code, e)}

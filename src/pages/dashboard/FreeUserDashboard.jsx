@@ -8,6 +8,7 @@ import {
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 
 const FreeUserDashboard = () => {
   const { user, freeUser, displayName } = useAuth();
@@ -130,6 +131,16 @@ const FreeUserDashboard = () => {
                 <Play className="w-4 h-4 mr-2" />
                 Ir a jugar
               </Button>
+            </motion.div>
+
+            {/* Mis comentarios */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="mb-8"
+            >
+              <MyFeedbacksSection />
             </motion.div>
 
             {/* Recent Sessions */}

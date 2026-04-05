@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Gamepad2, BarChart3, ArrowLeft, RefreshCw } from 'lucide-react';
+import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import UsersTable from './UsersTable';
 import UserDetail from './UserDetail';
 import GlobalStats from './GlobalStats';
+import FeedbackPanel from './FeedbackPanel';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const AdminPanel = () => {
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
     { id: 'users', label: 'Usuarios', icon: Users },
+    { id: 'feedback', label: 'Feedback', icon: MessageSquare },
     { id: 'stats', label: 'Estadisticas', icon: Gamepad2 },
   ];
 
@@ -112,6 +114,7 @@ const AdminPanel = () => {
               {activeTab === 'users' && (
                 <UsersTable onSelectUser={setSelectedUser} />
               )}
+              {activeTab === 'feedback' && <FeedbackPanel />}
               {activeTab === 'stats' && <GlobalStats stats={globalStats} />}
             </>
           )}

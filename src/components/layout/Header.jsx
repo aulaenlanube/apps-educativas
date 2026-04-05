@@ -5,6 +5,7 @@ import MascotLogo from '../ui/MascotLogo';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginButton from '@/components/auth/LoginButton';
 import UserMenu from '@/components/auth/UserMenu';
+import NotificationBell from '@/components/ui/NotificationBell';
 
 const Header = ({ children, subtitle = "Apps Educativas" }) => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Header = ({ children, subtitle = "Apps Educativas" }) => {
                 Admin
               </button>
             )}
+            {!loading && isAuthenticated && <NotificationBell />}
             {!loading && (isAuthenticated ? <UserMenu /> : <LoginButton />)}
           </nav>
         </div>

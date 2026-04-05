@@ -23,7 +23,8 @@
       "Bash(/tmp/comparison.sh)",
       "Bash(node database/import-data.mjs)",
       "Bash(node database/fix-rosco.mjs)",
-      "Bash(node -e ':*)"
+      "Bash(node -e ':*)",
+      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/supabase/migration-*.sql)"
     ]
   }
 }

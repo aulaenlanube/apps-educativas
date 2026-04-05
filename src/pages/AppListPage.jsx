@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,10 +6,11 @@ import { Dices, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
-// CORRECCIÓN 1: Importamos también 'primariaSubjects'
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
+import StarRating from '@/components/ui/StarRating';
+import { supabase } from '@/lib/supabase';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
 const RandomAppSelector = ({ apps, onAppSelected }) => {
@@ -139,22 +140,45 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
 
 const AppList = ({ apps, level, grade, subjectId }) => {
     const navigate = useNavigate();
+    const [ratings, setRatings] = useState({});
+
+    useEffect(() => {
+        const loadRatings = async () => {
+            const { data } = await supabase.rpc('get_bulk_avg_ratings', {
+                p_level: level, p_grade: grade, p_subject_id: subjectId,
+            });
+            if (data && Array.isArray(data)) {
+                const map = {};
+                data.forEach(r => { map[r.app_id] = r; });
+                setRatings(map);
+            }
+        };
+        if (level && grade && subjectId) loadRatings();
+    }, [level, grade, subjectId]);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {apps.map((app, index) => (
-                <motion.div
-                    key={app.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100 group"
-                    onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
-                >
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors">{app.name}</h3>
-                    <p className="text-gray-600">{app.description}</p>
-                </motion.div>
-            ))}
+            {apps.map((app, index) => {
+                const r = ratings[app.id];
+                return (
+                    <motion.div
+                        key={app.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100 group"
+                        onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
+                    >
+                        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors">{app.name}</h3>
+                        <p className="text-gray-600">{app.description}</p>
+                        {r && r.total_ratings > 0 && (
+                            <div className="mt-3 flex items-center gap-1">
+                                <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />
+                            </div>
+                        )}
+                    </motion.div>
+                );
+            })}
         </div>
     );
 };

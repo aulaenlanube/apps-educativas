@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
-  BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap,
+  BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
   ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
   Play
 } from 'lucide-react';
@@ -11,6 +11,8 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import StudentProfileEditor from './StudentProfileEditor';
+import StudentChatTab from './StudentChatTab';
+import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -440,8 +442,10 @@ export default function StudentDashboard() {
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
     { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
+    { id: 'messages', label: 'Mensajes', icon: MessageSquare },
     { id: 'apps', label: 'Apps', icon: Gamepad2 },
     { id: 'history', label: 'Historial', icon: CalendarDays },
+    { id: 'feedback', label: 'Comentarios', icon: MessageSquare },
     { id: 'profile', label: 'Perfil', icon: Star },
   ];
 
@@ -699,6 +703,13 @@ export default function StudentDashboard() {
             </motion.div>
           )}
 
+          {/* ── TAB: Mensajes ── */}
+          {activeTab === 'messages' && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <StudentChatTab />
+            </motion.div>
+          )}
+
           {/* ── TAB: Apps ── */}
           {activeTab === 'apps' && (
             <motion.div
@@ -732,6 +743,13 @@ export default function StudentDashboard() {
                   <p>No hay partidas registradas</p>
                 </div>
               )}
+            </motion.div>
+          )}
+
+          {/* ── TAB: Comentarios ── */}
+          {activeTab === 'feedback' && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <MyFeedbacksSection />
             </motion.div>
           )}
 

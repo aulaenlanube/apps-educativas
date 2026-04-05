@@ -8,6 +8,7 @@ import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
 import { useGameTracker } from '@/hooks/useGameTracker';
 import DonationModal from '@/components/ui/DonationModal';
+import AppRatingPanel from '@/components/ui/AppRatingPanel';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 
@@ -169,6 +170,15 @@ const AppRunnerPage = () => {
                     />
                 </div>
             </div>
+
+            <AppRatingPanel
+                appId={app.id}
+                appName={app.name}
+                level={level}
+                grade={grade}
+                subjectId={activeSubjectId}
+                variant={isRetroApp ? 'retro' : isFullScreenApp ? 'fullscreen' : 'default'}
+            />
         </>
     );
 };

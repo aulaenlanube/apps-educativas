@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardList, Plus, Trash2, CheckCircle2, Clock, Users, User, AlertTriangle } from 'lucide-react';
+import { ClipboardList, Plus, Trash2, CheckCircle2, Clock, Users, User, AlertTriangle, Filter, GraduationCap } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -22,6 +22,7 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
+  const [teacherFilter, setTeacherFilter] = useState('all');
 
   const fetchAssignments = useCallback(async () => {
     if (!groupId) return;
@@ -85,8 +86,43 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
         </div>
       ) : (
         <div className="space-y-3">
+          {/* Teacher filter - only show if there are assignments from multiple teachers */}
+          {(() => {
+            const teacherIds = [...new Set(assignments.map(a => a.teacher_id).filter(Boolean))];
+            if (teacherIds.length <= 1) return null;
+            const teacherNames = {};
+            assignments.forEach(a => { if (a.teacher_id && a.teacher_name) teacherNames[a.teacher_id] = a.teacher_name; });
+            return (
+              <div className="flex items-center gap-2 flex-wrap">
+                <Filter className="w-3.5 h-3.5 text-slate-400" />
+                <button
+                  onClick={() => setTeacherFilter('all')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                    teacherFilter === 'all' ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  Todos
+                </button>
+                {teacherIds.map(tid => (
+                  <button
+                    key={tid}
+                    onClick={() => setTeacherFilter(tid)}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                      teacherFilter === tid ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    <GraduationCap className="w-3 h-3" />
+                    {teacherNames[tid] || 'Profesor'}
+                  </button>
+                ))}
+              </div>
+            );
+          })()}
+
           <AnimatePresence>
-            {assignments.map((asg, idx) => {
+            {assignments
+              .filter(asg => teacherFilter === 'all' || asg.teacher_id === teacherFilter)
+              .map((asg, idx) => {
               const isOverdue = asg.due_date && new Date(asg.due_date) < new Date();
               const allCompleted = asg.completed_count >= asg.total_students;
               const progress = asg.total_students > 0
@@ -106,7 +142,7 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-sm font-semibold text-slate-800 truncate">
                           {asg.title || asg.app_name}
                         </span>
@@ -119,6 +155,12 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                           <span className="flex items-center gap-1 text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full">
                             <Users className="w-3 h-3" />
                             Grupo
+                          </span>
+                        )}
+                        {asg.teacher_name && (
+                          <span className="flex items-center gap-1 text-xs bg-slate-50 text-slate-500 px-2 py-0.5 rounded-full">
+                            <GraduationCap className="w-3 h-3" />
+                            {asg.teacher_name}
                           </span>
                         )}
                       </div>

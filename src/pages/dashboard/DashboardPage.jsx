@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, GraduationCap } from 'lucide-react';
+import { Copy, GraduationCap, MessageSquare } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -9,6 +9,9 @@ import GroupsPanel from './GroupsPanel';
 import StudentsPanel from './StudentsPanel';
 import StudentStatsView from './StudentStatsView';
 import AssignmentsPanel from './AssignmentsPanel';
+import GroupChatPanel from './GroupChatPanel';
+import CoTeachersSection from './CoTeachersSection';
+import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 
 const DashboardPage = () => {
   const { teacher } = useAuth();
@@ -22,22 +25,10 @@ const DashboardPage = () => {
 
   const fetchGroups = useCallback(async () => {
     setLoadingGroups(true);
-    const { data } = await supabase
-      .from('groups')
-      .select('*')
-      .order('created_at', { ascending: true });
+    const { data } = await supabase.rpc('get_teacher_groups');
 
-    if (data) {
-      const { data: studentCounts } = await supabase
-        .from('students')
-        .select('group_id');
-
-      const counts = {};
-      studentCounts?.forEach(s => {
-        counts[s.group_id] = (counts[s.group_id] || 0) + 1;
-      });
-
-      setGroups(data.map(g => ({ ...g, student_count: counts[g.id] || 0 })));
+    if (Array.isArray(data)) {
+      setGroups(data);
     }
     setLoadingGroups(false);
   }, []);
@@ -45,12 +36,10 @@ const DashboardPage = () => {
   const fetchStudents = useCallback(async (groupId) => {
     if (!groupId) { setStudents([]); return; }
     setLoadingStudents(true);
-    const { data } = await supabase
-      .from('students')
-      .select('id, username, display_name, avatar_emoji, password_hash, created_at')
-      .eq('group_id', groupId)
-      .order('display_name', { ascending: true });
-    setStudents(data || []);
+    const { data } = await supabase.rpc('get_group_students', {
+      p_group_id: groupId,
+    });
+    setStudents(Array.isArray(data) ? data : []);
     setLoadingStudents(false);
   }, []);
 
@@ -68,6 +57,7 @@ const DashboardPage = () => {
   };
 
   const selectedGroup = groups.find(g => g.id === selectedGroupId);
+  const isOwner = selectedGroup?.is_owner !== false;
 
   return (
     <div>
@@ -91,7 +81,7 @@ const DashboardPage = () => {
                     Hola, {teacher?.display_name}
                   </h1>
                   <p className="text-sm text-gray-500">
-                    {groups.length} grupo{groups.length !== 1 ? 's' : ''} creado{groups.length !== 1 ? 's' : ''}
+                    {groups.length} grupo{groups.length !== 1 ? 's' : ''}
                   </p>
                 </div>
               </div>
@@ -116,19 +106,39 @@ const DashboardPage = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-purple-100 p-4"
+              className="lg:col-span-1 space-y-4"
             >
-              {loadingGroups ? (
-                <div className="flex justify-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
-                </div>
-              ) : (
-                <GroupsPanel
-                  groups={groups}
-                  selectedGroupId={selectedGroupId}
-                  onSelectGroup={setSelectedGroupId}
-                  onGroupsChanged={fetchGroups}
-                />
+              <div className="bg-white rounded-2xl shadow-sm border border-purple-100 p-4">
+                {loadingGroups ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+                  </div>
+                ) : (
+                  <GroupsPanel
+                    groups={groups}
+                    selectedGroupId={selectedGroupId}
+                    onSelectGroup={setSelectedGroupId}
+                    onGroupsChanged={fetchGroups}
+                  />
+                )}
+              </div>
+
+              {/* Co-teachers section */}
+              {selectedGroupId && !viewingStudentId && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl shadow-sm border border-purple-100 p-4"
+                >
+                  <CoTeachersSection
+                    groupId={selectedGroupId}
+                    groupName={selectedGroup?.name}
+                    isOwner={isOwner}
+                    ownerName={selectedGroup?.owner_name}
+                    coTeachers={selectedGroup?.co_teachers}
+                    onChanged={fetchGroups}
+                  />
+                </motion.div>
               )}
             </motion.div>
 
@@ -176,6 +186,31 @@ const DashboardPage = () => {
               />
             </motion.div>
           )}
+
+          {/* Chat del grupo */}
+          {selectedGroupId && !viewingStudentId && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="mt-6 bg-white rounded-2xl shadow-sm border border-purple-100 p-4"
+            >
+              <GroupChatPanel
+                groupId={selectedGroupId}
+                groupName={selectedGroup?.name}
+              />
+            </motion.div>
+          )}
+
+          {/* Mis comentarios */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-6"
+          >
+            <MyFeedbacksSection />
+          </motion.div>
         </div>
       </div>
     </div>
