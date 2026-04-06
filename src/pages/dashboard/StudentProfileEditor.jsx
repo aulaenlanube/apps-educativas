@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { UserCircle, KeyRound, Eye, EyeOff, Lock, Check } from 'lucide-react';
+import { UserCircle, KeyRound, Eye, EyeOff, Lock, Check, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import EmailLinkSection from '@/components/student/EmailLinkSection';
+import GroupSelector from '@/components/student/GroupSelector';
 
 const AVATAR_EMOJIS = [
   '🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄',
@@ -218,6 +220,18 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
         )}
       </motion.div>
 
+      {/* Vincular email */}
+      <EmailLinkSection
+        student={student}
+        studentInfo={studentInfo}
+        onUpdated={onProfileUpdated}
+      />
+
+      {/* Mis grupos (solo si tiene email verificado) */}
+      {(student?.email_verified || studentInfo?.email_verified) && (
+        <MyGroupsSection student={student} />
+      )}
+
       {/* Cambiar contrasena */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -300,5 +314,48 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
         </form>
       </motion.div>
     </div>
+  );
+}
+
+function MyGroupsSection({ student }) {
+  const { switchStudentGroup } = useAuth();
+  const { toast } = useToast();
+  const [groups, setGroups] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchGroups = async () => {
+    const { data } = await supabase.rpc('student_get_my_groups', { p_student_id: student.id });
+    setGroups(Array.isArray(data) ? data : []);
+    setLoading(false);
+  };
+
+  useEffect(() => { fetchGroups(); }, [student.id]);
+
+  const handleSelect = (group) => {
+    switchStudentGroup(group);
+    toast({ title: group ? `Grupo activo: ${group.group_name}` : 'Practica libre activada' });
+  };
+
+  if (loading) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
+    >
+      <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Users className="w-5 h-5 text-indigo-500" />
+        Mis grupos
+      </h3>
+      <GroupSelector
+        groups={groups}
+        activeGroupId={student?.group_id || null}
+        onSelect={handleSelect}
+        showJoin={true}
+        studentId={student.id}
+        onGroupJoined={() => fetchGroups()}
+      />
+    </motion.div>
   );
 }

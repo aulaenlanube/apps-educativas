@@ -34,7 +34,9 @@
       "Bash(node database/import-jokes.mjs)",
       "Bash(grep -h \"ALTER TABLE.*game_sessions ADD COLUMN\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -l \"CREATE TABLE.*game_sessions\" /home/edu/apps-educativas/supabase/*.sql)",
-      "Bash(ls /home/edu/apps-educativas/supabase/*.sql)"
+      "Bash(ls /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"ALTER TABLE.*students\\\\|CREATE TABLE.*students\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -r \"ALTER TABLE.*students\\\\|students.*ADD COLUMN\" /home/edu/apps-educativas/supabase/*.sql)"
     ]
   }
 }

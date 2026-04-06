@@ -208,12 +208,80 @@ export function AuthProvider({ children }) {
     });
   }
 
+  async function signInStudentEmail(email, password) {
+    // Login via Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+      email, password,
+    });
+
+    if (authError) return { error: authError };
+
+    const authUserId = authData?.user?.id;
+    if (!authUserId) return { error: { message: 'Error de autenticacion' } };
+
+    // Comprobar si el email está verificado
+    if (!authData.user.email_confirmed_at) {
+      await supabase.auth.signOut();
+      return { error: { message: 'Debes verificar tu email antes de iniciar sesion. Revisa tu bandeja de entrada.' } };
+    }
+
+    // Marcar email como verificado en students (por si no lo estaba)
+    await supabase.rpc('student_confirm_email', { p_auth_user_id: authUserId });
+
+    // Buscar datos del alumno
+    const { data, error } = await supabase.rpc('student_login_by_auth', {
+      p_auth_user_id: authUserId,
+    });
+
+    // Cerrar sesion de Supabase Auth (el alumno usa sesion custom)
+    await supabase.auth.signOut();
+
+    if (error) return { error };
+    if (data?.error) {
+      // Puede ser que el auth.users exista pero no sea un alumno vinculado
+      return { error: { message: data.error } };
+    }
+
+    const groups = data.groups || [];
+    const studentData = { ...data.student, auth_user_id: authUserId, groups };
+
+    if (groups.length === 1) {
+      studentData.group_id = groups[0].group_id;
+      studentData.group_name = groups[0].group_name;
+      studentData.group_code = groups[0].group_code;
+    }
+
+    setStudent(studentData);
+    localStorage.setItem('student_session', JSON.stringify(studentData));
+    return { data: studentData, groups };
+  }
+
+  async function resetStudentPassword(email) {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/login',
+    });
+    return { error };
+  }
+
+  function switchStudentGroup(group) {
+    setStudent(prev => {
+      const updated = {
+        ...prev,
+        group_id: group ? group.group_id : null,
+        group_name: group ? group.group_name : null,
+        group_code: group ? group.group_code : null,
+      };
+      localStorage.setItem('student_session', JSON.stringify(updated));
+      return updated;
+    });
+  }
+
   const value = {
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
     signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
-    signInStudent, studentSetPassword, signOut,
+    signInStudent, signInStudentEmail, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
     fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
   };
 

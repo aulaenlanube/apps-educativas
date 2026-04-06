@@ -450,11 +450,14 @@ export default function StudentDashboard() {
 
   const pendingAssignments = assignments.filter(a => !a.completed);
 
+  const hasGroup = !!student?.group_id;
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
     { id: 'logros', label: 'Logros', icon: Trophy },
-    { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
-    { id: 'messages', label: 'Mensajes', icon: MessageSquare },
+    ...(hasGroup ? [
+      { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
+      { id: 'messages', label: 'Mensajes', icon: MessageSquare },
+    ] : []),
     { id: 'apps', label: 'Apps', icon: Gamepad2 },
     { id: 'history', label: 'Historial', icon: CalendarDays },
     { id: 'feedback', label: 'Comentarios', icon: MessageSquare },
@@ -477,10 +480,22 @@ export default function StudentDashboard() {
               <div className="text-5xl">{studentInfo.avatar_emoji || '🎓'}</div>
               <div>
                 <h1 className="text-xl font-bold text-slate-800">{studentInfo.display_name}</h1>
-                <p className="text-sm text-slate-500">@{studentInfo.username} &middot; {studentInfo.group_name}</p>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Miembro desde {formatDate(studentInfo.created_at)}
-                </p>
+                <p className="text-sm text-slate-500">@{studentInfo.username}</p>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
+                    student?.group_id
+                      ? 'bg-indigo-100 text-indigo-700'
+                      : 'bg-emerald-100 text-emerald-700'
+                  }`}>
+                    {student?.group_id ? student?.group_name || studentInfo.group_name : 'Practica libre'}
+                  </span>
+                  {student?.email_verified && (
+                    <button onClick={() => setActiveTab('profile')}
+                      className="text-[10px] text-slate-400 hover:text-indigo-600 transition-colors underline">
+                      Cambiar
+                    </button>
+                  )}
+                </div>
               </div>
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center">
                 <div>

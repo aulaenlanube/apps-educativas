@@ -12,10 +12,10 @@ export function useGamification() {
     try {
       let result = null;
 
-      if (isStudent && student?.id && student?.group_id) {
+      if (isStudent && student?.id) {
         const { data: d } = await supabase.rpc('student_get_gamification', {
           p_student_id: student.id,
-          p_group_id: student.group_id,
+          p_group_id: student.group_id || null,
         });
         if (d?.success) result = d;
       } else if ((isTeacher || isFreeUser || isAdmin) && user?.id) {

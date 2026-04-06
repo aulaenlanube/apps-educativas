@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { GraduationCap, Users, Mail, Lock, Eye, EyeOff, Hash, ArrowLeft, ShieldCheck, Rocket } from 'lucide-react';
+import { GraduationCap, Users, Mail, Lock, Eye, EyeOff, Hash, ArrowLeft, ShieldCheck, Rocket, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import Header from '@/components/layout/Header';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { signInTeacher, signInFreeUser, signInWithGoogle, signInStudent, studentSetPassword, isAuthenticated, isTeacher, isStudent, isFreeUser, signInWithGoogleAsFree } = useAuth();
+  const { signInTeacher, signInFreeUser, signInWithGoogle, signInStudent, signInStudentEmail, resetStudentPassword, studentSetPassword, switchStudentGroup, isAuthenticated, isTeacher, isStudent, isFreeUser, signInWithGoogleAsFree } = useAuth();
   const { toast } = useToast();
 
   // Redirigir si ya está autenticado
@@ -66,7 +66,10 @@ const LoginPage = () => {
               <TabsContent value="student">
                 <StudentLoginForm
                   onSignIn={signInStudent}
+                  onSignInEmail={signInStudentEmail}
+                  onResetPassword={resetStudentPassword}
                   onSetPassword={studentSetPassword}
+                  onSwitchGroup={switchStudentGroup}
                   navigate={navigate}
                   toast={toast}
                 />
@@ -207,15 +210,23 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
   );
 }
 
-function StudentLoginForm({ onSignIn, onSetPassword, navigate, toast }) {
+function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassword, onSwitchGroup, navigate, toast }) {
   const [groupCode, setGroupCode] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [useEmail, setUseEmail] = useState(false);
+  const [emailInput, setEmailInput] = useState('');
+  const [emailPassword, setEmailPassword] = useState('');
+  const [showEmailPassword, setShowEmailPassword] = useState(false);
+  const [pendingGroups, setPendingGroups] = useState([]);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
 
   // Estado para flujo de crear contrasena (primer login o tras reset)
-  const [step, setStep] = useState('login'); // 'login' | 'password' | 'setPassword'
+  const [step, setStep] = useState('login'); // 'login' | 'password' | 'setPassword' | 'selectGroup'
   const [pendingStudentId, setPendingStudentId] = useState(null);
   const [pendingDisplayName, setPendingDisplayName] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -303,13 +314,89 @@ function StudentLoginForm({ onSignIn, onSetPassword, navigate, toast }) {
     navigate('/');
   };
 
+  const handleEmailLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const result = await onSignInEmail(emailInput, emailPassword);
+    setLoading(false);
+
+    if (result.error) {
+      toast({ variant: 'destructive', title: 'Error', description: result.error.message });
+      return;
+    }
+
+    const groups = result.groups || [];
+    if (groups.length > 1) {
+      setPendingGroups(groups);
+      setStep('selectGroup');
+      return;
+    }
+
+    toast({ title: 'Bienvenido!' });
+    navigate('/mi-panel');
+  };
+
+  const handleSelectGroup = (group) => {
+    onSwitchGroup(group);
+    toast({ title: group ? `Grupo: ${group.group_name}` : 'Practica libre' });
+    navigate('/mi-panel');
+  };
+
   const handleBack = () => {
     setStep('login');
     setPassword('');
     setNewPassword('');
     setConfirmPassword('');
     setPendingStudentId(null);
+    setPendingGroups([]);
   };
+
+  // Pantalla seleccionar grupo (tras email login multi-grupo)
+  if (step === 'selectGroup') {
+    return (
+      <div className="space-y-4">
+        <div className="text-center pb-2">
+          <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+            <Users className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="font-bold text-gray-800">Elige tu grupo</h3>
+          <p className="text-sm text-gray-500 mt-1">Selecciona donde quieres entrar</p>
+        </div>
+
+        <div className="space-y-2">
+          {pendingGroups.map(g => (
+            <button key={g.group_id} onClick={() => handleSelectGroup(g)}
+              className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-slate-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/50 transition-all text-left">
+              <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center">
+                <Users className="w-4 h-4 text-indigo-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-slate-700 truncate">{g.group_name}</p>
+                <p className="text-xs text-slate-400">{g.teacher_name} · {g.group_code}</p>
+              </div>
+            </button>
+          ))}
+
+          <button onClick={() => handleSelectGroup(null)}
+            className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-slate-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all text-left">
+            <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
+              <Rocket className="w-4 h-4 text-emerald-600" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-700">Practicar libre</p>
+              <p className="text-xs text-slate-400">Juega sin grupo</p>
+            </div>
+          </button>
+        </div>
+
+        <button type="button" onClick={handleBack}
+          className="w-full flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+          <ArrowLeft className="w-4 h-4" /> Volver
+        </button>
+      </div>
+    );
+  }
 
   // Pantalla de crear contrasena (primer login)
   if (step === 'setPassword') {
@@ -442,6 +529,109 @@ function StudentLoginForm({ onSignIn, onSetPassword, navigate, toast }) {
     );
   }
 
+  // Pantalla recuperar contrasena
+  if (showForgotPassword) return (
+    <div className="space-y-4">
+      <div className="text-center pb-2">
+        <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+          <Lock className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="font-bold text-gray-800">Recuperar contrasena</h3>
+        <p className="text-sm text-gray-500 mt-1">Te enviaremos un enlace para restablecer tu contrasena</p>
+      </div>
+
+      {!resetSent ? (
+        <div className="space-y-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="reset-email">Tu email vinculado</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input id="reset-email" type="email" placeholder="tu@email.com" className="pl-10"
+                value={resetEmail} onChange={e => setResetEmail(e.target.value)} autoFocus />
+            </div>
+          </div>
+          <Button
+            onClick={async () => {
+              if (!resetEmail.trim()) return;
+              setLoading(true);
+              const { error } = await onResetPassword(resetEmail.trim());
+              setLoading(false);
+              if (error) {
+                toast({ variant: 'destructive', title: 'Error', description: error.message });
+              } else {
+                setResetSent(true);
+              }
+            }}
+            disabled={loading || !resetEmail.trim()}
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+            {loading ? 'Enviando...' : 'Enviar enlace de recuperacion'}
+          </Button>
+        </div>
+      ) : (
+        <div className="bg-green-50 rounded-xl p-4 border border-green-200 text-center">
+          <CheckCircle2 className="w-8 h-8 text-green-500 mx-auto mb-2" />
+          <p className="text-sm font-semibold text-green-800">Email enviado</p>
+          <p className="text-xs text-green-600 mt-1">Revisa tu bandeja de entrada en <strong>{resetEmail}</strong></p>
+        </div>
+      )}
+
+      <button type="button" onClick={() => { setShowForgotPassword(false); setResetSent(false); setResetEmail(''); }}
+        className="w-full flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> Volver al login
+      </button>
+    </div>
+  );
+
+  // Pantalla inicial: codigo de grupo + usuario (o email si useEmail)
+  if (useEmail) return (
+    <form onSubmit={handleEmailLogin} className="space-y-4">
+      <div className="text-center pb-2">
+        <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+          <Mail className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="font-bold text-gray-800">Acceso con email</h3>
+        <p className="text-sm text-gray-500 mt-1">Usa tu email vinculado</p>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="email-login">Email</Label>
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Input id="email-login" type="email" placeholder="tu@email.com" className="pl-10"
+            value={emailInput} onChange={e => setEmailInput(e.target.value)} required autoFocus />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="email-pw">Contrasena</Label>
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Input id="email-pw" type={showEmailPassword ? 'text' : 'password'} placeholder="Tu contrasena" className="pl-10 pr-10"
+            value={emailPassword} onChange={e => setEmailPassword(e.target.value)} required />
+          <button type="button" onClick={() => setShowEmailPassword(!showEmailPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            {showEmailPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
+
+      <Button type="submit" disabled={loading || !emailInput.trim() || !emailPassword}
+        className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white">
+        {loading ? 'Entrando...' : 'Iniciar sesion'}
+      </Button>
+
+      <button type="button" onClick={() => setShowForgotPassword(true)}
+        className="w-full text-center text-xs text-indigo-500 hover:text-indigo-700 transition-colors">
+        He olvidado mi contrasena
+      </button>
+
+      <button type="button" onClick={() => setUseEmail(false)}
+        className="w-full flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> Usar codigo de grupo
+      </button>
+    </form>
+  );
+
   // Pantalla inicial: codigo de grupo + usuario
   return (
     <form onSubmit={handleLogin} className="space-y-4">
@@ -485,8 +675,20 @@ function StudentLoginForm({ onSignIn, onSetPassword, navigate, toast }) {
       >
         {loading ? 'Verificando...' : 'Continuar'}
       </Button>
+
+      <div className="relative py-2">
+        <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+        <div className="relative flex justify-center text-xs"><span className="bg-white px-2 text-gray-400">o</span></div>
+      </div>
+
+      <button type="button" onClick={() => setUseEmail(true)}
+        className="w-full flex items-center justify-center gap-2 py-2.5 border border-indigo-200 rounded-xl text-sm text-indigo-600 font-medium hover:bg-indigo-50 transition-colors">
+        <Mail className="w-4 h-4" />
+        Iniciar sesion con email
+      </button>
     </form>
   );
+
 }
 
 function FreeUserLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
