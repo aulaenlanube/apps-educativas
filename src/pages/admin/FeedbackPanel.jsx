@@ -99,10 +99,9 @@ export default function FeedbackPanel() {
   };
 
   const handleResolve = async (fb) => {
-    await supabase
-      .from('app_feedback')
-      .update({ status: 'resolved', updated_at: new Date().toISOString() })
-      .eq('id', fb.id);
+    await supabase.rpc('admin_resolve_feedback', {
+      p_feedback_id: fb.id,
+    });
     fetchFeedbacks(true);
   };
 

@@ -200,13 +200,21 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function updateStudentLocal(updates) {
+    setStudent(prev => {
+      const updated = { ...prev, ...updates };
+      localStorage.setItem('student_session', JSON.stringify(updated));
+      return updated;
+    });
+  }
+
   const value = {
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
     signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
     signInStudent, studentSetPassword, signOut,
-    fetchTeacherProfile, updateTeacherProfile,
+    fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
   };
 
   return (

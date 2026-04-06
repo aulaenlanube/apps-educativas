@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const TOAST_LIMIT = 1
+const TOAST_LIMIT = 3
 
 let count = 0
 function generateId() {

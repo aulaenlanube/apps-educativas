@@ -7,8 +7,13 @@ import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
 import { useGameTracker } from '@/hooks/useGameTracker';
+import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/components/ui/use-toast';
+import UserMenu from '@/components/auth/UserMenu';
+import NotificationBell from '@/components/ui/NotificationBell';
 import DonationModal from '@/components/ui/DonationModal';
 import AppRatingPanel from '@/components/ui/AppRatingPanel';
+import RatingPromptModal from '@/components/ui/RatingPromptModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 
@@ -20,7 +25,10 @@ const AppRunnerPage = () => {
     const location = useLocation();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
+    const [completedCount, setCompletedCount] = useState(0);
     const { startSession, trackGameSession, abandonSession } = useGameTracker();
+    const { isAuthenticated, loading: authLoading } = useAuth();
+    const { toast } = useToast();
 
     const result = findAppById(appId, level, grade);
 
@@ -58,8 +66,9 @@ const AppRunnerPage = () => {
       return () => { abandonSession(); };
     }, [app?.id, app?.name, level, grade, activeSubjectId, startSession, abandonSession]);
 
-    const onGameComplete = useCallback((data) => {
-      trackGameSession({
+    const onGameComplete = useCallback(async (data) => {
+      setCompletedCount(c => c + 1);
+      const gamifResult = await trackGameSession({
         appId: app.id,
         appName: app.name,
         level,
@@ -67,7 +76,32 @@ const AppRunnerPage = () => {
         subjectId: activeSubjectId,
         ...data,
       });
-    }, [trackGameSession, app?.id, app?.name, level, grade, activeSubjectId]);
+
+      if (gamifResult) {
+        // Mostrar XP ganada
+        if (gamifResult.total_xp_gained > 0) {
+          toast({
+            title: `+${gamifResult.total_xp_gained} XP`,
+            description: gamifResult.level_up
+              ? `Has subido al nivel ${gamifResult.new_level}!`
+              : `XP total: ${gamifResult.new_xp}`,
+            duration: 4000,
+          });
+        }
+        // Mostrar insignias nuevas
+        if (gamifResult.new_badges?.length > 0) {
+          gamifResult.new_badges.forEach(badge => {
+            setTimeout(() => {
+              toast({
+                title: `${badge.icon} ${badge.name_es}`,
+                description: `${badge.description_es} (+${badge.xp_reward} XP)`,
+                duration: 6000,
+              });
+            }, 500);
+          });
+        }
+      }
+    }, [trackGameSession, toast, app?.id, app?.name, level, grade, activeSubjectId]);
 
     const hasSubject = activeSubjectId && activeSubjectId !== 'general';
     const backPath = hasSubject
@@ -130,7 +164,7 @@ const AppRunnerPage = () => {
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
 
-                <div className={`${isFullScreenApp ? 'absolute top-6 left-6 z-50 w-auto' : `w-full ${containerClass} relative z-10 mb-4`} flex justify-start items-center gap-3`}>
+                <div className={`${isFullScreenApp ? 'absolute top-6 left-6 right-6 z-[100] w-auto' : `w-full ${containerClass} relative z-[100] mb-4`} flex items-center gap-3`}>
 
                     {isRetroApp || isFullScreenApp ? (
                         <Button
@@ -158,6 +192,15 @@ const AppRunnerPage = () => {
                     >
                         <Heart className={iconHeartClass} />
                     </Button>
+
+                    <div className="flex-1" />
+
+                    {!authLoading && isAuthenticated && (
+                        <div className="flex items-center gap-2">
+                            <NotificationBell />
+                            <UserMenu />
+                        </div>
+                    )}
                 </div>
 
                 <div className={`${containerClass} relative z-10`}>
@@ -178,6 +221,15 @@ const AppRunnerPage = () => {
                 grade={grade}
                 subjectId={activeSubjectId}
                 variant={isRetroApp ? 'retro' : isFullScreenApp ? 'fullscreen' : 'default'}
+            />
+
+            <RatingPromptModal
+                appId={app.id}
+                appName={app.name}
+                level={level}
+                grade={grade}
+                subjectId={activeSubjectId}
+                completedCount={completedCount}
             />
         </>
     );

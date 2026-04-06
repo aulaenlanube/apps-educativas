@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Gamepad2, Target, Clock, Trophy, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Gamepad2, Target, Clock, Trophy, Star, ChevronLeft, ChevronRight, RotateCcw, AlertTriangle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const PAGE_SIZE = 20;
@@ -9,6 +9,9 @@ const UserDetail = ({ user }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetResult, setResetResult] = useState(null);
 
   const fetchSessions = useCallback(async () => {
     setLoading(true);
@@ -36,6 +39,24 @@ const UserDetail = ({ user }) => {
   };
 
   const isTeacher = user.user_type === 'teacher';
+
+  const handleResetXP = async () => {
+    setResetting(true);
+    setResetResult(null);
+    const { data: result, error } = await supabase.rpc('admin_reset_gamification', {
+      p_user_id: user.id,
+      p_user_type: user.user_type === 'teacher' ? (user.role || 'teacher') : 'student',
+    });
+    setResetting(false);
+    if (error) {
+      setResetResult({ ok: false, msg: error.message });
+    } else if (result?.error) {
+      setResetResult({ ok: false, msg: result.error });
+    } else {
+      setResetResult({ ok: true, msg: `XP reiniciada. ${result.badges_removed} insignias eliminadas.` });
+    }
+    setShowResetConfirm(false);
+  };
 
   return (
     <div className="space-y-6">
@@ -97,6 +118,61 @@ const UserDetail = ({ user }) => {
               </motion.div>
             );
           })}
+        </div>
+      )}
+
+      {/* Reset XP */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <button
+          onClick={() => { setShowResetConfirm(true); setResetResult(null); }}
+          className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-xl text-sm font-medium hover:bg-red-100 transition-colors"
+        >
+          <RotateCcw className="w-4 h-4" />
+          Reiniciar experiencia
+        </button>
+        {resetResult && (
+          <span className={`text-sm font-medium ${resetResult.ok ? 'text-green-600' : 'text-red-600'}`}>
+            {resetResult.msg}
+          </span>
+        )}
+      </div>
+
+      {/* Modal confirmación reset */}
+      {showResetConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-xl"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-slate-800">Reiniciar experiencia</h3>
+                <p className="text-xs text-slate-500">{user.display_name}</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 mb-4">
+              Se eliminaran todos los puntos de experiencia, el nivel volvera a 1 y se borraran todas las insignias obtenidas. Esta accion no se puede deshacer.
+            </p>
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setShowResetConfirm(false)}
+                className="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-200 transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleResetXP}
+                disabled={resetting}
+                className="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50"
+              >
+                {resetting ? 'Reiniciando...' : 'Confirmar reinicio'}
+              </button>
+            </div>
+          </motion.div>
         </div>
       )}
 

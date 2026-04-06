@@ -11,7 +11,7 @@ export default function LoginButton() {
       variant="outline"
       size="sm"
       onClick={() => navigate('/login')}
-      className="flex items-center gap-2 border-purple-200 hover:bg-purple-50 text-purple-700"
+      className="flex items-center gap-2 border-purple-300 bg-purple-600 hover:bg-purple-700 text-white"
     >
       <LogIn className="w-4 h-4" />
       <span className="hidden sm:inline">Iniciar sesion</span>

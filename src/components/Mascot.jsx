@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation } from 'react-router-dom';
-import { getOrdenaFrasesData } from '../services/gameDataService';
+import { getOrdenaFrasesData, getJokes } from '../services/gameDataService';
 import MascotOriginal from './MascotOriginal';
 
 const Mascot = () => {
@@ -34,13 +34,13 @@ const Mascot = () => {
                     setMessages([]);
                 }
             } else {
-                fetch('/jokes.json')
-                    .then(res => res.json())
-                    .then(data => setMessages(data))
-                    .catch(err => {
-                        console.error("Error loading jokes:", err);
-                        setMessages([]);
-                    });
+                try {
+                    const jokes = await getJokes();
+                    setMessages(jokes || []);
+                } catch (err) {
+                    console.error("Error loading jokes:", err);
+                    setMessages([]);
+                }
             }
         };
 

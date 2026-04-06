@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
   BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
@@ -12,7 +12,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import StudentProfileEditor from './StudentProfileEditor';
 import StudentChatTab from './StudentChatTab';
+import StudentLogrosTab from './StudentLogrosTab';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
+import { useGamification } from '@/hooks/useGamification';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -366,12 +368,21 @@ function SubjectStats({ data }) {
 export default function StudentDashboard() {
   const { student } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'overview');
+
+  // Sincronizar tab con query param cuando cambia la URL estando ya en la página
+  const location = useLocation();
+  useEffect(() => {
+    const tabParam = new URLSearchParams(location.search).get('tab');
+    if (tabParam) setActiveTab(tabParam);
+  }, [location.search]);
   const [taskFilter, setTaskFilter] = useState('all'); // 'all' | 'pending' | 'completed'
+  const gamification = useGamification();
 
   const fetchDashboard = useCallback(async () => {
     if (!student) return;
@@ -441,6 +452,7 @@ export default function StudentDashboard() {
 
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
+    { id: 'logros', label: 'Logros', icon: Trophy },
     { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
     { id: 'messages', label: 'Mensajes', icon: MessageSquare },
     { id: 'apps', label: 'Apps', icon: Gamepad2 },
@@ -471,6 +483,14 @@ export default function StudentDashboard() {
                 </p>
               </div>
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center">
+                <div>
+                  <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>
+                  <p className="text-xs text-slate-500">Nivel</p>
+                  <div className="w-16 h-1.5 bg-slate-200 rounded-full mt-1 mx-auto">
+                    <div className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+                      style={{ width: `${gamification.xpForNextLevel > gamification.xpForCurrentLevel ? Math.min(100, Math.round(((gamification.totalXp - gamification.xpForCurrentLevel) / (gamification.xpForNextLevel - gamification.xpForCurrentLevel)) * 100)) : 100}%` }} />
+                  </div>
+                </div>
                 <div>
                   <p className="text-2xl font-bold text-purple-600">{stats.days_active || 0}</p>
                   <p className="text-xs text-slate-500">Dias activo</p>
@@ -744,6 +764,11 @@ export default function StudentDashboard() {
                 </div>
               )}
             </motion.div>
+          )}
+
+          {/* ── TAB: Logros ── */}
+          {activeTab === 'logros' && (
+            <StudentLogrosTab gamification={gamification} />
           )}
 
           {/* ── TAB: Comentarios ── */}

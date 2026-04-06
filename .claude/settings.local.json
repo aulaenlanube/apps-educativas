@@ -24,7 +24,17 @@
       "Bash(node database/import-data.mjs)",
       "Bash(node database/fix-rosco.mjs)",
       "Bash(node -e ':*)",
-      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/supabase/migration-*.sql)"
+      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/supabase/migration-*.sql)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git config:*)",
+      "Bash(grep -n \"parseInt\\\\|parseInt.*grade\\\\|gradeParam\\\\|grade:\" src/apps/**/*.jsx src/apps/_shared/*.jsx)",
+      "Bash(grep -E \"\\\\.\\(sql|js|jsx|ts|tsx\\)$\")",
+      "Bash(node database/import-jokes.mjs)",
+      "Bash(grep -h \"ALTER TABLE.*game_sessions ADD COLUMN\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -l \"CREATE TABLE.*game_sessions\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(ls /home/edu/apps-educativas/supabase/*.sql)"
     ]
   }
 }

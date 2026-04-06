@@ -93,6 +93,7 @@ export function useGameTracker() {
     const nota = calculateNota(correctAnswers, totalQuestions, score, maxScore);
 
     // Ruta 1: Si tenemos session_id de track_session_start, actualizar esa sesion
+    let trackingOk = false;
     if (sessionIdRef.current) {
       try {
         const { error } = await supabase.rpc('track_session_finish', {
@@ -107,13 +108,14 @@ export function useGameTracker() {
           p_difficulty: difficulty || null,
           p_nota: nota,
         });
-        if (!error) return; // Exito
+        if (!error) trackingOk = true;
       } catch (err) {
         // Fallo track_session_finish, intentar fallback
       }
     }
 
-    // Ruta 2 (fallback): insertar directamente como antes
+    // Ruta 2 (fallback): insertar directamente si ruta 1 fallo
+    if (!trackingOk) {
     const userInfo = getUserInfo();
     try {
       if ((userInfo.type === 'teacher' || userInfo.type === 'free') && userInfo.id) {
@@ -177,6 +179,38 @@ export function useGameTracker() {
     } catch (err) {
       console.error('[GameTracker] Error tracking session:', err);
     }
+    } // fin if (!trackingOk)
+
+    // Gamificación: procesar XP e insignias (students, teachers, free - solo sesiones completadas)
+    const userInfo2 = getUserInfo();
+    if (userInfo2.id && completed) {
+      try {
+        let gamifResult = null;
+        if (userInfo2.type === 'student') {
+          const { data } = await supabase.rpc('gamification_process_session', {
+            p_student_id: userInfo2.id,
+            p_session_mode: mode,
+            p_session_nota: nota,
+            p_session_duration: duration,
+            p_session_app_id: appId,
+          });
+          gamifResult = data;
+        } else if (userInfo2.type === 'teacher' || userInfo2.type === 'free') {
+          const { data } = await supabase.rpc('gamification_process_teacher_session', {
+            p_teacher_id: userInfo2.id,
+            p_session_mode: mode,
+            p_session_nota: nota,
+            p_session_duration: duration,
+            p_session_app_id: appId,
+          });
+          gamifResult = data;
+        }
+        if (gamifResult?.success) return gamifResult;
+      } catch (err) {
+        console.warn('[GameTracker] Gamification error (non-blocking):', err);
+      }
+    }
+    return null;
   }, [getUserInfo]);
 
   /**

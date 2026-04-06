@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw } from 'lucide-react';
+import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -9,6 +9,8 @@ import UsersTable from './UsersTable';
 import UserDetail from './UserDetail';
 import GlobalStats from './GlobalStats';
 import FeedbackPanel from './FeedbackPanel';
+import DataExplorer from './DataExplorer';
+import XPConfigPanel from './XPConfigPanel';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -32,6 +34,8 @@ const AdminPanel = () => {
     { id: 'users', label: 'Usuarios', icon: Users },
     { id: 'feedback', label: 'Feedback', icon: MessageSquare },
     { id: 'stats', label: 'Estadisticas', icon: Gamepad2 },
+    { id: 'data', label: 'Datos', icon: Database },
+    { id: 'xp', label: 'Experiencia', icon: Zap },
   ];
 
   if (selectedUser) {
@@ -116,6 +120,8 @@ const AdminPanel = () => {
               )}
               {activeTab === 'feedback' && <FeedbackPanel />}
               {activeTab === 'stats' && <GlobalStats stats={globalStats} />}
+              {activeTab === 'data' && <DataExplorer />}
+              {activeTab === 'xp' && <XPConfigPanel />}
             </>
           )}
         </div>

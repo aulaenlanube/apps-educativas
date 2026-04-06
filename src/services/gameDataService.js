@@ -50,8 +50,8 @@ export async function getRunnerData(level, grade, subjectId) {
     return null;
   }
 
-  // La función RPC devuelve un objeto JSONB directamente
-  const result = data || {};
+  // La función RPC devuelve un objeto JSONB; los valores pueden ser strings JSON
+  const result = deepParseJSON(data || {});
   setCache(key, result);
   return result;
 }
@@ -79,7 +79,7 @@ export async function getRoscoData(level, grade, subjectId, maxDifficulty = 3) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -104,7 +104,7 @@ export async function getIntrusoData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -129,7 +129,7 @@ export async function getParejasData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -154,7 +154,7 @@ export async function getOrdenaFrasesData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -179,7 +179,7 @@ export async function getOrdenaHistoriasData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -204,7 +204,7 @@ export async function getDetectiveData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -229,7 +229,7 @@ export async function getComprensionData(level, grade, subjectId) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -253,7 +253,7 @@ export async function getSubjectsFromDB(level, grade) {
     return [];
   }
 
-  const result = data || [];
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }
@@ -317,7 +317,48 @@ export async function getAppContent(appType, level = null, grade = null) {
   }
 
   // La función devuelve un array de contenidos JSONB; para la mayoría solo hay uno
-  const result = (data && data.length > 0) ? data[0] : null;
+  const result = (data && data.length > 0) ? deepParseJSON(data[0]) : null;
+  setCache(key, result);
+  return result;
+}
+
+// --- Utilidad: parsear strings JSON anidados que devuelve Supabase ---
+function tryParseJSON(val) {
+  if (typeof val !== 'string') return val;
+  try { return JSON.parse(val); } catch { return val; }
+}
+
+function deepParseJSON(obj) {
+  if (obj == null) return obj;
+  if (Array.isArray(obj)) return obj.map(deepParseJSON);
+  if (typeof obj === 'string') return tryParseJSON(obj);
+  if (typeof obj === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(obj)) {
+      out[k] = deepParseJSON(v);
+    }
+    return out;
+  }
+  return obj;
+}
+
+/**
+ * Obtener chistes (formato: ["chiste1", "chiste2", ...])
+ * Usado por: Mascot
+ */
+export async function getJokes() {
+  const key = 'jokes:all';
+  const cached = getCached(key);
+  if (cached) return cached;
+
+  const { data, error } = await supabase.rpc('get_jokes');
+
+  if (error) {
+    console.error('Error cargando jokes:', error.message);
+    return [];
+  }
+
+  const result = deepParseJSON(data || []);
   setCache(key, result);
   return result;
 }

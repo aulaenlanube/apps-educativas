@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, MessageSquarePlus, X, Send, ChevronDown, ChevronUp, CheckCircle2 } from 'lucide-react';
+import { Star, MessageSquarePlus, X, Send, ChevronDown, ChevronUp, CheckCircle2, ThumbsDown, Check, Trash2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import StarRating from './StarRating';
@@ -30,6 +30,10 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
 
+  // Difficulty feedback
+  const [difficultyFeedback, setDifficultyFeedback] = useState(null);
+  const [difficultySaved, setDifficultySaved] = useState(false);
+
   // My feedbacks state
   const [myFeedbacks, setMyFeedbacks] = useState([]);
   const [expandedFeedback, setExpandedFeedback] = useState(null);
@@ -44,12 +48,14 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
     return null;
   }, [role, user, student]);
 
-  // Load average rating (always) and user's rating (if logged in)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  // Load average rating, user's rating, and difficulty when panel opens
   useEffect(() => {
     if (!open) return;
 
-    const loadRatings = async () => {
-      // Average
+    const loadAll = async () => {
       const { data: avgData } = await supabase.rpc('get_app_avg_rating', {
         p_app_id: appId, p_level: level, p_grade: grade, p_subject_id: subjectId,
       });
@@ -58,7 +64,6 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
         setTotalRatings(avgData.total_ratings || 0);
       }
 
-      // User's rating
       const userInfo = getUserInfo();
       if (userInfo) {
         const { data: userData } = await supabase.rpc('get_user_rating', {
@@ -66,10 +71,16 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
           p_app_id: appId, p_level: level, p_grade: grade, p_subject_id: subjectId,
         });
         if (userData?.rating) setRating(userData.rating);
+
+        const { data: diffData } = await supabase.rpc('get_user_difficulty', {
+          p_user_type: userInfo.type, p_user_id: userInfo.id,
+          p_app_id: appId, p_level: level, p_grade: grade, p_subject_id: subjectId,
+        });
+        if (diffData?.difficulty) setDifficultyFeedback(diffData.difficulty);
       }
     };
 
-    loadRatings();
+    loadAll();
   }, [open, appId, level, grade, subjectId, getUserInfo]);
 
   // Load my feedbacks when that tab is selected
@@ -113,6 +124,55 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
     setRatingLoading(false);
     setRatingSaved(true);
     setTimeout(() => setRatingSaved(false), 2000);
+  };
+
+  const handleDifficultyFeedback = async (value) => {
+    const userInfo = getUserInfo();
+    if (!userInfo) return;
+
+    const prev = difficultyFeedback;
+    setDifficultyFeedback(value === prev ? null : value);
+    if (value === prev) return;
+
+    const labels = { easy: 'Demasiado facil para el nivel', ok: 'Dificultad adecuada para el nivel', hard: 'Demasiado dificil para el nivel' };
+    await supabase.rpc('create_feedback', {
+      p_user_type: userInfo.type,
+      p_user_id: userInfo.id,
+      p_user_display_name: displayName || 'Usuario',
+      p_app_id: appId,
+      p_app_name: appName,
+      p_level: level,
+      p_grade: grade,
+      p_subject_id: subjectId,
+      p_message: `[${labels[value]}]`,
+    });
+    setDifficultySaved(true);
+    setTimeout(() => setDifficultySaved(false), 2000);
+  };
+
+  const handleDeleteRatingConfirmed = async () => {
+    const userInfo = getUserInfo();
+    if (!userInfo) return;
+
+    setDeleting(true);
+    await supabase.rpc('delete_app_rating', {
+      p_user_type: userInfo.type, p_user_id: userInfo.id,
+      p_app_id: appId, p_level: level, p_grade: grade, p_subject_id: subjectId,
+    });
+    setRating(0);
+    setDifficultyFeedback(null);
+    setMyFeedbacks([]);
+
+    const { data: avgData } = await supabase.rpc('get_app_avg_rating', {
+      p_app_id: appId, p_level: level, p_grade: grade, p_subject_id: subjectId,
+    });
+    if (avgData) {
+      setAvgRating(avgData.avg_rating || 0);
+      setTotalRatings(avgData.total_ratings || 0);
+    }
+    setDeleting(false);
+    setRatingSaved(false);
+    setShowDeleteConfirm(false);
   };
 
   const handleSendFeedback = async () => {
@@ -197,7 +257,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: 'spring' }}
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center transition-all ${fabClass}`}
+        className={`fixed bottom-6 right-6 z-[110] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
         title="Valorar esta app"
       >
         <Star className="w-6 h-6" />
@@ -211,14 +271,14 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/30 z-40"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[120]"
               onClick={() => setOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: 100, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 100, scale: 0.95 }}
-              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-96 sm:max-h-[80vh] bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 overflow-hidden flex flex-col"
+              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[130] w-full sm:w-96 sm:max-h-[80vh] bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-4 text-white flex items-center justify-between shrink-0">
@@ -281,6 +341,12 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
                           <CheckCircle2 className="w-3.5 h-3.5" /> Valoracion guardada
                         </motion.p>
                       )}
+                      {rating > 0 && !ratingLoading && (
+                        <button onClick={() => setShowDeleteConfirm(true)}
+                          className="text-[11px] text-slate-400 hover:text-red-500 mt-2 flex items-center justify-center gap-1 transition-colors mx-auto">
+                          <Trash2 className="w-3 h-3" /> Eliminar valoracion
+                        </button>
+                      )}
                     </div>
 
                     <div className="bg-gray-50 rounded-xl p-3 text-center">
@@ -292,6 +358,40 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
                         </span>
                       </div>
                       <p className="text-xs text-gray-400 mt-1">{totalRatings} valoracion{totalRatings !== 1 ? 'es' : ''}</p>
+                    </div>
+
+                    {/* Dificultad */}
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 mb-2 text-center">Es adecuada para el nivel?</p>
+                      <div className="flex gap-2">
+                        {[
+                          { id: 'easy', label: 'Muy facil', active: 'bg-amber-100 text-amber-700 ring-2 ring-amber-300' },
+                          { id: 'ok', label: 'Adecuada', active: 'bg-green-100 text-green-700 ring-2 ring-green-300' },
+                          { id: 'hard', label: 'Muy dificil', active: 'bg-red-100 text-red-700 ring-2 ring-red-300' },
+                        ].map(opt => {
+                          const isActive = difficultyFeedback === opt.id;
+                          return (
+                            <button
+                              key={opt.id}
+                              onClick={() => handleDifficultyFeedback(opt.id)}
+                              className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-xs font-medium transition-all ${
+                                isActive ? opt.active : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
+                              }`}
+                            >
+                              {opt.id === 'easy' && <ThumbsDown className="w-3.5 h-3.5" />}
+                              {opt.id === 'ok' && <Check className="w-3.5 h-3.5" />}
+                              {opt.id === 'hard' && <ThumbsDown className="w-3.5 h-3.5 rotate-180" />}
+                              {opt.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {difficultySaved && (
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                          className="text-xs text-green-600 mt-1.5 text-center flex items-center justify-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" /> Enviado
+                        </motion.p>
+                      )}
                     </div>
                   </div>
                 )}
@@ -434,6 +534,38 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
           </>
         )}
       </AnimatePresence>
+
+      {/* Modal confirmación eliminar */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                <Trash2 className="w-5 h-5 text-red-600" />
+              </div>
+              <h3 className="text-base font-bold text-slate-800">Eliminar valoracion</h3>
+            </div>
+            <p className="text-sm text-slate-600 mb-1">
+              Se eliminara tu valoracion de <strong>{appName}</strong> y todos los comentarios que hayas enviado sobre esta app en este curso y asignatura.
+            </p>
+            <p className="text-xs text-slate-400 mb-4">Esta accion no se puede deshacer.</p>
+            <div className="flex gap-2 justify-end">
+              <button onClick={() => setShowDeleteConfirm(false)}
+                className="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-200 transition-colors">
+                Cancelar
+              </button>
+              <button onClick={handleDeleteRatingConfirmed} disabled={deleting}
+                className="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50">
+                {deleting ? 'Eliminando...' : 'Eliminar'}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </>
   );
 }

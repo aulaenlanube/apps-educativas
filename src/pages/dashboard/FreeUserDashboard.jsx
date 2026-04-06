@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
+import TeacherLogrosSection from './TeacherLogrosSection';
 
 const FreeUserDashboard = () => {
   const { user, freeUser, displayName } = useAuth();
@@ -134,6 +135,10 @@ const FreeUserDashboard = () => {
             </motion.div>
 
             {/* Mis comentarios */}
+            <div className="mb-8">
+              <TeacherLogrosSection />
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

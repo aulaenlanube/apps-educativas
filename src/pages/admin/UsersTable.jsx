@@ -118,6 +118,94 @@ function CreateFreeUserDialog({ open, onClose, onCreated }) {
   );
 }
 
+function CreateAdminDialog({ open, onClose, onCreated }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    setLoading(true);
+
+    const { data, error: err } = await supabase.rpc('admin_create_admin_user', {
+      p_email: email,
+      p_password: password,
+      p_display_name: name,
+    });
+
+    setLoading(false);
+
+    if (err) { setError(err.message); return; }
+    if (data?.error) { setError(data.error); return; }
+
+    setSuccess(`Administrador "${name}" creado correctamente.`);
+    setName('');
+    setEmail('');
+    setPassword('');
+    if (onCreated) onCreated();
+  };
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-md mx-4 p-6"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Users className="w-5 h-5 text-indigo-500" />
+            <h3 className="text-lg font-bold text-slate-800">Crear Administrador</h3>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <p className="text-xs text-slate-500 mb-4">
+          Crea un nuevo usuario con permisos de administrador. No requiere verificacion de email.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div>
+            <label className="text-sm font-medium text-slate-700">Nombre</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)}
+              placeholder="Nombre del administrador" required
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-slate-700">Email</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="email@ejemplo.com" required
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-slate-700">Contrasena</label>
+            <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}
+              placeholder="Contrasena (min 6 caracteres)" required minLength={6}
+              className="w-full mt-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+          </div>
+
+          {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
+          {success && <p className="text-sm text-green-600 bg-green-50 rounded-lg px-3 py-2">{success}</p>}
+
+          <button type="submit" disabled={loading}
+            className="w-full py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl text-sm font-medium transition-all disabled:opacity-50">
+            {loading ? 'Creando...' : 'Crear Administrador'}
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
 const UsersTable = ({ onSelectUser }) => {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
@@ -128,6 +216,7 @@ const UsersTable = ({ onSelectUser }) => {
   const [loading, setLoading] = useState(true);
   const debounceRef = useRef(null);
   const [showCreateFree, setShowCreateFree] = useState(false);
+  const [showCreateAdmin, setShowCreateAdmin] = useState(false);
 
   // Debounce search
   useEffect(() => {
@@ -240,6 +329,11 @@ const UsersTable = ({ onSelectUser }) => {
         onClose={() => setShowCreateFree(false)}
         onCreated={() => fetchUsers()}
       />
+      <CreateAdminDialog
+        open={showCreateAdmin}
+        onClose={() => setShowCreateAdmin(false)}
+        onCreated={() => fetchUsers()}
+      />
 
       {/* Filters & search */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -259,6 +353,13 @@ const UsersTable = ({ onSelectUser }) => {
         >
           <UserPlus className="w-3.5 h-3.5" />
           Crear Libre
+        </button>
+        <button
+          onClick={() => setShowCreateAdmin(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl text-xs font-medium hover:from-indigo-700 hover:to-purple-700 transition-all shrink-0"
+        >
+          <UserPlus className="w-3.5 h-3.5" />
+          Crear Admin
         </button>
         <div className="flex gap-1 bg-white rounded-xl p-1 border border-slate-200">
           {[

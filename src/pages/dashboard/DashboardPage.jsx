@@ -12,6 +12,7 @@ import AssignmentsPanel from './AssignmentsPanel';
 import GroupChatPanel from './GroupChatPanel';
 import CoTeachersSection from './CoTeachersSection';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
+import TeacherLogrosSection from './TeacherLogrosSection';
 
 const DashboardPage = () => {
   const { teacher } = useAuth();
@@ -201,6 +202,11 @@ const DashboardPage = () => {
               />
             </motion.div>
           )}
+
+          {/* Mis Logros */}
+          <div className="mt-6">
+            <TeacherLogrosSection />
+          </div>
 
           {/* Mis comentarios */}
           <motion.div
