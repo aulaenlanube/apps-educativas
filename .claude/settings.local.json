@@ -36,7 +36,11 @@
       "Bash(grep -l \"CREATE TABLE.*game_sessions\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(ls /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -n \"ALTER TABLE.*students\\\\|CREATE TABLE.*students\" /home/edu/apps-educativas/supabase/*.sql)",
-      "Bash(grep -r \"ALTER TABLE.*students\\\\|students.*ADD COLUMN\" /home/edu/apps-educativas/supabase/*.sql)"
+      "Bash(grep -r \"ALTER TABLE.*students\\\\|students.*ADD COLUMN\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(ls -la /home/edu/apps-educativas/.env*)",
+      "Bash(node database/dump-rosco.mjs)",
+      "Bash(grep -l \"SERVICE_ROLE\" /home/edu/apps-educativas/.env* /home/edu/apps-educativas/*.env*)",
+      "Bash(ls /home/edu/apps-educativas/.env*)"
     ]
   }
 }
