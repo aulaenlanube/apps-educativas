@@ -86,6 +86,8 @@ import SopaDeLetras from '../sopa-de-letras/SopaDeLetras';
 
 import Millonario from '../millonario/Millonario';
 
+import Anagramas from '../anagramas/Anagramas';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -374,4 +376,11 @@ export const appMillonario = {
   name: '💰 Millonario',
   description: 'Tipo test con 4 opciones. Niveles fácil/medio/examen y comodines 50:50, público y cambio.',
   component: Millonario
+};
+
+export const appAnagramas = {
+  id: 'anagramas',
+  name: '🔀 Anagramas',
+  description: 'Ordena las fichas de colores para formar la palabra correcta. Con rachas, multiplicadores y comodines.',
+  component: Anagramas
 };
