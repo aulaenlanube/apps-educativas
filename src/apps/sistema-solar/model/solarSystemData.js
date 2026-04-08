@@ -1,15 +1,15 @@
-import sunTexture from '../textures/2k_sun.jpg';
-import mercuryTexture from '../textures/2k_mercury.jpg';
-import venusTexture from '../textures/2k_venus_atmosphere.jpg';
-import earthTexture from '../textures/2k_earth_daymap.jpg';
-import earthCloudsTexture from '../textures/2k_earth_clouds.jpg';
-import marsTexture from '../textures/2k_mars.jpg';
-import jupiterTexture from '../textures/2k_jupiter.jpg';
-import saturnTexture from '../textures/2k_saturn.jpg';
-import uranusTexture from '../textures/2k_uranus.jpg';
-import neptuneTexture from '../textures/2k_neptune.jpg';
-import saturnRingTexture from '../textures/2k_saturn_ring_alpha.png';
-import moonTexture from '../textures/2k_moon.jpg';
+import sunTexture from '../textures/2k_sun.webp';
+import mercuryTexture from '../textures/2k_mercury.webp';
+import venusTexture from '../textures/2k_venus_atmosphere.webp';
+import earthTexture from '../textures/2k_earth_daymap.webp';
+import earthCloudsTexture from '../textures/2k_earth_clouds.webp';
+import marsTexture from '../textures/2k_mars.webp';
+import jupiterTexture from '../textures/2k_jupiter.webp';
+import saturnTexture from '../textures/2k_saturn.webp';
+import uranusTexture from '../textures/2k_uranus.webp';
+import neptuneTexture from '../textures/2k_neptune.webp';
+import saturnRingTexture from '../textures/2k_saturn_ring_alpha.webp';
+import moonTexture from '../textures/2k_moon.webp';
 
 export const solarSystemData = [
     {

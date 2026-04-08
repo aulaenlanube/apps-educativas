@@ -210,13 +210,50 @@ export default defineConfig({
 		},
 	},
 	build: {
+		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			external: [
 				'@babel/parser',
 				'@babel/traverse',
 				'@babel/generator',
 				'@babel/types'
-			]
+			],
+			output: {
+				manualChunks(id) {
+					if (!id.includes('node_modules')) {
+						return undefined;
+					}
+					// 3D / Three.js stack — usado solo por sistema-solar, célula-animal/vegetal, visualizador-3d
+					if (id.includes('three') || id.includes('@react-three')) {
+						return 'three';
+					}
+					// LLM on-device (muy grande y solo usado en algunas apps)
+					if (id.includes('@mlc-ai/web-llm')) {
+						return 'webllm';
+					}
+					// Motor de física (matter-js)
+					if (id.includes('matter-js')) {
+						return 'matter';
+					}
+					// Animaciones y confetti
+					if (id.includes('framer-motion') || id.includes('confetti')) {
+						return 'animations';
+					}
+					// Supabase
+					if (id.includes('@supabase')) {
+						return 'supabase';
+					}
+					// Radix UI + iconos
+					if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('react-icons')) {
+						return 'ui-kit';
+					}
+					// React core y router en un chunk aparte
+					if (id.includes('react-router') || id.includes('react-dom') || id.includes('scheduler')) {
+						return 'react-vendor';
+					}
+					return 'vendor';
+				}
+			}
 		}
 	}
 });

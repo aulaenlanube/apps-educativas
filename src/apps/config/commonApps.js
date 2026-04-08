@@ -64,6 +64,20 @@ import RotacionesGrid from '../rotaciones-grid/RotacionesGrid';
 import FraccionesESO from '../fracciones-eso/FraccionesESO';
 import BancoRecursosTutoria from '../banco-recursos-tutoria/BancoRecursosTutoria';
 
+import TerminalRetro from '../terminal-retro/TerminalRetro';
+
+import ProgramacionBloques from '../programacion-bloques/ProgramacionBloques';
+
+import SistemaSolar from '../sistema-solar/SistemaSolar';
+
+import CelulaAnimal from '../celula-animal/CelulaAnimal';
+
+import CelulaVegetal from '../celula-vegetal/CelulaVegetal';
+
+
+
+import JuegoMemoria from '../juego-memoria/JuegoMemoria';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -264,16 +278,12 @@ export const appSupermercadoMatematico3 = { id: 'supermercado-matematico-3', nam
 export const appSupermercadoMatematico4 = { id: 'supermercado-matematico-4', name: '🛒 Supermercado Matemático', description: 'Decimales.', component: SupermercadoMatematico4 };
 export const appSupermercadoMatematico5 = { id: 'supermercado-matematico-5', name: '🛒 Supermercado Matemático', description: 'Calcula el cambio.', component: SupermercadoMatematico5 };
 export const appSupermercadoMatematico6 = { id: 'supermercado-matematico-6', name: '🛒 Supermercado Matemático', description: 'Descuentos.', component: SupermercadoMatematico6 };
-
-import TerminalRetro from '../terminal-retro/TerminalRetro';
 export const appTerminalRetro = {
   id: 'terminal-retro',
   name: '📟 Terminal de Hackeo',
   description: 'Hackea el sistema introduciendo los comandos correctos en la consola.',
   component: TerminalRetro
 };
-
-import ProgramacionBloques from '../programacion-bloques/ProgramacionBloques';
 export const appProgramacionBloques = {
   id: 'programacion-bloques-windows',
   name: '💾 Programación Visual 3.1',
@@ -295,8 +305,6 @@ export const appRotacionesGrid = {
   component: RotacionesGrid
 };
 
-import SistemaSolar from '../sistema-solar/SistemaSolar';
-
 export const appSistemaSolar = {
   id: 'sistema-solar',
   name: '🌌 Sistema Solar 3D',
@@ -311,8 +319,6 @@ export const appFraccionesESO = {
   component: FraccionesESO
 };
 
-import CelulaAnimal from '../celula-animal/CelulaAnimal';
-
 export const appCelulaAnimal = {
   id: 'celula-animal',
   name: '🔬 La Célula Animal',
@@ -320,18 +326,12 @@ export const appCelulaAnimal = {
   component: CelulaAnimal
 };
 
-import CelulaVegetal from '../celula-vegetal/CelulaVegetal';
-
 export const appCelulaVegetal = {
   id: 'celula-vegetal',
   name: '🌿 La Célula Vegetal',
   description: 'Descubre las partes de la célula vegetal, la fotosíntesis y la pared celular.',
   component: CelulaVegetal
 };
-
-
-
-import JuegoMemoria from '../juego-memoria/JuegoMemoria';
 
 export const appJuegoMemoria = {
   id: 'juego-memoria',

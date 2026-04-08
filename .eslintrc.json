@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": ["react-app"],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "plugins/visual-editor",
+    "tools",
+    "public"
+  ],
+  "rules": {
+    "no-unused-vars": "warn"
+  }
+}
