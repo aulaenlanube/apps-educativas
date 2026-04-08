@@ -84,6 +84,8 @@ import Crucigrama from '../crucigrama/Crucigrama';
 
 import SopaDeLetras from '../sopa-de-letras/SopaDeLetras';
 
+import Millonario from '../millonario/Millonario';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -365,4 +367,11 @@ export const appSopaDeLetras = {
   name: '🔍 Sopa de Letras',
   description: 'Encuentra las palabras ocultas en la sopa. Tres tamaños y modo examen con pistas.',
   component: SopaDeLetras
+};
+
+export const appMillonario = {
+  id: 'millonario',
+  name: '💰 Millonario',
+  description: 'Tipo test con 4 opciones. Niveles fácil/medio/examen y comodines 50:50, público y cambio.',
+  component: Millonario
 };
