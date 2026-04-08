@@ -80,6 +80,8 @@ import JuegoMemoria from '../juego-memoria/JuegoMemoria';
 
 import Ahorcado from '../ahorcado/Ahorcado';
 
+import Crucigrama from '../crucigrama/Crucigrama';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -347,4 +349,11 @@ export const appAhorcado = {
   name: '🎯 Ahorcado',
   description: 'Adivina la palabra o la frase letra a letra antes de que se agoten las vidas.',
   component: Ahorcado
+};
+
+export const appCrucigrama = {
+  id: 'crucigrama',
+  name: '🧩 Crucigrama',
+  description: 'Completa el crucigrama con las palabras del vocabulario. Tres tamaños y modo examen.',
+  component: Crucigrama
 };

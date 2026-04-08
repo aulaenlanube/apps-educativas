@@ -1,0 +1,629 @@
+/* Crucigrama — estilos acordes al portal EduApps */
+
+.cruci-root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.cruci-card {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 1.75rem;
+  box-shadow:
+    0 20px 60px -15px rgba(59, 130, 246, 0.25),
+    0 10px 30px -10px rgba(99, 102, 241, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+/* ============ HEADER ============ */
+.cruci-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cruci-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 40%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.cruci-emoji {
+  font-size: 2rem;
+  -webkit-text-fill-color: initial;
+  animation: cruciFloat 3s ease-in-out infinite;
+}
+
+@keyframes cruciFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(3deg); }
+}
+
+.cruci-subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cruci-stats {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cruci-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.cruci-stat.timer {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+.cruci-stat.words {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  box-shadow: 0 4px 12px -2px rgba(168, 85, 247, 0.4);
+}
+
+.cruci-stat.hints {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.4);
+}
+
+/* ============ TABS MODO JUEGO ============ */
+.cruci-gamemode-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.12);
+}
+
+.cruci-gamemode-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cruci-gamemode-tab:hover { color: #4338ca; }
+
+.cruci-gamemode-tab.active {
+  color: #4338ca;
+  border-bottom-color: #6366f1;
+  background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.08));
+}
+
+/* ============ SELECTOR TAMAÑO ============ */
+.cruci-size-switch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem;
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: 14px;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+.cruci-size-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.65rem 0.4rem;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cruci-size-btn:hover:not(.active) {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4338ca;
+}
+
+.cruci-size-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  box-shadow: 0 4px 14px -2px rgba(59, 130, 246, 0.4);
+}
+
+.cruci-size-icon { font-size: 1.1rem; }
+.cruci-size-label { font-size: 0.9rem; font-weight: 800; }
+.cruci-size-count { font-size: 0.7rem; opacity: 0.85; font-weight: 600; }
+
+/* ============ BANNER EXAMEN ============ */
+.cruci-exam-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 12px;
+  color: #4338ca;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* ============ PISTA ACTUAL ============ */
+.cruci-clue-current {
+  background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  color: white;
+  box-shadow: 0 8px 20px -8px rgba(76, 29, 149, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cruci-clue-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cruci-clue-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #1f2937;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.cruci-clue-dir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cruci-clue-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ============ LAYOUT GRID + CLUES ============ */
+.cruci-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 1.25rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 900px) {
+  .cruci-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ GRID ============ */
+.cruci-grid-wrap {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), rgba(99, 102, 241, 0.04));
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cruci-grid {
+  display: grid;
+  gap: 2px;
+  background: #1e1b4b;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -10px rgba(30, 27, 75, 0.5);
+  max-width: 100%;
+}
+
+.cruci-grid.size-small .cruci-cell {
+  width: clamp(32px, 5vw, 44px);
+  height: clamp(32px, 5vw, 44px);
+}
+
+.cruci-grid.size-medium .cruci-cell {
+  width: clamp(28px, 4vw, 38px);
+  height: clamp(28px, 4vw, 38px);
+}
+
+.cruci-grid.size-large .cruci-cell {
+  width: clamp(22px, 3vw, 32px);
+  height: clamp(22px, 3vw, 32px);
+}
+
+.cruci-cell {
+  background: white;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.1s ease;
+  user-select: none;
+}
+
+.cruci-cell.black {
+  background: transparent;
+  cursor: default;
+}
+
+.cruci-cell:not(.black):hover {
+  background: #eef2ff;
+}
+
+.cruci-cell.highlight {
+  background: #dbeafe;
+}
+
+.cruci-cell.selected {
+  background: #fbbf24;
+  box-shadow: 0 0 0 2px #f59e0b, 0 4px 10px -2px rgba(245, 158, 11, 0.5);
+  z-index: 2;
+}
+
+.cruci-cell.highlight.selected {
+  background: #fbbf24;
+}
+
+.cruci-cell.wrong {
+  background: #fecaca;
+  animation: cruciShake 0.3s ease;
+}
+
+.cruci-cell.wrong.selected {
+  background: #fbbf24;
+}
+
+.cruci-cell.revealed .cruci-cell-letter {
+  color: #7c3aed;
+}
+
+@keyframes cruciShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.cruci-cell-num {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  font-size: 8px;
+  font-weight: 800;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.cruci-cell.selected .cruci-cell-num {
+  color: #78350f;
+}
+
+.cruci-grid.size-large .cruci-cell-num {
+  font-size: 7px;
+}
+
+.cruci-cell-letter {
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  font-weight: 800;
+  color: #1e1b4b;
+  text-transform: uppercase;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cruci-grid.size-large .cruci-cell-letter {
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+}
+
+/* ============ CLUES LIST ============ */
+.cruci-clues {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .cruci-clues {
+    max-height: 300px;
+  }
+}
+
+.cruci-clues::-webkit-scrollbar {
+  width: 6px;
+}
+.cruci-clues::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+.cruci-clues-col {
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 12px;
+  padding: 0.75rem;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.cruci-clues-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #4338ca;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+  margin-bottom: 0.5rem;
+}
+
+.cruci-clues-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cruci-clue-item {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.cruci-clue-item:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.cruci-clue-item.active {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #4c1d95;
+  font-weight: 600;
+}
+
+.cruci-clue-item-num {
+  flex-shrink: 0;
+  font-weight: 800;
+  color: #6366f1;
+  min-width: 20px;
+}
+
+.cruci-clue-item.active .cruci-clue-item-num {
+  color: #a855f7;
+}
+
+.cruci-clue-item-text { flex: 1; min-width: 0; }
+
+.cruci-clue-item-len {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+/* ============ ACCIONES ============ */
+.cruci-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(99, 102, 241, 0.2);
+}
+
+.cruci-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cruci-btn.primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  box-shadow: 0 4px 14px -2px rgba(59, 130, 246, 0.4);
+}
+
+.cruci-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.5);
+}
+
+.cruci-btn.hint {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  box-shadow: 0 3px 10px -2px rgba(245, 158, 11, 0.35);
+}
+
+.cruci-btn.hint:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -3px rgba(245, 158, 11, 0.45);
+}
+
+.cruci-btn.ghost {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4338ca;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.cruci-btn.ghost:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.cruci-exam-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+}
+
+/* ============ COMPLETADO ============ */
+.cruci-completed {
+  margin-top: 1rem;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.cruci-completed-icon {
+  display: inline-flex;
+  width: 80px;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.5);
+  animation: cruciPulse 2s ease-in-out infinite;
+}
+
+@keyframes cruciPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.cruci-completed-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 1rem 0;
+}
+
+.cruci-completed-stats {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.cruci-completed-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1e1b4b;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.cruci-completed-stat.exam {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  border-color: transparent;
+}
+
+/* ============ LOADING / EMPTY ============ */
+.cruci-loading,
+.cruci-empty,
+.cruci-generating {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.cruci-empty-sub {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .cruci-card { padding: 1rem; }
+  .cruci-title { font-size: 1.5rem; }
+  .cruci-size-switch { grid-template-columns: 1fr; }
+  .cruci-completed-title { font-size: 1.3rem; }
+}
