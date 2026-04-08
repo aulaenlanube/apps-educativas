@@ -122,6 +122,7 @@ const AppRunnerPage = () => {
 
     const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('laboratorio-funciones-2d') || app.id.includes('fracciones-eso') || app.id.includes('excavacion-selectiva');
     const isFullScreenApp = app.id.includes('sistema-solar') || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('mesa-crafteo') || app.id.includes('juego-memoria');
+    const hideTopBarUserControls = app.id.includes('sistema-solar');
 
     const containerClass = isFullScreenApp
         ? "w-full h-screen"
@@ -195,7 +196,7 @@ const AppRunnerPage = () => {
 
                     <div className="flex-1" />
 
-                    {!authLoading && isAuthenticated && (
+                    {!authLoading && isAuthenticated && !hideTopBarUserControls && (
                         <div className="flex items-center gap-2">
                             <NotificationBell />
                             <UserMenu />
