@@ -644,6 +644,85 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Nota /10 destacada en examen */
+.mill-nota {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 18px;
+  margin: 0.5rem 0 0.75rem;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mill-nota.excellent {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.25));
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.mill-nota.good {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(99, 102, 241, 0.25));
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.mill-nota.fail {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.mill-nota-big {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #fde047;
+  text-shadow: 0 4px 20px rgba(253, 224, 71, 0.5);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mill-nota-small {
+  font-size: 1.35rem;
+  opacity: 0.75;
+  margin-left: 0.15rem;
+}
+
+.mill-nota-msg {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Récord superable */
+.mill-result-record {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(253, 224, 71, 0.18);
+  border: 1px solid rgba(253, 224, 71, 0.4);
+  border-radius: 999px;
+  color: #fde047;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin: 0 0 1.1rem;
+}
+
+.mill-result-record-value {
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.mill-result-record-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
 .mill-result-stats {
   display: flex;
   gap: 0.75rem;

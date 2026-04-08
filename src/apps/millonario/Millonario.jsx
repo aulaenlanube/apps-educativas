@@ -398,6 +398,17 @@ const Millonario = ({ onGameComplete }) => {
     return `${n} €`;
   };
 
+  // Nota sobre 10 (para el modo examen) + puntos paralelos
+  const nota = questions.length > 0
+    ? Math.round((maxReached / questions.length) * 100) / 10
+    : 0;
+  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+  const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+    : nota >= 7 ? '¡Muy bien! 👏'
+    : nota >= 5 ? 'Aprobado. Sigue practicando 💪'
+    : 'Necesitas repasar más 📖';
+  const isExamMode = gameMode === 'exam';
+
   // --- Render ---
   if (loading) {
     return (
@@ -494,9 +505,32 @@ const Millonario = ({ onGameComplete }) => {
               <h2 className="mill-result-title">
                 {status === 'won' ? '¡ERES MILLONARIO! 🎉' : '¡Partida terminada!'}
               </h2>
-              <div className="mill-result-prize">
-                {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
-              </div>
+
+              {isExamMode ? (
+                <>
+                  {/* Nota principal sobre 10 */}
+                  <div className={`mill-nota ${notaColor}`}>
+                    <div className="mill-nota-big">
+                      {nota.toFixed(1)}
+                      <span className="mill-nota-small">/10</span>
+                    </div>
+                    <div className="mill-nota-msg">{notaMsg}</div>
+                  </div>
+                  {/* Dinero como récord superable */}
+                  <div className="mill-result-record">
+                    <Crown size={16} />
+                    <span className="mill-result-record-value">
+                      {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
+                    </span>
+                    <span className="mill-result-record-label">· ¡supera tu récord!</span>
+                  </div>
+                </>
+              ) : (
+                <div className="mill-result-prize">
+                  {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
+                </div>
+              )}
+
               <div className="mill-result-stats">
                 <div className="mill-result-stat">
                   <Check size={16} /> {maxReached} / {questions.length} correctas

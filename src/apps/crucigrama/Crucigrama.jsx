@@ -185,20 +185,30 @@ const Crucigrama = ({ onGameComplete }) => {
     }
   }, [userGrid, crossword, completed, checkComplete]);
 
+  // --- Puntuación compuesta ---
+  const finalScore = useMemo(() => {
+    if (!crossword || !completed) return 0;
+    const wordCount = crossword.placed.length;
+    const basePoints = wordCount * 200; // 200 pts por palabra colocada
+    const timeBonus = Math.max(0, (600 - timer) * 3); // bonus si terminas en menos de 10min
+    const hintPenalty = hintsUsed * 75;
+    return Math.max(0, basePoints + timeBonus - hintPenalty);
+  }, [crossword, completed, timer, hintsUsed]);
+
   // --- Tracking XP al completar ---
   useEffect(() => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
-    const totalCells = crossword?.placed?.reduce((acc, p) => acc + p.word.length, 0) || 0;
+    const words = crossword?.placed?.length || 0;
     onGameComplete?.({
       mode: gameMode === 'exam' ? 'test' : 'practice',
-      score: Math.max(0, (totalCells - hintsUsed) * 10),
-      maxScore: totalCells * 10,
-      correctAnswers: crossword?.placed?.length || 0,
-      totalQuestions: crossword?.placed?.length || 0,
+      score: finalScore,
+      maxScore: words * 200 + 600 * 3, // base + max time bonus
+      correctAnswers: words,
+      totalQuestions: words,
       durationSeconds: timer,
     });
-  }, [completed, crossword, timer, hintsUsed, gameMode, onGameComplete]);
+  }, [completed, crossword, timer, gameMode, finalScore, onGameComplete]);
 
   // --- Helpers de navegación ---
   const isBlack = useCallback((r, c) => {
@@ -691,39 +701,68 @@ const Crucigrama = ({ onGameComplete }) => {
 
         {/* Pantalla de completado */}
         <AnimatePresence>
-          {completed && (
-            <motion.div
-              className="cruci-completed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <div className="cruci-completed-icon">
-                <Award size={48} />
-              </div>
-              <h2 className="cruci-completed-title">¡Crucigrama completado! 🎉</h2>
-              <div className="cruci-completed-stats">
-                <div className="cruci-completed-stat">
-                  <Timer size={16} /> {formatTime(timer)}
+          {completed && (() => {
+            // En examen, la nota siempre es 10 porque solo se llega aquí si completaste todo
+            // pero aplicamos una penalización si tardaste mucho (para dar matices)
+            const nota = 10;
+            const notaColor = 'excellent';
+            return (
+              <motion.div
+                className="cruci-completed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <div className="cruci-completed-icon">
+                  <Award size={48} />
                 </div>
-                <div className="cruci-completed-stat">
-                  <Puzzle size={16} /> {crossword?.placed?.length || 0} palabras
-                </div>
-                {!isExam && (
+                <h2 className="cruci-completed-title">¡Crucigrama completado! 🎉</h2>
+
+                {isExam ? (
+                  <>
+                    <div className={`cruci-nota ${notaColor}`}>
+                      <div className="cruci-nota-big">
+                        {nota.toFixed(1)}<span className="cruci-nota-small">/10</span>
+                      </div>
+                      <div className="cruci-nota-msg">¡Excelente! 🌟</div>
+                    </div>
+                    <div className="cruci-completed-record">
+                      <Trophy size={14} />
+                      <span className="cruci-completed-record-value">
+                        {finalScore.toLocaleString('es-ES')}
+                      </span>
+                      <span className="cruci-completed-record-label">puntos · ¡supera tu récord!</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="cruci-completed-score">
+                    <Trophy size={14} /> {finalScore.toLocaleString('es-ES')} puntos
+                  </div>
+                )}
+
+                <div className="cruci-completed-stats">
                   <div className="cruci-completed-stat">
-                    <Lightbulb size={16} /> {hintsUsed} ayudas
+                    <Timer size={16} /> {formatTime(timer)}
                   </div>
-                )}
-                {isExam && (
-                  <div className="cruci-completed-stat exam">
-                    <Trophy size={16} /> ¡Sin ayudas!
+                  <div className="cruci-completed-stat">
+                    <Puzzle size={16} /> {crossword?.placed?.length || 0} palabras
                   </div>
-                )}
-              </div>
-              <button className="cruci-btn primary" onClick={regenerate}>
-                <RefreshCw size={16} /> Otro crucigrama
-              </button>
-            </motion.div>
-          )}
+                  {!isExam && (
+                    <div className="cruci-completed-stat">
+                      <Lightbulb size={16} /> {hintsUsed} ayudas
+                    </div>
+                  )}
+                  {isExam && (
+                    <div className="cruci-completed-stat exam">
+                      <Trophy size={16} /> ¡Sin ayudas!
+                    </div>
+                  )}
+                </div>
+                <button className="cruci-btn primary" onClick={regenerate}>
+                  <RefreshCw size={16} /> Otro crucigrama
+                </button>
+              </motion.div>
+            );
+          })()}
         </AnimatePresence>
       </motion.div>
 

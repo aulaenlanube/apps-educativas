@@ -489,6 +489,17 @@ const Anagramas = ({ onGameComplete }) => {
   const cfg = MODE_CONFIG[gameMode];
   const isFinished = status === 'won' || status === 'lost';
   const multiplier = (1 + streak * 0.15).toFixed(2);
+  const isExam = gameMode === 'exam';
+
+  // Nota sobre 10 (solo relevante en examen, pero la calculamos siempre)
+  const nota = questions.length > 0
+    ? Math.round((correctCount / questions.length) * 100) / 10
+    : 0;
+  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+  const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+    : nota >= 7 ? '¡Muy bien! 👏'
+    : nota >= 5 ? 'Aprobado. Sigue practicando 💪'
+    : 'Necesitas repasar más 📖';
 
   return (
     <div className="anag-root">
@@ -566,8 +577,31 @@ const Anagramas = ({ onGameComplete }) => {
               <h2 className="anag-result-title">
                 {status === 'won' ? '¡Partida completada! 🎉' : '¡Se acabó!'}
               </h2>
-              <div className="anag-result-score">{score}</div>
-              <div className="anag-result-score-label">puntos</div>
+
+              {isExam ? (
+                <>
+                  {/* Nota principal sobre 10 */}
+                  <div className={`anag-nota ${notaColor}`}>
+                    <div className="anag-nota-big">
+                      {nota.toFixed(1)}
+                      <span className="anag-nota-small">/10</span>
+                    </div>
+                    <div className="anag-nota-msg">{notaMsg}</div>
+                  </div>
+                  {/* Puntos como récord superable */}
+                  <div className="anag-result-record">
+                    <Star size={16} />
+                    <span className="anag-result-record-value">{score.toLocaleString('es-ES')}</span>
+                    <span className="anag-result-record-label">puntos · ¡supérate!</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="anag-result-score">{score}</div>
+                  <div className="anag-result-score-label">puntos</div>
+                </>
+              )}
+
               <div className="anag-result-stats">
                 <div className="anag-result-stat">
                   <Check size={14} /> {correctCount} / {questions.length} aciertos

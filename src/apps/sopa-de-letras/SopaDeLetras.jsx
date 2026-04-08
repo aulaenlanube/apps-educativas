@@ -183,6 +183,15 @@ const SopaDeLetras = ({ onGameComplete }) => {
     }
   }, [foundCount, puzzle, completed]);
 
+  // --- Puntuación compuesta ---
+  const finalScore = useMemo(() => {
+    if (!puzzle || !completed) return 0;
+    const wordCount = puzzle.placed.length;
+    const basePoints = wordCount * 150; // 150 pts por palabra encontrada
+    const timeBonus = Math.max(0, (600 - timer) * 4); // bonus si terminas rápido
+    return basePoints + timeBonus;
+  }, [puzzle, completed, timer]);
+
   // --- Tracking XP al completar ---
   useEffect(() => {
     if (!completed || trackedRef.current) return;
@@ -190,13 +199,13 @@ const SopaDeLetras = ({ onGameComplete }) => {
     const total = puzzle?.placed?.length || 0;
     onGameComplete?.({
       mode: gameMode === 'exam' ? 'test' : 'practice',
-      score: total * 100,
-      maxScore: total * 100,
+      score: finalScore,
+      maxScore: total * 150 + 600 * 4,
       correctAnswers: total,
       totalQuestions: total,
       durationSeconds: timer,
     });
-  }, [completed, puzzle, gameMode, timer, onGameComplete]);
+  }, [completed, puzzle, gameMode, timer, finalScore, onGameComplete]);
 
   // --- Mapa de celdas ocupadas por palabras ya encontradas ---
   const foundCellsMap = useMemo(() => {
@@ -523,6 +532,29 @@ const SopaDeLetras = ({ onGameComplete }) => {
                 <Award size={48} />
               </div>
               <h2 className="sopa-completed-title">¡Sopa completada! 🎉</h2>
+
+              {isExam ? (
+                <>
+                  <div className="sopa-nota excellent">
+                    <div className="sopa-nota-big">
+                      10.0<span className="sopa-nota-small">/10</span>
+                    </div>
+                    <div className="sopa-nota-msg">¡Excelente! 🌟</div>
+                  </div>
+                  <div className="sopa-completed-record">
+                    <Trophy size={14} />
+                    <span className="sopa-completed-record-value">
+                      {finalScore.toLocaleString('es-ES')}
+                    </span>
+                    <span className="sopa-completed-record-label">puntos · ¡supera tu récord!</span>
+                  </div>
+                </>
+              ) : (
+                <div className="sopa-completed-score">
+                  <Trophy size={14} /> {finalScore.toLocaleString('es-ES')} puntos
+                </div>
+              )}
+
               <div className="sopa-completed-stats">
                 <div className="sopa-completed-stat">
                   <Timer size={16} /> {formatTime(timer)}

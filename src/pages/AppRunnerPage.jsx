@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Heart } from 'lucide-react';
+import { ArrowLeft, Heart, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
@@ -14,6 +14,7 @@ import NotificationBell from '@/components/ui/NotificationBell';
 import DonationModal from '@/components/ui/DonationModal';
 import AppRatingPanel from '@/components/ui/AppRatingPanel';
 import RatingPromptModal from '@/components/ui/RatingPromptModal';
+import RankingModal from '@/components/ui/RankingModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 
@@ -25,6 +26,7 @@ const AppRunnerPage = () => {
     const location = useLocation();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
+    const [isRankingModalOpen, setIsRankingModalOpen] = useState(false);
     const [completedCount, setCompletedCount] = useState(0);
     const { startSession, trackGameSession, abandonSession } = useGameTracker();
     const { isAuthenticated, loading: authLoading } = useAuth();
@@ -149,6 +151,19 @@ const AppRunnerPage = () => {
             ? "h-4 w-4 fill-transparent group-hover:fill-red-500 transition-all duration-300"
             : "h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300";
 
+    // Mismas variantes para el botón de Ranking (igual estilo que el corazón pero en dorado)
+    const btnRankingClass = isRetroApp
+        ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
+        : isFullScreenApp
+            ? "bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
+            : "bg-white/80 backdrop-blur-sm hover:bg-amber-50 text-amber-600 border border-amber-200 shadow-sm hover:shadow-md transition-all group";
+
+    const iconRankingClass = isRetroApp
+        ? "h-5 w-5 transition-all duration-300"
+        : isFullScreenApp
+            ? "h-4 w-4 transition-all duration-300"
+            : "h-5 w-5 transition-all duration-300";
+
     return (
         <>
             <Helmet>
@@ -158,6 +173,16 @@ const AppRunnerPage = () => {
             <DonationModal
                 open={isDonationModalOpen}
                 onOpenChange={setIsDonationModalOpen}
+            />
+
+            <RankingModal
+                isOpen={isRankingModalOpen}
+                onClose={() => setIsRankingModalOpen(false)}
+                appId={app.id}
+                appName={app.name}
+                level={level}
+                grade={grade}
+                subjectId={activeSubjectId}
             />
 
             <div className={`min-h-screen flex flex-col items-center justify-start ${isFullScreenApp ? 'p-0' : 'pt-2 px-4 pb-4'} ${backgroundClass} relative overflow-hidden`}>
@@ -192,6 +217,15 @@ const AppRunnerPage = () => {
                         title="Apoya el proyecto"
                     >
                         <Heart className={iconHeartClass} />
+                    </Button>
+
+                    <Button
+                        onClick={() => setIsRankingModalOpen(true)}
+                        className={btnRankingClass}
+                        size="icon"
+                        title="Ver ranking"
+                    >
+                        <Trophy className={iconRankingClass} />
                     </Button>
 
                     <div className="flex-1" />

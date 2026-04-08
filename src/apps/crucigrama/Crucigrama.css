@@ -604,6 +604,73 @@
   border-color: transparent;
 }
 
+/* Nota /10 en examen */
+.cruci-nota {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1rem 1.5rem;
+  border-radius: 18px;
+  margin: 0.5rem 0 0.75rem;
+  border: 2px solid transparent;
+}
+
+.cruci-nota.excellent {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+.cruci-nota-big {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #065f46;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cruci-nota-small {
+  font-size: 1.25rem;
+  opacity: 0.7;
+  margin-left: 0.15rem;
+}
+
+.cruci-nota-msg {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+/* Puntos récord / score destacado */
+.cruci-completed-score,
+.cruci-completed-record {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #78350f;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  margin: 0.3rem 0 0.85rem;
+  box-shadow: 0 4px 12px -3px rgba(245, 158, 11, 0.5);
+}
+
+.cruci-completed-record-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.cruci-completed-record-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  font-weight: 700;
+}
+
 /* ============ LOADING / EMPTY ============ */
 .cruci-loading,
 .cruci-empty,
