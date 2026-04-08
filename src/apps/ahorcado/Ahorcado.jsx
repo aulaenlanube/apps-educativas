@@ -41,32 +41,51 @@ const Ahorcado = ({ onGameComplete }) => {
   // --- Cargar datos (rosco y frases) ---
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
+
+    // Cada fetch se envuelve para que un error no tumbe al otro
+    const safeFetch = (fn) =>
+      Promise.resolve()
+        .then(() => fn())
+        .catch((err) => {
+          console.error('Ahorcado: error cargando datos', err);
+          return [];
+        });
+
     const load = async () => {
-      setLoading(true);
-      const [roscoData, frasesData] = await Promise.all([
-        getRoscoData(level, grade, asignatura),
-        getOrdenaFrasesData(level, grade, asignatura),
-      ]);
-      if (cancelled) return;
+      try {
+        const [roscoData, frasesData] = await Promise.all([
+          safeFetch(() => getRoscoData(level, grade, asignatura)),
+          safeFetch(() => getOrdenaFrasesData(level, grade, asignatura)),
+        ]);
+        if (cancelled) return;
 
-      const palabrasLimpias = Array.isArray(roscoData)
-        ? roscoData
-            .filter((it) => it && it.solucion && String(it.solucion).trim().length >= 2)
-            .map((it) => ({
-              texto: String(it.solucion).trim(),
-              pista: it.definicion || null,
-            }))
-        : [];
+        const palabrasLimpias = Array.isArray(roscoData)
+          ? roscoData
+              .filter((it) => it && it.solucion && String(it.solucion).trim().length >= 2)
+              .map((it) => ({
+                texto: String(it.solucion).trim(),
+                pista: it.definicion || null,
+              }))
+          : [];
 
-      const frasesLimpias = Array.isArray(frasesData)
-        ? frasesData
-            .filter((f) => typeof f === 'string' && f.trim().length > 0)
-            .map((f) => ({ texto: f.trim(), pista: null }))
-        : [];
+        const frasesLimpias = Array.isArray(frasesData)
+          ? frasesData
+              .filter((f) => typeof f === 'string' && f.trim().length > 0)
+              .map((f) => ({ texto: f.trim(), pista: null }))
+          : [];
 
-      setPalabras(palabrasLimpias);
-      setFrases(frasesLimpias);
-      setLoading(false);
+        setPalabras(palabrasLimpias);
+        setFrases(frasesLimpias);
+      } catch (err) {
+        console.error('Ahorcado: fallo inesperado cargando datos', err);
+        if (!cancelled) {
+          setPalabras([]);
+          setFrases([]);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     };
     load();
     return () => { cancelled = true; };
