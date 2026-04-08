@@ -4,6 +4,7 @@ import { Trophy, Lock, Filter, Gamepad2, Clock, Target, BookOpen, TrendingUp, Aw
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
+import BadgeIcon from '@/components/ui/BadgeIcon';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     badge: 'bg-slate-200 text-slate-700' },
@@ -371,8 +372,11 @@ export default function TeacherLogrosSection() {
                       }`}
                     >
                       <div className="flex items-start gap-2.5">
-                        <div className={`text-2xl flex-shrink-0 ${badge.earned ? '' : 'grayscale'}`}>
-                          {badge.earned ? badge.icon : <Lock className="w-6 h-6 text-slate-300" />}
+                        <div className="flex-shrink-0 relative">
+                          <BadgeIcon code={badge.code} rarity={badge.rarity} size={48} earned={badge.earned} />
+                          {!badge.earned && (
+                            <Lock className="w-3.5 h-3.5 text-slate-400 absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow" />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className={`text-xs font-bold truncate ${badge.earned ? 'text-slate-800' : 'text-slate-400'}`}>

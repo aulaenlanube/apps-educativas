@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import BadgeIcon from '@/components/ui/BadgeIcon';
 
 function LevelCurveChart() {
   const data = useMemo(() => {
@@ -318,7 +319,7 @@ export default function XPConfigPanel() {
                       const rStyle = RARITY_STYLE[badge.rarity] || RARITY_STYLE.common;
                       return (
                         <div key={badge.code} className="flex items-center gap-3 px-3 py-2 bg-white rounded-lg border border-slate-100">
-                          <span className="text-xl">{badge.icon}</span>
+                          <BadgeIcon code={badge.code} rarity={badge.rarity} size={36} />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold text-slate-700">{badge.name_es}</p>
                             <p className="text-xs text-slate-400 truncate">{badge.description_es}</p>

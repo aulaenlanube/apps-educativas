@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter } from 'lucide-react';
+import BadgeIcon from '../../components/ui/BadgeIcon';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     text: 'text-slate-600',  badge: 'bg-slate-200 text-slate-700' },
@@ -185,8 +186,11 @@ export default function StudentLogrosTab({ gamification }) {
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className={`text-3xl flex-shrink-0 ${earned ? '' : 'grayscale'}`}>
-                  {earned ? badge.icon : <Lock className="w-8 h-8 text-slate-300" />}
+                <div className="flex-shrink-0 relative">
+                  <BadgeIcon code={badge.code} rarity={badge.rarity} size={56} earned={earned} />
+                  {!earned && (
+                    <Lock className="w-4 h-4 text-slate-400 absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow" />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">

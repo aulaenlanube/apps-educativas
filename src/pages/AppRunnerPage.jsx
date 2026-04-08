@@ -95,7 +95,7 @@ const AppRunnerPage = () => {
           gamifResult.new_badges.forEach(badge => {
             setTimeout(() => {
               toast({
-                title: `${badge.icon} ${badge.name_es}`,
+                title: `🏅 ${badge.name_es}`,
                 description: `${badge.description_es} (+${badge.xp_reward} XP)`,
                 duration: 6000,
               });
