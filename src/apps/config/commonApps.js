@@ -78,6 +78,8 @@ import CelulaVegetal from '../celula-vegetal/CelulaVegetal';
 
 import JuegoMemoria from '../juego-memoria/JuegoMemoria';
 
+import Ahorcado from '../ahorcado/Ahorcado';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -338,4 +340,11 @@ export const appJuegoMemoria = {
   name: '🧠 Juego de Memoria',
   description: 'Memoriza las palabras y encuéntralas antes de que se acabe el tiempo.',
   component: JuegoMemoria
+};
+
+export const appAhorcado = {
+  id: 'ahorcado',
+  name: '🎯 Ahorcado',
+  description: 'Adivina la palabra o la frase letra a letra antes de que se agoten las vidas.',
+  component: Ahorcado
 };

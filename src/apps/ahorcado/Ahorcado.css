@@ -1,0 +1,485 @@
+/* Ahorcado — Diseño acorde al portal EduApps */
+
+.ahorcado-root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.ahorcado-card {
+  width: 100%;
+  max-width: 960px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow:
+    0 20px 60px -15px rgba(168, 85, 247, 0.25),
+    0 10px 30px -10px rgba(236, 72, 153, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+/* ============ HEADER ============ */
+.ahorcado-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ahorcado-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.ahorcado-emoji {
+  font-size: 2rem;
+  -webkit-text-fill-color: initial;
+  animation: ahorcadoBounce 2s ease-in-out infinite;
+}
+
+@keyframes ahorcadoBounce {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.ahorcado-stats {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.ahorcado-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ahorcado-stat.wins {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.4);
+}
+
+.ahorcado-stat.losses {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+  box-shadow: 0 4px 12px -2px rgba(100, 116, 139, 0.4);
+}
+
+/* ============ MODE SWITCH ============ */
+.ahorcado-mode-switch {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(168, 85, 247, 0.08);
+  padding: 0.35rem;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(168, 85, 247, 0.12);
+}
+
+.ahorcado-mode-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ahorcado-mode-btn:hover:not(:disabled) {
+  color: #a855f7;
+}
+
+.ahorcado-mode-btn.active {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  box-shadow: 0 4px 14px -2px rgba(168, 85, 247, 0.45);
+}
+
+.ahorcado-mode-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============ MAIN GRID ============ */
+.ahorcado-main {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .ahorcado-main {
+    grid-template-columns: 1fr;
+  }
+  .ahorcado-card {
+    padding: 1.25rem;
+  }
+  .ahorcado-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============ LEFT: Hangman SVG ============ */
+.ahorcado-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ahorcado-hangman-wrap {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 120 / 150;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.08));
+  border-radius: 18px;
+  padding: 1rem;
+  border: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+.ahorcado-svg {
+  width: 100%;
+  height: 100%;
+  color: #6d28d9;
+  filter: drop-shadow(0 2px 4px rgba(109, 40, 217, 0.2));
+}
+
+.ahorcado-vidas {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ahorcado-vidas .vida.on {
+  color: #ef4444;
+  filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.4));
+}
+
+.ahorcado-vidas .vida.off {
+  color: #d1d5db;
+}
+
+/* ============ RIGHT: Texto + teclado ============ */
+.ahorcado-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.ahorcado-texto-wrap {
+  background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+  border-radius: 18px;
+  padding: 1.5rem 1rem;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px -10px rgba(76, 29, 149, 0.4) inset, 0 4px 12px -2px rgba(76, 29, 149, 0.3);
+  overflow-x: auto;
+}
+
+.ahorcado-palabra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.ahorcado-word {
+  display: inline-flex;
+  gap: 0.2rem;
+}
+
+.ahorcado-espacio {
+  width: 0.6rem;
+  display: inline-block;
+}
+
+.ahorcado-letra {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 1.3em;
+  height: 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fbbf24;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(251, 191, 36, 0.4);
+  position: relative;
+}
+
+.ahorcado-letra.is-punct {
+  color: #e9d5ff;
+  text-shadow: none;
+}
+
+.ahorcado-letra.revealed {
+  animation: ahorcadoReveal 0.4s ease;
+}
+
+@keyframes ahorcadoReveal {
+  0% { transform: rotateY(90deg); opacity: 0; }
+  100% { transform: rotateY(0); opacity: 1; }
+}
+
+.ahorcado-underline {
+  display: block;
+  width: 1em;
+  height: 3px;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+.ahorcado-letra.is-punct .ahorcado-underline {
+  display: none;
+}
+
+/* ============ Pista ============ */
+.ahorcado-pista-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.ahorcado-pista-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.4);
+}
+
+.ahorcado-pista-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -2px rgba(245, 158, 11, 0.5);
+}
+
+.ahorcado-pista {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 12px;
+  color: #92400e;
+  font-weight: 600;
+  font-size: 0.9rem;
+  max-width: 100%;
+}
+
+/* ============ Teclado ============ */
+.ahorcado-keyboard {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+@media (max-width: 520px) {
+  .ahorcado-keyboard {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+.ahorcado-key {
+  aspect-ratio: 1;
+  font-size: 0.95rem;
+  font-weight: 800;
+  background: white;
+  color: #4c1d95;
+  border: 2px solid rgba(168, 85, 247, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(168, 85, 247, 0.1);
+}
+
+.ahorcado-key:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #a855f7;
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.25);
+}
+
+.ahorcado-key:disabled {
+  cursor: not-allowed;
+}
+
+.ahorcado-key.correct {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-color: #059669;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  transform: scale(0.95);
+}
+
+.ahorcado-key.wrong {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: #e5e7eb;
+  border-color: #475569;
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+/* ============ Resultado ============ */
+.ahorcado-result {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ahorcado-result.won {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+  border: 2px solid rgba(16, 185, 129, 0.4);
+}
+
+.ahorcado-result.lost {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(220, 38, 38, 0.12));
+  border: 2px solid rgba(239, 68, 68, 0.35);
+}
+
+.ahorcado-result-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ahorcado-result-text span {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.ahorcado-result.won .ahorcado-result-text span {
+  color: #065f46;
+}
+
+.ahorcado-result.lost .ahorcado-result-text span {
+  color: #991b1b;
+}
+
+.ahorcado-result-text small {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.ahorcado-result-text strong {
+  color: #1f2937;
+}
+
+/* ============ Botones ============ */
+.ahorcado-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.ahorcado-btn.primary {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  box-shadow: 0 4px 14px -2px rgba(168, 85, 247, 0.45);
+}
+
+.ahorcado-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(168, 85, 247, 0.55);
+}
+
+.ahorcado-btn.ghost {
+  background: rgba(168, 85, 247, 0.08);
+  color: #6d28d9;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.ahorcado-btn.ghost:hover {
+  background: rgba(168, 85, 247, 0.15);
+}
+
+/* ============ Footer ============ */
+.ahorcado-footer {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(168, 85, 247, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ahorcado-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* ============ Loading / Empty ============ */
+.ahorcado-loading,
+.ahorcado-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.ahorcado-empty p {
+  margin-bottom: 1rem;
+}
