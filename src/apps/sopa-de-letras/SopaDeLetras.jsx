@@ -10,6 +10,7 @@ import {
 import { getRoscoData } from '../../services/gameDataService';
 import { generateWordSearch, snapSelection, checkSelection } from './wordSearchGenerator';
 import materiasData from '../../../public/data/materias.json';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './SopaDeLetras.css';
 
 // Configuración de tamaños
@@ -86,6 +87,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
   const [selectionCells, setSelectionCells] = useState([]);
   const [hintCells, setHintCells] = useState([]); // parpadean brevemente
   const [wrongFlash, setWrongFlash] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
@@ -345,6 +347,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
           <div className="sopa-title">
             <span className="sopa-emoji">🔍</span>
             <span>Sopa de Letras</span>
+            <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="sopa-stats">
             <div className="sopa-stat timer" title="Tiempo">
@@ -540,6 +543,57 @@ const SopaDeLetras = ({ onGameComplete }) => {
           )}
         </AnimatePresence>
       </motion.div>
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title="Cómo jugar a la Sopa de Letras"
+      >
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Encuentra todas las palabras escondidas en la sopa. Las palabras pueden estar
+          en <strong>8 direcciones distintas</strong>: horizontal, vertical, diagonal,
+          y también al revés (según el tamaño elegido).
+        </p>
+
+        <h3>🕹️ Cómo se juega</h3>
+        <ul>
+          <li><strong>Haz click y arrastra</strong> desde la primera letra de la palabra hasta la última.</li>
+          <li>La selección se <strong>ajusta automáticamente</strong> a la línea más cercana (horizontal, vertical o diagonal).</li>
+          <li>Si la palabra es válida, se queda marcada con su propio color.</li>
+          <li>Si no, la selección se limpia con un flash rojo.</li>
+          <li>Las palabras encontradas se tachan en el panel de la derecha.</li>
+          <li>Funciona igual con <strong>touch</strong> en móviles y tablets.</li>
+        </ul>
+
+        <h3>💡 Ayudas (solo en Práctica)</h3>
+        <ul>
+          <li><strong>💡 Pista</strong>: ilumina brevemente la primera letra de una palabra al azar.</li>
+          <li>En práctica, la <strong>lista de palabras</strong> está siempre visible.</li>
+        </ul>
+
+        <h3>🎓 Modos y tamaños</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>🟢 Pequeño</strong>
+            10×10, 8 palabras. Solo horizontal y vertical.
+          </div>
+          <div className="instr-mode medium">
+            <strong>🟡 Mediano</strong>
+            13×13, 12 palabras. Añade diagonales.
+          </div>
+          <div className="instr-mode exam">
+            <strong>🔴 Grande</strong>
+            16×16, 18 palabras. Las 8 direcciones. Obligatorio en examen.
+          </div>
+        </div>
+
+        <div className="instr-tips">
+          <strong>💡 Consejo para examen:</strong> en modo examen no ves la lista de palabras.
+          Ves las <em>definiciones</em> del vocabulario en la derecha — tienes que adivinar qué
+          palabra es y después encontrarla en la sopa.
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './Anagramas.css';
 
 // --- Paleta de colores para las fichas (se baraja al inicio de cada partida) ---
@@ -133,6 +134,9 @@ const Anagramas = ({ onGameComplete }) => {
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
   const autoCheckRef = useRef(null);
+
+  // Instrucciones
+  const [showHelp, setShowHelp] = useState(false);
 
   // --- Cargar rosco ---
   useEffect(() => {
@@ -499,6 +503,7 @@ const Anagramas = ({ onGameComplete }) => {
           <div className="anag-title">
             <span className="anag-emoji">🔀</span>
             <span>Anagramas</span>
+            <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="anag-stats">
             {cfg.timer && !isFinished && (
@@ -781,6 +786,68 @@ const Anagramas = ({ onGameComplete }) => {
           </>
         )}
       </motion.div>
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title="Cómo jugar a Anagramas"
+      >
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Reordena las <strong>fichas de colores</strong> para formar la palabra correcta
+          del vocabulario. Cada letra tiene un color único que cambia cada partida.
+        </p>
+
+        <h3>🕹️ Cómo se juega</h3>
+        <ul>
+          <li><strong>Click en una ficha del banco</strong> → vuela al siguiente hueco libre.</li>
+          <li><strong>Click en una ficha ya colocada</strong> → vuelve al banco.</li>
+          <li>Cuando rellenas todos los huecos, se comprueba automáticamente.</li>
+          <li>Si aciertas: las fichas bailan y confetti. Si fallas: se agitan en rojo.</li>
+        </ul>
+
+        <h3>🔥 Racha y multiplicador</h3>
+        <p>
+          Aciertos consecutivos suben un <strong>multiplicador ×1.15</strong> por cada racha.
+          Un fallo lo resetea. La puntuación depende de la longitud de la palabra, la racha y
+          el tiempo restante (en examen).
+        </p>
+        <p className="instr-formula">
+          <strong>Puntos</strong> = longitud × 100 × multiplicador (+ bonus de tiempo en examen)
+        </p>
+
+        <h3>🪄 Comodines (disponibles en TODOS los modos)</h3>
+        <ul>
+          <li><strong>💡 Pista</strong> — muestra la definición de la palabra.</li>
+          <li><strong>⚡ 1ª letra</strong> — coloca automáticamente la primera letra.</li>
+          <li><strong>🔀 Mezclar</strong> — reordena el banco de letras (sin límite).</li>
+          <li><strong>⏭️ Saltar</strong> — cambia la palabra actual (rompe la racha).</li>
+        </ul>
+        <p>
+          Los contadores en rojo arriba de cada botón indican cuántos usos te quedan en la partida.
+        </p>
+
+        <h3>🎓 Niveles de dificultad</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>🟢 Fácil</strong>
+            5 palabras cortas, 3 vidas, pista visible.
+          </div>
+          <div className="instr-mode medium">
+            <strong>🟡 Medio</strong>
+            10 palabras medianas, 2 vidas.
+          </div>
+          <div className="instr-mode exam">
+            <strong>🔴 Examen</strong>
+            15 palabras, 1 vida, 45s por palabra.
+          </div>
+        </div>
+
+        <div className="instr-tips">
+          <strong>💡 Consejo:</strong> si no encuentras la palabra, pulsa <kbd>🔀 Mezclar</kbd>
+          para que el banco se baraje de otra forma — a veces ayuda a ver la palabra más claro.
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

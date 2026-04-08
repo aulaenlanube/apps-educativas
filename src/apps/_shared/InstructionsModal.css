@@ -1,0 +1,235 @@
+/* Modal de instrucciones compartido para las apps nuevas */
+
+.instr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.instr-modal-content {
+  background: white;
+  border-radius: 22px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  max-width: 580px;
+  width: 100%;
+  max-height: 86vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    0 25px 80px -20px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(168, 85, 247, 0.15);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.instr-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.instr-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 4px;
+}
+
+.instr-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #4b5563;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.instr-modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #111827;
+  transform: rotate(90deg);
+}
+
+.instr-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin: 0 0 1rem 0;
+  padding-right: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+.instr-modal-title svg {
+  color: #a855f7;
+  flex-shrink: 0;
+}
+
+.instr-modal-body {
+  color: #374151;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.instr-modal-body h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #4c1d95;
+  margin: 1.1rem 0 0.5rem 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+.instr-modal-body h3:first-child {
+  margin-top: 0;
+}
+
+.instr-modal-body p {
+  margin: 0 0 0.65rem 0;
+}
+
+.instr-modal-body ul {
+  margin: 0.35rem 0 0.85rem 0;
+  padding-left: 1.3rem;
+  list-style: none;
+}
+
+.instr-modal-body li {
+  position: relative;
+  margin-bottom: 0.45rem;
+  padding-left: 0.3rem;
+}
+
+.instr-modal-body li::before {
+  content: '▸';
+  position: absolute;
+  left: -1rem;
+  color: #a855f7;
+  font-weight: 800;
+}
+
+.instr-modal-body strong {
+  color: #1e1b4b;
+  font-weight: 700;
+}
+
+.instr-modal-body kbd {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  background: linear-gradient(180deg, #f9fafb, #e5e7eb);
+  border: 1px solid #cbd5e1;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.instr-modal-body .instr-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 0.65rem 0 0.85rem 0;
+}
+
+.instr-modal-body .instr-mode {
+  padding: 0.6rem 0.4rem;
+  border-radius: 10px;
+  border: 2px solid;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.instr-modal-body .instr-mode strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+
+.instr-modal-body .instr-mode.easy {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #065f46;
+}
+
+.instr-modal-body .instr-mode.medium {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #92400e;
+}
+
+.instr-modal-body .instr-mode.exam {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #991b1b;
+}
+
+.instr-modal-body .instr-tips {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.06));
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.instr-modal-body .instr-tips strong {
+  color: #6d28d9;
+}
+
+/* ============ Botón para abrir el modal ============ */
+.instr-open-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: #6d28d9;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.instr-open-btn:hover {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  border-color: transparent;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px -2px rgba(168, 85, 247, 0.45);
+}
+
+@media (max-width: 600px) {
+  .instr-modal-content {
+    padding: 1.25rem 1.1rem 1.1rem;
+  }
+  .instr-modal-title {
+    font-size: 1.2rem;
+  }
+  .instr-modal-body {
+    font-size: 0.87rem;
+  }
+  .instr-modal-body .instr-modes {
+    grid-template-columns: 1fr;
+  }
+}

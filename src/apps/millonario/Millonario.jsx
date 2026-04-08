@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './Millonario.css';
 
 // --- Escalera de premios clásica ---
@@ -147,6 +148,9 @@ const Millonario = ({ onGameComplete }) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
+
+  // Instrucciones
+  const [showHelp, setShowHelp] = useState(false);
 
   // --- Cargar rosco ---
   useEffect(() => {
@@ -436,6 +440,7 @@ const Millonario = ({ onGameComplete }) => {
           <div className="mill-title">
             <span className="mill-emoji">💰</span>
             <span>Millonario</span>
+            <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="mill-stats">
             {cfg.timer && !isFinished && (
@@ -680,6 +685,57 @@ const Millonario = ({ onGameComplete }) => {
           </div>
         )}
       </motion.div>
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title="Cómo jugar al Millonario"
+      >
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Responde correctamente para subir por la <strong>escalera de premios</strong>.
+          Cada acierto te hace avanzar un nivel. Un solo fallo te puede hacer perder lo
+          ganado... salvo que llegues a las <strong>redes de seguridad</strong>.
+        </p>
+
+        <h3>🕹️ Cómo se juega</h3>
+        <ul>
+          <li>Lee la pregunta (la definición del vocabulario).</li>
+          <li>Elige una de las <strong>4 opciones</strong> (A, B, C, D).</li>
+          <li>Si aciertas, sumas puntos y avanzas.</li>
+          <li>Si fallas en práctica y tienes vidas, puedes continuar.</li>
+          <li>En examen solo tienes <strong>1 vida</strong> y <strong>30 segundos por pregunta</strong>.</li>
+        </ul>
+
+        <h3>🪄 Comodines (disponibles en TODOS los modos, incluido examen)</h3>
+        <ul>
+          <li><strong>50:50</strong> — Elimina 2 respuestas incorrectas.</li>
+          <li><strong>👥 Público</strong> — Muestra una encuesta orientativa del público.</li>
+          <li><strong>🔄 Cambio</strong> — Sustituye la pregunta actual por otra.</li>
+        </ul>
+        <p>Cada comodín solo se puede usar <strong>una vez por partida</strong>.</p>
+
+        <h3>🎓 Niveles de dificultad</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>🟢 Fácil</strong>
+            5 preguntas, 3 vidas, sin tiempo.
+          </div>
+          <div className="instr-mode medium">
+            <strong>🟡 Medio</strong>
+            10 preguntas, 2 vidas, red en nivel 5.
+          </div>
+          <div className="instr-mode exam">
+            <strong>🔴 Examen</strong>
+            15 preguntas, 1 vida, 30s/pregunta, redes 5 y 10.
+          </div>
+        </div>
+
+        <div className="instr-tips">
+          <strong>💡 Redes de seguridad:</strong> al superar los niveles 5 y 10 en modo medio/examen,
+          si fallas después te llevas el último premio asegurado.
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

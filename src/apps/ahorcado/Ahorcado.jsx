@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { getRoscoData, getOrdenaFrasesData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './Ahorcado.css';
 
 const MAX_FAILS = 6; // cabeza, torso, brazo izq, brazo der, pierna izq, pierna der
@@ -62,6 +63,9 @@ const Ahorcado = ({ onGameComplete }) => {
   const [examIndex, setExamIndex] = useState(0);
   const [examResults, setExamResults] = useState([]); // [{question, won, fails, guessed}]
   const [examFinished, setExamFinished] = useState(false);
+
+  // Instrucciones
+  const [showHelp, setShowHelp] = useState(false);
 
   const trackedRef = useRef(false);
   const examTrackedRef = useRef(false);
@@ -586,6 +590,7 @@ const Ahorcado = ({ onGameComplete }) => {
           <div className="ahorcado-title">
             <span className="ahorcado-emoji">🎯</span>
             <span>Ahorcado</span>
+            <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="ahorcado-stats">
             {!isExam ? (
@@ -816,6 +821,48 @@ const Ahorcado = ({ onGameComplete }) => {
           </div>
         )}
       </motion.div>
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title="Cómo jugar al Ahorcado"
+      >
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Adivina la <strong>palabra</strong> o <strong>frase</strong> oculta letra a letra antes
+          de que el muñeco quede completamente dibujado (6 fallos permitidos).
+        </p>
+
+        <h3>🕹️ Cómo se juega</h3>
+        <ul>
+          <li>Pulsa una letra del teclado en pantalla <em>o</em> escribe con el teclado físico.</li>
+          <li>Si la letra está en la palabra, se revela en su posición.</li>
+          <li>Si falla, pierdes una vida y se añade una parte al muñeco.</li>
+          <li>Cambia entre <strong>Palabra</strong> y <strong>Frase</strong> con los botones de arriba.</li>
+          <li>En modo frase verás el <strong>tema</strong> (asignatura) para que sepas de qué va.</li>
+        </ul>
+
+        <h3>🎓 Modos de juego</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>Práctica</strong>
+            Rondas infinitas. Puedes pedir pista, saltar y ver el contador.
+          </div>
+          <div className="instr-mode medium">
+            <strong>Frase</strong>
+            Mismo juego con una frase completa y el tema visible siempre.
+          </div>
+          <div className="instr-mode exam">
+            <strong>Examen</strong>
+            5 preguntas mixtas. Al final recibes nota sobre 10 y feedback de cada una.
+          </div>
+        </div>
+
+        <div className="instr-tips">
+          <strong>💡 Consejos:</strong> empieza por las vocales (A, E, O) y consonantes frecuentes
+          (S, R, N, L). En modo palabra puedes pulsar <kbd>💡 Ver pista</kbd> para leer la definición.
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

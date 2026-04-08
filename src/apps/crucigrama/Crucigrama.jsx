@@ -10,6 +10,7 @@ import {
 import { getRoscoData } from '../../services/gameDataService';
 import { generateCrossword, groupClues } from './crosswordGenerator';
 import materiasData from '../../../public/data/materias.json';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './Crucigrama.css';
 
 const normalize = (s) =>
@@ -56,6 +57,7 @@ const Crucigrama = ({ onGameComplete }) => {
   const [timer, setTimer] = useState(0);
   const [generating, setGenerating] = useState(false);
   const [noPuzzle, setNoPuzzle] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
@@ -464,6 +466,7 @@ const Crucigrama = ({ onGameComplete }) => {
           <div className="cruci-title">
             <span className="cruci-emoji">🧩</span>
             <span>Crucigrama</span>
+            <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="cruci-stats">
             <div className="cruci-stat timer" title="Tiempo">
@@ -723,6 +726,58 @@ const Crucigrama = ({ onGameComplete }) => {
           )}
         </AnimatePresence>
       </motion.div>
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title="Cómo jugar al Crucigrama"
+      >
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Rellena todas las casillas blancas con la palabra correcta usando las
+          <strong> pistas horizontales y verticales</strong>. Las palabras se cruzan
+          entre ellas compartiendo letras.
+        </p>
+
+        <h3>🕹️ Cómo se juega</h3>
+        <ul>
+          <li><strong>Click en una casilla</strong> para seleccionarla. Un segundo click cambia la dirección (↔ / ↕).</li>
+          <li>Escribe la letra con el teclado físico y avanza automáticamente.</li>
+          <li>Usa <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> para moverte entre casillas.</li>
+          <li><kbd>Espacio</kbd> cambia entre dirección horizontal y vertical.</li>
+          <li><kbd>Retroceso</kbd> borra y retrocede.</li>
+          <li>Click en una pista del panel derecho salta a esa palabra.</li>
+          <li>El banner morado de arriba siempre muestra la pista de la palabra activa.</li>
+        </ul>
+
+        <h3>💡 Ayudas (solo en Práctica)</h3>
+        <ul>
+          <li><strong>👁 Revelar letra</strong>: muestra la letra correcta de la casilla seleccionada.</li>
+          <li><strong>✅ Comprobar</strong>: marca en rojo las letras incorrectas.</li>
+          <li><strong>✨ Solución</strong>: revela el crucigrama completo.</li>
+        </ul>
+
+        <h3>🎓 Modos y tamaños</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>🟢 Pequeño</strong>
+            ~6 palabras, ideal para empezar.
+          </div>
+          <div className="instr-mode medium">
+            <strong>🟡 Mediano</strong>
+            ~10 palabras, reto equilibrado.
+          </div>
+          <div className="instr-mode exam">
+            <strong>🔴 Grande</strong>
+            ~15 palabras. Obligatorio en modo examen (sin ayudas).
+          </div>
+        </div>
+
+        <div className="instr-tips">
+          <strong>💡 Consejo:</strong> empieza por las pistas que creas más fáciles. Las letras
+          que coloques te ayudarán a descifrar las palabras que se cruzan con ellas.
+        </div>
+      </InstructionsModal>
     </div>
   );
 };
