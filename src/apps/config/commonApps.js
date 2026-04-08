@@ -82,6 +82,8 @@ import Ahorcado from '../ahorcado/Ahorcado';
 
 import Crucigrama from '../crucigrama/Crucigrama';
 
+import SopaDeLetras from '../sopa-de-letras/SopaDeLetras';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -356,4 +358,11 @@ export const appCrucigrama = {
   name: '🧩 Crucigrama',
   description: 'Completa el crucigrama con las palabras del vocabulario. Tres tamaños y modo examen.',
   component: Crucigrama
+};
+
+export const appSopaDeLetras = {
+  id: 'sopa-de-letras',
+  name: '🔍 Sopa de Letras',
+  description: 'Encuentra las palabras ocultas en la sopa. Tres tamaños y modo examen con pistas.',
+  component: SopaDeLetras
 };
