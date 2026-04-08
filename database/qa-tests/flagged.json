@@ -1,0 +1,26 @@
+{
+  "rosco_questions": {},
+  "ordena_frases": {},
+  "ordena_historias": {},
+  "detective_sentences": {},
+  "intruso_sets": {},
+  "parejas_items": {},
+  "runner_categories": {},
+  "_resolved": {
+    "2026-04-08": {
+      "sql": "qa-fixes-001.sql",
+      "count": 27,
+      "errors_fixed": 2,
+      "warnings_fixed": 25,
+      "ids": {
+        "rosco_questions": [13093,13319,14369,16507,16573,16867,16934,17743,17795,20920,21218,22478,22529],
+        "ordena_frases": [5867],
+        "ordena_historias": [150,181,338],
+        "detective_sentences": [1047,3134],
+        "intruso_sets": [112,185,205],
+        "parejas_items": [612,693],
+        "runner_categories": [258,274]
+      }
+    }
+  }
+}
