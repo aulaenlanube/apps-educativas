@@ -219,28 +219,26 @@
   padding: 6px;
   border-radius: 10px;
   box-shadow: 0 10px 30px -10px rgba(19, 78, 74, 0.5);
+  width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
   touch-action: none; /* bloquear scroll durante drag */
   user-select: none;
 }
 
-.sopa-grid.size-small .sopa-cell {
-  width: clamp(30px, 5vw, 42px);
-  height: clamp(30px, 5vw, 42px);
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+.sopa-grid.size-small { max-width: min(100%, 560px); }
+.sopa-grid.size-medium { max-width: min(100%, 660px); }
+.sopa-grid.size-large { max-width: min(100%, 760px); }
+
+.sopa-grid .sopa-cell {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
 }
 
-.sopa-grid.size-medium .sopa-cell {
-  width: clamp(26px, 4vw, 36px);
-  height: clamp(26px, 4vw, 36px);
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-}
-
-.sopa-grid.size-large .sopa-cell {
-  width: clamp(22px, 3.2vw, 30px);
-  height: clamp(22px, 3.2vw, 30px);
-  font-size: clamp(0.7rem, 1.4vw, 0.88rem);
-}
+.sopa-grid.size-small .sopa-cell { font-size: clamp(0.9rem, 2vw, 1.2rem); }
+.sopa-grid.size-medium .sopa-cell { font-size: clamp(0.8rem, 1.8vw, 1rem); }
+.sopa-grid.size-large .sopa-cell { font-size: clamp(0.7rem, 1.4vw, 0.88rem); }
 
 .sopa-cell {
   background: white;

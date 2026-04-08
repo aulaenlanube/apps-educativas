@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, GraduationCap, MessageSquare } from 'lucide-react';
+import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -100,6 +101,32 @@ const DashboardPage = () => {
             </div>
           </motion.div>
 
+          <Tabs defaultValue="grupos" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6">
+              <TabsTrigger
+                value="grupos"
+                className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+              >
+                <Users className="w-4 h-4" />
+                <span className="font-semibold">Grupos</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="logros"
+                className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-orange-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+              >
+                <Trophy className="w-4 h-4" />
+                <span className="font-semibold">Mis logros</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="comentarios"
+                className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:to-rose-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span className="font-semibold">Mis comentarios</span>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="grupos" className="mt-0">
           {/* Grid principal: grupos + contenido */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Panel de grupos */}
@@ -203,20 +230,16 @@ const DashboardPage = () => {
             </motion.div>
           )}
 
-          {/* Mis Logros */}
-          <div className="mt-6">
-            <TeacherLogrosSection />
-          </div>
+            </TabsContent>
 
-          {/* Mis comentarios */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6"
-          >
-            <MyFeedbacksSection />
-          </motion.div>
+            <TabsContent value="logros" className="mt-0">
+              <TeacherLogrosSection />
+            </TabsContent>
+
+            <TabsContent value="comentarios" className="mt-0">
+              <MyFeedbacksSection />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

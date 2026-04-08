@@ -579,7 +579,7 @@ const Crucigrama = ({ onGameComplete }) => {
               <div
                 className={`cruci-grid size-${effectiveSize}`}
                 style={{
-                  gridTemplateColumns: `repeat(${crossword.width}, 1fr)`,
+                  gridTemplateColumns: `repeat(${crossword.width}, minmax(0, 1fr))`,
                 }}
               >
                 {Array.from({ length: crossword.height }).map((_, r) =>

@@ -58,9 +58,11 @@ const MODE_CONFIG = {
 
 const normalize = (s) =>
   String(s || '')
+    .toUpperCase()
+    .replace(/Ñ/g, '\u0001')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase()
+    .replace(/\u0001/g, 'Ñ')
     .replace(/[^A-ZÑ]/g, '');
 
 const shuffle = (arr) => {

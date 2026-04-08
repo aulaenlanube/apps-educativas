@@ -46,7 +46,10 @@
       "Bash(node database/dump-detective.mjs)",
       "Bash(node database/dump-intruso.mjs)",
       "Bash(node database/dump-parejas.mjs)",
-      "Bash(node database/dump-runner.mjs)"
+      "Bash(node database/dump-runner.mjs)",
+      "Bash(grep -n \"CREATE TABLE.*game_sessions\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"ALTER TABLE.*game_sessions\\\\|ADD COLUMN.*nota\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -E \"\\\\.\\(jsx|tsx|js|ts\\)$\")"
     ]
   }
 }

@@ -422,7 +422,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
               <div
                 className={`sopa-grid size-${effectiveSize}`}
                 style={{
-                  gridTemplateColumns: `repeat(${puzzle.size}, 1fr)`,
+                  gridTemplateColumns: `repeat(${puzzle.size}, minmax(0, 1fr))`,
                 }}
               >
                 {puzzle.grid.map((row, r) =>

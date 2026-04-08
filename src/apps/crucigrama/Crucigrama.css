@@ -273,22 +273,19 @@
   padding: 6px;
   border-radius: 8px;
   box-shadow: 0 10px 30px -10px rgba(30, 27, 75, 0.5);
+  width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
-.cruci-grid.size-small .cruci-cell {
-  width: clamp(32px, 5vw, 44px);
-  height: clamp(32px, 5vw, 44px);
-}
+.cruci-grid.size-small { max-width: min(100%, 580px); }
+.cruci-grid.size-medium { max-width: min(100%, 680px); }
+.cruci-grid.size-large { max-width: min(100%, 780px); }
 
-.cruci-grid.size-medium .cruci-cell {
-  width: clamp(28px, 4vw, 38px);
-  height: clamp(28px, 4vw, 38px);
-}
-
-.cruci-grid.size-large .cruci-cell {
-  width: clamp(22px, 3vw, 32px);
-  height: clamp(22px, 3vw, 32px);
+.cruci-grid .cruci-cell {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
 }
 
 .cruci-cell {
