@@ -49,7 +49,16 @@
       "Bash(node database/dump-runner.mjs)",
       "Bash(grep -n \"CREATE TABLE.*game_sessions\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -n \"ALTER TABLE.*game_sessions\\\\|ADD COLUMN.*nota\" /home/edu/apps-educativas/supabase/*.sql)",
-      "Bash(grep -E \"\\\\.\\(jsx|tsx|js|ts\\)$\")"
+      "Bash(grep -E \"\\\\.\\(jsx|tsx|js|ts\\)$\")",
+      "Bash(ls /home/edu/apps-educativas/src/*.css /home/edu/apps-educativas/src/styles)",
+      "Bash(ls -d /home/edu/apps-educativas/src/apps/*/)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(grep -nE \"^\\\\.[a-z][^,{]*\\\\{\" /home/edu/apps-educativas/src/apps/_shared/ComprensionShared.css)",
+      "Bash(grep -rEoh \"z-\\\\[?[0-9]{3,}\\\\]?|zIndex:\\\\s*[0-9]{3,}\" /home/edu/apps-educativas/src/apps)",
+      "Bash(grep -n \"get_teacher_groups\\\\|get_group_students\\\\|get_student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -A 10 \"get_student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"student_join_group\\\\|student_login_by_auth\\\\|student_confirm_email\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -A 10 \"CREATE TABLE public.groups\" /home/edu/apps-educativas/supabase/*.sql)"
     ]
   }
 }

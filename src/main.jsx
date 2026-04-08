@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ConfettiProvider } from '/src/apps/_shared/ConfettiProvider';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 
 import App from '@/App';
 import MainLayout from '@/components/layout/MainLayout';
@@ -95,12 +96,14 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
-      <ConfettiProvider>
-        <AuthProvider>
-          <RouterProvider router={router} />
-          <Toaster />
-        </AuthProvider>
-      </ConfettiProvider>
+      <ThemeProvider>
+        <ConfettiProvider>
+          <AuthProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+          </AuthProvider>
+        </ConfettiProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

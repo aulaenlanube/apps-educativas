@@ -63,6 +63,23 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     const speedRef = useRef(INITIAL_SPEED);
     const baseSpeedRef = useRef(INITIAL_SPEED);
     const baseSpawnRef = useRef(SPAWN_RATE_START);
+    const trackedRef = useRef(false);
+
+    useEffect(() => {
+        if (gamePhase === 'gameOver' && !trackedRef.current) {
+            trackedRef.current = true;
+            const wordsCollected = Math.floor(score / 10);
+            const TARGET_WORDS = 30;
+            onGameComplete?.({
+                mode: difficulty === 'hard' ? 'test' : 'practice',
+                score,
+                maxScore: TARGET_WORDS * 10,
+                correctAnswers: wordsCollected,
+                totalQuestions: TARGET_WORDS,
+            });
+        }
+        if (gamePhase !== 'gameOver') trackedRef.current = false;
+    }, [gamePhase, score, difficulty, onGameComplete]);
 
     // --- CARGA DE DATOS ---
     useEffect(() => {
@@ -416,23 +433,6 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     }
 
     // Tracking
-    const trackedRef = useRef(false);
-    useEffect(() => {
-        if (gamePhase === 'gameOver' && !trackedRef.current) {
-            trackedRef.current = true;
-            const wordsCollected = Math.floor(score / 10);
-            const TARGET_WORDS = 30; // 30 palabras = nota 10
-            onGameComplete?.({
-                mode: difficulty === 'hard' ? 'test' : 'practice',
-                score,
-                maxScore: TARGET_WORDS * 10,
-                correctAnswers: wordsCollected,
-                totalQuestions: TARGET_WORDS,
-            });
-        }
-        if (gamePhase !== 'gameOver') trackedRef.current = false;
-    }, [gamePhase, score, difficulty, onGameComplete]);
-
     // 2. GAME OVER / RESULTS
     if (gamePhase === 'gameOver') {
         const isExam = difficulty === 'hard';

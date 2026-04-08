@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap } from 'lucide-react';
+import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap, BookOpen } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,51 @@ import {
   AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle,
   AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel,
 } from '@/components/ui/alert-dialog';
+import materiasData from '/public/data/materias.json';
+
+const LEVEL_OPTIONS = [
+  { id: 'primaria', label: 'Primaria', grades: ['1', '2', '3', '4', '5', '6'] },
+  { id: 'eso', label: 'ESO', grades: ['1', '2', '3', '4'] },
+];
+const NO_SUBJECT = '__none__';
+
+const selectClass = 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+
+function GroupLevelFields({ level, grade, subjectId, availableGrades, availableSubjects, onLevelChange, onGradeChange, onSubjectChange }) {
+  return (
+    <div className="space-y-3 pt-2 border-t border-slate-100">
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1.5">
+          <Label className="text-xs">Nivel</Label>
+          <select className={selectClass} value={level} onChange={(e) => onLevelChange(e.target.value)}>
+            {LEVEL_OPTIONS.map((l) => (
+              <option key={l.id} value={l.id}>{l.label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="space-y-1.5">
+          <Label className="text-xs">Curso</Label>
+          <select className={selectClass} value={grade} onChange={(e) => onGradeChange(e.target.value)}>
+            {availableGrades.map((g) => (
+              <option key={g} value={g}>{g}º</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div className="space-y-1.5">
+        <Label className="text-xs flex items-center gap-1.5">
+          <BookOpen className="w-3.5 h-3.5" /> Asignatura
+        </Label>
+        <select className={selectClass} value={subjectId} onChange={(e) => onSubjectChange(e.target.value)}>
+          <option value={NO_SUBJECT}>Sin asignatura</option>
+          {availableSubjects.map((s) => (
+            <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
 
 const groupColors = [
   'from-blue-400 to-blue-600',
@@ -39,7 +84,29 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
   const [editingGroup, setEditingGroup] = useState(null);
   const [groupName, setGroupName] = useState('');
   const [groupDescription, setGroupDescription] = useState('');
+  const [groupLevel, setGroupLevel] = useState('primaria');
+  const [groupGrade, setGroupGrade] = useState('1');
+  const [groupSubjectId, setGroupSubjectId] = useState(NO_SUBJECT);
   const [loading, setLoading] = useState(false);
+
+  const availableGrades = useMemo(
+    () => LEVEL_OPTIONS.find((l) => l.id === groupLevel)?.grades || [],
+    [groupLevel]
+  );
+
+  const availableSubjects = useMemo(() => {
+    if (!groupLevel || !groupGrade) return [];
+    const list = materiasData?.[groupLevel]?.[groupGrade];
+    return Array.isArray(list) ? list : [];
+  }, [groupLevel, groupGrade]);
+
+  const resetForm = () => {
+    setGroupName('');
+    setGroupDescription('');
+    setGroupLevel('primaria');
+    setGroupGrade('1');
+    setGroupSubjectId(NO_SUBJECT);
+  };
 
   const handleCreate = async () => {
     if (!groupName.trim()) return;
@@ -49,6 +116,9 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
       teacher_id: (await supabase.auth.getUser()).data.user.id,
       name: groupName.trim(),
       description: groupDescription.trim() || null,
+      level: groupLevel || null,
+      grade: groupGrade || null,
+      subject_id: groupSubjectId === NO_SUBJECT ? null : groupSubjectId,
     });
 
     setLoading(false);
@@ -61,8 +131,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     } else {
       toast({ title: 'Grupo creado' });
       setShowCreateDialog(false);
-      setGroupName('');
-      setGroupDescription('');
+      resetForm();
       onGroupsChanged();
     }
   };
@@ -73,7 +142,14 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
 
     const { error } = await supabase
       .from('groups')
-      .update({ name: groupName.trim(), description: groupDescription.trim() || null, updated_at: new Date().toISOString() })
+      .update({
+        name: groupName.trim(),
+        description: groupDescription.trim() || null,
+        level: groupLevel || null,
+        grade: groupGrade || null,
+        subject_id: groupSubjectId === NO_SUBJECT ? null : groupSubjectId,
+        updated_at: new Date().toISOString(),
+      })
       .eq('id', editingGroup.id);
 
     setLoading(false);
@@ -110,6 +186,9 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setEditingGroup(group);
     setGroupName(group.name);
     setGroupDescription(group.description || '');
+    setGroupLevel(group.level || 'primaria');
+    setGroupGrade(group.grade || '1');
+    setGroupSubjectId(group.subject_id || NO_SUBJECT);
     setShowEditDialog(true);
   };
 
@@ -125,7 +204,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
         <h2 className="text-lg font-bold text-gray-800">Mis Grupos</h2>
         <Button
           size="sm"
-          onClick={() => { setGroupName(''); setGroupDescription(''); setShowCreateDialog(true); }}
+          onClick={() => { resetForm(); setShowCreateDialog(true); }}
           className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
         >
           <Plus className="w-4 h-4 mr-1" />
@@ -173,6 +252,13 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
                       )}
                       {group.is_owner === false && group.owner_name && (
                         <p className="text-xs text-gray-400">Propietario: {group.owner_name}</p>
+                      )}
+                      {(group.level || group.grade || group.subject_id) && (
+                        <p className="text-[11px] text-purple-500 mt-0.5 font-medium">
+                          {group.level === 'eso' ? 'ESO' : group.level === 'primaria' ? 'Primaria' : ''}
+                          {group.grade ? ` · ${group.grade}º` : ''}
+                          {group.subject_id ? ` · ${materiasData?.[group.level]?.[group.grade]?.find((s) => s.id === group.subject_id)?.nombre || group.subject_id}` : ''}
+                        </p>
                       )}
                     </div>
                     <div className="flex items-center gap-1">
@@ -248,6 +334,17 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
                 onChange={(e) => setGroupDescription(e.target.value)}
               />
             </div>
+
+            <GroupLevelFields
+              level={groupLevel}
+              grade={groupGrade}
+              subjectId={groupSubjectId}
+              availableGrades={availableGrades}
+              availableSubjects={availableSubjects}
+              onLevelChange={(v) => { setGroupLevel(v); setGroupGrade('1'); setGroupSubjectId(NO_SUBJECT); }}
+              onGradeChange={(v) => { setGroupGrade(v); setGroupSubjectId(NO_SUBJECT); }}
+              onSubjectChange={setGroupSubjectId}
+            />
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowCreateDialog(false)}>Cancelar</Button>
@@ -274,6 +371,17 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
               <Label>Descripcion (opcional)</Label>
               <Input value={groupDescription} onChange={(e) => setGroupDescription(e.target.value)} />
             </div>
+
+            <GroupLevelFields
+              level={groupLevel}
+              grade={groupGrade}
+              subjectId={groupSubjectId}
+              availableGrades={availableGrades}
+              availableSubjects={availableSubjects}
+              onLevelChange={(v) => { setGroupLevel(v); setGroupGrade('1'); setGroupSubjectId(NO_SUBJECT); }}
+              onGradeChange={(v) => { setGroupGrade(v); setGroupSubjectId(NO_SUBJECT); }}
+              onSubjectChange={setGroupSubjectId}
+            />
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowEditDialog(false)}>Cancelar</Button>

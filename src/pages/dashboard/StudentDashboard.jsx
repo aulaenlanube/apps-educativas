@@ -5,7 +5,7 @@ import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
   BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
   ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
-  Play
+  Play, Compass
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -464,6 +464,15 @@ export default function StudentDashboard() {
     { id: 'profile', label: 'Perfil', icon: Star },
   ];
 
+  const groupLevel = student?.group_level;
+  const groupGrade = student?.group_grade;
+  const groupSubjectId = student?.group_subject_id;
+  const exploreAppsPath = (groupLevel && groupGrade)
+    ? (groupSubjectId
+        ? `/curso/${groupLevel}/${groupGrade}/${groupSubjectId}`
+        : `/curso/${groupLevel}/${groupGrade}`)
+    : null;
+
   return (
     <div>
       <Header subtitle="Mi Panel" />
@@ -497,6 +506,16 @@ export default function StudentDashboard() {
                   )}
                 </div>
               </div>
+              {exploreAppsPath && (
+                <button
+                  onClick={() => navigate(exploreAppsPath)}
+                  className="ml-4 flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl text-lg font-bold hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  title="Ir a las apps de tu asignatura"
+                >
+                  <Compass className="w-6 h-6" />
+                  Explorar Apps
+                </button>
+              )}
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center">
                 <div>
                   <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>

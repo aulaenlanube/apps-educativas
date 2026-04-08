@@ -153,7 +153,7 @@ const Clasificador = () => {
         setError("Error al cargar la actividad.");
         setLoading(false);
       });
-  }, [dataUrl]);
+  }, [level, grade, effectiveSubject]);
 
   // --- LÓGICA DE NAVEGACIÓN ---
   const handleNextWord = useCallback(() => {

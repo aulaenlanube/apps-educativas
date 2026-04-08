@@ -28,9 +28,423 @@
   --radius: 0.5rem;
 }
 
+.dark {
+  --primary: 220 100% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 280 70% 60%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 45 90% 55%;
+  --accent-foreground: 220 13% 13%;
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --muted: 220 13% 20%;
+  --muted-foreground: 220 10% 70%;
+  --card: 222 18% 14%;
+  --card-foreground: 220 14% 92%;
+  --popover: 222 18% 14%;
+  --popover-foreground: 220 14% 92%;
+  --border: 220 13% 25%;
+  --input: 220 13% 25%;
+  --ring: 220 100% 65%;
+  --background: 222 22% 9%;
+  --foreground: 220 14% 92%;
+}
+
 body {
   @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen;
   font-family: 'Fredoka', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background: linear-gradient(135deg, #0b1020 0%, #161329 50%, #1a1130 100%);
+  color: hsl(220 14% 92%);
+}
+
+html.dark .gradient-text {
+  @apply from-blue-400 via-purple-400 to-pink-400;
+}
+
+/* ====== DARK MODE: overrides globales para Tailwind utilities ======
+   Estas reglas transforman las páginas estructurales (Header, Dashboard,
+   Profile, Login, Register, HomePage…) sin tocar cada componente. */
+
+/* Fondos de página: cualquier gradiente que use un -50 como stop se aplana
+   para dejar ver el fondo oscuro del body. Usamos [class~=...] para que
+   el match sea por palabra completa (no captura -500). */
+html.dark [class~="from-blue-50"],
+html.dark [class~="from-indigo-50"],
+html.dark [class~="from-purple-50"],
+html.dark [class~="from-pink-50"],
+html.dark [class~="from-rose-50"],
+html.dark [class~="from-amber-50"],
+html.dark [class~="from-yellow-50"],
+html.dark [class~="from-emerald-50"],
+html.dark [class~="from-green-50"],
+html.dark [class~="from-teal-50"],
+html.dark [class~="from-cyan-50"],
+html.dark [class~="from-sky-50"],
+html.dark [class~="from-violet-50"],
+html.dark [class~="from-fuchsia-50"],
+html.dark [class~="from-orange-50"],
+html.dark [class~="from-slate-50"],
+html.dark [class~="from-gray-50"] {
+  --tw-gradient-from: transparent !important;
+  --tw-gradient-stops: transparent !important;
+  --tw-gradient-to: transparent !important;
+  background-image: none !important;
+}
+
+/* Cards y superficies blancas (cualquier opacidad) */
+html.dark .bg-white,
+html.dark .bg-white\/95,
+html.dark .bg-white\/90,
+html.dark .bg-white\/85,
+html.dark .bg-white\/80,
+html.dark .bg-white\/75,
+html.dark .bg-white\/70,
+html.dark .bg-white\/65,
+html.dark .bg-white\/60,
+html.dark .bg-white\/55,
+html.dark .bg-white\/50,
+html.dark .bg-white\/40,
+html.dark .bg-white\/30,
+html.dark .bg-white\/20 {
+  background-color: rgba(30, 27, 55, 0.82) !important;
+  color: #e5e7eb;
+}
+html.dark .bg-slate-50,
+html.dark .bg-gray-50,
+html.dark .bg-neutral-50,
+html.dark .bg-zinc-50 {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+html.dark .bg-slate-100,
+html.dark .bg-gray-100 {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+html.dark .bg-purple-50 { background-color: rgba(147, 51, 234, 0.18) !important; }
+html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.18) !important; }
+html.dark .bg-pink-50 { background-color: rgba(236, 72, 153, 0.18) !important; }
+html.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.18) !important; }
+html.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.18) !important; }
+html.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.18) !important; }
+html.dark .bg-yellow-50 { background-color: rgba(234, 179, 8, 0.18) !important; }
+html.dark .bg-rose-50 { background-color: rgba(244, 63, 94, 0.18) !important; }
+html.dark .bg-cyan-50 { background-color: rgba(6, 182, 212, 0.18) !important; }
+
+/* Texto */
+html.dark .text-slate-900,
+html.dark .text-gray-900,
+html.dark .text-zinc-900,
+html.dark .text-neutral-900,
+html.dark .text-slate-800,
+html.dark .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+html.dark .text-slate-700,
+html.dark .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+html.dark .text-slate-600,
+html.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+html.dark .text-slate-500,
+html.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+html.dark .text-slate-400,
+html.dark .text-gray-400 {
+  color: #64748b !important;
+}
+
+/* Bordes */
+html.dark .border-purple-100,
+html.dark .border-purple-200 {
+  border-color: rgba(168, 85, 247, 0.25) !important;
+}
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-neutral-200,
+html.dark .border-zinc-200 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark .border-blue-100,
+html.dark .border-blue-200 {
+  border-color: rgba(96, 165, 250, 0.25) !important;
+}
+html.dark .border-amber-200 { border-color: rgba(251, 191, 36, 0.3) !important; }
+html.dark .border-emerald-200 { border-color: rgba(16, 185, 129, 0.3) !important; }
+html.dark .border-indigo-200 { border-color: rgba(99, 102, 241, 0.3) !important; }
+html.dark .border-pink-200 { border-color: rgba(236, 72, 153, 0.3) !important; }
+
+/* Inputs */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.dark textarea,
+html.dark select {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Hover backgrounds claros */
+html.dark .hover\:bg-purple-50:hover { background-color: rgba(147, 51, 234, 0.2) !important; }
+html.dark .hover\:bg-slate-100:hover { background-color: rgba(255, 255, 255, 0.08) !important; }
+html.dark .hover\:bg-gray-100:hover { background-color: rgba(255, 255, 255, 0.08) !important; }
+html.dark .hover\:bg-blue-50:hover { background-color: rgba(59, 130, 246, 0.2) !important; }
+
+/* ====== DARK MODE: overrides para apps con CSS propio ======
+   Cuando html.dark, las apps que tienen "card" blanca con backdrop-blur
+   se invierten a un panel oscuro. Las apps excluidas (sistema-solar,
+   células, mesa-crafteo, visualizador 3D, terminal-retro, excavación)
+   no se ven afectadas porque sus selectores no entran aquí. */
+
+html.dark .cruci-card,
+html.dark .sopa-card,
+html.dark .mill-card,
+html.dark .ahorcado-card,
+html.dark .anag-card {
+  background: rgba(30, 27, 55, 0.82) !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+  color: #e5e7eb;
+}
+
+/* Texto general en cards de apps */
+html.dark .cruci-card .cruci-subtitle,
+html.dark .sopa-card .sopa-subtitle,
+html.dark .mill-card .mill-subtitle,
+html.dark .ahorcado-card .ahorcado-subtitle,
+html.dark .anag-card .anag-subtitle {
+  color: #94a3b8 !important;
+}
+
+html.dark .cruci-card *:not(.cruci-clue-current):not(.cruci-clue-current *):not(.cruci-cell):not(.cruci-cell *):not(button):not(.cruci-stat):not(.cruci-stat *):not(.cruci-completed):not(.cruci-completed *),
+html.dark .sopa-card .sopa-clue-text,
+html.dark .mill-card .mill-question-text {
+  color: inherit;
+}
+
+html.dark .cruci-clues-col,
+html.dark .sopa-clues-col {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .cruci-clue-item,
+html.dark .sopa-clue-item {
+  color: #cbd5e1 !important;
+}
+
+html.dark .cruci-clues-title,
+html.dark .sopa-clues-title {
+  color: #c4b5fd !important;
+}
+
+/* Otras apps: contenedores principales en oscuro */
+html.dark .memory-game-container,
+html.dark .contenedor-parejas,
+html.dark .intruso-wrapper,
+html.dark .intruso-container,
+html.dark .trainer-container,
+html.dark .fracciones-eso-container,
+html.dark .calma-app-wrapper,
+html.dark .calma-container,
+html.dark .rotaciones-container,
+html.dark .gp-contenedor,
+html.dark .banco-recursos-app,
+html.dark .banco-app {
+  background: linear-gradient(135deg, #0b1020 0%, #161329 50%, #1a1130 100%) !important;
+  color: #e5e7eb !important;
+}
+
+/* Cards/paneles internos comunes en estas apps */
+html.dark .memory-game-container .game-card-section,
+html.dark .memory-game-container .difficulty-selector,
+html.dark .memory-game-container .stats-panel,
+html.dark .memory-game-container .level-selector,
+html.dark .contenedor-parejas .panel,
+html.dark .contenedor-parejas .tarjeta-info,
+html.dark .contenedor-parejas .panel-superior,
+html.dark .intruso-wrapper .intruso-card,
+html.dark .intruso-wrapper .intruso-panel,
+html.dark .trainer-container .trainer-card,
+html.dark .trainer-container .stats-card,
+html.dark .fracciones-eso-container .feso-card,
+html.dark .fracciones-eso-container .feso-panel,
+html.dark .calma-container .calma-card,
+html.dark .rotaciones-container .rotaciones-card,
+html.dark .gp-contenedor .gp-card,
+html.dark .gp-contenedor .gp-panel {
+  background: rgba(30, 27, 55, 0.78) !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+  color: #e5e7eb !important;
+}
+
+/* === Apps específicas: paneles internos con fondos hardcoded === */
+
+/* busca-el-intruso */
+html.dark .intruso-hud,
+html.dark .intruso-cell,
+html.dark .results-card {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+html.dark .intruso-btn {
+  background: rgba(50, 45, 90, 0.85) !important;
+  color: #e5e7eb !important;
+}
+
+/* parejas-de-cartas: modales (las cartas las dejamos como están) */
+html.dark .modal-ayuda,
+html.dark .modal-body {
+  background: rgba(30, 27, 55, 0.95) !important;
+  color: #e5e7eb !important;
+}
+
+/* isla-de-la-calma */
+html.dark .calma-app-wrapper .control-audio {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+}
+
+/* generador-personajes */
+html.dark .gp-tarjeta {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+
+/* rotaciones-grid */
+html.dark .grid-card,
+html.dark .summary-card,
+html.dark .modal-content {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+
+/* fracciones-eso */
+html.dark .exam-promo-banner,
+html.dark .review-box,
+html.dark .exercise-card,
+html.dark .fractions-modal-content,
+html.dark .fractions-modal-header,
+html.dark .hint-ball {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+
+/* banco-recursos-tutoria */
+html.dark .block-nav-item,
+html.dark .session-nav-btn,
+html.dark .session-nav-btn.active,
+html.dark .session-card-header,
+html.dark .meta-pill,
+html.dark .resource-card,
+html.dark .activity-item,
+html.dark .eval-trigger,
+html.dark .rubric-wrapper,
+html.dark .rubric-header {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+html.dark .session-nav-btn:hover,
+html.dark .eval-trigger:hover {
+  background: rgba(50, 45, 90, 0.9) !important;
+}
+html.dark .resource-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(14, 165, 233, 0.12)) !important;
+}
+html.dark .cel-excellent {
+  background: rgba(34, 197, 94, 0.15) !important;
+  color: #d1fae5 !important;
+}
+html.dark .cel-improvable {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: #fef3c7 !important;
+}
+
+/* Ordena la frase / Ordena la historia / Detective de palabras / Comprensión */
+html.dark .ordena-frase-container,
+html.dark .ordena-historia-container,
+html.dark .detective-container {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+}
+html.dark .ordena-frase-container .zona-origen,
+html.dark .detective-frase-container {
+  background-color: rgba(254, 244, 232, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+html.dark .ordena-frase-container .palabra,
+html.dark .palabra-clone,
+html.dark .ordena-historia-container .frase,
+html.dark .frase-clone {
+  background-color: rgba(50, 45, 90, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.3) !important;
+}
+html.dark .ordena-historia-container .frase-controls,
+html.dark .font-slider-container {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark .card-principal,
+html.dark .pregunta-card,
+html.dark .btn-big-audio,
+html.dark .btn-secondary-action {
+  background: rgba(30, 27, 55, 0.85) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(120, 110, 200, 0.25) !important;
+}
+html.dark .card-header,
+html.dark .card-footer,
+html.dark .config-item,
+html.dark .btn-opcion,
+html.dark .review-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark .btn-opcion.seleccionada {
+  background: rgba(59, 130, 246, 0.25) !important;
+}
+html.dark .zona-audio-vibrante {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(99, 102, 241, 0.18)) !important;
+}
+html.dark .correction-box {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+html.dark .btn-big-audio.paused {
+  background: rgba(251, 191, 36, 0.18) !important;
+}
+html.dark .texto-lectura,
+html.dark .titulo-historia {
+  color: #e2e8f0 !important;
+}
+
+/* Inner sections de las 5 apps principales */
+html.dark .cruci-grid-wrap,
+html.dark .sopa-grid-wrap,
+html.dark .cruci-actions,
+html.dark .sopa-actions,
+html.dark .mill-actions,
+html.dark .ahorcado-actions,
+html.dark .anag-actions,
+html.dark .cruci-stats,
+html.dark .ahorcado-keyboard {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .gradient-text {

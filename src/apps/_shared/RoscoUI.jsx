@@ -35,12 +35,28 @@ const RoscoUI = ({
     const autoRecordRef = useRef(autoRecord);
     const checkAnswerRef = useRef(checkAnswer);
     const pasapalabraRef = useRef(pasapalabra);
+    const trackedRef = useRef(false);
 
     useEffect(() => {
         autoRecordRef.current = autoRecord;
         checkAnswerRef.current = checkAnswer;
         pasapalabraRef.current = pasapalabra;
     }, [autoRecord, checkAnswer, pasapalabra]);
+
+    useEffect(() => {
+        if (gameState === 'finished' && !trackedRef.current) {
+            trackedRef.current = true;
+            const best = [...players].sort((a, b) => b.score - a.score)[0];
+            onGameComplete?.({
+                mode: 'test',
+                score: best?.score || 0,
+                maxScore: config.questionCount,
+                correctAnswers: best?.score || 0,
+                totalQuestions: config.questionCount,
+            });
+        }
+        if (gameState !== 'finished') trackedRef.current = false;
+    }, [gameState, players, config.questionCount, onGameComplete]);
 
     // Inicializar Reconocimiento de Voz
     useEffect(() => {
@@ -299,22 +315,6 @@ const RoscoUI = ({
             </div>
         );
     }
-
-    const trackedRef = useRef(false);
-    useEffect(() => {
-        if (gameState === 'finished' && !trackedRef.current) {
-            trackedRef.current = true;
-            const best = [...players].sort((a, b) => b.score - a.score)[0];
-            onGameComplete?.({
-                mode: 'test',
-                score: best?.score || 0,
-                maxScore: config.questionCount,
-                correctAnswers: best?.score || 0,
-                totalQuestions: config.questionCount,
-            });
-        }
-        if (gameState !== 'finished') trackedRef.current = false;
-    }, [gameState, players, config.questionCount, onGameComplete]);
 
     if (gameState === 'finished') {
         const sortedPlayers = [...players].sort((a, b) => b.score - a.score);

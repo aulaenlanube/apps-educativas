@@ -242,12 +242,13 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
 
   if (!isAuthenticated) return null;
 
-  // FAB button styles
+  // FAB button styles — alto contraste en todas las variantes para que se vea
+  // sobre cualquier fondo (claro/oscuro/full-screen).
   const fabClass = variant === 'retro'
     ? 'bg-black border-2 border-green-500 text-green-400 hover:bg-green-900/50 hover:shadow-[0_0_15px_rgba(0,255,0,0.5)]'
     : variant === 'fullscreen'
-      ? 'bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20'
-      : 'bg-white shadow-lg border border-purple-200 text-purple-600 hover:bg-purple-50 hover:shadow-xl';
+      ? 'bg-gradient-to-br from-purple-600 to-pink-600 border-2 border-white/30 text-white shadow-2xl hover:scale-110'
+      : 'bg-white shadow-lg border border-purple-200 text-purple-600 hover:bg-purple-50 hover:shadow-xl dark:bg-slate-800 dark:border-purple-500/40 dark:text-amber-300 dark:hover:bg-slate-700';
 
   return (
     <>
@@ -257,7 +258,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: 'spring' }}
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-[110] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
+        className={`fixed bottom-6 right-6 z-[6000] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
         title="Valorar esta app"
       >
         <Star className="w-6 h-6" />
@@ -271,14 +272,14 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[120]"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[6010]"
               onClick={() => setOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: 100, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 100, scale: 0.95 }}
-              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[130] w-full sm:w-96 sm:max-h-[80vh] bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 overflow-hidden flex flex-col"
+              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[6020] w-full sm:w-96 sm:max-h-[80vh] bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-4 text-white flex items-center justify-between shrink-0">
