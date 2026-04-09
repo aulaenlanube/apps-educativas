@@ -3,7 +3,7 @@ import materiasData from '../../../public/data/materias.json';
 
 import {
   appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
-  appGeneradorPersonajes, appJuegoMemoria, appBuscaElIntruso, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appOrdenaBolas, appRunner,
+  appGeneradorPersonajes, appJuegoMemoria, appBuscaElIntruso, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appOrdenaBolas, appRunner,
   appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
@@ -15,7 +15,7 @@ export const bachilleratoSubjects = materiasData.bachillerato;
 // Apps base comunes a la mayoría de asignaturas de bachillerato
 const appsBase = [
   appJuegoMemoria, appBuscaElIntruso, appRunner, appExcavacionSelectiva,
-  appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas,
+  appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma,
   appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
   appClasificador, appSnake, appComprensionEscrita, appComprensionOral
 ];

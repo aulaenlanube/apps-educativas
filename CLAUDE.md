@@ -319,7 +319,9 @@ import {
 
 **c) `src/apps/config/esoApps.js`** — igual que primariaApps.js
 
-**Verificación:** tras los cambios, comprueba que el número de ocurrencias coincide con las demás apps del catálogo (hay 55 listas en primariaApps y 67 en esoApps, contando el import).
+**d) `src/apps/config/bachilleratoApps.js`** — importar `appMiApp` y añadirlo al array `appsBase` (línea ~18). Esto la incluye automáticamente en todas las asignaturas de 1º y 2º Bachillerato, ya que todos los sets (`appsIdioma`, `appsCiencias`, etc.) extienden `appsBase` con `...appsBase`.
+
+**Verificación:** tras los cambios, comprueba que el número de ocurrencias coincide con las demás apps del catálogo (hay 55 listas en primariaApps, 67 en esoApps, y 1 en bachilleratoApps contando appsBase).
 
 ### 10. Diseño y estética
 
@@ -378,6 +380,7 @@ npm run lint          # Lint (puede dar warnings preexistentes - centrarse en er
 - `src/apps/config/commonApps.js` — Definición de todas las apps exportadas
 - `src/apps/config/primariaApps.js` — Listas de apps por curso/asignatura de Primaria
 - `src/apps/config/esoApps.js` — Listas de apps por curso/asignatura de ESO
+- `src/apps/config/bachilleratoApps.js` — Apps de Bachillerato (usa `appsBase` compartido)
 - `src/services/gameDataService.js` — Servicios para obtener datos (rosco, frases, etc.)
 - `src/hooks/useGameTracker.js` — Hook de tracking de sesiones (no tocar)
 - `src/pages/AppRunnerPage.jsx` — Wrapper que monta cada app y conecta `onGameComplete`
