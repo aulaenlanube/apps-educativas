@@ -96,6 +96,8 @@ import ConectaParejas from '../conecta-parejas/ConectaParejas';
 
 import DictadoInteractivo from '../dictado-interactivo/DictadoInteractivo';
 
+import TorrePalabras from '../torre-palabras/TorrePalabras';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -419,4 +421,11 @@ export const appDictadoInteractivo = {
   name: '✍️ Dictado',
   description: 'Escribe la palabra o frase correcta evaluando letra a letra. Bonus por ortografía perfecta.',
   component: DictadoInteractivo
+};
+
+export const appTorrePalabras = {
+  id: 'torre-palabras',
+  name: '🏗️ Torre de Palabras',
+  description: 'Clasifica cada palabra en su categoría para apilar bloques. ¡Construye la torre más alta!',
+  component: TorrePalabras
 };
