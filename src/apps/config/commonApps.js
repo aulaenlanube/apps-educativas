@@ -88,6 +88,8 @@ import Millonario from '../millonario/Millonario';
 
 import Anagramas from '../anagramas/Anagramas';
 
+import Criptograma from '../criptograma/Criptograma';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -383,4 +385,11 @@ export const appAnagramas = {
   name: '🔀 Anagramas',
   description: 'Ordena las fichas de colores para formar la palabra correcta. Con rachas, multiplicadores y comodines.',
   component: Anagramas
+};
+
+export const appCriptograma = {
+  id: 'criptograma',
+  name: '🔐 Criptograma',
+  description: 'Descifra la frase secreta adivinando qué letra se esconde tras cada número.',
+  component: Criptograma
 };
