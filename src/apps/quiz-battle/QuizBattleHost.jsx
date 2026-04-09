@@ -40,6 +40,7 @@ export default function QuizBattleHost() {
   const [subjectId, setSubjectId] = useState('');
   const [questionCount, setQuestionCount] = useState(10);
   const [timeLimit, setTimeLimit] = useState(20);
+  const [battleDifficulty, setBattleDifficulty] = useState('experto');
 
   const MAX_PLAYERS = 30;
 
@@ -186,7 +187,7 @@ export default function QuizBattleHost() {
         }
         qs = tpl.questions;
       } else {
-        qs = await buildQuizQuestions(level, parseInt(grade, 10), subjectId, questionCount);
+        qs = await buildQuizQuestions(level, parseInt(grade, 10), subjectId, questionCount, battleDifficulty);
       }
 
       if (!qs || qs.length < 4) {
@@ -461,7 +462,7 @@ export default function QuizBattleHost() {
                     {groups.map((g) => (
                       <option key={g.id} value={g.id}>
                         {g.name} ({g.student_count || 0} alumnos)
-                        {g.level && g.grade ? ` - ${g.level === 'primaria' ? 'Prim' : 'ESO'} ${g.grade}` : ''}
+                        {g.level && g.grade ? ` - ${g.level === 'bachillerato' ? 'Bach.' : g.level === 'primaria' ? 'Prim' : 'ESO'} ${g.grade}` : ''}
                       </option>
                     ))}
                   </select>
@@ -489,19 +490,46 @@ export default function QuizBattleHost() {
                 <>
                   <div className="qb-field">
                     <label>Nivel</label>
-                    <select value={level} onChange={(e) => setLevel(e.target.value)}>
+                    <select value={level} onChange={(e) => { setLevel(e.target.value); setGrade('1'); }}>
                       <option value="primaria">Primaria</option>
                       <option value="eso">ESO</option>
+                      <option value="bachillerato">Bachillerato</option>
                     </select>
                   </div>
 
                   <div className="qb-field">
                     <label>Curso</label>
                     <select value={grade} onChange={(e) => setGrade(e.target.value)}>
-                      {(level === 'primaria' ? [1,2,3,4,5,6] : [1,2,3,4]).map((g) => (
-                        <option key={g} value={g}>{g}o {level === 'primaria' ? 'Primaria' : 'ESO'}</option>
+                      {(level === 'primaria' ? [1,2,3,4,5,6] : level === 'eso' ? [1,2,3,4] : [1,2]).map((g) => (
+                        <option key={g} value={g}>{g}o {level === 'primaria' ? 'Primaria' : level === 'eso' ? 'ESO' : 'Bach.'}</option>
                       ))}
                     </select>
+                  </div>
+
+                  {/* Dificultad de la batalla */}
+                  <div className="qb-field">
+                    <label>Dificultad</label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
+                      {[
+                        { id: 'principiante', emoji: '🟢', label: 'Principiante' },
+                        { id: 'intermedio', emoji: '🟡', label: 'Intermedio' },
+                        { id: 'avanzado', emoji: '🟠', label: 'Avanzado' },
+                        { id: 'experto', emoji: '🔴', label: 'Experto' },
+                      ].map(d => (
+                        <button key={d.id} type="button"
+                          onClick={() => setBattleDifficulty(d.id)}
+                          className={`qb-toggle-btn ${battleDifficulty === d.id ? 'is-active' : ''}`}
+                          style={{ fontSize: '0.8rem', padding: '0.4rem 0.5rem' }}>
+                          {d.emoji} {d.label}
+                        </button>
+                      ))}
+                    </div>
+                    <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.3rem', lineHeight: 1.3 }}>
+                      {battleDifficulty === 'principiante' && 'Preguntas fáciles de cursos anteriores y cultura general.'}
+                      {battleDifficulty === 'intermedio' && 'Mezcla de la asignatura actual con repasos de cursos anteriores.'}
+                      {battleDifficulty === 'avanzado' && 'Solo la asignatura seleccionada, dificultad media-alta.'}
+                      {battleDifficulty === 'experto' && 'Todo del temario de la asignatura y nivel. El máximo reto.'}
+                    </p>
                   </div>
 
                   <div className="qb-field">

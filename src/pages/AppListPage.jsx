@@ -10,6 +10,7 @@ import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps, bachilleratoSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import StarRating from '@/components/ui/StarRating';
+import AppIcon from '@/components/AppIcon';
 import { supabase } from '@/lib/supabase';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
@@ -169,8 +170,15 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                         className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100 group"
                         onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
                     >
-                        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors">{app.name}</h3>
-                        <p className="text-gray-600">{app.description}</p>
+                        <div className="flex items-start gap-4 mb-3">
+                            <div className="transition-transform duration-300 group-hover:scale-110">
+                                <AppIcon appId={app.id} size={64} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors leading-tight">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
+                                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{app.description}</p>
+                            </div>
+                        </div>
                         {r && r.total_ratings > 0 && (
                             <div className="mt-3 flex items-center gap-1">
                                 <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />

@@ -154,7 +154,7 @@ export const appBuscaElIntruso = {
 
 export const appRosco = {
   id: 'rosco-del-saber',
-  name: '🅿️ Pasapalabra',
+  name: '🅿️ El Rosco del Saber',
   description: 'Adivina la palabra que se esconde detrás de cada letra.',
   component: RoscoJuego
 };

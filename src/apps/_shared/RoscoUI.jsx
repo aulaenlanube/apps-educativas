@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaCheck, FaForward, FaTimes, FaVideo, FaVideoSlash, FaMicrophone, FaHeadset, FaBook } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
+import RoscoAvatar, { AVATAR_IDS } from '@/components/RoscoAvatars';
 
-const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '🤖', '👽', '👻', '🤡', '🤠', '👸', '🤴', '🦸'];
+const ICONS = AVATAR_IDS;
 
 const RoscoUI = ({
     gameState, players, activePlayer, activePlayerIndex, currentQuestion,
@@ -11,13 +12,15 @@ const RoscoUI = ({
     animState,
     showExitConfirm, requestExit, cancelExit, confirmExit,
     loadStudyMaterial,
-    onGameComplete
+    onGameComplete,
+    onBackToDifficulty
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
     const [showStudyMaterial, setShowStudyMaterial] = useState(false);
     const [materialData, setMaterialData] = useState(null);
     const [selectedStudyLetter, setSelectedStudyLetter] = useState(null);
+    const [avatarModalPlayer, setAvatarModalPlayer] = useState(null); // 'player1' | 'player2' | null
 
     // --- ESTADO WEBCAM ---
     const [isWebcamOn, setIsWebcamOn] = useState(false);
@@ -215,7 +218,7 @@ const RoscoUI = ({
 
         return (
             <div className="rosco-container pt-4">
-                <h1 className="text-5xl font-extrabold mb-4 text-blue-600 font-fredoka">Pasapalabra</h1>
+                <h1 className="text-5xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
                 <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
                     <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
                         <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
@@ -223,21 +226,23 @@ const RoscoUI = ({
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-bold mb-1 text-sm">Jugador 1</label>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 items-center">
                             <input type="text" value={config.player1.name} onChange={(e) => handlePlayerChange('player1', 'name', e.target.value)} className="border-2 border-gray-200 rounded-lg px-3 py-2 w-full font-bold" />
-                            <select value={config.player1.icon} onChange={(e) => handlePlayerChange('player1', 'icon', e.target.value)} className="border-2 border-gray-200 rounded-lg px-2 text-2xl">
-                                {ICONS.map(i => <option key={i} value={i}>{i}</option>)}
-                            </select>
+                            <button type="button" onClick={() => setAvatarModalPlayer('player1')}
+                                className="shrink-0 rounded-xl border-2 border-gray-200 hover:border-blue-400 p-1 transition-colors hover:shadow-md">
+                                <RoscoAvatar id={config.player1.icon} size={40} />
+                            </button>
                         </div>
                     </div>
                     {config.numPlayers === 2 && (
                         <div className="mb-6 animate-fadeIn">
                             <label className="block text-gray-700 font-bold mb-1 text-sm">Jugador 2</label>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 items-center">
                                 <input type="text" value={config.player2.name} onChange={(e) => handlePlayerChange('player2', 'name', e.target.value)} className="border-2 border-orange-200 rounded-lg px-3 py-2 w-full font-bold text-orange-600" />
-                                <select value={config.player2.icon} onChange={(e) => handlePlayerChange('player2', 'icon', e.target.value)} className="border-2 border-orange-200 rounded-lg px-2 text-2xl">
-                                    {ICONS.map(i => <option key={i} value={i}>{i}</option>)}
-                                </select>
+                                <button type="button" onClick={() => setAvatarModalPlayer('player2')}
+                                    className="shrink-0 rounded-xl border-2 border-orange-200 hover:border-orange-400 p-1 transition-colors hover:shadow-md">
+                                    <RoscoAvatar id={config.player2.icon} size={40} />
+                                </button>
                             </div>
                         </div>
                     )}
@@ -266,6 +271,12 @@ const RoscoUI = ({
                     <button onClick={() => startGame(config)} className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
                         ¡Empezar Partida!
                     </button>
+
+                    {onBackToDifficulty && (
+                        <button onClick={onBackToDifficulty} className="w-full mt-2 text-sm text-gray-400 hover:text-blue-500 transition-colors py-2">
+                            Cambiar dificultad
+                        </button>
+                    )}
 
                     {showStudyMaterial && materialData && (
                         <div className="study-material-overlay">
@@ -312,6 +323,49 @@ const RoscoUI = ({
                         </div>
                     )}
                 </div>
+
+                {/* Modal de selección de avatar */}
+                {avatarModalPlayer && (
+                    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+                        onClick={() => setAvatarModalPlayer(null)}>
+                        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
+                            onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-center">
+                                <h3 className="text-lg font-bold text-white">Elige tu personaje</h3>
+                                <p className="text-sm text-white/70">{avatarModalPlayer === 'player1' ? config.player1.name : config.player2.name}</p>
+                            </div>
+                            <div className="p-5">
+                                {/* Avatar seleccionado grande */}
+                                <div className="flex justify-center mb-4">
+                                    <div className="rounded-2xl border-4 border-blue-200 bg-blue-50 p-2">
+                                        <RoscoAvatar id={config[avatarModalPlayer].icon} size={80} />
+                                    </div>
+                                </div>
+                                {/* Grid de avatares */}
+                                <div className="grid grid-cols-4 gap-3 mb-4">
+                                    {ICONS.map(i => {
+                                        const isSelected = config[avatarModalPlayer].icon === i;
+                                        return (
+                                            <button key={i} type="button"
+                                                onClick={() => handlePlayerChange(avatarModalPlayer, 'icon', i)}
+                                                className={`rounded-2xl p-2 transition-all duration-200 ${
+                                                    isSelected
+                                                        ? 'ring-3 ring-blue-500 bg-blue-50 scale-105 shadow-lg'
+                                                        : 'bg-gray-50 hover:bg-gray-100 hover:scale-105 hover:shadow-md'
+                                                }`}>
+                                                <RoscoAvatar id={i} size={56} />
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <button onClick={() => setAvatarModalPlayer(null)}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-xl transition-colors">
+                                    Confirmar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
@@ -330,7 +384,7 @@ const RoscoUI = ({
                 <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
                     {isSinglePlayer ? (
                         <div className="mb-8">
-                            <span className="text-6xl block mb-2">{winner.icon}</span>
+                            <span className="block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
                             <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
                             <div className="mt-4 p-3 bg-blue-50 rounded-2xl border-2 border-blue-100">
@@ -345,7 +399,7 @@ const RoscoUI = ({
                     ) : (
                         isTie ? (<div className="text-4xl mb-6">🤝 ¡Empate!</div>) : (
                             <div className="mb-8">
-                                <span className="text-6xl block mb-2">{winner.icon}</span>
+                                <span className="block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
                                 <h2 className="text-2xl font-bold text-gray-700">¡Ha ganado {winner.name}!</h2>
                             </div>
                         )
@@ -355,7 +409,7 @@ const RoscoUI = ({
                             {players.map(p => (
                                 <div key={p.id} className="flex justify-between items-center mb-2 last:mb-0 text-lg border-b last:border-0 border-gray-200 pb-2 last:pb-0">
                                     <div className="text-left">
-                                        <div className="font-bold">{p.icon} {p.name}</div>
+                                        <div className="font-bold flex items-center gap-2"><RoscoAvatar id={p.icon} size={24} /> {p.name}</div>
                                         <div className="text-xs font-bold text-blue-500">Nota: {((p.score / config.questionCount) * 10).toFixed(1)}/10</div>
                                     </div>
                                     <span className="font-extrabold text-blue-600">{p.score} aciertos</span>
@@ -402,26 +456,75 @@ const RoscoUI = ({
                 </div>
             )}
 
-            <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
-                {players.map((p, idx) => (
-                    <div key={p.id}
-                        className={`relative flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 border-2
-                         ${activePlayerIndex === idx ? 'bg-white shadow-xl scale-110 border-blue-500 z-10 ring-4 ring-blue-100' : 'bg-gray-100 opacity-60 scale-90 border-transparent grayscale'}`}>
-                        <span className="text-3xl">{p.icon}</span>
-                        <div className="text-left">
-                            <p className="font-bold text-sm leading-tight">{p.name}</p>
-                            <p className="text-xs font-bold text-green-600">{p.score}</p>
-                        </div>
-                        {config.useTimer && (<div className={`ml-2 text-xl font-mono font-bold ${p.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-600'}`}>{p.timeLeft}s</div>)}
-                        {players.length > 1 && activePlayerIndex === idx && (<div className="absolute -top-3 -right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-bold animate-bounce">TU TURNO</div>)}
-                    </div>
-                ))}
-            </div>
+            {/* Barra de jugadores: solo en multijugador */}
+            {players.length > 1 && (
+                <div className="flex justify-center gap-4 mb-3 max-w-3xl mx-auto px-2">
+                    {players.map((p, idx) => {
+                        const isActive = activePlayerIndex === idx;
+                        const correct = Object.values(p.letterStatus).filter(s => s === 'correct').length;
+                        const wrong = Object.values(p.letterStatus).filter(s => s === 'wrong').length;
+                        return (
+                            <div key={p.id}
+                                className={`relative flex items-center gap-3 px-4 py-2.5 rounded-2xl transition-all duration-300 border-2
+                                 ${isActive ? 'bg-white/95 shadow-xl scale-105 border-blue-500 z-10 ring-4 ring-blue-100 backdrop-blur-sm' : 'bg-gray-50/80 opacity-50 scale-95 border-transparent'}`}>
+                                <RoscoAvatar id={p.icon} size={isActive ? 40 : 28} />
+                                <div className="text-left">
+                                    <p className="font-bold text-sm leading-tight">{p.name}</p>
+                                    <div className="flex items-center gap-2 mt-0.5">
+                                        <span className="text-xs font-bold text-green-600">{correct}✓</span>
+                                        <span className="text-xs font-bold text-red-500">{wrong}✗</span>
+                                    </div>
+                                </div>
+                                {config.useTimer && (
+                                    <div className={`ml-1 text-lg font-mono font-bold tabular-nums ${p.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-500'}`}>
+                                        {p.timeLeft}s
+                                    </div>
+                                )}
+                                {isActive && (
+                                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-[10px] px-2.5 py-0.5 rounded-full font-bold shadow-md whitespace-nowrap">
+                                        TU TURNO
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
 
             <div className="rosco-circle">
-                {isWebcamOn && (
+                {isWebcamOn ? (
                     <div className="rosco-webcam-container">
                         <video ref={videoRef} autoPlay playsInline muted className="rosco-webcam-video" />
+                    </div>
+                ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none select-none">
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl px-5 py-3 flex flex-col items-center shadow-sm">
+                            <div className="mb-1">
+                                <RoscoAvatar id={activePlayer.icon} size={players.length === 1 ? 90 : 64} />
+                            </div>
+                            <p className="font-bold text-sm text-gray-800 drop-shadow-sm">{activePlayer.name}</p>
+                            <div className="flex items-center gap-3 mt-1.5">
+                                <div className="flex flex-col items-center">
+                                    <span className="text-base font-black text-green-600">{activePlayer.score}</span>
+                                    <span className="text-[8px] font-bold text-green-700 uppercase tracking-wider">Bien</span>
+                                </div>
+                                <div className="w-px h-5 bg-gray-300" />
+                                <div className="flex flex-col items-center">
+                                    <span className="text-base font-black text-red-500">{Object.values(activePlayer.letterStatus).filter(s => s === 'wrong').length}</span>
+                                    <span className="text-[8px] font-bold text-red-600 uppercase tracking-wider">Mal</span>
+                                </div>
+                                <div className="w-px h-5 bg-gray-300" />
+                                <div className="flex flex-col items-center">
+                                    <span className="text-base font-black text-blue-500">{Object.values(activePlayer.letterStatus).filter(s => s === 'pending').length}</span>
+                                    <span className="text-[8px] font-bold text-blue-600 uppercase tracking-wider">Quedan</span>
+                                </div>
+                            </div>
+                            {config.useTimer && (
+                                <div className={`mt-1 text-xl font-mono font-black tabular-nums ${activePlayer.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-500'}`}>
+                                    {Math.floor(activePlayer.timeLeft / 60)}:{String(activePlayer.timeLeft % 60).padStart(2, '0')}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
                 {letters.map((letra, index) => {
@@ -436,30 +539,45 @@ const RoscoUI = ({
 
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
 
-                <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
-                    <FaTimes />
-                </button>
-
-                <div className="absolute top-2 left-2 flex gap-2 z-20">
-                    <button onClick={toggleWebcam} className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} title={isWebcamOn ? "Apagar cámara" : "Encender cámara"}>
-                        {isWebcamOn ? <FaVideo /> : <FaVideoSlash />}
-                    </button>
-
-                    {voiceSupported && (
-                        <button onClick={toggleAutoRecord} className={`btn-auto-mic ${autoRecord ? 'active' : ''}`} title={autoRecord ? "Desactivar modo auto-voz" : "Activar modo auto-voz"}>
-                            <FaHeadset />
+                {/* Toolbar superior: webcam/voz a la izquierda, salir a la derecha */}
+                <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-3 pt-3 z-20">
+                    <div className="flex gap-1.5">
+                        <button onClick={toggleWebcam} className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} title={isWebcamOn ? "Apagar cámara" : "Encender cámara"}>
+                            {isWebcamOn ? <FaVideo /> : <FaVideoSlash />}
                         </button>
-                    )}
+                        {voiceSupported && (
+                            <button onClick={toggleAutoRecord} className={`btn-auto-mic ${autoRecord ? 'active' : ''}`} title={autoRecord ? "Desactivar auto-voz" : "Activar auto-voz"}>
+                                <FaHeadset />
+                            </button>
+                        )}
+                    </div>
+                    <button onClick={requestExit} className="btn-exit-corner" title="Salir">
+                        <FaTimes />
+                    </button>
                 </div>
 
-                <div className="rosco-type-label">
-                    {currentQuestion.tipo === 'empieza' ? 'Empieza por' : 'Contiene la'}
-                    <span className="text-4xl ml-2 text-blue-600 align-middle font-fredoka">{currentQuestion.letra}</span>
+                {/* Letra + tipo de pista */}
+                <div className="mt-10 mb-3 flex items-center justify-center gap-3">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                        <span className="text-3xl font-black text-white font-fredoka">{currentQuestion.letra}</span>
+                    </div>
+                    <div className="text-left">
+                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                            {currentQuestion.tipo === 'empieza' ? 'Empieza por' : 'Contiene la'} {currentQuestion.letra}
+                        </p>
+                        <p className="text-xs text-gray-300">
+                            Letra {letters.indexOf(currentQuestion.letra) + 1} de {letters.length}
+                        </p>
+                    </div>
                 </div>
 
-                <p className="rosco-definition">{currentQuestion.definicion}</p>
+                {/* Definición */}
+                <div className="px-4 mb-4 flex-1 flex items-center">
+                    <p className="text-base md:text-lg text-gray-800 leading-relaxed text-center font-medium">{currentQuestion.definicion}</p>
+                </div>
 
-                <div className="rosco-input-group">
+                {/* Input + controles */}
+                <div className="rosco-input-group w-full px-3 pb-2">
                     <form onSubmit={handleSubmit} className="rosco-form-inner">
                         {voiceSupported && (
                             <button type="button" onClick={toggleMic} className={`btn-mic-inline ${isListening ? 'listening' : ''}`} title="Dictar respuesta" disabled={!!feedback || animState !== 'none' || showExitConfirm}>
@@ -472,7 +590,7 @@ const RoscoUI = ({
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             className="rosco-input"
-                            placeholder={isListening ? "Escuchando..." : `${activePlayer.name}...`}
+                            placeholder={isListening ? "Escuchando..." : "Escribe tu respuesta..."}
                             autoComplete="off"
                             disabled={!!feedback || animState !== 'none' || showExitConfirm}
                         />
@@ -481,7 +599,7 @@ const RoscoUI = ({
                         </button>
                     </form>
 
-                    <button type="button" onClick={pasapalabra} className="btn-pasapalabra-text" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
+                    <button type="button" onClick={pasapalabra} className="btn-pasapalabra-text" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasar palabra">
                         PASAPALABRA
                     </button>
                 </div>

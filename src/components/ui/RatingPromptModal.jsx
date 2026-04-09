@@ -8,7 +8,7 @@ import StarRating from './StarRating';
 /**
  * Modal centrado que pide valorar la app tras completar una partida.
  * Muestra estrellas + botones de dificultad directamente.
- * - 1a partida si no ha valorado, luego cada 3 si descarta.
+ * - Cada 5 partidas (5, 10, 15...) mientras no haya valorado.
  * - No se cierra pulsando fuera.
  * - La dificultad seleccionada persiste entre aperturas.
  */
@@ -63,7 +63,7 @@ export default function RatingPromptModal({ appId, appName, level, grade, subjec
   // Decidir si mostrar el modal
   useEffect(() => {
     if (!isAuthenticated || hasRated || completedCount === 0) return;
-    if (completedCount === 1 || (completedCount > 1 && (completedCount - 1) % 3 === 0)) {
+    if (completedCount > 0 && completedCount % 5 === 0) {
       const timer = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(timer);
     }
