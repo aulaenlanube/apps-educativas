@@ -2,7 +2,7 @@
 
 > **⚠️ OBLIGATORIO:** Este fichero debe consultarse **siempre** antes de crear una nueva app educativa. Claude Code lo lee automáticamente en cada sesión.
 
-Este repositorio es una plataforma React + Vite de apps educativas para Primaria (1-6) y ESO (1-4). Cada app debe cumplir la checklist de abajo para integrarse correctamente con el resto del portal (autenticación, estadísticas, gamificación, navegación y diseño).
+Este repositorio es una plataforma React + Vite de apps educativas para Primaria (1-6), ESO (1-4) y Bachillerato (1-2). Cada app debe cumplir la checklist de abajo para integrarse correctamente con el resto del portal (autenticación, estadísticas, gamificación, navegación y diseño).
 
 ---
 
@@ -363,6 +363,19 @@ Todas las apps de la carpeta siguiente siguen esta estructura. **Úsalas como re
 - `src/apps/sopa-de-letras/` — 3 tamaños + 8 direcciones
 - `src/apps/millonario/` — 3 niveles + comodines 50:50/público/cambio
 - `src/apps/anagramas/` — 3 niveles + tiles con layoutId + racha multiplicador
+- `src/apps/criptograma/` — cifrado número→letra, tabla de frecuencias, fuente: rosco + frases
+- `src/apps/velocidad-respuesta/` — quiz arcade con barra de tiempo adaptativa, fuente: rosco
+- `src/apps/conecta-parejas/` — unir palabra↔definición con líneas SVG curvas, fuente: rosco
+- `src/apps/dictado-interactivo/` — escribir respuesta con diff visual letra a letra, fuente: rosco + frases
+- `src/apps/torre-palabras/` — clasificar palabras en categorías apilando bloques, fuente: runner
+
+**Fuentes de datos utilizadas por estas apps:**
+
+| Fuente | Apps que la usan |
+|---|---|
+| `getRoscoData` (solucion + definicion) | Ahorcado, Crucigrama, Sopa de Letras, Millonario, Anagramas, Criptograma, Velocidad, Conecta Parejas, Dictado |
+| `getOrdenaFrasesData` (frases) | Ahorcado (modo frase), Criptograma (modos medio/examen), Dictado (modo examen mixto) |
+| `getRunnerData` (categorías con palabras) | Torre de Palabras |
 
 ---
 
@@ -385,4 +398,6 @@ npm run lint          # Lint (puede dar warnings preexistentes - centrarse en er
 - `src/hooks/useGameTracker.js` — Hook de tracking de sesiones (no tocar)
 - `src/pages/AppRunnerPage.jsx` — Wrapper que monta cada app y conecta `onGameComplete`
 - `src/apps/_shared/InstructionsModal.jsx` — Modal de instrucciones reutilizable
+- `src/components/ui/RankingModal.jsx` — Modal de ranking global (botón Trophy en header)
 - `public/data/materias.json` — Catálogo de asignaturas con nombre humano e icono
+- `supabase/migration-ranking.sql` — RPC `get_app_ranking` para el ranking (ejecutar manualmente)
