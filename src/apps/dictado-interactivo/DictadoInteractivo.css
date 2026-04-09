@@ -1,0 +1,144 @@
+/* Dictado Interactivo — paleta rosa/fucsia estilo cuaderno */
+
+.dictado-root { width: 100%; display: flex; justify-content: center; padding: 1rem; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+
+.dictado-card {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 1.75rem;
+  box-shadow: 0 20px 60px -15px rgba(236, 72, 153, 0.3), 0 10px 30px -10px rgba(168, 85, 247, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  /* Líneas de cuaderno */
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(236, 72, 153, 0.08) 31px, rgba(236, 72, 153, 0.08) 32px);
+}
+
+/* ============ HEADER ============ */
+.dictado-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.25rem; }
+
+.dictado-title {
+  display: flex; align-items: center; gap: 0.6rem; font-size: 1.85rem; font-weight: 900;
+  background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.dictado-emoji { font-size: 2rem; -webkit-text-fill-color: initial; animation: dictadoWrite 2s ease-in-out infinite; }
+@keyframes dictadoWrite { 0%,100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) translateX(3px); } }
+
+.dictado-subtitle { font-size: 0.85rem; color: #6b7280; font-weight: 600; margin-bottom: 1rem; }
+
+.dictado-stats { display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; }
+.dictado-stat { display: flex; align-items: center; gap: 0.3rem; padding: 0.35rem 0.7rem; border-radius: 999px; font-weight: 700; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.dictado-stat.timer { background: linear-gradient(135deg, #ec4899, #a855f7); color: white; }
+.dictado-stat.timer.danger { background: linear-gradient(135deg, #ef4444, #dc2626); animation: dictPulse 1s infinite; }
+@keyframes dictPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+.dictado-stat.lives { gap: 0.15rem; background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); }
+.dictado-stat.streak { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; }
+.dictado-stat.score { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
+
+/* ============ TABS ============ */
+.dictado-gamemode-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; padding: 0.4rem; background: rgba(236, 72, 153, 0.06); border-radius: 14px; border: 1px solid rgba(236, 72, 153, 0.12); }
+.dictado-gamemode-tab { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.6rem 0.4rem; background: transparent; border: none; border-radius: 10px; color: #6b7280; cursor: pointer; transition: all 0.2s; }
+.dictado-gamemode-tab:hover:not(.active) { background: rgba(236, 72, 153, 0.06); color: #be185d; }
+.dictado-gamemode-tab.active.easy { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.45); }
+.dictado-gamemode-tab.active.medium { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.45); }
+.dictado-gamemode-tab.active.exam { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; box-shadow: 0 4px 12px -2px rgba(239, 68, 68, 0.45); }
+.dictado-tab-label { font-size: 0.9rem; font-weight: 800; }
+.dictado-tab-sub { font-size: 0.68rem; opacity: 0.9; font-weight: 600; }
+
+/* ============ PROGRESO ============ */
+.dictado-progress-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+.dictado-progress-label { font-size: 0.78rem; font-weight: 700; color: #6b7280; }
+.dictado-progress-bar { flex: 1; height: 6px; background: rgba(236, 72, 153, 0.1); border-radius: 3px; overflow: hidden; }
+.dictado-progress-fill { height: 100%; background: linear-gradient(90deg, #ec4899, #a855f7); border-radius: 3px; transition: width 0.4s; }
+.dictado-type-tag { font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; background: rgba(99, 102, 241, 0.12); color: #4338ca; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ============ PISTA ============ */
+.dictado-clue { margin-bottom: 1rem; }
+.dictado-clue-hint { display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.85rem 1rem; background: linear-gradient(135deg, #fdf4ff, #fce7f3); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 14px; color: #831843; font-weight: 600; font-size: 1rem; line-height: 1.4; margin-bottom: 0.5rem; }
+.dictado-clue-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.dictado-clue-len { font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; background: rgba(168, 85, 247, 0.1); color: #6d28d9; border-radius: 999px; }
+.dictado-clue-first { font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; background: rgba(16, 185, 129, 0.1); color: #065f46; border-radius: 999px; }
+
+/* ============ INPUT ============ */
+.dictado-input-wrap {
+  display: flex; gap: 0.5rem; margin-bottom: 0.85rem; border: 3px solid rgba(236, 72, 153, 0.3);
+  border-radius: 14px; overflow: hidden; transition: all 0.3s; background: white;
+}
+.dictado-input-wrap:focus-within { border-color: #ec4899; box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15); }
+.dictado-input-wrap.correct { border-color: #10b981; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2); background: #ecfdf5; }
+.dictado-input-wrap.wrong { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15); background: #fef2f2; animation: dictShake 0.3s ease; }
+@keyframes dictShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+.dictado-input { flex: 1; padding: 0.85rem 1rem; font-size: 1.15rem; font-weight: 600; border: none; outline: none; background: transparent; color: #1f2937; font-family: 'Georgia', 'Times New Roman', serif; letter-spacing: 0.02em; }
+.dictado-input::placeholder { color: #9ca3af; font-weight: 400; font-style: italic; }
+
+.dictado-send-btn { padding: 0 1.2rem; background: linear-gradient(135deg, #ec4899, #a855f7); color: white; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; }
+.dictado-send-btn:hover:not(:disabled) { background: linear-gradient(135deg, #db2777, #9333ea); }
+.dictado-send-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ============ DIFF VISUAL ============ */
+.dictado-diff { padding: 1rem; border-radius: 14px; margin-bottom: 0.85rem; }
+.dictado-diff.correct { background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); border: 2px solid rgba(16, 185, 129, 0.35); }
+.dictado-diff.wrong { background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(220, 38, 38, 0.08)); border: 2px solid rgba(239, 68, 68, 0.3); }
+
+.dictado-diff-title { font-size: 0.88rem; font-weight: 800; margin-bottom: 0.6rem; }
+.dictado-diff.correct .dictado-diff-title { color: #065f46; }
+.dictado-diff.wrong .dictado-diff-title { color: #991b1b; }
+
+.dictado-diff-chars { display: flex; flex-wrap: wrap; gap: 0.1rem; justify-content: center; margin-bottom: 0.6rem; }
+.dictado-diff-char {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 1.5em; height: 2.2rem; font-size: 1.25rem; font-weight: 800;
+  font-family: 'Courier New', monospace; border-radius: 6px; padding: 0 0.15rem;
+}
+.dictado-diff-char.ok { background: rgba(16, 185, 129, 0.15); color: #065f46; border-bottom: 3px solid #10b981; }
+.dictado-diff-char.wrong { background: rgba(239, 68, 68, 0.12); color: #991b1b; border-bottom: 3px solid #ef4444; position: relative; }
+.dictado-diff-char.missing { background: rgba(59, 130, 246, 0.1); color: #1e40af; border-bottom: 3px dashed #3b82f6; min-width: 1.2em; }
+.dictado-diff-char.extra { background: rgba(107, 114, 128, 0.1); color: #6b7280; text-decoration: line-through; border-bottom: 3px solid #9ca3af; }
+
+.dictado-diff-got { font-size: 0.65rem; text-decoration: line-through; color: #ef4444; }
+.dictado-diff-exp { font-size: 1rem; color: #065f46; font-weight: 900; }
+
+.dictado-diff-expected { font-size: 0.85rem; color: #374151; background: rgba(0,0,0,0.03); padding: 0.5rem 0.75rem; border-radius: 8px; margin-top: 0.35rem; }
+.dictado-diff-ortho { font-size: 0.82rem; color: #6d28d9; background: rgba(168, 85, 247, 0.08); padding: 0.5rem 0.75rem; border-radius: 8px; margin-top: 0.35rem; }
+
+/* ============ AYUDAS ============ */
+.dictado-lifelines { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.dictado-lifeline { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.5rem 0.85rem; background: linear-gradient(135deg, #4c1d95, #6d28d9); color: white; border: 2px solid #fbbf24; border-radius: 10px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 10px -3px rgba(76, 29, 149, 0.4); position: relative; }
+.dictado-lifeline:hover:not(:disabled) { transform: translateY(-2px); }
+.dictado-lifeline:disabled { opacity: 0.3; cursor: not-allowed; background: #4b5563; border-color: #6b7280; }
+.dictado-lifeline.ghost { background: rgba(236, 72, 153, 0.08); color: #be185d; border-color: rgba(236, 72, 153, 0.25); }
+.dictado-lifeline-count { position: absolute; top: -6px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; border-radius: 999px; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 1.5px solid white; }
+
+/* ============ RESULTADO ============ */
+.dictado-result { padding: 2rem 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 1rem; }
+.dictado-result.won { background: linear-gradient(135deg, #831843, #ec4899, #a855f7); color: white; border: 3px solid #fbbf24; box-shadow: 0 20px 50px -15px rgba(236, 72, 153, 0.5); }
+.dictado-result.lost { background: linear-gradient(135deg, #1f2937, #374151); color: white; border: 2px solid #6b7280; }
+.dictado-result-icon { display: inline-flex; width: 80px; height: 80px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; border-radius: 50%; align-items: center; justify-content: center; margin-bottom: 1rem; box-shadow: 0 12px 30px -8px rgba(245, 158, 11, 0.5); }
+.dictado-result-title { font-size: 1.5rem; font-weight: 900; margin: 0 0 0.5rem 0; }
+.dictado-result-score { font-size: 3rem; font-weight: 900; color: #fde047; text-shadow: 0 4px 20px rgba(253, 224, 71, 0.5); line-height: 1; }
+.dictado-result-score-label { font-size: 0.85rem; opacity: 0.85; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+/* Nota */
+.dictado-nota { display: inline-flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 1rem 1.5rem; border-radius: 18px; margin: 0.5rem 0 0.75rem; border: 2px solid transparent; background: rgba(255, 255, 255, 0.1); }
+.dictado-nota.excellent { background: rgba(16, 185, 129, 0.25); border-color: rgba(16, 185, 129, 0.5); }
+.dictado-nota.good { background: rgba(59, 130, 246, 0.25); border-color: rgba(59, 130, 246, 0.5); }
+.dictado-nota.fail { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); }
+.dictado-nota-big { font-size: 3rem; font-weight: 900; line-height: 1; color: #fde047; text-shadow: 0 4px 20px rgba(253, 224, 71, 0.5); display: flex; align-items: flex-end; }
+.dictado-nota-small { font-size: 1.2rem; opacity: 0.75; margin-left: 0.15rem; }
+.dictado-nota-msg { font-size: 0.9rem; font-weight: 700; color: white; }
+.dictado-result-record { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.95rem; background: rgba(253, 224, 71, 0.18); border: 1px solid rgba(253, 224, 71, 0.4); border-radius: 999px; color: #fde047; font-weight: 800; font-size: 0.85rem; margin: 0 0 1rem; }
+.dictado-result-record-label { font-size: 0.7rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
+.dictado-result-stats { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.1rem; }
+.dictado-result-stat { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.4rem 0.85rem; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-weight: 700; font-size: 0.82rem; color: white; }
+
+.dictado-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.4rem; border-radius: 12px; border: none; font-weight: 800; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+.dictado-btn.primary { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.5); }
+.dictado-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.6); }
+
+.dictado-loading, .dictado-empty { text-align: center; padding: 2rem; color: #6b7280; font-weight: 600; }
+
+@media (max-width: 720px) { .dictado-card { padding: 1rem; } .dictado-title { font-size: 1.5rem; } .dictado-input { font-size: 1rem; } .dictado-nota-big { font-size: 2.5rem; } }

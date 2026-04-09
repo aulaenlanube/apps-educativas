@@ -94,6 +94,8 @@ import VelocidadRespuesta from '../velocidad-respuesta/VelocidadRespuesta';
 
 import ConectaParejas from '../conecta-parejas/ConectaParejas';
 
+import DictadoInteractivo from '../dictado-interactivo/DictadoInteractivo';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -410,4 +412,11 @@ export const appConectaParejas = {
   name: '🧲 Conecta Parejas',
   description: 'Une cada palabra con su definición. Líneas de colores conectan los aciertos.',
   component: ConectaParejas
+};
+
+export const appDictadoInteractivo = {
+  id: 'dictado-interactivo',
+  name: '✍️ Dictado',
+  description: 'Escribe la palabra o frase correcta evaluando letra a letra. Bonus por ortografía perfecta.',
+  component: DictadoInteractivo
 };
