@@ -371,6 +371,7 @@ export default function StudentDashboard() {
   const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
   const [assignments, setAssignments] = useState([]);
+  const [qbStats, setQbStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'overview');
@@ -388,7 +389,7 @@ export default function StudentDashboard() {
     if (!student) return;
     setLoading(true);
 
-    const [dashResult, asgResult] = await Promise.all([
+    const [dashResult, asgResult, qbResult] = await Promise.all([
       supabase.rpc('student_get_dashboard', {
         p_student_id: student.id,
         p_group_id: student.group_id,
@@ -397,6 +398,9 @@ export default function StudentDashboard() {
         p_student_id: student.id,
         p_group_id: student.group_id,
       }),
+      supabase.rpc('get_student_quiz_battle_stats', {
+        p_student_id: student.id,
+      }).catch(() => ({ data: null })),
     ]);
 
     if (dashResult.error) {
@@ -409,6 +413,10 @@ export default function StudentDashboard() {
 
     if (asgResult.data?.assignments) {
       setAssignments(asgResult.data.assignments);
+    }
+
+    if (qbResult?.data && !qbResult.data?.error) {
+      setQbStats(qbResult.data);
     }
 
     setLoading(false);
@@ -506,16 +514,26 @@ export default function StudentDashboard() {
                   )}
                 </div>
               </div>
-              {exploreAppsPath && (
+              <div className="ml-4 flex items-center gap-2">
+                {exploreAppsPath && (
+                  <button
+                    onClick={() => navigate(exploreAppsPath)}
+                    className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl text-lg font-bold hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                    title="Ir a las apps de tu asignatura"
+                  >
+                    <Compass className="w-6 h-6" />
+                    Explorar Apps
+                  </button>
+                )}
                 <button
-                  onClick={() => navigate(exploreAppsPath)}
-                  className="ml-4 flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl text-lg font-bold hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  title="Ir a las apps de tu asignatura"
+                  onClick={() => navigate('/quiz-battle/join')}
+                  className="flex items-center gap-2 px-4 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-sm font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  title="Unirse a un Batalla"
                 >
-                  <Compass className="w-6 h-6" />
-                  Explorar Apps
+                  <Zap className="w-5 h-5" />
+                  Quiz
                 </button>
-              )}
+              </div>
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center">
                 <div>
                   <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>
@@ -577,6 +595,55 @@ export default function StudentDashboard() {
                   subValue={`Media examen: ${stats.avg_test_nota ?? '-'}/10`}
                   color="bg-amber-500" delay={0.15} />
               </div>
+
+              {/* Batalla stats */}
+              {qbStats && qbStats.total_played > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.18 }}
+                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-200 shadow-sm"
+                >
+                  <h3 className="text-base font-bold text-amber-800 mb-3 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-amber-500" />
+                    Batalla
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                      <p className="text-xs text-amber-600 font-medium">Partidas</p>
+                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_played}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600 font-medium flex items-center gap-1">
+                        <Trophy className="w-3 h-3" /> Victorias
+                      </p>
+                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_wins}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600 font-medium">Podio (Top 3)</p>
+                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_podium}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600 font-medium">Precision</p>
+                      <p className="text-2xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-4 mt-3 pt-3 border-t border-amber-200">
+                    <div>
+                      <p className="text-xs text-amber-600">Puesto medio</p>
+                      <p className="text-lg font-bold text-amber-900">#{qbStats.avg_rank}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600">Mejor punt.</p>
+                      <p className="text-lg font-bold text-amber-900">{qbStats.best_score}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600">Media punt.</p>
+                      <p className="text-lg font-bold text-amber-900">{qbStats.avg_score}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
               {/* Actividad diaria */}
               {daily.length > 0 && (

@@ -1,0 +1,592 @@
+/* ═══════════════════════════════════════════════════════════════
+   Quiz Battle — Real-time multiplayer quiz game
+   Soporta modo claro y oscuro via clase .qb-dark en el container
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Variables por tema ─── */
+.qb-container {
+  --qb-bg: linear-gradient(135deg, #ede9fe 0%, #e0e7ff 50%, #f0f9ff 100%);
+  --qb-text: #1e293b;
+  --qb-text-muted: #64748b;
+  --qb-text-faint: #94a3b8;
+  --qb-card-bg: rgba(255,255,255,0.85);
+  --qb-card-border: rgba(99,102,241,0.2);
+  --qb-input-bg: rgba(255,255,255,0.9);
+  --qb-input-border: rgba(99,102,241,0.25);
+  --qb-input-text: #1e293b;
+  --qb-code-color: #6d28d9;
+  --qb-code-shadow: rgba(109,40,217,0.3);
+  --qb-timer-track: rgba(99,102,241,0.15);
+  --qb-option-text: #fff;
+  --qb-result-bg: rgba(99,102,241,0.08);
+  --qb-lb-bg: rgba(99,102,241,0.06);
+  --qb-lb-row-alt: rgba(99,102,241,0.04);
+  --qb-score-color: #d97706;
+  --qb-back-bg: rgba(99,102,241,0.1);
+  --qb-back-hover: rgba(99,102,241,0.2);
+  --qb-player-bg: rgba(255,255,255,0.7);
+  --qb-player-border: rgba(99,102,241,0.15);
+  --qb-spinner-border: rgba(99,102,241,0.2);
+  --qb-spinner-top: #6d28d9;
+}
+
+.qb-container.qb-dark {
+  --qb-bg: linear-gradient(135deg, #312e81 0%, #1e1b4b 50%, #0f172a 100%);
+  --qb-text: #ffffff;
+  --qb-text-muted: rgba(255,255,255,0.6);
+  --qb-text-faint: rgba(255,255,255,0.4);
+  --qb-card-bg: rgba(255,255,255,0.08);
+  --qb-card-border: rgba(255,255,255,0.15);
+  --qb-input-bg: rgba(255,255,255,0.1);
+  --qb-input-border: rgba(255,255,255,0.2);
+  --qb-input-text: #ffffff;
+  --qb-code-color: #fbbf24;
+  --qb-code-shadow: rgba(251,191,36,0.5);
+  --qb-timer-track: rgba(255,255,255,0.15);
+  --qb-option-text: #fff;
+  --qb-result-bg: rgba(255,255,255,0.06);
+  --qb-lb-bg: rgba(255,255,255,0.06);
+  --qb-lb-row-alt: rgba(255,255,255,0.04);
+  --qb-score-color: #fbbf24;
+  --qb-back-bg: rgba(255,255,255,0.15);
+  --qb-back-hover: rgba(255,255,255,0.25);
+  --qb-player-bg: rgba(255,255,255,0.08);
+  --qb-player-border: rgba(255,255,255,0.15);
+  --qb-spinner-border: rgba(255,255,255,0.2);
+  --qb-spinner-top: #fbbf24;
+}
+
+.qb-container {
+  min-height: 100vh;
+  background: var(--qb-bg);
+  color: var(--qb-text);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ─── Config / Setup ─── */
+.qb-config {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.qb-config-card {
+  background: var(--qb-card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--qb-card-border);
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+.qb-config-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(90deg, #fbbf24, #f97316, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.qb-field {
+  margin-bottom: 1.25rem;
+}
+
+.qb-field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--qb-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.qb-field select,
+.qb-field input[type="range"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--qb-input-border);
+  background: var(--qb-input-bg);
+  color: var(--qb-input-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.qb-field select:focus { border-color: #fbbf24; }
+
+.qb-field select option {
+  background: var(--qb-card-bg);
+  color: var(--qb-input-text);
+}
+.qb-dark .qb-field select option { background: #1e1b4b; color: #fff; }
+
+.qb-range-val {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--qb-code-color);
+  margin-top: 0.25rem;
+}
+
+.qb-btn-primary {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  color: #1e1b4b;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 20px rgba(251,191,36,0.4);
+}
+
+.qb-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(251,191,36,0.5); }
+.qb-btn-primary:active { transform: scale(0.97); }
+.qb-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ─── Waiting room ─── */
+.qb-waiting { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; text-align: center; }
+
+.qb-room-code {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  color: var(--qb-code-color);
+  text-shadow: 0 0 24px var(--qb-code-shadow);
+  cursor: pointer;
+  user-select: all;
+}
+
+.qb-room-code:hover { text-shadow: 0 0 32px var(--qb-code-shadow); }
+
+.qb-join-url {
+  font-size: 0.85rem;
+  color: var(--qb-text-faint);
+  margin-top: 0.25rem;
+  word-break: break-all;
+}
+
+.qb-players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.qb-player-card {
+  background: var(--qb-player-bg);
+  border: 1px solid var(--qb-player-border);
+  border-radius: 16px;
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+
+.qb-player-emoji { font-size: 2.2rem; margin-bottom: 0.25rem; }
+
+.qb-player-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qb-player-count {
+  font-size: 1.1rem;
+  color: var(--qb-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ─── Question screen ─── */
+.qb-question-screen { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+.qb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.qb-q-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--qb-text-muted);
+}
+
+.qb-answer-count {
+  font-size: 0.85rem;
+  color: var(--qb-text-faint);
+}
+
+.qb-timer-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--qb-timer-track);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.qb-timer-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s linear, background 0.5s;
+}
+
+.qb-timer-green  { background: linear-gradient(90deg, #10b981, #34d399); }
+.qb-timer-yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.qb-timer-red    { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+.qb-question-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.35;
+}
+
+.qb-timer-big {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--qb-code-color);
+  text-shadow: 0 0 20px var(--qb-code-shadow);
+}
+
+/* ─── Answer options ─── */
+.qb-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .qb-options-grid { grid-template-columns: 1fr; }
+  .qb-question-text { font-size: 1.2rem; }
+  .qb-room-code { font-size: 2rem; }
+}
+
+.qb-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.3s;
+  color: var(--qb-option-text);
+  text-align: left;
+  width: 100%;
+}
+
+.qb-option:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+.qb-option:active:not(:disabled) { transform: scale(0.97); }
+.qb-option:disabled { cursor: default; opacity: 0.5; }
+
+.qb-opt-0 { background: #dc2626; }
+.qb-opt-1 { background: #2563eb; }
+.qb-opt-2 { background: #15803d; }
+.qb-opt-3 { background: #d97706; }
+
+.qb-opt-selected { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.5); opacity: 1 !important; }
+.qb-opt-correct { border-color: #10b981; box-shadow: 0 0 0 4px rgba(16,185,129,0.6); opacity: 1 !important; }
+.qb-opt-wrong  { opacity: 0.35 !important; }
+
+.qb-opt-shape {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qb-sent-msg {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--qb-code-color);
+}
+
+/* ─── Results screen ─── */
+.qb-results { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+.qb-results-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--qb-text-muted);
+}
+
+.qb-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.qb-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qb-chart-label {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.qb-chart-bar-track {
+  flex: 1;
+  height: 32px;
+  background: var(--qb-result-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.qb-chart-bar-fill {
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #fff;
+  min-width: fit-content;
+}
+
+.qb-chart-bar-fill.is-correct { box-shadow: inset 0 0 0 2px #10b981, 0 0 10px rgba(16,185,129,0.4); }
+
+.qb-chart-count {
+  width: 30px;
+  text-align: right;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--qb-text-muted);
+}
+
+/* ─── Leaderboard ─── */
+.qb-leaderboard {
+  background: var(--qb-lb-bg);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.qb-lb-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: var(--qb-text-muted);
+}
+
+.qb-lb-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.qb-lb-row:nth-child(odd) { background: var(--qb-lb-row-alt); }
+
+.qb-lb-rank {
+  width: 28px;
+  font-weight: 900;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.qb-lb-emoji { font-size: 1.5rem; }
+
+.qb-lb-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qb-lb-score {
+  font-weight: 900;
+  color: var(--qb-score-color);
+  font-size: 0.9rem;
+}
+
+.qb-lb-delta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* ─── Final screen ─── */
+.qb-final { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; text-align: center; }
+
+.qb-final-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #fbbf24, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.qb-podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  min-height: 200px;
+}
+
+.qb-podium-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.qb-podium-emoji { font-size: 2.5rem; }
+.qb-podium-name { font-weight: 800; font-size: 0.85rem; margin: 0.25rem 0; }
+.qb-podium-score { color: var(--qb-score-color); font-weight: 900; font-size: 0.95rem; }
+
+.qb-podium-bar {
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.qb-podium-1 .qb-podium-bar { height: 120px; background: linear-gradient(180deg, #fbbf24, #d97706); color: #451a03; }
+.qb-podium-2 .qb-podium-bar { height: 90px; background: linear-gradient(180deg, #cbd5e1, #64748b); color: #1e293b; }
+.qb-podium-3 .qb-podium-bar { height: 65px; background: linear-gradient(180deg, #fed7aa, #c2410c); color: #451a03; }
+
+.qb-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--qb-back-bg);
+  color: var(--qb-text);
+  transition: background 0.2s;
+}
+
+.qb-btn-back:hover { background: var(--qb-back-hover); }
+
+/* ─── Student result feedback ─── */
+.qb-my-result {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--qb-result-bg);
+}
+
+.qb-my-result-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.qb-my-result-points { font-size: 1.4rem; font-weight: 900; color: var(--qb-score-color); }
+.qb-my-result-total { font-size: 0.85rem; color: var(--qb-text-faint); }
+
+/* ─── Join page ─── */
+.qb-join { max-width: 400px; margin: 0 auto; padding: 2rem 1rem; text-align: center; }
+
+.qb-join input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 2px solid var(--qb-input-border);
+  background: var(--qb-input-bg);
+  color: var(--qb-input-text);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.qb-join input[type="text"]:focus { border-color: #fbbf24; }
+.qb-join input[type="text"]::placeholder { color: var(--qb-text-faint); letter-spacing: 0.1em; font-size: 1rem; }
+
+/* ─── Spinner ─── */
+.qb-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.qb-spinner::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--qb-spinner-border);
+  border-top-color: var(--qb-spinner-top);
+  border-radius: 50%;
+  animation: qb-spin 0.7s linear infinite;
+}
+
+@keyframes qb-spin { to { transform: rotate(360deg); } }
+
+/* ─── Utility: toggle buttons ─── */
+.qb-toggle-btn {
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 2px solid var(--qb-input-border);
+  background: var(--qb-input-bg);
+  color: var(--qb-text);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.7;
+}
+
+.qb-toggle-btn.is-active {
+  border-color: #fbbf24;
+  background: rgba(251,191,36,0.15);
+  opacity: 1;
+}
+
+.qb-muted-text { color: var(--qb-text-muted); }
+.qb-faint-text { color: var(--qb-text-faint); }

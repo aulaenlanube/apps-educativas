@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -14,10 +15,12 @@ import GroupChatPanel from './GroupChatPanel';
 import CoTeachersSection from './CoTeachersSection';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
+import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
 
 const DashboardPage = () => {
   const { teacher } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [groups, setGroups] = useState([]);
   const [students, setStudents] = useState([]);
   const [selectedGroupId, setSelectedGroupId] = useState(null);
@@ -88,21 +91,33 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              <button
-                onClick={handleCopyCode}
-                className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-purple-200 rounded-xl px-4 py-2.5 hover:shadow-md transition-all group"
-              >
-                <div>
-                  <p className="text-xs text-gray-500 text-left">Tu codigo de profesor</p>
-                  <p className="text-lg font-bold tracking-wider text-purple-700">{teacher?.teacher_code}</p>
-                </div>
-                <Copy className="w-4 h-4 text-purple-400 group-hover:text-purple-600 transition-colors" />
-              </button>
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => navigate('/quiz-battle/host')}
+                  className="flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl px-4 py-2.5 hover:shadow-lg transition-all text-white group"
+                >
+                  <Zap className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <p className="text-xs text-amber-100 text-left">En directo</p>
+                    <p className="text-lg font-bold tracking-wide">Iniciar Batalla</p>
+                  </div>
+                </button>
+                <button
+                  onClick={handleCopyCode}
+                  className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-purple-200 rounded-xl px-4 py-2.5 hover:shadow-md transition-all group"
+                >
+                  <div>
+                    <p className="text-xs text-gray-500 text-left">Tu codigo de profesor</p>
+                    <p className="text-lg font-bold tracking-wider text-purple-700">{teacher?.teacher_code}</p>
+                  </div>
+                  <Copy className="w-4 h-4 text-purple-400 group-hover:text-purple-600 transition-colors" />
+                </button>
+              </div>
             </div>
           </motion.div>
 
           <Tabs defaultValue="grupos" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6">
+            <TabsList className="grid w-full grid-cols-4 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6">
               <TabsTrigger
                 value="grupos"
                 className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-md"
@@ -118,11 +133,18 @@ const DashboardPage = () => {
                 <span className="font-semibold">Mis logros</span>
               </TabsTrigger>
               <TabsTrigger
+                value="plantillas"
+                className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-orange-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+              >
+                <FileText className="w-4 h-4" />
+                <span className="font-semibold">Batallas</span>
+              </TabsTrigger>
+              <TabsTrigger
                 value="comentarios"
                 className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:to-rose-500 data-[state=active]:text-white data-[state=active]:shadow-md"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span className="font-semibold">Mis comentarios</span>
+                <span className="font-semibold">Comentarios</span>
               </TabsTrigger>
             </TabsList>
 
@@ -234,6 +256,12 @@ const DashboardPage = () => {
 
             <TabsContent value="logros" className="mt-0">
               <TeacherLogrosSection />
+            </TabsContent>
+
+            <TabsContent value="plantillas" className="mt-0">
+              <div className="bg-white rounded-2xl shadow-sm border border-purple-100 p-4">
+                <QuizTemplatesPanel />
+              </div>
             </TabsContent>
 
             <TabsContent value="comentarios" className="mt-0">

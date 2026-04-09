@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Gamepad2, Target, Clock, Trophy, Star, ChevronLeft, ChevronRight, RotateCcw, AlertTriangle } from 'lucide-react';
+import { Gamepad2, Target, Clock, Trophy, Star, ChevronLeft, ChevronRight, RotateCcw, AlertTriangle, Zap, Plus, Minus } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const PAGE_SIZE = 20;
@@ -12,6 +12,8 @@ const UserDetail = ({ user }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [resetResult, setResetResult] = useState(null);
+  const [qbQuota, setQbQuota] = useState(null);
+  const [quotaSaving, setQuotaSaving] = useState(false);
 
   const fetchSessions = useCallback(async () => {
     setLoading(true);
@@ -26,6 +28,31 @@ const UserDetail = ({ user }) => {
   }, [user.id, user.user_type, page]);
 
   useEffect(() => { fetchSessions(); }, [fetchSessions]);
+
+  // Fetch Batalla quota for teachers
+  useEffect(() => {
+    if (user.user_type !== 'teacher') return;
+    supabase.rpc('get_teacher_quiz_battle_quota', { p_teacher_id: user.id })
+      .then(({ data }) => { if (data && !data.error) setQbQuota(data); });
+  }, [user.id, user.user_type]);
+
+  const handleQuotaChange = async (delta) => {
+    if (!qbQuota) return;
+    const newQuota = Math.max(0, qbQuota.quota + delta);
+    setQuotaSaving(true);
+    const { data } = await supabase.rpc('admin_set_quiz_battle_quota', {
+      p_teacher_id: user.id,
+      p_new_quota: newQuota,
+    });
+    if (data?.success) {
+      setQbQuota((prev) => ({
+        ...prev,
+        quota: newQuota,
+        remaining: Math.max(0, newQuota - prev.used),
+      }));
+    }
+    setQuotaSaving(false);
+  };
 
   const stats = data?.stats;
   const sessions = data?.sessions || [];
@@ -174,6 +201,58 @@ const UserDetail = ({ user }) => {
             </div>
           </motion.div>
         </div>
+      )}
+
+      {/* Batalla Quota (teachers only) */}
+      {isTeacher && qbQuota && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-200"
+        >
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
+                <Zap className="w-5 h-5 text-amber-600" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-amber-800">Batalla — Cuota mensual</h3>
+                <p className="text-xs text-amber-600">
+                  Usadas: {qbQuota.used} / {qbQuota.quota} · Restantes: {qbQuota.remaining}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleQuotaChange(-5)}
+                disabled={quotaSaving || qbQuota.quota <= 0}
+                className="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-colors disabled:opacity-40 text-xs font-bold"
+                title="-5"
+              >-5</button>
+              <button
+                onClick={() => handleQuotaChange(-1)}
+                disabled={quotaSaving || qbQuota.quota <= 0}
+                className="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-colors disabled:opacity-40"
+                title="-1"
+              ><Minus className="w-3.5 h-3.5" /></button>
+              <span className="w-12 text-center text-lg font-bold text-amber-800">
+                {qbQuota.quota}
+              </span>
+              <button
+                onClick={() => handleQuotaChange(1)}
+                disabled={quotaSaving}
+                className="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-colors disabled:opacity-40"
+                title="+1"
+              ><Plus className="w-3.5 h-3.5" /></button>
+              <button
+                onClick={() => handleQuotaChange(5)}
+                disabled={quotaSaving}
+                className="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-colors disabled:opacity-40 text-xs font-bold"
+                title="+5"
+              >+5</button>
+            </div>
+          </div>
+        </motion.div>
       )}
 
       {stats?.favorite_app && (

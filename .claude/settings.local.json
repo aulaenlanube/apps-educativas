@@ -58,7 +58,13 @@
       "Bash(grep -n \"get_teacher_groups\\\\|get_group_students\\\\|get_student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -A 10 \"get_student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -n \"student_join_group\\\\|student_login_by_auth\\\\|student_confirm_email\" /home/edu/apps-educativas/supabase/*.sql)",
-      "Bash(grep -A 10 \"CREATE TABLE public.groups\" /home/edu/apps-educativas/supabase/*.sql)"
+      "Bash(grep -A 10 \"CREATE TABLE public.groups\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"CREATE TABLE\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"teacher_get_student_stats\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -n \"quiz_battle\\\\|quiz_session\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -l \"notification\\\\|student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(grep -l \"notifications\" /home/edu/apps-educativas/supabase/*.sql)",
+      "Bash(wc -l /home/edu/apps-educativas/supabase/migration-*.sql)"
     ]
   }
 }

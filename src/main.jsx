@@ -19,6 +19,8 @@ import DashboardPage from '@/pages/dashboard/DashboardPage.jsx';
 import ProfilePage from '@/pages/auth/ProfilePage.jsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import AdminPanel from '@/pages/admin/AdminPanel.jsx';
+import QuizBattleHost from '@/apps/quiz-battle/QuizBattleHost.jsx';
+import QuizBattlePlayer from '@/apps/quiz-battle/QuizBattlePlayer.jsx';
 import StudentDashboard from '@/pages/dashboard/StudentDashboard.jsx';
 import FreeUserDashboard from '@/pages/dashboard/FreeUserDashboard.jsx';
 
@@ -75,6 +77,18 @@ const router = createBrowserRouter(
                   <FreeUserDashboard />
                 </ProtectedRoute>
               )
+            },
+            {
+              path: 'quiz-battle/host',
+              element: (
+                <ProtectedRoute role="teacher">
+                  <QuizBattleHost />
+                </ProtectedRoute>
+              )
+            },
+            {
+              path: 'quiz-battle/join/:code?',
+              element: <QuizBattlePlayer />
             },
             {
               path: 'admin',

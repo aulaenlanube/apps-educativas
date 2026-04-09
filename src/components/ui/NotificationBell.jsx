@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, X, Check, CheckCheck, MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Bell, X, Check, CheckCheck, MessageSquare, Zap } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 
@@ -11,6 +12,7 @@ export default function NotificationBell() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const panelRef = useRef(null);
+  const navigate = useNavigate();
 
   const getUserId = useCallback(() => {
     if ((role === 'teacher' || role === 'admin' || role === 'free') && user) return user.id;
@@ -126,37 +128,57 @@ export default function NotificationBell() {
                   <p className="text-sm text-gray-400">Sin notificaciones</p>
                 </div>
               ) : (
-                notifications.map(n => (
-                  <div
-                    key={n.id}
-                    onClick={() => !n.read && handleMarkRead(n.id)}
-                    className={`px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer ${
-                      !n.read ? 'bg-purple-50/50' : ''
-                    }`}
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                        !n.read ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-400'
-                      }`}>
-                        <MessageSquare className="w-4 h-4" />
+                notifications.map(n => {
+                  const isQuizInvite = n.type === 'quiz_battle_invite';
+                  const quizCode = isQuizInvite && n.data?.room_code;
+
+                  const handleClick = () => {
+                    if (!n.read) handleMarkRead(n.id);
+                    if (isQuizInvite && quizCode) {
+                      setOpen(false);
+                      navigate(`/quiz-battle/join/${quizCode}`);
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={n.id}
+                      onClick={handleClick}
+                      className={`px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer ${
+                        !n.read ? 'bg-purple-50/50' : ''
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                          isQuizInvite
+                            ? (!n.read ? 'bg-amber-100 text-amber-600' : 'bg-amber-50 text-amber-400')
+                            : (!n.read ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-400')
+                        }`}>
+                          {isQuizInvite ? <Zap className="w-4 h-4" /> : <MessageSquare className="w-4 h-4" />}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800' : 'text-gray-600'}`}>
+                            {n.title}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-0.5 truncate">{n.message}</p>
+                          {isQuizInvite && quizCode && (
+                            <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+                              <Zap className="w-3 h-3" /> Unirse: {quizCode}
+                            </span>
+                          )}
+                          <p className="text-[10px] text-gray-400 mt-1">
+                            {new Date(n.created_at).toLocaleString('es-ES', {
+                              day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+                            })}
+                          </p>
+                        </div>
+                        {!n.read && (
+                          <div className="w-2 h-2 rounded-full bg-purple-500 shrink-0 mt-2" />
+                        )}
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800' : 'text-gray-600'}`}>
-                          {n.title}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-0.5 truncate">{n.message}</p>
-                        <p className="text-[10px] text-gray-400 mt-1">
-                          {new Date(n.created_at).toLocaleString('es-ES', {
-                            day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-                          })}
-                        </p>
-                      </div>
-                      {!n.read && (
-                        <div className="w-2 h-2 rounded-full bg-purple-500 shrink-0 mt-2" />
-                      )}
                     </div>
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
           </motion.div>

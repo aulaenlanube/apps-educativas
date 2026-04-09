@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft, Gamepad2, Clock, Target, Trophy, CalendarDays,
-  ChevronDown, ChevronUp, TrendingUp
+  ChevronDown, ChevronUp, TrendingUp, Zap, Medal, Crown
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
@@ -26,17 +26,20 @@ export default function StudentStatsView({ studentId, onBack }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [expandedApp, setExpandedApp] = useState(null);
+  const [qbStats, setQbStats] = useState(null);
 
   useEffect(() => {
-    async function fetch() {
+    async function fetchData() {
       setLoading(true);
-      const { data: result } = await supabase.rpc('teacher_get_student_stats', {
-        p_student_id: studentId,
-      });
-      if (result && !result.error) setData(result);
+      const [statsRes, qbRes] = await Promise.all([
+        supabase.rpc('teacher_get_student_stats', { p_student_id: studentId }),
+        supabase.rpc('get_student_quiz_battle_stats', { p_student_id: studentId }).catch(() => ({ data: null })),
+      ]);
+      if (statsRes.data && !statsRes.data.error) setData(statsRes.data);
+      if (qbRes.data && !qbRes.data.error) setQbStats(qbRes.data);
       setLoading(false);
     }
-    fetch();
+    fetchData();
   }, [studentId]);
 
   if (loading) {
@@ -86,6 +89,54 @@ export default function StudentStatsView({ studentId, onBack }) {
         <StatMini icon={Trophy} label="Mejor punt." value={stats.best_score || 0}
           sub={`Media exam.: ${stats.avg_test_score || 0}`} color="bg-amber-500" />
       </div>
+
+      {/* Batalla stats */}
+      {qbStats && qbStats.total_played > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 shadow-sm p-4 mb-6"
+        >
+          <h3 className="font-bold text-amber-800 flex items-center gap-2 mb-3">
+            <Zap className="w-4 h-4 text-amber-500" />
+            Batalla
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div>
+              <p className="text-xs text-amber-600">Partidas</p>
+              <p className="text-xl font-bold text-amber-900">{qbStats.total_played}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600 flex items-center gap-1"><Crown className="w-3 h-3" /> Victorias</p>
+              <p className="text-xl font-bold text-amber-900">{qbStats.total_wins}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600 flex items-center gap-1"><Medal className="w-3 h-3" /> Podio (Top 3)</p>
+              <p className="text-xl font-bold text-amber-900">{qbStats.total_podium}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600">Precision</p>
+              <p className="text-xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600">Mejor punt.</p>
+              <p className="text-lg font-bold text-amber-900">{qbStats.best_score}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600">Media punt.</p>
+              <p className="text-lg font-bold text-amber-900">{qbStats.avg_score}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600">Puesto medio</p>
+              <p className="text-lg font-bold text-amber-900">#{qbStats.avg_rank}</p>
+            </div>
+            <div>
+              <p className="text-xs text-amber-600">Aciertos</p>
+              <p className="text-lg font-bold text-amber-900">{qbStats.total_correct}/{qbStats.total_questions}</p>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* Apps detail */}
       {apps && apps.length > 0 && (
