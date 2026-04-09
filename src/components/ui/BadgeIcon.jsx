@@ -3395,6 +3395,446 @@ const SVGS = {
       </g>
     </>
   ),
+
+  // ═══════════════════════ RANKING ═══════════════════════
+
+  // ─── TOP 10 GLOBAL ───
+  rank_top10_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}shd`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e2e8f0" /><stop offset="1" stopColor="#94a3b8" />
+        </linearGradient>
+      </defs>
+      {/* Escudo */}
+      <path d="M32 6 L54 16 V36 Q54 54 32 60 Q10 54 10 36 V16 Z" fill={`url(#${id}shd)`} stroke="#475569" {...S} />
+      <path d="M32 10 L50 18 V36 Q50 50 32 56 Q14 50 14 36 V18 Z" fill="#f8fafc" stroke="#94a3b8" strokeWidth="1.5" />
+      {/* 10 grande */}
+      <text x="32" y="40" textAnchor="middle" fontSize="18" fontWeight="900" fill="#475569" stroke="#e2e8f0" strokeWidth="0.5">10</text>
+      {/* Estrellita arriba */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 18px' }}>
+        <path d="M32 14 L33.5 17 L37 17.5 L34.5 19.5 L35 23 L32 21 L29 23 L29.5 19.5 L27 17.5 L30.5 17 Z" fill="#94a3b8" stroke="#64748b" strokeWidth="0.8" />
+      </g>
+    </>
+  ),
+  rank_top10_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}shd`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e2e8f0" /><stop offset="1" stopColor="#64748b" />
+        </linearGradient>
+      </defs>
+      <path d="M32 6 L54 16 V36 Q54 54 32 60 Q10 54 10 36 V16 Z" fill={`url(#${id}shd)`} stroke="#475569" {...S} />
+      <path d="M32 10 L50 18 V36 Q50 50 32 56 Q14 50 14 36 V18 Z" fill="#f1f5f9" stroke="#94a3b8" strokeWidth="1.5" />
+      <text x="32" y="40" textAnchor="middle" fontSize="18" fontWeight="900" fill="#334155" stroke="#e2e8f0" strokeWidth="0.5">10</text>
+      {/* 3 estrellas */}
+      <g className="ba-anim anim-twinkle">
+        <circle cx="24" cy="18" r="2" fill="#94a3b8" /><circle cx="32" cy="15" r="2.5" fill="#64748b" /><circle cx="40" cy="18" r="2" fill="#94a3b8" />
+      </g>
+    </>
+  ),
+  rank_top10_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}shd`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#bfdbfe" /><stop offset="1" stopColor="#2563eb" />
+        </linearGradient>
+      </defs>
+      <path d="M32 6 L54 16 V36 Q54 54 32 60 Q10 54 10 36 V16 Z" fill={`url(#${id}shd)`} stroke="#1e3a8a" {...S} />
+      <path d="M32 10 L50 18 V36 Q50 50 32 56 Q14 50 14 36 V18 Z" fill="#eff6ff" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x="32" y="40" textAnchor="middle" fontSize="18" fontWeight="900" fill="#1e3a8a" stroke="#bfdbfe" strokeWidth="0.5">10</text>
+      <g className="ba-anim anim-twinkle">
+        {[20,26,32,38,44].map((x,i) => <circle key={i} cx={x} cy={17-(i===2?2:0)} r={i===2?2.5:1.8} fill={i===2?'#2563eb':'#60a5fa'} />)}
+      </g>
+    </>
+  ),
+  rank_top10_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}shd`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd" /><stop offset="1" stopColor="#6d28d9" />
+        </linearGradient>
+        <radialGradient id={`${id}glow`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor="#a78bfa" stopOpacity="0.5" /><stop offset="1" stopColor="#a78bfa" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}glow)`} />
+      <path d="M32 6 L54 16 V36 Q54 54 32 60 Q10 54 10 36 V16 Z" fill={`url(#${id}shd)`} stroke="#4c1d95" {...S} />
+      <path d="M32 10 L50 18 V36 Q50 50 32 56 Q14 50 14 36 V18 Z" fill="#f5f3ff" stroke="#7c3aed" strokeWidth="1.5" />
+      <text x="32" y="40" textAnchor="middle" fontSize="18" fontWeight="900" fill="#4c1d95">10</text>
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 16px' }}>
+        {Array.from({length:10}).map((_,i) => {
+          const a=(i*36*Math.PI)/180; const cx=32+Math.cos(a)*10; const cy=16+Math.sin(a)*6;
+          return <circle key={i} cx={cx} cy={cy} r="1.2" fill="#c4b5fd" />;
+        })}
+      </g>
+    </>
+  ),
+
+  // ─── TOP 3 GLOBAL (PODIO) ───
+  rank_top3_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}pod`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e2e8f0" /><stop offset="1" stopColor="#94a3b8" />
+        </linearGradient>
+      </defs>
+      {/* Podio 3 bloques */}
+      <rect x="6" y="36" width="16" height="24" rx="2" fill="#cbd5e1" stroke="#64748b" strokeWidth="2" />
+      <text x="14" y="50" textAnchor="middle" fontSize="10" fontWeight="900" fill="#475569">3</text>
+      <rect x="24" y="22" width="16" height="38" rx="2" fill="#fde68a" stroke="#b45309" strokeWidth="2" />
+      <text x="32" y="40" textAnchor="middle" fontSize="12" fontWeight="900" fill="#92400e">1</text>
+      <rect x="42" y="30" width="16" height="30" rx="2" fill="#d6d3d1" stroke="#78716c" strokeWidth="2" />
+      <text x="50" y="46" textAnchor="middle" fontSize="10" fontWeight="900" fill="#57534e">2</text>
+      {/* Estrella dorada arriba del 1 */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 14px' }}>
+        <path d="M32 8 L34 13 L39 14 L35 17 L36 22 L32 19 L28 22 L29 17 L25 14 L30 13 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="1" />
+      </g>
+    </>
+  ),
+  rank_top3_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}m`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fed7aa" /><stop offset="1" stopColor="#c2410c" />
+        </linearGradient>
+      </defs>
+      {/* 3 medallas superpuestas */}
+      <g className="ba-anim anim-sway" style={{ transformOrigin: '20px 18px' }}>
+        <circle cx="20" cy="38" r="11" fill={`url(#${id}m)`} stroke="#7c2d12" strokeWidth="2" />
+        <text x="20" y="42" textAnchor="middle" fontSize="10" fontWeight="900" fill="#fef3c7">3</text>
+        <line x1="20" y1="27" x2="20" y2="14" stroke="#7c2d12" strokeWidth="2" strokeLinecap="round" />
+      </g>
+      <g className="ba-anim anim-sway" style={{ transformOrigin: '32px 14px', animationDelay: '.2s' }}>
+        <circle cx="32" cy="34" r="12" fill="#fde68a" stroke="#92400e" strokeWidth="2.5" />
+        <text x="32" y="39" textAnchor="middle" fontSize="11" fontWeight="900" fill="#78350f">1</text>
+        <line x1="32" y1="22" x2="32" y2="10" stroke="#92400e" strokeWidth="2" strokeLinecap="round" />
+      </g>
+      <g className="ba-anim anim-sway" style={{ transformOrigin: '44px 18px', animationDelay: '.4s' }}>
+        <circle cx="44" cy="38" r="11" fill="#e2e8f0" stroke="#64748b" strokeWidth="2" />
+        <text x="44" y="42" textAnchor="middle" fontSize="10" fontWeight="900" fill="#475569">2</text>
+        <line x1="44" y1="27" x2="44" y2="14" stroke="#64748b" strokeWidth="2" strokeLinecap="round" />
+      </g>
+    </>
+  ),
+  rank_top3_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e9d5ff" /><stop offset="0.5" stopColor="#8b5cf6" /><stop offset="1" stopColor="#4c1d95" />
+        </linearGradient>
+      </defs>
+      {/* Trofeo morado */}
+      <rect x="26" y="48" width="12" height="6" rx="1" fill="#7c3aed" stroke="#4c1d95" strokeWidth="1.5" />
+      <rect x="22" y="54" width="20" height="4" rx="1" fill="#6d28d9" stroke="#4c1d95" strokeWidth="1.5" />
+      <rect x="28" y="40" width="8" height="8" fill="#a78bfa" stroke="#6d28d9" strokeWidth="1.5" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 26px' }}>
+        <path d="M14 12 H50 V26 Q50 40 32 42 Q14 40 14 26 Z" fill={`url(#${id}cup)`} stroke="#4c1d95" strokeWidth="2.5" />
+        <path d="M14 12 Q4 14 4 22 Q4 30 14 32" fill="none" stroke="#8b5cf6" strokeWidth="3" strokeLinecap="round" />
+        <path d="M50 12 Q60 14 60 22 Q60 30 50 32" fill="none" stroke="#8b5cf6" strokeWidth="3" strokeLinecap="round" />
+        <text x="32" y="30" textAnchor="middle" fontSize="12" fontWeight="900" fill="#fef3c7" stroke="#4c1d95" strokeWidth="0.4">TOP3</text>
+        <ellipse cx="22" cy="16" rx="2" ry="5" fill="#e9d5ff" opacity="0.5" />
+      </g>
+      {/* 5 estrellas */}
+      <g className="ba-anim anim-twinkle">
+        {[16,24,32,40,48].map((x,i) => <circle key={i} cx={x} cy={8} r="1.8" fill="#c4b5fd" />)}
+      </g>
+    </>
+  ),
+  rank_top3_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.4" stopColor="#fde047" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <radialGradient id={`${id}glow`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}glow)`} />
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({length:12}).map((_,i) => {
+          const a=(i*30*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*26} y1={32-Math.cos(a)*26} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />;
+        })}
+      </g>
+      <rect x="26" y="48" width="12" height="5" rx="1" fill="#b45309" stroke="#78350f" strokeWidth="1.5" />
+      <rect x="22" y="53" width="20" height="5" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="1.5" />
+      <rect x="28" y="40" width="8" height="8" fill="#d97706" stroke="#78350f" strokeWidth="1.5" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 24px' }}>
+        <path d="M14 10 H50 V24 Q50 40 32 42 Q14 40 14 24 Z" fill={`url(#${id}cup)`} stroke="#78350f" strokeWidth="2.5" />
+        <path d="M14 10 Q4 12 4 20 Q4 28 14 30" fill="none" stroke="#d97706" strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M50 10 Q60 12 60 20 Q60 28 50 30" fill="none" stroke="#d97706" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="32" y="29" textAnchor="middle" fontSize="11" fontWeight="900" fill="#78350f" stroke="#fef3c7" strokeWidth="0.4">TOP3</text>
+        <ellipse cx="22" cy="15" rx="2" ry="5" fill="#fffbeb" opacity="0.6" />
+      </g>
+      <g className="ba-anim anim-twinkle">
+        <path d="M32 2 L33.5 6 L38 6.5 L35 9 L36 13 L32 10.5 L28 13 L29 9 L26 6.5 L30.5 6 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.8" />
+      </g>
+    </>
+  ),
+
+  // ─── PRIMERO GLOBAL (CORONA) ───
+  rank_first_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cr`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.5" stopColor="#fbbf24" /><stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+      </defs>
+      {/* Corona */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 28px' }}>
+        <path d="M8 38 L14 18 L24 30 L32 12 L40 30 L50 18 L56 38 Z" fill={`url(#${id}cr)`} stroke="#78350f" {...S} />
+        <rect x="8" y="38" width="48" height="8" rx="2" fill="#d97706" stroke="#78350f" strokeWidth="2.5" />
+        <circle cx="14" cy="18" r="3" fill="#ef4444" stroke="#7f1d1d" strokeWidth="1" />
+        <circle cx="32" cy="12" r="3.5" fill="#3b82f6" stroke="#1e3a8a" strokeWidth="1" />
+        <circle cx="50" cy="18" r="3" fill="#10b981" stroke="#064e3b" strokeWidth="1" />
+        <ellipse cx="18" cy="30" rx="2" ry="4" fill="#fffbeb" opacity="0.5" />
+      </g>
+      {/* #1 */}
+      <text x="32" y="58" textAnchor="middle" fontSize="10" fontWeight="900" fill="#78350f">#1</text>
+    </>
+  ),
+  rank_first_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cr`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.5" stopColor="#f59e0b" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <radialGradient id={`${id}gem`} cx="0.4" cy="0.3">
+          <stop offset="0" stopColor="#fecaca" /><stop offset="0.6" stopColor="#dc2626" /><stop offset="1" stopColor="#450a0a" />
+        </radialGradient>
+      </defs>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 28px' }}>
+        <path d="M6 38 L14 16 L24 30 L32 8 L40 30 L50 16 L58 38 Z" fill={`url(#${id}cr)`} stroke="#78350f" {...S} />
+        <rect x="6" y="38" width="52" height="9" rx="2" fill="#b45309" stroke="#78350f" strokeWidth="2.5" />
+        <rect x="6" y="38" width="52" height="3" fill="#fde68a" opacity="0.4" />
+        <circle cx="14" cy="16" r="3.5" fill={`url(#${id}gem)`} stroke="#7f1d1d" strokeWidth="1" />
+        <circle cx="32" cy="8" r="4" fill={`url(#${id}gem)`} stroke="#7f1d1d" strokeWidth="1.2" />
+        <circle cx="50" cy="16" r="3.5" fill={`url(#${id}gem)`} stroke="#7f1d1d" strokeWidth="1" />
+        <ellipse cx="18" cy="28" rx="2" ry="5" fill="#fffbeb" opacity="0.5" />
+      </g>
+      <text x="32" y="56" textAnchor="middle" fontSize="9" fontWeight="900" fill="#78350f">x3</text>
+    </>
+  ),
+  rank_first_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cr`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.4" stopColor="#fbbf24" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <radialGradient id={`${id}gem`} cx="0.4" cy="0.3">
+          <stop offset="0" stopColor="#e9d5ff" /><stop offset="0.6" stopColor="#8b5cf6" /><stop offset="1" stopColor="#4c1d95" />
+        </radialGradient>
+      </defs>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 28px' }}>
+        <path d="M6 38 L14 14 L24 28 L32 6 L40 28 L50 14 L58 38 Z" fill={`url(#${id}cr)`} stroke="#78350f" {...S} />
+        <rect x="6" y="38" width="52" height="9" rx="2" fill="#92400e" stroke="#78350f" strokeWidth="2.5" />
+        <circle cx="14" cy="14" r="3.5" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="1" />
+        <circle cx="32" cy="6" r="4.5" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="1.2" />
+        <circle cx="50" cy="14" r="3.5" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="1" />
+        {/* Puntos gema decorativos */}
+        <circle cx="22" cy="42" r="2" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="0.8" />
+        <circle cx="32" cy="42" r="2" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="0.8" />
+        <circle cx="42" cy="42" r="2" fill={`url(#${id}gem)`} stroke="#4c1d95" strokeWidth="0.8" />
+        <ellipse cx="18" cy="28" rx="2" ry="5" fill="#fffbeb" opacity="0.5" />
+      </g>
+      <text x="32" y="58" textAnchor="middle" fontSize="9" fontWeight="900" fill="#4c1d95">x5</text>
+    </>
+  ),
+  rank_first_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cr`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.6" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({length:16}).map((_,i) => {
+          const a=(i*22.5*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*28} y1={32-Math.cos(a)*28} x2={32+Math.sin(a)*32} y2={32-Math.cos(a)*32} stroke="#fbbf24" strokeWidth={i%2?0.8:1.5} strokeLinecap="round" opacity="0.6" />;
+        })}
+      </g>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 26px' }}>
+        <path d="M6 38 L14 12 L24 28 L32 4 L40 28 L50 12 L58 38 Z" fill={`url(#${id}cr)`} stroke="#78350f" strokeWidth="3" strokeLinejoin="round" />
+        <rect x="6" y="38" width="52" height="10" rx="2" fill="#92400e" stroke="#78350f" strokeWidth="2.5" />
+        <rect x="6" y="38" width="52" height="3" fill="#fde68a" opacity="0.4" />
+        <circle cx="14" cy="12" r="4" fill="#ef4444" stroke="#7f1d1d" strokeWidth="1.2" />
+        <circle cx="32" cy="4" r="5" fill="#3b82f6" stroke="#1e3a8a" strokeWidth="1.2" />
+        <circle cx="50" cy="12" r="4" fill="#10b981" stroke="#064e3b" strokeWidth="1.2" />
+        <circle cx="32" cy="4" r="1.5" fill="#bfdbfe" />
+        <ellipse cx="18" cy="26" rx="2" ry="6" fill="#fffbeb" opacity="0.6" />
+      </g>
+      <text x="32" y="56" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">LEYENDA</text>
+    </>
+  ),
+
+  // ─── TOP 3 CLASE ───
+  rank_class3_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#dcfce7" /><stop offset="1" stopColor="#86efac" />
+        </linearGradient>
+      </defs>
+      {/* Pizarra / aula */}
+      <rect x="8" y="8" width="48" height="34" rx="4" fill="#166534" stroke="#14532d" {...S} />
+      <rect x="12" y="12" width="40" height="26" rx="2" fill="#15803d" stroke="#14532d" strokeWidth="1" />
+      {/* Texto podio */}
+      <text x="32" y="28" textAnchor="middle" fontSize="10" fontWeight="900" fill="#bbf7d0">TOP 3</text>
+      {/* Tiza */}
+      <rect x="18" y="44" width="28" height="3" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="0.8" />
+      {/* Estrella */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 50px' }}>
+        <path d="M32 48 L33.5 51 L37 51.5 L34.5 53.5 L35 57 L32 55 L29 57 L29.5 53.5 L27 51.5 L30.5 51 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="0.8" />
+      </g>
+    </>
+  ),
+  rank_class3_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#dcfce7" /><stop offset="1" stopColor="#4ade80" />
+        </linearGradient>
+      </defs>
+      <rect x="8" y="8" width="48" height="34" rx="4" fill="#166534" stroke="#14532d" {...S} />
+      <rect x="12" y="12" width="40" height="26" rx="2" fill="#15803d" stroke="#14532d" strokeWidth="1" />
+      <text x="32" y="28" textAnchor="middle" fontSize="10" fontWeight="900" fill="#bbf7d0">TOP 3</text>
+      <rect x="18" y="44" width="28" height="3" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="0.8" />
+      {/* 3 estrellas */}
+      <g className="ba-anim anim-twinkle">
+        <path d="M20 51 L21 54 L24 54 L21.5 56 L22.5 59 L20 57 L17.5 59 L18.5 56 L16 54 L19 54 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="0.6" />
+        <path d="M32 48 L33.5 52 L37 52 L34 54.5 L35 58 L32 55.5 L29 58 L30 54.5 L27 52 L30.5 52 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="0.7" />
+        <path d="M44 51 L45 54 L48 54 L45.5 56 L46.5 59 L44 57 L41.5 59 L42.5 56 L40 54 L43 54 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="0.6" />
+      </g>
+    </>
+  ),
+  rank_class3_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#bbf7d0" /><stop offset="1" stopColor="#22c55e" />
+        </linearGradient>
+      </defs>
+      <rect x="8" y="8" width="48" height="34" rx="4" fill="#166534" stroke="#14532d" {...S} />
+      <rect x="12" y="12" width="40" height="26" rx="2" fill="#15803d" stroke="#14532d" strokeWidth="1" />
+      <text x="32" y="22" textAnchor="middle" fontSize="7" fontWeight="800" fill="#86efac">ORGULLO</text>
+      <text x="32" y="33" textAnchor="middle" fontSize="9" fontWeight="900" fill="#dcfce7">DE CLASE</text>
+      <rect x="18" y="44" width="28" height="3" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="0.8" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 54px' }}>
+        <path d="M24 48 L28 48 L32 44 L36 48 L40 48 L38 52 L40 56 L32 54 L24 56 L26 52 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+  rank_class3_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#bbf7d0" /><stop offset="1" stopColor="#16a34a" />
+        </linearGradient>
+        <radialGradient id={`${id}glow`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor="#4ade80" stopOpacity="0.4" /><stop offset="1" stopColor="#4ade80" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}glow)`} />
+      <rect x="8" y="8" width="48" height="34" rx="4" fill="#166534" stroke="#14532d" {...S} />
+      <rect x="12" y="12" width="40" height="26" rx="2" fill="#15803d" stroke="#14532d" strokeWidth="1" />
+      <text x="32" y="22" textAnchor="middle" fontSize="7" fontWeight="800" fill="#86efac">LEYENDA</text>
+      <text x="32" y="33" textAnchor="middle" fontSize="9" fontWeight="900" fill="#dcfce7">DE CLASE</text>
+      <rect x="18" y="44" width="28" height="3" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="0.8" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 54px' }}>
+        <path d="M22 48 L26 48 L32 42 L38 48 L42 48 L39 53 L42 58 L32 55 L22 58 L25 53 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="1.2" strokeLinejoin="round" />
+        <circle cx="32" cy="50" r="2" fill="#ef4444" stroke="#7f1d1d" strokeWidth="0.8" />
+      </g>
+    </>
+  ),
+
+  // ─── PRIMERO DE CLASE ───
+  rank_class1_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}star`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="1" stopColor="#f59e0b" />
+        </linearGradient>
+      </defs>
+      {/* Libro/pupitre */}
+      <rect x="10" y="40" width="44" height="18" rx="3" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2.5" />
+      <rect x="10" y="40" width="44" height="4" fill="#2563eb" opacity="0.5" rx="3" />
+      <text x="32" y="54" textAnchor="middle" fontSize="7" fontWeight="800" fill="#bfdbfe">#1 CLASE</text>
+      {/* Estrella grande encima */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 24px' }}>
+        <path d="M32 6 L36 18 L48 20 L39 28 L42 40 L32 34 L22 40 L25 28 L16 20 L28 18 Z"
+              fill={`url(#${id}star)`} stroke="#92400e" strokeWidth="2" strokeLinejoin="round" />
+        <ellipse cx="26" cy="16" rx="2" ry="4" fill="#fffbeb" opacity="0.5" />
+      </g>
+    </>
+  ),
+  rank_class1_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}star`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.5" stopColor="#fbbf24" /><stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+      </defs>
+      <rect x="10" y="42" width="44" height="16" rx="3" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2.5" />
+      <text x="32" y="54" textAnchor="middle" fontSize="7" fontWeight="800" fill="#bfdbfe">CAMPEON</text>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 22px' }}>
+        <path d="M32 4 L36 16 L48 17 L39 25 L42 37 L32 31 L22 37 L25 25 L16 17 L28 16 Z"
+              fill={`url(#${id}star)`} stroke="#92400e" strokeWidth="2" strokeLinejoin="round" />
+        <text x="32" y="26" textAnchor="middle" fontSize="8" fontWeight="900" fill="#78350f">x3</text>
+        <ellipse cx="26" cy="14" rx="2" ry="4" fill="#fffbeb" opacity="0.5" />
+      </g>
+    </>
+  ),
+  rank_class1_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}star`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e9d5ff" /><stop offset="0.5" stopColor="#8b5cf6" /><stop offset="1" stopColor="#4c1d95" />
+        </linearGradient>
+      </defs>
+      <rect x="10" y="42" width="44" height="16" rx="3" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2.5" />
+      <text x="32" y="54" textAnchor="middle" fontSize="7" fontWeight="800" fill="#bfdbfe">CAPITAN</text>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 22px' }}>
+        <path d="M32 4 L36 16 L48 17 L39 25 L42 37 L32 31 L22 37 L25 25 L16 17 L28 16 Z"
+              fill={`url(#${id}star)`} stroke="#4c1d95" strokeWidth="2" strokeLinejoin="round" />
+        <text x="32" y="26" textAnchor="middle" fontSize="8" fontWeight="900" fill="#fef3c7">x5</text>
+        <ellipse cx="26" cy="14" rx="2" ry="4" fill="#e9d5ff" opacity="0.5" />
+      </g>
+      {/* Destellos */}
+      <g className="ba-anim anim-twinkle">
+        <circle cx="8" cy="12" r="1.5" fill="#a78bfa" /><circle cx="56" cy="12" r="1.5" fill="#c4b5fd" /><circle cx="8" cy="36" r="1" fill="#a78bfa" /><circle cx="56" cy="36" r="1" fill="#c4b5fd" />
+      </g>
+    </>
+  ),
+  rank_class1_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}star`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({length:12}).map((_,i) => {
+          const a=(i*30*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*27} y1={32-Math.cos(a)*27} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />;
+        })}
+      </g>
+      <rect x="10" y="44" width="44" height="14" rx="3" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2.5" />
+      <text x="32" y="55" textAnchor="middle" fontSize="6" fontWeight="800" fill="#fde68a">DIOS DE CLASE</text>
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 22px' }}>
+        <path d="M32 2 L37 16 L52 17 L40 27 L44 42 L32 34 L20 42 L24 27 L12 17 L27 16 Z"
+              fill={`url(#${id}star)`} stroke="#78350f" strokeWidth="2.5" strokeLinejoin="round" />
+        <text x="32" y="27" textAnchor="middle" fontSize="8" fontWeight="900" fill="#78350f">#1</text>
+        <ellipse cx="24" cy="14" rx="2" ry="5" fill="#fffbeb" opacity="0.6" />
+      </g>
+    </>
+  ),
 };
 
 // ─── Halo de fondo por rareza ───

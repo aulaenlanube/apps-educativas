@@ -381,6 +381,76 @@
   line-height: 1.4;
 }
 
+/* ============ SECCIONES ============ */
+.rk-section {
+  margin-bottom: 1rem;
+}
+
+.rk-section:last-child {
+  margin-bottom: 0;
+}
+
+.rk-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.25rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #78350f;
+  border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.rk-section-header svg {
+  color: #f59e0b;
+}
+
+.rk-section-header h3 {
+  margin: 0;
+  font-size: inherit;
+}
+
+.rk-section-list {
+  min-height: 48px;
+}
+
+.rk-empty-small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem 0.5rem;
+  color: #9ca3af;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.rk-empty-small svg {
+  color: #fbbf24;
+  opacity: 0.5;
+}
+
+.rk-empty-small p {
+  margin: 0;
+}
+
+/* Highlight for current user */
+.rk-item.rk-highlight {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 1px;
+}
+
+.rk-item.rk-highlight .rk-item-name::after {
+  content: ' (Tu)';
+  font-size: 0.7rem;
+  color: #7c3aed;
+  font-weight: 700;
+}
+
 @media (max-width: 600px) {
   .rk-modal-content {
     padding: 1.25rem 1rem 1rem;

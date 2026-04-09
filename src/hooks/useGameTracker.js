@@ -12,7 +12,7 @@ import { supabase } from '@/lib/supabase';
  * Si las funciones nuevas no existen aun en Supabase, usa fallback al metodo antiguo.
  */
 export function useGameTracker() {
-  const { user, student, isTeacher, isStudent, isFreeUser } = useAuth();
+  const { user, student, freeUser, isTeacher, isStudent, isFreeUser } = useAuth();
   const sessionIdRef = useRef(null);
   const completedRef = useRef(false);
   const startTimeRef = useRef(null);
@@ -205,13 +205,92 @@ export function useGameTracker() {
           });
           gamifResult = data;
         }
-        if (gamifResult?.success) return gamifResult;
+        if (gamifResult?.success) {
+          // Registrar mejor puntuacion y procesar insignias de ranking
+          try {
+            const groupId = student?.group_id || null;
+            const hsResult = await supabase.rpc('upsert_high_score', {
+              p_user_id: userInfo2.id,
+              p_user_type: userInfo2.type,
+              p_app_id: appId,
+              p_level: level || null,
+              p_grade: grade ? String(grade) : null,
+              p_subject_id: subjectId || null,
+              p_score: score,
+              p_nota: nota,
+              p_correct_answers: correctAnswers,
+              p_total_questions: totalQuestions,
+              p_duration_seconds: duration,
+              p_mode: mode,
+              p_group_id: groupId,
+            });
+
+            if (hsResult.data?.is_new_record) {
+              // Procesar insignias de ranking
+              const rankResult = await supabase.rpc('process_ranking_badges', {
+                p_user_id: userInfo2.id,
+                p_user_type: userInfo2.type,
+                p_app_id: appId,
+                p_level: level || null,
+                p_grade: grade ? String(grade) : null,
+                p_subject_id: subjectId || null,
+                p_score: score,
+                p_group_id: groupId,
+              });
+
+              if (rankResult.data?.new_badges?.length > 0) {
+                gamifResult.new_badges = [
+                  ...(gamifResult.new_badges || []),
+                  ...rankResult.data.new_badges,
+                ];
+                gamifResult.total_xp_gained = (gamifResult.total_xp_gained || 0) + (rankResult.data.badge_xp || 0);
+                gamifResult.new_xp = (gamifResult.new_xp || 0) + (rankResult.data.badge_xp || 0);
+              }
+              gamifResult.high_score = {
+                is_new_record: true,
+                old_score: hsResult.data.old_score,
+                new_score: hsResult.data.new_score,
+                global_rank: rankResult.data?.global_rank || hsResult.data.global_rank,
+                class_rank: rankResult.data?.class_rank || null,
+              };
+            }
+          } catch (err) {
+            console.warn('[GameTracker] High score error (non-blocking):', err);
+          }
+
+          return gamifResult;
+        }
       } catch (err) {
         console.warn('[GameTracker] Gamification error (non-blocking):', err);
       }
     }
+
+    // Para usuarios sin gamificacion (anonimos), aun asi registrar high score
+    if (completed && score > 0) {
+      try {
+        const userInfo3 = getUserInfo();
+        await supabase.rpc('upsert_high_score', {
+          p_user_id: userInfo3.id,
+          p_user_type: userInfo3.type,
+          p_app_id: appId,
+          p_level: level || null,
+          p_grade: grade ? String(grade) : null,
+          p_subject_id: subjectId || null,
+          p_score: score,
+          p_nota: nota,
+          p_correct_answers: correctAnswers,
+          p_total_questions: totalQuestions,
+          p_duration_seconds: duration,
+          p_mode: mode,
+          p_group_id: null,
+        });
+      } catch (err) {
+        // Best-effort
+      }
+    }
+
     return null;
-  }, [getUserInfo]);
+  }, [getUserInfo, student]);
 
   /**
    * Marca la sesion actual como abandonada. Se llama automaticamente al desmontar.

@@ -90,6 +90,22 @@ const AppRunnerPage = () => {
             duration: 4000,
           });
         }
+        // Mostrar nuevo record
+        if (gamifResult.high_score?.is_new_record) {
+          const hs = gamifResult.high_score;
+          const rankMsg = hs.global_rank
+            ? hs.global_rank <= 3
+              ? `Estas en el podio global (#${hs.global_rank})`
+              : hs.global_rank <= 10
+                ? `Top ${hs.global_rank} global`
+                : `Posicion #${hs.global_rank}`
+            : '';
+          toast({
+            title: `🏆 Nuevo record: ${Number(hs.new_score).toLocaleString('es-ES')} pts`,
+            description: rankMsg || `Anterior: ${Number(hs.old_score).toLocaleString('es-ES')} pts`,
+            duration: 5000,
+          });
+        }
         // Mostrar insignias nuevas
         if (gamifResult.new_badges?.length > 0) {
           gamifResult.new_badges.forEach(badge => {
