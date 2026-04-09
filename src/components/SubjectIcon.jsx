@@ -807,6 +807,328 @@ const Economia = () => (
   </svg>
 );
 
+/* Filosofía – Búho de Atenea pensante */
+const Filosofia = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-fil" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#A78BFA" />
+        <stop offset="100%" stopColor="#7C3AED" />
+      </linearGradient>
+    </defs>
+    {/* Body */}
+    <ellipse cx="24" cy="30" rx="12" ry="14" fill="#EDE9FE" />
+    <ellipse cx="24" cy="30" rx="12" ry="14" stroke="#7C3AED" strokeWidth="0.5" opacity="0.2" fill="none" />
+    {/* Head */}
+    <circle cx="24" cy="16" r="10" fill="#F5F3FF" />
+    <circle cx="24" cy="16" r="10" stroke="#7C3AED" strokeWidth="0.5" opacity="0.15" fill="none" />
+    {/* Ears */}
+    <path d="M16 10 L14 4 L18 8" fill="#DDD6FE" />
+    <path d="M32 10 L34 4 L30 8" fill="#DDD6FE" />
+    {/* Eyes – blinking */}
+    <g style={{ animation: 'si-blink 5s ease-in-out infinite' }}>
+      <circle cx="20" cy="16" r="3.5" fill="url(#si-fil)" />
+      <circle cx="28" cy="16" r="3.5" fill="url(#si-fil)" />
+      <circle cx="21" cy="15" r="1.2" fill="white" opacity="0.7" />
+      <circle cx="29" cy="15" r="1.2" fill="white" opacity="0.7" />
+    </g>
+    {/* Beak */}
+    <path d="M22 20 L24 23 L26 20" fill="#F59E0B" />
+    {/* Belly lines */}
+    {[26, 30, 34].map((y, i) => (
+      <path key={i} d={`M18 ${y} Q24 ${y + 2} 30 ${y}`} stroke="#C4B5FD" strokeWidth="0.7" fill="none"
+        style={{ animation: `si-shimmer 3s ease-in-out ${i * 0.4}s infinite` }} />
+    ))}
+    {/* Thought bubble */}
+    <g style={{ animation: 'si-rise 5s ease-out infinite' }}>
+      <circle cx="36" cy="8" r="2" fill="#C4B5FD" opacity="0.5" />
+      <circle cx="38" cy="4" r="1.2" fill="#C4B5FD" opacity="0.35" />
+      <circle cx="40" cy="1" r="0.7" fill="#C4B5FD" opacity="0.2" />
+    </g>
+  </svg>
+);
+
+/* Historia del Mundo – Globo terráqueo con meridianos */
+const HistoriaMundo = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-hm" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#60A5FA" />
+        <stop offset="100%" stopColor="#2563EB" />
+      </linearGradient>
+    </defs>
+    {/* Globe */}
+    <circle cx="24" cy="24" r="18" fill="#DBEAFE" />
+    <circle cx="24" cy="24" r="18" stroke="url(#si-hm)" strokeWidth="1.5" fill="none" />
+    {/* Continents simplified */}
+    <ellipse cx="20" cy="18" rx="6" ry="4" fill="#93C5FD" opacity="0.6"
+      style={{ animation: 'si-breathe 4s ease-in-out infinite' }} />
+    <ellipse cx="28" cy="28" rx="5" ry="6" fill="#93C5FD" opacity="0.5"
+      style={{ animation: 'si-breathe 4s ease-in-out 1s infinite' }} />
+    <ellipse cx="14" cy="28" rx="3" ry="4" fill="#93C5FD" opacity="0.4" />
+    {/* Meridians – spinning */}
+    <g style={{ transformOrigin: '24px 24px', animation: 'si-spin 20s linear infinite' }}>
+      <ellipse cx="24" cy="24" rx="8" ry="18" stroke="#2563EB" strokeWidth="0.4" opacity="0.25" fill="none" />
+      <ellipse cx="24" cy="24" rx="14" ry="18" stroke="#2563EB" strokeWidth="0.4" opacity="0.2" fill="none" />
+    </g>
+    {/* Equator */}
+    <ellipse cx="24" cy="24" rx="18" ry="5" stroke="#2563EB" strokeWidth="0.4" opacity="0.2" fill="none" />
+    {/* Stand */}
+    <path d="M24 42 L24 46" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M18 46 L30 46" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
+    {/* Arc stand */}
+    <path d="M10 24 Q24 2 38 24" stroke="#9CA3AF" strokeWidth="0.8" fill="none" opacity="0.3" />
+    {/* Pulse */}
+    <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(37,99,235,0.15)" strokeWidth="0.5"
+      style={{ animation: 'si-ripple 4s ease-out infinite' }} />
+  </svg>
+);
+
+/* Historia de España – Corona sobre escudo */
+const HistoriaEspana = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-he" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FCD34D" />
+        <stop offset="100%" stopColor="#DC2626" />
+      </linearGradient>
+    </defs>
+    {/* Shield */}
+    <path d="M12 14 L12 30 Q12 40 24 44 Q36 40 36 30 L36 14 Z" fill="#FEF2F2" />
+    <path d="M12 14 L12 30 Q12 40 24 44 Q36 40 36 30 L36 14 Z" stroke="#DC2626" strokeWidth="1" opacity="0.3" fill="none" />
+    {/* Quarters */}
+    <line x1="24" y1="14" x2="24" y2="44" stroke="#DC2626" strokeWidth="0.5" opacity="0.15" />
+    <line x1="12" y1="28" x2="36" y2="28" stroke="#DC2626" strokeWidth="0.5" opacity="0.15" />
+    {/* Castle (top-left) */}
+    <rect x="16" y="18" width="5" height="7" rx="0.5" fill="#FCD34D" opacity="0.5"
+      style={{ animation: 'si-shimmer 3s ease-in-out infinite' }} />
+    {/* Lion (top-right) */}
+    <circle cx="30" cy="21" r="2.5" fill="#DC2626" opacity="0.3"
+      style={{ animation: 'si-shimmer 3s ease-in-out 0.5s infinite' }} />
+    {/* Stripes (bottom-left) */}
+    {[31, 33, 35, 37].map((y, i) => (
+      <line key={i} x1="14" y1={y} x2="23" y2={y} stroke="#FCD34D" strokeWidth="0.8" opacity="0.4"
+        style={{ animation: `si-shimmer 3s ease-in-out ${i * 0.3}s infinite` }} />
+    ))}
+    {/* Crown – rocking */}
+    <g style={{ transformOrigin: '24px 12px', animation: 'si-rock 4s ease-in-out infinite' }}>
+      <path d="M14 14 L16 6 L20 10 L24 4 L28 10 L32 6 L34 14 Z" fill="#FCD34D" />
+      <path d="M14 14 L34 14" stroke="#D97706" strokeWidth="0.5" opacity="0.3" />
+      <circle cx="24" cy="4" r="1" fill="#DC2626" opacity="0.6" />
+      <circle cx="16" cy="6" r="0.8" fill="#DC2626" opacity="0.5" />
+      <circle cx="32" cy="6" r="0.8" fill="#DC2626" opacity="0.5" />
+    </g>
+    {/* Sparkle */}
+    <circle cx="24" cy="4" r="0" fill="none" stroke="rgba(252,211,77,0.4)" strokeWidth="0.3"
+      style={{ animation: 'si-ripple 3s ease-out infinite' }} />
+  </svg>
+);
+
+/* Dibujo Técnico – Compás y escuadra */
+const DibujoTecnico = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-dt" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#94A3B8" />
+        <stop offset="100%" stopColor="#475569" />
+      </linearGradient>
+    </defs>
+    {/* Grid background */}
+    {[8, 16, 24, 32, 40].map(v => (
+      <g key={v}>
+        <line x1={v} y1="4" x2={v} y2="44" stroke="#CBD5E1" strokeWidth="0.3" opacity="0.4" />
+        <line x1="4" y1={v} x2="44" y2={v} stroke="#CBD5E1" strokeWidth="0.3" opacity="0.4" />
+      </g>
+    ))}
+    {/* Triangle/Escuadra */}
+    <path d="M8 40 L8 16 L32 40 Z" fill="none" stroke="url(#si-dt)" strokeWidth="1.2" strokeLinejoin="round" opacity="0.6" />
+    {/* Compass – swaying */}
+    <g style={{ transformOrigin: '28px 8px', animation: 'si-sway 4s ease-in-out infinite' }}>
+      {/* Hinge */}
+      <circle cx="28" cy="8" r="2" fill="#64748B" />
+      <circle cx="28" cy="8" r="1" fill="#94A3B8" />
+      {/* Left leg */}
+      <line x1="28" y1="8" x2="20" y2="38" stroke="url(#si-dt)" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Right leg */}
+      <line x1="28" y1="8" x2="36" y2="38" stroke="url(#si-dt)" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Pencil tip */}
+      <circle cx="36" cy="38" r="1.2" fill="#3B82F6" opacity="0.6" />
+      {/* Needle */}
+      <circle cx="20" cy="38" r="0.8" fill="#475569" />
+    </g>
+    {/* Drawn arc – drawing animation */}
+    <path d="M20 38 Q28 20 36 38" stroke="#3B82F6" strokeWidth="0.8" fill="none" strokeDasharray="40"
+      style={{ animation: 'si-draw 5s ease-in-out infinite' }} opacity="0.5" />
+  </svg>
+);
+
+/* Literatura Universal – Pluma sobre libro */
+const LiteraturaUniversal = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-lu" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F9A8D4" />
+        <stop offset="100%" stopColor="#BE185D" />
+      </linearGradient>
+    </defs>
+    {/* Book */}
+    <rect x="6" y="28" width="36" height="16" rx="2" fill="#FDF2F8" />
+    <rect x="6" y="28" width="36" height="16" rx="2" stroke="#BE185D" strokeWidth="0.5" opacity="0.2" fill="none" />
+    <line x1="24" y1="28" x2="24" y2="44" stroke="#BE185D" strokeWidth="0.5" opacity="0.1" />
+    {/* Pages */}
+    <rect x="6" y="26" width="36" height="3" rx="1" fill="#FBCFE8" opacity="0.5" />
+    {/* Text lines */}
+    {[33, 36, 39].map((y, i) => (
+      <line key={i} x1="10" y1={y} x2={20 - i * 2} y2={y} stroke="#BE185D" strokeWidth="0.5" opacity="0.2"
+        style={{ animation: `si-shimmer 3s ease-in-out ${i * 0.3}s infinite` }} />
+    ))}
+    {/* Quill – swaying */}
+    <g style={{ transformOrigin: '32px 26px', animation: 'si-sway 3s ease-in-out infinite' }}>
+      <path d="M32 26 Q36 14 34 4" stroke="url(#si-lu)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <path d="M34 4 Q38 8 36 14 Q34 10 32 14 Q30 8 34 4" fill="#F9A8D4" opacity="0.7" />
+      {/* Feather barbs */}
+      <path d="M36 10 L40 8" stroke="#FBCFE8" strokeWidth="0.5" opacity="0.5" />
+      <path d="M35 14 L39 13" stroke="#FBCFE8" strokeWidth="0.5" opacity="0.4" />
+    </g>
+    {/* Ink drops */}
+    <circle cx="30" cy="27" r="0.8" fill="#BE185D" opacity="0.4"
+      style={{ animation: 'si-pulse 3s ease-in-out infinite' }} />
+    <circle cx="33" cy="28" r="0.5" fill="#BE185D" opacity="0.3"
+      style={{ animation: 'si-pulse 3s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
+/* Economía de la Empresa – Maletín corporativo */
+const EconomiaEmpresa = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-ee" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#6EE7B7" />
+        <stop offset="100%" stopColor="#047857" />
+      </linearGradient>
+    </defs>
+    {/* Handle */}
+    <path d="M18 14 L18 10 Q18 6 22 6 L26 6 Q30 6 30 10 L30 14" stroke="#047857" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+    {/* Briefcase body */}
+    <rect x="6" y="14" width="36" height="24" rx="3" fill="#ECFDF5" />
+    <rect x="6" y="14" width="36" height="24" rx="3" stroke="#047857" strokeWidth="0.8" opacity="0.3" fill="none" />
+    {/* Belt */}
+    <rect x="6" y="24" width="36" height="4" fill="#047857" opacity="0.15" />
+    {/* Clasp – bouncing */}
+    <g style={{ transformOrigin: '24px 26px', animation: 'si-bounce 3s ease-in-out infinite' }}>
+      <rect x="20" y="23" width="8" height="6" rx="1.5" fill="url(#si-ee)" />
+      <rect x="22" y="25" width="4" height="2" rx="0.5" fill="rgba(255,255,255,0.3)" />
+    </g>
+    {/* Chart inside (subtle) */}
+    <path d="M12 32 L18 28 L24 30 L30 24 L36 26" stroke="#047857" strokeWidth="0.8" opacity="0.2" fill="none"
+      strokeDasharray="30" style={{ animation: 'si-draw 4s ease-in-out infinite' }} />
+    {/* Sparkle */}
+    <circle cx="36" cy="14" r="0" fill="none" stroke="rgba(4,120,87,0.3)" strokeWidth="0.4"
+      style={{ animation: 'si-ripple 4s ease-out infinite' }} />
+  </svg>
+);
+
+/* Geografía – Mapa con brújula */
+const Geografia = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-geo" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#34D399" />
+        <stop offset="100%" stopColor="#0D9488" />
+      </linearGradient>
+    </defs>
+    {/* Map */}
+    <rect x="4" y="8" width="40" height="32" rx="2" fill="#F0FDFA" />
+    <rect x="4" y="8" width="40" height="32" rx="2" stroke="#0D9488" strokeWidth="0.5" opacity="0.25" fill="none" />
+    {/* Topography lines */}
+    <path d="M8 20 Q16 14 24 18 Q32 22 40 16" stroke="#99F6E4" strokeWidth="1" fill="none"
+      style={{ animation: 'si-wave 5s ease-in-out infinite' }} />
+    <path d="M8 28 Q16 24 28 26 Q36 28 40 24" stroke="#99F6E4" strokeWidth="0.8" fill="none"
+      style={{ animation: 'si-wave 5s ease-in-out 0.5s infinite' }} />
+    <path d="M8 34 Q20 30 32 33 Q38 34 40 32" stroke="#99F6E4" strokeWidth="0.6" fill="none"
+      style={{ animation: 'si-wave 5s ease-in-out 1s infinite' }} />
+    {/* Mountain */}
+    <path d="M14 28 L20 16 L26 28" fill="#5EEAD4" opacity="0.3" />
+    <path d="M20 16 L22 20 L18 20 Z" fill="white" opacity="0.4" />
+    {/* Compass rose – spinning */}
+    <g style={{ transformOrigin: '36px 32px', animation: 'si-spin 8s linear infinite' }}>
+      <circle cx="36" cy="32" r="5" fill="rgba(255,255,255,0.8)" stroke="#0D9488" strokeWidth="0.5" />
+      <path d="M36 27 L37.5 32 L36 33 L34.5 32 Z" fill="#DC2626" opacity="0.7" />
+      <path d="M36 37 L37.5 32 L36 31 L34.5 32 Z" fill="#E5E7EB" opacity="0.5" />
+    </g>
+    {/* Pin */}
+    <g style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }}>
+      <path d="M12 14 Q12 10 15 10 Q18 10 18 14 Q18 16 15 20 Q12 16 12 14 Z" fill="#DC2626" opacity="0.6" />
+      <circle cx="15" cy="13" r="1.2" fill="white" opacity="0.4" />
+    </g>
+  </svg>
+);
+
+/* Arte – Paleta de pintor con pincel */
+const Arte = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-art" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F472B6" />
+        <stop offset="100%" stopColor="#9333EA" />
+      </linearGradient>
+    </defs>
+    {/* Palette */}
+    <ellipse cx="22" cy="26" rx="16" ry="14" fill="#FDF4FF" stroke="#9333EA" strokeWidth="0.5" opacity="0.25"
+      style={{ animation: 'si-breathe 5s ease-in-out infinite' }} />
+    {/* Thumb hole */}
+    <ellipse cx="16" cy="32" rx="3" ry="2.5" fill="#F5F3FF" stroke="#C084FC" strokeWidth="0.5" opacity="0.4" />
+    {/* Paint blobs – pulsing */}
+    <circle cx="14" cy="20" r="2.5" fill="#EF4444" style={{ animation: 'si-pulse 3s ease-in-out 0s infinite' }} opacity="0.7" />
+    <circle cx="20" cy="16" r="2.2" fill="#F59E0B" style={{ animation: 'si-pulse 3s ease-in-out 0.4s infinite' }} opacity="0.7" />
+    <circle cx="28" cy="16" r="2" fill="#3B82F6" style={{ animation: 'si-pulse 3s ease-in-out 0.8s infinite' }} opacity="0.7" />
+    <circle cx="32" cy="22" r="2.3" fill="#10B981" style={{ animation: 'si-pulse 3s ease-in-out 1.2s infinite' }} opacity="0.7" />
+    <circle cx="28" cy="28" r="1.8" fill="#8B5CF6" style={{ animation: 'si-pulse 3s ease-in-out 1.6s infinite' }} opacity="0.7" />
+    {/* Brush – swaying */}
+    <g style={{ transformOrigin: '38px 12px', animation: 'si-sway 3s ease-in-out infinite' }}>
+      <line x1="38" y1="12" x2="42" y2="42" stroke="#92400E" strokeWidth="2" strokeLinecap="round" />
+      <line x1="38" y1="12" x2="42" y2="42" stroke="#D97706" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
+      {/* Brush tip */}
+      <ellipse cx="37" cy="10" rx="3" ry="4" fill="url(#si-art)" transform="rotate(-10 37 10)" />
+      <ellipse cx="37" cy="9" rx="1.5" ry="2" fill="rgba(255,255,255,0.2)" transform="rotate(-10 37 9)" />
+    </g>
+  </svg>
+);
+
+/* Química – Matraz Erlenmeyer con burbujas */
+const Quimica = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-qui" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stopColor="#7C3AED" />
+        <stop offset="60%" stopColor="#A78BFA" />
+        <stop offset="100%" stopColor="#DDD6FE" />
+      </linearGradient>
+    </defs>
+    {/* Flask body */}
+    <path d="M18 18 L8 38 Q8 44 16 44 L32 44 Q40 44 40 38 L30 18" fill="#F5F3FF" />
+    <path d="M18 18 L8 38 Q8 44 16 44 L32 44 Q40 44 40 38 L30 18" stroke="#7C3AED" strokeWidth="0.8" opacity="0.3" fill="none" />
+    {/* Liquid with wave */}
+    <path d="M10 34 Q18 31 24 34 Q30 37 38 34 L40 38 Q40 44 32 44 L16 44 Q8 44 8 38 Z" fill="url(#si-qui)" opacity="0.6"
+      style={{ animation: 'si-wave 3s ease-in-out infinite' }} />
+    {/* Neck */}
+    <rect x="18" y="6" width="12" height="12" fill="#F5F3FF" />
+    <rect x="18" y="6" width="12" height="12" stroke="#7C3AED" strokeWidth="0.8" opacity="0.3" fill="none" />
+    {/* Rim */}
+    <rect x="16" y="4" width="16" height="3" rx="1" fill="#DDD6FE" />
+    <rect x="16" y="4" width="16" height="3" rx="1" stroke="#7C3AED" strokeWidth="0.5" opacity="0.2" fill="none" />
+    {/* Bubbles – rising */}
+    <circle cx="20" cy="38" r="1.5" fill="#C4B5FD" style={{ animation: 'si-rise 2.5s ease-out infinite' }} opacity="0.6" />
+    <circle cx="26" cy="40" r="1" fill="#DDD6FE" style={{ animation: 'si-rise 3s ease-out 0.5s infinite' }} opacity="0.5" />
+    <circle cx="22" cy="36" r="0.8" fill="#C4B5FD" style={{ animation: 'si-rise 3.5s ease-out 1s infinite' }} opacity="0.4" />
+    <circle cx="28" cy="37" r="1.2" fill="#DDD6FE" style={{ animation: 'si-rise 2.8s ease-out 1.5s infinite' }} opacity="0.5" />
+    <circle cx="24" cy="34" r="0.6" fill="#EDE9FE" style={{ animation: 'si-rise 4s ease-out 2s infinite' }} opacity="0.3" />
+    {/* Vapor */}
+    <path d="M22 4 Q20 0 24 -2" stroke="#C4B5FD" strokeWidth="0.5" fill="none"
+      style={{ animation: 'si-rise 4s ease-out infinite' }} opacity="0.3" />
+  </svg>
+);
+
 /* ── Icon map ───────────────────────────────────────────────── */
 const iconMap = {
   'lengua':             { Component: Lengua, glow: 'rgba(99,102,241,0.35)' },
@@ -829,6 +1151,15 @@ const iconMap = {
   'ia':                 { Component: IA, glow: 'rgba(124,58,237,0.35)' },
   'latin':              { Component: Latin, glow: 'rgba(202,138,4,0.35)' },
   'economia':           { Component: Economia, glow: 'rgba(5,150,105,0.35)' },
+  'filosofia':          { Component: Filosofia, glow: 'rgba(124,58,237,0.35)' },
+  'historia-mundo':     { Component: HistoriaMundo, glow: 'rgba(37,99,235,0.35)' },
+  'historia-espana':    { Component: HistoriaEspana, glow: 'rgba(220,38,38,0.35)' },
+  'dibujo-tecnico':     { Component: DibujoTecnico, glow: 'rgba(71,85,105,0.35)' },
+  'literatura-universal': { Component: LiteraturaUniversal, glow: 'rgba(190,24,93,0.35)' },
+  'economia-empresa':   { Component: EconomiaEmpresa, glow: 'rgba(4,120,87,0.35)' },
+  'geografia':          { Component: Geografia, glow: 'rgba(13,148,136,0.35)' },
+  'arte':               { Component: Arte, glow: 'rgba(147,51,234,0.35)' },
+  'quimica':            { Component: Quimica, glow: 'rgba(124,58,237,0.35)' },
 };
 
 const SubjectIcon = ({ subjectId, className = '' }) => {

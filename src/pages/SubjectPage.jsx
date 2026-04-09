@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
-import { esoSubjects, primariaSubjects } from '@/apps/appList';
+import { esoSubjects, primariaSubjects, bachilleratoSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
 
@@ -69,10 +69,10 @@ const SubjectPage = () => {
   const prevIndexRef = React.useRef(null);
   const [direction, setDirection] = React.useState(0);
 
-  const levelName = level === 'eso' ? 'ESO' : 'Primaria';
+  const levelName = level === 'bachillerato' ? 'Bachillerato' : level === 'eso' ? 'ESO' : 'Primaria';
   const fullTitle = `${grade}º ${levelName}`;
 
-  const subjectsData = level === 'eso' ? esoSubjects : primariaSubjects;
+  const subjectsData = level === 'bachillerato' ? bachilleratoSubjects : level === 'eso' ? esoSubjects : primariaSubjects;
   const subjectsForCourse = subjectsData?.[grade] || [];
 
   const allSteps = [
@@ -86,6 +86,8 @@ const SubjectPage = () => {
     { level: 'eso', grade: '2' },
     { level: 'eso', grade: '3' },
     { level: 'eso', grade: '4' },
+    { level: 'bachillerato', grade: '1' },
+    { level: 'bachillerato', grade: '2' },
   ];
 
   const currentIndex = allSteps.findIndex(s => s.level === level && String(s.grade) === String(grade));

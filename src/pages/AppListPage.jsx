@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
-import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
+import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps, bachilleratoSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import StarRating from '@/components/ui/StarRating';
 import { supabase } from '@/lib/supabase';
@@ -193,27 +193,18 @@ const AppListPage = () => {
     let appsForSubject = [];
     let subjectName = subjectId;
 
-    // CORRECCIÓN 2: Lógica unificada para obtener el nombre correcto con acentos
-    if (level === 'eso') {
-        const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
-        // Si encontramos la asignatura en la lista, usamos su nombre "bonito"
-        if (subjectInfo) subjectName = subjectInfo.nombre;
+    // Lógica unificada para obtener el nombre correcto con acentos
+    const subjectsMap = { eso: esoSubjects, primaria: primariaSubjects, bachillerato: bachilleratoSubjects };
+    const appsMap = { eso: esoApps, primaria: primariaApps, bachillerato: bachilleratoApps };
 
-        appsForSubject = esoApps[grade]?.[subjectId] || [];
+    const subjectInfo = subjectsMap[level]?.[grade]?.find(s => s.id === subjectId);
+    if (subjectInfo) subjectName = subjectInfo.nombre;
 
-    } else { // Primaria
-        // Buscamos el nombre en primariaSubjects
-        const subjectInfo = primariaSubjects[grade]?.find(s => s.id === subjectId);
-        if (subjectInfo) subjectName = subjectInfo.nombre;
-
-        // Obtenemos las apps
-        const primaryCourseData = primariaApps[grade];
-        if (primaryCourseData && !Array.isArray(primaryCourseData)) {
-            appsForSubject = primaryCourseData[subjectId] || [];
-        } else {
-            // Fallback si la estructura de primaria fuera un array plano (sin asignaturas)
-            appsForSubject = Array.isArray(primaryCourseData) ? primaryCourseData : [];
-        }
+    const courseData = appsMap[level]?.[grade];
+    if (courseData && !Array.isArray(courseData)) {
+        appsForSubject = courseData[subjectId] || [];
+    } else {
+        appsForSubject = Array.isArray(courseData) ? courseData : [];
     }
 
     // Capitalizar la primera letra si no se encontró nombre (fallback) y no es un nombre compuesto
@@ -221,8 +212,8 @@ const AppListPage = () => {
         subjectName = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
     }
 
-    const fullTitle = `${subjectName} - ${grade}º ${level === 'eso' ? 'ESO' : 'Primaria'}`;
-    const levelDisplay = level === 'eso' ? 'ESO' : 'Primaria';
+    const levelDisplay = level === 'bachillerato' ? 'Bachillerato' : level === 'eso' ? 'ESO' : 'Primaria';
+    const fullTitle = `${subjectName} - ${grade}º ${levelDisplay}`;
     const headerSubtitle = `${grade}º ${levelDisplay}`;
 
     const handleRandomSelection = (app) => {

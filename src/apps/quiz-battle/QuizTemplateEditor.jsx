@@ -13,6 +13,7 @@ import materiasData from '../../../public/data/materias.json';
 const LEVELS = [
   { id: 'primaria', label: 'Primaria', grades: [1, 2, 3, 4, 5, 6] },
   { id: 'eso', label: 'ESO', grades: [1, 2, 3, 4] },
+  { id: 'bachillerato', label: 'Bachillerato', grades: [1, 2] },
 ];
 
 function shuffle(arr) {

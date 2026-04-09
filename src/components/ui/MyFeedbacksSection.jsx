@@ -137,7 +137,7 @@ export default function MyFeedbacksSection() {
                   <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                     <span className="text-sm font-semibold text-slate-800">{fb.app_name}</span>
                     <span className="text-xs text-slate-400">
-                      {fb.grade}o {fb.level === 'eso' ? 'ESO' : 'Primaria'}
+                      {fb.grade}o {fb.level === 'bachillerato' ? 'Bach.' : fb.level === 'eso' ? 'ESO' : 'Primaria'}
                     </span>
                     <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${
                       fb.status === 'open' ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'

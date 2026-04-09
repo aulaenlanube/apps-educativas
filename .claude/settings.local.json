@@ -64,7 +64,14 @@
       "Bash(grep -n \"quiz_battle\\\\|quiz_session\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -l \"notification\\\\|student_groups\" /home/edu/apps-educativas/supabase/*.sql)",
       "Bash(grep -l \"notifications\" /home/edu/apps-educativas/supabase/*.sql)",
-      "Bash(wc -l /home/edu/apps-educativas/supabase/migration-*.sql)"
+      "Bash(wc -l /home/edu/apps-educativas/supabase/migration-*.sql)",
+      "Bash(wc -l /home/edu/apps-educativas/supabase/seed-bach-*.sql)",
+      "Bash(du -h /home/edu/apps-educativas/supabase/seed-bach-*.sql)",
+      "Bash(wc -l /home/edu/apps-educativas/supabase/rosco-bach-*.sql)",
+      "Bash(du -h /home/edu/apps-educativas/supabase/rosco-bach-*.sql)",
+      "Bash(grep -c \"bachillerato\" /home/edu/apps-educativas/supabase/rosco-bach-*.sql)",
+      "Bash(python3)",
+      "Bash(python3 -c ':*)"
     ]
   }
 }

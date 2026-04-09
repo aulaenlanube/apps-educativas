@@ -67,7 +67,31 @@
       2
     ],
     "category_name": "insectos",
-    "words": "[\"hormiga\",\"mosca\",\"abeja\",\"mariposa\",\"grillo\",\"mosquito\",\"escarabajo\",\"libélula\",\"avispa\",\"saltamontes\",\"oruga\",\"mariquita\",\"termita\",\"mantis\",\"chinche\",\"luciérnaga\",\"cucaracha\",\"polilla\",\"pulgón\",\"tábano\",\"abejorro\",\"cigarra\",\"efímera\",\"luciérnaga\",\"libélula\"]"
+    "words": [
+      "hormiga",
+      "mosca",
+      "abeja",
+      "mariposa",
+      "grillo",
+      "mosquito",
+      "escarabajo",
+      "libélula",
+      "avispa",
+      "saltamontes",
+      "oruga",
+      "mariquita",
+      "termita",
+      "mantis",
+      "chinche",
+      "luciérnaga",
+      "cucaracha",
+      "polilla",
+      "pulgón",
+      "tábano",
+      "abejorro",
+      "cigarra",
+      "efímera"
+    ]
   },
   {
     "id": 9,
@@ -487,7 +511,31 @@
       5
     ],
     "category_name": "rios_vertiente_atlantica",
-    "words": "[\"Tajo\",\"Duero\",\"Guadiana\",\"Guadalquivir\",\"Miño\",\"Tambre\",\"Ulla\",\"Guadalete\",\"Tinto\",\"Odiel\",\"Ulla\",\"Tambre\",\"Umia\",\"Lérez\",\"Sil\",\"Águeda\",\"Tormes\",\"Alagón\",\"Zújar\",\"Jabalón\",\"Guadiato\",\"Genil\",\"Guadiana Menor\",\"Chanza\",\"Adaja\"]"
+    "words": [
+      "Tajo",
+      "Duero",
+      "Guadiana",
+      "Guadalquivir",
+      "Miño",
+      "Tambre",
+      "Ulla",
+      "Guadalete",
+      "Tinto",
+      "Odiel",
+      "Umia",
+      "Lérez",
+      "Sil",
+      "Águeda",
+      "Tormes",
+      "Alagón",
+      "Zújar",
+      "Jabalón",
+      "Guadiato",
+      "Genil",
+      "Guadiana Menor",
+      "Chanza",
+      "Adaja"
+    ]
   },
   {
     "id": 51,
@@ -557,7 +605,32 @@
       6
     ],
     "category_name": "rios_europa",
-    "words": "[\"Danubio\",\"Rin\",\"Volga\",\"Sena\",\"Támesis\",\"Loira\",\"Elba\",\"Po\",\"Vístula\",\"Tíber\",\"Dniéper\",\"Don\",\"Ural\",\"Ródano\",\"Garona\",\"Óder\",\"Mosa\",\"Maritza\",\"Dniéster\",\"Duero\",\"Tajo\",\"Ebro\",\"Ródano\",\"Gualdalquivir\",\"Petchora\"]"
+    "words": [
+      "Danubio",
+      "Rin",
+      "Volga",
+      "Sena",
+      "Támesis",
+      "Loira",
+      "Elba",
+      "Po",
+      "Vístula",
+      "Tíber",
+      "Dniéper",
+      "Don",
+      "Ural",
+      "Ródano",
+      "Garona",
+      "Óder",
+      "Mosa",
+      "Maritza",
+      "Dniéster",
+      "Duero",
+      "Tajo",
+      "Ebro",
+      "Gualdalquivir",
+      "Petchora"
+    ]
   },
   {
     "id": 58,
@@ -847,7 +920,32 @@
       6
     ],
     "category_name": "les_vetements_hiver",
-    "words": "[\"manteau\",\"écharpe\",\"gants\",\"bonnet\",\"bottes\",\"pull\",\"veste\",\"pantalon d'hiver\",\"chaussettes laine\",\"blouson\",\"anorak\",\"doudoune\",\"imperméable\",\"gilet\",\"bottines\",\"moufles\",\"cache-nez\",\"parka\",\"survêtement\",\"collants\",\"cache-oreilles\",\"imperméable\",\"polaire\",\"hautes bottes\",\"cape\"]"
+    "words": [
+      "manteau",
+      "écharpe",
+      "gants",
+      "bonnet",
+      "bottes",
+      "pull",
+      "veste",
+      "pantalon d'hiver",
+      "chaussettes laine",
+      "blouson",
+      "anorak",
+      "doudoune",
+      "imperméable",
+      "gilet",
+      "bottines",
+      "moufles",
+      "cache-nez",
+      "parka",
+      "survêtement",
+      "collants",
+      "cache-oreilles",
+      "polaire",
+      "hautes bottes",
+      "cape"
+    ]
   },
   {
     "id": 87,
@@ -1537,7 +1635,27 @@
       3
     ],
     "category_name": "tipos_de_lineas",
-    "words": "[\"recta\",\"curva\",\"ondulada\",\"quebrada\",\"espiral\",\"paralela\",\"secante\",\"perpendicular\",\"vertical\",\"horizontal\",\"segmento\",\"semirrecta\",\"diagonal\",\"arco\",\"radio\",\"diámetro\",\"tangente\",\"secante\",\"punto\",\"extremo\"]"
+    "words": [
+      "recta",
+      "curva",
+      "ondulada",
+      "quebrada",
+      "espiral",
+      "paralela",
+      "secante",
+      "perpendicular",
+      "vertical",
+      "horizontal",
+      "segmento",
+      "semirrecta",
+      "diagonal",
+      "arco",
+      "radio",
+      "diámetro",
+      "tangente",
+      "punto",
+      "extremo"
+    ]
   },
   {
     "id": 156,
@@ -1557,7 +1675,32 @@
       3
     ],
     "category_name": "conceptos_operaciones",
-    "words": "[\"suma\",\"resta\",\"multiplicación\",\"división\",\"doble\",\"triple\",\"mitad\",\"tercio\",\"total\",\"producto\",\"cociente\",\"resto\",\"factor\",\"sumando\",\"minuendo\",\"sustraendo\",\"resultado\",\"cálculo\",\"estimación\",\"operación\",\"cifra\",\"llevada\",\"par\",\"impar\",\"doble\"]"
+    "words": [
+      "suma",
+      "resta",
+      "multiplicación",
+      "división",
+      "doble",
+      "triple",
+      "mitad",
+      "tercio",
+      "total",
+      "producto",
+      "cociente",
+      "resto",
+      "factor",
+      "sumando",
+      "minuendo",
+      "sustraendo",
+      "resultado",
+      "cálculo",
+      "estimación",
+      "operación",
+      "cifra",
+      "llevada",
+      "par",
+      "impar"
+    ]
   },
   {
     "id": 158,
@@ -1567,7 +1710,25 @@
       4
     ],
     "category_name": "tipos_angulos",
-    "words": "[\"agudo\",\"recto\",\"obtuso\",\"llano\",\"completo\",\"nulo\",\"cóncavo\",\"convexo\",\"adyacente\",\"opuesto\",\"consecutivo\",\"suplementario\",\"complementario\",\"exterior\",\"interior\",\"central\",\"inscrito\",\"recto\",\"agudo\",\"obtuso\"]"
+    "words": [
+      "agudo",
+      "recto",
+      "obtuso",
+      "llano",
+      "completo",
+      "nulo",
+      "cóncavo",
+      "convexo",
+      "adyacente",
+      "opuesto",
+      "consecutivo",
+      "suplementario",
+      "complementario",
+      "exterior",
+      "interior",
+      "central",
+      "inscrito"
+    ]
   },
   {
     "id": 159,
@@ -1607,7 +1768,27 @@
       4
     ],
     "category_name": "elementos_circulo",
-    "words": "[\"centro\",\"radio\",\"diámetro\",\"cuerda\",\"arco\",\"semicírculo\",\"sector\",\"tangente\",\"secante\",\"circunferencia\",\"corona circular\",\"segmento circular\",\"punto central\",\"diámetro\",\"perímetro del círculo\",\"superficie\",\"pi\",\"compás\",\"elipse\",\"curva plana\"]"
+    "words": [
+      "centro",
+      "radio",
+      "diámetro",
+      "cuerda",
+      "arco",
+      "semicírculo",
+      "sector",
+      "tangente",
+      "secante",
+      "circunferencia",
+      "corona circular",
+      "segmento circular",
+      "punto central",
+      "perímetro del círculo",
+      "superficie",
+      "pi",
+      "compás",
+      "elipse",
+      "curva plana"
+    ]
   },
   {
     "id": 163,
@@ -1987,7 +2168,32 @@
       2
     ],
     "category_name": "emociones_agradables",
-    "words": "[\"alegría\",\"felicidad\",\"calma\",\"amor\",\"ilusión\",\"sorpresa\",\"diversión\",\"orgullo\",\"cariño\",\"ternura\",\"alivio\",\"satisfacción\",\"entusiasmo\",\"asombro\",\"gozo\",\"esperanza\",\"tranquilidad\",\"seguridad\",\"bienestar\",\"placer\",\"paz interior\",\"gozo\",\"euforia\",\"curiosidad\",\"ánimo\"]"
+    "words": [
+      "alegría",
+      "felicidad",
+      "calma",
+      "amor",
+      "ilusión",
+      "sorpresa",
+      "diversión",
+      "orgullo",
+      "cariño",
+      "ternura",
+      "alivio",
+      "satisfacción",
+      "entusiasmo",
+      "asombro",
+      "gozo",
+      "esperanza",
+      "tranquilidad",
+      "seguridad",
+      "bienestar",
+      "placer",
+      "paz interior",
+      "euforia",
+      "curiosidad",
+      "ánimo"
+    ]
   },
   {
     "id": 201,
@@ -2507,7 +2713,27 @@
       6
     ],
     "category_name": "connectors_textuals",
-    "words": "[\"primer\",\"després\",\"finalment\",\"també\",\"però\",\"perquè\",\"encara que\",\"aleshores\",\"a més\",\"per tant\",\"d'altra banda\",\"en resum\",\"per contra\",\"malgrat tot\",\"atés que\",\"puix que\",\"així mateix\",\"en conclusió\",\"per contrapartida\",\"però\"]"
+    "words": [
+      "primer",
+      "després",
+      "finalment",
+      "també",
+      "però",
+      "perquè",
+      "encara que",
+      "aleshores",
+      "a més",
+      "per tant",
+      "d'altra banda",
+      "en resum",
+      "per contra",
+      "malgrat tot",
+      "atés que",
+      "puix que",
+      "així mateix",
+      "en conclusió",
+      "per contrapartida"
+    ]
   },
   {
     "id": 253,
@@ -2566,7 +2792,7 @@
     "grades": [
       1
     ],
-    "category_name": "reino_plantas",
+    "category_name": "plantas_y_arboles",
     "words": "[\"musgo\",\"helecho\",\"pino\",\"ciprés\",\"rosal\",\"encina\",\"tulipán\",\"girasol\",\"trigo\",\"almendro\"]"
   },
   {
@@ -2726,8 +2952,19 @@
     "grades": [
       3
     ],
-    "category_name": "organizacion_cuerpo",
-    "words": "[\"célula\",\"tejido\",\"órgano\",\"aparato\",\"sistema\",\"metabolismo\",\"homeostasis\",\"nutrición\",\"relación\",\"reproducción\"]"
+    "category_name": "niveles_organizacion_corporal",
+    "words": [
+      "célula",
+      "tejido",
+      "órgano",
+      "aparato",
+      "sistema",
+      "organismo",
+      "población",
+      "comunidad",
+      "ecosistema",
+      "biosfera"
+    ]
   },
   {
     "id": 275,
@@ -8988,5 +9225,5433 @@
     ],
     "category_name": "laboratorio_seguridad",
     "words": "[\"bureta\",\"matraz erlenmeyer\",\"pipeta aforada\",\"balanza analítica\",\"espectrofotómetro\",\"pictograma de peligro\",\"ph-metro\",\"centrifugadora\",\"agitador magnético\",\"campana de gases\"]"
+  },
+  {
+    "id": 941,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Figuras retóricas",
+    "words": [
+      "metafora",
+      "anafora",
+      "hiperbole",
+      "ironia",
+      "metonimia",
+      "sinestesia",
+      "aliteracion",
+      "antitesis",
+      "paradoja",
+      "prosopopeya",
+      "elipsis",
+      "hiperbaton"
+    ]
+  },
+  {
+    "id": 942,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores del Renacimiento",
+    "words": [
+      "garcilaso",
+      "boscan",
+      "herrera",
+      "fray luis",
+      "san juan",
+      "santa teresa",
+      "lazarillo",
+      "montemayor",
+      "aldana",
+      "cetina",
+      "hurtado",
+      "acuna"
+    ]
+  },
+  {
+    "id": 943,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores del Barroco",
+    "words": [
+      "quevedo",
+      "gongora",
+      "lope",
+      "calderon",
+      "tirso",
+      "cervantes",
+      "gracian",
+      "villamediana",
+      "rioja",
+      "argensola",
+      "jauregui",
+      "bocangel"
+    ]
+  },
+  {
+    "id": 944,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Estrofas y metros",
+    "words": [
+      "soneto",
+      "lira",
+      "octava",
+      "terceto",
+      "romance",
+      "silva",
+      "redondilla",
+      "decima",
+      "copla",
+      "villancico",
+      "endecasilabo",
+      "alejandrino"
+    ]
+  },
+  {
+    "id": 945,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Géneros literarios",
+    "words": [
+      "epica",
+      "lirica",
+      "drama",
+      "novela",
+      "cuento",
+      "ensayo",
+      "tragedia",
+      "comedia",
+      "elegia",
+      "oda",
+      "satira",
+      "epistola"
+    ]
+  },
+  {
+    "id": 946,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Categorías gramaticales",
+    "words": [
+      "sustantivo",
+      "adjetivo",
+      "verbo",
+      "adverbio",
+      "pronombre",
+      "preposicion",
+      "conjuncion",
+      "determinante",
+      "interjeccion",
+      "participio",
+      "gerundio",
+      "infinitivo"
+    ]
+  },
+  {
+    "id": 947,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Funciones sintácticas",
+    "words": [
+      "sujeto",
+      "predicado",
+      "atributo",
+      "complemento directo",
+      "complemento indirecto",
+      "complemento circunstancial",
+      "complemento agente",
+      "complemento regimen",
+      "complemento predicativo",
+      "aposicion",
+      "vocativo",
+      "modificador"
+    ]
+  },
+  {
+    "id": 948,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tipologías textuales",
+    "words": [
+      "narracion",
+      "descripcion",
+      "exposicion",
+      "argumentacion",
+      "dialogo",
+      "instructivo",
+      "predictivo",
+      "retórico",
+      "periodistico",
+      "publicitario",
+      "juridico",
+      "cientifico"
+    ]
+  },
+  {
+    "id": 949,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Obras del Siglo de Oro",
+    "words": [
+      "quijote",
+      "lazarillo",
+      "buscon",
+      "celestina",
+      "fuenteovejuna",
+      "galatea",
+      "novelas ejemplares",
+      "soledades",
+      "polifemo",
+      "vida es sueno",
+      "burlador",
+      "alcalde"
+    ]
+  },
+  {
+    "id": 950,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Léxico y semántica",
+    "words": [
+      "sinonimia",
+      "antonimia",
+      "polisemia",
+      "homonimia",
+      "hiperonimia",
+      "hiponimia",
+      "denotacion",
+      "connotacion",
+      "campo semantico",
+      "familia lexica",
+      "acronimo",
+      "neologismo"
+    ]
+  },
+  {
+    "id": 951,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Generación del 98",
+    "words": [
+      "unamuno",
+      "machado",
+      "baroja",
+      "azorin",
+      "valle",
+      "maeztu",
+      "benavente",
+      "ganivet",
+      "blasco",
+      "zulueta",
+      "salaverria",
+      "menendez"
+    ]
+  },
+  {
+    "id": 952,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Generación del 27",
+    "words": [
+      "lorca",
+      "alberti",
+      "cernuda",
+      "salinas",
+      "guillen",
+      "aleixandre",
+      "dámaso",
+      "gerardo",
+      "prados",
+      "altolaguirre",
+      "hinojosa",
+      "concha"
+    ]
+  },
+  {
+    "id": 953,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Novela de posguerra",
+    "words": [
+      "cela",
+      "delibes",
+      "laforet",
+      "sender",
+      "torrente",
+      "goytisolo",
+      "matute",
+      "aldecoa",
+      "ferlosio",
+      "benet",
+      "marsé",
+      "martin santos"
+    ]
+  },
+  {
+    "id": 954,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Poesía contemporánea",
+    "words": [
+      "hernandez",
+      "otero",
+      "hierro",
+      "celaya",
+      "gil de biedma",
+      "valente",
+      "brines",
+      "claudio",
+      "rodriguez",
+      "carnero",
+      "gimferrer",
+      "villena"
+    ]
+  },
+  {
+    "id": 955,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Teatro del siglo XX",
+    "words": [
+      "valle",
+      "benavente",
+      "lorca",
+      "casona",
+      "buero",
+      "sastre",
+      "arrabal",
+      "nieva",
+      "alonso",
+      "cabal",
+      "sanchis",
+      "mayorga"
+    ]
+  },
+  {
+    "id": 956,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Movimientos literarios",
+    "words": [
+      "realismo",
+      "naturalismo",
+      "modernismo",
+      "noventayochismo",
+      "novecentismo",
+      "vanguardismo",
+      "surrealismo",
+      "tremendismo",
+      "existencialismo",
+      "social",
+      "experimental",
+      "posmodernismo"
+    ]
+  },
+  {
+    "id": 957,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Recursos del comentario",
+    "words": [
+      "tema",
+      "resumen",
+      "estructura",
+      "tesis",
+      "argumento",
+      "modalidad",
+      "registro",
+      "cohesion",
+      "coherencia",
+      "adecuacion",
+      "deixis",
+      "anafora"
+    ]
+  },
+  {
+    "id": 958,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Narrativa realista del XIX",
+    "words": [
+      "galdos",
+      "clarin",
+      "pardo bazan",
+      "pereda",
+      "valera",
+      "palacio valdes",
+      "blasco ibanez",
+      "alarcon",
+      "fernán caballero",
+      "coloma",
+      "picón",
+      "ortega munilla"
+    ]
+  },
+  {
+    "id": 959,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Obras clave EvAU",
+    "words": [
+      "regenta",
+      "buscon",
+      "quijote",
+      "casa bernarda",
+      "luces bohemia",
+      "san manuel",
+      "arbol ciencia",
+      "colmena",
+      "camino",
+      "jarama",
+      "nada",
+      "entre visillos"
+    ]
+  },
+  {
+    "id": 960,
+    "subject_id": "lengua",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conectores textuales",
+    "words": [
+      "además",
+      "sin embargo",
+      "por tanto",
+      "en conclusión",
+      "no obstante",
+      "asimismo",
+      "en cambio",
+      "por consiguiente",
+      "en definitiva",
+      "en primer lugar",
+      "por otra parte",
+      "de hecho"
+    ]
+  },
+  {
+    "id": 961,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Ramas de la filosofía",
+    "words": [
+      "metafisica",
+      "epistemologia",
+      "etica",
+      "estetica",
+      "logica",
+      "ontologia",
+      "antropologia",
+      "politica",
+      "axiologia",
+      "hermeneutica",
+      "gnoseologia",
+      "filosofia del lenguaje"
+    ]
+  },
+  {
+    "id": 962,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Filósofos antiguos",
+    "words": [
+      "socrates",
+      "platon",
+      "aristoteles",
+      "tales",
+      "heraclito",
+      "parmenides",
+      "democrito",
+      "pitagoras",
+      "epicuro",
+      "zenon",
+      "diogenes",
+      "anaxagoras"
+    ]
+  },
+  {
+    "id": 963,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Corrientes éticas",
+    "words": [
+      "hedonismo",
+      "estoicismo",
+      "utilitarismo",
+      "eudemonismo",
+      "deontologismo",
+      "relativismo",
+      "emotivismo",
+      "contractualismo",
+      "etica de virtudes",
+      "nihilismo",
+      "altruismo",
+      "egoismo"
+    ]
+  },
+  {
+    "id": 964,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Corrientes epistemológicas",
+    "words": [
+      "racionalismo",
+      "empirismo",
+      "criticismo",
+      "escepticismo",
+      "positivismo",
+      "pragmatismo",
+      "fenomenologia",
+      "constructivismo",
+      "idealismo",
+      "realismo",
+      "relativismo",
+      "falsacionismo"
+    ]
+  },
+  {
+    "id": 965,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Conceptos de lógica",
+    "words": [
+      "premisa",
+      "conclusion",
+      "silogismo",
+      "falacia",
+      "validez",
+      "verdad",
+      "deduccion",
+      "induccion",
+      "paradoja",
+      "tautologia",
+      "contradiccion",
+      "contingencia"
+    ]
+  },
+  {
+    "id": 966,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Conceptos de metafísica",
+    "words": [
+      "ser",
+      "sustancia",
+      "esencia",
+      "existencia",
+      "accidente",
+      "potencia",
+      "acto",
+      "causa",
+      "efecto",
+      "necesidad",
+      "contingencia",
+      "absoluto"
+    ]
+  },
+  {
+    "id": 967,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Conceptos de ética",
+    "words": [
+      "bien",
+      "mal",
+      "virtud",
+      "deber",
+      "libertad",
+      "responsabilidad",
+      "justicia",
+      "dignidad",
+      "autonomia",
+      "heteronomia",
+      "norma",
+      "valor"
+    ]
+  },
+  {
+    "id": 968,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Filósofos modernos",
+    "words": [
+      "descartes",
+      "locke",
+      "hume",
+      "kant",
+      "leibniz",
+      "spinoza",
+      "berkeley",
+      "hobbes",
+      "rousseau",
+      "montesquieu",
+      "voltaire",
+      "pascal"
+    ]
+  },
+  {
+    "id": 969,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Falacias argumentativas",
+    "words": [
+      "ad hominem",
+      "ad populum",
+      "ad verecundiam",
+      "peticion de principio",
+      "falso dilema",
+      "generalizacion",
+      "hombre de paja",
+      "pendiente resbaladiza",
+      "causa falsa",
+      "equivoco",
+      "composicion",
+      "division"
+    ]
+  },
+  {
+    "id": 970,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tipos de conocimiento",
+    "words": [
+      "empirico",
+      "racional",
+      "intuitivo",
+      "discursivo",
+      "a priori",
+      "a posteriori",
+      "analitico",
+      "sintetico",
+      "sensible",
+      "inteligible",
+      "cientifico",
+      "vulgar"
+    ]
+  },
+  {
+    "id": 971,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Platón",
+    "words": [
+      "idea",
+      "demiurgo",
+      "caverna",
+      "anamnesis",
+      "dualismo",
+      "bien",
+      "justicia",
+      "mito",
+      "dialectica",
+      "participacion",
+      "imitacion",
+      "alma tripartita"
+    ]
+  },
+  {
+    "id": 972,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Aristóteles",
+    "words": [
+      "sustancia",
+      "hilemorfismo",
+      "potencia",
+      "acto",
+      "eudaimonia",
+      "catarsis",
+      "silogismo",
+      "entelequia",
+      "causa final",
+      "motor inmovil",
+      "prudencia",
+      "virtud"
+    ]
+  },
+  {
+    "id": 973,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Descartes",
+    "words": [
+      "cogito",
+      "duda metodica",
+      "res cogitans",
+      "res extensa",
+      "glandula pineal",
+      "ideas innatas",
+      "mecanicismo",
+      "sustancia",
+      "genio maligno",
+      "evidencia",
+      "analisis",
+      "sintesis"
+    ]
+  },
+  {
+    "id": 974,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Kant",
+    "words": [
+      "imperativo",
+      "noumeno",
+      "fenomeno",
+      "juicio sintetico",
+      "a priori",
+      "razon pura",
+      "razon practica",
+      "autonomia",
+      "deber",
+      "categoria",
+      "estetica trascendental",
+      "analitica"
+    ]
+  },
+  {
+    "id": 975,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Marx",
+    "words": [
+      "plusvalia",
+      "proletariado",
+      "burguesia",
+      "alienacion",
+      "ideologia",
+      "infraestructura",
+      "superestructura",
+      "materialismo historico",
+      "lucha de clases",
+      "capital",
+      "mercancia",
+      "trabajo"
+    ]
+  },
+  {
+    "id": 976,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Nietzsche",
+    "words": [
+      "superhombre",
+      "eterno retorno",
+      "voluntad de poder",
+      "muerte de dios",
+      "nihilismo",
+      "transmutacion",
+      "dionisos",
+      "apolo",
+      "genealogia",
+      "resentimiento",
+      "amor fati",
+      "perspectivismo"
+    ]
+  },
+  {
+    "id": 977,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Ortega",
+    "words": [
+      "raciovitalismo",
+      "perspectivismo",
+      "circunstancia",
+      "razon vital",
+      "razon historica",
+      "masa",
+      "elite",
+      "generacion",
+      "creencia",
+      "idea",
+      "deshumanizacion",
+      "ensimismamiento"
+    ]
+  },
+  {
+    "id": 978,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Hume",
+    "words": [
+      "impresion",
+      "idea",
+      "habito",
+      "causalidad",
+      "escepticismo",
+      "emotivismo",
+      "creencia",
+      "asociacion",
+      "relaciones de ideas",
+      "cuestiones de hecho",
+      "yo",
+      "sustancia"
+    ]
+  },
+  {
+    "id": 979,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Conceptos de Tomás de Aquino",
+    "words": [
+      "quinque viae",
+      "analogia",
+      "ley natural",
+      "ley eterna",
+      "acto de ser",
+      "esencia",
+      "existencia",
+      "fe y razon",
+      "teologia natural",
+      "causa primera",
+      "bien comun",
+      "sindéresis"
+    ]
+  },
+  {
+    "id": 980,
+    "subject_id": "filosofia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Autores de la EvAU",
+    "words": [
+      "platon",
+      "aristoteles",
+      "tomas",
+      "descartes",
+      "hume",
+      "kant",
+      "marx",
+      "nietzsche",
+      "ortega",
+      "agustin",
+      "ockham",
+      "wittgenstein"
+    ]
+  },
+  {
+    "id": 981,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Funciones",
+    "words": [
+      "dominio",
+      "rango",
+      "inyectiva",
+      "sobreyectiva",
+      "biyectiva",
+      "continua",
+      "derivable",
+      "creciente",
+      "decreciente",
+      "extremo",
+      "asintotas",
+      "composicion"
+    ]
+  },
+  {
+    "id": 982,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Trigonometría",
+    "words": [
+      "seno",
+      "coseno",
+      "tangente",
+      "cosecante",
+      "secante",
+      "cotangente",
+      "radian",
+      "grado",
+      "identidad",
+      "arcocoseno",
+      "arcoseno",
+      "arcotangente"
+    ]
+  },
+  {
+    "id": 983,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Derivadas",
+    "words": [
+      "pendiente",
+      "tangente",
+      "maximos",
+      "minimos",
+      "concavidad",
+      "convexidad",
+      "inflexion",
+      "regla",
+      "cadena",
+      "cociente",
+      "producto",
+      "logaritmica"
+    ]
+  },
+  {
+    "id": 984,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Límites",
+    "words": [
+      "convergencia",
+      "divergencia",
+      "indeterminacion",
+      "asintotica",
+      "lateral",
+      "infinito",
+      "continuidad",
+      "discontinuidad",
+      "acotada",
+      "hopital"
+    ]
+  },
+  {
+    "id": 985,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Vectores",
+    "words": [
+      "modulo",
+      "direccion",
+      "sentido",
+      "componentes",
+      "unitario",
+      "escalar",
+      "vectorial",
+      "paralelo",
+      "perpendicular",
+      "colineal",
+      "combinacion",
+      "base"
+    ]
+  },
+  {
+    "id": 986,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Matrices",
+    "words": [
+      "cuadrada",
+      "rectangular",
+      "diagonal",
+      "identidad",
+      "transpuesta",
+      "inversa",
+      "determinante",
+      "adjunta",
+      "fila",
+      "columna",
+      "escalar",
+      "simetrica"
+    ]
+  },
+  {
+    "id": 987,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Probabilidad",
+    "words": [
+      "suceso",
+      "espacio",
+      "muestral",
+      "independiente",
+      "condicionada",
+      "bayes",
+      "combinatoria",
+      "permutacion",
+      "variacion",
+      "combinacion",
+      "factorial",
+      "laplace"
+    ]
+  },
+  {
+    "id": 988,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tipos de funciones",
+    "words": [
+      "lineal",
+      "cuadratica",
+      "polinomica",
+      "racional",
+      "exponencial",
+      "logaritmica",
+      "trigonometrica",
+      "constante",
+      "afin",
+      "proporcional",
+      "radical",
+      "definida"
+    ]
+  },
+  {
+    "id": 989,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Integrales",
+    "words": [
+      "primitiva",
+      "indefinida",
+      "definida",
+      "impropia",
+      "sustitucion",
+      "partes",
+      "parciales",
+      "racional",
+      "trigonometrica",
+      "area",
+      "volumen",
+      "barrow"
+    ]
+  },
+  {
+    "id": 990,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Álgebra lineal",
+    "words": [
+      "determinante",
+      "rango",
+      "sistema",
+      "compatible",
+      "incompatible",
+      "indeterminado",
+      "gauss",
+      "cramer",
+      "homogeneo",
+      "parametro",
+      "dependencia",
+      "independencia"
+    ]
+  },
+  {
+    "id": 991,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Geometría analítica",
+    "words": [
+      "recta",
+      "plano",
+      "perpendicular",
+      "paralelo",
+      "interseccion",
+      "distancia",
+      "angulo",
+      "proyeccion",
+      "simetrico",
+      "haz",
+      "ecuacion",
+      "parametricas"
+    ]
+  },
+  {
+    "id": 992,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Estadística",
+    "words": [
+      "media",
+      "mediana",
+      "moda",
+      "varianza",
+      "desviacion",
+      "tipica",
+      "frecuencia",
+      "histograma",
+      "cuartil",
+      "percentil",
+      "correlacion",
+      "regresion"
+    ]
+  },
+  {
+    "id": 993,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Distribuciones",
+    "words": [
+      "normal",
+      "binomial",
+      "uniforme",
+      "poisson",
+      "campana",
+      "simetrica",
+      "estandar",
+      "tipificacion",
+      "tabla",
+      "percentil",
+      "probabilidad",
+      "acumulada"
+    ]
+  },
+  {
+    "id": 994,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Inferencia estadística",
+    "words": [
+      "muestra",
+      "poblacion",
+      "estimacion",
+      "intervalo",
+      "confianza",
+      "significacion",
+      "contraste",
+      "hipotesis",
+      "error",
+      "proporcion",
+      "parametro",
+      "estadistico"
+    ]
+  },
+  {
+    "id": 995,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Ecuaciones diferenciales",
+    "words": [
+      "ordinaria",
+      "parcial",
+      "lineal",
+      "separable",
+      "homogenea",
+      "particular",
+      "general",
+      "constante",
+      "coeficiente",
+      "solucion",
+      "condicion",
+      "inicial"
+    ]
+  },
+  {
+    "id": 996,
+    "subject_id": "matematicas",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Continuidad y derivabilidad",
+    "words": [
+      "continua",
+      "derivable",
+      "diferenciable",
+      "limite",
+      "lateral",
+      "bolzano",
+      "weierstrass",
+      "rolle",
+      "lagrange",
+      "cauchy",
+      "hopital",
+      "taylor"
+    ]
+  },
+  {
+    "id": 997,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Cinemática",
+    "words": [
+      "posicion",
+      "desplazamiento",
+      "velocidad",
+      "aceleracion",
+      "trayectoria",
+      "rectilineo",
+      "circular",
+      "parabolico",
+      "uniforme",
+      "acelerado",
+      "caida",
+      "libre"
+    ]
+  },
+  {
+    "id": 998,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Dinámica",
+    "words": [
+      "fuerza",
+      "masa",
+      "peso",
+      "newton",
+      "friccion",
+      "normal",
+      "tension",
+      "inercia",
+      "impulso",
+      "momento",
+      "equilibrio",
+      "accion"
+    ]
+  },
+  {
+    "id": 999,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Energía",
+    "words": [
+      "cinetica",
+      "potencial",
+      "mecanica",
+      "termica",
+      "electrica",
+      "quimica",
+      "nuclear",
+      "conservacion",
+      "trabajo",
+      "potencia",
+      "rendimiento",
+      "disipacion"
+    ]
+  },
+  {
+    "id": 1000,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Estructura atómica",
+    "words": [
+      "proton",
+      "neutron",
+      "electron",
+      "nucleo",
+      "orbital",
+      "capa",
+      "subcapa",
+      "cuantico",
+      "spin",
+      "configuracion",
+      "electronegatividad",
+      "afinidad"
+    ]
+  },
+  {
+    "id": 1001,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tabla periódica",
+    "words": [
+      "periodo",
+      "grupo",
+      "metal",
+      "no metal",
+      "semimetal",
+      "alcalino",
+      "halogeno",
+      "noble",
+      "transicion",
+      "lantanido",
+      "actinido",
+      "electronegatividad"
+    ]
+  },
+  {
+    "id": 1002,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Enlace químico",
+    "words": [
+      "ionico",
+      "covalente",
+      "metalico",
+      "polar",
+      "apolar",
+      "coordinado",
+      "intermolecular",
+      "hidrogeno",
+      "dipolo",
+      "fuerzas",
+      "london",
+      "hibridacion"
+    ]
+  },
+  {
+    "id": 1003,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Reacciones químicas",
+    "words": [
+      "reactivo",
+      "producto",
+      "estequiometria",
+      "ajuste",
+      "moles",
+      "rendimiento",
+      "limitante",
+      "exceso",
+      "precipitacion",
+      "combustion",
+      "neutralizacion",
+      "redox"
+    ]
+  },
+  {
+    "id": 1004,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Leyes de los gases",
+    "words": [
+      "presion",
+      "volumen",
+      "temperatura",
+      "boyle",
+      "charles",
+      "avogadro",
+      "ideal",
+      "moles",
+      "constante",
+      "atmosfera",
+      "pascal",
+      "kelvin"
+    ]
+  },
+  {
+    "id": 1005,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Campo gravitatorio",
+    "words": [
+      "gravedad",
+      "masa",
+      "distancia",
+      "atraccion",
+      "potencial",
+      "intensidad",
+      "orbita",
+      "kepler",
+      "satelite",
+      "geoestacionario",
+      "escape",
+      "universal"
+    ]
+  },
+  {
+    "id": 1006,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Campo eléctrico",
+    "words": [
+      "carga",
+      "coulomb",
+      "intensidad",
+      "potencial",
+      "lineas",
+      "flujo",
+      "gauss",
+      "condensador",
+      "dielectrico",
+      "permitividad",
+      "dipolo",
+      "superposicion"
+    ]
+  },
+  {
+    "id": 1007,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Campo magnético",
+    "words": [
+      "corriente",
+      "solenoide",
+      "bobina",
+      "induccion",
+      "faraday",
+      "lenz",
+      "flujo",
+      "tesla",
+      "ampere",
+      "lorentz",
+      "fuerza",
+      "electromagnetismo"
+    ]
+  },
+  {
+    "id": 1008,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Ondas",
+    "words": [
+      "frecuencia",
+      "longitud",
+      "amplitud",
+      "periodo",
+      "velocidad",
+      "transversal",
+      "longitudinal",
+      "interferencia",
+      "difraccion",
+      "reflexion",
+      "refraccion",
+      "estacionaria"
+    ]
+  },
+  {
+    "id": 1009,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Óptica",
+    "words": [
+      "reflexion",
+      "refraccion",
+      "difraccion",
+      "lente",
+      "espejo",
+      "convergente",
+      "divergente",
+      "focal",
+      "imagen",
+      "aumento",
+      "prisma",
+      "snell"
+    ]
+  },
+  {
+    "id": 1010,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Física nuclear",
+    "words": [
+      "radiactividad",
+      "alfa",
+      "beta",
+      "gamma",
+      "fision",
+      "fusion",
+      "desintegracion",
+      "semiperiodo",
+      "nucleon",
+      "isotopo",
+      "cadena",
+      "becquerel"
+    ]
+  },
+  {
+    "id": 1011,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Relatividad",
+    "words": [
+      "einstein",
+      "velocidad",
+      "tiempo",
+      "masa",
+      "energia",
+      "inercia",
+      "simultaneidad",
+      "dilatacion",
+      "contraccion",
+      "equivalencia",
+      "foton",
+      "invariante"
+    ]
+  },
+  {
+    "id": 1012,
+    "subject_id": "fisica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Mecánica cuántica",
+    "words": [
+      "planck",
+      "foton",
+      "cuanto",
+      "onda",
+      "particula",
+      "dualidad",
+      "incertidumbre",
+      "schrodinger",
+      "probabilidad",
+      "orbital",
+      "funcion",
+      "broglie"
+    ]
+  },
+  {
+    "id": 1013,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Equilibrio químico",
+    "words": [
+      "constante",
+      "equilibrio",
+      "concentracion",
+      "presion",
+      "temperatura",
+      "lechatelier",
+      "desplazamiento",
+      "homogeneo",
+      "heterogeneo",
+      "reversible",
+      "cociente",
+      "reaccion"
+    ]
+  },
+  {
+    "id": 1014,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Ácido-base",
+    "words": [
+      "acido",
+      "base",
+      "ph",
+      "poh",
+      "hidrolisis",
+      "tampon",
+      "indicador",
+      "valoracion",
+      "equivalencia",
+      "fuerte",
+      "debil",
+      "anfotero"
+    ]
+  },
+  {
+    "id": 1015,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Redox",
+    "words": [
+      "oxidacion",
+      "reduccion",
+      "oxidante",
+      "reductor",
+      "electrodo",
+      "anodo",
+      "catodo",
+      "pila",
+      "electrolisis",
+      "nernst",
+      "potencial",
+      "semicelda"
+    ]
+  },
+  {
+    "id": 1016,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Química orgánica - Grupos funcionales",
+    "words": [
+      "alcano",
+      "alqueno",
+      "alquino",
+      "alcohol",
+      "aldehido",
+      "cetona",
+      "acido",
+      "ester",
+      "eter",
+      "amina",
+      "amida",
+      "nitrilo"
+    ]
+  },
+  {
+    "id": 1017,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Química orgánica - Nomenclatura",
+    "words": [
+      "metano",
+      "etano",
+      "propano",
+      "butano",
+      "metanol",
+      "etanol",
+      "metanal",
+      "etanal",
+      "propanona",
+      "butanona",
+      "benceno",
+      "ciclohexano"
+    ]
+  },
+  {
+    "id": 1018,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Termodinámica química",
+    "words": [
+      "entalpia",
+      "entropia",
+      "gibbs",
+      "exotermica",
+      "endotermica",
+      "espontanea",
+      "calorimetria",
+      "formacion",
+      "combustion",
+      "disolucion",
+      "hess",
+      "calorimetro"
+    ]
+  },
+  {
+    "id": 1019,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Cinética química",
+    "words": [
+      "velocidad",
+      "concentracion",
+      "temperatura",
+      "catalizador",
+      "activacion",
+      "arrhenius",
+      "orden",
+      "molecularidad",
+      "mecanismo",
+      "intermedio",
+      "elemental",
+      "compleja"
+    ]
+  },
+  {
+    "id": 1020,
+    "subject_id": "quimica",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Tipos de reacciones orgánicas",
+    "words": [
+      "sustitucion",
+      "adicion",
+      "eliminacion",
+      "condensacion",
+      "polimerizacion",
+      "oxidacion",
+      "reduccion",
+      "hidrolisis",
+      "esterificacion",
+      "saponificacion",
+      "halogenacion",
+      "deshidratacion"
+    ]
+  },
+  {
+    "id": 1021,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Revolucion Francesa",
+    "words": [
+      "guillotina",
+      "bastilla",
+      "jacobinos",
+      "girondinos",
+      "robespierre",
+      "danton",
+      "convencion",
+      "directorio",
+      "asamblea",
+      "termidor",
+      "sans-culottes",
+      "borbones"
+    ]
+  },
+  {
+    "id": 1022,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Revolucion Industrial",
+    "words": [
+      "fabrica",
+      "vapor",
+      "ferrocarril",
+      "proletariado",
+      "burguesia",
+      "ludismo",
+      "cartismo",
+      "textil",
+      "carbon",
+      "siderurgia",
+      "urbanizacion",
+      "mecanizacion"
+    ]
+  },
+  {
+    "id": 1023,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Imperialismo",
+    "words": [
+      "colonia",
+      "metrópoli",
+      "protectorado",
+      "concesion",
+      "berlin",
+      "exploracion",
+      "misionero",
+      "mandato",
+      "cipayo",
+      "boer",
+      "suez",
+      "congo"
+    ]
+  },
+  {
+    "id": 1024,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Primera Guerra Mundial",
+    "words": [
+      "trinchera",
+      "verdun",
+      "somme",
+      "armisticio",
+      "aliados",
+      "imperios",
+      "zepelin",
+      "gas",
+      "marne",
+      "gallipoli",
+      "lusitania",
+      "propaganda"
+    ]
+  },
+  {
+    "id": 1025,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Periodo entreguerras",
+    "words": [
+      "fascismo",
+      "nazismo",
+      "crack",
+      "depresion",
+      "hiperinflacion",
+      "weimar",
+      "mussolini",
+      "hitler",
+      "stalin",
+      "colectivizacion",
+      "purgas",
+      "estalinismo"
+    ]
+  },
+  {
+    "id": 1026,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Segunda Guerra Mundial",
+    "words": [
+      "blitzkrieg",
+      "stalingrado",
+      "normandia",
+      "hiroshima",
+      "holocausto",
+      "resistencia",
+      "pearl harbor",
+      "nuremberg",
+      "enigma",
+      "midway",
+      "yalta",
+      "potsdam"
+    ]
+  },
+  {
+    "id": 1027,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Guerra Fria",
+    "words": [
+      "bipolaridad",
+      "telón",
+      "otan",
+      "varsovia",
+      "coexistencia",
+      "disuasion",
+      "mccarthismo",
+      "sputnik",
+      "muro",
+      "cuba",
+      "vietnam",
+      "détente"
+    ]
+  },
+  {
+    "id": 1028,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Descolonizacion",
+    "words": [
+      "independencia",
+      "negritud",
+      "panarabismo",
+      "bandung",
+      "nehru",
+      "nasser",
+      "gandhi",
+      "apartheid",
+      "mandela",
+      "argelia",
+      "congo",
+      "sukarno"
+    ]
+  },
+  {
+    "id": 1029,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Mundo actual",
+    "words": [
+      "globalizacion",
+      "terrorismo",
+      "internet",
+      "multipolaridad",
+      "brexit",
+      "cambio climatico",
+      "migracion",
+      "populismo",
+      "ciberguerra",
+      "pandemia",
+      "desinformacion",
+      "sostenibilidad"
+    ]
+  },
+  {
+    "id": 1030,
+    "subject_id": "historia-mundo",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Ideologias contemporaneas",
+    "words": [
+      "liberalismo",
+      "socialismo",
+      "comunismo",
+      "anarquismo",
+      "fascismo",
+      "conservadurismo",
+      "feminismo",
+      "ecologismo",
+      "nacionalismo",
+      "populismo",
+      "socialdemocracia",
+      "neoliberalismo"
+    ]
+  },
+  {
+    "id": 1031,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Al-Andalus",
+    "words": [
+      "omeyas",
+      "califato",
+      "taifas",
+      "almohades",
+      "almoravides",
+      "alhambra",
+      "mezquita",
+      "acequia",
+      "alcazar",
+      "medina",
+      "zoco",
+      "mudejar"
+    ]
+  },
+  {
+    "id": 1032,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Reconquista",
+    "words": [
+      "covadonga",
+      "navas",
+      "fernandoiii",
+      "jaimeI",
+      "pelayo",
+      "cid",
+      "cruzada",
+      "repoblacion",
+      "fueros",
+      "ordenes militares",
+      "parias",
+      "frontera"
+    ]
+  },
+  {
+    "id": 1033,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Reyes Catolicos",
+    "words": [
+      "isabel",
+      "fernando",
+      "granada",
+      "inquisicion",
+      "america",
+      "colon",
+      "santa hermandad",
+      "cortes",
+      "capitulaciones",
+      "moriscos",
+      "judios",
+      "expulsion"
+    ]
+  },
+  {
+    "id": 1034,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Imperio de los Austrias",
+    "words": [
+      "carlosv",
+      "felipeii",
+      "armada",
+      "lepanto",
+      "flandes",
+      "valido",
+      "olivares",
+      "lerma",
+      "decadencia",
+      "westfalia",
+      "escorial",
+      "tercios"
+    ]
+  },
+  {
+    "id": 1035,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Siglo XVIII Borbones",
+    "words": [
+      "felipev",
+      "sucesion",
+      "utrecht",
+      "decretos",
+      "ilustracion",
+      "reformas",
+      "jovellanos",
+      "floridablanca",
+      "despotismo",
+      "centralismo",
+      "manufactura",
+      "aranjuez"
+    ]
+  },
+  {
+    "id": 1036,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Siglo XIX",
+    "words": [
+      "cadiz",
+      "constitucion",
+      "carlismo",
+      "desamortizacion",
+      "mendizabal",
+      "isabelii",
+      "sexenio",
+      "restauracion",
+      "canovas",
+      "turnismo",
+      "caciquismo",
+      "regeneracionismo"
+    ]
+  },
+  {
+    "id": 1037,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Republica y Guerra Civil",
+    "words": [
+      "republica",
+      "azana",
+      "frente popular",
+      "alzamiento",
+      "franco",
+      "brigadas",
+      "guernica",
+      "ebro",
+      "evacuacion",
+      "exilio",
+      "maquis",
+      "retaguardia"
+    ]
+  },
+  {
+    "id": 1038,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Franquismo",
+    "words": [
+      "autarquia",
+      "desarrollismo",
+      "opus",
+      "tecnócratas",
+      "censura",
+      "sindical",
+      "falange",
+      "concordato",
+      "bases",
+      "apertura",
+      "represion",
+      "monocultivo"
+    ]
+  },
+  {
+    "id": 1039,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Transicion y democracia",
+    "words": [
+      "juancarlos",
+      "suarez",
+      "reforma",
+      "amnistia",
+      "constitucion",
+      "autonomias",
+      "golpe",
+      "tejero",
+      "psoe",
+      "gonzalez",
+      "europa",
+      "descentralizacion"
+    ]
+  },
+  {
+    "id": 1040,
+    "subject_id": "historia-espana",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Hispania romana",
+    "words": [
+      "numancia",
+      "romanizacion",
+      "calzada",
+      "acueducto",
+      "villa",
+      "senado",
+      "legión",
+      "derecho",
+      "hispania",
+      "emerita",
+      "tarraco",
+      "itálica"
+    ]
+  },
+  {
+    "id": 1041,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Relieve peninsular",
+    "words": [
+      "meseta",
+      "pirineos",
+      "betica",
+      "iberica",
+      "cantabrica",
+      "penillanura",
+      "paramo",
+      "submeseta",
+      "depresion",
+      "guadalquivir",
+      "ebro",
+      "sierra"
+    ]
+  },
+  {
+    "id": 1042,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Climas de España",
+    "words": [
+      "oceanico",
+      "mediterraneo",
+      "continental",
+      "subtropical",
+      "aridez",
+      "precipitacion",
+      "isoterma",
+      "anticiclon",
+      "borrasca",
+      "foehn",
+      "cierzo",
+      "calima"
+    ]
+  },
+  {
+    "id": 1043,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Hidrografia",
+    "words": [
+      "ebro",
+      "duero",
+      "tajo",
+      "guadiana",
+      "guadalquivir",
+      "segura",
+      "jucar",
+      "embalse",
+      "acuifero",
+      "cuenca",
+      "caudal",
+      "estiaje"
+    ]
+  },
+  {
+    "id": 1044,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Vegetacion",
+    "words": [
+      "encina",
+      "alcornoque",
+      "roble",
+      "haya",
+      "laurisilva",
+      "maquia",
+      "garriga",
+      "estepa",
+      "pinsapo",
+      "dehesa",
+      "coscojar",
+      "tabaiba"
+    ]
+  },
+  {
+    "id": 1045,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Poblacion",
+    "words": [
+      "natalidad",
+      "mortalidad",
+      "migracion",
+      "envejecimiento",
+      "piramide",
+      "densidad",
+      "censo",
+      "padron",
+      "exodo",
+      "inmigracion",
+      "fecundidad",
+      "esperanza"
+    ]
+  },
+  {
+    "id": 1046,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Urbanismo",
+    "words": [
+      "metrópoli",
+      "conurbacion",
+      "periurbano",
+      "ensanche",
+      "casco",
+      "periferia",
+      "suburbanizacion",
+      "gentrificacion",
+      "dormitorio",
+      "poligono",
+      "peatonalizacion",
+      "movilidad"
+    ]
+  },
+  {
+    "id": 1047,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Sector primario",
+    "words": [
+      "agricultura",
+      "ganaderia",
+      "pesca",
+      "mineria",
+      "regadio",
+      "secano",
+      "pac",
+      "latifundio",
+      "minifundio",
+      "acuicultura",
+      "invernadero",
+      "monocultivo"
+    ]
+  },
+  {
+    "id": 1048,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Sector secundario y terciario",
+    "words": [
+      "industria",
+      "energia",
+      "turismo",
+      "transporte",
+      "comercio",
+      "servicios",
+      "reconversion",
+      "tecnologia",
+      "exportacion",
+      "logistica",
+      "innovacion",
+      "eolica"
+    ]
+  },
+  {
+    "id": 1049,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "España en la UE",
+    "words": [
+      "adhesion",
+      "fondos",
+      "convergencia",
+      "eurozona",
+      "schengen",
+      "politica agraria",
+      "cohesion",
+      "mercado",
+      "directiva",
+      "parlamento",
+      "comision",
+      "tratado"
+    ]
+  },
+  {
+    "id": 1050,
+    "subject_id": "geografia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Medio ambiente",
+    "words": [
+      "desertificacion",
+      "erosion",
+      "contaminacion",
+      "residuos",
+      "reciclaje",
+      "renovable",
+      "parque natural",
+      "biodiversidad",
+      "cambio climatico",
+      "huella",
+      "sostenible",
+      "proteccion"
+    ]
+  },
+  {
+    "id": 1051,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Arte griego y romano",
+    "words": [
+      "partenon",
+      "dorico",
+      "jonico",
+      "corintio",
+      "acropolis",
+      "coliseo",
+      "panteon",
+      "mosaico",
+      "escultura",
+      "frontón",
+      "arco",
+      "anfiteatro"
+    ]
+  },
+  {
+    "id": 1052,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Romanico y Gotico",
+    "words": [
+      "arco medio punto",
+      "boveda cañon",
+      "cruceria",
+      "arbotante",
+      "rosetón",
+      "portico",
+      "timpano",
+      "capitel",
+      "claustro",
+      "catedral",
+      "vidriera",
+      "contrafuerte"
+    ]
+  },
+  {
+    "id": 1053,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Renacimiento",
+    "words": [
+      "perspectiva",
+      "proporcion",
+      "sfumato",
+      "cupula",
+      "brunelleschi",
+      "donatello",
+      "botticelli",
+      "rafael",
+      "leonardo",
+      "miguelangel",
+      "mecenas",
+      "humanismo"
+    ]
+  },
+  {
+    "id": 1054,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Barroco",
+    "words": [
+      "claroscuro",
+      "tenebrismo",
+      "columna salomonica",
+      "caravaggio",
+      "bernini",
+      "rembrandt",
+      "velazquez",
+      "rubens",
+      "dinamismo",
+      "teatralidad",
+      "contrarreforma",
+      "grandeza"
+    ]
+  },
+  {
+    "id": 1055,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Neoclasicismo y Romanticismo",
+    "words": [
+      "david",
+      "canova",
+      "goya",
+      "delacroix",
+      "turner",
+      "sublime",
+      "ruinas",
+      "razon",
+      "emocion",
+      "libertad",
+      "ingres",
+      "friedrich"
+    ]
+  },
+  {
+    "id": 1056,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Impresionismo y Postimpresionismo",
+    "words": [
+      "monet",
+      "renoir",
+      "degas",
+      "pissarro",
+      "cezanne",
+      "vangogh",
+      "gauguin",
+      "seurat",
+      "puntillismo",
+      "luz",
+      "plein air",
+      "instantánea"
+    ]
+  },
+  {
+    "id": 1057,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Vanguardias",
+    "words": [
+      "cubismo",
+      "expresionismo",
+      "futurismo",
+      "dadaismo",
+      "surrealismo",
+      "abstraccion",
+      "constructivismo",
+      "fauvismo",
+      "picasso",
+      "braque",
+      "kandinsky",
+      "duchamp"
+    ]
+  },
+  {
+    "id": 1058,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Arte contemporaneo",
+    "words": [
+      "popart",
+      "minimalismo",
+      "conceptual",
+      "instalacion",
+      "performance",
+      "warhol",
+      "pollock",
+      "rothko",
+      "hiperrealismo",
+      "videoarte",
+      "land art",
+      "haring"
+    ]
+  },
+  {
+    "id": 1059,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Arte español",
+    "words": [
+      "velazquez",
+      "goya",
+      "gaudi",
+      "picasso",
+      "dali",
+      "miro",
+      "tapies",
+      "chillida",
+      "sorolla",
+      "zurbarán",
+      "murillo",
+      "berruguete"
+    ]
+  },
+  {
+    "id": 1060,
+    "subject_id": "arte",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Arquitectura siglo XX",
+    "words": [
+      "funcionalismo",
+      "bauhaus",
+      "lecorbusier",
+      "mies",
+      "wright",
+      "rascacielos",
+      "brutalismo",
+      "deconstructivismo",
+      "gehry",
+      "calatrava",
+      "foster",
+      "hormigon"
+    ]
+  },
+  {
+    "id": 1061,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Conceptos basicos",
+    "words": [
+      "escasez",
+      "necesidad",
+      "coste oportunidad",
+      "frontera",
+      "eficiencia",
+      "equidad",
+      "produccion",
+      "distribucion",
+      "consumo",
+      "intercambio",
+      "especializacion",
+      "ventaja"
+    ]
+  },
+  {
+    "id": 1062,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Mercado",
+    "words": [
+      "oferta",
+      "demanda",
+      "equilibrio",
+      "precio",
+      "competencia",
+      "monopolio",
+      "oligopolio",
+      "elasticidad",
+      "excedente",
+      "externalidad",
+      "regulación",
+      "subsidio"
+    ]
+  },
+  {
+    "id": 1063,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Macroeconomia",
+    "words": [
+      "pib",
+      "inflacion",
+      "desempleo",
+      "crecimiento",
+      "recesion",
+      "deficit",
+      "deuda",
+      "balanza",
+      "renta",
+      "ahorro",
+      "inversion",
+      "productividad"
+    ]
+  },
+  {
+    "id": 1064,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Politica economica",
+    "words": [
+      "fiscal",
+      "monetaria",
+      "presupuesto",
+      "impuesto",
+      "gasto",
+      "interes",
+      "bce",
+      "intervencion",
+      "regulacion",
+      "estabilizacion",
+      "redistribucion",
+      "liberalizacion"
+    ]
+  },
+  {
+    "id": 1065,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Sistema financiero",
+    "words": [
+      "banco",
+      "bolsa",
+      "accion",
+      "bono",
+      "hipoteca",
+      "deposito",
+      "credito",
+      "seguro",
+      "fondo",
+      "riesgo",
+      "liquidez",
+      "rentabilidad"
+    ]
+  },
+  {
+    "id": 1066,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Comercio internacional",
+    "words": [
+      "exportacion",
+      "importacion",
+      "arancel",
+      "cuota",
+      "balanza",
+      "divisa",
+      "proteccionismo",
+      "libre comercio",
+      "omc",
+      "globalizacion",
+      "competitividad",
+      "ventaja comparativa"
+    ]
+  },
+  {
+    "id": 1067,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Sector publico",
+    "words": [
+      "estado",
+      "impuesto",
+      "irpf",
+      "iva",
+      "presupuesto",
+      "gasto",
+      "deficit",
+      "deuda",
+      "pensiones",
+      "sanidad",
+      "educacion",
+      "bienestar"
+    ]
+  },
+  {
+    "id": 1068,
+    "subject_id": "economia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Dinero e inflacion",
+    "words": [
+      "dinero",
+      "moneda",
+      "euro",
+      "tipo interes",
+      "deflacion",
+      "estanflacion",
+      "ipc",
+      "hiperinflacion",
+      "bce",
+      "reserva",
+      "encaje",
+      "multiplicador"
+    ]
+  },
+  {
+    "id": 1069,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Formas juridicas",
+    "words": [
+      "autonomo",
+      "sociedad limitada",
+      "anonima",
+      "cooperativa",
+      "comanditaria",
+      "colectiva",
+      "comunidad bienes",
+      "franquicia",
+      "holding",
+      "grupo empresarial",
+      "filial",
+      "matriz"
+    ]
+  },
+  {
+    "id": 1070,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Organizacion",
+    "words": [
+      "organigrama",
+      "jerarquia",
+      "departamento",
+      "staff",
+      "lineal",
+      "funcional",
+      "matricial",
+      "divisional",
+      "delegacion",
+      "centralizacion",
+      "coordinacion",
+      "supervision"
+    ]
+  },
+  {
+    "id": 1071,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Recursos humanos",
+    "words": [
+      "seleccion",
+      "contrato",
+      "nomina",
+      "convenio",
+      "formacion",
+      "motivacion",
+      "liderazgo",
+      "despido",
+      "sindicato",
+      "negociacion",
+      "productividad",
+      "evaluacion"
+    ]
+  },
+  {
+    "id": 1072,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Marketing",
+    "words": [
+      "producto",
+      "precio",
+      "distribucion",
+      "promocion",
+      "marca",
+      "publicidad",
+      "segmentacion",
+      "posicionamiento",
+      "fidelizacion",
+      "merchandising",
+      "estudio mercado",
+      "packaging"
+    ]
+  },
+  {
+    "id": 1073,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Contabilidad",
+    "words": [
+      "balance",
+      "activo",
+      "pasivo",
+      "patrimonio",
+      "cuenta resultados",
+      "amortizacion",
+      "provision",
+      "inventario",
+      "asiento",
+      "debe",
+      "haber",
+      "pgc"
+    ]
+  },
+  {
+    "id": 1074,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Financiacion",
+    "words": [
+      "autofinanciacion",
+      "credito",
+      "prestamo",
+      "leasing",
+      "factoring",
+      "capital",
+      "reservas",
+      "empréstito",
+      "subvencion",
+      "crowdfunding",
+      "business angel",
+      "accion"
+    ]
+  },
+  {
+    "id": 1075,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Produccion",
+    "words": [
+      "productividad",
+      "eficiencia",
+      "calidad",
+      "inventario",
+      "just in time",
+      "cadena valor",
+      "outsourcing",
+      "innovacion",
+      "tecnología",
+      "automatizacion",
+      "logistica",
+      "stock"
+    ]
+  },
+  {
+    "id": 1076,
+    "subject_id": "economia-empresa",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Analisis estrategico",
+    "words": [
+      "dafo",
+      "pest",
+      "porter",
+      "mision",
+      "vision",
+      "estrategia",
+      "ventaja competitiva",
+      "cadena valor",
+      "benchmarking",
+      "stakeholder",
+      "entorno",
+      "diversificacion"
+    ]
+  },
+  {
+    "id": 1077,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Casos latinos",
+    "words": [
+      "nominativo",
+      "vocativo",
+      "acusativo",
+      "genitivo",
+      "dativo",
+      "ablativo",
+      "sujeto",
+      "complemento",
+      "posesion",
+      "instrumento",
+      "direccion",
+      "agente"
+    ]
+  },
+  {
+    "id": 1078,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Declinaciones",
+    "words": [
+      "primera",
+      "segunda",
+      "tercera",
+      "cuarta",
+      "quinta",
+      "rosa",
+      "dominus",
+      "consul",
+      "manus",
+      "dies",
+      "tema",
+      "desinencia"
+    ]
+  },
+  {
+    "id": 1079,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Conjugaciones",
+    "words": [
+      "primera",
+      "segunda",
+      "tercera",
+      "cuarta",
+      "mixta",
+      "amo",
+      "habeo",
+      "lego",
+      "audio",
+      "capio",
+      "sum",
+      "possum"
+    ]
+  },
+  {
+    "id": 1080,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Dioses romanos",
+    "words": [
+      "jupiter",
+      "juno",
+      "minerva",
+      "marte",
+      "venus",
+      "mercurio",
+      "neptuno",
+      "pluton",
+      "diana",
+      "apolo",
+      "vulcano",
+      "ceres"
+    ]
+  },
+  {
+    "id": 1081,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Vida romana",
+    "words": [
+      "foro",
+      "senado",
+      "termas",
+      "anfiteatro",
+      "domus",
+      "insula",
+      "toga",
+      "legion",
+      "gladiador",
+      "patricio",
+      "plebeyo",
+      "esclavo"
+    ]
+  },
+  {
+    "id": 1082,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Lexico latino en español",
+    "words": [
+      "acuatico",
+      "agricultura",
+      "capital",
+      "doctor",
+      "familia",
+      "gratitud",
+      "humano",
+      "laborar",
+      "magistrado",
+      "nocturno",
+      "orbita",
+      "popular"
+    ]
+  },
+  {
+    "id": 1083,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tiempos verbales",
+    "words": [
+      "presente",
+      "imperfecto",
+      "futuro",
+      "perfecto",
+      "pluscuamperfecto",
+      "futuro perfecto",
+      "indicativo",
+      "subjuntivo",
+      "imperativo",
+      "infinitivo",
+      "participio",
+      "gerundio"
+    ]
+  },
+  {
+    "id": 1084,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Mitologia romana",
+    "words": [
+      "romulo",
+      "remo",
+      "eneas",
+      "dido",
+      "orfeo",
+      "proserpina",
+      "hercules",
+      "teseo",
+      "minotauro",
+      "medusa",
+      "perseo",
+      "aquiles"
+    ]
+  },
+  {
+    "id": 1085,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Autores latinos",
+    "words": [
+      "virgilio",
+      "horacio",
+      "ovidio",
+      "ciceron",
+      "cesar",
+      "salustio",
+      "livio",
+      "tacito",
+      "seneca",
+      "juvenal",
+      "catulo",
+      "lucrecio"
+    ]
+  },
+  {
+    "id": 1086,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Obras latinas",
+    "words": [
+      "eneida",
+      "odas",
+      "metamorfosis",
+      "catilinarias",
+      "galias",
+      "historias",
+      "anales",
+      "cartas",
+      "sátiras",
+      "bucólicas",
+      "georgicas",
+      "elegías"
+    ]
+  },
+  {
+    "id": 1087,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Generos literarios latinos",
+    "words": [
+      "epica",
+      "lirica",
+      "satira",
+      "elegia",
+      "oratoria",
+      "historiografia",
+      "epistola",
+      "fabula",
+      "comedia",
+      "tragedia",
+      "didactica",
+      "filosofia"
+    ]
+  },
+  {
+    "id": 1088,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Retorica",
+    "words": [
+      "metafora",
+      "metonimia",
+      "hiperbole",
+      "anafora",
+      "aliteracion",
+      "antitesis",
+      "ironia",
+      "prosopopeya",
+      "paralelismo",
+      "climax",
+      "elipsis",
+      "quiasmo"
+    ]
+  },
+  {
+    "id": 1089,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Metrica latina",
+    "words": [
+      "hexametro",
+      "pentametro",
+      "distico",
+      "yambo",
+      "dactilo",
+      "espondeo",
+      "cesura",
+      "elisión",
+      "prosodia",
+      "pie",
+      "arsis",
+      "tesis"
+    ]
+  },
+  {
+    "id": 1090,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Pervivencia del latin",
+    "words": [
+      "romance",
+      "castellano",
+      "catalan",
+      "gallego",
+      "portugues",
+      "frances",
+      "italiano",
+      "rumano",
+      "cultismo",
+      "patrimonial",
+      "semicultismo",
+      "prestamo"
+    ]
+  },
+  {
+    "id": 1091,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Sintaxis latina avanzada",
+    "words": [
+      "ablativo absoluto",
+      "acusativo exclamativo",
+      "genitivo partitivo",
+      "dativo posesivo",
+      "consecutiva",
+      "final",
+      "causal",
+      "concesiva",
+      "temporal",
+      "condicional",
+      "comparativa",
+      "relativa"
+    ]
+  },
+  {
+    "id": 1092,
+    "subject_id": "latin",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Expresiones latinas",
+    "words": [
+      "carpe diem",
+      "alea jacta est",
+      "veni vidi vici",
+      "in dubio pro reo",
+      "ad hoc",
+      "curriculum",
+      "alma mater",
+      "alter ego",
+      "habeas corpus",
+      "sui generis",
+      "grosso modo",
+      "modus operandi"
+    ]
+  },
+  {
+    "id": 1093,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Orgánulos celulares",
+    "words": [
+      "mitocondria",
+      "ribosoma",
+      "lisosoma",
+      "nucleo",
+      "cloroplasto",
+      "reticulo",
+      "aparato",
+      "vacuola",
+      "centriolos",
+      "peroxisoma",
+      "citoplasma",
+      "membrana"
+    ]
+  },
+  {
+    "id": 1094,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Biomoléculas",
+    "words": [
+      "proteina",
+      "lipido",
+      "glucido",
+      "nucleotido",
+      "aminoacido",
+      "glucosa",
+      "celulosa",
+      "colageno",
+      "hemoglobina",
+      "insulina",
+      "queratina",
+      "almidon"
+    ]
+  },
+  {
+    "id": 1095,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tipos de rocas",
+    "words": [
+      "granito",
+      "basalto",
+      "caliza",
+      "arenisca",
+      "marmol",
+      "pizarra",
+      "cuarcita",
+      "obsidiana",
+      "gneis",
+      "esquisto",
+      "pumita",
+      "dolomita"
+    ]
+  },
+  {
+    "id": 1096,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Ecosistemas",
+    "words": [
+      "tundra",
+      "taiga",
+      "sabana",
+      "estepa",
+      "manglar",
+      "arrecife",
+      "pradera",
+      "desierto",
+      "selva",
+      "bosque",
+      "humedal",
+      "litoral"
+    ]
+  },
+  {
+    "id": 1097,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Microorganismos",
+    "words": [
+      "bacteria",
+      "virus",
+      "hongo",
+      "protozoo",
+      "alga",
+      "archaea",
+      "levadura",
+      "ameba",
+      "paramecio",
+      "diatomea",
+      "plasmodio",
+      "rickettsia"
+    ]
+  },
+  {
+    "id": 1098,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Procesos celulares",
+    "words": [
+      "mitosis",
+      "meiosis",
+      "fotosintesis",
+      "respiracion",
+      "fermentacion",
+      "osmosis",
+      "difusion",
+      "endocitosis",
+      "exocitosis",
+      "apoptosis",
+      "replicacion",
+      "transcripcion"
+    ]
+  },
+  {
+    "id": 1099,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Tejidos animales",
+    "words": [
+      "epitelial",
+      "conectivo",
+      "muscular",
+      "nervioso",
+      "oseo",
+      "cartilaginoso",
+      "adiposo",
+      "sanguineo",
+      "linfatico",
+      "tendinoso"
+    ]
+  },
+  {
+    "id": 1100,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Minerales",
+    "words": [
+      "cuarzo",
+      "feldespato",
+      "mica",
+      "calcita",
+      "olivino",
+      "piroxeno",
+      "anfibiol",
+      "yeso",
+      "halita",
+      "magnetita",
+      "pirita",
+      "fluorita"
+    ]
+  },
+  {
+    "id": 1101,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Genética molecular",
+    "words": [
+      "adn",
+      "arn",
+      "codon",
+      "anticodon",
+      "exon",
+      "intron",
+      "promotor",
+      "gen",
+      "alelo",
+      "cromosoma",
+      "genoma",
+      "plasmido"
+    ]
+  },
+  {
+    "id": 1102,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Inmunología",
+    "words": [
+      "anticuerpo",
+      "antigeno",
+      "linfocito",
+      "macrofago",
+      "histamina",
+      "complemento",
+      "vacuna",
+      "inmunoglobulina",
+      "citoquina",
+      "interferon",
+      "fagocito",
+      "mastocito"
+    ]
+  },
+  {
+    "id": 1103,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Biotecnología",
+    "words": [
+      "clonacion",
+      "transgenico",
+      "pcr",
+      "electroforesis",
+      "plasmido",
+      "vector",
+      "ligasa",
+      "restriccion",
+      "secuenciacion",
+      "crispr",
+      "fermentador",
+      "bioproceso"
+    ]
+  },
+  {
+    "id": 1104,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Evolución",
+    "words": [
+      "seleccion",
+      "mutacion",
+      "adaptacion",
+      "especiacion",
+      "filogenia",
+      "darwin",
+      "lamarck",
+      "deriva",
+      "aislamiento",
+      "convergencia",
+      "divergencia",
+      "homologia"
+    ]
+  },
+  {
+    "id": 1105,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Metabolismo",
+    "words": [
+      "glucolisis",
+      "krebs",
+      "fosforilacion",
+      "catabolismo",
+      "anabolismo",
+      "coenzima",
+      "nad",
+      "fad",
+      "piruvato",
+      "acetilo",
+      "oxalacetato",
+      "citrato"
+    ]
+  },
+  {
+    "id": 1106,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Enzimas",
+    "words": [
+      "ligasa",
+      "polimerasa",
+      "helicasa",
+      "proteasa",
+      "lipasa",
+      "amilasa",
+      "catalasa",
+      "nucleasa",
+      "transcriptasa",
+      "kinasa",
+      "fosfatasa",
+      "isomerasa"
+    ]
+  },
+  {
+    "id": 1107,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Enfermedades infecciosas",
+    "words": [
+      "tuberculosis",
+      "malaria",
+      "sida",
+      "gripe",
+      "colera",
+      "tetanos",
+      "hepatitis",
+      "rabia",
+      "dengue",
+      "sarampion",
+      "neumonia",
+      "meningitis"
+    ]
+  },
+  {
+    "id": 1108,
+    "subject_id": "biologia",
+    "level": "bachillerato",
+    "grades": [
+      2
+    ],
+    "category_name": "Ecología",
+    "words": [
+      "bioma",
+      "nicho",
+      "habitat",
+      "simbiosis",
+      "parasitismo",
+      "depredacion",
+      "competencia",
+      "sucesion",
+      "biomasa",
+      "productividad",
+      "piramide",
+      "cadena"
+    ]
+  },
+  {
+    "id": 1109,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Linking words",
+    "words": [
+      "however",
+      "therefore",
+      "moreover",
+      "nevertheless",
+      "furthermore",
+      "although",
+      "consequently",
+      "meanwhile",
+      "nonetheless",
+      "whereas",
+      "hence",
+      "otherwise"
+    ]
+  },
+  {
+    "id": 1110,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Academic vocabulary",
+    "words": [
+      "analyze",
+      "evaluate",
+      "demonstrate",
+      "investigate",
+      "conclude",
+      "hypothesis",
+      "evidence",
+      "significant",
+      "relevant",
+      "approach",
+      "perspective",
+      "methodology"
+    ]
+  },
+  {
+    "id": 1111,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Phrasal verbs",
+    "words": [
+      "carry out",
+      "bring up",
+      "come across",
+      "figure out",
+      "give up",
+      "look into",
+      "put forward",
+      "set up",
+      "turn down",
+      "break through",
+      "hold back",
+      "point out"
+    ]
+  },
+  {
+    "id": 1112,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Prefixes and suffixes",
+    "words": [
+      "misunderstand",
+      "overcome",
+      "redo",
+      "unbelievable",
+      "meaningful",
+      "careless",
+      "hopeful",
+      "restless",
+      "remarkable",
+      "irreversible",
+      "disagreement",
+      "independence"
+    ]
+  },
+  {
+    "id": 1113,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "False friends",
+    "words": [
+      "actually",
+      "eventually",
+      "library",
+      "sensible",
+      "sympathetic",
+      "comprehensive",
+      "embarrassed",
+      "fabric",
+      "resume",
+      "constipated",
+      "carpet",
+      "lecture"
+    ]
+  },
+  {
+    "id": 1114,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Environment vocabulary",
+    "words": [
+      "sustainability",
+      "pollution",
+      "deforestation",
+      "biodiversity",
+      "recycling",
+      "emissions",
+      "renewable",
+      "conservation",
+      "greenhouse",
+      "ecosystem",
+      "drought",
+      "endangered"
+    ]
+  },
+  {
+    "id": 1115,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Technology vocabulary",
+    "words": [
+      "algorithm",
+      "database",
+      "bandwidth",
+      "encryption",
+      "interface",
+      "software",
+      "hardware",
+      "cybersecurity",
+      "artificial",
+      "automation",
+      "blockchain",
+      "debugging"
+    ]
+  },
+  {
+    "id": 1116,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Literature terms",
+    "words": [
+      "metaphor",
+      "irony",
+      "allegory",
+      "protagonist",
+      "narrator",
+      "foreshadowing",
+      "symbolism",
+      "satire",
+      "soliloquy",
+      "tragedy",
+      "dystopia",
+      "epiphany"
+    ]
+  },
+  {
+    "id": 1117,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Collocations",
+    "words": [
+      "breakthrough",
+      "drawback",
+      "outcome",
+      "deadline",
+      "feedback",
+      "insight",
+      "setback",
+      "milestone",
+      "framework",
+      "guideline",
+      "background",
+      "overview"
+    ]
+  },
+  {
+    "id": 1118,
+    "subject_id": "ingles",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Formal register",
+    "words": [
+      "regarding",
+      "concerning",
+      "acknowledge",
+      "approximately",
+      "considerable",
+      "facilitate",
+      "implement",
+      "preliminary",
+      "subsequent",
+      "aforementioned",
+      "henceforth",
+      "notwithstanding"
+    ]
+  },
+  {
+    "id": 1119,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Connecteurs logiques",
+    "words": [
+      "cependant",
+      "neanmoins",
+      "toutefois",
+      "pourtant",
+      "donc",
+      "ainsi",
+      "par consequent",
+      "en revanche",
+      "bien que",
+      "quoique",
+      "afin de",
+      "puisque"
+    ]
+  },
+  {
+    "id": 1120,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Vocabulaire académique",
+    "words": [
+      "analyser",
+      "evaluer",
+      "argumenter",
+      "conclure",
+      "demontrer",
+      "hypothese",
+      "synthese",
+      "problematique",
+      "these",
+      "antithese",
+      "bibliographie",
+      "dissertation"
+    ]
+  },
+  {
+    "id": 1121,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Culture française",
+    "words": [
+      "baguette",
+      "croissant",
+      "beret",
+      "fromage",
+      "vin",
+      "cathedrale",
+      "musee",
+      "revolution",
+      "republique",
+      "philosophie",
+      "gastronomie",
+      "patrimoine"
+    ]
+  },
+  {
+    "id": 1122,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Littérature française",
+    "words": [
+      "moliere",
+      "voltaire",
+      "hugo",
+      "balzac",
+      "flaubert",
+      "zola",
+      "proust",
+      "camus",
+      "sartre",
+      "beauvoir",
+      "baudelaire",
+      "rimbaud"
+    ]
+  },
+  {
+    "id": 1123,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Environnement",
+    "words": [
+      "pollution",
+      "recyclage",
+      "durable",
+      "biodiversite",
+      "ecologie",
+      "emissions",
+      "renouvelable",
+      "deforestation",
+      "climat",
+      "serre",
+      "ressources",
+      "conservation"
+    ]
+  },
+  {
+    "id": 1124,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Médias et communication",
+    "words": [
+      "journal",
+      "television",
+      "radio",
+      "reseau",
+      "numerique",
+      "information",
+      "publicite",
+      "redaction",
+      "chronique",
+      "editorial",
+      "reportage",
+      "interview"
+    ]
+  },
+  {
+    "id": 1125,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Vie quotidienne",
+    "words": [
+      "logement",
+      "transport",
+      "alimentation",
+      "sante",
+      "emploi",
+      "loisirs",
+      "education",
+      "famille",
+      "quartier",
+      "voisinage",
+      "quotidien",
+      "routine"
+    ]
+  },
+  {
+    "id": 1126,
+    "subject_id": "frances",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Sentiments et émotions",
+    "words": [
+      "joie",
+      "tristesse",
+      "colere",
+      "peur",
+      "surprise",
+      "deception",
+      "enthousiasme",
+      "inquietude",
+      "soulagement",
+      "nostalgie",
+      "admiration",
+      "mepris"
+    ]
+  },
+  {
+    "id": 1127,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Figures retòriques",
+    "words": [
+      "metafora",
+      "hiperbole",
+      "anafora",
+      "ironia",
+      "metonimia",
+      "personificacio",
+      "comparacio",
+      "antitesi",
+      "paradoxa",
+      "sinestesia",
+      "al·literacio",
+      "elipsi"
+    ]
+  },
+  {
+    "id": 1128,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Autors valencians",
+    "words": [
+      "ausiasmarch",
+      "joanotmartorell",
+      "isabelclarasimo",
+      "roigdevela",
+      "joanfuster",
+      "enricvalor",
+      "vicentsalvador",
+      "teodorlllorente",
+      "renardelpuig",
+      "carlesrecio",
+      "jesusmoratallon",
+      "joseppiera"
+    ]
+  },
+  {
+    "id": 1129,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Gèneres literaris",
+    "words": [
+      "novel·la",
+      "poesia",
+      "teatre",
+      "assaig",
+      "cronica",
+      "epica",
+      "lirica",
+      "conte",
+      "faula",
+      "elegia",
+      "oda",
+      "sonet"
+    ]
+  },
+  {
+    "id": 1130,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Connectors textuals",
+    "words": [
+      "tanmateix",
+      "nogensmenys",
+      "aiximateix",
+      "percontractant",
+      "encanvi",
+      "daltraband",
+      "perconseguent",
+      "totiseguit",
+      "endefinitiva",
+      "enresum",
+      "ames",
+      "perdavant"
+    ]
+  },
+  {
+    "id": 1131,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Moviments literaris",
+    "words": [
+      "romanticisme",
+      "renaixenca",
+      "modernisme",
+      "noucentisme",
+      "avantguardes",
+      "realisme",
+      "naturalisme",
+      "simbolisme",
+      "barroc",
+      "classicisme",
+      "existencialisme",
+      "postmodernisme"
+    ]
+  },
+  {
+    "id": 1132,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Vocabulari acadèmic",
+    "words": [
+      "tesi",
+      "hipotesi",
+      "argument",
+      "conclusio",
+      "analisi",
+      "sintesi",
+      "objectiu",
+      "metodologia",
+      "referencia",
+      "citacio",
+      "paragraf",
+      "glossari"
+    ]
+  },
+  {
+    "id": 1133,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Tipologies textuals",
+    "words": [
+      "narratiu",
+      "descriptiu",
+      "argumentatiu",
+      "expositiu",
+      "instructiu",
+      "conversacional",
+      "predictiu",
+      "retoric",
+      "epistolar",
+      "periodistic",
+      "publicitari",
+      "juridic"
+    ]
+  },
+  {
+    "id": 1134,
+    "subject_id": "valenciano",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Obra Tirant lo Blanc",
+    "words": [
+      "tirant",
+      "carmesina",
+      "plaerdemavida",
+      "diafebus",
+      "emperador",
+      "princesa",
+      "batalla",
+      "cavaller",
+      "constantinoble",
+      "honor",
+      "amor",
+      "aventura"
+    ]
+  },
+  {
+    "id": 1135,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores grecolatinos",
+    "words": [
+      "homero",
+      "sofocles",
+      "euripides",
+      "esquilo",
+      "aristofanes",
+      "virgilio",
+      "ovidio",
+      "horacio",
+      "platon",
+      "aristoteles",
+      "safo",
+      "pindaro"
+    ]
+  },
+  {
+    "id": 1136,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores del Renacimiento",
+    "words": [
+      "dante",
+      "petrarca",
+      "boccaccio",
+      "shakespeare",
+      "cervantes",
+      "rabelais",
+      "montaigne",
+      "ariosto",
+      "maquiavelo",
+      "tomas moro",
+      "erasmo",
+      "garcilaso"
+    ]
+  },
+  {
+    "id": 1137,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores románticos",
+    "words": [
+      "goethe",
+      "byron",
+      "shelley",
+      "keats",
+      "hugo",
+      "leopardi",
+      "poe",
+      "heine",
+      "novalis",
+      "holderlin",
+      "pushkin",
+      "espronceda"
+    ]
+  },
+  {
+    "id": 1138,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores realistas",
+    "words": [
+      "balzac",
+      "flaubert",
+      "dickens",
+      "tolstoi",
+      "dostoievski",
+      "zola",
+      "stendhal",
+      "galdos",
+      "eliot",
+      "turguenev",
+      "chejov",
+      "maupassant"
+    ]
+  },
+  {
+    "id": 1139,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Autores del siglo XX",
+    "words": [
+      "kafka",
+      "joyce",
+      "proust",
+      "woolf",
+      "camus",
+      "beckett",
+      "faulkner",
+      "borges",
+      "marquez",
+      "hemingway",
+      "orwell",
+      "mann"
+    ]
+  },
+  {
+    "id": 1140,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Obras fundamentales",
+    "words": [
+      "iliada",
+      "odisea",
+      "eneida",
+      "divina comedia",
+      "decameron",
+      "hamlet",
+      "fausto",
+      "misérables",
+      "guerra y paz",
+      "metamorfosis",
+      "ulises",
+      "extranjero"
+    ]
+  },
+  {
+    "id": 1141,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Movimientos literarios",
+    "words": [
+      "clasicismo",
+      "renacimiento",
+      "barroco",
+      "ilustracion",
+      "romanticismo",
+      "realismo",
+      "naturalismo",
+      "simbolismo",
+      "modernismo",
+      "vanguardias",
+      "existencialismo",
+      "posmodernismo"
+    ]
+  },
+  {
+    "id": 1142,
+    "subject_id": "literatura-universal",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Géneros y formas",
+    "words": [
+      "epopeya",
+      "tragedia",
+      "comedia",
+      "soneto",
+      "oda",
+      "elegia",
+      "novela",
+      "cuento",
+      "ensayo",
+      "drama",
+      "fabula",
+      "epistola"
+    ]
+  },
+  {
+    "id": 1143,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Polígonos regulares",
+    "words": [
+      "triangulo",
+      "cuadrado",
+      "pentagono",
+      "hexagono",
+      "heptagono",
+      "octogono",
+      "nonagono",
+      "decagono",
+      "endecagono",
+      "dodecagono",
+      "pentadecagono",
+      "icosagono"
+    ]
+  },
+  {
+    "id": 1144,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Cuerpos geométricos",
+    "words": [
+      "cubo",
+      "prisma",
+      "piramide",
+      "cilindro",
+      "cono",
+      "esfera",
+      "tetraedro",
+      "octaedro",
+      "dodecaedro",
+      "icosaedro",
+      "tronco",
+      "paralelepipedo"
+    ]
+  },
+  {
+    "id": 1145,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Sistemas de representación",
+    "words": [
+      "diedrico",
+      "axonometrico",
+      "isometrico",
+      "dimetrico",
+      "trimetrico",
+      "caballera",
+      "militar",
+      "conico",
+      "frontal",
+      "oblicuo",
+      "cenital",
+      "anamorfosis"
+    ]
+  },
+  {
+    "id": 1146,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Curvas cónicas",
+    "words": [
+      "circunferencia",
+      "elipse",
+      "parabola",
+      "hiperbola",
+      "directriz",
+      "foco",
+      "excentricidad",
+      "eje",
+      "vertice",
+      "asintota",
+      "tangente",
+      "secante"
+    ]
+  },
+  {
+    "id": 1147,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Transformaciones geométricas",
+    "words": [
+      "traslacion",
+      "rotacion",
+      "simetria",
+      "homotecia",
+      "afinidad",
+      "inversion",
+      "semejanza",
+      "proyeccion",
+      "abatimiento",
+      "giro",
+      "cambio",
+      "rebatimiento"
+    ]
+  },
+  {
+    "id": 1148,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Elementos de acotación",
+    "words": [
+      "cota",
+      "linea",
+      "flecha",
+      "referencia",
+      "tolerancia",
+      "dimension",
+      "radio",
+      "diametro",
+      "angulo",
+      "profundidad",
+      "anchura",
+      "altura"
+    ]
+  },
+  {
+    "id": 1149,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Instrumentos de dibujo",
+    "words": [
+      "compas",
+      "escuadra",
+      "cartabon",
+      "regla",
+      "transportador",
+      "plantilla",
+      "escalimetro",
+      "tiralíneas",
+      "paralex",
+      "tecnigrafo",
+      "lapiz",
+      "portaminas"
+    ]
+  },
+  {
+    "id": 1150,
+    "subject_id": "dibujo-tecnico",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Normalización",
+    "words": [
+      "formato",
+      "cajetin",
+      "plegado",
+      "margen",
+      "escala",
+      "acotacion",
+      "seccion",
+      "corte",
+      "detalle",
+      "vista",
+      "alzado",
+      "planta"
+    ]
+  },
+  {
+    "id": 1151,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Componentes electrónicos",
+    "words": [
+      "resistencia",
+      "condensador",
+      "transistor",
+      "diodo",
+      "bobina",
+      "rele",
+      "potenciometro",
+      "led",
+      "tiristor",
+      "fusible",
+      "transformador",
+      "amplificador"
+    ]
+  },
+  {
+    "id": 1152,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Energías renovables",
+    "words": [
+      "solar",
+      "eolica",
+      "hidraulica",
+      "geotermica",
+      "biomasa",
+      "mareas",
+      "oleaje",
+      "biogas",
+      "fotovoltaica",
+      "termica",
+      "hidrogeno",
+      "undimotriz"
+    ]
+  },
+  {
+    "id": 1153,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Materiales",
+    "words": [
+      "acero",
+      "aluminio",
+      "cobre",
+      "plastico",
+      "madera",
+      "vidrio",
+      "ceramica",
+      "hormigon",
+      "titanio",
+      "fibra",
+      "grafeno",
+      "silicio"
+    ]
+  },
+  {
+    "id": 1154,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Mecanismos",
+    "words": [
+      "engranaje",
+      "polea",
+      "palanca",
+      "biela",
+      "manivela",
+      "leva",
+      "cadena",
+      "cremallera",
+      "tornillo",
+      "correa",
+      "excéntrica",
+      "cigüeñal"
+    ]
+  },
+  {
+    "id": 1155,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Programación",
+    "words": [
+      "variable",
+      "funcion",
+      "bucle",
+      "condicion",
+      "array",
+      "clase",
+      "objeto",
+      "metodo",
+      "herencia",
+      "interfaz",
+      "modulo",
+      "libreria"
+    ]
+  },
+  {
+    "id": 1156,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Automatización",
+    "words": [
+      "sensor",
+      "actuador",
+      "controlador",
+      "plc",
+      "robot",
+      "servomotor",
+      "encoder",
+      "microcontrolador",
+      "arduino",
+      "raspberry",
+      "rele",
+      "temporizador"
+    ]
+  },
+  {
+    "id": 1157,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Magnitudes eléctricas",
+    "words": [
+      "voltaje",
+      "intensidad",
+      "resistencia",
+      "potencia",
+      "energia",
+      "frecuencia",
+      "capacitancia",
+      "inductancia",
+      "impedancia",
+      "conductancia",
+      "carga",
+      "campo"
+    ]
+  },
+  {
+    "id": 1158,
+    "subject_id": "tecnologia",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Sostenibilidad",
+    "words": [
+      "reciclaje",
+      "reutilizacion",
+      "eficiencia",
+      "emisiones",
+      "huella",
+      "residuos",
+      "economia circular",
+      "biodegradable",
+      "compostaje",
+      "reduccion",
+      "renovable",
+      "limpia"
+    ]
+  },
+  {
+    "id": 1159,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Músculos del cuerpo",
+    "words": [
+      "biceps",
+      "triceps",
+      "cuadriceps",
+      "isquiotibiales",
+      "gemelos",
+      "gluteos",
+      "deltoides",
+      "pectorales",
+      "abdominales",
+      "trapecio",
+      "dorsal",
+      "soleo"
+    ]
+  },
+  {
+    "id": 1160,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Capacidades físicas",
+    "words": [
+      "fuerza",
+      "resistencia",
+      "velocidad",
+      "flexibilidad",
+      "coordinacion",
+      "equilibrio",
+      "agilidad",
+      "potencia",
+      "reaccion",
+      "ritmo",
+      "orientacion",
+      "diferenciacion"
+    ]
+  },
+  {
+    "id": 1161,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Nutrientes",
+    "words": [
+      "proteinas",
+      "carbohidratos",
+      "grasas",
+      "vitaminas",
+      "minerales",
+      "fibra",
+      "agua",
+      "aminoacidos",
+      "glucosa",
+      "fructosa",
+      "calcio",
+      "hierro"
+    ]
+  },
+  {
+    "id": 1162,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Lesiones deportivas",
+    "words": [
+      "esguince",
+      "fractura",
+      "contractura",
+      "tendinitis",
+      "rotura",
+      "luxacion",
+      "contusion",
+      "desgarro",
+      "fascitis",
+      "periostitis",
+      "bursitis",
+      "calambre"
+    ]
+  },
+  {
+    "id": 1163,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Huesos del cuerpo",
+    "words": [
+      "femur",
+      "tibia",
+      "humero",
+      "radio",
+      "cubito",
+      "pelvis",
+      "clavicula",
+      "escapula",
+      "vertebra",
+      "costilla",
+      "perone",
+      "rotula"
+    ]
+  },
+  {
+    "id": 1164,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Primeros auxilios",
+    "words": [
+      "reanimacion",
+      "vendaje",
+      "inmovilizacion",
+      "torniquete",
+      "desfibrilador",
+      "triaje",
+      "hemostasia",
+      "posicion",
+      "compresion",
+      "maniobra",
+      "evaluacion",
+      "traslado"
+    ]
+  },
+  {
+    "id": 1165,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Métodos de entrenamiento",
+    "words": [
+      "continuo",
+      "intervalico",
+      "repeticiones",
+      "circuito",
+      "fartlek",
+      "cuestas",
+      "pliometria",
+      "isometrico",
+      "pesas",
+      "crossfit",
+      "hiit",
+      "tabata"
+    ]
+  },
+  {
+    "id": 1166,
+    "subject_id": "ed-fisica",
+    "level": "bachillerato",
+    "grades": [
+      1
+    ],
+    "category_name": "Deportes olímpicos",
+    "words": [
+      "atletismo",
+      "natacion",
+      "gimnasia",
+      "ciclismo",
+      "esgrima",
+      "judo",
+      "remo",
+      "tenis",
+      "boxeo",
+      "halterofilia",
+      "triatlon",
+      "piragüismo"
+    ]
+  },
+  {
+    "id": 1167,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Lenguajes de programación",
+    "words": [
+      "python",
+      "java",
+      "javascript",
+      "csharp",
+      "cpp",
+      "ruby",
+      "swift",
+      "kotlin",
+      "go",
+      "rust",
+      "php",
+      "typescript"
+    ]
+  },
+  {
+    "id": 1168,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Estructuras de datos",
+    "words": [
+      "array",
+      "lista",
+      "pila",
+      "cola",
+      "arbol",
+      "grafo",
+      "hashmap",
+      "conjunto",
+      "tupla",
+      "diccionario",
+      "heap",
+      "nodo"
+    ]
+  },
+  {
+    "id": 1169,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Conceptos de POO",
+    "words": [
+      "clase",
+      "objeto",
+      "herencia",
+      "polimorfismo",
+      "encapsulamiento",
+      "abstraccion",
+      "metodo",
+      "atributo",
+      "constructor",
+      "interfaz",
+      "sobreescritura",
+      "sobrecarga"
+    ]
+  },
+  {
+    "id": 1170,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Algoritmos de ordenación",
+    "words": [
+      "burbuja",
+      "seleccion",
+      "insercion",
+      "quicksort",
+      "mergesort",
+      "heapsort",
+      "shellsort",
+      "radixsort",
+      "counting",
+      "bucket",
+      "timsort",
+      "introsort"
+    ]
+  },
+  {
+    "id": 1171,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Bases de datos",
+    "words": [
+      "tabla",
+      "columna",
+      "fila",
+      "clave",
+      "indice",
+      "consulta",
+      "insercion",
+      "actualizacion",
+      "borrado",
+      "relacion",
+      "join",
+      "transaccion"
+    ]
+  },
+  {
+    "id": 1172,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Desarrollo web",
+    "words": [
+      "html",
+      "css",
+      "javascript",
+      "react",
+      "angular",
+      "vue",
+      "node",
+      "express",
+      "api",
+      "json",
+      "rest",
+      "servidor"
+    ]
+  },
+  {
+    "id": 1173,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Operadores",
+    "words": [
+      "suma",
+      "resta",
+      "multiplicacion",
+      "division",
+      "modulo",
+      "asignacion",
+      "comparacion",
+      "logico",
+      "ternario",
+      "incremento",
+      "decremento",
+      "concatenacion"
+    ]
+  },
+  {
+    "id": 1174,
+    "subject_id": "programacion",
+    "level": "bachillerato",
+    "grades": [
+      1,
+      2
+    ],
+    "category_name": "Palabras reservadas",
+    "words": [
+      "if",
+      "else",
+      "while",
+      "for",
+      "return",
+      "class",
+      "import",
+      "try",
+      "catch",
+      "break",
+      "continue",
+      "switch"
+    ]
   }
 ]

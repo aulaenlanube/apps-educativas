@@ -339,6 +339,47 @@
       }
     ]
   },
+  "bachillerato": {
+    "1": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura I", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas I", "icon": "🧮" },
+      { "id": "filosofia", "nombre": "Filosofía", "icon": "🤔" },
+      { "id": "historia-mundo", "nombre": "Historia del Mundo Contemporáneo", "icon": "🌍" },
+      { "id": "biologia", "nombre": "Biología, Geología y Ciencias Ambientales", "icon": "🔬" },
+      { "id": "fisica", "nombre": "Física y Química", "icon": "🧪" },
+      { "id": "dibujo-tecnico", "nombre": "Dibujo Técnico I", "icon": "📐" },
+      { "id": "economia", "nombre": "Economía", "icon": "📈" },
+      { "id": "latin", "nombre": "Latín I", "icon": "🏛️" },
+      { "id": "literatura-universal", "nombre": "Literatura Universal", "icon": "📖" },
+      { "id": "tecnologia", "nombre": "Tecnología e Ingeniería I", "icon": "💻" },
+      { "id": "ed-fisica", "nombre": "Educación Física", "icon": "🤸" },
+      { "id": "ingles", "nombre": "Inglés I", "icon": "🇬🇧" },
+      { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
+    ],
+    "2": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura II", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas II", "icon": "🧮" },
+      { "id": "historia-espana", "nombre": "Historia de España", "icon": "🇪🇸" },
+      { "id": "filosofia", "nombre": "Historia de la Filosofía", "icon": "🤔" },
+      { "id": "biologia", "nombre": "Biología", "icon": "🔬" },
+      { "id": "fisica", "nombre": "Física", "icon": "🧪" },
+      { "id": "quimica", "nombre": "Química", "icon": "⚗️" },
+      { "id": "dibujo-tecnico", "nombre": "Dibujo Técnico II", "icon": "📐" },
+      { "id": "economia-empresa", "nombre": "Economía de la Empresa", "icon": "📈" },
+      { "id": "latin", "nombre": "Latín II", "icon": "🏛️" },
+      { "id": "geografia", "nombre": "Geografía", "icon": "🌍" },
+      { "id": "arte", "nombre": "Historia del Arte", "icon": "🎨" },
+      { "id": "tecnologia", "nombre": "Tecnología e Ingeniería II", "icon": "💻" },
+      { "id": "ingles", "nombre": "Inglés II", "icon": "🇬🇧" },
+      { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
+    ]
+  },
   "primaria": {
     "1": [
       {

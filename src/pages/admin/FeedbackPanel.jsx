@@ -181,7 +181,7 @@ export default function FeedbackPanel() {
                         </span>
                         <span className="text-sm font-semibold text-slate-800 truncate">{fb.app_name}</span>
                         <span className="text-xs text-slate-400">
-                          {fb.grade}o {fb.level === 'eso' ? 'ESO' : 'Primaria'}
+                          {fb.grade}o {fb.level === 'bachillerato' ? 'Bach.' : fb.level === 'eso' ? 'ESO' : 'Primaria'}
                         </span>
                       </div>
                       <p className="text-sm text-slate-600 truncate">{fb.first_message}</p>
@@ -227,7 +227,7 @@ export default function FeedbackPanel() {
                           <div className="flex items-center gap-2 text-xs text-slate-500">
                             <span>Usuario: <span className="font-medium text-slate-700">{fb.user_display_name}</span> ({fb.user_type})</span>
                             <span>·</span>
-                            <span>{fb.grade}o {fb.level === 'eso' ? 'ESO' : 'Primaria'} - {fb.subject_id}</span>
+                            <span>{fb.grade}o {fb.level === 'bachillerato' ? 'Bach.' : fb.level === 'eso' ? 'ESO' : 'Primaria'} - {fb.subject_id}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             {fb.status === 'open' ? (

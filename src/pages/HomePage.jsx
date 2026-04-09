@@ -29,6 +29,11 @@ const HomePage = () => {
     { grade: '4', title: '4º ESO', color: 'from-red-500 to-orange-600' }
   ];
 
+  const bachilleratoGrades = [
+    { grade: '1', title: '1º Bachillerato', color: 'from-emerald-600 to-teal-700' },
+    { grade: '2', title: '2º Bachillerato', color: 'from-teal-600 to-cyan-700' }
+  ];
+
   const handleGradeClick = (level, grade) => {
     navigate(`/curso/${level}/${grade}`);
   };
@@ -116,7 +121,7 @@ const HomePage = () => {
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block" />
-              Desde 1º de Primaria hasta 4º de ESO, ¡el aprendizaje nunca fue tan divertido!
+              Desde 1º de Primaria hasta 2º de Bachillerato, ¡el aprendizaje nunca fue tan divertido!
             </p>
           </motion.div>
 
@@ -263,6 +268,67 @@ const HomePage = () => {
                       <span className="text-base font-semibold text-white/80">ESO</span>
                     </div>
                     {/* Button */}
+                    <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
+                      <span className="text-sm font-bold text-white">Ver Asignaturas</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Sección Bachillerato */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="py-16 px-6"
+      >
+        <div className="container mx-auto">
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <GraduationCap className="w-8 h-8 text-emerald-600" />
+              <GradientTitle tag="h2" className="text-4xl">Bachillerato</GradientTitle>
+              <Star className="w-8 h-8 text-teal-500" />
+            </div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Prepárate para la universidad con contenido de alto nivel adaptado a cada asignatura.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
+          >
+            {bachilleratoGrades.map((grade) => (
+              <motion.div
+                key={grade.grade}
+                variants={itemVariants}
+                whileHover={{ scale: 1.04, y: -4 }}
+                whileTap={{ scale: 0.97 }}
+                className="group"
+              >
+                <div
+                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
+                  onClick={() => handleGradeClick('bachillerato', grade.grade)}
+                >
+                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  </div>
+
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
+                      <GradeCardIcon type="eso" grade={grade.grade} />
+                    </div>
+                    <div className="flex items-baseline gap-1 mb-3">
+                      <span className="text-4xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
+                      <span className="text-base font-semibold text-white/80">Bach.</span>
+                    </div>
                     <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
                       <span className="text-sm font-bold text-white">Ver Asignaturas</span>
                     </div>

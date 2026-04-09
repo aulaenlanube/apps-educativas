@@ -8,10 +8,12 @@ import {
 } from '@/services/gameDataService';
 import { primariaApps } from '@/apps/config/primariaApps';
 import { esoApps } from '@/apps/config/esoApps';
+import { bachilleratoApps } from '@/apps/config/bachilleratoApps';
 
 const LEVELS = [
   { id: 'primaria', label: 'Primaria', grades: [1, 2, 3, 4, 5, 6] },
   { id: 'eso', label: 'ESO', grades: [1, 2, 3, 4] },
+  { id: 'bachillerato', label: 'Bachillerato', grades: [1, 2] },
 ];
 
 // Mapa: app id → cómo cargar sus datos y cómo visualizarlos
@@ -49,7 +51,7 @@ function hasData(result, format) {
 }
 
 function getAppsForContext(level, grade, subject) {
-  const config = level === 'primaria' ? primariaApps : esoApps;
+  const config = level === 'primaria' ? primariaApps : level === 'eso' ? esoApps : bachilleratoApps;
   const apps = config?.[String(grade)]?.[subject] || [];
   // Devolver solo las que tienen datos en DB, agrupando las que comparten datos
   const seen = new Set();

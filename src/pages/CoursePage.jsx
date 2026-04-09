@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
-import { primariaApps, esoApps, primariaSubjects, esoSubjects } from '@/apps/appList'; // IMPORTAR TODO
+import { primariaApps, esoApps, bachilleratoApps, primariaSubjects, esoSubjects, bachilleratoSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 
 const AppList = ({ apps, level, grade, subjectId }) => {
@@ -36,10 +36,10 @@ const CoursePage = () => {
   const { level, grade, subjectId } = useParams();
   const navigate = useNavigate();
 
-  const levelName = level === 'eso' ? 'ESO' : 'Primaria';
+  const levelName = level === 'bachillerato' ? 'Bachillerato' : level === 'eso' ? 'ESO' : 'Primaria';
 
   // Encontrar el nombre de la asignatura para el título
-  const subjectsData = level === 'eso' ? esoSubjects : primariaSubjects;
+  const subjectsData = level === 'bachillerato' ? bachilleratoSubjects : level === 'eso' ? esoSubjects : primariaSubjects;
   const gradeSubjects = subjectsData?.[grade] || [];
   const subjectInfo = gradeSubjects.find(s => s.id === subjectId);
   const subjectName = subjectInfo ? subjectInfo.nombre : subjectId;
@@ -47,7 +47,7 @@ const CoursePage = () => {
   const fullTitle = `${grade}º ${levelName} - ${subjectName}`;
 
   // Encontrar las apps
-  const appsMap = level === 'eso' ? esoApps : primariaApps;
+  const appsMap = level === 'bachillerato' ? bachilleratoApps : level === 'eso' ? esoApps : primariaApps;
   // Accedemos a [grado][asignatura]
   const appsForCourse = appsMap[grade]?.[subjectId] || [];
 

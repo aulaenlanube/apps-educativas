@@ -1,20 +1,23 @@
 // Structured app catalog for cascading selection (level → grade → subject → app)
-import { primariaApps, esoApps } from './appList';
+import { primariaApps, esoApps, bachilleratoApps } from './appList';
 import materiasData from '../../public/data/materias.json';
 
 const LEVEL_LABELS = {
   primaria: 'Primaria',
   eso: 'ESO',
+  bachillerato: 'Bachillerato',
 };
 
 const GRADE_LABELS = {
   primaria: { '1': '1º Primaria', '2': '2º Primaria', '3': '3º Primaria', '4': '4º Primaria', '5': '5º Primaria', '6': '6º Primaria' },
   eso: { '1': '1º ESO', '2': '2º ESO', '3': '3º ESO', '4': '4º ESO' },
+  bachillerato: { '1': '1º Bachillerato', '2': '2º Bachillerato' },
 };
 
 const APP_CONFIGS = {
   primaria: primariaApps,
   eso: esoApps,
+  bachillerato: bachilleratoApps,
 };
 
 /** Returns array of levels: [{ id: 'primaria', label: 'Primaria' }, ...] */
@@ -61,5 +64,6 @@ export function getAllAppsFlat() {
   };
   extract(primariaApps);
   extract(esoApps);
+  extract(bachilleratoApps);
   return result.sort((a, b) => a.name.localeCompare(b.name));
 }

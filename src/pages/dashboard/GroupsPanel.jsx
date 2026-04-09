@@ -18,6 +18,7 @@ import materiasData from '/public/data/materias.json';
 const LEVEL_OPTIONS = [
   { id: 'primaria', label: 'Primaria', grades: ['1', '2', '3', '4', '5', '6'] },
   { id: 'eso', label: 'ESO', grades: ['1', '2', '3', '4'] },
+  { id: 'bachillerato', label: 'Bachillerato', grades: ['1', '2'] },
 ];
 const NO_SUBJECT = '__none__';
 
