@@ -72,7 +72,12 @@
       "Bash(grep -c \"bachillerato\" /home/edu/apps-educativas/supabase/rosco-bach-*.sql)",
       "Bash(python3)",
       "Bash(python3 -c ':*)",
-      "Bash(grep -E \"\\\\.\\(jsx|js\\)$\")"
+      "Bash(grep -E \"\\\\.\\(jsx|js\\)$\")",
+      "Read(//c/Users/edtor/AppData/Local/Temp/claude/c--Users-edtor-Desktop-apps-educativas/9a791e3d-5577-4ee0-88ea-64f9ad149c91/tasks/**)",
+      "Bash(grep -oE \"app[A-Z][a-zA-Z0-9]*\" /c/Users/edtor/Desktop/apps-educativas/src/apps/config/*.js)",
+      "Bash(uniq wc:*)",
+      "Bash(grep -E \"\\\\.\\(svg|jsx|js\\)$\")",
+      "Bash(head -5 /c/Users/edtor/Desktop/apps-educativas/src/apps/conecta-parejas/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/criptograma/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/dictado-interactivo/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/laboratorio-funciones-2d/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/torre-palabras/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/velocidad-respuesta/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/visualizador-figuras-3d/*.jsx)"
     ]
   }
 }
