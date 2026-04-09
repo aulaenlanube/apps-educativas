@@ -1,31 +1,8 @@
-import React from 'react';
-
-// Inyectar keyframes CSS para animaciones sutiles de iconos
-let aiStylesInjected = false;
-const injectAiStyles = () => {
-  if (aiStylesInjected) return;
-  aiStylesInjected = true;
-  const css = `
-    @keyframes ai-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-pulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.1);opacity:1}}
-    @keyframes ai-glow{0%,100%{opacity:0.3}50%{opacity:1}}
-    @keyframes ai-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-    @keyframes ai-swing{0%,100%{transform:rotate(0deg)}25%{transform:rotate(8deg)}75%{transform:rotate(-8deg)}}
-    @keyframes ai-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-shimmer{0%,100%{opacity:0.1}50%{opacity:0.6}}
-    @keyframes ai-draw{0%{stroke-dashoffset:20}100%{stroke-dashoffset:0}}
-    @keyframes ai-bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}60%{transform:translateY(-2px)}}
-    @keyframes ai-wiggle{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
-    @keyframes ai-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-    @keyframes ai-blink{0%,45%,55%,100%{opacity:1}50%{opacity:0.1}}
-  `;
-  const el = document.createElement('style');
-  el.textContent = css;
-  document.head.appendChild(el);
-};
+import React, { memo } from 'react';
 
 // Cada icono es un SVG de 48x48, estilo flat con colores vivos, con animaciones sutiles.
 // Estilo: lineas limpias, formas geometricas redondeadas, gradientes sutiles, sombras suaves.
+// Animaciones CSS definidas en src/styles/icon-animations.css
 
 const icons = {
   'ahorcado': () => (
@@ -888,8 +865,7 @@ const aliases = {
   'comprension-oral': 'comprension-oral',
 };
 
-const AppIcon = ({ appId, className = '', size = 48 }) => {
-  injectAiStyles();
+const AppIcon = memo(({ appId, className = '', size = 48 }) => {
   const resolvedId = aliases[appId] || appId;
   const Icon = allIcons[resolvedId];
   if (!Icon) return null;
@@ -898,7 +874,9 @@ const AppIcon = ({ appId, className = '', size = 48 }) => {
       <Icon />
     </div>
   );
-};
+});
+
+AppIcon.displayName = 'AppIcon';
 
 export default AppIcon;
 export { allIcons as appIcons };

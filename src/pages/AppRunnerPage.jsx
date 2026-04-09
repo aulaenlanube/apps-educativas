@@ -1,5 +1,5 @@
 // src/pages/AppRunnerPage.jsx
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { Suspense, useState, useCallback, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart, Trophy } from 'lucide-react';
@@ -239,13 +239,19 @@ const AppRunnerPage = () => {
                 </div>
 
                 <div className={`${containerClass} relative z-10`}>
-                    <AppToRender
-                        isPaused={isDonationModalOpen}
-                        level={level}
-                        grade={grade}
-                        subjectId={activeSubjectId}
-                        onGameComplete={onGameComplete}
-                    />
+                    <Suspense fallback={
+                        <div className="flex items-center justify-center py-32">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500" />
+                        </div>
+                    }>
+                        <AppToRender
+                            isPaused={isDonationModalOpen}
+                            level={level}
+                            grade={grade}
+                            subjectId={activeSubjectId}
+                            onGameComplete={onGameComplete}
+                        />
+                    </Suspense>
                 </div>
             </div>
 

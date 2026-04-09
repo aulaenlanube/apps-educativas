@@ -1,25 +1,5 @@
 // Set 2: Apps de matemáticas, ciencias y herramientas
-
-let ai2Injected = false;
-const injectAi2Styles = () => {
-  if (ai2Injected) return;
-  ai2Injected = true;
-  const css = `
-    @keyframes ai-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-pulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.1);opacity:1}}
-    @keyframes ai-glow{0%,100%{opacity:0.3}50%{opacity:1}}
-    @keyframes ai-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-    @keyframes ai-swing{0%,100%{transform:rotate(0deg)}25%{transform:rotate(8deg)}75%{transform:rotate(-8deg)}}
-    @keyframes ai-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-shimmer{0%,100%{opacity:0.1}50%{opacity:0.6}}
-    @keyframes ai-bounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}60%{transform:translateY(-1px)}}
-    @keyframes ai-wiggle{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
-    @keyframes ai-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-    @keyframes ai-draw{0%{stroke-dashoffset:50}100%{stroke-dashoffset:0}}
-    @keyframes ai-orbit{0%{transform:rotate(0deg) translateX(5px) rotate(0deg)}100%{transform:rotate(360deg) translateX(5px) rotate(-360deg)}}
-  `;
-  const el = document.createElement('style'); el.textContent = css; document.head.appendChild(el);
-};
+// Animaciones CSS definidas en src/styles/icon-animations.css
 
 const icons2 = {
   'comprension-oral': () => (
@@ -565,7 +545,5 @@ const icons2 = {
     </svg>
   ),
 };
-
-if (typeof document !== 'undefined') injectAi2Styles();
 
 export default icons2;

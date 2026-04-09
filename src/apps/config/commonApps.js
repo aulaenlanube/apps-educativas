@@ -1,102 +1,106 @@
 // src/apps/config/commonApps.js
+// Lazy-loaded app components — each app is loaded on-demand when the user navigates to it.
+import { lazy } from 'react';
 
 // Supermercado
-import SupermercadoMatematico1 from '../supermercado-matematico/primaria-1/SupermercadoMatematico1';
-import SupermercadoMatematico2 from '../supermercado-matematico/primaria-2/SupermercadoMatematico2';
-import SupermercadoMatematico3 from '../supermercado-matematico/primaria-3/SupermercadoMatematico3';
-import SupermercadoMatematico4 from '../supermercado-matematico/primaria-4/SupermercadoMatematico4';
-import SupermercadoMatematico5 from '../supermercado-matematico/primaria-5/SupermercadoMatematico5';
-import SupermercadoMatematico6 from '../supermercado-matematico/primaria-6/SupermercadoMatematico6';
+const SupermercadoMatematico1 = lazy(() => import('../supermercado-matematico/primaria-1/SupermercadoMatematico1'));
+const SupermercadoMatematico2 = lazy(() => import('../supermercado-matematico/primaria-2/SupermercadoMatematico2'));
+const SupermercadoMatematico3 = lazy(() => import('../supermercado-matematico/primaria-3/SupermercadoMatematico3'));
+const SupermercadoMatematico4 = lazy(() => import('../supermercado-matematico/primaria-4/SupermercadoMatematico4'));
+const SupermercadoMatematico5 = lazy(() => import('../supermercado-matematico/primaria-5/SupermercadoMatematico5'));
+const SupermercadoMatematico6 = lazy(() => import('../supermercado-matematico/primaria-6/SupermercadoMatematico6'));
 
 // Sumas
-import SumasPrimaria1 from '../sumas/primaria-1/SumasPrimaria1';
-import SumasPrimaria2 from '../sumas/primaria-2/SumasPrimaria2';
-import SumasPrimaria3 from '../sumas/primaria-3/SumasPrimaria3';
-import SumasPrimaria4 from '../sumas/primaria-4/SumasPrimaria4';
-import SumasPrimaria5 from '../sumas/primaria-5/SumasPrimaria5';
-import SumasPrimaria6 from '../sumas/primaria-6/SumasPrimaria6';
+const SumasPrimaria1 = lazy(() => import('../sumas/primaria-1/SumasPrimaria1'));
+const SumasPrimaria2 = lazy(() => import('../sumas/primaria-2/SumasPrimaria2'));
+const SumasPrimaria3 = lazy(() => import('../sumas/primaria-3/SumasPrimaria3'));
+const SumasPrimaria4 = lazy(() => import('../sumas/primaria-4/SumasPrimaria4'));
+const SumasPrimaria5 = lazy(() => import('../sumas/primaria-5/SumasPrimaria5'));
+const SumasPrimaria6 = lazy(() => import('../sumas/primaria-6/SumasPrimaria6'));
 
 // Restas
-import RestasPrimaria1 from '../restas/primaria-1/RestasPrimaria1';
-import RestasPrimaria2 from '../restas/primaria-2/RestasPrimaria2';
-import RestasPrimaria3 from '../restas/primaria-3/RestasPrimaria3';
-import RestasPrimaria4 from '../restas/primaria-4/RestasPrimaria4';
-import RestasPrimaria5 from '../restas/primaria-5/RestasPrimaria5';
-import RestasPrimaria6 from '../restas/primaria-6/RestasPrimaria6';
+const RestasPrimaria1 = lazy(() => import('../restas/primaria-1/RestasPrimaria1'));
+const RestasPrimaria2 = lazy(() => import('../restas/primaria-2/RestasPrimaria2'));
+const RestasPrimaria3 = lazy(() => import('../restas/primaria-3/RestasPrimaria3'));
+const RestasPrimaria4 = lazy(() => import('../restas/primaria-4/RestasPrimaria4'));
+const RestasPrimaria5 = lazy(() => import('../restas/primaria-5/RestasPrimaria5'));
+const RestasPrimaria6 = lazy(() => import('../restas/primaria-6/RestasPrimaria6'));
 
 // Multiplicaciones
-import MultiplicacionesPrimaria3 from '../multiplicaciones/primaria-3/MultiplicacionesPrimaria3';
-import MultiplicacionesPrimaria4 from '../multiplicaciones/primaria-4/MultiplicacionesPrimaria4';
-import MultiplicacionesPrimaria5 from '../multiplicaciones/primaria-5/MultiplicacionesPrimaria5';
-import MultiplicacionesPrimaria6 from '../multiplicaciones/primaria-6/MultiplicacionesPrimaria6';
+const MultiplicacionesPrimaria3 = lazy(() => import('../multiplicaciones/primaria-3/MultiplicacionesPrimaria3'));
+const MultiplicacionesPrimaria4 = lazy(() => import('../multiplicaciones/primaria-4/MultiplicacionesPrimaria4'));
+const MultiplicacionesPrimaria5 = lazy(() => import('../multiplicaciones/primaria-5/MultiplicacionesPrimaria5'));
+const MultiplicacionesPrimaria6 = lazy(() => import('../multiplicaciones/primaria-6/MultiplicacionesPrimaria6'));
 
 // Divisiones
-import DivisionesPrimaria4 from '../divisiones/primaria-4/DivisionesPrimaria4';
-import DivisionesPrimaria5 from '../divisiones/primaria-5/DivisionesPrimaria5';
-import DivisionesPrimaria6 from '../divisiones/primaria-6/DivisionesPrimaria6';
+const DivisionesPrimaria4 = lazy(() => import('../divisiones/primaria-4/DivisionesPrimaria4'));
+const DivisionesPrimaria5 = lazy(() => import('../divisiones/primaria-5/DivisionesPrimaria5'));
+const DivisionesPrimaria6 = lazy(() => import('../divisiones/primaria-6/DivisionesPrimaria6'));
 
-import IslaDeLaCalma from '../isla-de-la-calma/IslaDeLaCalma';
-import OrdenaLaFraseJuego from '../_shared/OrdenaLaFraseJuego';
-import OrdenaLaHistoriaJuego from '../_shared/OrdenaLaHistoriaJuego';
-import DetectiveDePalabras from '@/apps/_shared/DetectiveDePalabrasJuego';
-import { NumerosRomanos3, NumerosRomanos4, NumerosRomanos5, NumerosRomanos6, NumerosRomanosESO } from '../_shared/NumerosRomanosGame';
-import { MayorMenor1, MayorMenor2, MayorMenor3, MayorMenor4, MayorMenor5, MayorMenor6 } from '../_shared/MayorMenorGame';
-import { Medidas1, Medidas2, Medidas3, Medidas4, Medidas5, Medidas6 } from '../_shared/MedidasGame';
-import GeneradorPersonajes from '../generador-personajes/GeneradorPersonajes';
-import BuscaElIntruso from '../busca-el-intruso/BuscaElIntruso.jsx';
-import RoscoJuego from '../rosco/RoscoJuego';
-import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
-import Runner from '../_shared/Runner';
-import VisualizadorFiguras3D from '../visualizador-figuras-3d/VisualizadorFiguras3D';
-import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
-import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
-import Clasificador from '../_shared/Clasificador';
-import Snake from '../snake/SnakePalabras.jsx';
-// ... imports existentes
-import LenguaComprensionEscrita from '../comprension/ComprensionEscrita.jsx';
-import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
+// Apps individuales
+const IslaDeLaCalma = lazy(() => import('../isla-de-la-calma/IslaDeLaCalma'));
+const OrdenaLaFraseJuego = lazy(() => import('../_shared/OrdenaLaFraseJuego'));
+const OrdenaLaHistoriaJuego = lazy(() => import('../_shared/OrdenaLaHistoriaJuego'));
+const DetectiveDePalabras = lazy(() => import('@/apps/_shared/DetectiveDePalabrasJuego'));
 
-import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx';
-import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
-import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
-import LaboratorioFunciones2D from '../laboratorio-funciones-2d/LaboratorioFunciones2D';
-import RotacionesGrid from '../rotaciones-grid/RotacionesGrid';
-import FraccionesESO from '../fracciones-eso/FraccionesESO';
-import BancoRecursosTutoria from '../banco-recursos-tutoria/BancoRecursosTutoria';
+// Numeros Romanos - named exports need wrapper
+const NumerosRomanos3 = lazy(() => import('../_shared/NumerosRomanosGame').then(m => ({ default: m.NumerosRomanos3 })));
+const NumerosRomanos4 = lazy(() => import('../_shared/NumerosRomanosGame').then(m => ({ default: m.NumerosRomanos4 })));
+const NumerosRomanos5 = lazy(() => import('../_shared/NumerosRomanosGame').then(m => ({ default: m.NumerosRomanos5 })));
+const NumerosRomanos6 = lazy(() => import('../_shared/NumerosRomanosGame').then(m => ({ default: m.NumerosRomanos6 })));
+const NumerosRomanosESO = lazy(() => import('../_shared/NumerosRomanosGame').then(m => ({ default: m.NumerosRomanosESO })));
 
-import TerminalRetro from '../terminal-retro/TerminalRetro';
+// Mayor Menor
+const MayorMenor1 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor1 })));
+const MayorMenor2 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor2 })));
+const MayorMenor3 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor3 })));
+const MayorMenor4 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor4 })));
+const MayorMenor5 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor5 })));
+const MayorMenor6 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor6 })));
 
-import ProgramacionBloques from '../programacion-bloques/ProgramacionBloques';
+// Medidas
+const Medidas1 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas1 })));
+const Medidas2 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas2 })));
+const Medidas3 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas3 })));
+const Medidas4 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas4 })));
+const Medidas5 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas5 })));
+const Medidas6 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas6 })));
 
-import SistemaSolar from '../sistema-solar/SistemaSolar';
-
-import CelulaAnimal from '../celula-animal/CelulaAnimal';
-
-import CelulaVegetal from '../celula-vegetal/CelulaVegetal';
-
-
-
-import JuegoMemoria from '../juego-memoria/JuegoMemoria';
-
-import Ahorcado from '../ahorcado/Ahorcado';
-
-import Crucigrama from '../crucigrama/Crucigrama';
-
-import SopaDeLetras from '../sopa-de-letras/SopaDeLetras';
-
-import Millonario from '../millonario/Millonario';
-
-import Anagramas from '../anagramas/Anagramas';
-
-import Criptograma from '../criptograma/Criptograma';
-
-import VelocidadRespuesta from '../velocidad-respuesta/VelocidadRespuesta';
-
-import ConectaParejas from '../conecta-parejas/ConectaParejas';
-
-import DictadoInteractivo from '../dictado-interactivo/DictadoInteractivo';
-
-import TorrePalabras from '../torre-palabras/TorrePalabras';
+const GeneradorPersonajes = lazy(() => import('../generador-personajes/GeneradorPersonajes'));
+const BuscaElIntruso = lazy(() => import('../busca-el-intruso/BuscaElIntruso.jsx'));
+const RoscoJuego = lazy(() => import('../rosco/RoscoJuego'));
+const OrdenaBolas = lazy(() => import('@/apps/ordena-bolas/OrdenaBolas'));
+const Runner = lazy(() => import('../_shared/Runner'));
+const VisualizadorFiguras3D = lazy(() => import('../visualizador-figuras-3d/VisualizadorFiguras3D'));
+const ParejasDeCartas = lazy(() => import('../parejas-de-cartas/ParejasDeCartas'));
+const LluviaDePalabras = lazy(() => import('../lluvia-de-palabras/LluviaDePalabras'));
+const Clasificador = lazy(() => import('../_shared/Clasificador'));
+const Snake = lazy(() => import('../snake/SnakePalabras.jsx'));
+const LenguaComprensionEscrita = lazy(() => import('../comprension/ComprensionEscrita.jsx'));
+const LenguaComprensionOral = lazy(() => import('../comprension/ComprensionOral.jsx'));
+const ExcavacionSelectiva = lazy(() => import('../excavacion-selectiva/ExcavacionSelectiva.jsx'));
+const MesaCrafteo = lazy(() => import('../mesa-crafteo/MesaCrafteo.jsx'));
+const EntrenadorTabla = lazy(() => import('../entrenador-tabla/EntrenadorTabla.jsx'));
+const LaboratorioFunciones2D = lazy(() => import('../laboratorio-funciones-2d/LaboratorioFunciones2D'));
+const RotacionesGrid = lazy(() => import('../rotaciones-grid/RotacionesGrid'));
+const FraccionesESO = lazy(() => import('../fracciones-eso/FraccionesESO'));
+const BancoRecursosTutoria = lazy(() => import('../banco-recursos-tutoria/BancoRecursosTutoria'));
+const TerminalRetro = lazy(() => import('../terminal-retro/TerminalRetro'));
+const ProgramacionBloques = lazy(() => import('../programacion-bloques/ProgramacionBloques'));
+const SistemaSolar = lazy(() => import('../sistema-solar/SistemaSolar'));
+const CelulaAnimal = lazy(() => import('../celula-animal/CelulaAnimal'));
+const CelulaVegetal = lazy(() => import('../celula-vegetal/CelulaVegetal'));
+const JuegoMemoria = lazy(() => import('../juego-memoria/JuegoMemoria'));
+const Ahorcado = lazy(() => import('../ahorcado/Ahorcado'));
+const Crucigrama = lazy(() => import('../crucigrama/Crucigrama'));
+const SopaDeLetras = lazy(() => import('../sopa-de-letras/SopaDeLetras'));
+const Millonario = lazy(() => import('../millonario/Millonario'));
+const Anagramas = lazy(() => import('../anagramas/Anagramas'));
+const Criptograma = lazy(() => import('../criptograma/Criptograma'));
+const VelocidadRespuesta = lazy(() => import('../velocidad-respuesta/VelocidadRespuesta'));
+const ConectaParejas = lazy(() => import('../conecta-parejas/ConectaParejas'));
+const DictadoInteractivo = lazy(() => import('../dictado-interactivo/DictadoInteractivo'));
+const TorrePalabras = lazy(() => import('../torre-palabras/TorrePalabras'));
 
 
 // Apps Comunes

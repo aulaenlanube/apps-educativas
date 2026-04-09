@@ -7,7 +7,10 @@
     "dev": "node tools/generate-llms.js && vite",
     "build": "node tools/generate-llms.js && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@mlc-ai/web-llm": "^0.2.80",
@@ -48,6 +51,9 @@
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
     "@babel/types": "^7.27.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20.8.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -55,9 +61,11 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
+    "jsdom": "^29.0.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "terser": "^5.39.0",
-    "vite": "^7.0.6"
+    "vite": "^7.0.6",
+    "vitest": "^4.1.4"
   }
 }

@@ -1,27 +1,5 @@
 // Set 3: Apps de herramientas, tutoría y extras
-let ai3Injected = false;
-const injectAi3Styles = () => {
-  if (ai3Injected) return;
-  ai3Injected = true;
-  const css = `
-    @keyframes ai-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-pulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.1);opacity:1}}
-    @keyframes ai-glow{0%,100%{opacity:0.3}50%{opacity:1}}
-    @keyframes ai-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-    @keyframes ai-swing{0%,100%{transform:rotate(0deg)}25%{transform:rotate(8deg)}75%{transform:rotate(-8deg)}}
-    @keyframes ai-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes ai-shimmer{0%,100%{opacity:0.1}50%{opacity:0.6}}
-    @keyframes ai-bounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}60%{transform:translateY(-1px)}}
-    @keyframes ai-wiggle{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
-    @keyframes ai-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-    @keyframes ai-blink{0%,45%{opacity:1}50%,90%{opacity:0}95%,100%{opacity:1}}
-    @keyframes ai-flicker{0%,100%{opacity:1}10%{opacity:0.4}20%{opacity:1}40%{opacity:0.6}50%{opacity:1}}
-    @keyframes ai-scan{0%{transform:translateY(-100%);opacity:0}20%{opacity:0.5}80%{opacity:0.5}100%{transform:translateY(100%);opacity:0}}
-    @keyframes ai-wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.15)}}
-  `;
-  const el = document.createElement('style'); el.textContent = css; document.head.appendChild(el);
-};
-if (typeof document !== 'undefined') injectAi3Styles();
+// Animaciones CSS definidas en src/styles/icon-animations.css
 
 const icons3 = {
   'terminal-retro': () => (

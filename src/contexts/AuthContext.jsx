@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/lib/supabase';
 
 const AuthContext = createContext(null);
@@ -48,12 +48,12 @@ export function AuthProvider({ children }) {
           await fetchTeacherProfile(session.user.id);
         }
 
-        const savedStudent = localStorage.getItem('student_session');
+        const savedStudent = sessionStorage.getItem('student_session');
         if (savedStudent) {
           try {
             setStudent(JSON.parse(savedStudent));
           } catch {
-            localStorage.removeItem('student_session');
+            sessionStorage.removeItem('student_session');
           }
         }
       } catch (err) {
@@ -141,6 +141,16 @@ export function AuthProvider({ children }) {
   }
 
   async function signInStudent(groupCode, username, password) {
+    // Input validation
+    if (!groupCode || typeof groupCode !== 'string' || groupCode.trim().length === 0) {
+      return { error: { message: 'Código de grupo requerido' } };
+    }
+    if (!username || typeof username !== 'string' || username.trim().length === 0) {
+      return { error: { message: 'Nombre de usuario requerido' } };
+    }
+    if (groupCode.length > 20 || username.length > 100) {
+      return { error: { message: 'Datos de entrada demasiado largos' } };
+    }
     const { data, error } = await supabase.rpc('student_login', {
       p_teacher_code: groupCode,
       p_username: username,
@@ -156,7 +166,7 @@ export function AuthProvider({ children }) {
 
     const studentData = { ...data.student, group_code: groupCode.toUpperCase() };
     setStudent(studentData);
-    localStorage.setItem('student_session', JSON.stringify(studentData));
+    sessionStorage.setItem('student_session', JSON.stringify(studentData));
     return { data: studentData };
   }
 
@@ -172,7 +182,7 @@ export function AuthProvider({ children }) {
 
     const studentData = { ...data.student, group_code: groupCode.toUpperCase() };
     setStudent(studentData);
-    localStorage.setItem('student_session', JSON.stringify(studentData));
+    sessionStorage.setItem('student_session', JSON.stringify(studentData));
     return { data: studentData };
   }
 
@@ -196,14 +206,14 @@ export function AuthProvider({ children }) {
     }
     if (isStudent) {
       setStudent(null);
-      localStorage.removeItem('student_session');
+      sessionStorage.removeItem('student_session');
     }
   }
 
   function updateStudentLocal(updates) {
     setStudent(prev => {
       const updated = { ...prev, ...updates };
-      localStorage.setItem('student_session', JSON.stringify(updated));
+      sessionStorage.setItem('student_session', JSON.stringify(updated));
       return updated;
     });
   }
@@ -252,7 +262,7 @@ export function AuthProvider({ children }) {
     }
 
     setStudent(studentData);
-    localStorage.setItem('student_session', JSON.stringify(studentData));
+    sessionStorage.setItem('student_session', JSON.stringify(studentData));
     return { data: studentData, groups };
   }
 
@@ -271,19 +281,23 @@ export function AuthProvider({ children }) {
         group_name: group ? group.group_name : null,
         group_code: group ? group.group_code : null,
       };
-      localStorage.setItem('student_session', JSON.stringify(updated));
+      sessionStorage.setItem('student_session', JSON.stringify(updated));
       return updated;
     });
   }
 
-  const value = {
+  const value = useMemo(() => ({
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
     signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
     signInStudent, signInStudentEmail, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
     fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
-  };
+  }), [
+    user, teacher, student, freeUser,
+    isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
+    loading, fetchTeacherProfile,
+  ]);
 
   return (
     <AuthContext.Provider value={value}>

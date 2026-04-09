@@ -77,7 +77,8 @@
       "Bash(grep -oE \"app[A-Z][a-zA-Z0-9]*\" /c/Users/edtor/Desktop/apps-educativas/src/apps/config/*.js)",
       "Bash(uniq wc:*)",
       "Bash(grep -E \"\\\\.\\(svg|jsx|js\\)$\")",
-      "Bash(head -5 /c/Users/edtor/Desktop/apps-educativas/src/apps/conecta-parejas/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/criptograma/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/dictado-interactivo/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/laboratorio-funciones-2d/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/torre-palabras/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/velocidad-respuesta/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/visualizador-figuras-3d/*.jsx)"
+      "Bash(head -5 /c/Users/edtor/Desktop/apps-educativas/src/apps/conecta-parejas/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/criptograma/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/dictado-interactivo/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/laboratorio-funciones-2d/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/torre-palabras/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/velocidad-respuesta/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/visualizador-figuras-3d/*.jsx)",
+      "Bash(npx vitest:*)"
     ]
   }
 }
