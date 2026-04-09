@@ -92,6 +92,8 @@ import Criptograma from '../criptograma/Criptograma';
 
 import VelocidadRespuesta from '../velocidad-respuesta/VelocidadRespuesta';
 
+import ConectaParejas from '../conecta-parejas/ConectaParejas';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -401,4 +403,11 @@ export const appVelocidadRespuesta = {
   name: '⚡ Velocidad',
   description: 'Lee la definición y escribe la respuesta antes de que se acabe el tiempo. Modo arcade.',
   component: VelocidadRespuesta
+};
+
+export const appConectaParejas = {
+  id: 'conecta-parejas',
+  name: '🧲 Conecta Parejas',
+  description: 'Une cada palabra con su definición. Líneas de colores conectan los aciertos.',
+  component: ConectaParejas
 };
