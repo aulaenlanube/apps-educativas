@@ -90,6 +90,8 @@ import Anagramas from '../anagramas/Anagramas';
 
 import Criptograma from '../criptograma/Criptograma';
 
+import VelocidadRespuesta from '../velocidad-respuesta/VelocidadRespuesta';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -392,4 +394,11 @@ export const appCriptograma = {
   name: '🔐 Criptograma',
   description: 'Descifra la frase secreta adivinando qué letra se esconde tras cada número.',
   component: Criptograma
+};
+
+export const appVelocidadRespuesta = {
+  id: 'velocidad-respuesta',
+  name: '⚡ Velocidad',
+  description: 'Lee la definición y escribe la respuesta antes de que se acabe el tiempo. Modo arcade.',
+  component: VelocidadRespuesta
 };
