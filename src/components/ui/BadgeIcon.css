@@ -1,0 +1,114 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   BadgeIcon — animaciones para insignias.
+   Todas son sutiles, infinitas y respetan transform-origin centrado.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.badge-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-icon-wrap.is-locked {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.badge-icon-wrap.is-locked .ba-anim { animation: none !important; }
+
+.badge-icon-wrap svg { overflow: visible; }
+
+.ba-anim {
+  transform-origin: 32px 32px;
+  transform-box: fill-box;
+}
+
+/* ── Animaciones ── */
+@keyframes ba-spin       { to   { transform: rotate(360deg); } }
+@keyframes ba-pulse      { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes ba-bob        { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes ba-flicker    { 0%,100% { transform: scaleY(1) translateY(0); } 50% { transform: scaleY(1.08) translateY(-1px); } }
+@keyframes ba-twinkle    { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(.9); } }
+@keyframes ba-tick       { 0%, 88%, 100% { transform: rotate(0); } 94% { transform: rotate(8deg); } }
+@keyframes ba-orbit      { to   { transform: rotate(360deg); } }
+@keyframes ba-sway       { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes ba-shake      { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-1.5px); } 75% { transform: translateX(1.5px); } }
+@keyframes ba-rise       { 0%,100% { transform: translateY(2px); } 50% { transform: translateY(-2px); } }
+@keyframes ba-zoom       { 0% { transform: translateX(-4px); opacity:.4; } 60% { transform: translateX(3px); opacity:1; } 100% { transform: translateX(-4px); opacity:.4; } }
+@keyframes ba-bolt       { 0%,80%,100% { opacity: 1; } 85%,90% { opacity: .35; } }
+@keyframes ba-draw       { to { stroke-dashoffset: 0; } }
+@keyframes ba-glow       { 0%,100% { filter: drop-shadow(0 0 0 rgba(255,200,80,0)); } 50% { filter: drop-shadow(0 0 4px rgba(255,200,80,.85)); } }
+@keyframes ba-grow       { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes ba-wave       { 0%,100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-1px) rotate(-2deg); } 75% { transform: translateY(1px) rotate(2deg); } }
+
+/* ── Avanzadas ── */
+@keyframes ba-blink-seq    { 0%,40%,100% { opacity: .25; } 20% { opacity: 1; } }
+@keyframes ba-ring-expand  { 0% { transform: scale(.3); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
+@keyframes ba-fall         { 0% { transform: translateY(-10px); opacity: 0; } 15%,85% { opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+@keyframes ba-rise-fade    { 0% { transform: translateY(6px); opacity: 0; } 30%,70% { opacity: 1; } 100% { transform: translateY(-14px); opacity: 0; } }
+@keyframes ba-gleam        { 0%,100% { transform: translateX(-26px); opacity: 0; } 45%,55% { opacity: .9; } 50% { transform: translateX(26px); } }
+@keyframes ba-checkdraw    { 0%,20% { stroke-dashoffset: 30; } 60%,100% { stroke-dashoffset: 0; } }
+@keyframes ba-needle-swing { 0%,100% { transform: rotate(-25deg); } 30% { transform: rotate(20deg); } 60% { transform: rotate(-8deg); } 80% { transform: rotate(4deg); } }
+@keyframes ba-spin-fast    { to { transform: rotate(360deg); } }
+@keyframes ba-spin-back    { to { transform: rotate(-360deg); } }
+@keyframes ba-flame-dance  { 0%,100% { transform: scale(1) translateY(0); } 25% { transform: scale(1.05,1.1) translateY(-1px); } 50% { transform: scale(.94,1.08) translateY(0); } 75% { transform: scale(1.04,1.06) translateY(-1px); } }
+@keyframes ba-bar-grow     { 0% { transform: scaleY(.25); } 100% { transform: scaleY(1); } }
+@keyframes ba-zoom-pop     { 0%,100% { transform: scale(.85); opacity: .55; } 50% { transform: scale(1.15); opacity: 1; } }
+@keyframes ba-dart-fly     { 0%,5% { transform: translate(-16px,-16px) rotate(-30deg); opacity: 0; } 15%,30% { opacity: 1; } 55%,100% { transform: translate(0,0) rotate(0); opacity: 1; } }
+@keyframes ba-dash-slide   { to { stroke-dashoffset: -16; } }
+@keyframes ba-ember        { 0% { transform: translate(0,0) scale(1); opacity: .9; } 100% { transform: translate(var(--ex,0),var(--ey,-14px)) scale(.3); opacity: 0; } }
+@keyframes ba-runner       { 0%,100% { transform: translateX(-1px) translateY(0); } 50% { transform: translateX(1px) translateY(-1px); } }
+
+.is-animated .anim-blink-seq    { animation: ba-blink-seq    1.6s ease-in-out infinite; }
+.is-animated .anim-ring-expand  { animation: ba-ring-expand  2s   ease-out infinite; }
+.is-animated .anim-fall         { animation: ba-fall         1.6s linear infinite; }
+.is-animated .anim-rise-fade    { animation: ba-rise-fade    2.4s ease-out infinite; }
+.is-animated .anim-gleam        { animation: ba-gleam        3s   ease-in-out infinite; }
+.is-animated .anim-checkdraw    { stroke-dasharray: 30; stroke-dashoffset: 30; animation: ba-checkdraw 2.4s ease-in-out infinite; }
+.is-animated .anim-needle       { animation: ba-needle-swing 3.6s ease-in-out infinite; }
+.is-animated .anim-spin-fast    { animation: ba-spin-fast    3s   linear infinite; }
+.is-animated .anim-spin-back    { animation: ba-spin-back    7s   linear infinite; }
+.is-animated .anim-flame        { animation: ba-flame-dance  1.2s ease-in-out infinite; }
+.is-animated .anim-bar          { transform-origin: center bottom !important; animation: ba-bar-grow 2.4s ease-in-out infinite alternate; }
+.is-animated .anim-zoom-pop     { animation: ba-zoom-pop     2s   ease-in-out infinite; }
+.is-animated .anim-dart-fly     { animation: ba-dart-fly     2.6s ease-out infinite; }
+.is-animated .anim-dash-slide   { stroke-dasharray: 4 4; animation: ba-dash-slide 1s linear infinite; }
+.is-animated .anim-ember        { animation: ba-ember 1.8s ease-out infinite; }
+.is-animated .anim-runner       { animation: ba-runner 0.4s ease-in-out infinite; }
+
+.is-animated .anim-spin    { animation: ba-spin    8s   linear infinite; }
+.is-animated .anim-pulse   { animation: ba-pulse   2.4s ease-in-out infinite; }
+.is-animated .anim-bob     { animation: ba-bob     2.6s ease-in-out infinite; }
+.is-animated .anim-flicker { animation: ba-flicker 1.4s ease-in-out infinite; }
+.is-animated .anim-twinkle { animation: ba-twinkle 1.8s ease-in-out infinite; }
+.is-animated .anim-tick    { animation: ba-tick    2.8s ease-in-out infinite; }
+.is-animated .anim-orbit   { animation: ba-orbit   6s   linear infinite; }
+.is-animated .anim-sway    { animation: ba-sway    3.2s ease-in-out infinite; }
+.is-animated .anim-shake   { animation: ba-shake   2.2s ease-in-out infinite; }
+.is-animated .anim-rise    { animation: ba-rise    2.6s ease-in-out infinite; }
+.is-animated .anim-zoom    { animation: ba-zoom    2.4s ease-in-out infinite; }
+.is-animated .anim-bolt    { animation: ba-bolt    2.2s ease-in-out infinite; }
+.is-animated .anim-glow    { animation: ba-glow    2.4s ease-in-out infinite; }
+.is-animated .anim-grow    { animation: ba-grow    2.4s ease-in-out infinite; }
+.is-animated .anim-wave    { animation: ba-wave    3s   ease-in-out infinite; }
+
+/* Trazo "drawing" reusable: aplica a paths con stroke-dasharray */
+.is-animated .anim-draw {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: ba-draw 2.4s ease-in-out infinite alternate;
+}
+
+/* Atomos secundarios con distinta velocidad */
+.is-animated .anim-spin-rev  { animation: ba-spin   10s linear infinite reverse; }
+.is-animated .anim-orbit-fast{ animation: ba-orbit  3s  linear infinite; }
+.is-animated .anim-twinkle-2 { animation: ba-twinkle 1.2s ease-in-out infinite; }
+.is-animated .anim-twinkle-3 { animation: ba-twinkle 2.4s ease-in-out infinite; }
+
+/* Reducir movimiento por accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .badge-icon-wrap [class*='anim-'] { animation: none !important; }
+}

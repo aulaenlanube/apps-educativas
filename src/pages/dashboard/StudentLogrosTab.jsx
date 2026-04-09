@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter } from 'lucide-react';
 import BadgeIcon from '../../components/ui/BadgeIcon';
+import BadgeModal from '../../components/ui/BadgeModal';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     text: 'text-slate-600',  badge: 'bg-slate-200 text-slate-700' },
@@ -29,6 +30,7 @@ export default function StudentLogrosTab({ gamification }) {
 
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterRarity, setFilterRarity] = useState('all');
+  const [selectedBadge, setSelectedBadge] = useState(null);
 
   const xpInCurrentLevel = totalXp - xpForCurrentLevel;
   const xpNeededForNext = xpForNextLevel - xpForCurrentLevel;
@@ -179,10 +181,12 @@ export default function StudentLogrosTab({ gamification }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: Math.min(i * 0.03, 0.5) }}
-              className={`relative rounded-xl border-2 p-4 transition-all ${
+              onClick={() => setSelectedBadge(badge)}
+              whileHover={{ y: -2 }}
+              className={`relative rounded-xl border-2 p-4 transition-all cursor-pointer hover:shadow-md ${
                 earned
                   ? `${rarity.color} shadow-sm`
-                  : 'border-slate-200 bg-slate-50/50 opacity-50'
+                  : 'border-slate-200 bg-slate-50/50 opacity-50 hover:opacity-70'
               }`}
             >
               <div className="flex items-start gap-3">
@@ -218,6 +222,8 @@ export default function StudentLogrosTab({ gamification }) {
           );
         })}
       </div>
+
+      <BadgeModal badge={selectedBadge} onClose={() => setSelectedBadge(null)} />
 
       {filteredBadges.length === 0 && (
         <div className="text-center py-10">

@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import BadgeIcon from '@/components/ui/BadgeIcon';
+import BadgeModal from '@/components/ui/BadgeModal';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     badge: 'bg-slate-200 text-slate-700' },
@@ -38,6 +39,7 @@ export default function TeacherLogrosSection() {
   const { user } = useAuth();
   const { totalXp, level, xpForCurrentLevel, xpForNextLevel, allBadges, totalEarned, totalAvailable, loading: gamifLoading } = useGamification();
   const [filterRarity, setFilterRarity] = useState('all');
+  const [selectedBadge, setSelectedBadge] = useState(null);
   const [sessions, setSessions] = useState([]);
   const [loadingSessions, setLoadingSessions] = useState(true);
 
@@ -365,10 +367,11 @@ export default function TeacherLogrosSection() {
                   return (
                     <div
                       key={badge.code}
-                      className={`rounded-xl border-2 p-3 transition-all ${
+                      onClick={() => setSelectedBadge(badge)}
+                      className={`rounded-xl border-2 p-3 transition-all cursor-pointer hover:shadow-md hover:-translate-y-0.5 ${
                         badge.earned
                           ? `${rarity.color} shadow-sm`
-                          : 'border-slate-200 bg-slate-50/50 opacity-40'
+                          : 'border-slate-200 bg-slate-50/50 opacity-40 hover:opacity-70'
                       }`}
                     >
                       <div className="flex items-start gap-2.5">
@@ -406,6 +409,7 @@ export default function TeacherLogrosSection() {
           </>
         )}
       </div>
+      <BadgeModal badge={selectedBadge} onClose={() => setSelectedBadge(null)} />
     </motion.div>
   );
 }
