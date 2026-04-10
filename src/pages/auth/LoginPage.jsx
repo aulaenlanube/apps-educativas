@@ -12,7 +12,7 @@ import Header from '@/components/layout/Header';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { signInTeacher, signInFreeUser, signInWithGoogle, signInStudent, signInStudentEmail, resetStudentPassword, studentSetPassword, switchStudentGroup, isAuthenticated, isTeacher, isStudent, isFreeUser, signInWithGoogleAsFree } = useAuth();
+  const { signInTeacher, signInFreeUser, signInWithGoogle, signInStudent, signInStudentEmail, resetPassword, resetStudentPassword, studentSetPassword, switchStudentGroup, isAuthenticated, isTeacher, isStudent, isFreeUser, signInWithGoogleAsFree } = useAuth();
   const { toast } = useToast();
 
   // Redirigir si ya está autenticado
@@ -58,6 +58,7 @@ const LoginPage = () => {
                 <TeacherLoginForm
                   onSignIn={signInTeacher}
                   onGoogleSignIn={signInWithGoogle}
+                  onResetPassword={resetPassword}
                   navigate={navigate}
                   toast={toast}
                 />
@@ -79,6 +80,7 @@ const LoginPage = () => {
                 <FreeUserLoginForm
                   onSignIn={signInFreeUser}
                   onGoogleSignIn={signInWithGoogleAsFree}
+                  onResetPassword={resetPassword}
                   navigate={navigate}
                   toast={toast}
                 />
@@ -91,11 +93,14 @@ const LoginPage = () => {
   );
 };
 
-function TeacherLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
+function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate, toast }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,6 +131,58 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
       toast({ variant: 'destructive', title: 'Error', description: error.message });
     }
   };
+
+  if (showForgot) return (
+    <div className="space-y-4">
+      <div className="text-center pb-2">
+        <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+          <Lock className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="font-bold text-gray-800">Recuperar contrasena</h3>
+        <p className="text-sm text-gray-500 mt-1">Te enviaremos un enlace para restablecer tu contrasena</p>
+      </div>
+
+      {!resetSent ? (
+        <div className="space-y-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="teacher-reset-email">Tu email</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input id="teacher-reset-email" type="email" placeholder="tu@email.com" className="pl-10"
+                value={resetEmail} onChange={e => setResetEmail(e.target.value)} autoFocus />
+            </div>
+          </div>
+          <Button
+            onClick={async () => {
+              if (!resetEmail.trim()) return;
+              setLoading(true);
+              const { error } = await onResetPassword(resetEmail.trim());
+              setLoading(false);
+              if (error) {
+                toast({ variant: 'destructive', title: 'Error', description: error.message });
+              } else {
+                setResetSent(true);
+              }
+            }}
+            disabled={loading || !resetEmail.trim()}
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+            {loading ? 'Enviando...' : 'Enviar enlace de recuperacion'}
+          </Button>
+        </div>
+      ) : (
+        <div className="bg-green-50 rounded-xl p-4 border border-green-200 text-center">
+          <CheckCircle2 className="w-8 h-8 text-green-500 mx-auto mb-2" />
+          <p className="text-sm font-semibold text-green-800">Email enviado</p>
+          <p className="text-xs text-green-600 mt-1">Revisa tu bandeja de entrada en <strong>{resetEmail}</strong></p>
+        </div>
+      )}
+
+      <button type="button" onClick={() => { setShowForgot(false); setResetSent(false); setResetEmail(''); }}
+        className="w-full flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> Volver al login
+      </button>
+    </div>
+  );
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -175,6 +232,11 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
       >
         {loading ? 'Iniciando sesion...' : 'Iniciar Sesion'}
       </Button>
+
+      <button type="button" onClick={() => { setShowForgot(true); setResetEmail(email); }}
+        className="w-full text-center text-xs text-purple-500 hover:text-purple-700 transition-colors">
+        He olvidado mi contrasena
+      </button>
 
       <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
@@ -691,11 +753,14 @@ function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassw
 
 }
 
-function FreeUserLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
+function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate, toast }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -726,6 +791,58 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
       toast({ variant: 'destructive', title: 'Error', description: error.message });
     }
   };
+
+  if (showForgot) return (
+    <div className="space-y-4">
+      <div className="text-center pb-2">
+        <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+          <Lock className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="font-bold text-gray-800">Recuperar contrasena</h3>
+        <p className="text-sm text-gray-500 mt-1">Te enviaremos un enlace para restablecer tu contrasena</p>
+      </div>
+
+      {!resetSent ? (
+        <div className="space-y-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="free-reset-email">Tu email</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input id="free-reset-email" type="email" placeholder="tu@email.com" className="pl-10"
+                value={resetEmail} onChange={e => setResetEmail(e.target.value)} autoFocus />
+            </div>
+          </div>
+          <Button
+            onClick={async () => {
+              if (!resetEmail.trim()) return;
+              setLoading(true);
+              const { error } = await onResetPassword(resetEmail.trim());
+              setLoading(false);
+              if (error) {
+                toast({ variant: 'destructive', title: 'Error', description: error.message });
+              } else {
+                setResetSent(true);
+              }
+            }}
+            disabled={loading || !resetEmail.trim()}
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+            {loading ? 'Enviando...' : 'Enviar enlace de recuperacion'}
+          </Button>
+        </div>
+      ) : (
+        <div className="bg-green-50 rounded-xl p-4 border border-green-200 text-center">
+          <CheckCircle2 className="w-8 h-8 text-green-500 mx-auto mb-2" />
+          <p className="text-sm font-semibold text-green-800">Email enviado</p>
+          <p className="text-xs text-green-600 mt-1">Revisa tu bandeja de entrada en <strong>{resetEmail}</strong></p>
+        </div>
+      )}
+
+      <button type="button" onClick={() => { setShowForgot(false); setResetSent(false); setResetEmail(''); }}
+        className="w-full flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> Volver al login
+      </button>
+    </div>
+  );
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -781,6 +898,11 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, navigate, toast }) {
       >
         {loading ? 'Iniciando sesion...' : 'Iniciar Sesion'}
       </Button>
+
+      <button type="button" onClick={() => { setShowForgot(true); setResetEmail(email); }}
+        className="w-full text-center text-xs text-pink-500 hover:text-pink-700 transition-colors">
+        He olvidado mi contrasena
+      </button>
 
       <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">

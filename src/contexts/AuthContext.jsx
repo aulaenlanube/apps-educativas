@@ -266,12 +266,15 @@ export function AuthProvider({ children }) {
     return { data: studentData, groups };
   }
 
-  async function resetStudentPassword(email) {
+  async function resetPassword(email) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: window.location.origin + '/login',
     });
     return { error };
   }
+
+  // Alias for backwards compatibility
+  const resetStudentPassword = resetPassword;
 
   function switchStudentGroup(group) {
     setStudent(prev => {
@@ -291,7 +294,7 @@ export function AuthProvider({ children }) {
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
     signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
-    signInStudent, signInStudentEmail, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
+    signInStudent, signInStudentEmail, resetPassword, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
     fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
   }), [
     user, teacher, student, freeUser,

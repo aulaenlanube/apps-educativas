@@ -79,7 +79,13 @@
       "Bash(grep -E \"\\\\.\\(svg|jsx|js\\)$\")",
       "Bash(head -5 /c/Users/edtor/Desktop/apps-educativas/src/apps/conecta-parejas/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/criptograma/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/dictado-interactivo/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/laboratorio-funciones-2d/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/torre-palabras/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/velocidad-respuesta/*.jsx /c/Users/edtor/Desktop/apps-educativas/src/apps/visualizador-figuras-3d/*.jsx)",
       "Bash(npx vitest:*)",
-      "Bash(grep -E \"\\\\.sql$\")"
+      "Bash(grep -E \"\\\\.sql$\")",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__get_advisors",
+      "mcp__supabase__list_extensions",
+      "mcp__supabase__execute_sql",
+      "Bash(python -c ':*)",
+      "mcp__supabase__apply_migration"
     ]
   }
 }
