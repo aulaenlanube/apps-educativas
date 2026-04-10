@@ -3,19 +3,17 @@ import { lazy } from 'react';
 import { primariaApps, primariaSubjects } from './config/primariaApps';
 import { esoApps, esoSubjects } from './config/esoApps';
 import { bachilleratoApps, bachilleratoSubjects } from './config/bachilleratoApps';
-import { alApps, alSubjects } from './config/alApps';
-import { ptApps, ptSubjects } from './config/ptApps';
+import { adApps, adSubjects } from './config/adApps';
 
 // Re-exportamos todo
-export { primariaApps, esoApps, bachilleratoApps, alApps, ptApps, primariaSubjects, esoSubjects, bachilleratoSubjects, alSubjects, ptSubjects };
+export { primariaApps, esoApps, bachilleratoApps, adApps, primariaSubjects, esoSubjects, bachilleratoSubjects, adSubjects };
 
 // Mapa unificado de nivel → { apps, subjects }
 const levelRegistry = {
   primaria:     { apps: primariaApps,     subjects: primariaSubjects },
   eso:          { apps: esoApps,          subjects: esoSubjects },
   bachillerato: { apps: bachilleratoApps, subjects: bachilleratoSubjects },
-  al:           { apps: alApps,           subjects: alSubjects },
-  pt:           { apps: ptApps,           subjects: ptSubjects },
+  ad:           { apps: adApps,           subjects: adSubjects },
 };
 
 /**

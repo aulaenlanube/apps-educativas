@@ -664,7 +664,7 @@
       }
     ]
   },
-  "al": {
+  "ad": {
     "1": [
       {
         "id": "tutoria",
@@ -705,15 +705,6 @@
         "id": "lectoescritura",
         "nombre": "Lectoescritura",
         "icon": "✏️"
-      }
-    ]
-  },
-  "pt": {
-    "1": [
-      {
-        "id": "tutoria",
-        "nombre": "Tutoría",
-        "icon": "🤝"
       },
       {
         "id": "atencion",

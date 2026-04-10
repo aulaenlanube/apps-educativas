@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
-import { esoSubjects, primariaSubjects, bachilleratoSubjects, alSubjects, ptSubjects } from '@/apps/appList';
+import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
 
@@ -69,12 +69,12 @@ const SubjectPage = () => {
   const prevIndexRef = React.useRef(null);
   const [direction, setDirection] = React.useState(0);
 
-  const levelNames = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', al: 'Audición y Lenguaje', pt: 'Pedagogía Terapéutica' };
+  const levelNames = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', ad: 'Atención a la Diversidad' };
   const levelName = levelNames[level] || 'Primaria';
-  const isSpecialLevel = level === 'al' || level === 'pt';
+  const isSpecialLevel = level === 'ad';
   const fullTitle = isSpecialLevel ? levelName : `${grade}º ${levelName}`;
 
-  const subjectsDataMap = { primaria: primariaSubjects, eso: esoSubjects, bachillerato: bachilleratoSubjects, al: alSubjects, pt: ptSubjects };
+  const subjectsDataMap = { primaria: primariaSubjects, eso: esoSubjects, bachillerato: bachilleratoSubjects, ad: adSubjects };
   const subjectsData = subjectsDataMap[level] || primariaSubjects;
   const subjectsForCourse = subjectsData?.[grade] || [];
 
@@ -91,8 +91,7 @@ const SubjectPage = () => {
     { level: 'eso', grade: '4' },
     { level: 'bachillerato', grade: '1' },
     { level: 'bachillerato', grade: '2' },
-    { level: 'al', grade: '1' },
-    { level: 'pt', grade: '1' },
+    { level: 'ad', grade: '1' },
   ];
 
   const currentIndex = allSteps.findIndex(s => s.level === level && String(s.grade) === String(grade));

@@ -30,6 +30,44 @@ function setCache(key, data) {
   cache.set(key, { data, ts: Date.now() });
 }
 
+// --- Mapeo de Atención a la Diversidad → fuentes de datos existentes ---
+// El nivel 'ad' no tiene datos propios en la BD; redirigimos a datos de
+// primaria (nivel 3, contenido accesible) mapeando cada bloque a la
+// asignatura que mejor encaja por contenido.
+const AD_SUBJECT_MAP = {
+  // Audición y Lenguaje → lengua (vocabulario, fonética, escritura)
+  'articulacion':          { level: 'primaria', grade: 3, subject: 'lengua' },
+  'vocabulario':           { level: 'primaria', grade: 3, subject: 'lengua' },
+  'morfosintaxis':         { level: 'primaria', grade: 3, subject: 'lengua' },
+  'conciencia-fonologica': { level: 'primaria', grade: 2, subject: 'lengua' },
+  'lectoescritura':        { level: 'primaria', grade: 2, subject: 'lengua' },
+  'lectoescritura-adaptada': { level: 'primaria', grade: 1, subject: 'lengua' },
+  // Audición y Lenguaje → tutoria / ciencias (comprensión, pragmática)
+  'pragmatica':            { level: 'primaria', grade: 3, subject: 'tutoria' },
+  'comprension-oral':      { level: 'primaria', grade: 3, subject: 'tutoria' },
+  // Pedagogía Terapéutica → tutoria / lengua / ciencias-naturales
+  'atencion':              { level: 'primaria', grade: 3, subject: 'ciencias-naturales' },
+  'memoria':               { level: 'primaria', grade: 3, subject: 'lengua' },
+  'funciones-ejecutivas':  { level: 'primaria', grade: 3, subject: 'ciencias-naturales' },
+  'razonamiento':          { level: 'primaria', grade: 3, subject: 'matematicas' },
+  'habilidades-sociales':  { level: 'primaria', grade: 3, subject: 'tutoria' },
+  'autonomia':             { level: 'primaria', grade: 2, subject: 'tutoria' },
+  // Tutoría → tutoría directa
+  'tutoria':               { level: 'primaria', grade: 3, subject: 'tutoria' },
+};
+
+/**
+ * Si el nivel es 'ad', traduce los parámetros a una fuente de datos real.
+ * Devuelve { level, grade, subject } resueltos.
+ */
+function resolveADParams(level, grade, subjectId) {
+  if (level !== 'ad') return { level, grade, subject: subjectId };
+  const mapping = AD_SUBJECT_MAP[subjectId];
+  if (mapping) return { level: mapping.level, grade: mapping.grade, subject: mapping.subject };
+  // Fallback genérico si no hay mapeo
+  return { level: 'primaria', grade: 3, subject: 'lengua' };
+}
+
 /**
  * Obtener datos runner (formato: { categoria: [palabras...] })
  * Usado por: Runner, JuegoMemoria, Clasificador, LluviaDePalabras, ExcavacionSelectiva, SnakePalabras
@@ -39,10 +77,11 @@ export async function getRunnerData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_runner_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -67,10 +106,11 @@ export async function getRoscoData(level, grade, subjectId, maxDifficulty = 3) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_rosco_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId,
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject,
     p_max_difficulty: maxDifficulty
   });
 
@@ -93,10 +133,11 @@ export async function getIntrusoData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_intruso_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -118,10 +159,11 @@ export async function getParejasData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_parejas_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -143,10 +185,11 @@ export async function getOrdenaFrasesData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_ordena_frases_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -168,10 +211,11 @@ export async function getOrdenaHistoriasData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_ordena_historias_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -193,10 +237,11 @@ export async function getDetectiveData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_detective_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {
@@ -218,10 +263,11 @@ export async function getComprensionData(level, grade, subjectId) {
   const cached = getCached(key);
   if (cached) return cached;
 
+  const r = resolveADParams(level, grade, subjectId);
   const { data, error } = await supabase.rpc('get_comprension_data', {
-    p_level: level,
-    p_grade: parseInt(grade),
-    p_subject: subjectId
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
   });
 
   if (error) {

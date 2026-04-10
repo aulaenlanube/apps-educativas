@@ -85,7 +85,8 @@
       "mcp__supabase__list_extensions",
       "mcp__supabase__execute_sql",
       "Bash(python -c ':*)",
-      "mcp__supabase__apply_migration"
+      "mcp__supabase__apply_migration",
+      "Bash(grep -r \"useParams\" /c/Users/edtor/Desktop/apps-educativas/src/apps/_shared/*.jsx)"
     ]
   }
 }

@@ -355,75 +355,43 @@ const HomePage = () => {
               <GradientTitle tag="h2" className="text-4xl">Atención a la Diversidad</GradientTitle>
               <Brain className="w-8 h-8 text-teal-500" />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Apps especializadas para profesionales de Audición y Lenguaje y Pedagogía Terapéutica.
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Apps especializadas para profesionales de Audición y Lenguaje, Pedagogía Terapéutica y apoyo al desarrollo cognitivo y comunicativo.
             </p>
           </motion.div>
 
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto"
+            className="flex justify-center max-w-xl mx-auto"
           >
-            {/* Audición y Lenguaje */}
             <motion.div
               variants={itemVariants}
               whileHover={{ scale: 1.04, y: -4 }}
               whileTap={{ scale: 0.97 }}
-              className="group"
+              className="group w-full"
             >
               <div
-                className="bg-gradient-to-br from-rose-500 to-orange-600 pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
-                onClick={() => handleGradeClick('al', '1')}
+                className="bg-gradient-to-br from-teal-500 via-cyan-600 to-indigo-600 pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
+                onClick={() => handleGradeClick('ad', '1')}
               >
                 <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                  <div className="absolute top-0 right-0 w-44 h-44 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute bottom-0 left-0 w-36 h-36 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
                 </div>
 
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-                    <GradeCardIcon type="al" grade="1" />
+                  <div className="mb-4 transition-transform duration-500 group-hover:scale-110">
+                    <GradeCardIcon type="ad" grade="1" />
                   </div>
                   <div className="text-center mb-3">
-                    <span className="text-2xl font-black text-white drop-shadow-sm block">Audición y</span>
-                    <span className="text-2xl font-black text-white drop-shadow-sm block">Lenguaje</span>
+                    <span className="text-3xl font-black text-white drop-shadow-sm block">Atención a la</span>
+                    <span className="text-3xl font-black text-white drop-shadow-sm block">Diversidad</span>
                   </div>
-                  <p className="text-white/80 text-sm text-center mb-4 px-2">Articulación, vocabulario, pragmática, conciencia fonológica y más</p>
-                  <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
-                    <span className="text-sm font-bold text-white">Explorar</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Pedagogía Terapéutica */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.04, y: -4 }}
-              whileTap={{ scale: 0.97 }}
-              className="group"
-            >
-              <div
-                className="bg-gradient-to-br from-teal-500 to-cyan-600 pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
-                onClick={() => handleGradeClick('pt', '1')}
-              >
-                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
-                </div>
-
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-                    <GradeCardIcon type="pt" grade="1" />
-                  </div>
-                  <div className="text-center mb-3">
-                    <span className="text-2xl font-black text-white drop-shadow-sm block">Pedagogía</span>
-                    <span className="text-2xl font-black text-white drop-shadow-sm block">Terapéutica</span>
-                  </div>
-                  <p className="text-white/80 text-sm text-center mb-4 px-2">Atención, memoria, funciones ejecutivas, habilidades sociales y más</p>
-                  <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
+                  <p className="text-white/80 text-sm text-center mb-5 px-4 max-w-md leading-relaxed">
+                    Apps especializadas de Audición y Lenguaje, Pedagogía Terapéutica y desarrollo cognitivo. Articulación, vocabulario, pragmática, atención, memoria, funciones ejecutivas, habilidades sociales y mucho más.
+                  </p>
+                  <div className="bg-white/20 backdrop-blur-md rounded-full px-8 py-2.5 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-10">
                     <span className="text-sm font-bold text-white">Explorar</span>
                   </div>
                 </div>

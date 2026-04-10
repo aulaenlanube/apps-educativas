@@ -133,12 +133,7 @@ const particleConfigs = {
     { shape: 'diamond', x: 93, y: 14, size: 4, delay: 0.6, dur: 3, color: 'rgba(239,68,68,0.45)' },
     { shape: 'star4', x: 6, y: 76, size: 3, delay: 1.2, dur: 2.8, color: 'rgba(167,139,250,0.4)' },
   ],
-  'al-1': [
-    { shape: 'circle', x: 4, y: 14, size: 4, delay: 0, dur: 2.5, color: 'rgba(251,146,60,0.5)' },
-    { shape: 'circle', x: 92, y: 22, size: 3, delay: 0.8, dur: 3, color: 'rgba(253,186,116,0.45)' },
-    { shape: 'star4', x: 8, y: 78, size: 3.5, delay: 1.5, dur: 2.8, color: 'rgba(253,224,71,0.4)' },
-  ],
-  'pt-1': [
+  'ad-1': [
     { shape: 'diamond', x: 5, y: 12, size: 4, delay: 0, dur: 3, color: 'rgba(45,212,191,0.5)' },
     { shape: 'circle', x: 92, y: 18, size: 3, delay: 0.6, dur: 2.5, color: 'rgba(244,114,182,0.45)' },
     { shape: 'star4', x: 6, y: 76, size: 3.5, delay: 1.2, dur: 2.8, color: 'rgba(167,139,250,0.4)' },
@@ -1580,8 +1575,7 @@ const iconMap = {
   'eso-4': { Component: GradCap, cls: 'gc-gradcap' },
   'bachillerato-1': { Component: Telescope, cls: 'gc-telescope' },
   'bachillerato-2': { Component: Diploma, cls: 'gc-diploma' },
-  'al-1': { Component: ALCard, cls: 'gc-alcard' },
-  'pt-1': { Component: PTCard, cls: 'gc-ptcard' },
+  'ad-1': { Component: PTCard, cls: 'gc-ptcard' },
 };
 
 const GradeCardIcon = ({ type, grade, className = '' }) => {
