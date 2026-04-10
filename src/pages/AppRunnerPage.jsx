@@ -132,8 +132,9 @@ const AppRunnerPage = () => {
     const isRunner = app.id === 'runner';
     const isRetroApp = isTerminal || isRunner;
 
-    const backgroundClass = app.id.startsWith('isla-de-la-calma')
-        ? 'bg-[#f0f7f8]'
+    const isCalma = app.id.startsWith('isla-de-la-calma');
+    const backgroundClass = isCalma
+        ? 'bg-[#1a2e3b] dark:bg-[#080e14]'
         : isRetroApp || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('sistema-solar')
             ? 'bg-black'
             : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
@@ -151,13 +152,13 @@ const AppRunnerPage = () => {
     // Conditional Styles
     const btnBackClass = isRetroApp
         ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all font-mono tracking-widest uppercase"
-        : isFullScreenApp
+        : isFullScreenApp || isCalma
             ? "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-xl ring-1 ring-white/10"
             : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0";
 
     const btnHeartClass = isRetroApp
         ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
-        : isFullScreenApp
+        : isFullScreenApp || isCalma
             ? "bg-white/10 backdrop-blur-md border border-white/20 text-red-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
             : "bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group";
 
@@ -170,7 +171,7 @@ const AppRunnerPage = () => {
     // Mismas variantes para el botón de Ranking (igual estilo que el corazón pero en dorado)
     const btnRankingClass = isRetroApp
         ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
-        : isFullScreenApp
+        : isFullScreenApp || isCalma
             ? "bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
             : "bg-white/80 backdrop-blur-sm hover:bg-amber-50 text-amber-600 border border-amber-200 shadow-sm hover:shadow-md transition-all group";
 
@@ -208,7 +209,7 @@ const AppRunnerPage = () => {
 
                 <div className={`${isFullScreenApp ? 'absolute top-6 left-6 right-6 z-[100] w-auto' : `w-full ${containerClass} relative z-[100] mb-4`} flex items-center gap-3`}>
 
-                    {isRetroApp || isFullScreenApp ? (
+                    {isRetroApp || isFullScreenApp || isCalma ? (
                         <Button
                             onClick={() => navigate(backPath)}
                             className={btnBackClass}

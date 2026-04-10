@@ -1129,6 +1129,532 @@ const Quimica = () => (
   </svg>
 );
 
+/* ── AL: Audición y Lenguaje ─────────────────────────────────── */
+
+/* Articulación – Boca con ondas de sonido */
+const Articulacion = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-art" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#FB923C" />
+        <stop offset="100%" stopColor="#EA580C" />
+      </linearGradient>
+    </defs>
+    {/* Face circle */}
+    <circle cx="20" cy="24" r="16" fill="#FFF7ED" stroke="url(#si-art)" strokeWidth="1.5" />
+    {/* Eyes */}
+    <circle cx="15" cy="20" r="2" fill="#EA580C" opacity="0.6"
+      style={{ animation: 'si-blink 3s ease-in-out infinite' }} />
+    <circle cx="25" cy="20" r="2" fill="#EA580C" opacity="0.6"
+      style={{ animation: 'si-blink 3s ease-in-out 0.2s infinite' }} />
+    {/* Mouth – opening and closing */}
+    <ellipse cx="20" cy="30" rx="6" ry="3.5" fill="#FDBA74" stroke="#EA580C" strokeWidth="0.8"
+      style={{ transformOrigin: '20px 30px', animation: 'si-breathe 2s ease-in-out infinite' }} />
+    <ellipse cx="20" cy="29" rx="3" ry="1.5" fill="#FFF7ED" opacity="0.5" />
+    {/* Sound waves emanating from mouth */}
+    <path d="M34 24 Q37 20 34 16" stroke="#FB923C" strokeWidth="1.2" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out infinite' }} />
+    <path d="M37 26 Q41 20 37 14" stroke="#FDBA74" strokeWidth="1" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out 0.4s infinite' }} />
+    <path d="M40 28 Q45 20 40 12" stroke="#FED7AA" strokeWidth="0.8" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out 0.8s infinite' }} />
+    {/* Phoneme letters floating */}
+    <text x="38" y="10" fill="#EA580C" fontSize="5" fontWeight="bold" opacity="0.5"
+      style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }}>r</text>
+    <text x="42" y="22" fill="#FB923C" fontSize="4" fontWeight="bold" opacity="0.4"
+      style={{ animation: 'si-bounce 3s ease-in-out 0.5s infinite' }}>s</text>
+  </svg>
+);
+
+/* ALVocabulario – Nube de palabras interconectadas */
+const ALVocabulario = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-alv" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F472B6" />
+        <stop offset="100%" stopColor="#DB2777" />
+      </linearGradient>
+    </defs>
+    {/* Central word cloud */}
+    <rect x="10" y="16" width="28" height="16" rx="8" fill="#FDF2F8" stroke="url(#si-alv)" strokeWidth="1.2" />
+    {/* Smaller clouds */}
+    <rect x="2" y="6" width="16" height="10" rx="5" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8"
+      style={{ animation: 'si-float 3.5s ease-in-out infinite' }} />
+    <rect x="30" y="4" width="14" height="9" rx="4.5" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8"
+      style={{ animation: 'si-float 4s ease-in-out 0.5s infinite' }} />
+    <rect x="6" y="34" width="15" height="10" rx="5" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8"
+      style={{ animation: 'si-float 3s ease-in-out 1s infinite' }} />
+    <rect x="28" y="36" width="16" height="9" rx="4.5" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8"
+      style={{ animation: 'si-float 3.5s ease-in-out 1.5s infinite' }} />
+    {/* Words inside clouds */}
+    <text x="10" y="12" fill="#DB2777" fontSize="4" fontWeight="bold" opacity="0.7">sol</text>
+    <text x="34" y="10" fill="#EC4899" fontSize="3.5" fontWeight="bold" opacity="0.6">mar</text>
+    <text x="16" y="26" fill="#BE185D" fontSize="5.5" fontWeight="bold" opacity="0.8"
+      style={{ animation: 'si-breathe 3s ease-in-out infinite', transformOrigin: '24px 25px' }}>ABC</text>
+    <text x="10" y="41" fill="#DB2777" fontSize="3.5" fontWeight="bold" opacity="0.6">luz</text>
+    <text x="32" y="42" fill="#EC4899" fontSize="4" fontWeight="bold" opacity="0.6">pan</text>
+    {/* Connecting lines */}
+    <line x1="16" y1="16" x2="14" y2="16" stroke="#F9A8D4" strokeWidth="0.6" strokeDasharray="2 1" />
+    <line x1="32" y1="13" x2="34" y2="16" stroke="#F9A8D4" strokeWidth="0.6" strokeDasharray="2 1" />
+    <line x1="16" y1="32" x2="14" y2="34" stroke="#F9A8D4" strokeWidth="0.6" strokeDasharray="2 1" />
+    <line x1="32" y1="32" x2="34" y2="36" stroke="#F9A8D4" strokeWidth="0.6" strokeDasharray="2 1" />
+  </svg>
+);
+
+/* Morfosintaxis – Bloques de frase ensamblados */
+const Morfosintaxis = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-mrf" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#8B5CF6" />
+        <stop offset="100%" stopColor="#6D28D9" />
+      </linearGradient>
+    </defs>
+    {/* Sentence blocks – puzzle pieces */}
+    <g style={{ animation: 'si-float 4s ease-in-out infinite' }}>
+      <rect x="3" y="14" width="12" height="8" rx="2" fill="#8B5CF6" />
+      <text x="5" y="20" fill="white" fontSize="4" fontWeight="bold">Suj.</text>
+      {/* Puzzle connector right */}
+      <circle cx="15" cy="18" r="2" fill="#8B5CF6" />
+    </g>
+    <g style={{ animation: 'si-float 4s ease-in-out 0.3s infinite' }}>
+      <rect x="18" y="14" width="12" height="8" rx="2" fill="#A78BFA" />
+      <text x="20" y="20" fill="white" fontSize="4" fontWeight="bold">Ver.</text>
+      {/* Puzzle connector left and right */}
+      <circle cx="18" cy="18" r="2" fill="#A78BFA" />
+      <circle cx="30" cy="18" r="2" fill="#A78BFA" />
+    </g>
+    <g style={{ animation: 'si-float 4s ease-in-out 0.6s infinite' }}>
+      <rect x="33" y="14" width="12" height="8" rx="2" fill="#C4B5FD" />
+      <text x="35" y="20" fill="#4C1D95" fontSize="4" fontWeight="bold">Obj.</text>
+      <circle cx="33" cy="18" r="2" fill="#C4B5FD" />
+    </g>
+    {/* Bottom row – being assembled */}
+    <g style={{ transformOrigin: '24px 34px', animation: 'si-swing 3s ease-in-out infinite' }}>
+      <rect x="6" y="28" width="36" height="10" rx="3" fill="#EDE9FE" stroke="#8B5CF6" strokeWidth="0.8" />
+      <text x="10" y="35" fill="#6D28D9" fontSize="4" fontWeight="bold" opacity="0.7">El gato come pez</text>
+    </g>
+    {/* Arrow down */}
+    <path d="M24 9 L24 13" stroke="#8B5CF6" strokeWidth="1.2" strokeLinecap="round" markerEnd="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out infinite' }} />
+    <path d="M21 11 L24 14 L27 11" stroke="#8B5CF6" strokeWidth="1" fill="none" />
+    {/* Sparkles */}
+    <circle cx="4" cy="8" r="1.5" fill="#DDD6FE" style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }} />
+    <circle cx="44" cy="10" r="1" fill="#C4B5FD" style={{ animation: 'si-bounce 3s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
+/* Pragmatica – Bocadillos de diálogo */
+const Pragmatica = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-prg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#06B6D4" />
+        <stop offset="100%" stopColor="#0891B2" />
+      </linearGradient>
+    </defs>
+    {/* Person 1 silhouette */}
+    <circle cx="10" cy="36" r="4" fill="#0E7490" opacity="0.5" />
+    <rect x="7" y="40" width="6" height="6" rx="2" fill="#0E7490" opacity="0.4" />
+    {/* Person 2 silhouette */}
+    <circle cx="38" cy="36" r="4" fill="#0E7490" opacity="0.5" />
+    <rect x="35" y="40" width="6" height="6" rx="2" fill="#0E7490" opacity="0.4" />
+    {/* Speech bubble 1 – left */}
+    <g style={{ transformOrigin: '16px 18px', animation: 'si-breathe 3s ease-in-out infinite' }}>
+      <rect x="4" y="6" width="22" height="14" rx="5" fill="#ECFEFF" stroke="url(#si-prg)" strokeWidth="1" />
+      <path d="M12 20 L9 26 L16 20" fill="#ECFEFF" stroke="#06B6D4" strokeWidth="1" strokeLinejoin="round" />
+      <text x="8" y="15" fill="#0891B2" fontSize="4.5" fontWeight="bold">Hola!</text>
+    </g>
+    {/* Speech bubble 2 – right */}
+    <g style={{ transformOrigin: '34px 22px', animation: 'si-breathe 3s ease-in-out 1s infinite' }}>
+      <rect x="22" y="16" width="22" height="12" rx="5" fill="#CFFAFE" stroke="#06B6D4" strokeWidth="0.8" />
+      <path d="M38 28 L40 32 L34 28" fill="#CFFAFE" stroke="#06B6D4" strokeWidth="0.8" strokeLinejoin="round" />
+      <text x="26" y="24" fill="#0E7490" fontSize="4" fontWeight="bold">Genial!</text>
+    </g>
+    {/* Thought dots */}
+    <circle cx="24" cy="4" r="1.5" fill="#67E8F9" style={{ animation: 'si-bounce 2s ease-in-out infinite' }} />
+    <circle cx="44" cy="8" r="1" fill="#A5F3FC" style={{ animation: 'si-bounce 2.5s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
+/* ConcienciaFonologica – Ondas de sonido con sílabas */
+const ConcienciaFonologica = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-fon" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#D97706" />
+      </linearGradient>
+    </defs>
+    {/* Ear shape */}
+    <path d="M12 18 Q6 18 6 26 Q6 36 14 38 Q16 38 16 36 Q12 34 12 28 Q12 22 16 20"
+      stroke="url(#si-fon)" strokeWidth="2" fill="#FFFBEB" strokeLinecap="round" />
+    <circle cx="14" cy="28" r="3" fill="#FDE68A" stroke="#D97706" strokeWidth="0.8" />
+    {/* Sound wave arcs */}
+    <path d="M22 18 Q26 24 22 30" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 1.8s ease-in-out infinite' }} />
+    <path d="M26 14 Q32 24 26 34" stroke="#FBBF24" strokeWidth="1.2" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 1.8s ease-in-out 0.3s infinite' }} />
+    <path d="M30 10 Q38 24 30 38" stroke="#FDE68A" strokeWidth="1" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 1.8s ease-in-out 0.6s infinite' }} />
+    {/* Syllable bubbles */}
+    <g style={{ animation: 'si-float 3s ease-in-out infinite' }}>
+      <rect x="34" y="8" width="10" height="7" rx="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="0.7" />
+      <text x="36" y="13" fill="#B45309" fontSize="4" fontWeight="bold">pa</text>
+    </g>
+    <g style={{ animation: 'si-float 3s ease-in-out 0.5s infinite' }}>
+      <rect x="36" y="20" width="10" height="7" rx="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="0.7" />
+      <text x="38" y="25" fill="#B45309" fontSize="4" fontWeight="bold">la</text>
+    </g>
+    <g style={{ animation: 'si-float 3s ease-in-out 1s infinite' }}>
+      <rect x="34" y="32" width="12" height="7" rx="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="0.7" />
+      <text x="36" y="37" fill="#B45309" fontSize="4" fontWeight="bold">bra</text>
+    </g>
+  </svg>
+);
+
+/* ALComprensionOral – Oído con check */
+const ALComprensionOral = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-alco" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#14B8A6" />
+        <stop offset="100%" stopColor="#0D9488" />
+      </linearGradient>
+    </defs>
+    {/* Large ear */}
+    <path d="M20 8 Q8 10 8 24 Q8 40 20 42 Q24 42 24 38 Q14 36 14 26 Q14 14 22 12"
+      stroke="url(#si-alco)" strokeWidth="2.5" fill="#F0FDFA" strokeLinecap="round"
+      style={{ transformOrigin: '16px 24px', animation: 'si-breathe 4s ease-in-out infinite' }} />
+    <circle cx="20" cy="26" r="4" fill="#99F6E4" stroke="#0D9488" strokeWidth="1" />
+    <circle cx="20" cy="26" r="1.5" fill="#14B8A6" />
+    {/* Sound entering */}
+    <path d="M30 20 Q34 24 30 28" stroke="#2DD4BF" strokeWidth="1.5" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out infinite' }} />
+    <path d="M34 16 Q40 24 34 32" stroke="#5EEAD4" strokeWidth="1" strokeLinecap="round" fill="none"
+      style={{ animation: 'si-shimmer 2s ease-in-out 0.4s infinite' }} />
+    {/* Checkmark – understanding */}
+    <g style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }}>
+      <circle cx="40" cy="10" r="5" fill="#D1FAE5" stroke="#10B981" strokeWidth="1" />
+      <path d="M37.5 10 L39 12 L43 7.5" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </g>
+    {/* Speech text lines */}
+    <line x1="30" y1="38" x2="42" y2="38" stroke="#99F6E4" strokeWidth="1" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 3s ease-in-out infinite' }} />
+    <line x1="32" y1="42" x2="40" y2="42" stroke="#99F6E4" strokeWidth="0.8" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 3s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
+/* ALLectoescritura – Lápiz escribiendo sobre líneas */
+const ALLectoescritura = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-alle" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#E11D48" />
+        <stop offset="100%" stopColor="#BE123C" />
+      </linearGradient>
+    </defs>
+    {/* Paper */}
+    <rect x="6" y="4" width="30" height="40" rx="3" fill="white" stroke="#FDA4AF" strokeWidth="0.8" />
+    <line x1="12" y1="4" x2="12" y2="44" stroke="#FECDD3" strokeWidth="0.6" />
+    {/* Writing lines */}
+    {[14, 20, 26, 32, 38].map((y, i) => (
+      <line key={i} x1="14" y1={y} x2="34" y2={y} stroke="#FCE7F3" strokeWidth="0.8" />
+    ))}
+    {/* Handwritten text appearing */}
+    <path d="M15 13 Q18 10 20 13 Q22 16 25 13" stroke="#E11D48" strokeWidth="1" fill="none"
+      strokeDasharray="20" style={{ animation: 'si-draw 3s ease-in-out infinite' }} />
+    <path d="M15 19 Q19 16 22 19 Q25 22 28 19" stroke="#F43F5E" strokeWidth="1" fill="none"
+      strokeDasharray="20" style={{ animation: 'si-draw 3s ease-in-out 0.5s infinite' }} />
+    <path d="M15 25 Q20 22 24 25" stroke="#FB7185" strokeWidth="1" fill="none"
+      strokeDasharray="15" style={{ animation: 'si-draw 3s ease-in-out 1s infinite' }} />
+    {/* Pencil – writing motion */}
+    <g style={{ transformOrigin: '40px 36px', animation: 'si-swing 2s ease-in-out infinite' }}>
+      <rect x="36" y="10" width="5" height="28" rx="1" fill="#FBBF24" transform="rotate(15 38 24)" />
+      <polygon points="36,38 38,44 40,38" fill="#F59E0B" transform="rotate(15 38 24)" />
+      <rect x="36" y="10" width="5" height="4" rx="1" fill="#FDE68A" transform="rotate(15 38 24)" />
+      <line x1="38.5" y1="40" x2="38.5" y2="44" stroke="#92400E" strokeWidth="0.5" transform="rotate(15 38 24)" />
+    </g>
+    {/* Sparkle */}
+    <circle cx="8" cy="8" r="1.5" fill="#FECDD3" style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }} />
+  </svg>
+);
+
+/* ── PT: Pedagogía Terapéutica ───────────────────────────────── */
+
+/* Atencion – Ojo con foco de luz */
+const Atencion = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-ate" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#EF4444" />
+        <stop offset="100%" stopColor="#DC2626" />
+      </linearGradient>
+      <radialGradient id="si-ate-g" cx="50%" cy="50%">
+        <stop offset="0%" stopColor="#FEF2F2" />
+        <stop offset="100%" stopColor="#FECACA" />
+      </radialGradient>
+    </defs>
+    {/* Target rings */}
+    <circle cx="24" cy="24" r="18" fill="none" stroke="#FECACA" strokeWidth="1"
+      style={{ animation: 'si-breathe 3s ease-in-out infinite', transformOrigin: '24px 24px' }} />
+    <circle cx="24" cy="24" r="13" fill="none" stroke="#FCA5A5" strokeWidth="1.2"
+      style={{ animation: 'si-breathe 3s ease-in-out 0.3s infinite', transformOrigin: '24px 24px' }} />
+    <circle cx="24" cy="24" r="8" fill="url(#si-ate-g)" stroke="#F87171" strokeWidth="1.5" />
+    {/* Bullseye */}
+    <circle cx="24" cy="24" r="3" fill="url(#si-ate)" />
+    <circle cx="23" cy="23" r="1" fill="rgba(255,255,255,0.4)" />
+    {/* Focus lines – pulsing */}
+    <line x1="24" y1="2" x2="24" y2="6" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 2s ease-in-out infinite' }} />
+    <line x1="24" y1="42" x2="24" y2="46" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 2s ease-in-out 0.5s infinite' }} />
+    <line x1="2" y1="24" x2="6" y2="24" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 2s ease-in-out 1s infinite' }} />
+    <line x1="42" y1="24" x2="46" y2="24" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"
+      style={{ animation: 'si-shimmer 2s ease-in-out 1.5s infinite' }} />
+    {/* Sparkle hits */}
+    <circle cx="24" cy="24" r="0" fill="none" stroke="rgba(239,68,68,0.3)" strokeWidth="0.8"
+      style={{ animation: 'si-ripple 2s ease-out infinite' }} />
+  </svg>
+);
+
+/* Memoria – Cerebro con engranajes */
+const Memoria = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-mem" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#A78BFA" />
+        <stop offset="100%" stopColor="#7C3AED" />
+      </linearGradient>
+    </defs>
+    {/* Brain shape */}
+    <path d="M24 6 Q14 6 10 14 Q6 22 10 30 Q14 38 24 42 Q34 38 38 30 Q42 22 38 14 Q34 6 24 6"
+      fill="#EDE9FE" stroke="url(#si-mem)" strokeWidth="1.5"
+      style={{ transformOrigin: '24px 24px', animation: 'si-breathe 4s ease-in-out infinite' }} />
+    {/* Brain fold */}
+    <path d="M24 10 Q24 24 24 38" stroke="#C4B5FD" strokeWidth="1" />
+    <path d="M14 16 Q20 20 14 26" stroke="#C4B5FD" strokeWidth="0.8" fill="none" />
+    <path d="M34 16 Q28 20 34 26" stroke="#C4B5FD" strokeWidth="0.8" fill="none" />
+    {/* Memory cards flipping */}
+    <g style={{ transformOrigin: '14px 20px', animation: 'si-flip 3s ease-in-out infinite' }}>
+      <rect x="11" y="17" width="6" height="6" rx="1" fill="#8B5CF6" />
+      <text x="12.5" y="22" fill="white" fontSize="4" fontWeight="bold">?</text>
+    </g>
+    <g style={{ transformOrigin: '34px 20px', animation: 'si-flip 3s ease-in-out 0.5s infinite' }}>
+      <rect x="31" y="17" width="6" height="6" rx="1" fill="#A78BFA" />
+      <text x="32.5" y="22" fill="white" fontSize="4" fontWeight="bold">!</text>
+    </g>
+    {/* Lightning bolt – recall */}
+    <path d="M22 28 L26 24 L23 24 L26 20" stroke="#F59E0B" strokeWidth="1.2" fill="none"
+      strokeLinecap="round" strokeLinejoin="round"
+      style={{ animation: 'si-flicker 3s ease-in-out infinite' }} />
+    {/* Sparkles */}
+    <circle cx="6" cy="12" r="1.5" fill="#DDD6FE" style={{ animation: 'si-bounce 2s ease-in-out infinite' }} />
+    <circle cx="42" cy="14" r="1" fill="#C4B5FD" style={{ animation: 'si-bounce 2.5s ease-in-out 0.5s infinite' }} />
+    <circle cx="8" cy="36" r="1" fill="#EDE9FE" style={{ animation: 'si-bounce 3s ease-in-out 1s infinite' }} />
+  </svg>
+);
+
+/* FuncionesEjecutivas – Engranajes interconectados */
+const FuncionesEjecutivas = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-fej" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#2563EB" />
+        <stop offset="100%" stopColor="#1D4ED8" />
+      </linearGradient>
+    </defs>
+    {/* Large gear */}
+    <g style={{ transformOrigin: '18px 22px', animation: 'si-spin 8s linear infinite' }}>
+      <circle cx="18" cy="22" r="10" fill="#DBEAFE" stroke="url(#si-fej)" strokeWidth="1.5" />
+      <circle cx="18" cy="22" r="4" fill="#2563EB" />
+      <circle cx="18" cy="22" r="2" fill="#DBEAFE" />
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+        <rect key={i} x="16" y="10" width="4" height="4" rx="0.5" fill="#3B82F6"
+          transform={`rotate(${angle} 18 22)`} />
+      ))}
+    </g>
+    {/* Small gear – counter-rotating */}
+    <g style={{ transformOrigin: '34px 16px', animation: 'si-spin 5s linear infinite reverse' }}>
+      <circle cx="34" cy="16" r="6" fill="#EFF6FF" stroke="#60A5FA" strokeWidth="1.2" />
+      <circle cx="34" cy="16" r="2.5" fill="#3B82F6" />
+      <circle cx="34" cy="16" r="1" fill="#EFF6FF" />
+      {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+        <rect key={i} x="33" y="9" width="2.5" height="2.5" rx="0.4" fill="#60A5FA"
+          transform={`rotate(${angle} 34 16)`} />
+      ))}
+    </g>
+    {/* Third gear */}
+    <g style={{ transformOrigin: '36px 34px', animation: 'si-spin 6s linear infinite' }}>
+      <circle cx="36" cy="34" r="7" fill="#EFF6FF" stroke="#60A5FA" strokeWidth="1" />
+      <circle cx="36" cy="34" r="3" fill="#3B82F6" />
+      <circle cx="36" cy="34" r="1.2" fill="#EFF6FF" />
+      {[0, 51, 102, 153, 204, 255, 306].map((angle, i) => (
+        <rect key={i} x="34.5" y="26" width="3" height="3" rx="0.4" fill="#60A5FA"
+          transform={`rotate(${angle} 36 34)`} />
+      ))}
+    </g>
+    {/* Lightbulb – idea */}
+    <g style={{ animation: 'si-glow 3s ease-in-out infinite' }}>
+      <circle cx="8" cy="40" r="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="0.8" />
+      <line x1="8" y1="43" x2="8" y2="45" stroke="#F59E0B" strokeWidth="0.8" strokeLinecap="round" />
+      <line x1="6" y1="37" x2="5" y2="36" stroke="#FBBF24" strokeWidth="0.5" strokeLinecap="round" />
+      <line x1="10" y1="37" x2="11" y2="36" stroke="#FBBF24" strokeWidth="0.5" strokeLinecap="round" />
+    </g>
+  </svg>
+);
+
+/* HabilidadesSociales – Personas conectadas con corazón */
+const HabilidadesSociales = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-hs" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F472B6" />
+        <stop offset="100%" stopColor="#EC4899" />
+      </linearGradient>
+    </defs>
+    {/* Person 1 */}
+    <circle cx="12" cy="16" r="5" fill="#FDF2F8" stroke="url(#si-hs)" strokeWidth="1.2" />
+    <circle cx="11" cy="15" r="1" fill="#EC4899" opacity="0.6" />
+    <circle cx="14" cy="15" r="1" fill="#EC4899" opacity="0.6" />
+    <path d="M10 18.5 Q12 20 14 18.5" stroke="#F472B6" strokeWidth="0.7" fill="none" />
+    <path d="M8 22 Q6 26 6 32 L18 32 Q18 26 16 22" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8" />
+    {/* Person 2 */}
+    <circle cx="36" cy="16" r="5" fill="#FDF2F8" stroke="url(#si-hs)" strokeWidth="1.2" />
+    <circle cx="35" cy="15" r="1" fill="#EC4899" opacity="0.6" />
+    <circle cx="38" cy="15" r="1" fill="#EC4899" opacity="0.6" />
+    <path d="M34 18.5 Q36 20 38 18.5" stroke="#F472B6" strokeWidth="0.7" fill="none" />
+    <path d="M32 22 Q30 26 30 32 L42 32 Q42 26 40 22" fill="#FCE7F3" stroke="#F9A8D4" strokeWidth="0.8" />
+    {/* Connection line */}
+    <path d="M18 24 Q24 20 30 24" stroke="#F9A8D4" strokeWidth="1" strokeDasharray="3 2" fill="none"
+      style={{ animation: 'si-dash 4s linear infinite' }} />
+    {/* Heart in center */}
+    <g style={{ transformOrigin: '24px 18px', animation: 'si-breathe 2s ease-in-out infinite' }}>
+      <path d="M24 21 Q24 16 21 16 Q18 16 18 19 Q18 22 24 26 Q30 22 30 19 Q30 16 27 16 Q24 16 24 21"
+        fill="#F472B6" />
+    </g>
+    {/* Hands reaching */}
+    <g style={{ animation: 'si-float 3s ease-in-out infinite' }}>
+      <path d="M16 36 Q20 34 22 36 L22 42 L16 42 Z" fill="#FBCFE8" stroke="#F9A8D4" strokeWidth="0.6" />
+      <path d="M32 36 Q28 34 26 36 L26 42 L32 42 Z" fill="#FBCFE8" stroke="#F9A8D4" strokeWidth="0.6" />
+    </g>
+    {/* Sparkles */}
+    <circle cx="24" cy="6" r="1.5" fill="#FDE68A" style={{ animation: 'si-bounce 2s ease-in-out infinite' }} />
+    <circle cx="4" cy="30" r="1" fill="#FBCFE8" style={{ animation: 'si-bounce 3s ease-in-out 0.5s infinite' }} />
+    <circle cx="44" cy="30" r="1" fill="#FBCFE8" style={{ animation: 'si-bounce 2.5s ease-in-out 1s infinite' }} />
+  </svg>
+);
+
+/* Razonamiento – Bombilla con puzzle */
+const Razonamiento = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-raz" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#D97706" />
+      </linearGradient>
+    </defs>
+    {/* Light bulb shape */}
+    <path d="M24 4 Q12 4 12 18 Q12 26 18 30 L18 36 L30 36 L30 30 Q36 26 36 18 Q36 4 24 4"
+      fill="#FFFBEB" stroke="url(#si-raz)" strokeWidth="1.5"
+      style={{ animation: 'si-glow 3s ease-in-out infinite' }} />
+    {/* Bulb base */}
+    <rect x="18" y="36" width="12" height="3" rx="1" fill="#F59E0B" />
+    <rect x="19" y="39" width="10" height="2" rx="1" fill="#D97706" />
+    <rect x="20" y="41" width="8" height="2" rx="1" fill="#B45309" />
+    <path d="M22 43 Q24 45 26 43" stroke="#92400E" strokeWidth="0.8" fill="none" />
+    {/* Puzzle pieces inside bulb */}
+    <g style={{ transformOrigin: '21px 18px', animation: 'si-rock 3s ease-in-out infinite' }}>
+      <rect x="16" y="14" width="8" height="8" rx="1" fill="#FCD34D" stroke="#F59E0B" strokeWidth="0.6" />
+      <circle cx="20" cy="14" r="2" fill="#FCD34D" stroke="#F59E0B" strokeWidth="0.6" />
+    </g>
+    <g style={{ transformOrigin: '29px 18px', animation: 'si-rock 3s ease-in-out 0.5s infinite' }}>
+      <rect x="25" y="14" width="8" height="8" rx="1" fill="#FDE68A" stroke="#FBBF24" strokeWidth="0.6" />
+      <circle cx="25" cy="18" r="2" fill="#FDE68A" stroke="#FBBF24" strokeWidth="0.6" />
+    </g>
+    {/* Rays from bulb */}
+    {[0, 45, 90, 135, 180].map((angle, i) => (
+      <line key={i} x1="24" y1="0" x2="24" y2="3" stroke="#FBBF24" strokeWidth="1" strokeLinecap="round"
+        transform={`rotate(${angle - 90} 24 18)`}
+        style={{ animation: `si-shimmer 2s ease-in-out ${i * 0.3}s infinite` }} />
+    ))}
+    {/* Sparkles */}
+    <circle cx="6" cy="10" r="1.5" fill="#FDE68A" style={{ animation: 'si-bounce 2s ease-in-out infinite' }} />
+    <circle cx="42" cy="12" r="1" fill="#FCD34D" style={{ animation: 'si-bounce 2.5s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
+/* Autonomia – Casa con persona y checklist */
+const Autonomia = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-aut" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#10B981" />
+        <stop offset="100%" stopColor="#059669" />
+      </linearGradient>
+    </defs>
+    {/* House */}
+    <path d="M24 6 L4 22 L10 22 L10 40 L38 40 L38 22 L44 22 Z" fill="#ECFDF5" stroke="url(#si-aut)" strokeWidth="1.5" strokeLinejoin="round" />
+    {/* Door */}
+    <rect x="20" y="28" width="8" height="12" rx="1" fill="#D1FAE5" stroke="#10B981" strokeWidth="0.8" />
+    <circle cx="26" cy="34" r="1" fill="#059669" />
+    {/* Window */}
+    <rect x="12" y="24" width="6" height="6" rx="1" fill="#A7F3D0" stroke="#10B981" strokeWidth="0.6" />
+    <line x1="15" y1="24" x2="15" y2="30" stroke="#10B981" strokeWidth="0.4" />
+    <line x1="12" y1="27" x2="18" y2="27" stroke="#10B981" strokeWidth="0.4" />
+    {/* Checklist floating */}
+    <g style={{ animation: 'si-float 3s ease-in-out infinite' }}>
+      <rect x="32" y="6" width="14" height="16" rx="2" fill="white" stroke="#10B981" strokeWidth="0.8" />
+      <path d="M35 10 L37 12 L40 8" stroke="#059669" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M35 15 L37 17 L40 13" stroke="#059669" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none"
+        style={{ animation: 'si-shimmer 2s ease-in-out 0.5s infinite' }} />
+      <line x1="35" y1="20" x2="40" y2="20" stroke="#A7F3D0" strokeWidth="0.8" />
+    </g>
+    {/* Star – achievement */}
+    <g style={{ animation: 'si-bounce 2.5s ease-in-out infinite' }}>
+      <polygon points="8,8 9.5,5 11,8 14,8.5 11.5,10.5 12.5,14 8,11.5 3.5,14 4.5,10.5 2,8.5"
+        fill="#FCD34D" stroke="#F59E0B" strokeWidth="0.4" />
+    </g>
+  </svg>
+);
+
+/* LectoescrituraAdaptada – Libro con lupa y letras grandes */
+const LectoescrituraAdaptada = () => (
+  <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="si-lea" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#6366F1" />
+        <stop offset="100%" stopColor="#4F46E5" />
+      </linearGradient>
+    </defs>
+    {/* Open book */}
+    <path d="M24 12 Q14 10 4 14 L4 38 Q14 34 24 36 Q34 34 44 38 L44 14 Q34 10 24 12 Z"
+      fill="#EEF2FF" stroke="#A5B4FC" strokeWidth="0.8" />
+    <line x1="24" y1="12" x2="24" y2="36" stroke="#C7D2FE" strokeWidth="0.6" />
+    {/* Large letters on pages */}
+    <text x="10" y="24" fill="#4F46E5" fontSize="10" fontWeight="bold" opacity="0.7"
+      style={{ animation: 'si-breathe 3s ease-in-out infinite', transformOrigin: '14px 22px' }}>A</text>
+    <text x="28" y="24" fill="#6366F1" fontSize="10" fontWeight="bold" opacity="0.7"
+      style={{ animation: 'si-breathe 3s ease-in-out 0.5s infinite', transformOrigin: '32px 22px' }}>b</text>
+    {/* Guide lines – dashed */}
+    <line x1="8" y1="28" x2="20" y2="28" stroke="#A5B4FC" strokeWidth="0.5" strokeDasharray="2 1" />
+    <line x1="8" y1="32" x2="18" y2="32" stroke="#A5B4FC" strokeWidth="0.5" strokeDasharray="2 1" />
+    <line x1="28" y1="28" x2="40" y2="28" stroke="#A5B4FC" strokeWidth="0.5" strokeDasharray="2 1" />
+    {/* Magnifying glass */}
+    <g style={{ transformOrigin: '38px 10px', animation: 'si-swing 3s ease-in-out infinite' }}>
+      <circle cx="36" cy="10" r="6" fill="rgba(238,242,255,0.8)" stroke="url(#si-lea)" strokeWidth="1.5" />
+      <line x1="40" y1="14" x2="44" y2="20" stroke="#4F46E5" strokeWidth="2.5" strokeLinecap="round" />
+      {/* Magnified letter inside */}
+      <text x="33" y="13" fill="#4F46E5" fontSize="8" fontWeight="bold" opacity="0.6">a</text>
+    </g>
+    {/* Stars */}
+    <circle cx="4" cy="8" r="1.5" fill="#FDE68A" style={{ animation: 'si-bounce 2s ease-in-out infinite' }} />
+    <circle cx="20" cy="6" r="1" fill="#C7D2FE" style={{ animation: 'si-bounce 3s ease-in-out 0.5s infinite' }} />
+  </svg>
+);
+
 /* ── Icon map ───────────────────────────────────────────────── */
 const iconMap = {
   'lengua':             { Component: Lengua, glow: 'rgba(99,102,241,0.35)' },
@@ -1160,6 +1686,22 @@ const iconMap = {
   'geografia':          { Component: Geografia, glow: 'rgba(13,148,136,0.35)' },
   'arte':               { Component: Arte, glow: 'rgba(147,51,234,0.35)' },
   'quimica':            { Component: Quimica, glow: 'rgba(124,58,237,0.35)' },
+  // AL – Audición y Lenguaje
+  'articulacion':       { Component: Articulacion, glow: 'rgba(234,88,12,0.35)' },
+  'vocabulario':        { Component: ALVocabulario, glow: 'rgba(219,39,119,0.35)' },
+  'morfosintaxis':      { Component: Morfosintaxis, glow: 'rgba(124,58,237,0.35)' },
+  'pragmatica':         { Component: Pragmatica, glow: 'rgba(6,182,212,0.35)' },
+  'conciencia-fonologica': { Component: ConcienciaFonologica, glow: 'rgba(217,119,6,0.35)' },
+  'comprension-oral':   { Component: ALComprensionOral, glow: 'rgba(13,148,136,0.35)' },
+  'lectoescritura':     { Component: ALLectoescritura, glow: 'rgba(225,29,72,0.35)' },
+  // PT – Pedagogía Terapéutica
+  'atencion':           { Component: Atencion, glow: 'rgba(239,68,68,0.35)' },
+  'memoria':            { Component: Memoria, glow: 'rgba(124,58,237,0.35)' },
+  'funciones-ejecutivas': { Component: FuncionesEjecutivas, glow: 'rgba(37,99,235,0.35)' },
+  'habilidades-sociales': { Component: HabilidadesSociales, glow: 'rgba(236,72,153,0.35)' },
+  'razonamiento':       { Component: Razonamiento, glow: 'rgba(245,158,11,0.35)' },
+  'autonomia':          { Component: Autonomia, glow: 'rgba(16,185,129,0.35)' },
+  'lectoescritura-adaptada': { Component: LectoescrituraAdaptada, glow: 'rgba(99,102,241,0.35)' },
 };
 
 const SubjectIcon = ({ subjectId, className = '' }) => {

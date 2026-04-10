@@ -61,6 +61,10 @@ const injectStyles = () => {
     .group:hover .gc-book .gc-icon-inner{transform:rotate(-8deg);filter:drop-shadow(0 0 12px rgba(160,100,255,0.45))}
     .group:hover .gc-atom .gc-icon-inner{transform:scale(1.12);filter:drop-shadow(0 0 16px rgba(56,189,248,0.55))}
     .group:hover .gc-gradcap .gc-icon-inner{transform:translateY(-12px) rotate(-10deg);filter:drop-shadow(0 0 14px rgba(255,210,50,0.55))}
+    .group:hover .gc-telescope .gc-icon-inner{transform:rotate(-6deg) scale(1.06);filter:drop-shadow(0 0 14px rgba(99,102,241,0.5))}
+    .group:hover .gc-diploma .gc-icon-inner{transform:rotate(-8deg) translateY(-6px);filter:drop-shadow(0 0 14px rgba(245,158,11,0.5))}
+    .group:hover .gc-alcard .gc-icon-inner{transform:scale(1.1);filter:drop-shadow(0 0 14px rgba(251,146,60,0.5))}
+    .group:hover .gc-ptcard .gc-icon-inner{transform:scale(1.1);filter:drop-shadow(0 0 14px rgba(45,212,191,0.5))}
   `;
   const el = document.createElement('style');
   el.textContent = css;
@@ -118,6 +122,26 @@ const particleConfigs = {
     { shape: 'star4', x: 5, y: 16, size: 4, delay: 0, dur: 2.5, color: 'rgba(255,240,80,0.5)' },
     { shape: 'diamond', x: 92, y: 12, size: 4, delay: 1, dur: 3, color: 'rgba(255,255,200,0.45)' },
     { shape: 'star4', x: 8, y: 76, size: 3, delay: 0.5, dur: 2.8, color: 'rgba(255,220,100,0.4)' },
+  ],
+  'bachillerato-1': [
+    { shape: 'star4', x: 4, y: 12, size: 4, delay: 0, dur: 3, color: 'rgba(129,140,248,0.5)' },
+    { shape: 'circle', x: 92, y: 24, size: 3, delay: 0.8, dur: 2.5, color: 'rgba(253,224,71,0.45)' },
+    { shape: 'diamond', x: 6, y: 78, size: 3.5, delay: 1.5, dur: 2.8, color: 'rgba(167,139,250,0.4)' },
+  ],
+  'bachillerato-2': [
+    { shape: 'star4', x: 5, y: 10, size: 5, delay: 0, dur: 2.5, color: 'rgba(251,191,36,0.55)' },
+    { shape: 'diamond', x: 93, y: 14, size: 4, delay: 0.6, dur: 3, color: 'rgba(239,68,68,0.45)' },
+    { shape: 'star4', x: 6, y: 76, size: 3, delay: 1.2, dur: 2.8, color: 'rgba(167,139,250,0.4)' },
+  ],
+  'al-1': [
+    { shape: 'circle', x: 4, y: 14, size: 4, delay: 0, dur: 2.5, color: 'rgba(251,146,60,0.5)' },
+    { shape: 'circle', x: 92, y: 22, size: 3, delay: 0.8, dur: 3, color: 'rgba(253,186,116,0.45)' },
+    { shape: 'star4', x: 8, y: 78, size: 3.5, delay: 1.5, dur: 2.8, color: 'rgba(253,224,71,0.4)' },
+  ],
+  'pt-1': [
+    { shape: 'diamond', x: 5, y: 12, size: 4, delay: 0, dur: 3, color: 'rgba(45,212,191,0.5)' },
+    { shape: 'circle', x: 92, y: 18, size: 3, delay: 0.6, dur: 2.5, color: 'rgba(244,114,182,0.45)' },
+    { shape: 'star4', x: 6, y: 76, size: 3.5, delay: 1.2, dur: 2.8, color: 'rgba(167,139,250,0.4)' },
   ],
 };
 
@@ -1212,6 +1236,336 @@ const GradCap = () => (
   </svg>
 );
 
+/* 1º Bachillerato – Telescopio apuntando a constelación */
+const Telescope = () => (
+  <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="tl-body" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#E0E7FF" />
+        <stop offset="100%" stopColor="#818CF8" />
+      </linearGradient>
+      <linearGradient id="tl-tube" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#6366F1" />
+        <stop offset="100%" stopColor="#4338CA" />
+      </linearGradient>
+      <linearGradient id="tl-lens" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#93C5FD" />
+        <stop offset="100%" stopColor="#3B82F6" />
+      </linearGradient>
+    </defs>
+    {/* Constelación de fondo */}
+    {[
+      { x: 8, y: 8 }, { x: 22, y: 5 }, { x: 16, y: 16 }, { x: 4, y: 20 },
+      { x: 62, y: 6 }, { x: 72, y: 14 }, { x: 66, y: 22 },
+    ].map((s, i) => (
+      <circle key={`cs${i}`} cx={s.x} cy={s.y} r={1 + (i % 3) * 0.4} fill="#FDE68A" opacity="0.7"
+        style={{ animation: `gc-twinkle ${2.5 + i * 0.3}s ease-in-out ${i * 0.4}s infinite` }} />
+    ))}
+    {/* Constellation lines */}
+    <path d="M8 8 L22 5 L16 16 L4 20" stroke="rgba(253,224,71,0.2)" strokeWidth="0.6" fill="none"
+      strokeDasharray="2 2" style={{ animation: 'gc-shimmer 4s ease-in-out infinite' }} />
+    <path d="M62 6 L72 14 L66 22" stroke="rgba(253,224,71,0.15)" strokeWidth="0.6" fill="none"
+      strokeDasharray="2 2" style={{ animation: 'gc-shimmer 4s ease-in-out 1s infinite' }} />
+
+    {/* Trípode */}
+    <line x1="38" y1="52" x2="22" y2="74" stroke="#64748B" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="42" y1="52" x2="58" y2="74" stroke="#64748B" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="40" y1="54" x2="40" y2="76" stroke="#64748B" strokeWidth="2.5" strokeLinecap="round" />
+    {/* Pies del trípode */}
+    <circle cx="22" cy="74" r="2" fill="#475569" />
+    <circle cx="58" cy="74" r="2" fill="#475569" />
+    <circle cx="40" cy="76" r="2" fill="#475569" />
+
+    {/* Tubo del telescopio – gentle sway */}
+    <g style={{ transformOrigin: '40px 48px', animation: 'gc-sway 5s ease-in-out infinite' }}>
+      {/* Tubo principal */}
+      <rect x="16" y="28" width="48" height="16" rx="8" fill="url(#tl-tube)" transform="rotate(-25 40 36)" />
+      <rect x="16" y="28" width="24" height="16" rx="8" fill="rgba(255,255,255,0.08)" transform="rotate(-25 40 36)" />
+      {/* Franjas decorativas */}
+      <rect x="28" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.15)" transform="rotate(-25 40 36)" />
+      <rect x="48" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.1)" transform="rotate(-25 40 36)" />
+      {/* Lente frontal */}
+      <circle cx="22" cy="24" r="10" fill="url(#tl-lens)" stroke="#4338CA" strokeWidth="2" />
+      <circle cx="22" cy="24" r="7" fill="#1E3A8A" opacity="0.4" />
+      <path d="M17 20 Q19 17 23 18" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" fill="none" />
+      <circle cx="25" cy="27" r="1.5" fill="rgba(255,255,255,0.15)" />
+      {/* Brillo de lente pulsante */}
+      <circle cx="22" cy="24" r="5" fill="rgba(147,197,253,0.1)"
+        style={{ animation: 'gc-breathe 3s ease-in-out infinite', transformOrigin: '22px 24px' }} />
+      {/* Ocular trasero */}
+      <circle cx="60" cy="46" r="5" fill="#4338CA" stroke="#312E81" strokeWidth="1.5" />
+      <circle cx="60" cy="46" r="3" fill="#1E1B4B" />
+      <circle cx="59" cy="45" r="1" fill="rgba(255,255,255,0.25)" />
+      {/* Pivote */}
+      <circle cx="40" cy="48" r="4" fill="#475569" stroke="#334155" strokeWidth="1.5" />
+      <circle cx="40" cy="48" r="2" fill="#64748B" />
+      <circle cx="39" cy="47" r="0.8" fill="rgba(255,255,255,0.3)" />
+    </g>
+
+    {/* Anillos de descubrimiento desde la lente */}
+    <circle cx="22" cy="24" r="0" fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="0.6"
+      style={{ animation: 'gc-ripple 3s ease-out infinite' }} />
+
+    {/* Sparkles */}
+    <circle cx="6" cy="40" r="1.5" fill="#A78BFA" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="74" cy="36" r="1.2" fill="#FDE68A" style={{ animation: 'gc-twinkle 2.5s ease-in-out 0.8s infinite' }} />
+    <circle cx="48" y="8" r="1" fill="#34D399" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1.5s infinite' }} />
+  </svg>
+);
+
+/* 2º Bachillerato – Pergamino-diploma con sello y pluma */
+const Diploma = () => (
+  <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="dp-paper" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FEF9C3" />
+        <stop offset="100%" stopColor="#FDE68A" />
+      </linearGradient>
+      <linearGradient id="dp-roll" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#D97706" />
+      </linearGradient>
+      <linearGradient id="dp-seal" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#EF4444" />
+        <stop offset="100%" stopColor="#B91C1C" />
+      </linearGradient>
+      <linearGradient id="dp-quill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#F5F3FF" />
+        <stop offset="100%" stopColor="#C4B5FD" />
+      </linearGradient>
+    </defs>
+
+    {/* Sombra del diploma */}
+    <rect x="12" y="16" width="56" height="52" rx="4" fill="rgba(0,0,0,0.06)" />
+
+    {/* Cuerpo del pergamino – gentle sway */}
+    <g style={{ transformOrigin: '40px 40px', animation: 'gc-sway 5s ease-in-out infinite' }}>
+      {/* Papel */}
+      <rect x="10" y="14" width="56" height="52" rx="3" fill="url(#dp-paper)" />
+      <rect x="10" y="14" width="28" height="52" rx="3" fill="rgba(255,255,255,0.15)" />
+      {/* Borde decorativo */}
+      <rect x="14" y="18" width="48" height="44" rx="2" fill="none" stroke="#D97706" strokeWidth="0.8" strokeDasharray="4 2" opacity="0.4" />
+
+      {/* Texto escrito a mano – apareciendo */}
+      <g style={{ animation: 'gc-name1 6s ease-in-out infinite' }}>
+        <text x="24" y="30" fill="#92400E" fontSize="6" fontWeight="bold" fontStyle="italic" opacity="0.7">Diploma</text>
+      </g>
+      {/* Líneas de texto */}
+      {[36, 40, 44, 48].map((y, i) => (
+        <line key={`tl${i}`} x1="20" y1={y} x2={54 - i * 4} y2={y} stroke="#D97706" strokeWidth="0.6" opacity="0.25"
+          strokeDasharray="30" style={{ animation: `gc-line-write 6s ease-in-out ${i * 0.3}s infinite` }} />
+      ))}
+
+      {/* Rulo superior */}
+      <ellipse cx="38" cy="14" rx="30" ry="4" fill="url(#dp-roll)" />
+      <ellipse cx="38" cy="14" rx="28" ry="2.5" fill="rgba(255,255,255,0.15)" />
+      <ellipse cx="38" cy="14" rx="30" ry="4" fill="none" stroke="#B45309" strokeWidth="0.5" opacity="0.3" />
+
+      {/* Rulo inferior */}
+      <ellipse cx="38" cy="66" rx="30" ry="4" fill="url(#dp-roll)" />
+      <ellipse cx="38" cy="66" rx="28" ry="2.5" fill="rgba(0,0,0,0.08)" />
+      <ellipse cx="38" cy="66" rx="30" ry="4" fill="none" stroke="#B45309" strokeWidth="0.5" opacity="0.3" />
+    </g>
+
+    {/* Sello de cera – pulsando */}
+    <g style={{ transformOrigin: '54px 56px', animation: 'gc-breathe 3s ease-in-out infinite' }}>
+      <circle cx="54" cy="56" r="8" fill="url(#dp-seal)" />
+      <circle cx="54" cy="56" r="6" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
+      <circle cx="54" cy="56" r="4" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+      {/* Estrella en el sello */}
+      <polygon points="54,50 55.5,53.5 59,54 56,56.5 57,60 54,58 51,60 52,56.5 49,54 52.5,53.5"
+        fill="#FDE68A" opacity="0.8" />
+      <circle cx="53" cy="54.5" r="0.8" fill="rgba(255,255,255,0.3)" />
+    </g>
+    {/* Cintas del sello */}
+    <g style={{ transformOrigin: '54px 64px', animation: 'gc-tassel 3s ease-in-out infinite' }}>
+      <path d="M50 62 Q48 68 46 74" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" fill="none" />
+      <path d="M58 62 Q60 68 62 74" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" fill="none" />
+    </g>
+
+    {/* Pluma – escribiendo */}
+    <g style={{ transformOrigin: '68px 28px', animation: 'gc-swing 3s ease-in-out infinite' }}>
+      <path d="M66 8 Q72 16 68 28" stroke="url(#dp-quill)" strokeWidth="2" fill="none" />
+      <path d="M66 8 Q60 12 64 18 Q68 14 66 8 Z" fill="url(#dp-quill)" />
+      <path d="M66 9 Q62 12 64.5 16" stroke="rgba(139,92,246,0.3)" strokeWidth="0.5" fill="none" />
+      <line x1="68" y1="28" x2="68.5" y2="30" stroke="#92400E" strokeWidth="0.8" strokeLinecap="round" />
+      {/* Tinta goteando */}
+      <circle cx="69" cy="32" r="1" fill="#92400E" opacity="0.4"
+        style={{ animation: 'gc-rise 3s ease-out infinite' }} />
+    </g>
+
+    {/* Estrellas celebración */}
+    <circle cx="4" cy="30" r="1.5" fill="#FBBF24" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="76" cy="22" r="1.2" fill="#A78BFA" style={{ animation: 'gc-twinkle 2.5s ease-in-out 0.5s infinite' }} />
+    <circle cx="6" cy="70" r="1" fill="#34D399" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1s infinite' }} />
+    <circle cx="76" cy="60" r="1.3" fill="#FB7185" style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.5s infinite' }} />
+  </svg>
+);
+
+/* Audición y Lenguaje – Oído con ondas y bocadillo de conversación */
+const ALCard = () => (
+  <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="al-ear" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#FED7AA" />
+        <stop offset="100%" stopColor="#FDBA74" />
+      </linearGradient>
+      <linearGradient id="al-bubble" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#FFF7ED" />
+        <stop offset="100%" stopColor="#FFEDD5" />
+      </linearGradient>
+    </defs>
+
+    {/* Ondas de sonido grandes – pulsando */}
+    <path d="M10 20 Q4 30 4 40 Q4 50 10 60" stroke="rgba(251,146,60,0.15)" strokeWidth="2" strokeLinecap="round" fill="none"
+      style={{ animation: 'gc-shimmer 3s ease-in-out infinite' }} />
+    <path d="M14 24 Q9 32 9 40 Q9 48 14 56" stroke="rgba(251,146,60,0.2)" strokeWidth="1.5" strokeLinecap="round" fill="none"
+      style={{ animation: 'gc-shimmer 3s ease-in-out 0.4s infinite' }} />
+    <path d="M18 28 Q14 34 14 40 Q14 46 18 52" stroke="rgba(251,146,60,0.25)" strokeWidth="1.2" strokeLinecap="round" fill="none"
+      style={{ animation: 'gc-shimmer 3s ease-in-out 0.8s infinite' }} />
+
+    {/* Oído principal – breathing */}
+    <g style={{ transformOrigin: '32px 40px', animation: 'gc-breathe 4s ease-in-out infinite' }}>
+      <path d="M34 16 Q20 18 20 34 Q20 54 32 58 Q38 60 38 54 Q28 50 28 38 Q28 24 36 20"
+        stroke="#EA580C" strokeWidth="3" fill="url(#al-ear)" strokeLinecap="round" />
+      {/* Canal auditivo */}
+      <circle cx="32" cy="38" r="5" fill="#FDBA74" stroke="#EA580C" strokeWidth="1.2" />
+      <circle cx="32" cy="38" r="2.5" fill="#EA580C" opacity="0.3" />
+      <circle cx="31" cy="37" r="1" fill="rgba(255,255,255,0.4)" />
+    </g>
+
+    {/* Bocadillo de diálogo – floating */}
+    <g style={{ animation: 'gc-float 3.5s ease-in-out infinite' }}>
+      <rect x="46" y="8" width="28" height="22" rx="8" fill="url(#al-bubble)" stroke="#FB923C" strokeWidth="1.2" />
+      <path d="M52 30 L48 36 L58 30" fill="url(#al-bubble)" stroke="#FB923C" strokeWidth="1.2" strokeLinejoin="round" />
+      {/* Letras dentro */}
+      <text x="52" y="18" fill="#EA580C" fontSize="6" fontWeight="bold" opacity="0.8"
+        style={{ animation: 'gc-breathe 2.5s ease-in-out infinite', transformOrigin: '56px 16px' }}>Aa</text>
+      {/* Líneas de texto */}
+      <line x1="50" y1="23" x2="70" y2="23" stroke="#FDBA74" strokeWidth="0.8" opacity="0.5" />
+      <line x1="50" y1="26" x2="66" y2="26" stroke="#FDBA74" strokeWidth="0.6" opacity="0.4" />
+    </g>
+
+    {/* Notas musicales – simbolizando sonido */}
+    <g style={{ animation: 'gc-bounce 3s ease-in-out infinite' }}>
+      <text x="44" y="52" fill="#FB923C" fontSize="10" opacity="0.5">♪</text>
+    </g>
+    <g style={{ animation: 'gc-bounce 2.5s ease-in-out 0.8s infinite' }}>
+      <text x="58" y="46" fill="#FDBA74" fontSize="8" opacity="0.4">♫</text>
+    </g>
+
+    {/* Ondas de vibración circulares */}
+    <circle cx="32" cy="38" r="0" fill="none" stroke="rgba(234,88,12,0.2)" strokeWidth="0.8"
+      style={{ animation: 'gc-ripple 2.5s ease-out infinite' }} />
+    <circle cx="32" cy="38" r="0" fill="none" stroke="rgba(234,88,12,0.15)" strokeWidth="0.6"
+      style={{ animation: 'gc-ripple 2.5s ease-out 1.2s infinite' }} />
+
+    {/* Sparkles */}
+    <circle cx="68" cy="60" r="1.5" fill="#FDE68A" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="8" cy="66" r="1.2" fill="#FB923C" style={{ animation: 'gc-twinkle 2.5s ease-in-out 0.5s infinite' }} />
+    <circle cx="72" cy="40" r="1" fill="#FDBA74" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1s infinite' }} />
+  </svg>
+);
+
+/* Pedagogía Terapéutica – Cerebro con piezas de puzzle y corazón */
+/* Pedagogía Terapéutica – Varios objetos distribuidos: diana, engranajes, cartas, corazón, bombilla */
+const PTCard = () => (
+  <svg viewBox="0 0 80 80" className="w-full h-full" fill="none">
+    <defs>
+      <linearGradient id="pt-gear" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#2DD4BF" />
+        <stop offset="100%" stopColor="#0D9488" />
+      </linearGradient>
+      <linearGradient id="pt-bulb" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#FDE68A" />
+        <stop offset="100%" stopColor="#FBBF24" />
+      </linearGradient>
+      <linearGradient id="pt-card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#C4B5FD" />
+        <stop offset="100%" stopColor="#8B5CF6" />
+      </linearGradient>
+    </defs>
+
+    {/* Conexiones entre objetos – líneas punteadas */}
+    <path d="M18 28 Q40 40 62 28" stroke="#5EEAD4" strokeWidth="0.8" strokeDasharray="3 2" opacity="0.3"
+      style={{ animation: 'gc-dash 5s linear infinite' }} />
+    <path d="M14 58 Q40 50 66 58" stroke="#99F6E4" strokeWidth="0.8" strokeDasharray="3 2" opacity="0.25"
+      style={{ animation: 'gc-dash 6s linear infinite' }} />
+
+    {/* 1. Diana (Atención) – arriba izquierda */}
+    <g style={{ transformOrigin: '16px 26px', animation: 'gc-breathe 3.5s ease-in-out infinite' }}>
+      <circle cx="16" cy="26" r="12" fill="none" stroke="#F87171" strokeWidth="1.5" opacity="0.4" />
+      <circle cx="16" cy="26" r="8" fill="none" stroke="#FCA5A5" strokeWidth="1.5" opacity="0.5" />
+      <circle cx="16" cy="26" r="4" fill="#FEE2E2" stroke="#F87171" strokeWidth="1.2" />
+      <circle cx="16" cy="26" r="1.8" fill="#EF4444" />
+      <circle cx="15.5" cy="25.5" r="0.7" fill="rgba(255,255,255,0.4)" />
+      {/* Líneas de foco */}
+      <line x1="16" y1="12" x2="16" y2="14" stroke="#EF4444" strokeWidth="1" strokeLinecap="round" opacity="0.5"
+        style={{ animation: 'gc-shimmer 2s ease-in-out infinite' }} />
+      <line x1="28" y1="26" x2="30" y2="26" stroke="#EF4444" strokeWidth="1" strokeLinecap="round" opacity="0.5"
+        style={{ animation: 'gc-shimmer 2s ease-in-out 0.5s infinite' }} />
+    </g>
+
+    {/* 2. Engranajes (Funciones ejecutivas) – arriba derecha */}
+    <g style={{ transformOrigin: '62px 28px', animation: 'gc-spin 10s linear infinite' }}>
+      <circle cx="62" cy="28" r="9" fill="rgba(13,148,136,0.12)" stroke="url(#pt-gear)" strokeWidth="1.2" />
+      <circle cx="62" cy="28" r="4" fill="#0D9488" />
+      <circle cx="62" cy="28" r="2" fill="#CCFBF1" />
+      {[0, 51, 102, 153, 204, 255, 306].map((a, i) => (
+        <rect key={`g${i}`} x="60.5" y="18" width="3" height="3.5" rx="0.6" fill="#14B8A6" opacity="0.8"
+          transform={`rotate(${a} 62 28)`} />
+      ))}
+    </g>
+    {/* Engranaje pequeño acoplado */}
+    <g style={{ transformOrigin: '52px 20px', animation: 'gc-spin 7s linear infinite reverse' }}>
+      <circle cx="52" cy="20" r="5" fill="rgba(20,184,166,0.1)" stroke="#14B8A6" strokeWidth="0.8" />
+      <circle cx="52" cy="20" r="2.2" fill="#14B8A6" />
+      <circle cx="52" cy="20" r="1" fill="#CCFBF1" />
+      {[0, 72, 144, 216, 288].map((a, i) => (
+        <rect key={`gs${i}`} x="51" y="14.5" width="2" height="2.2" rx="0.4" fill="#2DD4BF" opacity="0.7"
+          transform={`rotate(${a} 52 20)`} />
+      ))}
+    </g>
+
+    {/* 3. Cartas de memoria – abajo izquierda */}
+    <g style={{ transformOrigin: '16px 58px', animation: 'gc-rock 3.5s ease-in-out infinite' }}>
+      {/* Carta trasera */}
+      <rect x="6" y="48" width="14" height="18" rx="2.5" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="1"
+        transform="rotate(-8 13 57)" />
+      {/* Carta frontal */}
+      <rect x="10" y="50" width="14" height="18" rx="2.5" fill="url(#pt-card)" stroke="#7C3AED" strokeWidth="1"
+        transform="rotate(5 17 59)" />
+      <text x="14" y="62" fill="white" fontSize="9" fontWeight="bold" opacity="0.9"
+        transform="rotate(5 17 59)">?</text>
+    </g>
+
+    {/* 4. Bombilla (Razonamiento) – abajo derecha */}
+    <g style={{ transformOrigin: '64px 56px', animation: 'gc-bounce 3s ease-in-out infinite' }}>
+      <path d="M64 46 Q56 46 56 56 Q56 62 60 64 L60 68 L68 68 L68 64 Q72 62 72 56 Q72 46 64 46"
+        fill="url(#pt-bulb)" stroke="#D97706" strokeWidth="1" />
+      <path d="M64 47 Q59 47 58 54" stroke="rgba(255,255,255,0.35)" strokeWidth="1" fill="none" />
+      {/* Base */}
+      <rect x="60" y="68" width="8" height="2" rx="0.8" fill="#D97706" />
+      <rect x="61" y="70" width="6" height="1.5" rx="0.5" fill="#B45309" />
+      {/* Filamento */}
+      <path d="M62 58 Q64 54 66 58" stroke="#F59E0B" strokeWidth="0.8" fill="none"
+        style={{ animation: 'gc-glow 2s ease-in-out infinite' }} />
+      {/* Rayos */}
+      {[0, 60, 120, 180, 240, 300].map((a, i) => (
+        <line key={`r${i}`} x1="64" y1="42" x2="64" y2="44" stroke="#FBBF24" strokeWidth="0.8" strokeLinecap="round"
+          transform={`rotate(${a} 64 56)`} opacity="0.5"
+          style={{ animation: `gc-shimmer 2.5s ease-in-out ${i * 0.3}s infinite` }} />
+      ))}
+    </g>
+
+    {/* Sparkles */}
+    <circle cx="38" cy="8" r="1.5" fill="#FDE68A" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
+    <circle cx="4" cy="44" r="1.2" fill="#2DD4BF" style={{ animation: 'gc-twinkle 2.5s ease-in-out 0.5s infinite' }} />
+    <circle cx="76" cy="48" r="1" fill="#FB7185" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1s infinite' }} />
+    <circle cx="40" cy="44" r="1.3" fill="#A78BFA" style={{ animation: 'gc-twinkle 2.8s ease-in-out 1.5s infinite' }} />
+  </svg>
+);
+
 /* ── Icon map ────────────────────────────────────────────────── */
 const iconMap = {
   'primaria-1': { Component: Backpack, cls: 'gc-backpack' },
@@ -1224,6 +1578,10 @@ const iconMap = {
   'eso-2': { Component: Book, cls: 'gc-book' },
   'eso-3': { Component: Atom, cls: 'gc-atom' },
   'eso-4': { Component: GradCap, cls: 'gc-gradcap' },
+  'bachillerato-1': { Component: Telescope, cls: 'gc-telescope' },
+  'bachillerato-2': { Component: Diploma, cls: 'gc-diploma' },
+  'al-1': { Component: ALCard, cls: 'gc-alcard' },
+  'pt-1': { Component: PTCard, cls: 'gc-ptcard' },
 };
 
 const GradeCardIcon = ({ type, grade, className = '' }) => {
@@ -1233,7 +1591,7 @@ const GradeCardIcon = ({ type, grade, className = '' }) => {
   if (!entry) return null;
 
   const { Component, cls } = entry;
-  const size = type === 'primaria' ? 160 : 155;
+  const size = type === 'primaria' ? 160 : type === 'bachillerato' ? 150 : 155;
 
   return (
     <div

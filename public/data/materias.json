@@ -663,5 +663,93 @@
         "icon": "💻"
       }
     ]
+  },
+  "al": {
+    "1": [
+      {
+        "id": "tutoria",
+        "nombre": "Tutoría",
+        "icon": "🤝"
+      },
+      {
+        "id": "articulacion",
+        "nombre": "Articulación",
+        "icon": "🗣️"
+      },
+      {
+        "id": "vocabulario",
+        "nombre": "Vocabulario",
+        "icon": "📖"
+      },
+      {
+        "id": "morfosintaxis",
+        "nombre": "Morfosintaxis",
+        "icon": "🔗"
+      },
+      {
+        "id": "pragmatica",
+        "nombre": "Pragmática",
+        "icon": "💬"
+      },
+      {
+        "id": "conciencia-fonologica",
+        "nombre": "Conciencia Fonológica",
+        "icon": "🔊"
+      },
+      {
+        "id": "comprension-oral",
+        "nombre": "Comprensión Oral",
+        "icon": "👂"
+      },
+      {
+        "id": "lectoescritura",
+        "nombre": "Lectoescritura",
+        "icon": "✏️"
+      }
+    ]
+  },
+  "pt": {
+    "1": [
+      {
+        "id": "tutoria",
+        "nombre": "Tutoría",
+        "icon": "🤝"
+      },
+      {
+        "id": "atencion",
+        "nombre": "Atención",
+        "icon": "🎯"
+      },
+      {
+        "id": "memoria",
+        "nombre": "Memoria",
+        "icon": "🧠"
+      },
+      {
+        "id": "funciones-ejecutivas",
+        "nombre": "Funciones Ejecutivas",
+        "icon": "🧩"
+      },
+      {
+        "id": "habilidades-sociales",
+        "nombre": "Habilidades Sociales",
+        "icon": "🤝"
+      },
+      {
+        "id": "razonamiento",
+        "nombre": "Razonamiento",
+        "icon": "💡"
+      },
+      {
+        "id": "autonomia",
+        "nombre": "Autonomía",
+        "icon": "🏠"
+      },
+      {
+        "id": "lectoescritura-adaptada",
+        "nombre": "Lectoescritura Adaptada",
+        "icon": "📝"
+      }
+    ]
   }
 }

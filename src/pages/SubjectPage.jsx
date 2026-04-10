@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
-import { esoSubjects, primariaSubjects, bachilleratoSubjects } from '@/apps/appList';
+import { esoSubjects, primariaSubjects, bachilleratoSubjects, alSubjects, ptSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
 
@@ -69,10 +69,13 @@ const SubjectPage = () => {
   const prevIndexRef = React.useRef(null);
   const [direction, setDirection] = React.useState(0);
 
-  const levelName = level === 'bachillerato' ? 'Bachillerato' : level === 'eso' ? 'ESO' : 'Primaria';
-  const fullTitle = `${grade}º ${levelName}`;
+  const levelNames = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', al: 'Audición y Lenguaje', pt: 'Pedagogía Terapéutica' };
+  const levelName = levelNames[level] || 'Primaria';
+  const isSpecialLevel = level === 'al' || level === 'pt';
+  const fullTitle = isSpecialLevel ? levelName : `${grade}º ${levelName}`;
 
-  const subjectsData = level === 'bachillerato' ? bachilleratoSubjects : level === 'eso' ? esoSubjects : primariaSubjects;
+  const subjectsDataMap = { primaria: primariaSubjects, eso: esoSubjects, bachillerato: bachilleratoSubjects, al: alSubjects, pt: ptSubjects };
+  const subjectsData = subjectsDataMap[level] || primariaSubjects;
   const subjectsForCourse = subjectsData?.[grade] || [];
 
   const allSteps = [
@@ -88,6 +91,8 @@ const SubjectPage = () => {
     { level: 'eso', grade: '4' },
     { level: 'bachillerato', grade: '1' },
     { level: 'bachillerato', grade: '2' },
+    { level: 'al', grade: '1' },
+    { level: 'pt', grade: '1' },
   ];
 
   const currentIndex = allSteps.findIndex(s => s.level === level && String(s.grade) === String(grade));
@@ -167,7 +172,7 @@ const SubjectPage = () => {
                   <Mascot />
                 </div>
                 <div className="bg-white/70 backdrop-blur-md border border-purple-200 border-t-[4px] border-t-purple-400 shadow-lg rounded-2xl px-8 py-4">
-                  <p className="text-xl text-gray-600 font-medium">¡Selecciona una asignatura para ver las apps disponibles!</p>
+                  <p className="text-xl text-gray-600 font-medium">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
+import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
@@ -220,7 +220,7 @@ const HomePage = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50"
+        className="py-16 px-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-transparent dark:to-transparent dark:bg-none"
       >
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
@@ -323,7 +323,7 @@ const HomePage = () => {
 
                   <div className="relative z-10 flex flex-col items-center">
                     <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-                      <GradeCardIcon type="eso" grade={grade.grade} />
+                      <GradeCardIcon type="bachillerato" grade={grade.grade} />
                     </div>
                     <div className="flex items-baseline gap-1 mb-3">
                       <span className="text-4xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
@@ -336,6 +336,99 @@ const HomePage = () => {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Sección Atención a la Diversidad */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="py-16 px-6 bg-gradient-to-r from-rose-50/50 via-amber-50/50 to-teal-50/50 dark:from-transparent dark:via-transparent dark:to-transparent dark:bg-none"
+      >
+        <div className="container mx-auto">
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <HeartHandshake className="w-8 h-8 text-rose-500" />
+              <GradientTitle tag="h2" className="text-4xl">Atención a la Diversidad</GradientTitle>
+              <Brain className="w-8 h-8 text-teal-500" />
+            </div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Apps especializadas para profesionales de Audición y Lenguaje y Pedagogía Terapéutica.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto"
+          >
+            {/* Audición y Lenguaje */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.04, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="group"
+            >
+              <div
+                className="bg-gradient-to-br from-rose-500 to-orange-600 pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
+                onClick={() => handleGradeClick('al', '1')}
+              >
+                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
+                    <GradeCardIcon type="al" grade="1" />
+                  </div>
+                  <div className="text-center mb-3">
+                    <span className="text-2xl font-black text-white drop-shadow-sm block">Audición y</span>
+                    <span className="text-2xl font-black text-white drop-shadow-sm block">Lenguaje</span>
+                  </div>
+                  <p className="text-white/80 text-sm text-center mb-4 px-2">Articulación, vocabulario, pragmática, conciencia fonológica y más</p>
+                  <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
+                    <span className="text-sm font-bold text-white">Explorar</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Pedagogía Terapéutica */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.04, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="group"
+            >
+              <div
+                className="bg-gradient-to-br from-teal-500 to-cyan-600 pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
+                onClick={() => handleGradeClick('pt', '1')}
+              >
+                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
+                    <GradeCardIcon type="pt" grade="1" />
+                  </div>
+                  <div className="text-center mb-3">
+                    <span className="text-2xl font-black text-white drop-shadow-sm block">Pedagogía</span>
+                    <span className="text-2xl font-black text-white drop-shadow-sm block">Terapéutica</span>
+                  </div>
+                  <p className="text-white/80 text-sm text-center mb-4 px-2">Atención, memoria, funciones ejecutivas, habilidades sociales y más</p>
+                  <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
+                    <span className="text-sm font-bold text-white">Explorar</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.section>

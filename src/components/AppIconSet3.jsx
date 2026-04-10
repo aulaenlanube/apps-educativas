@@ -141,7 +141,11 @@ const icons3 = {
           <stop offset="0%" stopColor="#22c55e" />
           <stop offset="100%" stopColor="#16a34a" />
         </linearGradient>
+        <clipPath id="ai3-isla-clip">
+          <rect x="0" y="0" width="48" height="48" rx="8" ry="8" />
+        </clipPath>
       </defs>
+      <g clipPath="url(#ai3-isla-clip)">
       {/* Sky */}
       <rect x="0" y="0" width="48" height="30" fill="url(#ai3-isla-sky)" />
       {/* Sun */}
@@ -167,6 +171,7 @@ const icons3 = {
       {/* Small cloud */}
       <ellipse cx="10" cy="8" rx="5" ry="2.5" fill="white" opacity="0.6" />
       <ellipse cx="8" cy="7.5" rx="3" ry="2" fill="white" opacity="0.4" />
+      </g>
     </svg>
   ),
 

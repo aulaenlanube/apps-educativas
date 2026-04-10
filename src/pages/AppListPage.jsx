@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
-import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps, bachilleratoSubjects } from '@/apps/appList';
+import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps, bachilleratoSubjects, alApps, alSubjects, ptApps, ptSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import StarRating from '@/components/ui/StarRating';
 import AppIcon from '@/components/AppIcon';
@@ -202,8 +202,8 @@ const AppListPage = () => {
     let subjectName = subjectId;
 
     // Lógica unificada para obtener el nombre correcto con acentos
-    const subjectsMap = { eso: esoSubjects, primaria: primariaSubjects, bachillerato: bachilleratoSubjects };
-    const appsMap = { eso: esoApps, primaria: primariaApps, bachillerato: bachilleratoApps };
+    const subjectsMap = { eso: esoSubjects, primaria: primariaSubjects, bachillerato: bachilleratoSubjects, al: alSubjects, pt: ptSubjects };
+    const appsMap = { eso: esoApps, primaria: primariaApps, bachillerato: bachilleratoApps, al: alApps, pt: ptApps };
 
     const subjectInfo = subjectsMap[level]?.[grade]?.find(s => s.id === subjectId);
     if (subjectInfo) subjectName = subjectInfo.nombre;
@@ -220,9 +220,11 @@ const AppListPage = () => {
         subjectName = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
     }
 
-    const levelDisplay = level === 'bachillerato' ? 'Bachillerato' : level === 'eso' ? 'ESO' : 'Primaria';
-    const fullTitle = `${subjectName} - ${grade}º ${levelDisplay}`;
-    const headerSubtitle = `${grade}º ${levelDisplay}`;
+    const levelDisplayMap = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', al: 'Audición y Lenguaje', pt: 'Pedagogía Terapéutica' };
+    const levelDisplay = levelDisplayMap[level] || 'Primaria';
+    const isSpecialLevel = level === 'al' || level === 'pt';
+    const fullTitle = isSpecialLevel ? `${subjectName} - ${levelDisplay}` : `${subjectName} - ${grade}º ${levelDisplay}`;
+    const headerSubtitle = isSpecialLevel ? levelDisplay : `${grade}º ${levelDisplay}`;
 
     const handleRandomSelection = (app) => {
         navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`);

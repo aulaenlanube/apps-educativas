@@ -1,133 +1,462 @@
 /* src/apps/isla-de-la-calma/IslaDeLaCalma.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-/* Variables de color específicas para esta app para evitar conflictos */
-:root {
-    --calma-fondo: #f0f7f8;
-    --calma-principal: #008080;
-    --calma-secundario: #a2d5c6;
-    --calma-texto: #4a4a4a;
+/* ── Base ───────────────────────────────────────────────────── */
+.calma-app {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  background: linear-gradient(160deg, #0f2027 0%, #203a43 40%, #2c5364 100%);
+  border-radius: 24px;
 }
 
-/* Contenedor principal que envuelve toda la app */
-.calma-app-wrapper {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--calma-texto);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
+/* ── Partículas flotantes ───────────────────────────────────── */
+.calma-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* Contenedor para cada pantalla (inicio, respiración, final) */
-.calma-container {
-    width: 100%;
-    max-width: 500px;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 128, 128, 0.1);
-    text-align: center;
-    position: relative;
+.calma-particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: calma-float-up linear infinite;
 }
 
-/* --- SECCIÓN MODIFICADA --- */
-.calma-container .calma-title {
-    font-family: 'Fredoka One', cursive;
-    margin-top: 0;
-}
-/* El h1 de la pantalla final también cogerá este estilo */
-.calma-container h1 {
-     font-family: 'Fredoka One', cursive;
-}
-/* ------------------------- */
-
-.calma-container p {
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.calma-container .configuracion-ciclos {
-    margin: 30px 0;
+@keyframes calma-float-up {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.2);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.2);
+  }
+  100% {
+    transform: translateY(-85vh) translateX(30px) scale(0.3);
+    opacity: 0;
+  }
 }
 
-.calma-container .configuracion-ciclos label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
+/* ── Olas de fondo ──────────────────────────────────────────── */
+.calma-waves-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  pointer-events: none;
 }
 
-.calma-container .configuracion-ciclos input {
-    width: 80px;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+.calma-wave {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
 }
 
-.calma-container button {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    background-color: var(--calma-principal);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
+.calma-wave-1 { animation: calma-wave-drift 8s ease-in-out infinite; }
+.calma-wave-2 { animation: calma-wave-drift 10s ease-in-out 2s infinite reverse; }
+.calma-wave-3 { animation: calma-wave-drift 12s ease-in-out 4s infinite; }
+
+@keyframes calma-wave-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3%); }
 }
 
-.calma-container button:hover {
-    background-color: #005959;
+/* ── Card glass ─────────────────────────────────────────────── */
+.calma-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 460px;
 }
 
-.calma-container .visualizador {
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+.calma-card-inner {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.calma-container .circulo {
-    width: 150px;
-    height: 150px;
-    background-color: var(--calma-secundario);
-    border-radius: 50%;
-    transition: transform 4s ease-in-out;
+/* ── Hero icon ──────────────────────────────────────────────── */
+.calma-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(110, 231, 183, 0.2), rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(110, 231, 183, 0.2);
+  color: rgba(167, 243, 208, 0.9);
+  margin-bottom: 1.5rem;
 }
 
-.calma-container #instruccion {
-    position: absolute;
-    font-size: 24px;
-    font-weight: 600;
-    color: white;
+/* ── Tipografía ─────────────────────────────────────────────── */
+.calma-title {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #a7f3d0, #67e8f9, #c4b5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 1rem;
 }
 
-.calma-container #contadorCiclos {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #888;
+.calma-subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 2rem;
 }
 
-.calma-app-wrapper .control-audio {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    font-size: 20px;
-    line-height: 40px;
-    text-align: center;
-    color: #aaa;
-    cursor: pointer;
+/* ── Selector de ciclos ─────────────────────────────────────── */
+.calma-cycles-config {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.calma-cycles-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+.calma-cycles-control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.calma-cycle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.calma-cycle-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.calma-cycle-value {
+  width: 48px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: rgba(167, 243, 208, 0.9);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 44px;
+}
+
+/* ── Botón comenzar / reiniciar ─────────────────────────────── */
+.calma-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.2rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  background: linear-gradient(135deg, #065f46, #0d9488);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 4px 20px rgba(13, 148, 136, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.calma-start-btn:hover {
+  box-shadow:
+    0 6px 28px rgba(13, 148, 136, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.calma-restart-btn {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.calma-restart-btn:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Pantalla de respiración ────────────────────────────────── */
+.calma-breathing-screen {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* ── Círculo de respiración ─────────────────────────────────── */
+.calma-breath-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calma-breath-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(110, 231, 183, 0.08);
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), border-color 1s;
+}
+
+.calma-ring-1 { border-color: rgba(110, 231, 183, 0.15); }
+.calma-ring-2 { border-color: rgba(110, 231, 183, 0.08); }
+.calma-ring-3 { border-color: rgba(110, 231, 183, 0.04); }
+
+.calma-breath-core {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background 1.2s, box-shadow 1.2s;
+  background: linear-gradient(135deg, rgba(110, 231, 183, 0.2), rgba(59, 130, 246, 0.12));
+  box-shadow:
+    0 0 40px rgba(110, 231, 183, 0.1),
+    0 0 80px rgba(110, 231, 183, 0.05),
+    inset 0 0 30px rgba(110, 231, 183, 0.05);
+}
+
+.calma-breath-icon {
+  color: rgba(167, 243, 208, 0.7);
+  transition: color 1s;
+}
+
+/* Colores por fase */
+.calma-phase-inhale.calma-breath-core {
+  background: linear-gradient(135deg, rgba(110, 231, 183, 0.3), rgba(52, 211, 153, 0.15));
+  box-shadow:
+    0 0 60px rgba(110, 231, 183, 0.2),
+    0 0 120px rgba(110, 231, 183, 0.08),
+    inset 0 0 40px rgba(110, 231, 183, 0.08);
+}
+
+.calma-phase-hold.calma-breath-core {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(139, 92, 246, 0.12));
+  box-shadow:
+    0 0 60px rgba(167, 139, 250, 0.15),
+    0 0 120px rgba(167, 139, 250, 0.06),
+    inset 0 0 40px rgba(167, 139, 250, 0.06);
+}
+
+.calma-phase-exhale.calma-breath-core {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.1));
+  box-shadow:
+    0 0 50px rgba(96, 165, 250, 0.15),
+    0 0 100px rgba(96, 165, 250, 0.06),
+    inset 0 0 30px rgba(96, 165, 250, 0.06);
+}
+
+.calma-phase-rest.calma-breath-core {
+  background: linear-gradient(135deg, rgba(110, 231, 183, 0.15), rgba(59, 130, 246, 0.08));
+  box-shadow:
+    0 0 30px rgba(110, 231, 183, 0.08),
+    inset 0 0 20px rgba(110, 231, 183, 0.04);
+}
+
+/* Anillos: colores por fase */
+.calma-phase-inhale.calma-ring-1 { border-color: rgba(110, 231, 183, 0.25); }
+.calma-phase-hold.calma-ring-1   { border-color: rgba(167, 139, 250, 0.2); }
+.calma-phase-exhale.calma-ring-1 { border-color: rgba(96, 165, 250, 0.2); }
+.calma-phase-inhale.calma-ring-2 { border-color: rgba(110, 231, 183, 0.12); }
+.calma-phase-hold.calma-ring-2   { border-color: rgba(167, 139, 250, 0.1); }
+.calma-phase-exhale.calma-ring-2 { border-color: rgba(96, 165, 250, 0.1); }
+
+.calma-phase-inhale .calma-breath-icon { color: rgba(167, 243, 208, 0.9); }
+.calma-phase-hold .calma-breath-icon   { color: rgba(196, 181, 253, 0.8); }
+.calma-phase-exhale .calma-breath-icon { color: rgba(147, 197, 253, 0.8); }
+
+/* ── Instrucción de texto ───────────────────────────────────── */
+.calma-instruction {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  min-height: 2.4rem;
+}
+
+/* ── Barra de progreso ──────────────────────────────────────── */
+.calma-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 60%;
+  max-width: 240px;
+}
+
+.calma-progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.calma-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(110, 231, 183, 0.4), rgba(167, 139, 250, 0.4));
+  border-radius: 2px;
+}
+
+.calma-progress-text {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.08em;
+}
+
+/* ── Pantalla final ─────────────────────────────────────────── */
+.calma-final {
+  position: relative;
+  overflow: hidden;
+}
+
+.calma-final-glow {
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(110, 231, 183, 0.04),
+    rgba(167, 139, 250, 0.04),
+    rgba(96, 165, 250, 0.04),
+    rgba(110, 231, 183, 0.04)
+  );
+  pointer-events: none;
+}
+
+.calma-final-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(110, 231, 183, 0.3));
+}
+
+/* ── Botón de audio ─────────────────────────────────────────── */
+.calma-audio-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s;
+}
+
+.calma-audio-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Modo oscuro ────────────────────────────────────────────── */
+html.dark .calma-app {
+  background: linear-gradient(160deg, #050a0e 0%, #0a1520 40%, #0f1f2e 100%);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .calma-app {
+    padding: 1.5rem 0.75rem;
+    min-height: 70vh;
+  }
+
+  .calma-card-inner {
+    padding: 2rem 1.5rem;
+    border-radius: 24px;
+  }
+
+  .calma-title {
+    font-size: 1.6rem;
+  }
+
+  .calma-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .calma-breath-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .calma-breath-core {
+    width: 100px;
+    height: 100px;
+  }
+
+  .calma-instruction {
+    font-size: 1.3rem;
+  }
+
+  .calma-hero-icon {
+    width: 64px;
+    height: 64px;
+  }
 }
