@@ -190,11 +190,16 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const finalizarTest = () => {
     detenerCronometro();
     setMostrarResumen(true);
-    const elapsed = estado.tiempoInicio ? Math.round((performance.now() - estado.tiempoInicio) / 1000) : null;
+    const elapsed = estado.tiempoInicio ? Math.round((performance.now() - estado.tiempoInicio) / 1000) : 0;
+    const basePoints = estado.aciertos * 100;
+    const refTime = estado.rondasTotales * 8;
+    const timeBonus = Math.max(0, Math.round(300 * (1 - elapsed / refTime)));
+    const comboBonus = Math.min(estado.combo * 15, 200);
+    const totalPoints = basePoints + timeBonus + comboBonus;
     onGameComplete?.({
       mode: 'test',
-      score: estado.aciertos * 100,
-      maxScore: estado.rondasTotales * 100,
+      score: totalPoints,
+      maxScore: estado.rondasTotales * 100 + 500,
       correctAnswers: estado.aciertos,
       totalQuestions: estado.rondasTotales,
       durationSeconds: elapsed,
@@ -444,13 +449,33 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
             // PANTALLA DE RESULTADOS
             <div className="results-card">
               <h2>EXAMEN COMPLETADO!</h2>
-              <div className="score-circle">
-                <svg viewBox="0 0 36 36" className="circular-chart">
-                  <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path className="circle" strokeDasharray={`${precision}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div className="score-text">{precision}%</div>
-              </div>
+
+              {(() => {
+                const nota = Math.round((estado.aciertos / estado.rondasTotales) * 100) / 10;
+                const notaColor = nota >= 8 ? '#059669' : nota >= 5 ? '#2563eb' : '#dc2626';
+                const notaBg = nota >= 8 ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : nota >= 5 ? 'linear-gradient(135deg, #dbeafe, #bfdbfe)' : 'linear-gradient(135deg, #fee2e2, #fecaca)';
+                const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+                const elapsed = Math.round(tiempoTranscurrido);
+                const totalPoints = estado.aciertos * 100 + Math.max(0, (120 - elapsed) * 5) + estado.combo * 30;
+
+                return (
+                  <>
+                    <div style={{ textAlign: 'center', margin: '1.5rem 0 1rem', padding: '1.5rem', borderRadius: '16px', background: notaBg }}>
+                      <div style={{ fontSize: '3.5rem', fontWeight: 900, lineHeight: 1, color: notaColor }}>
+                        {nota.toFixed(1)}<span style={{ fontSize: '1.5rem', fontWeight: 700, opacity: 0.6 }}>/10</span>
+                      </div>
+                      <div style={{ marginTop: '0.5rem', fontSize: '1.1rem' }}><strong>{notaMsg}</strong></div>
+                      <div style={{ marginTop: '0.3rem', fontSize: '0.85rem', color: '#6b7280' }}>{estado.aciertos} de {estado.rondasTotales} correctas</div>
+                    </div>
+
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', margin: '0.75rem 0 1rem', padding: '0.5rem 1.2rem', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '12px', border: '1px solid #fbbf24' }}>
+                      <span style={{ fontSize: '1.1rem' }}>⭐</span>
+                      <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#92400e' }}>{totalPoints.toLocaleString('es-ES')}</span>
+                      <span style={{ fontSize: '0.85rem', color: '#b45309', fontWeight: 600 }}>puntos</span>
+                    </div>
+                  </>
+                );
+              })()}
 
               <div className="stats-row">
                 <div className="stat-box">

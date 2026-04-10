@@ -129,12 +129,10 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   }, [isTestMode, withTimer, showResults, startTime]);
 
   const calculateScore = (correctCount, time) => {
-    let base = correctCount * 200;
-    if (withTimer && correctCount > 0) {
-      const timeBonus = Math.max(0, 100 - (time * 2));
-      base += timeBonus;
-    }
-    return Math.floor(base);
+    const base = correctCount * 100;
+    const refTime = TOTAL_TEST_QUESTIONS * 20; // 20s por frase
+    const timeBonus = correctCount > 0 ? Math.max(0, Math.round(300 * (1 - time / refTime))) : 0;
+    return base + timeBonus;
   };
 
   const handleNextQuestion = () => {

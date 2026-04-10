@@ -49,7 +49,7 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
       onGameComplete?.({
         mode: 'test',
         score: game.score,
-        maxScore: TOTAL_TEST_QUESTIONS * 200,
+        maxScore: TOTAL_TEST_QUESTIONS * 100 + 300,
         correctAnswers: correct,
         totalQuestions: TOTAL_TEST_QUESTIONS,
         durationSeconds: game.elapsedTime || undefined,
@@ -58,17 +58,42 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
     if (!game.showResults) trackedRef.current = false;
   }, [game.isTestMode, game.showResults, game.score, onGameComplete]);
 
+  // Tracking práctica
+  const practiceTrackedRef = useRef(false);
+  useEffect(() => {
+    if (!game.isTestMode && game.feedback?.clase === 'correcto' && !practiceTrackedRef.current) {
+      practiceTrackedRef.current = true;
+      onGameComplete?.({ mode: 'practice', score: 0, maxScore: 0, correctAnswers: 1, totalQuestions: 1, durationSeconds: 0 });
+      setTimeout(() => { practiceTrackedRef.current = false; }, 500);
+    }
+  }, [game.isTestMode, game.feedback, onGameComplete]);
+
   if (game.isTestMode) {
     // Resultados del test
     if (game.showResults) {
       const correct = game.testQuestions.filter((q, i) => transformed(q.solucion) === game.userAnswers[i]).length;
 
+      const nota = Math.round((correct / TOTAL_TEST_QUESTIONS) * 100) / 10;
+      const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+      const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+
       return (
         <div className={`${cls} test-results`}>
           <Header titulo="Examen Completado!" />
-          <div className="score">Tu puntuación: <span>{game.score}</span></div>
-          <p>Has acertado {correct} de {TOTAL_TEST_QUESTIONS} frases</p>
-          {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos</p>}
+
+          <div className={`detect-nota ${notaColor}`}>
+            <div className="detect-nota-big">{nota.toFixed(1)}<span className="detect-nota-small">/10</span></div>
+            <div className="detect-nota-msg"><strong>{notaMsg}</strong></div>
+            <div className="detect-nota-detail">{correct} de {TOTAL_TEST_QUESTIONS} frases correctas</div>
+          </div>
+
+          <div className="detect-puntos">
+            <span className="detect-puntos-icon">⭐</span>
+            <span className="detect-puntos-value">{game.score.toLocaleString('es-ES')}</span>
+            <span className="detect-puntos-label">puntos</span>
+          </div>
+
+          {game.elapsedTime > 0 && <p className="detect-time">⏱️ Tiempo total: {game.elapsedTime}s</p>}
 
           <div className="results-summary">
             {game.testQuestions.map((q, i) => (

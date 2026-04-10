@@ -277,6 +277,24 @@ input[type="range"].font-slider::-moz-range-thumb {
     font-size: 2.5rem;
     color: #673de6;
 }
+/* Nota sobre 10 */
+.detect-nota { text-align: center; margin: 1.5rem 0 1rem; padding: 1.5rem; border-radius: 16px; }
+.detect-nota.excellent { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.detect-nota.good { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.detect-nota.fail { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+.detect-nota-big { font-size: 3.5rem; font-weight: 900; line-height: 1; }
+.detect-nota.excellent .detect-nota-big { color: #059669; }
+.detect-nota.good .detect-nota-big { color: #2563eb; }
+.detect-nota.fail .detect-nota-big { color: #dc2626; }
+.detect-nota-small { font-size: 1.5rem; font-weight: 700; opacity: 0.6; }
+.detect-nota-msg { margin-top: 0.5rem; font-size: 1.1rem; }
+.detect-nota-detail { margin-top: 0.3rem; font-size: 0.85rem; color: #6b7280; }
+.detect-puntos { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.75rem 0 1rem; padding: 0.5rem 1.2rem; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 12px; border: 1px solid #fbbf24; }
+.detect-puntos-icon { font-size: 1.1rem; }
+.detect-puntos-value { font-size: 1.2rem; font-weight: 800; color: #92400e; }
+.detect-puntos-label { font-size: 0.85rem; color: #b45309; font-weight: 600; }
+.detect-time { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; }
+
 .detective-container.test-results .results-summary {
     margin-top: 20px;
     text-align: left;

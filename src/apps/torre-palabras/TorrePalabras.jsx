@@ -188,9 +188,9 @@ const TorrePalabras = ({ onGameComplete }) => {
 
     if (catIdx === currentBlock.categoryIdx) {
       // ¡Correcto!
-      const mult = 1 + streak * 0.15;
-      const timeBonus = cfg.timer ? Math.max(0, timeLeft * 12) : 0;
-      const gained = Math.round(120 * mult + timeBonus);
+      const streakMultiplier = 1 + streak * 0.1;
+      const timeBonus = cfg.timer ? Math.max(0, Math.round(20 * (timeLeft / cfg.timer))) : 0;
+      const gained = Math.round(100 * streakMultiplier + timeBonus);
       setScore((s) => s + gained);
       setStreak((s) => { const n = s + 1; setMaxStreak((m) => Math.max(m, n)); return n; });
       setCorrectCount((c) => c + 1);
@@ -224,10 +224,11 @@ const TorrePalabras = ({ onGameComplete }) => {
     if ((status !== 'won' && status !== 'lost') || trackedRef.current) return;
     trackedRef.current = true;
     if (status === 'won') confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: BLOCK_COLORS.slice(0, 6) });
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score,
-      maxScore: blocks.length * 250,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? score : 0,
+      maxScore: isExamMode ? blocks.length * 170 : 0,
       correctAnswers: correctCount,
       totalQuestions: blocks.length || 1,
       durationSeconds: 0,

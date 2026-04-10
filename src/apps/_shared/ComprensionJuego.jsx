@@ -20,6 +20,13 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     const [showMaterial, setShowMaterial] = useState(false);
     const [selectedMaterialIndex, setSelectedMaterialIndex] = useState(0);
 
+    // --- Timers para puntuación ---
+    const [readingStart, setReadingStart] = useState(null);
+    const [readingTime, setReadingTime] = useState(0); // segundos leyendo
+    const [answersStart, setAnswersStart] = useState(null);
+    const [answersTime, setAnswersTime] = useState(0); // segundos respondiendo
+    const trackedRef = useRef(false);
+
     // --- Audio States ---
     const [speechRate, setSpeechRate] = useState(1);
     const [isSpeaking, setIsSpeaking] = useState(false);
@@ -65,6 +72,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
                 if (!jsonData || jsonData.length === 0) throw new Error("Datos vacíos");
                 const shuffled = jsonData.sort(() => 0.5 - Math.random());
                 setData(shuffled);
+                setReadingStart(Date.now());
                 setLoading(false);
             })
             .catch(err => {
@@ -105,6 +113,9 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
 
     const iniciarTest = () => {
         detenerAudio();
+        const elapsed = readingStart ? Math.round((Date.now() - readingStart) / 1000) : 0;
+        setReadingTime(elapsed);
+        setAnswersStart(Date.now());
         cambiarFase('preguntas');
     };
 
@@ -120,7 +131,17 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
         });
         setScore(aciertos);
 
-        const notaCalculada = Math.round((aciertos / total) * 10);
+        const respTime = answersStart ? Math.round((Date.now() - answersStart) / 1000) : 0;
+        setAnswersTime(respTime);
+        const totalTime = readingTime + respTime;
+
+        // Puntos paralelos: base + bonus tiempo lectura + bonus tiempo respuesta
+        const basePoints = aciertos * 100;
+        const readBonus = Math.max(0, Math.round(150 * (1 - readingTime / 180)));
+        const answerBonus = Math.max(0, Math.round(150 * (1 - respTime / 120)));
+        const totalPoints = basePoints + readBonus + answerBonus;
+
+        const notaCalculada = Math.round((aciertos / total) * 100) / 10;
         if (notaCalculada >= 5) {
             confetti({
                 particleCount: 150,
@@ -130,13 +151,17 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
             });
         }
         cambiarFase('resultado');
-        onGameComplete?.({
-            mode: 'test',
-            score: aciertos,
-            maxScore: total,
-            correctAnswers: aciertos,
-            totalQuestions: total,
-        });
+        if (!trackedRef.current) {
+            trackedRef.current = true;
+            onGameComplete?.({
+                mode: 'test',
+                score: totalPoints,
+                maxScore: total * 100 + 300,
+                correctAnswers: aciertos,
+                totalQuestions: total,
+                durationSeconds: totalTime,
+            });
+        }
     };
 
     const siguienteEjercicio = () => {
@@ -147,6 +172,11 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
             setRespuestas({});
             setScore(0);
             setShowReview(false);
+            setReadingStart(Date.now());
+            setReadingTime(0);
+            setAnswersStart(null);
+            setAnswersTime(0);
+            trackedRef.current = false;
             setCurrentIndex((prev) => (prev + 1) % data.length);
             setMode('lectura');
             setAnimacionFase('bounce-in');
@@ -170,11 +200,15 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     const currentSizeClass = sizeClasses[fontSizeIndex];
 
     const totalPreguntas = ejercicioActual.preguntas.length;
-    const nota = Math.round((score / totalPreguntas) * 10);
+    const nota = Math.round((score / totalPreguntas) * 100) / 10;
     let estrellas = 0;
     if (nota >= 9) estrellas = 3;
     else if (nota >= 5) estrellas = 2;
     else if (nota >= 3) estrellas = 1;
+    const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+    const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+    const totalPoints = score * 100 + Math.max(0, (180 - readingTime) * 2) + Math.max(0, (120 - answersTime) * 3);
+    const formatTime = (s) => s >= 60 ? `${Math.floor(s/60)}m ${s%60}s` : `${s}s`;
 
     const getButtonClass = () => isSpeaking ? (isPaused ? "btn-big-audio paused" : "btn-big-audio playing") : "btn-big-audio";
     const getButtonText = () => isSpeaking ? (isPaused ? "▶️ Continuar" : "⏸️ Pausar") : "🔊 Escuchar Historia";
@@ -317,16 +351,24 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
                             </div>
 
                             <div className="nota-display-simple">
-                                <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota}</span>
+                                <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota.toFixed(1)}</span>
                                 <span className="nota-total">/ 10</span>
                             </div>
 
-                            <p className="mensaje-motivacional-simple">
-                                {nota === 10 ? "¡TRABAJO EXCELENTE! 🌟🏆" :
-                                    nota >= 7 ? "¡FANTÁSTICO! 😎" :
-                                        nota >= 5 ? "¡BIEN JUGADO! 👍" :
-                                            "¡BUEN INTENTO! 💪"}
-                            </p>
+                            <p className="mensaje-motivacional-simple">{notaMsg}</p>
+
+                            <div className="comprension-points-row">
+                                <span className="comprension-points-icon">⭐</span>
+                                <span className="comprension-points-value">{totalPoints.toLocaleString('es-ES')}</span>
+                                <span className="comprension-points-label">puntos</span>
+                            </div>
+
+                            {(readingTime > 0 || answersTime > 0) && (
+                                <div className="comprension-time-stats">
+                                    {readingTime > 0 && <span>📖 Lectura: {formatTime(readingTime)}</span>}
+                                    {answersTime > 0 && <span>✏️ Respuestas: {formatTime(answersTime)}</span>}
+                                </div>
+                            )}
 
                             {/* Botón para Desplegar Revisión */}
                             <button

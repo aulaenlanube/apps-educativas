@@ -196,10 +196,10 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
     if (normalized === correct) {
       // ¡Correcto!
       const cfg = MODE_CONFIG[gameMode];
-      const multiplier = 1 + streak * 0.2;
-      const timeBonus = Math.round(timeLeft * 20);
-      const basePoints = 100 + currentQ.word.length * 15;
-      const gained = Math.round(basePoints * multiplier + timeBonus);
+      const streakMultiplier = 1 + streak * 0.1;
+      const timeBonus = Math.max(0, Math.round(20 * (timeLeft / cfg.baseTime)));
+      const basePoints = 100;
+      const gained = Math.round(basePoints * streakMultiplier + timeBonus);
       setScore((s) => s + gained);
       setLastGain({ value: gained, key: Date.now() });
       setStreak((s) => {
@@ -251,10 +251,11 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
       confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 },
         colors: ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#a855f7'] });
     }
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score,
-      maxScore: questions.length * 300,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? score : 0,
+      maxScore: isExamMode ? questions.length * 170 : 0,
       correctAnswers: correctCount,
       totalQuestions: questions.length || 1,
       durationSeconds: 0,

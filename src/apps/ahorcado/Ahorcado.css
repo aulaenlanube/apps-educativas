@@ -713,6 +713,34 @@
   font-size: 0.85rem;
 }
 
+.ahorcado-puntos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 12px;
+  border: 1px solid #fbbf24;
+}
+
+.ahorcado-puntos-icon {
+  color: #d97706;
+}
+
+.ahorcado-puntos-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #92400e;
+}
+
+.ahorcado-puntos-label {
+  font-size: 0.85rem;
+  color: #b45309;
+  font-weight: 600;
+}
+
 .ahorcado-feedback-title {
   font-size: 0.95rem;
   font-weight: 800;

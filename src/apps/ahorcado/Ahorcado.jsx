@@ -69,6 +69,7 @@ const Ahorcado = ({ onGameComplete }) => {
 
   const trackedRef = useRef(false);
   const examTrackedRef = useRef(false);
+  const examStartRef = useRef(null);
 
   // --- Cargar datos (rosco y frases) ---
   useEffect(() => {
@@ -182,6 +183,7 @@ const Ahorcado = ({ onGameComplete }) => {
     setExamResults([]);
     setExamFinished(false);
     examTrackedRef.current = false;
+    examStartRef.current = Date.now();
     if (questions.length > 0) {
       setCurrent(questions[0]);
       setGuessed(new Set());
@@ -279,8 +281,8 @@ const Ahorcado = ({ onGameComplete }) => {
       const hits = Array.from(lettersNeeded).filter((l) => guessed.has(l)).length;
       onGameComplete?.({
         mode: 'practice',
-        score: status === 'won' ? (MAX_FAILS - fails) * 100 : hits * 10,
-        maxScore: MAX_FAILS * 100,
+        score: 0,
+        maxScore: 0,
         correctAnswers: hits,
         totalQuestions: total,
         durationSeconds: 0,
@@ -295,19 +297,39 @@ const Ahorcado = ({ onGameComplete }) => {
     return Math.round((correct / EXAM_QUESTIONS) * 10 * 10) / 10; // 1 decimal
   }, [examResults]);
 
+  // --- Puntos paralelos del examen ---
+  const examElapsed = useMemo(() => {
+    if (!examFinished || !examStartRef.current) return 0;
+    return Math.round((Date.now() - examStartRef.current) / 1000);
+  }, [examFinished]);
+
+  const examPoints = useMemo(() => {
+    if (examResults.length === 0) return 0;
+    // Base: 100 por acierto
+    const base = examResults.filter((r) => r.won).length * 100;
+    // Bonus vidas: 30 por vida sobrante por pregunta
+    const vidasBonus = examResults.reduce((acc, r) => acc + (r.won ? (MAX_FAILS - r.fails) * 30 : 0), 0);
+    // Bonus tiempo: max 300, proporcional (referencia: 120s para 5 preguntas)
+    const refTime = EXAM_QUESTIONS * 24;
+    const elapsed = examStartRef.current ? Math.round((Date.now() - examStartRef.current) / 1000) : refTime;
+    const timeBonus = Math.max(0, Math.round(300 * (1 - elapsed / refTime)));
+    return base + vidasBonus + timeBonus;
+  }, [examResults]);
+
   // --- Tracking al terminar el examen completo ---
   useEffect(() => {
     if (!examFinished || examTrackedRef.current) return;
     if (examResults.length < EXAM_QUESTIONS) return;
     examTrackedRef.current = true;
     const correct = examResults.filter((r) => r.won).length;
+    const elapsed = examStartRef.current ? Math.round((Date.now() - examStartRef.current) / 1000) : 0;
     onGameComplete?.({
       mode: 'test',
-      score: correct * 100,
-      maxScore: EXAM_QUESTIONS * 100,
+      score: examPoints,
+      maxScore: EXAM_QUESTIONS * 100 + EXAM_QUESTIONS * MAX_FAILS * 30 + 300,
       correctAnswers: correct,
       totalQuestions: EXAM_QUESTIONS,
-      durationSeconds: 0,
+      durationSeconds: examElapsed,
     });
     if (examScore >= 8) {
       confetti({
@@ -513,6 +535,12 @@ const Ahorcado = ({ onGameComplete }) => {
               <strong>{mensaje}</strong>
               <small>{correctCount} de {EXAM_QUESTIONS} preguntas correctas</small>
             </div>
+          </div>
+
+          <div className="ahorcado-puntos">
+            <Trophy size={16} className="ahorcado-puntos-icon" />
+            <span className="ahorcado-puntos-value">{examPoints.toLocaleString('es-ES')}</span>
+            <span className="ahorcado-puntos-label">puntos</span>
           </div>
 
           <div className="ahorcado-feedback-title">Retroalimentación:</div>

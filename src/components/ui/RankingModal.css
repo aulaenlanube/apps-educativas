@@ -115,14 +115,14 @@
   min-width: 60px;
 }
 
-.rk-filter-buttons {
+.rk-filter-pills {
   display: flex;
   gap: 0.3rem;
   flex-wrap: wrap;
   flex: 1;
 }
 
-.rk-filter-btn {
+.rk-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -137,15 +137,23 @@
   transition: all 0.15s;
 }
 
-.rk-filter-btn:hover:not(.active) {
+.rk-pill:hover:not(.active) {
   background: rgba(251, 191, 36, 0.1);
 }
 
-.rk-filter-btn.active {
+.rk-pill.active {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: white;
   border-color: transparent;
   box-shadow: 0 3px 10px -2px rgba(245, 158, 11, 0.5);
+}
+
+.rk-meta-course {
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
 }
 
 /* ============ LISTA ============ */

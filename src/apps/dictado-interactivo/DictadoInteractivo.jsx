@@ -203,11 +203,11 @@ const DictadoInteractivo = ({ onGameComplete }) => {
     if (isCorrect) {
       // Bonus por ortografía perfecta (con tildes)
       const perfectOrtho = trimmed === currentQ.text;
-      const basePoints = 100 + currentQ.text.length * 10;
-      const mult = 1 + streak * 0.15;
-      const orthoBonus = perfectOrtho ? 50 : 0;
-      const timeBonus = cfg.timer ? Math.max(0, timeLeft * 8) : 0;
-      const gained = Math.round(basePoints * mult + orthoBonus + timeBonus);
+      const basePoints = 100;
+      const streakMultiplier = 1 + streak * 0.1;
+      const orthoBonus = perfectOrtho ? 20 : 0;
+      const timeBonus = cfg.timer ? Math.max(0, Math.round(20 * (timeLeft / cfg.timer))) : 0;
+      const gained = Math.round(basePoints * streakMultiplier + orthoBonus + timeBonus);
       setScore((s) => s + gained);
       setStreak((s) => { const next = s + 1; setMaxStreak((m) => Math.max(m, next)); return next; });
       setCorrectCount((c) => c + 1);
@@ -241,10 +241,11 @@ const DictadoInteractivo = ({ onGameComplete }) => {
     if ((status !== 'won' && status !== 'lost') || trackedRef.current) return;
     trackedRef.current = true;
     if (status === 'won') confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: ['#a855f7', '#ec4899', '#fbbf24', '#10b981'] });
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score,
-      maxScore: questions.length * 300,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? score : 0,
+      maxScore: isExamMode ? questions.length * 170 : 0,
       correctAnswers: correctCount,
       totalQuestions: questions.length || 1,
       durationSeconds: 0,

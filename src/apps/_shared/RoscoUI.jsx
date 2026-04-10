@@ -50,16 +50,22 @@ const RoscoUI = ({
         if (gameState === 'finished' && !trackedRef.current) {
             trackedRef.current = true;
             const best = [...players].sort((a, b) => b.score - a.score)[0];
+            const aciertos = best?.score || 0;
+            const tiempoSobrante = best?.timeLeft || 0;
+            const basePoints = aciertos * 100;
+            const refTime = config.timeLimit || 300;
+            const timeBonus = Math.max(0, Math.round(300 * (tiempoSobrante / refTime)));
+            const totalPoints = basePoints + timeBonus;
             onGameComplete?.({
                 mode: 'test',
-                score: best?.score || 0,
-                maxScore: config.questionCount,
-                correctAnswers: best?.score || 0,
+                score: totalPoints,
+                maxScore: config.questionCount * 100 + 300,
+                correctAnswers: aciertos,
                 totalQuestions: config.questionCount,
             });
         }
         if (gameState !== 'finished') trackedRef.current = false;
-    }, [gameState, players, config.questionCount, onGameComplete]);
+    }, [gameState, players, config.questionCount, config.timeLimit, onGameComplete]);
 
     // Inicializar Reconocimiento de Voz
     useEffect(() => {
@@ -393,6 +399,12 @@ const RoscoUI = ({
                                     {((winner.score / config.questionCount) * 10).toFixed(1)}
                                     <span className="text-xl text-blue-300 ml-1">/ 10</span>
                                 </div>
+                            </div>
+                            {/* Puntos paralelos */}
+                            <div className="mt-4 flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-300 rounded-xl px-4 py-2">
+                                <span className="text-lg">⭐</span>
+                                <span className="text-xl font-extrabold text-amber-700">{(winner.score * 100 + Math.max(0, Math.round(300 * ((winner.timeLeft || 0) / (config.timeLimit || 300))))).toLocaleString('es-ES')}</span>
+                                <span className="text-sm font-semibold text-amber-600">puntos</span>
                             </div>
                             {config.useTimer && winner.timeLeft > 0 && (<p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>)}
                         </div>

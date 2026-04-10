@@ -187,8 +187,9 @@ const SopaDeLetras = ({ onGameComplete }) => {
   const finalScore = useMemo(() => {
     if (!puzzle || !completed) return 0;
     const wordCount = puzzle.placed.length;
-    const basePoints = wordCount * 150; // 150 pts por palabra encontrada
-    const timeBonus = Math.max(0, (600 - timer) * 4); // bonus si terminas rápido
+    const basePoints = wordCount * 100;
+    const refTime = 300; // 5 min referencia
+    const timeBonus = Math.max(0, Math.round(300 * (1 - timer / refTime)));
     return basePoints + timeBonus;
   }, [puzzle, completed, timer]);
 
@@ -197,10 +198,11 @@ const SopaDeLetras = ({ onGameComplete }) => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
     const total = puzzle?.placed?.length || 0;
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score: finalScore,
-      maxScore: total * 150 + 600 * 4,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? finalScore : 0,
+      maxScore: isExamMode ? total * 100 + 300 : 0,
       correctAnswers: total,
       totalQuestions: total,
       durationSeconds: timer,

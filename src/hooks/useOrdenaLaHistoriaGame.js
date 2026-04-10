@@ -112,12 +112,10 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   }, [isTestMode, withTimer, showResults, startTime]);
 
   const calculateScore = (correctCount, time) => {
-    let base = correctCount * 200;
-    if (withTimer && correctCount > 0) {
-      const bonus = Math.max(0, 100 - (time / correctCount) * 2);
-      base += bonus;
-    }
-    return Math.floor(base);
+    const base = correctCount * 100;
+    const refTime = TOTAL_TEST_STORIES * 30; // 30s por historia
+    const timeBonus = correctCount > 0 ? Math.max(0, Math.round(300 * (1 - time / refTime))) : 0;
+    return base + timeBonus;
   };
 
   const handleNextStory = () => {

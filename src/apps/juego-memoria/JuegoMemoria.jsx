@@ -47,10 +47,13 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
         if ((gameState === 'won' || gameState === 'lost') && !trackedRef.current) {
             trackedRef.current = true;
             const won = gameState === 'won';
+            const basePoints = correctIndices.size * 100;
+            const timeBonus = won ? Math.max(0, Math.round(300 * (timeLeft / GAME_TIME))) : 0;
+            const totalPoints = basePoints + timeBonus;
             onGameComplete?.({
                 mode: 'test',
-                score: won ? correctIndices.size * 100 : 0,
-                maxScore: gridSize * 100,
+                score: totalPoints,
+                maxScore: gridSize * 100 + 300,
                 correctAnswers: correctIndices.size,
                 totalQuestions: gridSize,
                 durationSeconds: GAME_TIME - timeLeft,
@@ -401,25 +404,32 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}
                         >
-                            {gameState === 'won' ? (
-                                <div className="result-msg win-msg">
-                                    <div className="text-6xl mb-4">🎉</div>
-                                    <h1>¡ENHORABUENA!</h1>
-                                    <p>¡Has encontrado todas las palabras!</p>
-                                    <div className="final-score">
-                                        Nota: 10 / 10
+                            {(() => {
+                                const won = gameState === 'won';
+                                const nota = won ? 10 : Math.round((correctIndices.size / GRID_SIZE) * 100) / 10;
+                                const notaColor = nota >= 8 ? '#059669' : nota >= 5 ? '#2563eb' : '#dc2626';
+                                const notaBg = nota >= 8 ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : nota >= 5 ? 'linear-gradient(135deg, #dbeafe, #bfdbfe)' : 'linear-gradient(135deg, #fee2e2, #fecaca)';
+                                const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+                                const pts = correctIndices.size * 100 + (won ? Math.max(0, Math.round(300 * (timeLeft / GAME_TIME))) : 0);
+                                return (
+                                    <div className="result-msg" style={{ textAlign: 'center' }}>
+                                        <div className="text-6xl mb-4">{won ? '🎉' : '⏳'}</div>
+                                        <h1>{won ? '¡ENHORABUENA!' : '¡TIEMPO AGOTADO!'}</h1>
+                                        <p>{won ? '¡Has encontrado todas las palabras!' : 'Se acabó el tiempo.'}</p>
+                                        <div style={{ margin: '1.2rem 0 0.8rem', padding: '1.2rem', borderRadius: '16px', background: notaBg }}>
+                                            <div style={{ fontSize: '3rem', fontWeight: 900, lineHeight: 1, color: notaColor }}>
+                                                {nota.toFixed(1)}<span style={{ fontSize: '1.3rem', fontWeight: 700, opacity: 0.6 }}>/10</span>
+                                            </div>
+                                            <div style={{ marginTop: '0.4rem', fontSize: '1rem' }}><strong>{notaMsg}</strong></div>
+                                        </div>
+                                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 1rem', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '10px', border: '1px solid #fbbf24' }}>
+                                            <span>⭐</span>
+                                            <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#92400e' }}>{pts.toLocaleString('es-ES')}</span>
+                                            <span style={{ fontSize: '0.8rem', color: '#b45309', fontWeight: 600 }}>puntos</span>
+                                        </div>
                                     </div>
-                                </div>
-                            ) : (
-                                <div className="result-msg lose-msg">
-                                    <div className="text-6xl mb-4">⏳</div>
-                                    <h1>¡TIEMPO AGOTADO!</h1>
-                                    <p>Se acabó el tiempo.</p>
-                                    <div className="final-score">
-                                        Nota: {Math.round((correctIndices.size / GRID_SIZE) * 10)} / 10
-                                    </div>
-                                </div>
-                            )}
+                                );
+                            })()}
 
                             <button className="restart-btn-modal" onClick={handleNewGame}>
                                 ✨ Jugar de nuevo

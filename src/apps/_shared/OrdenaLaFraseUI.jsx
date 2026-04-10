@@ -79,7 +79,7 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
     ))
   );
 
-  // Tracking
+  // Tracking examen
   const trackedRef = useRef(false);
   useEffect(() => {
     if (game.isTestMode && game.showResults && !trackedRef.current) {
@@ -88,7 +88,7 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
       onGameComplete?.({
         mode: 'test',
         score: game.score,
-        maxScore: game.TOTAL_TEST_QUESTIONS * 200,
+        maxScore: game.TOTAL_TEST_QUESTIONS * 100 + 300,
         correctAnswers: correct,
         totalQuestions: game.TOTAL_TEST_QUESTIONS,
         durationSeconds: game.elapsedTime || undefined,
@@ -97,16 +97,54 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
     if (!game.showResults) trackedRef.current = false;
   }, [game.isTestMode, game.showResults, game.score, game.testQuestions, game.userAnswers, game.TOTAL_TEST_QUESTIONS, game.elapsedTime, onGameComplete]);
 
+  // Tracking práctica: solo registrar tiempo de juego, sin puntuación
+  const practiceTrackedRef = useRef(false);
+  useEffect(() => {
+    if (!game.isTestMode && game.feedback?.clase === 'correcta' && !practiceTrackedRef.current) {
+      practiceTrackedRef.current = true;
+      onGameComplete?.({
+        mode: 'practice',
+        score: 0,
+        maxScore: 0,
+        correctAnswers: 1,
+        totalQuestions: 1,
+        durationSeconds: 0,
+      });
+      // Reset para la siguiente frase
+      setTimeout(() => { practiceTrackedRef.current = false; }, 500);
+    }
+  }, [game.isTestMode, game.feedback, onGameComplete]);
+
   // Modo TEST: resultados
   if (game.isTestMode && game.showResults) {
     const correct = game.testQuestions.filter((q, i) => q.solucion === game.userAnswers[i]).length;
+    const nota = Math.round((correct / game.TOTAL_TEST_QUESTIONS) * 100) / 10;
+    const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+    const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
 
     return (
       <div className={`${cls} test-results`}>
         <Header titulo="Examen Completado!" />
-        <div className="score">Tu puntuación: <span>{game.score}</span></div>
-        <p>Has acertado {correct} de {game.TOTAL_TEST_QUESTIONS} frases</p>
-        {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos</p>}
+
+        <div className={`ordena-nota ${notaColor}`}>
+          <div className="ordena-nota-big">{nota.toFixed(1)}<span className="ordena-nota-small">/10</span></div>
+          <div className="ordena-nota-msg"><strong>{notaMsg}</strong></div>
+          <div className="ordena-nota-detail">{correct} de {game.TOTAL_TEST_QUESTIONS} frases correctas</div>
+        </div>
+
+        <div className="ordena-puntos-row">
+          <div className="ordena-puntos">
+            <span className="ordena-puntos-icon">⭐</span>
+            <span className="ordena-puntos-value">{game.score.toLocaleString('es-ES')}</span>
+            <span className="ordena-puntos-label">puntos</span>
+          </div>
+          {game.elapsedTime > 0 && (
+            <div className="ordena-tiempo">
+              <span className="ordena-tiempo-icon">⏱️</span>
+              <span className="ordena-tiempo-value">{game.elapsedTime}s</span>
+            </div>
+          )}
+        </div>
 
         <div className="results-summary">
           {game.testQuestions.map((q, i) => (

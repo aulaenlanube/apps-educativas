@@ -70,6 +70,21 @@ const AppRunnerPage = () => {
 
     const onGameComplete = useCallback(async (data) => {
       setCompletedCount(c => c + 1);
+
+      // Multiplicador de dificultad por curso — equilibra el ranking global
+      // Cursos más altos obtienen un bonus para compensar la mayor dificultad
+      const DIFFICULTY_MULTIPLIERS = {
+        'primaria-1': 1.0,  'primaria-2': 1.1,  'primaria-3': 1.2,
+        'primaria-4': 1.3,  'primaria-5': 1.4,  'primaria-6': 1.5,
+        'eso-1': 1.6,       'eso-2': 1.7,       'eso-3': 1.8,       'eso-4': 1.9,
+        'bachillerato-1': 2.0, 'bachillerato-2': 2.1,
+        'ad-1': 1.0,
+      };
+      const multiplierKey = `${level}-${grade}`;
+      const diffMultiplier = DIFFICULTY_MULTIPLIERS[multiplierKey] || 1.0;
+      const adjustedScore = Math.round((data.score || 0) * diffMultiplier);
+      const adjustedMaxScore = Math.round((data.maxScore || 0) * diffMultiplier);
+
       const gamifResult = await trackGameSession({
         appId: app.id,
         appName: app.name,
@@ -77,6 +92,8 @@ const AppRunnerPage = () => {
         grade,
         subjectId: activeSubjectId,
         ...data,
+        score: adjustedScore,
+        maxScore: adjustedMaxScore,
       });
 
       if (gamifResult) {

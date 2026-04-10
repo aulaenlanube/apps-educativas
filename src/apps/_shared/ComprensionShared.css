@@ -621,6 +621,33 @@ input:checked+.slider:before {
     margin-bottom: 1rem;
 }
 
+.comprension-points-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 12px;
+    border: 1px solid #fbbf24;
+    display: inline-flex;
+}
+
+.comprension-points-icon { font-size: 1.1rem; }
+.comprension-points-value { font-size: 1.2rem; font-weight: 800; color: #92400e; }
+.comprension-points-label { font-size: 0.85rem; color: #b45309; font-weight: 600; }
+
+.comprension-time-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
 /* --- 9. BOTÓN TOGGLE REVISIÓN (DESPLEGABLE) --- */
 .btn-toggle-review {
     background: #f1f5f9;

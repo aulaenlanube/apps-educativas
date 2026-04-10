@@ -265,12 +265,13 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     isPlayingRef.current = false;
     setGameState('gameover');
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
+    const wordsCollected = collectedWordsRef.current?.length || 0;
     onGameComplete?.({
       mode: 'practice',
       score: score,
-      maxScore: score,
-      correctAnswers: score,
-      totalQuestions: score,
+      maxScore: Math.max(score, 1000),
+      correctAnswers: wordsCollected,
+      totalQuestions: wordsCollected || 1,
     });
   };
 

@@ -220,17 +220,19 @@ const Criptograma = ({ onGameComplete }) => {
   const correctCount = uniqueCodes.filter((c) => guesses[c] === cipherMap?.codeToLetter[c]).length;
   const nota = totalLetters > 0 ? Math.round((correctCount / totalLetters) * 100) / 10 : 0;
   const baseScore = correctCount * 100;
-  const timeBonus = MODE_CONFIG[gameMode].timer ? Math.max(0, timeLeft * 5) : Math.max(0, (300 - timer) * 3);
-  const hintPenalty = hintsUsed * 80;
-  const finalScore = Math.max(0, baseScore + timeBonus - hintPenalty);
+  const refTime = MODE_CONFIG[gameMode].timer || 180;
+  const timeBonus = Math.max(0, Math.round(300 * (1 - timer / refTime)));
+  const noHintsBonus = hintsUsed === 0 ? 100 : 0;
+  const finalScore = baseScore + timeBonus + noHintsBonus;
 
   useEffect(() => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score: finalScore,
-      maxScore: totalLetters * 100 + 300 * 5,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? finalScore : 0,
+      maxScore: isExamMode ? totalLetters * 100 + 400 : 0,
       correctAnswers: correctCount,
       totalQuestions: totalLetters,
       durationSeconds: timer,

@@ -66,9 +66,9 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
       onGameComplete?.({
         mode: 'practice',
         score,
-        maxScore: score,
-        correctAnswers: score,
-        totalQuestions: score,
+        maxScore: Math.max(score, 2000),
+        correctAnswers: Math.floor(score / 100),
+        totalQuestions: Math.max(Math.floor(score / 100), 1),
       });
     }
     if (gameState === 'playing') trackedRef.current = false;

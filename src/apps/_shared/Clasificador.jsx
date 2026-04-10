@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import {
@@ -85,7 +85,7 @@ const ConfettiEffect = () => (
   </div>
 );
 
-const Clasificador = () => {
+const Clasificador = ({ onGameComplete }) => {
   const { level, grade, subjectId } = useParams();
   const effectiveSubject = subjectId || 'general';
 
@@ -106,6 +106,7 @@ const Clasificador = () => {
   const [finished, setFinished] = useState(false);
   const [feedback, setFeedback] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
+  const gameStartRef = useRef(null);
   const [skipTimeout, setSkipTimeout] = useState(null);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
@@ -122,6 +123,30 @@ const Clasificador = () => {
   }, [gameMode, allQuestions]);
 
   const totalQuestions = activeQuestions.length;
+
+  // --- Tracking onGameComplete ---
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (finished && !trackedRef.current && totalQuestions > 0) {
+      trackedRef.current = true;
+      const isExamMode = gameMode === 'test';
+      const elapsed = gameStartRef.current ? Math.round((Date.now() - gameStartRef.current) / 1000) : 0;
+      const basePoints = correctAnswersCount * 100;
+      const refTime = totalQuestions * 6;
+      const timeBonus = Math.max(0, Math.round(300 * (1 - elapsed / refTime)));
+      const streakBonus = Math.min(highStreak * 15, 200);
+      const totalPoints = basePoints + timeBonus + streakBonus;
+      onGameComplete?.({
+        mode: isExamMode ? 'test' : 'practice',
+        score: isExamMode ? totalPoints : 0,
+        maxScore: isExamMode ? totalQuestions * 100 + 500 : 0,
+        correctAnswers: correctAnswersCount,
+        totalQuestions,
+        durationSeconds: elapsed,
+      });
+    }
+    if (!finished) trackedRef.current = false;
+  }, [finished, correctAnswersCount, totalQuestions, highStreak, gameMode, onGameComplete]);
 
   // --- CARGA DE DATOS ---
   useEffect(() => {
@@ -241,6 +266,7 @@ const Clasificador = () => {
     setCorrectAnswer(null);
     setCorrectAnswersCount(0);
     setAllQuestions(shuffleArray([...allQuestions]));
+    gameStartRef.current = Date.now();
   };
 
   if (loading) return (

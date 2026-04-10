@@ -242,11 +242,15 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
     if (fase === 'resumen' && !trackedRef.current) {
       trackedRef.current = true;
       const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
-      const nota = Math.round((parejasEncontradas / config.parejas) * 1000);
+      const basePoints = parejasEncontradas * 100;
+      const minTurnos = config.parejas;
+      const turnosBonus = Math.max(0, Math.round(300 * (1 - (turnos - minTurnos) / (minTurnos * 2))));
+      const totalPoints = basePoints + turnosBonus;
+      const isExamMode = config.isExam;
       onGameComplete?.({
-        mode: config.isExam ? 'test' : 'practice',
-        score: nota,
-        maxScore: 1000,
+        mode: isExamMode ? 'test' : 'practice',
+        score: isExamMode ? totalPoints : 0,
+        maxScore: isExamMode ? config.parejas * 100 + 300 : 0,
         correctAnswers: parejasEncontradas,
         totalQuestions: config.parejas,
       });

@@ -284,10 +284,12 @@ const Millonario = ({ onGameComplete }) => {
       }
       const correct = maxReached;
       const total = questions.length || 1;
+      const isExamMode = gameMode === 'exam';
+      const examScore = correct * 100 + (correct >= total ? 100 : 0);
       onGameComplete?.({
-        mode: gameMode === 'exam' ? 'test' : 'practice',
-        score: correct * 100,
-        maxScore: total * 100,
+        mode: isExamMode ? 'test' : 'practice',
+        score: isExamMode ? examScore : 0,
+        maxScore: isExamMode ? total * 100 + 100 : 0,
         correctAnswers: correct,
         totalQuestions: total,
         durationSeconds: 0,

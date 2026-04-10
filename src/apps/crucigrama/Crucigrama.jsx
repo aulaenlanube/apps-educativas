@@ -189,10 +189,11 @@ const Crucigrama = ({ onGameComplete }) => {
   const finalScore = useMemo(() => {
     if (!crossword || !completed) return 0;
     const wordCount = crossword.placed.length;
-    const basePoints = wordCount * 200; // 200 pts por palabra colocada
-    const timeBonus = Math.max(0, (600 - timer) * 3); // bonus si terminas en menos de 10min
-    const hintPenalty = hintsUsed * 75;
-    return Math.max(0, basePoints + timeBonus - hintPenalty);
+    const basePoints = wordCount * 100;
+    const refTime = 300;
+    const timeBonus = Math.max(0, Math.round(300 * (1 - timer / refTime)));
+    const noHintsBonus = hintsUsed === 0 ? 100 : 0;
+    return basePoints + timeBonus + noHintsBonus;
   }, [crossword, completed, timer, hintsUsed]);
 
   // --- Tracking XP al completar ---
@@ -200,10 +201,11 @@ const Crucigrama = ({ onGameComplete }) => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
     const words = crossword?.placed?.length || 0;
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score: finalScore,
-      maxScore: words * 200 + 600 * 3, // base + max time bonus
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? finalScore : 0,
+      maxScore: isExamMode ? words * 100 + 400 : 0,
       correctAnswers: words,
       totalQuestions: words,
       durationSeconds: timer,

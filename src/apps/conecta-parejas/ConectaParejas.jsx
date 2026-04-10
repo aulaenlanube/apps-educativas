@@ -222,9 +222,10 @@ const ConectaParejas = ({ onGameComplete }) => {
         setMaxStreak((m) => Math.max(m, next));
         return next;
       });
-      const mult = 1 + streak * 0.15;
-      const timeBonus = MODE_CONFIG[gameMode].timer ? Math.max(0, timeLeft * 3) : Math.max(0, (120 - timer) * 2);
-      const gained = Math.round(150 * mult + timeBonus);
+      const streakMultiplier = 1 + streak * 0.1;
+      const refTime = MODE_CONFIG[gameMode].timer || 120;
+      const timeBonus = Math.max(0, Math.round(20 * (1 - timer / refTime)));
+      const gained = Math.round(100 * streakMultiplier + timeBonus);
       setScore((s) => s + gained);
       setSelected(null);
     } else {
@@ -258,10 +259,11 @@ const ConectaParejas = ({ onGameComplete }) => {
   useEffect(() => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score,
-      maxScore: totalPairs * 300,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? score : 0,
+      maxScore: isExamMode ? totalPairs * 170 : 0,
       correctAnswers: correctCount,
       totalQuestions: totalPairs,
       durationSeconds: timer,

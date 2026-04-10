@@ -46,6 +46,20 @@ Solo crea datos propios si la mecánica lo exige y no se puede reutilizar nada e
 - Los **comodines tipo concurso** (50:50, pista definición, primera letra, mezclar banco, etc.) **sí pueden estar disponibles en examen**, pero limitados en número
 - El modo examen envía `mode: 'test'` al tracker. Los modos fácil/medio envían `mode: 'practice'`
 
+**Excepciones (apps que NO siguen la estructura de 3 modos):**
+
+| App | Modos | Motivo |
+|---|---|---|
+| Comprensión Escrita | Solo examen | La mecánica es leer + responder preguntas; no hay modos de práctica. La puntuación diferencia por tiempo de lectura y tiempo de respuesta |
+| Comprensión Oral | Solo examen | Igual que Comprensión Escrita pero con audio |
+| Sopa de Letras | Práctica + Examen (3 tamaños) | No se puede "perder" — la nota siempre es 10 si se completa; los puntos dependen de la velocidad |
+| Crucigrama | Práctica + Examen (3 tamaños) | Igual que Sopa de Letras — completar = 10/10 |
+| Isla de la Calma | Sin modos | No es una app evaluable, es un ejercicio de relajación |
+| Banco de Recursos | Sin modos | Es un dossier de recursos, no un juego |
+| Generador de Personajes | Sin modos | Es una herramienta generativa, no un juego |
+
+Estas excepciones son válidas y no necesitan implementar 3 modos. El objetivo general sigue siendo que **cada app de juego tenga 3 niveles de dificultad** salvo cuando la mecánica no lo permita.
+
 ### 3.1. Nota sobre 10 en modo examen (OBLIGATORIO)
 
 > **⚠️ REGLA UNIVERSAL:** La pantalla final del **modo examen** SIEMPRE debe mostrar una **nota sobre 10** de forma visible y destacada. La nota máxima es **10**, sin importar si internamente la app usa puntuaciones mayores (dinero, puntos, rachas, etc.).
@@ -151,6 +165,21 @@ Esto permite un **doble sistema de progresión**: el objetivo académico (nota 1
   - **Modo**: todos / práctica / examen
   - **Periodo**: hoy / semana / mes / siempre
 - **No tienes que hacer nada** en cada app nueva para integrarla con el ranking: con solo llamar a `onGameComplete` con un `score` > 0, la sesión se guarda en `game_sessions` y aparece automáticamente.
+
+**Multiplicador de dificultad por curso (automático):**
+
+`AppRunnerPage.jsx` aplica un multiplicador al `score` antes de guardarlo en la BD, para equilibrar el ranking global entre cursos:
+
+| Nivel | Curso | Multiplicador |
+|---|---|---|
+| Primaria | 1º–6º | ×1.0 – ×1.5 (incremento ×0.1 por curso) |
+| ESO | 1º–4º | ×1.6 – ×1.9 |
+| Bachillerato | 1º–2º | ×2.0 – ×2.1 |
+| A. Diversidad | — | ×1.0 |
+
+Así, un alumno de 4º ESO que saca 500 puntos brutos obtiene 500 × 1.9 = 950 puntos en el ranking, mientras que uno de 1º Primaria con 500 brutos se queda en 500. Esto nivela la competición en el ranking global "Toda la app".
+
+> **Importante:** las apps NO deben aplicar el multiplicador internamente — se aplica automáticamente en `AppRunnerPage.jsx`. La app solo envía sus puntos "brutos" en `onGameComplete`.
 
 **Consejos para que tu app compita bien en el ranking:**
 - Usa una fórmula de puntos que permita superarse (base × multiplicadores + bonus tiempo)

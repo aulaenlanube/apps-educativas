@@ -389,10 +389,10 @@ const Anagramas = ({ onGameComplete }) => {
       if (formedWord === currentWord.letters) {
         // ¡Correcto!
         const cfg = MODE_CONFIG[gameMode];
-        const basePoints = currentWord.letters.length * 100;
-        const streakBonus = 1 + streak * 0.15; // 1x, 1.15x, 1.3x, 1.45x...
-        const timeBonus = cfg.timer ? Math.max(0, timeLeft * 8) : 0;
-        const gained = Math.round(basePoints * streakBonus + timeBonus);
+        const basePoints = 100;
+        const streakMultiplier = 1 + streak * 0.1;
+        const timeBonus = cfg.timer ? Math.max(0, Math.round(20 * (timeLeft / cfg.timer))) : 0;
+        const gained = Math.round(basePoints * streakMultiplier + timeBonus);
         setScore((s) => s + gained);
         setLastGain({ value: gained, key: Date.now() });
         setStreak((s) => {
@@ -452,13 +452,14 @@ const Anagramas = ({ onGameComplete }) => {
         colors: ['#a855f7', '#ec4899', '#fbbf24', '#10b981', '#3b82f6'],
       });
     }
+    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: gameMode === 'exam' ? 'test' : 'practice',
-      score,
-      maxScore: questions.length * 1000,
+      mode: isExamMode ? 'test' : 'practice',
+      score: isExamMode ? score : 0,
+      maxScore: isExamMode ? questions.length * 170 : 0,
       correctAnswers: correctCount,
       totalQuestions: questions.length || 1,
-      durationSeconds: 0,
+      durationSeconds: isExamMode ? (cfg.timer ? (cfg.timer * questions.length - timeLeft) : 0) : 0,
     });
   }, [status, score, correctCount, questions.length, gameMode, onGameComplete]);
 
