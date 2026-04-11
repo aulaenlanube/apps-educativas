@@ -16,24 +16,54 @@ const LEVELS = [
   { id: 'bachillerato', label: 'Bachillerato', grades: [1, 2] },
 ];
 
+// Etiquetas legibles para cada fuente de datos
+const DATA_SOURCE_LABELS = {
+  rosco:       { label: 'Palabras del Rosco', icon: '🔤', color: '#6366f1' },
+  runner:      { label: 'Categorias Runner', icon: '🏃', color: '#0ea5e9' },
+  intruso:     { label: 'Busca el Intruso', icon: '🔍', color: '#f59e0b' },
+  parejas:     { label: 'Parejas de Cartas', icon: '🃏', color: '#8b5cf6' },
+  frases:      { label: 'Ordena la Frase', icon: '📝', color: '#10b981' },
+  historias:   { label: 'Ordena la Historia', icon: '📖', color: '#ec4899' },
+  detective:   { label: 'Detective de Palabras', icon: '🕵️', color: '#64748b' },
+  comprension: { label: 'Comprension Lectora/Oral', icon: '📚', color: '#14b8a6' },
+  appContent:  { label: 'Contenido Especifico', icon: '📦', color: '#f97316' },
+};
+
 // Mapa: app id → cómo cargar sus datos y cómo visualizarlos
-// Solo incluye apps que cargan datos de la DB
 const APP_DATA_MAP = {
-  'rosco-del-saber':        { label: 'Pasapalabra', icon: '🔤', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array' },
+  // Fuente: rosco (palabras + definiciones)
+  'rosco-del-saber':        { label: 'Pasapalabra', icon: '🔤', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'ahorcado':               { label: 'Ahorcado', icon: '☠️', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'crucigrama':             { label: 'Crucigrama', icon: '✏️', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'sopa-de-letras':         { label: 'Sopa de Letras', icon: '🔠', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'millonario':             { label: 'Millonario', icon: '💰', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'anagramas':              { label: 'Anagramas', icon: '🔀', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'criptograma':            { label: 'Criptograma', icon: '🔐', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'velocidad-respuesta':    { label: 'Velocidad de Respuesta', icon: '⚡', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'conecta-parejas':        { label: 'Conecta Parejas', icon: '🔗', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  'dictado-interactivo':    { label: 'Dictado Interactivo', icon: '🎤', fetch: (l,g,s) => getRoscoData(l,g,s), view: 'rosco', format: 'array', shared: true },
+  // Fuente: intruso
   'busca-el-intruso':       { label: 'Busca el Intruso', icon: '🔍', fetch: (l,g,s) => getIntrusoData(l,g,s), view: 'intruso', format: 'array' },
+  // Fuente: runner (categorias con palabras)
   'runner':                 { label: 'Education Dash', icon: '🏃', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
   'juego-memoria':          { label: 'Juego de Memoria', icon: '🧠', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
   'clasificador':           { label: 'Clasificador', icon: '🗂️', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
   'lluvia-de-palabras':     { label: 'Lluvia de Palabras', icon: '🌧️', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
   'excavacion-selectiva':   { label: 'Excavacion Selectiva', icon: '⛏️', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
   'snake':                  { label: 'Snake', icon: '🐍', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
+  'torre-palabras':         { label: 'Torre de Palabras', icon: '🗼', fetch: (l,g,s) => getRunnerData(l,g,s), view: 'runner', format: 'object', shared: true },
+  // Fuente: parejas
   'parejas':                { label: 'Parejas de Cartas', icon: '🃏', fetch: (l,g,s) => getParejasData(l,g,s), view: 'parejas', format: 'array' },
+  // Fuente: frases
   'ordena-la-frase':        { label: 'Ordena la Frase', icon: '📝', fetch: (l,g,s) => getOrdenaFrasesData(l,g,s), view: 'frases', format: 'array' },
+  // Fuente: historias
   'ordena-la-historia':     { label: 'Ordena la Historia', icon: '📖', fetch: (l,g,s) => getOrdenaHistoriasData(l,g,s), view: 'historias', format: 'array' },
+  // Fuente: detective
   'detective-de-palabras':  { label: 'Detective de Palabras', icon: '🕵️', fetch: (l,g,s) => getDetectiveData(l,g,s), view: 'detective', format: 'array' },
+  // Fuente: comprension
   'comprension-escrita':    { label: 'Comprension Escrita', icon: '📖', fetch: (l,g,s) => getComprensionData(l,g,s), view: 'comprension', format: 'array', shared: true },
   'comprension-oral':       { label: 'Comprension Oral', icon: '🎧', fetch: (l,g,s) => getComprensionData(l,g,s), view: 'comprension', format: 'array', shared: true },
-  // Apps con getAppContent
+  // Fuente: appContent
   'mesa-crafteo':           { label: 'Mesa de Crafteo', icon: '🧪', fetch: () => getAppContent('elementos-quimica'), view: 'appContent', format: 'any', shared: true },
   'entrenador-tabla':       { label: 'Entrenador Tabla Periodica', icon: '🔬', fetch: () => getAppContent('elementos-quimica'), view: 'appContent', format: 'any', shared: true },
   'terminal-retro':         { label: 'Terminal de Hackeo', icon: '📟', fetch: (l,g) => getAppContent('terminal-retro', 'eso', g), view: 'appContent', format: 'any' },
@@ -53,16 +83,11 @@ function hasData(result, format) {
 function getAppsForContext(level, grade, subject) {
   const config = level === 'primaria' ? primariaApps : level === 'eso' ? esoApps : bachilleratoApps;
   const apps = config?.[String(grade)]?.[subject] || [];
-  // Devolver solo las que tienen datos en DB, agrupando las que comparten datos
-  const seen = new Set();
+  // Devolver todas las apps que tienen datos en DB (sin deduplicar)
   const result = [];
   for (const app of apps) {
     const mapping = APP_DATA_MAP[app.id];
     if (!mapping) continue;
-    // Para apps que comparten el mismo fetch (runner-based, comprension), agrupar
-    const dataKey = mapping.view + ':' + (mapping.shared ? 'shared' : app.id);
-    if (seen.has(dataKey)) continue;
-    seen.add(dataKey);
     result.push({ appId: app.id, appName: app.name, ...mapping });
   }
   return result;
@@ -92,6 +117,20 @@ const DataExplorer = () => {
     return getAppsForContext(selectedLevel, selectedGrade, selectedSubject);
   }, [selectedLevel, selectedGrade, selectedSubject]);
 
+  // Agrupar apps por fuente de datos (view)
+  const groupedApps = useMemo(() => {
+    const groups = {};
+    for (const app of availableApps) {
+      if (!groups[app.view]) groups[app.view] = [];
+      groups[app.view].push(app);
+    }
+    return Object.entries(groups).map(([view, apps]) => ({
+      view,
+      ...(DATA_SOURCE_LABELS[view] || { label: view, icon: '📦', color: '#64748b' }),
+      apps,
+    }));
+  }, [availableApps]);
+
   useEffect(() => {
     setSelectedSubject(null); setSelectedAppId(null); setData(null); setError(null); setStats(null); setAvailability({});
   }, [selectedLevel, selectedGrade]);
@@ -100,7 +139,7 @@ const DataExplorer = () => {
     setSelectedAppId(null); setData(null); setError(null); setStats(null);
   }, [selectedSubject]);
 
-  // Scan availability
+  // Scan availability (cachea por view para no repetir fetches de apps que comparten datos)
   useEffect(() => {
     if (!selectedSubject || availableApps.length === 0) { setAvailability({}); return; }
     let cancelled = false;
@@ -108,9 +147,14 @@ const DataExplorer = () => {
     setAvailability({});
     const scan = async () => {
       const results = {};
+      const fetchCache = {};
       await Promise.all(availableApps.map(async (app) => {
         try {
-          const result = await app.fetch(selectedLevel, selectedGrade, selectedSubject);
+          const cacheKey = app.shared ? app.view : app.appId;
+          if (!(cacheKey in fetchCache)) {
+            fetchCache[cacheKey] = app.fetch(selectedLevel, selectedGrade, selectedSubject);
+          }
+          const result = await fetchCache[cacheKey];
           results[app.appId] = hasData(result, app.format);
         } catch { results[app.appId] = false; }
       }));
@@ -215,9 +259,9 @@ const DataExplorer = () => {
           </div>
         </div>
 
-        {/* Apps with data (dynamic) */}
-        {selectedSubject && availableApps.length > 0 && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+        {/* Apps agrupadas por fuente de datos */}
+        {selectedSubject && groupedApps.length > 0 && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
             <label className="text-xs font-semibold text-slate-500 mb-1 block">
               Apps con datos
               {scanningAvailability && <span className="ml-2 text-indigo-400 animate-pulse">Escaneando...</span>}
@@ -225,47 +269,77 @@ const DataExplorer = () => {
                 <span className="ml-2 text-slate-400">({availableCount}/{totalScanned} con datos)</span>
               )}
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {availableApps.map(app => {
-                const has = availability[app.appId] === true;
-                const no = availability[app.appId] === false;
-                const scanning = availability[app.appId] === undefined && scanningAvailability;
-                return (
-                  <button key={app.appId} onClick={() => setSelectedAppId(app.appId)}
-                    className={`flex flex-col items-start gap-1 p-3 rounded-xl text-left transition-all relative ${
-                      selectedAppId === app.appId ? 'bg-indigo-600 text-white shadow-md'
-                      : no ? 'bg-slate-50 text-slate-300 border border-slate-100 opacity-60'
-                      : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <span className="text-lg">{app.icon}</span>
-                      {!scanning && has && selectedAppId !== app.appId && <CheckCircle2 className="w-4 h-4 text-green-500" />}
-                      {!scanning && no && selectedAppId !== app.appId && <XCircle className="w-4 h-4 text-slate-300" />}
-                      {scanning && <div className="w-3 h-3 border-2 border-indigo-300 border-t-transparent rounded-full animate-spin" />}
-                    </div>
-                    <span className="text-xs font-bold leading-tight">{app.label}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {groupedApps.map(group => {
+              const groupHasData = group.apps.some(a => availability[a.appId] === true);
+              const groupNoData = group.apps.every(a => availability[a.appId] === false);
+              const groupScanning = group.apps.some(a => availability[a.appId] === undefined) && scanningAvailability;
+              return (
+                <div key={group.view}
+                  className={`rounded-xl border p-3 transition-all ${
+                    groupNoData ? 'border-slate-100 opacity-50' : 'border-slate-200'
+                  }`}
+                  style={{ borderLeftWidth: 4, borderLeftColor: groupNoData ? '#e2e8f0' : group.color }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-base">{group.icon}</span>
+                    <span className="text-xs font-bold text-slate-700">{group.label}</span>
+                    {group.apps.length > 1 && (
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                        {group.apps.length} apps
+                      </span>
+                    )}
+                    {groupScanning && <div className="w-3 h-3 border-2 border-indigo-300 border-t-transparent rounded-full animate-spin" />}
+                    {!groupScanning && groupHasData && <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />}
+                    {!groupScanning && groupNoData && <XCircle className="w-3.5 h-3.5 text-slate-300" />}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.apps.map(app => {
+                      const isSelected = selectedAppId === app.appId;
+                      const no = availability[app.appId] === false;
+                      return (
+                        <button key={app.appId} onClick={() => setSelectedAppId(app.appId)}
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                            isSelected
+                              ? 'text-white shadow-md'
+                              : no
+                              ? 'bg-slate-50 text-slate-300 border border-slate-100'
+                              : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                          }`}
+                          style={isSelected ? { backgroundColor: group.color } : undefined}
+                        >
+                          <span>{app.icon}</span>
+                          <span>{app.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </motion.div>
         )}
-        {selectedSubject && availableApps.length === 0 && (
+        {selectedSubject && groupedApps.length === 0 && (
           <p className="text-sm text-slate-400 italic">No hay apps con datos de base de datos para esta combinacion</p>
         )}
       </div>
 
       {/* Breadcrumb */}
-      {selectedAppConfig && (
-        <div className="text-sm text-slate-500 flex items-center gap-1 flex-wrap">
-          <span className="font-medium text-slate-700">{currentLevelConfig.label} {selectedGrade}</span>
-          <ChevronRight className="w-3 h-3" />
-          <span className="font-medium text-slate-700">{currentSubjectObj?.icon} {currentSubjectObj?.nombre}</span>
-          <ChevronRight className="w-3 h-3" />
-          <span className="font-medium text-indigo-600">{selectedAppConfig.icon} {selectedAppConfig.label}</span>
-        </div>
-      )}
+      {selectedAppConfig && (() => {
+        const sourceInfo = DATA_SOURCE_LABELS[selectedAppConfig.view];
+        return (
+          <div className="text-sm text-slate-500 flex items-center gap-1 flex-wrap">
+            <span className="font-medium text-slate-700">{currentLevelConfig.label} {selectedGrade}</span>
+            <ChevronRight className="w-3 h-3" />
+            <span className="font-medium text-slate-700">{currentSubjectObj?.icon} {currentSubjectObj?.nombre}</span>
+            <ChevronRight className="w-3 h-3" />
+            <span className="font-medium" style={{ color: sourceInfo?.color || '#6366f1' }}>
+              {sourceInfo?.icon} {sourceInfo?.label}
+            </span>
+            <ChevronRight className="w-3 h-3" />
+            <span className="font-bold text-slate-800">{selectedAppConfig.icon} {selectedAppConfig.label}</span>
+          </div>
+        );
+      })()}
 
       {/* Stats */}
       {stats && (

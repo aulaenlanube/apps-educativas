@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ':*)",
+      "Bash(mkdir -p c:/tmp/runner-export)",
+      "Bash(node c:/tmp/find-collisions.js)",
+      "Bash(cp c:/tmp/find-collisions.js c:/Users/edtor/Desktop/apps-educativas/find-collisions.js)",
+      "Bash(node find-collisions.js)",
+      "Bash(mv c:/Users/edtor/Desktop/apps-educativas/find-collisions.js c:/Users/edtor/Desktop/apps-educativas/find-collisions.cjs)",
+      "Bash(node find-collisions.cjs)",
+      "Bash(node fix-collisions.cjs)",
+      "Bash(node fix-collisions-2.cjs)",
+      "Bash(node fix-collisions-3.cjs)",
+      "Bash(node fix-collisions-4.cjs)",
+      "Bash(node fix-collisions-5.cjs)",
+      "Bash(node fix-542.cjs)",
+      "Bash(node fix-semantic.cjs)",
+      "Bash(node inspect-rows.cjs)",
+      "Bash(node fix-semantic-2.cjs)",
+      "Bash(node find-collisions-primaria.cjs)",
+      "Bash(node fix-primaria-literal.cjs)",
+      "Bash(python -c ':*)",
+      "Bash(node inspect-primaria.cjs)",
+      "Bash(node fix-primaria-semantic.cjs)",
+      "Bash(mkdir -p c:/tmp/parejas-export)",
+      "Bash(node insert-parejas.cjs)",
+      "Bash(node validate-parejas.cjs)",
+      "Bash(node fix-parejas-literal.cjs)",
+      "Bash(node fix-parejas-semantic.cjs)",
+      "Bash(mkdir -p c:/tmp/comprension-export)",
+      "Bash(node insert-comprension.cjs)",
+      "Bash(mkdir -p c:/tmp/intruso-export)",
+      "Bash(node insert-intruso.cjs)",
+      "Bash(node fix-intruso-bugs.cjs)"
+    ]
+  }
+}

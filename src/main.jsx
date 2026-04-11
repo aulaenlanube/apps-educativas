@@ -1,10 +1,21 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ConfettiProvider } from '/src/apps/_shared/ConfettiProvider';
-import { AuthProvider } from '@/contexts/AuthContext';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
+
+// Sincroniza el tema con el usuario logueado
+function ThemeAuthSync() {
+  const { user, student, isAuthenticated } = useAuth();
+  const { syncUser } = useTheme();
+  useEffect(() => {
+    const userId = user?.id || student?.id || null;
+    syncUser(isAuthenticated ? userId : null);
+  }, [user?.id, student?.id, isAuthenticated, syncUser]);
+  return null;
+}
 
 import App from '@/App';
 import MainLayout from '@/components/layout/MainLayout';
@@ -126,6 +137,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider>
         <ConfettiProvider>
           <AuthProvider>
+            <ThemeAuthSync />
             <RouterProvider router={router} />
             <Toaster />
           </AuthProvider>
