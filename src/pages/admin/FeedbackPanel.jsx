@@ -3,11 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageSquare, Search, Send, CheckCircle2,
   Clock, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
-  ChevronDown, ChevronUp, X,
+  ChevronDown, ChevronUp, X, BarChart3,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const PAGE_SIZE = 20;
+
+const DIFFICULTY_MESSAGES = [
+  '[Demasiado facil para el nivel]',
+  '[Dificultad adecuada para el nivel]',
+  '[Demasiado dificil para el nivel]',
+];
 
 export default function FeedbackPanel() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -27,6 +33,11 @@ export default function FeedbackPanel() {
   const messagesEndRef = useRef(null);
   const debounceRef = useRef(null);
 
+  // Difficulty summary
+  const [difficultySummary, setDifficultySummary] = useState([]);
+  const [difficultyLoading, setDifficultyLoading] = useState(true);
+  const [difficultyOpen, setDifficultyOpen] = useState(true);
+
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
@@ -37,6 +48,17 @@ export default function FeedbackPanel() {
   }, [search]);
 
   useEffect(() => { setPage(1); }, [status]);
+
+  const fetchDifficultySummary = useCallback(async () => {
+    setDifficultyLoading(true);
+    const { data } = await supabase.rpc('admin_get_difficulty_summary');
+    if (Array.isArray(data)) {
+      setDifficultySummary(data);
+    } else if (data && !data.error) {
+      setDifficultySummary(data);
+    }
+    setDifficultyLoading(false);
+  }, []);
 
   const fetchFeedbacks = useCallback(async (silent = false) => {
     if (!silent) setLoading(true);
@@ -56,6 +78,7 @@ export default function FeedbackPanel() {
   }, [status, page, debouncedSearch]);
 
   useEffect(() => { fetchFeedbacks(); }, [fetchFeedbacks]);
+  useEffect(() => { fetchDifficultySummary(); }, [fetchDifficultySummary]);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -68,7 +91,12 @@ export default function FeedbackPanel() {
       p_feedback_id: fb.id,
       p_user_id: fb.user_id,
     });
-    setMessages(Array.isArray(data) ? data : []);
+    const allMessages = Array.isArray(data) ? data : [];
+    // Filter out difficulty-only messages from the chat view
+    const filtered = allMessages.filter(
+      msg => !(msg.sender_type === 'user' && DIFFICULTY_MESSAGES.includes(msg.message))
+    );
+    setMessages(filtered.length > 0 ? filtered : allMessages);
   }, []);
 
   const handleExpand = async (fb) => {
@@ -117,6 +145,14 @@ export default function FeedbackPanel() {
 
   return (
     <div className="space-y-4">
+      {/* Difficulty Summary Section */}
+      <DifficultySummarySection
+        summary={difficultySummary}
+        loading={difficultyLoading}
+        isOpen={difficultyOpen}
+        onToggle={() => setDifficultyOpen(o => !o)}
+      />
+
       {/* Stats bar */}
       <div className="flex gap-3 flex-wrap">
         {[
@@ -350,6 +386,128 @@ export default function FeedbackPanel() {
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+/* ── Difficulty Summary Section ── */
+
+function DifficultySummarySection({ summary, loading, isOpen, onToggle }) {
+  const totalAll = Array.isArray(summary) ? summary.reduce((s, r) => s + (r.total_votes || 0), 0) : 0;
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between px-4 py-3 hover:bg-slate-50 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 bg-purple-100 rounded-lg">
+            <BarChart3 className="w-4 h-4 text-purple-600" />
+          </div>
+          <span className="text-sm font-semibold text-slate-800">Valoraciones de dificultad</span>
+          {totalAll > 0 && (
+            <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-purple-50 text-purple-600">
+              {totalAll} voto{totalAll !== 1 ? 's' : ''}
+            </span>
+          )}
+        </div>
+        {isOpen
+          ? <ChevronUp className="w-4 h-4 text-slate-400" />
+          : <ChevronDown className="w-4 h-4 text-slate-400" />
+        }
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 pb-4 border-t border-slate-50">
+              {loading ? (
+                <div className="flex justify-center py-6">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600" />
+                </div>
+              ) : !Array.isArray(summary) || summary.length === 0 ? (
+                <p className="text-sm text-slate-400 text-center py-6">No hay valoraciones de dificultad todavia</p>
+              ) : (
+                <div className="space-y-3 pt-3">
+                  {/* Legend */}
+                  <div className="flex items-center gap-4 text-[11px] text-slate-500 mb-1">
+                    <span className="flex items-center gap-1">
+                      <span className="w-2.5 h-2.5 rounded-sm bg-amber-400 inline-block" /> Muy facil
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2.5 h-2.5 rounded-sm bg-emerald-500 inline-block" /> Adecuada
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2.5 h-2.5 rounded-sm bg-red-400 inline-block" /> Muy dificil
+                    </span>
+                  </div>
+
+                  {summary.map(app => (
+                    <DifficultyBar key={app.app_id} app={app} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function DifficultyBar({ app }) {
+  const { app_name, easy_count = 0, ok_count = 0, hard_count = 0, total_votes = 0 } = app;
+  if (total_votes === 0) return null;
+
+  const easyPct = (easy_count / total_votes) * 100;
+  const okPct = (ok_count / total_votes) * 100;
+  const hardPct = (hard_count / total_votes) * 100;
+
+  return (
+    <div className="flex items-center gap-3">
+      <span className="text-xs font-medium text-slate-700 w-32 truncate shrink-0" title={app_name}>
+        {app_name}
+      </span>
+
+      <div className="flex-1 flex h-5 rounded-lg overflow-hidden bg-slate-100">
+        {easy_count > 0 && (
+          <div
+            className="bg-amber-400 flex items-center justify-center text-[10px] font-bold text-amber-900 transition-all duration-500"
+            style={{ width: `${easyPct}%` }}
+            title={`Muy facil: ${easy_count}`}
+          >
+            {easyPct >= 12 && easy_count}
+          </div>
+        )}
+        {ok_count > 0 && (
+          <div
+            className="bg-emerald-500 flex items-center justify-center text-[10px] font-bold text-white transition-all duration-500"
+            style={{ width: `${okPct}%` }}
+            title={`Adecuada: ${ok_count}`}
+          >
+            {okPct >= 12 && ok_count}
+          </div>
+        )}
+        {hard_count > 0 && (
+          <div
+            className="bg-red-400 flex items-center justify-center text-[10px] font-bold text-white transition-all duration-500"
+            style={{ width: `${hardPct}%` }}
+            title={`Muy dificil: ${hard_count}`}
+          >
+            {hardPct >= 12 && hard_count}
+          </div>
+        )}
+      </div>
+
+      <span className="text-[11px] text-slate-400 font-medium w-12 text-right shrink-0">
+        {total_votes} voto{total_votes !== 1 ? 's' : ''}
+      </span>
     </div>
   );
 }
