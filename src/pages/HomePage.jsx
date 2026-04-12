@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Bot, Play } from 'lucide-react';
+import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award, UserCog, SlidersHorizontal } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
@@ -64,7 +64,7 @@ const HomePage = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative pt-10 pb-28 px-6 text-center overflow-hidden"
+        className="relative pt-10 pb-72 px-6 text-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl transform -rotate-12 scale-150 pointer-events-none"></div>
 
@@ -134,7 +134,7 @@ const HomePage = () => {
             {[
               { icon: Users, text: "Apps por niveles", color: "text-blue-500" },
               { icon: Star, text: "100% gratis", color: "text-yellow-500" },
-              { icon: Trophy, text: "Aprendizaje basado en el juego", color: "text-purple-500" }
+              { icon: Trophy, text: "Sin publicidad", color: "text-purple-500" }
             ].map((item, idx) => (
               <div key={idx} className="flex items-center space-x-2 bg-white/60 backdrop-blur-md px-5 py-3 rounded-full shadow-sm border border-white/50">
                 <item.icon className={`w-5 h-5 ${item.color}`} />
@@ -143,23 +143,31 @@ const HomePage = () => {
             ))}
           </motion.div>
 
-          <div className="max-w-xl mx-auto mb-[-125px] relative z-20">
-            <Mascot />
-          </div>
         </div>
       </motion.section>
 
-      {/* Sección IA — sube con margin negativo para que el robot quede "detrás" */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="pb-16 px-6 -mt-32 relative z-10"
-      >
-        <div className="container mx-auto max-w-4xl">
-          <motion.div
-            variants={itemVariants}
+      {/* Sección IA + Mascota */}
+      <div className="px-6 relative -mt-72">
+        {/* Mascota — z-10 para quedar DETRÁS de la caja (z-20).
+            Empieza oculta (y:120 = debajo de la caja) y sube DESPUÉS de que la caja ya esté visible.
+            delay:1.8s > hero(~0.8s) + badges(~0.5s) + caja(~0.6s) para ser lo último en aparecer.
+            ease custom para efecto "spring suave" de salida. */}
+        <motion.div
+          initial={{ y: 120, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-xl mx-auto mb-[-90px] relative z-10"
+        >
+          <Mascot />
+        </motion.div>
+        {/* Caja "Programada 100% con IA" — z-20 para tapar la parte inferior del robot */}
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1, duration: 0.7, ease: "easeOut" }}
+          className="container mx-auto max-w-4xl relative z-20"
+        >
+          <div
             className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-violet-950 pt-20 pb-10 px-10 md:pt-20 md:pb-14 md:px-14 shadow-2xl border border-white/10"
           >
             {/* Decoración de fondo */}
@@ -172,12 +180,6 @@ const HomePage = () => {
             </div>
 
             <div className="relative z-10 text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30 rotate-3">
-                  <Bot className="w-7 h-7 text-white" />
-                </div>
-              </div>
-
               <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
                 Programada 100% con{' '}
                 <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
@@ -187,13 +189,13 @@ const HomePage = () => {
 
               <p className="text-lg md:text-xl text-indigo-200/80 max-w-2xl mx-auto mb-4 leading-relaxed">
                 Esta plataforma ha sido creada completamente desde cero con IA, sin escribir una sola
-                 linea de codigo de forma manual. Cada app, cada pantalla, cada interaccion ha sido
+                 línea de código de forma manual. Cada app, cada pantalla, cada interacción ha sido
                  generada por inteligencia artificial.
               </p>
 
               <p className="text-base text-indigo-300/60 max-w-xl mx-auto mb-8">
-                El futuro de la educacion ya esta aqui: herramientas creadas por IA para que alumnos
-                y profesores aprendan de la forma mas efectiva y divertida posible.
+                El futuro de la educación ya esta aquí: herramientas creadas con IA para que alumnos
+                y docentes aprendan de la forma más efectiva y divertida posible.
               </p>
 
               <a
@@ -203,12 +205,12 @@ const HomePage = () => {
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white font-bold text-lg rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
               >
                 <Play className="w-5 h-5 fill-current" />
-                Te lo explico todo aqui
+                Te lo explico todo aquí
               </a>
             </div>
-          </motion.div>
-        </div>
-      </motion.section>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Sección Primaria */}
       <motion.section
@@ -483,9 +485,12 @@ const HomePage = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
-              { icon: BookOpen, title: "Contenido de calidad", desc: "Apps verificadas y organizadas por niveles educativos.", color: "from-blue-500 to-purple-600" },
-              { icon: Star, title: "Aprendizaje Divertido", desc: "No es gamificación, es una plataforma de educación basada en el juego para mantener la motivación alta.", color: "from-purple-500 to-pink-600" },
-              { icon: Trophy, title: "Progreso Medible", desc: "Modo de práctica y modo examen.", color: "from-green-500 to-blue-600" }
+              { icon: BookOpen, title: "Contenido de calidad", desc: "Apps verificadas y organizadas por niveles educativos, desde 1º de Primaria hasta 2º de Bachillerato.", color: "from-blue-500 to-purple-600" },
+              { icon: Star, title: "Aprendizaje Divertido", desc: "Plataforma de educación basada en el juego para mantener la motivación alta.", color: "from-purple-500 to-pink-600" },
+              { icon: SlidersHorizontal, title: "Niveles de dificultad", desc: "Cada app tiene modo fácil, medio y examen. Practica a tu ritmo y demuestra lo que sabes en el modo examen con nota sobre 10.", color: "from-green-500 to-blue-600" },
+              { icon: Gamepad2, title: "Experiencia y niveles", desc: "Gana puntos de experiencia (XP) jugando a las apps. Sube de nivel y compite en el ranking global con alumnos de todos los cursos.", color: "from-amber-500 to-orange-600" },
+              { icon: Award, title: "Insignias coleccionables", desc: "Desbloquea insignias por tus logros: desde comunes hasta legendarias. Juega cada día, supera récords y completa retos para conseguirlas todas.", color: "from-rose-500 to-red-600" },
+              { icon: UserCog, title: "Gestión docente sencilla", desc: "Los docentes pueden crear grupos, añadir alumnos y gestionar todo sin necesidad de correo electrónico. El docente tiene el control total.", color: "from-teal-500 to-emerald-600" },
             ].map((feature, idx) => (
               <motion.div
                 key={idx}

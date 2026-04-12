@@ -1294,24 +1294,6 @@ const Telescope = () => (
       <rect x="28" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.15)" transform="rotate(-25 40 36)" />
       <rect x="48" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.1)" transform="rotate(-25 40 36)" />
 
-      {/* === LENTE FRONTAL (objetiva) sin aro grande === */}
-      {/* Bisel metálico de la lente */}
-      <circle cx="22" cy="24" r="9.5" fill="#1E293B" stroke="url(#tl-ring)" strokeWidth="1.5" />
-      {/* Cristal con degradado cielo nocturno */}
-      <circle cx="22" cy="24" r="8" fill="url(#tl-lens)" />
-      {/* Estrellas capturadas dentro de la lente */}
-      <circle cx="20" cy="22" r="1.2" fill="#FDE68A" opacity="0.9"
-        style={{ animation: 'gc-twinkle 2.5s ease-in-out infinite' }} />
-      <circle cx="25" cy="26" r="0.7" fill="#93C5FD" opacity="0.7"
-        style={{ animation: 'gc-twinkle 3s ease-in-out 0.8s infinite' }} />
-      <circle cx="18" cy="27" r="0.5" fill="#A78BFA" opacity="0.6"
-        style={{ animation: 'gc-twinkle 3.5s ease-in-out 1.5s infinite' }} />
-      {/* Reflejo de cristal */}
-      <ellipse cx="19" cy="20" rx="3.5" ry="2" fill="url(#tl-glint)" opacity="0.5" transform="rotate(-30 19 20)" />
-      {/* Brillo pulsante */}
-      <circle cx="22" cy="24" r="5" fill="rgba(147,197,253,0.08)"
-        style={{ animation: 'gc-breathe 3s ease-in-out infinite', transformOrigin: '22px 24px' }} />
-
       {/* === MIRILLA / FINDERSCOPE — más grande, separada del tubo, con barras de apoyo === */}
       <g transform="rotate(-25 40 36)">
         {/* Barras verticales de apoyo (del tubo al visor) */}
