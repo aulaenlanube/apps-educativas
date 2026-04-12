@@ -208,6 +208,7 @@ export default defineConfig({
 		alias: {
 			'@': path.resolve(__dirname, './src'),
 		},
+		dedupe: ['react', 'react-dom', 'three'],
 	},
 	build: {
 		chunkSizeWarningLimit: 1000,

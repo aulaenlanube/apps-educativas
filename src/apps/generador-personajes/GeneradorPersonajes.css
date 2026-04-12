@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /*
  * Estilos para el Generador de Personajes Históricos
  *
@@ -123,7 +124,7 @@
 
 /* Tarjetas de resultado */
 .gp-tarjeta {
-  background: #ffffff;
+  background: var(--app-bg);
   border: 1px solid var(--gp-borde);
   border-radius: 16px;
   padding: 18px;

@@ -18,6 +18,120 @@ import RankingModal from '@/components/ui/RankingModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 
+// ─── Header Presets ───────────────────────────────────────────────────
+// Cada preset define el estilo visual de la cabecera y el layout de la página.
+// bgClass:           clase de fondo de la página
+// btnBackClass:      clases del botón volver
+// btnHeartClass:     clases del botón corazón
+// btnRankingClass:   clases del botón trofeo/ranking
+// iconHeartClass:    clases del icono corazón
+// iconRankingClass:  clases del icono trofeo
+// showUserControls:  si muestra NotificationBell + UserMenu
+// showHeartAndTrophy: si muestra los botones corazón y trofeo
+// isAbsolute:        si la barra es absolute positioned (superpuesta al contenido)
+// containerClass:    max-width del contenedor de la app
+// useAnimatedBack:   si usa AnimatedBorderButton en vez de Button para volver
+
+const APP_HEADER_PRESETS = {
+    standard: {
+        bgClass: 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50',
+        btnBackClass: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0',
+        btnHeartClass: 'bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group',
+        btnRankingClass: 'bg-white/80 backdrop-blur-sm hover:bg-amber-50 text-amber-600 border border-amber-200 shadow-sm hover:shadow-md transition-all group',
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: true,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'max-w-4xl w-full',
+        useAnimatedBack: true,
+    },
+    reduced: {
+        bgClass: 'bg-black',
+        btnBackClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all font-mono tracking-widest uppercase',
+        btnHeartClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group',
+        btnRankingClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group',
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-green-500 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: false,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'max-w-4xl w-full',
+        useAnimatedBack: false,
+    },
+    'dark-green': {
+        bgClass: 'bg-black',
+        btnBackClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all font-mono tracking-widest uppercase',
+        btnHeartClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group',
+        btnRankingClass: 'bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group',
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-green-500 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: false,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'max-w-4xl w-full',
+        useAnimatedBack: false,
+    },
+    'dark-glass': {
+        bgClass: 'bg-black',
+        btnBackClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-xl ring-1 ring-white/10',
+        btnHeartClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-red-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all group rounded-xl ring-1 ring-white/10',
+        btnRankingClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] transition-all group rounded-xl ring-1 ring-white/10',
+        iconHeartClass: 'h-4 w-4 fill-transparent group-hover:fill-red-500 transition-all duration-300',
+        iconRankingClass: 'h-4 w-4 transition-all duration-300',
+        showUserControls: false,
+        showHeartAndTrophy: true,
+        isAbsolute: true,
+        containerClass: 'w-full h-screen',
+        useAnimatedBack: false,
+    },
+    'calma': {
+        bgClass: 'bg-[#1a2e3b] dark:bg-[#080e14]',
+        btnBackClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-xl ring-1 ring-white/10',
+        btnHeartClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-red-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all group rounded-xl ring-1 ring-white/10',
+        btnRankingClass: 'bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] transition-all group rounded-xl ring-1 ring-white/10',
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: true,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'max-w-4xl w-full',
+        useAnimatedBack: false,
+    },
+};
+
+// Apps "wide" usan header standard pero contenedor ancho
+const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva'];
+const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
+
+/**
+ * Determina el preset de cabecera para una app dada.
+ * @param {string} appId - Identificador de la app
+ * @returns {string} - Nombre del preset ('standard' | 'reduced' | 'dark-green' | 'dark-glass' | 'calma')
+ */
+function getHeaderPresetName(appId) {
+    if (appId === 'terminal-retro') return 'dark-green';
+    if (appId.startsWith('isla-de-la-calma')) return 'calma';
+    if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria'].some(id => appId.includes(id))) return 'dark-glass';
+    if (appId === 'runner') return 'reduced';
+    return 'standard';
+}
+
+/**
+ * Devuelve el preset completo para una app, incluyendo override de containerClass para apps wide.
+ */
+function getHeaderPreset(appId) {
+    const presetName = getHeaderPresetName(appId);
+    const preset = { ...APP_HEADER_PRESETS[presetName], _name: presetName };
+
+    // Apps wide usan contenedor ancho pero mantienen su preset de header
+    if (!preset.isAbsolute && WIDE_APP_IDS.some(id => appId.includes(id))) {
+        preset.containerClass = WIDE_CONTAINER_CLASS;
+    }
+
+    return preset;
+}
+
 const AppRunnerPage = () => {
     // 1. Obtenemos parámetros de la URL.
     // 'subjectId' vendrá aquí si configuraste la ruta nueva en main.jsx
@@ -50,7 +164,7 @@ const AppRunnerPage = () => {
     const AppToRender = app.component;
 
     // --- LÓGICA DE RETORNO INTELIGENTE ---
-    // Prioridad: 
+    // Prioridad:
     // 1. URL (si existe el parámetro en la ruta).
     // 2. State (si venimos de hacer clic en la tarjeta).
     // 3. Default (lo que diga la app por defecto, ej. Lengua).
@@ -145,58 +259,15 @@ const AppRunnerPage = () => {
 
     const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
 
+    // --- Header preset ---
+    const preset = getHeaderPreset(app.id);
     const isTerminal = app.id.includes('terminal-retro');
     const isRunner = app.id === 'runner';
-    const isRetroApp = isTerminal || isRunner;
 
-    const isCalma = app.id.startsWith('isla-de-la-calma');
-    const backgroundClass = isCalma
-        ? 'bg-[#1a2e3b] dark:bg-[#080e14]'
-        : isRetroApp || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('sistema-solar')
-            ? 'bg-black'
-            : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
-
-    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('laboratorio-funciones-2d') || app.id.includes('fracciones-eso') || app.id.includes('excavacion-selectiva');
-    const isFullScreenApp = app.id.includes('sistema-solar') || app.id.includes('celula-animal') || app.id.includes('celula-vegetal') || app.id.includes('mesa-crafteo') || app.id.includes('juego-memoria');
-    const hideTopBarUserControls = app.id.includes('sistema-solar');
-
-    const containerClass = isFullScreenApp
-        ? "w-full h-screen"
-        : isWideApp
-            ? "max-w-[1600px] w-[85%] px-0"
-            : "max-w-4xl w-full";
-
-    // Conditional Styles
-    const btnBackClass = isRetroApp
-        ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all font-mono tracking-widest uppercase"
-        : isFullScreenApp || isCalma
-            ? "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-[10px] font-bold px-6 py-2 rounded-xl ring-1 ring-white/10"
-            : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0";
-
-    const btnHeartClass = isRetroApp
-        ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
-        : isFullScreenApp || isCalma
-            ? "bg-white/10 backdrop-blur-md border border-white/20 text-red-500 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
-            : "bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group";
-
-    const iconHeartClass = isRetroApp
-        ? "h-5 w-5 fill-transparent group-hover:fill-green-500 transition-all duration-300"
-        : isFullScreenApp
-            ? "h-4 w-4 fill-transparent group-hover:fill-red-500 transition-all duration-300"
-            : "h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300";
-
-    // Mismas variantes para el botón de Ranking (igual estilo que el corazón pero en dorado)
-    const btnRankingClass = isRetroApp
-        ? "bg-black border border-green-500 text-green-500 hover:bg-green-900/50 hover:text-green-400 hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] transition-all group"
-        : isFullScreenApp || isCalma
-            ? "bg-white/10 backdrop-blur-md border border-white/20 text-amber-400 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] transition-all group rounded-xl ring-1 ring-white/10"
-            : "bg-white/80 backdrop-blur-sm hover:bg-amber-50 text-amber-600 border border-amber-200 shadow-sm hover:shadow-md transition-all group";
-
-    const iconRankingClass = isRetroApp
-        ? "h-5 w-5 transition-all duration-300"
-        : isFullScreenApp
-            ? "h-4 w-4 transition-all duration-300"
-            : "h-5 w-5 transition-all duration-300";
+    // Variante para AppRatingPanel
+    const ratingVariant = preset._name === 'dark-green' || preset._name === 'reduced'
+        ? 'retro'
+        : preset.isAbsolute ? 'fullscreen' : 'default';
 
     return (
         <>
@@ -219,21 +290,14 @@ const AppRunnerPage = () => {
                 subjectId={activeSubjectId}
             />
 
-            <div className={`min-h-screen flex flex-col items-center justify-start ${isFullScreenApp ? 'p-0' : 'pt-2 px-4 pb-4'} ${backgroundClass} relative overflow-hidden`}>
+            <div className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${preset.bgClass} relative overflow-hidden`}>
 
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
 
-                <div className={`${isFullScreenApp ? 'absolute top-6 left-6 right-6 z-[100] w-auto' : `w-full ${containerClass} relative z-[100] mb-4`} flex items-center gap-3`}>
+                <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} flex items-center gap-3`}>
 
-                    {isRetroApp || isFullScreenApp || isCalma ? (
-                        <Button
-                            onClick={() => navigate(backPath)}
-                            className={btnBackClass}
-                        >
-                            <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
-                        </Button>
-                    ) : (
+                    {preset.useAnimatedBack ? (
                         <AnimatedBorderButton
                             onClick={() => navigate(backPath)}
                             colors={['#A855F7', '#EC4899']}
@@ -242,29 +306,40 @@ const AppRunnerPage = () => {
                         >
                             {backButtonText}
                         </AnimatedBorderButton>
+                    ) : (
+                        <Button
+                            onClick={() => navigate(backPath)}
+                            className={preset.btnBackClass}
+                        >
+                            <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
+                        </Button>
                     )}
 
-                    <Button
-                        onClick={() => setIsDonationModalOpen(true)}
-                        className={btnHeartClass}
-                        size="icon"
-                        title="Apoya el proyecto"
-                    >
-                        <Heart className={iconHeartClass} />
-                    </Button>
+                    {preset.showHeartAndTrophy && (
+                        <>
+                            <Button
+                                onClick={() => setIsDonationModalOpen(true)}
+                                className={preset.btnHeartClass}
+                                size="icon"
+                                title="Apoya el proyecto"
+                            >
+                                <Heart className={preset.iconHeartClass} />
+                            </Button>
 
-                    <Button
-                        onClick={() => setIsRankingModalOpen(true)}
-                        className={btnRankingClass}
-                        size="icon"
-                        title="Ver ranking"
-                    >
-                        <Trophy className={iconRankingClass} />
-                    </Button>
+                            <Button
+                                onClick={() => setIsRankingModalOpen(true)}
+                                className={preset.btnRankingClass}
+                                size="icon"
+                                title="Ver ranking"
+                            >
+                                <Trophy className={preset.iconRankingClass} />
+                            </Button>
+                        </>
+                    )}
 
                     <div className="flex-1" />
 
-                    {!authLoading && isAuthenticated && !hideTopBarUserControls && (
+                    {preset.showUserControls && !authLoading && isAuthenticated && (
                         <div className="flex items-center gap-2">
                             <NotificationBell />
                             <UserMenu />
@@ -272,7 +347,7 @@ const AppRunnerPage = () => {
                     )}
                 </div>
 
-                <div className={`${containerClass} relative z-10`}>
+                <div className={`${preset.containerClass} relative`}>
                     <Suspense fallback={
                         <div className="flex items-center justify-center py-32">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500" />
@@ -295,7 +370,7 @@ const AppRunnerPage = () => {
                 level={level}
                 grade={grade}
                 subjectId={activeSubjectId}
-                variant={isRetroApp ? 'retro' : isFullScreenApp ? 'fullscreen' : 'default'}
+                variant={ratingVariant}
             />
 
             <RatingPromptModal

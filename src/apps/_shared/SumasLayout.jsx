@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
+import InstructionsModal, { InstructionsButton } from './InstructionsModal';
 
 /**
  * Layout unificado para todas las apps de sumas.
@@ -13,8 +14,10 @@ const SumasLayout = ({
   actions,                 // { startPractice, startTest, checkPractice, nextQuestion, exitTest, onPaletteClick }
   options,                 // { showCarries, setShowCarries } (Opcional)
   onGameComplete,          // Callback de tracking
+  instructions,            // JSX con el contenido de las instrucciones (opcional)
   children                 // El tablero (Board) se pasa como hijo
 }) => {
+  const [showHelp, setShowHelp] = useState(false);
 
   const { currentQuestionIndex, totalQuestions, showResults, score, testQuestions, userAnswers } = testState || {};
   const progressPct = testState ? ((currentQuestionIndex + 1) / totalQuestions) * 100 : 0;
@@ -41,9 +44,12 @@ const SumasLayout = ({
 
   return (
     <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Suma">🧮</span> <span className="gradient-text">{title}</span>
-      </h1>
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span role="img" aria-label="Suma">🧮</span> <span className="gradient-text">{title}</span>
+        </h1>
+        <InstructionsButton onClick={() => setShowHelp(true)} />
+      </div>
 
       {/* Selector de Modo */}
       <div className="mode-selection">
@@ -58,17 +64,23 @@ const SumasLayout = ({
 
       {/* Opciones (ej: Toggle llevadas) */}
       {options && (
-        <div id="options-area" style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', marginBottom: 8 }}>
-          <label htmlFor="help-toggle">Ayuda con llevadas</label>
-          <label className="switch">
-            <input
-              type="checkbox"
-              id="help-toggle"
-              checked={options.showCarries}
-              onChange={() => options.setShowCarries(v => !v)}
-            />
-            <span className="slider round"></span>
-          </label>
+        <div id="options-area" style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', marginBottom: 16 }}>
+          <span style={{ fontWeight: 500, color: 'var(--app-text-secondary)', fontSize: '0.95em' }}>Ayuda con llevadas</span>
+          <div
+            onClick={() => options.setShowCarries(v => !v)}
+            style={{
+              width: 52, height: 28, borderRadius: 14, cursor: 'pointer',
+              background: options.showCarries ? '#2563eb' : '#cbd5e1',
+              position: 'relative', transition: 'background 0.2s',
+            }}
+          >
+            <div style={{
+              width: 22, height: 22, borderRadius: '50%', background: 'white',
+              position: 'absolute', top: 3,
+              left: options.showCarries ? 27 : 3,
+              transition: 'left 0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+            }} />
+          </div>
         </div>
       )}
 
@@ -157,6 +169,34 @@ const SumasLayout = ({
           </div>
         </>
       )}
+
+      <InstructionsModal
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+        title={`Como jugar: ${title}`}
+      >
+        {instructions || (
+          <>
+            <h3>Objetivo</h3>
+            <p>Completa la operacion colocando los digitos correctos en cada casilla vacia.</p>
+            <h3>Como se juega</h3>
+            <ul>
+              <li>Pulsa en una casilla vacia para seleccionarla (se resalta en azul).</li>
+              <li>Luego pulsa un numero de la paleta inferior para colocarlo.</li>
+              <li>Tambien puedes arrastrar los numeros directamente a las casillas.</li>
+              <li>Si te equivocas, pulsa otra vez la casilla y pon otro numero.</li>
+            </ul>
+            <h3>Modos de juego</h3>
+            <div className="instr-modes">
+              <div className="instr-mode easy"><strong>Practica Libre</strong> — Resuelve operaciones sin limite. Puedes comprobar y generar nuevas tantas veces como quieras.</div>
+              <div className="instr-mode exam"><strong>Test</strong> — Responde una serie de operaciones. Al final veras tu puntuacion.</div>
+            </div>
+            <div className="instr-tips">
+              <strong>Consejo:</strong> Activa la ayuda de llevadas si necesitas ver los numeros que te llevas en cada columna.
+            </div>
+          </>
+        )}
+      </InstructionsModal>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
 
     // --- LÓGICA DE FILTRADO POR CURSO ---
     const getAllowedOperations = () => {
-        if (level === 'eso') {
+        if (level === 'eso' || level === 'bachillerato') {
             return ['numbers', 'add', 'sub', 'mul', 'div', 'pow', 'sqrt', 'eq'];
         }
 
@@ -422,7 +422,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
 
         return (
             <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
-                <div className="bg-white rounded-2xl shadow-xl p-8 w-full border border-purple-100">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 w-full border border-purple-100 dark:border-slate-700">
                     <div className="text-center mb-6">
                         <h2 className="text-3xl font-bold text-purple-700 mb-2">Configuración</h2>
                         <p className="text-gray-500 font-medium">{getLevelTitle()}</p>
@@ -481,9 +481,9 @@ const OrdenaBolas = ({ onGameComplete }) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50">
+        <div className="flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50 dark:bg-transparent">
             {/* Control Bar PRO */}
-            <div className="w-full max-w-4xl flex items-center justify-between bg-white/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-white/50 gap-3 sm:gap-6">
+            <div className="w-full max-w-4xl flex items-center justify-between bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 dark:shadow-black/20 border border-white/50 dark:border-slate-700/50 gap-3 sm:gap-6">
 
                 {/* Botón Ajustes */}
                 <Button
@@ -525,7 +525,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
 
                 {gameState === 'lost' && (
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-                        <div className="bg-white p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
+                        <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
                             <h3 className="text-2xl font-bold text-red-500">¡Fallaste!</h3>
                             <p className="font-medium text-gray-800">Debes marcar las bolas de menor a mayor valor.</p>
                             <div className="text-xl font-mono text-gray-600">Tiempo: {formatTime(timeElapsed)}</div>

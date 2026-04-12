@@ -1,34 +1,40 @@
-/* Heredamos la fuente y estilos base */
+/* Divisiones — importa estilos compartidos de cajas de mates */
+/* DARK-MIGRATED */
+@import './MathBoxShared.css';
+
+/* Grid de la división */
 .division-grid {
   display: grid;
   font-family: 'Lexend', sans-serif;
   font-size: 2.5rem;
   line-height: 1.5;
-  column-gap: 4px; 
+  column-gap: 4px;
   row-gap: 8px;
   justify-content: center;
   align-items: center;
   user-select: none;
 }
 
-/* -- Celdas y Cajas -- */
-.digit-display, 
+/* Celdas y cajas de la división (override de .box) */
+.digit-display,
 .division-box,
 .brought-down-digit {
-  width: 100%; 
+  width: 100%;
+  min-width: 42px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   box-sizing: border-box;
-  position: relative; 
+  position: relative;
+  color: var(--app-text);
 }
 
-/* -- Caja del Divisor -- */
+/* Caja del divisor */
 .divisor-container {
-  border-left: 3px solid #333;
-  border-bottom: 3px solid #333;
+  border-left: 3px solid var(--app-line);
+  border-bottom: 3px solid var(--app-line);
   padding-left: 12px;
   margin-left: 5px;
   display: flex;
@@ -36,60 +42,53 @@
   justify-content: center;
   height: 60px;
 }
-
 .divisor-number {
   font-weight: bold;
   color: #1e3a8a;
 }
 
-/* -- Área del Cociente -- */
+/* Área del cociente */
 .quotient-area {
   padding-left: 12px;
   margin-left: 5px;
   display: flex;
-  gap: 0;
+  gap: 2px;
   align-items: center;
 }
 
-/* -- Cajas interactivas -- */
+/* Cajas interactivas de la división */
 .division-box {
-  border: 2px dashed #cbd5e1;
+  border: 2px dashed var(--app-box-border);
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--app-box-bg);
   cursor: pointer;
-  color: #333;
+  color: var(--app-text);
   transition: all 0.2s ease;
-  min-width: 0;
+  min-width: 42px;
 }
-
 .division-box.filled {
   border-style: solid;
-  border-color: #94a3b8;
+  border-color: var(--app-box-filled-border);
 }
-
 .division-box.selected {
-  border: 2px solid #3b82f6;
-  background-color: #eff6ff;
+  border: 2px solid var(--app-box-selected-border);
+  background-color: var(--app-box-selected-bg);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
   transform: scale(1.05);
   z-index: 10;
 }
-
 .division-box.correct {
   background-color: #dcfce7;
   border: 2px solid #22c55e;
   color: #15803d;
-  border-style: solid;
 }
-
 .division-box.incorrect {
   background-color: #fee2e2;
   border: 2px solid #ef4444;
   color: #b91c1c;
-  border-style: solid;
 }
 
-/* -- Flecha de ayuda -- */
+/* Flecha de ayuda */
 .arrow-helper {
   position: absolute;
   right: -10px;
@@ -101,59 +100,58 @@
   pointer-events: none;
 }
 
-/* -- Highlight Azul -- */
+/* Highlight azul */
 .operand-highlight {
   background-color: #bae6fd !important;
   border-radius: 6px;
   color: #0c4a6e;
   transition: background-color 0.3s ease;
 }
-
 .division-box.operand-highlight {
   background-color: #e0f2fe !important;
   border-color: #3b82f6 !important;
 }
 
-/* === ESTILOS MEJORADOS PARA LA COMA DEL DIVIDENDO === */
+/* === COMA DEL DIVIDENDO === */
 .dividend-comma {
   display: flex;
-  align-items: flex-end; /* Alinear abajo */
-  justify-content: center; /* Centrado horizontal */
-  padding-bottom: 12px;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
   font-family: 'Lexend', sans-serif;
-  color: #333;
+  font-size: 2rem;
+  color: var(--app-operator);
   font-weight: bold;
-  
-  /* AJUSTE VISUAL FINO: Desplazamos la coma a la izquierda */
-  /* Esto compensa si la fuente la pinta muy a la derecha */
-  transform: translateX(-4px); 
+  min-width: 16px;
 }
 
 /* === RANURAS PARA LA COMA (COCIENTE) === */
 .comma-slot {
-  width: 20px;
+  width: 28px;
+  min-width: 28px;
   height: 50px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   font-family: 'Lexend', sans-serif;
-  font-size: 2.5rem; 
+  font-size: 2rem;
   font-weight: bold;
   line-height: 1;
-  color: #e2e8f0; 
+  color: var(--app-border);
   cursor: pointer;
   user-select: none;
   transition: all 0.2s ease;
-  position: relative;
-  top: -5px;
+  border-bottom: 2px dashed var(--app-border);
+  border-radius: 0;
+  padding-bottom: 4px;
+  margin: 0 1px;
 }
+.comma-slot:hover { color: var(--app-text-secondary); transform: scale(1.1); }
+.comma-slot.active { color: var(--app-operator); transform: scale(1.1); border-color: var(--app-operator); }
+.comma-slot.correct { color: #22c55e; border-color: #22c55e; }
+.comma-slot.incorrect { color: #ef4444; border-color: #ef4444; }
 
-.comma-slot:hover { color: #94a3b8; transform: scale(1.2); }
-.comma-slot.active { color: #000; transform: scale(1.1); }
-.comma-slot.correct { color: #22c55e; }
-.comma-slot.incorrect { color: #ef4444; }
-
-/* === PANEL LATERAL === */
+/* Panel lateral tabla multiplicar */
 .game-content {
   display: flex;
   justify-content: center;
@@ -162,39 +160,36 @@
   margin: 20px auto;
   flex-wrap: wrap;
 }
-
 .multiplication-table-panel {
-  background-color: #f8fafc;
-  border: 2px solid #e2e8f0;
+  background-color: var(--app-bg-elevated);
+  border: 2px solid var(--app-border-light);
   border-radius: 12px;
   padding: 16px;
   min-width: 160px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px var(--app-shadow);
   font-family: 'Lexend', sans-serif;
   text-align: left;
   animation: slideIn 0.3s ease-out;
 }
-
 .multiplication-table-panel h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--app-text);
   margin-bottom: 12px;
   text-align: center;
-  border-bottom: 2px solid #cbd5e1;
+  border-bottom: 2px solid var(--app-border);
   padding-bottom: 8px;
 }
-
 .table-row {
   display: flex;
   justify-content: space-between;
   padding: 4px 0;
   font-size: 1rem;
-  color: #475569;
-  border-bottom: 1px dashed #f1f5f9;
+  color: var(--app-text-secondary);
+  border-bottom: 1px dashed var(--app-border-light);
 }
 .table-row:last-child { border-bottom: none; }
-.table-row strong { color: #0f172a; }
+.table-row strong { color: var(--app-text); }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(20px); }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
+import InstructionsModal, { InstructionsButton } from '../../_shared/InstructionsModal';
 
 const RestasPrimaria6 = () => {
   // --- Estados ---
@@ -26,6 +27,7 @@ const RestasPrimaria6 = () => {
   
   const [feedback, setFeedback] = useState({ text: '', className: '' });
   const [activeSlot, setActiveSlot] = useState(null); // { index: number }
+  const [showInstructions, setShowInstructions] = useState(false);
 
   // --- Generación del Problema ---
   const generateNewProblem = useCallback(() => {
@@ -148,10 +150,13 @@ const RestasPrimaria6 = () => {
 
   return (
     <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Resta">📝</span>{' '}
-        <span className="gradient-text">Completa la resta</span>
-      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span role="img" aria-label="Resta">📝</span>{' '}
+          <span className="gradient-text">Completa la resta</span>
+        </h1>
+        <InstructionsButton onClick={() => setShowInstructions(true)} />
+      </div>
 
       <div 
         id="problem-area" 
@@ -283,6 +288,22 @@ const RestasPrimaria6 = () => {
           ))}
         </div>
       </div>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Como jugar: Completa la resta">
+        <h3>Objetivo</h3>
+        <p>Completa la resta colocando los digitos correctos en cada casilla vacia.</p>
+        <h3>Como se juega</h3>
+        <ul>
+          <li>Pulsa en una casilla vacia para seleccionarla.</li>
+          <li>Luego pulsa un numero de la paleta inferior para colocarlo.</li>
+          <li>Tambien puedes arrastrar los numeros a las casillas.</li>
+          <li>Fijate en las llevadas si estan activadas.</li>
+        </ul>
+        <h3>Modos</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Practica Libre</strong> — Resuelve restas sin limite de tiempo.</div>
+          <div className="instr-mode exam"><strong>Test</strong> — Responde varias restas y obten tu puntuacion.</div>
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* src/apps/_shared/ComprensionShared.css */
 
 /* --- 1. IMPORTACIÓN DE FUENTES --- */
@@ -27,7 +28,7 @@
 /* --- 3. TÍTULO Y TIPOGRAFÍA --- */
 .main-title {
     font-family: 'Fredoka One', cursive;
-    color: #333;
+    color: var(--app-text);
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
@@ -190,7 +191,7 @@
     align-items: flex-end;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--app-text-muted);
     margin-bottom: 5px;
     padding: 0 2px;
 }
@@ -281,7 +282,7 @@ input[type="range"].speed-slider::-webkit-slider-thumb {
     width: 18px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--app-bg);
     transition: .4s;
     border-radius: 50%;
 }
@@ -296,7 +297,7 @@ input:checked+.slider:before {
 
 /* --- 5. TARJETA DE LECTURA Y TEXTO --- */
 .card-principal {
-    background: white;
+    background: var(--app-bg);
     border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -373,7 +374,7 @@ input:checked+.slider:before {
 }
 
 .btn-big-audio {
-    background: white;
+    background: var(--app-bg);
     border: none;
     color: #3b82f6;
     font-family: 'Fredoka One', cursive;
@@ -411,7 +412,7 @@ input:checked+.slider:before {
 
 /* --- 7. PREGUNTAS Y BOTONES --- */
 .pregunta-card {
-    background: white;
+    background: var(--app-bg);
     border-radius: 16px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -525,8 +526,8 @@ input:checked+.slider:before {
 }
 
 .btn-secondary-action {
-    background: white;
-    color: #64748b;
+    background: var(--app-bg);
+    color: var(--app-text-muted);
     border: 2px solid #cbd5e1;
     font-family: 'Lexend', sans-serif;
     font-size: 1rem;
@@ -644,7 +645,7 @@ input:checked+.slider:before {
     gap: 1.5rem;
     margin-bottom: 1.25rem;
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     font-weight: 500;
 }
 
@@ -686,7 +687,7 @@ input:checked+.slider:before {
 .review-title {
     font-family: 'Lexend', sans-serif;
     font-size: 1.2rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     margin-bottom: 1rem;
     text-align: center;
     text-transform: uppercase;
@@ -881,7 +882,7 @@ input:checked+.slider:before {
 
 /* --- REDISEÑO TOTAL: SIDEBAR + CONTENT (INTERNAL) --- */
 .material-modal-container {
-    background: #ffffff;
+    background: var(--app-bg);
     width: 96vw;
     max-width: 1400px;
     height: 92vh;
@@ -979,7 +980,7 @@ input:checked+.slider:before {
 
 .view-header {
     padding: 2rem 3rem;
-    background: #ffffff;
+    background: var(--app-bg);
     border-bottom: 2px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
@@ -1012,7 +1013,7 @@ input:checked+.slider:before {
     border-radius: 50%;
     font-size: 1.2rem;
     cursor: pointer;
-    color: #64748b;
+    color: var(--app-text-muted);
     transition: all 0.2s;
 }
 
@@ -1039,7 +1040,7 @@ input:checked+.slider:before {
 .section-title h4 {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--app-text-muted);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1050,7 +1051,7 @@ input:checked+.slider:before {
 }
 
 .text-content {
-    background: #ffffff;
+    background: var(--app-bg);
     padding: 3rem;
     border-radius: 20px;
     font-size: 1.3rem;
@@ -1068,7 +1069,7 @@ input:checked+.slider:before {
 }
 
 .material-q-item {
-    background: #ffffff;
+    background: var(--app-bg);
     padding: 1.5rem;
     border-radius: 16px;
     display: flex;

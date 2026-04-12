@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* Criptograma — estilo misterioso con tonos esmeralda y dorado */
 
 .cripto-root {
@@ -11,7 +12,7 @@
 .cripto-card {
   width: 100%;
   max-width: 960px;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--app-card-bg);
   backdrop-filter: blur(14px);
   border-radius: 24px;
   padding: 1.75rem;
@@ -58,7 +59,7 @@
 
 .cripto-subtitle {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -122,7 +123,7 @@
   background: transparent;
   border: none;
   border-radius: 10px;
-  color: #6b7280;
+  color: var(--app-text-muted);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -287,7 +288,7 @@
   aspect-ratio: 1;
   font-size: 0.9rem;
   font-weight: 800;
-  background: white;
+  background: var(--app-bg);
   color: #065f46;
   border: 2px solid rgba(16, 185, 129, 0.25);
   border-radius: 10px;
@@ -354,7 +355,7 @@
   opacity: 0.35;
   cursor: not-allowed;
   background: linear-gradient(135deg, #374151, #4b5563);
-  border-color: #6b7280;
+  border-color: var(--app-text-muted);
 }
 
 .cripto-lifeline.ghost {
@@ -440,7 +441,7 @@
 }
 
 .cripto-freq-pct {
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-size: 0.68rem;
   font-variant-numeric: tabular-nums;
   min-width: 32px;
@@ -609,7 +610,7 @@
 .cripto-loading, .cripto-empty {
   text-align: center;
   padding: 2rem;
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-weight: 600;
 }
 

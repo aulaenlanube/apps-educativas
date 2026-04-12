@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Sun, Moon } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import MascotLogo from '../ui/MascotLogo';
 import { useAuth } from '@/contexts/AuthContext';
-import { useTheme } from '@/contexts/ThemeContext';
 import LoginButton from '@/components/auth/LoginButton';
 import UserMenu from '@/components/auth/UserMenu';
 import NotificationBell from '@/components/ui/NotificationBell';
@@ -11,7 +10,6 @@ import NotificationBell from '@/components/ui/NotificationBell';
 const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
   const navigate = useNavigate();
   const { isAuthenticated, isAdmin, loading } = useAuth();
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm border-b border-purple-100 dark:border-purple-900/40 sticky top-0 z-50">
@@ -31,14 +29,6 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
           </div>
           <nav className="flex items-center gap-4">
             {children}
-            <button
-              onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
-              title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
-              className="w-9 h-9 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
-            >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
             {!loading && isAdmin && (
               <button
                 onClick={() => navigate('/admin')}

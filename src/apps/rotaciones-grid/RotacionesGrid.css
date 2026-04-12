@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 .rotaciones-container {
     display: flex;
     flex-direction: column;
@@ -72,14 +73,14 @@
 .grid-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--app-card-bg);
 }
 
 .grid-title {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--app-text);
 }
 
 .rotation-grid {
@@ -88,14 +89,14 @@
     border: 4px solid #764ba2;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--app-shadow);
 }
 
 .grid-cell {
     width: 36px;
     height: 36px;
     border: 1px solid #e9ecef;
-    background-color: #fff;
+    background-color: var(--app-bg);
     transition: all 0.2s;
     cursor: pointer;
     display: flex;
@@ -139,7 +140,7 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    background: white;
+    background: var(--app-bg);
     padding: 0.5rem 1rem;
     border-radius: 12px;
     border: 2px solid #764ba2;
@@ -179,7 +180,7 @@
     width: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: white;
+    background-color: var(--app-bg);
     transition: .4s;
     border-radius: 50%;
 }
@@ -259,7 +260,7 @@ input:checked+.slider:before {
 }
 
 .btn-secondary {
-    background: white;
+    background: var(--app-bg);
     color: #4f46e5;
     border: 2px solid #e2e8f0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -289,7 +290,7 @@ input:checked+.slider:before {
 }
 
 .instruction-box {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    background: linear-gradient(to right, var(--app-card-bg), rgba(255, 255, 255, 0.7));
     backdrop-filter: blur(10px);
     padding: 1.2rem 2rem;
     border-radius: 20px;
@@ -356,7 +357,7 @@ input:checked+.slider:before {
     font-weight: 700;
     font-size: 1.2rem;
     color: #4f46e5;
-    background: white;
+    background: var(--app-bg);
     padding: 0.5rem 2rem;
     border-radius: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -415,7 +416,7 @@ input:checked+.slider:before {
 }
 
 .modal-content {
-    background: white;
+    background: var(--app-bg);
     padding: 3rem;
     border-radius: 30px;
     width: 90%;
@@ -508,7 +509,7 @@ input:checked+.slider:before {
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    background: white;
+    background: var(--app-bg);
     padding: 1rem 1.5rem;
     border-radius: 20px;
     border: 2px solid #e2e8f0;
@@ -565,7 +566,7 @@ input:checked+.slider:before {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    background: #ffffff;
+    background: var(--app-bg);
     padding: 1.5rem;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -603,7 +604,7 @@ input:checked+.slider:before {
 
 .mini-grid {
     display: grid;
-    background-color: #fff;
+    background-color: var(--app-bg);
     border: 2px solid #e2e8f0;
     border-radius: 8px;
     padding: 4px;
@@ -655,7 +656,7 @@ input:checked+.slider:before {
     height: 80px;
     border-radius: 50%;
     border: 3px solid #e2e8f0;
-    background: white;
+    background: var(--app-bg);
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
@@ -671,7 +672,7 @@ input:checked+.slider:before {
 .btn-rotation-circle .label {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--app-text-muted);
 }
 
 .btn-rotation-circle:hover {
@@ -788,7 +789,7 @@ input:checked+.slider:before {
 }
 
 .summary-card {
-    background: white;
+    background: var(--app-bg);
     border-radius: 20px;
     padding: 1.5rem;
     border: 2px solid #e2e8f0;
@@ -844,7 +845,7 @@ input:checked+.slider:before {
 .comparison-box span {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--app-text-muted);
 }
 
 /* Mensaje Info Neutro */

@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* Millonario — estilos estilo concurso TV, acorde al portal */
 
 .mill-root {
@@ -11,7 +12,7 @@
 .mill-card {
   width: 100%;
   max-width: 1100px;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--app-card-bg);
   backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 1.75rem;
@@ -133,7 +134,7 @@
   background: transparent;
   border: none;
   border-radius: 10px;
-  color: #6b7280;
+  color: var(--app-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -226,7 +227,7 @@
 
 .mill-lifeline.used {
   background: linear-gradient(135deg, #374151, #4b5563);
-  border-color: #6b7280;
+  border-color: var(--app-text-muted);
   opacity: 0.4;
   position: relative;
 }
@@ -265,7 +266,7 @@
 }
 
 .mill-question-num {
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-weight: 700;
 }
 
@@ -778,7 +779,7 @@
 .mill-empty {
   text-align: center;
   padding: 2rem;
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-weight: 600;
 }
 

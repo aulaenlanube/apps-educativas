@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* Ahorcado — Diseño acorde al portal EduApps */
 
 .ahorcado-root {
@@ -11,7 +12,7 @@
 .ahorcado-card {
   width: 100%;
   max-width: 960px;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--app-card-bg);
   backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 2rem;
@@ -19,7 +20,7 @@
     0 20px 60px -15px rgba(168, 85, 247, 0.25),
     0 10px 30px -10px rgba(236, 72, 153, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-  border: 1px solid rgba(168, 85, 247, 0.15);
+  border: 1px solid var(--app-card-border);
 }
 
 /* ============ HEADER ============ */
@@ -106,7 +107,7 @@
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -327,7 +328,7 @@
   aspect-ratio: 1;
   font-size: 0.95rem;
   font-weight: 800;
-  background: white;
+  background: var(--app-bg);
   color: #4c1d95;
   border: 2px solid rgba(168, 85, 247, 0.25);
   border-radius: 10px;
@@ -408,11 +409,11 @@
 
 .ahorcado-result-text small {
   font-size: 0.9rem;
-  color: #4b5563;
+  color: var(--app-text-secondary);
 }
 
 .ahorcado-result-text strong {
-  color: #1f2937;
+  color: var(--app-text);
 }
 
 /* ============ Botones ============ */
@@ -467,7 +468,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
 }
 
@@ -476,7 +477,7 @@
 .ahorcado-empty {
   text-align: center;
   padding: 2rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
 }
 
@@ -510,7 +511,7 @@
   margin-bottom: -2px;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #9ca3af;
+  color: var(--app-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -546,9 +547,9 @@
   justify-content: center;
   font-weight: 800;
   font-size: 0.85rem;
-  background: white;
-  color: #9ca3af;
-  border: 2px solid #e5e7eb;
+  background: var(--app-bg);
+  color: var(--app-text-muted);
+  border: 2px solid var(--app-border-light);
   transition: all 0.3s ease;
 }
 
@@ -647,7 +648,7 @@
 
 .ahorcado-summary-subtitle {
   margin: 0;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
   font-size: 0.95rem;
 }
@@ -705,11 +706,11 @@
 
 .ahorcado-nota-msg strong {
   font-size: 1.1rem;
-  color: #1f2937;
+  color: var(--app-text);
 }
 
 .ahorcado-nota-msg small {
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-size: 0.85rem;
 }
 
@@ -775,7 +776,7 @@
   padding: 0.85rem 1rem;
   border-radius: 14px;
   border: 1px solid transparent;
-  background: white;
+  background: var(--app-bg);
 }
 
 .ahorcado-feedback-item.ok {
@@ -860,7 +861,7 @@
 
 .ahorcado-feedback-text {
   font-size: 0.92rem;
-  color: #1f2937;
+  color: var(--app-text);
   word-break: break-word;
 }
 
@@ -871,7 +872,7 @@
 
 .ahorcado-feedback-pista {
   font-size: 0.82rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-style: italic;
   background: rgba(251, 191, 36, 0.08);
   padding: 0.35rem 0.6rem;

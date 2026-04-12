@@ -37,7 +37,20 @@
       "Bash(ls -la *.sql)",
       "Bash(ls *.sql)",
       "Bash(ls ejecutar-*.sql.bak)",
-      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/src/lib/supabase*)"
+      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/src/lib/supabase*)",
+      "Bash(npm ls:*)",
+      "Bash(node -e \"const r = require\\('react'\\); console.log\\('react version:', r.version\\); console.log\\('useMemo exists:', typeof r.useMemo\\);\")",
+      "Bash(grep \"/react$\")",
+      "Bash(grep -l \"DARK-MIGRATED\" src/apps/**/*.css src/apps/_shared/*.css)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill /F /PID 113700)",
+      "Bash(powershell -Command \"Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 3; Write-Host 'Done'\")",
+      "Bash(powershell -Command \"\\(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue\\).OwningProcess\")",
+      "Bash(grep -rn \"^button \" src/apps/_shared/*.css src/apps/**/*.css)",
+      "Bash(grep -l \"SumasLayout\" c:/Users/edtor/Desktop/apps-educativas/src/apps/sumas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/restas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/multiplicaciones/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/divisiones/**/*.jsx)",
+      "Bash(grep -l \"id=\\\\\"app-container\\\\\"\" c:/Users/edtor/Desktop/apps-educativas/src/apps/restas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/multiplicaciones/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/divisiones/**/*.jsx)",
+      "Bash(grep -l \"InstructionsModal\" src/apps/restas/**/*.jsx src/apps/multiplicaciones/**/*.jsx src/apps/divisiones/**/*.jsx src/apps/_shared/SumasLayout.jsx)"
     ]
   }
 }

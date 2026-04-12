@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Divisiones.css';
+import InstructionsModal, { InstructionsButton } from '../../_shared/InstructionsModal';
 
 const DivisionesPrimaria5 = () => {
   // --- Estados ---
   const [operands, setOperands] = useState({ dividend: 0, divisor: 1 });
+  const [showInstructions, setShowInstructions] = useState(false);
   const [steps, setSteps] = useState([]); 
   const [userInputs, setUserInputs] = useState({});
   const [activeSlot, setActiveSlot] = useState(null); 
@@ -183,10 +185,13 @@ const DivisionesPrimaria5 = () => {
 
   return (
     <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Dividir">➗</span>{' '}
-        <span className="gradient-text">Divisiones (5º)</span>
-      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span role="img" aria-label="Dividir">➗</span>{' '}
+          <span className="gradient-text">Divisiones (5º)</span>
+        </h1>
+        <InstructionsButton onClick={() => setShowInstructions(true)} />
+      </div>
 
       {/* --- ZONA DE OPCIONES (Sliders) --- */}
       <div id="options-area" className="flex flex-wrap justify-center gap-8 mb-6">
@@ -341,6 +346,23 @@ const DivisionesPrimaria5 = () => {
           ))}
         </div>
       </div>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Como jugar: Divisiones (5º)">
+        <h3>Objetivo</h3>
+        <p>Resuelve la division paso a paso: calcula el cociente y los restos parciales colocando cada digito en su casilla.</p>
+        <h3>Como se juega</h3>
+        <ul>
+          <li>Pulsa en una casilla vacia para seleccionarla.</li>
+          <li>Coloca el digito correcto desde el teclado numerico inferior.</li>
+          <li>Sigue el orden: primero el cociente, luego los productos parciales y los restos.</li>
+          <li>Activa "Mostrar ayudas" para ver indicaciones paso a paso.</li>
+          <li>En divisiones con decimales, pulsa en la ranura de la coma del cociente cuando corresponda.</li>
+        </ul>
+        <h3>Modos</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Practica</strong> — Resuelve divisiones con ayudas disponibles.</div>
+          <div className="instr-mode exam"><strong>Practica sin ayudas</strong> — Desactiva las ayudas para un reto mayor.</div>
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

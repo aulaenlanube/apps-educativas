@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* src/apps/_shared/NumerosRomanos.css */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
@@ -7,7 +8,7 @@
     font-family: 'Lexend', sans-serif;
     width: 100%;
     max-width: 900px;
-    background: #fff;
+    background: var(--app-bg);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -165,8 +166,8 @@
     padding: 10px 20px;
     border-radius: 8px;
     border: 1px solid #dcdfe6;
-    background: #f0f4f8;
-    color: #4a5568;
+    background: var(--app-bg-surface);
+    color: var(--app-text-secondary);
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -216,7 +217,7 @@
 .helper-display {
     min-height: 2rem;
     font-size: 1.2rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     font-weight: 600;
     margin: 10px 0;
 }
@@ -284,7 +285,7 @@
     width: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: white;
+    background-color: var(--app-bg);
     transition: .4s;
     border-radius: 50%;
 }
@@ -322,7 +323,7 @@ input:checked+.slider:before {
 
 .roman-reference-table h3 {
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -346,7 +347,7 @@ input:checked+.slider:before {
 .ref-tile {
     width: 35px;
     height: 35px;
-    background: white;
+    background: var(--app-bg);
     border: none;
     color: #4f46e5;
     border-radius: 6px;
@@ -416,7 +417,7 @@ input:checked+.slider:before {
 
 .roman-rules li {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     margin-bottom: 4px;
     line-height: 1.4;
 }

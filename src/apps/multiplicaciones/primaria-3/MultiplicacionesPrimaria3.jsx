@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
+import InstructionsModal, { InstructionsButton } from '../../_shared/InstructionsModal';
 
 export default function MultiplicacionesPrimaria3() {
   // --- Estados ---
   const [multiplicando, setMultiplicando] = useState(0);
+  const [showInstructions, setShowInstructions] = useState(false);
   const [multiplicador, setMultiplicador] = useState(0);
   const [filaEsperada, setFilaEsperada] = useState({ digitos: [], llevadas: [] }); 
   const [ayudaLlevadas, setAyudaLlevadas] = useState(true);
@@ -270,10 +272,13 @@ export default function MultiplicacionesPrimaria3() {
 
   return (
     <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Multiplicar">✖️</span>{' '}
-        <span className="gradient-text">Multiplica por 1 cifra</span>
-      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span role="img" aria-label="Multiplicar">✖️</span>{' '}
+          <span className="gradient-text">Multiplica por 1 cifra</span>
+        </h1>
+        <InstructionsButton onClick={() => setShowInstructions(true)} />
+      </div>
 
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
@@ -315,6 +320,22 @@ export default function MultiplicacionesPrimaria3() {
           ))}
         </div>
       </div>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Como jugar: Multiplica por 1 cifra">
+        <h3>Objetivo</h3>
+        <p>Completa la multiplicacion colocando cada digito en su casilla correcta, incluyendo los resultados parciales y el resultado final.</p>
+        <h3>Como se juega</h3>
+        <ul>
+          <li>Pulsa en una casilla vacia para seleccionarla.</li>
+          <li>Coloca el digito correcto desde la paleta numerica.</li>
+          <li>Recuerda completar tambien las llevadas si estan visibles.</li>
+          <li>En las multiplicaciones con decimales, pulsa en la ranura de la coma para activarla.</li>
+        </ul>
+        <h3>Modos</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Practica Libre</strong> — Resuelve multiplicaciones a tu ritmo.</div>
+          <div className="instr-mode exam"><strong>Test</strong> — Completa varias multiplicaciones y obten tu puntuacion.</div>
+        </div>
+      </InstructionsModal>
     </div>
   );
 }

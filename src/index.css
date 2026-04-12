@@ -28,6 +28,53 @@
   --background: 0 0% 100%;
   --foreground: 220 13% 13%;
   --radius: 0.5rem;
+
+  /* App surface system — consumido por CSS de apps */
+  --app-bg: #ffffff;
+  --app-bg-elevated: #f9f9f9;
+  --app-bg-surface: #f0f4f8;
+  --app-text: #333333;
+  --app-text-secondary: #4a5568;
+  --app-text-muted: #94a3b8;
+  --app-border: #cccccc;
+  --app-border-light: #eee;
+  --app-shadow: rgba(0,0,0,0.1);
+
+  /* Math apps */
+  --app-operator: #e74c3c;
+  --app-line: #333333;
+  --app-tile-bg: #007bff;
+  --app-tile-hover: #0056b3;
+  --app-box-bg: transparent;
+  --app-box-border: #ccc;
+  --app-box-selected-bg: #e6f7ff;
+  --app-box-selected-border: #007bff;
+  --app-box-filled-border: #333;
+
+  /* Buttons */
+  --app-btn-bg: #d7d4e0;
+  --app-btn-text: #4a5568;
+  --app-btn-border: #dcdfe6;
+  --app-btn-active-bg: #673de6;
+  --app-btn-test-bg: #2e7d32;
+  --app-btn-check-bg: #28a745;
+  --app-btn-new-bg: #c0392b;
+
+  /* Progress */
+  --app-progress-bg: #e0e0e0;
+  --app-progress-fill: #4a90e2;
+
+  /* Feedback */
+  --app-correct: #2ecc71;
+  --app-incorrect: #e74c3c;
+
+  /* Glass card (Ahorcado, Crucigrama, etc.) */
+  --app-card-bg: rgba(255,255,255,0.85);
+  --app-card-border: rgba(168,85,247,0.15);
+
+  /* Toggle switch */
+  --app-switch-bg: #ccc;
+  --app-switch-active: #2196F3;
 }
 
 .dark {
@@ -50,6 +97,53 @@
   --ring: 220 100% 65%;
   --background: 222 22% 9%;
   --foreground: 220 14% 92%;
+
+  /* App surface system — dark overrides */
+  --app-bg: #1e1b2e;
+  --app-bg-elevated: #252238;
+  --app-bg-surface: #2d2a3e;
+  --app-text: #e2e8f0;
+  --app-text-secondary: #94a3b8;
+  --app-text-muted: #64748b;
+  --app-border: #475569;
+  --app-border-light: #374151;
+  --app-shadow: rgba(0,0,0,0.4);
+
+  /* Math apps */
+  --app-operator: #f87171;
+  --app-line: #94a3b8;
+  --app-tile-bg: #6366f1;
+  --app-tile-hover: #4f46e5;
+  --app-box-bg: #2d2a3e;
+  --app-box-border: #475569;
+  --app-box-selected-bg: #3730a3;
+  --app-box-selected-border: #818cf8;
+  --app-box-filled-border: #6366f1;
+
+  /* Buttons */
+  --app-btn-bg: #2d2a3e;
+  --app-btn-text: #cbd5e1;
+  --app-btn-border: #475569;
+  --app-btn-active-bg: #7c3aed;
+  --app-btn-test-bg: #059669;
+  --app-btn-check-bg: #059669;
+  --app-btn-new-bg: #dc2626;
+
+  /* Progress */
+  --app-progress-bg: #374151;
+  --app-progress-fill: #6366f1;
+
+  /* Feedback — same in dark */
+  --app-correct: #2ecc71;
+  --app-incorrect: #e74c3c;
+
+  /* Glass card */
+  --app-card-bg: rgba(30,27,55,0.82);
+  --app-card-border: rgba(120,110,200,0.25);
+
+  /* Toggle switch */
+  --app-switch-bg: #475569;
+  --app-switch-active: #6366f1;
 }
 
 body {
@@ -202,7 +296,12 @@ html.dark .hover\:bg-slate-100:hover { background-color: rgba(255, 255, 255, 0.0
 html.dark .hover\:bg-gray-100:hover { background-color: rgba(255, 255, 255, 0.08) !important; }
 html.dark .hover\:bg-blue-50:hover { background-color: rgba(59, 130, 246, 0.2) !important; }
 
-/* ====== DARK MODE: overrides para apps con CSS propio ======
+/* ====== DARK MODE: app overrides eliminados — ahora usan var(--app-*) ======
+   Las apps migradas consumen variables CSS de :root/.dark, así que ya no necesitan
+   overrides html.dark aquí. Solo se mantienen los overrides de utilidades Tailwind arriba.
+*/
+
+/*  LEGACY: overrides que se pueden ir borrando conforme se migren las apps restantes
    Cuando html.dark, las apps que tienen "card" blanca con backdrop-blur
    se invierten a un panel oscuro. Las apps excluidas (sistema-solar,
    células, mesa-crafteo, visualizador 3D, terminal-retro, excavación)

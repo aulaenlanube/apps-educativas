@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* src/apps/_shared/Medidas.css */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
@@ -7,7 +8,7 @@
     width: fit-content;
     min-width: min(800px, 94vw);
     max-width: 98vw;
-    background: #fff;
+    background: var(--app-bg);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -51,7 +52,7 @@
 
 /* --- SELECTOR DE TIPO --- */
 .type-selector-container {
-    background: #ffffff;
+    background: var(--app-bg);
     padding: 6px;
     border-radius: 16px;
     display: inline-flex;
@@ -69,7 +70,7 @@
     cursor: pointer;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    color: #64748b;
+    color: var(--app-text-muted);
     transition: all 0.3s ease;
     z-index: 1;
     display: flex;
@@ -82,7 +83,7 @@
 }
 
 .type-btn.active {
-    background: white;
+    background: var(--app-bg);
     color: #1e293b;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -110,7 +111,7 @@
 }
 
 .measure-card {
-    background: #ffffff;
+    background: var(--app-bg);
     padding: 24px;
     border-radius: 20px;
     font-size: 2.5rem;
@@ -133,7 +134,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: var(--app-bg);
     font-size: 3.5rem;
     font-weight: 800;
     color: #94a3b8;
@@ -197,7 +198,7 @@
     height: 70px;
     font-size: 2.5rem;
     font-weight: 800;
-    background: white;
+    background: var(--app-bg);
     border: 2px solid #e2e8f0;
     border-radius: 12px;
     cursor: pointer;
@@ -206,7 +207,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748b;
+    color: var(--app-text-muted);
 }
 
 .medidas-game-header {
@@ -220,7 +221,7 @@
 }
 
 .btn-change-mode {
-    background: #ffffff;
+    background: var(--app-bg);
     border: 2px solid #eef2ff;
     color: #6366f1;
     padding: 8px 20px;
@@ -366,7 +367,7 @@
 }
 
 .btn-back:hover {
-    color: #64748b;
+    color: var(--app-text-muted);
     transform: translateX(-5px);
 }
 
@@ -382,8 +383,8 @@
     padding: 8px 16px;
     border-radius: 8px;
     border: 1px solid #dcdfe6;
-    background: #f0f4f8;
-    color: #4a5568;
+    background: var(--app-bg-surface);
+    color: var(--app-text-secondary);
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9rem;
@@ -481,7 +482,7 @@
     gap: 8px;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--app-text-muted);
 }
 
 .switch {
@@ -516,7 +517,7 @@
     width: 16px;
     left: 3px;
     bottom: 3px;
-    background-color: white;
+    background-color: var(--app-bg);
     transition: .4s;
     border-radius: 50%;
 }
@@ -564,7 +565,7 @@ input:checked+.slider:before {
     font-weight: 800;
     font-size: 1.2rem;
     border: 3px solid;
-    background: white;
+    background: var(--app-bg);
     z-index: 2;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
@@ -665,7 +666,7 @@ input:checked+.slider:before {
     max-width: fit-content;
     min-width: 80%;
     padding: 30px 20px;
-    background: #ffffff;
+    background: var(--app-bg);
     border-radius: 20px;
     overflow-x: auto;
     scrollbar-width: thin;
@@ -701,7 +702,7 @@ input:checked+.slider:before {
 }
 
 .order-card {
-    background: white;
+    background: var(--app-bg);
     padding: 24px 16px;
     border-radius: 20px;
     border: 2px solid #e2e8f0;

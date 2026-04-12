@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* Velocidad de Respuesta — estilo arcade naranja/rojo con urgencia */
 
 .veloc-root {
@@ -11,7 +12,7 @@
 .veloc-card {
   width: 100%;
   max-width: 800px;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--app-card-bg);
   backdrop-filter: blur(14px);
   border-radius: 24px;
   padding: 1.75rem;
@@ -59,7 +60,7 @@
 
 .veloc-subtitle {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--app-text-muted);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -128,7 +129,7 @@
   background: transparent;
   border: none;
   border-radius: 10px;
-  color: #6b7280;
+  color: var(--app-text-muted);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -153,7 +154,7 @@
 .veloc-progress-label {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #6b7280;
+  color: var(--app-text-muted);
   white-space: nowrap;
 }
 
@@ -246,12 +247,12 @@
   border-radius: 14px;
   overflow: hidden;
   transition: all 0.3s;
-  background: white;
+  background: var(--app-bg);
 }
 
 .veloc-input-wrap:focus-within {
   border-color: #a855f7;
-  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 0 4px var(--app-card-border);
 }
 
 .veloc-input-wrap.correct {
@@ -281,7 +282,7 @@
   border: none;
   outline: none;
   background: transparent;
-  color: #1f2937;
+  color: var(--app-text);
   font-family: system-ui, -apple-system, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -369,7 +370,7 @@
 }
 
 .veloc-lifeline:hover:not(:disabled) { transform: translateY(-2px); }
-.veloc-lifeline:disabled { opacity: 0.3; cursor: not-allowed; background: #4b5563; border-color: #6b7280; }
+.veloc-lifeline:disabled { opacity: 0.3; cursor: not-allowed; background: #4b5563; border-color: var(--app-text-muted); }
 
 .veloc-lifeline-count {
   position: absolute;
@@ -535,7 +536,7 @@
 .veloc-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.6); }
 
 /* ============ LOADING / EMPTY ============ */
-.veloc-loading, .veloc-empty { text-align: center; padding: 2rem; color: #6b7280; font-weight: 600; }
+.veloc-loading, .veloc-empty { text-align: center; padding: 2rem; color: var(--app-text-muted); font-weight: 600; }
 
 @media (max-width: 720px) {
   .veloc-card { padding: 1rem; }

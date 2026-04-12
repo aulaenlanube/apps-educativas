@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
 
 /* Scope variables to the wrapper to avoid global pollution */
@@ -90,7 +91,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: var(--app-bg);
   padding: 1rem;
   border-radius: 16px;
   border: 1px solid var(--glass-border);
@@ -120,9 +121,9 @@
 }
 
 .intruso-btn {
-  background: #ffffff;
+  background: var(--app-bg);
   border: 2px solid #e2e8f0;
-  color: #64748b;
+  color: var(--app-text-muted);
   padding: 8px 16px;
   border-radius: 12px;
   font-weight: 700;
@@ -180,7 +181,7 @@
   font-family: 'Fredoka One';
   font-size: 1.5rem;
   min-height: 40px;
-  color: #64748b;
+  color: var(--app-text-muted);
   transition: all 0.3s;
   display: flex;
   justify-content: center;
@@ -218,7 +219,7 @@
 
 .intruso-cell {
   aspect-ratio: 1;
-  background: #ffffff;
+  background: var(--app-bg);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -343,7 +344,7 @@
   transform: translate(-50%, -50%);
   font-family: 'Fredoka One';
   font-size: 2.5rem;
-  color: #333;
+  color: var(--app-text);
 }
 
 .stats-row {
@@ -360,14 +361,14 @@
 
 .stat-box .label {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   font-weight: bold;
 }
 
 .stat-box .val {
   font-size: 1.5rem;
   font-family: 'Fredoka One';
-  color: #333;
+  color: var(--app-text);
 }
 
 .action-buttons {

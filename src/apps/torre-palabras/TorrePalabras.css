@@ -1,10 +1,11 @@
+/* DARK-MIGRATED */
 /* Torre de Palabras — paleta cálida naranja/ámbar estilo construcción */
 
 .torre-root { width: 100%; display: flex; justify-content: center; padding: 1rem; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
 
 .torre-card {
   width: 100%; max-width: 800px;
-  background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(14px); border-radius: 24px; padding: 1.75rem;
+  background: var(--app-card-bg); backdrop-filter: blur(14px); border-radius: 24px; padding: 1.75rem;
   box-shadow: 0 20px 60px -15px rgba(245, 158, 11, 0.3), 0 10px 30px -10px rgba(234, 88, 12, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   border: 1px solid rgba(245, 158, 11, 0.22);
 }
@@ -14,7 +15,7 @@
 .torre-title { display: flex; align-items: center; gap: 0.6rem; font-size: 1.85rem; font-weight: 900; background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #ef4444 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .torre-emoji { font-size: 2rem; -webkit-text-fill-color: initial; animation: torreFloat 2s ease-in-out infinite; }
 @keyframes torreFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.torre-subtitle { font-size: 0.85rem; color: #6b7280; font-weight: 600; margin-bottom: 1rem; }
+.torre-subtitle { font-size: 0.85rem; color: var(--app-text-muted); font-weight: 600; margin-bottom: 1rem; }
 
 .torre-stats { display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; }
 .torre-stat { display: flex; align-items: center; gap: 0.3rem; padding: 0.35rem 0.7rem; border-radius: 999px; font-weight: 700; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
@@ -27,7 +28,7 @@
 
 /* ============ TABS ============ */
 .torre-gamemode-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; padding: 0.4rem; background: rgba(245, 158, 11, 0.06); border-radius: 14px; border: 1px solid rgba(245, 158, 11, 0.15); }
-.torre-gamemode-tab { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.6rem 0.4rem; background: transparent; border: none; border-radius: 10px; color: #6b7280; cursor: pointer; transition: all 0.2s; }
+.torre-gamemode-tab { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.6rem 0.4rem; background: transparent; border: none; border-radius: 10px; color: var(--app-text-muted); cursor: pointer; transition: all 0.2s; }
 .torre-gamemode-tab:hover:not(.active) { background: rgba(245, 158, 11, 0.06); color: #92400e; }
 .torre-gamemode-tab.active.easy { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.45); }
 .torre-gamemode-tab.active.medium { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.45); }
@@ -37,7 +38,7 @@
 
 /* ============ PROGRESO ============ */
 .torre-progress-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-.torre-progress-label { font-size: 0.78rem; font-weight: 700; color: #6b7280; }
+.torre-progress-label { font-size: 0.78rem; font-weight: 700; color: var(--app-text-muted); }
 .torre-progress-bar { flex: 1; height: 6px; background: rgba(245, 158, 11, 0.1); border-radius: 3px; overflow: hidden; }
 .torre-progress-fill { height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); border-radius: 3px; transition: width 0.4s; }
 
@@ -97,8 +98,8 @@
 
 .torre-cat-btn {
   display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1rem;
-  background: white; border: 2px solid rgba(0,0,0,0.08); border-radius: 14px;
-  cursor: pointer; transition: all 0.2s; font-weight: 700; font-size: 0.92rem; color: #1f2937;
+  background: var(--app-bg); border: 2px solid rgba(0,0,0,0.08); border-radius: 14px;
+  cursor: pointer; transition: all 0.2s; font-weight: 700; font-size: 0.92rem; color: var(--app-text);
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
 
@@ -123,7 +124,7 @@
 .torre-lifelines { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .torre-lifeline { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.5rem 0.85rem; background: linear-gradient(135deg, #4c1d95, #6d28d9); color: white; border: 2px solid #fbbf24; border-radius: 10px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 10px -3px rgba(76, 29, 149, 0.4); position: relative; }
 .torre-lifeline:hover:not(:disabled) { transform: translateY(-2px); }
-.torre-lifeline:disabled { opacity: 0.3; cursor: not-allowed; background: #4b5563; border-color: #6b7280; }
+.torre-lifeline:disabled { opacity: 0.3; cursor: not-allowed; background: #4b5563; border-color: var(--app-text-muted); }
 .torre-lifeline.ghost { background: rgba(245, 158, 11, 0.08); color: #92400e; border-color: rgba(245, 158, 11, 0.25); }
 .torre-lifeline-count { position: absolute; top: -6px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; border-radius: 999px; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 1.5px solid white; }
 
@@ -152,6 +153,6 @@
 .torre-btn.primary { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.5); }
 .torre-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.6); }
 
-.torre-loading, .torre-empty { text-align: center; padding: 2rem; color: #6b7280; font-weight: 600; }
+.torre-loading, .torre-empty { text-align: center; padding: 2rem; color: var(--app-text-muted); font-weight: 600; }
 
 @media (max-width: 720px) { .torre-card { padding: 1rem; } .torre-title { font-size: 1.4rem; } .torre-current-word { font-size: 1.3rem; } .torre-categories { grid-template-columns: 1fr 1fr; } .torre-nota-big { font-size: 2.5rem; } }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
+import InstructionsModal, { InstructionsButton } from '../../_shared/InstructionsModal';
 
 const RestasPrimaria5 = () => {
   // --- Estados del Juego ---
-  const [operands, setOperands] = useState({ num1: 0, num2: 0 }); 
+  const [operands, setOperands] = useState({ num1: 0, num2: 0 });
+  const [showInstructions, setShowInstructions] = useState(false); 
   
   // Estructura dinámica de la rejilla (varía en cada problema)
   const [structure, setStructure] = useState({ 
@@ -209,22 +211,31 @@ const RestasPrimaria5 = () => {
 
   return (
     <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Resta">📝</span>{' '}
-        <span className="gradient-text">Restas con Decimales</span>
-      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span role="img" aria-label="Resta">📝</span>{' '}
+          <span className="gradient-text">Restas con Decimales</span>
+        </h1>
+        <InstructionsButton onClick={() => setShowInstructions(true)} />
+      </div>
 
-      <div id="options-area">
-        <label htmlFor="help-toggle">Ayuda con llevadas</label>
-        <label className="switch">
-          <input
-            type="checkbox"
-            id="help-toggle"
-            checked={showHelp}
-            onChange={(e) => setShowHelp(e.target.checked)}
-          />
-          <span className="slider round"></span>
-        </label>
+      <div id="options-area" style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', marginBottom: 16 }}>
+        <span style={{ fontWeight: 500, color: 'var(--app-text-secondary)', fontSize: '0.95em' }}>Ayuda con llevadas</span>
+        <div
+          onClick={() => setShowHelp(v => !v)}
+          style={{
+            width: 52, height: 28, borderRadius: 14, cursor: 'pointer',
+            background: showHelp ? '#2563eb' : '#cbd5e1',
+            position: 'relative', transition: 'background 0.2s',
+          }}
+        >
+          <div style={{
+            width: 22, height: 22, borderRadius: '50%', background: 'white',
+            position: 'absolute', top: 3,
+            left: showHelp ? 27 : 3,
+            transition: 'left 0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+          }} />
+        </div>
       </div>
 
       <div 
@@ -355,6 +366,22 @@ const RestasPrimaria5 = () => {
           ))}
         </div>
       </div>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Como jugar: Restas con Decimales">
+        <h3>Objetivo</h3>
+        <p>Completa la resta colocando los digitos correctos en cada casilla vacia.</p>
+        <h3>Como se juega</h3>
+        <ul>
+          <li>Pulsa en una casilla vacia para seleccionarla.</li>
+          <li>Luego pulsa un numero de la paleta inferior para colocarlo.</li>
+          <li>Tambien puedes arrastrar los numeros a las casillas.</li>
+          <li>Fijate en las llevadas si estan activadas.</li>
+        </ul>
+        <h3>Modos</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Practica Libre</strong> — Resuelve restas sin limite de tiempo.</div>
+          <div className="instr-mode exam"><strong>Test</strong> — Responde varias restas y obten tu puntuacion.</div>
+        </div>
+      </InstructionsModal>
     </div>
   );
 };

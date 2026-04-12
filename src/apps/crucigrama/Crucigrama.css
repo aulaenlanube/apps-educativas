@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* Crucigrama — estilos acordes al portal EduApps */
 
 .cruci-root {
@@ -11,7 +12,7 @@
 .cruci-card {
   width: 100%;
   max-width: 1100px;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--app-card-bg);
   backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 1.75rem;
@@ -19,7 +20,7 @@
     0 20px 60px -15px rgba(59, 130, 246, 0.25),
     0 10px 30px -10px rgba(99, 102, 241, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid var(--app-card-border);
 }
 
 /* ============ HEADER ============ */
@@ -58,7 +59,7 @@
 
 .cruci-subtitle {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -116,7 +117,7 @@
   margin-bottom: -2px;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #9ca3af;
+  color: var(--app-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -289,7 +290,7 @@
 }
 
 .cruci-cell {
-  background: white;
+  background: var(--app-bg);
   position: relative;
   cursor: pointer;
   display: flex;
@@ -433,7 +434,7 @@
   border-radius: 8px;
   font-size: 0.82rem;
   line-height: 1.3;
-  color: #374151;
+  color: var(--app-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
   border: 1px solid transparent;
@@ -466,7 +467,7 @@
 .cruci-clue-item-len {
   flex-shrink: 0;
   font-size: 0.72rem;
-  color: #9ca3af;
+  color: var(--app-text-muted);
   font-weight: 700;
 }
 
@@ -530,7 +531,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
   padding: 0.6rem 1rem;
 }
@@ -587,7 +588,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.5rem 1rem;
-  background: white;
+  background: var(--app-bg);
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.9rem;
@@ -674,14 +675,14 @@
 .cruci-generating {
   text-align: center;
   padding: 2rem;
-  color: #6b7280;
+  color: var(--app-text-secondary);
   font-weight: 600;
 }
 
 .cruci-empty-sub {
   font-size: 0.85rem;
   margin-top: 0.5rem;
-  color: #9ca3af;
+  color: var(--app-text-muted);
 }
 
 /* Responsive */

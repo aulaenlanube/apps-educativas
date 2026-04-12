@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
 .contenedor-parejas,
@@ -333,7 +334,7 @@
 }
 
 .modal-ayuda {
-  background: white;
+  background: var(--app-bg);
   width: 100%;
   max-width: 700px;
   max-height: 85vh;
@@ -383,7 +384,7 @@
 .modal-body {
   padding: 2rem;
   overflow-y: auto;
-  background: #ffffff;
+  background: var(--app-bg);
 }
 
 /* Scrollbar Minimalista */

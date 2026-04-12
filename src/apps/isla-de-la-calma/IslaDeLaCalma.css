@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* src/apps/isla-de-la-calma/IslaDeLaCalma.css */
 
 /* ── Base ───────────────────────────────────────────────────── */
@@ -198,7 +199,7 @@
   cursor: pointer;
   font-family: inherit;
   background: linear-gradient(135deg, #065f46, #0d9488);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-card-bg);
   box-shadow:
     0 4px 20px rgba(13, 148, 136, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -220,7 +221,7 @@
 
 .calma-restart-btn:hover {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-card-bg);
 }
 
 /* ── Pantalla de respiración ────────────────────────────────── */

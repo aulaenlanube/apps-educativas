@@ -1,3 +1,4 @@
+/* DARK-MIGRATED */
 /* src/apps/juego-memoria/JuegoMemoria.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
@@ -432,7 +433,7 @@
 @keyframes glowPulse {
     0% {
         box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
-        background-color: #ffffff;
+        background-color: var(--app-bg);
     }
 
     50% {
@@ -442,7 +443,7 @@
 
     100% {
         box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
-        background-color: #ffffff;
+        background-color: var(--app-bg);
     }
 }
 
@@ -1100,7 +1101,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--app-text-muted);
     font-weight: bold;
 }
 

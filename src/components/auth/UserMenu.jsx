@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3, Rocket, Trophy, Zap } from 'lucide-react';
+import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3, Rocket, Trophy, Zap, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
+import { useTheme } from '@/contexts/ThemeContext';
 import { useToast } from '@/components/ui/use-toast';
 import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
@@ -15,6 +16,7 @@ export default function UserMenu() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { level, totalXp, xpForCurrentLevel, xpForNextLevel, totalEarned } = useGamification();
+  const { theme, toggleTheme } = useTheme();
 
   const isStudentRole = role === 'student';
 
@@ -175,6 +177,11 @@ export default function UserMenu() {
           </>
         )}
 
+        <DropdownMenuItem onClick={(e) => { e.preventDefault(); toggleTheme(); }}>
+          {theme === 'dark' ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
+          {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleSignOut} className="text-red-600 focus:text-red-600">
           <LogOut className="mr-2 h-4 w-4" />
           Cerrar sesion

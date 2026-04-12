@@ -1,26 +1,9 @@
-/* Mismo enfoque que en Sumas.css: alta especificidad basada en #app-container
-   para evitar conflictos con CSS global del proyecto. */
+/* DARK-MIGRATED */
+@import './MathBoxShared.css';
+/* Restas: estilos específicos (hereda base de MathBoxShared) */
 
-#app-container {
-  background-color: #ffffff;
-  padding: 20px 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  min-width: 380px;
-  max-width: 95vw;
-  font-family: 'Helvetica Neue', sans-serif;
-  color: #333;
-  user-select: none;
-  font-family: 'Lexend', sans-serif;
-}
-
-#app-container h1 { font-family: 'Fredoka One', cursive; }
-#app-container h2 {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.5em;
-  color: #005a9c;
-}
+/* #app-container y h1/h2 heredados de MathBoxShared.css */
+#app-container { user-select: none; } /* override propio de restas */
 
 /* Área del problema: mismo layout que Sumas */
 #app-container #problem-area {
@@ -50,7 +33,7 @@
 /* Línea por columna, igual que en Sumas */
 #app-container .operation-line {
   border: none;
-  border-top: 5px solid #333;
+  border-top: 5px solid var(--app-line);
   width: 120%;
   margin: 10px;
   padding: 0;
@@ -65,7 +48,7 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 70px;
-  color: #e74c3c;
+  color: var(--app-operator);
 }
 #app-container .operator-spacer { width: 35px; }
 
@@ -73,7 +56,7 @@
 #app-container .box {
   width: 45px;
   height: 45px;
-  border: 2px dashed #ccc;      /* mismo grosor en todos los estados */
+  border: 2px dashed var(--app-box-border);      /* mismo grosor en todos los estados */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,14 +88,14 @@
   font-weight: bold;
   height: 30px;                 /* reserva espacio siempre */
 }
-#app-container .feedback-correct { color: #2ecc71; }
-#app-container .feedback-incorrect { color: #e74c3c; }
+#app-container .feedback-correct { color: var(--app-correct); }
+#app-container .feedback-incorrect { color: var(--app-operator); }
 
 /* Paleta y controles (idénticos a Sumas) */
 #app-container #number-palette {
   margin-top: 15px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: var(--app-bg-elevated);
   border-radius: 10px;
 }
 
