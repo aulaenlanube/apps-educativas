@@ -896,7 +896,7 @@ const AboutModal = ({ open, onOpenChange }) => {
           />
 
           <DialogContent
-            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white rounded-2xl p-6 shadow-2xl overflow-hidden ${isEntering ? 'glitch-modal-enter' : ''
+            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white dark:bg-slate-800 dark:text-gray-200 rounded-2xl p-6 shadow-2xl overflow-hidden ${isEntering ? 'glitch-modal-enter' : ''
               } ${isExiting ? 'glitch-modal-exit' : ''} ${idleGlitching ? 'idle-glitch-active' : ''}`}
             onEscapeKeyDown={(e) => { if (isExiting) e.preventDefault(); }}
             onPointerDownOutside={(e) => { if (isExiting) e.preventDefault(); }}

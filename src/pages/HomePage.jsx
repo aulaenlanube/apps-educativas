@@ -190,7 +190,7 @@ const HomePage = () => {
               <p className="text-lg md:text-xl text-indigo-200/80 max-w-2xl mx-auto mb-4 leading-relaxed">
                 Esta plataforma ha sido creada completamente desde cero con IA, sin escribir una sola
                  línea de código de forma manual. Cada app, cada pantalla, cada interacción ha sido
-                 generada por inteligencia artificial.
+                 generada con inteligencia artificial.
               </p>
 
               <p className="text-base text-indigo-300/60 max-w-xl mx-auto mb-8">

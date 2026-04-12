@@ -163,7 +163,7 @@ const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
         {/* Reverso (Contenido) */}
         <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-xl shadow-md bg-white flex flex-col items-center justify-center p-2 border-2 border-primary/20 text-center">
           {card.type === 'image' ? (
-            <img src={card.content} alt="card" className="w-full h-full object-contain" />
+            <img src={card.content} alt="card" className="w-full h-full object-contain" loading="lazy" decoding="async" />
           ) : (
             <span className={`font-bold text-slate-700 select-none ${card.content.length > 5 ? 'text-lg' : 'text-4xl'}`}>
               {card.content}

@@ -32,7 +32,7 @@ const LoginPage = () => {
           transition={{ duration: 0.5 }}
           className="w-full max-w-md"
         >
-          <div className="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 dark:text-gray-200 rounded-2xl shadow-xl border border-purple-100 dark:border-slate-700 overflow-hidden">
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-center">
               <h1 className="text-2xl font-bold text-white">Iniciar Sesion</h1>
               <p className="text-blue-100 text-sm mt-1">Accede a tu cuenta de EduApps</p>

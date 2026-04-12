@@ -76,7 +76,7 @@ const CoursePage = () => {
             <AppList apps={appsForCourse} level={level} grade={grade} subjectId={subjectId} />
           ) : (
             <motion.div className="mt-16 flex flex-col items-center justify-center text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl">
-              <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" />
+              <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" loading="lazy" decoding="async" />
               <h2 className="text-3xl font-bold text-gray-800 mb-4">¡Próximamente!</h2>
               <p className="text-lg text-gray-600 max-w-md">Estamos preparando actividades increíbles para esta asignatura. ¡Vuelve pronto!</p>
             </motion.div>

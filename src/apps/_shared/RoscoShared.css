@@ -849,3 +849,43 @@
 .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #64748b;
 }
+
+/* ========================================
+   Dark mode — Rosco del Saber (juego)
+   ======================================== */
+.dark .rosco-center-box {
+    background: #1e293b;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+}
+.dark .rosco-definition {
+    color: #cbd5e1;
+}
+.dark .rosco-type-label {
+    color: #818cf8;
+}
+.dark .rosco-input {
+    background: #334155;
+    border-color: #475569;
+    color: #f1f5f9;
+}
+.dark .rosco-input:focus {
+    background: #1e293b;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+.dark .rosco-input::placeholder {
+    color: #64748b;
+}
+.dark .rosco-letter {
+    background: #475569;
+    color: #cbd5e1;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.dark .rosco-letter.pending {
+    background: #334155;
+    color: #94a3b8;
+}
+.dark .rosco-letter.active {
+    background: #3b82f6;
+    color: white;
+}

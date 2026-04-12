@@ -510,29 +510,29 @@ const RoscoUI = ({
                     </div>
                 ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none select-none">
-                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl px-5 py-3 flex flex-col items-center shadow-sm">
+                        <div className="flex flex-col items-center">
                             <div className="mb-1">
                                 <RoscoAvatar id={activePlayer.icon} size={players.length === 1 ? 90 : 64} />
                             </div>
-                            <p className="font-bold text-sm text-gray-800 drop-shadow-sm">{activePlayer.name}</p>
+                            <p className="font-bold text-sm text-white drop-shadow-md">{activePlayer.name}</p>
                             <div className="flex items-center gap-3 mt-1.5">
                                 <div className="flex flex-col items-center">
-                                    <span className="text-base font-black text-green-600">{activePlayer.score}</span>
-                                    <span className="text-[8px] font-bold text-green-700 uppercase tracking-wider">Bien</span>
+                                    <span className="text-base font-black text-green-400 drop-shadow-md">{activePlayer.score}</span>
+                                    <span className="text-[8px] font-bold text-green-300 uppercase tracking-wider">Bien</span>
                                 </div>
-                                <div className="w-px h-5 bg-gray-300" />
+                                <div className="w-px h-5 bg-white/30" />
                                 <div className="flex flex-col items-center">
-                                    <span className="text-base font-black text-red-500">{Object.values(activePlayer.letterStatus).filter(s => s === 'wrong').length}</span>
-                                    <span className="text-[8px] font-bold text-red-600 uppercase tracking-wider">Mal</span>
+                                    <span className="text-base font-black text-red-400 drop-shadow-md">{Object.values(activePlayer.letterStatus).filter(s => s === 'wrong').length}</span>
+                                    <span className="text-[8px] font-bold text-red-300 uppercase tracking-wider">Mal</span>
                                 </div>
-                                <div className="w-px h-5 bg-gray-300" />
+                                <div className="w-px h-5 bg-white/30" />
                                 <div className="flex flex-col items-center">
-                                    <span className="text-base font-black text-blue-500">{Object.values(activePlayer.letterStatus).filter(s => s === 'pending').length}</span>
-                                    <span className="text-[8px] font-bold text-blue-600 uppercase tracking-wider">Quedan</span>
+                                    <span className="text-base font-black text-blue-400 drop-shadow-md">{Object.values(activePlayer.letterStatus).filter(s => s === 'pending').length}</span>
+                                    <span className="text-[8px] font-bold text-blue-300 uppercase tracking-wider">Quedan</span>
                                 </div>
                             </div>
                             {config.useTimer && (
-                                <div className={`mt-1 text-xl font-mono font-black tabular-nums ${activePlayer.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-500'}`}>
+                                <div className={`mt-1 text-xl font-mono font-black tabular-nums drop-shadow-md ${activePlayer.timeLeft < 10 ? 'text-red-400 animate-pulse' : 'text-white/70'}`}>
                                     {Math.floor(activePlayer.timeLeft / 60)}:{String(activePlayer.timeLeft % 60).padStart(2, '0')}
                                 </div>
                             )}

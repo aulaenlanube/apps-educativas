@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
     try {
       const { data, error } = await supabase
         .from('teachers')
-        .select('*')
+        .select('id, role, display_name, email, teacher_code, avatar_emoji, updated_at')
         .eq('id', userId)
         .single();
       if (error) {
@@ -244,16 +244,15 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
-    if (isTeacher || isFreeUser) {
-      await supabase.auth.signOut();
-      setUser(null);
-      setTeacher(null);
-      setFreeUser(null);
-    }
-    if (isStudent) {
-      setStudent(null);
-      sessionStorage.removeItem('student_session');
-    }
+    // Limpiar estado local siempre
+    profileFetchedForId.current = null;
+    setUser(null);
+    setTeacher(null);
+    setFreeUser(null);
+    setStudent(null);
+    sessionStorage.removeItem('student_session');
+    // Cerrar sesion de Supabase Auth (dispara SIGNED_OUT en el listener)
+    await supabase.auth.signOut();
   }
 
   function updateStudentLocal(updates) {
@@ -335,17 +334,24 @@ export function AuthProvider({ children }) {
     });
   }
 
+  // Las funciones no cambian entre renders (no dependen de estado mutable en su closure
+  // excepto via refs o setters), asi que el useMemo solo necesita depender de los valores reactivos.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stableFns = useMemo(() => ({
+    signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
+    signInStudent, signInStudentEmail, resetPassword, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
+    fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
+  }), [fetchTeacherProfile]);
+
   const value = useMemo(() => ({
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
     loading,
-    signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
-    signInStudent, signInStudentEmail, resetPassword, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
-    fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
+    ...stableFns,
   }), [
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
-    loading, fetchTeacherProfile,
+    loading, stableFns,
   ]);
 
   return (

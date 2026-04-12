@@ -58,7 +58,18 @@
       "Bash(grep -r \"dark:bg-slate-800\" dist/assets/*.js)",
       "Bash(grep \"dark\\\\\\\\\\\\\\\\:bg-slate-800\" dist/assets/*.css)",
       "Bash(grep -l \"bg-slate-800\" dist/assets/*.css)",
-      "Bash(taskkill //F //IM node.exe)"
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(ls -lh src/index.css src/styles/*.css)",
+      "Bash(wc -l src/index.css src/apps/*/*.css)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx sharp-cli:*)",
+      "Bash(ls -la public/*.png public/*.webp)",
+      "Bash(ls -lh public/monster_teal* public/*.webp)",
+      "Bash(grep -rn \"bg-white\" src/components/ui/*.jsx src/components/auth/*.jsx src/pages/auth/*.jsx)",
+      "Bash(grep -o \"\\\\.dark .*bg-slate-800\" dist/assets/index-*.css)",
+      "Bash(npm list:*)",
+      "Bash(ffmpeg -i public/images/monster_teal.png -c:v libwebp -quality 80 public/images/monster_teal.webp)",
+      "Bash(ffmpeg -i \"c:/Users/edtor/Desktop/apps-educativas/public/images/monster_teal.png\" -c:v libwebp -quality 80 \"c:/Users/edtor/Desktop/apps-educativas/public/images/monster_teal.webp\")"
     ]
   }
 }

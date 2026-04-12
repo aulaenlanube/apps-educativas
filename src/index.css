@@ -206,7 +206,7 @@ html.dark .bg-white\/50,
 html.dark .bg-white\/40,
 html.dark .bg-white\/30,
 html.dark .bg-white\/20 {
-  background-color: rgba(30, 27, 55, 0.82) !important;
+  background-color: #1e1b37 !important;
   color: #e5e7eb;
 }
 html.dark .bg-slate-50,

@@ -168,7 +168,7 @@ export default function RatingPromptModal({ appId, appName, level, grade, subjec
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 30 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
+            className="relative bg-white dark:bg-slate-800 dark:text-gray-200 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-pink-500 px-6 pt-6 pb-8 text-center relative">
@@ -184,7 +184,7 @@ export default function RatingPromptModal({ appId, appName, level, grade, subjec
             </div>
 
             {/* Content */}
-            <div className="px-6 py-5 -mt-4 bg-white rounded-t-3xl relative">
+            <div className="px-6 py-5 -mt-4 bg-white dark:bg-slate-800 rounded-t-3xl relative">
               {!showFeedback && !feedbackSent ? (
                 /* ── Vista principal: estrellas + dificultad ── */
                 <div className="space-y-5">
@@ -300,14 +300,14 @@ export default function RatingPromptModal({ appId, appName, level, grade, subjec
     {showDeleteConfirm && (
       <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl">
+          className="bg-white dark:bg-slate-800 dark:text-gray-200 rounded-2xl p-6 max-w-sm w-full shadow-xl">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
               <Trash2 className="w-5 h-5 text-red-600" />
             </div>
-            <h3 className="text-base font-bold text-slate-800">Eliminar valoracion</h3>
+            <h3 className="text-base font-bold text-slate-800 dark:text-gray-100">Eliminar valoracion</h3>
           </div>
-          <p className="text-sm text-slate-600 mb-1">
+          <p className="text-sm text-slate-600 dark:text-gray-300 mb-1">
             Se eliminara tu valoracion de <strong>{appName}</strong> y todos los comentarios que hayas enviado sobre esta app en este curso y asignatura.
           </p>
           <p className="text-xs text-slate-400 mb-4">Esta accion no se puede deshacer.</p>

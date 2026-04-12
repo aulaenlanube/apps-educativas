@@ -517,7 +517,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                 >
                   <div className="carta-cara carta-frente">
                     {esImagen ? (
-                      <img src={carta.contenido} alt="carta" className="w-3/4 h-3/4 object-contain" />
+                      <img src={carta.contenido} alt="carta" className="w-3/4 h-3/4 object-contain" loading="lazy" decoding="async" />
                     ) : (
                       <span className={`carta-texto ${extraClasses}`} style={estiloContenido}>
                         {carta.contenido}
@@ -591,11 +591,11 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                   return (
                     <div key={i} className="par-ayuda-card">
                       <div className="par-lado">
-                        {esImagenA ? <img src={par.a} alt="par" className="w-12 h-12 object-contain mx-auto" /> : par.a}
+                        {esImagenA ? <img src={par.a} alt="par" className="w-12 h-12 object-contain mx-auto" loading="lazy" /> : par.a}
                       </div>
                       <div className="par-flecha text-xl">↔️</div>
                       <div className="par-lado">
-                        {esImagenB ? <img src={par.b} alt="par" className="w-12 h-12 object-contain mx-auto" /> : par.b}
+                        {esImagenB ? <img src={par.b} alt="par" className="w-12 h-12 object-contain mx-auto" loading="lazy" /> : par.b}
                       </div>
                     </div>
                   );

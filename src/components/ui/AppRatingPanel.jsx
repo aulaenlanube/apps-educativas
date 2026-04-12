@@ -279,7 +279,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
               initial={{ opacity: 0, y: 100, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 100, scale: 0.95 }}
-              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[6020] w-full sm:w-96 sm:max-h-[80vh] bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 overflow-hidden flex flex-col"
+              className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[6020] w-full sm:w-96 sm:max-h-[80vh] bg-white dark:bg-slate-800 dark:text-gray-200 sm:rounded-2xl rounded-t-2xl shadow-2xl border border-purple-100 dark:border-slate-700 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-4 text-white flex items-center justify-between shrink-0">
@@ -298,7 +298,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
               </div>
 
               {/* Tabs */}
-              <div className="flex border-b border-gray-100 shrink-0">
+              <div className="flex border-b border-gray-100 dark:border-slate-700 shrink-0">
                 {[
                   { id: 'rate', label: 'Valorar', icon: Star },
                   { id: 'feedback', label: 'Comentar', icon: MessageSquarePlus },
@@ -350,7 +350,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
                       )}
                     </div>
 
-                    <div className="bg-gray-50 rounded-xl p-3 text-center">
+                    <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-3 text-center">
                       <p className="text-xs text-gray-500 mb-1">Media de la comunidad</p>
                       <div className="flex items-center justify-center gap-2">
                         <StarRating value={Math.round(avgRating)} readOnly size="md" />
@@ -376,7 +376,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
                               key={opt.id}
                               onClick={() => handleDifficultyFeedback(opt.id)}
                               className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-xs font-medium transition-all ${
-                                isActive ? opt.active : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
+                                isActive ? opt.active : 'bg-gray-50 dark:bg-slate-700 text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600'
                               }`}
                             >
                               {opt.id === 'easy' && <ThumbsDown className="w-3.5 h-3.5" />}
@@ -542,7 +542,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl"
+            className="bg-white dark:bg-slate-800 dark:text-gray-200 rounded-2xl p-6 max-w-sm w-full shadow-xl"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">

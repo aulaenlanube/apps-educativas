@@ -4461,7 +4461,7 @@ const RARITY = {
  *  - size:   px (default 56)
  *  - earned: bool (default true). false → grayscale + sin animaciones
  */
-export default function BadgeIcon({ code, rarity = 'common', size = 56, earned = true, animated = false }) {
+function BadgeIcon({ code, rarity = 'common', size = 56, earned = true, animated = false }) {
   const reactId = React.useId();
   const idPrefix = `bi${reactId.replace(/[:]/g, '')}-`;
   const entry = SVGS[code];
@@ -4498,4 +4498,5 @@ export default function BadgeIcon({ code, rarity = 'common', size = 56, earned =
   );
 }
 
+export default React.memo(BadgeIcon);
 export { SVGS as BADGE_SVGS };

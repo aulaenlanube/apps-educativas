@@ -36,7 +36,7 @@ export default function BadgeModal({ badge, onClose }) {
 
           {/* Card */}
           <motion.div
-            className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden"
+            className="relative bg-white dark:bg-slate-800 dark:text-gray-200 rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden"
             initial={{ scale: 0.7, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.85, opacity: 0, y: 10 }}
@@ -48,7 +48,7 @@ export default function BadgeModal({ badge, onClose }) {
 
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors z-10"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 flex items-center justify-center transition-colors z-10"
               aria-label="Cerrar"
             >
               <X className="w-5 h-5 text-slate-600" />
