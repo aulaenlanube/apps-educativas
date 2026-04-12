@@ -1243,10 +1243,24 @@ const Telescope = () => (
         <stop offset="0%" stopColor="#6366F1" />
         <stop offset="100%" stopColor="#4338CA" />
       </linearGradient>
-      <linearGradient id="tl-lens" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#93C5FD" />
-        <stop offset="100%" stopColor="#3B82F6" />
+      {/* Anillo metálico exterior de la lente (dorado-platino) */}
+      <linearGradient id="tl-ring" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#F1F5F9" />
+        <stop offset="45%" stopColor="#94A3B8" />
+        <stop offset="100%" stopColor="#475569" />
       </linearGradient>
+      {/* Cristal de la lente – cielo nocturno profundo */}
+      <radialGradient id="tl-lens" cx="35%" cy="35%" r="75%">
+        <stop offset="0%" stopColor="#DBEAFE" />
+        <stop offset="30%" stopColor="#60A5FA" />
+        <stop offset="75%" stopColor="#1E3A8A" />
+        <stop offset="100%" stopColor="#0F172A" />
+      </radialGradient>
+      {/* Reflejo de cristal */}
+      <radialGradient id="tl-glint" cx="30%" cy="25%" r="40%">
+        <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+      </radialGradient>
     </defs>
     {/* Constelación de fondo */}
     {[
@@ -1276,25 +1290,57 @@ const Telescope = () => (
       {/* Tubo principal */}
       <rect x="16" y="28" width="48" height="16" rx="8" fill="url(#tl-tube)" transform="rotate(-25 40 36)" />
       <rect x="16" y="28" width="24" height="16" rx="8" fill="rgba(255,255,255,0.08)" transform="rotate(-25 40 36)" />
-      {/* Franjas decorativas */}
+      {/* Franjas decorativas del tubo */}
       <rect x="28" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.15)" transform="rotate(-25 40 36)" />
       <rect x="48" y="30" width="3" height="12" rx="1" fill="rgba(255,255,255,0.1)" transform="rotate(-25 40 36)" />
-      {/* Lente frontal */}
-      <circle cx="22" cy="24" r="10" fill="url(#tl-lens)" stroke="#4338CA" strokeWidth="2" />
-      <circle cx="22" cy="24" r="7" fill="#1E3A8A" opacity="0.4" />
-      <path d="M17 20 Q19 17 23 18" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" fill="none" />
-      <circle cx="25" cy="27" r="1.5" fill="rgba(255,255,255,0.15)" />
-      {/* Brillo de lente pulsante */}
-      <circle cx="22" cy="24" r="5" fill="rgba(147,197,253,0.1)"
+
+      {/* === LENTE FRONTAL (objetiva) sin aro grande === */}
+      {/* Bisel metálico de la lente */}
+      <circle cx="22" cy="24" r="9.5" fill="#1E293B" stroke="url(#tl-ring)" strokeWidth="1.5" />
+      {/* Cristal con degradado cielo nocturno */}
+      <circle cx="22" cy="24" r="8" fill="url(#tl-lens)" />
+      {/* Estrellas capturadas dentro de la lente */}
+      <circle cx="20" cy="22" r="1.2" fill="#FDE68A" opacity="0.9"
+        style={{ animation: 'gc-twinkle 2.5s ease-in-out infinite' }} />
+      <circle cx="25" cy="26" r="0.7" fill="#93C5FD" opacity="0.7"
+        style={{ animation: 'gc-twinkle 3s ease-in-out 0.8s infinite' }} />
+      <circle cx="18" cy="27" r="0.5" fill="#A78BFA" opacity="0.6"
+        style={{ animation: 'gc-twinkle 3.5s ease-in-out 1.5s infinite' }} />
+      {/* Reflejo de cristal */}
+      <ellipse cx="19" cy="20" rx="3.5" ry="2" fill="url(#tl-glint)" opacity="0.5" transform="rotate(-30 19 20)" />
+      {/* Brillo pulsante */}
+      <circle cx="22" cy="24" r="5" fill="rgba(147,197,253,0.08)"
         style={{ animation: 'gc-breathe 3s ease-in-out infinite', transformOrigin: '22px 24px' }} />
-      {/* Ocular trasero */}
-      <circle cx="60" cy="46" r="5" fill="#4338CA" stroke="#312E81" strokeWidth="1.5" />
-      <circle cx="60" cy="46" r="3" fill="#1E1B4B" />
-      <circle cx="59" cy="45" r="1" fill="rgba(255,255,255,0.25)" />
-      {/* Pivote */}
-      <circle cx="40" cy="48" r="4" fill="#475569" stroke="#334155" strokeWidth="1.5" />
-      <circle cx="40" cy="48" r="2" fill="#64748B" />
-      <circle cx="39" cy="47" r="0.8" fill="rgba(255,255,255,0.3)" />
+
+      {/* === MIRILLA / FINDERSCOPE — más grande, separada del tubo, con barras de apoyo === */}
+      <g transform="rotate(-25 40 36)">
+        {/* Barras verticales de apoyo (del tubo al visor) */}
+        <rect x="30" y="20" width="1.5" height="8" rx="0.5" fill="#475569" />
+        <rect x="39" y="20" width="1.5" height="8" rx="0.5" fill="#475569" />
+        {/* Tubo del visor (más grande y separado) */}
+        <rect x="25" y="17" width="22" height="5.5" rx="2.5" fill="#4338CA" stroke="#312E81" strokeWidth="0.6" />
+        {/* Brillo superior del tubo del visor */}
+        <rect x="28" y="17.5" width="16" height="1.5" rx="0.75" fill="rgba(255,255,255,0.12)" />
+        {/* Lente frontal del visor */}
+        <circle cx="25" cy="19.8" r="3.5" fill="#3B82F6" stroke="#475569" strokeWidth="1" />
+        <circle cx="25" cy="19.8" r="2" fill="#1E3A8A" opacity="0.5" />
+        <circle cx="24" cy="18.8" r="1" fill="rgba(255,255,255,0.35)" />
+        {/* Ocular del visor */}
+        <circle cx="47" cy="19.8" r="2.8" fill="#312E81" stroke="#475569" strokeWidth="0.7" />
+        <circle cx="47" cy="19.8" r="1.5" fill="#1E1B4B" />
+        <circle cx="46.5" cy="19.2" r="0.6" fill="rgba(255,255,255,0.2)" />
+      </g>
+
+      {/* Ocular trasero mejorado */}
+      <circle cx="60" cy="46" r="6" fill="#312E81" stroke="#4338CA" strokeWidth="1.5" />
+      <circle cx="60" cy="46" r="4" fill="#1E1B4B" />
+      <circle cx="60" cy="46" r="2.5" fill="#0F172A" />
+      <circle cx="58.5" cy="44.5" r="1.2" fill="rgba(255,255,255,0.2)" />
+
+      {/* Pivote mejorado */}
+      <circle cx="40" cy="48" r="4.5" fill="#475569" stroke="#334155" strokeWidth="1.5" />
+      <circle cx="40" cy="48" r="2.5" fill="#64748B" />
+      <circle cx="39" cy="47" r="1" fill="rgba(255,255,255,0.3)" />
     </g>
 
     {/* Anillos de descubrimiento desde la lente */}
@@ -1304,7 +1350,7 @@ const Telescope = () => (
     {/* Sparkles */}
     <circle cx="6" cy="40" r="1.5" fill="#A78BFA" style={{ animation: 'gc-twinkle 3s ease-in-out infinite' }} />
     <circle cx="74" cy="36" r="1.2" fill="#FDE68A" style={{ animation: 'gc-twinkle 2.5s ease-in-out 0.8s infinite' }} />
-    <circle cx="48" y="8" r="1" fill="#34D399" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1.5s infinite' }} />
+    <circle cx="48" cy="8" r="1" fill="#34D399" style={{ animation: 'gc-twinkle 3.5s ease-in-out 1.5s infinite' }} />
   </svg>
 );
 

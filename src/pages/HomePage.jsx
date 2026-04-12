@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain } from 'lucide-react';
+import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Bot, Play } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
@@ -64,7 +64,7 @@ const HomePage = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative py-10 px-6 text-center overflow-hidden"
+        className="relative pt-10 pb-28 px-6 text-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl transform -rotate-12 scale-150 pointer-events-none"></div>
 
@@ -146,6 +146,67 @@ const HomePage = () => {
           <div className="max-w-xl mx-auto mb-[-125px] relative z-20">
             <Mascot />
           </div>
+        </div>
+      </motion.section>
+
+      {/* Sección IA — sube con margin negativo para que el robot quede "detrás" */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="pb-16 px-6 -mt-32 relative z-10"
+      >
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            variants={itemVariants}
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-violet-950 pt-20 pb-10 px-10 md:pt-20 md:pb-14 md:px-14 shadow-2xl border border-white/10"
+          >
+            {/* Decoración de fondo */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-500/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl" />
+              <div className="absolute top-6 right-8 text-indigo-400/15 font-mono text-xs leading-relaxed select-none hidden md:block">
+                {'<App />\n{ code: 0 }\nai.build()\n// 100% IA'}
+              </div>
+            </div>
+
+            <div className="relative z-10 text-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30 rotate-3">
+                  <Bot className="w-7 h-7 text-white" />
+                </div>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+                Programada 100% con{' '}
+                <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                  Inteligencia Artificial
+                </span>
+              </h2>
+
+              <p className="text-lg md:text-xl text-indigo-200/80 max-w-2xl mx-auto mb-4 leading-relaxed">
+                Esta plataforma ha sido creada completamente desde cero con IA, sin escribir una sola
+                 linea de codigo de forma manual. Cada app, cada pantalla, cada interaccion ha sido
+                 generada por inteligencia artificial.
+              </p>
+
+              <p className="text-base text-indigo-300/60 max-w-xl mx-auto mb-8">
+                El futuro de la educacion ya esta aqui: herramientas creadas por IA para que alumnos
+                y profesores aprendan de la forma mas efectiva y divertida posible.
+              </p>
+
+              <a
+                href="https://www.youtube.com/playlist?list=PLMhQ6qm8uYWCnvsJLZRIDv1mqtKVGmXXI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white font-bold text-lg rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
+              >
+                <Play className="w-5 h-5 fill-current" />
+                Te lo explico todo aqui
+              </a>
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 

@@ -31,7 +31,9 @@
       "Bash(node insert-comprension.cjs)",
       "Bash(mkdir -p c:/tmp/intruso-export)",
       "Bash(node insert-intruso.cjs)",
-      "Bash(node fix-intruso-bugs.cjs)"
+      "Bash(node fix-intruso-bugs.cjs)",
+      "Bash(mkdir -p c:/tmp/bach-gaps)",
+      "Bash(node insert-gaps.cjs)"
     ]
   }
 }

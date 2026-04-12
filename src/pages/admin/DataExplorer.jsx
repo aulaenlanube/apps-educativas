@@ -9,6 +9,7 @@ import {
 import { primariaApps } from '@/apps/config/primariaApps';
 import { esoApps } from '@/apps/config/esoApps';
 import { bachilleratoApps } from '@/apps/config/bachilleratoApps';
+import DataStatsTable from './DataStatsTable';
 
 const LEVELS = [
   { id: 'primaria', label: 'Primaria', grades: [1, 2, 3, 4, 5, 6] },
@@ -210,6 +211,9 @@ const DataExplorer = () => {
 
   return (
     <div className="space-y-6">
+      {/* Estadísticas globales de datos por app */}
+      <DataStatsTable />
+
       <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm space-y-4">
         <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Database className="w-5 h-5 text-indigo-600" />

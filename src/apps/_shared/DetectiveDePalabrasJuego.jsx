@@ -65,7 +65,9 @@ const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
     setCargando(true);
     setError(null);
 
-    const nivel = level === 'primaria' ? 'primaria' : 'eso';
+    // Usar el nivel real (antes se forzaba 'eso' para cualquier nivel no-primaria,
+    // lo que ignoraba los datos de bachillerato existentes en la tabla)
+    const nivel = level;
     const effectiveSubject = (asignatura && asignatura !== 'general') ? asignatura : 'general';
 
     (async () => {
