@@ -36,6 +36,7 @@ const QuizBattleHost = lazy(() => import('@/apps/quiz-battle/QuizBattleHost.jsx'
 const QuizBattlePlayer = lazy(() => import('@/apps/quiz-battle/QuizBattlePlayer.jsx'));
 const StudentDashboard = lazy(() => import('@/pages/dashboard/StudentDashboard.jsx'));
 const FreeUserDashboard = lazy(() => import('@/pages/dashboard/FreeUserDashboard.jsx'));
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage.jsx'));
 const GroupLoginPage = lazy(() => import('@/pages/auth/GroupLoginPage.jsx'));
 
 import '@/index.css';
@@ -124,11 +125,13 @@ const router = createBrowserRouter(
                 </ProtectedRoute>
               )
             },
+            { path: '*', element: <SuspensePage><NotFoundPage /></SuspensePage> },
           ],
         },
         { path: '/curso/:level/:grade/:subjectId/app/:appId', element: <SuspensePage><AppRunnerPage /></SuspensePage> },
       ],
     },
+    { path: '*', element: <SuspensePage><NotFoundPage /></SuspensePage> },
   ],
   { future: { v7_startTransition: true, v7_relativeSplatPath: true } }
 );
