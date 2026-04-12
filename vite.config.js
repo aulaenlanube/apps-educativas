@@ -244,12 +244,14 @@ export default defineConfig({
 					if (id.includes('@supabase')) {
 						return 'supabase';
 					}
-					// Radix UI + iconos
-					if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('react-icons')) {
-						return 'ui-kit';
-					}
-					// React core y router en un chunk aparte
-					if (id.includes('react-router') || id.includes('react-dom') || id.includes('scheduler')) {
+					// React + React DOM + Router + Radix + iconos juntos
+					// (evita dependencias circulares entre chunks)
+					if (
+						id.includes('/react/') || id.includes('/react-dom/') ||
+						id.includes('react-router') || id.includes('scheduler') ||
+						id.includes('@radix-ui') || id.includes('lucide-react') ||
+						id.includes('react-icons')
+					) {
 						return 'react-vendor';
 					}
 					return 'vendor';
