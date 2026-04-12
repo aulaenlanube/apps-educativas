@@ -85,7 +85,7 @@ export default function NotificationBell() {
     <div className="relative" ref={panelRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="relative flex items-center justify-center w-9 h-9 rounded-full border border-purple-200 bg-white hover:bg-purple-50 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300"
+        className="relative flex items-center justify-center w-9 h-9 rounded-full border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300"
       >
         <Bell className="w-4.5 h-4.5 text-gray-600" />
         {unreadCount > 0 && (
@@ -101,11 +101,11 @@ export default function NotificationBell() {
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-purple-100 dark:border-slate-700 overflow-hidden z-50"
           >
             {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-gray-800">Notificaciones</h3>
+            <div className="px-4 py-3 border-b border-gray-100 dark:border-slate-700 flex items-center justify-between">
+              <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100">Notificaciones</h3>
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllRead}
@@ -125,7 +125,7 @@ export default function NotificationBell() {
               ) : notifications.length === 0 ? (
                 <div className="py-8 text-center">
                   <Bell className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                  <p className="text-sm text-gray-400">Sin notificaciones</p>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Sin notificaciones</p>
                 </div>
               ) : (
                 notifications.map(n => {
@@ -144,8 +144,8 @@ export default function NotificationBell() {
                     <div
                       key={n.id}
                       onClick={handleClick}
-                      className={`px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer ${
-                        !n.read ? 'bg-purple-50/50' : ''
+                      className={`px-4 py-3 border-b border-gray-50 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors cursor-pointer ${
+                        !n.read ? 'bg-purple-50/50 dark:bg-purple-900/20' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -157,16 +157,16 @@ export default function NotificationBell() {
                           {isQuizInvite ? <Zap className="w-4 h-4" /> : <MessageSquare className="w-4 h-4" />}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800' : 'text-gray-600'}`}>
+                          <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800 dark:text-gray-100' : 'text-gray-600 dark:text-gray-300'}`}>
                             {n.title}
                           </p>
-                          <p className="text-xs text-gray-500 mt-0.5 truncate">{n.message}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">{n.message}</p>
                           {isQuizInvite && quizCode && (
                             <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
                               <Zap className="w-3 h-3" /> Unirse: {quizCode}
                             </span>
                           )}
-                          <p className="text-[10px] text-gray-400 mt-1">
+                          <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
                             {new Date(n.created_at).toLocaleString('es-ES', {
                               day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
                             })}

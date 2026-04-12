@@ -34,10 +34,10 @@ import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 
 const APP_HEADER_PRESETS = {
     standard: {
-        bgClass: 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50',
+        bgClass: 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900',
         btnBackClass: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0',
-        btnHeartClass: 'bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group',
-        btnRankingClass: 'bg-white/80 backdrop-blur-sm hover:bg-amber-50 text-amber-600 border border-amber-200 shadow-sm hover:shadow-md transition-all group',
+        btnHeartClass: 'bg-white/80 dark:bg-slate-800 backdrop-blur-sm hover:bg-pink-50 dark:hover:bg-slate-700 text-pink-600 border border-pink-200 dark:border-slate-600 shadow-sm hover:shadow-md transition-all group',
+        btnRankingClass: 'bg-white/80 dark:bg-slate-800 backdrop-blur-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-amber-600 border border-amber-200 dark:border-slate-600 shadow-sm hover:shadow-md transition-all group',
         iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-600 transition-all duration-300',
         iconRankingClass: 'h-5 w-5 transition-all duration-300',
         showUserControls: true,

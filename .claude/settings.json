@@ -50,7 +50,15 @@
       "Bash(grep -rn \"^button \" src/apps/_shared/*.css src/apps/**/*.css)",
       "Bash(grep -l \"SumasLayout\" c:/Users/edtor/Desktop/apps-educativas/src/apps/sumas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/restas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/multiplicaciones/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/divisiones/**/*.jsx)",
       "Bash(grep -l \"id=\\\\\"app-container\\\\\"\" c:/Users/edtor/Desktop/apps-educativas/src/apps/restas/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/multiplicaciones/**/*.jsx c:/Users/edtor/Desktop/apps-educativas/src/apps/divisiones/**/*.jsx)",
-      "Bash(grep -l \"InstructionsModal\" src/apps/restas/**/*.jsx src/apps/multiplicaciones/**/*.jsx src/apps/divisiones/**/*.jsx src/apps/_shared/SumasLayout.jsx)"
+      "Bash(grep -l \"InstructionsModal\" src/apps/restas/**/*.jsx src/apps/multiplicaciones/**/*.jsx src/apps/divisiones/**/*.jsx src/apps/_shared/SumasLayout.jsx)",
+      "Bash(wc -l src/apps/sumas/primaria-*/SumasPrimaria*.jsx)",
+      "Bash(wc -l src/apps/restas/primaria-*/RestasPrimaria*.jsx)",
+      "Bash(wc -l src/apps/multiplicaciones/primaria-*/MultiplicacionesPrimaria*.jsx)",
+      "Bash(wc -l src/apps/divisiones/primaria-*/DivisionesPrimaria*.jsx)",
+      "Bash(grep -r \"dark:bg-slate-800\" dist/assets/*.js)",
+      "Bash(grep \"dark\\\\\\\\\\\\\\\\:bg-slate-800\" dist/assets/*.css)",
+      "Bash(grep -l \"bg-slate-800\" dist/assets/*.css)",
+      "Bash(taskkill //F //IM node.exe)"
     ]
   }
 }

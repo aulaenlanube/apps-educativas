@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Divisiones.css';
-import InstructionsModal, { InstructionsButton } from '../../_shared/InstructionsModal';
+import MathOperationLayout from '../../_shared/MathOperationLayout';
 
 const DivisionesPrimaria5 = () => {
   // --- Estados ---
   const [operands, setOperands] = useState({ dividend: 0, divisor: 1 });
-  const [showInstructions, setShowInstructions] = useState(false);
   const [steps, setSteps] = useState([]); 
   const [userInputs, setUserInputs] = useState({});
   const [activeSlot, setActiveSlot] = useState(null); 
@@ -184,41 +183,42 @@ const DivisionesPrimaria5 = () => {
   const gridTemplateCols = `repeat(${dividendStr.length}, 50px) 20px auto`;
 
   return (
-    <div id="app-container">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
-        <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
-          <span role="img" aria-label="Dividir">➗</span>{' '}
-          <span className="gradient-text">Divisiones (5º)</span>
-        </h1>
-        <InstructionsButton onClick={() => setShowInstructions(true)} />
+    <MathOperationLayout
+      title="Divisiones (5º)"
+      emoji="➗"
+      feedback={feedback}
+      onCheck={checkAnswer}
+      onNew={generateNewProblem}
+      newLabel="Nueva"
+      toggleLabel="Mostrar ayudas"
+      toggleValue={showHelp}
+      onToggleChange={setShowHelp}
+      onPaletteClick={handlePaletteClick}
+      paletteLabel="Teclado"
+      instructions={
+        <>
+          <h3>Objetivo</h3>
+          <p>Resuelve la division paso a paso: calcula el cociente y los restos parciales.</p>
+          <h3>Como se juega</h3>
+          <ul>
+            <li>Pulsa en una casilla vacia para seleccionarla.</li>
+            <li>Coloca el digito correcto desde el teclado numerico.</li>
+            <li>Sigue el orden: primero el cociente, luego los restos.</li>
+          </ul>
+        </>
+      }
+    >
+      {/* Extra toggle for table */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', marginBottom: 16 }}>
+        <span style={{ fontWeight: 500, color: 'var(--app-text-secondary)', fontSize: '0.95em' }}>Ayudas extra</span>
+        <div
+          onClick={() => setShowTable(v => !v)}
+          style={{ width: 52, height: 28, borderRadius: 14, cursor: 'pointer', background: showTable ? '#7c3aed' : '#cbd5e1', position: 'relative', transition: 'background 0.2s' }}
+        >
+          <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'white', position: 'absolute', top: 3, left: showTable ? 27 : 3, transition: 'left 0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+        </div>
       </div>
 
-      {/* --- ZONA DE OPCIONES (Sliders) --- */}
-      <div id="options-area" className="flex flex-wrap justify-center gap-8 mb-6">
-        
-        {/* Slider 1: Ayudas visuales */}
-        <label className="flex items-center cursor-pointer select-none">
-          <span className="mr-3 font-medium text-gray-600">Mostrar ayudas</span>
-          <div className="relative">
-            <input type="checkbox" className="sr-only" checked={showHelp} onChange={e => setShowHelp(e.target.checked)} />
-            <div className={`block w-10 h-6 rounded-full transition-colors ${showHelp ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
-            <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showHelp ? 'transform translate-x-4' : ''}`}></div>
-          </div>
-        </label>
-
-        {/* Slider 2: Ayudas extra (Tabla) */}
-        <label className="flex items-center cursor-pointer select-none">
-          <span className="mr-3 font-medium text-gray-600">Ayudas extra</span>
-          <div className="relative">
-            <input type="checkbox" className="sr-only" checked={showTable} onChange={e => setShowTable(e.target.checked)} />
-            <div className={`block w-10 h-6 rounded-full transition-colors ${showTable ? 'bg-purple-500' : 'bg-gray-300'}`}></div>
-            <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showTable ? 'transform translate-x-4' : ''}`}></div>
-          </div>
-        </label>
-
-      </div>
-
-      {/* --- CONTENIDO PRINCIPAL (Grid + Tabla) --- */}
       <div className="game-content">
         
         {/* 1. La Rejilla de División */}
@@ -329,41 +329,7 @@ const DivisionesPrimaria5 = () => {
 
       </div>
 
-      <div id="feedback-message" className={`mb-4 ${feedback.className}`}>{feedback.text}</div>
-
-      <div id="controls">
-        <button id="check-button" onClick={checkAnswer}>Comprobar</button>
-        <button id="new-problem-button" onClick={generateNewProblem}>Nueva</button>
-      </div>
-
-      <div id="number-palette">
-        <h2>Teclado</h2>
-        <div className="number-tiles-container">
-          {[...Array(10).keys()].map((n) => (
-            <div key={n} className="number-tile" onClick={() => handlePaletteClick(n)}>
-              {n}
-            </div>
-          ))}
-        </div>
-      </div>
-      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Como jugar: Divisiones (5º)">
-        <h3>Objetivo</h3>
-        <p>Resuelve la division paso a paso: calcula el cociente y los restos parciales colocando cada digito en su casilla.</p>
-        <h3>Como se juega</h3>
-        <ul>
-          <li>Pulsa en una casilla vacia para seleccionarla.</li>
-          <li>Coloca el digito correcto desde el teclado numerico inferior.</li>
-          <li>Sigue el orden: primero el cociente, luego los productos parciales y los restos.</li>
-          <li>Activa "Mostrar ayudas" para ver indicaciones paso a paso.</li>
-          <li>En divisiones con decimales, pulsa en la ranura de la coma del cociente cuando corresponda.</li>
-        </ul>
-        <h3>Modos</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>Practica</strong> — Resuelve divisiones con ayudas disponibles.</div>
-          <div className="instr-mode exam"><strong>Practica sin ayudas</strong> — Desactiva las ayudas para un reto mayor.</div>
-        </div>
-      </InstructionsModal>
-    </div>
+    </MathOperationLayout>
   );
 };
 

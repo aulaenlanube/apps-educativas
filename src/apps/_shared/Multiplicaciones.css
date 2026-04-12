@@ -1,45 +1,8 @@
 /* DARK-MIGRATED */
 @import './MathBoxShared.css';
-/* Multiplicaciones: solo estilos PROPIOS (hereda todo lo base de MathBoxShared) */
+/* Multiplicaciones: solo estilos PROPIOS que no estan en MathBoxShared */
 
-/* h1/h2 heredados de MathBoxShared.css */
-
-/* Opciones y toggle (override del switch genérico) */
-#options-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  font-size: 1.1em;
-}
-#options-area label { margin-right: 10px; }
-
-.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--app-switch-bg); transition: .4s; }
-.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
-input:checked + .slider { background-color: var(--app-switch-active); }
-input:checked + .slider:before { transform: translateX(26px); }
-.slider.round { border-radius: 34px; }
-.slider.round:before { border-radius: 50%; }
-
-/* Rejilla del problema */
-#problem-area {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin: 20px auto;
-  font-size: 2.5em;
-  font-weight: bold;
-}
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 2px;
-}
-
-/* Símbolo × inline (propio de multiplicaciones) */
+/* Simbolo x inline (propio de multiplicaciones) */
 .cross-inline {
   position: absolute;
   right: 100%;
@@ -51,7 +14,7 @@ input:checked + .slider:before { transform: translateX(26px); }
   pointer-events: none;
 }
 
-/* Override: operation-line en multi usa border distinto */
+/* Override: operation-line en multi usa border diferente */
 .operation-line {
   border: 2px solid var(--app-line);
   border-top: none;
@@ -69,11 +32,6 @@ input:checked + .slider:before { transform: translateX(26px); }
 .box.disabled { opacity: .4; pointer-events: none; }
 .carries-hidden .carry-box,
 .hidden-by-toggle { visibility: hidden; }
-
-/* Estados de feedback (propio) */
-.box.drag-over { background-color: var(--app-bg-elevated); border-style: solid; }
-.box.correct { border: 2px solid var(--app-correct); background-color: #e8f8f5; }
-.box.incorrect { border: 2px solid var(--app-incorrect); background-color: #fdedec; }
 
 /* Coma visual en operandos */
 .with-decimal { position: relative; }
@@ -99,14 +57,13 @@ input:checked + .slider:before { transform: translateX(26px); }
   row-gap: 6px;
   margin-top: 4px;
 }
-
 .final-box {
   font-size: 1.2em;
   font-weight: bold;
 }
 .result-grid .final-box { width: var(--box-w); }
 
-/* Ranuras de la coma en multiplicaciones (override del genérico) */
+/* Ranuras de la coma en multiplicaciones */
 .result-grid .comma-slot {
   width: var(--slot-w);
   min-width: var(--slot-w);

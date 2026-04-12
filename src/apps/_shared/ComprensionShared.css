@@ -1147,3 +1147,47 @@ input:checked+.slider:before {
 .view-body::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+
+/* --- Dark mode: Modal Material de Estudio --- */
+.dark .material-view {
+    background: #0f172a;
+}
+.dark .view-header {
+    border-bottom-color: #334155;
+}
+.dark .header-info h2 {
+    color: #f1f5f9;
+}
+.dark .badge {
+    background: #1e3a5f;
+    color: #60a5fa;
+}
+.dark .close-material {
+    background: #334155;
+    color: #94a3b8;
+}
+.dark .text-content {
+    color: #cbd5e1;
+    border-color: #334155;
+    background: #1e293b;
+}
+.dark .material-q-item {
+    border-color: #334155;
+    background: #1e293b;
+}
+.dark .material-q-item p {
+    color: #e2e8f0;
+}
+.dark .section-title h4 {
+    color: #94a3b8;
+}
+.dark .view-body::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+.dark .view-body::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-color: #0f172a;
+}
+.dark .view-body::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 
 const AuthContext = createContext(null);
@@ -9,6 +9,7 @@ export function AuthProvider({ children }) {
   const [student, setStudent] = useState(null);
   const [freeUser, setFreeUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const profileFetchedForId = useRef(null);
 
   const isTeacher = !!user && !!teacher && teacher?.role !== 'free';
   const isFreeUser = !!user && !!freeUser;
@@ -20,11 +21,15 @@ export function AuthProvider({ children }) {
 
   const fetchTeacherProfile = useCallback(async (userId) => {
     try {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('teachers')
         .select('*')
         .eq('id', userId)
         .single();
+      if (error) {
+        console.warn('[Auth] fetchTeacherProfile error:', error.message);
+        return false;
+      }
       if (data) {
         if (data.role === 'free') {
           setFreeUser(data);
@@ -33,66 +38,107 @@ export function AuthProvider({ children }) {
           setTeacher(data);
           setFreeUser(null);
         }
+        return true;
       }
-    } catch {
-      // Si falla (ej: columna no existe aún), no bloquear la app
+      return false;
+    } catch (err) {
+      console.warn('[Auth] fetchTeacherProfile exception:', err);
+      return false;
     }
   }, []);
 
+  // Efecto 1: Listener de auth — SOLO actualiza user (sincrono, sin queries)
   useEffect(() => {
-    async function init() {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.user) {
-          setUser(session.user);
-          await fetchTeacherProfile(session.user.id);
-        }
-
-        const savedStudent = sessionStorage.getItem('student_session');
-        if (savedStudent) {
-          try {
-            setStudent(JSON.parse(savedStudent));
-          } catch {
-            sessionStorage.removeItem('student_session');
-          }
-        }
-      } catch (err) {
-        console.error('AuthContext init error:', err);
-      } finally {
-        setLoading(false);
-      }
+    // Restaurar sesion de alumno
+    const savedStudent = sessionStorage.getItem('student_session');
+    if (savedStudent) {
+      try { setStudent(JSON.parse(savedStudent)); }
+      catch { sessionStorage.removeItem('student_session'); }
     }
 
-    init();
-
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        if (session?.user) {
-          setUser(session.user);
-
-          // If user just signed in via Google from the "Soy Libre" tab,
-          // update their role from default 'teacher' to 'free'
-          const pendingFree = localStorage.getItem('pending_free_google_auth');
-          if (pendingFree) {
-            localStorage.removeItem('pending_free_google_auth');
-            await supabase
-              .from('teachers')
-              .update({ role: 'free' })
-              .eq('id', session.user.id)
-              .eq('role', 'teacher'); // only update if still default
-          }
-
-          await fetchTeacherProfile(session.user.id);
-        } else {
+      (event, session) => {
+        // Solo operaciones sincronas — NO hacer await/fetch aqui
+        if (event === 'SIGNED_OUT') {
           setUser(null);
           setTeacher(null);
           setFreeUser(null);
+          profileFetchedForId.current = null;
+          setLoading(false);
+          return;
+        }
+
+        if (session?.user) {
+          setUser(session.user);
+
+          // Google "Soy Libre" — marcar para procesar en el efecto de perfil
+          if (event === 'SIGNED_IN') {
+            const pendingFree = localStorage.getItem('pending_free_google_auth');
+            if (pendingFree) {
+              localStorage.removeItem('pending_free_google_auth');
+              // Se procesa en el efecto de perfil
+              sessionStorage.setItem('pending_free_update', session.user.id);
+            }
+          }
+        } else {
+          // Sin sesion (primera carga sin login)
+          setUser(null);
+          setLoading(false);
         }
       }
     );
 
-    return () => subscription.unsubscribe();
-  }, [fetchTeacherProfile]);
+    // Safety timeout
+    const safetyTimeout = setTimeout(() => setLoading(false), 5000);
+
+    return () => {
+      clearTimeout(safetyTimeout);
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Efecto 2: Cuando user cambia, cargar perfil (ya con headers de auth listos)
+  useEffect(() => {
+    if (!user) return;
+    if (profileFetchedForId.current === user.id) {
+      // Ya cargamos este perfil, no repetir
+      setLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function loadProfile() {
+      // Procesar pending free update si existe
+      const pendingFreeUserId = sessionStorage.getItem('pending_free_update');
+      if (pendingFreeUserId === user.id) {
+        sessionStorage.removeItem('pending_free_update');
+        await supabase
+          .from('teachers')
+          .update({ role: 'free' })
+          .eq('id', user.id)
+          .eq('role', 'teacher');
+      }
+
+      const success = await fetchTeacherProfile(user.id);
+      if (cancelled) return;
+
+      if (!success) {
+        // Reintentar una vez tras 500ms (headers de auth pueden no estar listos)
+        await new Promise(r => setTimeout(r, 500));
+        if (cancelled) return;
+        await fetchTeacherProfile(user.id);
+      }
+
+      if (!cancelled) {
+        profileFetchedForId.current = user.id;
+        setLoading(false);
+      }
+    }
+
+    loadProfile();
+    return () => { cancelled = true; };
+  }, [user, fetchTeacherProfile]);
 
   async function signUpTeacher(email, password, displayName) {
     const { data, error } = await supabase.auth.signUp({

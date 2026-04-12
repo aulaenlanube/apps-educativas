@@ -16,6 +16,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const curso = gradeParam || '1';
 
   const [datosJuego, setDatosJuego] = useState(null);
+  const datosRef = useRef(null);
   const [modoLogico, setModoLogico] = useState('visual');
   const [showHelp, setShowHelp] = useState(false);
 
@@ -113,9 +114,13 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     }
   };
 
+  // Mantener ref sincronizado con el estado
+  useEffect(() => { datosRef.current = datosJuego; }, [datosJuego]);
+
   // --- Lógica del Juego ---
   const generarYRenderizarColeccion = () => {
-    if (!datosJuego || datosJuego.length === 0) return;
+    const datos = datosRef.current;
+    if (!datos || datos.length === 0) return;
 
     let nuevoTablero = [];
     let indiceIntruso = -1;
@@ -126,14 +131,14 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     if (modoLogico === 'visual') {
       rows = 4; cols = 8;
       const total = rows * cols;
-      const { base, intruso } = elegirParEmojisVisual(datosJuego);
+      const { base, intruso } = elegirParEmojisVisual(datos);
       indiceIntruso = Math.floor(Math.random() * total);
       nuevoTablero = Array.from({ length: total }, (_, i) => (i === indiceIntruso ? intruso : base));
       mensaje = '¡Encuentra el diferente!';
     } else {
       rows = 3; cols = 4;
       const total = rows * cols;
-      const desafio = datosJuego[Math.floor(Math.random() * datosJuego.length)];
+      const desafio = datos[Math.floor(Math.random() * datos.length)];
       const intruso = desafio.intrusos[Math.floor(Math.random() * desafio.intrusos.length)];
 
       const correctosNecesarios = total - 1;
@@ -500,9 +505,9 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
       {/* MODAL DE AYUDA / MATERIAL DE ESTUDIO */}
       {showHelp && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
-          <div className="bg-white rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl scale-100 animate-in zoom-in duration-300">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl scale-100 animate-in zoom-in duration-300">
             {/* Header */}
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+            <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-gray-50 dark:bg-slate-900">
               <h2 className="text-2xl font-bold text-indigo-600 flex items-center gap-3 font-fredoka">
                 <FaBook className="text-indigo-500" /> Material de Estudio
               </h2>
@@ -516,11 +521,11 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
             </div>
 
             {/* Content Scrollable */}
-            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50">
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50 dark:bg-slate-800/50">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {datosJuego?.map((cat, idx) => (
-                  <div key={idx} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
-                    <h3 className="text-lg font-bold text-gray-800 mb-3 border-b-2 border-indigo-50 pb-2 truncate" title={cat.categoria}>
+                  <div key={idx} className="bg-white dark:bg-slate-700 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-600 hover:shadow-md transition-all hover:-translate-y-1">
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 border-b-2 border-indigo-50 dark:border-slate-600 pb-2 truncate" title={cat.categoria}>
                       {cat.categoria}
                     </h3>
                     <div className="space-y-4">
@@ -529,7 +534,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
                           <span className="w-2 h-2 rounded-full bg-green-500"></span>
                           <span className="text-xs font-bold uppercase text-green-700 bg-green-50 px-2 py-0.5 rounded-md border border-green-100">Correctos</span>
                         </div>
-                        <ul className="text-sm text-gray-600 leading-relaxed list-disc list-inside pl-1 marker:text-green-300">
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside pl-1 marker:text-green-300">
                           {cat.correctos.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
@@ -540,7 +545,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
                           <span className="w-2 h-2 rounded-full bg-red-500"></span>
                           <span className="text-xs font-bold uppercase text-red-700 bg-red-50 px-2 py-0.5 rounded-md border border-red-100">Intrusos</span>
                         </div>
-                        <ul className="text-sm text-gray-600 leading-relaxed list-disc list-inside pl-1 marker:text-red-300">
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside pl-1 marker:text-red-300">
                           {cat.intrusos.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
@@ -553,7 +558,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-gray-100 bg-white flex justify-end gap-3">
+            <div className="p-4 border-t border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 flex justify-end gap-3">
               <button
                 onClick={() => setShowHelp(false)}
                 className="px-6 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-200"

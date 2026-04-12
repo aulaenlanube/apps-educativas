@@ -56,6 +56,36 @@
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
   transform: scale(1.05);
 }
+.box.drag-over {
+  background-color: var(--app-bg-elevated);
+  border-style: solid;
+}
+.box.correct {
+  border: 2px solid var(--app-correct);
+  background-color: #e8f8f5;
+}
+.box.incorrect {
+  border: 2px solid var(--app-incorrect);
+  background-color: #fdedec;
+}
+
+/* Area del problema (rejilla de numeros) */
+#problem-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 20px auto;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+/* Columnas dentro del area del problema (sumas, multi columnar) */
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2px;
+}
 
 /* Línea de operación (raya horizontal de la suma/resta/multiplicación) */
 .operation-line {

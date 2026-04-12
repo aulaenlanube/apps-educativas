@@ -808,5 +808,44 @@
 
 .study-material-box {
     max-width: 800px;
-    /* Un poco más ancho para el selector */
+}
+
+/* Dark mode — Material de Estudio */
+.dark .study-material-box {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+.dark .study-material-content {
+    color: #cbd5e1;
+}
+.dark .study-material-content h2,
+.dark .study-material-content h3,
+.dark .study-material-content strong {
+    color: #f1f5f9;
+}
+.dark .study-letter-selector {
+    background: #0f172a;
+}
+.dark .study-letter-btn {
+    background: #334155;
+    border-color: #475569;
+    color: #cbd5e1;
+}
+.dark .study-letter-btn:hover {
+    border-color: #60a5fa;
+    color: #60a5fa;
+}
+.dark .study-letter-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
 }
