@@ -3835,6 +3835,613 @@ const SVGS = {
       </g>
     </>
   ),
+
+  // ═══════════════════════ TEACHER: GRUPOS ═══════════════════════
+  teacher_first_group: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* Persona */}
+      <circle cx="28" cy="22" r="8" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2.5" />
+      <path d="M14 48 Q14 36 28 36 Q42 36 42 48" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Signo + animado */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '50px 22px' }}>
+        <circle cx="50" cy="22" r="9" fill={C.grn} stroke={C.emr} strokeWidth="2" />
+        <line x1="50" y1="17" x2="50" y2="27" stroke={C.whi} strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="45" y1="22" x2="55" y2="22" stroke={C.whi} strokeWidth="2.5" strokeLinecap="round" />
+      </g>
+    </>
+  ),
+  teacher_groups_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sky} /><stop offset="1" stopColor={C.blu} />
+        </linearGradient>
+      </defs>
+      {/* 3 figuritas */}
+      <circle cx="16" cy="24" r="6" fill={C.sky} stroke={C.blu} strokeWidth="2" />
+      <path d="M6 46 Q6 36 16 36 Q26 36 26 46" fill={C.sky} stroke={C.blu} strokeWidth="2" strokeLinecap="round" />
+      <circle cx="32" cy="20" r="7" fill={`url(#${id}bg)`} stroke={C.nav} strokeWidth="2.5" />
+      <path d="M20 46 Q20 34 32 34 Q44 34 44 46" fill={`url(#${id}bg)`} stroke={C.nav} strokeWidth="2.5" strokeLinecap="round" />
+      <circle cx="48" cy="24" r="6" fill={C.sky} stroke={C.blu} strokeWidth="2" />
+      <path d="M38 46 Q38 36 48 36 Q58 36 58 46" fill={C.sky} stroke={C.blu} strokeWidth="2" strokeLinecap="round" />
+      {/* Brillo */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 14px' }}>
+        <circle cx="32" cy="10" r="2" fill={C.amb} opacity="0.7" />
+      </g>
+    </>
+  ),
+  teacher_groups_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.pur} /><stop offset="1" stopColor={C.ind} />
+        </linearGradient>
+      </defs>
+      {/* Pizarra */}
+      <rect x="8" y="6" width="48" height="30" rx="3" fill="#1e293b" stroke={C.sl6} strokeWidth="2.5" />
+      <rect x="12" y="10" width="40" height="22" rx="1" fill="#334155" />
+      <line x1="16" y1="16" x2="44" y2="16" stroke={C.grn} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="16" y1="21" x2="38" y2="21" stroke={C.grn} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="16" y1="26" x2="32" y2="26" stroke={C.grn} strokeWidth="1.5" strokeLinecap="round" />
+      {/* Alumnos fila */}
+      {[16, 26, 36, 46].map((cx, i) => (
+        <g key={i}>
+          <circle cx={cx} cy="46" r="4.5" fill={`url(#${id}bg)`} stroke={C.ind} strokeWidth="1.5" />
+          <path d={`M${cx-6} 60 Q${cx-6} 54 ${cx} 54 Q${cx+6} 54 ${cx+6} 60`} fill={`url(#${id}bg)`} stroke={C.ind} strokeWidth="1.5" />
+        </g>
+      ))}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 46px' }}>
+        <circle cx="32" cy="46" r="1.5" fill={C.amb} opacity="0.6" />
+      </g>
+    </>
+  ),
+  teacher_groups_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+      </defs>
+      {/* Edificio escolar */}
+      <rect x="12" y="20" width="40" height="32" rx="2" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" />
+      <rect x="16" y="38" width="10" height="14" rx="1" fill={C.stn} stroke={X.gold2} strokeWidth="1.5" /> {/* puerta */}
+      <rect x="38" y="24" width="8" height="8" rx="1" fill={C.sky} stroke={X.gold2} strokeWidth="1.5" /> {/* ventana */}
+      <rect x="18" y="24" width="8" height="8" rx="1" fill={C.sky} stroke={X.gold2} strokeWidth="1.5" /> {/* ventana */}
+      {/* Tejado triangular */}
+      <path d="M8 22 L32 6 L56 22 Z" fill={C.red} stroke="#7f1d1d" strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Estrella animada en tejado */}
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 14px' }}>
+        <path d="M32 8 L34 12 L38 12 L35 15 L36 19 L32 17 L28 19 L29 15 L26 12 L30 12 Z"
+              fill={X.gold1} stroke={X.gold2} strokeWidth="1" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: ALUMNOS ═══════════════════════
+  teacher_students_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* 3 personitas con + */}
+      <circle cx="16" cy="24" r="7" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" />
+      <path d="M6 48 Q6 38 16 38 Q26 38 26 48" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+      <circle cx="32" cy="24" r="7" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" />
+      <path d="M22 48 Q22 38 32 38 Q42 38 42 48" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+      <circle cx="48" cy="24" r="7" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" />
+      <path d="M38 48 Q38 38 48 38 Q58 38 58 48" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '54px 12px' }}>
+        <circle cx="54" cy="12" r="6" fill={C.grn} stroke={C.emr} strokeWidth="1.5" />
+        <text x="54" y="15" textAnchor="middle" fontSize="9" fontWeight="900" fill={C.whi}>+</text>
+      </g>
+    </>
+  ),
+  teacher_students_25: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.grn} /><stop offset="1" stopColor={C.emr} />
+        </linearGradient>
+      </defs>
+      {/* Grupo nutrido - 2 filas */}
+      {[14, 24, 34, 44, 50].map((cx, i) => (
+        <g key={i}>
+          <circle cx={cx} cy="18" r="5" fill={`url(#${id}bg)`} stroke={C.emr} strokeWidth="1.5" />
+        </g>
+      ))}
+      {[10, 20, 30, 40, 50].map((cx, i) => (
+        <g key={i}>
+          <circle cx={cx} cy="34" r="5" fill={`url(#${id}bg)`} stroke={C.emr} strokeWidth="1.5" />
+          <path d={`M${cx-5} 48 Q${cx-5} 42 ${cx} 42 Q${cx+5} 42 ${cx+5} 48`} fill={`url(#${id}bg)`} stroke={C.emr} strokeWidth="1.2" />
+        </g>
+      ))}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 34px' }}>
+        <text x="32" y="58" textAnchor="middle" fontSize="8" fontWeight="800" fill={C.emr}>25</text>
+      </g>
+    </>
+  ),
+  teacher_students_50: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.pur1} /><stop offset="1" stopColor={X.pur2} />
+        </linearGradient>
+      </defs>
+      {/* Multitud con corona */}
+      {[10, 20, 30, 40, 50].map((cx, i) => (
+        <g key={`r1-${i}`}><circle cx={cx} cy="26" r="5" fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="1.5" /></g>
+      ))}
+      {[14, 24, 34, 44].map((cx, i) => (
+        <g key={`r2-${i}`}>
+          <circle cx={cx} cy="38" r="5" fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="1.5" />
+          <path d={`M${cx-5} 52 Q${cx-5} 46 ${cx} 46 Q${cx+5} 46 ${cx+5} 52`} fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="1.2" />
+        </g>
+      ))}
+      {/* Corona */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '30px 10px' }}>
+        <path d="M18 16 L22 6 L28 14 L32 4 L36 14 L42 6 L46 16 Z" fill={C.amb} stroke={C.gld} strokeWidth="1.5" strokeLinejoin="round" />
+        <circle cx="32" cy="4" r="1.5" fill={X.gold1} />
+      </g>
+    </>
+  ),
+  teacher_students_100: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Estadio */}
+      <ellipse cx="32" cy="42" rx="26" ry="12" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" />
+      <ellipse cx="32" cy="42" rx="20" ry="8" fill={C.grn} stroke={C.emr} strokeWidth="1.5" />
+      {/* Filas de cabezas */}
+      {[12, 20, 28, 36, 44, 52].map((cx, i) => (
+        <g key={`h-${i}`}><circle cx={cx} cy="28" r="3.5" fill={C.sl4} stroke={C.sl6} strokeWidth="1" /></g>
+      ))}
+      {[16, 24, 32, 40, 48].map((cx, i) => (
+        <g key={`h2-${i}`}><circle cx={cx} cy="22" r="3" fill={C.sl4} stroke={C.sl6} strokeWidth="1" /></g>
+      ))}
+      {/* 100 */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 12px' }}>
+        <text x="32" y="16" textAnchor="middle" fontSize="14" fontWeight="900" fill={X.gold2} stroke={X.gold1} strokeWidth="0.5">100</text>
+      </g>
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: TAREAS ═══════════════════════
+  teacher_first_task: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* Clipboard */}
+      <rect x="14" y="10" width="36" height="46" rx="4" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2.5" />
+      <rect x="24" y="6" width="16" height="8" rx="3" fill={C.sl6} stroke={C.stn} strokeWidth="1.5" />
+      {/* Check */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 36px' }}>
+        <polyline points="24,36 30,42 42,28" fill="none" stroke={C.grn} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+  teacher_tasks_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sky} /><stop offset="1" stopColor={C.blu} />
+        </linearGradient>
+      </defs>
+      {/* Clipboard con lista */}
+      <rect x="14" y="8" width="36" height="48" rx="4" fill={`url(#${id}bg)`} stroke={C.nav} strokeWidth="2.5" />
+      <rect x="24" y="4" width="16" height="8" rx="3" fill={C.nav} stroke={C.stn} strokeWidth="1.5" />
+      {/* Checks */}
+      {[22, 32, 42].map((y, i) => (
+        <g key={i}>
+          <polyline points={`21,${y} 24,${y+3} 29,${y-2}`} fill="none" stroke={C.grn} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="33" y1={y} x2="44" y2={y} stroke={C.whi} strokeWidth="2" strokeLinecap="round" />
+        </g>
+      ))}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+        <circle cx="44" cy="12" r="1.5" fill={C.amb} opacity="0.7" />
+      </g>
+    </>
+  ),
+  teacher_tasks_15: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.pur1} /><stop offset="1" stopColor={C.pur} />
+        </linearGradient>
+      </defs>
+      {/* Pila de clipboards */}
+      <rect x="20" y="14" width="32" height="42" rx="3" fill={C.sl4} stroke={C.sl6} strokeWidth="1.5" />
+      <rect x="16" y="10" width="32" height="42" rx="3" fill={C.sl2} stroke={C.sl6} strokeWidth="1.5" />
+      <rect x="12" y="6" width="32" height="42" rx="4" fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="2.5" />
+      <rect x="20" y="2" width="16" height="8" rx="3" fill={X.pur2} stroke={C.stn} strokeWidth="1.5" />
+      {[18, 28, 38].map((y, i) => (
+        <g key={i}>
+          <polyline points={`18,${y} 21,${y+3} 26,${y-2}`} fill="none" stroke={C.grn} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="29" y1={y} x2="38" y2={y} stroke={C.whi} strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+        </g>
+      ))}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '28px 28px' }}>
+        <circle cx="38" cy="10" r="2" fill={C.mag} opacity="0.6" />
+      </g>
+    </>
+  ),
+  teacher_tasks_30: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+      </defs>
+      {/* Clipboard dorado */}
+      <rect x="14" y="10" width="36" height="46" rx="4" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" />
+      <rect x="24" y="6" width="16" height="8" rx="3" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
+      {/* Estrella central */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 34px' }}>
+        <path d="M32 22 L35 30 L43 31 L37 36 L39 44 L32 40 L25 44 L27 36 L21 31 L29 30 Z"
+              fill={X.gold1} stroke={X.gold2} strokeWidth="1.5" strokeLinejoin="round" />
+        <ellipse cx="28" cy="28" rx="1.5" ry="3" fill={C.whi} opacity="0.4" />
+      </g>
+    </>
+  ),
+  teacher_tasks_50: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.fire1} /><stop offset="0.3" stopColor={X.fire2} /><stop offset="0.7" stopColor={X.fire3} /><stop offset="1" stopColor={X.fire4} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor={X.fire1} stopOpacity="0.5" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Clipboard con fuego */}
+      <rect x="16" y="14" width="32" height="40" rx="4" fill={`url(#${id}bg)`} stroke={X.fire4} strokeWidth="2.5" />
+      <rect x="24" y="10" width="16" height="8" rx="3" fill={X.fire4} stroke="#450a0a" strokeWidth="1.5" />
+      {/* Aura de fuego */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 20px' }}>
+        <path d="M24 20 Q28 6 32 14 Q36 6 40 20 Q36 16 32 22 Q28 16 24 20 Z" fill={X.fire2} stroke={X.fire3} strokeWidth="1" opacity="0.9" />
+        <path d="M28 18 Q30 10 32 16 Q34 10 36 18 Q34 15 32 20 Q30 15 28 18 Z" fill={X.fire1} opacity="0.8" />
+      </g>
+      <text x="32" y="44" textAnchor="middle" fontSize="10" fontWeight="900" fill={X.fire1}>50</text>
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: BATALLAS ═══════════════════════
+  teacher_first_battle: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* Dos espadas cruzadas */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <line x1="12" y1="52" x2="44" y2="12" stroke={C.sl6} strokeWidth="4" strokeLinecap="round" />
+        <line x1="52" y1="52" x2="20" y2="12" stroke={C.sl6} strokeWidth="4" strokeLinecap="round" />
+        {/* Empunaduras */}
+        <rect x="8" y="48" width="12" height="5" rx="2" fill={X.bronze1} stroke={X.bronze2} strokeWidth="1.5" transform="rotate(-45,14,50)" />
+        <rect x="44" y="48" width="12" height="5" rx="2" fill={X.bronze1} stroke={X.bronze2} strokeWidth="1.5" transform="rotate(45,50,50)" />
+        {/* Hojas */}
+        <line x1="12" y1="52" x2="44" y2="12" stroke={C.sl2} strokeWidth="2" />
+        <line x1="52" y1="52" x2="20" y2="12" stroke={C.sl2} strokeWidth="2" />
+      </g>
+    </>
+  ),
+  teacher_battles_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}sh`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sky} /><stop offset="1" stopColor={C.blu} />
+        </linearGradient>
+      </defs>
+      {/* Escudo */}
+      <path d="M32 4 L56 16 L54 40 Q48 56 32 60 Q16 56 10 40 L8 16 Z" fill={`url(#${id}sh)`} stroke={C.nav} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M32 8 L52 18 L50 38 Q45 52 32 56 Q19 52 14 38 L12 18 Z" fill="none" stroke={C.whi} strokeWidth="1" opacity="0.4" />
+      {/* Espadas cruzadas encima */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+        <line x1="20" y1="44" x2="36" y2="20" stroke={C.sl6} strokeWidth="3" strokeLinecap="round" />
+        <line x1="44" y1="44" x2="28" y2="20" stroke={C.sl6} strokeWidth="3" strokeLinecap="round" />
+        <line x1="20" y1="44" x2="36" y2="20" stroke={C.whi} strokeWidth="1.5" />
+        <line x1="44" y1="44" x2="28" y2="20" stroke={C.whi} strokeWidth="1.5" />
+      </g>
+    </>
+  ),
+  teacher_battles_15: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}sh`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+      </defs>
+      {/* Escudo dorado */}
+      <path d="M32 4 L56 16 L54 40 Q48 56 32 60 Q16 56 10 40 L8 16 Z" fill={`url(#${id}sh)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M32 10 L50 20 L48 38 Q44 50 32 54 Q20 50 16 38 L14 20 Z" fill="none" stroke={C.whi} strokeWidth="1" opacity="0.3" />
+      {/* Rayo central */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M28 16 L36 16 L32 28 L40 28 L26 50 L30 34 L22 34 Z" fill={X.fire1} stroke={X.gold2} strokeWidth="1.5" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+  teacher_battles_30: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}helm`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.3">
+          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Casco gladiador */}
+      <path d="M12 36 Q12 12 32 10 Q52 12 52 36 L48 42 L16 42 Z" fill={`url(#${id}helm)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Visera */}
+      <path d="M16 34 L48 34 L46 40 L18 40 Z" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
+      {/* Ranura ojos */}
+      <rect x="20" y="35" width="24" height="3" rx="1" fill={C.stn} />
+      {/* Cresta */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 8px' }}>
+        <path d="M26 12 Q28 2 32 4 Q36 2 38 12" fill={C.red} stroke="#7f1d1d" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M28 10 Q30 4 32 6 Q34 4 36 10" fill={X.fire2} opacity="0.7" />
+      </g>
+      {/* Corona */}
+      <path d="M18 46 L22 42 L28 48 L32 42 L36 48 L42 42 L46 46 L44 54 L20 54 Z" fill={C.amb} stroke={X.gold2} strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="32" cy="50" r="2" fill={X.gold1} />
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: MENSAJES ═══════════════════════
+  teacher_first_message: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* Bocadillo simple */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '30px 28px' }}>
+        <path d="M8 12 Q8 6 14 6 L50 6 Q56 6 56 12 L56 36 Q56 42 50 42 L22 42 L12 54 L14 42 Q8 42 8 36 Z"
+              fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2.5" strokeLinejoin="round" />
+        <line x1="18" y1="18" x2="44" y2="18" stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+        <line x1="18" y1="26" x2="38" y2="26" stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+        <line x1="18" y1="34" x2="30" y2="34" stroke={C.sl6} strokeWidth="2" strokeLinecap="round" />
+      </g>
+    </>
+  ),
+  teacher_messages_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sky} /><stop offset="1" stopColor={C.blu} />
+        </linearGradient>
+      </defs>
+      {/* Bocadillo con corazon */}
+      <path d="M8 12 Q8 6 14 6 L50 6 Q56 6 56 12 L56 36 Q56 42 50 42 L22 42 L12 54 L14 42 Q8 42 8 36 Z"
+            fill={`url(#${id}bg)`} stroke={C.nav} strokeWidth="2.5" strokeLinejoin="round" />
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 24px' }}>
+        <path d="M32 32 Q26 20 20 24 Q14 28 20 34 L32 44 L44 34 Q50 28 44 24 Q38 20 32 32 Z"
+              fill={C.pin} stroke="#9d174d" strokeWidth="1.5" transform="translate(0,-8) scale(0.7)" style={{ transformOrigin: '32px 28px' }} />
+      </g>
+    </>
+  ),
+  teacher_messages_25: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.pur} /><stop offset="1" stopColor={C.ind} />
+        </linearGradient>
+      </defs>
+      {/* Dos bocadillos superpuestos */}
+      <path d="M6 16 Q6 10 12 10 L40 10 Q46 10 46 16 L46 32 Q46 38 40 38 L18 38 L10 48 L12 38 Q6 38 6 32 Z"
+            fill={C.ind} stroke={C.nav} strokeWidth="2" strokeLinejoin="round" opacity="0.6" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '38px 30px' }}>
+        <path d="M18 20 Q18 14 24 14 L52 14 Q58 14 58 20 L58 38 Q58 44 52 44 L30 44 L22 54 L24 44 Q18 44 18 38 Z"
+              fill={`url(#${id}bg)`} stroke={C.nav} strokeWidth="2.5" strokeLinejoin="round" />
+        <line x1="26" y1="24" x2="48" y2="24" stroke={C.whi} strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+        <line x1="26" y1="32" x2="42" y2="32" stroke={C.whi} strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+      </g>
+    </>
+  ),
+  teacher_messages_50: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.pur1} /><stop offset="1" stopColor={X.pur2} />
+        </linearGradient>
+      </defs>
+      {/* Bocadillo con estrella */}
+      <path d="M8 12 Q8 6 14 6 L50 6 Q56 6 56 12 L56 36 Q56 42 50 42 L22 42 L12 54 L14 42 Q8 42 8 36 Z"
+            fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="2.5" strokeLinejoin="round" />
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 24px' }}>
+        <path d="M32 10 L35 20 L46 21 L38 27 L40 38 L32 33 L24 38 L26 27 L18 21 L29 20 Z"
+              fill={C.amb} stroke={C.gld} strokeWidth="1.5" strokeLinejoin="round" />
+        <ellipse cx="28" cy="18" rx="1.5" ry="3" fill={C.whi} opacity="0.4" />
+      </g>
+    </>
+  ),
+  teacher_messages_100: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Megafono dorado */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M10 26 L10 38 L18 38 L18 26 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M18 22 L50 10 L50 54 L18 42 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="50" cy="32" rx="4" ry="14" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
+      </g>
+      {/* Ondas de sonido */}
+      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '54px 32px' }}>
+        <path d="M56 22 Q62 32 56 42" fill="none" stroke={X.gold1} strokeWidth="2" strokeLinecap="round" />
+      </g>
+      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '54px 32px', animationDelay: '0.6s' }}>
+        <path d="M58 18 Q66 32 58 46" fill="none" stroke={X.gold1} strokeWidth="1.5" strokeLinecap="round" />
+      </g>
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: PLATAFORMA (DIAS) ═══════════════════════
+  teacher_days_7: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.sl2} /><stop offset="1" stopColor={C.sl4} />
+        </linearGradient>
+      </defs>
+      {/* Calendario */}
+      <rect x="8" y="14" width="48" height="42" rx="4" fill={`url(#${id}bg)`} stroke={C.sl6} strokeWidth="2.5" />
+      <rect x="8" y="14" width="48" height="12" rx="4" fill={C.red} stroke={C.sl6} strokeWidth="2.5" />
+      {/* Anillas */}
+      <line x1="22" y1="10" x2="22" y2="18" stroke={C.sl6} strokeWidth="3" strokeLinecap="round" />
+      <line x1="42" y1="10" x2="42" y2="18" stroke={C.sl6} strokeWidth="3" strokeLinecap="round" />
+      {/* Check */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 40px' }}>
+        <polyline points="22,40 28,46 42,32" fill="none" stroke={C.grn} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+  teacher_days_30: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.bronze1} /><stop offset="1" stopColor={X.bronze2} />
+        </linearGradient>
+      </defs>
+      {/* Calendario bronce */}
+      <rect x="8" y="14" width="48" height="42" rx="4" fill={`url(#${id}bg)`} stroke={X.bronze2} strokeWidth="2.5" />
+      <rect x="8" y="14" width="48" height="12" rx="4" fill={X.bronze2} stroke="#78350f" strokeWidth="2.5" />
+      <line x1="22" y1="10" x2="22" y2="18" stroke={X.bronze2} strokeWidth="3" strokeLinecap="round" />
+      <line x1="42" y1="10" x2="42" y2="18" stroke={X.bronze2} strokeWidth="3" strokeLinecap="round" />
+      {/* Corona bronce */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 42px' }}>
+        <path d="M20 46 L24 34 L28 42 L32 32 L36 42 L40 34 L44 46 Z" fill={X.bronze1} stroke={X.bronze2} strokeWidth="1.5" strokeLinejoin="round" />
+        <rect x="20" y="46" width="24" height="5" rx="1" fill={X.bronze1} stroke={X.bronze2} strokeWidth="1" />
+      </g>
+    </>
+  ),
+  teacher_days_90: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.pur1} /><stop offset="1" stopColor={C.pur} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor={C.mag} stopOpacity="0.3" /><stop offset="1" stopColor={C.mag} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill={`url(#${id}gl)`} />
+      {/* Reloj */}
+      <circle cx="32" cy="32" r="22" fill={`url(#${id}bg)`} stroke={X.pur2} strokeWidth="2.5" />
+      <circle cx="32" cy="32" r="18" fill={C.whi} stroke={X.pur2} strokeWidth="1.5" />
+      {/* Marcas */}
+      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg, i) => {
+        const a = (deg * Math.PI) / 180; return <line key={i} x1={32 + Math.sin(a) * 15} y1={32 - Math.cos(a) * 15} x2={32 + Math.sin(a) * 17} y2={32 - Math.cos(a) * 17} stroke={X.pur2} strokeWidth="1.5" strokeLinecap="round" />;
+      })}
+      {/* Manecillas */}
+      <line x1="32" y1="32" x2="32" y2="20" stroke={X.pur2} strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="32" y1="32" x2="42" y2="32" stroke={C.mag} strokeWidth="2" strokeLinecap="round" />
+      <circle cx="32" cy="32" r="2" fill={X.pur2} />
+      {/* Aura */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <circle cx="32" cy="32" r="25" fill="none" stroke={C.mag} strokeWidth="1.5" opacity="0.4" />
+      </g>
+    </>
+  ),
+  teacher_days_365: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor={X.fire1} stopOpacity="0.5" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Trofeo dorado */}
+      <path d="M20 18 L20 34 Q20 46 32 48 Q44 46 44 34 L44 18 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Asas */}
+      <path d="M20 22 Q10 22 10 30 Q10 38 20 36" fill="none" stroke={X.gold2} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M44 22 Q54 22 54 30 Q54 38 44 36" fill="none" stroke={X.gold2} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Base */}
+      <rect x="26" y="48" width="12" height="4" rx="1" fill={X.gold2} stroke="#78350f" strokeWidth="1" />
+      <rect x="22" y="52" width="20" height="5" rx="2" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
+      {/* 365 */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <text x="32" y="36" textAnchor="middle" fontSize="10" fontWeight="900" fill="#78350f">365</text>
+      </g>
+      {/* Rayos giratorios */}
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({ length: 8 }).map((_, i) => {
+          const a = (i * 45 * Math.PI) / 180; return <line key={i} x1={32 + Math.sin(a) * 28} y1={32 - Math.cos(a) * 28} x2={32 + Math.sin(a) * 31} y2={32 - Math.cos(a) * 31} stroke={X.gold1} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />;
+        })}
+      </g>
+    </>
+  ),
+
+  // ═══════════════════════ TEACHER: RATINGS ═══════════════════════
+  teacher_first_rating: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={C.yel} /><stop offset="1" stopColor={C.amb} />
+        </linearGradient>
+      </defs>
+      {/* Estrella simple */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M32 6 L38 22 L56 24 L43 35 L46 54 L32 46 L18 54 L21 35 L8 24 L26 22 Z"
+              fill={`url(#${id}bg)`} stroke={C.gld} strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="24" cy="20" rx="2.5" ry="5" fill={C.whi} opacity="0.4" />
+      </g>
+    </>
+  ),
+  teacher_ratings_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
+        </linearGradient>
+      </defs>
+      {/* 3 estrellas */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 18px' }}>
+        <path d="M32 2 L35 12 L46 13 L38 19 L40 30 L32 25 L24 30 L26 19 L18 13 L29 12 Z"
+              fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2" strokeLinejoin="round" />
+        <ellipse cx="27" cy="10" rx="2" ry="4" fill={C.whi} opacity="0.4" />
+      </g>
+      <path d="M14 30 L17 38 L26 39 L20 43 L22 52 L14 48 L6 52 L8 43 L2 39 L11 38 Z"
+            fill={C.amb} stroke={C.gld} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M50 30 L53 38 L62 39 L56 43 L58 52 L50 48 L42 52 L44 43 L38 39 L47 38 Z"
+            fill={C.amb} stroke={C.gld} strokeWidth="1.5" strokeLinejoin="round" />
+      {/* Brillos */}
+      <g className="ba-anim anim-twinkle">
+        <circle cx="8" cy="20" r="1.5" fill={X.gold1} />
+        <circle cx="56" cy="20" r="1.5" fill={X.gold1} />
+        <circle cx="32" cy="56" r="1" fill={C.amb} />
+      </g>
+    </>
+  ),
 };
 
 // ─── Halo de fondo por rareza ───

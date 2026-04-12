@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight } from 'lucide-react';
+import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight, GraduationCap } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 
@@ -156,6 +156,7 @@ const CATEGORY_META = {
   streaks:     { label: 'Rachas Diarias',        icon: Flame,  color: 'text-red-500' },
   dedication:  { label: 'Tiempo de Juego',       icon: Clock,  color: 'text-indigo-500' },
   subjects:    { label: 'Asignaturas',           icon: BookOpen, color: 'text-pink-500' },
+  docencia:    { label: '🍎 Docencia (exclusivas para profesores)', icon: GraduationCap, color: 'text-emerald-600' },
 };
 
 export default function XPConfigPanel() {
@@ -176,7 +177,9 @@ export default function XPConfigPanel() {
   }, []);
 
   const grouped = badges.reduce((acc, b) => {
-    (acc[b.category] ??= []).push(b);
+    // Agrupar todas las categorías teacher_* bajo una única "docencia"
+    const key = b.category.startsWith('teacher_') ? 'docencia' : b.category;
+    (acc[key] ??= []).push(b);
     return acc;
   }, {});
 
