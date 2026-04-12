@@ -36,6 +36,7 @@ const QuizBattleHost = lazy(() => import('@/apps/quiz-battle/QuizBattleHost.jsx'
 const QuizBattlePlayer = lazy(() => import('@/apps/quiz-battle/QuizBattlePlayer.jsx'));
 const StudentDashboard = lazy(() => import('@/pages/dashboard/StudentDashboard.jsx'));
 const FreeUserDashboard = lazy(() => import('@/pages/dashboard/FreeUserDashboard.jsx'));
+const GroupLoginPage = lazy(() => import('@/pages/auth/GroupLoginPage.jsx'));
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
             { path: 'curso/:level/:grade', element: <SuspensePage><SubjectPage /></SuspensePage> },
             { path: 'curso/:level/:grade/:subjectId', element: <SuspensePage><AppListPage /></SuspensePage> },
             { path: 'login', element: <SuspensePage><LoginPage /></SuspensePage> },
+            { path: 'grupo/:groupCode', element: <SuspensePage><GroupLoginPage /></SuspensePage> },
             { path: 'registro', element: <SuspensePage><RegisterPage /></SuspensePage> },
             { path: 'registro-libre', element: <SuspensePage><RegisterFreePage /></SuspensePage> },
             {

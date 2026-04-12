@@ -36,7 +36,8 @@
       "Bash(node insert-gaps.cjs)",
       "Bash(ls -la *.sql)",
       "Bash(ls *.sql)",
-      "Bash(ls ejecutar-*.sql.bak)"
+      "Bash(ls ejecutar-*.sql.bak)",
+      "Bash(ls c:/Users/edtor/Desktop/apps-educativas/src/lib/supabase*)"
     ]
   }
 }

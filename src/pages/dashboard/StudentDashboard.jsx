@@ -400,7 +400,7 @@ export default function StudentDashboard() {
       }),
       supabase.rpc('get_student_quiz_battle_stats', {
         p_student_id: student.id,
-      }).catch(() => ({ data: null })),
+      }).then(res => res, () => ({ data: null })),
     ]);
 
     if (dashResult.error) {
