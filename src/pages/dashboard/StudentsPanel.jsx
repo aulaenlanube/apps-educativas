@@ -53,8 +53,18 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
     } else if (data?.error) {
       toast({ variant: 'destructive', title: 'Error', description: data.error });
     } else {
-      setBulkResult(data);
-      onStudentsChanged();
+      const result = { ...data, requested: usernames.length };
+      // If the RPC didn't report errors but some usernames weren't created, flag them
+      const createdCount = result.created || 0;
+      const reportedErrors = result.errors || [];
+      if (createdCount < usernames.length && reportedErrors.length === 0) {
+        const failedCount = usernames.length - createdCount;
+        result.errors = [`${failedCount} nombre${failedCount !== 1 ? 's' : ''} de usuario ya estaban en uso`];
+      }
+      setBulkResult(result);
+      if (createdCount > 0) {
+        onStudentsChanged();
+      }
     }
   };
 
@@ -264,6 +274,12 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                   <div className="flex items-center gap-2 text-green-700">
                     <CheckCircle2 className="w-4 h-4" />
                     <span className="text-sm font-medium">{bulkResult.created} alumno{bulkResult.created !== 1 ? 's' : ''} creado{bulkResult.created !== 1 ? 's' : ''}</span>
+                  </div>
+                )}
+                {bulkResult.created === 0 && (!bulkResult.errors || bulkResult.errors.length === 0) && (
+                  <div className="flex items-center gap-2 text-red-600">
+                    <AlertTriangle className="w-4 h-4" />
+                    <span className="text-sm font-medium">No se pudo crear ningun alumno. Los nombres de usuario ya estan en uso.</span>
                   </div>
                 )}
                 {bulkResult.errors?.length > 0 && (
