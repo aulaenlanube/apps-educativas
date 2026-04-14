@@ -31,12 +31,23 @@ export default function StudentStatsView({ studentId, onBack }) {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      const [statsRes, qbRes] = await Promise.all([
-        supabase.rpc('teacher_get_student_stats', { p_student_id: studentId }),
-        supabase.rpc('get_student_quiz_battle_stats', { p_student_id: studentId }).catch(() => ({ data: null })),
-      ]);
-      if (statsRes.data && !statsRes.data.error) setData(statsRes.data);
-      if (qbRes.data && !qbRes.data.error) setQbStats(qbRes.data);
+      try {
+        const [statsRes, qbRes] = await Promise.all([
+          supabase.rpc('teacher_get_student_stats', { p_student_id: studentId }),
+          supabase.rpc('get_student_quiz_battle_stats', { p_student_id: studentId }).then(
+            (res) => res,
+            () => ({ data: null })
+          ),
+        ]);
+        if (statsRes.error) {
+          console.error('teacher_get_student_stats error:', statsRes.error);
+        } else if (statsRes.data && !statsRes.data.error) {
+          setData(statsRes.data);
+        }
+        if (qbRes.data && !qbRes.data.error) setQbStats(qbRes.data);
+      } catch (err) {
+        console.error('Error fetching student stats:', err);
+      }
       setLoading(false);
     }
     fetchData();
