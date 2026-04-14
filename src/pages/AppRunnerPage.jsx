@@ -9,8 +9,10 @@ import { findAppById } from '@/apps/appList';
 import { useGameTracker } from '@/hooks/useGameTracker';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
+import { Menu } from 'lucide-react';
 import UserMenu from '@/components/auth/UserMenu';
 import NotificationBell from '@/components/ui/NotificationBell';
+import MobileSidebar from '@/components/layout/MobileSidebar';
 import DonationModal from '@/components/ui/DonationModal';
 import AppRatingPanel from '@/components/ui/AppRatingPanel';
 import RatingPromptModal from '@/components/ui/RatingPromptModal';
@@ -142,6 +144,7 @@ const AppRunnerPage = () => {
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
     const [isRankingModalOpen, setIsRankingModalOpen] = useState(false);
     const [completedCount, setCompletedCount] = useState(0);
+    const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const { startSession, trackGameSession, abandonSession } = useGameTracker();
     const { isAuthenticated, loading: authLoading } = useAuth();
     const { toast } = useToast();
@@ -340,10 +343,19 @@ const AppRunnerPage = () => {
                     <div className="flex-1" />
 
                     {preset.showUserControls && !authLoading && isAuthenticated && (
-                        <div className="flex items-center gap-2">
-                            <NotificationBell />
-                            <UserMenu />
-                        </div>
+                        <>
+                            <div className="hidden md:flex items-center gap-2">
+                                <NotificationBell />
+                                <UserMenu />
+                            </div>
+                            <button
+                                onClick={() => setMobileSidebarOpen(true)}
+                                className="flex md:hidden items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-md active:scale-95 transition-all"
+                            >
+                                <Menu className="w-4.5 h-4.5" />
+                            </button>
+                            <MobileSidebar open={mobileSidebarOpen} onClose={() => setMobileSidebarOpen(false)} />
+                        </>
                     )}
                 </div>
 

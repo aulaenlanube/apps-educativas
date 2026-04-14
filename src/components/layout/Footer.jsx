@@ -13,7 +13,7 @@ const Footer = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-gray-900 to-purple-900 text-white py-12 px-6"
+            className="bg-gray-900 text-white py-12 px-6"
         >
             <div className="container mx-auto text-center">
                 <div className="flex items-center justify-center space-x-3 mb-6 cursor-pointer" onClick={() => navigate('/')}>

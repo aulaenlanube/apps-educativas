@@ -493,9 +493,9 @@ export default function StudentDashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white rounded-2xl shadow-sm border border-purple-100 p-5 mb-6"
           >
-            <div className="flex items-center gap-4">
-              <div className="text-5xl">{studentInfo.avatar_emoji || '🎓'}</div>
-              <div>
+            <div className="flex items-center gap-4 overflow-x-auto scrollbar-hide">
+              <div className="text-5xl shrink-0">{studentInfo.avatar_emoji || '🎓'}</div>
+              <div className="shrink-0">
                 <h1 className="text-xl font-bold text-slate-800">{studentInfo.display_name}</h1>
                 <p className="text-sm text-slate-500">@{studentInfo.username}</p>
                 <div className="flex items-center gap-2 mt-0.5">
@@ -514,7 +514,7 @@ export default function StudentDashboard() {
                   )}
                 </div>
               </div>
-              <div className="ml-4 flex items-center gap-2">
+              <div className="ml-4 flex items-center gap-2 shrink-0">
                 {exploreAppsPath && (
                   <button
                     onClick={() => navigate(exploreAppsPath)}
@@ -534,7 +534,7 @@ export default function StudentDashboard() {
                   Quiz
                 </button>
               </div>
-              <div className="ml-auto hidden sm:flex items-center gap-6 text-center">
+              <div className="ml-auto hidden sm:flex items-center gap-6 text-center shrink-0">
                 <div>
                   <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>
                   <p className="text-xs text-slate-500">Nivel</p>
