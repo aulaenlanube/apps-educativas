@@ -66,6 +66,9 @@ export default function QuizBattleHost() {
 
   const timerRef = useRef(null);
   const questionStartRef = useRef(0);
+  const answersRef = useRef({});
+  const gamePlayersRef = useRef([]);
+  const finishQuestionRef = useRef(null);
 
   const subjects = useMemo(() => getSubjects(level, parseInt(grade, 10)), [level, grade]);
 
@@ -118,6 +121,10 @@ export default function QuizBattleHost() {
     players.filter((p) => p.id !== userInfo.id),
     [players, userInfo.id]
   );
+
+  // Keep refs in sync so the timer callback always reads the latest state
+  useEffect(() => { gamePlayersRef.current = gamePlayers; }, [gamePlayers]);
+  useEffect(() => { answersRef.current = answers; }, [answers]);
 
   // ── Validate new players joining (group mode + max cap) ──
   useEffect(() => {
@@ -261,7 +268,9 @@ export default function QuizBattleHost() {
       setTimeLeft(remaining);
       if (remaining <= 0) {
         clearInterval(timerRef.current);
-        finishQuestion(index);
+        // Use ref to always call the latest finishQuestion (avoids stale closure
+        // that would leave `answers` snapshot empty when timer expires naturally)
+        finishQuestionRef.current?.(index);
       }
     }, 250);
   }, [questions, timeLimit, broadcast]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -273,8 +282,10 @@ export default function QuizBattleHost() {
     const q = questions[index];
     if (!q) return;
 
-    // Read answers at this exact moment (only those submitted before close count)
-    const finalAnswers = { ...answers };
+    // Read latest answers and player list from refs (not closure) to avoid stale
+    // state when invoked from the interval timer after many re-renders
+    const finalAnswers = { ...answersRef.current };
+    const currentPlayers = gamePlayersRef.current;
 
     setScores((prev) => {
       const updated = { ...prev };
@@ -301,7 +312,7 @@ export default function QuizBattleHost() {
       });
 
       // Players who didn't answer get 0 and streak reset
-      gamePlayers.forEach((p) => {
+      currentPlayers.forEach((p) => {
         if (finalAnswers[p.id] === undefined && updated[p.id]) {
           updated[p.id].streak = 0;
           updated[p.id].lastDelta = 0;
@@ -318,7 +329,7 @@ export default function QuizBattleHost() {
 
     setTimeout(() => {
       setScores((currentScores) => {
-        const lb = buildLeaderboard(currentScores, gamePlayers);
+        const lb = buildLeaderboard(currentScores, gamePlayersRef.current);
         broadcast('game:timeout', {
           correctIndex: q.correctIndex,
           correct: q.correct,
@@ -328,7 +339,10 @@ export default function QuizBattleHost() {
         return currentScores;
       });
     }, 50);
-  }, [questions, answers, timeLimit, gamePlayers, broadcast]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [questions, timeLimit, broadcast]);
+
+  // Keep ref in sync so setInterval callback always uses the latest version
+  useEffect(() => { finishQuestionRef.current = finishQuestion; }, [finishQuestion]);
 
   // ── Close question early (teacher button) ──
   const handleCloseQuestion = () => {
