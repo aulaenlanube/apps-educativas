@@ -54,7 +54,8 @@ export default function QuizBattlePlayer() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [finalLeaderboard, setFinalLeaderboard] = useState([]);
   const [newBadges, setNewBadges] = useState([]);
-  // Permutación de colores/formas por pregunta (anti-copia). [0,1,2,3] = sin permutar.
+  // Permutación visual por pregunta (anti-copia). perm[visualSlot] = índice original.
+  // Afecta a la POSICIÓN, al COLOR y a la FORMA. Default [0,1,2,3] = sin permutar.
   const [colorPerm, setColorPerm] = useState([0, 1, 2, 3]);
 
   const timerRef = useRef(null);
@@ -209,13 +210,16 @@ export default function QuizBattlePlayer() {
   useEffect(() => () => clearInterval(timerRef.current), []);
 
   // ── Submit answer ──
-  const handleAnswer = (index) => {
+  // visualSlot = posición que el alumno ha pulsado (0..3 en su pantalla).
+  // El host siempre espera el índice ORIGINAL de la opción; traducimos vía colorPerm.
+  const handleAnswer = (visualSlot) => {
     if (selectedAnswer >= 0) return;
-    setSelectedAnswer(index);
+    setSelectedAnswer(visualSlot);
+    const originalIndex = colorPerm[visualSlot];
     broadcast('player:answer', {
       playerId: userInfo.id,
       playerName: userInfo.name,
-      answerIndex: index,
+      answerIndex: originalIndex,
       timestamp: Date.now(),
     });
     setPhase('sent');
@@ -224,7 +228,11 @@ export default function QuizBattlePlayer() {
   // ── Derived ──
   const timerPct = timeLimit > 0 ? (timeLeft / timeLimit) * 100 : 0;
   const timerColor = timerPct > 50 ? 'qb-timer-green' : timerPct > 25 ? 'qb-timer-yellow' : 'qb-timer-red';
-  const isCorrect = selectedAnswer === correctIndex;
+  // selectedAnswer es la posición visual pulsada; traducimos al índice original
+  // antes de comparar con correctIndex (que siempre es el índice original).
+  const isCorrect = selectedAnswer >= 0 && colorPerm[selectedAnswer] === correctIndex;
+  // Posición visual en la que aparece la opción correcta para este alumno
+  const correctVisualSlot = correctIndex >= 0 ? colorPerm.indexOf(correctIndex) : -1;
 
   // Confetti cuando el alumno es top-3 al terminar
   useEffect(() => {
@@ -387,20 +395,22 @@ export default function QuizBattlePlayer() {
             </motion.div>
 
             <div className="qb-options-grid">
-              {currentQuestion.options.map((opt, i) => {
-                const c = colorPerm[i]; // índice de color/forma visible para este alumno
+              {currentQuestion.options.map((_, visualSlot) => {
+                // Cada slot visual muestra la opción original perm[visualSlot].
+                const origIdx = colorPerm[visualSlot];
+                const opt = currentQuestion.options[origIdx];
                 return (
                   <motion.button
-                    key={i}
-                    className={`qb-option qb-opt-${c} ${selectedAnswer === i ? 'qb-opt-selected' : ''}`}
+                    key={visualSlot}
+                    className={`qb-option qb-opt-${origIdx} ${selectedAnswer === visualSlot ? 'qb-opt-selected' : ''}`}
                     disabled={selectedAnswer >= 0}
-                    onClick={() => handleAnswer(i)}
+                    onClick={() => handleAnswer(visualSlot)}
                     initial={{ opacity: 0, scale: 0.85, y: 15 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
+                    transition={{ delay: 0.1 + visualSlot * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <span className="qb-opt-shape">{OPTION_SHAPES[c]}</span>
+                    <span className="qb-opt-shape">{OPTION_SHAPES[origIdx]}</span>
                     <span>{opt}</span>
                   </motion.button>
                 );
@@ -456,16 +466,18 @@ export default function QuizBattlePlayer() {
             {/* Options with correct/wrong highlight (respetando la permutación visual) */}
             {currentQuestion && (
               <div className="qb-options-grid" style={{ marginBottom: '1.5rem' }}>
-                {currentQuestion.options.map((opt, i) => {
-                  const c = colorPerm[i];
-                  let extra = '';
-                  if (i === correctIndex) extra = 'qb-opt-correct';
-                  else extra = 'qb-opt-wrong';
+                {currentQuestion.options.map((_, visualSlot) => {
+                  const origIdx = colorPerm[visualSlot];
+                  const opt = currentQuestion.options[origIdx];
+                  const isThisCorrect = visualSlot === correctVisualSlot;
+                  const extra = isThisCorrect ? 'qb-opt-correct' : 'qb-opt-wrong';
                   return (
-                    <div key={i} className={`qb-option qb-opt-${c} ${extra}`} style={{ cursor: 'default' }}>
-                      <span className="qb-opt-shape">{OPTION_SHAPES[c]}</span>
+                    <div key={visualSlot}
+                      className={`qb-option qb-opt-${origIdx} ${extra}`}
+                      style={{ cursor: 'default' }}>
+                      <span className="qb-opt-shape">{OPTION_SHAPES[origIdx]}</span>
                       <span>{opt}</span>
-                      {i === correctIndex && <Check className="w-5 h-5" style={{ marginLeft: 'auto' }} />}
+                      {isThisCorrect && <Check className="w-5 h-5" style={{ marginLeft: 'auto' }} />}
                     </div>
                   );
                 })}
