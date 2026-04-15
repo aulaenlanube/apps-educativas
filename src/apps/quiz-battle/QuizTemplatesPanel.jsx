@@ -8,6 +8,8 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import QuizTemplateEditor from './QuizTemplateEditor';
+import QuizBattleDetailModal from './QuizBattleDetailModal';
+import { Eye } from 'lucide-react';
 
 function formatDate(dateStr) {
   if (!dateStr) return '-';
@@ -23,6 +25,7 @@ export default function QuizTemplatesPanel() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [detailRoomCode, setDetailRoomCode] = useState(null);
 
   // Stats & history
   const [stats, setStats] = useState(null);
@@ -260,11 +263,13 @@ export default function QuizTemplatesPanel() {
                     <th className="px-4 py-2.5 text-xs font-medium text-slate-500">
                       <Calendar className="w-3.5 h-3.5 inline" /> Fecha
                     </th>
+                    <th className="px-4 py-2.5 text-xs font-medium text-slate-500 text-right"></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {history.map((h, i) => (
-                    <tr key={`${h.room_code}-${i}`} className="hover:bg-slate-50 transition-colors">
+                    <tr key={`${h.room_code}-${i}`} className="hover:bg-slate-50 transition-colors cursor-pointer"
+                      onClick={() => setDetailRoomCode(h.room_code)}>
                       <td className="px-4 py-2.5">
                         <span className="font-mono font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded text-xs">
                           {h.room_code}
@@ -290,6 +295,14 @@ export default function QuizTemplatesPanel() {
                       <td className="px-4 py-2.5 text-xs text-slate-400">
                         {formatDate(h.created_at)}
                       </td>
+                      <td className="px-4 py-2.5 text-right">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setDetailRoomCode(h.room_code); }}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-purple-600 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-2.5 py-1 rounded-lg transition-colors"
+                        >
+                          <Eye className="w-3.5 h-3.5" /> Ver detalle
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -298,6 +311,14 @@ export default function QuizTemplatesPanel() {
           </div>
         )}
       </div>
+
+      {/* Battle detail modal */}
+      {detailRoomCode && (
+        <QuizBattleDetailModal
+          roomCode={detailRoomCode}
+          onClose={() => setDetailRoomCode(null)}
+        />
+      )}
 
       {/* Delete confirmation modal */}
       <AnimatePresence>

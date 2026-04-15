@@ -72,6 +72,8 @@ export default function QuizBattleHost() {
   const answersRef = useRef({});
   const gamePlayersRef = useRef([]);
   const finishQuestionRef = useRef(null);
+  // Filas acumuladas (player × pregunta) para persistir al acabar la batalla
+  const questionResultsRef = useRef([]);
 
   const subjects = useMemo(() => getSubjects(level, parseInt(grade, 10)), [level, grade]);
 
@@ -249,6 +251,7 @@ export default function QuizBattleHost() {
     });
     setScores(initScores);
     setCurrentQ(0);
+    questionResultsRef.current = []; // reset detalle para la nueva partida
     broadcast('game:start', { totalQuestions: questions.length });
     launchQuestion(0);
   };
@@ -302,6 +305,8 @@ export default function QuizBattleHost() {
 
     const totalMs = timeLimit * 1000;
     const MAX_TIME_BONUS = 100; // hasta +100 puntos por responder al instante
+    // Filas de detalle para persistir (una por jugador presente en la pregunta)
+    const qRows = [];
 
     setScores((prev) => {
       const updated = { ...prev };
@@ -314,6 +319,7 @@ export default function QuizBattleHost() {
           updated[playerId] = { score: 0, streak: 0, lastDelta: 0, correctCount: 0 };
         }
         const isCorrect = answerIndex === q.correctIndex;
+        let delta = 0;
         if (isCorrect) {
           updated[playerId].streak += 1;
           updated[playerId].correctCount += 1;
@@ -325,25 +331,60 @@ export default function QuizBattleHost() {
           const timeBonus = totalMs > 0
             ? Math.round((remainingMs / totalMs) * MAX_TIME_BONUS)
             : 0;
-          const delta = base + streakBonus + timeBonus;
+          delta = base + streakBonus + timeBonus;
           updated[playerId].score += delta;
           updated[playerId].lastDelta = delta;
         } else {
           updated[playerId].streak = 0;
           updated[playerId].lastDelta = 0;
         }
+
+        // Guardar fila de detalle para este jugador
+        const responseMs = Math.max(0, answeredAtMs - questionStartRef.current);
+        const player = currentPlayers.find((p) => p.id === playerId);
+        qRows.push({
+          playerId,
+          display_name: player?.name || '',
+          avatar_emoji: player?.emoji || '',
+          question_index: index,
+          question_text: q.question,
+          correct_text: q.correct,
+          answer_index: answerIndex,
+          correct_index: q.correctIndex,
+          is_correct: isCorrect,
+          score_delta: delta,
+          response_time_ms: responseMs,
+        });
       });
 
-      // Players who didn't answer get 0 and streak reset
+      // Players who didn't answer: fila con answer_index=null, score=0
       currentPlayers.forEach((p) => {
-        if (finalAnswers[p.id] === undefined && updated[p.id]) {
-          updated[p.id].streak = 0;
-          updated[p.id].lastDelta = 0;
+        if (finalAnswers[p.id] === undefined) {
+          if (updated[p.id]) {
+            updated[p.id].streak = 0;
+            updated[p.id].lastDelta = 0;
+          }
+          qRows.push({
+            playerId: p.id,
+            display_name: p.name || '',
+            avatar_emoji: p.emoji || '',
+            question_index: index,
+            question_text: q.question,
+            correct_text: q.correct,
+            answer_index: null,
+            correct_index: q.correctIndex,
+            is_correct: false,
+            score_delta: 0,
+            response_time_ms: null,
+          });
         }
       });
 
       return updated;
     });
+
+    // Acumula las filas de detalle para persistirlas al final de la batalla
+    questionResultsRef.current.push(...qRows);
 
     const dist = [0, 0, 0, 0];
     Object.values(finalAnswers).forEach((ans) => {
@@ -419,6 +460,37 @@ export default function QuizBattleHost() {
       });
       if (data?.player_badges && typeof data.player_badges === 'object') {
         playerBadges = data.player_badges;
+      }
+
+      // Persistir detalle (pregunta × jugador) para el historial del dashboard.
+      // Mapeamos playerId → user_id/user_type tal como se envió en playersPayload
+      // para que los alumnos autenticados queden enlazados con su UUID real.
+      if (questionResultsRef.current.length > 0) {
+        try {
+          const rows = questionResultsRef.current.map((r) => {
+            const isGuest = typeof r.playerId === 'string' && r.playerId.startsWith('guest-');
+            return {
+              user_id: isGuest ? null : r.playerId,
+              user_type: isGuest ? 'guest' : 'student',
+              display_name: r.display_name,
+              avatar_emoji: r.avatar_emoji,
+              question_index: r.question_index,
+              question_text: r.question_text,
+              correct_text: r.correct_text,
+              answer_index: r.answer_index,
+              correct_index: r.correct_index,
+              is_correct: r.is_correct,
+              score_delta: r.score_delta,
+              response_time_ms: r.response_time_ms,
+            };
+          });
+          await supabase.rpc('save_quiz_battle_question_results', {
+            p_room_code: roomCode,
+            p_rows: rows,
+          });
+        } catch (err) {
+          console.warn('QuizBattle: error saving question details', err);
+        }
       }
     } catch (err) {
       console.error('QuizBattle: error saving results', err);
