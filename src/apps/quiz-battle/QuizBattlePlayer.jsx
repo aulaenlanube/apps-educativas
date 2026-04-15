@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, animate, useTransform } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import { ArrowLeft, Check, X, Trophy, Clock } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,7 +8,19 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
 import BadgeIcon from '@/components/ui/BadgeIcon';
+import QBBackground from './QBBackground';
 import './QuizBattle.css';
+
+/** Contador que anima de 0 hasta `to` en `duration` segundos, con formato ES. */
+function AnimatedNumber({ value, duration = 0.9, className, style, suffix = '' }) {
+  const mv = useMotionValue(0);
+  const rounded = useTransform(mv, (v) => Math.round(v).toLocaleString('es-ES') + suffix);
+  useEffect(() => {
+    const controls = animate(mv, value, { duration, ease: 'easeOut' });
+    return () => controls.stop();
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+  return <motion.span className={className} style={style}>{rounded}</motion.span>;
+}
 
 const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
 const OPTION_SHAPES = ['\u25B2', '\u25C6', '\u25CF', '\u25A0'];
@@ -198,9 +211,31 @@ export default function QuizBattlePlayer() {
   const timerColor = timerPct > 50 ? 'qb-timer-green' : timerPct > 25 ? 'qb-timer-yellow' : 'qb-timer-red';
   const isCorrect = selectedAnswer === correctIndex;
 
+  // Confetti cuando el alumno es top-3 al terminar
+  useEffect(() => {
+    if (phase !== 'final') return;
+    if (myRank > 0 && myRank <= 3) {
+      const colors = ['#fbbf24', '#ec4899', '#8b5cf6', '#06b6d4', '#10b981'];
+      // Tres ráfagas espaciadas
+      [0, 400, 900].forEach((delay, i) => {
+        setTimeout(() => {
+          confetti({
+            particleCount: myRank === 1 ? 120 : 80,
+            spread: 80 + i * 20,
+            origin: { y: 0.6 },
+            colors,
+          });
+        }, delay);
+      });
+    }
+  }, [phase, myRank]);
+
   // ═══════════════ RENDER ═══════════════
+  const isTimerCritical = phase === 'question' && timeLeft <= 5 && timeLeft > 0;
+
   return (
     <div className={`qb-container ${theme === 'dark' ? 'qb-dark' : ''}`}>
+      <QBBackground />
       <Header subtitle="Batalla" />
 
       <AnimatePresence mode="wait">
@@ -271,14 +306,28 @@ export default function QuizBattlePlayer() {
           <motion.div key="waiting-player" className="qb-waiting"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
 
-            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{userInfo.emoji}</div>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+              className="qb-player-emoji-ripple"
+              style={{ fontSize: '3.2rem', marginBottom: '0.5rem' }}
+            >
+              {userInfo.emoji}
+            </motion.div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
             <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
               Esperando a que el profesor inicie la partida...
             </p>
 
-            <div className="qb-player-count" style={{ marginTop: '1.5rem' }}>
-              {players.length} en la sala
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+              <motion.span className="qb-player-count-ring"
+                key={players.length}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                {players.length} en la sala
+              </motion.span>
             </div>
 
             <div className="qb-players-grid">
@@ -312,24 +361,43 @@ export default function QuizBattlePlayer() {
               <div className={`qb-timer-fill ${timerColor}`} style={{ width: `${timerPct}%` }} />
             </div>
 
-            <div className="qb-question-text">{currentQuestion.question}</div>
+            <motion.div
+              key={`pqtext${questionIndex}`}
+              className="qb-question-text"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
+            >
+              {currentQuestion.question}
+            </motion.div>
 
             <div className="qb-options-grid">
               {currentQuestion.options.map((opt, i) => (
-                <button
+                <motion.button
                   key={i}
                   className={`qb-option qb-opt-${i} ${selectedAnswer === i ? 'qb-opt-selected' : ''}`}
                   disabled={selectedAnswer >= 0}
                   onClick={() => handleAnswer(i)}
+                  initial={{ opacity: 0, scale: 0.85, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <span className="qb-opt-shape">{OPTION_SHAPES[i]}</span>
                   <span>{opt}</span>
-                </button>
+                </motion.button>
               ))}
             </div>
 
             {phase === 'sent' && (
-              <div className="qb-sent-msg">Respuesta enviada</div>
+              <motion.div
+                className="qb-sent-msg"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <Check className="w-6 h-6" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                Respuesta enviada
+              </motion.div>
             )}
           </motion.div>
         )}
@@ -340,20 +408,32 @@ export default function QuizBattlePlayer() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
 
             {/* My result */}
-            <div className="qb-my-result">
-              <div className="qb-my-result-icon">
+            <motion.div
+              className={`qb-my-result ${selectedAnswer < 0 ? 'is-timeout' : isCorrect ? 'is-correct' : 'is-wrong'}`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 180, damping: 16 }}
+            >
+              <div className={`qb-my-result-icon ${selectedAnswer < 0 ? 'is-timeout' : isCorrect ? 'is-correct' : 'is-wrong'}`}>
                 {selectedAnswer < 0 ? '⏰' : isCorrect ? '✅' : '❌'}
               </div>
-              <div style={{ fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.25rem' }}>
-                {selectedAnswer < 0 ? 'Sin respuesta' : isCorrect ? 'Correcto!' : 'Incorrecto'}
+              <div style={{ fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.25rem' }}>
+                {selectedAnswer < 0 ? 'Sin respuesta' : isCorrect ? '¡Correcto!' : 'Incorrecto'}
               </div>
               {myDelta > 0 && (
-                <div className="qb-my-result-points">+{myDelta} puntos</div>
+                <motion.div
+                  className="qb-my-result-points"
+                  initial={{ opacity: 0, y: 8, scale: 0.6 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.25, type: 'spring', stiffness: 240, damping: 12 }}
+                >
+                  +<AnimatedNumber value={myDelta} duration={0.7} /> puntos
+                </motion.div>
               )}
               <div className="qb-my-result-total">
-                Total: {myScore.toLocaleString('es-ES')} pts | Puesto #{myRank}
+                Total: <AnimatedNumber value={myScore} duration={0.9} /> pts &nbsp;·&nbsp; Puesto #{myRank || '—'}
               </div>
-            </div>
+            </motion.div>
 
             {/* Options with correct/wrong highlight */}
             {currentQuestion && (
@@ -401,25 +481,35 @@ export default function QuizBattlePlayer() {
           <motion.div key="final-player" className="qb-final"
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
 
-            <div className="qb-final-title">Resultado Final</div>
+            <div className="qb-final-title">
+              {myRank === 1 ? '🏆 ¡CAMPEÓN! 🏆' : myRank <= 3 ? '🏅 ¡En el podio! 🏅' : 'Resultado Final'}
+            </div>
 
             {/* My result prominently */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+              initial={{ scale: 0, rotate: -15 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 180, damping: 12 }}
               style={{
-                fontSize: '4rem', fontWeight: 900, color: 'var(--qb-score-color)',
-                textShadow: '0 0 20px var(--qb-code-shadow)', marginBottom: '0.5rem'
+                fontSize: '5rem', fontWeight: 900, color: 'var(--qb-score-color)',
+                textShadow: '0 0 24px var(--qb-code-shadow)', marginBottom: '0.25rem',
+                lineHeight: 1,
               }}>
-              #{myRank}
+              #{myRank || '—'}
             </motion.div>
-            <p style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.25rem' }}>
-              {userInfo.emoji} {userInfo.name}
-            </p>
-            <p style={{ color: 'var(--qb-score-color)', fontWeight: 900, fontSize: '1.1rem', marginBottom: '2rem' }}>
-              {myScore.toLocaleString('es-ES')} puntos
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '0.25rem' }}>
+              <span style={{ fontSize: '1.6rem', marginRight: 8 }}>{userInfo.emoji}</span>
+              {userInfo.name}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              style={{ color: 'var(--qb-score-color)', fontWeight: 900, fontSize: '1.5rem', marginBottom: '2rem' }}>
+              <AnimatedNumber value={myScore} duration={1.6} /> <span style={{ fontSize: '0.9rem', opacity: 0.7 }}>puntos</span>
+            </motion.p>
 
             {/* New badges unlocked in this battle */}
             {newBadges.length > 0 && (

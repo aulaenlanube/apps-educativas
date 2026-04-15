@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ import useQuizChannel, { generateRoomCode } from './useQuizChannel';
 import { buildQuizQuestions } from './quizQuestionBuilder';
 import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
+import QBBackground from './QBBackground';
 import './QuizBattle.css';
 
 const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
@@ -467,9 +469,33 @@ export default function QuizBattleHost() {
   // ── Cleanup ──
   useEffect(() => () => clearInterval(timerRef.current), []);
 
+  // ── Confetti final: ráfagas laterales cuando entramos en fase 'final' ──
+  useEffect(() => {
+    if (phase !== 'final') return;
+    const duration = 3500;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+    const frame = () => {
+      const timeLeftMs = animationEnd - Date.now();
+      if (timeLeftMs <= 0) return;
+      const particleCount = 50 * (timeLeftMs / duration);
+      confetti({ ...defaults, particleCount,
+        origin: { x: Math.random() * 0.2, y: Math.random() - 0.2 },
+        colors: ['#fbbf24', '#ec4899', '#8b5cf6', '#06b6d4', '#10b981'] });
+      confetti({ ...defaults, particleCount,
+        origin: { x: 1 - Math.random() * 0.2, y: Math.random() - 0.2 },
+        colors: ['#fbbf24', '#ec4899', '#8b5cf6', '#06b6d4', '#10b981'] });
+      requestAnimationFrame(frame);
+    };
+    frame();
+  }, [phase]);
+
   // ═══════════════ RENDER ═══════════════
+  const isTimerCritical = phase === 'question' && timeLeft <= 5 && timeLeft > 0;
+
   return (
     <div className={`qb-container ${theme === 'dark' ? 'qb-dark' : ''}`}>
+      <QBBackground />
       <Header subtitle="Batalla" />
 
       <AnimatePresence mode="wait">
@@ -687,9 +713,17 @@ export default function QuizBattleHost() {
             </div>
             <p className="qb-join-url">{joinUrl}</p>
 
-            <div className="qb-player-count" style={{ marginTop: '1.5rem' }}>
-              <Users className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle' }} />{' '}
-              {gamePlayers.length} jugador{gamePlayers.length !== 1 ? 'es' : ''} conectados
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+              <motion.span
+                className="qb-player-count-ring"
+                key={gamePlayers.length}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+              >
+                <Users className="w-4 h-4" />
+                {gamePlayers.length} jugador{gamePlayers.length !== 1 ? 'es' : ''} en directo
+              </motion.span>
             </div>
 
             <div className="qb-players-grid">
@@ -731,16 +765,28 @@ export default function QuizBattleHost() {
               <div className={`qb-timer-fill ${timerColor}`} style={{ width: `${timerPct}%` }} />
             </div>
 
-            <div className="qb-timer-big">{timeLeft}</div>
+            <div className={`qb-timer-big ${isTimerCritical ? 'is-critical' : ''}`}>{timeLeft}</div>
 
-            <div className="qb-question-text">{currentQuestion.question}</div>
+            <motion.div
+              key={`qtext${currentQ}`}
+              className="qb-question-text"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
+            >
+              {currentQuestion.question}
+            </motion.div>
 
             <div className="qb-options-grid">
               {currentQuestion.options.map((opt, i) => (
-                <div key={i} className={`qb-option qb-opt-${i}`} style={{ cursor: 'default' }}>
+                <motion.div key={i} className={`qb-option qb-opt-${i}`} style={{ cursor: 'default' }}
+                  initial={{ opacity: 0, scale: 0.85, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
+                >
                   <span className="qb-opt-shape">{OPTION_SHAPES[i]}</span>
                   <span>{opt}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -832,22 +878,35 @@ export default function QuizBattleHost() {
           <motion.div key="final" className="qb-final"
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
 
-            <div className="qb-final-title">Resultado Final</div>
+            <motion.div className="qb-final-title"
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 14 }}>
+              🏆 Resultado Final 🏆
+            </motion.div>
 
             {/* Podium top 3 */}
             <div className="qb-podium">
+              {leaderboard[0] && <span className="qb-podium-rays" />}
               {[1, 0, 2].map((podiumIdx) => {
                 const p = leaderboard[podiumIdx];
                 if (!p) return null;
+                const delay = podiumIdx === 0 ? 0.7 : podiumIdx === 1 ? 0.3 : 1.0;
                 return (
                   <motion.div key={p.id} className={`qb-podium-col qb-podium-${podiumIdx + 1}`}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: podiumIdx === 0 ? 0.5 : podiumIdx === 1 ? 0.2 : 0.8 }}>
+                    transition={{ delay, type: 'spring', stiffness: 120, damping: 18 }}>
                     <div className="qb-podium-emoji">{p.emoji}</div>
                     <div className="qb-podium-name">{p.name}</div>
                     <div className="qb-podium-score">{p.score.toLocaleString('es-ES')} pts</div>
-                    <div className="qb-podium-bar">{podiumIdx + 1}</div>
+                    <motion.div className="qb-podium-bar"
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      style={{ transformOrigin: 'bottom' }}
+                      transition={{ delay: delay + 0.1, duration: 0.6, ease: 'easeOut' }}>
+                      {podiumIdx + 1}
+                    </motion.div>
                   </motion.div>
                 );
               })}
@@ -857,14 +916,17 @@ export default function QuizBattleHost() {
             <div className="qb-leaderboard">
               <div className="qb-lb-title">Clasificacion completa</div>
               {leaderboard.map((p, i) => (
-                <div key={p.id} className="qb-lb-row">
+                <motion.div key={p.id} className="qb-lb-row"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.4 + i * 0.05, duration: 0.3 }}>
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
                   <span className="qb-lb-emoji">{p.emoji}</span>
                   <span className="qb-lb-name">{p.name}</span>
                   <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
 
