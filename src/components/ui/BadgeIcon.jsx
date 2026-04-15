@@ -3836,6 +3836,272 @@ const SVGS = {
     </>
   ),
 
+  // ═══════════════════════ QUIZ BATTLE: VICTORIAS (1º) ═══════════════════════
+  battle_win_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fde68a" /><stop offset="0.5" stopColor="#f59e0b" /><stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+      </defs>
+      {/* Asas */}
+      <path d="M16 20 Q8 20 8 28 Q8 36 18 36" fill="none" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
+      <path d="M48 20 Q56 20 56 28 Q56 36 46 36" fill="none" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
+      {/* Copa */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 28px' }}>
+        <path d="M16 14 L48 14 L46 34 Q46 42 32 44 Q18 42 18 34 Z" fill={`url(#${id}cup)`} stroke="#78350f" strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="22" cy="22" rx="2" ry="6" fill="#fffbeb" opacity="0.55" />
+        <text x="32" y="32" textAnchor="middle" fontSize="12" fontWeight="900" fill="#78350f">1</text>
+      </g>
+      {/* Base */}
+      <rect x="26" y="44" width="12" height="4" fill="#b45309" stroke="#78350f" strokeWidth="1.5" />
+      <rect x="20" y="48" width="24" height="6" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="2" />
+      <rect x="20" y="48" width="24" height="2" fill="#fde68a" opacity="0.4" />
+    </>
+  ),
+  battle_win_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef3c7" /><stop offset="0.5" stopColor="#fbbf24" /><stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+        <linearGradient id={`${id}lau`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#86efac" /><stop offset="1" stopColor="#15803d" />
+        </linearGradient>
+      </defs>
+      {/* Laureles */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 30px' }}>
+        <path d="M10 32 Q6 22 14 14 Q18 22 16 32 Q22 36 24 44" fill="none" stroke={`url(#${id}lau)`} strokeWidth="3" strokeLinecap="round" />
+        <path d="M54 32 Q58 22 50 14 Q46 22 48 32 Q42 36 40 44" fill="none" stroke={`url(#${id}lau)`} strokeWidth="3" strokeLinecap="round" />
+        <ellipse cx="12" cy="20" rx="2.5" ry="4" fill="#22c55e" stroke="#15803d" strokeWidth="1" transform="rotate(-30 12 20)" />
+        <ellipse cx="17" cy="28" rx="2.5" ry="4" fill="#22c55e" stroke="#15803d" strokeWidth="1" transform="rotate(-20 17 28)" />
+        <ellipse cx="52" cy="20" rx="2.5" ry="4" fill="#22c55e" stroke="#15803d" strokeWidth="1" transform="rotate(30 52 20)" />
+        <ellipse cx="47" cy="28" rx="2.5" ry="4" fill="#22c55e" stroke="#15803d" strokeWidth="1" transform="rotate(20 47 28)" />
+      </g>
+      {/* Copa */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 28px' }}>
+        <path d="M18 16 L46 16 L44 34 Q44 42 32 44 Q20 42 20 34 Z" fill={`url(#${id}cup)`} stroke="#78350f" strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="24" cy="24" rx="2" ry="5" fill="#fffbeb" opacity="0.55" />
+        <text x="32" y="32" textAnchor="middle" fontSize="10" fontWeight="900" fill="#78350f">x3</text>
+      </g>
+      <rect x="22" y="48" width="20" height="6" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="2" />
+    </>
+  ),
+  battle_win_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fef3c7" /><stop offset="0.4" stopColor="#fbbf24" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="28" r="22" fill={`url(#${id}gl)`} />
+      {/* Corona sobre copa */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 10px' }}>
+        <path d="M22 12 L26 6 L32 10 L38 6 L42 12 L40 16 L24 16 Z" fill="#fbbf24" stroke="#78350f" strokeWidth="1.5" strokeLinejoin="round" />
+        <circle cx="32" cy="10" r="1.5" fill="#ef4444" stroke="#7f1d1d" strokeWidth="0.6" />
+      </g>
+      {/* Asas */}
+      <path d="M16 22 Q6 22 6 30 Q6 38 18 38" fill="none" stroke="#78350f" strokeWidth="3" strokeLinecap="round" />
+      <path d="M48 22 Q58 22 58 30 Q58 38 46 38" fill="none" stroke="#78350f" strokeWidth="3" strokeLinecap="round" />
+      {/* Copa */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 30px' }}>
+        <path d="M16 18 L48 18 L46 36 Q46 44 32 46 Q18 44 18 36 Z" fill={`url(#${id}cup)`} stroke="#78350f" strokeWidth="2.8" strokeLinejoin="round" />
+        <ellipse cx="22" cy="26" rx="2.5" ry="6" fill="#fffbeb" opacity="0.55" />
+        {/* Llama */}
+        <path d="M32 22 Q28 26 30 30 Q32 28 32 32 Q34 28 36 30 Q34 26 32 22 Z" fill="#f97316" stroke="#b45309" strokeWidth="1" />
+        <text x="32" y="40" textAnchor="middle" fontSize="9" fontWeight="900" fill="#78350f">x5</text>
+      </g>
+      <rect x="22" y="50" width="20" height="6" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="2" />
+    </>
+  ),
+  battle_win_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.65" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
+      {/* Rayos giratorios */}
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({length:14}).map((_,i) => {
+          const a=(i*360/14*Math.PI)/180;
+          return <line key={i} x1={32+Math.sin(a)*26} y1={32-Math.cos(a)*26} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth={i%2?0.8:1.6} strokeLinecap="round" opacity="0.6" />;
+        })}
+      </g>
+      {/* Asas */}
+      <path d="M14 22 Q4 22 4 30 Q4 38 16 38" fill="none" stroke="#451a03" strokeWidth="3" strokeLinecap="round" />
+      <path d="M50 22 Q60 22 60 30 Q60 38 48 38" fill="none" stroke="#451a03" strokeWidth="3" strokeLinecap="round" />
+      {/* Copa legendaria */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 30px' }}>
+        <path d="M14 16 L50 16 L48 36 Q48 44 32 46 Q16 44 16 36 Z" fill={`url(#${id}cup)`} stroke="#451a03" strokeWidth="3" strokeLinejoin="round" />
+        <ellipse cx="20" cy="24" rx="2.5" ry="6" fill="#fffbeb" opacity="0.6" />
+        {/* Gemas */}
+        <circle cx="26" cy="26" r="2" fill="#ef4444" stroke="#7f1d1d" strokeWidth="0.6" />
+        <circle cx="38" cy="26" r="2" fill="#3b82f6" stroke="#1e3a8a" strokeWidth="0.6" />
+        <circle cx="32" cy="32" r="2.5" fill="#10b981" stroke="#064e3b" strokeWidth="0.6" />
+        <text x="32" y="42" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">x10</text>
+      </g>
+      <rect x="20" y="50" width="24" height="7" rx="1" fill="#451a03" stroke="#1c1917" strokeWidth="2" />
+      <rect x="20" y="50" width="24" height="2" fill="#fde68a" opacity="0.35" />
+    </>
+  ),
+
+  // ═══════════════════════ QUIZ BATTLE: PODIO (1º/2º/3º) ═══════════════════════
+  battle_podium_1: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fde68a" /><stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f1f5f9" /><stop offset="1" stopColor="#64748b" />
+        </linearGradient>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fdba74" /><stop offset="1" stopColor="#7c2d12" />
+        </linearGradient>
+      </defs>
+      {/* Tres podios */}
+      <rect x="8"  y="34" width="16" height="22" fill={`url(#${id}s)`} stroke="#334155" strokeWidth="2" />
+      <rect x="24" y="24" width="16" height="32" fill={`url(#${id}g)`} stroke="#78350f" strokeWidth="2" />
+      <rect x="40" y="40" width="16" height="16" fill={`url(#${id}b)`} stroke="#7c2d12" strokeWidth="2" />
+      {/* Numeros */}
+      <text x="16" y="48" textAnchor="middle" fontSize="8" fontWeight="900" fill="#1e293b">2</text>
+      <text x="32" y="42" textAnchor="middle" fontSize="10" fontWeight="900" fill="#78350f">1</text>
+      <text x="48" y="51" textAnchor="middle" fontSize="7" fontWeight="900" fill="#431407">3</text>
+      {/* Estrella sobre primero */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 18px' }}>
+        <path d="M32 6 L34 14 L42 14 L35 19 L38 26 L32 22 L26 26 L29 19 L22 14 L30 14 Z" fill="#fbbf24" stroke="#78350f" strokeWidth="1.5" strokeLinejoin="round" />
+      </g>
+    </>
+  ),
+  battle_podium_3: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fde68a" /><stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f1f5f9" /><stop offset="1" stopColor="#64748b" />
+        </linearGradient>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fdba74" /><stop offset="1" stopColor="#7c2d12" />
+        </linearGradient>
+      </defs>
+      {/* Medallas encima */}
+      <g className="ba-anim anim-twinkle">
+        {/* Oro */}
+        <circle cx="32" cy="14" r="7" fill={`url(#${id}g)`} stroke="#78350f" strokeWidth="2" />
+        <circle cx="32" cy="14" r="3.5" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+        {/* Plata */}
+        <circle cx="14" cy="18" r="5.5" fill={`url(#${id}s)`} stroke="#334155" strokeWidth="1.5" />
+        <circle cx="14" cy="18" r="2.5" fill="#f8fafc" stroke="#475569" strokeWidth="0.6" />
+        {/* Bronce */}
+        <circle cx="50" cy="18" r="5.5" fill={`url(#${id}b)`} stroke="#7c2d12" strokeWidth="1.5" />
+        <circle cx="50" cy="18" r="2.5" fill="#fed7aa" stroke="#9a3412" strokeWidth="0.6" />
+      </g>
+      {/* Cintas */}
+      <path d="M27 8 L29 14 M37 8 L35 14" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" />
+      <path d="M10 12 L12 17 M18 12 L16 17" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M46 12 L48 17 M54 12 L52 17" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Podio inferior */}
+      <rect x="8"  y="36" width="16" height="20" fill={`url(#${id}s)`} stroke="#334155" strokeWidth="2" />
+      <rect x="24" y="30" width="16" height="26" fill={`url(#${id}g)`} stroke="#78350f" strokeWidth="2" />
+      <rect x="40" y="42" width="16" height="14" fill={`url(#${id}b)`} stroke="#7c2d12" strokeWidth="2" />
+      <text x="32" y="48" textAnchor="middle" fontSize="9" fontWeight="900" fill="#78350f">x3</text>
+    </>
+  ),
+  battle_podium_5: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fde68a" /><stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f1f5f9" /><stop offset="1" stopColor="#475569" />
+        </linearGradient>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fdba74" /><stop offset="1" stopColor="#7c2d12" />
+        </linearGradient>
+        <linearGradient id={`${id}lau`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#86efac" /><stop offset="1" stopColor="#15803d" />
+        </linearGradient>
+      </defs>
+      {/* Laureles envolviendo */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M6 40 Q2 26 10 14" fill="none" stroke={`url(#${id}lau)`} strokeWidth="3" strokeLinecap="round" />
+        <path d="M58 40 Q62 26 54 14" fill="none" stroke={`url(#${id}lau)`} strokeWidth="3" strokeLinecap="round" />
+        <ellipse cx="5" cy="28" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(-30 5 28)" />
+        <ellipse cx="9"  cy="18" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(-15 9 18)" />
+        <ellipse cx="59" cy="28" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(30 59 28)" />
+        <ellipse cx="55" cy="18" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(15 55 18)" />
+      </g>
+      {/* Figura central en el primer puesto */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 22px' }}>
+        <circle cx="32" cy="18" r="5" fill="#fef3c7" stroke="#78350f" strokeWidth="1.8" />
+        <path d="M26 32 Q26 24 32 24 Q38 24 38 32 Z" fill="#fbbf24" stroke="#78350f" strokeWidth="1.8" strokeLinejoin="round" />
+        {/* brazos en V */}
+        <line x1="27" y1="26" x2="22" y2="20" stroke="#78350f" strokeWidth="2" strokeLinecap="round" />
+        <line x1="37" y1="26" x2="42" y2="20" stroke="#78350f" strokeWidth="2" strokeLinecap="round" />
+      </g>
+      {/* Podio */}
+      <rect x="8"  y="42" width="16" height="14" fill={`url(#${id}s)`} stroke="#334155" strokeWidth="2" />
+      <rect x="24" y="34" width="16" height="22" fill={`url(#${id}g)`} stroke="#78350f" strokeWidth="2" />
+      <rect x="40" y="46" width="16" height="10" fill={`url(#${id}b)`} stroke="#7c2d12" strokeWidth="2" />
+      <text x="32" y="50" textAnchor="middle" fontSize="9" fontWeight="900" fill="#78350f">x5</text>
+    </>
+  ),
+  battle_podium_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.5" stopColor="#fbbf24" /><stop offset="1" stopColor="#78350f" />
+        </linearGradient>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f8fafc" /><stop offset="1" stopColor="#334155" />
+        </linearGradient>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fdba74" /><stop offset="1" stopColor="#7c2d12" />
+        </linearGradient>
+        <radialGradient id={`${id}glow`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill={`url(#${id}glow)`} />
+      {/* Rayos */}
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 20px' }}>
+        {Array.from({length:12}).map((_,i) => {
+          const a=(i*30*Math.PI)/180;
+          return <line key={i} x1={32+Math.sin(a)*12} y1={20-Math.cos(a)*12} x2={32+Math.sin(a)*18} y2={20-Math.cos(a)*18} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />;
+        })}
+      </g>
+      {/* Estrella coronando */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 18px' }}>
+        <path d="M32 6 L35 15 L45 15 L37 21 L40 30 L32 24 L24 30 L27 21 L19 15 L29 15 Z"
+              fill={`url(#${id}g)`} stroke="#78350f" strokeWidth="2" strokeLinejoin="round" />
+        <ellipse cx="28" cy="14" rx="1.5" ry="3" fill="#fffbeb" opacity="0.6" />
+      </g>
+      {/* Podio */}
+      <rect x="6"  y="44" width="17" height="14" fill={`url(#${id}s)`} stroke="#1e293b" strokeWidth="2" />
+      <rect x="23" y="36" width="18" height="22" fill={`url(#${id}g)`} stroke="#451a03" strokeWidth="2.5" />
+      <rect x="41" y="48" width="17" height="10" fill={`url(#${id}b)`} stroke="#431407" strokeWidth="2" />
+      <text x="32" y="52" textAnchor="middle" fontSize="8" fontWeight="900" fill="#451a03">x10</text>
+      {/* Destellos */}
+      <g className="ba-anim anim-twinkle">
+        <circle cx="6"  cy="18" r="1.5" fill="#fde047" />
+        <circle cx="58" cy="18" r="1.5" fill="#fde047" />
+        <circle cx="4"  cy="36" r="1"   fill="#fbbf24" />
+        <circle cx="60" cy="36" r="1"   fill="#fbbf24" />
+      </g>
+    </>
+  ),
+
   // ═══════════════════════ TEACHER: GRUPOS ═══════════════════════
   teacher_first_group: (id) => (
     <>
