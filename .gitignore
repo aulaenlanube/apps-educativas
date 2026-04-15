@@ -114,3 +114,5 @@ public/build/
 dist
 dist-ssr
 *.local
+# Claude Code local settings
+.claude/settings.local.json
