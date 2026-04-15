@@ -364,10 +364,11 @@ export default function QuizBattleHost() {
   const handleEndGame = async () => {
     setPhase('final');
     const lb = buildLeaderboard(scores, gamePlayers);
-    broadcast('game:end', { leaderboard: lb });
 
-    // Persist results to database
+    // Persist results first so the RPC can return per-player new badges; then
+    // broadcast game:end with that info so students see their unlocks live.
     setSaving(true);
+    let playerBadges = {};
     try {
       const playersPayload = lb.map((p, i) => ({
         user_type: p.id.startsWith('guest-') ? 'guest' : 'student',
@@ -379,7 +380,7 @@ export default function QuizBattleHost() {
         correct_answers: scores[p.id]?.correctCount || 0,
       }));
 
-      await supabase.rpc('save_quiz_battle_results', {
+      const { data } = await supabase.rpc('save_quiz_battle_results', {
         p_room_code: roomCode,
         p_host_id: teacher?.id || null,
         p_level: level,
@@ -389,10 +390,15 @@ export default function QuizBattleHost() {
         p_total_questions: questions.length,
         p_players: playersPayload,
       });
+      if (data?.player_badges && typeof data.player_badges === 'object') {
+        playerBadges = data.player_badges;
+      }
     } catch (err) {
       console.error('QuizBattle: error saving results', err);
     }
     setSaving(false);
+
+    broadcast('game:end', { leaderboard: lb, playerBadges });
   };
 
   // ── Helpers ──

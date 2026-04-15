@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
+import BadgeIcon from '@/components/ui/BadgeIcon';
 import './QuizBattle.css';
 
 const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
@@ -39,6 +40,7 @@ export default function QuizBattlePlayer() {
   const [distribution, setDistribution] = useState([0, 0, 0, 0]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [finalLeaderboard, setFinalLeaderboard] = useState([]);
+  const [newBadges, setNewBadges] = useState([]);
 
   const timerRef = useRef(null);
   const questionStartRef = useRef(0);
@@ -159,6 +161,13 @@ export default function QuizBattlePlayer() {
       if (myEntry) {
         setMyScore(myEntry.score);
         setMyRank(data.leaderboard.indexOf(myEntry) + 1);
+      }
+      // Extract this student's newly unlocked battle badges (if any)
+      const myBadges = data.playerBadges?.[userInfo.id];
+      if (Array.isArray(myBadges) && myBadges.length > 0) {
+        setNewBadges(myBadges);
+      } else {
+        setNewBadges([]);
       }
       setPhase('final');
     });
@@ -407,6 +416,65 @@ export default function QuizBattlePlayer() {
             <p style={{ color: 'var(--qb-score-color)', fontWeight: 900, fontSize: '1.1rem', marginBottom: '2rem' }}>
               {myScore.toLocaleString('es-ES')} puntos
             </p>
+
+            {/* New badges unlocked in this battle */}
+            {newBadges.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                style={{
+                  margin: '0 auto 2rem',
+                  padding: '1rem',
+                  maxWidth: 420,
+                  background: 'linear-gradient(135deg, rgba(251,191,36,0.18), rgba(236,72,153,0.18))',
+                  border: '2px solid rgba(251,191,36,0.5)',
+                  borderRadius: 16,
+                  boxShadow: '0 0 30px rgba(251,191,36,0.25)',
+                }}
+              >
+                <div style={{
+                  fontSize: '0.9rem', fontWeight: 900, textAlign: 'center',
+                  color: '#fbbf24', marginBottom: '0.75rem', letterSpacing: '0.05em',
+                }}>
+                  ¡INSIGNIA{newBadges.length > 1 ? 'S' : ''} DESBLOQUEADA{newBadges.length > 1 ? 'S' : ''}!
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {newBadges.map((b, i) => (
+                    <motion.div
+                      key={b.code}
+                      initial={{ scale: 0, rotate: -20, opacity: 0 }}
+                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                      transition={{
+                        delay: 0.6 + i * 0.3,
+                        type: 'spring', stiffness: 180, damping: 14,
+                      }}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '0.85rem',
+                        padding: '0.6rem 0.8rem', borderRadius: 12,
+                        background: 'rgba(0,0,0,0.25)',
+                      }}
+                    >
+                      <BadgeIcon code={b.code} rarity={b.rarity} size={56} animated />
+                      <div style={{ flex: 1, textAlign: 'left' }}>
+                        <div style={{ fontWeight: 900, fontSize: '1rem', color: '#fef3c7' }}>
+                          {b.name_es}
+                        </div>
+                        <div style={{ fontSize: '0.8rem', opacity: 0.8, lineHeight: 1.3 }}>
+                          {b.description_es}
+                        </div>
+                        <div style={{
+                          marginTop: 2, fontSize: '0.75rem', fontWeight: 800,
+                          color: '#fbbf24',
+                        }}>
+                          +{b.xp_reward} XP
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Full ranking */}
             <div className="qb-leaderboard">
