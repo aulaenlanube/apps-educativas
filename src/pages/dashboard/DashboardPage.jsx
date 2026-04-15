@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText } from 'lucide-react';
+import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText, Compass } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -78,9 +78,7 @@ const DashboardPage = () => {
           >
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-white" />
-                </div>
+                <span className="text-6xl leading-none flex-shrink-0">{teacher?.avatar_emoji || '🎓'}</span>
                 <div>
                   <h1 className="text-xl font-bold text-gray-800">
                     Hola, {teacher?.display_name}
@@ -92,6 +90,28 @@ const DashboardPage = () => {
               </div>
 
               <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => {
+                    if (selectedGroup?.level && selectedGroup?.grade) {
+                      const path = selectedGroup.subject_id
+                        ? `/curso/${selectedGroup.level}/${selectedGroup.grade}/${selectedGroup.subject_id}`
+                        : `/curso/${selectedGroup.level}/${selectedGroup.grade}`;
+                      navigate(path);
+                    } else {
+                      navigate('/');
+                    }
+                  }}
+                  className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl px-4 py-2.5 hover:shadow-lg transition-all text-white group"
+                  title={selectedGroup ? `Apps de ${selectedGroup.name || 'tu grupo'}` : 'Elegir curso'}
+                >
+                  <Compass className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <p className="text-xs text-blue-100 text-left">
+                      {selectedGroup ? 'Del grupo seleccionado' : 'Elige curso'}
+                    </p>
+                    <p className="text-lg font-bold tracking-wide">Explorar Apps</p>
+                  </div>
+                </button>
                 <button
                   onClick={() => navigate('/quiz-battle/host')}
                   className="flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl px-4 py-2.5 hover:shadow-lg transition-all text-white group"

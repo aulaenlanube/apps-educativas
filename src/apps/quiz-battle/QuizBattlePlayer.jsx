@@ -9,6 +9,8 @@ import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import QBBackground from './QBBackground';
+import QBStageAnimation from './QBStageAnimation';
+import QBStageAnimationSimple from './QBStageAnimationSimple';
 import './QuizBattle.css';
 
 /** Contador que anima de 0 hasta `to` en `duration` segundos, con formato ES. */
@@ -23,7 +25,7 @@ function AnimatedNumber({ value, duration = 0.9, className, style, suffix = '' }
 }
 
 const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
-const OPTION_SHAPES = ['\u25B2', '\u25C6', '\u25CF', '\u25A0'];
+const OPTION_SHAPES = ['⭐', '❤️', '🔵', '🟩'];
 
 export default function QuizBattlePlayer() {
   const { code: urlCode } = useParams();
@@ -39,7 +41,9 @@ export default function QuizBattlePlayer() {
   const [joinError, setJoinError] = useState('');
 
   // ── Game state ──
-  const [phase, setPhase] = useState('join'); // join | waiting | question | sent | results | final
+  const [phase, setPhase] = useState('join'); // join | waiting | countdown | question | sent | results | final
+  const [countdownValue, setCountdownValue] = useState(3);
+  const [bgAnimMode, setBgAnimMode] = useState('complex');
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
@@ -133,9 +137,24 @@ export default function QuizBattlePlayer() {
 
     onBroadcast('game:start', (data) => {
       setTotalQuestions(data.totalQuestions);
+      if (data.bgAnimMode) setBgAnimMode(data.bgAnimMode);
+    });
+
+    onBroadcast('game:countdown', (data) => {
+      const from = data?.from || 3;
+      if (data?.bgAnimMode) setBgAnimMode(data.bgAnimMode);
+      setCountdownValue(from);
+      setPhase('countdown');
+      let n = from;
+      const cdInt = setInterval(() => {
+        n -= 1;
+        if (n <= 0) clearInterval(cdInt);
+        else setCountdownValue(n);
+      }, 1000);
     });
 
     onBroadcast('game:question', (data) => {
+      if (data.bgAnimMode) setBgAnimMode(data.bgAnimMode);
       setPhase('question');
       setQuestionIndex(data.index);
       setCurrentQuestion({ question: data.question, options: data.options });
@@ -378,9 +397,31 @@ export default function QuizBattlePlayer() {
         )}
 
         {/* ── QUESTION ── */}
+        {phase === 'countdown' && (
+          <motion.div key="countdown-player" className="qb-countdown"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
+            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity="normal" />}
+            <p className="qb-countdown-label">Preparate...</p>
+            <motion.div
+              key={`cd${countdownValue}`}
+              className="qb-countdown-num"
+              initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              exit={{ scale: 1.6, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 14 }}
+            >
+              {countdownValue}
+            </motion.div>
+          </motion.div>
+        )}
+
         {(phase === 'question' || phase === 'sent') && currentQuestion && (
           <motion.div key={`pq${questionIndex}`} className="qb-question-screen"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+
+            {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
+            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
 
             <div className="qb-header">
               <span className="qb-q-number">
@@ -394,6 +435,8 @@ export default function QuizBattlePlayer() {
             <div className="qb-timer-bar">
               <div className={`qb-timer-fill ${timerColor}`} style={{ width: `${timerPct}%` }} />
             </div>
+
+            <div className={`qb-timer-big ${isTimerCritical ? 'is-critical' : ''}`}>{timeLeft}</div>
 
             <motion.div
               key={`pqtext${questionIndex}`}

@@ -12,10 +12,12 @@ import { buildQuizQuestions } from './quizQuestionBuilder';
 import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
 import QBBackground from './QBBackground';
+import QBStageAnimation from './QBStageAnimation';
+import QBStageAnimationSimple from './QBStageAnimationSimple';
 import './QuizBattle.css';
 
 const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
-const OPTION_SHAPES = ['\u25B2', '\u25C6', '\u25CF', '\u25A0']; // triangle, diamond, circle, square
+const OPTION_SHAPES = ['⭐', '❤️', '🔵', '🟩']; // emojis por opcion
 const RANK_MEDALS = ['', '1', '2', '3', '4', '5'];
 
 const getSubjects = (level, grade) => {
@@ -44,6 +46,7 @@ export default function QuizBattleHost() {
   const [timeLimit, setTimeLimit] = useState(20);
   const [battleDifficulty, setBattleDifficulty] = useState('experto');
   const [shuffleColors, setShuffleColors] = useState(false); // cada alumno ve colores distintos
+  const [bgAnimMode, setBgAnimMode] = useState('complex'); // 'none' | 'simple' | 'complex'
 
   const MAX_PLAYERS = 30;
 
@@ -57,7 +60,8 @@ export default function QuizBattleHost() {
   }, [teacher?.id]);
 
   // ── Game state ──
-  const [phase, setPhase] = useState('config'); // config | waiting | question | results | final
+  const [phase, setPhase] = useState('config'); // config | waiting | countdown | question | results | final
+  const [countdownValue, setCountdownValue] = useState(3);
   const [roomCode, setRoomCode] = useState('');
   const [questions, setQuestions] = useState([]);
   const [currentQ, setCurrentQ] = useState(0);
@@ -174,6 +178,17 @@ export default function QuizBattleHost() {
     });
   }, [phase, onBroadcast]);
 
+  // ── Auto-cerrar pregunta cuando todos hayan respondido ──
+  useEffect(() => {
+    if (phase !== 'question') return;
+    if (gamePlayers.length === 0) return;
+    const answered = Object.keys(answers).length;
+    if (answered >= gamePlayers.length) {
+      const t = setTimeout(() => finishQuestionRef.current?.(currentQ), 400);
+      return () => clearTimeout(t);
+    }
+  }, [phase, answers, gamePlayers.length, currentQ]);
+
   // ── Create room ──
   const handleCreateRoom = async () => {
     if (roomType === 'group' && !selectedGroupId) {
@@ -252,8 +267,21 @@ export default function QuizBattleHost() {
     setScores(initScores);
     setCurrentQ(0);
     questionResultsRef.current = []; // reset detalle para la nueva partida
-    broadcast('game:start', { totalQuestions: questions.length });
-    launchQuestion(0);
+    broadcast('game:start', { totalQuestions: questions.length, bgAnimMode });
+    // Cuenta atras 3,2,1 antes de la primera pregunta
+    setCountdownValue(3);
+    setPhase('countdown');
+    broadcast('game:countdown', { from: 3, bgAnimMode });
+    let n = 3;
+    const cdInt = setInterval(() => {
+      n -= 1;
+      if (n <= 0) {
+        clearInterval(cdInt);
+        launchQuestion(0);
+      } else {
+        setCountdownValue(n);
+      }
+    }, 1000);
   };
 
   // ── Launch a question ──
@@ -274,6 +302,7 @@ export default function QuizBattleHost() {
       options: q.options,
       timeLimit,
       shuffleColors, // cada jugador permuta sus propios colores si está activo
+      bgAnimMode,
     });
 
     // Start timer
@@ -721,6 +750,27 @@ export default function QuizBattleHost() {
                 <div className="qb-range-val">{timeLimit}s</div>
               </div>
 
+              {/* Animacion de fondo */}
+              <div className="qb-field">
+                <label>Animacion de fondo</label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+                  {[
+                    { v: 'none',    icon: '🚫', label: 'Sin animacion',  desc: 'Interfaz limpia' },
+                    { v: 'simple',  icon: '◯',  label: 'Simple',         desc: 'Anillos minimalistas' },
+                    { v: 'complex', icon: '✨', label: 'Compleja',        desc: 'Efectos espectaculares' },
+                  ].map(opt => (
+                    <button key={opt.v} type="button"
+                      onClick={() => setBgAnimMode(opt.v)}
+                      className={`qb-toggle-btn ${bgAnimMode === opt.v ? 'is-active' : ''}`}
+                      style={{ padding: '0.7rem 0.5rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.4rem', marginBottom: 4 }}>{opt.icon}</div>
+                      <div style={{ fontWeight: 800, fontSize: '0.85rem' }}>{opt.label}</div>
+                      <div style={{ fontSize: '0.68rem', opacity: 0.7, marginTop: 2, fontWeight: 500 }}>{opt.desc}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Anti-copia: cada alumno ve colores distintos */}
               <div className="qb-field">
                 <label>Anti-copia</label>
@@ -849,9 +899,31 @@ export default function QuizBattleHost() {
         )}
 
         {/* ── QUESTION ── */}
+        {phase === 'countdown' && (
+          <motion.div key="countdown-host" className="qb-countdown"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
+            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity="normal" />}
+            <p className="qb-countdown-label">Preparate...</p>
+            <motion.div
+              key={`cd${countdownValue}`}
+              className="qb-countdown-num"
+              initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              exit={{ scale: 1.6, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 14 }}
+            >
+              {countdownValue}
+            </motion.div>
+          </motion.div>
+        )}
+
         {phase === 'question' && currentQuestion && (
           <motion.div key={`q${currentQ}`} className="qb-question-screen"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+
+            {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
+            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
 
             <div className="qb-header">
               <span className="qb-q-number">Pregunta {currentQ + 1}/{questions.length}</span>

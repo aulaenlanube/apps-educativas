@@ -527,11 +527,11 @@ export default function StudentDashboard() {
                 )}
                 <button
                   onClick={() => navigate('/quiz-battle/join')}
-                  className="flex items-center gap-2.5 px-5 py-5 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-base font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-lg font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                   title="Unirse a una Batalla"
                 >
-                  <Zap className="w-7 h-7" />
-                  Quiz
+                  <Zap className="w-6 h-6" />
+                  Batalla
                 </button>
               </div>
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center shrink-0">
@@ -560,7 +560,7 @@ export default function StudentDashboard() {
           </motion.div>
 
           {/* Tabs */}
-          <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-slate-100 shadow-sm overflow-x-auto">
+          <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-slate-100 shadow-sm overflow-x-auto scrollbar-hide">
             {tabs.map(tab => (
               <button
                 key={tab.id}
