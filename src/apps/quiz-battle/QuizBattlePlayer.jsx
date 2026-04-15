@@ -54,6 +54,8 @@ export default function QuizBattlePlayer() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [finalLeaderboard, setFinalLeaderboard] = useState([]);
   const [newBadges, setNewBadges] = useState([]);
+  // Permutación de colores/formas por pregunta (anti-copia). [0,1,2,3] = sin permutar.
+  const [colorPerm, setColorPerm] = useState([0, 1, 2, 3]);
 
   const timerRef = useRef(null);
   const questionStartRef = useRef(0);
@@ -135,6 +137,19 @@ export default function QuizBattlePlayer() {
       setTimeLeft(data.timeLimit);
       setSelectedAnswer(-1);
       setCorrectIndex(-1);
+      // Permutación de colores/formas: cada alumno ve un orden visual distinto.
+      // El answerIndex enviado al host sigue siendo el índice del slot (que contiene
+      // el mismo texto para todos), así que el scoring no cambia.
+      if (data.shuffleColors) {
+        const perm = [0, 1, 2, 3];
+        for (let k = perm.length - 1; k > 0; k--) {
+          const j = Math.floor(Math.random() * (k + 1));
+          [perm[k], perm[j]] = [perm[j], perm[k]];
+        }
+        setColorPerm(perm);
+      } else {
+        setColorPerm([0, 1, 2, 3]);
+      }
       questionStartRef.current = Date.now();
 
       // Local timer
@@ -372,21 +387,24 @@ export default function QuizBattlePlayer() {
             </motion.div>
 
             <div className="qb-options-grid">
-              {currentQuestion.options.map((opt, i) => (
-                <motion.button
-                  key={i}
-                  className={`qb-option qb-opt-${i} ${selectedAnswer === i ? 'qb-opt-selected' : ''}`}
-                  disabled={selectedAnswer >= 0}
-                  onClick={() => handleAnswer(i)}
-                  initial={{ opacity: 0, scale: 0.85, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="qb-opt-shape">{OPTION_SHAPES[i]}</span>
-                  <span>{opt}</span>
-                </motion.button>
-              ))}
+              {currentQuestion.options.map((opt, i) => {
+                const c = colorPerm[i]; // índice de color/forma visible para este alumno
+                return (
+                  <motion.button
+                    key={i}
+                    className={`qb-option qb-opt-${c} ${selectedAnswer === i ? 'qb-opt-selected' : ''}`}
+                    disabled={selectedAnswer >= 0}
+                    onClick={() => handleAnswer(i)}
+                    initial={{ opacity: 0, scale: 0.85, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="qb-opt-shape">{OPTION_SHAPES[c]}</span>
+                    <span>{opt}</span>
+                  </motion.button>
+                );
+              })}
             </div>
 
             {phase === 'sent' && (
@@ -435,17 +453,17 @@ export default function QuizBattlePlayer() {
               </div>
             </motion.div>
 
-            {/* Options with correct/wrong highlight */}
+            {/* Options with correct/wrong highlight (respetando la permutación visual) */}
             {currentQuestion && (
               <div className="qb-options-grid" style={{ marginBottom: '1.5rem' }}>
                 {currentQuestion.options.map((opt, i) => {
+                  const c = colorPerm[i];
                   let extra = '';
                   if (i === correctIndex) extra = 'qb-opt-correct';
-                  else if (selectedAnswer === i) extra = 'qb-opt-wrong';
                   else extra = 'qb-opt-wrong';
                   return (
-                    <div key={i} className={`qb-option qb-opt-${i} ${extra}`} style={{ cursor: 'default' }}>
-                      <span className="qb-opt-shape">{OPTION_SHAPES[i]}</span>
+                    <div key={i} className={`qb-option qb-opt-${c} ${extra}`} style={{ cursor: 'default' }}>
+                      <span className="qb-opt-shape">{OPTION_SHAPES[c]}</span>
                       <span>{opt}</span>
                       {i === correctIndex && <Check className="w-5 h-5" style={{ marginLeft: 'auto' }} />}
                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle } from 'lucide-react';
+import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle, Check } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -43,6 +43,7 @@ export default function QuizBattleHost() {
   const [questionCount, setQuestionCount] = useState(10);
   const [timeLimit, setTimeLimit] = useState(20);
   const [battleDifficulty, setBattleDifficulty] = useState('experto');
+  const [shuffleColors, setShuffleColors] = useState(false); // cada alumno ve colores distintos
 
   const MAX_PLAYERS = 30;
 
@@ -216,20 +217,7 @@ export default function QuizBattleHost() {
       setRoomCode(code);
       setPhase('waiting');
 
-      // Send notifications to group students if group mode
-      if (roomType === 'group' && selectedGroupId) {
-        const groupName = groups.find((g) => g.id === selectedGroupId)?.name || 'tu grupo';
-        try {
-          await supabase.rpc('notify_group_quiz_battle', {
-            p_group_id: selectedGroupId,
-            p_teacher_name: teacher?.display_name || 'Tu profesor',
-            p_room_code: code,
-            p_group_name: groupName,
-          });
-        } catch (err) {
-          console.warn('QuizBattle: could not send notifications', err);
-        }
-      }
+      // No se envían notificaciones: los alumnos entran manualmente con el código.
     } catch (err) {
       console.error('QuizBattle: error building questions', err);
       toast({ title: 'Error al cargar preguntas', variant: 'destructive' });
@@ -267,6 +255,7 @@ export default function QuizBattleHost() {
       question: q.question,
       options: q.options,
       timeLimit,
+      shuffleColors, // cada jugador permuta sus propios colores si está activo
     });
 
     // Start timer
@@ -282,7 +271,7 @@ export default function QuizBattleHost() {
         finishQuestionRef.current?.(index);
       }
     }, 250);
-  }, [questions, timeLimit, broadcast]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [questions, timeLimit, broadcast, shuffleColors]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Finish question — score & broadcast ──
   // Called by timer OR by teacher pressing "Cerrar pregunta"
@@ -645,6 +634,29 @@ export default function QuizBattleHost() {
                 <div className="qb-range-val">{timeLimit}s</div>
               </div>
 
+              {/* Anti-copia: cada alumno ve colores distintos */}
+              <div className="qb-field">
+                <label>Anti-copia</label>
+                <button type="button"
+                  onClick={() => setShuffleColors(v => !v)}
+                  className={`qb-toggle-btn ${shuffleColors ? 'is-active' : ''}`}
+                  style={{ width: '100%', textAlign: 'left', padding: '0.8rem 1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: '1.3rem' }}>{shuffleColors ? '🎨' : '🔓'}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 800 }}>
+                        {shuffleColors ? 'Colores aleatorios por alumno' : 'Colores iguales para todos'}
+                      </div>
+                      <div style={{ fontSize: '0.72rem', opacity: 0.7, marginTop: 2, fontWeight: 500 }}>
+                        {shuffleColors
+                          ? 'Cada alumno ve las opciones en colores distintos. Evita copiar "la roja".'
+                          : 'Activa esta opción para que cada alumno vea las opciones con un orden de colores distinto.'}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
               {/* Quota info */}
               {quota && (
                 <div style={{
@@ -807,30 +819,44 @@ export default function QuizBattleHost() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
 
             <div className="qb-results-title">
-              Respuesta correcta: {currentQuestion.correct}
+              Respuesta correcta: <strong style={{ color: '#10b981' }}>{currentQuestion.correct}</strong>
             </div>
 
-            {/* Distribution chart */}
+            {/* Distribution chart — si shuffleColors, mostramos por texto (los colores
+                que vio cada alumno son distintos, así que el color deja de tener sentido
+                como identificador). */}
             <div className="qb-chart">
               {currentQuestion.options.map((opt, i) => {
                 const count = distribution[i];
                 const maxCount = Math.max(...distribution, 1);
                 const pct = (count / maxCount) * 100;
                 const isCorrect = i === currentQuestion.correctIndex;
+                const labelBg = shuffleColors
+                  ? (isCorrect ? '#10b981' : '#64748b')
+                  : OPTION_COLORS[i];
+                const barBg = shuffleColors
+                  ? (isCorrect ? '#10b981' : 'rgba(100,116,139,0.85)')
+                  : OPTION_COLORS[i];
+                const label = shuffleColors
+                  ? ['A', 'B', 'C', 'D'][i]
+                  : OPTION_SHAPES[i];
                 return (
                   <div key={i} className="qb-chart-row">
-                    <div className="qb-chart-label" style={{ background: OPTION_COLORS[i] }}>
-                      {OPTION_SHAPES[i]}
+                    <div className="qb-chart-label" style={{ background: labelBg }}>
+                      {label}
                     </div>
                     <div className="qb-chart-bar-track">
                       <motion.div
                         className={`qb-chart-bar-fill ${isCorrect ? 'is-correct' : ''}`}
-                        style={{ background: OPTION_COLORS[i] }}
+                        style={{ background: barBg }}
                         initial={{ width: 0 }}
                         animate={{ width: `${Math.max(pct, 8)}%` }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                       >
                         {opt}
+                        {isCorrect && (
+                          <Check className="w-4 h-4" style={{ marginLeft: 'auto', marginRight: 6 }} />
+                        )}
                       </motion.div>
                     </div>
                     <span className="qb-chart-count">{count}</span>

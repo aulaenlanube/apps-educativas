@@ -63,6 +63,7 @@
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   position: relative;
   overflow-x: hidden;
+  isolation: isolate; /* stacking context propio para los orbes sin romper z-index del Header */
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -75,8 +76,15 @@
   overflow: hidden;
   z-index: 0;
 }
-.qb-bg-orbs + * { position: relative; z-index: 1; }
-.qb-container > *:not(.qb-bg-orbs) { position: relative; z-index: 1; }
+
+/* Solo las fases de la batalla necesitan z-index elevado sobre los orbes.
+   El Header conserva su propio z-50 (dropdown de notificaciones por encima). */
+.qb-config,
+.qb-waiting,
+.qb-question-screen,
+.qb-results,
+.qb-final,
+.qb-join { position: relative; z-index: 1; }
 
 .qb-orb {
   position: absolute;
