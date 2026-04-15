@@ -96,7 +96,12 @@
       "Bash(grep -oE \"\\([^iI]\\)l [aeiouéàèâêîôû][a-zéèêàâîôûç]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
       "Bash(grep -oE \" l [aeiouéàèâêîôû][a-zéèêàâîôûç]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
       "mcp__claude_ai_Supabase__execute_sql",
-      "mcp__claude_ai_Supabase__apply_migration"
+      "mcp__claude_ai_Supabase__apply_migration",
+      "Bash(ls *.sh *.md)",
+      "Bash(ls deploy*)",
+      "Bash(ssh -p 65002 -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no u921923031@82.25.96.226 \"rm -rf domains/apps-educativas.com/public_html/dist/assets/*\")",
+      "Bash(ssh -p 65002 -i ~/.ssh/id_ed25519 u921923031@82.25.96.226 \"ls domains/apps-educativas.com/public_html/dist/assets/ | wc -l && grep 'index-' domains/apps-educativas.com/public_html/dist/index.html | head -3\")",
+      "Bash(git commit -m ' *)"
     ],
     "additionalDirectories": [
       "\\tmp"
