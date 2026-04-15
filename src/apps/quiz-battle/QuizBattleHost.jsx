@@ -217,7 +217,22 @@ export default function QuizBattleHost() {
       setRoomCode(code);
       setPhase('waiting');
 
-      // No se envían notificaciones: los alumnos entran manualmente con el código.
+      // Solo en modo "Solo mi grupo" se envía notificación a los alumnos del grupo
+      // para que puedan unirse con un clic. En modo "Abierta" no se notifica:
+      // los alumnos entran manualmente con el código.
+      if (roomType === 'group' && selectedGroupId) {
+        const groupName = groups.find((g) => g.id === selectedGroupId)?.name || 'tu grupo';
+        try {
+          await supabase.rpc('notify_group_quiz_battle', {
+            p_group_id: selectedGroupId,
+            p_teacher_name: teacher?.display_name || 'Tu profesor',
+            p_room_code: code,
+            p_group_name: groupName,
+          });
+        } catch (err) {
+          console.warn('QuizBattle: could not send notifications', err);
+        }
+      }
     } catch (err) {
       console.error('QuizBattle: error building questions', err);
       toast({ title: 'Error al cargar preguntas', variant: 'destructive' });
