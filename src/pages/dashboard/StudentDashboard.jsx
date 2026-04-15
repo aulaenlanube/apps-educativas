@@ -527,10 +527,10 @@ export default function StudentDashboard() {
                 )}
                 <button
                   onClick={() => navigate('/quiz-battle/join')}
-                  className="flex items-center gap-2 px-4 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-sm font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  title="Unirse a un Batalla"
+                  className="flex items-center gap-2.5 px-5 py-5 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-base font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  title="Unirse a una Batalla"
                 >
-                  <Zap className="w-5 h-5" />
+                  <Zap className="w-7 h-7" />
                   Quiz
                 </button>
               </div>
@@ -602,44 +602,44 @@ export default function StudentDashboard() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.18 }}
-                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-200 shadow-sm"
+                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200 shadow-sm"
                 >
-                  <h3 className="text-base font-bold text-amber-800 mb-3 flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-amber-500" />
+                  <h3 className="text-xl font-bold text-amber-800 mb-4 flex items-center gap-2.5">
+                    <Zap className="w-6 h-6 text-amber-500" />
                     Batalla
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                     <div>
-                      <p className="text-xs text-amber-600 font-medium">Partidas</p>
-                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_played}</p>
+                      <p className="text-sm text-amber-600 font-medium">Partidas</p>
+                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_played}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-amber-600 font-medium flex items-center gap-1">
-                        <Trophy className="w-3 h-3" /> Victorias
+                      <p className="text-sm text-amber-600 font-medium flex items-center gap-1">
+                        <Trophy className="w-4 h-4" /> Victorias
                       </p>
-                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_wins}</p>
+                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_wins}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-amber-600 font-medium">Podio (Top 3)</p>
-                      <p className="text-2xl font-bold text-amber-900">{qbStats.total_podium}</p>
+                      <p className="text-sm text-amber-600 font-medium">Podio (Top 3)</p>
+                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_podium}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-amber-600 font-medium">Precision</p>
-                      <p className="text-2xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
+                      <p className="text-sm text-amber-600 font-medium">Precision</p>
+                      <p className="text-3xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 mt-3 pt-3 border-t border-amber-200">
+                  <div className="grid grid-cols-3 gap-5 mt-4 pt-4 border-t border-amber-200">
                     <div>
-                      <p className="text-xs text-amber-600">Puesto medio</p>
-                      <p className="text-lg font-bold text-amber-900">#{qbStats.avg_rank}</p>
+                      <p className="text-sm text-amber-600">Puesto medio</p>
+                      <p className="text-xl font-bold text-amber-900">#{qbStats.avg_rank}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-amber-600">Mejor punt.</p>
-                      <p className="text-lg font-bold text-amber-900">{qbStats.best_score}</p>
+                      <p className="text-sm text-amber-600">Mejor punt.</p>
+                      <p className="text-xl font-bold text-amber-900">{qbStats.best_score}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-amber-600">Media punt.</p>
-                      <p className="text-lg font-bold text-amber-900">{qbStats.avg_score}</p>
+                      <p className="text-sm text-amber-600">Media punt.</p>
+                      <p className="text-xl font-bold text-amber-900">{qbStats.avg_score}</p>
                     </div>
                   </div>
                 </motion.div>
