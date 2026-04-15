@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageSquare, Send, Users, User, ChevronLeft, Megaphone,
-  X, Circle,
+  X, Circle, ChevronDown, ChevronUp,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
@@ -16,6 +16,7 @@ export default function GroupChatPanel({ groupId, groupName }) {
   const [sending, setSending] = useState(false);
   const messagesEndRef = useRef(null);
   const pollRef = useRef(null);
+  const [collapsed, setCollapsed] = useState(false);
 
   const fetchOverview = useCallback(async (silent = false) => {
     if (!groupId) return;
@@ -189,10 +190,19 @@ export default function GroupChatPanel({ groupId, groupName }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-bold text-slate-800 flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-purple-500" />
-          Chat de {groupName}
-        </h3>
+        <button
+          onClick={() => setCollapsed(c => !c)}
+          className="flex items-center gap-2 group"
+        >
+          {collapsed
+            ? <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
+            : <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
+          }
+          <h3 className="font-bold text-slate-800 flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-purple-500" />
+            Chat de {groupName}
+          </h3>
+        </button>
         {totalUnread > 0 && (
           <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-purple-100 text-purple-600">
             {totalUnread} sin leer
@@ -200,12 +210,22 @@ export default function GroupChatPanel({ groupId, groupName }) {
         )}
       </div>
 
+      <AnimatePresence initial={false}>
+      {!collapsed && (
+        <motion.div
+          key="chat-body"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="overflow-hidden"
+        >
       {loading ? (
         <div className="flex justify-center py-8">
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500" />
         </div>
       ) : (
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 max-h-[400px] overflow-y-auto pr-1">
           {/* Broadcast thread */}
           <button
             onClick={() => openThread('broadcast')}
@@ -276,6 +296,9 @@ export default function GroupChatPanel({ groupId, groupName }) {
           )}
         </div>
       )}
+        </motion.div>
+      )}
+      </AnimatePresence>
     </div>
   );
 }

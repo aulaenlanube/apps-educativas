@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
     try {
       const { data, error } = await supabase
         .from('teachers')
-        .select('id, role, display_name, email, teacher_code, avatar_emoji, updated_at')
+        .select('id, role, display_name, email, teacher_code, avatar_emoji, avatar_color, bio, website, specialty, center_name, education_levels, created_at, updated_at')
         .eq('id', userId)
         .single();
       if (error) {
@@ -233,12 +233,16 @@ export function AuthProvider({ children }) {
   }
 
   async function updateTeacherProfile(updates) {
+    const { data: { user: currentUser } } = await supabase.auth.getUser();
+    const id = currentUser?.id;
+    if (!id) return { error: { message: 'Sesion expirada. Vuelve a iniciar sesion.' } };
     const { error } = await supabase
       .from('teachers')
       .update({ ...updates, updated_at: new Date().toISOString() })
-      .eq('id', user.id);
+      .eq('id', id);
     if (!error) {
-      setTeacher(prev => ({ ...prev, ...updates }));
+      setTeacher(prev => prev ? { ...prev, ...updates } : prev);
+      setFreeUser(prev => prev ? { ...prev, ...updates } : prev);
     }
     return { error };
   }

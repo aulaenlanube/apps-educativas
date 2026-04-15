@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Mail, KeyRound, GraduationCap, Check, Trophy, Calendar, Sparkles, Award, Shield } from 'lucide-react';
+import { Save, Mail, KeyRound, GraduationCap, Check, Trophy, Calendar, Sparkles, Award, Shield, Globe, School, BookOpen } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import { useToast } from '@/components/ui/use-toast';
@@ -14,6 +14,8 @@ const AVATAR_EMOJIS = [
   '🐲', '🦋', '🌟', '🚀', '⚽', '🎨', '🎵', '📚',
   '🦈', '🐧', '🦉', '🐝', '🌈', '🎮', '🏆', '💎',
   '🔥', '⚡', '🍕', '🌍', '🎯', '🧩', '🤖', '👾',
+  '💀', '👻', '👽', '🤡', '💩', '🧛', '🧟', '🫠',
+  '🤪', '😈', '🥸', '🤮', '🫣', '🤯', '🦠', '🍑',
 ];
 
 const AVATAR_COLORS = [
@@ -47,12 +49,37 @@ const ProfilePage = () => {
 
   const [displayName, setDisplayName] = useState(teacher?.display_name || '');
   const [bio, setBio] = useState(teacher?.bio || '');
+  const [website, setWebsite] = useState(teacher?.website || '');
+  const [specialty, setSpecialty] = useState(teacher?.specialty || '');
+  const [centerName, setCenterName] = useState(teacher?.center_name || '');
+  const [educationLevels, setEducationLevels] = useState(teacher?.education_levels || []);
   const [selectedEmoji, setSelectedEmoji] = useState(teacher?.avatar_emoji || '👨‍🏫');
   const [selectedColor, setSelectedColor] = useState(teacher?.avatar_color || 'from-blue-500 to-purple-500');
   const [saving, setSaving] = useState(false);
 
+  const EDUCATION_LEVELS = [
+    { id: 'infantil', label: 'Infantil' },
+    { id: 'primaria', label: 'Primaria' },
+    { id: 'secundaria', label: 'Secundaria (ESO)' },
+    { id: 'bachillerato', label: 'Bachillerato' },
+    { id: 'fp', label: 'FP' },
+    { id: 'universidad', label: 'Universidad' },
+  ];
+
+  const toggleLevel = (levelId) => {
+    setEducationLevels(prev =>
+      prev.includes(levelId) ? prev.filter(l => l !== levelId) : [...prev, levelId]
+    );
+  };
+
   const hasAvatarChanges = selectedEmoji !== (teacher?.avatar_emoji || '👨‍🏫') || selectedColor !== (teacher?.avatar_color || 'from-blue-500 to-purple-500');
-  const hasProfileChanges = displayName.trim() !== (teacher?.display_name || '') || bio.trim() !== (teacher?.bio || '');
+  const hasProfileChanges =
+    displayName.trim() !== (teacher?.display_name || '') ||
+    bio.trim() !== (teacher?.bio || '') ||
+    website.trim() !== (teacher?.website || '') ||
+    specialty.trim() !== (teacher?.specialty || '') ||
+    centerName.trim() !== (teacher?.center_name || '') ||
+    JSON.stringify([...educationLevels].sort()) !== JSON.stringify([...(teacher?.education_levels || [])].sort());
 
   const xpInLevel = totalXp - xpForCurrentLevel;
   const xpNeeded = xpForNextLevel - xpForCurrentLevel;
@@ -67,19 +94,28 @@ const ProfilePage = () => {
     }
 
     setSaving(true);
-    const updates = {
-      display_name: displayName.trim(),
-      bio: bio.trim(),
-      avatar_emoji: selectedEmoji,
-      avatar_color: selectedColor,
-    };
-    const { error } = await updateTeacherProfile(updates);
-    setSaving(false);
+    try {
+      const updates = {
+        display_name: displayName.trim(),
+        bio: bio.trim(),
+        website: website.trim(),
+        specialty: specialty.trim(),
+        center_name: centerName.trim(),
+        education_levels: educationLevels,
+        avatar_emoji: selectedEmoji,
+        avatar_color: selectedColor,
+      };
+      const { error } = await updateTeacherProfile(updates);
 
-    if (error) {
-      toast({ variant: 'destructive', title: 'Error', description: error.message });
-    } else {
-      toast({ title: 'Perfil actualizado' });
+      if (error) {
+        toast({ variant: 'destructive', title: 'Error', description: error.message });
+      } else {
+        toast({ title: 'Perfil actualizado' });
+      }
+    } catch (err) {
+      toast({ variant: 'destructive', title: 'Error', description: err.message || 'Error inesperado' });
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -105,9 +141,9 @@ const ProfilePage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="relative bg-white rounded-3xl shadow-lg border border-purple-100 overflow-hidden"
           >
-            {/* Banner de fondo */}
+            {/* Banner de fondo con nombre */}
             <div
-              className={`h-32 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}
+              className={`h-40 sm:h-44 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}
             >
               <div className="absolute inset-0 opacity-20"
                 style={{
@@ -118,10 +154,19 @@ const ProfilePage = () => {
                 <Shield className="w-3.5 h-3.5 text-white" />
                 <span className="text-xs font-bold text-white">{roleLabel}</span>
               </div>
+              {/* Nombre sobre el banner */}
+              <div className="absolute bottom-3 left-48 sm:left-52 right-4">
+                <h1 className="text-3xl sm:text-4xl font-black text-white truncate drop-shadow-lg">
+                  {displayName || teacher?.display_name || 'Sin nombre'}
+                </h1>
+                {bio && (
+                  <p className="text-sm text-white/80 mt-1 italic truncate drop-shadow">"{bio}"</p>
+                )}
+              </div>
             </div>
 
             <div className="px-6 pb-6 -mt-20 relative">
-              <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-end">
+              <div className="flex flex-col sm:flex-row gap-6 items-start">
                 {/* Avatar grande */}
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -141,21 +186,9 @@ const ProfilePage = () => {
                   </div>
                 </motion.div>
 
-                {/* Datos */}
-                <div className="flex-1 min-w-0 sm:pb-2">
-                  <h1 className="text-3xl font-black text-slate-800 truncate">
-                    {displayName || teacher?.display_name || 'Sin nombre'}
-                  </h1>
-                  <div className="flex items-center gap-2 mt-1 text-slate-500">
-                    <Mail className="w-3.5 h-3.5" />
-                    <span className="text-sm truncate">{teacher?.email}</span>
-                  </div>
-                  {bio && (
-                    <p className="text-sm text-slate-600 mt-2 italic">"{bio}"</p>
-                  )}
-
-                  {/* Chips */}
-                  <div className="flex flex-wrap gap-2 mt-4">
+                {/* Chips */}
+                <div className="flex-1 min-w-0 pt-2 sm:pt-24">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       onClick={handleCopyCode}
                       className="inline-flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-purple-200"
@@ -271,13 +304,82 @@ const ProfilePage = () => {
 
             {/* Bio */}
             <div className="space-y-2">
-              <Label htmlFor="profile-bio">Sobre mí</Label>
+              <Label htmlFor="profile-bio">Sobre mi</Label>
               <textarea id="profile-bio" value={bio} onChange={e => setBio(e.target.value)}
                 placeholder="Cuéntanos algo sobre ti, tu asignatura, tus aficiones..."
-                rows={4} maxLength={500}
+                rows={3} maxLength={500}
                 className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
               />
               <p className="text-xs text-gray-400 text-right">{bio.length}/500</p>
+            </div>
+
+            {/* Web personal */}
+            <div className="space-y-2">
+              <Label htmlFor="profile-website" className="flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-blue-500" />
+                Web personal
+              </Label>
+              <Input
+                id="profile-website"
+                type="url"
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+                placeholder="https://mi-web.com"
+              />
+            </div>
+
+            {/* Centro educativo + Especialidad */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="profile-center" className="flex items-center gap-1.5">
+                  <School className="w-3.5 h-3.5 text-purple-500" />
+                  Centro educativo
+                </Label>
+                <Input
+                  id="profile-center"
+                  value={centerName}
+                  onChange={e => setCenterName(e.target.value)}
+                  placeholder="Nombre del centro"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="profile-specialty" className="flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                  Especialidad
+                </Label>
+                <Input
+                  id="profile-specialty"
+                  value={specialty}
+                  onChange={e => setSpecialty(e.target.value)}
+                  placeholder="Ej: Lengua, Matematicas, Musica..."
+                />
+              </div>
+            </div>
+
+            {/* Etapas educativas */}
+            <div className="space-y-2">
+              <Label className="flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5 text-amber-500" />
+                Etapas educativas
+              </Label>
+              <p className="text-xs text-slate-400">Selecciona las etapas en las que impartes clase</p>
+              <div className="flex flex-wrap gap-2 mt-1">
+                {EDUCATION_LEVELS.map(lvl => (
+                  <button
+                    key={lvl.id}
+                    type="button"
+                    onClick={() => toggleLevel(lvl.id)}
+                    className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border ${
+                      educationLevels.includes(lvl.id)
+                        ? 'bg-purple-100 text-purple-700 border-purple-300 ring-1 ring-purple-300'
+                        : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {educationLevels.includes(lvl.id) && <Check className="w-3 h-3 inline mr-1" />}
+                    {lvl.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Datos no editables */}

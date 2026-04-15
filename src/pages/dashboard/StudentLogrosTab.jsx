@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter } from 'lucide-react';
+import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter, Medal, Swords, Users, GraduationCap, ClipboardList, MessageSquare, CalendarDays, ThumbsUp } from 'lucide-react';
 import BadgeIcon from '../../components/ui/BadgeIcon';
 import BadgeModal from '../../components/ui/BadgeModal';
 
@@ -12,14 +12,23 @@ const RARITY_CONFIG = {
 };
 
 const CATEGORY_CONFIG = {
-  general:     { label: 'General',      icon: Target },
-  exams:       { label: 'Examenes',     icon: Star },
-  mastery:     { label: 'Maestria',     icon: Zap },
-  exploration: { label: 'Exploracion',  icon: Compass },
-  speed:       { label: 'Velocidad',    icon: Clock },
-  streaks:     { label: 'Rachas',       icon: Flame },
-  dedication:  { label: 'Dedicacion',   icon: Clock },
-  subjects:    { label: 'Asignaturas',  icon: BookOpen },
+  general:          { label: 'General',       icon: Target },
+  exams:            { label: 'Examenes',      icon: Star },
+  mastery:          { label: 'Maestria',      icon: Zap },
+  exploration:      { label: 'Exploracion',   icon: Compass },
+  speed:            { label: 'Velocidad',     icon: Clock },
+  streaks:          { label: 'Rachas',        icon: Flame },
+  dedication:       { label: 'Dedicacion',    icon: CalendarDays },
+  subjects:         { label: 'Asignaturas',   icon: BookOpen },
+  ranking:          { label: 'Ranking',       icon: Medal },
+  battle_rank:      { label: 'Batallas',      icon: Swords },
+  teacher_groups:   { label: 'Grupos',        icon: Users },
+  teacher_students: { label: 'Alumnos',       icon: GraduationCap },
+  teacher_tasks:    { label: 'Tareas',        icon: ClipboardList },
+  teacher_battles:  { label: 'Batallas Quiz', icon: Swords },
+  teacher_messages: { label: 'Mensajes',      icon: MessageSquare },
+  teacher_platform: { label: 'Plataforma',    icon: CalendarDays },
+  teacher_ratings:  { label: 'Valoraciones',  icon: ThumbsUp },
 };
 
 export default function StudentLogrosTab({ gamification }) {
@@ -36,21 +45,28 @@ export default function StudentLogrosTab({ gamification }) {
   const xpNeededForNext = xpForNextLevel - xpForCurrentLevel;
   const progress = xpNeededForNext > 0 ? Math.min(100, Math.round((xpInCurrentLevel / xpNeededForNext) * 100)) : 100;
 
-  const categories = useMemo(() => {
+  const studentBadges = useMemo(() => {
     if (!allBadges?.length) return [];
-    return [...new Set(allBadges.map(b => b.category))];
+    return allBadges.filter(b => !b.category.startsWith('teacher_'));
   }, [allBadges]);
 
+  const categories = useMemo(() => {
+    if (!studentBadges.length) return [];
+    return [...new Set(studentBadges.map(b => b.category))];
+  }, [studentBadges]);
+
   const filteredBadges = useMemo(() => {
-    if (!allBadges?.length) return [];
-    return allBadges.filter(b => {
+    if (!studentBadges.length) return [];
+    return studentBadges.filter(b => {
       if (filterCategory !== 'all' && b.category !== filterCategory) return false;
       if (filterRarity !== 'all' && b.rarity !== filterRarity) return false;
       return true;
     });
-  }, [allBadges, filterCategory, filterRarity]);
+  }, [studentBadges, filterCategory, filterRarity]);
 
   const earnedCount = filteredBadges.filter(b => b.earned).length;
+  const studentEarned = studentBadges.filter(b => b.earned).length;
+  const studentTotal = studentBadges.length;
 
   if (loading) {
     return (
@@ -101,21 +117,21 @@ export default function StudentLogrosTab({ gamification }) {
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-yellow-300" />
             <div>
-              <p className="text-lg font-bold">{totalEarned}</p>
+              <p className="text-lg font-bold">{studentEarned}</p>
               <p className="text-xs text-white/60">Insignias</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Target className="w-5 h-5 text-white/60" />
             <div>
-              <p className="text-lg font-bold">{totalAvailable - totalEarned}</p>
+              <p className="text-lg font-bold">{studentTotal - studentEarned}</p>
               <p className="text-xs text-white/60">Por conseguir</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Star className="w-5 h-5 text-yellow-300" />
             <div>
-              <p className="text-lg font-bold">{totalAvailable > 0 ? Math.round((totalEarned / totalAvailable) * 100) : 0}%</p>
+              <p className="text-lg font-bold">{studentTotal > 0 ? Math.round((studentEarned / studentTotal) * 100) : 0}%</p>
               <p className="text-xs text-white/60">Completado</p>
             </div>
           </div>

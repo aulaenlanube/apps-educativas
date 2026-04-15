@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, CheckCircle2, AlertTriangle, BarChart3 } from 'lucide-react';
+import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel,
 } from '@/components/ui/alert-dialog';
 
-const AVATAR_EMOJIS = ['🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄', '🐲', '🦋', '🌟', '🚀', '⚽', '🎨', '🎵', '📚'];
+const AVATAR_EMOJIS = ['🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄', '🐲', '🦋', '🌟', '🚀', '⚽', '🎨', '🎵', '📚', '💀', '👻', '👽', '🤡', '💩', '🧛', '🧟', '🫠', '🤪', '😈', '🥸', '🤮', '🫣', '🤯', '👾', '🦠'];
 
 export default function StudentsPanel({ students, groupId, groupName, groupCode, onStudentsChanged, onViewStats }) {
   const { toast } = useToast();
@@ -24,6 +24,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [editingStudent, setEditingStudent] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   // Form state
   const [bulkUsernames, setBulkUsernames] = useState('');
@@ -152,10 +153,19 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="text-lg font-bold text-gray-800">Alumnos de {groupName}</h2>
-          <p className="text-sm text-gray-500">{students.length} alumno{students.length !== 1 ? 's' : ''}</p>
-        </div>
+        <button
+          onClick={() => setCollapsed(c => !c)}
+          className="flex items-center gap-2 text-left group"
+        >
+          {collapsed
+            ? <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+            : <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+          }
+          <div>
+            <h2 className="text-lg font-bold text-gray-800">Alumnos de {groupName}</h2>
+            <p className="text-sm text-gray-500">{students.length} alumno{students.length !== 1 ? 's' : ''}</p>
+          </div>
+        </button>
         <Button
           size="sm"
           onClick={() => { setBulkUsernames(''); setBulkResult(null); setShowBulkDialog(true); }}
@@ -166,6 +176,16 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
         </Button>
       </div>
 
+      <AnimatePresence initial={false}>
+      {!collapsed && (
+        <motion.div
+          key="students-body"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="overflow-hidden"
+        >
       {students.length === 0 ? (
         <div className="text-center py-8 text-gray-400">
           <Users className="w-12 h-12 mx-auto mb-2 opacity-50" />
@@ -173,7 +193,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           <p className="text-sm">Anade alumnos escribiendo un nombre de usuario por linea</p>
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
           <AnimatePresence>
             {students.map((student, idx) => (
               <motion.div
@@ -246,6 +266,9 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           </AnimatePresence>
         </div>
       )}
+        </motion.div>
+      )}
+      </AnimatePresence>
 
       {/* Dialogo anadir alumnos en lote */}
       <Dialog open={showBulkDialog} onOpenChange={(open) => { if (!open) closeBulkDialog(); }}>

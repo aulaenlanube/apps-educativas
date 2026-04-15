@@ -94,7 +94,9 @@
       "Bash(grep -oE \"\\\\bl [aeiouhAEIOUH][a-zà-ÿ]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
       "Bash(grep -oE \"\\\\bl [aeiouàèéâêàôûAEIOUH][a-zéèêàâôûç]{3,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
       "Bash(grep -oE \"\\([^iI]\\)l [aeiouéàèâêîôû][a-zéèêàâîôûç]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
-      "Bash(grep -oE \" l [aeiouéàèâêîôû][a-zéèêàâîôûç]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)"
+      "Bash(grep -oE \" l [aeiouéàèâêîôû][a-zéèêàâîôûç]{2,}\" c:/Users/edtor/Desktop/apps-educativas/supabase/seed-historias-eso-grupo1.sql)",
+      "mcp__claude_ai_Supabase__execute_sql",
+      "mcp__claude_ai_Supabase__apply_migration"
     ],
     "additionalDirectories": [
       "\\tmp"
