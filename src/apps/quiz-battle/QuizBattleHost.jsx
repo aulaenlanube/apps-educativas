@@ -157,7 +157,14 @@ export default function QuizBattleHost() {
     onBroadcast('player:answer', (data) => {
       setAnswers((prev) => {
         if (prev[data.playerId] !== undefined) return prev; // already answered
-        return { ...prev, [data.playerId]: data.answerIndex };
+        // Store per-player answer timestamp (ms) so speed bonus is individual
+        return {
+          ...prev,
+          [data.playerId]: {
+            answerIndex: data.answerIndex,
+            answeredAtMs: Date.now(),
+          },
+        };
       });
     });
   }, [phase, onBroadcast]);
@@ -287,21 +294,31 @@ export default function QuizBattleHost() {
     const finalAnswers = { ...answersRef.current };
     const currentPlayers = gamePlayersRef.current;
 
+    const totalMs = timeLimit * 1000;
+    const MAX_TIME_BONUS = 100; // hasta +100 puntos por responder al instante
+
     setScores((prev) => {
       const updated = { ...prev };
 
-      Object.entries(finalAnswers).forEach(([playerId, answerIdx]) => {
+      Object.entries(finalAnswers).forEach(([playerId, ans]) => {
+        // ans: { answerIndex, answeredAtMs }
+        const answerIndex = ans?.answerIndex;
+        const answeredAtMs = ans?.answeredAtMs ?? Date.now();
         if (!updated[playerId]) {
           updated[playerId] = { score: 0, streak: 0, lastDelta: 0, correctCount: 0 };
         }
-        const isCorrect = answerIdx === q.correctIndex;
+        const isCorrect = answerIndex === q.correctIndex;
         if (isCorrect) {
           updated[playerId].streak += 1;
           updated[playerId].correctCount += 1;
           const base = 100;
           const streakBonus = Math.min(updated[playerId].streak - 1, 5) * 20;
-          const elapsed = Math.floor((Date.now() - questionStartRef.current) / 1000);
-          const timeBonus = Math.max(0, timeLimit - elapsed) * 5;
+          // Bonus por velocidad individual (cada decima/ms cuenta)
+          const elapsedMs = Math.max(0, answeredAtMs - questionStartRef.current);
+          const remainingMs = Math.max(0, totalMs - elapsedMs);
+          const timeBonus = totalMs > 0
+            ? Math.round((remainingMs / totalMs) * MAX_TIME_BONUS)
+            : 0;
           const delta = base + streakBonus + timeBonus;
           updated[playerId].score += delta;
           updated[playerId].lastDelta = delta;
@@ -323,7 +340,10 @@ export default function QuizBattleHost() {
     });
 
     const dist = [0, 0, 0, 0];
-    Object.values(finalAnswers).forEach((idx) => { if (idx >= 0 && idx <= 3) dist[idx]++; });
+    Object.values(finalAnswers).forEach((ans) => {
+      const idx = ans?.answerIndex;
+      if (typeof idx === 'number' && idx >= 0 && idx <= 3) dist[idx]++;
+    });
 
     setPhase('results');
 
@@ -335,6 +355,7 @@ export default function QuizBattleHost() {
           correct: q.correct,
           distribution: dist,
           leaderboard: lb.slice(0, 5),
+          fullLeaderboard: lb, // para que cada alumno fuera del top-5 pueda ver su rank
         });
         return currentScores;
       });
@@ -422,7 +443,10 @@ export default function QuizBattleHost() {
 
   const distribution = useMemo(() => {
     const dist = [0, 0, 0, 0];
-    Object.values(answers).forEach((idx) => { if (idx >= 0 && idx <= 3) dist[idx]++; });
+    Object.values(answers).forEach((ans) => {
+      const idx = ans?.answerIndex;
+      if (typeof idx === 'number' && idx >= 0 && idx <= 3) dist[idx]++;
+    });
     return dist;
   }, [answers]);
 

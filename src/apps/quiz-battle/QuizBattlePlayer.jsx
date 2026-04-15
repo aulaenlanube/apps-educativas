@@ -140,12 +140,16 @@ export default function QuizBattlePlayer() {
       setDistribution(data.distribution);
       setLeaderboard(data.leaderboard);
 
-      // Find my score in leaderboard
-      const myEntry = data.leaderboard.find((p) => p.id === userInfo.id);
+      // Rank/score must come from the full leaderboard, otherwise players
+      // outside the top-5 would always see #0 and 0 pts.
+      const lookup = Array.isArray(data.fullLeaderboard) && data.fullLeaderboard.length > 0
+        ? data.fullLeaderboard
+        : data.leaderboard;
+      const myEntry = lookup.find((p) => p.id === userInfo.id);
       if (myEntry) {
         setMyScore(myEntry.score);
         setMyDelta(myEntry.lastDelta);
-        setMyRank(data.leaderboard.indexOf(myEntry) + 1);
+        setMyRank(lookup.indexOf(myEntry) + 1);
       }
       setPhase('results');
     });
