@@ -60,7 +60,6 @@
   min-height: 100vh;
   background: var(--qb-bg);
   color: var(--qb-text);
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   position: relative;
   overflow-x: hidden;
   isolation: isolate; /* stacking context propio para los orbes sin romper z-index del Header */
