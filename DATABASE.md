@@ -259,9 +259,9 @@ app_feedback ── app_feedback_messages (feedback_id)
 
 ---
 
-## Insignias (121 total)
+## Insignias (124 total)
 
-### Alumno (93 insignias)
+### Alumno (96 insignias)
 | Categoria | Insignias | check_type |
 |---|---|---|
 | general | 9 (first_game → games_1000) | `completed_games` |
@@ -273,7 +273,7 @@ app_feedback ── app_feedback_messages (feedback_id)
 | dedication | 8 (time_30m → time_100h) | `total_time` |
 | subjects | 5 (subjects_1 → subjects_10) | `distinct_subjects` |
 | ranking | 20 (top10/top3/first global/class) | `ranking_top*`, `ranking_first*` |
-| battle_rank | 8 (battle_win_1/3/5/10, battle_podium_1/3/5/10) | `battle_first_place`, `battle_podium` |
+| battle_rank | 11 (battle_win_1/3/5/10, battle_podium_1/3/5/10, battle_played_10/25/50) | `battle_first_place`, `battle_podium`, `battle_played` |
 
 ### Docente (28 insignias)
 | Categoria | Insignias | check_type |

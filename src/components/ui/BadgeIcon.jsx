@@ -4102,6 +4102,116 @@ const SVGS = {
     </>
   ),
 
+  // ═══════════════════════ QUIZ BATTLE: PARTICIPACIÓN ═══════════════════════
+  battle_played_10: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}sh`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#93c5fd" /><stop offset="0.5" stopColor="#3b82f6" /><stop offset="1" stopColor="#1e3a8a" />
+        </linearGradient>
+      </defs>
+      {/* Escudo */}
+      <path d="M32 4 L56 14 L54 38 Q48 54 32 60 Q16 54 10 38 L8 14 Z"
+            fill={`url(#${id}sh)`} stroke="#1e3a8a" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M32 8 L52 16 L50 36 Q45 50 32 56 Q19 50 14 36 L12 16 Z"
+            fill="none" stroke="#bfdbfe" strokeWidth="1" opacity="0.4" />
+      {/* Espadas cruzadas */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+        <line x1="18" y1="44" x2="40" y2="18" stroke="#475569" strokeWidth="3" strokeLinecap="round" />
+        <line x1="46" y1="44" x2="24" y2="18" stroke="#475569" strokeWidth="3" strokeLinecap="round" />
+        <line x1="18" y1="44" x2="40" y2="18" stroke="#e2e8f0" strokeWidth="1.2" />
+        <line x1="46" y1="44" x2="24" y2="18" stroke="#e2e8f0" strokeWidth="1.2" />
+        {/* Empuñaduras */}
+        <circle cx="42" cy="16" r="2.5" fill="#d97706" stroke="#78350f" strokeWidth="1" />
+        <circle cx="22" cy="16" r="2.5" fill="#d97706" stroke="#78350f" strokeWidth="1" />
+      </g>
+      {/* Número 10 en la parte baja */}
+      <text x="32" y="55" textAnchor="middle" fontSize="10" fontWeight="900" fill="#fef3c7">10</text>
+    </>
+  ),
+
+  battle_played_25: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}sh`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e9d5ff" /><stop offset="0.5" stopColor="#8b5cf6" /><stop offset="1" stopColor="#4c1d95" />
+        </linearGradient>
+        <linearGradient id={`${id}lau`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#86efac" /><stop offset="1" stopColor="#15803d" />
+        </linearGradient>
+      </defs>
+      {/* Laureles a los lados */}
+      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M6 40 Q2 22 10 10" fill="none" stroke={`url(#${id}lau)`} strokeWidth="2.8" strokeLinecap="round" />
+        <path d="M58 40 Q62 22 54 10" fill="none" stroke={`url(#${id}lau)`} strokeWidth="2.8" strokeLinecap="round" />
+        <ellipse cx="4"  cy="26" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(-30 4 26)" />
+        <ellipse cx="9"  cy="16" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(-15 9 16)" />
+        <ellipse cx="60" cy="26" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(30 60 26)" />
+        <ellipse cx="55" cy="16" rx="2" ry="3.5" fill="#22c55e" stroke="#15803d" strokeWidth="0.8" transform="rotate(15 55 16)" />
+      </g>
+      {/* Escudo dorado central */}
+      <path d="M32 6 L52 14 L50 36 Q44 50 32 56 Q20 50 14 36 L12 14 Z"
+            fill={`url(#${id}sh)`} stroke="#4c1d95" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M32 10 L48 17 L46 34 Q42 46 32 51 Q22 46 18 34 L16 17 Z"
+            fill="none" stroke="#e9d5ff" strokeWidth="1" opacity="0.4" />
+      {/* Número 25 */}
+      <text x="32" y="34" textAnchor="middle" fontSize="13" fontWeight="900" fill="#fffbeb">25</text>
+      <text x="32" y="46" textAnchor="middle" fontSize="5" fontWeight="800" fill="#e9d5ff" letterSpacing="1">BATALLAS</text>
+    </>
+  ),
+
+  battle_played_50: (id) => (
+    <>
+      <defs>
+        <linearGradient id={`${id}col`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
+        </linearGradient>
+        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.6" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      {/* Halo legendario */}
+      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
+      {/* Rayos giratorios */}
+      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+        {Array.from({length:16}).map((_,i) => {
+          const a=(i*22.5*Math.PI)/180;
+          return <line key={i} x1={32+Math.sin(a)*24} y1={32-Math.cos(a)*24} x2={32+Math.sin(a)*30} y2={32-Math.cos(a)*30} stroke="#fbbf24" strokeWidth={i%2?0.8:1.5} strokeLinecap="round" opacity="0.55" />;
+        })}
+      </g>
+      {/* Coliseo estilizado */}
+      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 34px' }}>
+        {/* Base */}
+        <rect x="8" y="46" width="48" height="8" rx="2" fill="#451a03" stroke="#1c1917" strokeWidth="1.5" />
+        <rect x="8" y="46" width="48" height="2" fill="#fde68a" opacity="0.4" />
+        {/* Paredes con arcos */}
+        <path d="M10 46 L10 22 Q10 14 16 14 L48 14 Q54 14 54 22 L54 46 Z"
+              fill={`url(#${id}col)`} stroke="#451a03" strokeWidth="2.5" strokeLinejoin="round" />
+        {/* Arcos nivel superior */}
+        <rect x="14" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
+        <rect x="24" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
+        <rect x="33" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
+        <rect x="43" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
+        {/* Arcos nivel inferior */}
+        <rect x="14" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
+        <rect x="24" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
+        <rect x="33" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
+        <rect x="43" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
+        {/* Brillo esquina */}
+        <path d="M14 18 L14 44" stroke="#fef3c7" strokeWidth="1" opacity="0.4" />
+      </g>
+      {/* Número 50 sobre la base */}
+      <text x="32" y="53" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">×50</text>
+      {/* Chispas decorativas */}
+      <g className="ba-anim anim-twinkle">
+        <circle cx="6"  cy="10" r="1.5" fill="#fde047" />
+        <circle cx="58" cy="10" r="1.5" fill="#fde047" />
+        <circle cx="4"  cy="30" r="1"   fill="#fbbf24" />
+        <circle cx="60" cy="30" r="1"   fill="#fbbf24" />
+      </g>
+    </>
+  ),
+
   // ═══════════════════════ TEACHER: GRUPOS ═══════════════════════
   teacher_first_group: (id) => (
     <>
