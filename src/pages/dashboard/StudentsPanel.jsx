@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { USERNAME_RE, sanitizePlainText } from '@/lib/sanitize';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,12 +34,42 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   const [avatarEmoji, setAvatarEmoji] = useState('🎓');
 
   const handleBulkCreate = async () => {
-    const usernames = bulkUsernames
+    const rawLines = bulkUsernames
       .split('\n')
       .map(u => u.trim())
       .filter(u => u.length > 0);
 
+    if (rawLines.length === 0) return;
+
+    // Validacion client-side: letras/digitos/._- , 3-30 chars. Duplicados eliminados.
+    const invalid = [];
+    const seen = new Set();
+    const usernames = [];
+    for (const line of rawLines) {
+      if (!USERNAME_RE.test(line)) {
+        invalid.push(line);
+        continue;
+      }
+      const lower = line.toLowerCase();
+      if (seen.has(lower)) continue;
+      seen.add(lower);
+      usernames.push(line);
+    }
+
+    if (invalid.length > 0) {
+      toast({
+        variant: 'destructive',
+        title: 'Nombres de usuario invalidos',
+        description: `Solo letras, digitos, "_", "-", "." (3-30 chars). Rechazados: ${invalid.slice(0, 5).join(', ')}${invalid.length > 5 ? '...' : ''}`,
+      });
+      return;
+    }
     if (usernames.length === 0) return;
+    if (usernames.length > 200) {
+      toast({ variant: 'destructive', title: 'Error', description: 'Maximo 200 alumnos por lote' });
+      return;
+    }
+
     setLoading(true);
     setBulkResult(null);
 
@@ -76,13 +107,14 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   };
 
   const handleEdit = async () => {
-    if (!displayName.trim() || !editingStudent) return;
+    const cleanName = sanitizePlainText(displayName, 80);
+    if (!cleanName || !editingStudent) return;
     setLoading(true);
 
     const { error } = await supabase
       .from('students')
       .update({
-        display_name: displayName.trim(),
+        display_name: cleanName,
         avatar_emoji: avatarEmoji,
         updated_at: new Date().toISOString(),
       })
@@ -347,7 +379,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           <div className="space-y-4">
             <div className="space-y-2">
               <Label>Nombre del alumno</Label>
-              <Input value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
+              <Input value={displayName} onChange={(e) => setDisplayName(e.target.value)} maxLength={80} />
             </div>
             <div className="space-y-2">
               <Label>Avatar</Label>

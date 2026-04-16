@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Header from '@/components/layout/Header';
+import { validatePassword, sanitizePlainText } from '@/lib/sanitize';
 
 const RegisterFreePage = () => {
   const navigate = useNavigate();
@@ -34,13 +35,20 @@ const RegisterFreePage = () => {
       return;
     }
 
-    if (password.length < 6) {
-      toast({ variant: 'destructive', title: 'Error', description: 'La contrasena debe tener al menos 6 caracteres' });
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      toast({ variant: 'destructive', title: 'Error', description: passwordError });
+      return;
+    }
+
+    const cleanName = sanitizePlainText(displayName, 80);
+    if (!cleanName) {
+      toast({ variant: 'destructive', title: 'Error', description: 'Introduce tu nombre' });
       return;
     }
 
     setLoading(true);
-    const { error } = await signUpFreeUser(email, password, displayName);
+    const { error } = await signUpFreeUser(email, password, cleanName);
     setLoading(false);
 
     if (error) {
@@ -149,11 +157,12 @@ const RegisterFreePage = () => {
                   <Input
                     id="free-password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Minimo 6 caracteres"
+                    placeholder="Minimo 8 caracteres, con letra y digito"
                     className="pl-10 pr-10"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    minLength={8}
                   />
                   <button
                     type="button"

@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Header from '@/components/layout/Header';
+import { isLocked, getLockRemainingMs, registerFailedAttempt, clearAttempts, LOGIN_MAX_ATTEMPTS } from '@/lib/authThrottle';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -101,26 +102,37 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate,
   const [showForgot, setShowForgot] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
+  const throttleKey = 'teacher';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isLocked(throttleKey)) {
+      const secs = Math.ceil(getLockRemainingMs(throttleKey) / 1000);
+      toast({ variant: 'destructive', title: 'Demasiados intentos', description: `Espera ${secs}s antes de reintentar.` });
+      return;
+    }
+
     setLoading(true);
     const { error } = await onSignIn(email, password);
     setLoading(false);
 
     if (error) {
+      const { limitReached } = registerFailedAttempt(throttleKey);
       let description = error.message;
       if (error.message === 'Invalid login credentials') {
         description = 'Email o contrasena incorrectos';
       } else if (error.code === 'email_not_confirmed' || error.message === 'Email not confirmed') {
         description = 'Debes confirmar tu email antes de iniciar sesion. Revisa tu bandeja de entrada.';
       }
+      if (limitReached) description += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
       toast({
         variant: 'destructive',
         title: 'Error al iniciar sesion',
         description
       });
     } else {
+      clearAttempts(throttleKey);
       navigate('/dashboard');
     }
   };
@@ -378,16 +390,26 @@ function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassw
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
+    if (isLocked('student-email')) {
+      const secs = Math.ceil(getLockRemainingMs('student-email') / 1000);
+      toast({ variant: 'destructive', title: 'Demasiados intentos', description: `Espera ${secs}s antes de reintentar.` });
+      return;
+    }
+
+    setLoading(true);
     const result = await onSignInEmail(emailInput, emailPassword);
     setLoading(false);
 
     if (result.error) {
-      toast({ variant: 'destructive', title: 'Error', description: result.error.message });
+      const { limitReached } = registerFailedAttempt('student-email');
+      let desc = result.error.message;
+      if (limitReached) desc += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
+      toast({ variant: 'destructive', title: 'Error', description: desc });
       return;
     }
 
+    clearAttempts('student-email');
     const groups = result.groups || [];
     if (groups.length > 1) {
       setPendingGroups(groups);
@@ -761,26 +783,37 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate
   const [showForgot, setShowForgot] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
+  const throttleKey = 'free';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isLocked(throttleKey)) {
+      const secs = Math.ceil(getLockRemainingMs(throttleKey) / 1000);
+      toast({ variant: 'destructive', title: 'Demasiados intentos', description: `Espera ${secs}s antes de reintentar.` });
+      return;
+    }
+
     setLoading(true);
     const { error } = await onSignIn(email, password);
     setLoading(false);
 
     if (error) {
+      const { limitReached } = registerFailedAttempt(throttleKey);
       let description = error.message;
       if (error.message === 'Invalid login credentials') {
         description = 'Email o contrasena incorrectos';
       } else if (error.code === 'email_not_confirmed' || error.message === 'Email not confirmed') {
         description = 'Debes confirmar tu email antes de iniciar sesion. Revisa tu bandeja de entrada.';
       }
+      if (limitReached) description += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
       toast({
         variant: 'destructive',
         title: 'Error al iniciar sesion',
         description
       });
     } else {
+      clearAttempts(throttleKey);
       navigate('/mi-zona');
     }
   };

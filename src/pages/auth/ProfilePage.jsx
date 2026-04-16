@@ -8,6 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Header from '@/components/layout/Header';
+import { sanitizePlainText } from '@/lib/sanitize';
+
+// Limites acordes con la BD (defensa en profundidad; la RPC debe truncar tambien).
+const MAX_DISPLAY_NAME = 80;
+const MAX_BIO = 500;
+const MAX_WEBSITE = 200;
+const MAX_SHORT = 80;
 
 const AVATAR_EMOJIS = [
   '👨‍🏫', '👩‍🏫', '🦊', '🐱', '🐶', '🐼', '🦁', '🦄',
@@ -88,7 +95,8 @@ const ProfilePage = () => {
   const selectedColorObj = AVATAR_COLORS.find(c => c.id === selectedColor) || AVATAR_COLORS[0];
 
   const handleSaveProfile = async () => {
-    if (!displayName.trim()) {
+    const cleanDisplayName = sanitizePlainText(displayName, MAX_DISPLAY_NAME);
+    if (!cleanDisplayName) {
       toast({ variant: 'destructive', title: 'Error', description: 'El nombre no puede estar vacio' });
       return;
     }
@@ -96,11 +104,11 @@ const ProfilePage = () => {
     setSaving(true);
     try {
       const updates = {
-        display_name: displayName.trim(),
-        bio: bio.trim(),
-        website: website.trim(),
-        specialty: specialty.trim(),
-        center_name: centerName.trim(),
+        display_name: cleanDisplayName,
+        bio: sanitizePlainText(bio, MAX_BIO),
+        website: sanitizePlainText(website, MAX_WEBSITE),
+        specialty: sanitizePlainText(specialty, MAX_SHORT),
+        center_name: sanitizePlainText(centerName, MAX_SHORT),
         education_levels: educationLevels,
         avatar_emoji: selectedEmoji,
         avatar_color: selectedColor,
@@ -299,7 +307,7 @@ const ProfilePage = () => {
             {/* Nombre */}
             <div className="space-y-2">
               <Label htmlFor="profile-name">Nombre para mostrar</Label>
-              <Input id="profile-name" value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="Tu nombre completo" />
+              <Input id="profile-name" value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="Tu nombre completo" maxLength={MAX_DISPLAY_NAME} />
             </div>
 
             {/* Bio */}
@@ -307,10 +315,10 @@ const ProfilePage = () => {
               <Label htmlFor="profile-bio">Sobre mi</Label>
               <textarea id="profile-bio" value={bio} onChange={e => setBio(e.target.value)}
                 placeholder="Cuéntanos algo sobre ti, tu asignatura, tus aficiones..."
-                rows={3} maxLength={500}
+                rows={3} maxLength={MAX_BIO}
                 className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
               />
-              <p className="text-xs text-gray-400 text-right">{bio.length}/500</p>
+              <p className="text-xs text-gray-400 text-right">{bio.length}/{MAX_BIO}</p>
             </div>
 
             {/* Web personal */}
@@ -325,6 +333,7 @@ const ProfilePage = () => {
                 value={website}
                 onChange={e => setWebsite(e.target.value)}
                 placeholder="https://mi-web.com"
+                maxLength={MAX_WEBSITE}
               />
             </div>
 
@@ -340,6 +349,7 @@ const ProfilePage = () => {
                   value={centerName}
                   onChange={e => setCenterName(e.target.value)}
                   placeholder="Nombre del centro"
+                  maxLength={MAX_SHORT}
                 />
               </div>
               <div className="space-y-2">
@@ -352,6 +362,7 @@ const ProfilePage = () => {
                   value={specialty}
                   onChange={e => setSpecialty(e.target.value)}
                   placeholder="Ej: Lengua, Matematicas, Musica..."
+                  maxLength={MAX_SHORT}
                 />
               </div>
             </div>

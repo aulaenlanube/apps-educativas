@@ -294,6 +294,9 @@ export function useGameTracker() {
 
   /**
    * Marca la sesion actual como abandonada. Se llama automaticamente al desmontar.
+   * Usa el access_token de la sesion activa cuando esta disponible, de modo que
+   * auth.uid() siga resolviendo server-side para teachers/free. Students y
+   * anonimos caen al anon key (la RPC localiza la sesion por p_session_id).
    */
   const abandonSession = useCallback(async () => {
     if (!sessionIdRef.current || completedRef.current) return;
@@ -310,12 +313,20 @@ export function useGameTracker() {
         p_duration_seconds: duration,
       });
 
+      let accessToken = supabaseKey;
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (data?.session?.access_token) accessToken = data.session.access_token;
+      } catch {
+        // Sin sesion Supabase (student/anonymous) — usar anon key.
+      }
+
       await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: payload,
         keepalive: true,

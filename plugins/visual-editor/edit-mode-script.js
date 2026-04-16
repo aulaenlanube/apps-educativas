@@ -1,4 +1,4 @@
-import { POPUP_STYLES, getPopupHTMLTemplate } from './plugins/visual-editor/visual-editor-config.js';
+import { POPUP_STYLES } from './plugins/visual-editor/visual-editor-config.js';
 
 const PLUGIN_APPLY_EDIT_API_URL = '/api/apply-edit';
 
@@ -8,6 +8,14 @@ const ALLOWED_PARENT_ORIGINS = [
 	'https://horizons-frontend-local.hostinger.dev',
 	'http://localhost:4000',
 ];
+const ALLOWED_PARENT_ORIGINS_SET = new Set(ALLOWED_PARENT_ORIGINS);
+
+// Sanitiza un string de traduccion para impedir XSS si un origen malicioso
+// consiguiera colarse: sin tags HTML, sin comillas, maximo 120 chars.
+function sanitizeTranslation(value) {
+	if (typeof value !== 'string') return '';
+	return value.replace(/[<>&"'`]/g, '').replace(/[\x00-\x1F\x7F]/g, '').slice(0, 120);
+}
 
 let popupElement = null;
 let popupTextarea = null;
@@ -44,16 +52,32 @@ function createPopup() {
 
   popupElement = document.createElement('div');
   popupElement.id = 'inline-editor-popup';
- 
-  popupElement.innerHTML = getPopupHTMLTemplate(translations.save, translations.cancel);
+
+  // Construccion via DOM en lugar de innerHTML para impedir XSS si
+  // `translations` recibiera valores hostiles via postMessage.
+  popupTextarea = document.createElement('textarea');
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-container';
+
+  popupCancelButton = document.createElement('button');
+  popupCancelButton.className = 'popup-button cancel-button';
+  popupCancelButton.textContent = translations.cancel;
+
+  popupSaveButton = document.createElement('button');
+  popupSaveButton.className = 'popup-button save-button';
+  popupSaveButton.textContent = translations.save;
+
+  buttonContainer.appendChild(popupCancelButton);
+  buttonContainer.appendChild(popupSaveButton);
+
+  popupElement.appendChild(popupTextarea);
+  popupElement.appendChild(buttonContainer);
+
   document.body.appendChild(popupElement);
- 
-  popupTextarea = popupElement.querySelector('textarea');
-  popupSaveButton = popupElement.querySelector('.save-button');
-  popupCancelButton = popupElement.querySelector('.cancel-button');
 
   popupTextarea.placeholder = `${translations.addText}...`;
- 
+
   popupSaveButton.addEventListener('click', handlePopupSave);
   popupCancelButton.addEventListener('click', handlePopupCancel);
 }
@@ -309,13 +333,25 @@ function disableEditMode() {
 }
 
 window.addEventListener("message", function(event) {
-  if (event.data?.type === "enable-edit-mode") {
-    if (event.data?.translations) {
-        translations = { ...translations, ...event.data.translations };
+  // Solo aceptar mensajes de los editores conocidos (Hostinger Horizons / dev local).
+  if (!ALLOWED_PARENT_ORIGINS_SET.has(event.origin)) return;
+  if (!event.data || typeof event.data !== 'object') return;
+
+  if (event.data.type === "enable-edit-mode") {
+    if (event.data.translations && typeof event.data.translations === 'object') {
+      // Whitelist de claves + saneo de valores antes de mezclar.
+      const ALLOWED_KEYS = ['cancel', 'save', 'addText', 'disabledTooltipText'];
+      const sanitized = {};
+      for (const key of ALLOWED_KEYS) {
+        if (typeof event.data.translations[key] === 'string') {
+          sanitized[key] = sanitizeTranslation(event.data.translations[key]);
+        }
+      }
+      translations = { ...translations, ...sanitized };
     }
     enableEditMode();
   }
-  if (event.data?.type === "disable-edit-mode") {
+  if (event.data.type === "disable-edit-mode") {
     disableEditMode();
   }
-}); 
+});

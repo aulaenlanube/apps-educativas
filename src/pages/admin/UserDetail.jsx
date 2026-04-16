@@ -12,8 +12,11 @@ const UserDetail = ({ user }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [resetResult, setResetResult] = useState(null);
+  const [resetConfirmText, setResetConfirmText] = useState('');
   const [qbQuota, setQbQuota] = useState(null);
   const [quotaSaving, setQuotaSaving] = useState(false);
+
+  const RESET_CONFIRM_PHRASE = 'REINICIAR';
 
   const fetchSessions = useCallback(async () => {
     setLoading(true);
@@ -68,6 +71,7 @@ const UserDetail = ({ user }) => {
   const isTeacher = user.user_type === 'teacher';
 
   const handleResetXP = async () => {
+    if (resetConfirmText.trim().toUpperCase() !== RESET_CONFIRM_PHRASE) return;
     setResetting(true);
     setResetResult(null);
     const { data: result, error } = await supabase.rpc('admin_reset_gamification', {
@@ -83,6 +87,7 @@ const UserDetail = ({ user }) => {
       setResetResult({ ok: true, msg: `XP reiniciada. ${result.badges_removed} insignias eliminadas.` });
     }
     setShowResetConfirm(false);
+    setResetConfirmText('');
   };
 
   return (
@@ -181,20 +186,31 @@ const UserDetail = ({ user }) => {
                 <p className="text-xs text-slate-500">{user.display_name}</p>
               </div>
             </div>
-            <p className="text-sm text-slate-600 mb-4">
+            <p className="text-sm text-slate-600 mb-3">
               Se eliminaran todos los puntos de experiencia, el nivel volvera a 1 y se borraran todas las insignias obtenidas. Esta accion no se puede deshacer.
             </p>
+            <label className="block text-xs font-medium text-slate-600 mb-1">
+              Escribe <span className="font-mono font-bold text-red-600">{RESET_CONFIRM_PHRASE}</span> para confirmar
+            </label>
+            <input
+              type="text"
+              value={resetConfirmText}
+              onChange={(e) => setResetConfirmText(e.target.value)}
+              placeholder={RESET_CONFIRM_PHRASE}
+              autoComplete="off"
+              className="w-full px-3 py-2 mb-4 border border-slate-200 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-red-300"
+            />
             <div className="flex gap-2 justify-end">
               <button
-                onClick={() => setShowResetConfirm(false)}
+                onClick={() => { setShowResetConfirm(false); setResetConfirmText(''); }}
                 className="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-200 transition-colors"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleResetXP}
-                disabled={resetting}
-                className="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50"
+                disabled={resetting || resetConfirmText.trim().toUpperCase() !== RESET_CONFIRM_PHRASE}
+                className="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {resetting ? 'Reiniciando...' : 'Confirmar reinicio'}
               </button>

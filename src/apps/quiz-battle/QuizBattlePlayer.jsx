@@ -11,6 +11,7 @@ import BadgeIcon from '@/components/ui/BadgeIcon';
 import QBBackground from './QBBackground';
 import QBStageAnimation from './QBStageAnimation';
 import QBStageAnimationSimple from './QBStageAnimationSimple';
+import { ROOM_CODE_RE, sanitizePlainText } from '@/lib/sanitize';
 import './QuizBattle.css';
 
 /** Contador que anima de 0 hasta `to` en `duration` segundos, con formato ES. */
@@ -88,8 +89,15 @@ export default function QuizBattlePlayer() {
 
   // ── Join handler ──
   const handleJoin = () => {
-    if (roomCode.length < 4) return;
-    if (!student && !guestName.trim()) return;
+    if (!ROOM_CODE_RE.test(roomCode)) {
+      setJoinError('Codigo invalido (4-8 letras/digitos)');
+      return;
+    }
+    const cleanName = sanitizePlainText(guestName, 30);
+    if (!student) {
+      if (!cleanName) { setJoinError('Introduce tu nombre'); return; }
+      if (cleanName !== guestName) setGuestName(cleanName);
+    }
     setJoinError('');
     setJoined(true);
     setPhase('waiting');
@@ -303,9 +311,9 @@ export default function QuizBattlePlayer() {
             <input
               type="text"
               placeholder="CODIGO"
-              maxLength={6}
+              maxLength={8}
               value={roomCode}
-              onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
+              onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8))}
             />
 
             {!student && (
@@ -313,9 +321,9 @@ export default function QuizBattlePlayer() {
                 <input
                   type="text"
                   placeholder="Tu nombre"
-                  maxLength={20}
+                  maxLength={30}
                   value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
+                  onChange={(e) => setGuestName(e.target.value.replace(/[<>]/g, '').slice(0, 30))}
                   style={{ fontSize: '1rem', letterSpacing: 'normal', marginBottom: '0.75rem' }}
                 />
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>

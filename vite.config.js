@@ -10,6 +10,38 @@ if (isDev) {
 	editModeDevPlugin = (await import('./plugins/visual-editor/vite-plugin-edit-mode.js')).default;
 }
 
+// Origenes permitidos para postMessage al editor Horizons. Evita '*' para no
+// filtrar errores/runtime a cualquier ventana que embeba este dev server.
+const HORIZONS_ALLOWED_ORIGINS = [
+	'https://horizons.hostinger.com',
+	'https://horizons.hostinger.dev',
+	'https://horizons-frontend-local.hostinger.dev',
+	'http://localhost:4000',
+];
+const HORIZONS_ALLOWED_ORIGINS_JSON = JSON.stringify(HORIZONS_ALLOWED_ORIGINS);
+
+const horizonsPostMessageHelpers = `
+const HORIZONS_ALLOWED_ORIGINS = new Set(${HORIZONS_ALLOWED_ORIGINS_JSON});
+function getHorizonsParentOrigin() {
+	if (window.location.ancestorOrigins && window.location.ancestorOrigins.length > 0) {
+		const o = window.location.ancestorOrigins[0];
+		if (HORIZONS_ALLOWED_ORIGINS.has(o)) return o;
+	}
+	if (document.referrer) {
+		try {
+			const o = new URL(document.referrer).origin;
+			if (HORIZONS_ALLOWED_ORIGINS.has(o)) return o;
+		} catch (_) {}
+	}
+	return null;
+}
+function postToHorizonsParent(payload) {
+	const origin = getHorizonsParentOrigin();
+	if (!origin) return;
+	try { window.parent.postMessage(payload, origin); } catch (_) {}
+}
+`;
+
 const configHorizonsViteErrorHandler = `
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
@@ -49,10 +81,10 @@ function handleViteOverlay(node) {
 		const fileText = fileElement ? fileElement.textContent.trim() : '';
 		const error = messageText + (fileText ? ' File:' + fileText : '');
 
-		window.parent.postMessage({
+		postToHorizonsParent({
 			type: 'horizons-vite-error',
 			error,
-		}, '*');
+		});
 	}
 }
 `;
@@ -68,11 +100,11 @@ window.onerror = (message, source, lineno, colno, errorObj) => {
 		colno,
 	}) : null;
 
-	window.parent.postMessage({
+	postToHorizonsParent({
 		type: 'horizons-runtime-error',
 		message,
 		error: errorDetails
-	}, '*');
+	});
 };
 `;
 
@@ -95,10 +127,10 @@ console.error = function(...args) {
 		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
 	}
 
-	window.parent.postMessage({
+	postToHorizonsParent({
 		type: 'horizons-console-error',
 		error: errorString
-	}, '*');
+	});
 };
 `;
 
@@ -150,6 +182,12 @@ const addTransformIndexHtml = {
 				{
 					tag: 'script',
 					attrs: { type: 'module' },
+					children: horizonsPostMessageHelpers,
+					injectTo: 'head',
+				},
+				{
+					tag: 'script',
+					attrs: { type: 'module' },
 					children: configHorizonsRuntimeErrorHandler,
 					injectTo: 'head',
 				},
@@ -197,11 +235,25 @@ export default defineConfig({
 		addTransformIndexHtml
 	],
 	server: {
-		cors: true,
+		// Dev: acceso limitado a localhost + hosts Horizons. Para abrir a otros,
+		// definir VITE_DEV_ALLOWED_HOSTS="host1,host2" antes de `npm run dev`.
+		cors: { origin: [
+			'http://localhost:4000',
+			'http://localhost:5173',
+			'https://horizons.hostinger.com',
+			'https://horizons.hostinger.dev',
+			'https://horizons-frontend-local.hostinger.dev',
+		] },
 		headers: {
 			'Cross-Origin-Embedder-Policy': 'unsafe-none',
 		},
-		allowedHosts: true,
+		allowedHosts: [
+			'localhost',
+			'127.0.0.1',
+			'.hostinger.com',
+			'.hostinger.dev',
+			...((process.env.VITE_DEV_ALLOWED_HOSTS || '').split(',').filter(Boolean)),
+		],
 	},
 	resolve: {
 		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json',],
