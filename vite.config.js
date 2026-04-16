@@ -20,9 +20,14 @@ const HORIZONS_ALLOWED_ORIGINS = [
 ];
 const HORIZONS_ALLOWED_ORIGINS_JSON = JSON.stringify(HORIZONS_ALLOWED_ORIGINS);
 
+// Exponemos los helpers en `window` porque cada <script type="module"> tiene
+// scope propio: sin esto, los otros modulos inyectados (error overlay, fetch
+// monkey-patch, etc.) no ven `postToHorizonsParent` y lanzan ReferenceError
+// desde dentro del `console.error`, lo que rechaza la promesa del fetch
+// (p. ej. rompe el flujo de errores 4xx de supabase-js).
 const horizonsPostMessageHelpers = `
 const HORIZONS_ALLOWED_ORIGINS = new Set(${HORIZONS_ALLOWED_ORIGINS_JSON});
-function getHorizonsParentOrigin() {
+window.__horizonsGetParentOrigin = function getHorizonsParentOrigin() {
 	if (window.location.ancestorOrigins && window.location.ancestorOrigins.length > 0) {
 		const o = window.location.ancestorOrigins[0];
 		if (HORIZONS_ALLOWED_ORIGINS.has(o)) return o;
@@ -34,12 +39,12 @@ function getHorizonsParentOrigin() {
 		} catch (_) {}
 	}
 	return null;
-}
-function postToHorizonsParent(payload) {
-	const origin = getHorizonsParentOrigin();
+};
+window.postToHorizonsParent = function postToHorizonsParent(payload) {
+	const origin = window.__horizonsGetParentOrigin();
 	if (!origin) return;
 	try { window.parent.postMessage(payload, origin); } catch (_) {}
-}
+};
 `;
 
 const configHorizonsViteErrorHandler = `

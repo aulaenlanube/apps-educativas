@@ -22,13 +22,26 @@ export const USERNAME_RE = /^[a-zA-Z0-9_.-]{3,30}$/;
 // Quiz Battle room code: 4-8 uppercase alphanumerics.
 export const ROOM_CODE_RE = /^[A-Z0-9]{4,8}$/;
 
-// Teacher/free password policy: >=8 chars, at least one letter and one digit.
+// Teacher/free password policy alineada con Supabase: >=8 chars,
+// minuscula + MAYUSCULA + digito + simbolo de la lista aceptada por el servidor.
+// Simbolos aceptados por Supabase: !@#$%^&*()_+-=[]{};':"|<>?,./`~
+export const PASSWORD_SYMBOL_RE = /[!@#$%^&*()_+\-=[\]{};':"|<>?,./`~]/;
+
 export function validatePassword(value) {
   if (typeof value !== 'string' || value.length < 8) {
     return 'La contrasena debe tener al menos 8 caracteres';
   }
-  if (!/[A-Za-z]/.test(value) || !/\d/.test(value)) {
-    return 'La contrasena debe incluir al menos una letra y un digito';
+  if (!/[a-z]/.test(value)) {
+    return 'La contrasena debe incluir una letra minuscula';
+  }
+  if (!/[A-Z]/.test(value)) {
+    return 'La contrasena debe incluir una letra mayuscula';
+  }
+  if (!/\d/.test(value)) {
+    return 'La contrasena debe incluir un digito';
+  }
+  if (!PASSWORD_SYMBOL_RE.test(value)) {
+    return 'La contrasena debe incluir un simbolo (ej: !@#$%&*)';
   }
   return null;
 }

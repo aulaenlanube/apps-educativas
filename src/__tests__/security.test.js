@@ -152,11 +152,19 @@ describe('Security: Sanitizer helpers', () => {
 
   it('validatePassword enforces length and complexity', async () => {
     const { validatePassword } = await import('../lib/sanitize.js');
-    expect(validatePassword('short1')).not.toBeNull();
-    expect(validatePassword('onlyletters')).not.toBeNull();
-    expect(validatePassword('12345678')).not.toBeNull();
-    expect(validatePassword('abcdefg1')).toBeNull();
-    expect(validatePassword('Str0ngPass')).toBeNull();
+    // Demasiado corta
+    expect(validatePassword('Ab1!xyz')).not.toBeNull();
+    // Sin minuscula
+    expect(validatePassword('ABCDEFG1!')).not.toBeNull();
+    // Sin mayuscula
+    expect(validatePassword('abcdefg1!')).not.toBeNull();
+    // Sin digito
+    expect(validatePassword('Abcdefgh!')).not.toBeNull();
+    // Sin simbolo
+    expect(validatePassword('Abcdefg1')).not.toBeNull();
+    // Cumple todo (min. 8 + minusc + mayusc + digito + simbolo)
+    expect(validatePassword('Str0ng!Pass')).toBeNull();
+    expect(validatePassword('Abcdefg1!')).toBeNull();
   });
 });
 

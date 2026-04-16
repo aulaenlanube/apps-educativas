@@ -52,10 +52,13 @@ const RegisterFreePage = () => {
     setLoading(false);
 
     if (error) {
+      const description = error?.code === 'weak_password'
+        ? 'Contrasena demasiado debil o comun. Usa minuscula, MAYUSCULA, digito y simbolo, y evita contrasenas habituales.'
+        : error.message;
       toast({
         variant: 'destructive',
         title: 'Error al crear la cuenta',
-        description: error.message
+        description,
       });
     } else {
       setRegistered(true);
@@ -157,7 +160,7 @@ const RegisterFreePage = () => {
                   <Input
                     id="free-password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Minimo 8 caracteres, con letra y digito"
+                    placeholder="Min. 8 con minuscula, MAYUSCULA, digito y simbolo"
                     className="pl-10 pr-10"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

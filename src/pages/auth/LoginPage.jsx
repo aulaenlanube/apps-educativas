@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { GraduationCap, Users, Mail, Lock, Eye, EyeOff, Hash, ArrowLeft, ShieldCheck, Rocket, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Users, Mail, Lock, Eye, EyeOff, Hash, ArrowLeft, ShieldCheck, Rocket, CheckCircle2, MailWarning } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -102,6 +102,7 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate,
   const [showForgot, setShowForgot] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
+  const [unconfirmedEmail, setUnconfirmedEmail] = useState(null);
   const throttleKey = 'teacher';
 
   const handleSubmit = async (e) => {
@@ -113,17 +114,26 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate,
       return;
     }
 
+    setUnconfirmedEmail(null);
     setLoading(true);
-    const { error } = await onSignIn(email, password);
-    setLoading(false);
+    let error;
+    try {
+      ({ error } = await onSignIn(email, password));
+    } finally {
+      setLoading(false);
+    }
 
     if (error) {
+      const isUnconfirmed = error.code === 'email_not_confirmed' || error.message === 'Email not confirmed';
+      if (isUnconfirmed) {
+        // Credenciales correctas pero email sin confirmar: no cuenta como intento fallido.
+        setUnconfirmedEmail(email);
+        return;
+      }
       const { limitReached } = registerFailedAttempt(throttleKey);
       let description = error.message;
       if (error.message === 'Invalid login credentials') {
         description = 'Email o contrasena incorrectos';
-      } else if (error.code === 'email_not_confirmed' || error.message === 'Email not confirmed') {
-        description = 'Debes confirmar tu email antes de iniciar sesion. Revisa tu bandeja de entrada.';
       }
       if (limitReached) description += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
       toast({
@@ -198,6 +208,17 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate,
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {unconfirmedEmail && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 flex items-start gap-2">
+          <MailWarning className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-amber-900">
+            <p className="font-semibold">Email sin confirmar</p>
+            <p className="mt-0.5">
+              Debes confirmar <strong>{unconfirmedEmail}</strong> antes de iniciar sesion. Revisa tu bandeja de entrada (y la carpeta de spam) y haz clic en el enlace de confirmacion.
+            </p>
+          </div>
+        </div>
+      )}
       <div className="space-y-2">
         <Label htmlFor="teacher-email">Email</Label>
         <div className="relative">
@@ -208,7 +229,7 @@ function TeacherLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate,
             placeholder="tu@email.com"
             className="pl-10"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); setUnconfirmedEmail(null); }}
             required
           />
         </div>
@@ -298,6 +319,7 @@ function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassw
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
+  const [unconfirmedEmail, setUnconfirmedEmail] = useState(null);
 
   // Estado para flujo de crear contrasena (primer login o tras reset)
   const [step, setStep] = useState('login'); // 'login' | 'password' | 'setPassword' | 'selectGroup'
@@ -397,13 +419,26 @@ function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassw
       return;
     }
 
+    setUnconfirmedEmail(null);
     setLoading(true);
-    const result = await onSignInEmail(emailInput, emailPassword);
-    setLoading(false);
+    let result;
+    try {
+      result = await onSignInEmail(emailInput, emailPassword);
+    } finally {
+      setLoading(false);
+    }
 
     if (result.error) {
+      const err = result.error;
+      const isUnconfirmed = err.code === 'email_not_confirmed'
+        || err.message === 'Email not confirmed'
+        || /verificar tu email/i.test(err.message || '');
+      if (isUnconfirmed) {
+        setUnconfirmedEmail(emailInput);
+        return;
+      }
       const { limitReached } = registerFailedAttempt('student-email');
-      let desc = result.error.message;
+      let desc = err.message;
       if (limitReached) desc += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
       toast({ variant: 'destructive', title: 'Error', description: desc });
       return;
@@ -677,12 +712,24 @@ function StudentLoginForm({ onSignIn, onSignInEmail, onResetPassword, onSetPassw
         <p className="text-sm text-gray-500 mt-1">Usa tu email vinculado</p>
       </div>
 
+      {unconfirmedEmail && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 flex items-start gap-2">
+          <MailWarning className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-amber-900">
+            <p className="font-semibold">Email sin confirmar</p>
+            <p className="mt-0.5">
+              Debes confirmar <strong>{unconfirmedEmail}</strong> antes de iniciar sesion. Revisa tu bandeja de entrada (y la carpeta de spam) y haz clic en el enlace de confirmacion.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="space-y-2">
         <Label htmlFor="email-login">Email</Label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input id="email-login" type="email" placeholder="tu@email.com" className="pl-10"
-            value={emailInput} onChange={e => setEmailInput(e.target.value)} required autoFocus />
+            value={emailInput} onChange={e => { setEmailInput(e.target.value); setUnconfirmedEmail(null); }} required autoFocus />
         </div>
       </div>
 
@@ -783,6 +830,7 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate
   const [showForgot, setShowForgot] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
+  const [unconfirmedEmail, setUnconfirmedEmail] = useState(null);
   const throttleKey = 'free';
 
   const handleSubmit = async (e) => {
@@ -794,17 +842,25 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate
       return;
     }
 
+    setUnconfirmedEmail(null);
     setLoading(true);
-    const { error } = await onSignIn(email, password);
-    setLoading(false);
+    let error;
+    try {
+      ({ error } = await onSignIn(email, password));
+    } finally {
+      setLoading(false);
+    }
 
     if (error) {
+      const isUnconfirmed = error.code === 'email_not_confirmed' || error.message === 'Email not confirmed';
+      if (isUnconfirmed) {
+        setUnconfirmedEmail(email);
+        return;
+      }
       const { limitReached } = registerFailedAttempt(throttleKey);
       let description = error.message;
       if (error.message === 'Invalid login credentials') {
         description = 'Email o contrasena incorrectos';
-      } else if (error.code === 'email_not_confirmed' || error.message === 'Email not confirmed') {
-        description = 'Debes confirmar tu email antes de iniciar sesion. Revisa tu bandeja de entrada.';
       }
       if (limitReached) description += ` (bloqueado 60s tras ${LOGIN_MAX_ATTEMPTS} intentos)`;
       toast({
@@ -885,6 +941,18 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate
         </p>
       </div>
 
+      {unconfirmedEmail && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 flex items-start gap-2">
+          <MailWarning className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-amber-900">
+            <p className="font-semibold">Email sin confirmar</p>
+            <p className="mt-0.5">
+              Debes confirmar <strong>{unconfirmedEmail}</strong> antes de iniciar sesion. Revisa tu bandeja de entrada (y la carpeta de spam) y haz clic en el enlace de confirmacion.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="space-y-2">
         <Label htmlFor="free-email">Email</Label>
         <div className="relative">
@@ -895,7 +963,7 @@ function FreeUserLoginForm({ onSignIn, onGoogleSignIn, onResetPassword, navigate
             placeholder="tu@email.com"
             className="pl-10"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); setUnconfirmedEmail(null); }}
             required
           />
         </div>
