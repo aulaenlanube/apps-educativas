@@ -5,6 +5,15 @@ import { supabase } from '@/lib/supabase';
 // si el host es manipulado (Host header / proxy). Fallback al origin actual.
 const PUBLIC_URL = (import.meta.env.VITE_PUBLIC_URL || (typeof window !== 'undefined' ? window.location.origin : '')).replace(/\/$/, '');
 
+// Capturamos AL CARGAR el modulo si la URL trae marcadores de callback OAuth
+// (#access_token=... en flujo implicito, ?code=... en PKCE). supabase-js
+// limpia el hash/query en cuanto procesa la sesion, asi que leerlo desde un
+// componente luego llega tarde. Lo usamos para redirigir al panel correcto.
+const OAUTH_CALLBACK_IN_URL = typeof window !== 'undefined' && (
+  /[#&](access_token|id_token)=/.test(window.location.hash) ||
+  /[?&](code|error_description)=/.test(window.location.search)
+);
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -361,7 +370,7 @@ export function AuthProvider({ children }) {
   const value = useMemo(() => ({
     user, teacher, student, freeUser,
     isTeacher, isStudent, isFreeUser, isAdmin, isAuthenticated, role, displayName,
-    loading,
+    loading, oauthCallbackPending: OAUTH_CALLBACK_IN_URL,
     ...stableFns,
   }), [
     user, teacher, student, freeUser,
