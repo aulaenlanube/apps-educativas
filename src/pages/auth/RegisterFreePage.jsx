@@ -48,8 +48,14 @@ const RegisterFreePage = () => {
     }
 
     setLoading(true);
-    const { error } = await signUpFreeUser(email, password, cleanName);
-    setLoading(false);
+    let error;
+    try {
+      ({ error } = await signUpFreeUser(email, password, cleanName));
+    } catch (e) {
+      error = { message: e?.message || 'No se pudo contactar con el servidor' };
+    } finally {
+      setLoading(false);
+    }
 
     if (error) {
       const description = error?.code === 'weak_password'

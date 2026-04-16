@@ -48,8 +48,16 @@ const RegisterPage = () => {
     }
 
     setLoading(true);
-    const { error } = await signUpTeacher(email, password, cleanName);
-    setLoading(false);
+    let error;
+    try {
+      ({ error } = await signUpTeacher(email, password, cleanName));
+    } catch (e) {
+      // Cualquier throw (p. ej. ReferenceError inyectado en console.error en produccion)
+      // se degrada a error mostrable en vez de dejar el boton colgado.
+      error = { message: e?.message || 'No se pudo contactar con el servidor' };
+    } finally {
+      setLoading(false);
+    }
 
     if (error) {
       const description = error?.code === 'weak_password'
