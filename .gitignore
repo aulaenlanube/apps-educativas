@@ -113,6 +113,7 @@ public/build/
 # Vite specific
 dist
 dist.zip
+dist.tar.gz
 dist-ssr
 *.local
 # Claude Code local settings
