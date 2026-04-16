@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 
+// Preferir URL publica configurada por entorno para evitar OAuth open-redirect
+// si el host es manipulado (Host header / proxy). Fallback al origin actual.
+const PUBLIC_URL = (import.meta.env.VITE_PUBLIC_URL || (typeof window !== 'undefined' ? window.location.origin : '')).replace(/\/$/, '');
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -27,7 +31,7 @@ export function AuthProvider({ children }) {
         .eq('id', userId)
         .single();
       if (error) {
-        console.warn('[Auth] fetchTeacherProfile error:', error.message);
+        if (import.meta.env.DEV) console.warn('[Auth] fetchTeacherProfile error:', error.message);
         return false;
       }
       if (data) {
@@ -42,7 +46,7 @@ export function AuthProvider({ children }) {
       }
       return false;
     } catch (err) {
-      console.warn('[Auth] fetchTeacherProfile exception:', err);
+      if (import.meta.env.DEV) console.warn('[Auth] fetchTeacherProfile exception:', err);
       return false;
     }
   }, []);
@@ -73,9 +77,9 @@ export function AuthProvider({ children }) {
 
           // Google "Soy Libre" — marcar para procesar en el efecto de perfil
           if (event === 'SIGNED_IN') {
-            const pendingFree = localStorage.getItem('pending_free_google_auth');
+            const pendingFree = sessionStorage.getItem('pending_free_google_auth');
             if (pendingFree) {
-              localStorage.removeItem('pending_free_google_auth');
+              sessionStorage.removeItem('pending_free_google_auth');
               // Se procesa en el efecto de perfil
               sessionStorage.setItem('pending_free_update', session.user.id);
             }
@@ -109,15 +113,16 @@ export function AuthProvider({ children }) {
     let cancelled = false;
 
     async function loadProfile() {
-      // Procesar pending free update si existe
+      // Procesar pending free update si existe.
+      // El cambio de rol se delega a una RPC server-side con guard (SECURITY DEFINER)
+      // para evitar que el cliente pueda establecer cualquier rol via .update() directo.
       const pendingFreeUserId = sessionStorage.getItem('pending_free_update');
       if (pendingFreeUserId === user.id) {
         sessionStorage.removeItem('pending_free_update');
-        await supabase
-          .from('teachers')
-          .update({ role: 'free' })
-          .eq('id', user.id)
-          .eq('role', 'teacher');
+        const { error: roleError } = await supabase.rpc('set_self_role_free');
+        if (roleError && import.meta.env.DEV) {
+          console.warn('[Auth] set_self_role_free failed:', roleError.message);
+        }
       }
 
       const success = await fetchTeacherProfile(user.id);
@@ -169,19 +174,19 @@ export function AuthProvider({ children }) {
   }
 
   async function signInWithGoogle() {
-    localStorage.removeItem('pending_free_google_auth');
+    sessionStorage.removeItem('pending_free_google_auth');
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin }
+      options: { redirectTo: PUBLIC_URL }
     });
     return { data, error };
   }
 
   async function signInWithGoogleAsFree() {
-    localStorage.setItem('pending_free_google_auth', 'true');
+    sessionStorage.setItem('pending_free_google_auth', 'true');
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin }
+      options: { redirectTo: PUBLIC_URL }
     });
     return { data, error };
   }
@@ -210,7 +215,7 @@ export function AuthProvider({ children }) {
       return { needsPassword: true, studentId: data.student_id, displayName: data.display_name };
     }
 
-    const studentData = { ...data.student, group_code: groupCode.toUpperCase() };
+    const studentData = { ...data.student, group_code: groupCode.toUpperCase(), session_token: data.session_token };
     setStudent(studentData);
     sessionStorage.setItem('student_session', JSON.stringify(studentData));
     return { data: studentData };
@@ -226,7 +231,7 @@ export function AuthProvider({ children }) {
     if (error) return { error };
     if (data.error) return { error: { message: data.error } };
 
-    const studentData = { ...data.student, group_code: groupCode.toUpperCase() };
+    const studentData = { ...data.student, group_code: groupCode.toUpperCase(), session_token: data.session_token };
     setStudent(studentData);
     sessionStorage.setItem('student_session', JSON.stringify(studentData));
     return { data: studentData };
@@ -248,6 +253,12 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
+    // Invalidar token de alumno server-side (si existe)
+    const studentToken = student?.session_token;
+    if (studentToken) {
+      try { await supabase.rpc('student_logout', { p_session_token: studentToken }); }
+      catch { /* best-effort */ }
+    }
     // Limpiar estado local siempre
     profileFetchedForId.current = null;
     setUser(null);
@@ -302,7 +313,7 @@ export function AuthProvider({ children }) {
     }
 
     const groups = data.groups || [];
-    const studentData = { ...data.student, auth_user_id: authUserId, groups };
+    const studentData = { ...data.student, auth_user_id: authUserId, groups, session_token: data.session_token };
 
     if (groups.length === 1) {
       studentData.group_id = groups[0].group_id;
@@ -317,7 +328,7 @@ export function AuthProvider({ children }) {
 
   async function resetPassword(email) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/login',
+      redirectTo: `${PUBLIC_URL}/login`,
     });
     return { error };
   }

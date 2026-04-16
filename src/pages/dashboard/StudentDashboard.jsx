@@ -393,10 +393,12 @@ export default function StudentDashboard() {
       supabase.rpc('student_get_dashboard', {
         p_student_id: student.id,
         p_group_id: student.group_id,
+        p_session_token: student.session_token,
       }),
       supabase.rpc('student_get_assignments', {
         p_student_id: student.id,
         p_group_id: student.group_id,
+        p_session_token: student.session_token,
       }),
       supabase.rpc('get_student_quiz_battle_stats', {
         p_student_id: student.id,

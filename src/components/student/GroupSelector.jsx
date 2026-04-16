@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Plus, Rocket, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -22,6 +23,7 @@ import { Button } from '@/components/ui/button';
  *  - compact: boolean - modo compacto (dropdown-like)
  */
 export default function GroupSelector({ groups = [], activeGroupId, onSelect, showJoin = false, studentId, onGroupJoined, compact = false }) {
+  const { student } = useAuth();
   const { toast } = useToast();
   const [showJoinInput, setShowJoinInput] = useState(false);
   const [joinCode, setJoinCode] = useState('');
@@ -34,6 +36,7 @@ export default function GroupSelector({ groups = [], activeGroupId, onSelect, sh
     const { data, error } = await supabase.rpc('student_join_group', {
       p_student_id: studentId,
       p_group_code: joinCode.trim(),
+      p_session_token: student?.session_token,
     });
 
     setJoining(false);

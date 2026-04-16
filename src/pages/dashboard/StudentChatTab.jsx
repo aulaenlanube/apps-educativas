@@ -20,6 +20,7 @@ export default function StudentChatTab() {
     const { data: result } = await supabase.rpc('student_get_chat_messages', {
       p_student_id: student.id,
       p_group_id: student.group_id,
+      p_session_token: student.session_token,
     });
     if (result && !result.error) setData(result);
     if (!silent) setLoading(false);
@@ -44,6 +45,7 @@ export default function StudentChatTab() {
       p_student_id: student.id,
       p_group_id: student.group_id,
       p_message: reply.trim(),
+      p_session_token: student.session_token,
     });
     setReply('');
     await fetchChat(true);

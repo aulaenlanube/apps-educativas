@@ -121,6 +121,107 @@ describe('Security: Input validation', () => {
   });
 });
 
+describe('Security: Sanitizer helpers', () => {
+  it('sanitizePlainText strips HTML tags, control chars and truncates', async () => {
+    const { sanitizePlainText } = await import('../lib/sanitize.js');
+    expect(sanitizePlainText('<script>alert(1)</script>Hola')).toBe('alert(1)Hola');
+    expect(sanitizePlainText('Texto\u0000con\u0007control')).toBe('Textoconcontrol');
+    expect(sanitizePlainText('  trim me  ')).toBe('trim me');
+    expect(sanitizePlainText('abcdefghij', 5)).toBe('abcde');
+    expect(sanitizePlainText(null)).toBe('');
+  });
+
+  it('USERNAME_RE accepts valid usernames and rejects invalid', async () => {
+    const { USERNAME_RE } = await import('../lib/sanitize.js');
+    expect(USERNAME_RE.test('maria.garcia')).toBe(true);
+    expect(USERNAME_RE.test('pedro_1')).toBe(true);
+    expect(USERNAME_RE.test('ab')).toBe(false);
+    expect(USERNAME_RE.test('has space')).toBe(false);
+    expect(USERNAME_RE.test('<script>')).toBe(false);
+    expect(USERNAME_RE.test('a'.repeat(31))).toBe(false);
+  });
+
+  it('ROOM_CODE_RE enforces 4-8 uppercase alnum', async () => {
+    const { ROOM_CODE_RE } = await import('../lib/sanitize.js');
+    expect(ROOM_CODE_RE.test('ABCD')).toBe(true);
+    expect(ROOM_CODE_RE.test('ABC123')).toBe(true);
+    expect(ROOM_CODE_RE.test('abcd')).toBe(false);
+    expect(ROOM_CODE_RE.test('abc')).toBe(false);
+    expect(ROOM_CODE_RE.test('ABCDEFGHI')).toBe(false);
+  });
+
+  it('validatePassword enforces length and complexity', async () => {
+    const { validatePassword } = await import('../lib/sanitize.js');
+    expect(validatePassword('short1')).not.toBeNull();
+    expect(validatePassword('onlyletters')).not.toBeNull();
+    expect(validatePassword('12345678')).not.toBeNull();
+    expect(validatePassword('abcdefg1')).toBeNull();
+    expect(validatePassword('Str0ngPass')).toBeNull();
+  });
+});
+
+describe('Security: Roles are not updated client-side', () => {
+  it('AuthContext never writes teachers.role via .update()', () => {
+    const authPath = path.resolve(__dirname, '../contexts/AuthContext.jsx');
+    const content = fs.readFileSync(authPath, 'utf-8');
+    expect(content).not.toMatch(/\.update\(\s*\{\s*role:/);
+    expect(content).toContain("rpc('set_self_role_free')");
+  });
+});
+
+describe('Security: Student session token', () => {
+  it('AuthContext stores session_token from login responses', () => {
+    const authPath = path.resolve(__dirname, '../contexts/AuthContext.jsx');
+    const content = fs.readFileSync(authPath, 'utf-8');
+    expect(content).toMatch(/session_token: data\.session_token/);
+    expect(content).toContain("rpc('student_logout'");
+  });
+
+  it('All protected student_* RPCs in client pass p_session_token', () => {
+    const srcDir = path.resolve(__dirname, '..');
+    const PROTECTED = [
+      'student_get_dashboard',
+      'student_get_assignments',
+      'student_get_gamification',
+      'student_get_chat_messages',
+      'student_send_message',
+      'student_get_my_groups',
+      'student_join_group',
+      'student_update_profile',
+    ];
+    const scan = (dir) => {
+      let hits = [];
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'node_modules' && entry.name !== '__tests__') {
+          hits = hits.concat(scan(full));
+        } else if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.jsx'))) {
+          const content = fs.readFileSync(full, 'utf-8');
+          for (const rpc of PROTECTED) {
+            // Si la RPC aparece en el fichero, el fichero debe mencionar p_session_token en alguna parte.
+            if (content.includes(`rpc('${rpc}'`) || content.includes(`rpc("${rpc}"`)) {
+              if (!content.includes('p_session_token')) {
+                hits.push(`${full}:${rpc}`);
+              }
+            }
+          }
+        }
+      }
+      return hits;
+    };
+    expect(scan(srcDir)).toEqual([]);
+  });
+});
+
+describe('Security: Visual editor plugin', () => {
+  it('message listener validates event.origin', () => {
+    const pluginPath = path.resolve(__dirname, '../../plugins/visual-editor/edit-mode-script.js');
+    const content = fs.readFileSync(pluginPath, 'utf-8');
+    expect(content).toContain('ALLOWED_PARENT_ORIGINS_SET.has(event.origin)');
+    expect(content).not.toMatch(/popupElement\.innerHTML\s*=/);
+  });
+});
+
 describe('Security: No dangerous patterns', () => {
   const srcDir = path.resolve(__dirname, '..');
 

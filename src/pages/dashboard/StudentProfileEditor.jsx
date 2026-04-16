@@ -61,6 +61,7 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
     const params = {
       p_student_id: student.id,
       p_group_id: student.group_id,
+      p_session_token: student.session_token,
     };
     if (selectedEmoji !== (studentInfo?.avatar_emoji || '🎓')) params.p_avatar_emoji = selectedEmoji;
     if (selectedColor !== currentColor) params.p_avatar_color = selectedColor;
@@ -101,6 +102,7 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
       p_group_id: student.group_id,
       p_new_password: newPassword,
       p_current_password: currentPassword || null,
+      p_session_token: student.session_token,
     });
 
     setSavingPassword(false);
@@ -393,7 +395,7 @@ function MyGroupsSection({ student }) {
   const [loading, setLoading] = useState(true);
 
   const fetchGroups = async () => {
-    const { data } = await supabase.rpc('student_get_my_groups', { p_student_id: student.id });
+    const { data } = await supabase.rpc('student_get_my_groups', { p_student_id: student.id, p_session_token: student.session_token });
     setGroups(Array.isArray(data) ? data : []);
     setLoading(false);
   };

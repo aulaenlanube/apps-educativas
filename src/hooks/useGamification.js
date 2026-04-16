@@ -16,6 +16,7 @@ export function useGamification() {
         const { data: d } = await supabase.rpc('student_get_gamification', {
           p_student_id: student.id,
           p_group_id: student.group_id || null,
+          p_session_token: student.session_token,
         });
         if (d?.success) result = d;
       } else if ((isTeacher || isFreeUser || isAdmin) && user?.id) {
