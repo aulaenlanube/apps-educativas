@@ -87,6 +87,7 @@ const FraccionesESO = lazy(() => import('../fracciones-eso/FraccionesESO'));
 const BancoRecursosTutoria = lazy(() => import('../banco-recursos-tutoria/BancoRecursosTutoria'));
 const TerminalRetro = lazy(() => import('../terminal-retro/TerminalRetro'));
 const ProgramacionBloques = lazy(() => import('../programacion-bloques/ProgramacionBloques'));
+const LaboratorioRobotica = lazy(() => import('../laboratorio-robotica/LaboratorioRobotica'));
 const SistemaSolar = lazy(() => import('../sistema-solar/SistemaSolar'));
 const CelulaAnimal = lazy(() => import('../celula-animal/CelulaAnimal'));
 const CelulaVegetal = lazy(() => import('../celula-vegetal/CelulaVegetal'));
@@ -313,6 +314,13 @@ export const appProgramacionBloques = {
   name: '💾 Programación Visual 3.1',
   description: 'Ordena los bloques de código en un entorno clásico de ventanas.',
   component: ProgramacionBloques
+};
+
+export const appLaboratorioRobotica = {
+  id: 'laboratorio-robotica',
+  name: '🤖 Laboratorio de Robótica',
+  description: 'Monta circuitos electrónicos y proyectos con Arduino conectando cables. 5 ejercicios por curso con 3 modos de dificultad.',
+  component: LaboratorioRobotica
 };
 
 export const appBancoRecursosTutoria = {

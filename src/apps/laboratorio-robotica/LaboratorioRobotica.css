@@ -1,0 +1,608 @@
+/* Laboratorio de Robótica — estilos */
+
+.rob-shell {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+  font-family: 'Inter', 'Fredoka', system-ui, sans-serif;
+  color: #1e1b4b;
+}
+
+/* ---- Pantalla de inicio ---- */
+.rob-hero {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.06) 50%, rgba(245, 158, 11, 0.08) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
+}
+
+.rob-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.rob-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.rob-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.rob-hero-title p {
+  color: #475569;
+  margin: 0;
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+.rob-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.rob-mode-card {
+  border: none;
+  text-align: left;
+  padding: 1.25rem;
+  border-radius: 18px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.rob-mode-easy { background: linear-gradient(135deg, #22c55e, #10b981); }
+.rob-mode-medium { background: linear-gradient(135deg, #f59e0b, #f97316); }
+.rob-mode-exam { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+.rob-mode-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.rob-mode-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.95;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.rob-mode-icon {
+  font-size: 2rem;
+}
+
+.rob-mode-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  align-self: flex-start;
+}
+
+.rob-exercise-list {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+}
+
+.rob-exercise-list h3 {
+  margin: 0 0 0.5rem;
+  color: #6d28d9;
+  font-size: 1rem;
+}
+
+.rob-exercise-list ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #334155;
+  line-height: 1.75;
+}
+
+/* ---- Pantalla de juego ---- */
+
+.rob-playhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.rob-playhead-left, .rob-playhead-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.rob-mode-chip {
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.rob-mode-chip.mode-easy { background: #dcfce7; color: #166534; }
+.rob-mode-chip.mode-medium { background: #fef3c7; color: #92400e; }
+.rob-mode-chip.mode-exam { background: #fee2e2; color: #991b1b; }
+
+.rob-progress { color: #475569; font-weight: 600; }
+
+.rob-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #1e293b;
+  color: #fde047;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.rob-icon-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  border-radius: 10px;
+  padding: 0.45rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.rob-icon-btn:hover { background: #e2e8f0; }
+
+.rob-exercise-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid #8b5cf6;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.rob-exercise-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6d28d9;
+}
+
+.rob-exercise-title h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.rob-exercise-desc {
+  margin: 0.4rem 0 0;
+  color: #334155;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+/* ---- Tablero de circuito ---- */
+
+.rob-board {
+  position: relative;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(14, 165, 233, 0.06), transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.06), transparent 50%),
+    #0f172a;
+  background-image:
+    linear-gradient(rgba(100, 116, 139, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-radius: 16px;
+  border: 2px solid #334155;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.3), inset 0 0 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  margin: 0 auto 1rem;
+  cursor: crosshair;
+  max-width: 100%;
+}
+
+.rob-wires {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.rob-wire { pointer-events: all; cursor: pointer; }
+.rob-wire:hover path:first-child { stroke-width: 8; filter: brightness(1.3); }
+
+.rob-component {
+  position: absolute;
+  background: white;
+  border: 2px solid;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+  user-select: none;
+}
+
+.rob-component-header {
+  color: white;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rob-component-icon { font-size: 0.9rem; }
+
+.rob-component-label {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rob-component-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  color: #475569;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.rob-component-id {
+  background: #f1f5f9;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+}
+
+.rob-pin {
+  position: absolute;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 2;
+}
+
+.rob-pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fbbf24;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #78350f, 0 0 8px rgba(251, 191, 36, 0.8);
+  transition: all 0.15s ease;
+}
+
+.rob-pin:hover .rob-pin-dot {
+  transform: scale(1.35);
+  background: #fef08a;
+  box-shadow: 0 0 0 2px #78350f, 0 0 14px rgba(251, 191, 36, 1);
+}
+
+.rob-pin.selected .rob-pin-dot {
+  background: #f472b6;
+  box-shadow: 0 0 0 2px #831843, 0 0 14px rgba(244, 114, 182, 1);
+  animation: pin-pulse 0.9s ease-in-out infinite;
+}
+
+.rob-pin.wired .rob-pin-dot {
+  background: #86efac;
+  box-shadow: 0 0 0 1px #166534, 0 0 10px rgba(134, 239, 172, 0.8);
+}
+
+@keyframes pin-pulse {
+  0%, 100% { transform: scale(1.2); }
+  50% { transform: scale(1.5); }
+}
+
+.rob-pin-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: #fef3c7;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---- Barra de acciones ---- */
+
+.rob-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.rob-toolbar-spacer { flex: 1; }
+
+.rob-btn-primary, .rob-btn-secondary, .rob-btn-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  font-size: 0.9rem;
+}
+
+.rob-btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+}
+.rob-btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(139, 92, 246, 0.5); }
+.rob-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.rob-btn-secondary {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.rob-btn-secondary:hover:not(:disabled) { background: #e2e8f0; }
+.rob-btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.rob-btn-hint {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+.rob-btn-hint:hover:not(:disabled) { background: #fde68a; }
+.rob-btn-hint:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.rob-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+.rob-feedback {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.rob-feedback-success { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.rob-feedback-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.rob-feedback-warn { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+
+/* ---- Pantalla de resumen ---- */
+
+.rob-summary-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1);
+  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.rob-summary-card h1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  color: #6d28d9;
+}
+
+.rob-note {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 800;
+  padding: 0.5rem 2rem;
+  border-radius: 20px;
+  margin: 0.5rem 0;
+}
+
+.rob-note-value { font-size: 5rem; line-height: 1; }
+.rob-note-max { font-size: 1.8rem; opacity: 0.7; }
+
+.rob-note.grade-high { background: #dcfce7; color: #166534; }
+.rob-note.grade-mid { background: #dbeafe; color: #1e40af; }
+.rob-note.grade-low { background: #fee2e2; color: #991b1b; }
+
+.rob-note-msg {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.25rem 0 1rem;
+  color: #475569;
+}
+
+.rob-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.rob-stat {
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.rob-stat b { color: #0f172a; font-size: 1rem; }
+
+.rob-summary-list {
+  text-align: left;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rob-summary-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.rob-summary-row.ok { background: #f0fdf4; color: #166534; }
+.rob-summary-row.ko { background: #fef2f2; color: #991b1b; }
+
+.rob-summary-idx { font-weight: 800; }
+.rob-summary-title { font-weight: 600; }
+.rob-summary-score { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+.rob-summary-text { color: #475569; line-height: 1.6; margin: 1rem 0; }
+
+.rob-summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 900px) {
+  .rob-board {
+    transform: scale(0.85);
+    transform-origin: top left;
+    margin-bottom: -80px;
+  }
+}
+
+@media (max-width: 720px) {
+  .rob-hero h1 { font-size: 1.6rem; }
+  .rob-mode-grid { grid-template-columns: 1fr; }
+  .rob-summary-stats { grid-template-columns: 1fr; }
+  .rob-board {
+    transform: scale(0.6);
+    transform-origin: top left;
+    margin-bottom: -200px;
+  }
+  .rob-note-value { font-size: 3.5rem; }
+}
+
+/* ---- Dark mode ---- */
+
+:root.dark .rob-shell { color: #f1f5f9; }
+
+:root.dark .rob-hero {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+:root.dark .rob-hero-title p { color: #cbd5e1; }
+
+:root.dark .rob-exercise-list,
+:root.dark .rob-playhead,
+:root.dark .rob-exercise-card,
+:root.dark .rob-toolbar,
+:root.dark .rob-summary-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+:root.dark .rob-exercise-list ol,
+:root.dark .rob-exercise-desc,
+:root.dark .rob-progress,
+:root.dark .rob-stat { color: #cbd5e1; }
+
+:root.dark .rob-stat { background: #0f172a; }
+:root.dark .rob-stat b { color: #f1f5f9; }
+
+:root.dark .rob-component { background: #1e293b; color: #f1f5f9; }
+:root.dark .rob-component-body { color: #cbd5e1; }
+:root.dark .rob-component-id { background: #0f172a; color: #e2e8f0; }
+
+:root.dark .rob-btn-secondary { background: #334155; color: #e2e8f0; border-color: #475569; }
+:root.dark .rob-btn-secondary:hover:not(:disabled) { background: #475569; }
+
+:root.dark .rob-icon-btn { background: #334155; color: #cbd5e1; border-color: #475569; }
+
+:root.dark .rob-tip { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border-color: rgba(59, 130, 246, 0.3); }
+
+:root.dark .rob-summary-row.ok { background: rgba(34, 197, 94, 0.15); color: #86efac; }
+:root.dark .rob-summary-row.ko { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
