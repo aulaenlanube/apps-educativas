@@ -88,6 +88,7 @@ const BancoRecursosTutoria = lazy(() => import('../banco-recursos-tutoria/BancoR
 const TerminalRetro = lazy(() => import('../terminal-retro/TerminalRetro'));
 const ProgramacionBloques = lazy(() => import('../programacion-bloques/ProgramacionBloques'));
 const LaboratorioRobotica = lazy(() => import('../laboratorio-robotica/LaboratorioRobotica'));
+const MisionesRoboticas = lazy(() => import('../misiones-roboticas/MisionesRoboticas'));
 const SistemaSolar = lazy(() => import('../sistema-solar/SistemaSolar'));
 const CelulaAnimal = lazy(() => import('../celula-animal/CelulaAnimal'));
 const CelulaVegetal = lazy(() => import('../celula-vegetal/CelulaVegetal'));
@@ -321,6 +322,13 @@ export const appLaboratorioRobotica = {
   name: '🤖 Laboratorio de Robótica',
   description: 'Monta circuitos electrónicos y proyectos con Arduino conectando cables. 5 ejercicios por curso con 3 modos de dificultad.',
   component: LaboratorioRobotica
+};
+
+export const appMisionesRoboticas = {
+  id: 'misiones-roboticas',
+  name: '🤖 Programa al Robot',
+  description: 'Programa a un robot con bloques visuales tipo puzzle: movimientos, bucles, condicionales y sensores. 10 misiones por curso con 3 modos.',
+  component: MisionesRoboticas
 };
 
 export const appBancoRecursosTutoria = {

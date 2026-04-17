@@ -103,7 +103,7 @@ const APP_HEADER_PRESETS = {
 };
 
 // Apps "wide" usan header standard pero contenedor ancho
-const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva'];
+const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas'];
 const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 
 /**
