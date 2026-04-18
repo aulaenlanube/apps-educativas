@@ -326,9 +326,9 @@ export const appTerminalRetro = {
   component: TerminalRetro
 };
 export const appProgramacionBloques = {
-  id: 'programacion-bloques-windows',
-  name: '💾 Programación Visual 3.1',
-  description: 'Ordena los bloques de código en un entorno clásico de ventanas.',
+  id: 'programacion-bloques',
+  name: '🤖 Programa al Robot',
+  description: 'Editor de bloques con variables, bucles, condiciones y funciones. Ve tu programa en Python, Java y C.',
   component: ProgramacionBloques
 };
 

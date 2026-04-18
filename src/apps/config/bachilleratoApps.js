@@ -38,7 +38,7 @@ const appsTutoria = [
   appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, ...appsBase
 ];
 
-const appsProgramacion = [appTerminalRetro, appProgramacionBloques, ...appsBase];
+const appsProgramacion = [appProgramacionBloques, appTerminalRetro, ...appsBase];
 
 export const bachilleratoApps = {
   '1': {

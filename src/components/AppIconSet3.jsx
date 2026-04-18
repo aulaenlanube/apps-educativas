@@ -39,7 +39,7 @@ const icons3 = {
     </svg>
   ),
 
-  'programacion-bloques-windows': () => (
+  'programacion-bloques': () => (
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
       <defs>
         <linearGradient id="ai3-win-title" x1="0" y1="0" x2="1" y2="0">
