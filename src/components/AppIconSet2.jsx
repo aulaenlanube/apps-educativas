@@ -392,6 +392,58 @@ const icons2 = {
     </svg>
   ),
 
+  'ordena-numeros': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+      <defs>
+        <linearGradient id="ai2-ord" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#8b5cf6" />
+          <stop offset="100%" stopColor="#ec4899" />
+        </linearGradient>
+        <linearGradient id="ai2-ord-c1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fef3c7" />
+          <stop offset="100%" stopColor="#fde68a" />
+        </linearGradient>
+        <linearGradient id="ai2-ord-c2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fdba74" />
+          <stop offset="100%" stopColor="#fb923c" />
+        </linearGradient>
+        <linearGradient id="ai2-ord-c3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f472b6" />
+          <stop offset="100%" stopColor="#db2777" />
+        </linearGradient>
+      </defs>
+      {/* Fondo */}
+      <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#ai2-ord)" />
+      <rect x="4" y="4" width="40" height="20" rx="12" fill="rgba(255,255,255,0.15)" />
+
+      {/* Flecha ascendente izquierda */}
+      <path d="M10 36 L10 14" stroke="#fff" strokeWidth="1.3" strokeLinecap="round" opacity="0.75" />
+      <path d="M10 13 l-2 2.5 4 0 z" fill="#fff" opacity="0.85" />
+
+      {/* Tarjeta 1 — pequeña (valor menor) */}
+      <rect x="16" y="30" width="22" height="7" rx="3.5" fill="url(#ai2-ord-c1)" stroke="rgba(0,0,0,0.1)" strokeWidth="0.4"
+        style={{ animation: 'ai-bounce 3s ease-in-out infinite', transformOrigin: '27px 33.5px' }} />
+      <text x="19" y="35.3" fill="#9a3412" fontSize="5.5" fontWeight="700" fontFamily="system-ui">1,25</text>
+
+      {/* Tarjeta 2 — media */}
+      <rect x="16" y="21" width="22" height="7" rx="3.5" fill="url(#ai2-ord-c2)" stroke="rgba(0,0,0,0.12)" strokeWidth="0.4"
+        style={{ animation: 'ai-bounce 3s ease-in-out 0.4s infinite', transformOrigin: '27px 24.5px' }} />
+      <text x="19" y="26.3" fill="#7c2d12" fontSize="5.5" fontWeight="700" fontFamily="system-ui">3,50</text>
+
+      {/* Tarjeta 3 — grande (valor mayor) */}
+      <rect x="16" y="12" width="22" height="7" rx="3.5" fill="url(#ai2-ord-c3)" stroke="rgba(0,0,0,0.12)" strokeWidth="0.4"
+        style={{ animation: 'ai-bounce 3s ease-in-out 0.8s infinite', transformOrigin: '27px 15.5px' }} />
+      <text x="19" y="17.3" fill="#fff" fontSize="5.5" fontWeight="700" fontFamily="system-ui">7,80</text>
+
+      {/* Brillitos */}
+      <circle cx="40" cy="11" r="0.9" fill="#fff" opacity="0.7" style={{ animation: 'ai-pulse 2s ease-in-out infinite' }} />
+      <circle cx="42" cy="28" r="0.7" fill="#fff" opacity="0.5" style={{ animation: 'ai-pulse 2s ease-in-out 0.7s infinite' }} />
+
+      {/* Sombra inferior */}
+      <rect x="4" y="38" width="40" height="6" rx="3" fill="rgba(0,0,0,0.05)" />
+    </svg>
+  ),
+
   'mesa-crafteo': () => (
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
       <defs>

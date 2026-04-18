@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Zap, Heart, Timer, Flame, Star, RefreshCw, SkipForward, Eye,
+  Zap, Timer, Flame, Star, RefreshCw, SkipForward, Eye,
   Gamepad2, GraduationCap, Award, Trophy, Check, X, Send,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
@@ -22,24 +22,47 @@ const normalize = (s) =>
 
 const MODE_CONFIG = {
   easy: {
-    label: 'Fácil', icon: '🟢', questions: 10, lives: 3,
-    baseTime: 10, // seconds
+    label: 'Fácil', icon: '🟢', questions: 5,
+    baseTime: 10, // seconds (baseline ESO 2º/3º/4º)
     helps: { firstLetter: 3, skip: 3 },
     speedUp: false,
   },
   medium: {
-    label: 'Medio', icon: '🟡', questions: 15, lives: 2,
+    label: 'Medio', icon: '🟡', questions: 8,
     baseTime: 7,
     helps: { firstLetter: 1, skip: 1 },
     speedUp: true, // cada 3 rachas, -0.3s
   },
   exam: {
-    label: 'Examen', icon: '🔴', questions: 20, lives: 1,
+    label: 'Examen', icon: '🔴', questions: 10,
     baseTime: 5,
     helps: { firstLetter: 1, skip: 0 },
     speedUp: true,
   },
 };
+
+// Al fallar (o agotarse el tiempo) la partida NO termina: la siguiente pregunta gana
+// un bonus de tiempo igual al 50% del base (minimo 2s).
+const FAIL_TIME_BONUS_RATIO = 0.5;
+const FAIL_TIME_BONUS_MIN = 2;
+
+// Los alumnos pequeños leen y tipean mucho más lento — escalamos el tiempo por curso.
+// Baseline (×1.0) ≈ ESO 2º. Primaria necesita más tiempo, bachillerato algo menos.
+const GRADE_TIME_MULTIPLIERS = {
+  'primaria-1': 2.2,
+  'primaria-2': 2.0,
+  'primaria-3': 1.7,
+  'primaria-4': 1.5,
+  'primaria-5': 1.3,
+  'primaria-6': 1.15,
+  'eso-1': 1.05,
+  'eso-2': 1.0,
+  'eso-3': 1.0,
+  'eso-4': 0.95,
+  'bachillerato-1': 0.9,
+  'bachillerato-2': 0.85,
+};
+const getGradeTimeMultiplier = (level, grade) => GRADE_TIME_MULTIPLIERS[`${level}-${grade}`] || 1.0;
 
 const getSubjectInfo = (level, grade, subjectId) => {
   if (!level || !grade || !subjectId) return { nombre: '', icon: '📚' };
@@ -62,6 +85,13 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   const grade = useMemo(() => parseInt(gradeParam, 10), [gradeParam]);
   const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
   const subjectInfo = useMemo(() => getSubjectInfo(level, grade, asignatura), [level, grade, asignatura]);
+  const timeMultiplier = useMemo(() => getGradeTimeMultiplier(level, grade), [level, grade]);
+  const getBaseTime = useCallback((mode) => {
+    const cfg = MODE_CONFIG[mode];
+    if (!cfg) return 0;
+    // Redondeamos a 0.5s para que los tiempos queden "humanos" (ej. 18s, 12.5s…)
+    return Math.max(3, Math.round(cfg.baseTime * timeMultiplier * 2) / 2);
+  }, [timeMultiplier]);
 
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,7 +103,8 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
   // Game state
-  const [lives, setLives] = useState(3);
+  const [mistakes, setMistakes] = useState(0);
+  const [pendingTimeBonus, setPendingTimeBonus] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
@@ -132,7 +163,8 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
     setStatus('playing');
     setAnswer('');
     setShowAnswer(false);
-    setLives(cfg.lives);
+    setMistakes(0);
+    setPendingTimeBonus(0);
     setScore(0);
     setStreak(0);
     setMaxStreak(0);
@@ -140,11 +172,12 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
     setLastGain(null);
     setHelpsRemaining({ ...cfg.helps });
     setRevealedFirst(false);
-    setMaxTime(cfg.baseTime);
-    setTimeLeft(cfg.baseTime);
+    const adjBase = getBaseTime(gameMode);
+    setMaxTime(adjBase);
+    setTimeLeft(adjBase);
     trackedRef.current = false;
     setTimeout(() => inputRef.current?.focus(), 100);
-  }, [allWords, gameMode]);
+  }, [allWords, gameMode, getBaseTime]);
 
   useEffect(() => {
     if (!loading && allWords.length >= 4) startGame();
@@ -160,18 +193,20 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
       setTimeLeft((t) => {
         if (t <= 0.1) {
           clearInterval(timerRef.current);
-          // Timeout = fallo
+          // Timeout: fallo sin perder vidas, se concede un bonus de tiempo para la siguiente
           setStatus('timeout');
-          setLives((l) => l - 1);
+          setMistakes((m) => m + 1);
           setStreak(0);
           setShowAnswer(true);
+          const bonus = Math.max(FAIL_TIME_BONUS_MIN, Math.round(getBaseTime(gameMode) * FAIL_TIME_BONUS_RATIO * 2) / 2);
+          setPendingTimeBonus((b) => b + bonus);
           return 0;
         }
         return Math.max(0, t - 0.05);
       });
     }, 50);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [status, currentIndex]);
+  }, [status, currentIndex, gameMode, getBaseTime]);
 
   // --- Pregunta actual ---
   const currentQ = questions[currentIndex];
@@ -179,11 +214,12 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   // --- Calcular tiempo ajustado (speedUp) ---
   const getAdjustedTime = useCallback(() => {
     const cfg = MODE_CONFIG[gameMode];
-    if (!cfg.speedUp) return cfg.baseTime;
-    // Cada 3 rachas, -0.4s (mínimo 2s)
-    const reduction = Math.floor(streak / 3) * 0.4;
-    return Math.max(2, cfg.baseTime - reduction);
-  }, [gameMode, streak]);
+    const base = getBaseTime(gameMode);
+    if (!cfg.speedUp) return base;
+    // Cada 3 rachas reducimos ~5% del tiempo base (mínimo 50% del base, nunca <3s)
+    const reduction = Math.floor(streak / 3) * base * 0.05;
+    return Math.max(3, base * 0.5, base - reduction);
+  }, [gameMode, streak, getBaseTime]);
 
   // --- Enviar respuesta ---
   const submitAnswer = useCallback(() => {
@@ -195,9 +231,9 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
 
     if (normalized === correct) {
       // ¡Correcto!
-      const cfg = MODE_CONFIG[gameMode];
       const streakMultiplier = 1 + streak * 0.1;
-      const timeBonus = Math.max(0, Math.round(20 * (timeLeft / cfg.baseTime)));
+      const adjBase = getBaseTime(gameMode);
+      const timeBonus = Math.max(0, Math.round(20 * (timeLeft / Math.max(1, adjBase))));
       const basePoints = 100;
       const gained = Math.round(basePoints * streakMultiplier + timeBonus);
       setScore((s) => s + gained);
@@ -211,21 +247,20 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
       setStatus('correct');
     } else {
       setStatus('wrong');
-      setLives((l) => l - 1);
+      setMistakes((m) => m + 1);
       setStreak(0);
       setShowAnswer(true);
+      const bonus = Math.max(FAIL_TIME_BONUS_MIN, Math.round(getBaseTime(gameMode) * FAIL_TIME_BONUS_RATIO * 2) / 2);
+      setPendingTimeBonus((b) => b + bonus);
     }
-  }, [status, currentQ, answer, gameMode, streak, timeLeft]);
+  }, [status, currentQ, answer, gameMode, streak, timeLeft, getBaseTime]);
 
   // --- Avanzar tras feedback ---
   useEffect(() => {
     if (status !== 'correct' && status !== 'wrong' && status !== 'timeout') return;
     const delay = status === 'correct' ? 800 : 1800;
     const t = setTimeout(() => {
-      if ((status === 'wrong' || status === 'timeout') && lives <= 0) {
-        setStatus('lost');
-        return;
-      }
+      // Fallar ya no termina la partida: solo se acaba cuando no quedan preguntas
       if (currentIndex + 1 >= questions.length) {
         setStatus('won');
         return;
@@ -234,14 +269,16 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
       setAnswer('');
       setShowAnswer(false);
       setRevealedFirst(false);
-      const adjTime = getAdjustedTime();
+      // Aplicamos el bonus de tiempo acumulado y lo reseteamos
+      const adjTime = getAdjustedTime() + pendingTimeBonus;
+      setPendingTimeBonus(0);
       setMaxTime(adjTime);
       setTimeLeft(adjTime);
       setStatus('playing');
       setTimeout(() => inputRef.current?.focus(), 50);
     }, delay);
     return () => clearTimeout(t);
-  }, [status, lives, currentIndex, questions.length, getAdjustedTime]);
+  }, [status, currentIndex, questions.length, getAdjustedTime, pendingTimeBonus]);
 
   // --- XP tracking al terminar ---
   useEffect(() => {
@@ -335,11 +372,21 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
             <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
           <div className="veloc-stats">
-            <div className="veloc-stat lives">
-              {Array.from({ length: cfg.lives }).map((_, i) => (
-                <Heart key={i} size={14} fill={i < lives ? '#ef4444' : 'none'} stroke={i < lives ? '#ef4444' : '#d1d5db'} />
-              ))}
-            </div>
+            {mistakes > 0 && (
+              <div className="veloc-stat lives" title="Fallos">
+                <X size={14} color="#ef4444" /> <span>{mistakes}</span>
+              </div>
+            )}
+            {pendingTimeBonus > 0 && (
+              <motion.div
+                className="veloc-stat streak"
+                initial={{ scale: 0.6, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                title="Tiempo extra para la siguiente pregunta"
+              >
+                <Timer size={14} /> <span>+{pendingTimeBonus}s</span>
+              </motion.div>
+            )}
             {streak >= 2 && (
               <motion.div className="veloc-stat streak" key={streak} initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
                 <Flame size={14} /> <span>×{multiplier}</span>
@@ -359,7 +406,7 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
             <button key={key} className={`veloc-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
               <span>{c.icon}</span>
               <span className="veloc-tab-label">{c.label}</span>
-              <span className="veloc-tab-sub">{c.questions} · {c.baseTime}s</span>
+              <span className="veloc-tab-sub">{c.questions} · {getBaseTime(key)}s</span>
             </button>
           ))}
         </div>

@@ -58,6 +58,14 @@ const MayorMenor4 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ 
 const MayorMenor5 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor5 })));
 const MayorMenor6 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.MayorMenor6 })));
 
+// Ordena Numeros (mismo motor, fixedMode ordenar)
+const OrdenaNumeros1 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros1 })));
+const OrdenaNumeros2 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros2 })));
+const OrdenaNumeros3 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros3 })));
+const OrdenaNumeros4 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros4 })));
+const OrdenaNumeros5 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros5 })));
+const OrdenaNumeros6 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros6 })));
+
 // Medidas
 const Medidas1 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas1 })));
 const Medidas2 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas2 })));
@@ -257,8 +265,15 @@ export const appMayorMenor1 = { id: 'mayor-menor-1', name: '⚖️ Mayor, Menor 
 export const appMayorMenor2 = { id: 'mayor-menor-2', name: '⚖️ Comparar Números', description: 'Compara números hasta el 100 y sumas sencillas.', component: MayorMenor2 };
 export const appMayorMenor3 = { id: 'mayor-menor-3', name: '⚖️ Comparar Multiplicaciones', description: 'Compara resultados de tablas de multiplicar.', component: MayorMenor3 };
 export const appMayorMenor4 = { id: 'mayor-menor-4', name: '⚖️ Comparar Operaciones', description: '¿Qué resultado es mayor? Operaciones combinadas.', component: MayorMenor4 };
-export const appMayorMenor5 = { id: 'mayor-menor-5', name: '⚖️ Comparar Decimales', description: 'Trabaja con números mayores y decimales.', component: MayorMenor5 };
+export const appMayorMenor5 = { id: 'mayor-menor-5', name: '⚖️ Comparar Decimales', description: 'Compara números decimales con precisión.', component: MayorMenor5 };
 export const appMayorMenor6 = { id: 'mayor-menor-6', name: '⚖️ Reto de Comparación', description: 'Expresiones matemáticas complejas.', component: MayorMenor6 };
+
+export const appOrdenaNumeros1 = { id: 'ordena-numeros-1', name: '🔢 Ordena los Números', description: 'Ordena de menor a mayor hasta el 20.', component: OrdenaNumeros1 };
+export const appOrdenaNumeros2 = { id: 'ordena-numeros-2', name: '🔢 Ordena hasta 100', description: 'Ordena números y sumas hasta el 100.', component: OrdenaNumeros2 };
+export const appOrdenaNumeros3 = { id: 'ordena-numeros-3', name: '🔢 Ordena Multiplicaciones', description: 'Ordena resultados de las tablas de multiplicar.', component: OrdenaNumeros3 };
+export const appOrdenaNumeros4 = { id: 'ordena-numeros-4', name: '🔢 Ordena Operaciones', description: 'Ordena operaciones combinadas de menor a mayor.', component: OrdenaNumeros4 };
+export const appOrdenaNumeros5 = { id: 'ordena-numeros-5', name: '🔢 Ordena Decimales', description: 'Ordena números decimales de menor a mayor.', component: OrdenaNumeros5 };
+export const appOrdenaNumeros6 = { id: 'ordena-numeros-6', name: '🔢 Reto de Ordenación', description: 'Ordena expresiones matemáticas complejas.', component: OrdenaNumeros6 };
 
 export const appMedidas1 = { id: 'medidas-1', name: '📏 Medidas: Iniciación', description: 'Aprende a comparar medidas básicas de longitud, peso y capacidad.', component: Medidas1 };
 export const appMedidas2 = { id: 'medidas-2', name: '📏 Medidas: Unidades Básicas', description: 'Practica con las unidades principales: metros, litros y gramos.', component: Medidas2 };

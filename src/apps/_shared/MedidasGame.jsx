@@ -645,12 +645,13 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
     );
 };
 
-export const Medidas1 = (props) => <MedidasGame level={1} title="Medidas: Iniciación (1º)" {...props} />;
-export const Medidas2 = (props) => <MedidasGame level={2} title="Medidas: Unidades Básicas (2º)" {...props} />;
-export const Medidas3 = (props) => <MedidasGame level={3} title="Medidas: Conversión Simple (3º)" {...props} />;
-export const Medidas4 = (props) => <MedidasGame level={4} title="Medidas: Sistema Completo (4º)" {...props} />;
-export const Medidas5 = (props) => <MedidasGame level={5} title="Medidas: Expresiones Complejas (5º)" {...props} />;
-export const Medidas6 = (props) => <MedidasGame level={6} title="Medidas: Reto Experto (6º)" {...props} />;
+// {...props} primero: así el level numerico del wrapper no lo sobrescribe el level string ("primaria") que AppRunnerPage pasa por la URL.
+export const Medidas1 = (props) => <MedidasGame {...props} level={1} title="Medidas: Iniciación (1º)" />;
+export const Medidas2 = (props) => <MedidasGame {...props} level={2} title="Medidas: Unidades Básicas (2º)" />;
+export const Medidas3 = (props) => <MedidasGame {...props} level={3} title="Medidas: Conversión Simple (3º)" />;
+export const Medidas4 = (props) => <MedidasGame {...props} level={4} title="Medidas: Sistema Completo (4º)" />;
+export const Medidas5 = (props) => <MedidasGame {...props} level={5} title="Medidas: Expresiones Complejas (5º)" />;
+export const Medidas6 = (props) => <MedidasGame {...props} level={6} title="Medidas: Reto Experto (6º)" />;
 
 export { generateProblemData, generateOrderProblemManual };
 export default MedidasGame;

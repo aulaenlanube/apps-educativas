@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap } from 'lucide-react';
+import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -11,6 +11,7 @@ import GlobalStats from './GlobalStats';
 import FeedbackPanel from './FeedbackPanel';
 import DataExplorer from './DataExplorer';
 import XPConfigPanel from './XPConfigPanel';
+import AppsModeReport from './AppsModeReport';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const AdminPanel = () => {
     { id: 'stats', label: 'Estadisticas', icon: Gamepad2 },
     { id: 'data', label: 'Datos', icon: Database },
     { id: 'xp', label: 'Experiencia', icon: Zap },
+    { id: 'apps', label: 'Apps', icon: ListChecks },
   ];
 
   if (selectedUser) {
@@ -122,6 +124,7 @@ const AdminPanel = () => {
               {activeTab === 'stats' && <GlobalStats stats={globalStats} />}
               {activeTab === 'data' && <DataExplorer />}
               {activeTab === 'xp' && <XPConfigPanel />}
+              {activeTab === 'apps' && <AppsModeReport />}
             </>
           )}
         </div>

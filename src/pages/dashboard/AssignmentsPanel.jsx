@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardList, Plus, Trash2, CheckCircle2, Clock, Users, User, AlertTriangle, Filter, GraduationCap } from 'lucide-react';
+import { ClipboardList, Plus, Trash2, Pencil, CheckCircle2, Clock, Users, User, AlertTriangle, Filter, GraduationCap } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -9,13 +9,15 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel,
 } from '@/components/ui/alert-dialog';
 import AssignTaskDialog from './AssignTaskDialog';
+import AssignmentScoresDialog from './AssignmentScoresDialog';
+import EditAssignmentDialog from './EditAssignmentDialog';
 
 function formatDate(dateStr) {
   if (!dateStr) return null;
   return new Date(dateStr).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-export default function AssignmentsPanel({ groupId, groupName, students }) {
+export default function AssignmentsPanel({ groupId, groupName, groupLevel, groupGrade, groupSubject, students }) {
   const { toast } = useToast();
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,6 +25,8 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [teacherFilter, setTeacherFilter] = useState('all');
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
+  const [editingAssignment, setEditingAssignment] = useState(null);
 
   const fetchAssignments = useCallback(async () => {
     if (!groupId) return;
@@ -45,9 +49,11 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
   const handleDelete = async () => {
     if (!deletingId) return;
 
-    const { error } = await supabase.from('assignments').delete().eq('id', deletingId);
-    if (error) {
-      toast({ variant: 'destructive', title: 'Error', description: error.message });
+    const { data, error } = await supabase.rpc('teacher_delete_assignment', {
+      p_assignment_id: deletingId,
+    });
+    if (error || data?.error) {
+      toast({ variant: 'destructive', title: 'Error', description: error?.message || data?.error });
     } else {
       toast({ title: 'Tarea eliminada' });
       fetchAssignments();
@@ -136,7 +142,8 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ delay: idx * 0.03 }}
-                  className={`bg-white rounded-xl p-4 border shadow-sm transition-all ${
+                  onClick={() => setSelectedAssignment(asg)}
+                  className={`bg-white rounded-xl p-4 border shadow-sm transition-all cursor-pointer hover:shadow-md hover:border-purple-200 ${
                     allCompleted ? 'border-green-200' : isOverdue ? 'border-amber-200' : 'border-slate-100'
                   }`}
                 >
@@ -161,6 +168,16 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                           <span className="flex items-center gap-1 text-xs bg-slate-50 text-slate-500 px-2 py-0.5 rounded-full">
                             <GraduationCap className="w-3 h-3" />
                             {asg.teacher_name}
+                          </span>
+                        )}
+                        {asg.weight > 1 && (
+                          <span className="text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm">
+                            x{asg.weight}
+                          </span>
+                        )}
+                        {asg.term && (
+                          <span className="text-xs font-semibold bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2 py-0.5 rounded-full shadow-sm">
+                            {asg.term}ª Eval
                           </span>
                         )}
                       </div>
@@ -206,12 +223,22 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => { setDeletingId(asg.id); setShowDeleteDialog(true); }}
-                      className="p-1.5 rounded-lg hover:bg-red-50 text-slate-300 hover:text-red-500 transition-colors shrink-0"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setEditingAssignment(asg); }}
+                        className="p-1.5 rounded-lg hover:bg-purple-50 text-slate-300 hover:text-purple-600 transition-colors"
+                        title="Editar"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setDeletingId(asg.id); setShowDeleteDialog(true); }}
+                        className="p-1.5 rounded-lg hover:bg-red-50 text-slate-300 hover:text-red-500 transition-colors"
+                        title="Eliminar"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -225,8 +252,24 @@ export default function AssignmentsPanel({ groupId, groupName, students }) {
         onOpenChange={setShowCreateDialog}
         groupId={groupId}
         groupName={groupName}
+        groupLevel={groupLevel}
+        groupGrade={groupGrade}
+        groupSubject={groupSubject}
         students={students}
         onCreated={fetchAssignments}
+      />
+
+      <AssignmentScoresDialog
+        open={!!selectedAssignment}
+        onOpenChange={(v) => { if (!v) setSelectedAssignment(null); }}
+        assignment={selectedAssignment}
+      />
+
+      <EditAssignmentDialog
+        open={!!editingAssignment}
+        onOpenChange={(v) => { if (!v) setEditingAssignment(null); }}
+        assignment={editingAssignment}
+        onUpdated={fetchAssignments}
       />
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>

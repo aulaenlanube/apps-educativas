@@ -252,6 +252,9 @@ const DashboardPage = () => {
               <AssignmentsPanel
                 groupId={selectedGroupId}
                 groupName={selectedGroup?.name}
+                groupLevel={selectedGroup?.level}
+                groupGrade={selectedGroup?.grade}
+                groupSubject={selectedGroup?.subject_id}
                 students={students}
               />
             </motion.div>

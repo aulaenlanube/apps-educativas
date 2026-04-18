@@ -11,6 +11,9 @@ const INITIAL_SPEED = 0.15;
 const SPEED_INCREMENT_PER_LEVEL = 0.001;
 const SPAWN_DECREMENT_PER_LEVEL = 25;
 
+// Modificador de nota segun la velocidad elegida en el examen
+const EXAM_SUBMODE_MODIFIER = { slow: -1, normal: 0, fast: 1 };
+
 // Colores fijos para las categorías (Gradientes vibrantes)
 const CATEGORY_COLORS = [
     'bg-gradient-to-b from-red-500 to-red-700 shadow-red-900/20',
@@ -45,6 +48,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     // --- ESTADOS ---
     const [gamePhase, setGamePhase] = useState('loading');
     const [difficulty, setDifficulty] = useState('medium');
+    const [examSubMode, setExamSubMode] = useState(null); // 'slow' | 'normal' | 'fast'
     const [showExamMenu, setShowExamMenu] = useState(false);
     const [configData, setConfigData] = useState(null);
     const [score, setScore] = useState(0);
@@ -70,16 +74,24 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
             trackedRef.current = true;
             const wordsCollected = Math.floor(score / 10);
             const TARGET_WORDS = 30;
+            const isExam = difficulty === 'hard';
+            const baseNota = Math.min((wordsCollected / TARGET_WORDS) * 10, 10);
+            const modifier = isExam ? (EXAM_SUBMODE_MODIFIER[examSubMode] || 0) : 0;
+            // La nota final puede salir fuera del rango 0-10 por los modificadores
+            const finalNota = isExam
+                ? Math.max(0, Math.round((baseNota + modifier) * 10) / 10)
+                : Math.round(baseNota * 10) / 10;
             onGameComplete?.({
-                mode: difficulty === 'hard' ? 'test' : 'practice',
+                mode: isExam ? 'test' : 'practice',
                 score,
                 maxScore: TARGET_WORDS * 10,
                 correctAnswers: wordsCollected,
                 totalQuestions: TARGET_WORDS,
+                nota: finalNota,
             });
         }
         if (gamePhase !== 'gameOver') trackedRef.current = false;
-    }, [gamePhase, score, difficulty, onGameComplete]);
+    }, [gamePhase, score, difficulty, examSubMode, onGameComplete]);
 
     // --- CARGA DE DATOS ---
     useEffect(() => {
@@ -110,10 +122,11 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     }, [level, grade, subjectId]);
 
     // --- INICIAR JUEGO ---
-    const startGame = (selectedDifficulty, customSpeed = INITIAL_SPEED, customSpawn = SPAWN_RATE_START) => {
+    const startGame = (selectedDifficulty, customSpeed = INITIAL_SPEED, customSpawn = SPAWN_RATE_START, subMode = null) => {
         if (!configData) return;
 
         setDifficulty(selectedDifficulty);
+        setExamSubMode(selectedDifficulty === 'hard' ? subMode : null);
         setScore(0);
         setLives(3);
         setFallingWords([]);
@@ -391,32 +404,45 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                             exit={{ opacity: 0, scale: 0.95 }}
                             className="flex flex-col items-center w-full gap-6"
                         >
+                            {/* Aviso del modificador de nota */}
+                            <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 text-left text-sm text-amber-900">
+                                <p className="font-bold mb-1 flex items-center gap-2">⚠️ Modificador de nota</p>
+                                <ul className="list-disc list-inside space-y-0.5 text-[13px]">
+                                    <li><strong>Lento</strong> — resta <strong>1 punto</strong> a la nota final.</li>
+                                    <li><strong>Normal</strong> — nota sin cambios.</li>
+                                    <li><strong>Rápido</strong> — suma <strong>1 punto</strong> a la nota final (puede superar el 10).</li>
+                                </ul>
+                            </div>
+
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
                                 {[
-                                    { id: 'slow', emoji: '🕰️', label: 'Examen Lento', sub: 'Más tiempo', speed: 0.10, spawn: 2500, accent: 'bg-orange-400', shadow: 'shadow-orange-200' },
-                                    { id: 'normal', emoji: '⚡', label: 'Examen Normal', sub: 'Equilibrado', speed: 0.15, spawn: 2000, accent: 'bg-red-500', shadow: 'shadow-red-200' },
-                                    { id: 'fast', emoji: '🌪️', label: 'Examen Rápido', sub: '¡Solo expertos!', speed: 0.22, spawn: 1500, accent: 'bg-purple-600', shadow: 'shadow-purple-200' }
+                                    { id: 'slow', emoji: '🕰️', label: 'Examen Lento', sub: 'Más tiempo', speed: 0.10, spawn: 2500, accent: 'bg-orange-400', shadow: 'shadow-orange-200', modLabel: '−1 pto', modClass: 'bg-red-100 text-red-700' },
+                                    { id: 'normal', emoji: '⚡', label: 'Examen Normal', sub: 'Equilibrado', speed: 0.15, spawn: 2000, accent: 'bg-red-500', shadow: 'shadow-red-200', modLabel: 'Sin modificador', modClass: 'bg-slate-100 text-slate-600' },
+                                    { id: 'fast', emoji: '🌪️', label: 'Examen Rápido', sub: '¡Solo expertos!', speed: 0.22, spawn: 1500, accent: 'bg-purple-600', shadow: 'shadow-purple-200', modLabel: '+1 pto', modClass: 'bg-green-100 text-green-700' }
                                 ].map((subMode) => (
                                     <motion.button
                                         key={subMode.id}
                                         whileHover={{ scale: 1.05, y: -5 }}
                                         whileTap={{ scale: 0.98 }}
-                                        onClick={() => startGame('hard', subMode.speed, subMode.spawn)}
+                                        onClick={() => startGame('hard', subMode.speed, subMode.spawn, subMode.id)}
                                         className={`
-                                            group relative w-full h-48 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-50
+                                            group relative w-full h-56 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-50
                                             ${subMode.shadow}
                                         `}
                                     >
                                         <div className={`absolute top-0 w-full h-2 ${subMode.accent}`} />
                                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity ${subMode.accent}`} />
 
-                                        <div className="flex flex-col items-center justify-center h-full gap-3 p-4">
-                                            <span className="text-5xl filter drop-shadow-md mb-2">{subMode.emoji}</span>
+                                        <div className="flex flex-col items-center justify-center h-full gap-2 p-4">
+                                            <span className="text-5xl filter drop-shadow-md mb-1">{subMode.emoji}</span>
                                             <h3 className="text-lg font-black text-slate-800 tracking-tight font-fredoka">
                                                 {subMode.label}
                                             </h3>
                                             <span className="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wide">
                                                 {subMode.sub}
+                                            </span>
+                                            <span className={`px-3 py-1 rounded-full text-xs font-black ${subMode.modClass}`}>
+                                                {subMode.modLabel}
                                             </span>
                                         </div>
                                     </motion.button>
@@ -437,8 +463,15 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     if (gamePhase === 'gameOver') {
         const isExam = difficulty === 'hard';
         const correctWords = score / 10;
-        const examGrade = Math.min((correctWords / 30) * 10, 10).toFixed(1);
+        const baseNotaNum = Math.min((correctWords / 30) * 10, 10);
+        const modifier = isExam ? (EXAM_SUBMODE_MODIFIER[examSubMode] || 0) : 0;
+        const finalNotaNum = isExam
+            ? Math.max(0, Math.round((baseNotaNum + modifier) * 10) / 10)
+            : Math.round(baseNotaNum * 10) / 10;
+        const baseGrade = baseNotaNum.toFixed(1);
+        const examGrade = finalNotaNum.toFixed(1);
         const hasPassedExam = isExam && correctWords >= 30;
+        const subModeLabel = examSubMode === 'slow' ? 'Lento' : examSubMode === 'fast' ? 'Rápido' : examSubMode === 'normal' ? 'Normal' : null;
 
         return (
             <div className="flex flex-col items-center justify-center min-h-[85vh] gap-8 text-center px-4 max-w-4xl mx-auto py-10">
@@ -468,6 +501,25 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                 <span className={`text-7xl font-black font-fredoka ${!isExam && 'text-slate-800'}`}>{examGrade}</span>
                                 <span className={`text-2xl font-bold ${isExam ? 'text-blue-300' : 'text-slate-300'}`}>/ 10</span>
                             </div>
+
+                            {isExam && modifier !== 0 && (
+                                <div className="mt-4 w-full text-center text-xs font-semibold text-blue-100 space-y-1">
+                                    <div className="flex items-center justify-between px-2">
+                                        <span>Base</span>
+                                        <span>{baseGrade}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between px-2">
+                                        <span>Modo {subModeLabel}</span>
+                                        <span className={modifier > 0 ? 'text-green-300' : 'text-red-300'}>
+                                            {modifier > 0 ? `+${modifier}` : modifier}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-between px-2 pt-1 border-t border-white/20 font-black">
+                                        <span>Total</span>
+                                        <span>{examGrade}</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 

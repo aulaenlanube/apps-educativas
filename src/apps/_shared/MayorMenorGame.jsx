@@ -163,25 +163,40 @@ const generateLevelProblem = (level) => {
         right = makeExpressionForValue(rightVal, false);
     }
     else if (level === 5) {
-        const base = randomInt(1, 20);
-        const decimalPart = randomInt(1, 9);
-
-        const type = randomInt(1, 3);
+        // Comparar decimales con 2 cifras (padeadas) para evitar la confusión 5,5 vs 5,15
+        const formatDisplay = (n) => n.toFixed(2).replace('.', ',');
+        const base = randomInt(1, 99);
+        const type = randomInt(1, 4);
         let valL, valR;
 
         if (type === 1) {
-            valL = base + (decimalPart / 10);
-            valR = base + (decimalPart / 100) + 0.1;
+            // mismo entero, decimales distintos (trampa típica: 5,5 vs 5,15)
+            valL = base + randomInt(10, 99) / 100;
+            let rDec = randomInt(10, 99);
+            while (rDec === Math.round((valL - base) * 100)) rDec = randomInt(10, 99);
+            valR = base + rDec / 100;
         } else if (type === 2) {
-            valL = base + Math.random();
-            valR = valL + (Math.random() * 0.1 - 0.05);
-        } else {
-            valL = base + (decimalPart / 10);
+            // Enteros distintos
+            valL = base + randomInt(10, 99) / 100;
+            let base2 = randomInt(1, 99);
+            if (base2 === base) base2 = base + 1;
+            valR = base2 + randomInt(10, 99) / 100;
+        } else if (type === 3) {
+            // Iguales (para el caso =)
+            valL = base + randomInt(10, 99) / 100;
             valR = valL;
+        } else {
+            // Misma parte decimal, enteros distintos
+            const dec = randomInt(10, 99);
+            valL = base + dec / 100;
+            valR = Math.max(1, base + randomInt(-3, 3)) + dec / 100;
+            if (valR === valL) valR = valL + 1;
         }
 
-        left = { text: formatDec(valL).toString().replace('.', ','), value: formatDec(valL) };
-        right = { text: formatDec(valR).toString().replace('.', ','), value: formatDec(valR) };
+        valL = formatDec(valL);
+        valR = formatDec(valR);
+        left = { text: formatDisplay(valL), value: valL };
+        right = { text: formatDisplay(valR), value: valR };
     }
     else if (level === 6) {
         const isMult = Math.random() > 0.5;
@@ -204,10 +219,12 @@ const generateLevelProblem = (level) => {
 
     if (Math.random() < 0.2) {
         right.value = left.value;
-        if (level < 5) {
-            right.text = left.value.toString();
-        } else {
+        if (level === 5) {
+            right.text = Number(left.value).toFixed(2).replace('.', ',');
+        } else if (level > 5) {
             right.text = left.value.toString().replace('.', ',');
+        } else {
+            right.text = left.value.toString();
         }
     }
 
@@ -215,9 +232,11 @@ const generateLevelProblem = (level) => {
 };
 
 
-const MayorMenorGame = ({ level, title, onGameComplete }) => {
-    const [phase, setPhase] = useState('setup'); // 'setup', 'quantity', 'play'
-    const [gameMode, setGameMode] = useState('comparar'); // 'comparar' o 'ordenar'
+const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
+    // Cuando fixedMode está presente saltamos la pantalla de seleccion de modo
+    const initialPhase = fixedMode === 'ordenar' ? 'quantity' : fixedMode === 'comparar' ? 'play' : 'setup';
+    const [phase, setPhase] = useState(initialPhase);
+    const [gameMode, setGameMode] = useState(fixedMode || 'comparar'); // 'comparar' o 'ordenar'
     const [orderCount, setOrderCount] = useState(3);
     const [isTestMode, setIsTestMode] = useState(false);
     const [leftItem, setLeftItem] = useState({ text: '', value: 0 });
@@ -468,7 +487,7 @@ const MayorMenorGame = ({ level, title, onGameComplete }) => {
     }
 
     // VISTAS DE CONFIGURACIÓN
-    if (phase === 'setup') {
+    if (phase === 'setup' && !fixedMode) {
         return (
             <div className="mayor-menor-container mm-setup-screen">
                 <h1><span className="gradient-text">{title}</span></h1>
@@ -501,7 +520,9 @@ const MayorMenorGame = ({ level, title, onGameComplete }) => {
                         </button>
                     ))}
                 </div>
-                <button className="btn-back" onClick={() => setPhase('setup')}>← Volver</button>
+                {!fixedMode && (
+                    <button className="btn-back" onClick={() => setPhase('setup')}>← Volver</button>
+                )}
             </div>
         );
     }
@@ -509,9 +530,15 @@ const MayorMenorGame = ({ level, title, onGameComplete }) => {
     return (
         <div className="mayor-menor-container">
             <div className="mm-game-header">
-                <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
-                    🏠 Cambiar Modo
-                </button>
+                {fixedMode === 'ordenar' ? (
+                    <button className="btn-change-mode" onClick={() => { setPhase('quantity'); setIsTestMode(false); }}>
+                        🔢 Cambiar cantidad
+                    </button>
+                ) : !fixedMode ? (
+                    <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
+                        🏠 Cambiar Modo
+                    </button>
+                ) : null}
                 <h1><span className="gradient-text">{title}</span></h1>
             </div>
 
@@ -601,11 +628,22 @@ const MayorMenorGame = ({ level, title, onGameComplete }) => {
     );
 };
 
-export const MayorMenor1 = (props) => <MayorMenorGame level={1} title="Mayor, Menor o Igual (1º)" {...props} />;
-export const MayorMenor2 = (props) => <MayorMenorGame level={2} title="Comparar hasta 100 (2º)" {...props} />;
-export const MayorMenor3 = (props) => <MayorMenorGame level={3} title="Comparar Multiplicaciones (3º)" {...props} />;
-export const MayorMenor4 = (props) => <MayorMenorGame level={4} title="Operaciones Combinadas (4º)" {...props} />;
-export const MayorMenor5 = (props) => <MayorMenorGame level={5} title="Comparar Decimales (5º)" {...props} />;
-export const MayorMenor6 = (props) => <MayorMenorGame level={6} title="Reto Matemático (6º)" {...props} />;
+// Comparar (mayor/menor/igual) — fixedMode="comparar" para saltar la pantalla de seleccion.
+// IMPORTANTE: {...props} va primero y "level" numerico al final para que no lo sobrescriba
+// el "level" string (ej. "primaria") que pasa AppRunnerPage desde la URL.
+export const MayorMenor1 = (props) => <MayorMenorGame {...props} level={1} title="Mayor, Menor o Igual (1º)" fixedMode="comparar" />;
+export const MayorMenor2 = (props) => <MayorMenorGame {...props} level={2} title="Comparar hasta 100 (2º)" fixedMode="comparar" />;
+export const MayorMenor3 = (props) => <MayorMenorGame {...props} level={3} title="Comparar Multiplicaciones (3º)" fixedMode="comparar" />;
+export const MayorMenor4 = (props) => <MayorMenorGame {...props} level={4} title="Operaciones Combinadas (4º)" fixedMode="comparar" />;
+export const MayorMenor5 = (props) => <MayorMenorGame {...props} level={5} title="Comparar Decimales (5º)" fixedMode="comparar" />;
+export const MayorMenor6 = (props) => <MayorMenorGame {...props} level={6} title="Reto de Comparación (6º)" fixedMode="comparar" />;
+
+// Ordenar (de menor a mayor) — fixedMode="ordenar"
+export const OrdenaNumeros1 = (props) => <MayorMenorGame {...props} level={1} title="Ordena los Números (1º)" fixedMode="ordenar" />;
+export const OrdenaNumeros2 = (props) => <MayorMenorGame {...props} level={2} title="Ordena hasta 100 (2º)" fixedMode="ordenar" />;
+export const OrdenaNumeros3 = (props) => <MayorMenorGame {...props} level={3} title="Ordena Multiplicaciones (3º)" fixedMode="ordenar" />;
+export const OrdenaNumeros4 = (props) => <MayorMenorGame {...props} level={4} title="Ordena Operaciones (4º)" fixedMode="ordenar" />;
+export const OrdenaNumeros5 = (props) => <MayorMenorGame {...props} level={5} title="Ordena Decimales (5º)" fixedMode="ordenar" />;
+export const OrdenaNumeros6 = (props) => <MayorMenorGame {...props} level={6} title="Reto de Ordenación (6º)" fixedMode="ordenar" />;
 
 export default MayorMenorGame;

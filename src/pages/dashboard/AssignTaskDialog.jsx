@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ClipboardList, ChevronRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
@@ -10,18 +10,34 @@ import {
 } from '@/components/ui/dialog';
 import { getLevels, getGrades, getSubjects, getApps } from '@/apps/appCatalog';
 
-export default function AssignTaskDialog({ open, onOpenChange, groupId, groupName, students, studentId, onCreated }) {
+export default function AssignTaskDialog({ open, onOpenChange, groupId, groupName, groupLevel, groupGrade, groupSubject, students, studentId, onCreated }) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  // Cascading selection state
-  const [selectedLevel, setSelectedLevel] = useState(null);
-  const [selectedGrade, setSelectedGrade] = useState(null);
-  const [selectedSubject, setSelectedSubject] = useState(null);
+  const defaultLevel = groupLevel || null;
+  const defaultGrade = groupLevel && groupGrade != null ? String(groupGrade) : null;
+  const defaultSubject = defaultLevel && defaultGrade ? (groupSubject || null) : null;
+
+  // Cascading selection state — preselected from group context when available
+  const [selectedLevel, setSelectedLevel] = useState(defaultLevel);
+  const [selectedGrade, setSelectedGrade] = useState(defaultGrade);
+  const [selectedSubject, setSelectedSubject] = useState(defaultSubject);
   const [selectedApp, setSelectedApp] = useState(null);
+
+  // When the dialog opens or the group context changes, sync cascading defaults
+  useEffect(() => {
+    if (open) {
+      setSelectedLevel(defaultLevel);
+      setSelectedGrade(defaultGrade);
+      setSelectedSubject(defaultSubject);
+      setSelectedApp(null);
+    }
+  }, [open, defaultLevel, defaultGrade, defaultSubject]);
 
   // Other fields
   const [minScore, setMinScore] = useState(5);
+  const [weight, setWeight] = useState(1);
+  const [term, setTerm] = useState(1);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [targetType, setTargetType] = useState(studentId ? 'student' : 'group');
@@ -47,6 +63,8 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
       grade: selectedGrade,
       subject_id: selectedSubject,
       min_score: minScore,
+      weight,
+      term,
       title: title.trim() || null,
       description: description.trim() || null,
       due_date: dueDate || null,
@@ -65,11 +83,13 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
   };
 
   const resetForm = () => {
-    setSelectedLevel(null);
-    setSelectedGrade(null);
-    setSelectedSubject(null);
+    setSelectedLevel(defaultLevel);
+    setSelectedGrade(defaultGrade);
+    setSelectedSubject(defaultSubject);
     setSelectedApp(null);
     setMinScore(5);
+    setWeight(1);
+    setTerm(1);
     setTitle('');
     setDescription('');
     setDueDate('');
@@ -86,7 +106,7 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) resetForm(); onOpenChange(v); }}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <ClipboardList className="w-5 h-5 text-purple-500" />
@@ -212,7 +232,8 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                   </div>
                 )}
 
-                <div className="max-h-52 overflow-y-auto divide-y divide-slate-50">
+                <div className="relative">
+                <div className="max-h-64 overflow-y-auto scrollbar-hide divide-y divide-slate-50">
                   {/* Step 1: Level */}
                   {!selectedLevel && levels.map(level => (
                     <button
@@ -267,6 +288,8 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                     <p className="text-center py-4 text-sm text-slate-400">No hay apps disponibles</p>
                   )}
                 </div>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent" />
+                </div>
               </div>
             )}
           </div>
@@ -302,6 +325,57 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                   }`}
                 >
                   {v}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Peso / multiplicador */}
+          <div className="space-y-2">
+            <Label>Peso en la nota final</Label>
+            <div className="flex gap-2">
+              {[
+                { v: 1, label: 'x1', hint: 'Normal' },
+                { v: 2, label: 'x2', hint: 'Cuenta doble' },
+                { v: 3, label: 'x3', hint: 'Cuenta triple' },
+              ].map(opt => (
+                <button
+                  key={opt.v}
+                  type="button"
+                  onClick={() => setWeight(opt.v)}
+                  className={`flex-1 flex flex-col items-center py-2 rounded-xl border transition-all ${
+                    weight === opt.v
+                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white border-transparent shadow-sm'
+                      : 'bg-white border-slate-200 text-slate-600 hover:border-purple-300'
+                  }`}
+                >
+                  <span className="text-lg font-bold leading-tight">{opt.label}</span>
+                  <span className={`text-[11px] ${weight === opt.v ? 'text-white/80' : 'text-slate-400'}`}>{opt.hint}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Evaluacion */}
+          <div className="space-y-2">
+            <Label>Evaluación</Label>
+            <div className="flex gap-2">
+              {[
+                { v: 1, label: '1ª Evaluación' },
+                { v: 2, label: '2ª Evaluación' },
+                { v: 3, label: '3ª Evaluación' },
+              ].map(opt => (
+                <button
+                  key={opt.v}
+                  type="button"
+                  onClick={() => setTerm(opt.v)}
+                  className={`flex-1 py-2 rounded-xl border text-sm font-medium transition-all ${
+                    term === opt.v
+                      ? 'bg-gradient-to-br from-pink-500 to-rose-600 text-white border-transparent shadow-sm'
+                      : 'bg-white border-slate-200 text-slate-600 hover:border-pink-300'
+                  }`}
+                >
+                  {opt.label}
                 </button>
               ))}
             </div>

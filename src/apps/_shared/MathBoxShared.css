@@ -4,6 +4,7 @@
 
 /* Contenedor base */
 #app-container {
+  position: relative;
   background-color: var(--app-bg);
   padding: 20px 40px;
   border-radius: 15px;
@@ -28,6 +29,8 @@
   align-items: center;
   color: var(--app-text);
   font-weight: bold;
+  /* Ancla para el simbolo x (cross-inline) que se posiciona absolute */
+  position: relative;
 }
 
 /* Caja interactiva (donde el alumno coloca un número) */

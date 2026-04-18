@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import {
@@ -383,6 +383,7 @@ export default function StudentDashboard() {
     if (tabParam) setActiveTab(tabParam);
   }, [location.search]);
   const [taskFilter, setTaskFilter] = useState('all'); // 'all' | 'pending' | 'completed'
+  const [termFilter, setTermFilter] = useState('all'); // 'all' | 1 | 2 | 3
   const gamification = useGamification();
 
   const fetchDashboard = useCallback(async () => {
@@ -459,6 +460,24 @@ export default function StudentDashboard() {
   const studentInfo = data?.student || {};
 
   const pendingAssignments = assignments.filter(a => !a.completed);
+
+  const termScoped = useMemo(() => (
+    termFilter === 'all' ? assignments : assignments.filter(a => Number(a.term) === Number(termFilter))
+  ), [assignments, termFilter]);
+
+  const finalGrade = useMemo(() => {
+    if (!termScoped.length) return null;
+    let weightSum = 0;
+    let weightedNota = 0;
+    for (const a of termScoped) {
+      const w = Math.max(1, Number(a.weight) || 1);
+      const nota = Math.min(10, Math.max(0, Number(a.best_nota ?? a.best_score ?? 0)));
+      weightSum += w;
+      weightedNota += nota * w;
+    }
+    if (weightSum === 0) return null;
+    return Math.round((weightedNota / weightSum) * 10) / 10;
+  }, [termScoped]);
 
   const hasGroup = !!student?.group_id;
   const tabs = [
@@ -718,13 +737,65 @@ export default function StudentDashboard() {
           {/* ── TAB: Tareas ── */}
           {activeTab === 'tasks' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-              {/* Filtros */}
+              {/* Filtro por evaluacion */}
               {assignments.length > 0 && (
+                <div className="flex gap-2 bg-white rounded-xl p-1.5 border border-slate-100 shadow-sm overflow-x-auto">
+                  {[
+                    { id: 'all', label: 'Curso completo' },
+                    { id: 1, label: '1ª Eval' },
+                    { id: 2, label: '2ª Eval' },
+                    { id: 3, label: '3ª Eval' },
+                  ].map(f => (
+                    <button
+                      key={f.id}
+                      onClick={() => setTermFilter(f.id)}
+                      className={`flex-1 min-w-[90px] px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        termFilter === f.id
+                          ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-sm'
+                          : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+                      }`}
+                    >
+                      {f.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Nota final (filtrada por evaluacion o curso completo) */}
+              {finalGrade != null && (() => {
+                const gradeColor = finalGrade >= 8 ? 'from-green-500 to-emerald-600' : finalGrade >= 5 ? 'from-blue-500 to-purple-600' : 'from-red-400 to-orange-500';
+                const msg = finalGrade >= 9 ? '¡Excelente!' : finalGrade >= 7 ? '¡Muy bien!' : finalGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
+                const doneCount = termScoped.filter(a => a.completed).length;
+                const header = termFilter === 'all' ? 'Nota final del curso' : `Nota de la ${termFilter}ª evaluación`;
+                return (
+                  <motion.div
+                    key={termFilter}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className={`relative overflow-hidden rounded-2xl p-5 shadow-lg text-white bg-gradient-to-br ${gradeColor}`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-white/80 uppercase tracking-wide">{header}</p>
+                        <p className="text-xs text-white/70 mt-0.5">Media ponderada de {termScoped.length} {termScoped.length === 1 ? 'tarea' : 'tareas'} · {doneCount} aprobada{doneCount !== 1 ? 's' : ''}</p>
+                        <p className="text-lg font-semibold mt-2">{msg}</p>
+                      </div>
+                      <div className="shrink-0 flex items-baseline">
+                        <span className="text-5xl font-black drop-shadow-sm">{finalGrade.toFixed(1)}</span>
+                        <span className="text-xl font-bold text-white/80 ml-1">/10</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
+              {/* Filtros */}
+              {termScoped.length > 0 && (
                 <div className="flex gap-2 bg-white rounded-xl p-1.5 border border-slate-100 shadow-sm">
                   {[
-                    { id: 'all', label: `Todas (${assignments.length})` },
-                    { id: 'pending', label: `Pendientes (${assignments.filter(a => !a.completed).length})` },
-                    { id: 'completed', label: `Completadas (${assignments.filter(a => a.completed).length})` },
+                    { id: 'all', label: `Todas (${termScoped.length})` },
+                    { id: 'pending', label: `Pendientes (${termScoped.filter(a => !a.completed).length})` },
+                    { id: 'completed', label: `Completadas (${termScoped.filter(a => a.completed).length})` },
                   ].map(f => (
                     <button
                       key={f.id}
@@ -741,13 +812,15 @@ export default function StudentDashboard() {
                 </div>
               )}
 
-              {assignments.length === 0 ? (
+              {termScoped.length === 0 ? (
                 <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm text-center text-slate-400">
                   <ClipboardList className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p className="font-medium">No tienes tareas asignadas</p>
+                  <p className="font-medium">
+                    {termFilter === 'all' ? 'No tienes tareas asignadas' : `No hay tareas en la ${termFilter}ª evaluación`}
+                  </p>
                 </div>
               ) : (
-                assignments
+                termScoped
                   .filter(asg => taskFilter === 'all' ? true : taskFilter === 'completed' ? asg.completed : !asg.completed)
                   .map((asg) => {
                   const isOverdue = asg.due_date && new Date(asg.due_date) < new Date() && !asg.completed;
@@ -775,9 +848,21 @@ export default function StudentDashboard() {
                           }
                         </div>
                         <div className="flex-1">
-                          <p className={`font-semibold ${asg.completed ? 'text-green-700' : 'text-slate-800'}`}>
-                            {asg.title || asg.app_name}
-                          </p>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p className={`font-semibold ${asg.completed ? 'text-green-700' : 'text-slate-800'}`}>
+                              {asg.title || asg.app_name}
+                            </p>
+                            {asg.weight > 1 && (
+                              <span className="text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm">
+                                x{asg.weight}
+                              </span>
+                            )}
+                            {asg.term && (
+                              <span className="text-xs font-semibold bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2 py-0.5 rounded-full shadow-sm">
+                                {asg.term}ª Eval
+                              </span>
+                            )}
+                          </div>
                           {asg.title && <p className="text-sm text-slate-500">{asg.app_name}</p>}
                           {asg.description && <p className="text-sm text-slate-400 mt-1 italic">{asg.description}</p>}
 

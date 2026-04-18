@@ -3,7 +3,9 @@ import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 
-const RestasPrimaria2 = () => {
+const TOTAL_TEST_QUESTIONS = 5;
+
+const RestasPrimaria2 = ({ onGameComplete } = {}) => {
   const [operands, setOperands] = useState({ num1: 0, num2: 0 });
   const [numDigits, setNumDigits] = useState(2);
   const [resultSlots, setResultSlots] = useState([]);
@@ -11,6 +13,14 @@ const RestasPrimaria2 = () => {
   const [showHelp, setShowHelp] = useState(true);
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [activeSlot, setActiveSlot] = useState(null);
+
+  // --- Test mode ---
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
   const generateNewProblem = useCallback(() => {
     const digits = Math.floor(Math.random() * 2) + 2;
@@ -31,6 +41,64 @@ const RestasPrimaria2 = () => {
   }, []);
 
   useEffect(() => { generateNewProblem(); }, [generateNewProblem]);
+
+  // --- Test mode helpers ---
+  const generateOperandsPair = useCallback(() => {
+    const digits = Math.floor(Math.random() * 2) + 2;
+    const min = Math.pow(10, digits - 1);
+    const max = Math.pow(10, digits);
+    let n1, n2;
+    do {
+      n1 = Math.floor(Math.random() * (max - min)) + min;
+      n2 = Math.floor(Math.random() * n1);
+    } while (n1 === n2);
+    return [n1.toString(), n2.toString()];
+  }, []);
+
+  const prepareTestQuestion = (pair) => {
+    const [a, b] = pair;
+    const n1 = parseInt(a); const n2 = parseInt(b);
+    const digits = Math.max(a.length, b.length);
+    setOperands({ num1: n1, num2: n2 });
+    setNumDigits(digits);
+    setResultSlots(new Array(digits).fill(''));
+    setCarrySlots(new Array(digits).fill(''));
+    setFeedback({ text: '', cls: '' });
+    setActiveSlot({ type: 'result', index: digits - 1 });
+  };
+
+  const startTest = () => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, generateOperandsPair);
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    setScore(0);
+    setShowResults(false);
+    setIsTestMode(true);
+    setShowHelp(false);
+    prepareTestQuestion(qs[0]);
+  };
+
+  const nextTestQuestion = () => {
+    const userVal = parseInt(resultSlots.join('') || '0', 10).toString();
+    const newAnswers = [...userAnswers, userVal];
+    setUserAnswers(newAnswers);
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+      const nextIdx = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIdx);
+      prepareTestQuestion(testQuestions[nextIdx]);
+    } else {
+      let hits = 0;
+      testQuestions.forEach((q, i) => {
+        const expected = (parseInt(q[0]) - parseInt(q[1])).toString();
+        if (newAnswers[i] === expected) hits++;
+      });
+      setScore(hits * 200);
+      setShowResults(true);
+    }
+  };
+
+  const exitTest = () => { setIsTestMode(false); setShowResults(false); generateNewProblem(); };
 
   const strNum1 = operands.num1.toString().padStart(numDigits, '0');
   const strNum2 = operands.num2.toString().padStart(numDigits, '0');
@@ -129,11 +197,22 @@ const RestasPrimaria2 = () => {
       onCheck={checkAnswer}
       onNew={generateNewProblem}
       newLabel="Nueva Resta"
-      toggleLabel="Ayuda con llevadas"
+      toggleLabel={!isTestMode ? "Ayuda con llevadas" : undefined}
       toggleValue={showHelp}
       onToggleChange={setShowHelp}
       onPaletteClick={handlePaletteClick}
       paletteLabel="Toca los números 👇"
+      onGameComplete={onGameComplete}
+      isTestMode={isTestMode}
+      setTestMode={setIsTestMode}
+      testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
+      actions={{
+        startPractice: () => { setIsTestMode(false); setShowResults(false); generateNewProblem(); },
+        startTest,
+        nextQuestion: nextTestQuestion,
+        exitTest,
+      }}
+      calculateExpected={(q) => (parseInt(q[0]) - parseInt(q[1])).toString()}
       instructions={
         <>
           <h3>Objetivo</h3>

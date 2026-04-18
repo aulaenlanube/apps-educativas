@@ -27,14 +27,19 @@ export default function StudentStatsView({ studentId, onBack }) {
   const [loading, setLoading] = useState(true);
   const [expandedApp, setExpandedApp] = useState(null);
   const [qbStats, setQbStats] = useState(null);
+  const [gradeStats, setGradeStats] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        const [statsRes, qbRes] = await Promise.all([
+        const [statsRes, qbRes, gradesRes] = await Promise.all([
           supabase.rpc('teacher_get_student_stats', { p_student_id: studentId }),
           supabase.rpc('get_student_quiz_battle_stats', { p_student_id: studentId }).then(
+            (res) => res,
+            () => ({ data: null })
+          ),
+          supabase.rpc('teacher_get_student_term_grades', { p_student_id: studentId }).then(
             (res) => res,
             () => ({ data: null })
           ),
@@ -45,6 +50,7 @@ export default function StudentStatsView({ studentId, onBack }) {
           setData(statsRes.data);
         }
         if (qbRes.data && !qbRes.data.error) setQbStats(qbRes.data);
+        if (gradesRes.data && !gradesRes.data.error) setGradeStats(gradesRes.data);
       } catch (err) {
         console.error('Error fetching student stats:', err);
       }
@@ -100,6 +106,53 @@ export default function StudentStatsView({ studentId, onBack }) {
         <StatMini icon={Trophy} label="Mejor punt." value={stats.best_score || 0}
           sub={`Media exam.: ${stats.avg_test_score || 0}`} color="bg-amber-500" />
       </div>
+
+      {/* Notas por evaluacion */}
+      {gradeStats && gradeStats.total_assignments > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-xl border border-purple-100 shadow-sm p-4 mb-6"
+        >
+          <h3 className="font-bold text-slate-800 flex items-center gap-2 mb-3">
+            <TrendingUp className="w-4 h-4 text-purple-500" />
+            Notas de las tareas
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[1, 2, 3].map(t => {
+              const tStats = gradeStats.terms?.find(x => x.term === t);
+              const grade = tStats?.final_grade;
+              const gradeColor = grade == null ? 'text-slate-300' : grade >= 8 ? 'text-green-600' : grade >= 5 ? 'text-blue-600' : 'text-red-500';
+              return (
+                <div key={t} className="rounded-xl border border-slate-100 bg-gradient-to-br from-pink-50 to-rose-50 p-3 text-center">
+                  <div className="text-xs text-rose-600 font-semibold">{t}ª Evaluación</div>
+                  <div className={`text-2xl font-black mt-1 ${gradeColor}`}>
+                    {grade != null ? Number(grade).toFixed(1) : '—'}
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">
+                    {tStats ? `${tStats.completed}/${tStats.total} aprobadas` : 'Sin tareas'}
+                  </div>
+                </div>
+              );
+            })}
+            {(() => {
+              const g = gradeStats.final_grade;
+              const gradeColor = g == null ? 'text-slate-300' : g >= 8 ? 'text-green-600' : g >= 5 ? 'text-blue-600' : 'text-red-500';
+              return (
+                <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-100 to-blue-100 p-3 text-center shadow-sm">
+                  <div className="text-xs text-purple-700 font-bold uppercase tracking-wide">Nota final</div>
+                  <div className={`text-2xl font-black mt-1 ${gradeColor}`}>
+                    {g != null ? Number(g).toFixed(1) : '—'}
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">
+                    {gradeStats.completed_assignments}/{gradeStats.total_assignments} aprobadas
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        </motion.div>
+      )}
 
       {/* Batalla stats */}
       {qbStats && qbStats.total_played > 0 && (

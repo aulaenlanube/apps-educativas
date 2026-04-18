@@ -46,24 +46,32 @@ export function getApps(level, grade, subjectId) {
   return config[grade][subjectId].map(app => ({ id: app.id, name: app.name }));
 }
 
-// Keep backward compatibility — flat list for other uses
+// Keep backward compatibility — flat list for other uses.
+// Each entry also includes the first location where the app is registered,
+// so admin/testing tools can link directly to it.
 export function getAllAppsFlat() {
   const seen = new Set();
   const result = [];
-  const extract = (appsConfig) => {
+  const extract = (level, appsConfig) => {
     for (const grade in appsConfig) {
       for (const subject in appsConfig[grade]) {
         for (const app of appsConfig[grade][subject]) {
           if (!seen.has(app.id)) {
             seen.add(app.id);
-            result.push({ id: app.id, name: app.name });
+            result.push({
+              id: app.id,
+              name: app.name,
+              level,
+              grade,
+              subjectId: subject,
+            });
           }
         }
       }
     }
   };
-  extract(primariaApps);
-  extract(esoApps);
-  extract(bachilleratoApps);
+  extract('primaria', primariaApps);
+  extract('eso', esoApps);
+  extract('bachillerato', bachilleratoApps);
   return result.sort((a, b) => a.name.localeCompare(b.name));
 }

@@ -2,10 +2,13 @@ import React, { useEffect, useMemo, useState, useCallback } from "react";
 import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 import MathOperationLayout from '../../_shared/MathOperationLayout';
+import MultiplicacionTestBoard from '../../_shared/MultiplicacionTestBoard';
+
+const TOTAL_TEST_QUESTIONS = 5;
 
 /* 6º Primaria: Multiplicación con decimales + UI Mejorada (Fuentes Grandes) */
 
-export default function MultiplicacionesPrimaria6() {
+export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
   // --- Estados Principales ---
   const [multiplicando, setMultiplicando] = useState("");
   const [multiplicador, setMultiplicador] = useState("");
@@ -34,8 +37,20 @@ export default function MultiplicacionesPrimaria6() {
   const [ayudaLlevadas, setAyudaLlevadas] = useState(true);
   
   // Control de foco y Coma
-  const [activeSlot, setActiveSlot] = useState(null); 
+  const [activeSlot, setActiveSlot] = useState(null);
   const [commaSlot, setCommaSlot] = useState(null);
+
+  // --- Test mode ---
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+  const [testN1, setTestN1] = useState(0);
+  const [testN2, setTestN2] = useState(0);
+  const [testResultSlots, setTestResultSlots] = useState([]);
+  const [testActiveIdx, setTestActiveIdx] = useState(null);
 
   // ---------- Generación y Cálculo ----------
   const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -180,6 +195,55 @@ export default function MultiplicacionesPrimaria6() {
 
   useEffect(() => { generarNueva(); }, [generarNueva]);
 
+  // --- Test mode helpers (enteros 3x3 para 6º, sin decimales para simplificar) ---
+  const generarParTest = useCallback(() => {
+    const n1 = randInt(100, 999);
+    const n2 = randInt(100, 999);
+    return [n1.toString(), n2.toString()];
+  }, []);
+
+  const prepareTestQuestion = (pair) => {
+    const [a, b] = pair;
+    const producto = parseInt(a) * parseInt(b);
+    const len = producto.toString().length;
+    setTestN1(parseInt(a));
+    setTestN2(parseInt(b));
+    setTestResultSlots(new Array(len).fill(''));
+    setTestActiveIdx(len - 1);
+  };
+
+  const startTest = () => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, generarParTest);
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    setScore(0);
+    setShowResults(false);
+    setIsTestMode(true);
+    prepareTestQuestion(qs[0]);
+  };
+
+  const nextTestQuestion = () => {
+    const userVal = parseInt((testResultSlots.join('') || '0'), 10).toString();
+    const newAnswers = [...userAnswers, userVal];
+    setUserAnswers(newAnswers);
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+      const nextIdx = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIdx);
+      prepareTestQuestion(testQuestions[nextIdx]);
+    } else {
+      let hits = 0;
+      testQuestions.forEach((q, i) => {
+        const expected = (parseInt(q[0]) * parseInt(q[1])).toString();
+        if (newAnswers[i] === expected) hits++;
+      });
+      setScore(hits * 200);
+      setShowResults(true);
+    }
+  };
+
+  const exitTest = () => { setIsTestMode(false); setShowResults(false); generarNueva(); };
+
   // ---------- UI Helpers ----------
   const ancho = resultadoFinalEsperado.length || 0;
 
@@ -232,6 +296,16 @@ export default function MultiplicacionesPrimaria6() {
   };
 
   const handlePaletteClick = (val) => {
+    if (isTestMode) {
+      if (testActiveIdx == null) return;
+      const strVal = val.toString();
+      const next = [...testResultSlots];
+      next[testActiveIdx] = strVal;
+      setTestResultSlots(next);
+      const nextIdx = testActiveIdx - 1;
+      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+      return;
+    }
     if (!activeSlot) return;
     const strVal = val.toString();
     const { type, row, col } = activeSlot;
@@ -467,11 +541,29 @@ export default function MultiplicacionesPrimaria6() {
       onCheck={comprobarRespuesta}
       onNew={generarNueva}
       newLabel="Nueva"
-      toggleLabel="Ayuda con llevadas"
+      toggleLabel={!isTestMode ? "Ayuda con llevadas" : undefined}
       toggleValue={ayudaLlevadas}
       onToggleChange={setAyudaLlevadas}
       onPaletteClick={handlePaletteClick}
       paletteLabel="Toca los números 👇"
+      onGameComplete={onGameComplete}
+      isTestMode={isTestMode}
+      setTestMode={setIsTestMode}
+      testState={{
+        currentQuestionIndex,
+        totalQuestions: TOTAL_TEST_QUESTIONS,
+        showResults,
+        score,
+        testQuestions,
+        userAnswers,
+      }}
+      actions={{
+        startPractice: () => { setIsTestMode(false); setShowResults(false); generarNueva(); },
+        startTest,
+        nextQuestion: nextTestQuestion,
+        exitTest,
+      }}
+      calculateExpected={(q) => (parseInt(q[0]) * parseInt(q[1])).toString()}
       instructions={
         <>
           <h3>Objetivo</h3>
@@ -482,9 +574,21 @@ export default function MultiplicacionesPrimaria6() {
             <li>Coloca el digito correcto desde la paleta numerica.</li>
             <li>Pulsa en la ranura de la coma para activarla en el resultado.</li>
           </ul>
+          <h3>🔴 Modo Examen</h3>
+          <p>5 multiplicaciones de 3 × 3 cifras (números enteros). Escribe directamente el resultado final.</p>
         </>
       }
     >
+      {isTestMode ? (
+        <MultiplicacionTestBoard
+          multiplicando={testN1}
+          multiplicador={testN2}
+          resultSlots={testResultSlots}
+          activeSlotIndex={testActiveIdx}
+          onSlotClick={(i) => setTestActiveIdx(i)}
+        />
+      ) : (
+      <>
       <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
         {columnas}
       </div>
@@ -551,7 +655,8 @@ export default function MultiplicacionesPrimaria6() {
             }
         })}
       </div>
-
+      </>
+      )}
     </MathOperationLayout>
   );
 }

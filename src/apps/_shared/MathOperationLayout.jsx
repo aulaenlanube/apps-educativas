@@ -70,6 +70,10 @@ const MathOperationLayout = ({
 
   // Tracking
   onGameComplete,
+  // Funcion opcional para calcular la respuesta correcta a partir de una pregunta.
+  // Por defecto suma los numeros (compat con sumas/restas). Las multiplicaciones
+  // pasan su propio calculo (q[0] * q[1]).
+  calculateExpected,
 
   // Instrucciones
   instructions,
@@ -88,29 +92,70 @@ const MathOperationLayout = ({
 
   // --- Test mode state ---
   const hasTestMode = isTestMode !== undefined && setTestMode !== undefined && testState;
-  const { currentQuestionIndex, totalQuestions, showResults, score, testQuestions, userAnswers } = testState || {};
+  const { currentQuestionIndex, totalQuestions, showResults, testQuestions, userAnswers } = testState || {};
   const progressPct = testState ? ((currentQuestionIndex + 1) / totalQuestions) * 100 : 0;
 
-  // Tracking: reportar cuando se muestran resultados del test
+  // --- Puntuacion con bonus de velocidad ---
+  // Base: 200 puntos por acierto. Bonus: 5 puntos por cada segundo ahorrado
+  // bajo un presupuesto de 30s/pregunta. Asi dos examenes con nota 10 pueden
+  // tener puntuaciones distintas en el ranking global segun la velocidad.
+  const BASE_POINTS_PER_HIT = 200;
+  const TIME_BUDGET_PER_Q = 30;
+  const SPEED_COEF = 5;
+
+  const startTimeRef = useRef(null);
+  const [finalElapsed, setFinalElapsed] = useState(0);
+
+  // Reset del cronometro cada vez que se arranca un nuevo test (nueva array de preguntas)
+  useEffect(() => {
+    if (testQuestions && testQuestions.length > 0) {
+      startTimeRef.current = Date.now();
+      setFinalElapsed(0);
+    }
+  }, [testQuestions]);
+
+  // Captura del tiempo final al mostrar resultados
+  useEffect(() => {
+    if (hasTestMode && showResults && startTimeRef.current) {
+      setFinalElapsed(Math.max(0, Math.round((Date.now() - startTimeRef.current) / 1000)));
+    }
+  }, [hasTestMode, showResults]);
+
+  const calcExpected = calculateExpected
+    || ((q) => q.reduce((a, b) => a + parseInt(b), 0).toString());
+  const testHits = (testQuestions && userAnswers)
+    ? testQuestions.filter((q, i) => userAnswers[i] === calcExpected(q)).length
+    : 0;
+  const testTotal = totalQuestions || 0;
+  const testNota = testTotal > 0 ? Math.min(10, Math.round((testHits / testTotal) * 100) / 10) : 0;
+  const timeBudget = TIME_BUDGET_PER_Q * testTotal;
+  const timeBonus = Math.max(0, Math.round((timeBudget - finalElapsed) * SPEED_COEF));
+  const basePoints = testHits * BASE_POINTS_PER_HIT;
+  const testScore = basePoints + timeBonus;
+
+  const formatElapsed = (s) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return m > 0 ? `${m}m ${sec}s` : `${sec}s`;
+  };
+
+  // Tracking: reportar cuando se muestran resultados del test (con score que incluye bonus de velocidad)
   const trackedRef = useRef(false);
   useEffect(() => {
     if (!hasTestMode) return;
-    if (showResults && !trackedRef.current) {
+    if (showResults && !trackedRef.current && finalElapsed > 0) {
       trackedRef.current = true;
-      const hits = testQuestions?.filter((q, i) => {
-        const sum = q.reduce((a, b) => a + parseInt(b), 0);
-        return userAnswers[i] === sum.toString();
-      }).length || 0;
       onGameComplete?.({
         mode: 'test',
-        score: score || 0,
-        maxScore: (totalQuestions || 0) * 200,
-        correctAnswers: hits,
-        totalQuestions: totalQuestions || 0,
+        score: testScore,
+        maxScore: testTotal * BASE_POINTS_PER_HIT + timeBudget * SPEED_COEF,
+        correctAnswers: testHits,
+        totalQuestions: testTotal,
+        durationSeconds: finalElapsed,
       });
     }
     if (!showResults) trackedRef.current = false;
-  }, [hasTestMode, showResults, score, totalQuestions, testQuestions, userAnswers, onGameComplete]);
+  }, [hasTestMode, showResults, finalElapsed, testScore, testTotal, testHits, timeBudget, onGameComplete]);
 
   // Determinar si estamos viendo resultados del test
   const showingTestResults = hasTestMode && isTestMode && showResults;
@@ -135,7 +180,7 @@ const MathOperationLayout = ({
           >
             Practica Libre
           </button>
-          <button className="btn-mode" onClick={actions.startTest}>Iniciar Test</button>
+          <button className="btn-mode" onClick={actions.startTest}>Iniciar Examen</button>
         </div>
       )}
 
@@ -176,14 +221,65 @@ const MathOperationLayout = ({
       {/* AREA PRINCIPAL: Resultados del Test O el Tablero */}
       {showingTestResults ? (
         <div className="test-results" style={{ marginTop: 20 }}>
-          <h2 className="score">Puntuacion: <span>{score}</span></h2>
+          {/* Nota /10 — prominente, coloreada */}
+          {(() => {
+            const notaColor = testNota >= 8 ? '#16a34a' : testNota >= 5 ? '#2563eb' : '#dc2626';
+            const msg = testNota >= 9 ? '¡Excelente! 🌟'
+              : testNota >= 7 ? '¡Muy bien! 👏'
+              : testNota >= 5 ? 'Aprobado 💪'
+              : 'Necesitas repasar 📖';
+            return (
+              <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                <div style={{ fontSize: '0.85em', color: 'var(--app-text-secondary)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700 }}>
+                  Nota final
+                </div>
+                <div style={{ fontSize: '4em', fontWeight: 900, color: notaColor, lineHeight: 1.1 }}>
+                  {testNota.toFixed(1)}<span style={{ fontSize: '0.5em', color: 'var(--app-text-secondary)' }}>/10</span>
+                </div>
+                <div style={{ color: notaColor, fontWeight: 600 }}>{msg}</div>
+              </div>
+            );
+          })()}
+
+          {/* Puntuacion + desglose de velocidad */}
+          <div style={{
+            background: 'var(--app-card-bg, #f8fafc)',
+            border: '1px solid var(--app-border, #e2e8f0)',
+            borderRadius: 16,
+            padding: 14,
+            maxWidth: 340,
+            margin: '0 auto 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 6,
+            fontSize: '0.95em',
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>Aciertos ({testHits}/{testTotal} × {BASE_POINTS_PER_HIT})</span>
+              <strong>{basePoints} pts</strong>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: timeBonus > 0 ? '#16a34a' : 'var(--app-text-secondary)' }}>
+              <span>Bonus velocidad ({formatElapsed(finalElapsed)})</span>
+              <strong>+{timeBonus} pts</strong>
+            </div>
+            <div style={{ borderTop: '1px solid var(--app-border, #e2e8f0)', paddingTop: 6, display: 'flex', justifyContent: 'space-between', fontSize: '1.15em' }}>
+              <strong>Puntuación total</strong>
+              <strong style={{ color: '#7c3aed' }}>{testScore.toLocaleString('es-ES')}</strong>
+            </div>
+          </div>
+
           <div className="results-summary" style={{ marginTop: 12 }}>
             {testQuestions.map((q, i) => {
               const userAnswer = userAnswers[i] || '—';
+              const expected = calcExpected(q);
+              const ok = userAnswer === expected;
               return (
                 <div key={i} className="result-item">
                   <p><strong>Pregunta {i + 1}</strong></p>
-                  <p>Tu respuesta: {userAnswer}</p>
+                  <p>
+                    Tu respuesta: <strong>{userAnswer}</strong>{' '}
+                    <span style={{ color: ok ? '#16a34a' : '#dc2626' }}>{ok ? '✅' : `❌ (${expected})`}</span>
+                  </p>
                 </div>
               );
             })}

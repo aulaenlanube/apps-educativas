@@ -2,8 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 import MathOperationLayout from '../../_shared/MathOperationLayout';
+import MultiplicacionTestBoard from '../../_shared/MultiplicacionTestBoard';
 
-export default function MultiplicacionesPrimaria3() {
+const TOTAL_TEST_QUESTIONS = 5;
+
+export default function MultiplicacionesPrimaria3({ onGameComplete } = {}) {
   const [multiplicando, setMultiplicando] = useState(0);
   const [multiplicador, setMultiplicador] = useState(0);
   const [filaEsperada, setFilaEsperada] = useState({ digitos: [], llevadas: [] });
@@ -12,6 +15,16 @@ export default function MultiplicacionesPrimaria3() {
   const [clases, setClases] = useState({ producto: [], llevada: [] });
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [activeSlot, setActiveSlot] = useState(null);
+
+  // --- Test mode ---
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+  const [testResultSlots, setTestResultSlots] = useState([]);
+  const [testActiveIdx, setTestActiveIdx] = useState(null);
 
   const generarNumero = (longitud) => {
     if (longitud === 1) return Math.floor(Math.random() * 9) + 1;
@@ -70,9 +83,74 @@ export default function MultiplicacionesPrimaria3() {
 
   useEffect(() => { generarNueva(); }, [generarNueva]);
 
+  // --- Test mode helpers ---
+  const generarParTest = useCallback(() => {
+    const longitud = 2 + Math.floor(Math.random() * 2);
+    const n1 = generarNumero(longitud);
+    const n2 = 2 + Math.floor(Math.random() * 8);
+    return [n1.toString(), n2.toString()];
+  }, []);
+
+  const prepareTestQuestion = (pair) => {
+    const [a, b] = pair;
+    const producto = parseInt(a) * parseInt(b);
+    const len = producto.toString().length;
+    setMultiplicando(parseInt(a));
+    setMultiplicador(parseInt(b));
+    setTestResultSlots(new Array(len).fill(''));
+    setTestActiveIdx(len - 1);
+  };
+
+  const startTest = () => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, generarParTest);
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    setScore(0);
+    setShowResults(false);
+    setIsTestMode(true);
+    prepareTestQuestion(qs[0]);
+  };
+
+  const nextTestQuestion = () => {
+    const userVal = parseInt((testResultSlots.join('') || '0'), 10).toString();
+    const newAnswers = [...userAnswers, userVal];
+    setUserAnswers(newAnswers);
+
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+      const nextIdx = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIdx);
+      prepareTestQuestion(testQuestions[nextIdx]);
+    } else {
+      let hits = 0;
+      testQuestions.forEach((q, i) => {
+        const expected = (parseInt(q[0]) * parseInt(q[1])).toString();
+        if (newAnswers[i] === expected) hits++;
+      });
+      setScore(hits * 200);
+      setShowResults(true);
+    }
+  };
+
+  const exitTest = () => {
+    setIsTestMode(false);
+    setShowResults(false);
+    generarNueva();
+  };
+
   const handleSlotClick = (type, index) => setActiveSlot({ type, index });
 
   const handlePaletteClick = (val) => {
+    if (isTestMode) {
+      if (testActiveIdx == null) return;
+      const strVal = val.toString();
+      const next = [...testResultSlots];
+      next[testActiveIdx] = strVal;
+      setTestResultSlots(next);
+      const nextIdx = testActiveIdx - 1;
+      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+      return;
+    }
     if (!activeSlot) return;
     const strVal = val.toString();
     const { type, index } = activeSlot;
@@ -186,11 +264,29 @@ export default function MultiplicacionesPrimaria3() {
       onCheck={comprobarRespuesta}
       onNew={generarNueva}
       newLabel="Nueva"
-      toggleLabel="Ayuda con llevadas"
+      toggleLabel={!isTestMode ? "Ayuda con llevadas" : undefined}
       toggleValue={ayudaLlevadas}
       onToggleChange={setAyudaLlevadas}
       onPaletteClick={handlePaletteClick}
       paletteLabel="Toca los números 👇"
+      onGameComplete={onGameComplete}
+      isTestMode={isTestMode}
+      setTestMode={setIsTestMode}
+      testState={{
+        currentQuestionIndex,
+        totalQuestions: TOTAL_TEST_QUESTIONS,
+        showResults,
+        score,
+        testQuestions,
+        userAnswers,
+      }}
+      actions={{
+        startPractice: () => { setIsTestMode(false); setShowResults(false); generarNueva(); },
+        startTest,
+        nextQuestion: nextTestQuestion,
+        exitTest,
+      }}
+      calculateExpected={(q) => (parseInt(q[0]) * parseInt(q[1])).toString()}
       instructions={
         <>
           <h3>Objetivo</h3>
@@ -201,12 +297,24 @@ export default function MultiplicacionesPrimaria3() {
             <li>Coloca el digito correcto desde la paleta numerica.</li>
             <li>Recuerda completar tambien las llevadas si estan visibles.</li>
           </ul>
+          <h3>🔴 Modo Examen</h3>
+          <p>5 multiplicaciones. Escribe directamente el resultado final (sin llevadas).</p>
         </>
       }
     >
-      <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
-        {columnas}
-      </div>
+      {isTestMode ? (
+        <MultiplicacionTestBoard
+          multiplicando={multiplicando}
+          multiplicador={multiplicador}
+          resultSlots={testResultSlots}
+          activeSlotIndex={testActiveIdx}
+          onSlotClick={(i) => setTestActiveIdx(i)}
+        />
+      ) : (
+        <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
+          {columnas}
+        </div>
+      )}
     </MathOperationLayout>
   );
 }

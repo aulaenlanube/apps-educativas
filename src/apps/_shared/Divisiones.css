@@ -156,11 +156,15 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
   margin: 20px auto;
-  flex-wrap: wrap;
 }
+/* Panel de tabla: absoluto a la esquina superior derecha del #app-container
+   (posicionado en MathBoxShared.css), para que no empuje la operacion del centro
+   y quede pegado arriba a la derecha. */
 .multiplication-table-panel {
+  position: absolute;
+  right: 20px;
+  top: 20px;
   background-color: var(--app-bg-elevated);
   border: 2px solid var(--app-border-light);
   border-radius: 12px;
@@ -170,6 +174,13 @@
   font-family: 'Lexend', sans-serif;
   text-align: left;
   animation: slideIn 0.3s ease-out;
+}
+/* En pantallas estrechas: el panel pasa debajo para no solapar */
+@media (max-width: 900px) {
+  .multiplication-table-panel {
+    position: static;
+    margin-top: 20px;
+  }
 }
 .multiplication-table-panel h3 {
   font-size: 1.1rem;

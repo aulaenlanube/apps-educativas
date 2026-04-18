@@ -2,13 +2,28 @@ import React, { useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
 import MathOperationLayout from '../../_shared/MathOperationLayout';
+import OperationTestBoard from '../../_shared/OperationTestBoard';
 
-const RestasPrimaria6 = () => {
+const TOTAL_TEST_QUESTIONS = 5;
+
+const RestasPrimaria6 = ({ onGameComplete } = {}) => {
   const [problemData, setProblemData] = useState({ num1: 0, num2: 0, result: 0, hiddenPart: 'subtrahend' });
   const [structure, setStructure] = useState({ maxIntDigits: 0, maxDecimalPlaces: 0, totalDigits: 0, n1Str: '', n2Str: '', resStr: '' });
   const [userSlots, setUserSlots] = useState([]);
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [activeSlot, setActiveSlot] = useState(null);
+
+  // --- Test mode ---
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+  const [testN1, setTestN1] = useState(0);
+  const [testN2, setTestN2] = useState(0);
+  const [testResultSlots, setTestResultSlots] = useState([]);
+  const [testActiveIdx, setTestActiveIdx] = useState(null);
 
   const generateNewProblem = useCallback(() => {
     const hiddenPart = Math.random() < 0.5 ? 'minuend' : 'subtrahend';
@@ -50,7 +65,69 @@ const RestasPrimaria6 = () => {
 
   useEffect(() => { generateNewProblem(); }, [generateNewProblem]);
 
+  // --- Test mode helpers (enteros 4-5 cifras) ---
+  const generarParTest = useCallback(() => {
+    const digits = 4 + Math.floor(Math.random() * 2);
+    const min = Math.pow(10, digits - 1);
+    const max = Math.pow(10, digits);
+    let n1, n2;
+    do {
+      n1 = Math.floor(Math.random() * (max - min)) + min;
+      n2 = Math.floor(Math.random() * n1);
+    } while (n1 === n2);
+    return [n1.toString(), n2.toString()];
+  }, []);
+
+  const prepareTestQuestion = (pair) => {
+    const [a, b] = pair;
+    const diff = parseInt(a) - parseInt(b);
+    const len = diff.toString().length;
+    setTestN1(parseInt(a)); setTestN2(parseInt(b));
+    setTestResultSlots(new Array(len).fill(''));
+    setTestActiveIdx(len - 1);
+  };
+
+  const startTest = () => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, generarParTest);
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]); setScore(0); setShowResults(false);
+    setIsTestMode(true);
+    prepareTestQuestion(qs[0]);
+  };
+
+  const nextTestQuestion = () => {
+    const userVal = parseInt(testResultSlots.join('') || '0', 10).toString();
+    const newAnswers = [...userAnswers, userVal];
+    setUserAnswers(newAnswers);
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+      const nextIdx = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIdx);
+      prepareTestQuestion(testQuestions[nextIdx]);
+    } else {
+      let hits = 0;
+      testQuestions.forEach((q, i) => {
+        const expected = (parseInt(q[0]) - parseInt(q[1])).toString();
+        if (newAnswers[i] === expected) hits++;
+      });
+      setScore(hits * 200);
+      setShowResults(true);
+    }
+  };
+
+  const exitTest = () => { setIsTestMode(false); setShowResults(false); generateNewProblem(); };
+
   const handlePaletteClick = (val) => {
+    if (isTestMode) {
+      if (testActiveIdx == null) return;
+      const strVal = val.toString();
+      const next = [...testResultSlots];
+      next[testActiveIdx] = strVal;
+      setTestResultSlots(next);
+      const nextIdx = testActiveIdx - 1;
+      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+      return;
+    }
     if (!activeSlot) return;
     const newSlots = [...userSlots];
     newSlots[activeSlot.index] = val.toString();
@@ -92,6 +169,15 @@ const RestasPrimaria6 = () => {
       newLabel="Nuevo Problema"
       onPaletteClick={handlePaletteClick}
       paletteLabel="Toca los números 👇"
+      onGameComplete={onGameComplete}
+      isTestMode={isTestMode}
+      setTestMode={setIsTestMode}
+      testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
+      actions={{
+        startPractice: () => { setIsTestMode(false); setShowResults(false); generateNewProblem(); },
+        startTest, nextQuestion: nextTestQuestion, exitTest,
+      }}
+      calculateExpected={(q) => (parseInt(q[0]) - parseInt(q[1])).toString()}
       instructions={
         <>
           <h3>Objetivo</h3>
@@ -105,6 +191,16 @@ const RestasPrimaria6 = () => {
         </>
       }
     >
+      {isTestMode ? (
+        <OperationTestBoard
+          operator="−"
+          n1={testN1}
+          n2={testN2}
+          resultSlots={testResultSlots}
+          activeSlotIndex={testActiveIdx}
+          onSlotClick={(i) => setTestActiveIdx(i)}
+        />
+      ) : (
       <div
         id="problem-area"
         style={{
@@ -179,6 +275,7 @@ const RestasPrimaria6 = () => {
           return elements;
         })()}
       </div>
+      )}
     </MathOperationLayout>
   );
 };

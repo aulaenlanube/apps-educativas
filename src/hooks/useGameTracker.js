@@ -87,10 +87,15 @@ export function useGameTracker() {
     durationSeconds,
     completed = true,
     difficulty,
+    nota: notaOverride,
   }) => {
     completedRef.current = true;
     const duration = durationSeconds ?? (startTimeRef.current ? Math.round((Date.now() - startTimeRef.current) / 1000) : null);
-    const nota = calculateNota(correctAnswers, totalQuestions, score, maxScore);
+    // Cuando la app envía una nota explícita (p. ej. con bonus/penalizacion), respétala
+    // sin aplicar el tope 10 — así permitimos notas fuera del rango por modificadores.
+    const nota = notaOverride != null
+      ? Math.round(Number(notaOverride) * 10) / 10
+      : calculateNota(correctAnswers, totalQuestions, score, maxScore);
 
     // Ruta 1: Si tenemos session_id de track_session_start, actualizar esa sesion
     let trackingOk = false;
