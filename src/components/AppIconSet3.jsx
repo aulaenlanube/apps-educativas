@@ -657,6 +657,185 @@ const icons3 = {
       <circle cx="26" cy="12" r="0.8" fill="#fde68a" opacity="0.5" style={{ animation: 'ai-shimmer 2s ease-in-out 0.8s infinite' }} />
     </svg>
   ),
+
+  // -----------------------------------------------------------------
+  // Programa al Robot — robot sobre cuadrícula con bloques de programa
+  // -----------------------------------------------------------------
+  'misiones-roboticas': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+      <defs>
+        <linearGradient id="ai3-mr-bg" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#EDE9FE" />
+          <stop offset="100%" stopColor="#FCE7F3" />
+        </linearGradient>
+        <linearGradient id="ai3-mr-grid" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#312E81" />
+          <stop offset="100%" stopColor="#4C1D95" />
+        </linearGradient>
+        <linearGradient id="ai3-mr-robot" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#A78BFA" />
+          <stop offset="100%" stopColor="#7C3AED" />
+        </linearGradient>
+        <linearGradient id="ai3-mr-target" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FBBF24" />
+          <stop offset="100%" stopColor="#F472B6" />
+        </linearGradient>
+        <linearGradient id="ai3-mr-block-move" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#60A5FA" />
+          <stop offset="100%" stopColor="#2563EB" />
+        </linearGradient>
+        <linearGradient id="ai3-mr-block-loop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FBBF24" />
+          <stop offset="100%" stopColor="#D97706" />
+        </linearGradient>
+      </defs>
+      {/* Fondo redondeado */}
+      <rect width="48" height="48" rx="12" fill="url(#ai3-mr-bg)" />
+      {/* Tablero (cuadrícula 4x4) */}
+      <rect x="5" y="6" width="22" height="22" rx="3" fill="url(#ai3-mr-grid)" />
+      {/* Líneas de la cuadrícula */}
+      <g stroke="rgba(255,255,255,0.18)" strokeWidth="0.6">
+        <line x1="10.5" y1="6" x2="10.5" y2="28" />
+        <line x1="16" y1="6" x2="16" y2="28" />
+        <line x1="21.5" y1="6" x2="21.5" y2="28" />
+        <line x1="5" y1="11.5" x2="27" y2="11.5" />
+        <line x1="5" y1="17" x2="27" y2="17" />
+        <line x1="5" y1="22.5" x2="27" y2="22.5" />
+      </g>
+      {/* Estela del robot (3 puntos hacia la meta) */}
+      <g style={{ animation: 'ai-glow 2.4s ease-in-out infinite' }}>
+        <circle cx="13" cy="20" r="0.9" fill="rgba(167, 139, 250, 0.7)" />
+        <circle cx="16" cy="17.5" r="0.9" fill="rgba(167, 139, 250, 0.55)" />
+        <circle cx="19" cy="14.5" r="0.9" fill="rgba(167, 139, 250, 0.4)" />
+      </g>
+      {/* Robot (esquina inferior izq.) */}
+      <g style={{ animation: 'ai-bob 2.8s ease-in-out infinite', transformOrigin: '10px 21px' }}>
+        <rect x="7.5" y="18.5" width="5" height="5" rx="1.2" fill="url(#ai3-mr-robot)" stroke="#5B21B6" strokeWidth="0.4" />
+        <rect x="8.5" y="20" width="3" height="1.4" rx="0.5" fill="#1E1B4B" />
+        <circle cx="9.3" cy="20.7" r="0.45" fill="#FBBF24" />
+        <circle cx="10.7" cy="20.7" r="0.45" fill="#FBBF24" />
+        <line x1="10" y1="17.6" x2="10" y2="18.5" stroke="#5B21B6" strokeWidth="0.5" />
+        <circle cx="10" cy="17.3" r="0.6" fill="#F472B6" />
+      </g>
+      {/* Meta 🎯 (esquina superior derecha) */}
+      <g style={{ animation: 'ai-pulse 2s ease-in-out infinite', transformOrigin: '23px 11px' }}>
+        <circle cx="23" cy="11" r="2.2" fill="url(#ai3-mr-target)" />
+        <circle cx="23" cy="11" r="1.3" fill="#FFF" opacity="0.9" />
+        <circle cx="23" cy="11" r="0.6" fill="#EF4444" />
+      </g>
+
+      {/* Pila de bloques de programa estilo Scratch */}
+      {/* Bloque movimiento (azul) con muesca arriba */}
+      <g style={{ animation: 'ai-swing 4s ease-in-out infinite', transformOrigin: '38px 12px' }}>
+        <path d="M30 10 H32.5 L33.5 11.5 H37 L38 10 H44 V14 H30 Z" fill="url(#ai3-mr-block-move)" stroke="rgba(0,0,0,0.18)" strokeWidth="0.4" />
+        <rect x="32" y="11.5" width="3" height="1" rx="0.4" fill="rgba(255,255,255,0.55)" />
+      </g>
+      {/* Bloque bucle (naranja) */}
+      <g style={{ animation: 'ai-swing 4s ease-in-out 0.6s infinite', transformOrigin: '38px 18px' }}>
+        <path d="M30 14 H32.5 L33.5 15.5 H37 L38 14 H44 V18 H30 Z" fill="url(#ai3-mr-block-loop)" stroke="rgba(0,0,0,0.18)" strokeWidth="0.4" />
+        <rect x="32" y="15.5" width="3" height="1" rx="0.4" fill="rgba(255,255,255,0.55)" />
+      </g>
+      {/* Bloque movimiento 2 (azul) */}
+      <g style={{ animation: 'ai-swing 4s ease-in-out 1.2s infinite', transformOrigin: '38px 22px' }}>
+        <path d="M30 18 H32.5 L33.5 19.5 H37 L38 18 H44 V22 H30 Z" fill="url(#ai3-mr-block-move)" stroke="rgba(0,0,0,0.18)" strokeWidth="0.4" opacity="0.92" />
+        <rect x="32" y="19.5" width="3" height="1" rx="0.4" fill="rgba(255,255,255,0.55)" />
+      </g>
+
+      {/* "Símbolo" código abajo */}
+      <text x="24" y="42" fontSize="6" fill="#6D28D9" fontFamily="monospace" fontWeight="bold" textAnchor="middle" style={{ animation: 'ai-shimmer 3s ease-in-out infinite' }}>{'</>'}</text>
+    </svg>
+  ),
+
+  // -----------------------------------------------------------------
+  // Laboratorio de Robótica — placa Arduino con LED encendido y cables
+  // -----------------------------------------------------------------
+  'laboratorio-robotica': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+      <defs>
+        <linearGradient id="ai3-lab-bg" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#ECFEFF" />
+          <stop offset="100%" stopColor="#DBEAFE" />
+        </linearGradient>
+        <linearGradient id="ai3-lab-board" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#0EA5E9" />
+          <stop offset="100%" stopColor="#0369A1" />
+        </linearGradient>
+        <linearGradient id="ai3-lab-chip" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#1E293B" />
+          <stop offset="100%" stopColor="#0F172A" />
+        </linearGradient>
+        <linearGradient id="ai3-lab-led" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FEF08A" />
+          <stop offset="100%" stopColor="#F59E0B" />
+        </linearGradient>
+        <radialGradient id="ai3-lab-led-glow" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stopColor="#FDE047" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#FBBF24" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      {/* Fondo */}
+      <rect width="48" height="48" rx="12" fill="url(#ai3-lab-bg)" />
+
+      {/* Sombra de la placa */}
+      <rect x="6" y="13" width="32" height="22" rx="3" fill="rgba(7, 89, 133, 0.18)" />
+      {/* Placa Arduino UNO */}
+      <rect x="5" y="12" width="32" height="22" rx="3" fill="url(#ai3-lab-board)" stroke="#075985" strokeWidth="0.6" />
+      {/* Marca de la placa */}
+      <text x="9" y="17" fontSize="3" fill="rgba(255,255,255,0.85)" fontFamily="system-ui" fontWeight="bold">UNO</text>
+
+      {/* Pines superiores */}
+      <g fill="#0F172A">
+        {[7, 10, 13, 16, 19, 22, 25, 28, 31, 34].map((x) => (
+          <rect key={`pt-${x}`} x={x} y="13.5" width="1.6" height="1.6" rx="0.3" />
+        ))}
+      </g>
+      {/* Pines inferiores */}
+      <g fill="#0F172A">
+        {[7, 10, 13, 16, 19, 22, 25, 28, 31, 34].map((x) => (
+          <rect key={`pb-${x}`} x={x} y="32" width="1.6" height="1.6" rx="0.3" />
+        ))}
+      </g>
+
+      {/* Microcontrolador (chip negro central) */}
+      <rect x="13" y="20.5" width="13" height="6" rx="1" fill="url(#ai3-lab-chip)" stroke="#020617" strokeWidth="0.3" />
+      <circle cx="14.5" cy="22" r="0.4" fill="#94A3B8" />
+      {/* Marquita de orientación */}
+      <circle cx="14.5" cy="25" r="0.4" fill="#94A3B8" />
+      {/* Pequeño LED de potencia rojo */}
+      <circle cx="29" cy="22" r="0.9" fill="#EF4444" style={{ animation: 'ai-blink 1.5s step-end infinite' }} />
+      {/* Conector USB izquierda */}
+      <rect x="3.5" y="17" width="3.5" height="6" rx="0.5" fill="#94A3B8" />
+      <rect x="3.5" y="18.5" width="3.5" height="3" fill="#64748B" />
+
+      {/* Cable rojo a LED amarillo */}
+      <path d="M30 19 C 36 15, 39 11, 42 12" stroke="#EF4444" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+      {/* Cable negro a tierra (abajo) */}
+      <path d="M28 27 C 34 33, 39 36, 42 35" stroke="#1F2937" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+
+      {/* Halo del LED (encendido) */}
+      <circle cx="42" cy="11" r="6" fill="url(#ai3-lab-led-glow)" style={{ animation: 'ai-glow 1.8s ease-in-out infinite' }} />
+      {/* LED encendido (esquina superior derecha) */}
+      <g style={{ animation: 'ai-pulse 1.6s ease-in-out infinite', transformOrigin: '42px 11px' }}>
+        <circle cx="42" cy="11" r="2.6" fill="url(#ai3-lab-led)" stroke="#B45309" strokeWidth="0.5" />
+        <circle cx="41" cy="10" r="0.9" fill="#FFFBEB" opacity="0.85" />
+      </g>
+
+      {/* Patitas del LED (anodo y catodo) */}
+      <line x1="40.6" y1="13.5" x2="41" y2="15.5" stroke="#9CA3AF" strokeWidth="0.7" />
+      <line x1="43.4" y1="13.5" x2="43" y2="15.5" stroke="#9CA3AF" strokeWidth="0.7" />
+
+      {/* Resistencia (rectángulo con bandas) */}
+      <g style={{ animation: 'ai-bob 3s ease-in-out infinite', transformOrigin: '23px 41px' }}>
+        <line x1="14" y1="41" x2="18" y2="41" stroke="#9CA3AF" strokeWidth="0.7" />
+        <rect x="18" y="39.6" width="10" height="2.8" rx="0.5" fill="#FCD34D" stroke="#92400E" strokeWidth="0.3" />
+        <rect x="20" y="39.6" width="0.8" height="2.8" fill="#7C2D12" />
+        <rect x="22.2" y="39.6" width="0.8" height="2.8" fill="#1F2937" />
+        <rect x="24.4" y="39.6" width="0.8" height="2.8" fill="#EF4444" />
+        <rect x="26.6" y="39.6" width="0.8" height="2.8" fill="#F59E0B" />
+        <line x1="28" y1="41" x2="32" y2="41" stroke="#9CA3AF" strokeWidth="0.7" />
+      </g>
+    </svg>
+  ),
 };
 
 export default icons3;

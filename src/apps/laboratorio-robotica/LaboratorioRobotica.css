@@ -2,11 +2,19 @@
 
 .rob-shell {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 1rem 1rem 3rem;
+  padding: 1.25rem;
   font-family: 'Inter', 'Fredoka', system-ui, sans-serif;
-  color: #1e1b4b;
+  color: #e2e8f0;
+  border-radius: 22px;
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(99, 102, 241, 0.45), transparent 60%),
+    radial-gradient(900px 420px at 110% 110%, rgba(14, 165, 233, 0.35), transparent 60%),
+    linear-gradient(180deg, #0b1330 0%, #112250 50%, #0f1a3d 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 25px 60px -25px rgba(15, 23, 42, 0.55);
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 /* ---- Pantalla de inicio ---- */
@@ -59,9 +67,12 @@
 
 .rob-mode-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
+}
+@media (min-width: 980px) {
+  .rob-mode-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .rob-mode-card {
@@ -131,6 +142,101 @@
   padding-left: 1.25rem;
   color: #334155;
   line-height: 1.75;
+}
+
+/* ---- Rejilla de cajitas de ejercicios ---- */
+.rob-exercises-grid {
+  margin-top: 1.25rem;
+}
+.rob-exercises-grid h3 {
+  margin: 0 0 0.85rem;
+  color: #6d28d9;
+  font-size: 1rem;
+}
+.rob-exercises-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.rob-mini-ex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(99, 102, 241, 0.10));
+  border: 1px solid rgba(14, 165, 233, 0.32);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.rob-mini-ex:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.55);
+  box-shadow: 0 10px 24px -12px rgba(14, 165, 233, 0.55);
+}
+.rob-mini-ex-num {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px -2px rgba(14, 165, 233, 0.5);
+}
+.rob-mini-ex-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: #1e293b;
+  line-height: 1.25;
+}
+:root.dark .rob-mini-ex-title { color: #e2e8f0; }
+:root.dark .rob-mini-ex {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(99, 102, 241, 0.16));
+  border-color: rgba(14, 165, 233, 0.45);
+}
+
+/* ---- Selector de ejercicio (fácil/medio) ---- */
+.rob-exercise-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 auto 1rem;
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  justify-content: center;
+  max-width: max-content;
+}
+.rob-exercise-pick {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.rob-exercise-pick:hover {
+  background: rgba(99, 102, 241, 0.22);
+  border-color: rgba(99, 102, 241, 0.55);
+  transform: translateY(-1px);
+}
+.rob-exercise-pick.active {
+  background: linear-gradient(90deg, #0ea5e9, #6366f1);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.55);
 }
 
 /* ---- Pantalla de juego ---- */
@@ -241,8 +347,71 @@
   box-shadow: 0 15px 40px rgba(15, 23, 42, 0.3), inset 0 0 60px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   margin: 0 auto 1rem;
-  cursor: crosshair;
+  cursor: grab;
   max-width: 100%;
+  touch-action: none;
+}
+.rob-board.panning { cursor: grabbing; }
+
+.rob-board-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.rob-zoom-ctrls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+.rob-zoom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.rob-zoom-btn:hover { background: rgba(255, 255, 255, 0.14); }
+.rob-zoom-level {
+  padding: 0 6px;
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  color: #cbd5e1;
+  min-width: 40px;
+  text-align: center;
+}
+
+.rob-board-hint {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: rgba(203, 213, 225, 0.65);
+  pointer-events: none;
+  z-index: 10;
+  padding: 4px 8px;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 6px;
 }
 
 .rob-wires {
@@ -263,6 +432,274 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   overflow: visible;
   user-select: none;
+  cursor: grab;
+  touch-action: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.rob-component:active { cursor: grabbing; }
+.rob-component.dragging {
+  cursor: grabbing;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  z-index: 20;
+  transform: scale(1.03);
+}
+.rob-component.selected {
+  outline: 3px solid #f472b6;
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px rgba(244, 114, 182, 0.55);
+}
+.rob-component .rob-pin { cursor: pointer; }
+
+/* ==========================================================================
+   Widgets interactivos dentro de cada componente
+   ========================================================================== */
+
+.rob-component-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 24px);
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* --- LED bulb --- */
+.rob-led-bulb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f1f5f9 0%, #cbd5e1 70%, #94a3b8 100%);
+  border: 2px solid #64748b;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.rob-led-bulb.on {
+  background: radial-gradient(circle at 35% 30%, #fff 0%, var(--led-color) 70%, var(--led-color) 100%);
+  border-color: var(--led-color);
+  box-shadow:
+    0 0 14px var(--led-color),
+    0 0 30px var(--led-color),
+    inset 0 0 8px rgba(255,255,255,0.6);
+  animation: rob-led-pulse 1.6s ease-in-out infinite;
+}
+@keyframes rob-led-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* --- Buzzer + ondas sonoras --- */
+.rob-buzzer-ico {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.rob-buzzer-ico.on .rob-buzzer-emoji { animation: rob-shake 0.18s ease-in-out infinite; }
+.rob-wave {
+  position: absolute;
+  border: 2px solid #f59e0b;
+  border-radius: 50%;
+  opacity: 0;
+  animation: rob-wave-out 1s ease-out infinite;
+  pointer-events: none;
+  width: 6px;
+  height: 6px;
+}
+.rob-wave.w2 { animation-delay: 0.3s; }
+.rob-wave.w3 { animation-delay: 0.6s; }
+@keyframes rob-wave-out {
+  0%   { transform: scale(1);  opacity: 0.85; }
+  100% { transform: scale(8);  opacity: 0;    }
+}
+@keyframes rob-shake {
+  0%,100% { transform: translate(0,0); }
+  25%     { transform: translate(-1px, 1px); }
+  75%     { transform: translate(1px, -1px); }
+}
+
+/* --- Motor (engranaje girando) --- */
+.rob-motor-ico { font-size: 22px; display: flex; align-items: center; justify-content: center; }
+.rob-motor-ico.on .rob-motor-gear {
+  display: inline-block;
+  animation: rob-spin 1.4s linear infinite;
+  color: #16a34a;
+  filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.7));
+}
+@keyframes rob-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --- LED RGB --- */
+.rob-rgb-bulb {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 2px solid #475569;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- Servomotor --- */
+.rob-servo-ico { font-size: 22px; }
+.rob-servo-ico.on .rob-servo-arrow {
+  display: inline-block;
+  animation: rob-spin 1.6s linear infinite;
+  color: #14b8a6;
+}
+
+/* --- Interruptor (toggle moderno) --- */
+.rob-switch-toggle {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  border: 2px solid #475569;
+  background: #cbd5e1;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.rob-switch-toggle .rob-switch-knob {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  transition: left 0.18s ease, background 0.18s ease;
+}
+.rob-switch-toggle.on {
+  background: #22c55e;
+  border-color: #15803d;
+}
+.rob-switch-toggle.on .rob-switch-knob { left: 28px; background: #f0fdf4; }
+
+/* --- Pulsador (botón físico) --- */
+.rob-press-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid #4c1d95;
+  background: radial-gradient(circle at 35% 30%, #c4b5fd 0%, #8b5cf6 60%, #6d28d9 100%);
+  cursor: pointer;
+  padding: 0;
+  box-shadow:
+    0 4px 0 #4c1d95,
+    0 6px 12px rgba(76, 29, 149, 0.45);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.rob-press-btn.pressed {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 #4c1d95,
+    0 2px 4px rgba(76, 29, 149, 0.45);
+}
+
+/* --- Sensor (PIR / IR) clicable --- */
+.rob-sensor-btn,
+.rob-ultra-ico {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #94a3b8;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 700;
+  color: #475569;
+}
+.rob-sensor-btn:hover { background: #e2e8f0; }
+.rob-sensor-btn.powered { border-color: #22c55e; background: #ecfdf5; color: #065f46; }
+.rob-sensor-btn.triggered { border-color: #ef4444; background: #fee2e2; color: #991b1b; animation: rob-blink 0.6s ease-in-out infinite; }
+.rob-sensor-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+  box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+}
+.rob-sensor-btn.powered .rob-sensor-led { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.rob-sensor-btn.triggered .rob-sensor-led { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+.rob-ultra-ico .rob-sensor-led { background: #94a3b8; }
+.rob-ultra-ico.powered .rob-sensor-led { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.rob-sensor-text { font-size: 8px; letter-spacing: 0.04em; }
+@keyframes rob-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* --- Potenciómetro (perilla) --- */
+.rob-pot-knob {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fce7f3 0%, #ec4899 70%, #be185d 100%);
+  border: 2px solid #831843;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  box-shadow: 0 3px 6px rgba(190, 24, 93, 0.4);
+}
+.rob-pot-dial {
+  font-size: 10px;
+  color: #fff;
+  transition: transform 0.18s ease;
+}
+.rob-pot-text {
+  position: absolute;
+  bottom: -16px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #831843;
+  background: rgba(255,255,255,0.8);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* --- Arduino power LED --- */
+.rob-arduino-power {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.rob-arduino-text {
+  font-size: 10px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.08em;
+}
+.rob-power-led {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #475569;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+}
+.rob-power-led.on {
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e, inset 0 0 2px rgba(255,255,255,0.4);
+}
+
+/* --- Pasivos (LDR, NTC, etc.) --- */
+.rob-passive {
+  font-size: 18px;
+  opacity: 0.85;
 }
 
 .rob-component-header {
@@ -310,26 +747,33 @@
 
 .rob-pin {
   position: absolute;
+  appearance: none;
   background: transparent;
   border: none;
   padding: 0;
+  margin: 0;
+  outline: none;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
   z-index: 2;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.rob-pin:focus-visible { box-shadow: 0 0 0 2px #f472b6; }
 
 .rob-pin-dot {
+  display: block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #fbbf24;
+  background: radial-gradient(circle at 35% 30%, #fde68a 0%, #fbbf24 55%, #b45309 100%);
   border: 2px solid #fff;
-  box-shadow: 0 0 0 1px #78350f, 0 0 8px rgba(251, 191, 36, 0.8);
-  transition: all 0.15s ease;
+  box-shadow: 0 0 0 1px #78350f, 0 0 10px rgba(251, 191, 36, 0.7);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .rob-pin:hover .rob-pin-dot {
@@ -355,15 +799,24 @@
 }
 
 .rob-pin-label {
+  position: absolute;
   font-size: 9px;
   font-weight: 800;
   color: #fef3c7;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.9);
   padding: 1px 4px;
   border-radius: 3px;
   white-space: nowrap;
   pointer-events: none;
+  line-height: 1.2;
 }
+/* Etiquetas integradas DENTRO del componente: se desplazan hacia el centro
+   según el lado donde está el pin. */
+.rob-pin.side-left   .rob-pin-label { left: 12px; top: 50%; transform: translateY(-50%); }
+.rob-pin.side-right  .rob-pin-label { right: 12px; top: 50%; transform: translateY(-50%); }
+.rob-pin.side-top    .rob-pin-label { top: 12px; left: 50%; transform: translateX(-50%); }
+.rob-pin.side-bottom .rob-pin-label { bottom: 12px; left: 50%; transform: translateX(-50%); }
+.rob-pin.side-center .rob-pin-label { left: 50%; top: 14px; transform: translateX(-50%); }
 
 /* ---- Barra de acciones ---- */
 
@@ -606,3 +1059,398 @@
 
 :root.dark .rob-summary-row.ok { background: rgba(34, 197, 94, 0.15); color: #86efac; }
 :root.dark .rob-summary-row.ko { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+
+/* ==========================================================================
+   Modo libre
+   ========================================================================== */
+
+/* ========== Modal de instrucciones — versión oscura ========== */
+.rob-shell .instr-modal-overlay {
+  background: radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.35), transparent 70%),
+              rgba(6, 4, 20, 0.78);
+}
+.rob-shell .instr-modal-content {
+  background: linear-gradient(180deg, #0f1a3d 0%, #1e1b4b 100%);
+  color: #e2e8f0;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.85),
+              0 0 0 1px rgba(14, 165, 233, 0.2);
+}
+.rob-shell .instr-modal-title {
+  background: linear-gradient(90deg, #38bdf8, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.rob-shell .instr-modal-title svg { color: #fbbf24; }
+.rob-shell .instr-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.rob-shell .instr-modal-close:hover {
+  background: rgba(14, 165, 233, 0.25);
+  color: #fff;
+}
+.rob-shell .instr-modal-body { color: #cbd5e1; }
+.rob-shell .instr-modal-body h3 {
+  color: #fbbf24;
+  border-bottom-color: rgba(99, 102, 241, 0.35);
+}
+.rob-shell .instr-modal-body li::before { color: #38bdf8; }
+.rob-shell .instr-modal-body strong { color: #fff; }
+.rob-shell .instr-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.35);
+}
+
+/* Tarjeta extra: Modo libre */
+.rob-mode-card.rob-mode-libre {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+}
+.rob-mode-card.rob-mode-libre h3 { color: #fff; }
+:root.dark .rob-mode-card.rob-mode-libre {
+  background: linear-gradient(135deg, #4f46e5, #ec4899);
+}
+
+/* ========== Adaptación oscura de los contenedores internos ==========
+   El shell tiene fondo azul oscuro siempre, así que los elementos
+   internos (hero, playhead, exercise-card, toolbar, summary…) se
+   reestilan para mantener buen contraste. */
+
+/* Hero (intro): fondo translúcido oscuro en lugar de pastel */
+.rob-shell .rob-hero {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(244, 114, 182, 0.12) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.35);
+}
+.rob-shell .rob-hero-title p { color: #cbd5e1; }
+.rob-shell .rob-hero-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c7d2fe;
+}
+
+/* Lista/rejilla de ejercicios */
+.rob-shell .rob-exercise-list {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+}
+.rob-shell .rob-exercise-list h3,
+.rob-shell .rob-exercises-grid h3 { color: #c4b5fd; }
+.rob-shell .rob-exercise-list ol { color: #cbd5e1; }
+.rob-shell .rob-mini-ex {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(99, 102, 241, 0.18));
+  border-color: rgba(99, 102, 241, 0.45);
+}
+.rob-shell .rob-mini-ex-title { color: #f1f5f9; }
+
+/* Playhead: panel oscuro */
+.rob-shell .rob-playhead {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #e2e8f0;
+  box-shadow: none;
+}
+.rob-shell .rob-progress { color: #cbd5e1; }
+.rob-shell .rob-libre-status { color: #94a3b8; }
+.rob-shell .rob-icon-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+}
+.rob-shell .rob-icon-btn:hover { background: rgba(255, 255, 255, 0.15); }
+.rob-shell .rob-free-name {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.rob-shell .rob-free-name::placeholder { color: rgba(226, 232, 240, 0.55); }
+
+/* Tarjeta del ejercicio (modos no libres) */
+.rob-shell .rob-exercise-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(236, 72, 153, 0.12));
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-left: 5px solid #a78bfa;
+  color: #e2e8f0;
+  box-shadow: none;
+}
+.rob-shell .rob-exercise-title { color: #c4b5fd; }
+.rob-shell .rob-exercise-desc { color: #cbd5e1; }
+
+/* Paleta horizontal del modo libre */
+.rob-shell .rob-palette-bar {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.4));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+.rob-shell .rob-palette-cat-label { color: #cbd5e1; }
+.rob-shell .rob-palette-tile {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.rob-shell .rob-palette-tile:hover { background: rgba(255, 255, 255, 0.16); }
+
+/* Toolbar inferior */
+.rob-shell .rob-toolbar {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #e2e8f0;
+  box-shadow: none;
+}
+
+/* Botones secundarios y pista */
+.rob-shell .rob-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.rob-shell .rob-btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+}
+.rob-shell .rob-btn-secondary:disabled { opacity: 0.45; }
+.rob-shell .rob-tip {
+  color: #fde68a;
+  background: rgba(251, 191, 36, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+}
+
+/* Resumen / examen */
+.rob-shell .rob-summary-card {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #e2e8f0;
+  box-shadow: none;
+}
+
+/* Chip "Libre" en el playhead */
+.rob-mode-chip.mode-libre {
+  background: linear-gradient(90deg, #f472b6, #fbbf24);
+  color: #fff;
+}
+
+/* Input del nombre del diseño */
+.rob-free-name {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #0f172a;
+  min-width: 200px;
+}
+.rob-free-name:focus { outline: 2px solid #f472b6; border-color: #f472b6; }
+:root.dark .rob-free-name {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Botón compacto */
+.rob-btn-compact {
+  padding: 6px 10px !important;
+  font-size: 0.85rem !important;
+}
+.rob-btn-danger {
+  background: #ef4444;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.rob-btn-danger:hover { background: #dc2626; }
+
+/* Estado del modo libre (componentes / cables) */
+.rob-libre-status {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Paleta horizontal */
+.rob-palette-bar {
+  margin: 0 auto 1rem;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.08));
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 14px;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+:root.dark .rob-palette-bar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.06));
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.rob-palette-cat-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #475569;
+  margin-bottom: 4px;
+}
+:root.dark .rob-palette-cat-label { color: #cbd5e1; }
+.rob-palette-cat-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rob-palette-tile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e293b;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  border-left-width: 4px;
+}
+.rob-palette-tile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -8px rgba(15, 23, 42, 0.4);
+}
+.rob-palette-tile-ico { font-size: 1rem; }
+.rob-palette-tile-plus { opacity: 0.55; }
+:root.dark .rob-palette-tile {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================================================
+   Modal genérico (guardar / mis diseños)
+   ========================================================================== */
+.rob-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+.rob-modal {
+  background: #fff;
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 22px 24px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.5);
+  font-family: inherit;
+}
+.rob-modal-wide { max-width: 640px; }
+.rob-modal h2 {
+  display: flex; align-items: center; gap: 8px;
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  color: #1e1b4b;
+}
+.rob-modal-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+.rob-modal-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+.rob-modal-input:focus { outline: 2px solid #a855f7; border-color: #a855f7; }
+.rob-modal-warn {
+  margin: 6px 0 12px;
+  padding: 8px 12px;
+  background: rgba(251, 191, 36, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #92400e;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.rob-modal-empty {
+  text-align: center;
+  padding: 26px 8px;
+  color: #64748b;
+  font-style: italic;
+}
+.rob-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.rob-modal-toast {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+}
+.rob-modal-toast.ok { background: rgba(16, 185, 129, 0.18); color: #065f46; border: 1px solid rgba(16, 185, 129, 0.45); }
+.rob-modal-toast.ko { background: rgba(239, 68, 68, 0.18); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.45); }
+
+:root.dark .rob-modal {
+  background: linear-gradient(180deg, #1e1b4b, #2a0f3a);
+  color: #e2e8f0;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
+:root.dark .rob-modal h2 { color: #fff; }
+:root.dark .rob-modal-label { color: #cbd5e1; }
+:root.dark .rob-modal-input {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+:root.dark .rob-modal-empty { color: #94a3b8; }
+
+/* Lista de diseños */
+.rob-design-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.rob-design-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.rob-design-info { min-width: 0; flex: 1; }
+.rob-design-name { font-weight: 700; color: #1e1b4b; }
+.rob-design-meta { font-size: 0.78rem; color: #64748b; }
+.rob-design-actions { display: flex; gap: 6px; }
+
+:root.dark .rob-design-row { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); }
+:root.dark .rob-design-name { color: #fff; }
+:root.dark .rob-design-meta { color: #94a3b8; }
