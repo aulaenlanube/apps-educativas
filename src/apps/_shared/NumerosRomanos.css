@@ -3,51 +3,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-/* --- CONTENEDOR PRINCIPAL (Igual que Ordena la Frase) --- */
+/* --- CONTENEDOR PRINCIPAL (gradiente violeta-rosa-ambar) --- */
 .roman-container {
     font-family: 'Lexend', sans-serif;
     width: 100%;
     max-width: 900px;
-    background: var(--app-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
+    padding: 34px 30px 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 45px -20px rgba(124, 58, 237, 0.35), 0 4px 12px rgba(236, 72, 153, 0.12);
     text-align: center;
     margin: 0 auto;
     position: relative;
-    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    color: #1f2937;
+}
+
+.roman-container::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
+    border-radius: 24px 24px 0 0;
 }
 
 .roman-container h1 {
     margin-top: 0;
     font-family: 'Fredoka One', cursive;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.roman-container h1 .gradient-text {
+    background: linear-gradient(90deg, #7c3aed, #db2777, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .roman-container .instrucciones {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 25px;
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 22px;
 }
 
 /* --- ZONA DE NÚMERO OBJETIVO --- */
 .target-number {
     font-size: 5rem;
     font-weight: 800;
-    color: #4f46e5;
-    margin: 1.5rem 0;
+    background: linear-gradient(135deg, #7c3aed, #db2777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 1.2rem 0;
     font-family: 'Fredoka One', cursive;
     line-height: 1;
-    text-shadow: 2px 2px 4px rgba(79, 70, 229, 0.1);
+    filter: drop-shadow(0 4px 10px rgba(124, 58, 237, 0.25));
 }
 
 /* --- DROP ZONE --- */
 .drop-zone {
-    min-height: 100px;
-    background-color: #f8fafc;
-    border: 3px dashed #cbd5e1;
-    border-radius: 16px;
-    margin: 20px 0;
+    min-height: 110px;
+    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+    border: 3px dashed rgba(139, 92, 246, 0.35);
+    border-radius: 18px;
+    margin: 18px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,11 +75,12 @@
     gap: 12px;
     padding: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 6px rgba(139, 92, 246, 0.06);
 }
 
 .drop-zone.active {
-    border-color: #4f46e5;
-    background-color: #eef2ff;
+    border-color: #8b5cf6;
+    background: linear-gradient(135deg, #f3e8ff 0%, #ffffff 100%);
     transform: scale(1.02);
 }
 
@@ -73,12 +94,13 @@
 
 /* --- FICHAS ROMANAS --- */
 .roman-tile {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-    border: 2px solid #4f46e5;
-    color: #4f46e5;
-    border-radius: 12px;
+    min-width: 52px;
+    padding: 0 10px;
+    height: 52px;
+    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+    border: 2px solid #8b5cf6;
+    color: #5b21b6;
+    border-radius: 14px;
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Times New Roman', serif;
@@ -87,14 +109,14 @@
     justify-content: center;
     cursor: grab;
     user-select: none;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 -4px 0 rgba(79, 70, 229, 0.2);
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.15), inset 0 -4px 0 rgba(124, 58, 237, 0.15);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .roman-tile:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -4px 0 rgba(79, 70, 229, 0.2);
-    border-color: #6366f1;
+    box-shadow: 0 10px 18px rgba(124, 58, 237, 0.22), inset 0 -4px 0 rgba(124, 58, 237, 0.15);
+    border-color: #a78bfa;
 }
 
 .drop-zone .roman-tile {
@@ -144,73 +166,85 @@
     justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 25px;
-    padding: 20px;
-    background: #f1f5f9;
-    border-radius: 16px;
-    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    padding: 18px;
+    background: rgba(139, 92, 246, 0.06);
+    border-radius: 18px;
+    box-shadow: inset 0 2px 4px rgba(139, 92, 246, 0.08);
 }
 
-/* --- BOTONES DE MODO (Igual que Ordena la Frase) --- */
-.mode-selection {
+/* --- BOTONES DE MODO --- */
+.roman-container .mode-selection {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
 }
 
-.btn-mode {
+.roman-container .btn-mode {
     font-family: 'Lexend', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid #dcdfe6;
-    background: var(--app-bg-surface);
-    color: var(--app-text-secondary);
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 2px solid #e5e7eb;
+    background: #f3f4f6;
+    color: #4b5563;
     cursor: pointer;
     transition: all 0.2s;
 }
 
-.btn-mode:hover,
-.btn-mode.active {
-    background-color: #673de6;
-    color: white;
-    border-color: #673de6;
+.roman-container .btn-mode:hover {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #c4b5fd;
 }
 
-/* --- CONTROLES DE JUEGO (Botones inferiores) --- */
+.roman-container .btn-mode.active {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.35);
+}
+
+/* --- CONTROLES DE JUEGO --- */
 .controles {
-    margin: 25px 0;
+    margin: 22px 0 6px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
 .controles button {
     font-family: 'Lexend', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 12px 25px;
-    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 26px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    background-color: #4a90e2;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
-    transition: background-color 0.2s;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
     min-width: 140px;
 }
 
 .controles button:hover {
-    background-color: #357ABD;
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.4);
 }
 
 .controles .btn-saltar {
-    background-color: #d97706;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
 }
 
 .controles .btn-saltar:hover {
-    background-color: #935106;
+    box-shadow: 0 8px 18px rgba(234, 88, 12, 0.4);
 }
 
 /* --- FEEDBACK Y AYUDA --- */
@@ -420,4 +454,207 @@ input:checked+.slider:before {
     color: var(--app-text-muted);
     margin-bottom: 4px;
     line-height: 1.4;
+}
+
+/* --- CABECERA DURANTE EL EXAMEN (contador + cronometro) --- */
+.roman-test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.roman-test-chip {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    letter-spacing: 0.2px;
+}
+
+.roman-test-chip.counter {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+.roman-test-chip.timer {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* --- BARRA DE PROGRESO --- */
+.roman-progress {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.roman-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
+    border-radius: 999px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* --- NOTA FINAL EN RESULTADOS --- */
+.roman-nota {
+    margin: 20px auto 14px;
+    padding: 22px 20px;
+    border-radius: 20px;
+    max-width: 340px;
+    border: 3px solid transparent;
+    background: #f8fafc;
+    animation: roman-pop 0.35s ease;
+}
+
+.roman-nota.excellent {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-color: #10b981;
+    color: #065f46;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+}
+
+.roman-nota.good {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-color: #3b82f6;
+    color: #1e3a8a;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.35);
+}
+
+.roman-nota.fail {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+    color: #7f1d1d;
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.35);
+}
+
+.roman-nota-big {
+    font-family: 'Fredoka One', cursive;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.roman-nota-small {
+    font-size: 26px;
+    opacity: 0.75;
+    margin-left: 4px;
+}
+
+.roman-nota-msg {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+@keyframes roman-pop {
+    0% { transform: scale(0.92); opacity: 0; }
+    60% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- FILA DE CHIPS CON PUNTOS, ACIERTOS Y TIEMPO --- */
+.roman-score-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 8px 0 18px;
+    flex-wrap: wrap;
+}
+
+.roman-score-chip {
+    background: white;
+    color: #4b5563;
+    border: 1.5px solid rgba(139, 92, 246, 0.2);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.08);
+}
+
+.roman-score-chip strong {
+    font-family: 'Fredoka One', cursive;
+    color: #7c3aed;
+    margin-right: 4px;
+}
+
+.roman-score-chip.points {
+    background: linear-gradient(135deg, #f3e8ff, #fce7f3);
+    border-color: rgba(219, 39, 119, 0.25);
+}
+
+/* --- TARJETAS DE RESPUESTAS --- */
+.roman-answer-card {
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.roman-answer-card.ok {
+    background: linear-gradient(135deg, #ecfdf5, #ffffff);
+    border-color: #a7f3d0;
+}
+
+.roman-answer-card.ko {
+    background: linear-gradient(135deg, #fef2f2, #ffffff);
+    border-color: #fecaca;
+}
+
+.roman-answer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.roman-answer-row.small {
+    font-size: 13px;
+    color: #4b5563;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.roman-answer-q {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.roman-answer-q strong {
+    font-family: 'Fredoka One', cursive;
+    color: #7c3aed;
+    margin-left: 6px;
+    font-size: 1.15em;
+}
+
+.roman-answer-icon {
+    font-size: 20px;
+}
+
+.roman-answer-sol {
+    background: white;
+    color: #991b1b;
+    padding: 3px 10px;
+    border-radius: 8px;
+    border: 1px solid #fecaca;
+    font-weight: 700;
+}
+
+/* --- Responsive --- */
+@media (max-width: 720px) {
+    .roman-container {
+        padding: 28px 18px 22px;
+        border-radius: 20px;
+    }
+    .target-number { font-size: 4rem; }
+    .roman-nota-big { font-size: 54px; }
 }

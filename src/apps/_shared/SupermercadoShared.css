@@ -1,161 +1,354 @@
-/* Contenido completo para Supermercado.css */
+/* Supermercado Matematico — UI compartida para las 6 variantes de primaria.
+   Paleta violeta-rosa-ambar + detalles juguetones (chips, gradientes, shadows). */
+
+#supermercado-app-container {
+    font-family: 'Lexend', 'Roboto', sans-serif;
+    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
+    width: 100%;
+    max-width: 780px;
+    padding: 34px 30px 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 45px -20px rgba(124, 58, 237, 0.35), 0 4px 12px rgba(236, 72, 153, 0.12);
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    color: #1f2937;
+}
+
+#supermercado-app-container::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
+    border-radius: 24px 24px 0 0;
+}
 
 #supermercado-app-container .supermercado-title {
     font-family: 'Fredoka One', cursive;
+    background: linear-gradient(90deg, #7c3aed, #db2777, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5px;
+    margin: 0 0 6px;
 }
 
-#supermercado-app-container {
-    font-family: 'Roboto', sans-serif;
-    background: white;
-    width: 100%;
-    max-width: 550px; /* Un poco más de espacio */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 85, 148, 0.15);
-    text-align: center;
-    margin: 0 auto;
-}
-
+/* ---- Panel de productos (tarjetas tipo estanteria) ---- */
 #supermercado-app-container #panel-productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 25px 0;
-    padding-bottom: 25px;
-    border-bottom: 2px dashed #d4eaf7;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+    padding-bottom: 22px;
+    border-bottom: 2px dashed rgba(139, 92, 246, 0.25);
 }
+
+/* Equilibrado automatico: elige columnas segun el numero total de productos
+   para que las filas tengan la misma cantidad cuando es posible y,
+   al menos, para evitar que quede un solo producto huerfano en la ultima fila.
+   Cada tarjeta se estira al ancho disponible (1fr) dentro de su fila. */
+#supermercado-app-container #panel-productos:has(.producto:nth-child(4):last-child) { grid-template-columns: repeat(4, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(5):last-child) { grid-template-columns: repeat(5, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(6):last-child) { grid-template-columns: repeat(3, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(7):last-child) { grid-template-columns: repeat(4, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(8):last-child) { grid-template-columns: repeat(4, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(9):last-child) { grid-template-columns: repeat(3, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(10):last-child) { grid-template-columns: repeat(5, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(11):last-child) { grid-template-columns: repeat(4, 1fr); }
+#supermercado-app-container #panel-productos:has(.producto:nth-child(12):last-child) { grid-template-columns: repeat(4, 1fr); }
 
 #supermercado-app-container .producto {
-    background: #e6f4ff;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #005594;
-    min-width: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 14px 8px 10px;
+    background: linear-gradient(160deg, #ffffff 0%, #faf5ff 100%);
+    border: 1.5px solid rgba(139, 92, 246, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px -4px rgba(139, 92, 246, 0.18), inset 0 -3px 0 rgba(139, 92, 246, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    text-align: center;
+    overflow: hidden;
 }
 
+#supermercado-app-container .producto::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 38%;
+    background: radial-gradient(ellipse at top, rgba(245, 158, 11, 0.18) 0%, rgba(245, 158, 11, 0) 70%);
+    pointer-events: none;
+}
+
+#supermercado-app-container .producto:hover {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 0 12px 22px -8px rgba(139, 92, 246, 0.35), inset 0 -3px 0 rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+#supermercado-app-container .producto-emoji {
+    font-size: 2.6em;
+    line-height: 1;
+    filter: drop-shadow(0 3px 6px rgba(124, 58, 237, 0.18));
+    margin-bottom: 2px;
+    transition: transform 0.2s ease;
+}
+
+#supermercado-app-container .producto:hover .producto-emoji {
+    transform: scale(1.12) rotate(4deg);
+}
+
+#supermercado-app-container .producto-nombre {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    line-height: 1.2;
+    min-height: 2.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#supermercado-app-container .producto-precio {
+    display: inline-block;
+    font-family: 'Lexend', 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    padding: 3px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.2px;
+    box-shadow: 0 2px 6px rgba(219, 39, 119, 0.3);
+    margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+    /* En movil forzamos 2 columnas para evitar tarjetas muy estrechas;
+       cualquier :has() anterior queda anulado gracias a la mayor especificidad. */
+    #supermercado-app-container #panel-productos,
+    #supermercado-app-container #panel-productos:has(.producto:last-child) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    #supermercado-app-container .producto {
+        padding: 12px 6px 8px;
+    }
+    #supermercado-app-container .producto-emoji {
+        font-size: 2.3em;
+    }
+    #supermercado-app-container .producto-nombre {
+        font-size: 11px;
+    }
+    #supermercado-app-container .producto-precio {
+        font-size: 14px;
+        padding: 2px 10px;
+    }
+}
+
+/* ---- Selector de modo ---- */
+#supermercado-app-container .mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+#supermercado-app-container .btn-mode {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 2px solid #e5e7eb;
+    padding: 10px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+#supermercado-app-container .btn-mode:hover {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #c4b5fd;
+}
+
+#supermercado-app-container .btn-mode.active {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.35);
+}
+
+/* ---- Tarjeta de mision ---- */
 #supermercado-app-container .mision {
-    background: #fffbe6;
-    border: 2px solid #ffecb3;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
+    background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
+    border: 2px solid #fde68a;
+    padding: 18px 20px;
+    border-radius: 16px;
+    margin: 22px 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 #supermercado-app-container .mision h2 {
     font-family: 'Fredoka One', cursive;
-    color: #f57c00;
-    margin-top: 0;
+    color: #d97706;
+    margin: 0 0 8px;
+    font-size: 1.35em;
 }
 
+#supermercado-app-container .mision p {
+    margin: 0;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #374151;
+}
+
+/* ---- Entrada + comprobar ---- */
 #supermercado-app-container .respuesta-usuario {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
 }
 
 #supermercado-app-container label {
-    font-weight: bold;
-    color: #333;
+    font-weight: 600;
+    color: #4b5563;
 }
 
 #supermercado-app-container input[type="number"],
 #supermercado-app-container input[type="text"] {
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 11px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
     font-size: 16px;
-    width: 120px;
+    font-weight: 600;
+    width: 140px;
     text-align: center;
+    background: white;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+#supermercado-app-container input[type="number"]:focus,
+#supermercado-app-container input[type="text"]:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+/* ---- Botones base ---- */
 #supermercado-app-container button {
-    background: #0077cc;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 11px 22px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background 0.2s;
+    font-size: 15px;
+    font-weight: 700;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
 }
 
 #supermercado-app-container button:hover {
-    background: #005594;
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.4);
+}
+
+#supermercado-app-container button:active {
+    transform: translateY(0);
 }
 
 #supermercado-app-container #btnNuevaMision {
-    background: #f57c00;
-    margin-top: 20px;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    margin-top: 14px;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
 }
 
 #supermercado-app-container #btnNuevaMision:hover {
-    background: #e65100;
+    box-shadow: 0 8px 16px rgba(234, 88, 12, 0.4);
 }
 
+/* ---- Feedback ---- */
 #supermercado-app-container #feedback {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 8px;
+    margin-top: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 12px;
+    min-height: 0;
+    transition: all 0.2s ease;
+}
+
+#supermercado-app-container #feedback.correcta,
+#supermercado-app-container #feedback.incorrecta {
+    padding: 12px 16px;
 }
 
 #supermercado-app-container .correcta {
-    color: #2e7d32;
-    background: #e8f5e9;
+    color: #065f46;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border: 2px solid #10b981;
+    animation: sup-pop 0.3s ease;
 }
 
 #supermercado-app-container .incorrecta {
-    color: #c62828;
-    background: #ffebee;
+    color: #991b1b;
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border: 2px solid #ef4444;
+    animation: sup-shake 0.35s ease;
 }
 
-/* --- ESTILOS PARA EL MODO TEST --- */
-
-#supermercado-app-container .mode-selection {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 25px;
+@keyframes sup-pop {
+    0% { transform: scale(0.92); opacity: 0; }
+    60% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-#supermercado-app-container .btn-mode {
-    background: #f0f4f8;
-    color: #4a5568;
-    border: 1px solid #dcdfe6;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.2s;
+@keyframes sup-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
 }
 
-#supermercado-app-container .btn-mode:hover,
-#supermercado-app-container .btn-mode.active {
-    background: #673de6;
-    color: white;
-    border-color: #673de6;
-}
-
+/* ---- Modo examen / test ---- */
 .test-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    font-weight: bold;
-    color: #4a5568;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+.test-header .question-counter {
+    background: #ede9fe;
+    color: #5b21b6;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.test-header .timer {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 14px;
 }
 
 .progress-bar-container {
     width: 100%;
-    background: #e0e0e0;
-    border-radius: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
     height: 10px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -163,41 +356,135 @@
 
 .progress-bar {
     height: 100%;
-    background: #673de6;
-    border-radius: 10px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
+    border-radius: 999px;
     transition: width 0.3s ease-in-out;
 }
 
 .btn-test {
-    background: #28a745;
-}
-.btn-test:hover {
-    background: #218838;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3) !important;
 }
 
+.btn-test:hover {
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* ---- Resultados ---- */
 .test-results .score {
-    font-size: 24px;
-    font-weight: bold;
-    color: #673de6;
-    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #7c3aed;
+    margin: 6px 0 20px;
 }
+
 .test-results .score span {
-    font-size: 32px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    margin-left: 4px;
 }
+
+.test-results .nota-final {
+    margin: 24px auto 12px;
+    padding: 22px 20px;
+    border-radius: 20px;
+    max-width: 340px;
+    border: 3px solid transparent;
+    background: #f8fafc;
+    animation: sup-pop 0.4s ease;
+}
+
+.test-results .nota-final.excellent {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-color: #10b981;
+    color: #065f46;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+}
+
+.test-results .nota-final.good {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-color: #3b82f6;
+    color: #1e3a8a;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.35);
+}
+
+.test-results .nota-final.fail {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+    color: #7f1d1d;
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.35);
+}
+
+.test-results .nota-big {
+    font-family: 'Fredoka One', cursive;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.test-results .nota-small {
+    font-size: 26px;
+    opacity: 0.75;
+    margin-left: 4px;
+}
+
+.test-results .nota-msg {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
 .test-results .results-summary {
     margin-top: 20px;
     text-align: left;
 }
+
 .test-results .result-item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.12);
 }
+
 .test-results .result-item p:first-child {
-    margin-bottom: 5px;
+    margin: 0 0 6px;
+    color: #374151;
 }
+
+.test-results .result-item p { margin: 0; }
+
+.test-results .result-item .correcta,
+.test-results .result-item .incorrecta {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: none;
+    animation: none;
+}
+
 .test-results .test-controls {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 14px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 720px) {
+    #supermercado-app-container {
+        padding: 28px 18px 22px;
+        border-radius: 20px;
+    }
+    #supermercado-app-container input[type="number"],
+    #supermercado-app-container input[type="text"] {
+        width: 100%;
+        max-width: 220px;
+    }
+    #supermercado-app-container .respuesta-usuario {
+        flex-direction: column;
+    }
+    .test-results .nota-big { font-size: 54px; }
 }

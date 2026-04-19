@@ -1726,3 +1726,130 @@
 .exam-actions-row .btn-alchemy {
     flex: 1;
 }
+
+/* Circulo de nota coloreado segun rendimiento */
+.exam-final-score-lg.excellent {
+    border-color: #22c55e;
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.45);
+}
+.exam-final-score-lg.excellent .score-val-lg {
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+}
+.exam-final-score-lg.good {
+    border-color: #60a5fa;
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.45);
+}
+.exam-final-score-lg.good .score-val-lg {
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+}
+.exam-final-score-lg.fail {
+    border-color: #ef4444;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.45);
+}
+.exam-final-score-lg.fail .score-val-lg {
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+
+.exam-nota-msg {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-top: -0.5rem;
+}
+
+/* Fila de chips de informacion en resultados */
+.exam-score-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0.5rem 0;
+}
+
+.exam-chip {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.exam-chip.points {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.25), rgba(236, 72, 153, 0.2));
+    border-color: rgba(129, 140, 248, 0.45);
+}
+
+.exam-chip.points strong {
+    color: #fff;
+    font-weight: 800;
+    margin-right: 4px;
+}
+
+.exam-chip.difficulty-easy {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.5);
+    color: #bbf7d0;
+}
+.exam-chip.difficulty-medium {
+    background: rgba(234, 179, 8, 0.2);
+    border-color: rgba(234, 179, 8, 0.5);
+    color: #fde68a;
+}
+.exam-chip.difficulty-hard {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: rgba(239, 68, 68, 0.5);
+    color: #fecaca;
+}
+
+/* Detalle del nivel en el selector */
+.diff-note {
+    font-size: 0.7rem;
+    opacity: 0.95;
+    font-weight: 600;
+    margin-top: 2px;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.2;
+    padding: 0 4px;
+    text-align: center;
+}
+
+.difficulty-legend {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+}
+
+.difficulty-legend strong {
+    color: #cbd5e1;
+}
+
+/* Badge de dificultad y cronometro durante el examen */
+.mc-exam-badge.difficulty-easy {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+.mc-exam-badge.difficulty-medium {
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+}
+.mc-exam-badge.difficulty-hard {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.mc-exam-timer {
+    display: inline-block;
+    background: rgba(250, 204, 21, 0.15);
+    color: #fde047;
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-left: 6px;
+}

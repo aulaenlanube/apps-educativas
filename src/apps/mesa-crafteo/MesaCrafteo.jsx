@@ -1,5 +1,5 @@
 // src/apps/mesa-crafteo/MesaCrafteo.jsx
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { FAMILIES } from '../_shared/QuimicaHelpers';
@@ -22,13 +22,37 @@ import './MesaCrafteo.css';
 
 const STORAGE_KEY = 'mesa_crafteo_discoveries';
 
+// Configuracion del examen por dificultad.
+// La nota del modo Medio es la base (/10). Facil resta 1 pt (max 9), Dificil
+// suma hasta 1 pt (max 11). Los puntos, ademas, escalan con la dificultad.
+const EXAM_DIFFICULTY = {
+    easy:   { questions: 4,  gradeMax: 9,  scoreMult: 0.85, label: 'FÁCIL',   note: 'Nota máx 9 (–1 pt)' },
+    medium: { questions: 6,  gradeMax: 10, scoreMult: 1.0,  label: 'MEDIO',   note: 'Nota sobre 10 (base)' },
+    hard:   { questions: 10, gradeMax: 11, scoreMult: 1.25, label: 'DIFÍCIL', note: 'Nota hasta 11 (+1 pt)' },
+};
+
+// Puntuacion del examen: base por aciertos + bonus decreciente por tiempo,
+// escalado por la proporcion de aciertos y por el multiplicador de dificultad.
+// Dos alumnos con la misma nota pueden obtener puntuaciones distintas segun
+// lo rapido que respondan y el nivel elegido.
+const computeCrafteoScore = (correct, total, timeSec, difficulty) => {
+    if (!correct || !total) return 0;
+    const basePoints = correct * 100;                                 // 0..total*100
+    const fastBonus  = Math.max(0, 400 - timeSec * 2);                // 0..400
+    const longBonus  = Math.max(0, 300 - Math.floor(timeSec / 3));    // 0..300
+    const perCorrect = correct / total;
+    const timeBonus  = Math.round((fastBonus + longBonus) * perCorrect);
+    const mult       = EXAM_DIFFICULTY[difficulty]?.scoreMult ?? 1.0;
+    return Math.round((basePoints + timeBonus) * mult);
+};
+
 function getElementCounts(atoms) {
     const counts = {};
     atoms.forEach(a => { counts[a] = (counts[a] || 0) + 1; });
     return Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0]));
 }
 
-const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
+const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
     const cursoActual = corsoProp || grade;
 
     const [placedAtoms, setPlacedAtoms] = useState([]);
@@ -48,7 +72,6 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
     const [showTutorial, setShowTutorial] = useState(false);
 
     // Exam State
-    // Exam State
     const [isExamMode, setIsExamMode] = useState(false);
     const [examQuestions, setExamQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -56,6 +79,11 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
     const [examResultsData, setExamResultsData] = useState([]); // Stores { question, correct }
     const [showExamResults, setShowExamResults] = useState(false);
     const [showDifficultySelector, setShowDifficultySelector] = useState(false);
+    const [examDifficulty, setExamDifficulty] = useState('medium');
+    const examStartTimeRef = useRef(0);
+    const [examElapsedTime, setExamElapsedTime] = useState(0);
+    const [examFinalTime, setExamFinalTime] = useState(0);
+    const examTrackedRef = useRef(false);
 
 
 
@@ -106,7 +134,12 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                 setBuiltBonds([]);
                 setShowFormula(false);
             } else {
-                // Finish exam
+                // Finish exam: congelar tiempo total para puntuacion.
+                const finalT = examStartTimeRef.current
+                    ? Math.floor((Date.now() - examStartTimeRef.current) / 1000)
+                    : 0;
+                setExamFinalTime(finalT);
+                setExamElapsedTime(finalT);
                 setShowExamResults(true);
             }
         } else {
@@ -124,11 +157,13 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
         }
     }, [availableMolecules, currentTarget, isExamMode, examQuestions, currentQuestionIndex]);
 
-    const startExam = useCallback((numQuestions = 5) => {
+    const startExam = useCallback((difficulty = 'medium') => {
+        const config = EXAM_DIFFICULTY[difficulty] || EXAM_DIFFICULTY.medium;
         // Shuffle and pick N unique questions
         const shuffled = [...availableMolecules].sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, Math.min(numQuestions, shuffled.length));
+        const selected = shuffled.slice(0, Math.min(config.questions, shuffled.length));
 
+        setExamDifficulty(difficulty);
         setExamQuestions(selected);
         setCurrentQuestionIndex(0);
         setExamScore(0);
@@ -139,8 +174,12 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
         setBuiltBonds([]);
         setShowFormula(false);
         setShowExamResults(false);
-        setShowDifficultySelector(false); // Close selector
+        setShowDifficultySelector(false);
         setResult(null);
+        examStartTimeRef.current = Date.now();
+        setExamElapsedTime(0);
+        setExamFinalTime(0);
+        examTrackedRef.current = false;
     }, [availableMolecules]);
 
     const exitExamMode = useCallback(() => {
@@ -275,6 +314,31 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
     const placedCounts = useMemo(() => getElementCounts(placedAtoms.map(a => a.element)), [placedAtoms]);
     const targetCounts = useMemo(() => currentTarget ? getElementCounts(currentTarget.atoms) : [], [currentTarget]);
 
+    // Cronometro del examen: corre mientras el examen esta activo y no hay resultados.
+    useEffect(() => {
+        if (!isExamMode || showExamResults || !examStartTimeRef.current) return;
+        const interval = setInterval(() => {
+            setExamElapsedTime(Math.floor((Date.now() - examStartTimeRef.current) / 1000));
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [isExamMode, showExamResults]);
+
+    // Tracking hacia el sistema de ranking cuando el examen acaba (una sola vez).
+    useEffect(() => {
+        if (!showExamResults || examTrackedRef.current) return;
+        examTrackedRef.current = true;
+        const total = examQuestions.length;
+        const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
+        onGameComplete?.({
+            mode: 'test',
+            score: points,
+            maxScore: Math.round((total * 100 + 700) * (EXAM_DIFFICULTY[examDifficulty]?.scoreMult ?? 1.0)),
+            correctAnswers: examScore,
+            totalQuestions: total,
+            durationSeconds: examFinalTime || undefined,
+        });
+    }, [showExamResults, examScore, examQuestions.length, examFinalTime, examDifficulty, onGameComplete]);
+
     return (
         <div className="mc-app full-screen">
             <AppOrientationWarning />
@@ -353,8 +417,9 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
 
                             {isExamMode && (
                                 <div className="mc-exam-progress">
-                                    <span className="mc-exam-badge">MODO EXAMEN</span>
+                                    <span className={`mc-exam-badge difficulty-${examDifficulty}`}>{EXAM_DIFFICULTY[examDifficulty]?.label || 'EXAMEN'}</span>
                                     <span className="mc-exam-count">Pregunta {currentQuestionIndex + 1} de {examQuestions.length}</span>
+                                    <span className="mc-exam-timer">⏱ {examElapsedTime}s</span>
                                 </div>
                             )}
 
@@ -572,22 +637,29 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                     <div className="result-overlay">
                         <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="molecule-reveal-card difficulty-card">
                             <h2 className="molecule-title">CONFIGURAR EXAMEN</h2>
-                            <p className="molecule-description">Selecciona el nivel de dificultad:</p>
+                            <p className="molecule-description">Elige el nivel: la nota base está en <strong>Medio</strong>.</p>
 
                             <div className="difficulty-options">
-                                <button className="btn-alchemy diff-easy" onClick={() => startExam(4)}>
+                                <button className="btn-alchemy diff-easy" onClick={() => startExam('easy')}>
                                     <span className="diff-name">FÁCIL</span>
-                                    <span className="diff-count">4 Preguntas</span>
+                                    <span className="diff-count">{EXAM_DIFFICULTY.easy.questions} preguntas</span>
+                                    <span className="diff-note">{EXAM_DIFFICULTY.easy.note}</span>
                                 </button>
-                                <button className="btn-alchemy diff-med" onClick={() => startExam(6)}>
+                                <button className="btn-alchemy diff-med" onClick={() => startExam('medium')}>
                                     <span className="diff-name">MEDIO</span>
-                                    <span className="diff-count">6 Preguntas</span>
+                                    <span className="diff-count">{EXAM_DIFFICULTY.medium.questions} preguntas</span>
+                                    <span className="diff-note">{EXAM_DIFFICULTY.medium.note}</span>
                                 </button>
-                                <button className="btn-alchemy diff-hard" onClick={() => startExam(10)}>
+                                <button className="btn-alchemy diff-hard" onClick={() => startExam('hard')}>
                                     <span className="diff-name">DIFÍCIL</span>
-                                    <span className="diff-count">10 Preguntas</span>
+                                    <span className="diff-count">{EXAM_DIFFICULTY.hard.questions} preguntas</span>
+                                    <span className="diff-note">{EXAM_DIFFICULTY.hard.note}</span>
                                 </button>
                             </div>
+
+                            <p className="difficulty-legend">
+                                Además la <strong>puntuación</strong> depende del <strong>tiempo</strong>: dos alumnos con la misma nota pueden obtener puntos distintos.
+                            </p>
 
                             <button className="btn-text-only" onClick={() => setShowDifficultySelector(false)}>CANCELAR</button>
                         </motion.div>
@@ -596,14 +668,33 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
             </AnimatePresence>
 
             <AnimatePresence>
-                {showExamResults && (
+                {showExamResults && (() => {
+                    const total = examQuestions.length || 1;
+                    const diffConfig = EXAM_DIFFICULTY[examDifficulty] || EXAM_DIFFICULTY.medium;
+                    const ratio = examScore / total;
+                    const nota = Math.round(ratio * diffConfig.gradeMax * 10) / 10;
+                    const notaClass = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+                    const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+                        : nota >= 7 ? '¡Muy bien! 👏'
+                        : nota >= 5 ? 'Aprobado 💪'
+                        : 'Necesitas repasar 📖';
+                    const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
+                    return (
                     <div className="result-overlay">
                         <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="molecule-reveal-card exam-results-card">
                             <h2 className="molecule-title">RESULTADOS FINALES</h2>
 
-                            <div className="exam-final-score-lg">
-                                <span className="score-val-lg">{((examScore / examQuestions.length) * 10).toFixed(1)}</span>
-                                <span className="score-total-lg">/ 10</span>
+                            <div className={`exam-final-score-lg ${notaClass}`}>
+                                <span className="score-val-lg">{nota.toFixed(1)}</span>
+                                <span className="score-total-lg">/ {diffConfig.gradeMax}</span>
+                            </div>
+                            <div className="exam-nota-msg">{notaMsg}</div>
+
+                            <div className="exam-score-chips">
+                                <span className={`exam-chip difficulty-${examDifficulty}`}>{diffConfig.label}</span>
+                                <span className="exam-chip points"><strong>{points.toLocaleString('es-ES')}</strong> pts</span>
+                                <span className="exam-chip">✅ {examScore}/{total}</span>
+                                <span className="exam-chip">⏱ {examFinalTime}s</span>
                             </div>
 
                             <div className="exam-details-list custom-scrollbar">
@@ -626,7 +717,8 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                             </div>
                         </motion.div>
                     </div>
-                )}
+                    );
+                })()}
             </AnimatePresence>
 
             <AnimatePresence>

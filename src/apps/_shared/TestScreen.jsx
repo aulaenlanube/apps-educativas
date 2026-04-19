@@ -43,10 +43,18 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
             return Math.abs(userAnswer - q.solucion) < 0.001;
         }).length;
 
+        const nota = Math.round((correctAnswers / game.TOTAL_TEST_QUESTIONS) * 100) / 10;
+        const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+        const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+
         return (
             <div id="supermercado-app-container" className="test-results">
                 <h1 className="supermercado-title">¡Test Completado!</h1>
-                <div className="score">Tu puntuación: <span>{game.score}</span></div>
+                <div className={`nota-final ${notaColor}`}>
+                    <div className="nota-big">{nota.toFixed(1)}<span className="nota-small">/10</span></div>
+                    <div className="nota-msg">{notaMsg}</div>
+                </div>
+                <div className="score">Puntos: <span>{game.score.toLocaleString('es-ES')}</span></div>
                 <p>Has acertado {correctAnswers} de {game.TOTAL_TEST_QUESTIONS} preguntas.</p>
                 {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos.</p>}
                 
@@ -76,7 +84,9 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
             <div id="panel-productos">
                 {productos.map(p => (
                     <div key={p.nombre} className="producto">
-                        {p.emoji} {p.nombre} - {formatPrice(p.precio)}€
+                        <span className="producto-emoji" aria-hidden="true">{p.emoji}</span>
+                        <span className="producto-nombre">{p.nombre}</span>
+                        <span className="producto-precio">{formatPrice(p.precio)}€</span>
                     </div>
                 ))}
             </div>

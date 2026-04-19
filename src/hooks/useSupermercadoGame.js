@@ -43,32 +43,35 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
         setShowResults(false);
         setScore(0);
         setIsTestMode(true);
-        if (withTimer) {
-            setStartTime(Date.now());
-            setElapsedTime(0);
-        }
+        // Siempre registramos el tiempo en modo test para que la puntuación
+        // pueda tener en cuenta la velocidad (aunque no se muestre el cronómetro).
+        setStartTime(Date.now());
+        setElapsedTime(0);
     };
 
-    // Lógica del temporizador
+    // Lógica del temporizador (siempre activo en test para puntuar por tiempo)
     useEffect(() => {
         let timer;
-        if (isTestMode && withTimer && !showResults) {
+        if (isTestMode && !showResults) {
             timer = setInterval(() => {
                 setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
             }, 1000);
         }
         return () => clearInterval(timer);
-    }, [isTestMode, withTimer, showResults, startTime]);
+    }, [isTestMode, showResults, startTime]);
 
-    // Calcula la puntuación final
+    // Calcula la puntuación final. El tiempo SIEMPRE cuenta: dos alumnos con
+    // la misma nota pueden tener puntuaciones distintas según su rapidez.
     const calculateScore = (correctCount, time) => {
-        let baseScore = correctCount * 200; // 200 puntos por respuesta correcta
-        if (withTimer && correctCount > 0) {
-            // Bonus por tiempo: más rápido = más puntos. Máximo 100 puntos de bonus.
-            const timeBonus = Math.max(0, 100 - (time * 2));
-            baseScore += timeBonus;
-        }
-        return Math.floor(baseScore);
+        const baseScore = correctCount * 200; // 200 puntos por respuesta correcta
+        if (correctCount === 0) return 0;
+        // Bonus decreciente por tiempo: hasta ~20s cae 10 pt/s, luego suaviza.
+        // Aun tras 60s queda algo de bonus para diferenciar a los que acaban.
+        const fastBonus = Math.max(0, 200 - time * 10);        // 0..200 pt
+        const longBonus = Math.max(0, 100 - Math.floor(time / 2)); // 0..100 pt
+        const perCorrect = correctCount / TOTAL_TEST_QUESTIONS; // escala con aciertos
+        const timeBonus = Math.round((fastBonus + longBonus) * perCorrect);
+        return baseScore + timeBonus;
     };
 
     // Pasa a la siguiente pregunta del test
@@ -82,7 +85,7 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
             setMision(testQuestions[currentQuestionIndex + 1]);
         } else {
             // Fin del test
-            const finalTime = withTimer ? Math.floor((Date.now() - startTime) / 1000) : 0;
+            const finalTime = Math.floor((Date.now() - startTime) / 1000);
             setElapsedTime(finalTime);
             
             let correctCount = 0;

@@ -167,6 +167,22 @@ const ROMAN_VALUES = [
   { letter: 'M', value: 1000 },
 ];
 
+// Puntuacion del examen: base por aciertos + bonus por tiempo.
+// Dos alumnos con todos los aciertos pueden tener puntuaciones distintas segun
+// lo rapido que respondan. El bonus escala con la proporcion de aciertos,
+// para que solo los buenos resultados cobren bonus grande.
+const computeRomanScore = (correctCount, timeSeconds) => {
+  const baseScore = correctCount * 100; // 0..1000
+  if (correctCount === 0) return 0;
+  const fastBonus = Math.max(0, 300 - timeSeconds * 5);            // 0..300
+  const longBonus = Math.max(0, 200 - Math.floor(timeSeconds / 2)); // 0..200
+  const perCorrect = correctCount / TOTAL_TEST_QUESTIONS;
+  const timeBonus = Math.round((fastBonus + longBonus) * perCorrect);
+  return baseScore + timeBonus;
+};
+
+const ROMAN_MAX_SCORE = TOTAL_TEST_QUESTIONS * 100 + 500; // 1500 aprox.
+
 // --- COMPONENTE PRINCIPAL ---
 
 
@@ -180,8 +196,10 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
 
   const dropZoneRef = useRef(null);
 
-
-
+  // Tiempo del examen: arranca al iniciar el test y se congela al acabar.
+  const testStartTimeRef = useRef(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [finalTime, setFinalTime] = useState(0);
 
 
   const [testStats, setTestStats] = useState({
@@ -224,11 +242,23 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
     setUserTiles([]);
     setShowHelper(false);
     setFeedback({ text: '', type: '' });
+    testStartTimeRef.current = Date.now();
+    setElapsedTime(0);
+    setFinalTime(0);
   }, [generateNumber]);
 
   useEffect(() => {
     startPractice();
   }, [startPractice]);
+
+  // Cronometro del examen: se actualiza cada segundo mientras el test esta activo.
+  useEffect(() => {
+    if (!isTestMode || testStats.finished || !testStartTimeRef.current) return;
+    const interval = setInterval(() => {
+      setElapsedTime(Math.floor((Date.now() - testStartTimeRef.current) / 1000));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isTestMode, testStats.finished]);
 
   const handleAddTile = (tileValue) => {
     setUserTiles(prev => [...prev, { id: Math.random().toString(36).substr(2, 9), value: tileValue }]);
@@ -318,8 +348,13 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
     } else {
       nextStats.finished = true;
       setTestStats(nextStats);
+      const finalT = testStartTimeRef.current
+        ? Math.floor((Date.now() - testStartTimeRef.current) / 1000)
+        : 0;
+      setFinalTime(finalT);
+      setElapsedTime(finalT);
       if (nextStats.score > TOTAL_TEST_QUESTIONS / 2) {
-        confeti();
+        confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
       }
     }
   };
@@ -330,23 +365,45 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
   useEffect(() => {
     if (isTestMode && testStats.finished && !trackedRef2.current) {
       trackedRef2.current = true;
+      const correct = testStats.score;
+      const points = computeRomanScore(correct, finalTime);
       onGameComplete?.({
         mode: 'test',
-        score: testStats.score,
-        maxScore: TOTAL_TEST_QUESTIONS,
-        correctAnswers: testStats.score,
+        score: points,
+        maxScore: ROMAN_MAX_SCORE,
+        correctAnswers: correct,
         totalQuestions: TOTAL_TEST_QUESTIONS,
+        durationSeconds: finalTime || undefined,
       });
     }
     if (!testStats.finished) trackedRef2.current = false;
-  }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
+  }, [isTestMode, testStats.finished, testStats.score, finalTime, onGameComplete]);
 
   // Renderizado de Resultados (Mismo contenedor)
   if (isTestMode && testStats.finished) {
+    const correct = testStats.score;
+    const nota = Math.round((correct / TOTAL_TEST_QUESTIONS) * 100) / 10;
+    const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
+    const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+      : nota >= 7 ? '¡Muy bien! 👏'
+      : nota >= 5 ? 'Aprobado 💪'
+      : 'Necesitas repasar 📖';
+    const points = computeRomanScore(correct, finalTime);
+
     return (
       <div className="roman-container">
-        <h1 className="text-4xl mb-4"><span className="gradient-text">Resultados</span></h1>
-        <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
+        <h1 className="text-4xl mb-2"><span className="gradient-text">¡Examen completado!</span></h1>
+
+        <div className={`roman-nota ${notaColor}`}>
+          <div className="roman-nota-big">{nota.toFixed(1)}<span className="roman-nota-small">/10</span></div>
+          <div className="roman-nota-msg">{notaMsg}</div>
+        </div>
+
+        <div className="roman-score-row">
+          <span className="roman-score-chip points"><strong>{points.toLocaleString('es-ES')}</strong> puntos</span>
+          <span className="roman-score-chip">{correct}/{TOTAL_TEST_QUESTIONS} aciertos</span>
+          <span className="roman-score-chip">⏱ {finalTime}s</span>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -361,22 +418,20 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
                 initial={{ x: -30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{
-                  delay: idx * 0.1,
+                  delay: idx * 0.05,
                   type: "spring",
                   stiffness: 100
                 }}
-                className={`p-4 mb-3 rounded-xl border-2 ${ans.isCorrect ? 'bg-green-50 border-green-200 shadow-sm' : 'bg-red-50 border-red-200 shadow-sm'}`}
+                className={`roman-answer-card ${ans.isCorrect ? 'ok' : 'ko'}`}
               >
-                <div className="flex justify-between items-center">
-                  <span className="font-bold text-lg">Pregunta {idx + 1}: <span className="text-2xl ml-2">{ans.target}</span></span>
-                  {ans.isCorrect ? <span className="text-2xl">✅</span> : <span className="text-2xl">❌</span>}
+                <div className="roman-answer-row">
+                  <span className="roman-answer-q">Pregunta {idx + 1}: <strong>{ans.target}</strong></span>
+                  <span className="roman-answer-icon">{ans.isCorrect ? '✅' : '❌'}</span>
                 </div>
-                <div className="flex justify-between items-center text-sm mt-2 pt-2 border-t border-black/5">
-                  <span>Tu respuesta: <strong className="text-lg">{ans.userRoman || '-'}</strong></span>
+                <div className="roman-answer-row small">
+                  <span>Tu respuesta: <strong>{ans.userRoman || '-'}</strong></span>
                   {!ans.isCorrect && (
-                    <span className="text-red-700 font-bold bg-white px-2 py-1 rounded-lg border border-red-100">
-                      Solución: {ans.correctRoman}
-                    </span>
+                    <span className="roman-answer-sol">Solución: {ans.correctRoman}</span>
                   )}
                 </div>
               </motion.div>
@@ -387,7 +442,7 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
 
 
         <div className="controles">
-          <button onClick={startTest}>Repetir Test</button>
+          <button onClick={startTest}>Repetir examen</button>
           <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
         </div>
       </div>
@@ -410,7 +465,7 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
       {/* Selectores de Modo dentro del contenedor */}
       <div className="mode-selection">
         <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>Práctica Libre</button>
-        <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Iniciar Test</button>
+        <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Iniciar examen</button>
       </div>
 
       {/* Switch de Ayuda */}
@@ -434,7 +489,20 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
       </div>
 
 
-      {isTestMode && <div className="text-gray-400 font-bold text-sm text-right mb-2">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>}
+      {isTestMode && (
+        <div className="roman-test-header">
+          <span className="roman-test-chip counter">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span>
+          <span className="roman-test-chip timer">⏱ {elapsedTime}s</span>
+        </div>
+      )}
+      {isTestMode && (
+        <div className="roman-progress">
+          <div
+            className="roman-progress-bar"
+            style={{ width: `${((testStats.currentIndex) / TOTAL_TEST_QUESTIONS) * 100}%` }}
+          />
+        </div>
+      )}
 
       <div className="game-area">
         <h2 className="text-xl text-gray-600">Forma el número:</h2>

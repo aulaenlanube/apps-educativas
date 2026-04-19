@@ -67,11 +67,17 @@ const SupermercadoMatematico5 = ({ onGameComplete } = {}) => {
     return (
         <div id="supermercado-app-container">
             <h1 className="supermercado-title gradient-text text-5xl font-bold mb-6">🛒 Supermercado Matemático</h1>
-            <div id="panel-productos">{productos.map(p => <div key={p.nombre} className="producto">{p.emoji} {p.nombre} - {p.precio.toFixed(2).replace('.', ',')}€</div>)}</div>
+            <div id="panel-productos">{productos.map(p => (
+                <div key={p.nombre} className="producto">
+                    <span className="producto-emoji" aria-hidden="true">{p.emoji}</span>
+                    <span className="producto-nombre">{p.nombre}</span>
+                    <span className="producto-precio">{p.precio.toFixed(2).replace('.', ',')}€</span>
+                </div>
+            ))}</div>
             
             <div className="mode-selection">
                 <button onClick={game.startPracticeMission} className="btn-mode active">Práctica Libre</button>
-                <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
+                <button onClick={game.startTest} className="btn-mode">Iniciar examen</button>
             </div>
 
             {/* AÑADIDO ref={game.containerRef} AQUÍ */}

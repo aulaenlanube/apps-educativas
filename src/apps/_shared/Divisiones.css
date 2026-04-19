@@ -151,20 +151,25 @@
 .comma-slot.correct { color: #22c55e; border-color: #22c55e; }
 .comma-slot.incorrect { color: #ef4444; border-color: #ef4444; }
 
-/* Panel lateral tabla multiplicar */
+/* Layout de la division + tabla de multiplicar lateral.
+   Grid de 3 columnas (1fr | auto | 1fr): la division vive en la columna central
+   y queda siempre centrada, mientras la tabla ocupa la columna derecha en flujo
+   normal. Asi la tabla reserva espacio real y nunca solapa la division, aunque
+   la division crezca horizontalmente al tener decimales o muchas cifras. */
 .game-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  column-gap: 24px;
   margin: 20px auto;
 }
-/* Panel de tabla: absoluto a la esquina superior derecha del #app-container
-   (posicionado en MathBoxShared.css), para que no empuje la operacion del centro
-   y quede pegado arriba a la derecha. */
+.game-content .division-grid {
+  grid-column: 2;
+  justify-self: center;
+}
 .multiplication-table-panel {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+  grid-column: 3;
+  justify-self: start;
   background-color: var(--app-bg-elevated);
   border: 2px solid var(--app-border-light);
   border-radius: 12px;
@@ -175,10 +180,17 @@
   text-align: left;
   animation: slideIn 0.3s ease-out;
 }
-/* En pantallas estrechas: el panel pasa debajo para no solapar */
+/* En pantallas estrechas: una sola columna, tabla debajo de la division */
 @media (max-width: 900px) {
+  .game-content {
+    grid-template-columns: 1fr;
+  }
+  .game-content .division-grid,
   .multiplication-table-panel {
-    position: static;
+    grid-column: 1;
+    justify-self: center;
+  }
+  .multiplication-table-panel {
     margin-top: 20px;
   }
 }
