@@ -2,16 +2,21 @@
 // Biomas por posición dentro del curso (mismo reparto en todos):
 //   0-1 pradera · 2-3 bosque · 4-5 montaña · 6-7 ciudad · 8-9 centro-datos
 
-// Helper compacto: siempre produce un mundo 8x8
-const W = (opts = {}) => ({
-  cols: 8, rows: 8,
-  robot: opts.robot || { x: 0, y: 7, dir: 'E' },
-  walls: opts.walls || [],
-  water: opts.water || [],
-  holes: opts.holes || [],
-  items: opts.items || [],
-  target: opts.target || null,
-});
+// Helper compacto: siempre produce un mundo del tamaño indicado (default 8x8)
+const W = (opts = {}) => {
+  const cols = opts.cols || 8;
+  const rows = opts.rows || 8;
+  return {
+    cols, rows,
+    robot: opts.robot || { x: 0, y: rows - 1, dir: 'E' },
+    walls: opts.walls || [],
+    water: opts.water || [],
+    holes: opts.holes || [],
+    crates: opts.crates || [],
+    items: opts.items || [],
+    target: opts.target || null,
+  };
+};
 
 // Cada curso usa los mismos moldes de niveles; solo el contenido difiere según
 // los bloques disponibles a esa edad.
@@ -75,7 +80,8 @@ const PRIMARIA = {
     { id:'p5-7',  title:'Ruta montaña',   goal:'Sube por el sendero.',                       world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','2,6','4,5','4,4','6,3','6,2'], target:{x:7,y:1} }) },
     { id:'p5-8',  title:'Zig con sensor', goal:'Zig-zag con "si hay muro".',                 world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','4,7','6,7','2,5','4,5','6,5'], target:{x:7,y:5} }) },
     { id:'p5-9',  title:'Lago helado',    goal:'Rodea el lago con sensor.',                  world:W({ robot:{x:0,y:4,dir:'E'}, water:['3,4','4,4','3,3','4,3'], target:{x:7,y:4} }) },
-    { id:'p5-10', title:'Trekking',       goal:'Sube al pico.',                              world:W({ robot:{x:0,y:7,dir:'E'}, walls:['1,5','3,5','5,5','1,3','3,3','5,3'], items:['2,4','4,4','6,4'], target:{x:7,y:2} }) },
+    { id:'p5-10', title:'Cañón de cajas', goal:'Usa "disparar láser" para romper las cajas y llegar a la meta.',
+      world:W({ robot:{x:0,y:4,dir:'E'}, crates:['2,4','4,4','6,4'], items:['1,4','3,4','5,4'], target:{x:7,y:4} }) },
   ],
   6: [
     { id:'p6-1',  title:'Si / si no',     goal:'Decide con sensor.',                         world:W({ robot:{x:0,y:5,dir:'E'}, walls:['2,5'], target:{x:7,y:5} }) },
@@ -87,7 +93,13 @@ const PRIMARIA = {
     { id:'p6-7',  title:'Vigía',          goal:'Usa si / si no para decidir.',               world:W({ robot:{x:0,y:6,dir:'E'}, walls:['3,6'], holes:['5,6'], target:{x:7,y:6} }) },
     { id:'p6-8',  title:'Ruta óptima',    goal:'Encuentra el camino más corto.',             world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','2,6','4,4','4,3'], target:{x:7,y:1} }) },
     { id:'p6-9',  title:'Cosecha montaña',goal:'Recoge todo.',                               world:W({ robot:{x:0,y:7,dir:'E'}, items:['1,7','3,7','5,7','1,3','3,3','5,3'], target:{x:7,y:0} }) },
-    { id:'p6-10', title:'Final 6º',       goal:'Desafío combinado.',                         world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,6','4,4','6,2'], items:['1,7','3,5','5,3','7,1'], target:{x:7,y:0} }) },
+    { id:'p6-10', title:'Almacén robotizado',
+      goal:'Tablero 10×10: rompe las 3 cajas con láser y recoge pilas dobles.',
+      world:W({ cols:10, rows:10, robot:{x:0,y:9,dir:'E'},
+        walls:['3,8','3,7','3,6','6,3','6,2','6,1'],
+        crates:['2,5','5,5','8,5'],
+        items:['1,7:2','4,6','7,4','9,2:3'],
+        target:{x:9,y:0} }) },
   ],
 };
 
@@ -102,7 +114,13 @@ const ESO = {
     { id:'e1-7',  title:'Pasadizos',      goal:'Cruza con mientras.',                        world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','2,6','4,3','4,4','6,5','6,6'], target:{x:7,y:2} }) },
     { id:'e1-8',  title:'Cosecha óptima', goal:'Recoge 6 con pocos bloques.',                world:W({ robot:{x:0,y:4,dir:'E'}, items:['1,4','2,4','3,4','5,4','6,4','7,4'], target:{x:7,y:4} }) },
     { id:'e1-9',  title:'Explora 2 filas',goal:'Visita 2 filas completas.',                  world:W({ robot:{x:0,y:5,dir:'E'}, items:['1,5','3,5','5,5','7,5','1,3','3,3','5,3','7,3'], target:{x:7,y:1} }) },
-    { id:'e1-10', title:'Final 1º ESO',   goal:'Combinado: mientras + meta.',                world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,6','4,4','6,2'], items:['1,7','3,5','5,3','7,1'], target:{x:7,y:0} }) },
+    { id:'e1-10', title:'Barricada con láser',
+      goal:'Tablero 10×10: cajas cortan el paso. Combina while + disparar láser.',
+      world:W({ cols:10, rows:10, robot:{x:0,y:9,dir:'E'},
+        walls:['3,6','3,5','3,4','6,3','6,2','6,1'],
+        crates:['1,6','4,6','7,6','1,3','4,3','7,3'],
+        items:['0,7','5,8:2','8,7','2,4','5,4:2','8,4'],
+        target:{x:9,y:0} }) },
   ],
   2: [ // bucles anidados
     { id:'e2-1',  title:'Barrer una fila',goal:'Recoge con bucle anidado.',                  world:W({ robot:{x:0,y:4,dir:'E'}, items:['1,4','2,4','3,4','4,4'], target:{x:7,y:4} }) },
@@ -239,12 +257,14 @@ const BACH = {
       world:W({ robot:{x:0,y:7,dir:'E'},
         walls:['1,6','2,6','4,6','5,6','7,6','0,4','2,4','4,4','6,4','1,2','3,2','5,2','7,2'],
         items:['3,6','6,6','1,4','5,4','7,4','2,2','6,2'], target:{x:7,y:0} }) },
-    { id:'b1-10', title:'Final 1º Bach',  goal:'Circuito complejo: muros + agua + energías. Usa 3 funciones.',
-      world:W({ robot:{x:0,y:7,dir:'E'},
-        walls:['1,6','3,6','5,6','1,4','3,4','5,4','1,2','3,2','5,2','7,5','7,3','7,1'],
-        water:['2,0','4,0','6,0'],
-        items:['0,6','2,6','4,6','6,6','0,4','2,4','4,4','6,4','0,2','2,2','4,2','6,2'],
-        target:{x:7,y:0} }) },
+    { id:'b1-10', title:'Fábrica abandonada',
+      goal:'Tablero 12×12: cajas, pilas triples y agua. Descompón en ≥3 funciones.',
+      world:W({ cols:12, rows:12, robot:{x:0,y:11,dir:'E'},
+        walls:['3,10','3,9','3,8','6,7','6,6','6,5','9,4','9,3','9,2'],
+        water:['0,4','1,4','2,4','4,4','5,4','7,4','8,4','10,4','11,4'],
+        crates:['1,8','4,8','7,8','10,8','4,2','7,2'],
+        items:['0,10:3','5,9:2','8,10','2,6','9,6:2','5,1:3','10,1','11,11'],
+        target:{x:11,y:0} }) },
   ],
   2: [ // algoritmos: wall-follow, BFS implícita, recursión, backtracking
     { id:'b2-1',  title:'Wall follower largo', goal:'Seguidor derecho de muro en un laberinto doble.',
@@ -288,12 +308,14 @@ const BACH = {
         walls:['2,6','2,4','2,2','4,6','4,4','4,2','6,6','6,4','6,2','3,5','3,3','3,1','5,5','5,3','5,1','7,6','7,4','7,2'],
         items:['0,6','0,4','0,2','1,7','1,5','1,3','1,1','3,7','5,7'],
         target:{x:7,y:0} }) },
-    { id:'b2-10', title:'Gran final',    goal:'Muros, agua, energías y meta: demuestra maestría.',
-      world:W({ robot:{x:0,y:7,dir:'E'},
-        walls:['2,7','2,6','4,5','4,4','6,3','6,2','1,3','3,3','3,2','5,1'],
-        water:['0,5','1,5','3,5','5,5','6,5','7,5'],
-        items:['1,7','3,7','5,7','7,7','2,5','4,5','5,4','2,3','5,2','2,1','4,1','6,1','7,1'],
-        target:{x:7,y:0} }) },
+    { id:'b2-10', title:'Gran final algorítmico',
+      goal:'Tablero 12×12: algoritmo completo con láser, pilas, agua y cobertura.',
+      world:W({ cols:12, rows:12, robot:{x:0,y:11,dir:'E'},
+        walls:['3,10','3,9','3,8','3,7','7,10','7,9','7,8','7,7','3,4','4,4','5,4','9,6','9,5','9,4'],
+        water:['0,6','1,6','2,6','4,6','5,6','7,6','8,6','10,6','11,6'],
+        crates:['2,10','6,10','10,10','6,4','11,4'],
+        items:['1,10:2','5,10','9,10:2','0,8:3','5,8','11,8','1,5','6,5:2','10,5:2','3,2','8,2:3','11,2','5,0:3','11,0'],
+        target:{x:11,y:0} }) },
   ],
 };
 
@@ -359,8 +381,12 @@ const RETOS_PRIMARIA = {
       world:W({ robot:{x:0,y:5,dir:'E'}, walls:['4,5'], items:['1,5','2,5','3,5'], target:{x:3,y:5} }) },
     { id:'rp5-4', title:'Reto 4: sensor de agua', goal:'Rodea el lago con sensor.',
       world:W({ robot:{x:0,y:4,dir:'E'}, water:['3,4','4,4','3,3','4,3','3,5','4,5'], items:['2,4','5,4'], target:{x:7,y:4} }) },
-    { id:'rp5-5', title:'Reto 5: montaña inteligente', goal:'Cuatro sensores combinados.',
-      world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','2,6','4,5','4,4','6,3','6,2'], items:['1,7','3,7','3,5','5,5','5,3','7,3'], target:{x:7,y:0} }) },
+    { id:'rp5-5', title:'Reto 5: asalto con láser',
+      goal:'Usa "si hay caja delante" para destruir y avanzar.',
+      world:W({ cols:10, rows:10, robot:{x:0,y:5,dir:'E'},
+        crates:['2,5','4,5','6,5','8,5'],
+        items:['1,5:2','3,5','5,5:3','7,5','9,5'],
+        target:{x:9,y:5} }) },
   ],
   6: [
     { id:'rp6-1', title:'Reto 1: si / si no', goal:'Decide en cada paso.',
@@ -422,8 +448,14 @@ const RETOS_ESO = {
       world:W({ robot:{x:0,y:4,dir:'E'}, items:['1,4','3,4','5,4','7,4'], target:{x:7,y:4} }) },
     { id:'re4-4', title:'Reto 4: acumular y comparar', goal:'Acumula pasos hasta un límite.',
       world:W({ robot:{x:0,y:7,dir:'E'}, walls:['3,7','3,6','3,5','5,3','5,2','5,1'], items:['1,7','2,7','4,6','4,5','4,4','6,2','7,1'], target:{x:7,y:0} }) },
-    { id:'re4-5', title:'Reto 5: 4º ESO maestro', goal:'Variables + expresiones + condiciones.',
-      world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,5','2,3','4,3','4,1','6,5','6,3'], water:['0,6','3,6','6,6'], items:['1,7','3,7','5,7','7,7','1,5','3,5','5,5','1,3','3,1','5,1','7,1'], target:{x:7,y:0} }) },
+    { id:'re4-5', title:'Reto 5: control de almacén',
+      goal:'Tablero 10×10: combina variables, condiciones, láser y pilas múltiples.',
+      world:W({ cols:10, rows:10, robot:{x:0,y:9,dir:'E'},
+        walls:['3,7','3,6','3,5','6,4','6,3','6,2'],
+        water:['0,4','1,4','2,4','4,4','5,4','7,4','8,4','9,4'],
+        crates:['1,7','5,7','8,7','3,2','8,2'],
+        items:['0,8:3','4,8','7,8:2','1,5','5,5:3','9,5','2,1','5,1:2','7,1','9,1:3'],
+        target:{x:9,y:0} }) },
   ],
 };
 
@@ -449,8 +481,14 @@ const RETOS_BACH = {
       world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,5','5,5','2,2','5,2'], items:['0,7','1,7','2,7','3,7','4,7','5,7','6,7','7,7','0,6','1,6','2,6','3,6','4,6','5,6','6,6','7,6','0,5','1,5','3,5','4,5','6,5','7,5','0,4','1,4','2,4','3,4','4,4','5,4','6,4','7,4','0,3','1,3','2,3','3,3','4,3','5,3','6,3','7,3','0,2','1,2','3,2','4,2','6,2','7,2','0,1','1,1','2,1','3,1','4,1','5,1','6,1','7,1','0,0','1,0','2,0','3,0','4,0','5,0','6,0'], target:{x:7,y:0} }) },
     { id:'rb2-4', title:'Reto 4: ruta óptima', goal:'Encuentra el camino mínimo.',
       world:W({ robot:{x:0,y:7,dir:'E'}, walls:['1,6','2,6','3,6','3,5','3,4','3,3','3,2','5,6','5,5','5,4','5,3','5,2','5,1','7,4','7,3','7,2','7,1'], items:['4,6','2,3','4,3','6,3'], target:{x:7,y:0} }) },
-    { id:'rb2-5', title:'Reto 5: gran maestro', goal:'Muros + agua + cobertura + optimización.',
-      world:W({ robot:{x:0,y:7,dir:'E'}, walls:['2,7','2,6','4,5','4,4','6,3','6,2','1,3','3,3','3,2','5,1'], water:['0,5','1,5','3,5','5,5','6,5','7,5'], items:['1,7','3,7','5,7','7,7','2,5','4,5','5,4','2,3','5,2','2,1','4,1','6,1','7,1','0,0','3,0'], target:{x:7,y:0} }) },
+    { id:'rb2-5', title:'Reto 5: gran maestro',
+      goal:'Tablero 12×12: algoritmo completo con láser, pilas, agua y cobertura total.',
+      world:W({ cols:12, rows:12, robot:{x:0,y:11,dir:'E'},
+        walls:['3,9','3,8','3,7','7,8','7,7','7,6','10,5','10,4','10,3'],
+        water:['0,6','1,6','2,6','4,6','5,6','8,6','9,6','11,6'],
+        crates:['2,9','6,9','10,9','3,3','7,3','11,3'],
+        items:['1,10:3','5,10','8,10:2','11,10','0,8:2','5,8','9,8','11,8:3','2,4','6,4:2','9,4','0,2','5,2:3','8,2','11,2:2'],
+        target:{x:11,y:0} }) },
   ],
 };
 
@@ -473,7 +511,15 @@ export function getRetos(level, grade) {
 export function checkLevel(level, result) {
   if (level.check) return !!level.check(result, level.world);
   if (result.error) return false;
-  if (level.world.items && level.world.items.length > 0 && result.itemsCollected < level.world.items.length) return false;
+  // items pueden ser pilas (sintaxis 'x,y:N'). Totalizamos unidades iniciales.
+  let totalUnits = 0;
+  for (const raw of (level.world.items || [])) {
+    const [, cnt] = String(raw).split(':');
+    totalUnits += Math.max(1, parseInt(cnt, 10) || 1);
+  }
+  if (totalUnits > 0 && result.itemsCollected < totalUnits) return false;
+  // cajas: hay que destruir todas para superar si el diseño lo requiere (opcional)
+  if (level.world.requireAllCratesDestroyed && result.cratesRemaining && result.cratesRemaining.size > 0) return false;
   if (level.world.target && !result.onTarget) return false;
   return true;
 }

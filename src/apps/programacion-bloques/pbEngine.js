@@ -160,13 +160,15 @@ function evalExpr(node, ctx) {
 function evalSensor(ctx, key) {
   const { robot, world } = ctx;
   const [dx, dy] = DIR[robot.dir]; const fx = robot.x + dx, fy = robot.y + dy;
-  const blocked = (x, y) => x < 0 || y < 0 || x >= world.cols || y >= world.rows || world.walls.has(`${x},${y}`) || world.water.has(`${x},${y}`);
+  const fk = `${fx},${fy}`;
+  const blocked = (x, y) => x < 0 || y < 0 || x >= world.cols || y >= world.rows || world.walls.has(`${x},${y}`) || world.water.has(`${x},${y}`) || world.crates.has(`${x},${y}`);
   switch (key) {
     case 'canMove': return !blocked(fx, fy);
     case 'obstacleAhead': return blocked(fx, fy);
-    case 'itemHere': return world.items.has(`${robot.x},${robot.y}`);
+    case 'itemHere': return (world.itemStacks.get(`${robot.x},${robot.y}`) || 0) > 0;
     case 'onTarget': return world.target && robot.x === world.target.x && robot.y === world.target.y;
     case 'notOnTarget': return !(world.target && robot.x === world.target.x && robot.y === world.target.y);
+    case 'crateAhead': return world.crates.has(fk);
   }
   return false;
 }
@@ -176,16 +178,28 @@ function execBody(body, ctx) { for (const s of body || []) execStmt(s, ctx); }
 function execStmt(node, ctx) {
   if (++ctx.steps > MAX_STEPS) throw new Error('Demasiadas instrucciones (bucle infinito?)');
   const f = node.fields || {}, sl = node.slots || {};
-  const push = (kind, extra = {}) => ctx.trace.push({ kind, robot: { ...ctx.robot }, items: new Set(ctx.world.items), ...extra });
+  const push = (kind, extra = {}) => ctx.trace.push({
+    kind, robot: { ...ctx.robot },
+    itemStacks: new Map(ctx.world.itemStacks),
+    crates: new Set(ctx.world.crates),
+    ...extra,
+  });
   const world = ctx.world;
-  const blocked = (x, y) => x < 0 || y < 0 || x >= world.cols || y >= world.rows || world.walls.has(`${x},${y}`) || world.water.has(`${x},${y}`);
+  const blocked = (x, y) => x < 0 || y < 0 || x >= world.cols || y >= world.rows || world.walls.has(`${x},${y}`) || world.water.has(`${x},${y}`) || world.crates.has(`${x},${y}`);
 
   switch (node.kind) {
     case 'move': {
       const [dx, dy] = DIR[ctx.robot.dir];
       const nx = ctx.robot.x + dx, ny = ctx.robot.y + dy;
       const isWater = world.water.has(`${nx},${ny}`);
-      if (blocked(nx, ny)) { push('bump'); throw new Error(isWater ? 'El robot no puede entrar en el agua.' : 'El robot ha chocado contra un muro.'); }
+      const isCrate = world.crates.has(`${nx},${ny}`);
+      if (blocked(nx, ny)) {
+        push('bump');
+        const msg = isWater ? 'El robot no puede entrar en el agua.'
+                  : isCrate ? 'Hay una caja. Destrúyela con el láser antes de avanzar.'
+                  : 'El robot ha chocado contra un muro.';
+        throw new Error(msg);
+      }
       ctx.robot = { ...ctx.robot, x: nx, y: ny };
       push('move');
       if (world.holes.has(`${ctx.robot.x},${ctx.robot.y}`)) { push('fall'); throw new Error('¡El robot cayó en un agujero!'); }
@@ -196,8 +210,20 @@ function execStmt(node, ctx) {
     case 'turn180': ctx.robot = { ...ctx.robot, dir: rotCW(rotCW(ctx.robot.dir)) }; push('turn'); return;
     case 'pick': {
       const k = `${ctx.robot.x},${ctx.robot.y}`;
-      if (world.items.has(k)) { world.items.delete(k); push('pick'); }
-      else push('pickEmpty');
+      const cur = world.itemStacks.get(k) || 0;
+      if (cur > 0) {
+        if (cur <= 1) world.itemStacks.delete(k); else world.itemStacks.set(k, cur - 1);
+        push('pick');
+      } else push('pickEmpty');
+      return;
+    }
+    case 'fire_laser': {
+      const [dx, dy] = DIR[ctx.robot.dir];
+      const tx = ctx.robot.x + dx, ty = ctx.robot.y + dy;
+      const k = `${tx},${ty}`;
+      const hit = world.crates.has(k);
+      if (hit) world.crates.delete(k);
+      push('fire', { target: { x: tx, y: ty }, dir: ctx.robot.dir, hit });
       return;
     }
     case 'repeat_n': {
@@ -303,16 +329,30 @@ function execStmt(node, ctx) {
   }
 }
 
+// Parsea items: admite 'x,y' (1 unidad) o 'x,y:N' (N unidades) → Map<cell, count>
+function parseItemStacks(list) {
+  const m = new Map();
+  for (const raw of list || []) {
+    const s = String(raw);
+    const [cell, cnt] = s.split(':');
+    const n = Math.max(1, parseInt(cnt, 10) || 1);
+    m.set(cell, (m.get(cell) || 0) + n);
+  }
+  return m;
+}
+function totalUnits(map) { let t = 0; for (const v of map.values()) t += v; return t; }
+
 export function simulate(program, world) {
   const w = {
     cols: world.cols, rows: world.rows,
     walls: new Set(world.walls || []),
     water: new Set(world.water || []),
     holes: new Set(world.holes || []),
-    items: new Set(world.items || []),
+    crates: new Set(world.crates || []),
+    itemStacks: parseItemStacks(world.items),
     target: world.target || null,
   };
-  const initialItems = w.items.size;
+  const initialItems = totalUnits(w.itemStacks);
   const ctx = {
     world: w,
     robot: { ...world.robot },
@@ -321,14 +361,18 @@ export function simulate(program, world) {
     trace: [],
     steps: 0,
   };
-  ctx.trace.push({ kind: 'init', robot: { ...ctx.robot }, items: new Set(w.items) });
+  ctx.trace.push({ kind: 'init', robot: { ...ctx.robot }, itemStacks: new Map(w.itemStacks), crates: new Set(w.crates) });
   let error = null;
   try { execBody(program, ctx); }
   catch (e) { error = e.message || String(e); }
-  ctx.trace.push({ kind: 'end', robot: { ...ctx.robot }, items: new Set(w.items) });
+  ctx.trace.push({ kind: 'end', robot: { ...ctx.robot }, itemStacks: new Map(w.itemStacks), crates: new Set(w.crates) });
   const onTarget = w.target ? (ctx.robot.x === w.target.x && ctx.robot.y === w.target.y) : true;
-  const itemsCollected = initialItems - w.items.size;
-  return { trace: ctx.trace, finalRobot: ctx.robot, itemsRemaining: w.items, onTarget, itemsCollected, initialItems, error };
+  const itemsCollected = initialItems - totalUnits(w.itemStacks);
+  return {
+    trace: ctx.trace, finalRobot: ctx.robot,
+    itemStacksRemaining: w.itemStacks, cratesRemaining: w.crates,
+    onTarget, itemsCollected, initialItems, error,
+  };
 }
 
 // --------------------------- Transpilers ---------------------------
@@ -337,9 +381,9 @@ function indent(n) { return '  '.repeat(n); }
 // Helpers comunes
 function sensorText(key, lang) {
   const map = {
-    python: { canMove: 'puede_avanzar()', obstacleAhead: 'hay_muro()', itemHere: 'hay_objeto()', onTarget: 'en_meta()', notOnTarget: 'not en_meta()' },
-    java:   { canMove: 'puedeAvanzar()',  obstacleAhead: 'hayMuro()',  itemHere: 'hayObjeto()',  onTarget: 'enMeta()',  notOnTarget: '!enMeta()' },
-    c:      { canMove: 'puede_avanzar()', obstacleAhead: 'hay_muro()', itemHere: 'hay_objeto()', onTarget: 'en_meta()', notOnTarget: '!en_meta()' },
+    python: { canMove: 'puede_avanzar()', obstacleAhead: 'hay_muro()', itemHere: 'hay_objeto()', crateAhead: 'hay_caja()', onTarget: 'en_meta()', notOnTarget: 'not en_meta()' },
+    java:   { canMove: 'puedeAvanzar()',  obstacleAhead: 'hayMuro()',  itemHere: 'hayObjeto()',  crateAhead: 'hayCaja()',  onTarget: 'enMeta()',  notOnTarget: '!enMeta()' },
+    c:      { canMove: 'puede_avanzar()', obstacleAhead: 'hay_muro()', itemHere: 'hay_objeto()', crateAhead: 'hay_caja()', onTarget: 'en_meta()', notOnTarget: '!en_meta()' },
   };
   return map[lang][key] || key;
 }
@@ -379,6 +423,7 @@ function toPyBody(body, lvl) {
       case 'turnR':  out += `${I}girar_derecha()\n`; break;
       case 'turn180':out += `${I}media_vuelta()\n`; break;
       case 'pick':   out += `${I}recoger()\n`; break;
+      case 'fire_laser': out += `${I}disparar_laser()\n`; break;
       case 'repeat_n': out += `${I}for _ in range(${f.count || 0}):\n${sub(s.body)}`; break;
       case 'while_sensor': out += `${I}while ${sensorText(f.cond, 'python')}:\n${sub(s.body)}`; break;
       case 'until_meta': out += `${I}while not en_meta():\n${sub(s.body)}`; break;
@@ -415,6 +460,7 @@ function toJavaBody(body, lvl) {
       case 'turnR':  out += `${I}girarDerecha();\n`; break;
       case 'turn180':out += `${I}mediaVuelta();\n`; break;
       case 'pick':   out += `${I}recoger();\n`; break;
+      case 'fire_laser': out += `${I}dispararLaser();\n`; break;
       case 'repeat_n': out += `${I}for (int __r=0; __r<${f.count || 0}; __r++) {\n${toJavaBody(s.body, lvl + 1)}${I}}\n`; break;
       case 'while_sensor': out += `${I}while (${sensorText(f.cond, 'java')}) {\n${toJavaBody(s.body, lvl + 1)}${I}}\n`; break;
       case 'until_meta': out += `${I}while (!enMeta()) {\n${toJavaBody(s.body, lvl + 1)}${I}}\n`; break;
@@ -461,6 +507,7 @@ function toCBody(body, lvl) {
       case 'turnR':  out += `${I}girar_derecha();\n`; break;
       case 'turn180':out += `${I}media_vuelta();\n`; break;
       case 'pick':   out += `${I}recoger();\n`; break;
+      case 'fire_laser': out += `${I}disparar_laser();\n`; break;
       case 'repeat_n': out += `${I}for (int __r=0; __r<${f.count || 0}; __r++) {\n${toCBody(s.body, lvl + 1)}${I}}\n`; break;
       case 'while_sensor': out += `${I}while (${sensorText(f.cond, 'c')}) {\n${toCBody(s.body, lvl + 1)}${I}}\n`; break;
       case 'until_meta': out += `${I}while (!en_meta()) {\n${toCBody(s.body, lvl + 1)}${I}}\n`; break;

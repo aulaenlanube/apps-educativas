@@ -21,6 +21,7 @@ export const SENSORS = [
   { value: 'canMove',       label: 'puedo avanzar' },
   { value: 'obstacleAhead', label: 'hay muro delante' },
   { value: 'itemHere',      label: 'hay objeto aquí' },
+  { value: 'crateAhead',    label: 'hay caja delante' },
   { value: 'onTarget',      label: 'estoy en la meta' },
   { value: 'notOnTarget',   label: 'no estoy en la meta' },
 ];
@@ -58,7 +59,8 @@ export const BLOCKS = [
   { kind: 'turn180',label: 'media vuelta',   category: 'move',   minGrade: 2, tpl: 'media vuelta', fields: [] },
 
   // -------- ACCIONES --------
-  { kind: 'pick',   label: 'recoger',        category: 'action', minGrade: 3, tpl: 'recoger objeto', fields: [] },
+  { kind: 'pick',        label: 'recoger',       category: 'action', minGrade: 3, tpl: 'recoger objeto', fields: [] },
+  { kind: 'fire_laser',  label: 'disparar láser',category: 'action', minGrade: 5, tpl: 'disparar láser', fields: [] },
 
   // -------- BUCLES --------
   {
