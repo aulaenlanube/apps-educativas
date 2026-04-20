@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown, Swords, AlertCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Swords, AlertCircle, Zap } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getGradeWithDuelBonus } from '@/services/duelService';
 
@@ -35,14 +35,22 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
   if (loading || !data) return null;
 
   const bonus = Number(data.bonus) || 0;
+  const battleBonus = Number(data.battle_bonus) || 0;
   const hasBonus = bonus !== 0;
   const debts = data.debts || [];
+  const bc = data.battle_counts || {};
+  const podium = [bc.first || 0, bc.second || 0, bc.third || 0];
+  const totalPodium = podium[0] + podium[1] + podium[2];
 
   const bonusColor = bonus > 0
     ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
     : bonus < 0
       ? 'bg-rose-50 border-rose-200 text-rose-700'
       : 'bg-slate-50 border-slate-200 text-slate-500';
+
+  const battleColor = battleBonus > 0
+    ? 'bg-amber-50 border-amber-200 text-amber-700'
+    : 'bg-slate-50 border-slate-200 text-slate-500';
 
   return (
     <motion.div
@@ -53,10 +61,10 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
           <Swords className="w-4 h-4 text-white" />
         </div>
-        <h3 className="text-base font-bold text-slate-800">Nota con duelos</h3>
+        <h3 className="text-base font-bold text-slate-800">Nota con duelos y batallas</h3>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
           <p className="text-[11px] text-slate-500 uppercase font-semibold">Nota base</p>
           <p className="text-2xl font-black text-slate-700 mt-1">{fmt(data.nota_base)}</p>
@@ -71,6 +79,18 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
           <p className="text-2xl font-black mt-1">{signed(bonus)}</p>
           <p className="text-[10px] opacity-70">
             {bonus > 0 ? 'bonificación' : bonus < 0 ? 'penalización' : 'sin duelos aún'}
+          </p>
+        </div>
+
+        <div className={`p-3 rounded-xl border text-center ${battleColor}`}>
+          <p className="text-[11px] uppercase font-semibold flex items-center justify-center gap-1">
+            <Zap className="w-3 h-3" /> Batallas
+          </p>
+          <p className="text-2xl font-black mt-1">{signed(battleBonus)}</p>
+          <p className="text-[10px] opacity-70">
+            {totalPodium > 0
+              ? `🥇${podium[0]} · 🥈${podium[1]} · 🥉${podium[2]}`
+              : 'sin podios aún'}
           </p>
         </div>
 
