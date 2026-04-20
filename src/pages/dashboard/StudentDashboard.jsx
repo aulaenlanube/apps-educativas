@@ -562,7 +562,7 @@ export default function StudentDashboard() {
                 </button>
                 <button
                   onClick={() => setDuelModalOpen(true)}
-                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-2xl text-lg font-bold hover:from-violet-700 hover:to-fuchsia-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-red-500 via-rose-600 to-red-700 text-white rounded-2xl text-lg font-bold hover:from-red-600 hover:via-rose-700 hover:to-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                   title="Crear un duelo 1 vs 1"
                 >
                   <Swords className="w-6 h-6" />
@@ -577,18 +577,6 @@ export default function StudentDashboard() {
                     <div className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
                       style={{ width: `${gamification.xpForNextLevel > gamification.xpForCurrentLevel ? Math.min(100, Math.round(((gamification.totalXp - gamification.xpForCurrentLevel) / (gamification.xpForNextLevel - gamification.xpForCurrentLevel)) * 100)) : 100}%` }} />
                   </div>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-purple-600">{stats.days_active || 0}</p>
-                  <p className="text-xs text-slate-500">Dias activo</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-blue-600">{stats.apps_played || 0}</p>
-                  <p className="text-xs text-slate-500">Apps jugadas</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-green-600">{stats.total_sessions || 0}</p>
-                  <p className="text-xs text-slate-500">Partidas</p>
                 </div>
               </div>
             </div>
