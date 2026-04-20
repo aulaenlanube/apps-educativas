@@ -1,8 +1,9 @@
 // src/pages/AppRunnerPage.jsx
-import React, { Suspense, useState, useCallback, useEffect } from 'react';
+import React, { Suspense, useState, useCallback, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Heart, Trophy } from 'lucide-react';
+import { ArrowLeft, Heart, Trophy, Swords, XCircle } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
@@ -146,6 +147,9 @@ const AppRunnerPage = () => {
     const [isRankingModalOpen, setIsRankingModalOpen] = useState(false);
     const [completedCount, setCompletedCount] = useState(0);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+    const [showDuelExitModal, setShowDuelExitModal] = useState(false);
+    const [duelExitBusy, setDuelExitBusy] = useState(false);
+    const duelForfeitRef = useRef(null);
     const { startSession, trackGameSession, abandonSession } = useGameTracker();
     const { isAuthenticated, loading: authLoading } = useAuth();
     const { toast } = useToast();
@@ -267,6 +271,29 @@ const AppRunnerPage = () => {
 
     const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
 
+    const handleBackClick = useCallback(() => {
+        if (duelId && duelForfeitRef.current) {
+            setShowDuelExitModal(true);
+            return;
+        }
+        navigate(backPath);
+    }, [duelId, navigate, backPath]);
+
+    const confirmDuelExit = useCallback(async () => {
+        if (duelExitBusy) return;
+        setDuelExitBusy(true);
+        const fn = duelForfeitRef.current;
+        try { if (fn) await fn(); } catch (_) { /* ignore */ }
+        duelForfeitRef.current = null;
+        setShowDuelExitModal(false);
+        setDuelExitBusy(false);
+        navigate(backPath);
+    }, [duelExitBusy, navigate, backPath]);
+
+    const registerDuelExit = useCallback((fn) => {
+        duelForfeitRef.current = fn;
+    }, []);
+
     // --- Header preset ---
     const preset = getHeaderPreset(app.id);
     const isTerminal = app.id.includes('terminal-retro');
@@ -307,7 +334,7 @@ const AppRunnerPage = () => {
 
                     {preset.useAnimatedBack ? (
                         <AnimatedBorderButton
-                            onClick={() => navigate(backPath)}
+                            onClick={handleBackClick}
                             colors={['#A855F7', '#EC4899']}
                             glowColor="rgba(168,85,247,0.3)"
                             shape="arrow"
@@ -316,7 +343,7 @@ const AppRunnerPage = () => {
                         </AnimatedBorderButton>
                     ) : (
                         <Button
-                            onClick={() => navigate(backPath)}
+                            onClick={handleBackClick}
                             className={preset.btnBackClass}
                         >
                             <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
@@ -376,6 +403,7 @@ const AppRunnerPage = () => {
                             grade={grade}
                             subjectId={activeSubjectId}
                             onGameComplete={onGameComplete}
+                            registerDuelExit={duelId ? registerDuelExit : undefined}
                         />
                     </Suspense>
                 </div>
@@ -398,6 +426,62 @@ const AppRunnerPage = () => {
                 subjectId={activeSubjectId}
                 completedCount={completedCount}
             />
+
+            <AnimatePresence>
+                {showDuelExitModal && (
+                    <motion.div
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+                        onClick={() => !duelExitBusy && setShowDuelExitModal(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95 }}
+                            onClick={e => e.stopPropagation()}
+                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+                        >
+                            <div className="p-5 bg-gradient-to-r from-rose-500 to-rose-600 text-white">
+                                <h3 className="text-lg font-bold flex items-center gap-2">
+                                    <Swords className="w-5 h-5" /> Abandonar el duelo
+                                </h3>
+                            </div>
+                            <div className="p-5 text-slate-700 dark:text-slate-200 space-y-2">
+                                <p className="text-sm">
+                                    Estás a mitad de una partida contra tu rival.
+                                </p>
+                                <p className="text-sm font-semibold text-rose-600 dark:text-rose-400">
+                                    Si sales ahora, la partida se dará por perdida y tu rival ganará los puntos en juego.
+                                </p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400">
+                                    ¿Quieres salir de todas formas?
+                                </p>
+                            </div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-900/40 flex gap-2 justify-end border-t border-slate-100 dark:border-slate-700">
+                                <button
+                                    onClick={() => setShowDuelExitModal(false)}
+                                    disabled={duelExitBusy}
+                                    className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-white dark:hover:bg-slate-700 disabled:opacity-50"
+                                >Seguir jugando</button>
+                                <button
+                                    onClick={confirmDuelExit}
+                                    disabled={duelExitBusy}
+                                    className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold inline-flex items-center gap-2 disabled:opacity-60"
+                                >
+                                    {duelExitBusy ? (
+                                        <>
+                                            <div className="w-3.5 h-3.5 border-2 border-white/60 border-t-white rounded-full animate-spin" />
+                                            Saliendo…
+                                        </>
+                                    ) : (
+                                        <>
+                                            <XCircle className="w-4 h-4" /> Sí, abandonar y perder
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };

@@ -25,6 +25,7 @@ function buildRound(pool, firstTurn) {
     guestLives: LIVES,
     usedLetters: [],
     turn: firstTurn,          // 'host' | 'guest' — turno estricto
+    firstTurn,                // Quien abrio esta ronda (para recuperar rotacion en rejoin)
     roundWinner: undefined,   // undefined = aun jugando, null = empate, uuid = ganador
   };
 }
@@ -60,7 +61,7 @@ function HangmanSvg({ fails, color = 'currentColor' }) {
   );
 }
 
-export default function AhorcadoDuel({ onGameComplete }) {
+export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const { level, grade, subjectId } = useParams();
   const duel = useDuel();
   const { duel: duelInfo, me, rival, channel, reportResult } = duel;
@@ -75,6 +76,8 @@ export default function AhorcadoDuel({ onGameComplete }) {
   const reportedRef = useRef(false);
   const lastSettledRef = useRef(null);
   const nextFirstTurnRef = useRef('host');
+  const recoveryAttemptedRef = useRef(false);
+  const recoveryTimerRef = useRef(null);
 
   // Refs para que los handlers registrados una sola vez accedan siempre a
   // los valores actuales (evita cerrar sobre estado obsoleto).
@@ -95,16 +98,33 @@ export default function AhorcadoDuel({ onGameComplete }) {
       .finally(() => setLoadingData(false));
   }, [duelInfo, level, grade, subjectId]);
 
-  // Host: init primera ronda
+  // Host: init primera ronda — pero antes intenta recuperar estado previo
+  // por si es un rejoin (otro jugador ya en sala con estado vivo).
   useEffect(() => {
     if (!me?.isHost || !pool || pool.length < 5 || round) return;
-    const sc = { [me.id]: 0, [rival.id]: 0 };
-    const r = buildRound(pool, 'host'); // retador empieza
-    nextFirstTurnRef.current = 'guest';
-    setScore(sc); setRound(r);
-    channel.broadcast('score', sc);
-    channel.broadcast('round', r);
-  }, [me?.isHost, pool, round, rival?.id, me?.id, channel]);
+    if (!channel?.isConnected) return;
+    if (recoveryAttemptedRef.current) return;
+    recoveryAttemptedRef.current = true;
+
+    // Pedir estado al canal; si alguien responde, adoptamos y cancelamos init.
+    channel.broadcast('request_state', { from: me.id });
+    recoveryTimerRef.current = setTimeout(() => {
+      if (roundRef.current) return; // ya recuperado
+      const sc = { [me.id]: 0, [rival.id]: 0 };
+      const r = buildRound(pool, 'host'); // retador empieza la 1a ronda
+      nextFirstTurnRef.current = 'guest';
+      setScore(sc); setRound(r);
+      channel.broadcast('score', sc);
+      channel.broadcast('round', r);
+    }, 1500);
+
+    return () => {
+      if (recoveryTimerRef.current) {
+        clearTimeout(recoveryTimerRef.current);
+        recoveryTimerRef.current = null;
+      }
+    };
+  }, [me?.isHost, pool, round, rival?.id, me?.id, channel?.isConnected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Guest: listeners (registrar UNA sola vez por conexion)
   useEffect(() => {
@@ -112,6 +132,12 @@ export default function AhorcadoDuel({ onGameComplete }) {
     channel.onBroadcast('score', s => setScore(s));
     channel.onBroadcast('round', r => setRound(r));
     channel.onBroadcast('game_end', ({ winner_id }) => { setWinnerId(winner_id); setFinished(true); });
+    // Responder si el otro jugador (host) acaba de reconectar y pide estado
+    channel.onBroadcast('request_state', () => {
+      const ch = chanRef.current;
+      if (scoreRef.current) ch.broadcast('score', scoreRef.current);
+      if (roundRef.current) ch.broadcast('round', roundRef.current);
+    });
   }, [channel?.isConnected, me?.isHost]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Host: responde peticiones de estado + acciones del guest
@@ -179,7 +205,27 @@ export default function AhorcadoDuel({ onGameComplete }) {
       if (roundRef.current) ch.broadcast('round', roundRef.current);
     });
     channel.onBroadcast('action', payload => applyAction({ ...payload, by: 'guest' }));
-  }, [me?.isHost, channel?.isConnected, applyAction]); // eslint-disable-line react-hooks/exhaustive-deps
+    // Recuperacion de estado: si el host acaba de reconectar y no tiene
+    // ronda propia, adopta la que emita el guest.
+    channel.onBroadcast('score', s => { if (!scoreRef.current) setScore(s); });
+    channel.onBroadcast('round', r => {
+      if (roundRef.current) return;
+      setRound(r);
+      // Reconstruir la rotacion del proximo turno a partir de firstTurn
+      nextFirstTurnRef.current = r?.firstTurn === 'host' ? 'guest' : 'host';
+      if (recoveryTimerRef.current) {
+        clearTimeout(recoveryTimerRef.current);
+        recoveryTimerRef.current = null;
+      }
+    });
+    // Guest abandona → el host reporta victoria (host gana)
+    channel.onBroadcast('forfeit_request', () => {
+      if (reportedRef.current || !me?.id) return;
+      setWinnerId(me.id);
+      setFinished(true);
+      channel.broadcast('game_end', { winner_id: me.id });
+    });
+  }, [me?.isHost, channel?.isConnected, applyAction, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Guest: pedir estado al entrar (una sola vez por conexion)
   useEffect(() => {
@@ -234,6 +280,26 @@ export default function AhorcadoDuel({ onGameComplete }) {
     reportResult(winnerId);
     onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
+
+  // Registrar handler de abandono voluntario. AppRunnerPage lo llama cuando
+  // el usuario confirma salir a mitad de la partida (cuenta como derrota).
+  useEffect(() => {
+    if (!registerDuelExit) return;
+    if (!duelInfo || finished) { registerDuelExit(null); return; }
+    const forfeit = async () => {
+      if (me?.isHost) {
+        // Host abandona → rival gana
+        try { await reportResult(rival.id); } catch (_) { /* ignore */ }
+        channel?.broadcast('game_end', { winner_id: rival.id });
+      } else {
+        // Guest abandona → avisar al host para que reporte y esperar un poco
+        channel?.broadcast('forfeit_request', { from: me?.id });
+        await new Promise(r => setTimeout(r, 1200));
+      }
+    };
+    registerDuelExit(forfeit);
+    return () => registerDuelExit(null);
+  }, [registerDuelExit, duelInfo, finished, me?.isHost, me?.id, rival?.id, reportResult, channel]);
 
   function sendAction(action) {
     if (!round || round.roundWinner !== undefined || finished) return;
