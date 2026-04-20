@@ -288,13 +288,15 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   // siempre valores frescos (evita ventanas donde el ref quede desregistrado).
   const meRef = useRef(me); meRef.current = me;
   const rivalRef = useRef(rival); rivalRef.current = rival;
-  const finishedRef2 = useRef(finished); finishedRef2.current = finished;
   const reportResultRef = useRef(reportResult); reportResultRef.current = reportResult;
 
   useEffect(() => {
     if (!registerDuelExit) return;
+    // Si ya termino, no registramos — el back navega directo sin modal.
+    if (finished) { registerDuelExit(null); return; }
+    // Esperar a tener me/rival para no registrar un handler con refs vacias.
+    if (!me?.id || !rival?.id) { registerDuelExit(null); return; }
     const forfeit = async () => {
-      if (finishedRef2.current) return;
       const m = meRef.current;
       const rv = rivalRef.current;
       const ch = chanRef.current;
@@ -311,7 +313,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
     };
     registerDuelExit(forfeit);
     return () => registerDuelExit(null);
-  }, [registerDuelExit]);
+  }, [registerDuelExit, finished, me?.id, me?.isHost, rival?.id]);
 
   function sendAction(action) {
     if (!round || round.roundWinner !== undefined || finished) return;

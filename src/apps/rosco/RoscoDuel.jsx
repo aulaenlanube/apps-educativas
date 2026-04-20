@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Trophy, LogOut } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
@@ -72,6 +73,8 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
   const recoveryTimerRef = useRef(null);
   const chanRef = useRef(channel);
   chanRef.current = channel;
+  // Ganador final del duelo (para overlay unificado — cubre forfeit + fin natural).
+  const [duelOverWinnerId, setDuelOverWinnerId] = useState(null);
 
   // === Cargar datos del rosco ===
   useEffect(() => {
@@ -165,6 +168,8 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
       if (reportedRef.current || !me?.id) return;
       reportedRef.current = true;
       reportResult(me.id);
+      setDuelOverWinnerId(me.id);
+      channel.broadcast('game_end', { winner_id: me.id });
     });
   }, [me?.isHost, channel?.isConnected, voidGame, reportResult, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -173,6 +178,10 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     if (me?.isHost || !channel?.isConnected) return;
     channel.onBroadcast('rosco_state', (snap) => setRemoteSnap(snap));
     channel.onBroadcast('duel_voided', () => { /* lobby gestiona */ });
+    // Fin de duelo desde el host (forfeit propio o fin natural) — mostramos overlay.
+    channel.onBroadcast('game_end', ({ winner_id }) => {
+      setDuelOverWinnerId(winner_id);
+    });
     // El host puede reconectar y pedirnos el estado — le respondemos con el
     // ultimo snapshot que tenemos.
     channel.onBroadcast('request_state', () => {
@@ -192,21 +201,32 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     let winnerId;
     if (top && second && top.score === second.score) winnerId = null; // empate
     else winnerId = top?.id === 0 ? me.id : rival.id;
-    if (winnerId) reportResult(winnerId);
-    else voidGame('tie');
+    if (winnerId) {
+      reportResult(winnerId);
+      setDuelOverWinnerId(winnerId);
+      chanRef.current?.broadcast('game_end', { winner_id: winnerId });
+    } else {
+      voidGame('tie');
+    }
   }, [me?.isHost, hostApi.gameState, hostApi.players, me?.id, rival?.id, reportResult, voidGame]);
 
   // === Registrar handler de abandono voluntario (cuenta como derrota) ===
   const meRef = useRef(me); meRef.current = me;
   const rivalRef = useRef(rival); rivalRef.current = rival;
   const reportResultRef = useRef(reportResult); reportResultRef.current = reportResult;
-  const hostFinishedRef = useRef(false);
-  useEffect(() => { hostFinishedRef.current = hostApi.gameState === 'finished'; }, [hostApi.gameState]);
+
+  const isFinishedForUI = hostApi.gameState === 'finished' || remoteSnap?.gameState === 'finished' || duelOverWinnerId != null;
 
   useEffect(() => {
     if (!registerDuelExit) return;
+    // Si la partida ya termino no registramos handler: el back navega directo
+    // sin abrir el modal de "seras derrota".
+    if (isFinishedForUI) { registerDuelExit(null); return; }
+    // Esperar a tener me y rival — registrar antes daria un handler con refs
+    // a null en ciertas condiciones de carrera.
+    if (!me?.id || !rival?.id) { registerDuelExit(null); return; }
     const forfeit = async () => {
-      if (reportedRef.current || hostFinishedRef.current) return;
+      if (reportedRef.current) return;
       const m = meRef.current;
       const rv = rivalRef.current;
       const ch = chanRef.current;
@@ -214,6 +234,7 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
       if (m.isHost) {
         reportedRef.current = true;
         try { await reportResultRef.current?.(rv.id); } catch (_) { /* ignore */ }
+        ch?.broadcast('game_end', { winner_id: rv.id });
       } else {
         ch?.broadcast('forfeit_request', { from: m.id });
         await new Promise(r => setTimeout(r, 1200));
@@ -221,7 +242,7 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     };
     registerDuelExit(forfeit);
     return () => registerDuelExit(null);
-  }, [registerDuelExit]);
+  }, [registerDuelExit, isFinishedForUI, me?.id, me?.isHost, rival?.id]);
 
   // === Construir API que se pasa a RoscoUI ===
   // Host: wrappers que solo permiten actuar cuando es TU turno (index 0).
@@ -268,6 +289,26 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
       setConfig: () => {},
     };
   }, [me?.isHost, hostApi, remoteSnap, channel, navigate]);
+
+  // Overlay final (unifica forfeit y fin natural para ambos jugadores).
+  if (duelOverWinnerId != null && me?.id) {
+    const won = duelOverWinnerId === me.id;
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-6">
+        <div className={`max-w-md w-full p-8 rounded-3xl text-center text-white shadow-2xl bg-gradient-to-br ${won ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'}`}>
+          <Trophy className="w-12 h-12 mx-auto mb-3" />
+          <h2 className="text-3xl font-black mb-2">{won ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</h2>
+          <p className="text-sm opacity-90 mb-6">La partida ha terminado.</p>
+          <button
+            onClick={() => navigate('/mi-panel')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
+          >
+            <LogOut className="w-4 h-4" /> Salir a mi panel
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (loadErr) {
     return (
