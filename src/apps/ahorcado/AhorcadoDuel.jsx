@@ -283,23 +283,34 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
 
   // Registrar handler de abandono voluntario. AppRunnerPage lo llama cuando
   // el usuario confirma salir a mitad de la partida (cuenta como derrota).
+  // Usamos refs dentro del closure para que el handler sea estable y lea
+  // siempre valores frescos (evita ventanas donde el ref quede desregistrado).
+  const meRef = useRef(me); meRef.current = me;
+  const rivalRef = useRef(rival); rivalRef.current = rival;
+  const finishedRef2 = useRef(finished); finishedRef2.current = finished;
+  const reportResultRef = useRef(reportResult); reportResultRef.current = reportResult;
+
   useEffect(() => {
     if (!registerDuelExit) return;
-    if (!duelInfo || finished) { registerDuelExit(null); return; }
     const forfeit = async () => {
-      if (me?.isHost) {
+      if (finishedRef2.current) return;
+      const m = meRef.current;
+      const rv = rivalRef.current;
+      const ch = chanRef.current;
+      if (!m || !rv) return;
+      if (m.isHost) {
         // Host abandona → rival gana
-        try { await reportResult(rival.id); } catch (_) { /* ignore */ }
-        channel?.broadcast('game_end', { winner_id: rival.id });
+        try { await reportResultRef.current?.(rv.id); } catch (_) { /* ignore */ }
+        ch?.broadcast('game_end', { winner_id: rv.id });
       } else {
         // Guest abandona → avisar al host para que reporte y esperar un poco
-        channel?.broadcast('forfeit_request', { from: me?.id });
+        ch?.broadcast('forfeit_request', { from: m.id });
         await new Promise(r => setTimeout(r, 1200));
       }
     };
     registerDuelExit(forfeit);
     return () => registerDuelExit(null);
-  }, [registerDuelExit, duelInfo, finished, me?.isHost, me?.id, rival?.id, reportResult, channel]);
+  }, [registerDuelExit]);
 
   function sendAction(action) {
     if (!round || round.roundWinner !== undefined || finished) return;
