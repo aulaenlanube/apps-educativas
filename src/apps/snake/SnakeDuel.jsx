@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Star, Swords, Trophy, X, BookOpen } from 'lucide-react';
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Star, Swords, Trophy, X, BookOpen, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getRunnerData } from '@/services/gameDataService';
@@ -84,8 +84,9 @@ function pickWord(data, categories, catIndex) {
   return { type: 'valid', word: ws[Math.floor(Math.random() * ws.length)] };
 }
 
-export default function SnakeDuel({ onGameComplete }) {
+export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
   const { level, grade, subjectId } = useParams();
+  const navigate = useNavigate();
   const duel = useDuel();
   const { duel: duelInfo, me, rival, channel, reportResult } = duel;
 
@@ -172,7 +173,15 @@ export default function SnakeDuel({ onGameComplete }) {
         return next;
       });
     });
-  }, [me?.isHost, channel?.isConnected]); // eslint-disable-line react-hooks/exhaustive-deps
+    // Guest abandona → host gana; el efecto "reportar resultado final" se
+    // encarga del RPC y del broadcast al detectar finished + winnerId.
+    channel.onBroadcast('forfeit_request', () => {
+      if (reportedRef.current || !me?.id) return;
+      setWinnerId(me.id);
+      setFinished(true);
+      channel.broadcast('game_end', { winner_id: me.id });
+    });
+  }, [me?.isHost, channel?.isConnected, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === Countdown ===
   useEffect(() => {
@@ -358,6 +367,32 @@ export default function SnakeDuel({ onGameComplete }) {
     onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
 
+  // === Registrar handler de abandono voluntario (cuenta como derrota) ===
+  const meRef = useRef(me); meRef.current = me;
+  const rivalRef = useRef(rival); rivalRef.current = rival;
+  const reportResultRef = useRef(reportResult); reportResultRef.current = reportResult;
+
+  useEffect(() => {
+    if (!registerDuelExit) return;
+    if (finished) { registerDuelExit(null); return; }
+    if (!me?.id || !rival?.id) { registerDuelExit(null); return; }
+    const forfeit = async () => {
+      const m = meRef.current;
+      const rv = rivalRef.current;
+      const ch = chanRef.current;
+      if (!m || !rv) return;
+      if (m.isHost) {
+        try { await reportResultRef.current?.(rv.id); } catch (_) { /* ignore */ }
+        ch?.broadcast('game_end', { winner_id: rv.id });
+      } else {
+        ch?.broadcast('forfeit_request', { from: m.id });
+        await new Promise(r => setTimeout(r, 1200));
+      }
+    };
+    registerDuelExit(forfeit);
+    return () => registerDuelExit(null);
+  }, [registerDuelExit, finished, me?.id, me?.isHost, rival?.id]);
+
   // === Controles ===
   const sendDir = useCallback((dir) => {
     if (!me || !round || round.over || countdown > 0 || finished || nextTopic) return;
@@ -516,9 +551,15 @@ export default function SnakeDuel({ onGameComplete }) {
                 winnerId === me.id ? 'bg-emerald-900/90' : 'bg-rose-900/90'
               }`}
             >
-              <div className="text-center text-white">
+              <div className="text-center text-white px-6">
                 <Trophy className="w-14 h-14 mx-auto mb-2" />
-                <p className="text-4xl font-black">{winnerId === me.id ? '¡HAS GANADO!' : 'HAS PERDIDO'}</p>
+                <p className="text-4xl font-black mb-5">{winnerId === me.id ? '¡HAS GANADO!' : 'HAS PERDIDO'}</p>
+                <button
+                  onClick={() => navigate('/mi-panel')}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
+                >
+                  <LogOut className="w-4 h-4" /> Salir a mi panel
+                </button>
               </div>
             </motion.div>
           )}
@@ -594,12 +635,11 @@ export default function SnakeDuel({ onGameComplete }) {
             });
           })}
 
-          {/* Comida */}
+          {/* Comida — modo examen: todas las palabras en gris. Solo el bonus
+              (estrella) se muestra amarillo porque no lleva texto. */}
           {round.food.map(item => {
             let color = 'bg-slate-700 border-slate-500 text-slate-200';
-            if (item.type === 'valid') color = 'bg-green-900/80 border-green-500 text-green-200';
-            else if (item.type === 'invalid') color = 'bg-red-900/80 border-red-500 text-red-200';
-            else if (item.type === 'bonus') color = 'bg-yellow-500/20 border-yellow-400 text-yellow-200 animate-pulse';
+            if (item.type === 'bonus') color = 'bg-yellow-500/20 border-yellow-400 text-yellow-200 animate-pulse';
             const timeLeft = item.expiresAt - Date.now();
             const expiring = timeLeft < ITEM_BLINK_MS;
             return (
