@@ -6,6 +6,7 @@ import { ArrowLeft, Heart, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { findAppById } from '@/apps/appList';
+import { getDuelComponent } from '@/apps/config/duelComponents';
 import { useGameTracker } from '@/hooks/useGameTracker';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -164,7 +165,11 @@ const AppRunnerPage = () => {
     }
 
     const { app, subjectId: defaultSubjectId } = result;
-    const AppToRender = app.component;
+    // Si la URL contiene ?duel=<id> y la app tiene implementacion duelo,
+    // montamos la version duelable en vez de la solitaria.
+    const duelId = new URLSearchParams(location.search).get('duel');
+    const DuelComponent = duelId ? getDuelComponent(app.id) : null;
+    const AppToRender = DuelComponent || app.component;
 
     // --- LÓGICA DE RETORNO INTELIGENTE ---
     // Prioridad:

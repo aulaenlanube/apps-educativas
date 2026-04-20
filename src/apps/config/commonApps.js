@@ -180,7 +180,8 @@ export const appRosco = {
   id: 'rosco-del-saber',
   name: '🅿️ El Rosco del Saber',
   description: 'Adivina la palabra que se esconde detrás de cada letra.',
-  component: RoscoJuego
+  component: RoscoJuego,
+  duel: { supported: true, bestOf: 1, mode: 'turn-based' }
 };
 
 export const appOrdenaBolas = {
@@ -229,8 +230,8 @@ export const appSnake = {
   id: 'snake',
   name: '🐍 Snake',
   description: 'Guía a la serpiente para comer las palabras del tema correcto.',
-  component: Snake
-
+  component: Snake,
+  duel: { supported: true, bestOf: 5, mode: 'shared-board' }
 };
 
 export const appComprensionEscrita = {
@@ -399,7 +400,8 @@ export const appAhorcado = {
   id: 'ahorcado',
   name: '🎯 Ahorcado',
   description: 'Adivina la palabra o la frase letra a letra antes de que se agoten las vidas.',
-  component: Ahorcado
+  component: Ahorcado,
+  duel: { supported: true, bestOf: 5, mode: 'shared-word' }
 };
 
 export const appCrucigrama = {

@@ -5,7 +5,7 @@ import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
   BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
   ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
-  Play, Compass
+  Play, Compass, Swords
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -15,6 +15,10 @@ import StudentChatTab from './StudentChatTab';
 import StudentLogrosTab from './StudentLogrosTab';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import { useGamification } from '@/hooks/useGamification';
+import DuelCreateModal from '@/components/duel/DuelCreateModal';
+import DuelInbox from '@/components/duel/DuelInbox';
+import DuelGradePanel from '@/components/duel/DuelGradePanel';
+import useIncomingDuels from '@/hooks/useIncomingDuels';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -384,7 +388,9 @@ export default function StudentDashboard() {
   }, [location.search]);
   const [taskFilter, setTaskFilter] = useState('all'); // 'all' | 'pending' | 'completed'
   const [termFilter, setTermFilter] = useState('all'); // 'all' | 1 | 2 | 3
+  const [duelModalOpen, setDuelModalOpen] = useState(false);
   const gamification = useGamification();
+  const { duels: studentDuels, refresh: refreshDuels, lastEvent: lastDuelEvent } = useIncomingDuels(student);
 
   const fetchDashboard = useCallback(async () => {
     if (!student) return;
@@ -554,6 +560,14 @@ export default function StudentDashboard() {
                   <Zap className="w-6 h-6" />
                   Batalla
                 </button>
+                <button
+                  onClick={() => setDuelModalOpen(true)}
+                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-2xl text-lg font-bold hover:from-violet-700 hover:to-fuchsia-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  title="Crear un duelo 1 vs 1"
+                >
+                  <Swords className="w-6 h-6" />
+                  Duelo
+                </button>
               </div>
               <div className="ml-auto hidden sm:flex items-center gap-6 text-center shrink-0">
                 <div>
@@ -598,6 +612,9 @@ export default function StudentDashboard() {
             ))}
           </div>
 
+          {/* Inbox de duelos (siempre visible cuando hay alguno) */}
+          <DuelInbox duels={studentDuels} onChange={refreshDuels} />
+
           {/* ── TAB: Resumen ── */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
@@ -616,6 +633,9 @@ export default function StudentDashboard() {
                   subValue={`Media examen: ${stats.avg_test_nota ?? '-'}/10`}
                   color="bg-amber-500" delay={0.15} />
               </div>
+
+              {/* Nota con bonificacion/deuda por duelos */}
+              <DuelGradePanel refreshKey={lastDuelEvent?.received_at || 0} />
 
               {/* Batalla stats */}
               {qbStats && qbStats.total_played > 0 && (
@@ -977,6 +997,8 @@ export default function StudentDashboard() {
 
         </div>
       </div>
+
+      <DuelCreateModal open={duelModalOpen} onClose={() => setDuelModalOpen(false)} />
     </div>
   );
 }

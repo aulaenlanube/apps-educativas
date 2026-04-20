@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ClipboardList, ChevronRight } from 'lucide-react';
+import { ClipboardList, ChevronRight, Swords } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,8 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from '@/components/ui/dialog';
 import { getLevels, getGrades, getSubjects, getApps } from '@/apps/appCatalog';
+import { DUELABLE_APPS } from '@/apps/config/duelableApps';
+import { teacherCreateDuelAssignment } from '@/services/duelService';
 
 export default function AssignTaskDialog({ open, onOpenChange, groupId, groupName, groupLevel, groupGrade, groupSubject, students, studentId, onCreated }) {
   const { toast } = useToast();
@@ -44,12 +46,49 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
   const [targetStudentId, setTargetStudentId] = useState(studentId || null);
   const [dueDate, setDueDate] = useState('');
 
+  // Duelo (tarea tipo duel)
+  const [taskType, setTaskType] = useState('standard'); // 'standard' | 'duel'
+  const [duelAppId, setDuelAppId] = useState(null);
+  const [duelStake, setDuelStake] = useState(0.2);
+  const isDuel = taskType === 'duel';
+  const duelApp = useMemo(() => DUELABLE_APPS.find(a => a.id === duelAppId), [duelAppId]);
+
   const levels = useMemo(() => getLevels(), []);
   const grades = useMemo(() => selectedLevel ? getGrades(selectedLevel) : [], [selectedLevel]);
   const subjects = useMemo(() => (selectedLevel && selectedGrade) ? getSubjects(selectedLevel, selectedGrade) : [], [selectedLevel, selectedGrade]);
   const apps = useMemo(() => (selectedLevel && selectedGrade && selectedSubject) ? getApps(selectedLevel, selectedGrade, selectedSubject) : [], [selectedLevel, selectedGrade, selectedSubject]);
 
   const handleCreate = async () => {
+    if (isDuel) {
+      if (!duelApp || !groupId) return;
+      setLoading(true);
+      try {
+        const userRes = await supabase.auth.getUser();
+        const teacherId = userRes.data.user.id;
+        const res = await teacherCreateDuelAssignment({
+          teacherId, groupId,
+          appId: duelApp.id, appName: duelApp.name,
+          level: defaultLevel || selectedLevel,
+          grade: defaultGrade || selectedGrade || '',
+          subjectId: defaultSubject || selectedSubject || null,
+          stake: duelStake,
+          bestOf: duelApp.duel?.bestOf || 1,
+          title: title.trim() || `Duelo · ${duelApp.name}`,
+          dueDate: dueDate || null,
+        });
+        const pairsCount = res?.pairs?.length || 0;
+        toast({ title: 'Duelo asignado', description: `Se han creado ${pairsCount} duelo${pairsCount !== 1 ? 's' : ''} emparejados por nota` });
+        resetForm();
+        onOpenChange(false);
+        onCreated?.();
+      } catch (err) {
+        toast({ variant: 'destructive', title: 'Error', description: err.message });
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
     if (!selectedApp || !groupId) return;
     setLoading(true);
 
@@ -95,6 +134,9 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
     setDueDate('');
     setTargetType(studentId ? 'student' : 'group');
     setTargetStudentId(studentId || null);
+    setTaskType('standard');
+    setDuelAppId(null);
+    setDuelStake(0.2);
   };
 
   // Breadcrumb for current selection
@@ -115,8 +157,107 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
         </DialogHeader>
 
         <div className="space-y-4">
+          {/* Tipo de tarea */}
+          <div className="space-y-2">
+            <Label>Tipo de tarea</Label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setTaskType('standard')}
+                className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                  taskType === 'standard'
+                    ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow'
+                    : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
+                }`}
+              >
+                <ClipboardList className="w-4 h-4" /> Estándar
+              </button>
+              <button
+                type="button"
+                onClick={() => setTaskType('duel')}
+                className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                  taskType === 'duel'
+                    ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow'
+                    : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
+                }`}
+              >
+                <Swords className="w-4 h-4" /> Duelo 1 vs 1
+              </button>
+            </div>
+            {isDuel && (
+              <p className="text-[11px] text-violet-700">
+                Los alumnos del grupo se emparejarán automáticamente por nota similar. Cada pareja juega un duelo oculto.
+              </p>
+            )}
+          </div>
+
+          {/* Duelo */}
+          {isDuel && (
+            <>
+              <div className="space-y-2">
+                <Label>App del duelo</Label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {DUELABLE_APPS.map(a => (
+                    <button
+                      key={a.id}
+                      type="button"
+                      onClick={() => setDuelAppId(a.id)}
+                      className={`p-3 rounded-xl border text-left transition-all ${
+                        duelAppId === a.id
+                          ? 'border-violet-500 bg-violet-50 shadow-sm'
+                          : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <p className="text-sm font-bold text-slate-800">{a.name}</p>
+                      <p className="text-[11px] text-slate-500 line-clamp-2">{a.description}</p>
+                      {a.duel?.bestOf > 1 && (
+                        <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">
+                          Al mejor de {a.duel.bestOf}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Puntos en juego</Label>
+                <div className="flex gap-2">
+                  {[0.1, 0.2, 0.3].map(v => (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => setDuelStake(v)}
+                      className={`flex-1 py-2.5 rounded-xl border-2 text-center font-bold transition-all ${
+                        duelStake === v
+                          ? 'border-violet-500 bg-violet-50 text-violet-700'
+                          : 'border-slate-200 text-slate-600 hover:border-violet-300'
+                      }`}
+                    >
+                      +/- {v.toString().replace('.', ',')}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Título</Label>
+                <Input
+                  placeholder="Ej: Duelo de vocabulario"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Fecha límite (opcional)</Label>
+                <Input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
+              </div>
+            </>
+          )}
+
           {/* Destino */}
-          {!studentId && students && students.length > 0 && (
+          {!isDuel && !studentId && students && students.length > 0 && (
             <div className="space-y-2">
               <Label>Asignar a</Label>
               <div className="flex gap-2">
@@ -157,6 +298,7 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
           )}
 
           {/* Cascading app selection */}
+          {!isDuel && <>
           <div className="space-y-2">
             <Label>Seleccionar app</Label>
 
@@ -411,16 +553,19 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
               onChange={(e) => setDueDate(e.target.value)}
             />
           </div>
+          </>}
         </div>
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>Cancelar</Button>
           <Button
             onClick={handleCreate}
-            disabled={loading || !selectedApp || (targetType === 'student' && !targetStudentId)}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+            disabled={loading || (isDuel ? !duelApp : (!selectedApp || (targetType === 'student' && !targetStudentId)))}
+            className={isDuel
+              ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white'
+              : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white'}
           >
-            {loading ? 'Asignando...' : 'Asignar tarea'}
+            {loading ? 'Asignando...' : isDuel ? 'Crear duelos' : 'Asignar tarea'}
           </Button>
         </DialogFooter>
       </DialogContent>

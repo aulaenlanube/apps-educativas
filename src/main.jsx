@@ -38,6 +38,7 @@ const StudentDashboard = lazy(() => import('@/pages/dashboard/StudentDashboard.j
 const FreeUserDashboard = lazy(() => import('@/pages/dashboard/FreeUserDashboard.jsx'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage.jsx'));
 const GroupLoginPage = lazy(() => import('@/pages/auth/GroupLoginPage.jsx'));
+const DuelLobby = lazy(() => import('@/pages/DuelLobby.jsx'));
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -116,6 +117,14 @@ const router = createBrowserRouter(
             {
               path: 'quiz-battle/join/:code?',
               element: <SuspensePage><QuizBattlePlayer /></SuspensePage>
+            },
+            {
+              path: 'duelo/:duelId',
+              element: (
+                <ProtectedRoute role="student">
+                  <SuspensePage><DuelLobby /></SuspensePage>
+                </ProtectedRoute>
+              )
             },
             {
               path: 'admin',
