@@ -433,6 +433,24 @@ export default function StudentDashboard() {
 
   useEffect(() => { fetchDashboard(); }, [fetchDashboard]);
 
+  const termScoped = useMemo(() => (
+    termFilter === 'all' ? assignments : assignments.filter(a => Number(a.term) === Number(termFilter))
+  ), [assignments, termFilter]);
+
+  const finalGrade = useMemo(() => {
+    if (!termScoped.length) return null;
+    let weightSum = 0;
+    let weightedNota = 0;
+    for (const a of termScoped) {
+      const w = Math.max(1, Number(a.weight) || 1);
+      const nota = Math.min(10, Math.max(0, Number(a.best_nota ?? a.best_score ?? 0)));
+      weightSum += w;
+      weightedNota += nota * w;
+    }
+    if (weightSum === 0) return null;
+    return Math.round((weightedNota / weightSum) * 10) / 10;
+  }, [termScoped]);
+
   if (loading) {
     return (
       <div>
@@ -466,24 +484,6 @@ export default function StudentDashboard() {
   const studentInfo = data?.student || {};
 
   const pendingAssignments = assignments.filter(a => !a.completed);
-
-  const termScoped = useMemo(() => (
-    termFilter === 'all' ? assignments : assignments.filter(a => Number(a.term) === Number(termFilter))
-  ), [assignments, termFilter]);
-
-  const finalGrade = useMemo(() => {
-    if (!termScoped.length) return null;
-    let weightSum = 0;
-    let weightedNota = 0;
-    for (const a of termScoped) {
-      const w = Math.max(1, Number(a.weight) || 1);
-      const nota = Math.min(10, Math.max(0, Number(a.best_nota ?? a.best_score ?? 0)));
-      weightSum += w;
-      weightedNota += nota * w;
-    }
-    if (weightSum === 0) return null;
-    return Math.round((weightedNota / weightSum) * 10) / 10;
-  }, [termScoped]);
 
   const hasGroup = !!student?.group_id;
   const tabs = [

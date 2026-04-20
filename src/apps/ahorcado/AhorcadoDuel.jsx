@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, Trophy, X, Heart } from 'lucide-react';
+import { Swords, Trophy, X } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 
@@ -12,9 +12,8 @@ const LETTERS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
 function normWord(s) {
   return (s || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
-function lettersOnly(s) { return normWord(s).replace(/[^A-ZÑ]/g, ''); }
 
-function buildRound(pool) {
+function buildRound(pool, firstTurn) {
   const q = pool[Math.floor(Math.random() * pool.length)];
   const answer = normWord(q.solucion);
   return {
@@ -24,16 +23,47 @@ function buildRound(pool) {
     revealed: answer.split('').map(ch => /[A-ZÑ]/.test(ch) ? null : ch),
     hostLives: LIVES,
     guestLives: LIVES,
-    usedLetters: [], // letras globales
-    roundWinner: null,
-    solvedBy: null,
+    usedLetters: [],
+    turn: firstTurn,          // 'host' | 'guest' — turno estricto
+    roundWinner: undefined,   // undefined = aun jugando, null = empate, uuid = ganador
   };
+}
+
+// SVG del ahorcado — mismo estilo que la version 1 jugador
+function HangmanSvg({ fails, color = 'currentColor' }) {
+  const parts = [
+    <line key="base" x1="10" y1="140" x2="110" y2="140" stroke={color} strokeWidth="4" strokeLinecap="round" />,
+    <line key="poste" x1="30" y1="140" x2="30" y2="20" stroke={color} strokeWidth="4" strokeLinecap="round" />,
+    <line key="travesano" x1="30" y1="20" x2="85" y2="20" stroke={color} strokeWidth="4" strokeLinecap="round" />,
+    <line key="cuerda" x1="85" y1="20" x2="85" y2="35" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+  ];
+  const body = [
+    <circle key="cabeza" cx="85" cy="45" r="10" stroke={color} strokeWidth="3" fill="none" />,
+    <line key="torso" x1="85" y1="55" x2="85" y2="90" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+    <line key="brazoI" x1="85" y1="65" x2="70" y2="80" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+    <line key="brazoD" x1="85" y1="65" x2="100" y2="80" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+    <line key="piernaI" x1="85" y1="90" x2="72" y2="110" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+    <line key="piernaD" x1="85" y1="90" x2="98" y2="110" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+  ];
+  return (
+    <svg viewBox="0 0 120 150" className="w-full h-full" aria-label="Ahorcado">
+      {parts}
+      {body.slice(0, fails).map((el, i) => (
+        <motion.g
+          key={i}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >{el}</motion.g>
+      ))}
+    </svg>
+  );
 }
 
 export default function AhorcadoDuel({ onGameComplete }) {
   const { level, grade, subjectId } = useParams();
   const duel = useDuel();
-  const { duelId, duel: duelInfo, me, rival, channel, reportResult } = duel;
+  const { duel: duelInfo, me, rival, channel, reportResult } = duel;
 
   const [pool, setPool] = useState(null);
   const [loadingData, setLoadingData] = useState(true);
@@ -43,6 +73,8 @@ export default function AhorcadoDuel({ onGameComplete }) {
   const [winnerId, setWinnerId] = useState(null);
   const [guess, setGuess] = useState('');
   const reportedRef = useRef(false);
+  const lastSettledRef = useRef(null);
+  const nextFirstTurnRef = useRef('host');
 
   // Cargar pool
   useEffect(() => {
@@ -57,11 +89,12 @@ export default function AhorcadoDuel({ onGameComplete }) {
       .finally(() => setLoadingData(false));
   }, [duelInfo, level, grade, subjectId]);
 
-  // Host: init
+  // Host: init primera ronda
   useEffect(() => {
     if (!me?.isHost || !pool || pool.length < 5 || round) return;
     const sc = { [me.id]: 0, [rival.id]: 0 };
-    const r = buildRound(pool);
+    const r = buildRound(pool, 'host'); // retador empieza
+    nextFirstTurnRef.current = 'guest';
     setScore(sc); setRound(r);
     channel.broadcast('score', sc);
     channel.broadcast('round', r);
@@ -75,26 +108,16 @@ export default function AhorcadoDuel({ onGameComplete }) {
     channel.onBroadcast('game_end', ({ winner_id }) => { setWinnerId(winner_id); setFinished(true); });
   }, [channel, me?.isHost]);
 
-  // Host: responde peticiones de estado + acciones
-  useEffect(() => {
-    if (!me?.isHost || !channel?.isConnected) return;
-    channel.onBroadcast('request_state', () => {
-      if (score) channel.broadcast('score', score);
-      if (round) channel.broadcast('round', round);
-    });
-    channel.onBroadcast('action', (payload) => applyAction({ ...payload, by: 'guest' }));
-  }, [me?.isHost, channel, score, round]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Guest pide estado
-  useEffect(() => {
-    if (!channel?.isConnected || me?.isHost) return;
-    channel.broadcast('request_state', { from: me?.id });
-  }, [channel?.isConnected, me?.isHost, me?.id, channel]);
-
+  // Host: responde peticiones de estado + acciones del guest
   const applyAction = useCallback((action) => {
     setRound(prev => {
-      if (!prev || prev.roundWinner) return prev;
+      if (!prev || prev.roundWinner !== undefined) return prev;
+      // Turno obligatorio
+      const mySide = action.by === 'host' ? 'host' : 'guest';
+      if (prev.turn !== mySide) return prev;
+
       const next = structuredClone(prev);
+
       if (action.type === 'letter') {
         const L = action.letter;
         if (next.usedLetters.includes(L)) return prev;
@@ -104,42 +127,58 @@ export default function AhorcadoDuel({ onGameComplete }) {
           if (next.answer[i] === L) { next.revealed[i] = L; found = true; }
         }
         if (!found) {
-          if (action.by === 'host') next.hostLives = Math.max(0, next.hostLives - 1);
+          if (mySide === 'host') next.hostLives = Math.max(0, next.hostLives - 1);
           else next.guestLives = Math.max(0, next.guestLives - 1);
         }
-        // ¿completo?
+        // comprobaciones de fin de ronda
         if (!next.revealed.includes(null)) {
-          next.roundWinner = action.by === 'host' ? me?.id : rival?.id;
-          next.solvedBy = next.roundWinner;
+          // Completada por el jugador que tiro la letra ganadora
+          next.roundWinner = mySide === 'host' ? me?.id : rival?.id;
         } else if (next.hostLives === 0 && next.guestLives === 0) {
-          next.roundWinner = null; // empate de ronda
+          next.roundWinner = null;
         } else if (next.hostLives === 0) {
           next.roundWinner = rival?.id;
         } else if (next.guestLives === 0) {
           next.roundWinner = me?.id;
+        } else {
+          // cambio de turno
+          next.turn = mySide === 'host' ? 'guest' : 'host';
         }
       } else if (action.type === 'solve') {
         const proposed = normWord(action.word).replace(/\s+/g, '');
         const expected = next.answer.replace(/\s+/g, '');
         if (proposed === expected) {
-          // Revelar todo
           for (let i = 0; i < next.answer.length; i++) {
             if (next.revealed[i] === null) next.revealed[i] = next.answer[i];
           }
-          next.roundWinner = action.by === 'host' ? me?.id : rival?.id;
-          next.solvedBy = next.roundWinner;
+          next.roundWinner = mySide === 'host' ? me?.id : rival?.id;
         } else {
-          // Fallo grave: -2 vidas al que propuso
-          if (action.by === 'host') next.hostLives = Math.max(0, next.hostLives - 2);
+          if (mySide === 'host') next.hostLives = Math.max(0, next.hostLives - 2);
           else next.guestLives = Math.max(0, next.guestLives - 2);
           if (next.hostLives === 0 && next.guestLives === 0) next.roundWinner = null;
           else if (next.hostLives === 0) next.roundWinner = rival?.id;
           else if (next.guestLives === 0) next.roundWinner = me?.id;
+          else next.turn = mySide === 'host' ? 'guest' : 'host';
         }
       }
       return next;
     });
   }, [me?.id, rival?.id]);
+
+  useEffect(() => {
+    if (!me?.isHost || !channel?.isConnected) return;
+    channel.onBroadcast('request_state', () => {
+      if (score) channel.broadcast('score', score);
+      if (round) channel.broadcast('round', round);
+    });
+    channel.onBroadcast('action', payload => applyAction({ ...payload, by: 'guest' }));
+  }, [me?.isHost, channel, score, round, applyAction]);
+
+  // Guest: pedir estado al entrar
+  useEffect(() => {
+    if (!channel?.isConnected || me?.isHost) return;
+    channel.broadcast('request_state', { from: me?.id });
+  }, [channel?.isConnected, me?.isHost, me?.id, channel]);
 
   // Host: al cambiar ronda, difundir
   useEffect(() => {
@@ -147,24 +186,11 @@ export default function AhorcadoDuel({ onGameComplete }) {
     channel.broadcast('round', round);
   }, [me?.isHost, round, channel]);
 
-  // Host: al ganarse una ronda, avanzar
-  useEffect(() => {
-    if (!me?.isHost || !round?.roundWinner && round?.roundWinner !== null) return;
-    if (!round || round.roundWinner === undefined) return;
-    // solo si esta ronda ya ha concluido
-    const done = round.roundWinner !== undefined && (round.roundWinner !== null || (round.hostLives === 0 && round.guestLives === 0));
-    if (!done || !round._awardedPending) {
-      // marcamos como pendiente de awarded para esta ronda concreta; usamos una ref simple
-    }
-  }, [me?.isHost, round]);
-
-  // Award via efecto separado: detecta transicion a roundWinner set
-  const lastSettledRef = useRef(null);
+  // Host: fin de ronda → sumar punto + siguiente ronda o fin de duelo
   useEffect(() => {
     if (!me?.isHost || !round) return;
-    const settled = round.roundWinner !== undefined && (round.roundWinner !== null || (round.hostLives === 0 && round.guestLives === 0));
+    const settled = round.roundWinner !== undefined;
     if (!settled) return;
-    // evitar doble award en mismo render
     const key = `${round.answer}|${round.roundWinner}|${round.hostLives}|${round.guestLives}`;
     if (lastSettledRef.current === key) return;
     lastSettledRef.current = key;
@@ -182,7 +208,9 @@ export default function AhorcadoDuel({ onGameComplete }) {
           setFinished(true);
           channel.broadcast('game_end', { winner_id: finalWinner });
         } else {
-          const r = buildRound(pool);
+          const first = nextFirstTurnRef.current;
+          nextFirstTurnRef.current = first === 'host' ? 'guest' : 'host';
+          const r = buildRound(pool, first);
           setRound(r);
           channel.broadcast('round', r);
         }
@@ -192,7 +220,7 @@ export default function AhorcadoDuel({ onGameComplete }) {
     return () => clearTimeout(t);
   }, [me?.isHost, round, channel, pool]);
 
-  // Reporte final (host)
+  // Host: reporta resultado final
   useEffect(() => {
     if (!me?.isHost || !finished || !winnerId || reportedRef.current) return;
     reportedRef.current = true;
@@ -201,7 +229,9 @@ export default function AhorcadoDuel({ onGameComplete }) {
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
 
   function sendAction(action) {
-    if (!round || round.roundWinner || finished) return;
+    if (!round || round.roundWinner !== undefined || finished) return;
+    const mySide = me.isHost ? 'host' : 'guest';
+    if (round.turn !== mySide) return; // no es mi turno
     if (me.isHost) applyAction({ ...action, by: 'host' });
     else channel.broadcast('action', action);
   }
@@ -213,19 +243,33 @@ export default function AhorcadoDuel({ onGameComplete }) {
   const rivalLives = me.isHost ? round.guestLives : round.hostLives;
   const myPoints = score[me.id] || 0;
   const rivalPoints = score[rival.id] || 0;
+  const myTurn = round.turn === (me.isHost ? 'host' : 'guest');
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-4">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg border border-violet-200 p-5">
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg border border-violet-200 p-5">
         <div className="flex items-center gap-3 mb-4">
           <Swords className="w-5 h-5 text-violet-600" />
           <h2 className="text-lg font-bold">Ahorcado Duelo · Al mejor de {TARGET_WINS * 2 - 1}</h2>
+          <span className="ml-auto text-xs text-slate-500">
+            Turnos alternos
+          </span>
         </div>
 
-        {/* Scoreboard */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <ScoreCard label="Tú" name={me.name} emoji={me.emoji} lives={myLives} points={myPoints} target={TARGET_WINS} color="bg-violet-600" />
-          <ScoreCard label="Rival" name={rival.hidden ? 'Oculto' : rival.name} emoji={rival.emoji} lives={rivalLives} points={rivalPoints} target={TARGET_WINS} color="bg-amber-500" />
+        {/* Dos ahorcados + scoreboard */}
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <PlayerPanel
+            label="Tú" name={me.name} emoji={me.emoji}
+            lives={myLives} fails={LIVES - myLives}
+            points={myPoints} target={TARGET_WINS}
+            color="#8b5cf6" isTurn={myTurn}
+          />
+          <PlayerPanel
+            label="Rival" name={rival.hidden ? 'Oculto' : rival.name} emoji={rival.emoji}
+            lives={rivalLives} fails={LIVES - rivalLives}
+            points={rivalPoints} target={TARGET_WINS}
+            color="#f59e0b" isTurn={!myTurn}
+          />
         </div>
 
         {/* Pista */}
@@ -252,22 +296,40 @@ export default function AhorcadoDuel({ onGameComplete }) {
           ))}
         </div>
 
+        {/* Indicador de turno */}
+        <div className={`text-center py-2 mb-3 rounded-lg text-sm font-bold ${
+          round.roundWinner !== undefined
+            ? 'bg-slate-100 text-slate-500'
+            : myTurn
+              ? 'bg-emerald-100 text-emerald-700'
+              : 'bg-slate-100 text-slate-500'
+        }`}>
+          {round.roundWinner !== undefined
+            ? 'Ronda terminada'
+            : myTurn
+              ? '¡Es tu turno! Elige una letra o resuelve la palabra'
+              : `Turno de ${rival.hidden ? 'tu rival' : rival.name}…`}
+        </div>
+
         {/* Letras */}
         <div className="flex flex-wrap justify-center gap-1 mb-4">
           {LETTERS.map(L => {
             const used = round.usedLetters.includes(L);
             const inWord = used && round.answer.includes(L);
+            const disabled = used || round.roundWinner !== undefined || finished || !myTurn;
             return (
               <button
                 key={L}
-                disabled={used || round.roundWinner !== null || finished}
+                disabled={disabled}
                 onClick={() => sendAction({ type: 'letter', letter: L })}
                 className={`w-8 h-9 rounded text-sm font-bold border transition-colors ${
                   used
                     ? inWord
                       ? 'bg-emerald-500 text-white border-emerald-600'
                       : 'bg-rose-500 text-white border-rose-600 line-through'
-                    : 'bg-white hover:bg-violet-50 border-slate-300 text-slate-700'
+                    : myTurn
+                      ? 'bg-white hover:bg-violet-50 border-slate-300 text-slate-700'
+                      : 'bg-slate-50 border-slate-200 text-slate-400'
                 } disabled:cursor-not-allowed`}
               >{L}</button>
             );
@@ -282,26 +344,26 @@ export default function AhorcadoDuel({ onGameComplete }) {
           <input
             value={guess}
             onChange={e => setGuess(e.target.value)}
-            placeholder="¿Sabes la palabra entera? Escríbela aquí…"
-            disabled={round.roundWinner !== null || finished}
+            placeholder={myTurn ? 'Resuelve la palabra entera…' : 'Espera tu turno'}
+            disabled={round.roundWinner !== undefined || finished || !myTurn}
             className="flex-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-violet-400 outline-none disabled:bg-slate-50"
           />
           <button
             type="submit"
-            disabled={!guess.trim() || round.roundWinner !== null || finished}
+            disabled={!guess.trim() || round.roundWinner !== undefined || finished || !myTurn}
             className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold disabled:opacity-40"
           >Resolver</button>
         </form>
 
         <AnimatePresence>
-          {round.roundWinner !== null && !finished && (
+          {round.roundWinner !== undefined && !finished && (
             <motion.div
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               className="mt-4 p-3 rounded-xl bg-slate-100 text-center"
             >
               <p className="font-bold text-slate-700">
                 {round.roundWinner === me.id ? '¡Ronda para ti!' :
-                 round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda empate'}
+                 round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda en empate'}
               </p>
               <p className="text-xs text-slate-500">Palabra: {round.answer}</p>
             </motion.div>
@@ -323,27 +385,35 @@ export default function AhorcadoDuel({ onGameComplete }) {
   );
 }
 
-function ScoreCard({ label, name, emoji, lives, points, target, color }) {
+function PlayerPanel({ label, name, emoji, lives, fails, points, target, color, isTurn }) {
   return (
-    <div className="p-3 rounded-xl border border-slate-200 bg-white">
-      <div className="flex items-center gap-2 mb-1">
+    <div className={`p-3 rounded-xl border-2 transition-colors ${
+      isTurn ? 'border-violet-400 bg-violet-50 shadow-sm' : 'border-slate-200 bg-white'
+    }`}>
+      <div className="flex items-center gap-2 mb-2">
         <div className="text-2xl">{emoji}</div>
         <div className="flex-1 min-w-0">
           <p className="text-[10px] uppercase text-slate-500 tracking-wide">{label}</p>
           <p className="font-bold truncate text-sm">{name}</p>
         </div>
-        <div className={`w-7 h-7 rounded-lg ${color} text-white flex items-center justify-center font-black`}>
+        {isTurn && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-violet-600 text-white">TURNO</span>}
+        <div className="w-7 h-7 rounded-lg text-white flex items-center justify-center font-black" style={{ background: color }}>
           {points}
         </div>
       </div>
-      <div className="flex items-center gap-1">
+      {/* Dibujo del ahorcado */}
+      <div className="aspect-[4/5] mx-auto max-w-[140px]" style={{ color: fails >= LIVES ? '#ef4444' : '#475569' }}>
+        <HangmanSvg fails={fails} />
+      </div>
+      {/* Vidas + barra de puntos */}
+      <div className="flex items-center justify-center gap-0.5 mt-2">
         {Array.from({ length: LIVES }).map((_, i) => (
-          <Heart key={i} className={`w-3.5 h-3.5 ${i < lives ? 'text-rose-500 fill-rose-500' : 'text-slate-200'}`} />
+          <span key={i} className={`w-2 h-2 rounded-full ${i < lives ? 'bg-rose-500' : 'bg-slate-200'}`} />
         ))}
       </div>
-      <div className="flex gap-1 mt-1">
+      <div className="flex gap-1 mt-2">
         {Array.from({ length: target }).map((_, i) => (
-          <span key={i} className={`h-1.5 flex-1 rounded ${i < points ? color : 'bg-slate-200'}`} />
+          <span key={i} className="h-1.5 flex-1 rounded" style={{ background: i < points ? color : '#e2e8f0' }} />
         ))}
       </div>
     </div>

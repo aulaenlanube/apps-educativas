@@ -44,6 +44,7 @@ export default function DuelLobby() {
   const [phase, setPhase] = useState('loading'); // loading | waiting | countdown | ready | starting | voided
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [showAbortModal, setShowAbortModal] = useState(false);
   const countdownStartedRef = useRef(false);
 
   const reload = useCallback(async () => {
@@ -78,10 +79,21 @@ export default function DuelLobby() {
   const amHost = state && state.challenger_id === student?.id;
   const opponentIsMe = state && state.opponent_id === student?.id;
 
-  // Cuando ambos presentes y aceptado → arrancar countdown (solo host lo dispara broadcast)
+  // Cuando cambia presence a "ambos presentes", recargar estado por si el
+  // rival acaba de aceptar (el retador tiene state.status cacheado).
+  const prevBothPresentRef = useRef(false);
+  useEffect(() => {
+    if (bothPresent && !prevBothPresentRef.current) {
+      prevBothPresentRef.current = true;
+      reload();
+    }
+    if (!bothPresent) prevBothPresentRef.current = false;
+  }, [bothPresent, reload]);
+
+  // Cuando ambos presentes y aceptado → arrancar countdown
   useEffect(() => {
     if (!state || !bothPresent) return;
-    if (phase === 'loading') setPhase('waiting');
+    if (phase === 'loading' || phase === 'waiting') setPhase('waiting');
     if (state.status === 'accepted' && bothPresent && !countdownStartedRef.current) {
       countdownStartedRef.current = true;
       setPhase('countdown'); setCountdown(COUNTDOWN_SECONDS);
@@ -129,8 +141,8 @@ export default function DuelLobby() {
     }
   }
 
-  async function handleAbort() {
-    if (!window.confirm('¿Anular el duelo? La partida no afectará a tu nota.')) return;
+  async function confirmAbort() {
+    setShowAbortModal(false);
     try {
       await voidDuel({ studentId: student.id, sessionToken: student.session_token, duelId, reason: 'user_aborted' });
       broadcast('duel_voided', { reason: 'user_aborted' });
@@ -171,7 +183,7 @@ export default function DuelLobby() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-950 to-fuchsia-900 text-white">
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         <button
-          onClick={handleAbort}
+          onClick={() => setShowAbortModal(true)}
           className="flex items-center gap-2 text-sm text-white/70 hover:text-white mb-6"
         >
           <ArrowLeft className="w-4 h-4" /> Salir del duelo
@@ -313,6 +325,43 @@ export default function DuelLobby() {
           Conexion {isConnected ? 'activa' : 'pendiente'} · {presence.length}/2 en sala
         </p>
       </div>
+
+      <AnimatePresence>
+        {showAbortModal && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowAbortModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95 }}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+            >
+              <div className="p-5 bg-gradient-to-r from-rose-500 to-rose-600 text-white">
+                <h3 className="text-lg font-bold flex items-center gap-2">
+                  <XCircle className="w-5 h-5" /> Salir del duelo
+                </h3>
+              </div>
+              <div className="p-5 text-slate-700">
+                <p className="text-sm">
+                  ¿Seguro que quieres anular el duelo? La partida no afectará a la nota de ninguno.
+                </p>
+              </div>
+              <div className="p-4 bg-slate-50 flex gap-2 justify-end border-t border-slate-100">
+                <button
+                  onClick={() => setShowAbortModal(false)}
+                  className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 text-sm font-medium hover:bg-white"
+                >Seguir en la sala</button>
+                <button
+                  onClick={confirmAbort}
+                  className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold"
+                >Sí, anular duelo</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
