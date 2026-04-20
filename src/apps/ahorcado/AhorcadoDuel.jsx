@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, Trophy, X } from 'lucide-react';
+import { Swords, Trophy, X, LogOut } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 
@@ -63,6 +63,7 @@ function HangmanSvg({ fails, color = 'currentColor' }) {
 
 export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const { level, grade, subjectId } = useParams();
+  const navigate = useNavigate();
   const duel = useDuel();
   const { duel: duelInfo, me, rival, channel, reportResult } = duel;
 
@@ -460,7 +461,13 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
               }`}
             >
               <Trophy className="w-8 h-8 mx-auto mb-1" />
-              <p className="text-xl font-black">{winnerId === me.id ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</p>
+              <p className="text-xl font-black mb-3">{winnerId === me.id ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</p>
+              <button
+                onClick={() => navigate('/mi-panel')}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold text-sm transition-colors"
+              >
+                <LogOut className="w-4 h-4" /> Salir a mi panel
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
