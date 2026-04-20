@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap, BookOpen } from 'lucide-react';
+import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap, BookOpen, Clock } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel,
 } from '@/components/ui/alert-dialog';
 import materiasData from '/public/data/materias.json';
+import ClassHoursEditor, { normalizeHoursFromRpc, MIN_CLASS_HOURS, MAX_WEEKLY_MINUTES, totalMinutes } from './ClassHoursEditor';
 
 const LEVEL_OPTIONS = [
   { id: 'primaria', label: 'Primaria', grades: ['1', '2', '3', '4', '5', '6'] },
@@ -88,6 +89,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
   const [groupLevel, setGroupLevel] = useState('primaria');
   const [groupGrade, setGroupGrade] = useState('1');
   const [groupSubjectId, setGroupSubjectId] = useState(NO_SUBJECT);
+  const [groupHours, setGroupHours] = useState([{ weekday: 1, start_time: '09:00', end_time: '10:00' }]);
   const [loading, setLoading] = useState(false);
 
   const availableGrades = useMemo(
@@ -107,38 +109,66 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setGroupLevel('primaria');
     setGroupGrade('1');
     setGroupSubjectId(NO_SUBJECT);
+    setGroupHours([{ weekday: 1, start_time: '09:00', end_time: '10:00' }]);
   };
+
+  const validateHours = () => {
+    if (groupHours.length < MIN_CLASS_HOURS) {
+      toast({ variant: 'destructive', title: 'Horario obligatorio', description: `Añade al menos ${MIN_CLASS_HOURS} franja horaria.` });
+      return false;
+    }
+    for (const h of groupHours) {
+      if (h.end_time <= h.start_time) {
+        toast({ variant: 'destructive', title: 'Horario inválido', description: 'La hora de fin debe ser posterior a la de inicio.' });
+        return false;
+      }
+    }
+    const mins = totalMinutes(groupHours);
+    if (mins > MAX_WEEKLY_MINUTES) {
+      toast({ variant: 'destructive', title: 'Máximo 4 horas semanales', description: `Tienes ${mins} min en total.` });
+      return false;
+    }
+    return true;
+  };
+
+  const hoursOk = groupHours.length >= MIN_CLASS_HOURS &&
+                  totalMinutes(groupHours) > 0 &&
+                  totalMinutes(groupHours) <= MAX_WEEKLY_MINUTES &&
+                  groupHours.every(h => h.end_time > h.start_time);
 
   const handleCreate = async () => {
     if (!groupName.trim()) return;
+    if (!validateHours()) return;
     setLoading(true);
 
-    const { error } = await supabase.from('groups').insert({
-      teacher_id: (await supabase.auth.getUser()).data.user.id,
-      name: groupName.trim(),
-      description: groupDescription.trim() || null,
-      level: groupLevel || null,
-      grade: groupGrade || null,
-      subject_id: groupSubjectId === NO_SUBJECT ? null : groupSubjectId,
+    const { data, error } = await supabase.rpc('teacher_create_group_with_hours', {
+      p_name: groupName.trim(),
+      p_description: groupDescription.trim() || null,
+      p_level: groupLevel || null,
+      p_grade: groupGrade || null,
+      p_subject_id: groupSubjectId === NO_SUBJECT ? null : groupSubjectId,
+      p_hours: groupHours,
     });
 
     setLoading(false);
-    if (error) {
+    const errMsg = error?.message || data?.error;
+    if (errMsg) {
       toast({
         variant: 'destructive',
         title: 'Error',
-        description: error.message.includes('unique') ? 'Ya existe un grupo con ese nombre' : error.message,
+        description: errMsg.includes('unique') ? 'Ya existe un grupo con ese nombre' : errMsg,
       });
-    } else {
-      toast({ title: 'Grupo creado' });
-      setShowCreateDialog(false);
-      resetForm();
-      onGroupsChanged();
+      return;
     }
+    toast({ title: 'Grupo creado' });
+    setShowCreateDialog(false);
+    resetForm();
+    onGroupsChanged();
   };
 
   const handleEdit = async () => {
     if (!groupName.trim() || !editingGroup) return;
+    if (!validateHours()) return;
     setLoading(true);
 
     const { error } = await supabase
@@ -153,15 +183,26 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
       })
       .eq('id', editingGroup.id);
 
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast({ variant: 'destructive', title: 'Error', description: error.message });
-    } else {
-      toast({ title: 'Grupo actualizado' });
-      setShowEditDialog(false);
-      setEditingGroup(null);
-      onGroupsChanged();
+      return;
     }
+
+    const { data: hoursRes, error: hoursErr } = await supabase.rpc('teacher_set_group_class_hours', {
+      p_group_id: editingGroup.id,
+      p_hours: groupHours,
+    });
+    setLoading(false);
+    const hoursErrMsg = hoursErr?.message || hoursRes?.error;
+    if (hoursErrMsg) {
+      toast({ variant: 'destructive', title: 'Error guardando horario', description: hoursErrMsg });
+      return;
+    }
+    toast({ title: 'Grupo actualizado' });
+    setShowEditDialog(false);
+    setEditingGroup(null);
+    onGroupsChanged();
   };
 
   const handleDelete = async () => {
@@ -182,7 +223,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     }
   };
 
-  const openEdit = (group, e) => {
+  const openEdit = async (group, e) => {
     e.stopPropagation();
     setEditingGroup(group);
     setGroupName(group.name);
@@ -190,7 +231,11 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setGroupLevel(group.level || 'primaria');
     setGroupGrade(group.grade || '1');
     setGroupSubjectId(group.subject_id || NO_SUBJECT);
+    setGroupHours([]);
     setShowEditDialog(true);
+    const { data } = await supabase.rpc('teacher_get_group_class_hours', { p_group_id: group.id });
+    const list = normalizeHoursFromRpc(data?.hours);
+    setGroupHours(list.length > 0 ? list : [{ weekday: 1, start_time: '09:00', end_time: '10:00' }]);
   };
 
   const openDelete = (group, e) => {
@@ -199,14 +244,22 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setShowDeleteDialog(true);
   };
 
+  const ownedCount = groups.filter(g => g.is_owner !== false).length;
+  const atGroupLimit = ownedCount >= 3;
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold text-gray-800">Mis Grupos</h2>
+        <div>
+          <h2 className="text-lg font-bold text-gray-800">Mis Grupos</h2>
+          <p className="text-[11px] text-slate-400">{ownedCount}/3 grupos creados</p>
+        </div>
         <Button
           size="sm"
           onClick={() => { resetForm(); setShowCreateDialog(true); }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+          disabled={atGroupLimit}
+          title={atGroupLimit ? 'Has alcanzado el máximo de 3 grupos' : ''}
+          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white disabled:opacity-50"
         >
           <Plus className="w-4 h-4 mr-1" />
           Nuevo grupo
@@ -314,7 +367,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
 
       {/* Dialogo crear grupo */}
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
           <DialogHeader>
             <DialogTitle>Crear nuevo grupo</DialogTitle>
           </DialogHeader>
@@ -346,10 +399,21 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
               onGradeChange={(v) => { setGroupGrade(v); setGroupSubjectId(NO_SUBJECT); }}
               onSubjectChange={setGroupSubjectId}
             />
+
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <Label className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-blue-500" />
+                Horario de clase
+              </Label>
+              <p className="text-xs text-slate-400">
+                Duelos y batallas solo se podrán hacer dentro de estas franjas. Mínimo 1 franja, máximo 4 horas semanales en total.
+              </p>
+              <ClassHoursEditor hours={groupHours} onChange={setGroupHours} />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowCreateDialog(false)}>Cancelar</Button>
-            <Button onClick={handleCreate} disabled={loading || !groupName.trim()}
+            <Button onClick={handleCreate} disabled={loading || !groupName.trim() || !hoursOk}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
               {loading ? 'Creando...' : 'Crear grupo'}
             </Button>
@@ -359,7 +423,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
 
       {/* Dialogo editar grupo */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
           <DialogHeader>
             <DialogTitle>Editar grupo</DialogTitle>
           </DialogHeader>
@@ -368,6 +432,12 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
               <Label>Nombre del grupo</Label>
               <Input value={groupName} onChange={(e) => setGroupName(e.target.value)} />
             </div>
+            {editingGroup?.group_code && (
+              <div className="flex items-center gap-2 text-xs bg-purple-50 text-purple-700 rounded-md px-3 py-2">
+                <Hash className="w-3.5 h-3.5" />
+                Código del grupo: <span className="font-mono font-bold">{editingGroup.group_code}</span>
+              </div>
+            )}
             <div className="space-y-2">
               <Label>Descripcion (opcional)</Label>
               <Input value={groupDescription} onChange={(e) => setGroupDescription(e.target.value)} />
@@ -383,10 +453,21 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
               onGradeChange={(v) => { setGroupGrade(v); setGroupSubjectId(NO_SUBJECT); }}
               onSubjectChange={setGroupSubjectId}
             />
+
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <Label className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-blue-500" />
+                Horario de clase
+              </Label>
+              <p className="text-xs text-slate-400">
+                Duelos y batallas solo se podrán hacer dentro de estas franjas. Mínimo 1 franja, máximo 4 horas semanales en total.
+              </p>
+              <ClassHoursEditor hours={groupHours} onChange={setGroupHours} />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowEditDialog(false)}>Cancelar</Button>
-            <Button onClick={handleEdit} disabled={loading || !groupName.trim()}
+            <Button onClick={handleEdit} disabled={loading || !groupName.trim() || !hoursOk}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
               {loading ? 'Guardando...' : 'Guardar cambios'}
             </Button>

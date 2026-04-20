@@ -13,6 +13,7 @@ import StudentStatsView from './StudentStatsView';
 import AssignmentsPanel from './AssignmentsPanel';
 import GroupChatPanel from './GroupChatPanel';
 import CoTeachersSection from './CoTeachersSection';
+import GroupMatchesPanel from './GroupMatchesPanel';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
 import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
@@ -273,6 +274,13 @@ const DashboardPage = () => {
                 groupName={selectedGroup?.name}
               />
             </motion.div>
+          )}
+
+          {/* Duelos y batallas del grupo (moderación) */}
+          {selectedGroupId && !viewingStudentId && (
+            <div className="mt-6">
+              <GroupMatchesPanel groupId={selectedGroupId} groupName={selectedGroup?.name} />
+            </div>
           )}
 
             </TabsContent>

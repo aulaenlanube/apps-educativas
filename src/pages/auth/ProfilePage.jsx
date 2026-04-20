@@ -62,7 +62,21 @@ const ProfilePage = () => {
   const [educationLevels, setEducationLevels] = useState(teacher?.education_levels || []);
   const [selectedEmoji, setSelectedEmoji] = useState(teacher?.avatar_emoji || '👨‍🏫');
   const [selectedColor, setSelectedColor] = useState(teacher?.avatar_color || 'from-blue-500 to-purple-500');
+  const [timezone, setTimezone] = useState(teacher?.timezone || 'Europe/Madrid');
   const [saving, setSaving] = useState(false);
+
+  const TIMEZONE_OPTIONS = (() => {
+    try {
+      const all = Intl.supportedValuesOf('timeZone');
+      return Array.isArray(all) && all.length ? all : null;
+    } catch {
+      return null;
+    }
+  })() || [
+    'Europe/Madrid', 'Atlantic/Canary', 'Europe/Lisbon', 'Europe/London',
+    'Europe/Paris', 'Europe/Berlin', 'America/Argentina/Buenos_Aires',
+    'America/Mexico_City', 'America/Bogota', 'America/Santiago', 'America/Lima',
+  ];
 
   const EDUCATION_LEVELS = [
     { id: 'infantil', label: 'Infantil' },
@@ -86,6 +100,7 @@ const ProfilePage = () => {
     website.trim() !== (teacher?.website || '') ||
     specialty.trim() !== (teacher?.specialty || '') ||
     centerName.trim() !== (teacher?.center_name || '') ||
+    timezone !== (teacher?.timezone || 'Europe/Madrid') ||
     JSON.stringify([...educationLevels].sort()) !== JSON.stringify([...(teacher?.education_levels || [])].sort());
 
   const xpInLevel = totalXp - xpForCurrentLevel;
@@ -112,6 +127,7 @@ const ProfilePage = () => {
         education_levels: educationLevels,
         avatar_emoji: selectedEmoji,
         avatar_color: selectedColor,
+        timezone,
       };
       const { error } = await updateTeacherProfile(updates);
 
@@ -391,6 +407,27 @@ const ProfilePage = () => {
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Zona horaria (afecta al horario de clase de tus grupos) */}
+            <div className="space-y-2">
+              <Label htmlFor="profile-timezone" className="flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-blue-500" />
+                Zona horaria
+              </Label>
+              <p className="text-xs text-slate-400">
+                Se usa para aplicar las horas de clase que configures en tus grupos.
+              </p>
+              <select
+                id="profile-timezone"
+                value={timezone}
+                onChange={(e) => setTimezone(e.target.value)}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                {TIMEZONE_OPTIONS.map(tz => (
+                  <option key={tz} value={tz}>{tz}</option>
+                ))}
+              </select>
             </div>
 
             {/* Datos no editables */}

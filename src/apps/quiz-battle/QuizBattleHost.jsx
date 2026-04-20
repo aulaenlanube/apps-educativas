@@ -26,6 +26,15 @@ const getSubjects = (level, grade) => {
   return Array.isArray(curso) ? curso : [];
 };
 
+// Heurística calendario escolar ES: sep–dic → 1ª, ene–mar → 2ª, abr–ago → 3ª.
+// El docente puede override en el selector.
+const guessCurrentTerm = () => {
+  const m = new Date().getMonth() + 1;
+  if (m >= 9 && m <= 12) return 1;
+  if (m >= 1 && m <= 3) return 2;
+  return 3;
+};
+
 export default function QuizBattleHost() {
   const { teacher } = useAuth();
   const navigate = useNavigate();
@@ -47,6 +56,8 @@ export default function QuizBattleHost() {
   const [battleDifficulty, setBattleDifficulty] = useState('experto');
   const [shuffleColors, setShuffleColors] = useState(false); // cada alumno ve colores distintos
   const [bgAnimMode, setBgAnimMode] = useState('complex'); // 'none' | 'simple' | 'complex'
+  // Evaluación a la que cuenta esta batalla (1|2|3|null). null => no suma a la nota.
+  const [battleTerm, setBattleTerm] = useState(() => guessCurrentTerm());
 
   const MAX_PLAYERS = 30;
 
@@ -194,6 +205,18 @@ export default function QuizBattleHost() {
     if (roomType === 'group' && !selectedGroupId) {
       toast({ title: 'Selecciona un grupo', variant: 'destructive' });
       return;
+    }
+    // Preflight: en modo grupo, validar que el grupo tenga horario de clase y estemos en franja
+    if (roomType === 'group' && selectedGroupId) {
+      const { data: runCheck } = await supabase.rpc('teacher_group_can_run_now', { p_group_id: selectedGroupId });
+      if (runCheck && !runCheck.allowed) {
+        toast({
+          variant: 'destructive',
+          title: !runCheck.has_hours ? 'Horario no configurado' : 'Fuera de horario',
+          description: runCheck.reason || 'No se puede lanzar la batalla ahora.',
+        });
+        return;
+      }
     }
     // Check quota
     if (quota && quota.remaining <= 0) {
@@ -486,6 +509,8 @@ export default function QuizBattleHost() {
         p_time_per_question: timeLimit,
         p_total_questions: questions.length,
         p_players: playersPayload,
+        p_term: battleTerm,
+        p_group_id: roomType === 'group' ? selectedGroupId : null,
       });
       if (data?.player_badges && typeof data.player_badges === 'object') {
         playerBadges = data.player_badges;
@@ -769,6 +794,31 @@ export default function QuizBattleHost() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Evaluación a la que suma la batalla (podio: 1º +0,25 · 2º +0,10 · 3º +0,05, cap +1 por evaluación) */}
+              <div className="qb-field">
+                <label>¿A qué evaluación cuenta?</label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem' }}>
+                  {[
+                    { id: 1,    label: '1ª ev.' },
+                    { id: 2,    label: '2ª ev.' },
+                    { id: 3,    label: '3ª ev.' },
+                    { id: null, label: 'No cuenta' },
+                  ].map(opt => (
+                    <button key={String(opt.id)} type="button"
+                      onClick={() => setBattleTerm(opt.id)}
+                      className={`qb-toggle-btn ${battleTerm === opt.id ? 'is-active' : ''}`}
+                      style={{ fontSize: '0.8rem', padding: '0.4rem 0.3rem' }}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+                <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.3rem', lineHeight: 1.3 }}>
+                  {battleTerm === null
+                    ? 'Esta batalla no afectará a la nota de los alumnos (solo XP e insignias).'
+                    : `El podio sumará extra a la ${battleTerm}ª evaluación. Máximo +1 por alumno y evaluación.`}
+                </p>
               </div>
 
               {/* Anti-copia: cada alumno ve colores distintos */}

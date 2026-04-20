@@ -122,6 +122,7 @@ export default function StudentStatsView({ studentId, onBack }) {
             {[1, 2, 3].map(t => {
               const tStats = gradeStats.terms?.find(x => x.term === t);
               const grade = tStats?.final_grade;
+              const battleBonus = Number(tStats?.battle_bonus) || 0;
               const gradeColor = grade == null ? 'text-slate-300' : grade >= 8 ? 'text-green-600' : grade >= 5 ? 'text-blue-600' : 'text-red-500';
               return (
                 <div key={t} className="rounded-xl border border-slate-100 bg-gradient-to-br from-pink-50 to-rose-50 p-3 text-center">
@@ -132,11 +133,17 @@ export default function StudentStatsView({ studentId, onBack }) {
                   <div className="text-[11px] text-slate-400 mt-0.5">
                     {tStats ? `${tStats.completed}/${tStats.total} aprobadas` : 'Sin tareas'}
                   </div>
+                  {battleBonus > 0 && (
+                    <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
+                      +{battleBonus.toFixed(2).replace('.', ',')} batallas
+                    </div>
+                  )}
                 </div>
               );
             })}
             {(() => {
               const g = gradeStats.final_grade;
+              const battleTotal = Number(gradeStats.battle_bonus_total) || 0;
               const gradeColor = g == null ? 'text-slate-300' : g >= 8 ? 'text-green-600' : g >= 5 ? 'text-blue-600' : 'text-red-500';
               return (
                 <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-100 to-blue-100 p-3 text-center shadow-sm">
@@ -147,6 +154,11 @@ export default function StudentStatsView({ studentId, onBack }) {
                   <div className="text-[11px] text-slate-500 mt-0.5">
                     {gradeStats.completed_assignments}/{gradeStats.total_assignments} aprobadas
                   </div>
+                  {battleTotal > 0 && (
+                    <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
+                      +{battleTotal.toFixed(2).replace('.', ',')} batallas
+                    </div>
+                  )}
                 </div>
               );
             })()}
