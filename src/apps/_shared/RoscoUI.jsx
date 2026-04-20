@@ -13,7 +13,9 @@ const RoscoUI = ({
     showExitConfirm, requestExit, cancelExit, confirmExit,
     loadStudyMaterial,
     onGameComplete,
-    onBackToDifficulty
+    onBackToDifficulty,
+    restartLabel,
+    hideExitButton,
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
@@ -429,7 +431,7 @@ const RoscoUI = ({
                             ))}
                         </div>
                     )}
-                    <button onClick={restartGame} className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">Nueva Partida</button>
+                    <button onClick={restartGame} className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">{restartLabel || 'Nueva Partida'}</button>
                 </div>
             </div>
         );
@@ -563,9 +565,11 @@ const RoscoUI = ({
                             </button>
                         )}
                     </div>
-                    <button onClick={requestExit} className="btn-exit-corner" title="Salir">
-                        <FaTimes />
-                    </button>
+                    {!hideExitButton && (
+                        <button onClick={requestExit} className="btn-exit-corner" title="Salir">
+                            <FaTimes />
+                        </button>
+                    )}
                 </div>
 
                 {/* Letra + tipo de pista */}

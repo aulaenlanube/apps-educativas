@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getRoscoData } from '@/services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
@@ -47,8 +47,9 @@ function buildViewFromSnapshot(snap) {
   };
 }
 
-export default function RoscoDuel({ onGameComplete }) {
+export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
   const { level, grade, subjectId } = useParams();
+  const navigate = useNavigate();
   const duel = useDuel();
   const { duel: duelInfo, me, rival, channel, reportResult, voidGame } = duel;
 
@@ -63,8 +64,14 @@ export default function RoscoDuel({ onGameComplete }) {
   hostApiRef.current = hostApi;
 
   const [remoteSnap, setRemoteSnap] = useState(null);
+  const remoteSnapRef = useRef(null);
+  remoteSnapRef.current = remoteSnap;
   const reportedRef = useRef(false);
   const startedRef = useRef(false);
+  const recoveryAttemptedRef = useRef(false);
+  const recoveryTimerRef = useRef(null);
+  const chanRef = useRef(channel);
+  chanRef.current = channel;
 
   // === Cargar datos del rosco ===
   useEffect(() => {
@@ -79,21 +86,40 @@ export default function RoscoDuel({ onGameComplete }) {
       .finally(() => setLoadingData(false));
   }, [duelInfo, level, grade, subjectId]);
 
-  // === HOST: arranca la partida automaticamente cuando tiene los datos ===
+  // === HOST: arranca la partida automaticamente — pero antes intenta
+  // recuperar estado previo del canal por si es un rejoin. ===
   useEffect(() => {
     if (!me?.isHost || !rawData || rawData.length === 0) return;
+    if (!channel?.isConnected) return;
     if (startedRef.current) return;
     if (hostApi.gameState !== 'config') return;
-    startedRef.current = true;
-    hostApi.startGame({
-      numPlayers: 2,
-      questionCount: DEFAULT_QUESTIONS,
-      useTimer: false,
-      timeLimit: 150,
-      player1: { name: me.name, icon: me.emoji },
-      player2: { name: rival.name, icon: rival.emoji },
-    });
-  }, [me?.isHost, rawData, hostApi.gameState, me?.name, me?.emoji, rival?.name, rival?.emoji, hostApi]);
+    if (recoveryAttemptedRef.current) return;
+    recoveryAttemptedRef.current = true;
+
+    channel.broadcast('request_state', { from: me.id });
+
+    recoveryTimerRef.current = setTimeout(() => {
+      if (startedRef.current) return;
+      const api = hostApiRef.current;
+      if (api.gameState !== 'config') return;
+      startedRef.current = true;
+      api.startGame({
+        numPlayers: 2,
+        questionCount: DEFAULT_QUESTIONS,
+        useTimer: false,
+        timeLimit: 150,
+        player1: { name: me.name, icon: me.emoji },
+        player2: { name: rival.name, icon: rival.emoji },
+      });
+    }, 1500);
+
+    return () => {
+      if (recoveryTimerRef.current) {
+        clearTimeout(recoveryTimerRef.current);
+        recoveryTimerRef.current = null;
+      }
+    };
+  }, [me?.isHost, rawData, hostApi.gameState, me?.name, me?.emoji, rival?.name, rival?.emoji, channel?.isConnected, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === HOST: difunde snapshot en cada cambio de estado ===
   useEffect(() => {
@@ -120,17 +146,39 @@ export default function RoscoDuel({ onGameComplete }) {
       if (action?.type === 'answer') api.checkAnswer(String(action.text || ''));
       else if (action?.type === 'pass') api.pasapalabra();
     });
-    channel.onBroadcast('duel_exit_requested', () => {
-      // Guest quiere salir → confirmamos como anulado
-      voidGame('guest_aborted');
+    // Recuperacion: si el host acaba de reconectar y no tiene partida en curso,
+    // adopta el snapshot que emita el guest.
+    channel.onBroadcast('rosco_state', (snap) => {
+      if (startedRef.current) return;
+      const api = hostApiRef.current;
+      if (api.gameState !== 'config') return;
+      if (api.importState && api.importState(snap)) {
+        startedRef.current = true;
+        if (recoveryTimerRef.current) {
+          clearTimeout(recoveryTimerRef.current);
+          recoveryTimerRef.current = null;
+        }
+      }
     });
-  }, [me?.isHost, channel?.isConnected, voidGame]); // eslint-disable-line react-hooks/exhaustive-deps
+    // Guest abandona → host gana
+    channel.onBroadcast('forfeit_request', () => {
+      if (reportedRef.current || !me?.id) return;
+      reportedRef.current = true;
+      reportResult(me.id);
+    });
+  }, [me?.isHost, channel?.isConnected, voidGame, reportResult, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === GUEST: escucha estado + pide estado inicial ===
   useEffect(() => {
     if (me?.isHost || !channel?.isConnected) return;
     channel.onBroadcast('rosco_state', (snap) => setRemoteSnap(snap));
     channel.onBroadcast('duel_voided', () => { /* lobby gestiona */ });
+    // El host puede reconectar y pedirnos el estado — le respondemos con el
+    // ultimo snapshot que tenemos.
+    channel.onBroadcast('request_state', () => {
+      const snap = remoteSnapRef.current;
+      if (snap) chanRef.current?.broadcast('rosco_state', snap);
+    });
     channel.broadcast('request_state', { from: me?.id });
   }, [me?.isHost, channel?.isConnected, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -148,15 +196,47 @@ export default function RoscoDuel({ onGameComplete }) {
     else voidGame('tie');
   }, [me?.isHost, hostApi.gameState, hostApi.players, me?.id, rival?.id, reportResult, voidGame]);
 
+  // === Registrar handler de abandono voluntario (cuenta como derrota) ===
+  const meRef = useRef(me); meRef.current = me;
+  const rivalRef = useRef(rival); rivalRef.current = rival;
+  const reportResultRef = useRef(reportResult); reportResultRef.current = reportResult;
+  const hostFinishedRef = useRef(false);
+  useEffect(() => { hostFinishedRef.current = hostApi.gameState === 'finished'; }, [hostApi.gameState]);
+
+  useEffect(() => {
+    if (!registerDuelExit) return;
+    const forfeit = async () => {
+      if (reportedRef.current || hostFinishedRef.current) return;
+      const m = meRef.current;
+      const rv = rivalRef.current;
+      const ch = chanRef.current;
+      if (!m || !rv) return;
+      if (m.isHost) {
+        reportedRef.current = true;
+        try { await reportResultRef.current?.(rv.id); } catch (_) { /* ignore */ }
+      } else {
+        ch?.broadcast('forfeit_request', { from: m.id });
+        await new Promise(r => setTimeout(r, 1200));
+      }
+    };
+    registerDuelExit(forfeit);
+    return () => registerDuelExit(null);
+  }, [registerDuelExit]);
+
   // === Construir API que se pasa a RoscoUI ===
   // Host: wrappers que solo permiten actuar cuando es TU turno (index 0).
   // Guest: acciones van al host por canal (solo si activeIndex === 1).
+  // El boton de salida del UI lo desactivamos en duelo — la salida va por
+  // la cabecera global (AppRunnerPage) que muestra un modal de confirmacion
+  // y ejecuta el forfeit.
   const api = useMemo(() => {
     const myIdx = me?.isHost ? 0 : 1;
+    const noExit = { showExitConfirm: false, requestExit: () => {}, cancelExit: () => {}, confirmExit: () => {} };
 
     if (me?.isHost) {
       return {
         ...hostApi,
+        ...noExit,
         checkAnswer: (text) => {
           if (hostApi.activePlayerIndex !== myIdx) return;
           hostApi.checkAnswer(text);
@@ -165,12 +245,8 @@ export default function RoscoDuel({ onGameComplete }) {
           if (hostApi.activePlayerIndex !== myIdx) return;
           hostApi.pasapalabra();
         },
-        // En duelo no hay "reiniciar" — al terminar se vuelve al lobby/panel.
-        restartGame: () => voidGame('host_aborted'),
-        // Exit → anular duelo
-        requestExit: () => hostApi.requestExit(),
-        cancelExit: () => hostApi.cancelExit(),
-        confirmExit: () => { hostApi.confirmExit(); voidGame('host_aborted'); },
+        // En duelo no hay "reiniciar" ni nueva partida.
+        restartGame: () => navigate('/mi-panel'),
       };
     }
 
@@ -178,6 +254,7 @@ export default function RoscoDuel({ onGameComplete }) {
     if (!view) return null;
     return {
       ...view,
+      ...noExit,
       checkAnswer: (text) => {
         if (view.activePlayerIndex !== myIdx) return;
         channel.broadcast('rosco_action', { type: 'answer', text });
@@ -186,14 +263,11 @@ export default function RoscoDuel({ onGameComplete }) {
         if (view.activePlayerIndex !== myIdx) return;
         channel.broadcast('rosco_action', { type: 'pass' });
       },
-      restartGame: () => {},
+      restartGame: () => navigate('/mi-panel'),
       startGame: () => {},
       setConfig: () => {},
-      requestExit: () => { channel.broadcast('duel_exit_requested', {}); },
-      cancelExit: () => {},
-      confirmExit: () => {},
     };
-  }, [me?.isHost, hostApi, remoteSnap, channel, voidGame]);
+  }, [me?.isHost, hostApi, remoteSnap, channel, navigate]);
 
   if (loadErr) {
     return (
@@ -211,5 +285,5 @@ export default function RoscoDuel({ onGameComplete }) {
     );
   }
 
-  return <RoscoUI {...api} onGameComplete={onGameComplete} />;
+  return <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton />;
 }

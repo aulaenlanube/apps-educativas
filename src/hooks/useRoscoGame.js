@@ -314,6 +314,21 @@ export const useRoscoGame = (rawData) => {
         isProcessing.current = false;
     };
 
+    // Cargar un estado externo (p.ej. recuperacion en modo duelo tras rejoin).
+    // Sustituye todos los campos relevantes con los del snapshot.
+    const importState = useCallback((snap) => {
+        if (!snap || !Array.isArray(snap.players) || snap.players.length === 0) return false;
+        if (snap.config) setConfig(snap.config);
+        setPlayers(snap.players);
+        setActivePlayerIndex(typeof snap.activePlayerIndex === 'number' ? snap.activePlayerIndex : 0);
+        setFeedback(snap.feedback || null);
+        setAnimState('none');
+        setShowExitConfirm(false);
+        isProcessing.current = false;
+        setGameState(snap.gameState && snap.gameState !== 'config' ? snap.gameState : 'playing');
+        return true;
+    }, []);
+
     const activePlayer = players[activePlayerIndex];
     const currentQuestion = activePlayer ? activePlayer.questions[activePlayer.currentParams.index] : null;
 
@@ -322,6 +337,7 @@ export const useRoscoGame = (rawData) => {
         checkAnswer, pasapalabra, restartGame, startGame, config, setConfig,
         maxQuestions: rawData ? Object.keys(rawData.reduce((acc,v)=>{acc[v.letra]=1;return acc},{})).length : 26,
         animState,
-        showExitConfirm, requestExit, cancelExit, confirmExit
+        showExitConfirm, requestExit, cancelExit, confirmExit,
+        importState,
     };
 };
