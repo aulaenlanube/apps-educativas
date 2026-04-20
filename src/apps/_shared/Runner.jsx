@@ -266,12 +266,17 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     setGameState('gameover');
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
     const wordsCollected = collectedWordsRef.current?.length || 0;
+    // Objetivo fijo = 10 palabras para nota 10. Ambos modos usan el mismo objetivo;
+    // la diferencia es que 'test' cuenta para tareas (modo examen). El score sigue
+    // creciendo sin tope para el ranking (no paras hasta morir).
+    const EXAM_TARGET = 10;
+    const isExam = !showHintsRef.current;
     onGameComplete?.({
-      mode: 'practice',
+      mode: isExam ? 'test' : 'practice',
       score: score,
       maxScore: Math.max(score, 1000),
       correctAnswers: wordsCollected,
-      totalQuestions: wordsCollected || 1,
+      totalQuestions: EXAM_TARGET,
     });
   };
 

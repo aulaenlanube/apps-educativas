@@ -145,9 +145,10 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const applyAction = useCallback((action) => {
     setRound(prev => {
       if (!prev || prev.roundWinner !== undefined) return prev;
-      // Turno obligatorio
       const mySide = action.by === 'host' ? 'host' : 'guest';
-      if (prev.turn !== mySide) return prev;
+      // Turno obligatorio SOLO para letras. Resolver la palabra se permite
+      // a cualquiera en cualquier momento (clásico ahorcado 1v1).
+      if (action.type === 'letter' && prev.turn !== mySide) return prev;
 
       const next = structuredClone(prev);
 
@@ -318,7 +319,8 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   function sendAction(action) {
     if (!round || round.roundWinner !== undefined || finished) return;
     const mySide = me.isHost ? 'host' : 'guest';
-    if (round.turn !== mySide) return; // no es mi turno
+    // Para 'letter' exigimos turno; 'solve' lo puede hacer cualquiera.
+    if (action.type === 'letter' && round.turn !== mySide) return;
     if (me.isHost) applyAction({ ...action, by: 'host' });
     else channel.broadcast('action', action);
   }
@@ -359,12 +361,6 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           />
         </div>
 
-        {/* Pista */}
-        <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 mb-3">
-          <p className="text-[10px] uppercase font-bold text-amber-700 tracking-wide">Pista · letra {round.letter}</p>
-          <p className="text-sm text-amber-900">{round.hint}</p>
-        </div>
-
         {/* Palabra */}
         <div className="flex flex-wrap justify-center gap-1 mb-4">
           {round.answer.split('').map((ch, i) => (
@@ -395,7 +391,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
             ? 'Ronda terminada'
             : myTurn
               ? '¡Es tu turno! Elige una letra o resuelve la palabra'
-              : `Turno de ${rival.hidden ? 'tu rival' : rival.name}…`}
+              : `Turno de ${rival.hidden ? 'tu rival' : rival.name}… (puedes resolver si lo sabes)`}
         </div>
 
         {/* Letras */}
@@ -423,7 +419,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           })}
         </div>
 
-        {/* Resolver entera */}
+        {/* Resolver entera — disponible para cualquiera en cualquier momento */}
         <form
           onSubmit={(e) => { e.preventDefault(); if (guess.trim()) sendAction({ type: 'solve', word: guess }); setGuess(''); }}
           className="flex gap-2"
@@ -431,13 +427,13 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           <input
             value={guess}
             onChange={e => setGuess(e.target.value)}
-            placeholder={myTurn ? 'Resuelve la palabra entera…' : 'Espera tu turno'}
-            disabled={round.roundWinner !== undefined || finished || !myTurn}
+            placeholder="Resuelve la palabra entera…"
+            disabled={round.roundWinner !== undefined || finished}
             className="flex-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-violet-400 outline-none disabled:bg-slate-50"
           />
           <button
             type="submit"
-            disabled={!guess.trim() || round.roundWinner !== undefined || finished || !myTurn}
+            disabled={!guess.trim() || round.roundWinner !== undefined || finished}
             className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold disabled:opacity-40"
           >Resolver</button>
         </form>

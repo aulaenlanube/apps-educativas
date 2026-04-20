@@ -294,44 +294,43 @@ const icons = {
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="ai-run-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FFFBEB" />
-          <stop offset="1" stopColor="#FEF3C7" />
+          <stop stopColor="#1e1b4b" />
+          <stop offset="1" stopColor="#312e81" />
         </linearGradient>
-        <linearGradient id="ai-run-char" x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor="#F59E0B" />
-          <stop offset="1" stopColor="#D97706" />
-        </linearGradient>
-        <linearGradient id="ai-run-ground" x1="0" y1="0" x2="48" y2="0" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FB923C" />
-          <stop offset="1" stopColor="#F97316" />
+        <linearGradient id="ai-run-cube" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#FDE047" />
+          <stop offset="1" stopColor="#F59E0B" />
         </linearGradient>
       </defs>
       <rect width="48" height="48" rx="12" fill="url(#ai-run-bg)" />
-      {/* Ground */}
-      <rect x="0" y="38" width="48" height="10" rx="0" fill="url(#ai-run-ground)" opacity="0.3" />
-      <line x1="4" y1="38" x2="44" y2="38" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Obstacle */}
-      <rect x="32" y="30" width="5" height="8" rx="1" fill="#DC2626" opacity="0.7" />
-      <rect x="32" y="30" width="5" height="1" rx="0.5" fill="white" opacity="0.2" />
-      {/* Running character - head */}
-      <g style={{ animation: 'ai-bounce 2s ease-in-out infinite' }}>
-      <circle cx="16" cy="16" r="4" fill="url(#ai-run-char)" />
-      <circle cx="16" cy="16" r="4" fill="white" opacity="0.15" />
-      {/* Body */}
-      <line x1="16" y1="20" x2="16" y2="28" stroke="#D97706" strokeWidth="2" strokeLinecap="round" />
-      {/* Arms - running pose */}
-      <line x1="16" y1="23" x2="12" y2="20" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="16" y1="23" x2="20" y2="26" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Legs - running pose, jumping */}
-      <line x1="16" y1="28" x2="12" y2="33" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="16" y1="28" x2="20" y2="33" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Grid lines */}
+      {[1,2,3,4,5,6].map(i => (
+        <g key={i}>
+          <line x1={i * 7} y1="4" x2={i * 7} y2="38" stroke="#4f46e5" strokeWidth="0.5" opacity="0.25" />
+          <line x1="4" y1={4 + i * 5.5} x2="44" y2={4 + i * 5.5} stroke="#4f46e5" strokeWidth="0.5" opacity="0.25" />
+        </g>
+      ))}
+      {/* Star (invincibility pickup) */}
+      <g style={{ animation: 'ai-float 3s ease-in-out infinite' }}>
+        <path d="M37 9 L38.2 11.6 L41 12 L39 14 L39.4 16.8 L37 15.4 L34.6 16.8 L35 14 L33 12 L35.8 11.6 Z"
+              fill="#FDE047" stroke="#ca8a04" strokeWidth="0.5" />
       </g>
-      {/* Motion lines */}
-      <line x1="6" y1="18" x2="9" y2="18" stroke="#FBBF24" strokeWidth="1" strokeLinecap="round" opacity="0.6" style={{ animation: 'ai-float 3s ease-in-out infinite' }} />
-      <line x1="5" y1="22" x2="8" y2="22" stroke="#FBBF24" strokeWidth="1" strokeLinecap="round" opacity="0.4" style={{ animation: 'ai-float 3s ease-in-out 0.3s infinite' }} />
-      <line x1="7" y1="26" x2="9" y2="26" stroke="#FBBF24" strokeWidth="1" strokeLinecap="round" opacity="0.3" style={{ animation: 'ai-float 3s ease-in-out 0.6s infinite' }} />
+      {/* Ground */}
+      <rect x="0" y="38" width="48" height="10" fill="#000" />
+      <line x1="0" y1="38" x2="48" y2="38" stroke="#22d3ee" strokeWidth="1.5" />
+      {/* Spike */}
+      <path d="M30 38 L34.5 29 L39 38 Z" fill="#ef4444" stroke="#991b1b" strokeWidth="0.6" strokeLinejoin="round" />
+      {/* Cube character (jumping, slightly rotated) */}
+      <g style={{ animation: 'ai-bounce 2s ease-in-out infinite' }} transform="rotate(-15 18 28)">
+        <rect x="12" y="22" width="12" height="12" rx="1.2" fill="url(#ai-run-cube)" stroke="#000" strokeWidth="1.2" />
+        {/* Eyes */}
+        <rect x="14.3" y="24.3" width="2.5" height="2.5" fill="#000" stroke="#fff" strokeWidth="0.4" />
+        <rect x="19.2" y="24.3" width="2.5" height="2.5" fill="#000" stroke="#fff" strokeWidth="0.4" />
+        {/* Mouth */}
+        <rect x="15.5" y="30.2" width="5" height="1" rx="0.5" fill="#000" opacity="0.55" />
+      </g>
       {/* Jump arc */}
-      <path d="M18 34 Q24 24 30 34" stroke="#F59E0B" strokeWidth="1" strokeDasharray="2 2" opacity="0.4" fill="none" />
+      <path d="M14 37 Q22 22 32 37" stroke="#FDE047" strokeWidth="0.8" strokeDasharray="1.5 2" opacity="0.55" fill="none" />
     </svg>
   ),
 
