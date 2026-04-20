@@ -541,7 +541,7 @@ export default function StudentDashboard() {
                   )}
                 </div>
               </div>
-              <div className="ml-4 flex items-center gap-2 shrink-0">
+              <div className="ml-auto flex items-center gap-2 shrink-0">
                 {exploreAppsPath && (
                   <button
                     onClick={() => navigate(exploreAppsPath)}
@@ -569,7 +569,7 @@ export default function StudentDashboard() {
                   Duelo
                 </button>
               </div>
-              <div className="ml-auto hidden sm:flex items-center gap-6 text-center shrink-0">
+              <div className="hidden sm:flex items-center text-center shrink-0">
                 <div>
                   <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>
                   <p className="text-xs text-slate-500">Nivel</p>
