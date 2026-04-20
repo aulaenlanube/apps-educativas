@@ -104,6 +104,12 @@ export default function SnakeDuel({ onGameComplete }) {
   const awardedRef = useRef(null);
   const levelupTimerRef = useRef(null);
 
+  // Refs para que los handlers registrados una sola vez accedan al valor
+  // actual (evita acumular listeners por cambio de referencia de canal).
+  const roundRef = useRef(round);  roundRef.current = round;
+  const scoreRef = useRef(score);  scoreRef.current = score;
+  const chanRef  = useRef(channel); chanRef.current = channel;
+
   // === Cargar datos ===
   useEffect(() => {
     if (!duelInfo) return;
@@ -129,9 +135,9 @@ export default function SnakeDuel({ onGameComplete }) {
     channel.broadcast('score', sc);
     channel.broadcast('round', r);
     channel.broadcast('countdown', { value: 3 });
-  }, [me?.isHost, data, categories, round, rival?.id, me?.id, channel]);
+  }, [me?.isHost, data, categories, round, rival?.id, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // === Guest: listeners ===
+  // === Guest: listeners (una sola vez por conexion) ===
   useEffect(() => {
     if (!channel?.isConnected || me?.isHost) return;
     channel.onBroadcast('score', s => setScore(s));
@@ -139,20 +145,21 @@ export default function SnakeDuel({ onGameComplete }) {
     channel.onBroadcast('countdown', ({ value }) => setCountdown(value));
     channel.onBroadcast('levelup', ({ topic }) => setNextTopic(topic));
     channel.onBroadcast('game_end', ({ winner_id }) => { setWinnerId(winner_id); setFinished(true); });
-  }, [channel, me?.isHost]);
+  }, [channel?.isConnected, me?.isHost]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === Guest: pide estado ===
   useEffect(() => {
     if (!channel?.isConnected || me?.isHost) return;
     channel.broadcast('request_state', { from: me?.id });
-  }, [channel?.isConnected, me?.isHost, me?.id, channel]);
+  }, [channel?.isConnected, me?.isHost, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // === Host: responde peticiones + input del guest ===
+  // === Host: responde peticiones + input del guest (una sola vez por conexion) ===
   useEffect(() => {
     if (!me?.isHost || !channel?.isConnected) return;
     channel.onBroadcast('request_state', () => {
-      if (score) channel.broadcast('score', score);
-      if (round) channel.broadcast('round', round);
+      const ch = chanRef.current;
+      if (scoreRef.current) ch.broadcast('score', scoreRef.current);
+      if (roundRef.current) ch.broadcast('round', roundRef.current);
     });
     channel.onBroadcast('input', ({ player_id, dir }) => {
       setRound(prev => {
@@ -165,7 +172,7 @@ export default function SnakeDuel({ onGameComplete }) {
         return next;
       });
     });
-  }, [me?.isHost, channel, round, score]);
+  }, [me?.isHost, channel?.isConnected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === Countdown ===
   useEffect(() => {
@@ -176,7 +183,7 @@ export default function SnakeDuel({ onGameComplete }) {
       channel.broadcast('countdown', { value: n });
     }, 800);
     return () => clearTimeout(t);
-  }, [me?.isHost, countdown, channel]);
+  }, [me?.isHost, countdown]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === Host: TICK loop ===
   useEffect(() => {
@@ -341,7 +348,7 @@ export default function SnakeDuel({ onGameComplete }) {
       });
     }, 1600);
     return () => clearTimeout(t);
-  }, [me?.isHost, round?.over, round, rival?.id, me?.id, channel]);
+  }, [me?.isHost, round?.over, round, rival?.id, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === Host: reportar resultado final ===
   useEffect(() => {
@@ -367,7 +374,7 @@ export default function SnakeDuel({ onGameComplete }) {
     } else {
       channel.broadcast('input', { player_id: me.id, dir });
     }
-  }, [me, round, countdown, finished, nextTopic, channel]);
+  }, [me, round, countdown, finished, nextTopic]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const onKey = (e) => {

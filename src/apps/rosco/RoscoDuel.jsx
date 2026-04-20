@@ -124,7 +124,7 @@ export default function RoscoDuel({ onGameComplete }) {
       // Guest quiere salir → confirmamos como anulado
       voidGame('guest_aborted');
     });
-  }, [me?.isHost, channel?.isConnected, channel, voidGame]);
+  }, [me?.isHost, channel?.isConnected, voidGame]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === GUEST: escucha estado + pide estado inicial ===
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function RoscoDuel({ onGameComplete }) {
     channel.onBroadcast('rosco_state', (snap) => setRemoteSnap(snap));
     channel.onBroadcast('duel_voided', () => { /* lobby gestiona */ });
     channel.broadcast('request_state', { from: me?.id });
-  }, [me?.isHost, channel?.isConnected, me?.id, channel]);
+  }, [me?.isHost, channel?.isConnected, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // === HOST: al terminar, reportar ganador ===
   useEffect(() => {

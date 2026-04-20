@@ -76,6 +76,12 @@ export default function AhorcadoDuel({ onGameComplete }) {
   const lastSettledRef = useRef(null);
   const nextFirstTurnRef = useRef('host');
 
+  // Refs para que los handlers registrados una sola vez accedan siempre a
+  // los valores actuales (evita cerrar sobre estado obsoleto).
+  const roundRef = useRef(round);  roundRef.current = round;
+  const scoreRef = useRef(score);  scoreRef.current = score;
+  const chanRef  = useRef(channel); chanRef.current = channel;
+
   // Cargar pool
   useEffect(() => {
     if (!duelInfo) return;
@@ -100,13 +106,13 @@ export default function AhorcadoDuel({ onGameComplete }) {
     channel.broadcast('round', r);
   }, [me?.isHost, pool, round, rival?.id, me?.id, channel]);
 
-  // Guest: listeners
+  // Guest: listeners (registrar UNA sola vez por conexion)
   useEffect(() => {
     if (!channel?.isConnected || me?.isHost) return;
     channel.onBroadcast('score', s => setScore(s));
     channel.onBroadcast('round', r => setRound(r));
     channel.onBroadcast('game_end', ({ winner_id }) => { setWinnerId(winner_id); setFinished(true); });
-  }, [channel, me?.isHost]);
+  }, [channel?.isConnected, me?.isHost]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Host: responde peticiones de estado + acciones del guest
   const applyAction = useCallback((action) => {
@@ -168,23 +174,24 @@ export default function AhorcadoDuel({ onGameComplete }) {
   useEffect(() => {
     if (!me?.isHost || !channel?.isConnected) return;
     channel.onBroadcast('request_state', () => {
-      if (score) channel.broadcast('score', score);
-      if (round) channel.broadcast('round', round);
+      const ch = chanRef.current;
+      if (scoreRef.current) ch.broadcast('score', scoreRef.current);
+      if (roundRef.current) ch.broadcast('round', roundRef.current);
     });
     channel.onBroadcast('action', payload => applyAction({ ...payload, by: 'guest' }));
-  }, [me?.isHost, channel, score, round, applyAction]);
+  }, [me?.isHost, channel?.isConnected, applyAction]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Guest: pedir estado al entrar
+  // Guest: pedir estado al entrar (una sola vez por conexion)
   useEffect(() => {
     if (!channel?.isConnected || me?.isHost) return;
     channel.broadcast('request_state', { from: me?.id });
-  }, [channel?.isConnected, me?.isHost, me?.id, channel]);
+  }, [channel?.isConnected, me?.isHost, me?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Host: al cambiar ronda, difundir
   useEffect(() => {
     if (!me?.isHost || !round) return;
-    channel.broadcast('round', round);
-  }, [me?.isHost, round, channel]);
+    chanRef.current?.broadcast('round', round);
+  }, [me?.isHost, round]);
 
   // Host: fin de ronda → sumar punto + siguiente ronda o fin de duelo
   useEffect(() => {
