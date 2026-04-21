@@ -17,6 +17,7 @@ import GroupMatchesPanel from './GroupMatchesPanel';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
 import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
+import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
 
 const DashboardPage = () => {
   const { teacher } = useAuth();
@@ -136,6 +137,10 @@ const DashboardPage = () => {
               </div>
             </div>
           </motion.div>
+
+          <div className="mb-6">
+            <OposicionesIAPromo source="dashboard" />
+          </div>
 
           <Tabs defaultValue="grupos" className="w-full">
             <TabsList className="grid w-full grid-cols-4 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6">

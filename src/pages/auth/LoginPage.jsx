@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Header from '@/components/layout/Header';
+import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
 import { isLocked, getLockRemainingMs, registerFailedAttempt, clearAttempts, LOGIN_MAX_ATTEMPTS } from '@/lib/authThrottle';
 
 const LoginPage = () => {
@@ -63,6 +64,9 @@ const LoginPage = () => {
                   navigate={navigate}
                   toast={toast}
                 />
+                <div className="mt-5">
+                  <OposicionesIAPromo source="login-teacher" />
+                </div>
               </TabsContent>
 
               <TabsContent value="student">

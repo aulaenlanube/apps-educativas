@@ -4,6 +4,7 @@ import { Instagram, Youtube, Linkedin, Cookie } from 'lucide-react';
 import IconXSocial from '../icons/IconXSocial';
 import { Link, useNavigate } from 'react-router-dom';
 import MascotLogo from '../ui/MascotLogo';
+import OposicionesIAPromo from '../ads/OposicionesIAPromo';
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -41,6 +42,9 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-gray-700 pt-6 space-y-3">
+                    <div className="flex justify-center">
+                        <OposicionesIAPromo variant="inline" source="footer" className="text-sm" />
+                    </div>
                     <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
                         <Link to="/aviso-legal" className="text-gray-300 hover:text-white hover:underline">
                             Aviso legal
