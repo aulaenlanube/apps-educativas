@@ -180,6 +180,7 @@ window.fetch = function(...args) {
 
 const addTransformIndexHtml = {
 	name: 'add-transform-index-html',
+	apply: 'serve',
 	transformIndexHtml(html) {
 		return {
 			html,
