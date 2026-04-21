@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, X, EyeOff, Users, Gamepad2, Target } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,6 @@ export default function DuelCreateModal({ open, onClose }) {
   const [opponents, setOpponents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
-  const [filter, setFilter] = useState('');
   const [opponentId, setOpponentId] = useState(null);
   const [appId, setAppId] = useState(null);
   const [stake, setStake] = useState(0.1);
@@ -37,15 +36,9 @@ export default function DuelCreateModal({ open, onClose }) {
   useEffect(() => {
     if (!open) {
       setOpponentId(null); setAppId(null); setStake(0.1);
-      setIsHidden(false); setFilter(''); setErr(null);
+      setIsHidden(false); setErr(null);
     }
   }, [open]);
-
-  const filtered = useMemo(() => {
-    const q = filter.trim().toLowerCase();
-    if (!q) return opponents;
-    return opponents.filter(o => (o.name || '').toLowerCase().includes(q));
-  }, [opponents, filter]);
 
   const canSubmit = opponentId && appId && stake && !submitting;
 
@@ -111,23 +104,15 @@ export default function DuelCreateModal({ open, onClose }) {
                   <Users className="w-4 h-4 text-violet-600" />
                   <h3 className="text-sm font-bold text-slate-800">Elige a tu rival</h3>
                 </div>
-                <input
-                  value={filter}
-                  onChange={e => setFilter(e.target.value)}
-                  placeholder="Buscar por nombre…"
-                  className="w-full px-3 py-2 mb-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-400"
-                />
                 {loading ? (
                   <div className="text-sm text-slate-400">Cargando compañeros…</div>
-                ) : filtered.length === 0 ? (
+                ) : opponents.length === 0 ? (
                   <div className="text-sm text-slate-400">
-                    {opponents.length === 0
-                      ? 'No hay compañeros disponibles en tus grupos.'
-                      : 'Ningun compañero coincide con la busqueda.'}
+                    No hay compañeros disponibles en tu grupo.
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-52 overflow-y-auto pr-1">
-                    {filtered.map(o => (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-72 overflow-y-auto pr-1">
+                    {opponents.map(o => (
                       <button
                         key={o.id}
                         type="button"
@@ -141,9 +126,7 @@ export default function DuelCreateModal({ open, onClose }) {
                         <span className="text-2xl shrink-0">{o.emoji || '🎓'}</span>
                         <div className="min-w-0">
                           <p className="text-sm font-semibold text-slate-800 truncate">{o.name}</p>
-                          <p className="text-[10px] text-slate-400 truncate">
-                            {o.same_group ? 'Tu grupo' : o.group_name}
-                          </p>
+                          <p className="text-[10px] text-slate-400 truncate">{o.group_name}</p>
                         </div>
                       </button>
                     ))}

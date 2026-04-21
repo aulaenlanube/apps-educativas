@@ -195,13 +195,15 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           }
           <div>
             <h2 className="text-lg font-bold text-gray-800">Alumnos de {groupName}</h2>
-            <p className="text-sm text-gray-500">{students.length} alumno{students.length !== 1 ? 's' : ''}</p>
+            <p className="text-sm text-gray-500">{students.length}/30 alumno{students.length !== 1 ? 's' : ''}</p>
           </div>
         </button>
         <Button
           size="sm"
           onClick={() => { setBulkUsernames(''); setBulkResult(null); setShowBulkDialog(true); }}
-          className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white"
+          disabled={students.length >= 30}
+          title={students.length >= 30 ? 'Has alcanzado el máximo de 30 alumnos' : ''}
+          className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white disabled:opacity-50"
         >
           <Plus className="w-4 h-4 mr-1" />
           Anadir alumnos
