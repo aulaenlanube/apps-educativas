@@ -20,7 +20,7 @@ const WORD_SPEED_MAX_PXS = 144;  // antes 2.4 px/frame · 60
 const GAME_DURATION_MS = 60000;
 const BASE_FIRE_MS = 260;
 const BASE_SPAWN_MS = 650;
-const FLOOR_Y = ARENA_H - 70;
+const FLOOR_Y = ARENA_H - 30;
 
 const POWERS = [
   { id: 'rapid',    label: 'Disparo rápido', color: '#22d3ee', icon: '⚡', duration: 6000 },
@@ -502,238 +502,242 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
         )}
       </div>
 
-      <div
-        ref={arenaRef}
-        className="np-arena"
-        style={{ aspectRatio: `${ARENA_W} / ${ARENA_H}` }}
-        onMouseMove={onPointerMove}
-        onMouseDown={onPointerDown}
-        onMouseUp={onPointerUp}
-        onMouseLeave={onPointerUp}
-        onTouchMove={onPointerMove}
-        onTouchStart={onPointerDown}
-        onTouchEnd={onPointerUp}
-      >
-        <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H }}>
-          {/* estrellas decorativas */}
-          <div className="np-stars" />
-          <div className="np-floor" style={{ top: FLOOR_Y }} />
+      {/* Menú inicial: fuera del arena para que respire */}
+      {phase === 'menu' && (
+        <div className="np-menu-wrap">
+          <div className="np-panel np-panel-menu">
+            <header className="np-menu-header">
+              <h2 className="np-title">🚀 NAVE PALABRAS</h2>
+              <p className="np-sub-compact">
+                60s · Dispara solo a la <b>categoría objetivo</b> · Fallar reduce tu cadencia (se recupera con 5 aciertos).
+              </p>
+            </header>
 
-          {/* Flash + texto de fallo */}
-          <AnimatePresence>
-            {missFlashKey > 0 && (
-              <motion.div
-                key={missFlashKey}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.75, 0] }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.55, times: [0, 0.2, 1] }}
-                className="np-miss-flash"
-                onAnimationComplete={() => { /* noop */ }}
-              />
-            )}
-            {missFlashKey > 0 && (
-              <motion.div
-                key={`txt-${missFlashKey}`}
-                initial={{ opacity: 0, scale: 0.6, y: 20 }}
-                animate={{ opacity: 1, scale: 1.1, y: 0 }}
-                exit={{ opacity: 0, scale: 1.4, y: -30 }}
-                transition={{ duration: 0.7 }}
-                className="np-miss-text">
-                ¡FALLO!
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* palabras */}
-          {wordsRef.current.map(w => {
-            const hintsOn = modeRef.current !== 'exam';
-            const cls = w.special
-              ? 'np-power'
-              : (hintsOn && w.category === targetCat ? 'np-target-word' : 'np-noise');
-            return (
-              <div key={w.id} className={`np-word ${cls}`}
-                style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
-                {w.text}
+            <section className="np-menu-section">
+              <div className="np-section-label">Tu nave</div>
+              <div className="np-ship-grid">
+                {SHIPS.map(s => (
+                  <button key={s.id}
+                    type="button"
+                    onClick={() => setShipId(s.id)}
+                    className={`np-ship-card ${shipId === s.id ? 'np-ship-card-active' : ''}`}
+                    style={{ borderColor: shipId === s.id ? s.color : undefined }}
+                    title={s.name}>
+                    <ShipPreview design={s} />
+                    <span className="np-ship-name" style={{ color: shipId === s.id ? s.color : undefined }}>
+                      {s.name}
+                    </span>
+                  </button>
+                ))}
               </div>
-            );
-          })}
+            </section>
 
-          {/* proyectiles */}
-          {projsRef.current.map(p => (
-            <div key={p.id} className="np-proj" style={{ left: p.x, top: p.y, width: PROJ_W, height: PROJ_H }} />
-          ))}
+            <section className="np-menu-section">
+              <div className="np-section-label">Objetivo</div>
+              <div className="np-cat-chooser">
+                <div className="np-cat-current">{formatName(targetCat) || 'Cargando…'}</div>
+                <button className="np-cat-btn" onClick={changeCategory} title="Cambiar categoría">
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button className="np-cat-btn" onClick={() => setShowHelp(true)} title="Ver palabras válidas">
+                  <BookOpen className="w-4 h-4" />
+                </button>
+              </div>
+            </section>
 
-          {/* nave */}
-          {phase === 'playing' && (
-            <Ship x={shipXRef.current} y={FLOOR_Y - SHIP_H} rapid={!!powersRef.current.rapid} shipId={shipId} />
-          )}
+            <section className="np-menu-section">
+              <div className="np-section-label">Dificultad</div>
+              <div className="np-mode-grid">
+                {MODES.map(m => (
+                  <button key={m.id}
+                    type="button"
+                    onClick={() => setMode(m.id)}
+                    className={`np-mode-card ${mode === m.id ? 'np-mode-card-active' : ''}`}
+                    style={{ borderColor: mode === m.id ? m.color : undefined }}>
+                    <span className="np-mode-icon">{m.icon}</span>
+                    <span className="np-mode-label" style={{ color: mode === m.id ? m.color : undefined }}>
+                      {m.label}
+                    </span>
+                    <span className="np-mode-desc">{m.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </section>
 
-          {/* power badges */}
-          <div className="np-powers">
-            {Object.keys(activePowers).map(id => {
-              const p = POWERS.find(pp => pp.id === id);
-              if (!p) return null;
-              const remain = Math.max(0, Math.ceil((activePowers[id] - performance.now()) / 1000));
+            {loadError && <p className="np-err">No se encontraron datos. Prueba otra asignatura.</p>}
+            <Button disabled={!targetCat || loadError} onClick={startGame} className="np-play-btn">
+              <Play className="w-5 h-5 mr-2" /> JUGAR
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Arena de juego: solo durante 'playing' */}
+      {phase === 'playing' && (
+        <div
+          ref={arenaRef}
+          className="np-arena"
+          style={{ aspectRatio: `${ARENA_W} / ${ARENA_H}` }}
+          onMouseMove={onPointerMove}
+          onMouseDown={onPointerDown}
+          onMouseUp={onPointerUp}
+          onMouseLeave={onPointerUp}
+          onTouchMove={onPointerMove}
+          onTouchStart={onPointerDown}
+          onTouchEnd={onPointerUp}
+        >
+          <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H }}>
+            <div className="np-stars" />
+            <div className="np-floor" style={{ top: FLOOR_Y }} />
+
+            <AnimatePresence>
+              {missFlashKey > 0 && (
+                <motion.div
+                  key={missFlashKey}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.75, 0] }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.55, times: [0, 0.2, 1] }}
+                  className="np-miss-flash"
+                />
+              )}
+              {missFlashKey > 0 && (
+                <motion.div
+                  key={`txt-${missFlashKey}`}
+                  initial={{ opacity: 0, scale: 0.6, y: 20 }}
+                  animate={{ opacity: 1, scale: 1.1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.4, y: -30 }}
+                  transition={{ duration: 0.7 }}
+                  className="np-miss-text">
+                  ¡FALLO!
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {wordsRef.current.map(w => {
+              const hintsOn = modeRef.current !== 'exam';
+              const cls = w.special
+                ? 'np-power'
+                : (hintsOn && w.category === targetCat ? 'np-target-word' : 'np-noise');
               return (
-                <span key={id} className="np-pow-badge" style={{ background: p.color }}>
-                  {p.icon} {p.label} · {remain}s
-                </span>
+                <div key={w.id} className={`np-word ${cls}`}
+                  style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
+                  {w.text}
+                </div>
               );
             })}
+
+            {projsRef.current.map(p => (
+              <div key={p.id} className="np-proj" style={{ left: p.x, top: p.y, width: PROJ_W, height: PROJ_H }} />
+            ))}
+
+            <Ship x={shipXRef.current} y={FLOOR_Y - SHIP_H} rapid={!!powersRef.current.rapid} shipId={shipId} />
+
+            <div className="np-powers">
+              {Object.keys(activePowers).map(id => {
+                const p = POWERS.find(pp => pp.id === id);
+                if (!p) return null;
+                const remain = Math.max(0, Math.ceil((activePowers[id] - performance.now()) / 1000));
+                return (
+                  <span key={id} className="np-pow-badge" style={{ background: p.color }}>
+                    {p.icon} {p.label} · {remain}s
+                  </span>
+                );
+              })}
+            </div>
           </div>
+        </div>
+      )}
 
-          {/* menú inicial */}
-          {phase === 'menu' && (
-            <div className="np-overlay">
-              <div className="np-panel np-panel-menu">
-                <h2 className="np-title">🚀 NAVE PALABRAS</h2>
-                <p className="np-sub-compact">
-                  60s · Dispara solo a la <b>categoría objetivo</b> · Fallar reduce tu cadencia (se recupera con 5 aciertos) · Velocidad de nave igual para todos
-                </p>
+      {/* Pantalla de fin de partida: fuera del arena */}
+      {phase === 'over' && (() => {
+        const notaNum = Math.min(10, hits);
+        const notaColor = notaNum >= 8 ? '#10b981' : notaNum >= 5 ? '#3b82f6' : '#ef4444';
+        const notaMsg  = notaNum >= 9 ? 'Excelente' : notaNum >= 7 ? 'Muy bien' : notaNum >= 5 ? 'Aprobado' : 'Necesitas repasar';
+        return (
+          <div className="np-menu-wrap">
+            <div className="np-panel np-panel-end">
+              <Trophy className="np-trophy" />
+              <h2 className="np-title">¡Fin de partida!</h2>
 
-                <div className="np-menu-cols">
-                  {/* Columna izquierda: naves */}
-                  <div className="np-menu-col">
-                    <div className="np-section-label">Tu nave</div>
-                    <div className="np-ship-grid">
-                      {SHIPS.map(s => (
-                        <button key={s.id}
-                          type="button"
-                          onClick={() => setShipId(s.id)}
-                          className={`np-ship-card ${shipId === s.id ? 'np-ship-card-active' : ''}`}
-                          style={{ borderColor: shipId === s.id ? s.color : undefined }}
-                          title={s.name}>
-                          <ShipPreview design={s} />
-                          <span className="np-ship-name" style={{ color: shipId === s.id ? s.color : undefined }}>
-                            {s.name}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+              <div className="np-nota-block" style={{ color: notaColor, borderColor: notaColor }}>
+                <div className="np-nota-big">{notaNum.toFixed(1)}</div>
+                <div className="np-nota-over">/ 10</div>
+                <div className="np-nota-msg">{notaMsg}</div>
+              </div>
 
-                  {/* Columna derecha: objetivo + dificultad */}
-                  <div className="np-menu-col">
-                    <div className="np-section-label">Objetivo</div>
-                    <div className="np-cat-chooser">
-                      <div className="np-cat-current">{formatName(targetCat) || 'Cargando…'}</div>
-                      <button className="np-cat-btn" onClick={changeCategory} title="Cambiar categoría">
-                        <Shuffle className="w-4 h-4" />
-                      </button>
-                      <button className="np-cat-btn" onClick={() => setShowHelp(true)} title="Ver palabras válidas">
-                        <BookOpen className="w-4 h-4" />
-                      </button>
-                    </div>
+              <div className="np-stats-row">
+                <div><div className="np-stat-n">{hits}</div><div className="np-stat-l">Aciertos</div></div>
+                <div><div className="np-stat-n">{misses}</div><div className="np-stat-l">Fallos</div></div>
+                <div><div className="np-stat-n">{score}</div><div className="np-stat-l">Puntos</div></div>
+              </div>
+              <p className="np-nota-hint">
+                La nota es sobre 10. Los puntos son complementarios — dos alumnos pueden tener 10 y distinto ranking.
+              </p>
 
-                    <div className="np-section-label" style={{ marginTop: 6 }}>Dificultad</div>
-                    <div className="np-mode-grid">
-                      {MODES.map(m => (
-                        <button key={m.id}
-                          type="button"
-                          onClick={() => setMode(m.id)}
-                          className={`np-mode-card ${mode === m.id ? 'np-mode-card-active' : ''}`}
-                          style={{ borderColor: mode === m.id ? m.color : undefined }}>
-                          <span className="np-mode-icon">{m.icon}</span>
-                          <span className="np-mode-label" style={{ color: mode === m.id ? m.color : undefined }}>
-                            {m.label}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {loadError && <p className="np-err">No se encontraron datos. Prueba otra asignatura.</p>}
-                <Button disabled={!targetCat || loadError} onClick={startGame} className="np-play-btn">
-                  <Play className="w-5 h-5 mr-2" /> JUGAR
+              <div className="np-actions-row">
+                <Button onClick={() => setPhase('menu')} className="np-menu-btn">
+                  <RotateCcw className="w-4 h-4 mr-2" /> Menú
+                </Button>
+                <Button onClick={startGame} className="np-play-btn">
+                  <Play className="w-4 h-4 mr-2" /> Revancha
                 </Button>
               </div>
             </div>
-          )}
+          </div>
+        );
+      })()}
 
-          {/* game over */}
-          {phase === 'over' && (() => {
-            const notaNum = Math.min(10, hits);
-            const notaColor = notaNum >= 8 ? '#10b981' : notaNum >= 5 ? '#3b82f6' : '#ef4444';
-            const notaMsg  = notaNum >= 9 ? 'Excelente' : notaNum >= 7 ? 'Muy bien' : notaNum >= 5 ? 'Aprobado' : 'Necesitas repasar';
-            return (
-              <div className="np-overlay">
-                <div className="np-panel np-panel-end">
-                  <Trophy className="np-trophy" />
-                  <h2 className="np-title">¡Fin de partida!</h2>
-
-                  <div className="np-nota-block" style={{ color: notaColor, borderColor: notaColor }}>
-                    <div className="np-nota-big">{notaNum.toFixed(1)}</div>
-                    <div className="np-nota-over">/ 10</div>
-                    <div className="np-nota-msg">{notaMsg}</div>
-                  </div>
-
-                  <div className="np-stats-row">
-                    <div><div className="np-stat-n">{hits}</div><div className="np-stat-l">Aciertos</div></div>
-                    <div><div className="np-stat-n">{misses}</div><div className="np-stat-l">Fallos</div></div>
-                    <div><div className="np-stat-n">{score}</div><div className="np-stat-l">Puntos</div></div>
-                  </div>
-                  <p className="np-nota-hint">
-                    La nota es sobre 10. Los puntos son complementarios — dos alumnos pueden tener 10 y distinto ranking.
-                  </p>
-
-                  <div className="np-actions-row">
-                    <Button onClick={() => setPhase('menu')} className="np-menu-btn">
-                      <RotateCcw className="w-4 h-4 mr-2" /> Menú
-                    </Button>
-                    <Button onClick={startGame} className="np-play-btn">
-                      <Play className="w-4 h-4 mr-2" /> Revancha
-                    </Button>
-                  </div>
-                </div>
+      {/* Modal guía categorías (global, sobre cualquier fase) */}
+      <AnimatePresence>
+        {showHelp && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="np-help"
+            onClick={() => setShowHelp(false)}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.18 }}
+              className="np-help-card"
+              onClick={(e) => e.stopPropagation()}>
+              <div className="np-help-head">
+                <span>Guía de palabras</span>
+                <button onClick={() => setShowHelp(false)} className="np-help-close">
+                  <X className="w-5 h-5" />
+                </button>
               </div>
-            );
-          })()}
-
-          {/* modal guía categorías */}
-          <AnimatePresence>
-            {showHelp && (
-              <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="np-help">
-                <div className="np-help-head">
-                  <span>Guía de palabras</span>
-                  <button onClick={() => setShowHelp(false)} className="np-help-close">
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-                <div className="np-help-body">
-                  {categories.map(cat => (
-                    <div key={cat} className="np-help-cat">
-                      <div className={`np-help-title ${cat === targetCat ? 'np-help-title-active' : ''}`}>
-                        {formatName(cat)} {cat === targetCat && '🎯'}
-                      </div>
-                      <div className="np-help-words">
-                        {(gameData?.[cat] || []).map((w, i) => (
-                          <span key={i} className="np-help-chip">{w}</span>
-                        ))}
-                      </div>
+              <div className="np-help-body">
+                {categories.map(cat => (
+                  <div key={cat} className="np-help-cat">
+                    <div className={`np-help-title ${cat === targetCat ? 'np-help-title-active' : ''}`}>
+                      {formatName(cat)} {cat === targetCat && '🎯'}
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+                    <div className="np-help-words">
+                      {(gameData?.[cat] || []).map((w, i) => (
+                        <span key={i} className="np-help-chip">{w}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Mobile fire button */}
-      <div className="np-mobile-fire">
-        <button
-          onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
-          onTouchEnd={() => { keysRef.current.fire = false; }}
-          onMouseDown={() => { keysRef.current.fire = true; }}
-          onMouseUp={() => { keysRef.current.fire = false; }}
-          className="np-fire-btn">
-          <Zap className="w-6 h-6" /> DISPARAR
-        </button>
-      </div>
+      {/* Botón de disparo móvil (solo durante la partida) */}
+      {phase === 'playing' && (
+        <div className="np-mobile-fire">
+          <button
+            onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
+            onTouchEnd={() => { keysRef.current.fire = false; }}
+            onMouseDown={() => { keysRef.current.fire = true; }}
+            onMouseUp={() => { keysRef.current.fire = false; }}
+            className="np-fire-btn">
+            <Zap className="w-6 h-6" /> DISPARAR
+          </button>
+        </div>
+      )}
     </div>
   );
 }
