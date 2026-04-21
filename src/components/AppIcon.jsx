@@ -290,6 +290,49 @@ const icons = {
     </svg>
   ),
 
+  'nave-palabras': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ai-nav-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#1e1b4b" />
+          <stop offset="1" stopColor="#0c0a33" />
+        </linearGradient>
+        <linearGradient id="ai-nav-ship" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#22d3ee" />
+          <stop offset="1" stopColor="#0891b2" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#ai-nav-bg)" />
+      {/* estrellas */}
+      <circle cx="8" cy="10" r="0.7" fill="#fff" opacity="0.9" />
+      <circle cx="38" cy="7" r="0.6" fill="#fff" opacity="0.7" />
+      <circle cx="14" cy="32" r="0.5" fill="#fde68a" opacity="0.8" />
+      <circle cx="42" cy="22" r="0.6" fill="#f9a8d4" opacity="0.8" />
+      <circle cx="6" cy="20" r="0.5" fill="#fff" opacity="0.6" />
+      {/* palabra caja objetivo */}
+      <g style={{ animation: 'ai-float 3s ease-in-out infinite' }}>
+        <rect x="14" y="12" width="20" height="6" rx="1" fill="#10b981" stroke="#34d399" strokeWidth="0.6" />
+        <line x1="17" y1="15" x2="31" y2="15" stroke="#ecfdf5" strokeWidth="1" strokeLinecap="round" />
+      </g>
+      {/* segundo enemigo tipo powerup */}
+      <g>
+        <rect x="4" y="22" width="10" height="5" rx="1" fill="#f59e0b" stroke="#fde68a" strokeWidth="0.5" />
+      </g>
+      {/* proyectiles */}
+      <rect x="23.5" y="22" width="1" height="3" fill="#22d3ee" />
+      <rect x="23.5" y="26" width="1" height="3" fill="#fff" opacity="0.7" />
+      {/* nave abajo */}
+      <g style={{ animation: 'ai-bounce 2.5s ease-in-out infinite' }}>
+        <path d="M24 34 L34 41 L28 44 L24 42 L20 44 L14 41 Z"
+              fill="url(#ai-nav-ship)" stroke="#083344" strokeWidth="0.8" strokeLinejoin="round" />
+        <circle cx="24" cy="39" r="1.8" fill="#fff" />
+        <circle cx="24" cy="39" r="1" fill="#22d3ee" />
+        <rect x="17" y="43" width="3" height="1.2" fill="#fde68a" opacity="0.8" />
+        <rect x="28" y="43" width="3" height="1.2" fill="#fde68a" opacity="0.8" />
+      </g>
+    </svg>
+  ),
+
   'runner': () => (
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>

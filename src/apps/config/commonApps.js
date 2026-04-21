@@ -79,6 +79,7 @@ const BuscaElIntruso = lazy(() => import('../busca-el-intruso/BuscaElIntruso.jsx
 const RoscoJuego = lazy(() => import('../rosco/RoscoJuego'));
 const OrdenaBolas = lazy(() => import('@/apps/ordena-bolas/OrdenaBolas'));
 const Runner = lazy(() => import('../_shared/Runner'));
+const NavePalabras = lazy(() => import('../nave-palabras/NavePalabras'));
 const VisualizadorFiguras3D = lazy(() => import('../visualizador-figuras-3d/VisualizadorFiguras3D'));
 const ParejasDeCartas = lazy(() => import('../parejas-de-cartas/ParejasDeCartas'));
 const LluviaDePalabras = lazy(() => import('../lluvia-de-palabras/LluviaDePalabras'));
@@ -188,7 +189,8 @@ export const appOrdenaBolas = {
   id: 'ordena-bolas',
   name: '🔴 Ordena las Bolas',
   description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
-  component: OrdenaBolas
+  component: OrdenaBolas,
+  duel: { supported: true, bestOf: 1, mode: 'shared-board' }
 };
 
 export const appRunner = {
@@ -196,6 +198,14 @@ export const appRunner = {
   name: '🟨 Education Dash',
   description: 'Corre, salta y atrapa los elementos correctos.',
   component: Runner
+};
+
+export const appNavePalabras = {
+  id: 'nave-palabras',
+  name: '🚀 Nave Palabras',
+  description: 'Pilota tu nave y dispara a las palabras de la categoría. 60 segundos. Incluye modo duelo.',
+  component: NavePalabras,
+  duel: { supported: true, bestOf: 1, mode: 'arena' }
 };
 
 export const appVisualizador3D = {
