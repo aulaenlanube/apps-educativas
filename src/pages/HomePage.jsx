@@ -2,16 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award, UserCog, SlidersHorizontal } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
 import Mascot from '@/components/Mascot';
 import GradeCardIcon from '@/components/GradeCardIcon';
+import useSEO from '@/hooks/useSEO';
 
 const HomePage = () => {
   const navigate = useNavigate();
   // Ahora obtenemos la función del modal desde el MainLayout
   const { setIsModalOpen } = useOutletContext();
+
+  useSEO({
+    title: 'Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato',
+    description: 'Plataforma gratuita con más de 50 apps educativas y juegos interactivos para Primaria (1º-6º), ESO y Bachillerato. Lengua, matemáticas, ciencias, inglés, tutoría y atención a la diversidad. Rosco, ahorcado, quiz battle, duelos 1 vs 1 y panel del docente.',
+    canonical: 'https://apps-educativas.com/',
+  });
 
   const primaryGrades = [
     { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500' },
@@ -33,10 +40,6 @@ const HomePage = () => {
     { grade: '1', title: '1º Bachillerato', color: 'from-emerald-600 to-teal-700' },
     { grade: '2', title: '2º Bachillerato', color: 'from-teal-600 to-cyan-700' }
   ];
-
-  const handleGradeClick = (level, grade) => {
-    navigate(`/curso/${level}/${grade}`);
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -244,9 +247,10 @@ const HomePage = () => {
                 whileTap={{ scale: 0.97 }}
                 className="group"
               >
-                <div
-                  className={`bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
-                  onClick={() => handleGradeClick('primaria', grade.grade)}
+                <Link
+                  to={`/curso/primaria/${grade.grade}`}
+                  aria-label={`Apps educativas para ${grade.title}`}
+                  className={`block bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
                 >
                   {/* Ambient decorative shapes */}
                   <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
@@ -270,7 +274,7 @@ const HomePage = () => {
                       <span className="text-sm font-bold text-white">Explorar</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -309,9 +313,10 @@ const HomePage = () => {
                 whileTap={{ scale: 0.97 }}
                 className="group"
               >
-                <div
-                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
-                  onClick={() => handleGradeClick('eso', grade.grade)}
+                <Link
+                  to={`/curso/eso/${grade.grade}`}
+                  aria-label={`Apps educativas para ${grade.title}`}
+                  className={`block bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
                 >
                   {/* Ambient decorative shapes */}
                   <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
@@ -335,7 +340,7 @@ const HomePage = () => {
                       <span className="text-sm font-bold text-white">Ver Asignaturas</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -374,9 +379,10 @@ const HomePage = () => {
                 whileTap={{ scale: 0.97 }}
                 className="group"
               >
-                <div
-                  className={`bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl`}
-                  onClick={() => handleGradeClick('bachillerato', grade.grade)}
+                <Link
+                  to={`/curso/bachillerato/${grade.grade}`}
+                  aria-label={`Apps educativas para ${grade.title}`}
+                  className={`block bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
                 >
                   <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                     <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
@@ -396,7 +402,7 @@ const HomePage = () => {
                       <span className="text-sm font-bold text-white">Ver Asignaturas</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -433,9 +439,10 @@ const HomePage = () => {
               whileTap={{ scale: 0.97 }}
               className="group w-full"
             >
-              <div
-                className="bg-gradient-to-br from-teal-500 via-cyan-600 to-indigo-600 pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl"
-                onClick={() => handleGradeClick('ad', '1')}
+              <Link
+                to="/curso/ad/1"
+                aria-label="Apps educativas para Atención a la Diversidad"
+                className="block bg-gradient-to-br from-teal-500 via-cyan-600 to-indigo-600 pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline"
               >
                 <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                   <div className="absolute top-0 right-0 w-44 h-44 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
@@ -458,7 +465,7 @@ const HomePage = () => {
                     <span className="text-sm font-bold text-white">Explorar</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

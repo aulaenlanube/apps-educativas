@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useAuth } from '@/contexts/AuthContext';
+import useGAPageView from '@/hooks/useGAPageView';
 
 // Tras un callback OAuth (Google), supabase-js procesa el hash/query y dispara
 // SIGNED_IN. Como redirectTo = raiz del sitio, el usuario aterriza en `/`, no
@@ -31,14 +31,10 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  useGAPageView();
+
   return (
     <>
-      <Helmet>
-        <title>Apps Educativas para Primaria y secundaria en España</title>
-        <meta name="description" content="Descubre las mejores apps educativas gratuitas organizadas por cursos de Primaria y ESO." />
-        <meta name="author" content="Edu Torregrosa" />
-      </Helmet>
-
       <OAuthPostLoginRedirect />
       <Outlet />
     </>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Youtube, Linkedin } from 'lucide-react';
+import { Instagram, Youtube, Linkedin, Cookie } from 'lucide-react';
 import IconXSocial from '../icons/IconXSocial';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MascotLogo from '../ui/MascotLogo';
 
 const Footer = () => {
@@ -40,7 +40,28 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className="border-t border-gray-700 pt-6">
+                <div className="border-t border-gray-700 pt-6 space-y-3">
+                    <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+                        <Link to="/aviso-legal" className="text-gray-300 hover:text-white hover:underline">
+                            Aviso legal
+                        </Link>
+                        <span className="text-gray-600">·</span>
+                        <Link to="/politica-privacidad" className="text-gray-300 hover:text-white hover:underline">
+                            Política de privacidad
+                        </Link>
+                        <span className="text-gray-600">·</span>
+                        <Link to="/politica-cookies" className="text-gray-300 hover:text-white hover:underline">
+                            Política de cookies
+                        </Link>
+                        <span className="text-gray-600">·</span>
+                        <button
+                            type="button"
+                            onClick={() => window.dispatchEvent(new Event('open-cookie-banner'))}
+                            className="inline-flex items-center gap-1.5 text-gray-300 hover:text-white hover:underline"
+                        >
+                            <Cookie className="w-3.5 h-3.5" /> Gestionar cookies
+                        </button>
+                    </nav>
                     <p className="text-gray-400">
                         Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.
                     </p>

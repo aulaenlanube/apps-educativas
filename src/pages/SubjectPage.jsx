@@ -131,7 +131,20 @@ const SubjectPage = () => {
   return (
     <>
       <Helmet>
-        <title>{`Asignaturas para ${fullTitle} - EduApps`}</title>
+        <title>{`${grade}º ${levelName} — Asignaturas y apps educativas · Apps Educativas`}</title>
+        <meta name="description" content={`Apps y juegos educativos para ${grade}º de ${levelName}. Lengua, matemáticas, ciencias, inglés y más. Gratis, sin descargas.`} />
+        <link rel="canonical" href={`https://apps-educativas.com/curso/${level}/${grade}`} />
+        <meta property="og:title" content={`${grade}º ${levelName} — Apps educativas`} />
+        <meta property="og:description" content={`Apps y juegos educativos para ${grade}º de ${levelName}.`} />
+        <meta property="og:url" content={`https://apps-educativas.com/curso/${level}/${grade}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://apps-educativas.com/" },
+            { "@type": "ListItem", "position": 2, "name": `${grade}º ${levelName}`, "item": `https://apps-educativas.com/curso/${level}/${grade}` },
+          ],
+        })}</script>
       </Helmet>
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 min-h-screen overflow-x-hidden">
         <Header>

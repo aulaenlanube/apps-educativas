@@ -3,36 +3,173 @@
 
 <head>
 	<meta charset="UTF-8" />
-
-	<link rel="icon" type="image/png" href="https://apps-educativas.com/public/images/favicon.png" />
-	<meta name="generator" content="Apps educativas" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
+	<!-- Favicon (se sirve desde /images/ en producción) -->
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+	<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.png" />
+	<link rel="shortcut icon" href="/images/favicon.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png" />
+	<link rel="manifest" href="/manifest.webmanifest" />
+
+	<!-- Primary Meta -->
+	<title>Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato</title>
+	<meta name="title" content="Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato" />
 	<meta name="description"
-		content="Plataforma gratuita de apps educativas de primaria y secundaria para todas las materias." />
+		content="Plataforma gratuita con más de 50 apps educativas y juegos interactivos para Primaria (1º-6º), ESO y Bachillerato. Lengua, matemáticas, ciencias, inglés, tutoría y atención a la diversidad. Rosco, ahorcado, quiz battle en directo, duelos 1 vs 1 y panel del docente con grupos y tareas." />
+	<meta name="keywords"
+		content="apps educativas, juegos educativos, primaria, ESO, bachillerato, recursos docentes, lengua, matemáticas, ciencias, pasapalabra, ahorcado, quiz battle, duelo 1 vs 1, gratis, sin registro" />
 	<meta name="author" content="Edu Torregrosa" />
+	<meta name="generator" content="Apps Educativas" />
+	<meta name="theme-color" content="#6d28d9" />
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+	<link rel="canonical" href="https://apps-educativas.com/" />
 
-	<title>Apps Educativas</title>
-
-
+	<!-- Open Graph -->
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://apps-educativas.com" />
-	<meta property="og:title" content="Apps Educativas" />
+	<meta property="og:site_name" content="Apps Educativas" />
+	<meta property="og:locale" content="es_ES" />
+	<meta property="og:url" content="https://apps-educativas.com/" />
+	<meta property="og:title" content="Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato" />
 	<meta property="og:description"
-		content="Plataforma gratuita de apps educativas de primaria y secundaria para todas las materias." />
-	<meta property="og:image" content="https://apps-educativas.com/public/images/portada.webp" />
+		content="Plataforma gratuita con +50 apps y juegos educativos para Primaria, ESO y Bachillerato. Quiz battle en directo, duelos 1 vs 1, panel del docente con grupos y tareas." />
+	<meta property="og:image" content="https://apps-educativas.com/images/logo.webp" />
+	<meta property="og:image:alt" content="Apps Educativas — plataforma de juegos educativos" />
 
-	<meta property="twitter:card" content="https://apps-educativas.com/public/images/portada.webp" />
-	<meta property="twitter:url" content="https://apps-educativas.com" />
-	<meta property="twitter:title" content="Apps Educativas" />
-	<meta property="twitter:description"
-		content="Plataforma gratuita de apps educativas de primaria y secundaria para todas las materias." />
-	<meta property="twitter:image" content="https://apps-educativas.com/public/images/portada.webp" />
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="https://apps-educativas.com/" />
+	<meta name="twitter:title" content="Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato" />
+	<meta name="twitter:description"
+		content="Plataforma gratuita con +50 apps y juegos educativos para Primaria, ESO y Bachillerato." />
+	<meta name="twitter:image" content="https://apps-educativas.com/images/logo.webp" />
+
+	<!-- Google Analytics 4 con Consent Mode v2 (RGPD / LSSI-CE).
+	     Por defecto todo el consentimiento está denegado; el banner de cookies
+	     lo actualiza a 'granted' si el usuario acepta. GA sigue recibiendo pings
+	     cookieless mientras tanto para métricas agregadas. -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VYHZSG7RRZ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('consent', 'default', {
+			ad_storage: 'denied',
+			ad_user_data: 'denied',
+			ad_personalization: 'denied',
+			analytics_storage: 'denied',
+			functionality_storage: 'granted',
+			security_storage: 'granted',
+			wait_for_update: 500
+		});
+		// Si el usuario ya había aceptado en una visita previa, lo aplicamos ya.
+		try {
+			var prev = localStorage.getItem('cookie-consent');
+			if (prev === 'accepted') {
+				gtag('consent', 'update', {
+					analytics_storage: 'granted',
+					ad_storage: 'granted',
+					ad_user_data: 'granted',
+					ad_personalization: 'granted'
+				});
+			}
+		} catch (e) {}
+		gtag('js', new Date());
+		gtag('config', 'G-VYHZSG7RRZ', { anonymize_ip: true, send_page_view: false });
+	</script>
+
+	<!-- Structured Data: Organization + WebSite + SiteNavigation -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "EducationalOrganization",
+				"@id": "https://apps-educativas.com/#organization",
+				"name": "Apps Educativas",
+				"url": "https://apps-educativas.com/",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://apps-educativas.com/images/logo.webp"
+				},
+				"description": "Plataforma gratuita de apps y juegos educativos para Primaria, ESO y Bachillerato.",
+				"founder": { "@type": "Person", "name": "Edu Torregrosa" },
+				"areaServed": "ES",
+				"inLanguage": "es-ES"
+			},
+			{
+				"@type": "WebSite",
+				"@id": "https://apps-educativas.com/#website",
+				"url": "https://apps-educativas.com/",
+				"name": "Apps Educativas",
+				"alternateName": "apps-educativas.com",
+				"inLanguage": "es-ES",
+				"publisher": { "@id": "https://apps-educativas.com/#organization" },
+				"description": "Plataforma gratuita con más de 50 apps educativas y juegos interactivos para Primaria, ESO y Bachillerato."
+			},
+			{
+				"@type": "ItemList",
+				"name": "Niveles educativos",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Primaria 1º", "url": "https://apps-educativas.com/curso/primaria/1" },
+					{ "@type": "ListItem", "position": 2, "name": "Primaria 2º", "url": "https://apps-educativas.com/curso/primaria/2" },
+					{ "@type": "ListItem", "position": 3, "name": "Primaria 3º", "url": "https://apps-educativas.com/curso/primaria/3" },
+					{ "@type": "ListItem", "position": 4, "name": "Primaria 4º", "url": "https://apps-educativas.com/curso/primaria/4" },
+					{ "@type": "ListItem", "position": 5, "name": "Primaria 5º", "url": "https://apps-educativas.com/curso/primaria/5" },
+					{ "@type": "ListItem", "position": 6, "name": "Primaria 6º", "url": "https://apps-educativas.com/curso/primaria/6" },
+					{ "@type": "ListItem", "position": 7, "name": "ESO 1º", "url": "https://apps-educativas.com/curso/eso/1" },
+					{ "@type": "ListItem", "position": 8, "name": "ESO 2º", "url": "https://apps-educativas.com/curso/eso/2" },
+					{ "@type": "ListItem", "position": 9, "name": "ESO 3º", "url": "https://apps-educativas.com/curso/eso/3" },
+					{ "@type": "ListItem", "position": 10, "name": "ESO 4º", "url": "https://apps-educativas.com/curso/eso/4" },
+					{ "@type": "ListItem", "position": 11, "name": "Bachillerato 1º", "url": "https://apps-educativas.com/curso/bachillerato/1" },
+					{ "@type": "ListItem", "position": 12, "name": "Bachillerato 2º", "url": "https://apps-educativas.com/curso/bachillerato/2" },
+					{ "@type": "ListItem", "position": 13, "name": "Atención a la Diversidad", "url": "https://apps-educativas.com/curso/ad/1" }
+				]
+			}
+		]
+	}
+	</script>
 </head>
 
 <body>
 	<div id="root"></div>
+
+	<!-- Contenido visible sin JS (para SEO y crawlers que no ejecutan JS) -->
+	<noscript>
+		<main style="max-width: 860px; margin: 0 auto; padding: 24px; font-family: system-ui, sans-serif; color: #1e293b;">
+			<h1>Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato</h1>
+			<p>Plataforma gratuita con <strong>más de 50 apps educativas y juegos interactivos</strong> para Primaria (1º-6º), ESO (1º-4º) y Bachillerato (1º-2º). Cubre <strong>Lengua, Matemáticas, Ciencias Naturales, Ciencias Sociales, Inglés, Valenciano, Francés, Programación, Tutoría y Atención a la Diversidad</strong>.</p>
+			<h2>Qué incluye la plataforma</h2>
+			<ul>
+				<li><strong>Apps de repaso y gamificación</strong>: Rosco del saber, Ahorcado, Crucigrama, Sopa de letras, Millonario, Anagramas, Criptograma, Nave Palabras, Education Dash, Comprensión oral/escrita, Dictado interactivo.</li>
+				<li><strong>Matemáticas</strong>: Supermercado matemático, Sumas, Restas, Multiplicaciones, Divisiones, Fracciones, Ordena las Bolas, Mayor/Menor, Números romanos, Medidas, Figuras 3D, Laboratorio de funciones 2D.</li>
+				<li><strong>Ciencias</strong>: Célula animal y vegetal, Sistema Solar, Entrenador de tabla periódica, Laboratorio y Misiones de Robótica.</li>
+				<li><strong>Tutoría y diversidad</strong>: Isla de la Calma, Generador de personajes históricos, Banco de recursos.</li>
+				<li><strong>Quiz Battle</strong> multijugador en directo y <strong>modo duelo 1 vs 1</strong> para competir en clase.</li>
+				<li><strong>Panel del docente</strong> con grupos, tareas asignables con nota sobre 10, horario de clase y ranking.</li>
+			</ul>
+			<h2>Navega por curso</h2>
+			<p>
+				<strong>Primaria:</strong>
+				<a href="/curso/primaria/1">1º</a> · <a href="/curso/primaria/2">2º</a> · <a href="/curso/primaria/3">3º</a> · <a href="/curso/primaria/4">4º</a> · <a href="/curso/primaria/5">5º</a> · <a href="/curso/primaria/6">6º</a>
+			</p>
+			<p>
+				<strong>ESO:</strong>
+				<a href="/curso/eso/1">1º</a> · <a href="/curso/eso/2">2º</a> · <a href="/curso/eso/3">3º</a> · <a href="/curso/eso/4">4º</a>
+			</p>
+			<p>
+				<strong>Bachillerato:</strong>
+				<a href="/curso/bachillerato/1">1º</a> · <a href="/curso/bachillerato/2">2º</a>
+			</p>
+			<p>
+				<strong>Atención a la diversidad:</strong>
+				<a href="/curso/ad/1">Entrar</a>
+			</p>
+			<p><a href="/login">Iniciar sesión</a> · <a href="/registro">Registro docente</a></p>
+			<p style="font-size: 13px; color: #64748b; margin-top: 32px;">Activa JavaScript para usar la versión interactiva completa.</p>
+		</main>
+	</noscript>
+
 	<script type="module" src="/src/main.jsx"></script>
 </body>
 

@@ -233,7 +233,21 @@ const AppListPage = () => {
     return (
         <>
             <Helmet>
-                <title>{`Apps de ${fullTitle} - EduApps`}</title>
+                <title>{`${subjectName} · ${isSpecialLevel ? levelDisplay : grade + 'º ' + levelDisplay} — Apps Educativas`}</title>
+                <meta name="description" content={`Apps y juegos educativos de ${subjectName} para ${isSpecialLevel ? levelDisplay : grade + 'º de ' + levelDisplay}. Gratis, sin descargas.`} />
+                <link rel="canonical" href={`https://apps-educativas.com/curso/${level}/${grade}/${subjectId}`} />
+                <meta property="og:title" content={`${subjectName} ${isSpecialLevel ? '' : '· ' + grade + 'º ' + levelDisplay} — Apps Educativas`} />
+                <meta property="og:description" content={`Apps y juegos educativos de ${subjectName}.`} />
+                <meta property="og:url" content={`https://apps-educativas.com/curso/${level}/${grade}/${subjectId}`} />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://apps-educativas.com/" },
+                        { "@type": "ListItem", "position": 2, "name": `${grade}º ${levelDisplay}`, "item": `https://apps-educativas.com/curso/${level}/${grade}` },
+                        { "@type": "ListItem", "position": 3, "name": subjectName, "item": `https://apps-educativas.com/curso/${level}/${grade}/${subjectId}` },
+                    ],
+                })}</script>
             </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
                 <Header subtitle={headerSubtitle}>

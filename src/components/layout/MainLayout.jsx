@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import AboutModal from '../ui/AboutModal';
+import CookieBanner from '../CookieBanner';
 
 const MainLayout = () => {
     // Elevamos el estado del modal aquí para que esté disponible en toda la app
@@ -18,6 +19,7 @@ const MainLayout = () => {
             </main>
 
             <Footer />
+            <CookieBanner />
         </div>
     );
 };

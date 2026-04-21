@@ -1,5 +1,48 @@
-## Pages
-- [- EduApps`}](/applist): No description available
-- [- EduApps`}](/apprunner): No description available
-- [- EduApps`}](/course): No description available
-- [- EduApps`}](/subject): No description available
+# Apps Educativas
+
+> Plataforma web gratuita con más de 50 apps educativas y juegos interactivos para Primaria (1º-6º), ESO (1º-4º) y Bachillerato. Pensada para profesores y alumnos en España. Desarrollada por Edu Torregrosa (Aula en la Nube).
+
+## Qué es
+
+Apps Educativas (apps-educativas.com) es una plataforma web educativa en español sin coste ni registro obligatorio para jugar, orientada a repaso, refuerzo y gamificación en clase. Cubre las principales asignaturas del currículo español: Lengua Castellana, Matemáticas, Ciencias Naturales, Ciencias Sociales, Inglés, Valenciano, Francés, Programación, Tutoría y Atención a la Diversidad (Audición y Lenguaje + Pedagogía Terapéutica).
+
+Los alumnos pueden jugar sin cuenta entrando al curso y asignatura; los profesores pueden registrarse para crear grupos, asignar tareas con nota sobre 10, configurar el horario de clase, moderar duelos y batallas, y ver estadísticas y ranking.
+
+## Características principales
+
+- **Apps de repaso y gamificación (lengua y cultura general)**: El Rosco del Saber (pasapalabra), Ahorcado, Crucigrama, Sopa de Letras, Millonario, Anagramas, Criptograma, Nave Palabras, Education Dash, Comprensión escrita y oral, Dictado interactivo, Velocidad de respuesta, Conecta Parejas, Torre de palabras, Ordena la Frase, Ordena la Historia, Detective de palabras, Busca el intruso, Parejas de cartas, Lluvia de palabras, Clasificador, Snake, Juego de memoria.
+- **Matemáticas**: Supermercado matemático, Sumas, Restas, Multiplicaciones, Divisiones, Fracciones ESO, Ordena las Bolas (física), Mayor/Menor/Igual, Ordena los Números, Números romanos, Medidas, Rotaciones en cuadrícula, Laboratorio de funciones 2D, Visualizador de figuras 3D.
+- **Ciencias**: Célula animal, Célula vegetal, Sistema Solar, Entrenador de tabla periódica, Mesa de Crafteo, Terminal Retro, Laboratorio de Robótica, Misiones Robóticas, Programación por bloques.
+- **Tutoría y diversidad**: Isla de la Calma, Generador de personajes históricos, Banco de recursos de tutoría.
+- **Quiz Battle en directo**: el profesor lanza una sala multijugador con preguntas y categorías; los alumnos entran con un código.
+- **Modo duelo 1 vs 1**: entre alumnos del mismo grupo. Disponible en El Rosco, Snake, Ahorcado, Nave Palabras y Ordena las Bolas. Abandonar equivale a perder; horario de clase configurable por el profesor (máx. 4 h/semana).
+- **Panel del docente**: máximo 3 grupos por profesor, hasta 30 alumnos por grupo. Permite asignar tareas con nota, horario semanal, bonificaciones de batallas por evaluación (podio 1º/2º/3º con tope +1 pto por evaluación) y ver estadísticas.
+- **Gamificación**: XP, niveles y más de 120 insignias automáticas para alumnos y docentes.
+
+## Cómo es el sistema de notas
+
+- Cada tarea se puntúa sobre 10. Se guarda la mejor nota del alumno en modo examen.
+- La nota final de cada evaluación es la **media ponderada** de las tareas de ese trimestre (pesos configurables por el docente) + el **bonus de batallas** (máximo +1 por evaluación) + el **bonus/penalización de duelos** (ledger acumulativo).
+- Las batallas en directo permiten que dos alumnos con un 10 tengan distinto ranking según los puntos obtenidos.
+
+## Enlaces principales
+
+- Home: https://apps-educativas.com/
+- Primaria: https://apps-educativas.com/curso/primaria/1 (también /2, /3, /4, /5, /6)
+- ESO: https://apps-educativas.com/curso/eso/1 (también /2, /3, /4)
+- Bachillerato: https://apps-educativas.com/curso/bachillerato/1 (también /2)
+- Atención a la Diversidad: https://apps-educativas.com/curso/ad/1
+- Registro docente: https://apps-educativas.com/registro
+- Inicio de sesión: https://apps-educativas.com/login
+- Sitemap: https://apps-educativas.com/sitemap.xml
+
+## Público objetivo
+
+Profesorado de infantil, primaria, secundaria y bachillerato en España; alumnado de estos niveles que quiera repasar jugando; especialistas de Audición y Lenguaje y Pedagogía Terapéutica.
+
+## Tecnología y privacidad
+
+- Web app responsive, funciona en ordenador, tablet y móvil, sin instalar nada.
+- Los alumnos acceden sin email por defecto (código de grupo + usuario).
+- Backend en Supabase (España/UE). Autenticación Google opcional para docentes.
+- Sin publicidad. Sin venta de datos. Sin trackers de terceros.

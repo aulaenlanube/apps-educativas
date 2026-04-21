@@ -1,0 +1,32 @@
+{
+  "name": "Apps Educativas",
+  "short_name": "Apps Educativas",
+  "description": "Plataforma gratuita con más de 50 apps y juegos educativos para Primaria, ESO y Bachillerato.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "es-ES",
+  "theme_color": "#6d28d9",
+  "background_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

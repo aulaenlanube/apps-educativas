@@ -1,0 +1,37 @@
+# Apps Educativas — apps-educativas.com
+# Permite rastreo completo; excluye rutas privadas (panel docente, perfil, auth).
+
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /perfil
+Disallow: /mi-panel
+Disallow: /mi-zona
+Disallow: /admin
+Disallow: /duelo/
+Disallow: /quiz-battle/
+Disallow: /registro
+Disallow: /registro-libre
+Disallow: /login
+
+# Crawlers de motores generativos (GEO): permitir contenido completo.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://apps-educativas.com/sitemap.xml
+Host: https://apps-educativas.com
