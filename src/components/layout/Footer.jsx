@@ -41,7 +41,7 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className="border-t border-gray-700 pt-6 space-y-3">
+                <div className="border-t border-gray-700 pt-8 space-y-6">
                     <div className="flex justify-center">
                         <OposicionesIAPromo variant="inline" source="footer" className="text-sm" />
                     </div>

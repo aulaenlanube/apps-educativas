@@ -27,10 +27,11 @@ export default function OposicionesIAPromo({ variant = 'card', source = 'generic
         href={href}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className={`inline-flex items-center gap-1.5 text-gray-300 hover:text-white hover:underline ${className}`}
+        className={`group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-pink-500/15 border border-amber-400/40 text-amber-200 hover:text-white hover:border-amber-300 hover:from-amber-500/25 hover:via-orange-500/25 hover:to-pink-500/25 transition-all shadow-sm hover:shadow-amber-500/20 ${className}`}
       >
-        <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-        <span>¿Preparas oposiciones de educación? Te ayudo con IA</span>
+        <Sparkles className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" />
+        <span className="font-semibold">¿Preparas oposiciones de educación? Te ayudo con IA</span>
+        <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </a>
     );
   }
