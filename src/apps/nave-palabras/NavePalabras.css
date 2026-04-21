@@ -188,6 +188,38 @@
   border: 1.5px solid #fef3c7;
   box-shadow: 0 0 16px rgba(251, 191, 36, 0.55);
 }
+.np-danger {
+  background: linear-gradient(90deg, #dc2626, #fbbf24, #dc2626);
+  background-size: 200% 100%;
+  animation: np-power-shine 0.8s linear infinite;
+  border: 2px solid #fecaca;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.75), 0 0 30px rgba(239, 68, 68, 0.45);
+  color: #fff;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.np-invert-banner {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  background: linear-gradient(90deg, #dc2626, #f97316, #dc2626);
+  background-size: 200% 100%;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 2px solid #fecaca;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.8), 0 0 38px rgba(239, 68, 68, 0.45);
+  z-index: 32;
+  animation: np-power-shine 0.9s linear infinite, np-pulse 0.9s ease-in-out infinite;
+  white-space: nowrap;
+  pointer-events: none;
+}
 
 .np-proj {
   position: absolute;

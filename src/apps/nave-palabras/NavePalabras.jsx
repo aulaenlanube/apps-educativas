@@ -26,6 +26,9 @@ const POWERS = [
   { id: 'rapid',    label: 'Disparo rápido', color: '#22d3ee', icon: '⚡', duration: 6000 },
   { id: 'spawn',    label: 'Lluvia de palabras', color: '#a78bfa', icon: '🌧️', duration: 6000 },
   { id: 'double',   label: 'Puntos x2', color: '#fbbf24', icon: '✨', duration: 8000 },
+  // Trampa — si le disparas, se invierten TUS controles durante unos segundos.
+  // En el duelo 1v1 el efecto se aplica al rival en lugar de a ti mismo.
+  { id: 'invert',   label: '¡Controles invertidos!', color: '#ef4444', icon: '⚠️', duration: 5000, dangerous: true },
 ];
 
 // Penalización por fallos: hasta 3 niveles acumulables.
@@ -280,7 +283,10 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
     const rect = arenaRef.current.getBoundingClientRect();
     const x = (e.touches?.[0]?.clientX ?? e.clientX) - rect.left;
     const scale = ARENA_W / rect.width;
-    shipXRef.current = Math.max(0, Math.min(ARENA_W - SHIP_W, (x * scale) - SHIP_W / 2));
+    let nx = (x * scale) - SHIP_W / 2;
+    const inverted = (powersRef.current.invert || 0) > performance.now();
+    if (inverted) nx = (ARENA_W - SHIP_W) - nx;
+    shipXRef.current = Math.max(0, Math.min(ARENA_W - SHIP_W, nx));
   };
   const onPointerDown = (e) => {
     if (phase !== 'playing') return;
@@ -387,10 +393,14 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
       }
       if (changed) { powersRef.current = curPow; setActivePowers(curPow); }
 
-      // ship movement — velocidad fija e idéntica para todos los jugadores
+      // ship movement — velocidad fija e idéntica para todos los jugadores.
+      // Si el bloque "invert" está activo, izq↔dcha se intercambian.
       const step = SHIP_SPEED_PXS * dt;
-      if (keysRef.current.left)  shipXRef.current = Math.max(0, shipXRef.current - step);
-      if (keysRef.current.right) shipXRef.current = Math.min(ARENA_W - SHIP_W, shipXRef.current + step);
+      const inverted = (powersRef.current.invert || 0) > now;
+      const goLeft  = inverted ? keysRef.current.right : keysRef.current.left;
+      const goRight = inverted ? keysRef.current.left  : keysRef.current.right;
+      if (goLeft)  shipXRef.current = Math.max(0, shipXRef.current - step);
+      if (goRight) shipXRef.current = Math.min(ARENA_W - SHIP_W, shipXRef.current + step);
 
       // fire: Fácil dispara un 30% más rápido por defecto; penalización lo ralentiza
       const modeFactor = modeRef.current === 'easy' ? 0.7 : 1;
@@ -445,7 +455,8 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
                 powersRef.current = { ...powersRef.current, [pow.id]: now + pow.duration };
                 setActivePowers(powersRef.current);
               }
-              scoreRef.current += 5;
+              // Los bloques peligrosos (invert) no dan puntos.
+              scoreRef.current += pow?.dangerous ? 0 : 5;
             } else if (w.category === targetCat) {
               const mult = powersRef.current.double ? 2 : 1;
               scoreRef.current += 10 * mult;
@@ -617,7 +628,7 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
             {wordsRef.current.map(w => {
               const hintsOn = modeRef.current !== 'exam';
               const cls = w.special
-                ? 'np-power'
+                ? (w.special === 'invert' ? 'np-danger' : 'np-power')
                 : (hintsOn && w.category === targetCat ? 'np-target-word' : 'np-noise');
               return (
                 <div key={w.id} className={`np-word ${cls}`}
@@ -626,6 +637,10 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
                 </div>
               );
             })}
+
+            {activePowers.invert && activePowers.invert > performance.now() && (
+              <div className="np-invert-banner">⚠️ ¡CONTROLES INVERTIDOS!</div>
+            )}
 
             {projsRef.current.map(p => (
               <div key={p.id} className="np-proj" style={{ left: p.x, top: p.y, width: PROJ_W, height: PROJ_H }} />

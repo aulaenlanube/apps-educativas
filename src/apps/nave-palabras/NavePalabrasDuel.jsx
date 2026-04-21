@@ -31,6 +31,12 @@ const MAX_PENALTY = 3;
 const COMBO_TO_RECOVER = 5;
 const PENALTY_FIRE = [1.00, 1.60, 2.20, 3.00];
 
+// Bloque especial: si disparas al bloque "invert", el rival tiene sus controles
+// invertidos (izq↔dcha) durante INVERT_DURATION_MS. Se avisa con un banner.
+const INVERT_DURATION_MS = 5000;
+const INVERT_SPAWN_CHANCE = 0.12;
+const INVERT_KILL_BONUS = 2;
+
 // zonas
 const HOST_Y = ARENA_H - 60; // nave del host abajo
 const GUEST_Y = 30;          // nave del guest arriba
@@ -106,6 +112,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
       kills:  { [me.id]: 0, [rival.id]: 0 },
       penalties: { [me.id]: 0, [rival.id]: 0 },
       combos:    { [me.id]: 0, [rival.id]: 0 },
+      inverts:   { [me.id]: 0, [rival.id]: 0 },
       startedAt: null,
       endsAt: null,
       targetCat,
@@ -232,13 +239,21 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
 
       const penalties = { ...(s.penalties || {}) };
       const combos    = { ...(s.combos    || {}) };
+      const inverts   = { ...(s.inverts   || {}) };
 
-      // Inputs host — velocidad fija para ambos jugadores
+      // Inputs host — velocidad fija para ambos jugadores.
+      // Si el host tiene activo el efecto "invert", izq↔dcha se intercambian.
       const hostShip = { ...s.ships[hostId] };
+      const hostInverted = (inverts[hostId] || 0) > now;
       if (hostShip.alive) {
-        if (keysRef.current.left)  hostShip.x = Math.max(0, hostShip.x - SHIP_SPEED);
-        if (keysRef.current.right) hostShip.x = Math.min(ARENA_W - SHIP_W, hostShip.x + SHIP_SPEED);
-        if (keysRef.current.mouseX != null) hostShip.x = keysRef.current.mouseX;
+        const left  = hostInverted ? keysRef.current.right : keysRef.current.left;
+        const right = hostInverted ? keysRef.current.left  : keysRef.current.right;
+        if (left)  hostShip.x = Math.max(0, hostShip.x - SHIP_SPEED);
+        if (right) hostShip.x = Math.min(ARENA_W - SHIP_W, hostShip.x + SHIP_SPEED);
+        if (keysRef.current.mouseX != null) {
+          const mx = keysRef.current.mouseX;
+          hostShip.x = hostInverted ? (ARENA_W - SHIP_W) - mx : mx;
+        }
       } else if (hostShip.respawnAt <= now) {
         hostShip.alive = true; hostShip.respawnAt = 0;
       }
@@ -312,7 +327,12 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
           if (p.x < w.x + w.w && p.x + PROJ_W > w.x && p.y < w.y + WORD_H && p.y + PROJ_H > w.y) {
             words.splice(wi, 1);
             hit = true;
-            if (w.category === s.targetCat) {
+            if (w.special === 'invert') {
+              // Invierte los controles del rival durante INVERT_DURATION_MS.
+              const opp = p.owner === hostId ? guestId : hostId;
+              inverts[opp] = now + INVERT_DURATION_MS;
+              scores[p.owner] = (scores[p.owner] || 0) + INVERT_KILL_BONUS;
+            } else if (w.category === s.targetCat) {
               scores[p.owner] = (scores[p.owner] || 0) + 1;
               // combo + recuperación de penalización
               combos[p.owner] = (combos[p.owner] || 0) + 1;
@@ -353,21 +373,35 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
       if (s.startedAt && now < s.endsAt) {
         if (now - lastSpawn > BASE_SPAWN_MS && words.length < 14) {
           lastSpawn = now;
-          const types = Object.keys(gameData || {}).filter(k => k !== 'title' && k !== 'instructions' && Array.isArray(gameData[k]));
-          if (types.length) {
-            const cat = types[Math.floor(Math.random() * types.length)];
-            const list = gameData[cat] || [];
-            if (list.length) {
-              const text = list[Math.floor(Math.random() * list.length)];
-              const w = estimateTextWidth(text);
-              words.push({
-                id: ++s.seq,
-                text, category: cat,
-                x: rnd(20, ARENA_W - w - 20),
-                y: rnd(WORD_BAND_TOP, WORD_BAND_BOT - WORD_H),
-                vx: rnd(-0.8, 0.8),
-                w, spawnedAt: now,
-              });
+          // Probabilidad de que el spawn sea un bloque "invert" (trampa para el rival)
+          if (Math.random() < INVERT_SPAWN_CHANCE) {
+            const text = '⚠️ INVERTIR RIVAL';
+            const w = estimateTextWidth(text);
+            words.push({
+              id: ++s.seq,
+              text, category: null, special: 'invert',
+              x: rnd(20, ARENA_W - w - 20),
+              y: rnd(WORD_BAND_TOP, WORD_BAND_BOT - WORD_H),
+              vx: rnd(-0.8, 0.8),
+              w, spawnedAt: now,
+            });
+          } else {
+            const types = Object.keys(gameData || {}).filter(k => k !== 'title' && k !== 'instructions' && Array.isArray(gameData[k]));
+            if (types.length) {
+              const cat = types[Math.floor(Math.random() * types.length)];
+              const list = gameData[cat] || [];
+              if (list.length) {
+                const text = list[Math.floor(Math.random() * list.length)];
+                const w = estimateTextWidth(text);
+                words.push({
+                  id: ++s.seq,
+                  text, category: cat,
+                  x: rnd(20, ARENA_W - w - 20),
+                  y: rnd(WORD_BAND_TOP, WORD_BAND_BOT - WORD_H),
+                  vx: rnd(-0.8, 0.8),
+                  w, spawnedAt: now,
+                });
+              }
             }
           }
         }
@@ -377,7 +411,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
         ...s,
         words, projs: liveProjs,
         ships: { [hostId]: hostShip, [guestId]: guestShip },
-        scores, kills, penalties, combos,
+        scores, kills, penalties, combos, inverts,
       };
       stateRef.current = next;
       setState(next);
@@ -424,11 +458,19 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
     const id = setInterval(() => {
       const now = performance.now();
       const alive = stateRef.current?.ships?.[me.id]?.alive;
+      const invertedUntil = stateRef.current?.inverts?.[me.id] || 0;
+      const inverted = invertedUntil > now;
       if (alive !== false) {
-        // Velocidad fija — idéntica para ambos jugadores
-        if (keysRef.current.left)  localX = Math.max(0, localX - SHIP_SPEED);
-        if (keysRef.current.right) localX = Math.min(ARENA_W - SHIP_W, localX + SHIP_SPEED);
-        if (keysRef.current.mouseX != null) localX = keysRef.current.mouseX;
+        // Velocidad fija — idéntica para ambos jugadores. Si estoy "invertido",
+        // intercambio izq↔dcha y espejo la X del ratón respecto al arena.
+        const left  = inverted ? keysRef.current.right : keysRef.current.left;
+        const right = inverted ? keysRef.current.left  : keysRef.current.right;
+        if (left)  localX = Math.max(0, localX - SHIP_SPEED);
+        if (right) localX = Math.min(ARENA_W - SHIP_W, localX + SHIP_SPEED);
+        if (keysRef.current.mouseX != null) {
+          const mx = keysRef.current.mouseX;
+          localX = inverted ? (ARENA_W - SHIP_W) - mx : mx;
+        }
       }
       if (now - lastSent > 60) {
         channel.broadcast('input_pos', { x: localX });
@@ -590,13 +632,23 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
           }} />
 
           {/* palabras */}
-          {(state?.words || []).map(w => (
-            <div key={w.id}
-              className={`np-word ${w.category === (state?.targetCat || targetCat) ? 'np-target-word' : 'np-noise'}`}
-              style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
-              {w.text}
-            </div>
-          ))}
+          {(state?.words || []).map(w => {
+            const cls = w.special === 'invert'
+              ? 'np-danger'
+              : (w.category === (state?.targetCat || targetCat) ? 'np-target-word' : 'np-noise');
+            return (
+              <div key={w.id}
+                className={`np-word ${cls}`}
+                style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
+                {w.text}
+              </div>
+            );
+          })}
+
+          {/* aviso cuando MIS controles están invertidos */}
+          {(state?.inverts?.[me.id] || 0) > performance.now() && (
+            <div className="np-invert-banner">⚠️ ¡CONTROLES INVERTIDOS!</div>
+          )}
 
           {/* proyectiles */}
           {(state?.projs || []).map(p => {
