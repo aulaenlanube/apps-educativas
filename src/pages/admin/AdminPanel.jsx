@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks } from 'lucide-react';
+import { Shield, Users, Users2, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -12,6 +12,7 @@ import FeedbackPanel from './FeedbackPanel';
 import DataExplorer from './DataExplorer';
 import XPConfigPanel from './XPConfigPanel';
 import AppsModeReport from './AppsModeReport';
+import GroupsPanel from './GroupsPanel';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const AdminPanel = () => {
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
     { id: 'users', label: 'Usuarios', icon: Users },
+    { id: 'groups', label: 'Grupos', icon: Users2 },
     { id: 'feedback', label: 'Feedback', icon: MessageSquare },
     { id: 'stats', label: 'Estadisticas', icon: Gamepad2 },
     { id: 'data', label: 'Datos', icon: Database },
@@ -120,6 +122,7 @@ const AdminPanel = () => {
               {activeTab === 'users' && (
                 <UsersTable onSelectUser={setSelectedUser} />
               )}
+              {activeTab === 'groups' && <GroupsPanel />}
               {activeTab === 'feedback' && <FeedbackPanel />}
               {activeTab === 'stats' && <GlobalStats stats={globalStats} />}
               {activeTab === 'data' && <DataExplorer />}
