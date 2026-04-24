@@ -28,10 +28,23 @@
 .anag-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 0.25rem;
+}
+
+/* Columna derecha del header: botones arriba, stats abajo. */
+.anag-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  flex: 1 1 360px;
+  max-width: 520px;
+}
+.anag-header-right .anag-stats {
+  margin-top: 0.25rem;
 }
 
 .anag-title {
@@ -71,6 +84,7 @@
   gap: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .anag-stat {
@@ -395,9 +409,12 @@
 }
 
 /* ============ COMODINES ============ */
+/* 3 botones (Pista, 1ª letra, Mezclar) centrados, mismo ancho. */
 .anag-lifelines {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
   gap: 0.5rem;
   padding: 0.6rem;
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.05));
@@ -405,10 +422,14 @@
   border: 1px solid rgba(168, 85, 247, 0.12);
   margin-bottom: 1rem;
 }
+.anag-lifelines .anag-lifeline {
+  flex: 0 1 160px;
+  min-width: 110px;
+}
 
 @media (max-width: 500px) {
-  .anag-lifelines {
-    grid-template-columns: repeat(2, 1fr);
+  .anag-lifelines .anag-lifeline {
+    flex: 1 1 100px;
   }
 }
 
@@ -685,4 +706,353 @@
   .anag-title { font-size: 1.5rem; }
   .anag-result-score { font-size: 2.5rem; }
   .anag-result-title { font-size: 1.25rem; }
+}
+
+/* ============ MATERIAL DE ESTUDIO ============ */
+.anag-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: stretch;
+  justify-content: flex-end;
+  width: 100%;
+}
+.anag-study-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex: 1 1 220px;
+  min-height: 46px;
+  box-shadow: 0 3px 10px -3px rgba(245, 158, 11, 0.35);
+}
+.anag-study-btn:hover {
+  background: linear-gradient(135deg, #fde68a, #fcd34d);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -3px rgba(245, 158, 11, 0.45);
+}
+
+.anag-study-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+.anag-study-modal {
+  background: #fff;
+  border-radius: 1.25rem;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1rem;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+}
+.anag-study-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+.anag-study-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7c3aed;
+}
+.anag-study-title h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #334155;
+}
+.anag-study-close {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s;
+}
+.anag-study-close:hover {
+  background: #e2e8f0;
+  color: #ef4444;
+}
+.anag-study-sub {
+  color: #64748b;
+  font-size: 0.85rem;
+  margin: 0 0 0.9rem;
+  font-style: italic;
+}
+.anag-study-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid #e2e8f0;
+  /* Todas las letras visibles: sin limite de alto ni scroll interno. */
+  justify-content: flex-start;
+}
+.anag-study-letter {
+  position: relative;
+  min-width: 54px;
+  height: 54px;
+  padding: 0 0.6rem;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.anag-study-letter:hover {
+  background: #e2e8f0;
+}
+.anag-study-letter.active {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 10px -2px rgba(168, 85, 247, 0.45);
+}
+.anag-study-letter-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+}
+.anag-study-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 0.25rem;
+}
+.anag-study-item {
+  padding: 0.6rem 0.75rem;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+}
+.anag-study-word {
+  font-weight: 800;
+  color: #6b21a8;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+.anag-study-clue {
+  color: #475569;
+  font-size: 0.82rem;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+.anag-study-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+.anag-study-done {
+  margin-top: 0.9rem;
+  width: 100%;
+}
+
+/* ============ PANTALLA DE SELECCION DE DIFICULTAD ============ */
+.anag-select {
+  padding: 0.75rem 0 0.25rem;
+}
+.anag-select-title {
+  margin: 0.25rem 0 0.25rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #334155;
+}
+.anag-select-sub {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+.anag-select-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.1rem;
+}
+.anag-select-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.85rem 0.5rem;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: center;
+}
+.anag-select-card:hover {
+  transform: translateY(-3px);
+  border-color: #c7d2fe;
+  box-shadow: 0 10px 25px -8px rgba(99, 102, 241, 0.25);
+}
+.anag-select-card.active {
+  border-color: transparent;
+  box-shadow: 0 10px 22px -6px rgba(168, 85, 247, 0.4);
+}
+.anag-select-card.easy.active { background: linear-gradient(135deg, #d1fae5, #bbf7d0); }
+.anag-select-card.medium.active { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.anag-select-card.exam.active { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+.anag-select-icon { font-size: 1.8rem; line-height: 1; }
+.anag-select-label {
+  font-weight: 800;
+  color: #334155;
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.95rem;
+}
+.anag-select-helps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #475569;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.anag-select-helps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  justify-content: center;
+}
+.anag-select-start {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+@media (max-width: 500px) {
+  .anag-select-grid { grid-template-columns: 1fr; }
+}
+
+/* Badge del modo activo durante la partida */
+.anag-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.5rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.anag-mode-change {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  color: #5b21b6;
+  border: 1px solid #c4b5fd;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex: 1 1 180px;
+  min-height: 46px;
+  box-shadow: 0 3px 10px -3px rgba(139, 92, 246, 0.35);
+}
+.anag-mode-change:hover {
+  background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+  color: #4c1d95;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -3px rgba(139, 92, 246, 0.45);
+}
+
+/* Acciones en pantalla final */
+.anag-result-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.anag-btn.ghost {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.anag-btn.ghost:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* Shake del conjunto de slots al fallar */
+@keyframes anag-slots-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-0.5deg); }
+  40% { transform: translateX(8px) rotate(0.5deg); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+.anag-slots.shake {
+  animation: anag-slots-shake 0.45s ease-in-out;
+}
+
+/* Pequeno glow al colocar una ficha en slot */
+.anag-tile.placed {
+  box-shadow: 0 6px 14px -3px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+}
+.anag-tile.placed.correct {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5), 0 10px 20px -4px rgba(16, 185, 129, 0.45);
+}
+.anag-tile.placed.wrong {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5), 0 10px 20px -4px rgba(239, 68, 68, 0.45);
+}
+
+/* Ficha del banco: sombra ligera para sensacion de flotar */
+.anag-tile-bank {
+  box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.22);
 }

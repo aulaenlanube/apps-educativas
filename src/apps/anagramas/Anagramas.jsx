@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Shuffle, Lightbulb, Zap, SkipForward, RefreshCw, Timer, Heart,
-  Award, Gamepad2, GraduationCap, Flame, Trophy, Sparkles, Check, X, Star,
+  Shuffle, Lightbulb, Zap, RefreshCw, Timer,
+  Award, Gamepad2, GraduationCap, Flame, Trophy, Sparkles, Check, X, Star, BookOpen,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -20,39 +20,41 @@ const TILE_PALETTE = [
   '#d946ef', '#0ea5e9', '#f43f5e', '#22c55e',
 ];
 
+// Todos los modos: 10 palabras, 30s por palabra, sin vidas, sin saltos.
+// Si se acaba el tiempo o el alumno pulsa "Comprobar" con la palabra incorrecta,
+// cuenta como fallo y pasa automaticamente a la siguiente.
+// La diferencia entre modos es solo la cantidad de ayudas disponibles:
 const MODE_CONFIG = {
   easy: {
     label: 'Fácil',
     icon: '🟢',
-    questions: 5,
-    lives: 3,
+    questions: 10,
     minLen: 3,
-    maxLen: 6,
-    helpsAvailable: { hint: 3, firstLetter: 2, reshuffle: Infinity, skip: 2 },
+    maxLen: 8,
+    // 10 pistas -> una por cada palabra.
+    helpsAvailable: { hint: 10, firstLetter: 5, reshuffle: Infinity, skip: 0 },
     showHintByDefault: true,
-    timer: null,
+    timer: 30,
   },
   medium: {
     label: 'Medio',
     icon: '🟡',
     questions: 10,
-    lives: 2,
     minLen: 4,
-    maxLen: 8,
-    helpsAvailable: { hint: 2, firstLetter: 1, reshuffle: Infinity, skip: 1 },
+    maxLen: 10,
+    helpsAvailable: { hint: 5, firstLetter: 5, reshuffle: Infinity, skip: 0 },
     showHintByDefault: false,
-    timer: null,
+    timer: 30,
   },
   exam: {
     label: 'Examen',
     icon: '🔴',
-    questions: 15,
-    lives: 1,
+    questions: 10,
     minLen: 4,
     maxLen: 12,
-    helpsAvailable: { hint: 1, firstLetter: 1, reshuffle: Infinity, skip: 0 },
+    helpsAvailable: { hint: 2, firstLetter: 2, reshuffle: Infinity, skip: 0 },
     showHintByDefault: false,
-    timer: 45,
+    timer: 30,
   },
 };
 
@@ -111,15 +113,18 @@ const Anagramas = ({ onGameComplete }) => {
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [gameMode, setGameMode] = useState('easy');
+  // 'select' = pantalla de dificultad; 'playing' = partida en curso/terminada.
+  // Solo se inicializa una partida al pasar de 'select' a 'playing', asi evitamos
+  // que un cambio de modo reinicie la partida sin querer.
+  const [phase, setPhase] = useState('select');
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [status, setStatus] = useState('idle'); // idle|playing|correct|wrong|won|lost
+  const [status, setStatus] = useState('idle'); // idle|playing|correct|wrong|won
 
   // Fichas: {id, letter, color, placedAt}
   const [tiles, setTiles] = useState([]);
 
   // Gamification
-  const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
@@ -139,6 +144,30 @@ const Anagramas = ({ onGameComplete }) => {
 
   // Instrucciones
   const [showHelp, setShowHelp] = useState(false);
+  // Material de estudio
+  const [showStudy, setShowStudy] = useState(false);
+  const [selectedStudyLetter, setSelectedStudyLetter] = useState(null);
+
+  // Agrupa todas las palabras por primera letra para el modal de estudio.
+  const studySections = useMemo(() => {
+    if (!allWords.length) return [];
+    const map = {};
+    for (const w of allWords) {
+      const L = (w.letra || normalize(w.original).charAt(0) || '').toUpperCase();
+      if (!L) continue;
+      if (!map[L]) map[L] = [];
+      // Deduplicar por palabra (ignora mayusculas/tildes)
+      if (!map[L].find((x) => x.letters === w.letters)) {
+        map[L].push(w);
+      }
+    }
+    return Object.entries(map)
+      .map(([letra, items]) => ({
+        letra,
+        items: items.sort((a, b) => a.original.localeCompare(b.original, 'es')),
+      }))
+      .sort((a, b) => a.letra.localeCompare(b.letra, 'es'));
+  }, [allWords]);
 
   // --- Cargar rosco ---
   useEffect(() => {
@@ -155,6 +184,7 @@ const Anagramas = ({ onGameComplete }) => {
                 original: String(it.solucion).trim(),
                 letters: normalize(it.solucion),
                 clue: it.definicion || '',
+                letra: (it.letra || normalize(it.solucion).charAt(0) || '').toUpperCase(),
               }))
               .filter(
                 (w) =>
@@ -204,7 +234,6 @@ const Anagramas = ({ onGameComplete }) => {
     setCurrentIndex(0);
     setTiles(buildTiles(chosen[0]));
     setStatus('playing');
-    setLives(cfg.lives);
     setScore(0);
     setStreak(0);
     setMaxStreak(0);
@@ -217,9 +246,15 @@ const Anagramas = ({ onGameComplete }) => {
     if (cfg.timer) setTimeLeft(cfg.timer);
   }, [allWords, gameMode, buildTiles]);
 
+  // Arranca partida SOLO cuando el alumno entra en 'playing'. Los cambios de
+  // gameMode en la pantalla de seleccion NO inician partida; asi no se reinicia
+  // cada vez que tocas otra dificultad.
   useEffect(() => {
-    if (!loading && allWords.length > 0) startGame();
-  }, [loading, gameMode, allWords, startGame]);
+    if (phase === 'playing' && !loading && allWords.length > 0 && questions.length === 0) {
+      startGame();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, loading, allWords.length]);
 
   // --- Timer por palabra (examen) ---
   useEffect(() => {
@@ -234,7 +269,6 @@ const Anagramas = ({ onGameComplete }) => {
         if (t <= 1) {
           clearInterval(timerRef.current);
           setStatus('wrong');
-          setLives((l) => l - 1);
           setStreak(0);
           return 0;
         }
@@ -353,20 +387,6 @@ const Anagramas = ({ onGameComplete }) => {
     setHelpsRemaining((h) => ({ ...h, firstLetter: h.firstLetter - 1 }));
   }, [status, currentWord, revealedFirst, helpsRemaining.firstLetter]);
 
-  // --- Saltar palabra (comodín) ---
-  const skipWord = useCallback(() => {
-    if (helpsRemaining.skip <= 0 || status !== 'playing') return;
-    setHelpsRemaining((h) => ({ ...h, skip: h.skip - 1 }));
-    setStreak(0);
-    // Avanzar sin sumar
-    if (currentIndex + 1 >= questions.length) {
-      setStatus('won');
-    } else {
-      setCurrentIndex((i) => i + 1);
-      setTiles(buildTiles(questions[currentIndex + 1]));
-    }
-  }, [helpsRemaining.skip, status, currentIndex, questions, buildTiles]);
-
   // --- Comprobar si la palabra está completa y correcta ---
   const formedWord = useMemo(() => {
     if (!currentWord) return '';
@@ -390,8 +410,9 @@ const Anagramas = ({ onGameComplete }) => {
         // ¡Correcto!
         const cfg = MODE_CONFIG[gameMode];
         const basePoints = 100;
-        const streakMultiplier = 1 + streak * 0.1;
-        const timeBonus = cfg.timer ? Math.max(0, Math.round(20 * (timeLeft / cfg.timer))) : 0;
+        const streakMultiplier = 1 + streak * 0.15;
+        // Bonus fuerte por velocidad: hasta +200 por palabra si resuelves rapido.
+        const timeBonus = cfg.timer ? Math.max(0, Math.round(200 * (timeLeft / cfg.timer))) : 0;
         const gained = Math.round(basePoints * streakMultiplier + timeBonus);
         setScore((s) => s + gained);
         setLastGain({ value: gained, key: Date.now() });
@@ -410,9 +431,8 @@ const Anagramas = ({ onGameComplete }) => {
           colors: tiles.map((t) => t.color).slice(0, 6),
         });
       } else {
-        // ¡Incorrecto!
+        // ¡Incorrecto! Sin vidas: solo rompe la racha y pasa a la siguiente.
         setStatus('wrong');
-        setLives((l) => l - 1);
         setStreak(0);
       }
     }, 350);
@@ -420,17 +440,14 @@ const Anagramas = ({ onGameComplete }) => {
   }, [formedWord, currentWord, status, gameMode, streak, timeLeft, tiles]);
 
   // --- Auto-avance tras correcto/incorrecto ---
+  // Sin vidas: un fallo o acierto simplemente avanza a la siguiente. La partida
+  // solo termina cuando se completan las 10 palabras (status='won').
   useEffect(() => {
     if (status !== 'correct' && status !== 'wrong') return;
-    const cfg = MODE_CONFIG[gameMode];
     const delay = status === 'correct' ? 1200 : 1800;
     const t = setTimeout(() => {
-      if (status === 'wrong' && lives <= 0) {
-        setStatus('lost');
-        return;
-      }
       if (currentIndex + 1 >= questions.length) {
-        setStatus(status === 'wrong' && lives <= 0 ? 'lost' : 'won');
+        setStatus('won');
         return;
       }
       setCurrentIndex((i) => i + 1);
@@ -438,11 +455,11 @@ const Anagramas = ({ onGameComplete }) => {
       setStatus('playing');
     }, delay);
     return () => clearTimeout(t);
-  }, [status, lives, currentIndex, questions, gameMode, buildTiles]);
+  }, [status, currentIndex, questions, gameMode, buildTiles]);
 
   // --- Tracking al terminar ---
   useEffect(() => {
-    if ((status !== 'won' && status !== 'lost') || trackedRef.current) return;
+    if (status !== 'won' || trackedRef.current) return;
     trackedRef.current = true;
     if (status === 'won') {
       confetti({
@@ -453,13 +470,15 @@ const Anagramas = ({ onGameComplete }) => {
       });
     }
     const isExamMode = gameMode === 'exam';
+    // Max teorico por palabra: 100*(1+9*0.15) + 200 = 435. Usamos 450 como referencia
+    // para el ratio score/maxScore (ranking). La nota es correctos/10 * 10.
     onGameComplete?.({
       mode: isExamMode ? 'test' : 'practice',
-      score: isExamMode ? score : 0,
-      maxScore: isExamMode ? questions.length * 170 : 0,
+      score,
+      maxScore: questions.length * 450,
       correctAnswers: correctCount,
       totalQuestions: questions.length || 1,
-      durationSeconds: isExamMode ? (cfg.timer ? (cfg.timer * questions.length - timeLeft) : 0) : 0,
+      durationSeconds: cfg.timer ? (cfg.timer * questions.length - timeLeft) : 0,
     });
   }, [status, score, correctCount, questions.length, gameMode, onGameComplete]);
 
@@ -490,9 +509,8 @@ const Anagramas = ({ onGameComplete }) => {
   }
 
   const cfg = MODE_CONFIG[gameMode];
-  const isFinished = status === 'won' || status === 'lost';
+  const isFinished = status === 'won';
   const multiplier = (1 + streak * 0.15).toFixed(2);
-  const isExam = gameMode === 'exam';
 
   // Nota sobre 10 (solo relevante en examen, pero la calculamos siempre)
   const nota = questions.length > 0
@@ -519,91 +537,127 @@ const Anagramas = ({ onGameComplete }) => {
             <span>Anagramas</span>
             <InstructionsButton onClick={() => setShowHelp(true)} />
           </div>
-          <div className="anag-stats">
-            {cfg.timer && !isFinished && (
-              <div className={`anag-stat timer ${timeLeft <= 10 ? 'danger' : ''}`}>
-                <Timer size={14} />
-                <span>{timeLeft}s</span>
+          <div className="anag-header-right">
+            <div className="anag-toolbar">
+              <button
+                type="button"
+                className="anag-study-btn"
+                onClick={() => {
+                  if (studySections.length > 0 && !selectedStudyLetter) {
+                    setSelectedStudyLetter(studySections[0].letra);
+                  }
+                  setShowStudy(true);
+                }}
+                title="Ver material de estudio"
+              >
+                <BookOpen size={16} />
+                <span>Ver material de estudio</span>
+              </button>
+              {phase === 'playing' && (
+                <button
+                  type="button"
+                  className="anag-mode-change"
+                  onClick={() => {
+                    setPhase('select');
+                    setQuestions([]);
+                    setStatus('idle');
+                  }}
+                  title="Cambiar de dificultad"
+                >
+                  <RefreshCw size={16} />
+                  <span>Cambiar modo</span>
+                </button>
+              )}
+            </div>
+            <div className="anag-stats">
+              {cfg.timer && !isFinished && (
+                <div className={`anag-stat timer ${timeLeft <= 10 ? 'danger' : ''}`}>
+                  <Timer size={14} />
+                  <span>{timeLeft}s</span>
+                </div>
+              )}
+              <div className="anag-stat streak">
+                <Flame size={14} />
+                <span>{streak}</span>
               </div>
-            )}
-            <div className="anag-stat lives">
-              {Array.from({ length: cfg.lives }).map((_, i) => (
-                <Heart
-                  key={i}
-                  size={14}
-                  fill={i < lives ? '#ef4444' : 'none'}
-                  stroke={i < lives ? '#ef4444' : '#d1d5db'}
-                />
-              ))}
-            </div>
-            <div className="anag-stat streak">
-              <Flame size={14} />
-              <span>{streak}</span>
-            </div>
-            <div className="anag-stat score">
-              <Star size={14} />
-              <span>{score}</span>
+              <div className="anag-stat score">
+                <Star size={14} />
+                <span>{score}</span>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="anag-subtitle">
           {subjectInfo.icon} {subjectInfo.nombre || 'General'}
+          {phase === 'playing' && (
+            <span className="anag-mode-badge">
+              {cfg.icon} {cfg.label}
+            </span>
+          )}
         </div>
 
-        {/* Tabs modo */}
-        <div className="anag-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
+        {/* Pantalla de seleccion de dificultad (antes de jugar) */}
+        {phase === 'select' && (
+          <div className="anag-select">
+            <h3 className="anag-select-title">Elige tu dificultad</h3>
+            <p className="anag-select-sub">
+              Todos los modos tienen 10 palabras y 30 s por palabra. Cambia solo el número de ayudas disponibles.
+            </p>
+            <div className="anag-select-grid">
+              {Object.entries(MODE_CONFIG).map(([key, c]) => (
+                <button
+                  key={key}
+                  className={`anag-select-card ${key} ${gameMode === key ? 'active' : ''}`}
+                  onClick={() => setGameMode(key)}
+                >
+                  <span className="anag-select-icon">{c.icon}</span>
+                  <span className="anag-select-label">{c.label}</span>
+                  <ul className="anag-select-helps">
+                    <li><Lightbulb size={12} /> {c.helpsAvailable.hint} pistas</li>
+                    <li><Zap size={12} /> {c.helpsAvailable.firstLetter} · 1ª letra</li>
+                    <li><Shuffle size={12} /> Mezclar ilimitado</li>
+                  </ul>
+                </button>
+              ))}
+            </div>
             <button
-              key={key}
-              className={`anag-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`}
-              onClick={() => setGameMode(key)}
+              className="anag-btn primary anag-select-start"
+              onClick={() => setPhase('playing')}
+              disabled={loading || allWords.length < 3}
             >
-              <span className="anag-tab-icon">{c.icon}</span>
-              <span className="anag-tab-label">{c.label}</span>
-              <span className="anag-tab-sub">{c.questions} palabras</span>
+              <GraduationCap size={18} /> ¡Empezar partida!
             </button>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Pantalla final */}
         <AnimatePresence>
-          {isFinished && (
+          {phase === 'playing' && isFinished && (
             <motion.div
               className={`anag-result ${status}`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             >
               <div className="anag-result-icon">
-                {status === 'won' ? <Trophy size={48} /> : <Award size={48} />}
+                <Trophy size={48} />
               </div>
-              <h2 className="anag-result-title">
-                {status === 'won' ? '¡Partida completada! 🎉' : '¡Se acabó!'}
-              </h2>
+              <h2 className="anag-result-title">¡Partida completada! 🎉</h2>
 
-              {isExam ? (
-                <>
-                  {/* Nota principal sobre 10 */}
-                  <div className={`anag-nota ${notaColor}`}>
-                    <div className="anag-nota-big">
-                      {nota.toFixed(1)}
-                      <span className="anag-nota-small">/10</span>
-                    </div>
-                    <div className="anag-nota-msg">{notaMsg}</div>
-                  </div>
-                  {/* Puntos como récord superable */}
-                  <div className="anag-result-record">
-                    <Star size={16} />
-                    <span className="anag-result-record-value">{score.toLocaleString('es-ES')}</span>
-                    <span className="anag-result-record-label">puntos · ¡supérate!</span>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="anag-result-score">{score}</div>
-                  <div className="anag-result-score-label">puntos</div>
-                </>
-              )}
+              {/* Nota principal sobre 10 */}
+              <div className={`anag-nota ${notaColor}`}>
+                <div className="anag-nota-big">
+                  {nota.toFixed(1)}
+                  <span className="anag-nota-small">/10</span>
+                </div>
+                <div className="anag-nota-msg">{notaMsg}</div>
+              </div>
+              {/* Puntos: dependen de la velocidad */}
+              <div className="anag-result-record">
+                <Star size={16} />
+                <span className="anag-result-record-value">{score.toLocaleString('es-ES')}</span>
+                <span className="anag-result-record-label">puntos · ¡supérate!</span>
+              </div>
 
               <div className="anag-result-stats">
                 <div className="anag-result-stat">
@@ -613,15 +667,28 @@ const Anagramas = ({ onGameComplete }) => {
                   <Flame size={14} /> Racha máxima: {maxStreak}
                 </div>
               </div>
-              <button className="anag-btn primary" onClick={startGame}>
-                <RefreshCw size={16} /> Jugar otra vez
-              </button>
+              <div className="anag-result-actions">
+                <button className="anag-btn primary" onClick={startGame}>
+                  <RefreshCw size={16} /> Jugar otra vez
+                </button>
+                <button
+                  className="anag-btn ghost"
+                  onClick={() => {
+                    setPhase('select');
+                    setQuestions([]);
+                    setStatus('idle');
+                    trackedRef.current = false;
+                  }}
+                >
+                  Cambiar dificultad
+                </button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Juego */}
-        {!isFinished && currentWord && (
+        {phase === 'playing' && !isFinished && currentWord && (
           <>
             {/* Progreso */}
             <div className="anag-progress">
@@ -669,7 +736,7 @@ const Anagramas = ({ onGameComplete }) => {
             <LayoutGroup>
               {/* Slots (la palabra a completar) */}
               <div className="anag-slots-wrap">
-                <div className="anag-slots">
+                <div className={`anag-slots ${status === 'wrong' ? 'shake' : ''}`}>
                   {slots.map((tile, idx) => (
                     <div key={`slot-${idx}`} className="anag-slot">
                       <AnimatePresence mode="popLayout">
@@ -682,12 +749,35 @@ const Anagramas = ({ onGameComplete }) => {
                             } ${status === 'wrong' ? 'wrong' : ''}`}
                             style={{ background: tile.color }}
                             onClick={() => removeTile(tile.id)}
-                            whileHover={{ y: -3 }}
-                            whileTap={{ scale: 0.92 }}
+                            whileHover={{ y: -4, rotate: 4, scale: 1.04 }}
+                            whileTap={{ scale: 0.88, rotate: -6 }}
+                            // Al caer en el slot: giro rapido + asentamiento con rebote.
+                            initial={{ rotate: 0 }}
+                            // Secuencia de "onda" al acertar: cada letra rota/rebota con retraso.
+                            animate={
+                              status === 'correct'
+                                ? {
+                                    y: [0, -14, 0],
+                                    rotate: [0, 8, -6, 0],
+                                    scale: [1, 1.18, 1],
+                                    transition: {
+                                      duration: 0.7,
+                                      delay: idx * 0.08,
+                                      ease: 'easeInOut',
+                                    },
+                                  }
+                                : status === 'wrong'
+                                ? {
+                                    x: [0, -6, 6, -4, 4, 0],
+                                    rotate: [0, -3, 3, -2, 2, 0],
+                                    transition: { duration: 0.45 },
+                                  }
+                                : { y: 0, rotate: 0, scale: 1 }
+                            }
                             transition={{
                               type: 'spring',
-                              stiffness: 500,
-                              damping: 30,
+                              stiffness: 420,
+                              damping: 22,
                             }}
                           >
                             {tile.letter}
@@ -718,20 +808,25 @@ const Anagramas = ({ onGameComplete }) => {
 
               {/* Banco de letras */}
               <div className="anag-bank">
-                {bank.map((tile) => (
+                {bank.map((tile, i) => (
                   <motion.button
                     key={tile.id}
                     layoutId={tile.id}
-                    className="anag-tile"
+                    className="anag-tile anag-tile-bank"
                     style={{ background: tile.color }}
                     onClick={() => placeTile(tile.id)}
-                    whileHover={{ y: -4, rotate: [-2, 2, -2, 0] }}
-                    whileTap={{ scale: 0.92 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 500,
-                      damping: 30,
+                    // Animacion ociosa: flotan sutilmente con ritmos distintos por tile.
+                    animate={{
+                      y: [0, -3, 0, 2, 0],
+                      rotate: [0, -1.2, 0, 1.2, 0],
                     }}
+                    transition={{
+                      y: { duration: 3 + (i % 3) * 0.4, repeat: Infinity, ease: 'easeInOut' },
+                      rotate: { duration: 3 + (i % 3) * 0.4, repeat: Infinity, ease: 'easeInOut' },
+                      layout: { type: 'spring', stiffness: 420, damping: 24 },
+                    }}
+                    whileHover={{ y: -6, scale: 1.08, rotate: 0 }}
+                    whileTap={{ scale: 0.88, rotate: -8 }}
                   >
                     {tile.letter}
                   </motion.button>
@@ -780,18 +875,6 @@ const Anagramas = ({ onGameComplete }) => {
               >
                 <Shuffle size={16} />
                 <span>Mezclar</span>
-              </button>
-              <button
-                className="anag-lifeline"
-                onClick={skipWord}
-                disabled={helpsRemaining.skip <= 0 || status !== 'playing'}
-                title="Saltar esta palabra"
-              >
-                <SkipForward size={16} />
-                <span>Saltar</span>
-                {helpsRemaining.skip !== Infinity && (
-                  <span className="anag-lifeline-count">{helpsRemaining.skip}</span>
-                )}
               </button>
             </div>
 
@@ -846,37 +929,39 @@ const Anagramas = ({ onGameComplete }) => {
         <h3>🔥 Racha y multiplicador</h3>
         <p>
           Aciertos consecutivos suben un <strong>multiplicador ×1.15</strong> por cada racha.
-          Un fallo lo resetea. La puntuación depende de la longitud de la palabra, la racha y
-          el tiempo restante (en examen).
+          Un fallo lo resetea. A más velocidad, más puntos.
         </p>
         <p className="instr-formula">
-          <strong>Puntos</strong> = longitud × 100 × multiplicador (+ bonus de tiempo en examen)
+          <strong>Puntos</strong> = 100 × multiplicador + bonus de tiempo restante
         </p>
 
-        <h3>🪄 Comodines (disponibles en TODOS los modos)</h3>
+        <h3>🪄 Comodines</h3>
         <ul>
           <li><strong>💡 Pista</strong> — muestra la definición de la palabra.</li>
           <li><strong>⚡ 1ª letra</strong> — coloca automáticamente la primera letra.</li>
           <li><strong>🔀 Mezclar</strong> — reordena el banco de letras (sin límite).</li>
-          <li><strong>⏭️ Saltar</strong> — cambia la palabra actual (rompe la racha).</li>
         </ul>
         <p>
           Los contadores en rojo arriba de cada botón indican cuántos usos te quedan en la partida.
         </p>
 
         <h3>🎓 Niveles de dificultad</h3>
+        <p className="instr-note">
+          En todos los niveles: <strong>10 palabras</strong>, <strong>30 s</strong> por palabra.
+          Si fallas o se acaba el tiempo, pasas a la siguiente (sin vidas, sin saltos).
+        </p>
         <div className="instr-modes">
           <div className="instr-mode easy">
             <strong>🟢 Fácil</strong>
-            5 palabras cortas, 3 vidas, pista visible.
+            10 pistas de definición, 5 de 1ª letra.
           </div>
           <div className="instr-mode medium">
             <strong>🟡 Medio</strong>
-            10 palabras medianas, 2 vidas.
+            5 pistas de definición, 5 de 1ª letra.
           </div>
           <div className="instr-mode exam">
             <strong>🔴 Examen</strong>
-            15 palabras, 1 vida, 45s por palabra.
+            2 pistas de definición, 2 de 1ª letra.
           </div>
         </div>
 
@@ -885,6 +970,83 @@ const Anagramas = ({ onGameComplete }) => {
           para que el banco se baraje de otra forma — a veces ayuda a ver la palabra más claro.
         </div>
       </InstructionsModal>
+
+      {/* Modal: material de estudio */}
+      <AnimatePresence>
+        {showStudy && (
+          <motion.div
+            className="anag-study-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowStudy(false)}
+          >
+            <motion.div
+              className="anag-study-modal"
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.96 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="anag-study-header">
+                <div className="anag-study-title">
+                  <BookOpen size={20} />
+                  <h2>Material de estudio</h2>
+                </div>
+                <button
+                  className="anag-study-close"
+                  onClick={() => setShowStudy(false)}
+                  aria-label="Cerrar"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <p className="anag-study-sub">
+                {subjectInfo.icon} {subjectInfo.nombre || 'General'} · repasa este vocabulario
+                para formar los anagramas más rápido.
+              </p>
+
+              {studySections.length === 0 ? (
+                <div className="anag-study-empty">
+                  No hay palabras disponibles para esta asignatura.
+                </div>
+              ) : (
+                <>
+                  <div className="anag-study-letters">
+                    {studySections.map((sec) => (
+                      <button
+                        key={sec.letra}
+                        className={`anag-study-letter ${selectedStudyLetter === sec.letra ? 'active' : ''}`}
+                        onClick={() => setSelectedStudyLetter(sec.letra)}
+                      >
+                        {sec.letra}
+                        <span className="anag-study-letter-count">{sec.items.length}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="anag-study-content">
+                    {studySections
+                      .find((s) => s.letra === selectedStudyLetter)
+                      ?.items.map((w, i) => (
+                        <div key={`${w.letters}-${i}`} className="anag-study-item">
+                          <div className="anag-study-word">{w.original}</div>
+                          {w.clue && <div className="anag-study-clue">{w.clue}</div>}
+                        </div>
+                      ))}
+                  </div>
+                </>
+              )}
+
+              <button
+                className="anag-btn primary anag-study-done"
+                onClick={() => setShowStudy(false)}
+              >
+                ¡Entendido, a jugar!
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
