@@ -77,9 +77,9 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
   ];
 
   const opcionesExamen = [
-    { nombre: 'Básico', filas: 4, columnas: 4, parejas: 8, isExam: true, icono: '📝' },
-    { nombre: 'Medio', filas: 4, columnas: 6, parejas: 12, isExam: true, icono: '🎓' },
-    { nombre: 'Avanzado', filas: 5, columnas: 8, parejas: 20, isExam: true, icono: '🏆' }
+    { nombre: 'Básico', filas: 4, columnas: 4, parejas: 8, isExam: true, icono: '📝', notaModifier: -1 },
+    { nombre: 'Medio', filas: 4, columnas: 6, parejas: 12, isExam: true, icono: '🎓', notaModifier: 0 },
+    { nombre: 'Avanzado', filas: 5, columnas: 8, parejas: 20, isExam: true, icono: '🏆', notaModifier: 1 }
   ];
 
   const iniciarJuego = (opcion) => {
@@ -247,12 +247,16 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
       const turnosBonus = Math.max(0, Math.round(300 * (1 - (turnos - minTurnos) / (minTurnos * 2))));
       const totalPoints = basePoints + turnosBonus;
       const isExamMode = config.isExam;
+      const modifier = config.notaModifier || 0;
+      const notaBase = config.parejas > 0 ? (parejasEncontradas / config.parejas) * 10 : 0;
+      const notaFinal = Math.max(0, Math.min(10, notaBase + modifier));
       onGameComplete?.({
         mode: isExamMode ? 'test' : 'practice',
         score: isExamMode ? totalPoints : 0,
         maxScore: isExamMode ? config.parejas * 100 + 300 : 0,
         correctAnswers: parejasEncontradas,
         totalQuestions: config.parejas,
+        ...(isExamMode ? { nota: Math.round(notaFinal * 10) / 10 } : {}),
       });
     }
     if (fase !== 'resumen') trackedRef.current = false;
@@ -301,13 +305,15 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
     return randomDelaysRef.current[id];
   };
 
-  // CALCULO DE NOTA PARA EXAMEN
-  const calcularNota = () => {
+  // CALCULO DE NOTA PARA EXAMEN (con modificador por dificultad)
+  const calcularNotaNum = () => {
     const totalParejas = config.parejas;
     const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
-    const nota = (parejasEncontradas / totalParejas) * 10;
-    return nota.toFixed(1); // Un decimal
+    const base = (parejasEncontradas / totalParejas) * 10;
+    const modifier = config.notaModifier || 0;
+    return Math.max(0, Math.min(10, base + modifier));
   };
+  const calcularNota = () => calcularNotaNum().toFixed(1);
 
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando... 🃏</div>;
 
@@ -362,6 +368,11 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                     <div className="text-sm opacity-90 font-medium">
                       {op.filas}x{op.columnas} • {op.parejas} parejas
                     </div>
+                    {op.notaModifier !== 0 && (
+                      <div className={`text-xs font-bold mt-1 ${op.notaModifier > 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+                        {op.notaModifier > 0 ? `+${op.notaModifier} a la nota` : `${op.notaModifier} a la nota`}
+                      </div>
+                    )}
                   </button>
                 ))}
               </div>
@@ -546,6 +557,13 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                       <span className={`text-6xl font-black ${vidas > 0 ? 'text-emerald-500' : 'text-red-500'}`}>
                         {calcularNota()}
                       </span>
+                      {config.notaModifier !== 0 && (
+                        <p className={`text-sm mt-2 font-bold ${config.notaModifier > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                          {config.notaModifier > 0
+                            ? `Bonus por dificultad Avanzado: +${config.notaModifier} (clip 0-10)`
+                            : `Penalización por dificultad Básico: ${config.notaModifier} (clip 0-10)`}
+                        </p>
+                      )}
                       {vidas === 0 && <p className="text-sm text-red-400 mt-2 font-bold">(Te quedaste sin vidas)</p>}
                     </div>
                   </>
