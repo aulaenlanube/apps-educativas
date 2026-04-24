@@ -98,7 +98,13 @@
       "Bash(scp -P 65002 -i ~/.ssh/id_ed25519 dist/index.html u921923031@82.25.96.226:domains/apps-educativas.com/public_html/dist/)",
       "Bash(npx serve:*)",
       "Bash(curl -s http://localhost:4000)",
-      "Bash(curl -s http://localhost:4000/assets/vendor-Dmi0Jxvy.js)"
+      "Bash(curl -s http://localhost:4000/assets/vendor-Dmi0Jxvy.js)",
+      "Bash(curl -s https://apps-educativas.com/assets/)",
+      "Bash(curl -s https://apps-educativas.com/index.html)",
+      "Bash(curl -s \"https://apps-educativas.com/assets/index-HMdxFU4K.js\")",
+      "Bash(curl -s \"https://apps-educativas.com/assets/StudentDashboard-BWV8Cq3g.js\")",
+      "Bash(curl -s \"https://apps-educativas.com/assets/duelService-BforBkqW.js\")",
+      "Bash(curl -s \"https://apps-educativas.com/index.html\")"
     ]
   }
 }
