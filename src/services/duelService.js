@@ -73,6 +73,13 @@ export async function getDuels({ studentId, sessionToken }) {
   }));
 }
 
+export async function setDuelReveal({ studentId, sessionToken, duelId, revealed }) {
+  return unwrap(await supabase.rpc('student_set_duel_reveal', {
+    p_student_id: studentId, p_session_token: sessionToken,
+    p_duel_id: duelId, p_revealed: revealed,
+  }));
+}
+
 export async function getDuelState({ studentId, sessionToken, duelId }) {
   return unwrap(await supabase.rpc('student_get_duel_state', {
     p_student_id: studentId, p_session_token: sessionToken, p_duel_id: duelId,

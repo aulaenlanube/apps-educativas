@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Swords, EyeOff, Eye, Check, X, ArrowRight, Clock, Lock } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { acceptDuel, rejectDuel } from '@/services/duelService';
+import { acceptDuel, rejectDuel, setDuelReveal } from '@/services/duelService';
 import { useToast } from '@/components/ui/use-toast';
 
 function stakeLabel(n) {
@@ -23,10 +23,7 @@ export default function DuelInbox({ duels, onChange }) {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [busy, setBusy] = useState(null);
-  // Set de duel_ids cuyo rival ha sido revelado voluntariamente (solo en la
-  // vista local, no se persiste). Aplica a duelos-tarea, que por defecto
-  // siempre van con rival oculto hasta que el alumno decida verlo.
-  const [revealed, setRevealed] = useState(() => new Set());
+  const [revealBusy, setRevealBusy] = useState(null);
 
   const { incoming = [], outgoing = [] } = duels || {};
   if (incoming.length === 0 && outgoing.length === 0) return null;
@@ -61,32 +58,39 @@ export default function DuelInbox({ duels, onChange }) {
     navigate(`/duelo/${d.duel_id}`);
   }
 
-  function toggleReveal(duelId) {
-    setRevealed(prev => {
-      const next = new Set(prev);
-      if (next.has(duelId)) next.delete(duelId); else next.add(duelId);
-      return next;
-    });
+  // Cada jugador controla SU PROPIA visibilidad: al pulsar "Mostrar mi
+  // identidad" se persiste en el servidor y el RIVAL te verá. Tú sigues sin
+  // ver al rival hasta que el rival lo active voluntariamente.
+  async function handleToggleMyReveal(d) {
+    setRevealBusy(d.duel_id);
+    try {
+      await setDuelReveal({
+        studentId: student.id,
+        sessionToken: student.session_token,
+        duelId: d.duel_id,
+        revealed: !d.me_revealed,
+      });
+      onChange?.();
+    } catch (err) {
+      toast({ variant: 'destructive', title: 'Error', description: err.message });
+    } finally {
+      setRevealBusy(null);
+    }
   }
 
   function renderCard(d, kind) {
-    // kind: 'incoming' | 'outgoing' — solo cambia el tratamiento del rival
-    // en duelos personales; los duelos-tarea se muestran igual para los dos.
     const isTask = !!d.is_task;
-    const isRevealed = revealed.has(d.duel_id);
     const rival = kind === 'incoming' ? d.challenger : d.opponent;
-    const rivalHiddenFromServer = kind === 'incoming' && d.challenger?.hidden;
-
-    // En duelos-tarea siempre ocultamos el rival hasta que el alumno lo revela.
-    const hideRival = isTask ? !isRevealed : rivalHiddenFromServer;
-    const rivalEmoji = hideRival ? '🕵️' : (rival?.emoji || '🎓');
-    const rivalName = hideRival ? 'Rival oculto' : (rival?.name || 'Rival');
+    // El rival es visible solo si el RIVAL ha activado su reveal. Para duelos
+    // personales clásicos el backend inicializa ambos flags a true, así que
+    // este flujo no cambia su comportamiento.
+    const rivalHidden = rival?.hidden === true || d.rival_revealed === false;
+    const rivalEmoji = rivalHidden ? '🕵️' : (rival?.emoji || '🎓');
+    const rivalName = rivalHidden ? 'Rival oculto' : (rival?.name || 'Rival');
 
     const canEnter = !(isTask && d.in_class_window === false);
     const isPending = d.status === 'pending';
     const showAcceptButtons = kind === 'incoming' && isPending && !isTask;
-    // Los duelos-tarea van en status='accepted' desde el servidor; los
-    // enseñamos como "pendiente de jugar" para ambos jugadores.
 
     return (
       <motion.div
@@ -95,11 +99,9 @@ export default function DuelInbox({ duels, onChange }) {
         animate={{ opacity: 1, height: 'auto' }}
         exit={{ opacity: 0, height: 0 }}
         className={`p-3 rounded-xl border ${
-          isTask
+          isTask || kind === 'incoming'
             ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 border-violet-200'
-            : kind === 'incoming'
-              ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 border-violet-200'
-              : 'bg-slate-50 border-slate-200'
+            : 'bg-slate-50 border-slate-200'
         }`}
       >
         <div className="flex items-center gap-3">
@@ -107,7 +109,7 @@ export default function DuelInbox({ duels, onChange }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <p className="text-sm font-bold text-slate-800 truncate">
-                {isTask ? (hideRival ? 'Rival oculto' : `vs ${rivalName}`) : (kind === 'incoming' ? rivalName : `vs ${rivalName}`)}
+                {kind === 'outgoing' && !rivalHidden ? `vs ${rivalName}` : rivalName}
               </p>
               <span className={`text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded-full font-bold ${
                 isTask
@@ -123,14 +125,25 @@ export default function DuelInbox({ duels, onChange }) {
                   <EyeOff className="w-3.5 h-3.5" />
                 </span>
               )}
-              {isTask && (
+              {/* Toggle propio: solo relevante cuando el duelo empieza oculto
+                  (tarea o personal con is_hidden). Para personales visibles
+                  me_revealed ya viene true y no mostramos el botón. */}
+              {(isTask || d.is_hidden) && (
                 <button
                   type="button"
-                  onClick={() => toggleReveal(d.duel_id)}
-                  className="text-[10px] inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/80 border border-violet-300 text-violet-700 font-semibold hover:bg-white"
+                  onClick={() => handleToggleMyReveal(d)}
+                  disabled={revealBusy === d.duel_id}
+                  title={d.me_revealed
+                    ? 'Tu rival puede verte. Pulsa para volver a ocultarte.'
+                    : 'Tu rival no sabe quién eres. Pulsa para mostrarle tu identidad.'}
+                  className={`text-[10px] inline-flex items-center gap-1 px-2 py-0.5 rounded-full border font-semibold transition-all ${
+                    d.me_revealed
+                      ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100'
+                      : 'bg-white/80 border-violet-300 text-violet-700 hover:bg-white'
+                  } disabled:opacity-50`}
                 >
-                  {isRevealed ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
-                  {isRevealed ? 'Ocultar rival' : 'Mostrar rival'}
+                  {d.me_revealed ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
+                  {d.me_revealed ? 'Mi rival me ve' : 'Mostrar mi identidad'}
                 </button>
               )}
             </div>
@@ -176,7 +189,7 @@ export default function DuelInbox({ duels, onChange }) {
           )}
         </div>
 
-        {/* Aviso: puntos en juego + reglas */}
+        {/* Aviso clásico de duelo personal pendiente */}
         {isPending && !isTask && kind === 'incoming' && (
           <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-violet-300">
             <div className="flex flex-col items-center px-2">
