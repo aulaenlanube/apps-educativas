@@ -65,49 +65,79 @@ export default function DuelInbox({ duels, onChange }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-violet-50 to-fuchsia-50 border border-violet-200"
+              className="p-3 rounded-xl bg-gradient-to-r from-violet-50 to-fuchsia-50 border border-violet-200"
             >
-              <div className="text-3xl shrink-0">
-                {d.challenger?.hidden ? '🕵️' : (d.challenger?.emoji || '🎓')}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <p className="text-sm font-bold text-slate-800 truncate">
-                    {d.challenger?.hidden ? 'Rival oculto' : d.challenger?.name}
+              <div className="flex items-center gap-3">
+                <div className="text-3xl shrink-0">
+                  {d.challenger?.hidden ? '🕵️' : (d.challenger?.emoji || '🎓')}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="text-sm font-bold text-slate-800 truncate">
+                      {d.challenger?.hidden ? 'Rival oculto' : d.challenger?.name}
+                    </p>
+                    <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-violet-600 text-white font-bold">
+                      te reta
+                    </span>
+                    {d.is_hidden && (
+                      <span title="Duelo oculto" className="text-slate-400"><EyeOff className="w-3.5 h-3.5" /></span>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-500 truncate">
+                    {d.app_name} {d.best_of > 1 && `· al mejor de ${d.best_of}`}
                   </p>
-                  <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-violet-600 text-white font-bold">
-                    te reta
-                  </span>
-                  {d.is_hidden && (
-                    <span title="Duelo oculto" className="text-slate-400"><EyeOff className="w-3.5 h-3.5" /></span>
-                  )}
                 </div>
-                <p className="text-xs text-slate-500 truncate">
-                  {d.app_name} · {stakeLabel(d.stake)} {d.best_of > 1 && `· al mejor de ${d.best_of}`}
-                </p>
+                {d.status === 'pending' ? (
+                  <div className="flex gap-1 shrink-0">
+                    <button
+                      onClick={() => handleAccept(d.duel_id)}
+                      disabled={busy === d.duel_id}
+                      title="Aceptar"
+                      className="w-9 h-9 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center disabled:opacity-50"
+                    ><Check className="w-4 h-4" /></button>
+                    <button
+                      onClick={() => handleReject(d.duel_id)}
+                      disabled={busy === d.duel_id}
+                      title="Rechazar"
+                      className="w-9 h-9 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center disabled:opacity-50"
+                    ><X className="w-4 h-4" /></button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => navigate(`/duelo/${d.duel_id}`)}
+                    className="px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold flex items-center gap-1"
+                  >
+                    Entrar <ArrowRight className="w-3 h-3" />
+                  </button>
+                )}
               </div>
-              {d.status === 'pending' ? (
-                <div className="flex gap-1 shrink-0">
-                  <button
-                    onClick={() => handleAccept(d.duel_id)}
-                    disabled={busy === d.duel_id}
-                    title="Aceptar"
-                    className="w-9 h-9 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center disabled:opacity-50"
-                  ><Check className="w-4 h-4" /></button>
-                  <button
-                    onClick={() => handleReject(d.duel_id)}
-                    disabled={busy === d.duel_id}
-                    title="Rechazar"
-                    className="w-9 h-9 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center disabled:opacity-50"
-                  ><X className="w-4 h-4" /></button>
+
+              {d.status === 'pending' && (
+                <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-violet-300">
+                  <div className="flex flex-col items-center px-2">
+                    <span className="text-[9px] uppercase font-bold text-violet-600">
+                      {d.is_task ? 'Tarea' : 'En juego'}
+                    </span>
+                    <span className="text-base font-black text-violet-700">
+                      {d.is_task ? '+0,10' : `±${stakeLabel(d.stake)}`}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 leading-tight">
+                    {d.is_task ? (
+                      <>
+                        Duelo asignado por tu profesor.
+                        Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+0,10</strong> a tu bonus de duelos.
+                        Si pierdes, <strong>sin penalización</strong>.
+                      </>
+                    ) : (
+                      <>
+                        Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+{stakeLabel(d.stake)}</strong> a tu nota.
+                        Si <strong>pierdes</strong> restas <strong className="text-rose-600">−{stakeLabel(d.stake)}</strong>.
+                        Decide si aceptas el reto.
+                      </>
+                    )}
+                  </p>
                 </div>
-              ) : (
-                <button
-                  onClick={() => navigate(`/duelo/${d.duel_id}`)}
-                  className="px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold flex items-center gap-1"
-                >
-                  Entrar <ArrowRight className="w-3 h-3" />
-                </button>
               )}
             </motion.div>
           ))}

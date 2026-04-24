@@ -90,6 +90,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
   const [groupGrade, setGroupGrade] = useState('1');
   const [groupSubjectId, setGroupSubjectId] = useState(NO_SUBJECT);
   const [groupHours, setGroupHours] = useState([{ weekday: 1, start_time: '09:00', end_time: '10:00' }]);
+  const [groupCurrentTerm, setGroupCurrentTerm] = useState(null); // null=auto (por fecha), 1|2|3
   const [loading, setLoading] = useState(false);
 
   const availableGrades = useMemo(
@@ -110,6 +111,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setGroupGrade('1');
     setGroupSubjectId(NO_SUBJECT);
     setGroupHours([{ weekday: 1, start_time: '09:00', end_time: '10:00' }]);
+    setGroupCurrentTerm(null);
   };
 
   const validateHours = () => {
@@ -179,6 +181,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
         level: groupLevel || null,
         grade: groupGrade || null,
         subject_id: groupSubjectId === NO_SUBJECT ? null : groupSubjectId,
+        current_term: groupCurrentTerm,
         updated_at: new Date().toISOString(),
       })
       .eq('id', editingGroup.id);
@@ -232,6 +235,7 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
     setGroupGrade(group.grade || '1');
     setGroupSubjectId(group.subject_id || NO_SUBJECT);
     setGroupHours([]);
+    setGroupCurrentTerm(group.current_term ?? null);
     setShowEditDialog(true);
     const { data } = await supabase.rpc('teacher_get_group_class_hours', { p_group_id: group.id });
     const list = normalizeHoursFromRpc(data?.hours);
@@ -453,6 +457,35 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
               onGradeChange={(v) => { setGroupGrade(v); setGroupSubjectId(NO_SUBJECT); }}
               onSubjectChange={setGroupSubjectId}
             />
+
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <Label className="flex items-center gap-1.5">Evaluación actual</Label>
+              <p className="text-xs text-slate-400">
+                Determina qué nota ve el alumno en su panel &quot;Mi nota actual&quot;. Si eliges
+                &quot;Automática&quot;, se infiere por fecha (sep-dic 1ª, ene-mar 2ª, abr-ago 3ª).
+              </p>
+              <div className="grid grid-cols-4 gap-2">
+                {[
+                  { v: null, label: 'Automática' },
+                  { v: 1, label: '1ª Eval' },
+                  { v: 2, label: '2ª Eval' },
+                  { v: 3, label: '3ª Eval' },
+                ].map(opt => (
+                  <button
+                    key={opt.label}
+                    type="button"
+                    onClick={() => setGroupCurrentTerm(opt.v)}
+                    className={`py-2 rounded-lg border text-xs font-medium transition-all ${
+                      groupCurrentTerm === opt.v
+                        ? 'bg-gradient-to-br from-pink-500 to-rose-600 text-white border-transparent shadow-sm'
+                        : 'bg-white border-slate-200 text-slate-600 hover:border-pink-300'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="space-y-2 pt-2 border-t border-slate-100">
               <Label className="flex items-center gap-1.5">

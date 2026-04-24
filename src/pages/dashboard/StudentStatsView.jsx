@@ -123,7 +123,10 @@ export default function StudentStatsView({ studentId, onBack }) {
               const tStats = gradeStats.terms?.find(x => x.term === t);
               const grade = tStats?.final_grade;
               const battleBonus = Number(tStats?.battle_bonus) || 0;
+              const duelBonus = Number(tStats?.duel_bonus) || 0;
+              const progressBonus = Number(tStats?.progress_bonus ?? gradeStats.progress_bonus) || 0;
               const gradeColor = grade == null ? 'text-slate-300' : grade >= 8 ? 'text-green-600' : grade >= 5 ? 'text-blue-600' : 'text-red-500';
+              const signed = n => (n > 0 ? '+' : '−') + Math.abs(n).toFixed(2).replace('.', ',');
               return (
                 <div key={t} className="rounded-xl border border-slate-100 bg-gradient-to-br from-pink-50 to-rose-50 p-3 text-center">
                   <div className="text-xs text-rose-600 font-semibold">{t}ª Evaluación</div>
@@ -133,9 +136,19 @@ export default function StudentStatsView({ studentId, onBack }) {
                   <div className="text-[11px] text-slate-400 mt-0.5">
                     {tStats ? `${tStats.completed}/${tStats.total} aprobadas` : 'Sin tareas'}
                   </div>
+                  {duelBonus !== 0 && (
+                    <div className={`text-[10px] font-semibold mt-0.5 ${duelBonus > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                      {signed(duelBonus)} duelos
+                    </div>
+                  )}
                   {battleBonus > 0 && (
                     <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
                       +{battleBonus.toFixed(2).replace('.', ',')} batallas
+                    </div>
+                  )}
+                  {progressBonus > 0 && (
+                    <div className="text-[10px] font-semibold text-blue-600 mt-0.5">
+                      +{progressBonus.toFixed(2).replace('.', ',')} nivel
                     </div>
                   )}
                 </div>
@@ -144,7 +157,10 @@ export default function StudentStatsView({ studentId, onBack }) {
             {(() => {
               const g = gradeStats.final_grade;
               const battleTotal = Number(gradeStats.battle_bonus_total) || 0;
+              const duelTotal = Number(gradeStats.duel_bonus_total) || 0;
+              const progressTotal = Number(gradeStats.progress_bonus) || 0;
               const gradeColor = g == null ? 'text-slate-300' : g >= 8 ? 'text-green-600' : g >= 5 ? 'text-blue-600' : 'text-red-500';
+              const signed = n => (n > 0 ? '+' : '−') + Math.abs(n).toFixed(2).replace('.', ',');
               return (
                 <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-100 to-blue-100 p-3 text-center shadow-sm">
                   <div className="text-xs text-purple-700 font-bold uppercase tracking-wide">Nota final</div>
@@ -154,9 +170,19 @@ export default function StudentStatsView({ studentId, onBack }) {
                   <div className="text-[11px] text-slate-500 mt-0.5">
                     {gradeStats.completed_assignments}/{gradeStats.total_assignments} aprobadas
                   </div>
+                  {duelTotal !== 0 && (
+                    <div className={`text-[10px] font-semibold mt-0.5 ${duelTotal > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                      {signed(duelTotal)} duelos
+                    </div>
+                  )}
                   {battleTotal > 0 && (
                     <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
                       +{battleTotal.toFixed(2).replace('.', ',')} batallas
+                    </div>
+                  )}
+                  {progressTotal > 0 && (
+                    <div className="text-[10px] font-semibold text-blue-600 mt-0.5">
+                      +{progressTotal.toFixed(2).replace('.', ',')} nivel {gradeStats.level ? `(${gradeStats.level})` : ''}
                     </div>
                   )}
                 </div>

@@ -48,18 +48,22 @@ export default function AssignmentScoresDialog({ open, onOpenChange, assignment 
       arr.sort((a, b) => (a.display_name || '').localeCompare(b.display_name || ''));
     } else {
       arr.sort((a, b) => {
-        const av = a.best_nota == null ? -Infinity : a.best_nota;
-        const bv = b.best_nota == null ? -Infinity : b.best_nota;
+        const av = a.best_nota == null ? 0 : Number(a.best_nota);
+        const bv = b.best_nota == null ? 0 : Number(b.best_nota);
         return sortOrder === 'desc' ? bv - av : av - bv;
       });
     }
     return arr;
   }, [scores, sortOrder]);
 
+  // Nota media de la clase: los que no lo han intentado cuentan como 0
+  // (coherente con "siempre tienes una nota, si no lo has intentado es 0").
   const stats = useMemo(() => {
     const played = scores.filter(s => s.best_nota != null);
     const passed = played.filter(s => s.passed).length;
-    const avg = played.length ? played.reduce((sum, s) => sum + Number(s.best_nota), 0) / played.length : null;
+    const avg = scores.length
+      ? scores.reduce((sum, s) => sum + Number(s.best_nota ?? 0), 0) / scores.length
+      : null;
     return {
       total: scores.length,
       played: played.length,
@@ -204,9 +208,11 @@ export default function AssignmentScoresDialog({ open, onOpenChange, assignment 
                         ) : (
                           <XCircle className="w-4 h-4 text-red-400" />
                         )
-                      ) : null}
-                      <span className={`text-lg font-bold min-w-[3.5ch] text-right ${notaColor(s.best_nota)}`}>
-                        {s.best_nota != null ? Number(s.best_nota).toFixed(1) : '—'}
+                      ) : (
+                        <XCircle className="w-4 h-4 text-slate-300" />
+                      )}
+                      <span className={`text-lg font-bold min-w-[3.5ch] text-right ${notaColor(s.best_nota ?? 0)}`}>
+                        {Number(s.best_nota ?? 0).toFixed(1)}
                       </span>
                       <span className="text-xs text-slate-400">/10</span>
                     </div>

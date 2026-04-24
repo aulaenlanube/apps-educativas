@@ -19,6 +19,7 @@ import DuelCreateModal from '@/components/duel/DuelCreateModal';
 import DuelInbox from '@/components/duel/DuelInbox';
 import DuelGradePanel from '@/components/duel/DuelGradePanel';
 import useIncomingDuels from '@/hooks/useIncomingDuels';
+import { getGradeWithDuelBonus } from '@/services/duelService';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -376,6 +377,7 @@ export default function StudentDashboard() {
   const [data, setData] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [qbStats, setQbStats] = useState(null);
+  const [gradeData, setGradeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'overview');
@@ -433,11 +435,41 @@ export default function StudentDashboard() {
 
   useEffect(() => { fetchDashboard(); }, [fetchDashboard]);
 
+  // Nota con desglose de duelos + batallas por evaluacion (se refresca cuando
+  // llega un evento de duelo o cuando cambian las tareas).
+  useEffect(() => {
+    if (!student) return;
+    let alive = true;
+    getGradeWithDuelBonus({ studentId: student.id, sessionToken: student.session_token })
+      .then(d => { if (alive) setGradeData(d); })
+      .catch(() => { if (alive) setGradeData(null); });
+    return () => { alive = false; };
+  }, [student, lastDuelEvent?.received_at, assignments]);
+
   const termScoped = useMemo(() => (
     termFilter === 'all' ? assignments : assignments.filter(a => Number(a.term) === Number(termFilter))
   ), [assignments, termFilter]);
 
-  const finalGrade = useMemo(() => {
+  // Extrae los bonus (duelos + batallas + nivel) que aplican al filtro actual.
+  const termBonus = useMemo(() => {
+    if (!gradeData) return { duel: 0, battle: 0, progress: 0 };
+    const progress = Number(gradeData.progress_bonus) || 0;
+    if (termFilter === 'all') {
+      return {
+        duel: Number(gradeData.duel_bonus_total) || 0,
+        battle: Number(gradeData.battle_bonus) || 0,
+        progress,
+      };
+    }
+    const t = (gradeData.terms || []).find(x => Number(x.term) === Number(termFilter));
+    return {
+      duel: Number(t?.duel_bonus) || 0,
+      battle: Number(t?.battle_bonus) || 0,
+      progress,
+    };
+  }, [gradeData, termFilter]);
+
+  const baseGrade = useMemo(() => {
     if (!termScoped.length) return null;
     let weightSum = 0;
     let weightedNota = 0;
@@ -450,6 +482,13 @@ export default function StudentDashboard() {
     if (weightSum === 0) return null;
     return Math.round((weightedNota / weightSum) * 10) / 10;
   }, [termScoped]);
+
+  const finalGrade = useMemo(() => {
+    if (baseGrade == null) return null;
+    const raw = baseGrade + termBonus.duel + termBonus.battle + termBonus.progress;
+    const clipped = Math.max(0, Math.min(10, raw));
+    return Math.round(clipped * 10) / 10;
+  }, [baseGrade, termBonus]);
 
   if (loading) {
     return (
@@ -775,6 +814,8 @@ export default function StudentDashboard() {
                 const msg = finalGrade >= 9 ? '¡Excelente!' : finalGrade >= 7 ? '¡Muy bien!' : finalGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
                 const doneCount = termScoped.filter(a => a.completed).length;
                 const header = termFilter === 'all' ? 'Nota final del curso' : `Nota de la ${termFilter}ª evaluación`;
+                const fmtSigned = n => (n > 0 ? '+' : n < 0 ? '−' : '+') + Math.abs(n).toFixed(2).replace('.', ',');
+                const hasBonus = termBonus.duel !== 0 || termBonus.battle !== 0 || termBonus.progress !== 0;
                 return (
                   <motion.div
                     key={termFilter}
@@ -793,6 +834,30 @@ export default function StudentDashboard() {
                         <span className="text-xl font-bold text-white/80 ml-1">/10</span>
                       </div>
                     </div>
+                    {hasBonus && (
+                      <div className="mt-4 pt-3 border-t border-white/25 grid grid-cols-4 gap-2 text-center">
+                        <div>
+                          <p className="text-[10px] uppercase font-semibold text-white/70">Tareas</p>
+                          <p className="text-base font-bold">{baseGrade != null ? baseGrade.toFixed(1) : '—'}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase font-semibold text-white/70 flex items-center justify-center gap-1">
+                            <Swords className="w-3 h-3" /> Duelos
+                          </p>
+                          <p className="text-base font-bold">{fmtSigned(termBonus.duel)}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase font-semibold text-white/70 flex items-center justify-center gap-1">
+                            <Zap className="w-3 h-3" /> Batallas
+                          </p>
+                          <p className="text-base font-bold">{fmtSigned(termBonus.battle)}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase font-semibold text-white/70">Nivel</p>
+                          <p className="text-base font-bold">{fmtSigned(termBonus.progress)}</p>
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 );
               })()}
@@ -883,21 +948,31 @@ export default function StudentDashboard() {
                             )}
                           </div>
 
-                          {/* Progreso del alumno */}
+                          {/* Progreso del alumno — siempre se muestra una nota (0 si no intentada) */}
                           <div className="mt-2 flex items-center gap-3 text-sm">
-                            {asg.completed ? (
-                              <span className="text-green-600 font-medium flex items-center gap-1">
-                                <CheckCircle2 className="w-4 h-4" />
-                                Completada - Tu mejor nota: {asg.best_nota ?? asg.best_score}/10
-                              </span>
-                            ) : (
-                              <span className="text-slate-500">
-                                {asg.attempts > 0
-                                  ? `${asg.attempts} intento${asg.attempts !== 1 ? 's' : ''} - Mejor nota: ${asg.best_nota ?? asg.best_score ?? 0}/10 (necesitas ${asg.min_score}/10)`
-                                  : 'Aun no has intentado esta tarea'
-                                }
-                              </span>
-                            )}
+                            {(() => {
+                              const nota = Number(asg.best_nota ?? asg.best_score ?? 0);
+                              if (asg.completed) {
+                                return (
+                                  <span className="text-green-600 font-medium flex items-center gap-1">
+                                    <CheckCircle2 className="w-4 h-4" />
+                                    Completada — Nota: <strong>{nota.toFixed(1).replace('.', ',')}/10</strong>
+                                  </span>
+                                );
+                              }
+                              if (asg.attempts > 0) {
+                                return (
+                                  <span className="text-slate-500">
+                                    {asg.attempts} intento{asg.attempts !== 1 ? 's' : ''} — Nota actual: <strong className="text-slate-700">{nota.toFixed(1).replace('.', ',')}/10</strong> <span className="text-slate-400">(necesitas {asg.min_score}/10 para superarla)</span>
+                                  </span>
+                                );
+                              }
+                              return (
+                                <span className="text-slate-500">
+                                  Aún no has intentado esta tarea — Nota actual: <strong className="text-rose-600">0,0/10</strong>
+                                </span>
+                              );
+                            })()}
                           </div>
                         </div>
 
