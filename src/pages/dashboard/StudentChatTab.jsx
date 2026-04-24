@@ -11,7 +11,7 @@ export default function StudentChatTab() {
   const [activeView, setActiveView] = useState('broadcasts'); // 'broadcasts' | 'private'
   const [reply, setReply] = useState('');
   const [sending, setSending] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesBoxRef = useRef(null);
   const pollRef = useRef(null);
 
   const fetchChat = useCallback(async (silent = false) => {
@@ -34,8 +34,12 @@ export default function StudentChatTab() {
     return () => clearInterval(pollRef.current);
   }, [fetchChat]);
 
+  // Scroll el cajon de mensajes hasta abajo sin arrastrar la pagina entera:
+  // scrollIntoView mueve tambien el viewport exterior, causando un scroll al
+  // pulsar la pestana Mensajes. Aqui solo tocamos el scroll interno.
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const box = messagesBoxRef.current;
+    if (box) box.scrollTop = box.scrollHeight;
   }, [data, activeView]);
 
   const handleSend = async () => {
@@ -114,7 +118,7 @@ export default function StudentChatTab() {
 
       {/* Messages */}
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        <div className="p-4 space-y-2.5 max-h-[400px] overflow-y-auto">
+        <div ref={messagesBoxRef} className="p-4 space-y-2.5 max-h-[400px] overflow-y-auto">
           {currentMessages.length === 0 ? (
             <div className="text-center py-8 text-slate-400">
               {activeView === 'broadcasts' ? (
@@ -167,7 +171,6 @@ export default function StudentChatTab() {
               </motion.div>
             ))
           )}
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Reply input - only for private chat */}

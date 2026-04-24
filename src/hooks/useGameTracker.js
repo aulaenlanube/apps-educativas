@@ -97,7 +97,10 @@ export function useGameTracker() {
       ? Math.round(Number(notaOverride) * 10) / 10
       : calculateNota(correctAnswers, totalQuestions, score, maxScore);
 
-    // Ruta 1: Si tenemos session_id de track_session_start, actualizar esa sesion
+    // Ruta 1: Si tenemos session_id de track_session_start, actualizar esa sesion.
+    // Solo UNA vez por sesion inicial: si el alumno juega varias rondas (ej. practica
+    // y luego examen), la segunda llamada debe crear una fila nueva via fallback —
+    // de lo contrario track_session_finish sobrescribe la anterior y se pierde.
     let trackingOk = false;
     if (sessionIdRef.current) {
       try {
@@ -113,7 +116,11 @@ export function useGameTracker() {
           p_difficulty: difficulty || null,
           p_nota: nota,
         });
-        if (!error) trackingOk = true;
+        if (!error) {
+          trackingOk = true;
+          // Consumimos el session_id: la siguiente ronda debe crear fila nueva.
+          sessionIdRef.current = null;
+        }
       } catch (err) {
         // Fallo track_session_finish, intentar fallback
       }
