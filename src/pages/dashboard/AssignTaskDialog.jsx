@@ -46,10 +46,11 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
   const [targetStudentId, setTargetStudentId] = useState(studentId || null);
   const [dueDate, setDueDate] = useState('');
 
-  // Duelo (tarea tipo duel)
+  // Duelo (tarea tipo duel). El stake del profesor ya no se usa: el ganador
+  // siempre suma +0,10 fijo y el perdedor no tiene penalizacion. Se deja un
+  // valor constante por compatibilidad con el RPC.
   const [taskType, setTaskType] = useState('standard'); // 'standard' | 'duel'
   const [duelAppId, setDuelAppId] = useState(null);
-  const [duelStake, setDuelStake] = useState(0.2);
   const isDuel = taskType === 'duel';
   const duelApp = useMemo(() => DUELABLE_APPS.find(a => a.id === duelAppId), [duelAppId]);
 
@@ -71,13 +72,18 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
           level: defaultLevel || selectedLevel,
           grade: defaultGrade || selectedGrade || '',
           subjectId: defaultSubject || selectedSubject || null,
-          stake: duelStake,
+          stake: 0.10,
           bestOf: duelApp.duel?.bestOf || 1,
           title: title.trim() || `Duelo · ${duelApp.name}`,
           dueDate: dueDate || null,
         });
         const pairsCount = res?.pairs?.length || 0;
-        toast({ title: 'Duelo asignado', description: `Se han creado ${pairsCount} duelo${pairsCount !== 1 ? 's' : ''} emparejados por nota` });
+        const hasBye = !!(res?.bye && res.bye.student_id);
+        toast({
+          title: 'Duelo asignado',
+          description: `Se han creado ${pairsCount} duelo${pairsCount !== 1 ? 's' : ''} emparejados por nota` +
+            (hasBye ? ' · 1 alumno con victoria automática (grupo impar)' : ''),
+        });
         resetForm();
         onOpenChange(false);
         onCreated?.();
@@ -136,7 +142,6 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
     setTargetStudentId(studentId || null);
     setTaskType('standard');
     setDuelAppId(null);
-    setDuelStake(0.2);
   };
 
   // Breadcrumb for current selection
@@ -220,24 +225,9 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label>Puntos en juego</Label>
-                <div className="flex gap-2">
-                  {[0.1, 0.2, 0.3].map(v => (
-                    <button
-                      key={v}
-                      type="button"
-                      onClick={() => setDuelStake(v)}
-                      className={`flex-1 py-2.5 rounded-xl border-2 text-center font-bold transition-all ${
-                        duelStake === v
-                          ? 'border-violet-500 bg-violet-50 text-violet-700'
-                          : 'border-slate-200 text-slate-600 hover:border-violet-300'
-                      }`}
-                    >
-                      +/- {v.toString().replace('.', ',')}
-                    </button>
-                  ))}
-                </div>
+              <div className="rounded-xl border border-violet-200 bg-violet-50/60 px-3 py-2 text-xs text-violet-700 leading-snug">
+                <strong>+0,10</strong> al ganador de cada pareja (suma al bonus de duelos, tope +0,5).
+                El perdedor <strong>no tiene penalización</strong>.
               </div>
 
               <div className="space-y-2">

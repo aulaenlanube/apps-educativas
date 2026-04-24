@@ -256,12 +256,13 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
             s.combo += 1;
             s.score += s.combo * 50;
             s.headAnim = 'success';
-            s.pendingGrowth += 1;
+            s.pendingGrowth += s.combo;
             next.food.splice(fi, 1);
           } else if (item.type === 'invalid') {
             s.combo = 0; s.starCombo = 0;
             s.score = Math.max(0, s.score - 15);
             s.headAnim = 'error';
+            s.pendingGrowth += 1;
             next.food.splice(fi, 1);
           } else if (item.type === 'bonus') {
             s.starCombo += 1;
@@ -364,7 +365,8 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
     if (!me?.isHost || !finished || !winnerId || reportedRef.current) return;
     reportedRef.current = true;
     reportResult(winnerId);
-    onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
+    // mode 'duel' para que NO cuente como intento de examen en la tarea.
+    onGameComplete?.({ mode: 'duel', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
 
   // === Registrar handler de abandono voluntario (cuenta como derrota) ===

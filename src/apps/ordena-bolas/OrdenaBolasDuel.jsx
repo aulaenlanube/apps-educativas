@@ -9,50 +9,69 @@ import useDuel from '@/hooks/useDuel';
 const BALL_COUNT = 21;
 
 const DIFFICULTIES = [
-  { id: 'easy',      label: 'Fácil',     ops: ['numbers'],                                                      rotation: 2, randomSize: false, emoji: '🟢', color: 'from-emerald-500 to-emerald-600', ring: '#10b981' },
-  { id: 'medium',    label: 'Medio',     ops: ['numbers','add','sub'],                                          rotation: 4, randomSize: false, emoji: '🔵', color: 'from-blue-500 to-blue-600',       ring: '#3b82f6' },
-  { id: 'hard',      label: 'Difícil',   ops: ['numbers','add','sub','mul','div'],                              rotation: 6, randomSize: false, emoji: '🟠', color: 'from-amber-500 to-orange-600',    ring: '#f59e0b' },
-  { id: 'nightmare', label: 'Pesadilla', ops: ['numbers','add','sub','mul','div','pow','sqrt','eq'],            rotation: 8, randomSize: true,  emoji: '💀', color: 'from-rose-600 to-rose-900',       ring: '#e11d48' },
+  { id: 'easy',      label: 'Fácil',     ops: ['numbers'],                                           rotation: 2, randomSize: false, showNext: true,  emoji: '🟢', color: 'from-emerald-500 to-emerald-600', ring: '#10b981' },
+  { id: 'medium',    label: 'Medio',     ops: ['numbers','add','sub'],                               rotation: 4, randomSize: false, showNext: true,  emoji: '🔵', color: 'from-blue-500 to-blue-600',       ring: '#3b82f6' },
+  { id: 'hard',      label: 'Difícil',   ops: ['numbers','add','sub','mul','div'],                   rotation: 6, randomSize: false, showNext: false, fixedOps: { add: 1, sub: 1, mul: 1, div: 1 }, emoji: '🟠', color: 'from-amber-500 to-orange-600', ring: '#f59e0b' },
+  { id: 'nightmare', label: 'Pesadilla', ops: ['numbers','add','sub','mul','div','pow','sqrt','eq'], rotation: 8, randomSize: true,  showNext: false, emoji: '💀', color: 'from-rose-600 to-rose-900', ring: '#e11d48' },
 ];
 
-function generateBallData(ops) {
+function makeOperand(type) {
+  switch (type) {
+    case 'numbers': { const val = Math.floor(Math.random()*50)+1; return { val, label: `${val}` }; }
+    case 'add': { const a = Math.floor(Math.random()*20)+1, b = Math.floor(Math.random()*20)+1; return { val: a+b, label: `${a} + ${b}` }; }
+    case 'sub': { const val = Math.floor(Math.random()*40)+1; const b = Math.floor(Math.random()*20)+1; return { val, label: `${val+b} - ${b}` }; }
+    case 'mul': { const a = Math.floor(Math.random()*9)+2, b = Math.floor(Math.random()*9)+2; return { val: a*b, label: `${a} × ${b}` }; }
+    case 'div': { const a = Math.floor(Math.random()*9)+2, b = Math.floor(Math.random()*9)+2; return { val: a, label: `${a*b} ÷ ${b}` }; }
+    case 'pow': { const base = Math.floor(Math.random()*5)+2, exp = Math.floor(Math.random()*2)+2; return { val: Math.pow(base,exp), label: exp===2 ? `${base}²` : `${base}³` }; }
+    case 'sqrt': { const val = Math.floor(Math.random()*10)+2; return { val, label: `√${val*val}` }; }
+    case 'eq': {
+      const t = Math.floor(Math.random()*3);
+      if (t === 0) { const x = Math.floor(Math.random()*15)+1, a = Math.floor(Math.random()*10)+1; return { val: x, label: `x + ${a} = ${x+a}` }; }
+      if (t === 1) { const x = Math.floor(Math.random()*15)+5, a = Math.floor(Math.random()*5)+1; return { val: x, label: `x - ${a} = ${x-a}` }; }
+      { const x = Math.floor(Math.random()*10)+2, a = Math.floor(Math.random()*4)+2; return { val: x, label: `${a}x = ${x*a}` }; }
+    }
+    default: return { val: 0, label: '?' };
+  }
+}
+
+function generateBallData(diff) {
   const balls = [];
   const used = new Set();
-  let attempts = 0;
-  while (balls.length < BALL_COUNT && attempts < 3000) {
-    attempts++;
-    const type = ops[Math.floor(Math.random() * ops.length)];
-    let val, label;
-    switch (type) {
-      case 'numbers': val = Math.floor(Math.random() * 50) + 1; label = `${val}`; break;
-      case 'add': { const a = Math.floor(Math.random()*20)+1, b = Math.floor(Math.random()*20)+1; val = a+b; label = `${a} + ${b}`; break; }
-      case 'sub': { val = Math.floor(Math.random()*40)+1; const b = Math.floor(Math.random()*20)+1; label = `${val+b} - ${b}`; break; }
-      case 'mul': { const a = Math.floor(Math.random()*9)+2, b = Math.floor(Math.random()*9)+2; val = a*b; label = `${a} × ${b}`; break; }
-      case 'div': { const a = Math.floor(Math.random()*9)+2, b = Math.floor(Math.random()*9)+2; val = a; label = `${a*b} ÷ ${b}`; break; }
-      case 'pow': { const base = Math.floor(Math.random()*5)+2, exp = Math.floor(Math.random()*2)+2; val = Math.pow(base,exp); label = exp===2 ? `${base}²` : `${base}³`; break; }
-      case 'sqrt': { val = Math.floor(Math.random()*10)+2; label = `√${val*val}`; break; }
-      case 'eq': {
-        const t = Math.floor(Math.random()*3);
-        if (t === 0) { const x = Math.floor(Math.random()*15)+1, a = Math.floor(Math.random()*10)+1; val = x; label = `x + ${a} = ${x+a}`; }
-        else if (t === 1) { const x = Math.floor(Math.random()*15)+5, a = Math.floor(Math.random()*5)+1; val = x; label = `x - ${a} = ${x-a}`; }
-        else { const x = Math.floor(Math.random()*10)+2, a = Math.floor(Math.random()*4)+2; val = x; label = `${a}x = ${x*a}`; }
-        break;
+  const tryAdd = (type, maxTries = 200) => {
+    for (let i = 0; i < maxTries; i++) {
+      const { val, label } = makeOperand(type);
+      if (val > 0 && !used.has(val)) {
+        used.add(val);
+        balls.push({ value: val, label });
+        return true;
       }
-      default: val = 0; label = '?';
     }
-    if (val > 0 && !used.has(val)) {
-      used.add(val);
-      balls.push({ value: val, label });
+    return false;
+  };
+
+  if (diff.fixedOps) {
+    const distribution = [];
+    for (const [type, count] of Object.entries(diff.fixedOps)) {
+      for (let i = 0; i < count; i++) distribution.push(type);
+    }
+    while (distribution.length < BALL_COUNT) distribution.push('numbers');
+    for (const type of distribution) tryAdd(type);
+  } else {
+    let attempts = 0;
+    while (balls.length < BALL_COUNT && attempts < 3000) {
+      attempts++;
+      const type = diff.ops[Math.floor(Math.random() * diff.ops.length)];
+      tryAdd(type, 1);
     }
   }
-  // Asignar id e initial position (seed-like, compartidas)
-  return balls.map((b, i) => ({
+
+  return balls.slice(0, BALL_COUNT).map((b, i) => ({
     id: i,
     value: b.value,
     label: b.label,
-    x0: 0.5 + (Math.random() - 0.5) * 0.5, // 0.25..0.75 del centro
+    x0: 0.5 + (Math.random() - 0.5) * 0.5,
     y0: 0.5 + (Math.random() - 0.5) * 0.5,
-    sizeFactor: Math.random(), // para usar si randomSize
+    sizeFactor: Math.random(),
   }));
 }
 
@@ -78,7 +97,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
 
   const startWithDifficulty = useCallback((diff) => {
     if (!me?.isHost) return;
-    const balls = generateBallData(diff.ops);
+    const balls = generateBallData(diff);
     const sortedVals = [...balls].map(b => b.value).sort((a, b) => a - b);
     const init = {
       marks: {},
@@ -110,34 +129,41 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     }, 1000);
   }, [channel]);
 
+  // Host: procesa un intento de marca (local o remoto). Supabase no hace
+  // eco de broadcasts al emisor, asi que el host debe llamar esto directo.
+  const processMarkRequest = useCallback(({ ballId, by }) => {
+    if (!me?.isHost) return;
+    const s = stateRef.current; const bd = ballsDataRef.current;
+    if (!s || !bd) return;
+    if (s.marks[ballId]) return; // ya marcada
+    const ball = bd.find(b => b.id === ballId);
+    if (!ball) return;
+    const nextTarget = s.remaining[0];
+    const correct = ball.value === nextTarget;
+    const scorer = correct ? by : (by === me.id ? rival.id : me.id);
+    const newRemaining = s.remaining.filter(v => v !== ball.value);
+    const next = {
+      marks: { ...s.marks, [ballId]: { by, correct } },
+      scores: { ...s.scores, [scorer]: (s.scores[scorer] || 0) + 1 },
+      remaining: newRemaining,
+    };
+    stateRef.current = next;
+    setState(next);
+    chanRef.current?.broadcast('state', next);
+    if (newRemaining.length === 0) {
+      const w = next.scores[me.id] >= next.scores[rival.id] ? me.id : rival.id;
+      setWinnerId(w); setPhase('ended');
+      chanRef.current?.broadcast('game_end', { winner_id: w });
+    }
+  }, [me?.isHost, me?.id, rival?.id]);
+
+  const processMarkRef = useRef(processMarkRequest);
+  processMarkRef.current = processMarkRequest;
+
   // Host: listeners
   useEffect(() => {
     if (!me?.isHost || !channel?.isConnected) return;
-    channel.onBroadcast('mark_request', ({ ballId, by }) => {
-      const s = stateRef.current; const bd = ballsDataRef.current;
-      if (!s || !bd) return;
-      if (s.marks[ballId]) return; // ya marcada
-      const ball = bd.find(b => b.id === ballId);
-      if (!ball) return;
-      const nextTarget = s.remaining[0];
-      const correct = ball.value === nextTarget;
-      const scorer = correct ? by : (by === me.id ? rival.id : me.id);
-      const newRemaining = s.remaining.filter(v => v !== ball.value);
-      const next = {
-        marks: { ...s.marks, [ballId]: { by, correct } },
-        scores: { ...s.scores, [scorer]: (s.scores[scorer] || 0) + 1 },
-        remaining: newRemaining,
-      };
-      stateRef.current = next;
-      setState(next);
-      channel.broadcast('state', next);
-      if (newRemaining.length === 0) {
-        // Fin
-        const w = next.scores[me.id] >= next.scores[rival.id] ? me.id : rival.id;
-        setWinnerId(w); setPhase('ended');
-        channel.broadcast('game_end', { winner_id: w });
-      }
-    });
+    channel.onBroadcast('mark_request', (payload) => processMarkRef.current?.(payload));
     channel.onBroadcast('request_state', () => {
       if (difficulty) channel.broadcast('setup', { difficulty, ballsData: ballsDataRef.current });
       if (stateRef.current) channel.broadcast('state', stateRef.current);
@@ -174,7 +200,8 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     if (!me?.isHost || phase !== 'ended' || !winnerId || reportedRef.current) return;
     reportedRef.current = true;
     reportResult(winnerId);
-    onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0 });
+    // mode 'duel' para que NO cuente como intento de examen en la tarea.
+    onGameComplete?.({ mode: 'duel', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0 });
   }, [me?.isHost, phase, winnerId, reportResult, onGameComplete]);
 
   // ============ Forfeit handler (igual que otros duelos) ============
@@ -224,7 +251,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
 
     const render = Render.create({
       element: container, engine,
-      options: { width, height, wireframes: false, background: 'transparent', pixelRatio: 1 },
+      options: { width, height, wireframes: false, background: 'transparent', pixelRatio: 1, showSleeping: false },
     });
 
     const boxSize = Math.min(620, width - 40);
@@ -284,10 +311,8 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
       if (!hit) return;
       const id = hit.plugin.id;
       if (stateRef.current?.marks?.[id]) return;
-      // Enviar intento
       if (me?.isHost) {
-        // El host llama directamente al handler via broadcast al loop (usamos channel también para simplificar)
-        chanRef.current?.broadcast('mark_request', { ballId: id, by: me.id });
+        processMarkRef.current?.({ ballId: id, by: me.id });
       } else {
         chanRef.current?.broadcast('mark_request', { ballId: id, by: me.id });
       }
@@ -303,30 +328,19 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     // Etiquetas + marcas visuales
     Events.on(render, 'afterRender', () => {
       const ctx = render.context; if (!ctx) return;
+      ctx.globalAlpha = 1;
       ctx.font = 'bold 22px Arial';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const marks = stateRef.current?.marks || {};
       balls.forEach(ball => {
         const mk = marks[ball.plugin.id];
         if (mk) {
-          // color según estado
-          if (mk.correct) {
-            ball.render.fillStyle = mk.by === me?.id ? '#10b981' : '#60a5fa';
-            ball.render.strokeStyle = '#065f46';
-          } else {
-            ball.render.fillStyle = '#ef4444';
-            ball.render.strokeStyle = '#7f1d1d';
-          }
+          ball.render.fillStyle = '#334155';
+          ball.render.strokeStyle = '#0f172a';
         }
         const { x, y } = ball.position;
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = mk ? '#e2e8f0' : 'white';
         ctx.fillText(ball.plugin.text, x, y);
-        if (mk) {
-          ctx.font = 'bold 28px Arial';
-          ctx.fillStyle = mk.correct ? '#fde68a' : '#fecaca';
-          ctx.fillText(mk.correct ? '✓' : '✗', x + ball.circleRadius - 8, y - ball.circleRadius + 8);
-          ctx.font = 'bold 22px Arial';
-        }
       });
     });
 
@@ -409,7 +423,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
 
       {(phase === 'countdown' || phase === 'playing' || phase === 'ended') && (
         <div className="relative w-full max-w-4xl">
-          {phase === 'playing' && nextTarget != null && (
+          {phase === 'playing' && nextTarget != null && difficulty?.showNext && (
             <div className="text-center mb-2">
               <span className="text-xs uppercase text-slate-500 tracking-widest">Siguiente valor</span>
               <div className="text-2xl font-black text-indigo-700">

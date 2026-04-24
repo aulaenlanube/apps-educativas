@@ -490,7 +490,8 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
     if (!me?.isHost || !finished || !winnerId || reportedRef.current) return;
     reportedRef.current = true;
     reportResult(winnerId);
-    onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0 });
+    // mode 'duel' para que NO cuente como intento de examen en la tarea.
+    onGameComplete?.({ mode: 'duel', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0 });
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
 
   // Forfeit handler coherente con otros duelos

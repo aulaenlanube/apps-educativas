@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, Trophy, X, LogOut } from 'lucide-react';
+import { Swords, Trophy, X, LogOut, Lightbulb } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 
@@ -17,6 +17,7 @@ function buildRound(pool, firstTurn) {
   const q = pool[Math.floor(Math.random() * pool.length)];
   const answer = normWord(q.solucion);
   return {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     answer,
     hint: q.definicion,
     letter: (q.letra || '').toUpperCase(),
@@ -71,6 +72,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const [loadingData, setLoadingData] = useState(true);
   const [round, setRound] = useState(null);
   const [score, setScore] = useState(null);
+  const [hintsUsed, setHintsUsed] = useState(null);
   const [finished, setFinished] = useState(false);
   const [winnerId, setWinnerId] = useState(null);
   const [guess, setGuess] = useState('');
@@ -84,6 +86,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   // los valores actuales (evita cerrar sobre estado obsoleto).
   const roundRef = useRef(round);  roundRef.current = round;
   const scoreRef = useRef(score);  scoreRef.current = score;
+  const hintsRef = useRef(hintsUsed); hintsRef.current = hintsUsed;
   const chanRef  = useRef(channel); chanRef.current = channel;
 
   // Cargar pool
@@ -112,11 +115,13 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
     recoveryTimerRef.current = setTimeout(() => {
       if (roundRef.current) return; // ya recuperado
       const sc = { [me.id]: 0, [rival.id]: 0 };
+      const hu = { [me.id]: null, [rival.id]: null };
       const r = buildRound(pool, 'host'); // retador empieza la 1a ronda
       nextFirstTurnRef.current = 'guest';
-      setScore(sc); setRound(r);
+      setScore(sc); setRound(r); setHintsUsed(hu);
       channel.broadcast('score', sc);
       channel.broadcast('round', r);
+      channel.broadcast('hints', hu);
     }, 1500);
 
     return () => {
@@ -132,12 +137,14 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
     if (!channel?.isConnected || me?.isHost) return;
     channel.onBroadcast('score', s => setScore(s));
     channel.onBroadcast('round', r => setRound(r));
+    channel.onBroadcast('hints', h => setHintsUsed(h));
     channel.onBroadcast('game_end', ({ winner_id }) => { setWinnerId(winner_id); setFinished(true); });
     // Responder si el otro jugador (host) acaba de reconectar y pide estado
     channel.onBroadcast('request_state', () => {
       const ch = chanRef.current;
       if (scoreRef.current) ch.broadcast('score', scoreRef.current);
       if (roundRef.current) ch.broadcast('round', roundRef.current);
+      if (hintsRef.current) ch.broadcast('hints', hintsRef.current);
     });
   }, [channel?.isConnected, me?.isHost]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -205,11 +212,21 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
       const ch = chanRef.current;
       if (scoreRef.current) ch.broadcast('score', scoreRef.current);
       if (roundRef.current) ch.broadcast('round', roundRef.current);
+      if (hintsRef.current) ch.broadcast('hints', hintsRef.current);
     });
     channel.onBroadcast('action', payload => applyAction({ ...payload, by: 'guest' }));
+    channel.onBroadcast('use_hint', ({ player_id, round_id }) => {
+      setHintsUsed(prev => {
+        if (!prev || prev[player_id]) return prev;
+        const next = { ...prev, [player_id]: round_id };
+        chanRef.current?.broadcast('hints', next);
+        return next;
+      });
+    });
     // Recuperacion de estado: si el host acaba de reconectar y no tiene
     // ronda propia, adopta la que emita el guest.
     channel.onBroadcast('score', s => { if (!scoreRef.current) setScore(s); });
+    channel.onBroadcast('hints', h => { if (!hintsRef.current) setHintsUsed(h); });
     channel.onBroadcast('round', r => {
       if (roundRef.current) return;
       setRound(r);
@@ -280,7 +297,8 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
     if (!me?.isHost || !finished || !winnerId || reportedRef.current) return;
     reportedRef.current = true;
     reportResult(winnerId);
-    onGameComplete?.({ mode: 'test', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
+    // mode 'duel' para que NO cuente como intento de examen en la tarea.
+    onGameComplete?.({ mode: 'duel', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
   }, [me?.isHost, finished, winnerId, reportResult, onGameComplete]);
 
   // Registrar handler de abandono voluntario. AppRunnerPage lo llama cuando
@@ -325,8 +343,22 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
     else channel.broadcast('action', action);
   }
 
+  function handleUseHint() {
+    if (!round || !hintsUsed || hintsUsed[me.id] || round.roundWinner !== undefined || finished) return;
+    if (me.isHost) {
+      setHintsUsed(prev => {
+        if (!prev || prev[me.id]) return prev;
+        const next = { ...prev, [me.id]: round.id };
+        chanRef.current?.broadcast('hints', next);
+        return next;
+      });
+    } else {
+      channel.broadcast('use_hint', { player_id: me.id, round_id: round.id });
+    }
+  }
+
   if (duel.err) return <Err text={duel.err} />;
-  if (duel.loading || loadingData || !round || !score) return <Loading />;
+  if (duel.loading || loadingData || !round || !score || !hintsUsed) return <Loading />;
 
   const myLives = me.isHost ? round.hostLives : round.guestLives;
   const rivalLives = me.isHost ? round.guestLives : round.hostLives;
@@ -377,6 +409,33 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
               {round.revealed[i] || (/[A-ZÑ]/.test(ch) ? '?' : ch)}
             </span>
           ))}
+        </div>
+
+        {/* Comodín de pista (1 por partida) */}
+        <div className="flex items-center justify-center gap-2 mb-3 flex-wrap">
+          {hintsUsed[me.id] === round.id ? (
+            <div className="px-3 py-2 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-sm max-w-xl">
+              <span className="font-bold inline-flex items-center gap-1 mr-1"><Lightbulb className="w-4 h-4" /> Pista:</span>
+              {round.hint}
+            </div>
+          ) : hintsUsed[me.id] ? (
+            <span className="px-2 py-1 rounded bg-slate-100 text-slate-500 text-xs font-bold border border-slate-200 inline-flex items-center gap-1">
+              <Lightbulb className="w-3 h-3" /> Comodín gastado
+            </span>
+          ) : (
+            <button
+              onClick={handleUseHint}
+              disabled={round.roundWinner !== undefined || finished}
+              className="px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm inline-flex items-center gap-1.5 disabled:opacity-40"
+            >
+              <Lightbulb className="w-4 h-4" /> Ver pista (1 por partida)
+            </button>
+          )}
+          {hintsUsed[rival.id] && (
+            <span className="px-2 py-1 rounded bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200 inline-flex items-center gap-1">
+              <Lightbulb className="w-3 h-3" /> El rival usó su comodín
+            </span>
+          )}
         </div>
 
         {/* Indicador de turno */}

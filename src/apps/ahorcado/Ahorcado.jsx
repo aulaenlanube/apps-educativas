@@ -70,6 +70,11 @@ const Ahorcado = ({ onGameComplete }) => {
   const trackedRef = useRef(false);
   const examTrackedRef = useRef(false);
   const examStartRef = useRef(null);
+  // Refs vivos para poder registrar el examen aunque el alumno se vaya a mitad.
+  const examResultsRef = useRef([]);
+  const examModeRef = useRef(false);
+  const onGameCompleteRef = useRef(onGameComplete);
+  useEffect(() => { onGameCompleteRef.current = onGameComplete; }, [onGameComplete]);
 
   // --- Cargar datos (rosco y frases) ---
   useEffect(() => {
@@ -269,8 +274,43 @@ const Ahorcado = ({ onGameComplete }) => {
       fails,
       guessed: new Set(guessed),
     };
-    setExamResults((prev) => [...prev, result]);
+    setExamResults((prev) => {
+      const next = [...prev, result];
+      examResultsRef.current = next;
+      return next;
+    });
   }, [status, gameMode, current, fails, guessed]);
+
+  // Refs sincronizados para el tracking al salir.
+  useEffect(() => { examResultsRef.current = examResults; }, [examResults]);
+  useEffect(() => { examModeRef.current = gameMode === 'exam'; }, [gameMode]);
+
+  // Si el alumno abandona el examen sin terminar las 5 preguntas, registramos
+  // lo que lleva para que la tarea pueda subir nota (cada pregunta fallada o
+  // no contestada cuenta como 0).
+  useEffect(() => {
+    return () => {
+      if (examTrackedRef.current) return;
+      if (!examModeRef.current) return;
+      const results = examResultsRef.current;
+      if (!results || results.length === 0) return;
+      examTrackedRef.current = true;
+      const correct = results.filter(r => r.won).length;
+      const nota = Math.round((correct / EXAM_QUESTIONS) * 10 * 10) / 10;
+      const elapsed = examStartRef.current
+        ? Math.round((Date.now() - examStartRef.current) / 1000)
+        : 0;
+      onGameCompleteRef.current?.({
+        mode: 'test',
+        score: correct * 100,
+        maxScore: EXAM_QUESTIONS * 100,
+        correctAnswers: correct,
+        totalQuestions: EXAM_QUESTIONS,
+        durationSeconds: elapsed,
+        nota,
+      });
+    };
+  }, []);
 
   // --- Tracking al terminar (XP) en modo práctica ---
   useEffect(() => {

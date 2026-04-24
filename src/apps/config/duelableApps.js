@@ -1,8 +1,9 @@
-import { appRosco, appSnake, appAhorcado, appNavePalabras, appOrdenaBolas } from './commonApps';
+import { appRosco, appSnake, appAhorcado, appOrdenaBolas } from './commonApps';
 
 // Lista canonica de apps con modo duelo 1v1.
 // Cada entrada expone lo minimo que necesita el modal de creacion.
-export const DUELABLE_APPS = [appRosco, appSnake, appAhorcado, appNavePalabras, appOrdenaBolas].map(a => ({
+// NOTA: appNavePalabras deshabilitado temporalmente (revisar bug de duelo).
+export const DUELABLE_APPS = [appRosco, appSnake, appAhorcado, appOrdenaBolas].map(a => ({
   id: a.id,
   name: a.name,
   description: a.description,
