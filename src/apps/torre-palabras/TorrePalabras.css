@@ -23,6 +23,7 @@
 .torre-stat.timer.danger { background: linear-gradient(135deg, #ef4444, #dc2626); animation: torrePulse 1s infinite; }
 @keyframes torrePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 .torre-stat.lives { gap: 0.15rem; background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); }
+.torre-stat.errors { background: rgba(239, 68, 68, 0.1); color: #b91c1c; border: 1px solid rgba(239, 68, 68, 0.25); }
 .torre-stat.streak { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; }
 .torre-stat.score { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
 

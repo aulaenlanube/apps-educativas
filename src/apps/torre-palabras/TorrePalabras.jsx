@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Layers, RefreshCw, Timer, Award, Trophy, Star, Heart, Flame,
+  Layers, RefreshCw, Timer, Award, Trophy, Star, Flame,
   Gamepad2, GraduationCap, Check, X, Lightbulb, SkipForward, Zap,
 } from 'lucide-react';
 import { getRunnerData } from '../../services/gameDataService';
@@ -19,23 +19,29 @@ const BLOCK_COLORS = [
 
 const MODE_CONFIG = {
   easy: {
-    label: 'Fácil', icon: '🟢', rounds: 8, categories: 2, lives: 3,
+    label: 'Fácil', icon: '🟢', rounds: 12, categories: 2,
     showCategory: true, timer: null,
     helps: { skip: 2, hint: 3 },
   },
   medium: {
-    label: 'Medio', icon: '🟡', rounds: 12, categories: 3, lives: 2,
+    label: 'Medio', icon: '🟡', rounds: 12, categories: 3,
     showCategory: false, timer: null,
     helps: { skip: 1, hint: 1 },
   },
   exam: {
-    label: 'Examen', icon: '🔴', rounds: 18, categories: 4, lives: 1,
+    label: 'Examen', icon: '🔴', rounds: 12, categories: 4,
     showCategory: false, timer: 8,
     helps: { skip: 0, hint: 1 },
   },
 };
 
 const shuffle = (a) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+
+const formatCategoryName = (name) => {
+  if (!name) return '';
+  const clean = String(name).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return clean.charAt(0).toUpperCase() + clean.slice(1);
+};
 
 const getSubjectInfo = (level, grade, subjectId) => {
   if (!level || !grade || !subjectId) return { nombre: '', icon: '📚' };
@@ -63,8 +69,8 @@ const TorrePalabras = ({ onGameComplete }) => {
   const [shaking, setShaking] = useState(false);
 
   // Stats
-  const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
+  const [wrongCount, setWrongCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
@@ -138,8 +144,8 @@ const TorrePalabras = ({ onGameComplete }) => {
     setTowerHeight(0);
     setShaking(false);
     setStatus('playing');
-    setLives(cfg.lives);
     setScore(0);
+    setWrongCount(0);
     setStreak(0);
     setMaxStreak(0);
     setCorrectCount(0);
@@ -166,7 +172,7 @@ const TorrePalabras = ({ onGameComplete }) => {
         if (t <= 1) {
           clearInterval(timerRef.current);
           setStatus('timeout');
-          setLives((l) => l - 1);
+          setWrongCount((w) => w + 1);
           setStreak(0);
           setShaking(true);
           setTimeout(() => setShaking(false), 600);
@@ -198,7 +204,7 @@ const TorrePalabras = ({ onGameComplete }) => {
       setStatus('correct');
     } else {
       setStatus('wrong');
-      setLives((l) => l - 1);
+      setWrongCount((w) => w + 1);
       setStreak(0);
       setShaking(true);
       setTimeout(() => setShaking(false), 600);
@@ -210,20 +216,19 @@ const TorrePalabras = ({ onGameComplete }) => {
     if (status !== 'correct' && status !== 'wrong' && status !== 'timeout') return;
     const delay = status === 'correct' ? 700 : 1400;
     const t = setTimeout(() => {
-      if ((status === 'wrong' || status === 'timeout') && lives <= 0) { setStatus('lost'); return; }
       if (currentBlockIdx + 1 >= blocks.length) { setStatus('won'); return; }
       setCurrentBlockIdx((i) => i + 1);
       setHintVisible(cfg.showCategory);
       setStatus('playing');
     }, delay);
     return () => clearTimeout(t);
-  }, [status, lives, currentBlockIdx, blocks.length, cfg.showCategory]);
+  }, [status, currentBlockIdx, blocks.length, cfg.showCategory]);
 
   // --- XP ---
   useEffect(() => {
-    if ((status !== 'won' && status !== 'lost') || trackedRef.current) return;
+    if (status !== 'won' || trackedRef.current) return;
     trackedRef.current = true;
-    if (status === 'won') confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: BLOCK_COLORS.slice(0, 6) });
+    confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: BLOCK_COLORS.slice(0, 6) });
     const isExamMode = gameMode === 'exam';
     onGameComplete?.({
       mode: isExamMode ? 'test' : 'practice',
@@ -254,7 +259,7 @@ const TorrePalabras = ({ onGameComplete }) => {
 
   // --- Derivados ---
   const isExam = gameMode === 'exam';
-  const isFinished = status === 'won' || status === 'lost';
+  const isFinished = status === 'won';
   const nota = blocks.length > 0 ? Math.round((correctCount / blocks.length) * 100) / 10 : 0;
   const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
   const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
@@ -284,11 +289,11 @@ const TorrePalabras = ({ onGameComplete }) => {
                 <Timer size={14} /> <span>{timeLeft}s</span>
               </div>
             )}
-            <div className="torre-stat lives">
-              {Array.from({ length: cfg.lives }).map((_, i) => (
-                <Heart key={i} size={14} fill={i < lives ? '#ef4444' : 'none'} stroke={i < lives ? '#ef4444' : '#d1d5db'} />
-              ))}
-            </div>
+            {wrongCount > 0 && (
+              <div className="torre-stat errors">
+                <X size={14} /> <span>{wrongCount}</span>
+              </div>
+            )}
             {streak >= 2 && (
               <motion.div className="torre-stat streak" key={streak} initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
                 <Flame size={14} /> <span>{streak}</span>
@@ -315,8 +320,8 @@ const TorrePalabras = ({ onGameComplete }) => {
         <AnimatePresence>
           {isFinished && (
             <motion.div className={`torre-result ${status}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <div className="torre-result-icon">{status === 'won' ? <Trophy size={48} /> : <Award size={48} />}</div>
-              <h2 className="torre-result-title">{status === 'won' ? '¡Torre completada! 🎉' : '¡La torre se derrumbó!'}</h2>
+              <div className="torre-result-icon"><Trophy size={48} /></div>
+              <h2 className="torre-result-title">¡Torre completada! 🎉</h2>
 
               {isExam ? (
                 <>
@@ -384,7 +389,7 @@ const TorrePalabras = ({ onGameComplete }) => {
                 <span className="torre-current-word">{currentBlock.word}</span>
                 {(status === 'wrong' || status === 'timeout') && (
                   <span className="torre-correct-cat">
-                    → {categories[currentBlock.categoryIdx]?.name}
+                    → {formatCategoryName(categories[currentBlock.categoryIdx]?.name)}
                   </span>
                 )}
               </motion.div>
@@ -402,7 +407,7 @@ const TorrePalabras = ({ onGameComplete }) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="torre-cat-dot" style={{ background: cat.color }} />
-                  <span className="torre-cat-name">{cat.name}</span>
+                  <span className="torre-cat-name">{formatCategoryName(cat.name)}</span>
                 </motion.button>
               ))}
             </div>
@@ -434,7 +439,7 @@ const TorrePalabras = ({ onGameComplete }) => {
           <li>Aparece una palabra en el bloque central.</li>
           <li>Debajo verás los botones con los nombres de las categorías (ej: "Animales", "Plantas", "Minerales").</li>
           <li>Pulsa la categoría a la que pertenece la palabra.</li>
-          <li>Si aciertas: el bloque se apila y la torre crece. Si fallas: la torre tiembla y pierdes una vida.</li>
+          <li>Si aciertas: el bloque se apila y la torre crece. Si fallas: la torre tiembla, se cuenta el error y pasas a la siguiente palabra.</li>
         </ul>
 
         <h3>🏗️ La torre</h3>
@@ -442,9 +447,9 @@ const TorrePalabras = ({ onGameComplete }) => {
 
         <h3>🎓 Modos</h3>
         <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>8 bloques · 2 categorías · 3 vidas · categoría visible</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>12 bloques · 3 categorías · 2 vidas</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>18 bloques · 4 categorías · 1 vida · 8s/bloque · nota /10</div>
+          <div className="instr-mode easy"><strong>🟢 Fácil</strong>12 bloques · 2 categorías · categoría visible</div>
+          <div className="instr-mode medium"><strong>🟡 Medio</strong>12 bloques · 3 categorías</div>
+          <div className="instr-mode exam"><strong>🔴 Examen</strong>12 bloques · 4 categorías · 8s/bloque · nota /10</div>
         </div>
 
         <div className="instr-tips"><strong>💡 Consejo:</strong> si dudas, usa la pista para ver qué categoría se resalta. En modo fácil, la categoría correcta siempre está visible.</div>

@@ -33,6 +33,449 @@ const SW = 3.2; // grosor base trazo
 // Helper: stroke + line caps
 const S = { strokeWidth: SW, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// MEDALLÓN LEGENDARIO
+// Marco común dorado y opulento (halo + rayos giratorios + aro con filigrana
+// + sparkles). Cada legendaria solo define su icono central. Las common,
+// rare y epic siguen usando ilustraciones libres → las legendarias destacan.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const LEG_ACCENT = {
+  battle_rank:      { accent: '#f97316', dark: '#7c2d12', gem: '#dc2626' },
+  dedication:       { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  exams:            { accent: '#34d399', dark: '#065f46', gem: '#10b981' },
+  exploration:      { accent: '#22d3ee', dark: '#155e75', gem: '#06b6d4' },
+  general:          { accent: '#fbbf24', dark: '#78350f', gem: '#dc2626' },
+  mastery:          { accent: '#c084fc', dark: '#581c87', gem: '#a855f7' },
+  programacion:     { accent: '#22d3ee', dark: '#0f172a', gem: '#06b6d4' },
+  ranking:          { accent: '#fde047', dark: '#14532d', gem: '#10b981' },
+  speed:            { accent: '#fbbf24', dark: '#9a3412', gem: '#f97316' },
+  streaks:          { accent: '#fb923c', dark: '#7f1d1d', gem: '#ef4444' },
+  subjects:         { accent: '#fde047', dark: '#451a03', gem: '#92400e' },
+  teacher_battles:  { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  teacher_groups:   { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  teacher_messages: { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  teacher_platform: { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  teacher_students: { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+  teacher_tasks:    { accent: '#60a5fa', dark: '#1e3a8a', gem: '#2563eb' },
+};
+
+const LEG_CAT = {
+  battle_win_10: 'battle_rank',
+  battle_played_50: 'battle_rank',
+  time_100h: 'dedication',
+  exams_200: 'exams',
+  apps_30: 'exploration',
+  games_1000: 'general',
+  perfect_50: 'mastery',
+  perfect_10_apps: 'mastery',
+  perfect_15_apps: 'mastery',
+  robot_retos_eso4: 'programacion',
+  rank_top3_10: 'ranking',
+  rank_first_10: 'ranking',
+  rank_class1_10: 'ranking',
+  speed_perfect: 'speed',
+  speed_5s: 'speed',
+  speed_perf_10: 'speed',
+  streak_100: 'streaks',
+  subjects_10: 'subjects',
+  teacher_battles_30: 'teacher_battles',
+  teacher_groups_10: 'teacher_groups',
+  teacher_messages_100: 'teacher_messages',
+  teacher_days_365: 'teacher_platform',
+  teacher_students_100: 'teacher_students',
+  teacher_tasks_50: 'teacher_tasks',
+};
+
+const legFrame = (id, accent, dark, gem, children) => (
+  <>
+    <defs>
+      <radialGradient id={`${id}lhalo`} cx="0.5" cy="0.5">
+        <stop offset="0" stopColor={accent} stopOpacity="0.75" />
+        <stop offset="0.5" stopColor={accent} stopOpacity="0.25" />
+        <stop offset="1" stopColor={accent} stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id={`${id}lring`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#fffbeb" />
+        <stop offset="0.25" stopColor="#fde047" />
+        <stop offset="0.55" stopColor="#d97706" />
+        <stop offset="1" stopColor="#451a03" />
+      </linearGradient>
+      <radialGradient id={`${id}lcenter`} cx="0.5" cy="0.4">
+        <stop offset="0" stopColor={accent} stopOpacity="0.95" />
+        <stop offset="0.55" stopColor={dark} />
+        <stop offset="1" stopColor="#0f0a06" />
+      </radialGradient>
+    </defs>
+
+    {/* Halo radial pulsante */}
+    <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+      <circle cx="32" cy="32" r="32" fill={`url(#${id}lhalo)`} />
+    </g>
+
+    {/* Rayos giratorios detrás */}
+    <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+      {Array.from({ length: 12 }).map((_, i) => {
+        const a = (i * 30) * Math.PI / 180;
+        const r1 = 24, r2 = 31;
+        const x1 = 32 + Math.cos(a) * r1, y1 = 32 + Math.sin(a) * r1;
+        const x2 = 32 + Math.cos(a) * r2, y2 = 32 + Math.sin(a) * r2;
+        return (
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                stroke="#fde047" strokeWidth={i % 2 ? 1 : 1.8}
+                strokeLinecap="round" opacity="0.65" />
+        );
+      })}
+    </g>
+
+    {/* Aro dorado con sombras concéntricas */}
+    <circle cx="32" cy="32" r="26" fill="#451a03" />
+    <circle cx="32" cy="32" r="25" fill="none" stroke={`url(#${id}lring)`} strokeWidth="4" />
+    <circle cx="32" cy="32" r="23" fill="none" stroke="#7c2d12" strokeWidth="0.8" />
+
+    {/* Disco central */}
+    <circle cx="32" cy="32" r="21" fill={`url(#${id}lcenter)`} stroke="#1f0a02" strokeWidth="1" />
+    <circle cx="32" cy="32" r="20" fill="none" stroke={accent} strokeWidth="0.6" opacity="0.55" />
+
+    {/* Filigrana: 6 joyas en el aro cada 60° */}
+    {Array.from({ length: 6 }).map((_, i) => {
+      const a = (i * 60 - 90) * Math.PI / 180;
+      const x = 32 + Math.cos(a) * 25;
+      const y = 32 + Math.sin(a) * 25;
+      return (
+        <g key={`gem${i}`}>
+          <circle cx={x} cy={y} r="2.4" fill="#7c2d12" />
+          <circle cx={x} cy={y} r="2" fill={gem} stroke="#1c1410" strokeWidth="0.5" />
+          <circle cx={x - 0.55} cy={y - 0.55} r="0.55" fill="#fef3c7" opacity="0.85" />
+        </g>
+      );
+    })}
+
+    {/* Icono central */}
+    {children}
+
+    {/* Sparkles parpadeantes */}
+    <g className="ba-anim anim-twinkle">
+      <path d="M50 12 L51 14 L53 15 L51 16 L50 18 L49 16 L47 15 L49 14 Z" fill="#fef3c7" />
+    </g>
+    <g className="ba-anim anim-twinkle-2">
+      <path d="M14 50 L15 51.4 L16.6 52 L15 52.6 L14 54 L13 52.6 L11.4 52 L13 51.4 Z" fill="#fde047" />
+    </g>
+    <g className="ba-anim anim-twinkle-3">
+      <circle cx="13" cy="14" r="1" fill="#fde047" />
+      <circle cx="51" cy="51" r="1" fill="#fef3c7" />
+    </g>
+  </>
+);
+
+// Iconos centrales: ocupan aprox la zona (22, 22)–(42, 42) sobre el disco oscuro.
+const LEG_CENTER = {
+  battle_win_10: () => (
+    <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M27 19 Q27 16 32 16 Q37 16 37 19 V21 H27 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.7" />
+      <path d="M27 21 H37 V22 H27 Z" fill="#7f1d1d" />
+      <path d="M24 25 Q24 22 32 22 Q40 22 40 25 V36 Q40 42 32 44 Q24 42 24 36 Z" fill="#e2e8f0" stroke="#1f2937" strokeWidth="1" />
+      <path d="M25 25 Q25 23 32 23 Q39 23 39 25 V28 H25 Z" fill="#f8fafc" opacity="0.7" />
+      <rect x="25" y="29" width="14" height="5" fill="#1f2937" />
+      <rect x="27" y="30.5" width="3" height="2" fill="#fbbf24" />
+      <rect x="34" y="30.5" width="3" height="2" fill="#fbbf24" />
+      <line x1="25" y1="35" x2="39" y2="35" stroke="#fde047" strokeWidth="0.5" />
+      <path d="M28 38 Q32 41 36 38" stroke="#1f2937" strokeWidth="0.6" fill="none" />
+    </g>
+  ),
+  battle_played_50: () => (
+    <g>
+      <path d="M22 23 H42 L40 26 H24 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.6" />
+      <rect x="23" y="26" width="18" height="14" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <path d={`M${24.5 + i * 5.5} 28 Q${27 + i * 5.5} 27 ${29.5 + i * 5.5} 28 V31 H${24.5 + i * 5.5} Z`} fill="#1f2937" />
+          <path d={`M${24.5 + i * 5.5} 33 Q${27 + i * 5.5} 32 ${29.5 + i * 5.5} 33 V36 H${24.5 + i * 5.5} Z`} fill="#1f2937" />
+        </g>
+      ))}
+      <rect x="22" y="40" width="20" height="3" fill="#92400e" stroke="#451a03" strokeWidth="0.5" />
+      <line x1="22" y1="41.5" x2="42" y2="41.5" stroke="#fde047" strokeWidth="0.4" opacity="0.8" />
+    </g>
+  ),
+  time_100h: () => (
+    <g className="ba-anim anim-sway" style={{ transformOrigin: '32px 32px' }}>
+      <rect x="20" y="21" width="24" height="2" rx="0.5" fill="#fde047" stroke="#92400e" strokeWidth="0.6" />
+      <rect x="20" y="41" width="24" height="2" rx="0.5" fill="#fde047" stroke="#92400e" strokeWidth="0.6" />
+      <path d="M22 23 H42 L34 32 L42 41 H22 L30 32 Z" fill="#fef3c7" stroke="#92400e" strokeWidth="1" opacity="0.95" />
+      <path d="M24 24 H40 L33 30 L31 30 Z" fill="#fde047" />
+      <path d="M24 40 H40 L37 35 L27 35 Z" fill="#d97706" />
+      <line x1="32" y1="30" x2="32" y2="34" stroke="#fde047" strokeWidth="0.8" className="ba-anim anim-fall" />
+    </g>
+  ),
+  exams_200: () => (
+    <g>
+      <rect x="22" y="22" width="20" height="16" rx="1" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <rect x="22" y="22" width="20" height="3" fill="#fde047" />
+      <line x1="25" y1="28" x2="36" y2="28" stroke="#92400e" strokeWidth="0.5" />
+      <line x1="25" y1="30" x2="38" y2="30" stroke="#92400e" strokeWidth="0.5" />
+      <line x1="25" y1="32" x2="36" y2="32" stroke="#92400e" strokeWidth="0.5" />
+      <line x1="25" y1="34" x2="33" y2="34" stroke="#92400e" strokeWidth="0.5" />
+      <circle cx="38" cy="40" r="3.5" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.6" />
+      <path d="M36.5 40 L37.5 41 L39.5 38.8" stroke="#fef3c7" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+      <path d="M34 41 L36 45 L37.5 43 L39 45 L41 41 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+    </g>
+  ),
+  apps_30: () => (
+    <g>
+      <path d="M19 32 Q32 21 45 32 Q32 43 19 32 Z" fill="#fef3c7" stroke="#1f2937" strokeWidth="1" />
+      <circle cx="32" cy="32" r="6" fill="#0ea5e9" stroke="#0c4a6e" strokeWidth="0.6" />
+      <circle cx="32" cy="32" r="5" fill="#1d4ed8" />
+      <circle cx="32" cy="32" r="3" fill="#1f2937" />
+      <circle cx="33.5" cy="30.5" r="1.1" fill="#fef3c7" />
+      <g className="ba-anim anim-twinkle-3">
+        <circle cx="34" cy="34" r="0.5" fill="#bfdbfe" />
+      </g>
+    </g>
+  ),
+  games_1000: () => (
+    <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M22 26 L24 22 L27 26 L30 21 L34 21 L37 26 L40 22 L42 26 V36 H22 Z" fill="#fde047" stroke="#92400e" strokeWidth="1.1" strokeLinejoin="round" />
+      <circle cx="24" cy="22" r="1" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.3" />
+      <circle cx="32" cy="20" r="1.2" fill="#10b981" stroke="#065f46" strokeWidth="0.3" />
+      <circle cx="40" cy="22" r="1" fill="#2563eb" stroke="#1e3a8a" strokeWidth="0.3" />
+      <circle cx="27" cy="32" r="1.6" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+      <circle cx="32" cy="32" r="1.6" fill="#2563eb" stroke="#1e3a8a" strokeWidth="0.4" />
+      <circle cx="37" cy="32" r="1.6" fill="#10b981" stroke="#065f46" strokeWidth="0.4" />
+      <rect x="22" y="36" width="20" height="3" fill="#b45309" stroke="#451a03" strokeWidth="0.6" />
+      <line x1="22" y1="37.5" x2="42" y2="37.5" stroke="#fde047" strokeWidth="0.4" />
+    </g>
+  ),
+  perfect_50: () => (
+    <g className="ba-anim anim-twinkle" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M22 28 L26 22 L38 22 L42 28 L32 44 Z" fill="#c084fc" stroke="#3b0764" strokeWidth="1" />
+      <path d="M22 28 H42" stroke="#3b0764" strokeWidth="0.6" />
+      <path d="M26 22 L32 28 L38 22" stroke="#3b0764" strokeWidth="0.6" fill="none" />
+      <path d="M22 28 L32 44" stroke="#7c3aed" strokeWidth="0.4" />
+      <path d="M42 28 L32 44" stroke="#7c3aed" strokeWidth="0.4" />
+      <path d="M27 23 L25 27" stroke="#fef3c7" strokeWidth="1.2" fill="none" opacity="0.85" strokeLinecap="round" />
+    </g>
+  ),
+  perfect_10_apps: () => (
+    <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M32 19 L35 27 L43.5 27.5 L37 33 L39 41.5 L32 36.5 L25 41.5 L27 33 L20.5 27.5 L29 27 Z"
+            fill="#fde047" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+      <path d="M32 22 L34 28 L40 28.4 L36 31.5" stroke="#fef3c7" strokeWidth="0.8" fill="none" opacity="0.9" />
+      <circle cx="32" cy="31" r="1.6" fill="#fef3c7" opacity="0.85" />
+    </g>
+  ),
+  perfect_15_apps: () => (
+    <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M32 17 L33 20 L36 20.5 L34 22.5 L34.5 25 L32 23.5 L29.5 25 L30 22.5 L28 20.5 L31 20 Z"
+            fill="#fef3c7" stroke="#92400e" strokeWidth="0.5" />
+      <path d="M22 30 L26 26 L29 30 L32 24 L35 30 L38 26 L42 30 V38 H22 Z"
+            fill="#fde047" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+      <circle cx="32" cy="34" r="2.5" fill="#2563eb" stroke="#1e3a8a" strokeWidth="0.6" />
+      <circle cx="31" cy="33" r="0.8" fill="#bfdbfe" />
+      <rect x="22" y="38" width="20" height="3" fill="#b45309" stroke="#451a03" strokeWidth="0.5" />
+    </g>
+  ),
+  robot_retos_eso4: () => (
+    <g>
+      <line x1="32" y1="19" x2="32" y2="22" stroke="#22d3ee" strokeWidth="1" />
+      <circle cx="32" cy="19" r="1.4" fill="#22d3ee" stroke="#0e7490" strokeWidth="0.4" className="ba-anim anim-twinkle" />
+      <rect x="24" y="22" width="16" height="14" rx="1.5" fill="#cbd5e1" stroke="#1f2937" strokeWidth="1" />
+      <rect x="25" y="23" width="14" height="3" rx="0.5" fill="#e2e8f0" opacity="0.8" />
+      <rect x="27" y="27" width="3.5" height="3" fill="#22d3ee" stroke="#0e7490" strokeWidth="0.4" className="ba-anim anim-twinkle-3" />
+      <rect x="33.5" y="27" width="3.5" height="3" fill="#22d3ee" stroke="#0e7490" strokeWidth="0.4" className="ba-anim anim-twinkle-3" />
+      <rect x="28" y="32" width="8" height="1.5" fill="#1f2937" />
+      <rect x="29" y="33.5" width="2" height="0.6" fill="#fbbf24" />
+      <rect x="33" y="33.5" width="2" height="0.6" fill="#fbbf24" />
+      <rect x="26" y="36" width="12" height="6" rx="0.6" fill="#94a3b8" stroke="#1f2937" strokeWidth="0.8" />
+      <circle cx="29" cy="39" r="0.8" fill="#22d3ee" />
+      <circle cx="32" cy="39" r="0.8" fill="#fbbf24" />
+      <circle cx="35" cy="39" r="0.8" fill="#dc2626" />
+    </g>
+  ),
+  rank_top3_10: () => (
+    <g>
+      <path d="M32 21 L33 24 L36 24.5 L34 26.5 L34.5 29 L32 27.5 L29.5 29 L30 26.5 L28 24.5 L31 24 Z"
+            fill="#fde047" stroke="#92400e" strokeWidth="0.5" />
+      <rect x="22" y="34" width="6" height="9" fill="#cbd5e1" stroke="#1f2937" strokeWidth="0.7" />
+      <text x="25" y="40.5" fontSize="6" fontWeight="900" textAnchor="middle" fill="#1f2937" fontFamily="system-ui">2</text>
+      <rect x="28" y="30" width="8" height="13" fill="#fde047" stroke="#92400e" strokeWidth="0.7" />
+      <text x="32" y="39" fontSize="7" fontWeight="900" textAnchor="middle" fill="#7c2d12" fontFamily="system-ui">1</text>
+      <rect x="36" y="36" width="6" height="7" fill="#d97706" stroke="#7c2d12" strokeWidth="0.7" />
+      <text x="39" y="41.5" fontSize="6" fontWeight="900" textAnchor="middle" fill="#fef3c7" fontFamily="system-ui">3</text>
+    </g>
+  ),
+  rank_first_10: () => (
+    <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M22 26 Q18 26 18 30 V32" stroke="#92400e" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M42 26 Q46 26 46 30 V32" stroke="#92400e" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M22 24 H42 V32 Q42 39 32 40 Q22 39 22 32 Z" fill="#fde047" stroke="#92400e" strokeWidth="1" />
+      <line x1="22" y1="26" x2="42" y2="26" stroke="#fef3c7" strokeWidth="0.6" />
+      <line x1="22" y1="32" x2="42" y2="32" stroke="#92400e" strokeWidth="0.4" />
+      <path d="M32 28 L33 30.5 L36 30.7 L33.7 32.4 L34.5 35 L32 33.6 L29.5 35 L30.3 32.4 L28 30.7 L31 30.5 Z"
+            fill="#fef3c7" stroke="#92400e" strokeWidth="0.4" />
+      <rect x="29" y="40" width="6" height="3" fill="#fde047" stroke="#92400e" strokeWidth="0.5" />
+      <rect x="25" y="43" width="14" height="3" rx="0.5" fill="#92400e" stroke="#451a03" strokeWidth="0.5" />
+    </g>
+  ),
+  rank_class1_10: () => (
+    <g>
+      <path d="M22 22 H42 V32 Q42 40 32 44 Q22 40 22 32 Z" fill="#fde047" stroke="#92400e" strokeWidth="1" />
+      <path d="M24 24 H40 V32 Q40 38 32 41 Q24 38 24 32 Z" fill="none" stroke="#92400e" strokeWidth="0.5" />
+      <path d="M22 22 H42 V25 H22 Z" fill="#fef3c7" opacity="0.55" />
+      <text x="32" y="36.5" fontSize="14" fontWeight="900" textAnchor="middle" fill="#7c2d12" fontFamily="system-ui">1</text>
+    </g>
+  ),
+  speed_perfect: () => (
+    <g>
+      <g className="ba-anim anim-flicker" style={{ transformOrigin: '32px 32px' }}>
+        <path d="M30 21 L23 33 L29 33 L25 43 L38 30 L32 30 L36 21 Z"
+              fill="#fde047" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+        <path d="M30 24 L26 31 L29 31" stroke="#fef3c7" strokeWidth="0.5" fill="none" opacity="0.7" />
+      </g>
+      <circle cx="42" cy="40" r="4.2" fill="#10b981" stroke="#065f46" strokeWidth="0.7" />
+      <path d="M40 40.2 L41.5 41.7 L44 38.8" stroke="#fef3c7" strokeWidth="1.3" fill="none"
+            strokeLinecap="round" strokeLinejoin="round" className="ba-anim anim-checkdraw" />
+    </g>
+  ),
+  speed_5s: () => (
+    <g className="ba-anim anim-flicker" style={{ transformOrigin: '32px 32px' }}>
+      <path d="M30 19 L21 35 L29 35 L25 45 L41 27 L33 27 L37 19 Z"
+            fill="#fde047" stroke="#92400e" strokeWidth="1.1" strokeLinejoin="round" />
+      <path d="M30 22 L25 33 L28 33" stroke="#fef3c7" strokeWidth="0.6" fill="none" opacity="0.7" />
+      <path d="M37 28 L34 32" stroke="#fef3c7" strokeWidth="0.5" fill="none" opacity="0.5" />
+    </g>
+  ),
+  speed_perf_10: () => (
+    <g>
+      <rect x="30" y="19" width="4" height="2" fill="#92400e" stroke="#451a03" strokeWidth="0.4" />
+      <line x1="32" y1="21" x2="32" y2="23" stroke="#92400e" strokeWidth="1.2" />
+      <circle cx="32" cy="34" r="9.5" fill="#fef3c7" stroke="#1f2937" strokeWidth="1" />
+      <circle cx="32" cy="34" r="9" fill="none" stroke="#92400e" strokeWidth="0.5" />
+      {[0, 90, 180, 270].map(deg => {
+        const a = deg * Math.PI / 180;
+        const x = 32 + Math.cos(a) * 8, y = 34 + Math.sin(a) * 8;
+        return <circle key={deg} cx={x} cy={y} r="0.6" fill="#92400e" />;
+      })}
+      <path d="M33 27 L29 33 L31 33 L30 41 L35 33 L33 33 L34 27 Z"
+            fill="#fde047" stroke="#92400e" strokeWidth="0.6" strokeLinejoin="round" />
+    </g>
+  ),
+  streak_100: () => (
+    <g className="ba-anim anim-flame" style={{ transformOrigin: '32px 38px' }}>
+      <path d="M32 18 Q26 22 24 28 Q22 34 24 38 Q26 44 32 44 Q38 44 40 38 Q42 34 40 28 Q38 22 32 18 Z"
+            fill="#dc2626" stroke="#7f1d1d" strokeWidth="1" />
+      <path d="M32 22 Q28 25 27 30 Q26 35 28 39 Q30 42 32 42 Q34 42 36 39 Q38 35 37 30 Q36 25 32 22 Z"
+            fill="#f97316" />
+      <path d="M32 27 Q30 30 30 34 Q30 38 32 39 Q34 38 34 34 Q34 30 32 27 Z" fill="#fde047" />
+      <ellipse cx="32" cy="35" rx="0.9" ry="2" fill="#ffffff" opacity="0.7" />
+    </g>
+  ),
+  subjects_10: () => (
+    <g>
+      <path d="M22 24 Q24 22 32 24 Q40 22 42 24 V40 Q40 38 32 40 Q24 38 22 40 Z"
+            fill="#fef3c7" stroke="#92400e" strokeWidth="1" />
+      <line x1="32" y1="24" x2="32" y2="40" stroke="#92400e" strokeWidth="0.8" />
+      {[28, 30, 32, 34].map((y, i) => (
+        <React.Fragment key={i}>
+          <line x1="25" y1={y} x2={i === 3 ? 29 : 30} y2={y} stroke="#92400e" strokeWidth="0.5" />
+          <line x1="34" y1={y} x2={i === 3 ? 38 : 39} y2={y} stroke="#92400e" strokeWidth="0.5" />
+        </React.Fragment>
+      ))}
+      <rect x="31.5" y="22" width="1" height="20" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.3" />
+      <path d="M31 42 L32 44 L33 42" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.3" />
+    </g>
+  ),
+  teacher_battles_30: () => (
+    <g>
+      <line x1="22" y1="22" x2="42" y2="42" stroke="#1f2937" strokeWidth="3.4" strokeLinecap="round" />
+      <line x1="22" y1="22" x2="42" y2="42" stroke="#e2e8f0" strokeWidth="2" strokeLinecap="round" />
+      <line x1="42" y1="22" x2="22" y2="42" stroke="#1f2937" strokeWidth="3.4" strokeLinecap="round" />
+      <line x1="42" y1="22" x2="22" y2="42" stroke="#e2e8f0" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="22" cy="42" r="2.4" fill="#92400e" stroke="#1f2937" strokeWidth="0.6" />
+      <circle cx="42" cy="42" r="2.4" fill="#92400e" stroke="#1f2937" strokeWidth="0.6" />
+      <line x1="20" y1="40" x2="24" y2="44" stroke="#fde047" strokeWidth="1" strokeLinecap="round" />
+      <line x1="44" y1="40" x2="40" y2="44" stroke="#fde047" strokeWidth="1" strokeLinecap="round" />
+      <circle cx="32" cy="32" r="2.2" fill="#fde047" stroke="#92400e" strokeWidth="0.6" />
+      <circle cx="32" cy="32" r="0.7" fill="#dc2626" />
+    </g>
+  ),
+  teacher_groups_10: () => (
+    <g>
+      <path d="M22 26 L32 21 L42 26 L32 30 Z" fill="#1f2937" stroke="#000" strokeWidth="0.5" />
+      <line x1="32" y1="21" x2="36" y2="18" stroke="#fde047" strokeWidth="0.8" />
+      <circle cx="36" cy="18" r="1" fill="#fde047" />
+      <circle cx="32" cy="34" r="4" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <circle cx="30" cy="33" r="0.5" fill="#1f2937" />
+      <circle cx="34" cy="33" r="0.5" fill="#1f2937" />
+      <path d="M30 35.5 Q32 37 34 35.5" stroke="#92400e" strokeWidth="0.6" fill="none" />
+      <path d="M22 44 Q22 38 32 38 Q42 38 42 44 Z" fill="#0ea5e9" stroke="#0c4a6e" strokeWidth="0.8" />
+      <path d="M30 38 L32 42 L34 38" stroke="#fef3c7" strokeWidth="0.5" fill="none" />
+    </g>
+  ),
+  teacher_messages_100: () => (
+    <g>
+      <rect x="22" y="26" width="20" height="14" fill="#fef3c7" stroke="#92400e" strokeWidth="1" />
+      <path d="M22 26 L32 35 L42 26" stroke="#92400e" strokeWidth="0.8" fill="none" />
+      <path d="M22 26 L32 35 L42 26 L42 28 L32 37 L22 28 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.5" />
+      <path d="M42 28 L42 40 L34 32 Z" fill="#fef3c7" opacity="0.6" />
+      <path d="M22 28 L22 40 L30 32 Z" fill="#fef3c7" opacity="0.6" />
+      <circle cx="38" cy="42" r="3" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.6" />
+      <path d="M36.5 42 L37.5 43 L39.5 41" stroke="#fef3c7" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+    </g>
+  ),
+  teacher_days_365: () => (
+    <g>
+      <line x1="27" y1="19" x2="27" y2="23" stroke="#cbd5e1" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="37" y1="19" x2="37" y2="23" stroke="#cbd5e1" strokeWidth="1.6" strokeLinecap="round" />
+      <rect x="22" y="22" width="20" height="20" rx="1" fill="#fef3c7" stroke="#1f2937" strokeWidth="1" />
+      <rect x="22" y="22" width="20" height="5" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.6" />
+      <text x="32" y="26.2" fontSize="3.5" fontWeight="700" textAnchor="middle" fill="#fef3c7" fontFamily="system-ui">365</text>
+      {[0, 1, 2, 3].map(c =>
+        [0, 1, 2].map(r => (
+          <rect key={`${c}-${r}`} x={24 + c * 4} y={29 + r * 4} width="3" height="3"
+                fill={c === 2 && r === 1 ? "#fde047" : "#fef3c7"}
+                stroke="#92400e" strokeWidth="0.3" />
+        ))
+      )}
+      <path d="M32.5 33.5 L33.2 34.4 L34.4 33" stroke="#7c2d12" strokeWidth="0.5" fill="none" strokeLinecap="round" />
+    </g>
+  ),
+  teacher_students_100: () => (
+    <g>
+      <path d="M19 24 L32 19 L45 24 L32 29 Z" fill="#1f2937" />
+      <line x1="32" y1="19" x2="36" y2="17" stroke="#fde047" strokeWidth="0.8" />
+      <circle cx="36" cy="17" r="0.9" fill="#fde047" />
+      <circle cx="24" cy="34" r="3" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <circle cx="32" cy="34" r="3" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <circle cx="40" cy="34" r="3" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <path d="M20 44 Q20 39 24 39 Q28 39 28 44 Z" fill="#0ea5e9" stroke="#0c4a6e" strokeWidth="0.6" />
+      <path d="M28 44 Q28 39 32 39 Q36 39 36 44 Z" fill="#10b981" stroke="#065f46" strokeWidth="0.6" />
+      <path d="M36 44 Q36 39 40 39 Q44 39 44 44 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.6" />
+    </g>
+  ),
+  teacher_tasks_50: () => (
+    <g>
+      <rect x="29" y="20" width="6" height="3" rx="0.5" fill="#92400e" stroke="#451a03" strokeWidth="0.4" />
+      <rect x="23" y="22" width="18" height="20" rx="1" fill="#fef3c7" stroke="#92400e" strokeWidth="0.8" />
+      <rect x="29" y="22" width="6" height="2" fill="#fde047" />
+      {[0, 1, 2].map(i => (
+        <g key={i}>
+          <rect x="25.5" y={26.5 + i * 4.5} width="2.5" height="2.5" rx="0.3" fill="#10b981" stroke="#065f46" strokeWidth="0.3" />
+          <path d={`M${26} ${27.5 + i * 4.5} L${27} ${28.4 + i * 4.5} L${28} ${26.7 + i * 4.5}`}
+                stroke="#fef3c7" strokeWidth="0.7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="29.5" y1={27.7 + i * 4.5} x2="38.5" y2={27.7 + i * 4.5} stroke="#92400e" strokeWidth="0.5" />
+        </g>
+      ))}
+    </g>
+  ),
+};
+
+const legBadge = (code, id) => {
+  const cat = LEG_CAT[code] || 'general';
+  const acc = LEG_ACCENT[cat] || LEG_ACCENT.general;
+  const center = LEG_CENTER[code];
+  return legFrame(id, acc.accent, acc.dark, acc.gem, center && center());
+};
+
 const SVGS = {
   // ═══════════════════════ GENERAL ═══════════════════════
   first_game: (id) => (
@@ -452,103 +895,7 @@ const SVGS = {
       </g>
     </>
   ),
-  games_1000: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.3" stopColor="#fde047" />
-          <stop offset="0.7" stopColor="#d97706" />
-          <stop offset="1" stopColor="#451a03" />
-        </linearGradient>
-        <linearGradient id={`${id}base`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fcd34d" />
-          <stop offset="1" stopColor="#7c2d12" />
-        </linearGradient>
-        <radialGradient id={`${id}gemR`} cx="0.4" cy="0.3">
-          <stop offset="0" stopColor="#fecaca" />
-          <stop offset="0.5" stopColor="#dc2626" />
-          <stop offset="1" stopColor="#450a0a" />
-        </radialGradient>
-        <radialGradient id={`${id}gemG`} cx="0.4" cy="0.3">
-          <stop offset="0" stopColor="#bbf7d0" />
-          <stop offset="0.5" stopColor="#10b981" />
-          <stop offset="1" stopColor="#064e3b" />
-        </radialGradient>
-        <radialGradient id={`${id}gemB`} cx="0.4" cy="0.3">
-          <stop offset="0" stopColor="#bfdbfe" />
-          <stop offset="0.5" stopColor="#2563eb" />
-          <stop offset="1" stopColor="#0c4a6e" />
-        </radialGradient>
-        <radialGradient id={`${id}halo1k`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}halo1k)`} />
-      {/* Rayos giratorios */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 16 }).map((_, i) => {
-          const a = (i * 22.5 * Math.PI) / 180;
-          const x1 = 32 + Math.sin(a) * 26;
-          const y1 = 32 - Math.cos(a) * 26;
-          const x2 = 32 + Math.sin(a) * 32;
-          const y2 = 32 - Math.cos(a) * 32;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#fbbf24" strokeWidth={i % 2 ? 1 : 1.8} strokeLinecap="round" opacity="0.7" />;
-        })}
-      </g>
-      {/* Pedestal escalonado */}
-      <rect x="18" y="54" width="28" height="6" rx="1" fill={`url(#${id}base)`} stroke="#451a03" strokeWidth="1.5" />
-      <rect x="20" y="56" width="24" height="2" fill="#fffbeb" opacity="0.5" />
-      <rect x="22" y="48" width="20" height="6" rx="0.8" fill={`url(#${id}base)`} stroke="#451a03" strokeWidth="1.2" />
-      {/* Tallo */}
-      <rect x="28" y="40" width="8" height="10" fill={`url(#${id}cup)`} stroke="#7c2d12" strokeWidth="1.5" />
-      <line x1="28" y1="42" x2="36" y2="42" stroke="#fef3c7" strokeWidth="0.6" opacity="0.7" />
-      {/* Trofeo monumental */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 24px' }}>
-        {/* Cuerpo principal */}
-        <path d="M14 8 H50 V22 Q50 38 32 40 Q14 38 14 22 Z" fill={`url(#${id}cup)`} stroke="#451a03" strokeWidth="2.5" />
-        {/* Banda decorativa superior */}
-        <rect x="14" y="8" width="36" height="3" fill="#7c2d12" opacity="0.4" />
-        {/* Banda inferior */}
-        <rect x="16" y="34" width="32" height="2" fill="#7c2d12" opacity="0.4" />
-        {/* Asas dobles izquierda */}
-        <path d="M14 10 Q2 10 2 20 Q2 30 14 32" fill="none" stroke="#d97706" strokeWidth="4" strokeLinecap="round" />
-        <path d="M14 12 Q5 12 5 20" fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" />
-        {/* Asas dobles derecha */}
-        <path d="M50 10 Q62 10 62 20 Q62 30 50 32" fill="none" stroke="#d97706" strokeWidth="4" strokeLinecap="round" />
-        <path d="M50 12 Q59 12 59 20" fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" />
-        {/* Gemas alineadas */}
-        <circle cx="22" cy="20" r="2.5" fill={`url(#${id}gemB)`} stroke="#0c4a6e" strokeWidth="0.8" />
-        <circle cx="32" cy="22" r="3" fill={`url(#${id}gemR)`} stroke="#7f1d1d" strokeWidth="1" />
-        <circle cx="42" cy="20" r="2.5" fill={`url(#${id}gemG)`} stroke="#064e3b" strokeWidth="0.8" />
-        <circle cx="32" cy="22" r="0.8" fill="#fff" opacity="0.9" />
-        {/* "1000" */}
-        <text x="32" y="32" textAnchor="middle" fontSize="6" fontWeight="900" fill="#7c2d12" stroke="#fef3c7" strokeWidth="0.5">1000</text>
-        {/* Highlight */}
-        <ellipse cx="20" cy="14" rx="2" ry="6" fill="#fffbeb" opacity="0.6" />
-      </g>
-      {/* Coronita arriba */}
-      <g className="ba-anim anim-twinkle">
-        <path d="M26 4 L28 8 L32 4 L36 8 L38 4 L37 10 L27 10 Z" fill="#fde047" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
-        <circle cx="32" cy="6" r="0.8" fill="#dc2626" />
-      </g>
-      {/* Confeti */}
-      <g className="ba-anim anim-rise-fade" style={{ transformOrigin: '8px 24px' }}>
-        <rect x="7" y="22" width="2" height="3" fill="#ec4899" transform="rotate(20)" />
-      </g>
-      <g className="ba-anim anim-rise-fade" style={{ transformOrigin: '56px 24px', animationDelay: '.5s' }}>
-        <rect x="55" y="22" width="2" height="3" fill="#22d3ee" transform="rotate(-20)" />
-      </g>
-      <g className="ba-anim anim-rise-fade" style={{ transformOrigin: '14px 56px', animationDelay: '1s' }}>
-        <circle cx="14" cy="56" r="1" fill="#fde047" />
-      </g>
-      <g className="ba-anim anim-rise-fade" style={{ transformOrigin: '50px 56px', animationDelay: '1.5s' }}>
-        <circle cx="50" cy="56" r="1" fill="#a78bfa" />
-      </g>
-    </>
-  ),
+  games_1000: (id) => legBadge('games_1000', id),
 
   // ═══════════════════════ EXAMENES ═══════════════════════
   first_exam: (id) => (
@@ -875,67 +1222,7 @@ const SVGS = {
       </g>
     </>
   ),
-  exams_200: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}sky200`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#0ea5e9" />
-          <stop offset="0.5" stopColor="#0369a1" />
-          <stop offset="1" stopColor="#0c4a6e" />
-        </linearGradient>
-        <linearGradient id={`${id}rng`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fde047" />
-          <stop offset="0.5" stopColor="#f59e0b" />
-          <stop offset="1" stopColor="#92400e" />
-        </linearGradient>
-        <radialGradient id={`${id}eye200`} cx="0.4" cy="0.35">
-          <stop offset="0" stopColor="#fef3c7" />
-          <stop offset="0.4" stopColor="#22d3ee" />
-          <stop offset="1" stopColor="#0c4a6e" />
-        </radialGradient>
-        <radialGradient id={`${id}haloT`} cx="0.5" cy="0.3">
-          <stop offset="0" stopColor="#0ea5e9" stopOpacity="0.45" />
-          <stop offset="1" stopColor="#0ea5e9" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloT)`} />
-      {/* Vórtice de capas giratorias */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 30px' }}>
-        <path d="M4 14 H60 L48 24 H16 Z" fill={`url(#${id}sky200)`} stroke="#082f49" strokeWidth="2" strokeLinejoin="round" opacity="0.8" />
-        <path d="M14 26 H50 L42 36 H22 Z" fill="#0891b2" stroke="#082f49" strokeWidth="2" strokeLinejoin="round" opacity="0.85" />
-        <path d="M22 38 L42 38 L36 48 H28 Z" fill="#14b8a6" stroke="#082f49" strokeWidth="2" strokeLinejoin="round" opacity="0.9" />
-      </g>
-      {/* Anillos de poder */}
-      <g className="ba-anim anim-spin-back" style={{ transformOrigin: '32px 30px' }}>
-        <circle cx="32" cy="30" r="18" fill="none" stroke={`url(#${id}rng)`} strokeWidth="2" strokeDasharray="4 3" opacity="0.7" />
-        <circle cx="32" cy="30" r="12" fill="none" stroke={`url(#${id}rng)`} strokeWidth="1.5" strokeDasharray="3 2" opacity="0.6" />
-      </g>
-      {/* Ojo central omnisciente */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 30px' }}>
-        <ellipse cx="32" cy="30" rx="8" ry="6" fill={`url(#${id}eye200)`} stroke="#082f49" strokeWidth="1.5" />
-        <circle cx="32" cy="30" r="3" fill="#0c4a6e" stroke="#082f49" strokeWidth="0.8" />
-        <circle cx="32" cy="30" r="1.5" fill="#fef3c7" />
-        <ellipse cx="30" cy="28" rx="1" ry="0.6" fill="#fff" opacity="0.9" />
-      </g>
-      {/* Pilar inferior */}
-      <line x1="32" y1="48" x2="32" y2="58" stroke="#0891b2" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="32" cy="60" r="3" fill="#0891b2" stroke="#082f49" strokeWidth="1.5" />
-      <circle cx="32" cy="60" r="1" fill="#fbbf24" />
-      {/* "200" inscrito */}
-      <text x="32" y="42" textAnchor="middle" fontSize="5" fontWeight="900" fill="#fef3c7" stroke="#082f49" strokeWidth="0.4">200</text>
-      {/* Chispas */}
-      <g className="ba-anim anim-twinkle">
-        <circle cx="6" cy="6" r="1.2" fill="#fff" />
-      </g>
-      <g className="ba-anim anim-twinkle-2">
-        <circle cx="58" cy="6" r="1.2" fill="#22d3ee" />
-      </g>
-      <g className="ba-anim anim-twinkle-3">
-        <circle cx="10" cy="58" r="1" fill="#fde047" />
-      </g>
-    </>
-  ),
+  exams_200: (id) => legBadge('exams_200', id),
 
   // ═══════════════════════ MAESTRIA: notas perfectas ═══════════════════════
   perfect_1: (id) => (
@@ -1178,78 +1465,7 @@ const SVGS = {
       </g>
     </>
   ),
-  perfect_50: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}diam`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#e0f2fe" />
-          <stop offset="0.3" stopColor="#38bdf8" />
-          <stop offset="0.7" stopColor="#0284c7" />
-          <stop offset="1" stopColor="#0c4a6e" />
-        </linearGradient>
-        <linearGradient id={`${id}crn`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fef3c7" />
-          <stop offset="1" stopColor="#92400e" />
-        </linearGradient>
-        <radialGradient id={`${id}haloDi`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#38bdf8" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
-        </radialGradient>
-        <clipPath id={`${id}dcl`}>
-          <path d="M14 22 L24 8 H40 L50 22 L32 58 Z" />
-        </clipPath>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloDi)`} />
-      {/* Rayos exteriores */}
-      <g className="ba-anim anim-spin-back" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 12 }).map((_, i) => {
-          const a = (i * 30 * Math.PI) / 180;
-          const x1 = 32 + Math.sin(a) * 28;
-          const y1 = 32 - Math.cos(a) * 28;
-          const x2 = 32 + Math.sin(a) * 34;
-          const y2 = 32 - Math.cos(a) * 34;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#38bdf8" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />;
-        })}
-      </g>
-      {/* Diamante cuerpo */}
-      <path d="M14 22 L24 8 H40 L50 22 L32 58 Z" fill={`url(#${id}diam)`} stroke="#075985" strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Facetas interiores */}
-      <line x1="14" y1="22" x2="50" y2="22" stroke="#e0f2fe" strokeWidth="1.5" />
-      <line x1="24" y1="8" x2="32" y2="22" stroke="#bae6fd" strokeWidth="1" />
-      <line x1="40" y1="8" x2="32" y2="22" stroke="#bae6fd" strokeWidth="1" />
-      <line x1="32" y1="22" x2="32" y2="58" stroke="#bae6fd" strokeWidth="1" opacity="0.7" />
-      <line x1="14" y1="22" x2="32" y2="58" stroke="#7dd3fc" strokeWidth="0.8" opacity="0.6" />
-      <line x1="50" y1="22" x2="32" y2="58" stroke="#7dd3fc" strokeWidth="0.8" opacity="0.6" />
-      {/* Brillos interiores triangulares */}
-      <path d="M26 10 L32 22 L20 22 Z" fill="#e0f2fe" opacity="0.5" />
-      <path d="M38 10 L32 22 L44 22 Z" fill="#bae6fd" opacity="0.35" />
-      <path d="M32 22 L20 22 L32 42 Z" fill="#7dd3fc" opacity="0.2" />
-      {/* Sweep luminoso */}
-      <g clipPath={`url(#${id}dcl)`}>
-        <g className="ba-anim anim-gleam">
-          <rect x="22" y="-4" width="8" height="70" fill="#fff" opacity="0.6" transform="skewX(-15)" />
-        </g>
-      </g>
-      {/* Highlight superior */}
-      <ellipse cx="28" cy="14" rx="2" ry="3" fill="#fff" opacity="0.8" />
-      {/* Corona debajo — pedestal */}
-      <path d="M22 58 L26 54 L29 58 L32 54 L35 58 L38 54 L42 58 L41 62 L23 62 Z" fill={`url(#${id}crn)`} stroke="#7c2d12" strokeWidth="1.2" strokeLinejoin="round" />
-      {/* Chispas de diamante */}
-      <g className="ba-anim anim-twinkle">
-        <path d="M8 14 L10 12 L8 10 L6 12 Z" fill="#fff" stroke="#38bdf8" strokeWidth="0.5" />
-      </g>
-      <g className="ba-anim anim-twinkle-2">
-        <path d="M56 14 L58 12 L56 10 L54 12 Z" fill="#fff" stroke="#38bdf8" strokeWidth="0.5" />
-      </g>
-      <g className="ba-anim anim-twinkle-3">
-        <circle cx="6" cy="36" r="1" fill="#bae6fd" />
-      </g>
-      <g className="ba-anim anim-twinkle">
-        <circle cx="58" cy="36" r="1" fill="#bae6fd" />
-      </g>
-    </>
-  ),
+  perfect_50: (id) => legBadge('perfect_50', id),
 
   // ═══════════════════════ MAESTRIA: 10 en apps distintas ═══════════════════════
   perfect_1_app: (id) => (
@@ -1407,132 +1623,8 @@ const SVGS = {
       </g>
     </>
   ),
-  perfect_10_apps: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}rib10a`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#dc2626" /><stop offset="1" stopColor="#450a0a" />
-        </linearGradient>
-        <linearGradient id={`${id}rib10b`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fbbf24" /><stop offset="1" stopColor="#451a03" />
-        </linearGradient>
-        <radialGradient id={`${id}gld10`} cx="0.35" cy="0.3">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.3" stopColor="#fde047" />
-          <stop offset="0.7" stopColor="#d97706" />
-          <stop offset="1" stopColor="#451a03" />
-        </radialGradient>
-        <radialGradient id={`${id}haloG`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#fbbf24" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#fbbf24" stopOpacity="0" />
-        </radialGradient>
-        <clipPath id={`${id}c10`}>
-          <circle cx="32" cy="40" r="18" />
-        </clipPath>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="36" r="32" fill={`url(#${id}haloG)`} />
-      {/* Cintas cruzadas anchas */}
-      <path d="M8 2 L22 6 L28 18 L36 16 L32 26 L20 24 Z" fill={`url(#${id}rib10a)`} stroke="#0f172a" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M56 2 L42 6 L36 18 L28 16 L32 26 L44 24 Z" fill={`url(#${id}rib10b)`} stroke="#0f172a" strokeWidth="1.5" strokeLinejoin="round" />
-      {/* Medalla con sway */}
-      <g className="ba-anim anim-sway" style={{ transformOrigin: '32px 24px' }}>
-        {/* Anilla */}
-        <rect x="28" y="20" width="8" height="6" rx="2" fill="#d97706" stroke="#451a03" strokeWidth="1.2" />
-        {/* Disco */}
-        <circle cx="32" cy="40" r="18" fill={`url(#${id}gld10)`} stroke="#451a03" strokeWidth="3" />
-        {/* Borde decorado */}
-        <circle cx="32" cy="40" r="15" fill="none" stroke="#7c2d12" strokeWidth="1.2" strokeDasharray="2 2" />
-        {/* Laureles (5 hojas cada lado) */}
-        {[-1, 1].map((side) => (
-          Array.from({ length: 5 }).map((_, i) => {
-            const cx = 32 + side * 12;
-            const y = 30 + i * 4;
-            return (
-              <ellipse key={`${side}${i}`} cx={cx} cy={y} rx="2.5" ry="1.5"
-                fill={i % 2 ? '#16a34a' : '#15803d'} stroke="#14532d" strokeWidth="0.6"
-                transform={`rotate(${side * (-20 + i * 8)} ${cx} ${y})`} />
-            );
-          })
-        ))}
-        {/* "10" grande */}
-        <text x="32" y="46" textAnchor="middle" fontSize="16" fontWeight="900" fill="#fef3c7" stroke="#7c2d12" strokeWidth="0.8">10</text>
-        {/* 10 puntos pequeños alrededor */}
-        {Array.from({ length: 10 }).map((_, i) => {
-          const a = ((i * 36 - 90) * Math.PI) / 180;
-          const x = 32 + Math.cos(a) * 10;
-          const y = 40 + Math.sin(a) * 10;
-          return <circle key={i} cx={x} cy={y} r="0.8" fill="#fef3c7" />;
-        })}
-        {/* Highlight */}
-        <ellipse cx="24" cy="30" rx="4" ry="2" fill="#fffbeb" opacity="0.6" />
-        {/* Sweep */}
-        <g clipPath={`url(#${id}c10)`}>
-          <g className="ba-anim anim-gleam">
-            <rect x="20" y="18" width="8" height="48" fill="#fff" opacity="0.5" transform="skewX(-20)" />
-          </g>
-        </g>
-      </g>
-    </>
-  ),
-  perfect_15_apps: (id) => (
-    <>
-      <defs>
-        <radialGradient id={`${id}iris`} cx="0.4" cy="0.35">
-          <stop offset="0" stopColor="#fef3c7" />
-          <stop offset="0.3" stopColor="#22d3ee" />
-          <stop offset="0.7" stopColor="#0284c7" />
-          <stop offset="1" stopColor="#0c4a6e" />
-        </radialGradient>
-        <linearGradient id={`${id}lid`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#a78bfa" />
-          <stop offset="0.5" stopColor="#7c3aed" />
-          <stop offset="1" stopColor="#1e1b4b" />
-        </linearGradient>
-        <radialGradient id={`${id}haloE`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#a78bfa" stopOpacity="0.45" />
-          <stop offset="1" stopColor="#a78bfa" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloE)`} />
-      {/* Aura pulsante */}
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '32px 32px' }}>
-        <circle cx="32" cy="32" r="8" fill="none" stroke="#a78bfa" strokeWidth="2.5" />
-      </g>
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '32px 32px', animationDelay: '1s' }}>
-        <circle cx="32" cy="32" r="8" fill="none" stroke="#fde047" strokeWidth="2" />
-      </g>
-      {/* Triángulo místico */}
-      <path d="M32 6 L58 50 H6 Z" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
-      <path d="M32 56 L6 14 H58 Z" fill="none" stroke="#ec4899" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
-      {/* Ojo de la providencia */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
-        {/* Forma del ojo */}
-        <path d="M4 32 Q32 10 60 32 Q32 54 4 32 Z" fill={`url(#${id}lid)`} stroke="#1e1b4b" strokeWidth="2.5" strokeLinejoin="round" />
-        {/* Iris */}
-        <circle cx="32" cy="32" r="10" fill={`url(#${id}iris)`} stroke="#0c4a6e" strokeWidth="1.5" />
-        <circle cx="32" cy="32" r="5" fill="#0f172a" stroke="#0c4a6e" strokeWidth="0.8" />
-        <circle cx="32" cy="32" r="2" fill="#fef3c7" />
-        {/* Highlights */}
-        <circle cx="29" cy="28" r="2" fill="#fff" opacity="0.9" />
-        <circle cx="36" cy="34" r="1" fill="#fff" opacity="0.5" />
-      </g>
-      {/* Rayos de visión */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i * 45 * Math.PI) / 180;
-          const x1 = 32 + Math.sin(a) * 20;
-          const y1 = 32 - Math.cos(a) * 20;
-          const x2 = 32 + Math.sin(a) * 26;
-          const y2 = 32 - Math.cos(a) * 26;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#fde047" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />;
-        })}
-      </g>
-      {/* "15" debajo */}
-      <text x="32" y="60" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7" stroke="#1e1b4b" strokeWidth="0.5">15 APPS</text>
-    </>
-  ),
+  perfect_10_apps: (id) => legBadge('perfect_10_apps', id),
+  perfect_15_apps: (id) => legBadge('perfect_15_apps', id),
 
   // ═══════════════════════ EXPLORACION ═══════════════════════
   apps_1: (id) => (
@@ -1808,67 +1900,7 @@ const SVGS = {
       </g>
     </>
   ),
-  apps_30: (id) => (
-    <>
-      <defs>
-        <radialGradient id={`${id}neb`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#1e1b4b" />
-          <stop offset="0.5" stopColor="#312e81" />
-          <stop offset="0.8" stopColor="#4c1d95" />
-          <stop offset="1" stopColor="#0f172a" />
-        </radialGradient>
-        <radialGradient id={`${id}star30`} cx="0.35" cy="0.35">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.4" stopColor="#fde047" />
-          <stop offset="1" stopColor="#92400e" />
-        </radialGradient>
-        <radialGradient id={`${id}haloN`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#7c3aed" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#7c3aed" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Fondo de nebulosa */}
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}neb)`} />
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloN)`} />
-      {/* Polvo cósmico */}
-      <circle cx="14" cy="14" r="0.7" fill="#fff" opacity="0.8" />
-      <circle cx="52" cy="12" r="0.5" fill="#fff" opacity="0.6" />
-      <circle cx="22" cy="50" r="0.5" fill="#fff" opacity="0.5" />
-      <circle cx="46" cy="48" r="0.7" fill="#fff" opacity="0.6" />
-      <circle cx="8" cy="30" r="0.4" fill="#fef3c7" opacity="0.5" />
-      <circle cx="56" cy="36" r="0.4" fill="#fef3c7" opacity="0.5" />
-      {/* Órbita exterior */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="26" ry="12" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.6" />
-        <circle cx="58" cy="32" r="2" fill="#ec4899" stroke="#831843" strokeWidth="0.8" />
-      </g>
-      {/* Órbita interior contra */}
-      <g className="ba-anim anim-spin-back" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="12" ry="24" fill="none" stroke="#f9a8d4" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.5" />
-        <circle cx="32" cy="8" r="1.5" fill="#22d3ee" stroke="#0c4a6e" strokeWidth="0.6" />
-      </g>
-      {/* Órbita diagonal */}
-      <g className="ba-anim anim-spin-fast" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="#fbbf24" strokeWidth="1" strokeDasharray="2 3" opacity="0.5" transform="rotate(45 32 32)" />
-        <circle cx="44" cy="18" r="1.2" fill="#fde047" />
-      </g>
-      {/* Sol central */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
-        <circle cx="32" cy="32" r="8" fill={`url(#${id}star30)`} stroke="#7c2d12" strokeWidth="2" />
-        <circle cx="32" cy="32" r="4" fill="#fffbeb" opacity="0.6" />
-        <circle cx="30" cy="30" r="1.5" fill="#fff" opacity="0.9" />
-      </g>
-      {/* "30" etiqueta */}
-      <text x="32" y="60" textAnchor="middle" fontSize="6" fontWeight="900" fill="#fde047" stroke="#0f172a" strokeWidth="0.5">30 APPS</text>
-      {/* Estrellas de fondo twinkling */}
-      <g className="ba-anim anim-twinkle">
-        <path d="M10 8 L11 10 L13 10 L11.5 11.5 L12 14 L10 12.5 L8 14 L8.5 11.5 L7 10 L9 10 Z" fill="#fff" />
-      </g>
-      <g className="ba-anim anim-twinkle-2">
-        <path d="M54 50 L55 52 L57 52 L55.5 53.5 L56 56 L54 54.5 L52 56 L52.5 53.5 L51 52 L53 52 Z" fill="#fef3c7" />
-      </g>
-    </>
-  ),
+  apps_30: (id) => legBadge('apps_30', id),
 
   // ═══════════════════════ VELOCIDAD ═══════════════════════
   speed_60s: (id) => (
@@ -2023,58 +2055,7 @@ const SVGS = {
       </g>
     </>
   ),
-  speed_5s: (id) => (
-    <>
-      <defs>
-        <radialGradient id={`${id}comet`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.4" stopColor="#fde047" />
-          <stop offset="0.8" stopColor="#f97316" />
-          <stop offset="1" stopColor="#7c2d12" />
-        </radialGradient>
-        <linearGradient id={`${id}trail`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#fde047" stopOpacity="1" />
-          <stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </linearGradient>
-        <radialGradient id={`${id}haloC`} cx="0.7" cy="0.3">
-          <stop offset="0" stopColor="#fbbf24" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#fbbf24" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Cielo oscuro */}
-      <circle cx="32" cy="32" r="30" fill="#0f172a" opacity="0.4" />
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloC)`} />
-      {/* Estrellas lejanas */}
-      <circle cx="10" cy="14" r="0.6" fill="#fff" opacity="0.7" />
-      <circle cx="22" cy="8" r="0.4" fill="#fff" opacity="0.5" />
-      <circle cx="56" cy="42" r="0.5" fill="#fff" opacity="0.6" />
-      <circle cx="50" cy="50" r="0.4" fill="#fff" opacity="0.5" />
-      {/* Estela — múltiples capas */}
-      <g className="ba-anim anim-zoom-pop" style={{ transformOrigin: '46px 18px' }}>
-        {/* Cola triple con fade */}
-        <path d="M42 22 L4 58" stroke={`url(#${id}trail)`} strokeWidth="6" strokeLinecap="round" opacity="0.3" />
-        <path d="M42 22 L6 56" stroke={`url(#${id}trail)`} strokeWidth="3.5" strokeLinecap="round" opacity="0.5" />
-        <path d="M42 22 L8 54" stroke={`url(#${id}trail)`} strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
-        {/* Partículas de la estela */}
-        <circle cx="22" cy="40" r="1" fill="#fbbf24" opacity="0.6" />
-        <circle cx="16" cy="46" r="0.7" fill="#f97316" opacity="0.4" />
-        <circle cx="10" cy="52" r="0.5" fill="#fbbf24" opacity="0.3" />
-        <circle cx="28" cy="34" r="1.2" fill="#fde047" opacity="0.7" />
-        <circle cx="36" cy="26" r="0.8" fill="#fef3c7" opacity="0.8" />
-        {/* Núcleo del cometa */}
-        <circle cx="46" cy="18" r="10" fill={`url(#${id}comet)`} stroke="#7c2d12" strokeWidth="2" />
-        <circle cx="46" cy="18" r="5" fill="#fffbeb" opacity="0.7" />
-        <circle cx="43" cy="15" r="2.5" fill="#fff" opacity="0.9" />
-      </g>
-      {/* Cronómetro "5s" */}
-      <rect x="44" y="42" width="16" height="10" rx="2" fill="#0f172a" stroke="#fbbf24" strokeWidth="1.5" />
-      <text x="52" y="50" textAnchor="middle" fontSize="6" fontWeight="900" fill="#fde047">5s</text>
-      {/* Chispas */}
-      <g className="ba-anim anim-twinkle">
-        <path d="M56 8 L57 10 L59 10 L57.5 11 L58 13 L56 11.5 L54 13 L54.5 11 L53 10 L55 10 Z" fill="#fff" />
-      </g>
-    </>
-  ),
+  speed_5s: (id) => legBadge('speed_5s', id),
   speed_perf_60: (id) => (
     <>
       <defs>
@@ -2173,65 +2154,7 @@ const SVGS = {
       </g>
     </>
   ),
-  speed_perf_10: (id) => (
-    <>
-      <defs>
-        <radialGradient id={`${id}core10`} cx="0.35" cy="0.35">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.4" stopColor="#fde047" />
-          <stop offset="0.8" stopColor="#dc2626" />
-          <stop offset="1" stopColor="#450a0a" />
-        </radialGradient>
-        <radialGradient id={`${id}haloBH`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#7c3aed" stopOpacity="0.5" />
-          <stop offset="0.5" stopColor="#ec4899" stopOpacity="0.25" />
-          <stop offset="1" stopColor="#0f172a" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Fondo oscuro */}
-      <circle cx="32" cy="32" r="30" fill="#0f172a" opacity="0.5" />
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloBH)`} />
-      {/* Disco de acreción exterior */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="#7c3aed" strokeWidth="3" strokeDasharray="8 4" opacity="0.6" />
-        <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#a78bfa" strokeWidth="2" strokeDasharray="6 4" opacity="0.5" />
-      </g>
-      {/* Disco de acreción interior — contra */}
-      <g className="ba-anim anim-spin-back" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="18" ry="6" fill="none" stroke="#ec4899" strokeWidth="2.5" strokeDasharray="5 3" opacity="0.6" />
-        <ellipse cx="32" cy="32" rx="12" ry="4" fill="none" stroke="#f9a8d4" strokeWidth="2" strokeDasharray="3 3" opacity="0.5" />
-      </g>
-      {/* Anillo vertical */}
-      <g className="ba-anim anim-spin-fast" style={{ transformOrigin: '32px 32px' }}>
-        <ellipse cx="32" cy="32" rx="4" ry="22" fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.5" />
-      </g>
-      {/* Singularidad central */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
-        <circle cx="32" cy="32" r="8" fill={`url(#${id}core10)`} stroke="#0f172a" strokeWidth="2.5" />
-        <circle cx="32" cy="32" r="4" fill="#0f172a" stroke="#fbbf24" strokeWidth="1" />
-        <circle cx="32" cy="32" r="1.5" fill="#fffbeb" />
-      </g>
-      {/* Anillo de evento */}
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '32px 32px' }}>
-        <circle cx="32" cy="32" r="5" fill="none" stroke="#fde047" strokeWidth="2" />
-      </g>
-      {/* "10s" */}
-      <text x="32" y="58" textAnchor="middle" fontSize="6" fontWeight="900" fill="#fde047" stroke="#0f172a" strokeWidth="0.5">10s</text>
-      {/* Partículas capturadas */}
-      <g className="ba-anim anim-twinkle">
-        <circle cx="10" cy="10" r="1" fill="#fff" />
-      </g>
-      <g className="ba-anim anim-twinkle-2">
-        <circle cx="54" cy="12" r="1" fill="#fef3c7" />
-      </g>
-      <g className="ba-anim anim-twinkle-3">
-        <circle cx="12" cy="52" r="0.8" fill="#a78bfa" />
-      </g>
-      <g className="ba-anim anim-twinkle">
-        <circle cx="52" cy="50" r="0.8" fill="#ec4899" />
-      </g>
-    </>
-  ),
+  speed_perf_10: (id) => legBadge('speed_perf_10', id),
 
   // ═══════════════════════ RACHAS ═══════════════════════
   streak_2: (id) => (
@@ -2581,64 +2504,7 @@ const SVGS = {
       </g>
     </>
   ),
-  streak_100: (id) => (
-    <>
-      <defs>
-        <radialGradient id={`${id}inferno`} cx="0.5" cy="0.7">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.2" stopColor="#fde047" />
-          <stop offset="0.5" stopColor="#f97316" />
-          <stop offset="0.8" stopColor="#dc2626" />
-          <stop offset="1" stopColor="#1c1917" />
-        </radialGradient>
-        <radialGradient id={`${id}haloInf`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#dc2626" stopOpacity="0.5" />
-          <stop offset="0.5" stopColor="#f97316" stopOpacity="0.25" />
-          <stop offset="1" stopColor="#dc2626" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo de calor */}
-      <circle cx="32" cy="32" r="34" fill={`url(#${id}haloInf)`} />
-      {/* Anillo de expansión */}
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '32px 38px' }}>
-        <circle cx="32" cy="38" r="6" fill="none" stroke="#fde047" strokeWidth="2.5" />
-      </g>
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '32px 38px', animationDelay: '1s' }}>
-        <circle cx="32" cy="38" r="6" fill="none" stroke="#fb923c" strokeWidth="2" />
-      </g>
-      {/* Inferno exterior */}
-      <g className="ba-anim anim-flame" style={{ transformOrigin: '32px 50px' }}>
-        <path d="M32 2 Q42 16 40 26 Q52 18 54 8 Q64 28 54 44 Q62 38 60 28 Q66 52 52 60 H12 Q-2 52 4 28 Q2 38 10 44 Q0 28 10 8 Q12 18 24 26 Q22 16 32 2 Z"
-              fill={`url(#${id}inferno)`} stroke="#7f1d1d" strokeWidth="2" strokeLinejoin="round" />
-      </g>
-      {/* Capa media */}
-      <g className="ba-anim anim-flame" style={{ transformOrigin: '32px 50px', animationDelay: '.15s' }}>
-        <path d="M32 8 Q40 20 38 28 Q48 24 48 14 Q58 30 50 46 Q56 40 54 32 Q58 50 48 56 H16 Q6 50 10 32 Q8 40 14 46 Q6 30 16 14 Q16 24 26 28 Q24 20 32 8 Z"
-              fill="#fbbf24" stroke="#ea580c" strokeWidth="1.5" opacity="0.9" />
-      </g>
-      {/* Núcleo interior */}
-      <g className="ba-anim anim-flame" style={{ transformOrigin: '32px 50px', animationDelay: '.3s' }}>
-        <path d="M32 18 Q38 26 36 32 Q42 30 42 22 Q48 34 42 44 Q48 40 46 34 Q50 46 42 52 H22 Q14 46 18 34 Q16 40 22 44 Q16 34 22 22 Q22 30 28 32 Q26 26 32 18 Z"
-              fill="#fef9c3" stroke="#f97316" strokeWidth="1" opacity="0.85" />
-      </g>
-      {/* "100" central */}
-      <text x="32" y="46" textAnchor="middle" fontSize="12" fontWeight="900" fill="#450a0a" stroke="#fef3c7" strokeWidth="0.6">100</text>
-      {/* Chispas voladoras — muchas */}
-      {[
-        { cx: 16, cy: 8, ex: '-6px', ey: '-18px', d: 0 },
-        { cx: 48, cy: 6, ex: '6px', ey: '-20px', d: 0.3 },
-        { cx: 10, cy: 16, ex: '-8px', ey: '-14px', d: 0.6 },
-        { cx: 54, cy: 14, ex: '8px', ey: '-14px', d: 0.9 },
-        { cx: 32, cy: 4, ex: '0px', ey: '-16px', d: 1.2 },
-        { cx: 24, cy: 10, ex: '-4px', ey: '-18px', d: 1.5 },
-        { cx: 40, cy: 8, ex: '4px', ey: '-16px', d: 1.8 },
-      ].map((s, i) => (
-        <g key={i} className="ba-anim anim-ember" style={{ '--ex': s.ex, '--ey': s.ey, animationDelay: `${s.d}s` }}>
-          <circle cx={s.cx} cy={s.cy} r={i % 2 ? 1 : 1.3} fill={i % 3 === 0 ? '#fde047' : i % 3 === 1 ? '#fb923c' : '#fef9c3'} />
-        </g>
-      ))}
-    </>
-  ),
+  streak_100: (id) => legBadge('streak_100', id),
 
   // ═══════════════════════ DEDICACION ═══════════════════════
   time_30m: (id) => (
@@ -2999,78 +2865,7 @@ const SVGS = {
       </g>
     </>
   ),
-  time_100h: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}sk100`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fef9c3" />
-          <stop offset="0.3" stopColor="#fde047" />
-          <stop offset="0.6" stopColor="#fb923c" />
-          <stop offset="0.85" stopColor="#dc2626" />
-          <stop offset="1" stopColor="#7c2d12" />
-        </linearGradient>
-        <radialGradient id={`${id}sun100`} cx="0.4" cy="0.35">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.3" stopColor="#fde047" />
-          <stop offset="0.7" stopColor="#f59e0b" />
-          <stop offset="1" stopColor="#7c2d12" />
-        </radialGradient>
-        <linearGradient id={`${id}water`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fb923c" />
-          <stop offset="0.5" stopColor="#dc2626" />
-          <stop offset="1" stopColor="#1e3a8a" />
-        </linearGradient>
-        <radialGradient id={`${id}haloS`} cx="0.5" cy="0.35">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.6" />
-          <stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Cielo degradado */}
-      <rect x="0" y="0" width="64" height="42" fill={`url(#${id}sk100)`} />
-      {/* Mar / horizonte */}
-      <rect x="0" y="42" width="64" height="22" fill={`url(#${id}water)`} />
-      <line x1="0" y1="42" x2="64" y2="42" stroke="#7c2d12" strokeWidth="0.8" />
-      {/* Reflejo del sol en el agua */}
-      <line x1="32" y1="44" x2="32" y2="58" stroke="#fde047" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
-      <line x1="32" y1="46" x2="32" y2="56" stroke="#fbbf24" strokeWidth="4" strokeLinecap="round" opacity="0.3" />
-      {/* Ondas del mar */}
-      <path d="M0 50 Q8 47 16 50 Q24 53 32 50 Q40 47 48 50 Q56 53 64 50" fill="none" stroke="#fef3c7" strokeWidth="0.8" opacity="0.5" />
-      <path d="M0 54 Q8 51 16 54 Q24 57 32 54 Q40 51 48 54 Q56 57 64 54" fill="none" stroke="#fef3c7" strokeWidth="0.8" opacity="0.4" />
-      {/* Halo solar */}
-      <circle cx="32" cy="32" r="28" fill={`url(#${id}haloS)`} />
-      {/* Rayos largos */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 16 }).map((_, i) => {
-          const a = (i * 22.5 * Math.PI) / 180;
-          const x1 = 32 + Math.sin(a) * 16;
-          const y1 = 32 - Math.cos(a) * 16;
-          const x2 = 32 + Math.sin(a) * 26;
-          const y2 = 32 - Math.cos(a) * 26;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#fde047" strokeWidth={i % 2 ? 1 : 1.5} strokeLinecap="round" opacity="0.7" />;
-        })}
-      </g>
-      {/* Sol con sunrise */}
-      <g className="ba-anim anim-rise" style={{ transformOrigin: '32px 32px' }}>
-        <circle cx="32" cy="32" r="12" fill={`url(#${id}sun100)`} stroke="#7c2d12" strokeWidth="2" />
-        {/* Cara sonriente */}
-        <circle cx="28" cy="30" r="1.2" fill="#7c2d12" />
-        <circle cx="36" cy="30" r="1.2" fill="#7c2d12" />
-        <path d="M27 34 Q32 38 37 34" fill="none" stroke="#7c2d12" strokeWidth="1.2" strokeLinecap="round" />
-        {/* Highlight */}
-        <ellipse cx="28" cy="26" rx="2" ry="1.5" fill="#fffbeb" opacity="0.8" />
-      </g>
-      {/* "100h" etiqueta */}
-      <rect x="20" y="56" width="24" height="7" rx="1.5" fill="#0f172a" stroke="#fbbf24" strokeWidth="1.2" opacity="0.9" />
-      <text x="32" y="62" textAnchor="middle" fontSize="5.5" fontWeight="900" fill="#fde047">100h</text>
-      {/* Pájaros */}
-      <g className="ba-anim anim-sway" style={{ transformOrigin: '14px 14px' }}>
-        <path d="M8 14 Q11 10 14 14 Q17 10 20 14" fill="none" stroke="#451a03" strokeWidth="1.2" />
-      </g>
-      <g className="ba-anim anim-sway" style={{ transformOrigin: '46px 10px', animationDelay: '.5s' }}>
-        <path d="M42 10 Q44 7 46 10 Q48 7 50 10" fill="none" stroke="#451a03" strokeWidth="1" />
-      </g>
-    </>
-  ),
+  time_100h: (id) => legBadge('time_100h', id),
 
   // ═══════════════════════ ASIGNATURAS ═══════════════════════
   subjects_1: (id) => (
@@ -3313,88 +3108,7 @@ const SVGS = {
       </g>
     </>
   ),
-  subjects_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}ped`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fef3c7" />
-          <stop offset="0.5" stopColor="#fbbf24" />
-          <stop offset="1" stopColor="#7c2d12" />
-        </linearGradient>
-        <linearGradient id={`${id}col`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#e2e8f0" />
-          <stop offset="0.5" stopColor="#f1f5f9" />
-          <stop offset="1" stopColor="#cbd5e1" />
-        </linearGradient>
-        <radialGradient id={`${id}haloT10`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fbbf24" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#fbbf24" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo */}
-      <circle cx="32" cy="32" r="32" fill={`url(#${id}haloT10)`} />
-      {/* Escalera base */}
-      <rect x="4" y="52" width="56" height="8" rx="1" fill={`url(#${id}ped)`} stroke="#451a03" strokeWidth="1.5" />
-      <rect x="4" y="52" width="56" height="2" fill="#fffbeb" opacity="0.5" />
-      {/* Arquitrabe (dintel superior) */}
-      <path d="M6 12 H58 L56 18 H8 Z" fill={`url(#${id}ped)`} stroke="#451a03" strokeWidth="1.5" />
-      <path d="M6 12 H58" stroke="#fffbeb" strokeWidth="0.8" opacity="0.7" />
-      {/* Frontón triangular */}
-      <path d="M8 12 L32 2 L56 12 Z" fill={`url(#${id}ped)`} stroke="#451a03" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M10 12 L32 4 L54 12" fill="none" stroke="#fffbeb" strokeWidth="0.8" opacity="0.6" />
-      {/* Decoración en el frontón */}
-      <g className="ba-anim anim-twinkle">
-        <path d="M32 6 L33 8 L35 8 L33.5 9 L34 11 L32 10 L30 11 L30.5 9 L29 8 L31 8 Z" fill="#fbbf24" stroke="#92400e" strokeWidth="0.5" />
-      </g>
-      {/* 6 columnas estriadas */}
-      {[12, 20, 28, 36, 44, 52].map((x, i) => (
-        <g key={i}>
-          <rect x={x - 2} y="18" width="4" height="34" fill={`url(#${id}col)`} stroke="#94a3b8" strokeWidth="1" />
-          {/* Estrías verticales */}
-          <line x1={x - 1} y1="20" x2={x - 1} y2="50" stroke="#cbd5e1" strokeWidth="0.5" />
-          <line x1={x + 1} y1="20" x2={x + 1} y2="50" stroke="#cbd5e1" strokeWidth="0.5" />
-          {/* Capitel superior */}
-          <rect x={x - 3} y="16" width="6" height="3" rx="0.5" fill={`url(#${id}col)`} stroke="#94a3b8" strokeWidth="0.8" />
-          {/* Basa inferior */}
-          <rect x={x - 3} y="50" width="6" height="3" rx="0.5" fill={`url(#${id}col)`} stroke="#94a3b8" strokeWidth="0.8" />
-        </g>
-      ))}
-      {/* Interior entre columnas: libro abierto en el centro */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 38px' }}>
-        <path d="M24 30 L32 28 L40 30 V42 L32 44 L24 42 Z" fill="#fef3c7" stroke="#7c2d12" strokeWidth="1.2" />
-        <line x1="32" y1="28" x2="32" y2="44" stroke="#7c2d12" strokeWidth="1" />
-        {/* Líneas texto */}
-        <line x1="26" y1="32" x2="30" y2="31" stroke="#94a3b8" strokeWidth="0.6" />
-        <line x1="26" y1="35" x2="30" y2="34" stroke="#94a3b8" strokeWidth="0.6" />
-        <line x1="26" y1="38" x2="30" y2="37" stroke="#94a3b8" strokeWidth="0.6" />
-        <line x1="34" y1="31" x2="38" y2="32" stroke="#94a3b8" strokeWidth="0.6" />
-        <line x1="34" y1="34" x2="38" y2="35" stroke="#94a3b8" strokeWidth="0.6" />
-        <line x1="34" y1="37" x2="38" y2="38" stroke="#94a3b8" strokeWidth="0.6" />
-      </g>
-      {/* "10" inscrito en el frontón */}
-      <text x="32" y="11" textAnchor="middle" fontSize="4.5" fontWeight="900" fill="#7c2d12">X</text>
-      {/* Antorchas */}
-      <g className="ba-anim anim-flame" style={{ transformOrigin: '8px 26px' }}>
-        <line x1="8" y1="22" x2="8" y2="30" stroke="#7c2d12" strokeWidth="1.5" />
-        <path d="M8 22 Q6 18 8 16 Q10 18 8 22 Z" fill="#fb923c" stroke="#7f1d1d" strokeWidth="0.8" />
-      </g>
-      <g className="ba-anim anim-flame" style={{ transformOrigin: '56px 26px', animationDelay: '.3s' }}>
-        <line x1="56" y1="22" x2="56" y2="30" stroke="#7c2d12" strokeWidth="1.5" />
-        <path d="M56 22 Q54 18 56 16 Q58 18 56 22 Z" fill="#fb923c" stroke="#7f1d1d" strokeWidth="0.8" />
-      </g>
-      {/* Rayos detrás */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i * 45 * Math.PI) / 180;
-          const x1 = 32 + Math.sin(a) * 26;
-          const y1 = 32 - Math.cos(a) * 26;
-          const x2 = 32 + Math.sin(a) * 30;
-          const y2 = 32 - Math.cos(a) * 30;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />;
-        })}
-      </g>
-    </>
-  ),
+  subjects_10: (id) => legBadge('subjects_10', id),
 
   // ═══════════════════════ RANKING ═══════════════════════
 
@@ -3541,37 +3255,7 @@ const SVGS = {
       </g>
     </>
   ),
-  rank_top3_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fef9c3" /><stop offset="0.4" stopColor="#fde047" /><stop offset="1" stopColor="#78350f" />
-        </linearGradient>
-        <radialGradient id={`${id}glow`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}glow)`} />
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({length:12}).map((_,i) => {
-          const a=(i*30*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*26} y1={32-Math.cos(a)*26} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />;
-        })}
-      </g>
-      <rect x="26" y="48" width="12" height="5" rx="1" fill="#b45309" stroke="#78350f" strokeWidth="1.5" />
-      <rect x="22" y="53" width="20" height="5" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="1.5" />
-      <rect x="28" y="40" width="8" height="8" fill="#d97706" stroke="#78350f" strokeWidth="1.5" />
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 24px' }}>
-        <path d="M14 10 H50 V24 Q50 40 32 42 Q14 40 14 24 Z" fill={`url(#${id}cup)`} stroke="#78350f" strokeWidth="2.5" />
-        <path d="M14 10 Q4 12 4 20 Q4 28 14 30" fill="none" stroke="#d97706" strokeWidth="3.5" strokeLinecap="round" />
-        <path d="M50 10 Q60 12 60 20 Q60 28 50 30" fill="none" stroke="#d97706" strokeWidth="3.5" strokeLinecap="round" />
-        <text x="32" y="29" textAnchor="middle" fontSize="11" fontWeight="900" fill="#78350f" stroke="#fef3c7" strokeWidth="0.4">TOP3</text>
-        <ellipse cx="22" cy="15" rx="2" ry="5" fill="#fffbeb" opacity="0.6" />
-      </g>
-      <g className="ba-anim anim-twinkle">
-        <path d="M32 2 L33.5 6 L38 6.5 L35 9 L36 13 L32 10.5 L28 13 L29 9 L26 6.5 L30.5 6 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.8" />
-      </g>
-    </>
-  ),
+  rank_top3_10: (id) => legBadge('rank_top3_10', id),
 
   // ─── PRIMERO GLOBAL (CORONA) ───
   rank_first_1: (id) => (
@@ -3641,35 +3325,7 @@ const SVGS = {
       <text x="32" y="58" textAnchor="middle" fontSize="9" fontWeight="900" fill="#4c1d95">x5</text>
     </>
   ),
-  rank_first_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}cr`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.6" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({length:16}).map((_,i) => {
-          const a=(i*22.5*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*28} y1={32-Math.cos(a)*28} x2={32+Math.sin(a)*32} y2={32-Math.cos(a)*32} stroke="#fbbf24" strokeWidth={i%2?0.8:1.5} strokeLinecap="round" opacity="0.6" />;
-        })}
-      </g>
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 26px' }}>
-        <path d="M6 38 L14 12 L24 28 L32 4 L40 28 L50 12 L58 38 Z" fill={`url(#${id}cr)`} stroke="#78350f" strokeWidth="3" strokeLinejoin="round" />
-        <rect x="6" y="38" width="52" height="10" rx="2" fill="#92400e" stroke="#78350f" strokeWidth="2.5" />
-        <rect x="6" y="38" width="52" height="3" fill="#fde68a" opacity="0.4" />
-        <circle cx="14" cy="12" r="4" fill="#ef4444" stroke="#7f1d1d" strokeWidth="1.2" />
-        <circle cx="32" cy="4" r="5" fill="#3b82f6" stroke="#1e3a8a" strokeWidth="1.2" />
-        <circle cx="50" cy="12" r="4" fill="#10b981" stroke="#064e3b" strokeWidth="1.2" />
-        <circle cx="32" cy="4" r="1.5" fill="#bfdbfe" />
-        <ellipse cx="18" cy="26" rx="2" ry="6" fill="#fffbeb" opacity="0.6" />
-      </g>
-      <text x="32" y="56" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">LEYENDA</text>
-    </>
-  ),
+  rank_first_10: (id) => legBadge('rank_first_10', id),
 
   // ─── TOP 3 CLASE ───
   rank_class3_1: (id) => (
@@ -3809,32 +3465,7 @@ const SVGS = {
       </g>
     </>
   ),
-  rank_class1_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}star`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#78350f" />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.5" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({length:12}).map((_,i) => {
-          const a=(i*30*Math.PI)/180; return <line key={i} x1={32+Math.sin(a)*27} y1={32-Math.cos(a)*27} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />;
-        })}
-      </g>
-      <rect x="10" y="44" width="44" height="14" rx="3" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2.5" />
-      <text x="32" y="55" textAnchor="middle" fontSize="6" fontWeight="800" fill="#fde68a">DIOS DE CLASE</text>
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 22px' }}>
-        <path d="M32 2 L37 16 L52 17 L40 27 L44 42 L32 34 L20 42 L24 27 L12 17 L27 16 Z"
-              fill={`url(#${id}star)`} stroke="#78350f" strokeWidth="2.5" strokeLinejoin="round" />
-        <text x="32" y="27" textAnchor="middle" fontSize="8" fontWeight="900" fill="#78350f">#1</text>
-        <ellipse cx="24" cy="14" rx="2" ry="5" fill="#fffbeb" opacity="0.6" />
-      </g>
-    </>
-  ),
+  rank_class1_10: (id) => legBadge('rank_class1_10', id),
 
   // ═══════════════════════ QUIZ BATTLE: VICTORIAS (1º) ═══════════════════════
   battle_win_1: (id) => (
@@ -3917,41 +3548,7 @@ const SVGS = {
       <rect x="22" y="50" width="20" height="6" rx="1" fill="#92400e" stroke="#78350f" strokeWidth="2" />
     </>
   ),
-  battle_win_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}cup`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.65" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="31" fill={`url(#${id}gl)`} />
-      {/* Rayos giratorios */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({length:14}).map((_,i) => {
-          const a=(i*360/14*Math.PI)/180;
-          return <line key={i} x1={32+Math.sin(a)*26} y1={32-Math.cos(a)*26} x2={32+Math.sin(a)*31} y2={32-Math.cos(a)*31} stroke="#fbbf24" strokeWidth={i%2?0.8:1.6} strokeLinecap="round" opacity="0.6" />;
-        })}
-      </g>
-      {/* Asas */}
-      <path d="M14 22 Q4 22 4 30 Q4 38 16 38" fill="none" stroke="#451a03" strokeWidth="3" strokeLinecap="round" />
-      <path d="M50 22 Q60 22 60 30 Q60 38 48 38" fill="none" stroke="#451a03" strokeWidth="3" strokeLinecap="round" />
-      {/* Copa legendaria */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 30px' }}>
-        <path d="M14 16 L50 16 L48 36 Q48 44 32 46 Q16 44 16 36 Z" fill={`url(#${id}cup)`} stroke="#451a03" strokeWidth="3" strokeLinejoin="round" />
-        <ellipse cx="20" cy="24" rx="2.5" ry="6" fill="#fffbeb" opacity="0.6" />
-        {/* Gemas */}
-        <circle cx="26" cy="26" r="2" fill="#ef4444" stroke="#7f1d1d" strokeWidth="0.6" />
-        <circle cx="38" cy="26" r="2" fill="#3b82f6" stroke="#1e3a8a" strokeWidth="0.6" />
-        <circle cx="32" cy="32" r="2.5" fill="#10b981" stroke="#064e3b" strokeWidth="0.6" />
-        <text x="32" y="42" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">x10</text>
-      </g>
-      <rect x="20" y="50" width="24" height="7" rx="1" fill="#451a03" stroke="#1c1917" strokeWidth="2" />
-      <rect x="20" y="50" width="24" height="2" fill="#fde68a" opacity="0.35" />
-    </>
-  ),
+  battle_win_10: (id) => legBadge('battle_win_10', id),
 
   // ═══════════════════════ QUIZ BATTLE: PODIO (1º/2º/3º) ═══════════════════════
   battle_podium_1: (id) => (
@@ -4160,57 +3757,7 @@ const SVGS = {
     </>
   ),
 
-  battle_played_50: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}col`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fffbeb" /><stop offset="0.3" stopColor="#fde047" /><stop offset="0.7" stopColor="#d97706" /><stop offset="1" stopColor="#451a03" />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.6" /><stop offset="1" stopColor="#fde047" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Halo legendario */}
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Rayos giratorios */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({length:16}).map((_,i) => {
-          const a=(i*22.5*Math.PI)/180;
-          return <line key={i} x1={32+Math.sin(a)*24} y1={32-Math.cos(a)*24} x2={32+Math.sin(a)*30} y2={32-Math.cos(a)*30} stroke="#fbbf24" strokeWidth={i%2?0.8:1.5} strokeLinecap="round" opacity="0.55" />;
-        })}
-      </g>
-      {/* Coliseo estilizado */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 34px' }}>
-        {/* Base */}
-        <rect x="8" y="46" width="48" height="8" rx="2" fill="#451a03" stroke="#1c1917" strokeWidth="1.5" />
-        <rect x="8" y="46" width="48" height="2" fill="#fde68a" opacity="0.4" />
-        {/* Paredes con arcos */}
-        <path d="M10 46 L10 22 Q10 14 16 14 L48 14 Q54 14 54 22 L54 46 Z"
-              fill={`url(#${id}col)`} stroke="#451a03" strokeWidth="2.5" strokeLinejoin="round" />
-        {/* Arcos nivel superior */}
-        <rect x="14" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
-        <rect x="24" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
-        <rect x="33" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
-        <rect x="43" y="18" width="7" height="10" rx="3.5" fill="#451a03" />
-        {/* Arcos nivel inferior */}
-        <rect x="14" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
-        <rect x="24" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
-        <rect x="33" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
-        <rect x="43" y="32" width="7" height="12" rx="3.5" fill="#78350f" />
-        {/* Brillo esquina */}
-        <path d="M14 18 L14 44" stroke="#fef3c7" strokeWidth="1" opacity="0.4" />
-      </g>
-      {/* Número 50 sobre la base */}
-      <text x="32" y="53" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fef3c7">×50</text>
-      {/* Chispas decorativas */}
-      <g className="ba-anim anim-twinkle">
-        <circle cx="6"  cy="10" r="1.5" fill="#fde047" />
-        <circle cx="58" cy="10" r="1.5" fill="#fde047" />
-        <circle cx="4"  cy="30" r="1"   fill="#fbbf24" />
-        <circle cx="60" cy="30" r="1"   fill="#fbbf24" />
-      </g>
-    </>
-  ),
+  battle_played_50: (id) => legBadge('battle_played_50', id),
 
   // ═══════════════════════ TEACHER: GRUPOS ═══════════════════════
   teacher_first_group: (id) => (
@@ -4276,27 +3823,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_groups_10: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
-        </linearGradient>
-      </defs>
-      {/* Edificio escolar */}
-      <rect x="12" y="20" width="40" height="32" rx="2" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" />
-      <rect x="16" y="38" width="10" height="14" rx="1" fill={C.stn} stroke={X.gold2} strokeWidth="1.5" /> {/* puerta */}
-      <rect x="38" y="24" width="8" height="8" rx="1" fill={C.sky} stroke={X.gold2} strokeWidth="1.5" /> {/* ventana */}
-      <rect x="18" y="24" width="8" height="8" rx="1" fill={C.sky} stroke={X.gold2} strokeWidth="1.5" /> {/* ventana */}
-      {/* Tejado triangular */}
-      <path d="M8 22 L32 6 L56 22 Z" fill={C.red} stroke="#7f1d1d" strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Estrella animada en tejado */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 14px' }}>
-        <path d="M32 8 L34 12 L38 12 L35 15 L36 19 L32 17 L28 19 L29 15 L26 12 L30 12 Z"
-              fill={X.gold1} stroke={X.gold2} strokeWidth="1" strokeLinejoin="round" />
-      </g>
-    </>
-  ),
+  teacher_groups_10: (id) => legBadge('teacher_groups_10', id),
 
   // ═══════════════════════ TEACHER: ALUMNOS ═══════════════════════
   teacher_students_5: (id) => (
@@ -4367,33 +3894,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_students_100: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Estadio */}
-      <ellipse cx="32" cy="42" rx="26" ry="12" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" />
-      <ellipse cx="32" cy="42" rx="20" ry="8" fill={C.grn} stroke={C.emr} strokeWidth="1.5" />
-      {/* Filas de cabezas */}
-      {[12, 20, 28, 36, 44, 52].map((cx, i) => (
-        <g key={`h-${i}`}><circle cx={cx} cy="28" r="3.5" fill={C.sl4} stroke={C.sl6} strokeWidth="1" /></g>
-      ))}
-      {[16, 24, 32, 40, 48].map((cx, i) => (
-        <g key={`h2-${i}`}><circle cx={cx} cy="22" r="3" fill={C.sl4} stroke={C.sl6} strokeWidth="1" /></g>
-      ))}
-      {/* 100 */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 12px' }}>
-        <text x="32" y="16" textAnchor="middle" fontSize="14" fontWeight="900" fill={X.gold2} stroke={X.gold1} strokeWidth="0.5">100</text>
-      </g>
-    </>
-  ),
+  teacher_students_100: (id) => legBadge('teacher_students_100', id),
 
   // ═══════════════════════ TEACHER: TAREAS ═══════════════════════
   teacher_first_task: (id) => (
@@ -4475,28 +3976,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_tasks_50: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.fire1} /><stop offset="0.3" stopColor={X.fire2} /><stop offset="0.7" stopColor={X.fire3} /><stop offset="1" stopColor={X.fire4} />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.5">
-          <stop offset="0" stopColor={X.fire1} stopOpacity="0.5" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Clipboard con fuego */}
-      <rect x="16" y="14" width="32" height="40" rx="4" fill={`url(#${id}bg)`} stroke={X.fire4} strokeWidth="2.5" />
-      <rect x="24" y="10" width="16" height="8" rx="3" fill={X.fire4} stroke="#450a0a" strokeWidth="1.5" />
-      {/* Aura de fuego */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 20px' }}>
-        <path d="M24 20 Q28 6 32 14 Q36 6 40 20 Q36 16 32 22 Q28 16 24 20 Z" fill={X.fire2} stroke={X.fire3} strokeWidth="1" opacity="0.9" />
-        <path d="M28 18 Q30 10 32 16 Q34 10 36 18 Q34 15 32 20 Q30 15 28 18 Z" fill={X.fire1} opacity="0.8" />
-      </g>
-      <text x="32" y="44" textAnchor="middle" fontSize="10" fontWeight="900" fill={X.fire1}>50</text>
-    </>
-  ),
+  teacher_tasks_50: (id) => legBadge('teacher_tasks_50', id),
 
   // ═══════════════════════ TEACHER: BATALLAS ═══════════════════════
   teacher_first_battle: (id) => (
@@ -4554,33 +4034,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_battles_30: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}helm`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.3">
-          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Casco gladiador */}
-      <path d="M12 36 Q12 12 32 10 Q52 12 52 36 L48 42 L16 42 Z" fill={`url(#${id}helm)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Visera */}
-      <path d="M16 34 L48 34 L46 40 L18 40 Z" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
-      {/* Ranura ojos */}
-      <rect x="20" y="35" width="24" height="3" rx="1" fill={C.stn} />
-      {/* Cresta */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 8px' }}>
-        <path d="M26 12 Q28 2 32 4 Q36 2 38 12" fill={C.red} stroke="#7f1d1d" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M28 10 Q30 4 32 6 Q34 4 36 10" fill={X.fire2} opacity="0.7" />
-      </g>
-      {/* Corona */}
-      <path d="M18 46 L22 42 L28 48 L32 42 L36 48 L42 42 L46 46 L44 54 L20 54 Z" fill={C.amb} stroke={X.gold2} strokeWidth="1.5" strokeLinejoin="round" />
-      <circle cx="32" cy="50" r="2" fill={X.gold1} />
-    </>
-  ),
+  teacher_battles_30: (id) => legBadge('teacher_battles_30', id),
 
   // ═══════════════════════ TEACHER: MENSAJES ═══════════════════════
   teacher_first_message: (id) => (
@@ -4651,32 +4105,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_messages_100: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor={X.fire1} stopOpacity="0.4" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Megafono dorado */}
-      <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
-        <path d="M10 26 L10 38 L18 38 L18 26 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2" strokeLinejoin="round" />
-        <path d="M18 22 L50 10 L50 54 L18 42 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
-        <ellipse cx="50" cy="32" rx="4" ry="14" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
-      </g>
-      {/* Ondas de sonido */}
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '54px 32px' }}>
-        <path d="M56 22 Q62 32 56 42" fill="none" stroke={X.gold1} strokeWidth="2" strokeLinecap="round" />
-      </g>
-      <g className="ba-anim anim-ring-expand" style={{ transformOrigin: '54px 32px', animationDelay: '0.6s' }}>
-        <path d="M58 18 Q66 32 58 46" fill="none" stroke={X.gold1} strokeWidth="1.5" strokeLinecap="round" />
-      </g>
-    </>
-  ),
+  teacher_messages_100: (id) => legBadge('teacher_messages_100', id),
 
   // ═══════════════════════ TEACHER: PLATAFORMA (DIAS) ═══════════════════════
   teacher_days_7: (id) => (
@@ -4745,37 +4174,7 @@ const SVGS = {
       </g>
     </>
   ),
-  teacher_days_365: (id) => (
-    <>
-      <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={X.gold1} /><stop offset="0.5" stopColor={C.amb} /><stop offset="1" stopColor={X.gold2} />
-        </linearGradient>
-        <radialGradient id={`${id}gl`} cx="0.5" cy="0.4">
-          <stop offset="0" stopColor={X.fire1} stopOpacity="0.5" /><stop offset="1" stopColor={X.fire1} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill={`url(#${id}gl)`} />
-      {/* Trofeo dorado */}
-      <path d="M20 18 L20 34 Q20 46 32 48 Q44 46 44 34 L44 18 Z" fill={`url(#${id}bg)`} stroke={X.gold2} strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Asas */}
-      <path d="M20 22 Q10 22 10 30 Q10 38 20 36" fill="none" stroke={X.gold2} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M44 22 Q54 22 54 30 Q54 38 44 36" fill="none" stroke={X.gold2} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Base */}
-      <rect x="26" y="48" width="12" height="4" rx="1" fill={X.gold2} stroke="#78350f" strokeWidth="1" />
-      <rect x="22" y="52" width="20" height="5" rx="2" fill={X.gold2} stroke="#78350f" strokeWidth="1.5" />
-      {/* 365 */}
-      <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
-        <text x="32" y="36" textAnchor="middle" fontSize="10" fontWeight="900" fill="#78350f">365</text>
-      </g>
-      {/* Rayos giratorios */}
-      <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i * 45 * Math.PI) / 180; return <line key={i} x1={32 + Math.sin(a) * 28} y1={32 - Math.cos(a) * 28} x2={32 + Math.sin(a) * 31} y2={32 - Math.cos(a) * 31} stroke={X.gold1} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />;
-        })}
-      </g>
-    </>
-  ),
+  teacher_days_365: (id) => legBadge('teacher_days_365', id),
 
   // ═══════════════════════ TEACHER: RATINGS ═══════════════════════
   teacher_first_rating: (id) => (
@@ -4818,6 +4217,8 @@ const SVGS = {
       </g>
     </>
   ),
+  speed_perfect: (id) => legBadge('speed_perfect', id),
+  robot_retos_eso4: (id) => legBadge('robot_retos_eso4', id),
 };
 
 // ─── Halo de fondo por rareza ───
