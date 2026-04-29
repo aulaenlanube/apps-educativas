@@ -25,21 +25,24 @@ const SIZE_CONFIG = {
   },
   medium: {
     label: 'Mediano',
-    size: 13,
-    words: 12,
+    size: 12,
+    words: 10,
     allowReverse: false,
     allowDiagonal: true,
     icon: '🟡',
   },
   large: {
     label: 'Grande',
-    size: 16,
-    words: 18,
+    size: 14,
+    words: 12,
     allowReverse: true,
     allowDiagonal: true,
     icon: '🔴',
   },
 };
+
+const REF_TIME_SEC = 300;
+const POINTS_PER_WORD = 100;
 
 // Paleta de colores para las palabras encontradas
 const FOUND_COLORS = [
@@ -126,9 +129,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
     if (allWords.length < 3) return;
     setGenerating(true);
 
-    // En examen, siempre tamaño grande
-    const effectiveSize = gameMode === 'exam' ? 'large' : size;
-    const cfg = SIZE_CONFIG[effectiveSize];
+    const cfg = SIZE_CONFIG[size];
 
     // Coger al menos cfg.words * 2 candidatos
     const pool = [...allWords]
@@ -183,31 +184,42 @@ const SopaDeLetras = ({ onGameComplete }) => {
     }
   }, [foundCount, puzzle, completed]);
 
-  // --- Puntuación compuesta ---
+  // --- Puntuación compuesta (puntos por aciertos + bonus por velocidad) ---
   const finalScore = useMemo(() => {
     if (!puzzle || !completed) return 0;
-    const wordCount = puzzle.placed.length;
-    const basePoints = wordCount * 100;
-    const refTime = 300; // 5 min referencia
-    const timeBonus = Math.max(0, Math.round(300 * (1 - timer / refTime)));
+    const basePoints = foundCount * POINTS_PER_WORD;
+    const timeBonus = Math.max(0, Math.round(REF_TIME_SEC * (1 - timer / REF_TIME_SEC)));
     return basePoints + timeBonus;
-  }, [puzzle, completed, timer]);
+  }, [puzzle, completed, timer, foundCount]);
+
+  const totalWords = puzzle?.placed?.length || 0;
+  const nota = useMemo(() => {
+    if (totalWords === 0) return 0;
+    return Math.round((foundCount / totalWords) * 100) / 10;
+  }, [foundCount, totalWords]);
 
   // --- Tracking XP al completar ---
   useEffect(() => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
-    const total = puzzle?.placed?.length || 0;
     const isExamMode = gameMode === 'exam';
     onGameComplete?.({
       mode: isExamMode ? 'test' : 'practice',
       score: isExamMode ? finalScore : 0,
-      maxScore: isExamMode ? total * 100 + 300 : 0,
-      correctAnswers: total,
-      totalQuestions: total,
+      maxScore: isExamMode ? totalWords * POINTS_PER_WORD + REF_TIME_SEC : 0,
+      correctAnswers: foundCount,
+      totalQuestions: totalWords,
       durationSeconds: timer,
     });
-  }, [completed, puzzle, gameMode, timer, finalScore, onGameComplete]);
+  }, [completed, totalWords, foundCount, gameMode, timer, finalScore, onGameComplete]);
+
+  // --- Entregar examen anticipadamente ---
+  const handleSurrender = useCallback(() => {
+    if (!puzzle || completed) return;
+    const msg = `¿Entregar el examen ahora?\n\nLlevas ${foundCount} de ${totalWords} palabras encontradas.\nTu nota será ${(Math.round((foundCount / totalWords) * 100) / 10).toFixed(1)}/10.`;
+    if (!window.confirm(msg)) return;
+    setCompleted(true);
+  }, [puzzle, completed, foundCount, totalWords]);
 
   // --- Mapa de celdas ocupadas por palabras ya encontradas ---
   const foundCellsMap = useMemo(() => {
@@ -343,7 +355,14 @@ const SopaDeLetras = ({ onGameComplete }) => {
   }
 
   const isExam = gameMode === 'exam';
-  const effectiveSize = isExam ? 'large' : size;
+  const effectiveSize = size;
+  const examInProgress = isExam && puzzle && !completed && foundCount > 0;
+  const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+  const notaClass = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'low';
+  const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+    : nota >= 7 ? '¡Muy bien!'
+      : nota >= 5 ? 'Aprobado'
+        : 'Necesitas repasar';
 
   return (
     <div className="sopa-root">
@@ -392,27 +411,29 @@ const SopaDeLetras = ({ onGameComplete }) => {
           </button>
         </div>
 
-        {/* Selector de tamaño (solo práctica) */}
-        {!isExam && (
-          <div className="sopa-size-switch">
-            {Object.entries(SIZE_CONFIG).map(([key, cfg]) => (
-              <button
-                key={key}
-                className={`sopa-size-btn ${size === key ? 'active' : ''}`}
-                onClick={() => setSize(key)}
-              >
-                <span className="sopa-size-icon">{cfg.icon}</span>
-                <span className="sopa-size-label">{cfg.label}</span>
-                <span className="sopa-size-count">{cfg.size}×{cfg.size} · {cfg.words} palabras</span>
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Selector de tamaño */}
+        <div className={`sopa-size-switch ${examInProgress ? 'locked' : ''}`}>
+          {Object.entries(SIZE_CONFIG).map(([key, cfg]) => (
+            <button
+              key={key}
+              className={`sopa-size-btn ${size === key ? 'active' : ''}`}
+              onClick={() => setSize(key)}
+              disabled={examInProgress}
+              title={examInProgress ? 'Bloqueado durante el examen' : undefined}
+            >
+              <span className="sopa-size-icon">{cfg.icon}</span>
+              <span className="sopa-size-label">{cfg.label}</span>
+              <span className="sopa-size-count">{cfg.size}×{cfg.size} · {cfg.words} palabras</span>
+            </button>
+          ))}
+        </div>
 
         {isExam && (
           <div className="sopa-exam-banner">
             <GraduationCap size={16} />
-            <span>Modo examen · tamaño grande · 8 direcciones · sin pistas</span>
+            <span>
+              Modo examen · sin pistas · {examInProgress ? 'tamaño bloqueado hasta entregar' : 'elige el tamaño antes de empezar'}
+            </span>
           </div>
         )}
 
@@ -516,9 +537,15 @@ const SopaDeLetras = ({ onGameComplete }) => {
                 <Lightbulb size={16} /> Pista
               </button>
             )}
-            <button className="sopa-btn ghost" onClick={regenerate}>
-              <RefreshCw size={16} /> Nueva sopa
-            </button>
+            {isExam ? (
+              <button className="sopa-btn submit" onClick={handleSurrender}>
+                <GraduationCap size={16} /> Entregar examen
+              </button>
+            ) : (
+              <button className="sopa-btn ghost" onClick={regenerate}>
+                <RefreshCw size={16} /> Nueva sopa
+              </button>
+            )}
           </div>
         )}
 
@@ -533,22 +560,26 @@ const SopaDeLetras = ({ onGameComplete }) => {
               <div className="sopa-completed-icon">
                 <Award size={48} />
               </div>
-              <h2 className="sopa-completed-title">¡Sopa completada! 🎉</h2>
+              <h2 className="sopa-completed-title">
+                {isExam
+                  ? (foundCount === totalWords ? '¡Examen completado! 🎉' : 'Examen entregado')
+                  : '¡Sopa completada! 🎉'}
+              </h2>
 
               {isExam ? (
                 <>
-                  <div className="sopa-nota excellent">
-                    <div className="sopa-nota-big">
-                      10.0<span className="sopa-nota-small">/10</span>
+                  <div className={`sopa-nota ${notaClass}`} style={{ borderColor: notaColor }}>
+                    <div className="sopa-nota-big" style={{ color: notaColor }}>
+                      {nota.toFixed(1)}<span className="sopa-nota-small">/10</span>
                     </div>
-                    <div className="sopa-nota-msg">¡Excelente! 🌟</div>
+                    <div className="sopa-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
                   </div>
                   <div className="sopa-completed-record">
                     <Trophy size={14} />
                     <span className="sopa-completed-record-value">
                       {finalScore.toLocaleString('es-ES')}
                     </span>
-                    <span className="sopa-completed-record-label">puntos · ¡supera tu récord!</span>
+                    <span className="sopa-completed-record-label">puntos para ranking</span>
                   </div>
                 </>
               ) : (
@@ -562,9 +593,9 @@ const SopaDeLetras = ({ onGameComplete }) => {
                   <Timer size={16} /> {formatTime(timer)}
                 </div>
                 <div className="sopa-completed-stat">
-                  <Puzzle size={16} /> {puzzle.placed.length} palabras
+                  <Puzzle size={16} /> {foundCount}/{totalWords} palabras
                 </div>
-                {isExam && (
+                {isExam && foundCount === totalWords && (
                   <div className="sopa-completed-stat exam">
                     <Trophy size={16} /> ¡Sin ayudas!
                   </div>
@@ -606,7 +637,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
           <li>En práctica, la <strong>lista de palabras</strong> está siempre visible.</li>
         </ul>
 
-        <h3>🎓 Modos y tamaños</h3>
+        <h3>🎓 Tamaños</h3>
         <div className="instr-modes">
           <div className="instr-mode easy">
             <strong>🟢 Pequeño</strong>
@@ -614,17 +645,37 @@ const SopaDeLetras = ({ onGameComplete }) => {
           </div>
           <div className="instr-mode medium">
             <strong>🟡 Mediano</strong>
-            13×13, 12 palabras. Añade diagonales.
+            12×12, 10 palabras. Añade diagonales.
           </div>
           <div className="instr-mode exam">
             <strong>🔴 Grande</strong>
-            16×16, 18 palabras. Las 8 direcciones. Obligatorio en examen.
+            14×14, 12 palabras. Las 8 direcciones (incluye al revés).
           </div>
         </div>
 
+        <h3>📊 Nota y puntos en el examen</h3>
+        <p>
+          Tu nota va de <strong>0 a 10</strong> según las palabras encontradas:
+        </p>
+        <p className="instr-formula">
+          <strong>Nota</strong> = encontradas / total × 10
+        </p>
+        <p>
+          Puedes pulsar <strong>"Entregar examen"</strong> en cualquier momento para
+          terminar antes y que se calcule la nota con lo que llevas. Además, ganas
+          <strong> puntos para el ranking</strong>:
+        </p>
+        <p className="instr-formula">
+          <strong>Puntos</strong> = encontradas × {POINTS_PER_WORD} + bonus de velocidad
+        </p>
+        <p className="instr-note">
+          Dos partidas con un 10 pueden tener distinta puntuación: gana el ranking quien
+          la termine antes.
+        </p>
+
         <div className="instr-tips">
-          <strong>💡 Consejo para examen:</strong> en modo examen no ves la lista de palabras.
-          Ves las <em>definiciones</em> del vocabulario en la derecha — tienes que adivinar qué
+          <strong>💡 Consejo para examen:</strong> en modo examen no ves la lista de palabras,
+          sino las <em>definiciones</em> del vocabulario — tienes que adivinar qué
           palabra es y después encontrarla en la sopa.
         </div>
       </InstructionsModal>
