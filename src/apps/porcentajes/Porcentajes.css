@@ -110,7 +110,7 @@
 .pp-diff-label {
   font-family: 'Fredoka One', cursive;
   font-size: 1.3rem;
-  color: #1e293b;
+  color: var(--app-text);
 }
 .pp-diff-desc {
   font-size: 0.88rem;
@@ -160,7 +160,7 @@
   margin: 0;
   font-size: 1.05rem;
   line-height: 1.45;
-  color: #1e293b;
+  color: var(--app-text);
   font-weight: 500;
 }
 
@@ -187,7 +187,7 @@
   background: var(--app-bg, #fff);
   outline: none;
   transition: all 0.2s;
-  color: #1e293b;
+  color: var(--app-text);
 }
 .pp-input:focus {
   border-color: #ec4899;
@@ -232,7 +232,7 @@
   border-radius: 16px;
   padding: 0.85rem 1rem;
   margin-bottom: 1rem;
-  color: #1e293b;
+  color: var(--app-text);
 }
 
 /* === Panel de ayuda visual === */
@@ -279,7 +279,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: var(--app-bg);
   border: 1.5px solid rgba(236, 72, 153, 0.18);
   border-radius: 18px;
   padding: 0.85rem;
@@ -333,18 +333,18 @@
 }
 
 .pp-frac-md .pp-frac-num,
-.pp-frac-md .pp-frac-den { font-size: 1.35rem; color: #1e293b; }
+.pp-frac-md .pp-frac-den { font-size: 1.35rem; color: var(--app-text); }
 
 .pp-frac-sm .pp-frac-num,
-.pp-frac-sm .pp-frac-den { font-size: 1rem; color: #1e293b; }
+.pp-frac-sm .pp-frac-den { font-size: 1rem; color: var(--app-text); }
 
 .pp-frac-xs .pp-frac-num,
-.pp-frac-xs .pp-frac-den { font-size: 0.9rem; color: #1e293b; padding: 0 0.3rem; }
+.pp-frac-xs .pp-frac-den { font-size: 0.9rem; color: var(--app-text); padding: 0 0.3rem; }
 .pp-frac-xs .pp-frac-bar { height: 2px; }
 
 /* === Caja de fórmula === */
 .pp-formula-box {
-  background: #fff;
+  background: var(--app-bg);
   border: 1.5px solid rgba(99, 102, 241, 0.25);
   border-radius: 16px;
   padding: 0.75rem 1rem;
@@ -365,7 +365,7 @@
 .pp-formula-times {
   font-family: 'Fredoka One', cursive;
   font-size: 1.4rem;
-  color: #1e293b;
+  color: var(--app-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -401,7 +401,7 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.95rem;
-  color: #1e293b;
+  color: var(--app-text);
   font-weight: 600;
   line-height: 1.7;
 }
@@ -429,7 +429,7 @@
   flex-direction: column;
   gap: 0.3rem;
   font-size: 0.8rem;
-  color: #1e293b;
+  color: var(--app-text);
 }
 
 .pp-share-leg-item {
@@ -467,7 +467,7 @@
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.06);
-  color: #475569;
+  color: var(--app-text-secondary);
   border: 1px solid rgba(15, 23, 42, 0.12);
   cursor: pointer;
   transition: all 0.2s;
@@ -713,7 +713,7 @@
   border-radius: 999px;
   text-transform: uppercase;
   background: rgba(15, 23, 42, 0.06);
-  color: #475569;
+  color: var(--app-text-secondary);
   border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
@@ -730,7 +730,7 @@
 
 .pp-history-text {
   font-size: 0.92rem;
-  color: #1e293b;
+  color: var(--app-text);
   line-height: 1.45;
 }
 .pp-history-user {
@@ -750,4 +750,204 @@
   .pp-card { padding: 1.2rem 1rem 1.4rem; }
   .pp-title { font-size: 1.3rem; }
   .pp-input { font-size: 1.35rem; }
+}
+
+/* ============================================================
+   DARK MODE — overrides
+   ============================================================ */
+
+html.dark .pp-difficulty-card {
+  background: var(--app-bg-elevated);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .pp-diff-easy { border-color: rgba(16, 185, 129, 0.55); }
+html.dark .pp-diff-medium { border-color: rgba(245, 158, 11, 0.55); }
+html.dark .pp-diff-exam { border-color: rgba(239, 68, 68, 0.55); }
+
+html.dark .pp-diff-label { color: var(--app-text); }
+
+html.dark .pp-input {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-input:focus {
+  border-color: #f472b6;
+  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.25);
+}
+
+html.dark .pp-input.correct {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+html.dark .pp-input.incorrect {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+html.dark .pp-feedback.correct {
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+html.dark .pp-feedback.incorrect {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+html.dark .pp-explanation {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.45);
+  color: var(--app-text);
+}
+
+html.dark .pp-explanation-icon { color: #fbbf24; }
+
+html.dark .pp-help-panel {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.10), rgba(236, 72, 153, 0.10));
+  border-color: rgba(236, 72, 153, 0.40);
+}
+
+html.dark .pp-help-title { color: #f9a8d4; }
+html.dark .pp-help-title svg { color: #fbbf24; }
+
+html.dark .pp-help-visual {
+  background: var(--app-bg-elevated);
+  border-color: rgba(236, 72, 153, 0.30);
+}
+
+html.dark .pp-vis-caption { color: var(--app-text-muted); }
+
+html.dark .pp-formula-box {
+  background: var(--app-bg-elevated);
+  border-color: rgba(129, 140, 248, 0.40);
+}
+
+html.dark .pp-formula-x { color: #f9a8d4; }
+html.dark .pp-formula-paren,
+html.dark .pp-formula-times { color: var(--app-text); }
+html.dark .pp-formula-tip { color: var(--app-text-muted); }
+
+html.dark .pp-frac-num,
+html.dark .pp-frac-den { color: var(--app-text); }
+
+html.dark .pp-example {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.14), rgba(245, 158, 11, 0.12));
+  border-color: rgba(245, 158, 11, 0.50);
+}
+
+html.dark .pp-example-label { color: #fcd34d; }
+html.dark .pp-example-content { color: var(--app-text); }
+
+html.dark .pp-help-toggle {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--app-text-secondary);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-help-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-help-toggle.on {
+  background: rgba(16, 185, 129, 0.20);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+html.dark .pp-stat {
+  background: var(--app-bg-elevated);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .pp-stat-value { color: #f9a8d4; }
+
+html.dark .pp-history-item.correct {
+  background: rgba(16, 185, 129, 0.10);
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+html.dark .pp-history-item.incorrect {
+  background: rgba(239, 68, 68, 0.10);
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+html.dark .pp-history-num { color: #f9a8d4; }
+html.dark .pp-history-text { color: var(--app-text); }
+html.dark .pp-history-user { color: var(--app-text-muted); }
+html.dark .pp-history-result.correct { color: #6ee7b7; }
+html.dark .pp-history-result.incorrect { color: #fca5a5; }
+
+html.dark .pp-history-label {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--app-text-secondary);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .pp-tag-porcentaje { background: rgba(236, 72, 153, 0.20); color: #f9a8d4; border-color: rgba(236, 72, 153, 0.40); }
+html.dark .pp-tag-aumento    { background: rgba(16, 185, 129, 0.20); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.40); }
+html.dark .pp-tag-descuento  { background: rgba(239, 68, 68, 0.20); color: #fca5a5; border-color: rgba(239, 68, 68, 0.40); }
+html.dark .pp-tag-variacion  { background: rgba(245, 158, 11, 0.20); color: #fcd34d; border-color: rgba(245, 158, 11, 0.40); }
+html.dark .pp-tag-proporcion { background: rgba(99, 102, 241, 0.20); color: #c4b5fd; border-color: rgba(99, 102, 241, 0.40); }
+html.dark .pp-tag-escala     { background: rgba(14, 165, 233, 0.20); color: #7dd3fc; border-color: rgba(14, 165, 233, 0.40); }
+html.dark .pp-tag-reparto    { background: rgba(168, 85, 247, 0.20); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.40); }
+
+html.dark .pp-badge-progress {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--app-text-secondary);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-pricearrow-box.base {
+  background: var(--app-bg-elevated);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-pricearrow-box.result {
+  background: var(--app-bg-elevated);
+  border-color: #ec4899;
+}
+
+html.dark .pp-pricearrow-value { color: var(--app-text); }
+html.dark .pp-pricearrow-label { color: var(--app-text-muted); }
+
+html.dark .pp-share-leg-total {
+  color: var(--app-text-secondary);
+  border-top-color: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .pp-scale-label,
+html.dark .pp-helpbar-label { color: var(--app-text-muted); }
+
+html.dark .pp-btn.ghost {
+  background: var(--app-bg-elevated);
+  color: var(--app-text-secondary);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .pp-btn.ghost:hover {
+  border-color: #ec4899;
+  color: #f9a8d4;
+}
+
+html.dark .pp-btn.danger {
+  background: var(--app-bg-elevated);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+html.dark .pp-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
+
+html.dark .pp-exit-modal {
+  background: var(--app-bg-elevated);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .pp-exit-icon {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(220, 38, 38, 0.25));
+  color: #fca5a5;
 }
