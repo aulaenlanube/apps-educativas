@@ -10,6 +10,10 @@ import { getRunnerData } from '../../services/gameDataService';
 // Constantes de configuración
 const TEST_QUESTION_COUNT = 10;
 const MAX_CATEGORIES = 4;
+const POINTS_PER_CORRECT = 100;
+const MAX_SPEED_BONUS = 200;
+const SPEED_BONUS_WINDOW_SEC = 120; // ~12s por pregunta como referencia
+const MAX_STREAK_BONUS = 200;
 
 // --- TEMAS ACTUALIZADOS (Hover Oscuro) ---
 const BUTTON_THEMES = [
@@ -109,6 +113,7 @@ const Clasificador = ({ onGameComplete }) => {
   const gameStartRef = useRef(null);
   const [skipTimeout, setSkipTimeout] = useState(null);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [examResult, setExamResult] = useState(null); // { nota, basePoints, timeBonus, streakBonus, total, elapsed }
 
   // --- Selección de preguntas ---
   const activeQuestions = useMemo(() => {
@@ -131,15 +136,19 @@ const Clasificador = ({ onGameComplete }) => {
       trackedRef.current = true;
       const isExamMode = gameMode === 'test';
       const elapsed = gameStartRef.current ? Math.round((Date.now() - gameStartRef.current) / 1000) : 0;
-      const basePoints = correctAnswersCount * 100;
-      const refTime = totalQuestions * 6;
-      const timeBonus = Math.max(0, Math.round(300 * (1 - elapsed / refTime)));
-      const streakBonus = Math.min(highStreak * 15, 200);
+      const basePoints = correctAnswersCount * POINTS_PER_CORRECT;
+      const speedRatio = Math.max(0, 1 - Math.min(elapsed, SPEED_BONUS_WINDOW_SEC) / SPEED_BONUS_WINDOW_SEC);
+      const timeBonus = Math.round(MAX_SPEED_BONUS * speedRatio);
+      const streakBonus = Math.min(highStreak * 15, MAX_STREAK_BONUS);
       const totalPoints = basePoints + timeBonus + streakBonus;
+      const nota = Math.round((correctAnswersCount / totalQuestions) * 100) / 10;
+      if (isExamMode) {
+        setExamResult({ nota, basePoints, timeBonus, streakBonus, total: totalPoints, elapsed });
+      }
       onGameComplete?.({
         mode: isExamMode ? 'test' : 'practice',
         score: isExamMode ? totalPoints : 0,
-        maxScore: isExamMode ? totalQuestions * 100 + 500 : 0,
+        maxScore: isExamMode ? totalQuestions * POINTS_PER_CORRECT + MAX_SPEED_BONUS + MAX_STREAK_BONUS : 0,
         correctAnswers: correctAnswersCount,
         totalQuestions,
         durationSeconds: elapsed,
@@ -244,6 +253,7 @@ const Clasificador = ({ onGameComplete }) => {
     setFeedback(null);
     setCorrectAnswer(null);
     setCorrectAnswersCount(0);
+    setExamResult(null);
     setGameMode('selection');
     setAllQuestions(shuffleArray([...allQuestions]));
   };
@@ -255,6 +265,10 @@ const Clasificador = ({ onGameComplete }) => {
     setFeedback(null);
     setCorrectAnswer(null);
     setCorrectAnswersCount(0);
+    setScore(0);
+    setStreak(0);
+    setHighStreak(0);
+    setExamResult(null);
     setAllQuestions(shuffleArray([...allQuestions]));
   };
 
@@ -265,6 +279,10 @@ const Clasificador = ({ onGameComplete }) => {
     setFeedback(null);
     setCorrectAnswer(null);
     setCorrectAnswersCount(0);
+    setScore(0);
+    setStreak(0);
+    setHighStreak(0);
+    setExamResult(null);
     setAllQuestions(shuffleArray([...allQuestions]));
     gameStartRef.current = Date.now();
   };
@@ -369,49 +387,87 @@ const Clasificador = ({ onGameComplete }) => {
       {/* ---------------------------------------------------------
           PANTALLA FINAL (RESULTADOS)
       --------------------------------------------------------- */}
-      {finished && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-col items-center justify-center p-8 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl max-w-md mx-auto mt-8 border border-white/60 relative overflow-hidden"
-        >
-          {((gameMode === 'test' && correctAnswersCount === TEST_QUESTION_COUNT) || (score / (totalQuestions * 10) >= 0.9)) && <ConfettiEffect />}
+      {finished && (() => {
+        const isTestFinish = gameMode === 'test' && examResult;
+        const nota = isTestFinish ? examResult.nota : 0;
+        const notaColor = nota >= 8 ? 'text-emerald-600' : nota >= 5 ? 'text-blue-600' : 'text-red-500';
+        const notaBg = nota >= 8 ? 'bg-emerald-50 border-emerald-200' : nota >= 5 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200';
+        const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
+          : nota >= 7 ? '¡Muy bien!'
+            : nota >= 5 ? 'Aprobado'
+              : 'Necesitas repasar';
+        return (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center justify-center p-8 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl max-w-md mx-auto mt-8 border border-white/60 relative overflow-hidden"
+          >
+            {((isTestFinish && nota >= 9) || (!isTestFinish && score / (totalQuestions * 10) >= 0.9)) && <ConfettiEffect />}
 
-          <div className="relative mb-6">
-            <motion.div
-              initial={{ rotate: -180, scale: 0 }}
-              animate={{ rotate: 0, scale: 1 }}
-              transition={{ type: "spring", duration: 1.5 }}
-            >
-              <Trophy className="h-32 w-32 text-yellow-400 drop-shadow-lg" fill="currentColor" />
-            </motion.div>
-          </div>
-
-          <h2 className="text-3xl font-black mb-1 text-center text-slate-800 tracking-tight">
-            {gameMode === 'test' && correctAnswersCount === TEST_QUESTION_COUNT ? '¡PERFECTO!' : '¡Buen trabajo!'}
-          </h2>
-
-          <div className="grid grid-cols-2 gap-4 w-full mb-8 mt-6">
-            <div className="bg-indigo-50 p-4 rounded-2xl flex flex-col items-center border border-indigo-100">
-              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Aciertos</span>
-              <span className="text-3xl font-black text-indigo-700">{correctAnswersCount}<span className="text-lg text-indigo-300">/{totalQuestions}</span></span>
+            <div className="relative mb-6">
+              <motion.div
+                initial={{ rotate: -180, scale: 0 }}
+                animate={{ rotate: 0, scale: 1 }}
+                transition={{ type: "spring", duration: 1.5 }}
+              >
+                <Trophy className="h-24 w-24 text-yellow-400 drop-shadow-lg" fill="currentColor" />
+              </motion.div>
             </div>
-            <div className="bg-emerald-50 p-4 rounded-2xl flex flex-col items-center border border-emerald-100">
-              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Puntos</span>
-              <span className="text-3xl font-black text-emerald-700">{score}</span>
-            </div>
-          </div>
 
-          <div className="flex flex-col gap-3 w-full">
-            <Button onClick={restart} className="w-full h-14 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl rounded-xl gap-2 transition-all">
-              <RefreshCcw className="h-5 w-5" /> Jugar de nuevo
-            </Button>
-            <Button onClick={() => setGameMode('selection')} variant="outline" className="w-full h-12 text-slate-600 border-slate-200 rounded-xl gap-2">
-              <Home className="h-4 w-4" /> Cambiar modo / Inicio
-            </Button>
-          </div>
-        </motion.div>
-      )}
+            <h2 className="text-3xl font-black mb-2 text-center text-slate-800 tracking-tight">
+              {isTestFinish && correctAnswersCount === TEST_QUESTION_COUNT ? '¡PERFECTO!' : '¡Buen trabajo!'}
+            </h2>
+
+            {isTestFinish && (
+              <div className={`w-full mb-6 p-5 rounded-2xl border-2 ${notaBg} flex flex-col items-center`}>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tu nota</span>
+                <div className={`text-6xl font-black leading-none mt-1 ${notaColor}`}>
+                  {nota.toFixed(1)}<span className="text-2xl opacity-60">/10</span>
+                </div>
+                <span className={`mt-2 font-bold ${notaColor}`}>{notaMsg}</span>
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-4 w-full mb-6">
+              <div className="bg-indigo-50 p-4 rounded-2xl flex flex-col items-center border border-indigo-100">
+                <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Aciertos</span>
+                <span className="text-3xl font-black text-indigo-700">{correctAnswersCount}<span className="text-lg text-indigo-300">/{totalQuestions}</span></span>
+              </div>
+              <div className="bg-emerald-50 p-4 rounded-2xl flex flex-col items-center border border-emerald-100">
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Puntos</span>
+                <span className="text-3xl font-black text-emerald-700">{isTestFinish ? examResult.total : score}</span>
+              </div>
+            </div>
+
+            {isTestFinish && (
+              <div className="w-full mb-6 grid grid-cols-3 gap-2 text-[11px] font-bold text-slate-500 text-center">
+                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                  <div className="text-slate-400 uppercase">Base</div>
+                  <div className="text-slate-700 text-base font-black">{examResult.basePoints}</div>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                  <div className="text-slate-400 uppercase">Velocidad</div>
+                  <div className="text-slate-700 text-base font-black">+{examResult.timeBonus}</div>
+                  <div className="text-[9px] text-slate-400">{examResult.elapsed}s</div>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                  <div className="text-slate-400 uppercase">Racha</div>
+                  <div className="text-slate-700 text-base font-black">+{examResult.streakBonus}</div>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-3 w-full">
+              <Button onClick={restart} className="w-full h-14 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl rounded-xl gap-2 transition-all">
+                <RefreshCcw className="h-5 w-5" /> Jugar de nuevo
+              </Button>
+              <Button onClick={() => setGameMode('selection')} variant="outline" className="w-full h-12 text-slate-600 border-slate-200 rounded-xl gap-2">
+                <Home className="h-4 w-4" /> Cambiar modo / Inicio
+              </Button>
+            </div>
+          </motion.div>
+        );
+      })()}
 
       {/* ---------------------------------------------------------
           PANTALLA DE JUEGO ACTIVO

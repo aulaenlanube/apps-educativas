@@ -100,6 +100,7 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 - `framer-motion`, `canvas-confetti`, `lucide-react`.
 - Responsive: `@media (max-width: 720px)`.
 - Colores de modos: verde `#10b981`, ámbar `#fbbf24`, rojo `#ef4444`.
+- **NUNCA `window.confirm`, `window.alert` ni `window.prompt`** ni equivalentes nativos del navegador. Cualquier confirmación, aviso o entrada de texto debe ser un **modal propio** (overlay + `motion.div`, estilo coherente con el resto de la app — patrón en `_shared/InstructionsModal.jsx` o el modal de entrega del examen en `sopa-de-letras/SopaDeLetras.jsx`).
 
 ### 9. Build y deploy
 ```bash

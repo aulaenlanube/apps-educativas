@@ -92,6 +92,8 @@ const MesaCrafteo = lazy(() => import('../mesa-crafteo/MesaCrafteo.jsx'));
 const EntrenadorTabla = lazy(() => import('../entrenador-tabla/EntrenadorTabla.jsx'));
 const LaboratorioFunciones2D = lazy(() => import('../laboratorio-funciones-2d/LaboratorioFunciones2D'));
 const RotacionesGrid = lazy(() => import('../rotaciones-grid/RotacionesGrid'));
+const ReglaDeTres = lazy(() => import('../regla-de-tres/ReglaDeTres'));
+const Porcentajes = lazy(() => import('../porcentajes/Porcentajes'));
 const FraccionesESO = lazy(() => import('../fracciones-eso/FraccionesESO'));
 const BancoRecursosTutoria = lazy(() => import('../banco-recursos-tutoria/BancoRecursosTutoria'));
 const TerminalRetro = lazy(() => import('../terminal-retro/TerminalRetro'));
@@ -369,6 +371,20 @@ export const appRotacionesGrid = {
   name: '🔄 Giros y Rotaciones',
   description: 'Dibuja las figuras resultantes de aplicar rotaciones sobre una cuadrícula.',
   component: RotacionesGrid
+};
+
+export const appReglaDeTres = {
+  id: 'regla-de-tres',
+  name: '📐 Regla de Tres',
+  description: 'Resuelve problemas de proporcionalidad directa e inversa.',
+  component: ReglaDeTres
+};
+
+export const appPorcentajes = {
+  id: 'porcentajes-proporciones',
+  name: '📊 Porcentajes y Proporciones',
+  description: 'Practica porcentajes, aumentos, descuentos, IVA, escalas y repartos proporcionales.',
+  component: Porcentajes
 };
 
 export const appSistemaSolar = {

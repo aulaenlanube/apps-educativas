@@ -1,5 +1,6 @@
 // src/apps/_shared/DetectiveDePalabrasUI.jsx
 import React, { useEffect, useRef } from 'react';
+import { DETECTIVE_MAX_SCORE } from '../../hooks/useDetectiveDePalabras';
 import './DetectiveDePalabrasShared.css';
 
 const TOTAL_TEST_QUESTIONS = 5;
@@ -49,7 +50,7 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
       onGameComplete?.({
         mode: 'test',
         score: game.score,
-        maxScore: TOTAL_TEST_QUESTIONS * 100 + 300,
+        maxScore: DETECTIVE_MAX_SCORE,
         correctAnswers: correct,
         totalQuestions: TOTAL_TEST_QUESTIONS,
         durationSeconds: game.elapsedTime || undefined,

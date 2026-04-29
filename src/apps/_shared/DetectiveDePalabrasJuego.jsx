@@ -32,15 +32,8 @@ const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  // Regla del temporizador
-  const conTemporizador = useMemo(() => {
-    const g = parseInt(grado, 10);
-    if (level === 'eso') return true;
-    return g >= 3;
-  }, [grado, level]);
-
-  // Hook del juego
-  const game = useDetectiveDePalabras(frasesDelNivel, conTemporizador);
+  // En examen siempre se mide el tiempo y aporta bonus de velocidad a la puntuación.
+  const game = useDetectiveDePalabras(frasesDelNivel, true);
 
   // Utilidades
   const normalizar = (entrada) => {

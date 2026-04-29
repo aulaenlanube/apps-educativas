@@ -560,6 +560,63 @@
   box-shadow: 0 10px 22px -6px rgba(245, 158, 11, 0.7);
 }
 
+/* Modal de confirmación de entrega */
+.sopa-surrender-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.sopa-surrender-modal {
+  background: var(--app-bg, #fff);
+  border-radius: 22px;
+  padding: 2rem 1.8rem 1.6rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.sopa-surrender-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(217, 119, 6, 0.18));
+  color: #d97706;
+  margin: 0 auto 0.8rem;
+}
+
+.sopa-surrender-title {
+  font-family: 'Fredoka One', 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  margin: 0 0 0.6rem;
+  color: var(--app-text, #1e293b);
+}
+
+.sopa-surrender-text {
+  font-size: 1rem;
+  color: var(--app-text-muted, #475569);
+  line-height: 1.55;
+  margin: 0 0 1.4rem;
+}
+
+.sopa-surrender-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .sopa-nota-big {
   font-size: 3.2rem;
   font-weight: 900;

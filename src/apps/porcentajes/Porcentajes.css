@@ -1,0 +1,753 @@
+/* src/apps/porcentajes/Porcentajes.css */
+
+.pp-root {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.pp-card {
+  background: var(--app-card-bg, rgba(255, 255, 255, 0.85));
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 28px;
+  padding: 1.6rem 1.6rem 1.8rem;
+  box-shadow: 0 18px 38px -16px rgba(0, 0, 0, 0.18);
+}
+
+.pp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.pp-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'Fredoka One', 'Fredoka', sans-serif;
+  font-size: 1.55rem;
+  background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pp-emoji { -webkit-text-fill-color: initial; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12)); }
+
+.pp-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.pp-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.12);
+  color: #4338ca;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.pp-badge-easy { background: rgba(16, 185, 129, 0.12); color: #047857; border-color: rgba(16, 185, 129, 0.3); }
+.pp-badge-medium { background: rgba(245, 158, 11, 0.12); color: #b45309; border-color: rgba(245, 158, 11, 0.3); }
+.pp-badge-exam { background: rgba(239, 68, 68, 0.12); color: #b91c1c; border-color: rgba(239, 68, 68, 0.3); }
+.pp-badge-progress { background: rgba(15, 23, 42, 0.06); color: #1e293b; border-color: rgba(15, 23, 42, 0.12); }
+
+.pp-tag-porcentaje { background: rgba(236, 72, 153, 0.12); color: #be185d; border-color: rgba(236, 72, 153, 0.3); }
+.pp-tag-aumento { background: rgba(16, 185, 129, 0.12); color: #047857; border-color: rgba(16, 185, 129, 0.3); }
+.pp-tag-descuento { background: rgba(239, 68, 68, 0.12); color: #b91c1c; border-color: rgba(239, 68, 68, 0.3); }
+.pp-tag-variacion { background: rgba(245, 158, 11, 0.12); color: #b45309; border-color: rgba(245, 158, 11, 0.3); }
+.pp-tag-proporcion { background: rgba(99, 102, 241, 0.12); color: #4338ca; border-color: rgba(99, 102, 241, 0.3); }
+.pp-tag-escala { background: rgba(14, 165, 233, 0.12); color: #075985; border-color: rgba(14, 165, 233, 0.3); }
+.pp-tag-reparto { background: rgba(168, 85, 247, 0.12); color: #6b21a8; border-color: rgba(168, 85, 247, 0.3); }
+
+.pp-intro {
+  text-align: center;
+  color: var(--app-text-muted, #475569);
+  margin: 0 0 1.6rem;
+  font-size: 1rem;
+}
+
+.pp-difficulty-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .pp-difficulty-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.pp-difficulty-card {
+  position: relative;
+  text-align: left;
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 1.2rem 1.1rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.pp-difficulty-card:hover { box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.18); }
+
+.pp-diff-easy { border-color: rgba(16, 185, 129, 0.45); }
+.pp-diff-medium { border-color: rgba(245, 158, 11, 0.45); }
+.pp-diff-exam { border-color: rgba(239, 68, 68, 0.45); }
+
+.pp-diff-icon { font-size: 1.6rem; }
+.pp-diff-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: #1e293b;
+}
+.pp-diff-desc {
+  font-size: 0.88rem;
+  color: var(--app-text-muted, #475569);
+  line-height: 1.4;
+  flex: 1;
+}
+.pp-diff-helps {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pp-diff-arrow {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  color: var(--app-text-muted, #94a3b8);
+}
+
+.pp-progress-bar {
+  height: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+.pp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #ec4899, #6366f1);
+  transition: width 0.4s ease;
+}
+
+.pp-problem-text {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(236, 72, 153, 0.05));
+  border: 1px solid rgba(236, 72, 153, 0.18);
+  border-radius: 20px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.3rem;
+}
+.pp-problem-icon { flex-shrink: 0; color: #ec4899; margin-top: 0.15rem; }
+.pp-problem-text p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.pp-input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.pp-input-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #475569);
+}
+.pp-input-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.pp-input {
+  flex: 1;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: var(--app-bg, #fff);
+  outline: none;
+  transition: all 0.2s;
+  color: #1e293b;
+}
+.pp-input:focus {
+  border-color: #ec4899;
+  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+}
+.pp-input.correct { border-color: #10b981; background: rgba(16, 185, 129, 0.06); }
+.pp-input.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.06); }
+
+.pp-input-unit {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: var(--app-text-muted, #475569);
+  min-width: 40px;
+  text-align: left;
+}
+
+.pp-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.pp-feedback.correct {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.pp-feedback.incorrect {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pp-explanation {
+  display: flex;
+  gap: 0.7rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+/* === Panel de ayuda visual === */
+.pp-help-panel {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(236, 72, 153, 0.04));
+  border: 1px solid rgba(236, 72, 153, 0.25);
+  border-radius: 22px;
+  padding: 1rem 1.1rem 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.pp-help-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #be185d;
+  margin-bottom: 0.85rem;
+}
+
+.pp-help-title svg {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+/* Layout en grid: visualización a la izquierda, fórmula+ejemplo a la derecha */
+.pp-help-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+  .pp-help-grid {
+    grid-template-columns: minmax(180px, 280px) 1fr;
+    gap: 1.1rem;
+  }
+}
+
+.pp-help-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1.5px solid rgba(236, 72, 153, 0.18);
+  border-radius: 18px;
+  padding: 0.85rem;
+  min-height: 140px;
+}
+
+.pp-vis-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pp-vis-caption {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--app-text-muted, #64748b);
+  text-align: center;
+  font-weight: 600;
+}
+
+.pp-help-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* === Fracción reutilizable === */
+.pp-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Fredoka One', cursive;
+  vertical-align: middle;
+  line-height: 1.05;
+  padding: 0 0.15rem;
+}
+
+.pp-frac-num,
+.pp-frac-den {
+  padding: 0.1rem 0.45rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pp-frac-bar {
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  margin: 0.1rem 0;
+}
+
+.pp-frac-md .pp-frac-num,
+.pp-frac-md .pp-frac-den { font-size: 1.35rem; color: #1e293b; }
+
+.pp-frac-sm .pp-frac-num,
+.pp-frac-sm .pp-frac-den { font-size: 1rem; color: #1e293b; }
+
+.pp-frac-xs .pp-frac-num,
+.pp-frac-xs .pp-frac-den { font-size: 0.9rem; color: #1e293b; padding: 0 0.3rem; }
+.pp-frac-xs .pp-frac-bar { height: 2px; }
+
+/* === Caja de fórmula === */
+.pp-formula-box {
+  background: #fff;
+  border: 1.5px solid rgba(99, 102, 241, 0.25);
+  border-radius: 16px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.pp-formula-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.pp-formula-x,
+.pp-formula-paren,
+.pp-formula-times {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: #1e293b;
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-formula-x { color: #be185d; }
+
+.pp-formula-tip {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--app-text-muted, #64748b);
+  font-style: italic;
+}
+
+/* === Bloque de ejemplo === */
+.pp-example {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.10), rgba(245, 158, 11, 0.08));
+  border: 1px dashed rgba(245, 158, 11, 0.45);
+  border-radius: 14px;
+  padding: 0.7rem 0.95rem;
+}
+
+.pp-example-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #b45309;
+  margin-bottom: 0.3rem;
+}
+
+.pp-example-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+/* SVGs */
+.pp-grid100 { display: block; }
+.pp-pie { display: block; }
+.pp-stackbars { display: block; }
+.pp-propeq-svg,
+.pp-scale-svg { display: block; }
+
+/* Reparto: tarta + leyenda */
+.pp-share-vis {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pp-share-pie { display: block; }
+
+.pp-share-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: #1e293b;
+}
+
+.pp-share-leg-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+.pp-share-leg-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.pp-share-leg-color.first { background: #EC4899; }
+.pp-share-leg-color.second { background: #6366F1; }
+
+.pp-share-leg-total {
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+  border-top: 1px dashed rgba(15, 23, 42, 0.15);
+  font-weight: 700;
+  color: var(--app-text-muted, #475569);
+}
+
+/* Toggle de ayuda */
+.pp-help-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pp-help-toggle:hover {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.pp-help-toggle.on {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.pp-explanation-icon {
+  flex-shrink: 0;
+  color: #d97706;
+  margin-top: 0.2rem;
+}
+.pp-explanation p {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.pp-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.pp-btn.primary {
+  background: linear-gradient(135deg, #ec4899, #f59e0b);
+  color: #fff;
+  box-shadow: 0 8px 18px -6px rgba(236, 72, 153, 0.5);
+}
+.pp-btn.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -8px rgba(236, 72, 153, 0.6);
+}
+.pp-btn.primary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.pp-btn.ghost {
+  background: var(--app-bg, #fff);
+  color: var(--app-text-muted, #475569);
+  border-color: #e2e8f0;
+}
+.pp-btn.ghost:hover {
+  border-color: #ec4899;
+  color: #be185d;
+  transform: translateY(-2px);
+}
+
+.pp-btn.danger {
+  background: var(--app-bg, #fff);
+  color: #b91c1c;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.pp-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+}
+
+/* Modal de salida del examen */
+.pp-exit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.pp-exit-modal {
+  background: var(--app-bg, #fff);
+  border-radius: 22px;
+  padding: 1.8rem 1.6rem 1.4rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.pp-exit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(220, 38, 38, 0.18));
+  color: #b91c1c;
+  margin: 0 auto 0.7rem;
+}
+
+.pp-exit-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+  color: var(--app-text, #1e293b);
+}
+
+.pp-exit-text {
+  font-size: 0.95rem;
+  color: var(--app-text-muted, #475569);
+  line-height: 1.55;
+  margin: 0 0 1.2rem;
+}
+
+.pp-exit-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pp-result-card { text-align: center; }
+
+.pp-result-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: stretch;
+  justify-content: center;
+  margin: 1rem 0 1.4rem;
+}
+
+.pp-nota-block {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background: var(--app-bg, #fff);
+  border: 4px solid #ec4899;
+  border-radius: 22px;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.12);
+}
+.pp-nota-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.pp-nota-value {
+  font-family: 'Fredoka One', cursive;
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0.3rem 0;
+}
+.pp-nota-max {
+  font-size: 1.7rem;
+  opacity: 0.55;
+  margin-left: 0.2rem;
+}
+.pp-nota-msg { font-size: 1rem; font-weight: 700; }
+
+.pp-stats-block {
+  flex: 1 1 220px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.7rem;
+}
+.pp-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 0.75rem 0.9rem;
+  text-align: center;
+}
+.pp-stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pp-stat-value {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.25rem;
+  color: #be185d;
+}
+
+.pp-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0 0 1.4rem;
+  max-height: 360px;
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 0.4rem;
+}
+.pp-history-item {
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.7rem 0.9rem;
+}
+.pp-history-item.correct { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.04); }
+.pp-history-item.incorrect { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.04); }
+
+.pp-history-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.pp-history-num {
+  font-family: 'Fredoka One', cursive;
+  color: #be185d;
+  font-size: 0.95rem;
+}
+.pp-history-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.pp-history-result {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.pp-history-result.correct { color: #047857; }
+.pp-history-result.incorrect { color: #b91c1c; }
+
+.pp-history-text {
+  font-size: 0.92rem;
+  color: #1e293b;
+  line-height: 1.45;
+}
+.pp-history-user {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--app-text-muted, #475569);
+}
+
+.pp-result-actions {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .pp-card { padding: 1.2rem 1rem 1.4rem; }
+  .pp-title { font-size: 1.3rem; }
+  .pp-input { font-size: 1.35rem; }
+}

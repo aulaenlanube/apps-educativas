@@ -847,6 +847,95 @@ const icons = {
       <path d="M43 10 Q43 8 41 8" stroke="url(#ai-com-book)" strokeWidth="2" strokeLinecap="round" fill="none" />
     </svg>
   ),
+  'porcentajes-proporciones': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ai-pp-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFF7ED" />
+          <stop offset="1" stopColor="#FCE7F3" />
+        </linearGradient>
+        <linearGradient id="ai-pp-stroke" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F59E0B" />
+          <stop offset="0.5" stopColor="#EC4899" />
+          <stop offset="1" stopColor="#6366F1" />
+        </linearGradient>
+      </defs>
+
+      {/* Fondo */}
+      <rect width="48" height="48" rx="12" fill="url(#ai-pp-bg)" />
+
+      {/* Pie chart pequeño decorativo */}
+      <circle cx="40" cy="9" r="4.2" fill="#fff" stroke="#CBD5E1" strokeWidth="0.7" />
+      <path d="M40 9 L40 4.8 A4.2 4.2 0 0 1 43.64 11.1 Z" fill="#FBBF24" />
+
+      {/* Sparkles laterales */}
+      <circle cx="6.5" cy="40" r="1.3" fill="#A855F7" opacity="0.6" style={{ animation: 'ai-pulse 2.6s ease-in-out infinite' }} />
+      <circle cx="40.5" cy="40" r="1.3" fill="#EC4899" opacity="0.6" style={{ animation: 'ai-pulse 2.6s ease-in-out 0.4s infinite' }} />
+
+      {/* Símbolo "%" — grande y centrado */}
+      {/* Círculo superior */}
+      <circle cx="15" cy="15" r="5.4" fill="#fff" stroke="url(#ai-pp-stroke)" strokeWidth="2.8" />
+      <circle cx="15" cy="15" r="1.4" fill="url(#ai-pp-stroke)" />
+
+      {/* Diagonal */}
+      <line x1="10.5" y1="34.5" x2="34.5" y2="10.5" stroke="url(#ai-pp-stroke)" strokeWidth="3.2" strokeLinecap="round" />
+
+      {/* Círculo inferior */}
+      <circle cx="33" cy="33" r="5.4" fill="#fff" stroke="url(#ai-pp-stroke)" strokeWidth="2.8" />
+      <circle cx="33" cy="33" r="1.4" fill="url(#ai-pp-stroke)" />
+    </svg>
+  ),
+  'regla-de-tres': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ai-r3-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#EEF2FF" />
+          <stop offset="1" stopColor="#FCE7F3" />
+        </linearGradient>
+        <linearGradient id="ai-r3-row1" x1="0" y1="9" x2="0" y2="22" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#818CF8" />
+          <stop offset="1" stopColor="#4338CA" />
+        </linearGradient>
+        <linearGradient id="ai-r3-row2" x1="0" y1="26" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F472B6" />
+          <stop offset="1" stopColor="#BE185D" />
+        </linearGradient>
+      </defs>
+
+      {/* Fondo */}
+      <rect width="48" height="48" rx="12" fill="url(#ai-r3-bg)" />
+
+      {/* Esquina decorativa con "÷" */}
+      <circle cx="40" cy="8" r="4.5" fill="#FBBF24" opacity="0.85" />
+      <circle cx="40" cy="6.5" r="0.9" fill="#fff" />
+      <rect x="37.6" y="7.7" width="4.8" height="0.9" rx="0.45" fill="#fff" />
+      <circle cx="40" cy="9.6" r="0.9" fill="#fff" />
+
+      {/* Fila 1: 3 → 9 */}
+      <rect x="6" y="10" width="13" height="11" rx="3" fill="url(#ai-r3-row1)" />
+      <text x="12.5" y="18.5" fontSize="8" fontWeight="800" fill="#fff" textAnchor="middle" fontFamily="system-ui, sans-serif">3</text>
+
+      <path d="M21 15.5 H26" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M24.5 13.5 L26.5 15.5 L24.5 17.5" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+
+      <rect x="29" y="10" width="13" height="11" rx="3" fill="url(#ai-r3-row1)" />
+      <text x="35.5" y="18.5" fontSize="8" fontWeight="800" fill="#fff" textAnchor="middle" fontFamily="system-ui, sans-serif">9</text>
+
+      {/* Conectores verticales punteados */}
+      <line x1="12.5" y1="22.5" x2="12.5" y2="25.5" stroke="#94A3B8" strokeWidth="1.2" strokeDasharray="1.5 1.6" strokeLinecap="round" />
+      <line x1="35.5" y1="22.5" x2="35.5" y2="25.5" stroke="#94A3B8" strokeWidth="1.2" strokeDasharray="1.5 1.6" strokeLinecap="round" />
+
+      {/* Fila 2: 5 → ? */}
+      <rect x="6" y="27" width="13" height="11" rx="3" fill="url(#ai-r3-row2)" />
+      <text x="12.5" y="35.5" fontSize="8" fontWeight="800" fill="#fff" textAnchor="middle" fontFamily="system-ui, sans-serif">5</text>
+
+      <path d="M21 32.5 H26" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M24.5 30.5 L26.5 32.5 L24.5 34.5" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+
+      <rect x="29" y="27" width="13" height="11" rx="3" fill="rgba(255,255,255,0.85)" stroke="#9333EA" strokeWidth="1.6" strokeDasharray="2.2 1.8" />
+      <text x="35.5" y="35.8" fontSize="9" fontWeight="800" fill="#9333EA" textAnchor="middle" fontFamily="system-ui, sans-serif" style={{ animation: 'ai-pulse 2.4s ease-in-out infinite' }}>?</text>
+    </svg>
+  ),
 };
 
 import icons2 from './AppIconSet2';

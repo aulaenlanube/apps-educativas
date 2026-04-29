@@ -91,6 +91,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
   const [hintCells, setHintCells] = useState([]); // parpadean brevemente
   const [wrongFlash, setWrongFlash] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [showSurrenderModal, setShowSurrenderModal] = useState(false);
 
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
@@ -213,13 +214,16 @@ const SopaDeLetras = ({ onGameComplete }) => {
     });
   }, [completed, totalWords, foundCount, gameMode, timer, finalScore, onGameComplete]);
 
-  // --- Entregar examen anticipadamente ---
+  // --- Entregar examen anticipadamente (con modal de confirmación) ---
   const handleSurrender = useCallback(() => {
     if (!puzzle || completed) return;
-    const msg = `¿Entregar el examen ahora?\n\nLlevas ${foundCount} de ${totalWords} palabras encontradas.\nTu nota será ${(Math.round((foundCount / totalWords) * 100) / 10).toFixed(1)}/10.`;
-    if (!window.confirm(msg)) return;
+    setShowSurrenderModal(true);
+  }, [puzzle, completed]);
+
+  const confirmSurrender = useCallback(() => {
+    setShowSurrenderModal(false);
     setCompleted(true);
-  }, [puzzle, completed, foundCount, totalWords]);
+  }, []);
 
   // --- Mapa de celdas ocupadas por palabras ya encontradas ---
   const foundCellsMap = useMemo(() => {
@@ -679,6 +683,50 @@ const SopaDeLetras = ({ onGameComplete }) => {
           palabra es y después encontrarla en la sopa.
         </div>
       </InstructionsModal>
+
+      <AnimatePresence>
+        {showSurrenderModal && (
+          <motion.div
+            className="sopa-surrender-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowSurrenderModal(false)}
+          >
+            <motion.div
+              className="sopa-surrender-modal"
+              initial={{ scale: 0.88, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.88, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sopa-surrender-icon"><GraduationCap size={36} /></div>
+              <h3 className="sopa-surrender-title">¿Entregar el examen?</h3>
+              <p className="sopa-surrender-text">
+                Llevas <strong>{foundCount} de {totalWords}</strong> palabras encontradas.<br />
+                Tu nota será <strong>{nota.toFixed(1)}/10</strong>.
+              </p>
+              <div className="sopa-surrender-actions">
+                <button
+                  type="button"
+                  className="sopa-btn ghost"
+                  onClick={() => setShowSurrenderModal(false)}
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  className="sopa-btn submit"
+                  onClick={confirmSurrender}
+                >
+                  <GraduationCap size={16} /> Entregar
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

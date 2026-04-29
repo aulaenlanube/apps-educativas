@@ -32,10 +32,13 @@ const MODE_CONFIG = {
   },
   exam: {
     label: 'Examen', icon: '🔴', source: 'phrase_long',
-    helps: { reveal: 1, freq: false, check: false },
+    helps: { reveal: 0, freq: false, check: false },
     revealVowels: false, timer: 300, // 5 minutos
   },
 };
+
+const EXAM_REF_TIME_SEC = 300;
+const EXAM_POINTS_PER_LETTER = 100;
 
 const VOWELS = new Set(['A', 'E', 'I', 'O', 'U']);
 
@@ -68,6 +71,7 @@ const Criptograma = ({ onGameComplete }) => {
   const [wrongCodes, setWrongCodes] = useState(new Set());
   const [completed, setCompleted] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
+  const [revealsUsed, setRevealsUsed] = useState(0);
   const [showHelp, setShowHelp] = useState(false);
   const [showFreq, setShowFreq] = useState(false);
 
@@ -140,6 +144,7 @@ const Criptograma = ({ onGameComplete }) => {
     setWrongCodes(new Set());
     trackedRef.current = false;
     setHintsUsed(0);
+    setRevealsUsed(0);
     setTimer(0);
     setShowFreq(false);
 
@@ -215,29 +220,37 @@ const Criptograma = ({ onGameComplete }) => {
     }
   }, [isAllCorrect, completed, encrypted.length]);
 
-  // --- XP tracking ---
+  // --- Puntuación y nota ---
   const totalLetters = uniqueCodes.length;
   const correctCount = uniqueCodes.filter((c) => guesses[c] === cipherMap?.codeToLetter[c]).length;
   const nota = totalLetters > 0 ? Math.round((correctCount / totalLetters) * 100) / 10 : 0;
-  const baseScore = correctCount * 100;
-  const refTime = MODE_CONFIG[gameMode].timer || 180;
-  const timeBonus = Math.max(0, Math.round(300 * (1 - timer / refTime)));
-  const noHintsBonus = hintsUsed === 0 ? 100 : 0;
-  const finalScore = baseScore + timeBonus + noHintsBonus;
+  const isExam = gameMode === 'exam';
+
+  const finalScore = useMemo(() => {
+    if (isExam) {
+      const basePoints = correctCount * EXAM_POINTS_PER_LETTER;
+      const speedBonus = Math.max(0, Math.round(EXAM_REF_TIME_SEC * (1 - timer / EXAM_REF_TIME_SEC)));
+      return basePoints + speedBonus;
+    }
+    // Práctica: cálculo informativo (no se manda al ranking)
+    const base = correctCount * 100;
+    const tBonus = Math.max(0, Math.round(180 * (1 - timer / 180)));
+    const noHintsBonus = hintsUsed === 0 && revealsUsed === 0 ? 100 : 0;
+    return base + tBonus + noHintsBonus;
+  }, [isExam, correctCount, timer, hintsUsed, revealsUsed]);
 
   useEffect(() => {
     if (!completed || trackedRef.current) return;
     trackedRef.current = true;
-    const isExamMode = gameMode === 'exam';
     onGameComplete?.({
-      mode: isExamMode ? 'test' : 'practice',
-      score: isExamMode ? finalScore : 0,
-      maxScore: isExamMode ? totalLetters * 100 + 400 : 0,
+      mode: isExam ? 'test' : 'practice',
+      score: isExam ? finalScore : 0,
+      maxScore: isExam ? totalLetters * EXAM_POINTS_PER_LETTER + EXAM_REF_TIME_SEC : 0,
       correctAnswers: correctCount,
       totalQuestions: totalLetters,
       durationSeconds: timer,
     });
-  }, [completed, finalScore, totalLetters, correctCount, timer, gameMode, onGameComplete]);
+  }, [completed, finalScore, totalLetters, correctCount, timer, isExam, onGameComplete]);
 
   // --- Asignar letra a un código ---
   const assignLetter = useCallback((letter) => {
@@ -288,8 +301,11 @@ const Criptograma = ({ onGameComplete }) => {
   // --- Ayudas ---
   const cfg = MODE_CONFIG[gameMode];
 
+  const revealsRemaining = Math.max(0, cfg.helps.reveal - revealsUsed);
+
   const revealLetter = useCallback(() => {
-    if (!cipherMap || cfg.helps.reveal <= hintsUsed - (lockedCodes.size - (cfg.revealVowels ? new Set(Array.from(normalize(originalText)).filter(c => VOWELS.has(c))).size : 0))) return;
+    if (!cipherMap) return;
+    if (revealsUsed >= cfg.helps.reveal) return;
     // Revelar un código no adivinado al azar
     const pending = uniqueCodes.filter((c) => !lockedCodes.has(c) && guesses[c] !== cipherMap.codeToLetter[c]);
     if (pending.length === 0) return;
@@ -297,8 +313,8 @@ const Criptograma = ({ onGameComplete }) => {
     const letter = cipherMap.codeToLetter[code];
     setGuesses((prev) => ({ ...prev, [code]: letter }));
     setLockedCodes((prev) => new Set(prev).add(code));
-    setHintsUsed((h) => h + 1);
-  }, [cipherMap, cfg, hintsUsed, lockedCodes, uniqueCodes, guesses, originalText]);
+    setRevealsUsed((r) => r + 1);
+  }, [cipherMap, cfg, revealsUsed, lockedCodes, uniqueCodes, guesses]);
 
   const checkAnswers = useCallback(() => {
     if (!cipherMap || !cfg.helps.check) return;
@@ -336,8 +352,6 @@ const Criptograma = ({ onGameComplete }) => {
       </div></div>
     );
   }
-
-  const isExam = gameMode === 'exam';
 
   return (
     <div className="cripto-root">
@@ -453,10 +467,17 @@ const Criptograma = ({ onGameComplete }) => {
         {/* Ayudas */}
         {!completed && (
           <div className="cripto-lifelines">
-            <button className="cripto-lifeline" onClick={revealLetter} disabled={cfg.helps.reveal <= 0} title="Revelar una letra al azar">
-              <Eye size={16} /> <span>Revelar</span>
-              {cfg.helps.reveal > 0 && <span className="cripto-lifeline-count">{Math.max(0, cfg.helps.reveal - hintsUsed)}</span>}
-            </button>
+            {cfg.helps.reveal > 0 && (
+              <button
+                className="cripto-lifeline"
+                onClick={revealLetter}
+                disabled={revealsRemaining <= 0}
+                title={revealsRemaining > 0 ? 'Revelar una letra al azar' : 'Sin reveals disponibles'}
+              >
+                <Eye size={16} /> <span>Revelar</span>
+                <span className="cripto-lifeline-count">{revealsRemaining}</span>
+              </button>
+            )}
             {cfg.helps.freq && (
               <button className="cripto-lifeline" onClick={() => setShowFreq((f) => !f)} title="Tabla de frecuencias del español">
                 <BarChart3 size={16} /> <span>Frecuencias</span>
@@ -564,8 +585,15 @@ const Criptograma = ({ onGameComplete }) => {
         <div className="instr-modes">
           <div className="instr-mode easy"><strong>🟢 Fácil</strong>Palabra sola. Vocales reveladas. 3 reveals + frecuencias + comprobar.</div>
           <div className="instr-mode medium"><strong>🟡 Medio</strong>Frase corta. Sin vocales. 2 reveals + frecuencias + comprobar.</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>Frase larga. 5 min. 1 reveal. Sin frecuencias ni comprobar.</div>
+          <div className="instr-mode exam"><strong>🔴 Examen</strong>Frase larga. 5 min. <strong>Sin ayudas</strong>: ni reveals, ni frecuencias, ni comprobar.</div>
         </div>
+
+        <h3>📊 Nota y puntos en el examen</h3>
+        <p>Tu nota va de <strong>0 a 10</strong> según las letras adivinadas:</p>
+        <p className="instr-formula"><strong>Nota</strong> = letras correctas / total × 10</p>
+        <p>Además ganas <strong>puntos para el ranking</strong>:</p>
+        <p className="instr-formula"><strong>Puntos</strong> = letras × {EXAM_POINTS_PER_LETTER} + bonus de velocidad (hasta {EXAM_REF_TIME_SEC})</p>
+        <p className="instr-note">Dos partidas con un 10 dan distinto ranking según el tiempo: gana quien la termine antes.</p>
 
         <div className="instr-tips"><strong>💡 Consejo:</strong> empieza por las letras más repetidas en el texto; probablemente sean E, A u O.</div>
       </InstructionsModal>

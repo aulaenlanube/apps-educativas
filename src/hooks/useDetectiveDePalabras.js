@@ -4,13 +4,17 @@ import confetti from 'canvas-confetti'; // IMPORTANTE: Importamos la librería
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
+const BASE_POINTS_PER_QUESTION = 100;
+const MAX_SPEED_BONUS = 200;
+const SPEED_BONUS_WINDOW_SEC = 180;
+export const DETECTIVE_MAX_SCORE = TOTAL_TEST_QUESTIONS * BASE_POINTS_PER_QUESTION + MAX_SPEED_BONUS;
 
 const getTexto = (frase) =>
   typeof frase === 'string'
     ? frase
     : (frase && typeof frase.solucion === 'string' ? frase.solucion : '');
 
-export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
+export const useDetectiveDePalabras = (frasesJuego = [], withTimer = true) => {
   // Estado base
   const [indiceFraseActual, setIndiceFraseActual] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
@@ -161,27 +165,24 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     setShowResults(false);
     setScore(0);
     setIsTestMode(true);
-    if (withTimer) {
-      setStartTime(Date.now());
-      setElapsedTime(0);
-    }
+    setStartTime(Date.now());
+    setElapsedTime(0);
   };
 
   useEffect(() => {
     let timer;
-    if (isTestMode && withTimer && !showResults) {
+    if (isTestMode && !showResults) {
       timer = setInterval(() => setElapsedTime(Math.floor((Date.now() - startTime) / 1000)), 1000);
     }
     return () => clearInterval(timer);
-  }, [isTestMode, withTimer, showResults, startTime]);
+  }, [isTestMode, showResults, startTime]);
 
   const calculateScore = (correctCount, time) => {
-    let baseScore = correctCount * 200;
-    if (withTimer && correctCount > 0) {
-      const timeBonus = Math.max(0, 100 - time * 2);
-      baseScore += timeBonus;
-    }
-    return Math.floor(baseScore);
+    const basePoints = correctCount * BASE_POINTS_PER_QUESTION;
+    if (correctCount === 0) return 0;
+    const ratio = Math.max(0, 1 - Math.min(time, SPEED_BONUS_WINDOW_SEC) / SPEED_BONUS_WINDOW_SEC);
+    const timeBonus = Math.round(MAX_SPEED_BONUS * ratio);
+    return basePoints + timeBonus;
   };
 
   const handleNextQuestion = () => {
@@ -193,7 +194,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
       setIndiceFraseActual(nextIndex);
       prepararFrase(testQuestions[nextIndex]);
     } else {
-      const finalTime = withTimer ? Math.floor((Date.now() - startTime) / 1000) : 0;
+      const finalTime = Math.floor((Date.now() - startTime) / 1000);
       setElapsedTime(finalTime);
       let correctCount = 0;
       testQuestions.forEach((q, i) => {

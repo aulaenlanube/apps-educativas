@@ -1,0 +1,799 @@
+/* src/apps/regla-de-tres/ReglaDeTres.css */
+
+.r3-root {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.r3-card {
+  background: var(--app-card-bg, rgba(255, 255, 255, 0.85));
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 28px;
+  padding: 1.6rem 1.6rem 1.8rem;
+  box-shadow: 0 18px 38px -16px rgba(0, 0, 0, 0.18);
+}
+
+.r3-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.r3-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'Fredoka One', 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #6366f1 0%, #9333ea 50%, #db2777 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.r3-emoji {
+  -webkit-text-fill-color: initial;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+}
+
+.r3-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.r3-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.12);
+  color: #4338ca;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.r3-badge-easy { background: rgba(16, 185, 129, 0.12); color: #047857; border-color: rgba(16, 185, 129, 0.3); }
+.r3-badge-medium { background: rgba(245, 158, 11, 0.12); color: #b45309; border-color: rgba(245, 158, 11, 0.3); }
+.r3-badge-exam { background: rgba(239, 68, 68, 0.12); color: #b91c1c; border-color: rgba(239, 68, 68, 0.3); }
+.r3-badge-progress { background: rgba(15, 23, 42, 0.06); color: #1e293b; border-color: rgba(15, 23, 42, 0.12); }
+
+.r3-intro {
+  text-align: center;
+  color: var(--app-text-muted, #475569);
+  margin: 0 0 1.6rem;
+  font-size: 1rem;
+}
+
+/* --- Selector de dificultad --- */
+.r3-difficulty-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .r3-difficulty-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.r3-difficulty-card {
+  position: relative;
+  text-align: left;
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 1.2rem 1.1rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.r3-difficulty-card:hover {
+  box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.18);
+}
+
+.r3-diff-easy { border-color: rgba(16, 185, 129, 0.45); }
+.r3-diff-medium { border-color: rgba(245, 158, 11, 0.45); }
+.r3-diff-exam { border-color: rgba(239, 68, 68, 0.45); }
+
+.r3-diff-icon { font-size: 1.6rem; }
+.r3-diff-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: #1e293b;
+}
+.r3-diff-desc {
+  font-size: 0.88rem;
+  color: var(--app-text-muted, #475569);
+  line-height: 1.4;
+  flex: 1;
+}
+.r3-diff-helps {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.r3-diff-arrow {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  color: var(--app-text-muted, #94a3b8);
+}
+
+/* --- Progress bar examen --- */
+.r3-progress-bar {
+  height: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+
+.r3-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  transition: width 0.4s ease;
+}
+
+/* --- Enunciado --- */
+.r3-problem-text {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.05));
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: 20px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.3rem;
+}
+
+.r3-problem-icon {
+  flex-shrink: 0;
+  color: #6366f1;
+  margin-top: 0.15rem;
+}
+
+.r3-problem-text p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* --- Diagrama SVG de proporción --- */
+.r3-diagram-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 1rem;
+}
+
+.r3-diagram-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.r3-svg-header {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  fill: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.r3-svg-value-light {
+  font-family: 'Fredoka One', cursive;
+  font-size: 24px;
+  fill: #fff;
+}
+
+.r3-svg-unit-light {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.r3-svg-unit-dark {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  fill: #64748b;
+}
+
+.r3-svg-q {
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px;
+  fill: #9333EA;
+}
+
+.r3-svg-relation-label {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* --- Panel de fórmula con ayuda --- */
+.r3-formula-hint {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.05));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 18px;
+  padding: 0.85rem 1.1rem 0.95rem;
+  margin: 0 auto 1.3rem;
+  max-width: 520px;
+}
+
+.r3-formula-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4338ca;
+  margin-bottom: 0.6rem;
+}
+
+.r3-formula-title svg {
+  flex-shrink: 0;
+  color: #d97706;
+}
+
+.r3-formula-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.r3-formula-x {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.45rem;
+  color: #1e293b;
+}
+
+.r3-fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Fredoka One', cursive;
+}
+
+.r3-fraction-num,
+.r3-fraction-den {
+  font-size: 1.2rem;
+  color: #1e293b;
+  padding: 0.1rem 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.r3-fraction-bar {
+  width: 100%;
+  height: 3px;
+  background: #6366f1;
+  border-radius: 999px;
+  margin: 0.15rem 0;
+}
+
+.r3-formula-equals {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.45rem;
+  color: #1e293b;
+}
+
+.r3-formula-result {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.45rem;
+  color: #9333EA;
+  background: #fff;
+  border: 2px dashed #9333EA;
+  border-radius: 10px;
+  padding: 0.05rem 0.8rem;
+}
+
+.r3-formula-tip {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--app-text-muted, #475569);
+  text-align: center;
+  font-style: italic;
+}
+
+/* --- Toggle de ayuda en modo medio --- */
+.r3-help-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.r3-help-toggle:hover {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.r3-help-toggle.on {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* --- Tabla de proporciones (legacy, ya no se usa pero por si acaso) --- */
+.r3-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0 auto 1.4rem;
+  max-width: 480px;
+}
+
+.r3-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.r3-cell {
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: #1e293b;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.r3-cell.unknown {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(99, 102, 241, 0.12));
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.r3-cell-q {
+  font-size: 1.6rem;
+  color: #9333ea;
+}
+
+.r3-cell-unit {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--app-text-muted, #64748b);
+}
+
+.r3-arrow {
+  color: var(--app-text-muted, #94a3b8);
+}
+
+/* --- Input --- */
+.r3-input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.r3-input-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #475569);
+}
+
+.r3-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.r3-input {
+  flex: 1;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: var(--app-bg, #fff);
+  outline: none;
+  transition: all 0.2s;
+  color: #1e293b;
+}
+
+.r3-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.r3-input.correct {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.r3-input.incorrect {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.r3-input-unit {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: var(--app-text-muted, #475569);
+  min-width: 40px;
+}
+
+/* --- Feedback --- */
+.r3-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.r3-feedback.correct {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.r3-feedback.incorrect {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.r3-explanation {
+  display: flex;
+  gap: 0.7rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.r3-explanation-icon {
+  flex-shrink: 0;
+  color: #d97706;
+  margin-top: 0.2rem;
+}
+
+.r3-explanation p {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* --- Botones --- */
+.r3-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.r3-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.r3-btn.primary {
+  background: linear-gradient(135deg, #6366f1, #9333ea);
+  color: #fff;
+  box-shadow: 0 8px 18px -6px rgba(99, 102, 241, 0.5);
+}
+
+.r3-btn.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -8px rgba(99, 102, 241, 0.6);
+}
+
+.r3-btn.primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.r3-btn.ghost {
+  background: var(--app-bg, #fff);
+  color: var(--app-text-muted, #475569);
+  border-color: #e2e8f0;
+}
+
+.r3-btn.ghost:hover {
+  border-color: #6366f1;
+  color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.r3-btn.danger {
+  background: var(--app-bg, #fff);
+  color: #b91c1c;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.r3-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+}
+
+/* Tags por tipo de problema */
+.r3-tag-directa {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.r3-tag-inversa {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Modal de salida del examen */
+.r3-exit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.r3-exit-modal {
+  background: var(--app-bg, #fff);
+  border-radius: 22px;
+  padding: 1.8rem 1.6rem 1.4rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.r3-exit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(220, 38, 38, 0.18));
+  color: #b91c1c;
+  margin: 0 auto 0.7rem;
+}
+
+.r3-exit-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+  color: var(--app-text, #1e293b);
+}
+
+.r3-exit-text {
+  font-size: 0.95rem;
+  color: var(--app-text-muted, #475569);
+  line-height: 1.55;
+  margin: 0 0 1.2rem;
+}
+
+.r3-exit-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Pantalla de resultados examen --- */
+.r3-result-card {
+  text-align: center;
+}
+
+.r3-result-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: stretch;
+  justify-content: center;
+  margin: 1rem 0 1.4rem;
+}
+
+.r3-nota-block {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background: var(--app-bg, #fff);
+  border: 4px solid #6366f1;
+  border-radius: 22px;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.12);
+}
+
+.r3-nota-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.r3-nota-value {
+  font-family: 'Fredoka One', cursive;
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0.3rem 0;
+}
+
+.r3-nota-max {
+  font-size: 1.7rem;
+  opacity: 0.55;
+  margin-left: 0.2rem;
+}
+
+.r3-nota-msg {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.r3-stats-block {
+  flex: 1 1 220px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.7rem;
+}
+
+.r3-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 0.75rem 0.9rem;
+  text-align: center;
+}
+
+.r3-stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--app-text-muted, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.r3-stat-value {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.25rem;
+  color: #4f46e5;
+}
+
+/* --- Historial de respuestas --- */
+.r3-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0 0 1.4rem;
+  max-height: 360px;
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 0.4rem;
+}
+
+.r3-history-item {
+  background: var(--app-bg, #fff);
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.7rem 0.9rem;
+}
+
+.r3-history-item.correct { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.04); }
+.r3-history-item.incorrect { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.04); }
+
+.r3-history-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.r3-history-num {
+  font-family: 'Fredoka One', cursive;
+  color: #4338ca;
+  font-size: 0.95rem;
+}
+
+.r3-history-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+}
+
+.r3-history-type.directa { background: rgba(16, 185, 129, 0.12); color: #047857; }
+.r3-history-type.inversa { background: rgba(245, 158, 11, 0.12); color: #b45309; }
+
+.r3-history-result {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.r3-history-result.correct { color: #047857; }
+.r3-history-result.incorrect { color: #b91c1c; }
+
+.r3-history-text {
+  font-size: 0.92rem;
+  color: #1e293b;
+  line-height: 1.45;
+}
+
+.r3-history-user {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--app-text-muted, #475569);
+}
+
+.r3-result-actions {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .r3-card { padding: 1.2rem 1rem 1.4rem; }
+  .r3-title { font-size: 1.35rem; }
+  .r3-cell { font-size: 1.15rem; padding: 0.7rem 0.7rem; }
+  .r3-input { font-size: 1.35rem; }
+  .r3-table { max-width: 100%; }
+}
