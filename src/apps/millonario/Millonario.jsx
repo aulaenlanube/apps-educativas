@@ -148,6 +148,7 @@ const Millonario = ({ onGameComplete }) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
+  const gameStartRef = useRef(0);
 
   // Instrucciones
   const [showHelp, setShowHelp] = useState(false);
@@ -189,6 +190,7 @@ const Millonario = ({ onGameComplete }) => {
     setAudiencePoll(null);
     trackedRef.current = false;
     if (cfg.timer) setTimeLeft(cfg.timer);
+    gameStartRef.current = Date.now();
   }, [gameMode, allWords]);
 
   // --- Al cargar o cambiar modo, iniciar partida ---
@@ -285,14 +287,23 @@ const Millonario = ({ onGameComplete }) => {
       const correct = maxReached;
       const total = questions.length || 1;
       const isExamMode = gameMode === 'exam';
-      const examScore = correct * 100 + (correct >= total ? 100 : 0);
+      // Bonus por rapidez en examen: 15s/pregunta de presupuesto
+      const elapsedSec = gameStartRef.current
+        ? Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000))
+        : 0;
+      const TIME_BUDGET = total * 15;
+      const SPEED_COEF = 5;
+      const timeBonus = isExamMode && elapsedSec > 0
+        ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+        : 0;
+      const examScore = correct * 100 + (correct >= total ? 100 : 0) + timeBonus;
       onGameComplete?.({
         mode: isExamMode ? 'test' : 'practice',
         score: isExamMode ? examScore : 0,
-        maxScore: isExamMode ? total * 100 + 100 : 0,
+        maxScore: isExamMode ? total * 100 + 100 + TIME_BUDGET * SPEED_COEF : 0,
         correctAnswers: correct,
         totalQuestions: total,
-        durationSeconds: 0,
+        durationSeconds: elapsedSec,
       });
     }
   }, [status, maxReached, questions.length, gameMode, onGameComplete]);

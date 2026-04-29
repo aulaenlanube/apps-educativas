@@ -32,6 +32,7 @@ const FraccionesESO = ({ onGameComplete }) => {
     const [showResults, setShowResults] = useState(false);
     const [score, setScore] = useState(0);
     const [isVibrating, setIsVibrating] = useState(false);
+    const examStartRef = React.useRef(0);
 
     const renderDivisors = (num1, num2) => {
         const divs1 = [];
@@ -173,6 +174,7 @@ const FraccionesESO = ({ onGameComplete }) => {
         setExercise(shuffled[0]);
         setUserAnswer({ num: '', den: '', single: '' });
         setIntermediate({ n1: '', n2: '', den: '' });
+        examStartRef.current = Date.now();
     };
 
     const checkAnswer = () => {
@@ -333,12 +335,22 @@ const FraccionesESO = ({ onGameComplete }) => {
         if (finalGrade >= 5) {
             confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
         }
+        // Bonus por rapidez: 30s/pregunta de presupuesto
+        const elapsedSec = examStartRef.current
+            ? Math.max(1, Math.round((Date.now() - examStartRef.current) / 1000))
+            : 0;
+        const TIME_BUDGET = 12 * 30;
+        const SPEED_COEF = 5;
+        const timeBonus = elapsedSec > 0
+            ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+            : 0;
         onGameComplete?.({
             mode: 'test',
-            score: correctCount * 100,
-            maxScore: 1200,
+            score: correctCount * 100 + timeBonus,
+            maxScore: 1200 + TIME_BUDGET * SPEED_COEF,
             correctAnswers: correctCount,
             totalQuestions: 12,
+            durationSeconds: elapsedSec,
         });
     };
 

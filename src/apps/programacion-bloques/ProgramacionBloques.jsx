@@ -341,6 +341,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
 
   const reportedRef = useRef(new Set());
   const playTimerRef = useRef(null);
+  const levelStartRef = useRef(0);
   const currentLevel = levels[currentIdx];
   const biome = useMemo(() => biomeForLevel(currentIdx), [currentIdx]);
 
@@ -353,6 +354,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
       setProgram([]); setDefinitions([]); setError(null); setStatus(null);
       if (playTimerRef.current) clearInterval(playTimerRef.current);
       if (laserTimerRef.current) clearTimeout(laserTimerRef.current);
+      levelStartRef.current = Date.now();
     }
   }, [phase, currentIdx, currentLevel]);
 
@@ -515,12 +517,23 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
         if (result.error) setError(result.error);
         if (ok && !reportedRef.current.has(currentLevel.id)) {
           reportedRef.current.add(currentLevel.id);
+          const isExam = mode === 'examen';
+          // Bonus por rapidez en examen: 90s/nivel de presupuesto
+          const elapsedSec = levelStartRef.current
+            ? Math.max(1, Math.round((Date.now() - levelStartRef.current) / 1000))
+            : 0;
+          const TIME_BUDGET_PER_LEVEL = 90;
+          const SPEED_COEF = 2;
+          const timeBonus = isExam && elapsedSec > 0
+            ? Math.max(0, Math.round((TIME_BUDGET_PER_LEVEL - elapsedSec) * SPEED_COEF))
+            : 0;
           onGameComplete?.({
-            mode: mode === 'examen' ? 'test' : 'practice',
-            score: reportedRef.current.size * 50,
-            maxScore: levels.length * 50,
+            mode: isExam ? 'test' : 'practice',
+            score: reportedRef.current.size * 50 + timeBonus,
+            maxScore: levels.length * 50 + (isExam ? TIME_BUDGET_PER_LEVEL * SPEED_COEF : 0),
             correctAnswers: reportedRef.current.size,
             totalQuestions: levels.length,
+            durationSeconds: elapsedSec || undefined,
           });
         }
         return;

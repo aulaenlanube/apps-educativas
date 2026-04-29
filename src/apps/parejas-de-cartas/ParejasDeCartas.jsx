@@ -39,6 +39,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
   const peekIntervalRef = useRef(null);
   const colaAyudasRef = useRef([]);
   const randomDelaysRef = useRef({});
+  const gameStartRef = useRef(0);
 
   // Helper: Detecta letras o números (para saber si es texto largo)
   const contieneLetras = (str) => {
@@ -101,6 +102,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
     setFase('juego');
     colaAyudasRef.current = [];
     randomDelaysRef.current = {};
+    gameStartRef.current = Date.now();
   };
 
   const mezclarCartas = (cantidadParejas) => {
@@ -245,7 +247,16 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
       const basePoints = parejasEncontradas * 100;
       const minTurnos = config.parejas;
       const turnosBonus = Math.max(0, Math.round(300 * (1 - (turnos - minTurnos) / (minTurnos * 2))));
-      const totalPoints = basePoints + turnosBonus;
+      // Bonus por rapidez: presupuesto 8s/pareja
+      const elapsedSec = gameStartRef.current
+        ? Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000))
+        : 0;
+      const TIME_BUDGET = config.parejas * 8;
+      const SPEED_COEF = 5;
+      const timeBonus = elapsedSec > 0
+        ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+        : 0;
+      const totalPoints = basePoints + turnosBonus + timeBonus;
       const isExamMode = config.isExam;
       const modifier = config.notaModifier || 0;
       const notaBase = config.parejas > 0 ? (parejasEncontradas / config.parejas) * 10 : 0;
@@ -253,14 +264,15 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
       onGameComplete?.({
         mode: isExamMode ? 'test' : 'practice',
         score: isExamMode ? totalPoints : 0,
-        maxScore: isExamMode ? config.parejas * 100 + 300 : 0,
+        maxScore: isExamMode ? config.parejas * 100 + 300 + TIME_BUDGET * SPEED_COEF : 0,
         correctAnswers: parejasEncontradas,
         totalQuestions: config.parejas,
+        durationSeconds: elapsedSec || undefined,
         ...(isExamMode ? { nota: Math.round(notaFinal * 10) / 10 } : {}),
       });
     }
     if (fase !== 'resumen') trackedRef.current = false;
-  }, [fase, cartas, config, onGameComplete]);
+  }, [fase, cartas, config, turnos, onGameComplete]);
 
   const resetearTurno = () => {
     setEleccionUno(null);

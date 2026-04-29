@@ -63,6 +63,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
   // Refs de acceso rápido
   const targetTypeRef = useRef(null);
+  const gameStartRef = useRef(0);
   const gameDataRef = useRef(null);
   const speedRef = useRef(8);
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
@@ -121,6 +122,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
     targetTypeRef.current = targetType;
     setScore(0);
+    gameStartRef.current = Date.now();
     setGameState('playing');
     isPlayingRef.current = true;
 
@@ -271,12 +273,23 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     // creciendo sin tope para el ranking (no paras hasta morir).
     const EXAM_TARGET = 10;
     const isExam = !showHintsRef.current;
+    // Bonus por rapidez en examen: presupuesto 5s/palabra
+    const elapsedSec = gameStartRef.current
+      ? Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000))
+      : 0;
+    const TIME_BUDGET = EXAM_TARGET * 5;
+    const SPEED_COEF = 5;
+    const timeBonus = isExam && elapsedSec > 0 && wordsCollected >= EXAM_TARGET
+      ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+      : 0;
+    const finalScore = score + timeBonus;
     onGameComplete?.({
       mode: isExam ? 'test' : 'practice',
-      score: score,
-      maxScore: Math.max(score, 1000),
+      score: finalScore,
+      maxScore: Math.max(finalScore, 1000),
       correctAnswers: wordsCollected,
       totalQuestions: EXAM_TARGET,
+      durationSeconds: elapsedSec || undefined,
     });
   };
 

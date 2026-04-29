@@ -68,6 +68,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     const baseSpeedRef = useRef(INITIAL_SPEED);
     const baseSpawnRef = useRef(SPAWN_RATE_START);
     const trackedRef = useRef(false);
+    const gameStartRef = useRef(0);
 
     useEffect(() => {
         if (gamePhase === 'gameOver' && !trackedRef.current) {
@@ -81,12 +82,24 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
             const finalNota = isExam
                 ? Math.max(0, Math.round((baseNota + modifier) * 10) / 10)
                 : Math.round(baseNota * 10) / 10;
+            // Bonus por rapidez: presupuesto 60s para 30 palabras (2s/palabra)
+            const elapsedSec = gameStartRef.current
+                ? Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000))
+                : 0;
+            const TIME_BUDGET = TARGET_WORDS * 2;
+            const SPEED_COEF = 5;
+            const timeBonus = isExam && elapsedSec > 0
+                ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+                : 0;
+            const finalScore = score + timeBonus;
+            const maxScoreFinal = TARGET_WORDS * 10 + (isExam ? TIME_BUDGET * SPEED_COEF : 0);
             onGameComplete?.({
                 mode: isExam ? 'test' : 'practice',
-                score,
-                maxScore: TARGET_WORDS * 10,
+                score: finalScore,
+                maxScore: maxScoreFinal,
                 correctAnswers: wordsCollected,
                 totalQuestions: TARGET_WORDS,
+                durationSeconds: elapsedSec || undefined,
                 nota: finalNota,
             });
         }
@@ -138,6 +151,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
         baseSpawnRef.current = customSpawn;
 
         lastSpawnTime.current = performance.now();
+        gameStartRef.current = Date.now();
         setBoxAnimation({ col: null, type: null });
 
         // Obtener claves válidas

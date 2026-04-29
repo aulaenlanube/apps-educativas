@@ -137,12 +137,24 @@ const EntrenadorTabla = ({ onGameComplete }) => {
             } else {
                 setGameState('result');
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                const finalScore = session.score + (correct ? 1 : 0);
+                const total = session.targets.length;
+                // Bonus por rapidez: 10s/pregunta de presupuesto
+                const elapsedSec = session.startTime
+                    ? Math.max(1, Math.round((Date.now() - session.startTime) / 1000))
+                    : 0;
+                const TIME_BUDGET = total * 10;
+                const SPEED_COEF = 5;
+                const timeBonus = elapsedSec > 0
+                    ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+                    : 0;
                 onGameComplete?.({
                     mode: 'test',
-                    score: session.score * 100,
-                    maxScore: session.targets.length * 100,
-                    correctAnswers: session.score,
-                    totalQuestions: session.targets.length,
+                    score: finalScore * 100 + timeBonus,
+                    maxScore: total * 100 + TIME_BUDGET * SPEED_COEF,
+                    correctAnswers: finalScore,
+                    totalQuestions: total,
+                    durationSeconds: elapsedSec,
                 });
             }
         }, 1200);

@@ -4,6 +4,9 @@ import confetti from 'canvas-confetti';
 import './MayorMenor.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
+const BASE_POINTS_PER_HIT = 200;
+const TIME_BUDGET_PER_Q = 8;
+const SPEED_COEF = 5;
 
 // --- UTILIDADES ---
 
@@ -254,6 +257,8 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
         answers: [],
         finished: false
     });
+    const testStartRef = useRef(0);
+    const [finalElapsed, setFinalElapsed] = useState(0);
 
     const generateProblem = useCallback(() => {
         return generateLevelProblem(level);
@@ -288,6 +293,8 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
             answers: [],
             finished: false
         });
+        testStartRef.current = Date.now();
+        setFinalElapsed(0);
         setIsTestMode(true);
 
         if (gameMode === 'comparar') {
@@ -436,25 +443,37 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
             }
         } else {
             nextStats.finished = true;
+            const elapsed = Math.max(1, Math.round((Date.now() - testStartRef.current) / 1000));
+            setFinalElapsed(elapsed);
             setTestStats(nextStats);
         }
     };
 
+    // --- Cálculo de score con bonus por tiempo ---
+    const timeBudget = TIME_BUDGET_PER_Q * TOTAL_TEST_QUESTIONS;
+    const timeBonus = finalElapsed > 0
+        ? Math.max(0, Math.round((timeBudget - finalElapsed) * SPEED_COEF))
+        : 0;
+    const basePoints = testStats.score * BASE_POINTS_PER_HIT;
+    const examPoints = basePoints + timeBonus;
+    const examMaxScore = TOTAL_TEST_QUESTIONS * BASE_POINTS_PER_HIT + timeBudget * SPEED_COEF;
+
     // Tracking de resultados
     const trackedRef = useRef(false);
     useEffect(() => {
-        if (isTestMode && testStats.finished && !trackedRef.current) {
+        if (isTestMode && testStats.finished && !trackedRef.current && finalElapsed > 0) {
             trackedRef.current = true;
             onGameComplete?.({
                 mode: 'test',
-                score: testStats.score,
-                maxScore: TOTAL_TEST_QUESTIONS,
+                score: examPoints,
+                maxScore: examMaxScore,
                 correctAnswers: testStats.score,
                 totalQuestions: TOTAL_TEST_QUESTIONS,
+                durationSeconds: finalElapsed,
             });
         }
         if (!testStats.finished) trackedRef.current = false;
-    }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
+    }, [isTestMode, testStats.finished, testStats.score, finalElapsed, examPoints, examMaxScore, onGameComplete]);
 
     // Renderizado de Resultados
     if (isTestMode && testStats.finished) {
@@ -467,6 +486,22 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
                     <p className="text-green-600 font-bold animate-bounce mb-2">¡Buen trabajo! 🏆</p> :
                     <p className="text-orange-500 font-bold mb-2">¡Sigue practicando! 💪</p>
                 }
+
+                <div className="mb-4 p-3 rounded border bg-slate-50 text-left text-sm" style={{ maxWidth: 360, margin: '0 auto 16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Aciertos ({testStats.score}/{TOTAL_TEST_QUESTIONS} × {BASE_POINTS_PER_HIT})</span>
+                        <strong>+{basePoints}</strong>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', color: timeBonus > 0 ? '#16a34a' : '#9ca3af' }}>
+                        <span>Bonus rapidez ({finalElapsed}s)</span>
+                        <strong>+{timeBonus}</strong>
+                    </div>
+                    <hr style={{ margin: '6px 0' }} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem' }}>
+                        <span>Puntuación total</span>
+                        <strong style={{ color: '#7c3aed' }}>{examPoints.toLocaleString('es-ES')}</strong>
+                    </div>
+                </div>
 
                 <div className="text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
                     {testStats.answers.map((ans, idx) => (

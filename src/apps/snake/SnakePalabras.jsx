@@ -61,6 +61,7 @@ const SnakeDePalabras = (props) => {
   // Refs
   const savedCallback = useRef();
   const gameBoardRef = useRef(null);
+  const gameStartRef = useRef(0);
 
   const formatName = (name) => name?.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || '';
 
@@ -349,6 +350,7 @@ const SnakeDePalabras = (props) => {
     setIsPaused(false);
     setShowConfirmRestart(false);
     setHeadAnim(null);
+    gameStartRef.current = Date.now();
   };
 
   const togglePause = () => {
@@ -625,7 +627,7 @@ const SnakeDePalabras = (props) => {
         )}
 
         {/* Tracking */}
-        <SnakeTracker gameState={gameState} score={score} difficulty={difficulty} onGameComplete={props.onGameComplete} />
+        <SnakeTracker gameState={gameState} score={score} difficulty={difficulty} gameStartRef={gameStartRef} onGameComplete={props.onGameComplete} />
 
         {/* GAME OVER */}
         {gameState === 'gameover' && (
@@ -871,23 +873,34 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
   </>
 );
 
-function SnakeTracker({ gameState, score, difficulty, onGameComplete }) {
+function SnakeTracker({ gameState, score, difficulty, gameStartRef, onGameComplete }) {
   const tracked = useRef(false);
   useEffect(() => {
     if (gameState === 'gameover' && !tracked.current) {
       tracked.current = true;
       const wordsCollected = Math.floor(score / 10);
       const TARGET_WORDS = 30; // 30 palabras = nota 10
+      const isExam = difficulty === 'hard';
+      // Bonus por rapidez en examen: presupuesto 4s/palabra (120s objetivo)
+      const elapsedSec = gameStartRef?.current
+        ? Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000))
+        : 0;
+      const TIME_BUDGET = TARGET_WORDS * 4;
+      const SPEED_COEF = 5;
+      const timeBonus = isExam && elapsedSec > 0
+        ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+        : 0;
       onGameComplete?.({
-        mode: difficulty === 'hard' ? 'test' : 'practice',
-        score,
-        maxScore: TARGET_WORDS * 10,
+        mode: isExam ? 'test' : 'practice',
+        score: score + timeBonus,
+        maxScore: TARGET_WORDS * 10 + (isExam ? TIME_BUDGET * SPEED_COEF : 0),
         correctAnswers: wordsCollected,
         totalQuestions: TARGET_WORDS,
+        durationSeconds: elapsedSec || undefined,
       });
     }
     if (gameState !== 'gameover') tracked.current = false;
-  }, [gameState, score, difficulty, onGameComplete]);
+  }, [gameState, score, difficulty, gameStartRef, onGameComplete]);
   return null;
 }
 

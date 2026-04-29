@@ -62,13 +62,21 @@ const OrdenaBolas = ({ onGameComplete }) => {
         if ((gameState === 'won' || gameState === 'lost') && !trackedRef.current) {
             trackedRef.current = true;
             const won = gameState === 'won';
+            const elapsedSec = Math.max(1, Math.round(timeElapsed / 1000));
+            // Bonus por rapidez (solo si gana): 5s/bola de presupuesto, 10pt por seg ahorrado
+            const TIME_BUDGET = config.ballCount * 5;
+            const SPEED_COEF = 10;
+            const timeBonus = won
+                ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+                : 0;
+            const basePoints = won ? config.ballCount * 100 : 0;
             onGameComplete?.({
                 mode: 'test',
-                score: won ? config.ballCount * 100 : 0,
-                maxScore: config.ballCount * 100,
+                score: basePoints + timeBonus,
+                maxScore: config.ballCount * 100 + TIME_BUDGET * SPEED_COEF,
                 correctAnswers: won ? config.ballCount : 0,
                 totalQuestions: config.ballCount,
-                durationSeconds: Math.round(timeElapsed / 1000),
+                durationSeconds: elapsedSec,
             });
         }
         if (gameState === 'config' || gameState === 'playing') trackedRef.current = false;
