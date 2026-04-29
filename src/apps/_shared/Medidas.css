@@ -880,3 +880,93 @@ input:checked+.slider:before {
         min-width: 45px;
     }
 }
+
+/* Resultado del examen: nota /10 + puntos */
+.med-result-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0 1.5rem;
+}
+
+.med-nota-block {
+    flex: 0 0 auto;
+    min-width: 200px;
+    background: var(--app-bg);
+    border: 4px solid #4f46e5;
+    border-radius: 20px;
+    padding: 1.2rem 1.6rem;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+.med-nota-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--app-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.med-nota-value {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    line-height: 1;
+    margin: 0.3rem 0;
+}
+
+.med-nota-max {
+    font-size: 1.8rem;
+    opacity: 0.55;
+    margin-left: 0.2rem;
+}
+
+.med-nota-msg {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.med-stats-block {
+    flex: 1 1 220px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.8rem;
+}
+
+.med-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    background: var(--app-bg);
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 0.9rem 1rem;
+    text-align: center;
+}
+
+.med-stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--app-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.med-stat-value {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: #4f46e5;
+}
+
+/* Header con instructions button alineado */
+.medidas-game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}

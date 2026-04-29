@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './RotacionesGrid.css';
 
 const GRID_SIZE = 9;
@@ -9,6 +10,12 @@ const COLORS = [
     '#F06292', '#AED581', '#FFD54F', '#4DB6AC', '#7986CB',
     '#9575CD', '#FF8A65', '#A1887F', '#90A4AE'
 ];
+
+const DIFFICULTY_MULT = [1.0, 1.5, 2.5];
+const DIFFICULTY_NAMES = ['Simple', 'Compuesto', 'Complejo'];
+const BASE_POINTS = 100;
+const MAX_SPEED_BONUS = 100;
+const SPEED_BONUS_WINDOW_SEC = 30;
 
 const FIGURES = {
     simples: [
@@ -69,8 +76,11 @@ const RotacionesGrid = ({ onGameComplete }) => {
 
     const [examStep, setExamStep] = useState(0);
     const [examScore, setExamScore] = useState(0);
+    const [examPoints, setExamPoints] = useState(0);
     const [examFinished, setExamFinished] = useState(false);
     const [examHistory, setExamHistory] = useState([]);
+    const [showInstructions, setShowInstructions] = useState(false);
+    const questionStartRef = useRef(null);
     const TOTAL_EXAM_STEPS = 5;
 
     const getDifficultyKey = (val) => {
@@ -98,6 +108,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
         setIsCorrect(false);
         setShowHelp(false);
         setHelpAngle(0);
+        questionStartRef.current = Date.now();
     }, [difficulty]);
 
     useEffect(() => {
@@ -145,15 +156,30 @@ const RotacionesGrid = ({ onGameComplete }) => {
     };
 
     const nextExamStep = (wasCorrect) => {
+        const elapsedSec = questionStartRef.current
+            ? (Date.now() - questionStartRef.current) / 1000
+            : SPEED_BONUS_WINDOW_SEC;
+        const speedBonus = Math.max(
+            0,
+            Math.round((1 - Math.min(elapsedSec, SPEED_BONUS_WINDOW_SEC) / SPEED_BONUS_WINDOW_SEC) * MAX_SPEED_BONUS)
+        );
+        const mult = DIFFICULTY_MULT[difficulty];
+        const questionPoints = wasCorrect ? Math.round((BASE_POINTS + speedBonus) * mult) : 0;
+        const newPoints = examPoints + questionPoints;
+        const newScoreCount = examScore + (wasCorrect ? 1 : 0);
+
         const historyItem = {
             step: examStep,
             targetRotation,
             isClockwise,
             userCells: [...userCells],
             isCorrect: wasCorrect,
+            elapsedSec: Math.round(elapsedSec * 10) / 10,
+            points: questionPoints,
             targetCells: getRotatedCells(currentFigure, targetRotation, isClockwise).map(c => c.pos)
         };
         setExamHistory(prev => [...prev, historyItem]);
+        setExamPoints(newPoints);
 
         setTimeout(() => {
             if (examStep < TOTAL_EXAM_STEPS - 1) {
@@ -161,11 +187,12 @@ const RotacionesGrid = ({ onGameComplete }) => {
                 generateExercise();
             } else {
                 setExamFinished(true);
+                const maxPointsPerQuestion = Math.round((BASE_POINTS + MAX_SPEED_BONUS) * mult);
                 onGameComplete?.({
                     mode: 'test',
-                    score: (examScore + (wasCorrect ? 1 : 0)) * 100,
-                    maxScore: TOTAL_EXAM_STEPS * 100,
-                    correctAnswers: examScore + (wasCorrect ? 1 : 0),
+                    score: newPoints,
+                    maxScore: TOTAL_EXAM_STEPS * maxPointsPerQuestion,
+                    correctAnswers: newScoreCount,
                     totalQuestions: TOTAL_EXAM_STEPS,
                 });
             }
@@ -204,6 +231,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
         setMode('exam');
         setExamStep(0);
         setExamScore(0);
+        setExamPoints(0);
         setExamFinished(false);
         setExamHistory([]);
         generateExercise();
@@ -280,18 +308,50 @@ const RotacionesGrid = ({ onGameComplete }) => {
     };
 
     if (examFinished) {
+        const nota = Math.round((examScore / TOTAL_EXAM_STEPS) * 100) / 10;
+        const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+        const notaMsg = nota >= 9 ? 'Excelente'
+            : nota >= 7 ? 'Muy bien'
+                : nota >= 5 ? 'Aprobado'
+                    : 'Necesitas repasar';
+
         return (
             <div className="rotaciones-container">
                 <div className="grid-card wide">
                     <div className="rotaciones-header"><h1>¡Examen Finalizado!</h1></div>
-                    <p className="feedback-msg">Tu puntuación: <span className="score-badge">{examScore} / {TOTAL_EXAM_STEPS}</span></p>
+
+                    <div className="rot-result-hero">
+                        <div className="rot-nota-block" style={{ borderColor: notaColor }}>
+                            <div className="rot-nota-label">Tu nota</div>
+                            <div className="rot-nota-value" style={{ color: notaColor }}>
+                                {nota.toFixed(1)}<span className="rot-nota-max">/10</span>
+                            </div>
+                            <div className="rot-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
+                        </div>
+                        <div className="rot-stats-block">
+                            <div className="rot-stat">
+                                <span className="rot-stat-label">Aciertos</span>
+                                <span className="rot-stat-value">{examScore} / {TOTAL_EXAM_STEPS}</span>
+                            </div>
+                            <div className="rot-stat">
+                                <span className="rot-stat-label">Puntos</span>
+                                <span className="rot-stat-value">{examPoints}</span>
+                            </div>
+                            <div className="rot-stat">
+                                <span className="rot-stat-label">Dificultad</span>
+                                <span className="rot-stat-value">{DIFFICULTY_NAMES[difficulty]} ×{DIFFICULTY_MULT[difficulty]}</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="exam-history-summary">
                         {examHistory.map((item, idx) => (
                             <div key={idx} className={`summary-card ${item.isCorrect ? 'correct' : 'incorrect'}`}>
                                 <div className="summary-header">
                                     <span className="question-number">Pregunta {idx + 1}</span>
-                                    <span className="status-badge">{item.isCorrect ? '✅ Logrado' : '❌ Fallido'}</span>
+                                    <span className="status-badge">
+                                        {item.isCorrect ? `✅ +${item.points} pts (${item.elapsedSec}s)` : '❌ Fallido'}
+                                    </span>
                                 </div>
                                 <div className="summary-details">
                                     <p>Giro de <strong>{item.targetRotation}º</strong> a la <strong>{item.isClockwise ? 'derecha' : 'izquierda'}</strong></p>
@@ -330,11 +390,12 @@ const RotacionesGrid = ({ onGameComplete }) => {
             </div>
 
             <div className="top-actions-panel">
-                <div className="difficulty-selector">
+                <div className={`difficulty-selector ${mode === 'exam' ? 'locked' : ''}`}>
                     <div className="difficulty-label">
-                        {difficulty === 0 && '🌱 Nivel: Simple'}
-                        {difficulty === 1 && '🧩 Nivel: Compuesto'}
-                        {difficulty === 2 && '🚀 Nivel: Complejo'}
+                        {difficulty === 0 && '🌱 Nivel: Simple ×1.0'}
+                        {difficulty === 1 && '🧩 Nivel: Compuesto ×1.5'}
+                        {difficulty === 2 && '🚀 Nivel: Complejo ×2.5'}
+                        {mode === 'exam' && <span className="rot-lock-badge">🔒 bloqueado durante el examen</span>}
                     </div>
                     <input
                         type="range"
@@ -346,13 +407,15 @@ const RotacionesGrid = ({ onGameComplete }) => {
                             setDifficulty(val);
                             generateExercise(val);
                         }}
+                        disabled={mode === 'exam'}
                         className="range-slider"
                     />
                 </div>
 
                 {mode === 'practice' && (
                     <div className="button-group">
-                        <button className="btn-secondary" onClick={() => { setShowHelp(true); setHelpAngle(0); }}>💡 Ayuda</button>
+                        <InstructionsButton onClick={() => setShowInstructions(true)} />
+                        <button className="btn-secondary" onClick={() => { setShowHelp(true); setHelpAngle(0); }}>💡 Entrenar</button>
                         <button className="btn-secondary" onClick={() => setShowIndex(true)}>📚 Catálogo</button>
                         <button className="btn-accent" onClick={startExam}>🏆 Examen</button>
                     </div>
@@ -378,6 +441,8 @@ const RotacionesGrid = ({ onGameComplete }) => {
             {mode === 'exam' && (
                 <div className="exam-stats">
                     <span>Pregunta: {examStep + 1} / {TOTAL_EXAM_STEPS}</span>
+                    <span>Puntos: {examPoints}</span>
+                    <span>Nivel: {DIFFICULTY_NAMES[difficulty]} ×{DIFFICULTY_MULT[difficulty]}</span>
                 </div>
             )}
 
@@ -449,6 +514,74 @@ const RotacionesGrid = ({ onGameComplete }) => {
                     </div>
                 </div>
             )}
+
+            <InstructionsModal
+                isOpen={showInstructions}
+                onClose={() => setShowInstructions(false)}
+                title="Cómo jugar a Giros y Rotaciones"
+            >
+                <h3>🎯 Objetivo</h3>
+                <p>
+                    Observa la figura <strong>original</strong> y dibújala en la cuadrícula
+                    de la derecha tras girarla los grados indicados, hacia la derecha o
+                    hacia la izquierda.
+                </p>
+
+                <h3>🕹️ Cómo se juega</h3>
+                <ul>
+                    <li>Haz <strong>click en una casilla</strong> para pintarla. Click otra vez para borrarla.</li>
+                    <li>Pulsa <strong>✅ Validar</strong> cuando creas que tu dibujo coincide con la rotación pedida.</li>
+                    <li>Se evalúa la <strong>forma</strong>: no importa el color ni en qué casillas la coloques siempre que sea la misma figura girada.</li>
+                </ul>
+
+                <h3>🛠️ Herramientas en práctica</h3>
+                <ul>
+                    <li><strong>💡 Entrenar</strong> — gira la figura paso a paso para visualizar el resultado antes de dibujar.</li>
+                    <li><strong>📚 Catálogo</strong> — muestra todas las figuras agrupadas por dificultad.</li>
+                    <li><strong>Colores</strong> — cada punto de la figura recibe un color, ayuda a seguir cómo se mueve cada uno (sólo visual).</li>
+                </ul>
+
+                <h3>📊 Nota y puntos en el examen</h3>
+                <p>
+                    El examen tiene <strong>5 preguntas</strong>. Tu nota va de <strong>0 a 10</strong> según los aciertos:
+                </p>
+                <p className="instr-formula">
+                    <strong>Nota</strong> = aciertos / 5 × 10
+                </p>
+                <p>
+                    Además ganas <strong>puntos</strong> por cada acierto. Cuanto más rápido
+                    respondas, más puntos. Y cuanto más alta sea la dificultad, mayor es el
+                    multiplicador final:
+                </p>
+                <p className="instr-formula">
+                    <strong>Puntos</strong> = (100 + bonus de velocidad) × multiplicador de dificultad
+                </p>
+
+                <h3>🎓 Niveles de dificultad</h3>
+                <p className="instr-note">
+                    El nivel se elige <strong>antes</strong> de empezar el examen y queda
+                    <strong> bloqueado</strong> hasta terminarlo.
+                </p>
+                <div className="instr-modes">
+                    <div className="instr-mode easy">
+                        <strong>🌱 Simple ×1.0</strong>
+                        Figuras de 3-4 casillas. Puntuación máxima: 1.000 pts.
+                    </div>
+                    <div className="instr-mode medium">
+                        <strong>🧩 Compuesto ×1.5</strong>
+                        Figuras de 5-6 casillas. Puntuación máxima: 1.500 pts.
+                    </div>
+                    <div className="instr-mode exam">
+                        <strong>🚀 Complejo ×2.5</strong>
+                        Figuras de 7-10 casillas. Puntuación máxima: 2.500 pts.
+                    </div>
+                </div>
+
+                <div className="instr-tips">
+                    <strong>💡 Consejo:</strong> usa <kbd>💡 Entrenar</kbd> en práctica para
+                    coger soltura visualizando los giros antes de saltar al examen.
+                </div>
+            </InstructionsModal>
         </div>
     );
 };

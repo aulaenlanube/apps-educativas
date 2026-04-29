@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import InstructionsModal, { InstructionsButton } from './InstructionsModal';
 import './Medidas.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
 const MAX_DIGITS_LIMIT = 99999;
+const BASE_POINTS = 100;
+const MAX_SPEED_BONUS = 100;
+const SPEED_BONUS_WINDOW_SEC = 20;
 
 // --- CONFIGURACIÓN DE SISTEMAS DE UNIDADES ---
 const MEASURE_TYPES = {
@@ -222,11 +227,30 @@ const generateOrderProblemManual = (level, typeId, count = 3) => {
     return items;
 };
 
-const MedidasGame = ({ level, title, onGameComplete }) => {
-    const [phase, setPhase] = useState('setup'); // 'setup', 'quantity', 'play'
-    const [measureType, setMeasureType] = useState('longitud');
-    const [gameMode, setGameMode] = useState('comparar'); // 'comparar' o 'ordenar'
-    const [orderCount, setOrderCount] = useState(3);
+const resolveLevelFromGrade = (gradeParam) => {
+    const n = parseInt(gradeParam, 10);
+    if (Number.isFinite(n) && n >= 1 && n <= 6) return n;
+    return 6;
+};
+
+const orderCountForLevel = (level) => {
+    if (level <= 2) return 3;
+    if (level <= 4) return 4;
+    return 5;
+};
+
+const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forcedMode }) => {
+    const { grade: gradeParam } = useParams();
+    const level = useMemo(() => {
+        if (Number.isFinite(levelProp)) return levelProp;
+        return resolveLevelFromGrade(gradeParam);
+    }, [levelProp, gradeParam]);
+
+    const initialPhase = forcedType && forcedMode ? 'play' : 'setup';
+    const [phase, setPhase] = useState(initialPhase);
+    const [measureType, setMeasureType] = useState(forcedType || 'longitud');
+    const [gameMode, setGameMode] = useState(forcedMode || 'comparar');
+    const [orderCount, setOrderCount] = useState(() => orderCountForLevel(typeof levelProp === 'number' ? levelProp : resolveLevelFromGrade(gradeParam)));
     const [isTestMode, setIsTestMode] = useState(false);
     const [leftItem, setLeftItem] = useState({ text: '', valueBase: 0 });
     const [rightItem, setRightItem] = useState({ text: '', valueBase: 0 });
@@ -234,14 +258,24 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
     const [selectedSign, setSelectedSign] = useState(null);
     const [feedback, setFeedback] = useState({ text: '', type: '' });
     const [showHelper, setShowHelper] = useState(false);
+    const [showInstructions, setShowInstructions] = useState(false);
+    const questionStartRef = useRef(null);
 
     const [testStats, setTestStats] = useState({
         questions: [],
         currentIndex: 0,
         score: 0,
+        points: 0,
         answers: [],
         finished: false
     });
+
+    // Si cambia el grade en la URL, reajusta orderCount cuando estamos en una app forzada
+    useEffect(() => {
+        if (forcedType && forcedMode) {
+            setOrderCount(orderCountForLevel(level));
+        }
+    }, [level, forcedType, forcedMode]);
 
     const generateProblem = useCallback(() => {
         return generateProblemData(level, measureType);
@@ -258,6 +292,7 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
             setOrderItems(items);
         }
         setFeedback({ text: '', type: '' });
+        questionStartRef.current = Date.now();
     }, [generateProblem, gameMode, level, measureType, orderCount]);
 
     useEffect(() => {
@@ -274,6 +309,7 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
             questions: qs,
             currentIndex: 0,
             score: 0,
+            points: 0,
             answers: [],
             finished: false
         });
@@ -288,6 +324,7 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
         }
         setShowHelper(false);
         setFeedback({ text: '', type: '' });
+        questionStartRef.current = Date.now();
     }, [generateProblem, gameMode, level, measureType, orderCount]);
 
     // --- Efecto Confetti al terminar Test con éxito ---
@@ -381,15 +418,27 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
     };
 
     const handleTestNext = (isCorrect, correctSign) => {
+        const elapsedSec = questionStartRef.current
+            ? (Date.now() - questionStartRef.current) / 1000
+            : SPEED_BONUS_WINDOW_SEC;
+        const speedBonus = Math.max(
+            0,
+            Math.round((1 - Math.min(elapsedSec, SPEED_BONUS_WINDOW_SEC) / SPEED_BONUS_WINDOW_SEC) * MAX_SPEED_BONUS)
+        );
+        const questionPoints = isCorrect ? BASE_POINTS + speedBonus : 0;
+
         const nextStats = {
             ...testStats,
             score: isCorrect ? testStats.score + 1 : testStats.score,
+            points: testStats.points + questionPoints,
             answers: [...testStats.answers, {
                 left: gameMode === 'comparar' ? leftItem.text : orderItems.map(i => i.text).join(' | '),
                 right: gameMode === 'comparar' ? rightItem.text : '',
                 user: gameMode === 'comparar' ? selectedSign : isCorrect ? 'OK' : 'FAIL',
                 correct: correctSign,
-                isCorrect
+                isCorrect,
+                elapsedSec: Math.round(elapsedSec * 10) / 10,
+                points: questionPoints
             }]
         };
 
@@ -404,6 +453,7 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
             } else {
                 setOrderItems(nextQ.items);
             }
+            questionStartRef.current = Date.now();
         } else {
             nextStats.finished = true;
             setTestStats(nextStats);
@@ -416,34 +466,58 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
     useEffect(() => {
         if (isTestMode && testStats.finished && !trackedRef.current) {
             trackedRef.current = true;
+            const maxPoints = TOTAL_TEST_QUESTIONS * (BASE_POINTS + MAX_SPEED_BONUS);
             onGameComplete?.({
                 mode: 'test',
-                score: testStats.score,
-                maxScore: TOTAL_TEST_QUESTIONS,
+                score: testStats.points,
+                maxScore: maxPoints,
                 correctAnswers: testStats.score,
                 totalQuestions: TOTAL_TEST_QUESTIONS,
             });
         }
         if (!testStats.finished) trackedRef.current = false;
-    }, [isTestMode, testStats.finished, testStats.score, onGameComplete]);
+    }, [isTestMode, testStats.finished, testStats.score, testStats.points, onGameComplete]);
 
     if (isTestMode && testStats.finished) {
+        const nota = Math.round((testStats.score / TOTAL_TEST_QUESTIONS) * 100) / 10;
+        const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+        const notaMsg = nota >= 9 ? 'Excelente'
+            : nota >= 7 ? 'Muy bien'
+                : nota >= 5 ? 'Aprobado'
+                    : 'Necesitas repasar';
+
         return (
             <div className={`medidas-container theme-${measureType}`}>
                 <h1><span className="gradient-text">Resultados</span></h1>
-                <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
 
-                {testStats.score >= 5 ?
-                    <p className="text-green-600 font-bold animate-bounce mb-2">¡Aprobado! 🎉</p> :
-                    <p className="text-red-500 font-bold mb-2">¡Sigue practicando!</p>
-                }
+                <div className="med-result-hero">
+                    <div className="med-nota-block" style={{ borderColor: notaColor }}>
+                        <div className="med-nota-label">Tu nota</div>
+                        <div className="med-nota-value" style={{ color: notaColor }}>
+                            {nota.toFixed(1)}<span className="med-nota-max">/10</span>
+                        </div>
+                        <div className="med-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
+                    </div>
+                    <div className="med-stats-block">
+                        <div className="med-stat">
+                            <span className="med-stat-label">Aciertos</span>
+                            <span className="med-stat-value">{testStats.score} / {TOTAL_TEST_QUESTIONS}</span>
+                        </div>
+                        <div className="med-stat">
+                            <span className="med-stat-label">Puntos</span>
+                            <span className="med-stat-value">{testStats.points}</span>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
                     {testStats.answers.map((ans, idx) => (
                         <div key={idx} className={`p-3 mb-2 rounded border ${ans.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
                             <div className="flex justify-between items-center text-lg">
                                 <span>{ans.left} {ans.right && <strong>{ans.user}</strong>} {ans.right}</span>
-                                {ans.isCorrect ? <span>✅</span> : <span className="text-red-600 font-bold text-sm">{gameMode === 'comparar' ? `Era ${ans.correct}` : 'Incorrecto'}</span>}
+                                {ans.isCorrect
+                                    ? <span className="text-green-700 font-bold text-sm">✅ +{ans.points} pts ({ans.elapsedSec}s)</span>
+                                    : <span className="text-red-600 font-bold text-sm">{gameMode === 'comparar' ? `Era ${ans.correct}` : 'Incorrecto'}</span>}
                             </div>
                         </div>
                     ))}
@@ -456,39 +530,61 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
         );
     }
 
-    // VISTAS DE CONFIGURACIÓN
-    if (phase === 'setup') {
+    // VISTAS DE CONFIGURACIÓN (solo si no vienen forzadas type+mode)
+    if (phase === 'setup' && !(forcedType && forcedMode)) {
         return (
             <div className={`medidas-container medidas-setup-screen theme-${measureType}`}>
                 <h1><span className="gradient-text">{title}</span></h1>
 
-                <div className="flex justify-center mb-6">
-                    <div className="type-selector-container">
-                        {Object.values(MEASURE_TYPES).map(type => (
-                            <button
-                                key={type.id}
-                                className={`type-btn t-${type.id} ${measureType === type.id ? 'active' : ''}`}
-                                onClick={() => setMeasureType(type.id)}
-                            >
-                                <span>{type.icon}</span> {type.label}
-                            </button>
-                        ))}
+                {!forcedType && (
+                    <div className="flex justify-center mb-6">
+                        <div className="type-selector-container">
+                            {Object.values(MEASURE_TYPES).map(type => (
+                                <button
+                                    key={type.id}
+                                    className={`type-btn t-${type.id} ${measureType === type.id ? 'active' : ''}`}
+                                    onClick={() => setMeasureType(type.id)}
+                                >
+                                    <span>{type.icon}</span> {type.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
-                <p className="instrucciones">¿Qué quieres practicar hoy?</p>
-                <div className="mode-options">
-                    <button className="btn-setup-mode" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
-                        <div className="mode-icon">⚖️</div>
-                        <div className="mode-name">Comparar</div>
-                        <div className="mode-desc">¿Mayor, Menor o Igual?</div>
-                    </button>
-                    <button className="btn-setup-mode" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
-                        <div className="mode-icon">🔢</div>
-                        <div className="mode-name">Ordenar</div>
-                        <div className="mode-desc">De menor a mayor</div>
-                    </button>
-                </div>
+                {forcedMode ? (
+                    <>
+                        <p className="instrucciones">Pulsa para empezar.</p>
+                        <div className="mode-options">
+                            <button className="btn-setup-mode" onClick={() => {
+                                if (forcedMode === 'ordenar') {
+                                    setOrderCount(orderCountForLevel(level));
+                                }
+                                setPhase('play');
+                            }}>
+                                <div className="mode-icon">{forcedMode === 'comparar' ? '⚖️' : '🔢'}</div>
+                                <div className="mode-name">{forcedMode === 'comparar' ? 'Comparar' : 'Ordenar'}</div>
+                                <div className="mode-desc">{forcedMode === 'comparar' ? '¿Mayor, Menor o Igual?' : 'De menor a mayor'}</div>
+                            </button>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <p className="instrucciones">¿Qué quieres practicar hoy?</p>
+                        <div className="mode-options">
+                            <button className="btn-setup-mode" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
+                                <div className="mode-icon">⚖️</div>
+                                <div className="mode-name">Comparar</div>
+                                <div className="mode-desc">¿Mayor, Menor o Igual?</div>
+                            </button>
+                            <button className="btn-setup-mode" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
+                                <div className="mode-icon">🔢</div>
+                                <div className="mode-name">Ordenar</div>
+                                <div className="mode-desc">De menor a mayor</div>
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
         );
     }
@@ -513,10 +609,13 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
     return (
         <div className={`medidas-container theme-${measureType}`}>
             <div className="medidas-game-header">
-                <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
-                    🏠 Cambiar Modo
-                </button>
+                {!(forcedType && forcedMode) && (
+                    <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
+                        🏠 Cambiar Modo
+                    </button>
+                )}
                 <h1><span className="gradient-text">{title}</span></h1>
+                <InstructionsButton onClick={() => setShowInstructions(true)} />
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 px-4">
@@ -525,17 +624,19 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
                     <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Examen</button>
                 </div>
 
-                <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">
-                    <span className="text-sm font-bold text-gray-600">Ayuda</span>
-                    <label className="switch">
-                        <input type="checkbox" checked={showHelper} onChange={(e) => setShowHelper(e.target.checked)} />
-                        <span className="slider round"></span>
-                    </label>
-                </div>
+                {!isTestMode && (
+                    <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">
+                        <span className="text-sm font-bold text-gray-600">Ayuda</span>
+                        <label className="switch">
+                            <input type="checkbox" checked={showHelper} onChange={(e) => setShowHelper(e.target.checked)} />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                )}
             </div>
 
-            {/* --- VISUALIZADOR DE ESCALA MEJORADO --- */}
-            {showHelper && (
+            {/* --- VISUALIZADOR DE ESCALA MEJORADO (solo en práctica) --- */}
+            {showHelper && !isTestMode && (
                 <div className="mb-6 p-4 bg-gray-50 rounded-xl border-2 border-gray-100 fade-in">
                     <div className="flex justify-between items-center px-4 mb-2">
                         <span className="scale-label">MAYOR</span>
@@ -641,17 +742,65 @@ const MedidasGame = ({ level, title, onGameComplete }) => {
                     </>
                 )}
             </div>
+
+            <InstructionsModal
+                isOpen={showInstructions}
+                onClose={() => setShowInstructions(false)}
+                title={title}
+            >
+                <h3>🎯 Objetivo</h3>
+                <p>
+                    {gameMode === 'comparar'
+                        ? <>Comparar dos medidas de <strong>{currentConfig.label.toLowerCase()}</strong> y decidir si la primera es mayor (&gt;), menor (&lt;) o igual (=) que la segunda.</>
+                        : <>Ordenar varias medidas de <strong>{currentConfig.label.toLowerCase()}</strong> de menor a mayor.</>}
+                </p>
+
+                <h3>🕹️ Cómo se juega</h3>
+                {gameMode === 'comparar' ? (
+                    <ul>
+                        <li>Lee las dos medidas y pulsa el signo correcto: <strong>&lt;</strong>, <strong>=</strong> o <strong>&gt;</strong>.</li>
+                        <li>En <strong>práctica</strong> puedes activar la <strong>escalera de unidades</strong> como ayuda visual.</li>
+                        <li>En <strong>examen</strong> no hay ayudas y se mide el tiempo.</li>
+                    </ul>
+                ) : (
+                    <ul>
+                        <li>Usa los botones <strong>⇄</strong> entre tarjetas para intercambiar posiciones hasta que queden de menor a mayor.</li>
+                        <li>En <strong>práctica</strong> puedes activar la <strong>escalera de unidades</strong> como ayuda visual.</li>
+                        <li>En <strong>examen</strong> no hay ayudas y se mide el tiempo.</li>
+                    </ul>
+                )}
+
+                <h3>📊 Nota y puntos en el examen</h3>
+                <p>El examen tiene <strong>{TOTAL_TEST_QUESTIONS} preguntas</strong>. Tu nota va de <strong>0 a 10</strong>:</p>
+                <p className="instr-formula">
+                    <strong>Nota</strong> = aciertos / {TOTAL_TEST_QUESTIONS} × 10
+                </p>
+                <p>
+                    Además ganas <strong>puntos para el ranking</strong> en cada acierto. Cuanto más rápido respondas, más puntos:
+                </p>
+                <p className="instr-formula">
+                    <strong>Puntos</strong> = {BASE_POINTS} + bonus de velocidad (hasta {MAX_SPEED_BONUS})
+                </p>
+                <p className="instr-note">
+                    Dos partidas con un 10 pueden tener distinta puntuación: gana el ranking quien lo termine antes.
+                </p>
+
+                <div className="instr-tips">
+                    <strong>💡 Consejo:</strong> en práctica, activa la ayuda de la escalera y observa
+                    cómo se multiplica por 10 cada peldaño. Al pasar al examen ya no la verás.
+                </div>
+            </InstructionsModal>
         </div>
     );
 };
 
-// {...props} primero: así el level numerico del wrapper no lo sobrescribe el level string ("primaria") que AppRunnerPage pasa por la URL.
-export const Medidas1 = (props) => <MedidasGame {...props} level={1} title="Medidas: Iniciación (1º)" />;
-export const Medidas2 = (props) => <MedidasGame {...props} level={2} title="Medidas: Unidades Básicas (2º)" />;
-export const Medidas3 = (props) => <MedidasGame {...props} level={3} title="Medidas: Conversión Simple (3º)" />;
-export const Medidas4 = (props) => <MedidasGame {...props} level={4} title="Medidas: Sistema Completo (4º)" />;
-export const Medidas5 = (props) => <MedidasGame {...props} level={5} title="Medidas: Expresiones Complejas (5º)" />;
-export const Medidas6 = (props) => <MedidasGame {...props} level={6} title="Medidas: Reto Experto (6º)" />;
+// {...props} primero: así el level numérico del wrapper no lo sobrescribe el level string ("primaria") que AppRunnerPage pasa por la URL.
+export const LongitudComparar = (props) => <MedidasGame {...props} forcedType="longitud" forcedMode="comparar" title="Longitud: Comparar" />;
+export const LongitudOrdenar = (props) => <MedidasGame {...props} forcedType="longitud" forcedMode="ordenar" title="Longitud: Ordenar" />;
+export const MasaComparar = (props) => <MedidasGame {...props} forcedType="masa" forcedMode="comparar" title="Masa: Comparar" />;
+export const MasaOrdenar = (props) => <MedidasGame {...props} forcedType="masa" forcedMode="ordenar" title="Masa: Ordenar" />;
+export const CapacidadComparar = (props) => <MedidasGame {...props} forcedType="capacidad" forcedMode="comparar" title="Capacidad: Comparar" />;
+export const CapacidadOrdenar = (props) => <MedidasGame {...props} forcedType="capacidad" forcedMode="ordenar" title="Capacidad: Ordenar" />;
 
 export { generateProblemData, generateOrderProblemManual };
 export default MedidasGame;

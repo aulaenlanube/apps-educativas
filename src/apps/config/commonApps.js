@@ -66,13 +66,13 @@ const OrdenaNumeros4 = lazy(() => import('../_shared/MayorMenorGame').then(m => 
 const OrdenaNumeros5 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros5 })));
 const OrdenaNumeros6 = lazy(() => import('../_shared/MayorMenorGame').then(m => ({ default: m.OrdenaNumeros6 })));
 
-// Medidas
-const Medidas1 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas1 })));
-const Medidas2 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas2 })));
-const Medidas3 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas3 })));
-const Medidas4 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas4 })));
-const Medidas5 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas5 })));
-const Medidas6 = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.Medidas6 })));
+// Medidas (3 magnitudes × 2 modos)
+const LongitudComparar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.LongitudComparar })));
+const LongitudOrdenar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.LongitudOrdenar })));
+const MasaComparar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.MasaComparar })));
+const MasaOrdenar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.MasaOrdenar })));
+const CapacidadComparar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.CapacidadComparar })));
+const CapacidadOrdenar = lazy(() => import('../_shared/MedidasGame').then(m => ({ default: m.CapacidadOrdenar })));
 
 const GeneradorPersonajes = lazy(() => import('../generador-personajes/GeneradorPersonajes'));
 const BuscaElIntruso = lazy(() => import('../busca-el-intruso/BuscaElIntruso.jsx'));
@@ -286,12 +286,12 @@ export const appOrdenaNumeros4 = { id: 'ordena-numeros-4', name: '🔢 Ordena Op
 export const appOrdenaNumeros5 = { id: 'ordena-numeros-5', name: '🔢 Ordena Decimales', description: 'Ordena números decimales de menor a mayor.', component: OrdenaNumeros5 };
 export const appOrdenaNumeros6 = { id: 'ordena-numeros-6', name: '🔢 Reto de Ordenación', description: 'Ordena expresiones matemáticas complejas.', component: OrdenaNumeros6 };
 
-export const appMedidas1 = { id: 'medidas-1', name: '📏 Medidas: Iniciación', description: 'Aprende a comparar medidas básicas de longitud, peso y capacidad.', component: Medidas1 };
-export const appMedidas2 = { id: 'medidas-2', name: '📏 Medidas: Unidades Básicas', description: 'Practica con las unidades principales: metros, litros y gramos.', component: Medidas2 };
-export const appMedidas3 = { id: 'medidas-3', name: '📏 Medidas: Conversión Simple', description: 'Empieza a convertir unidades de longitud, masa y capacidad.', component: Medidas3 };
-export const appMedidas4 = { id: 'medidas-4', name: '📏 Medidas: Sistema Completo', description: 'Domina la escalera de unidades de todas las magnitudes.', component: Medidas4 };
-export const appMedidas5 = { id: 'medidas-5', name: '📏 Medidas: Expresiones Complejas', description: 'Trabaja con medidas compuestas en cualquier magnitud (ej. 1kg 200g).', component: Medidas5 };
-export const appMedidas6 = { id: 'medidas-6', name: '📏 Medidas: Reto Experto', description: 'Enfréntate a conversiones difíciles y números grandes en las 3 magnitudes.', component: Medidas6 };
+export const appLongitudComparar = { id: 'longitud-comparar', name: '📏 Longitud: Comparar', description: 'Compara medidas de longitud (mm, cm, m, km…).', component: LongitudComparar };
+export const appLongitudOrdenar = { id: 'longitud-ordenar', name: '📏 Longitud: Ordenar', description: 'Ordena medidas de longitud de menor a mayor.', component: LongitudOrdenar };
+export const appMasaComparar = { id: 'masa-comparar', name: '⚖️ Masa: Comparar', description: 'Compara medidas de masa (mg, g, kg…).', component: MasaComparar };
+export const appMasaOrdenar = { id: 'masa-ordenar', name: '⚖️ Masa: Ordenar', description: 'Ordena medidas de masa de menor a mayor.', component: MasaOrdenar };
+export const appCapacidadComparar = { id: 'capacidad-comparar', name: '💧 Capacidad: Comparar', description: 'Compara medidas de capacidad (ml, cl, l…).', component: CapacidadComparar };
+export const appCapacidadOrdenar = { id: 'capacidad-ordenar', name: '💧 Capacidad: Ordenar', description: 'Ordena medidas de capacidad de menor a mayor.', component: CapacidadOrdenar };
 
 
 // --- NUEVAS EXPORTACIONES DE APPS DE PRIMARIA ---

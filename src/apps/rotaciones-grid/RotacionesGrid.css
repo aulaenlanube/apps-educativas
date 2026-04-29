@@ -854,3 +854,107 @@ input:checked+.slider:before {
     color: #4f46e5;
     border: 1px solid rgba(79, 70, 229, 0.2);
 }
+
+/* Slider de dificultad bloqueado durante el examen */
+.difficulty-selector.locked {
+    opacity: 0.75;
+    border-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+}
+
+.difficulty-selector.locked .range-slider {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.rot-lock-badge {
+    display: inline-block;
+    margin-left: 0.6rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(251, 191, 36, 0.18);
+    color: #b45309;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Resultado del examen: nota y stats */
+.rot-result-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0 2rem;
+}
+
+.rot-nota-block {
+    flex: 0 0 auto;
+    min-width: 220px;
+    background: var(--app-bg);
+    border: 4px solid #4f46e5;
+    border-radius: 24px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.rot-nota-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--app-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.rot-nota-value {
+    font-family: 'Fredoka One', 'Fredoka', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    margin: 0.4rem 0;
+}
+
+.rot-nota-max {
+    font-size: 2rem;
+    opacity: 0.55;
+    margin-left: 0.2rem;
+}
+
+.rot-nota-msg {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.rot-stats-block {
+    flex: 1 1 260px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.rot-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    background: var(--app-bg);
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+}
+
+.rot-stat-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--app-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.rot-stat-value {
+    font-family: 'Fredoka One', 'Fredoka', sans-serif;
+    font-size: 1.4rem;
+    color: #4f46e5;
+}
