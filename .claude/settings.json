@@ -104,7 +104,12 @@
       "Bash(curl -s \"https://apps-educativas.com/assets/index-HMdxFU4K.js\")",
       "Bash(curl -s \"https://apps-educativas.com/assets/StudentDashboard-BWV8Cq3g.js\")",
       "Bash(curl -s \"https://apps-educativas.com/assets/duelService-BforBkqW.js\")",
-      "Bash(curl -s \"https://apps-educativas.com/index.html\")"
+      "Bash(curl -s \"https://apps-educativas.com/index.html\")",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/audit.sh)",
+      "Bash(bash /tmp/audit.sh)",
+      "Bash(bash /tmp/check_score.sh)",
+      "Bash(bash /tmp/full_audit.sh)"
     ]
   }
 }
