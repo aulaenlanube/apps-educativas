@@ -196,6 +196,7 @@ La nota del panel **Resumen** del alumno y el desglose de la pestaña **Tareas**
 
 - **Docentes/admin/free**: Supabase Auth estándar. `useAuth` expone `user`, `isTeacher`, `isFreeUser`.
 - **Alumnos**: login custom vía `student_login(teacher_code, username, password)` que devuelve un `session_token`. Cada RPC que actúa por el alumno requiere `(p_student_id, p_session_token)` y lo valida con `_resolve_student_session` (que hace `UPDATE last_used_at`). **Importante**: las RPCs que llaman a `_resolve_student_session` deben ser `VOLATILE` (no `STABLE`), si no PostgREST las enruta a transacción read-only y el UPDATE falla con *"cannot execute UPDATE in a read-only transaction"*.
+- **Rate limit en auth de alumno**: `student_login` y `student_set_password` rate-limitan por `(teacher_code|username)` vía `auth_attempts` + `_check_auth_rate_limit`/`_record_auth_outcome`. Login: 10 intentos fallidos / 5 min. Set password: 5 intentos / 5 min. Un éxito limpia los fallos. Los helpers están REVOKE de `anon`/`authenticated`; sólo se usan desde RPCs `SECURITY DEFINER`.
 
 ---
 

@@ -2,7 +2,7 @@
 
 > Documento de referencia para mantener la coherencia visual y narrativa de la colección de avatares de la plataforma. Consulta esto **antes** de redactar prompts de imagen, generar PNGs nuevos o editar `public/data/avatars.json`.
 
-La colección actual está en [public/data/avatars.json](public/data/avatars.json) (catálogo) y las imágenes en [public/images/avatar/](public/images/avatar/) en tres tamaños (512 / 256 / 128, formato `.webp`). Los PNGs originales se guardan en [public/images/avatar/_originals/](public/images/avatar/_originals/).
+La colección actual está en [public/data/avatars.json](public/data/avatars.json) (catálogo) y las imágenes en [public/images/avatar/](public/images/avatar/) en tres tamaños (512 / 256 / 128, formato `.webp`). Los PNGs originales se guardan en [tools/avatar-sources/_originals/](tools/avatar-sources/_originals/) (fuera de `public/` para no inflar el deploy).
 
 ---
 
@@ -146,18 +146,19 @@ Dejar los PNGs en `public/images/avatar/` (sueltos, con cualquier nombre tempora
 
 ### Paso 2 — convertir y mover a `_originals/`
 
-Usa ImageMagick 7 (`magick`). Plantilla para cada imagen:
+Usa ImageMagick 7 (`magick`). Plantilla para cada imagen (lanzada desde la raíz del repo):
 
 ```bash
-cd public/images/avatar/
 N="101"   # número de avatar
-SRC="archivo-original.png"
-magick "$SRC" -resize 512x512 -quality 90 "512/avatar-$N.webp"
-magick "$SRC" -resize 256x256 -quality 90 "256/avatar-$N.webp"
-magick "$SRC" -resize 128x128 -quality 90 "128/avatar-$N.webp"
-cp "$SRC" "_originals/avatar-$N.png"
+SRC="public/images/avatar/archivo-original.png"
+magick "$SRC" -resize 512x512 -quality 90 "public/images/avatar/512/avatar-$N.webp"
+magick "$SRC" -resize 256x256 -quality 90 "public/images/avatar/256/avatar-$N.webp"
+magick "$SRC" -resize 128x128 -quality 90 "public/images/avatar/128/avatar-$N.webp"
+cp "$SRC" "tools/avatar-sources/_originals/avatar-$N.png"
 rm "$SRC"
 ```
+
+Los PNGs originales viven fuera de `public/` para que el bundle de producción no los incluya (≈ 188 MB en total).
 
 Si son varias imágenes, usa un bucle con un mapa N → archivo (ver commits recientes en `git log` para ejemplos de batch).
 

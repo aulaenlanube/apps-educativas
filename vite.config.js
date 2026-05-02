@@ -270,6 +270,16 @@ export default defineConfig({
 	},
 	build: {
 		chunkSizeWarningLimit: 1000,
+		// Saca de los <link rel="modulepreload"> del index los chunks pesados
+		// que solo usan algunas apps específicas; se cargarán bajo demanda
+		// (lazy import) cuando el alumno entre a una app 3D o de física.
+		modulePreload: {
+			resolveDependencies(filename, deps) {
+				return deps.filter((d) =>
+					!d.includes('/three-') && !d.includes('/matter-')
+				);
+			},
+		},
 		rollupOptions: {
 			external: [
 				'@babel/parser',
@@ -285,10 +295,6 @@ export default defineConfig({
 					// 3D / Three.js stack — usado solo por sistema-solar, célula-animal/vegetal, visualizador-3d
 					if (id.includes('three') || id.includes('@react-three')) {
 						return 'three';
-					}
-					// LLM on-device (muy grande y solo usado en algunas apps)
-					if (id.includes('@mlc-ai/web-llm')) {
-						return 'webllm';
 					}
 					// Motor de física (matter-js)
 					if (id.includes('matter-js')) {
