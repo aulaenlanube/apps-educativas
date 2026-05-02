@@ -4219,7 +4219,297 @@ const SVGS = {
   ),
   speed_perfect: (id) => legBadge('speed_perfect', id),
   robot_retos_eso4: (id) => legBadge('robot_retos_eso4', id),
+
+  // ═══════════════════════════════════════════════════════════════
+  // MÍTICAS (rareza única, 1000 XP)
+  // Marco iridiscente con halo arcoíris, rayos giratorios y sparkles
+  // multicolor. Cada una con su icono central distintivo.
+  // ═══════════════════════════════════════════════════════════════
+  mythic_max_level:               (id) => mythBadge(id, mythCenter_max_level),
+  mythic_duels_500:               (id) => mythBadge(id, mythCenter_duels_500),
+  mythic_battles_100:             (id) => mythBadge(id, mythCenter_battles_100),
+  mythic_exams_1000:              (id) => mythBadge(id, mythCenter_exams_1000),
+  mythic_games_10000:             (id) => mythBadge(id, mythCenter_games_10000),
+  mythic_top_global_100_apps:     (id) => mythBadge(id, mythCenter_top_global),
+  mythic_streak_365:              (id) => mythBadge(id, mythCenter_streak_365),
+  mythic_perfect_100_primaria:    (id) => mythBadge(id, mythCenter_primaria),
+  mythic_perfect_100_eso:         (id) => mythBadge(id, mythCenter_eso),
+  mythic_perfect_100_bachillerato:(id) => mythBadge(id, mythCenter_bachi),
 };
+
+// ─── MARCO MÍTICO (iridiscente + rainbow halo + extra sparkles) ───
+const mythBadge = (id, center) => (
+  <>
+    <defs>
+      <radialGradient id={`${id}mhalo`} cx="0.5" cy="0.5">
+        <stop offset="0" stopColor="#f0abfc" stopOpacity="0.85" />
+        <stop offset="0.4" stopColor="#fbbf24" stopOpacity="0.45" />
+        <stop offset="0.75" stopColor="#a5f3fc" stopOpacity="0.25" />
+        <stop offset="1" stopColor="#a5f3fc" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id={`${id}mring`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#fbcfe8" />
+        <stop offset="0.2" stopColor="#f9a8d4" />
+        <stop offset="0.4" stopColor="#c084fc" />
+        <stop offset="0.6" stopColor="#60a5fa" />
+        <stop offset="0.8" stopColor="#34d399" />
+        <stop offset="1" stopColor="#fde047" />
+      </linearGradient>
+      <radialGradient id={`${id}mcenter`} cx="0.5" cy="0.4">
+        <stop offset="0" stopColor="#1e1b4b" />
+        <stop offset="0.6" stopColor="#0f0a2e" />
+        <stop offset="1" stopColor="#000000" />
+      </radialGradient>
+    </defs>
+
+    {/* Halo radial pulsante arcoíris */}
+    <g className="ba-anim anim-pulse" style={{ transformOrigin: '32px 32px' }}>
+      <circle cx="32" cy="32" r="32" fill={`url(#${id}mhalo)`} />
+    </g>
+
+    {/* Rayos giratorios multicolor */}
+    <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+      {Array.from({ length: 16 }).map((_, i) => {
+        const a = (i * 22.5) * Math.PI / 180;
+        const r1 = 24, r2 = 31;
+        const x1 = 32 + Math.cos(a) * r1, y1 = 32 + Math.sin(a) * r1;
+        const x2 = 32 + Math.cos(a) * r2, y2 = 32 + Math.sin(a) * r2;
+        const colors = ['#f0abfc', '#fde047', '#34d399', '#60a5fa'];
+        return (
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                stroke={colors[i % 4]} strokeWidth={i % 2 ? 0.8 : 1.6}
+                strokeLinecap="round" opacity="0.75" />
+        );
+      })}
+    </g>
+
+    {/* Aro iridiscente con doble borde */}
+    <circle cx="32" cy="32" r="26" fill="#1e1b4b" />
+    <circle cx="32" cy="32" r="25.2" fill="none" stroke={`url(#${id}mring)`} strokeWidth="4" />
+    <circle cx="32" cy="32" r="22.8" fill="none" stroke="#fef3c7" strokeWidth="0.5" opacity="0.7" />
+
+    {/* Disco central oscuro */}
+    <circle cx="32" cy="32" r="21" fill={`url(#${id}mcenter)`} stroke="#0f0a2e" strokeWidth="1" />
+    <circle cx="32" cy="32" r="20.2" fill="none" stroke="#f0abfc" strokeWidth="0.4" opacity="0.6" />
+
+    {/* 8 gemas de colores en el aro cada 45° */}
+    {Array.from({ length: 8 }).map((_, i) => {
+      const a = (i * 45 - 90) * Math.PI / 180;
+      const x = 32 + Math.cos(a) * 25;
+      const y = 32 + Math.sin(a) * 25;
+      const gems = ['#f9a8d4', '#fde047', '#86efac', '#7dd3fc', '#f9a8d4', '#fde047', '#86efac', '#7dd3fc'];
+      return (
+        <g key={`mgem${i}`}>
+          <circle cx={x} cy={y} r="2.4" fill="#1e1b4b" />
+          <circle cx={x} cy={y} r="2" fill={gems[i]} stroke="#0f0a2e" strokeWidth="0.4" />
+          <circle cx={x - 0.55} cy={y - 0.55} r="0.55" fill="#fef3c7" opacity="0.95" />
+        </g>
+      );
+    })}
+
+    {/* Icono central */}
+    {center(id)}
+
+    {/* Sparkles multicolor parpadeantes */}
+    <g className="ba-anim anim-twinkle">
+      <path d="M52 11 L53 13 L55 14 L53 15 L52 17 L51 15 L49 14 L51 13 Z" fill="#fef3c7" />
+    </g>
+    <g className="ba-anim anim-twinkle-2">
+      <path d="M11 51 L12 52.4 L13.6 53 L12 53.6 L11 55 L10 53.6 L8.4 53 L10 52.4 Z" fill="#f0abfc" />
+    </g>
+    <g className="ba-anim anim-twinkle-3">
+      <circle cx="52" cy="51" r="1.2" fill="#86efac" />
+      <circle cx="11" cy="13" r="1.2" fill="#7dd3fc" />
+      <circle cx="32" cy="6" r="0.9" fill="#fde047" />
+      <circle cx="32" cy="58" r="0.9" fill="#f9a8d4" />
+    </g>
+  </>
+);
+
+// ─── Iconos centrales para insignias míticas ───
+// Cada uno se renderiza dentro del disco oscuro central (radio ~21).
+// Área aproximada de dibujo: (20, 20) a (44, 44).
+
+// 1. Cima del Saber — montaña con estrella
+const mythCenter_max_level = () => (
+  <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+    {/* Montaña */}
+    <path d="M22 42 L29 26 L33 32 L37 24 L42 42 Z" fill="#c084fc" stroke="#1e1b4b" strokeWidth="0.8" />
+    <path d="M27 31 L29 26 L31 31 Z" fill="#fef3c7" />
+    <path d="M35 30 L37 24 L39 30 Z" fill="#fef3c7" />
+    {/* Estrella en la cima */}
+    <path d="M37 22 L38.2 24.4 L40.8 24.6 L38.9 26.4 L39.5 28.9 L37 27.5 L34.5 28.9 L35.1 26.4 L33.2 24.6 L35.8 24.4 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.4" />
+    {/* "50" */}
+    <text x="32" y="40.5" textAnchor="middle" fill="#fef3c7" fontSize="6" fontWeight="900" fontFamily="sans-serif">50</text>
+  </g>
+);
+
+// 2. Maestro de los Duelos — corona sobre espadas cruzadas
+const mythCenter_duels_500 = () => (
+  <g>
+    {/* Espadas cruzadas */}
+    <g transform="rotate(-45 32 32)">
+      <rect x="31" y="22" width="2" height="20" fill="#e2e8f0" stroke="#1e1b4b" strokeWidth="0.5" />
+      <rect x="29" y="40" width="6" height="2" fill="#92400e" />
+    </g>
+    <g transform="rotate(45 32 32)">
+      <rect x="31" y="22" width="2" height="20" fill="#e2e8f0" stroke="#1e1b4b" strokeWidth="0.5" />
+      <rect x="29" y="40" width="6" height="2" fill="#92400e" />
+    </g>
+    {/* Corona dorada */}
+    <path d="M24 26 L26 22 L28 25 L32 21 L36 25 L38 22 L40 26 L40 30 L24 30 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.6" />
+    <circle cx="32" cy="20" r="1.4" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+    <rect x="24" y="29" width="16" height="2" fill="#d97706" />
+  </g>
+);
+
+// 3. Emperador de las Batallas — trofeo grande con laureles
+const mythCenter_battles_100 = () => (
+  <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+    {/* Asas */}
+    <path d="M22 26 Q19 26 19 30 Q19 34 24 34" fill="none" stroke="#fde047" strokeWidth="1.6" />
+    <path d="M42 26 Q45 26 45 30 Q45 34 40 34" fill="none" stroke="#fde047" strokeWidth="1.6" />
+    {/* Copa */}
+    <path d="M24 22 H40 V32 Q40 38 32 39 Q24 38 24 32 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.8" />
+    <path d="M25 23 H39 V25 H25 Z" fill="#fef3c7" />
+    {/* Estrella en el centro */}
+    <path d="M32 26 L33 28 L35.2 28.2 L33.5 29.5 L34 31.5 L32 30.4 L30 31.5 L30.5 29.5 L28.8 28.2 L31 28 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.3" />
+    {/* Pie */}
+    <rect x="29" y="39" width="6" height="2" fill="#92400e" />
+    <rect x="27" y="41" width="10" height="2.5" fill="#92400e" stroke="#451a03" strokeWidth="0.4" />
+    {/* "100" */}
+    <text x="32" y="36" textAnchor="middle" fill="#92400e" fontSize="3.5" fontWeight="900" fontFamily="sans-serif">100</text>
+  </g>
+);
+
+// 4. Mil Exámenes Aprobados — pila de papeles con check
+const mythCenter_exams_1000 = () => (
+  <g>
+    {/* Pila de papeles */}
+    <rect x="22" y="40" width="20" height="3" fill="#cbd5e1" stroke="#1e1b4b" strokeWidth="0.4" />
+    <rect x="23" y="36" width="18" height="4" fill="#e2e8f0" stroke="#1e1b4b" strokeWidth="0.4" />
+    <rect x="22" y="22" width="20" height="14" fill="#fef3c7" stroke="#92400e" strokeWidth="0.7" />
+    <line x1="24" y1="25" x2="40" y2="25" stroke="#92400e" strokeWidth="0.5" />
+    <line x1="24" y1="27" x2="38" y2="27" stroke="#cbd5e1" strokeWidth="0.4" />
+    <line x1="24" y1="29" x2="38" y2="29" stroke="#cbd5e1" strokeWidth="0.4" />
+    {/* "1000" centrado */}
+    <text x="32" y="33.5" textAnchor="middle" fill="#dc2626" fontSize="5.5" fontWeight="900" fontFamily="sans-serif">1000</text>
+    {/* Check verde */}
+    <circle cx="40" cy="22" r="3.5" fill="#10b981" stroke="#065f46" strokeWidth="0.5" />
+    <path d="M38 22 L39.4 23.4 L42 20.6" fill="none" stroke="#fef3c7" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </g>
+);
+
+// 5. Diez Mil Partidas — mando de consola con estrellas
+const mythCenter_games_10000 = () => (
+  <g className="ba-anim anim-sway" style={{ transformOrigin: '32px 32px' }}>
+    {/* Cuerpo del mando */}
+    <path d="M22 28 Q20 28 20 32 V36 Q20 42 24 42 Q26 42 27 40 H37 Q38 42 40 42 Q44 42 44 36 V32 Q44 28 42 28 Z" fill="#7c3aed" stroke="#1e1b4b" strokeWidth="0.7" />
+    {/* D-pad */}
+    <rect x="23" y="33" width="5" height="1.5" fill="#1e1b4b" />
+    <rect x="24.75" y="31.25" width="1.5" height="5" fill="#1e1b4b" />
+    {/* Botones */}
+    <circle cx="38" cy="32" r="1.2" fill="#fde047" />
+    <circle cx="40.5" cy="34.5" r="1.2" fill="#10b981" />
+    <circle cx="35.5" cy="34.5" r="1.2" fill="#3b82f6" />
+    <circle cx="38" cy="37" r="1.2" fill="#dc2626" />
+    {/* Estrella encima */}
+    <path d="M32 22 L33 24.4 L35.6 24.6 L33.7 26.4 L34.3 28.9 L32 27.5 L29.7 28.9 L30.3 26.4 L28.4 24.6 L31 24.4 Z" fill="#fde047" stroke="#92400e" strokeWidth="0.4" />
+  </g>
+);
+
+// 6. Cima del Mundo — globo terráqueo con #1
+const mythCenter_top_global = () => (
+  <g className="ba-anim anim-spin" style={{ transformOrigin: '32px 32px' }}>
+    {/* Globo */}
+    <circle cx="32" cy="32" r="9" fill="#3b82f6" stroke="#1e1b4b" strokeWidth="0.7" />
+    <path d="M23 32 Q28 28 32 32 Q36 36 41 32" fill="none" stroke="#10b981" strokeWidth="1" />
+    <path d="M25 28 Q28 26 32 27 Q36 26 39 28" fill="none" stroke="#10b981" strokeWidth="0.8" />
+    <path d="M25 36 Q28 38 32 37 Q36 38 39 36" fill="none" stroke="#10b981" strokeWidth="0.8" />
+    <ellipse cx="32" cy="32" rx="9" ry="3.5" fill="none" stroke="#fef3c7" strokeWidth="0.4" opacity="0.6" />
+    <ellipse cx="32" cy="32" rx="3.5" ry="9" fill="none" stroke="#fef3c7" strokeWidth="0.4" opacity="0.6" />
+    {/* Cinta #1 */}
+    <path d="M28 21 L36 21 L34 25 L32 23 L30 25 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+    <text x="32" y="20.5" textAnchor="middle" fill="#fef3c7" fontSize="3.2" fontWeight="900" fontFamily="sans-serif">#1</text>
+  </g>
+);
+
+// 7. Año Eterno — calendario con llama
+const mythCenter_streak_365 = () => (
+  <g>
+    {/* Calendario */}
+    <rect x="22" y="24" width="20" height="16" rx="1" fill="#fef3c7" stroke="#92400e" strokeWidth="0.7" />
+    <rect x="22" y="24" width="20" height="4" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+    <rect x="25" y="22" width="2" height="4" fill="#1e1b4b" />
+    <rect x="37" y="22" width="2" height="4" fill="#1e1b4b" />
+    {/* Cuadrícula con muchos puntos */}
+    {[0,1,2,3,4].map(r => [0,1,2,3,4,5].map(c => (
+      <rect key={`${r}-${c}`} x={24 + c*3} y={29 + r*2.2} width="1.5" height="1.5" fill={r === 4 && c === 5 ? '#fb923c' : '#10b981'} />
+    )))}
+    {/* "365" */}
+    <text x="32" y="44" textAnchor="middle" fill="#fef3c7" fontSize="4.5" fontWeight="900" fontFamily="sans-serif">365</text>
+    {/* Llama esquina */}
+    <g className="ba-anim anim-twinkle" style={{ transformOrigin: '40px 23px' }}>
+      <path d="M40 19 Q42 21 41 23 Q40 22 40 24 Q38 22 39 20 Z" fill="#f97316" stroke="#7f1d1d" strokeWidth="0.4" />
+      <path d="M40 21 Q40.6 22 40 23" fill="none" stroke="#fde047" strokeWidth="0.5" />
+    </g>
+  </g>
+);
+
+// 8. Mente Maestra de Primaria — mochila + 10
+const mythCenter_primaria = () => (
+  <g>
+    {/* Asa */}
+    <path d="M27 22 Q27 19 32 19 Q37 19 37 22" fill="none" stroke="#fde047" strokeWidth="1.4" />
+    {/* Mochila */}
+    <path d="M24 22 H40 Q42 22 42 25 V40 Q42 42 40 42 H24 Q22 42 22 40 V25 Q22 22 24 22 Z" fill="#3b82f6" stroke="#1e1b4b" strokeWidth="0.7" />
+    {/* Bolsillo */}
+    <rect x="26" y="30" width="12" height="8" rx="1" fill="#60a5fa" stroke="#1e3a8a" strokeWidth="0.5" />
+    <circle cx="32" cy="34" r="1.2" fill="#fde047" stroke="#92400e" strokeWidth="0.3" />
+    {/* "10" */}
+    <text x="32" y="28" textAnchor="middle" fill="#fef3c7" fontSize="5" fontWeight="900" fontFamily="sans-serif">10</text>
+    {/* Estrella esquina */}
+    <path d="M40 24 L40.7 25.4 L42.2 25.6 L41.1 26.6 L41.4 28.1 L40 27.3 L38.6 28.1 L38.9 26.6 L37.8 25.6 L39.3 25.4 Z" fill="#fde047" />
+  </g>
+);
+
+// 9. Mente Maestra de la ESO — birrete graduación
+const mythCenter_eso = () => (
+  <g className="ba-anim anim-bob" style={{ transformOrigin: '32px 32px' }}>
+    {/* Tabla del birrete */}
+    <path d="M20 28 L32 22 L44 28 L32 34 Z" fill="#1e1b4b" stroke="#0f0a2e" strokeWidth="0.7" />
+    <path d="M20 28 L32 24 L44 28 L32 32 Z" fill="#312e81" stroke="#0f0a2e" strokeWidth="0.4" opacity="0.6" />
+    {/* Caja */}
+    <path d="M27 30 V36 Q27 37 32 37 Q37 37 37 36 V30" fill="#1e1b4b" stroke="#0f0a2e" strokeWidth="0.6" />
+    {/* Borla */}
+    <line x1="44" y1="28" x2="44" y2="33" stroke="#fde047" strokeWidth="0.7" />
+    <circle cx="44" cy="34" r="1.4" fill="#fde047" stroke="#92400e" strokeWidth="0.3" />
+    <line x1="44" y1="33" x2="43.5" y2="35" stroke="#d97706" strokeWidth="0.4" />
+    {/* "10" */}
+    <text x="32" y="44" textAnchor="middle" fill="#fef3c7" fontSize="5.5" fontWeight="900" fontFamily="sans-serif">10</text>
+  </g>
+);
+
+// 10. Mente Maestra de Bachillerato — diploma
+const mythCenter_bachi = () => (
+  <g>
+    {/* Pergamino enrollado */}
+    <rect x="23" y="22" width="18" height="18" fill="#fef3c7" stroke="#92400e" strokeWidth="0.7" />
+    <rect x="23" y="22" width="18" height="2" fill="#fde047" />
+    <rect x="23" y="38" width="18" height="2" fill="#fde047" />
+    {/* Líneas de texto */}
+    <line x1="25" y1="26" x2="39" y2="26" stroke="#92400e" strokeWidth="0.4" />
+    <line x1="25" y1="28" x2="37" y2="28" stroke="#cbd5e1" strokeWidth="0.4" />
+    <line x1="25" y1="30" x2="39" y2="30" stroke="#cbd5e1" strokeWidth="0.4" />
+    {/* "10/10" */}
+    <text x="32" y="36" textAnchor="middle" fill="#dc2626" fontSize="4" fontWeight="900" fontFamily="sans-serif">10/10</text>
+    {/* Sello rojo */}
+    <circle cx="40" cy="38" r="3" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.5" />
+    <path d="M38.4 38 L39.6 39.2 L41.6 36.8" fill="none" stroke="#fef3c7" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Cinta colgando */}
+    <path d="M40 40.5 L39 43 L40 42 L41 43 L40.5 40.5" fill="#dc2626" stroke="#7f1d1d" strokeWidth="0.4" />
+  </g>
+);
 
 // ─── Halo de fondo por rareza ───
 const RARITY = {
@@ -4227,6 +4517,7 @@ const RARITY = {
   rare:      { from: '#dbeafe', to: '#bfdbfe', ring: 'rgba(59,130,246,0.5)' },
   epic:      { from: '#ede9fe', to: '#e9d5ff', ring: 'rgba(139,92,246,0.55)' },
   legendary: { from: '#fef3c7', to: '#fde68a', ring: 'rgba(245,158,11,0.6)' },
+  mythic:    { from: '#fae8ff', to: '#fed7aa', ring: 'rgba(217,70,239,0.7)' },
 };
 
 /**

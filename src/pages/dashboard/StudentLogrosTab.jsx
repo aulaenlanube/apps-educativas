@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter, Medal, Swords, Users, GraduationCap, ClipboardList, MessageSquare, CalendarDays, ThumbsUp } from 'lucide-react';
+import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filter, Medal, Swords, Users, GraduationCap, ClipboardList, MessageSquare, CalendarDays, ThumbsUp, Crown } from 'lucide-react';
 import BadgeIcon from '../../components/ui/BadgeIcon';
 import BadgeModal from '../../components/ui/BadgeModal';
 
@@ -9,9 +9,11 @@ const RARITY_CONFIG = {
   rare:      { label: 'Rara',       color: 'border-blue-400 bg-blue-50',       text: 'text-blue-600',   badge: 'bg-blue-100 text-blue-700' },
   epic:      { label: 'Epica',      color: 'border-purple-500 bg-purple-50',   text: 'text-purple-600', badge: 'bg-purple-100 text-purple-700' },
   legendary: { label: 'Legendaria', color: 'border-yellow-400 bg-gradient-to-br from-yellow-50 to-amber-50', text: 'text-amber-600', badge: 'bg-amber-100 text-amber-700' },
+  mythic:    { label: 'Mítica',     color: 'border-fuchsia-500 bg-gradient-to-br from-fuchsia-50 via-pink-50 to-amber-50', text: 'text-fuchsia-700', badge: 'bg-gradient-to-r from-fuchsia-200 via-pink-200 to-amber-200 text-fuchsia-800' },
 };
 
 const CATEGORY_CONFIG = {
+  mythic:           { label: 'Míticas',       icon: Crown },
   general:          { label: 'General',       icon: Target },
   exams:            { label: 'Examenes',      icon: Star },
   mastery:          { label: 'Maestria',      icon: Zap },
@@ -166,7 +168,7 @@ export default function StudentLogrosTab({ gamification }) {
           })}
         </div>
         <div className="flex gap-1 ml-auto">
-          {['all', 'common', 'rare', 'epic', 'legendary'].map(r => (
+          {['all', 'common', 'rare', 'epic', 'legendary', 'mythic'].map(r => (
             <button
               key={r}
               onClick={() => setFilterRarity(r)}

@@ -270,6 +270,29 @@ export function useGameTracker() {
             console.warn('[GameTracker] High score error (non-blocking):', err);
           }
 
+          // Insignias míticas (solo alumnos): se evalúan tras procesar la sesión.
+          // Cada mítica otorga 1000 XP. La función es idempotente.
+          if (userInfo2.type === 'student' && student?.session_token) {
+            try {
+              const mythicResult = await supabase.rpc('mythic_badges_check', {
+                p_student_id: userInfo2.id,
+                p_session_token: student.session_token,
+              });
+              const newMythic = mythicResult.data?.new_badges || [];
+              if (newMythic.length > 0) {
+                gamifResult.new_badges = [
+                  ...(gamifResult.new_badges || []),
+                  ...newMythic,
+                ];
+                const mxp = mythicResult.data?.badge_xp || 0;
+                gamifResult.total_xp_gained = (gamifResult.total_xp_gained || 0) + mxp;
+                gamifResult.new_xp = (gamifResult.new_xp || 0) + mxp;
+              }
+            } catch (err) {
+              console.warn('[GameTracker] Mythic badges error (non-blocking):', err);
+            }
+          }
+
           return gamifResult;
         }
       } catch (err) {

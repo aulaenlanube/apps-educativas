@@ -2,7 +2,7 @@
 
 > Este fichero se lee automáticamente en cada sesión. Consultar SIEMPRE antes de crear una app nueva o tocar el sistema de notas/duelos.
 
-Plataforma React + Vite con backend Supabase. Apps educativas para **Primaria (1º-6º)**, **ESO (1º-4º)**, **Bachillerato (1º-2º)** y **Atención a la Diversidad**. Producción en <https://apps-educativas.com>. Estructura completa de la BD documentada en [DATABASE.md](DATABASE.md).
+Plataforma React + Vite con backend Supabase. Apps educativas para **Primaria (1º-6º)**, **ESO (1º-4º)**, **Bachillerato (1º-2º)** y **Atención a la Diversidad**. Producción en <https://apps-educativas.com>. Estructura completa de la BD documentada en [DATABASE.md](DATABASE.md). Guía de estilo y pipeline para crear avatares nuevos en [AVATARS.md](AVATARS.md).
 
 ---
 

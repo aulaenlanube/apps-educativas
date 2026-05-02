@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight, GraduationCap } from 'lucide-react';
+import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight, GraduationCap, Crown } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 
@@ -145,6 +145,7 @@ const RARITY_STYLE = {
   rare:      { label: 'Rara',       bg: 'bg-blue-100 text-blue-700',   dot: 'bg-blue-500' },
   epic:      { label: 'Epica',      bg: 'bg-purple-100 text-purple-700', dot: 'bg-purple-500' },
   legendary: { label: 'Legendaria', bg: 'bg-amber-100 text-amber-700', dot: 'bg-amber-500' },
+  mythic:    { label: 'Mitica',     bg: 'bg-gradient-to-r from-fuchsia-100 via-pink-100 to-amber-100 text-fuchsia-800', dot: 'bg-fuchsia-500' },
 };
 
 const CATEGORY_META = {
@@ -156,6 +157,7 @@ const CATEGORY_META = {
   streaks:     { label: 'Rachas Diarias',        icon: Flame,  color: 'text-red-500' },
   dedication:  { label: 'Tiempo de Juego',       icon: Clock,  color: 'text-indigo-500' },
   subjects:    { label: 'Asignaturas',           icon: BookOpen, color: 'text-pink-500' },
+  mythic:      { label: 'Míticas',                icon: Crown,    color: 'text-fuchsia-500' },
   docencia:    { label: '🍎 Docencia (exclusivas para profesores)', icon: GraduationCap, color: 'text-emerald-600' },
 };
 
@@ -243,12 +245,13 @@ export default function XPConfigPanel() {
         </h3>
         <p className="text-sm text-slate-500 mb-4">Todas las insignias otorgan XP al desbloquearlas. Cada insignia solo se puede conseguir una vez. La cantidad de XP depende de la rareza:</p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
           {[
             { rarity: 'common', xp: 25 },
             { rarity: 'rare', xp: 75 },
             { rarity: 'epic', xp: 200 },
             { rarity: 'legendary', xp: 500 },
+            { rarity: 'mythic', xp: 1000 },
           ].map(r => {
             const style = RARITY_STYLE[r.rarity];
             return (

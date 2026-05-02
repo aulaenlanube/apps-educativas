@@ -530,7 +530,7 @@ export default function StudentDashboard() {
   const hasGroup = !!student?.group_id;
   const tabs = [
     { id: 'overview', label: 'Resumen', icon: BarChart3 },
-    { id: 'logros', label: 'Logros', icon: Trophy },
+    { id: 'logros', label: 'Insignias', icon: Trophy },
     ...(hasGroup ? [
       { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
       { id: 'messages', label: 'Mensajes', icon: MessageSquare },
