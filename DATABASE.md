@@ -42,7 +42,8 @@
 | Tabla | Descripción | Columnas clave |
 |---|---|---|
 | `groups` | Grupos de clase | `id`, `teacher_id`, `name`, `group_code` (auto), `level`, `grade`, `subject_id`, **`current_term`** (1/2/3 o NULL = auto por fecha) |
-| `student_groups` | Relación alumno-grupo (M:N) | `student_id`, `group_id`, `teacher_id` |
+| `student_groups` | Relación alumno-grupo (M:N) | `student_id`, `group_id`, `teacher_id`, **`progress_reset_at`** (NULL o timestamp; punto de corte del progreso del curso) |
+| `student_group_reset_log` | Histórico de resets de progreso del curso | `id`, `student_id`, `group_id`, `teacher_id`, `reset_at`, `reason` |
 | `group_teachers` | Co-profesores de un grupo | `group_id`, `teacher_id`, `added_by` |
 | `group_class_hours` | Franjas horarias de clase del grupo | `group_id`, `weekday` (1-7 ISO), `start_time`, `end_time` |
 | `group_messages` | Chat de grupo | `group_id`, `student_id`, `sender_type`, `sender_id`, `sender_name`, `message` |
@@ -206,6 +207,16 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 ### Evaluación "en curso"
 `groups.current_term` (editable por el profesor desde el panel de grupo). Si es NULL se infiere por la fecha actual. El panel **Mi nota actual** del alumno muestra siempre los valores de la evaluación en curso.
 
+### Soft-reset del progreso del curso (por par alumno-grupo)
+- Columna `student_groups.progress_reset_at` (NULL por defecto). Si está set, `_compute_student_term_grades` y `student_get_grade_with_duel_bonus` ignoran todo dato anterior a ese timestamp para ese par alumno-grupo:
+  - `game_sessions.created_at > reset_at` (intentos contables para tareas).
+  - `quiz_battle_sessions.created_at > reset_at` (bonus de batallas).
+  - `duel_grade_ledger.created_at > reset_at` (bonus de duelos).
+- **No se borra ningún registro**. XP, nivel, avatares desbloqueados, insignias, historial de partidas y tiempo total de juego son globales y se preservan.
+- Filtro adicional desde esta migración: el bonus de duelos pasa a calcularse solo con duelos cuyo `duels.group_id = grupo activo` (antes sumaba los de cualquier grupo del alumno).
+- Histórico completo en `student_group_reset_log`. RPC: `teacher_reset_student_course_progress(p_student_id, p_group_id)`.
+- Limitación conocida: `quiz_battle_sessions` no tiene `group_id` propio, así que si un alumno está en dos grupos del mismo profe con (level, grade, subject_id) idénticos, una batalla puede atribuirse a ambos. Mejora futura: añadir `group_id` a la tabla.
+
 ---
 
 ## Funciones RPC (150+)
@@ -253,6 +264,7 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 | `create_student` / `create_students_bulk` | — |
 | `student_join_group` / `student_get_my_groups` | — |
 | `add_co_teacher` / `remove_co_teacher` / `is_owner_of_group` / `is_teacher_of_group` | — |
+| `teacher_reset_student_course_progress` | `p_student_id, p_group_id` — soft-reset del progreso del curso (no toca XP, avatares ni insignias) |
 
 ### Chat y notificaciones
 | Función | Argumentos |

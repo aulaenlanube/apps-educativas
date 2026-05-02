@@ -126,6 +126,9 @@ nota_evaluación = base_tareas
 ### Lo no intentado cuenta como 0
 `_compute_student_term_grades` usa `COALESCE(best.best_nota, 0)` y promedia ponderando por `weight`. Las tareas sin intento o con nota inferior a `min_score` se incluyen en la media con su valor real (0 si no se intentó, la nota obtenida si se falló).
 
+### Reset del progreso del curso (no toca lo global)
+El docente puede reiniciar el progreso del curso de un alumno suyo desde `StudentsPanel` (icono `History`, modal propio). Se marca `student_groups.progress_reset_at = now()` para ese par alumno-grupo y `_compute_student_term_grades` ignora todo `created_at <= reset_at` en `game_sessions`, `quiz_battle_sessions` y `duel_grade_ledger`. **No se borra nada**: XP, nivel, avatares desbloqueados, insignias, historial de partidas y tiempo total de juego son globales y se preservan. Las tareas siguen activas; el alumno tiene que volver a hacerlas para que cuenten. RPC: `teacher_reset_student_course_progress(p_student_id, p_group_id)`. Histórico en `student_group_reset_log`. Importante: a partir de esta migración el bonus de duelos se calcula **solo con duelos del grupo activo** (`duels.group_id = students.group_id`); antes sumaba los de todos los grupos del alumno.
+
 ### Curvas de los 4 bonus (función √, concava — duelos y avatares lineales)
 - **Nivel**: `0,5 · √((nivel-1)/49)` → tope +0,5 en nivel 50.
 - **Batallas**: score = `1·1ᵒs + 0,667·2ᵒs + 0,333·3ᵒs`, bonus = `0,5 · √(min(score, 10)/10)` → tope +0,5 con 10 primeros puestos.

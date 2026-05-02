@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, History, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { USERNAME_RE, sanitizePlainText } from '@/lib/sanitize';
 import { useToast } from '@/components/ui/use-toast';
@@ -24,6 +24,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
+  const [showResetProgressDialog, setShowResetProgressDialog] = useState(false);
   const [editingStudent, setEditingStudent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -146,6 +147,34 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
     } else {
       toast({ title: 'Contrasena restablecida', description: `${editingStudent.display_name} debera crear una nueva contrasena en su proximo inicio de sesion` });
       setShowResetDialog(false);
+      setEditingStudent(null);
+      onStudentsChanged();
+    }
+  };
+
+  const handleResetCourseProgress = async () => {
+    if (!editingStudent || !groupId) return;
+    setLoading(true);
+
+    const { data, error } = await supabase.rpc('teacher_reset_student_course_progress', {
+      p_student_id: editingStudent.id,
+      p_group_id: groupId,
+    });
+
+    setLoading(false);
+    if (error || data?.error || data?.success === false) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: error?.message || data?.error || 'No se pudo reiniciar el progreso',
+      });
+    } else {
+      const total = data?.total_resets;
+      toast({
+        title: 'Progreso del curso reiniciado',
+        description: `${editingStudent.display_name} mantiene XP, nivel, avatares e insignias.${total > 1 ? ` (Reset n.º ${total} en este grupo)` : ''}`,
+      });
+      setShowResetProgressDialog(false);
       setEditingStudent(null);
       onStudentsChanged();
     }
@@ -295,6 +324,16 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                   <button
                     onClick={() => {
                       setEditingStudent(student);
+                      setShowResetProgressDialog(true);
+                    }}
+                    className="p-1.5 rounded-lg hover:bg-amber-50 text-gray-400 hover:text-amber-600 transition-colors"
+                    title="Reiniciar progreso del curso"
+                  >
+                    <History className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingStudent(student);
                       setShowDeleteDialog(true);
                     }}
                     className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
@@ -439,6 +478,57 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
               className="bg-amber-600 hover:bg-amber-700 text-white"
             >
               {loading ? 'Restableciendo...' : 'Restablecer contrasena'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Dialogo reiniciar progreso del curso */}
+      <AlertDialog open={showResetProgressDialog} onOpenChange={setShowResetProgressDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Reiniciar progreso del curso</AlertDialogTitle>
+            <AlertDialogDescription asChild>
+              <div className="space-y-3 text-sm">
+                <p>
+                  Vas a reiniciar el progreso de <strong>{editingStudent?.display_name}</strong> en el grupo <strong>{groupName}</strong>.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-lg border border-green-200 bg-green-50 p-3">
+                    <p className="font-semibold text-green-800 mb-1">Se preserva</p>
+                    <ul className="list-disc list-inside text-xs text-green-900 space-y-0.5">
+                      <li>XP y nivel</li>
+                      <li>Avatares desbloqueados</li>
+                      <li>Insignias</li>
+                      <li>Historial de partidas</li>
+                      <li>Tiempo total de juego</li>
+                      <li>Contrasena</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <p className="font-semibold text-amber-800 mb-1">Se reinicia</p>
+                    <ul className="list-disc list-inside text-xs text-amber-900 space-y-0.5">
+                      <li>Notas de tareas del grupo</li>
+                      <li>Duelos del grupo</li>
+                      <li>Batallas del periodo</li>
+                      <li>Bonus de duelos y batallas</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500">
+                  Las tareas asignadas se mantienen activas. El alumno tendra que volver a hacer los examenes para que cuenten en la nota del curso.
+                  {' '}Solo afecta a este grupo; sus datos en otros grupos no cambian.
+                </p>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleResetCourseProgress}
+              className="bg-amber-600 hover:bg-amber-700 text-white"
+            >
+              {loading ? 'Reiniciando...' : 'Reiniciar progreso'}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
