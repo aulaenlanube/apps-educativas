@@ -41,10 +41,12 @@
     "image_lg": "/images/avatar/512/avatar-003.webp",
     "image_md": "/images/avatar/256/avatar-003.webp",
     "image_sm": "/images/avatar/128/avatar-003.webp",
-    "unlock_label": "Alcanza el nivel 25",
+    "unlock_label": "Aprueba 25 exámenes de Lengua con ≥9",
     "unlock": {
-      "type": "level",
-      "value": 25
+      "type": "subject_exams",
+      "subject_id": "lengua",
+      "count": 25,
+      "min_nota": 9
     },
     "sort_order": 3
   },
@@ -553,10 +555,10 @@
     "image_lg": "/images/avatar/512/avatar-033.webp",
     "image_md": "/images/avatar/256/avatar-033.webp",
     "image_sm": "/images/avatar/128/avatar-033.webp",
-    "unlock_label": "Alcanza el nivel 8",
+    "unlock_label": "Juega 14 días seguidos",
     "unlock": {
-      "type": "level",
-      "value": 8
+      "type": "streak_days",
+      "count": 14
     },
     "sort_order": 33
   },
@@ -693,10 +695,10 @@
     "image_lg": "/images/avatar/512/avatar-041.webp",
     "image_md": "/images/avatar/256/avatar-041.webp",
     "image_sm": "/images/avatar/128/avatar-041.webp",
-    "unlock_label": "Alcanza el nivel 30",
+    "unlock_label": "Gana 75 duelos",
     "unlock": {
-      "type": "level",
-      "value": 30
+      "type": "duels_won",
+      "count": 75
     },
     "sort_order": 41
   },
@@ -925,10 +927,12 @@
     "image_lg": "/images/avatar/512/avatar-055.webp",
     "image_md": "/images/avatar/256/avatar-055.webp",
     "image_sm": "/images/avatar/128/avatar-055.webp",
-    "unlock_label": "Alcanza el nivel 35",
+    "unlock_label": "Aprueba 25 exámenes de Matemáticas con ≥9,5",
     "unlock": {
-      "type": "level",
-      "value": 35
+      "type": "subject_exams",
+      "subject_id": "matematicas",
+      "count": 25,
+      "min_nota": 9.5
     },
     "sort_order": 55
   },
@@ -1060,10 +1064,10 @@
     "image_lg": "/images/avatar/512/avatar-063.webp",
     "image_md": "/images/avatar/256/avatar-063.webp",
     "image_sm": "/images/avatar/128/avatar-063.webp",
-    "unlock_label": "Alcanza el nivel 28",
+    "unlock_label": "Acumula 250.000 XP",
     "unlock": {
-      "type": "level",
-      "value": 28
+      "type": "xp",
+      "amount": 250000
     },
     "sort_order": 63
   },
@@ -1108,10 +1112,10 @@
     "image_lg": "/images/avatar/512/avatar-066.webp",
     "image_md": "/images/avatar/256/avatar-066.webp",
     "image_sm": "/images/avatar/128/avatar-066.webp",
-    "unlock_label": "Alcanza el nivel 50",
+    "unlock_label": "Gana 101 duelos",
     "unlock": {
-      "type": "level",
-      "value": 50
+      "type": "duels_won",
+      "count": 101
     },
     "sort_order": 66
   },
@@ -1140,10 +1144,10 @@
     "image_lg": "/images/avatar/512/avatar-068.webp",
     "image_md": "/images/avatar/256/avatar-068.webp",
     "image_sm": "/images/avatar/128/avatar-068.webp",
-    "unlock_label": "Alcanza el nivel 20",
+    "unlock_label": "Domina 25 apps distintas",
     "unlock": {
-      "type": "level",
-      "value": 20
+      "type": "unique_apps",
+      "count": 25
     },
     "sort_order": 68
   },
@@ -1418,10 +1422,10 @@
     "image_lg": "/images/avatar/512/avatar-085.webp",
     "image_md": "/images/avatar/256/avatar-085.webp",
     "image_sm": "/images/avatar/128/avatar-085.webp",
-    "unlock_label": "Alcanza el nivel 3",
+    "unlock_label": "Prueba 5 apps distintas",
     "unlock": {
-      "type": "level",
-      "value": 3
+      "type": "unique_apps",
+      "count": 5
     },
     "sort_order": 85
   },
@@ -1668,10 +1672,10 @@
     "image_lg": "/images/avatar/512/avatar-100.webp",
     "image_md": "/images/avatar/256/avatar-100.webp",
     "image_sm": "/images/avatar/128/avatar-100.webp",
-    "unlock_label": "Alcanza el nivel 40",
+    "unlock_label": "Juega 30 días seguidos",
     "unlock": {
-      "type": "level",
-      "value": 40
+      "type": "streak_days",
+      "count": 30
     },
     "sort_order": 100
   }

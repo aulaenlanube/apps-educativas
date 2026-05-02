@@ -451,25 +451,6 @@ export default function StudentDashboard() {
     termFilter === 'all' ? assignments : assignments.filter(a => Number(a.term) === Number(termFilter))
   ), [assignments, termFilter]);
 
-  // Extrae los bonus (duelos + batallas + nivel) que aplican al filtro actual.
-  const termBonus = useMemo(() => {
-    if (!gradeData) return { duel: 0, battle: 0, progress: 0 };
-    const progress = Number(gradeData.progress_bonus) || 0;
-    if (termFilter === 'all') {
-      return {
-        duel: Number(gradeData.duel_bonus_total) || 0,
-        battle: Number(gradeData.battle_bonus) || 0,
-        progress,
-      };
-    }
-    const t = (gradeData.terms || []).find(x => Number(x.term) === Number(termFilter));
-    return {
-      duel: Number(t?.duel_bonus) || 0,
-      battle: Number(t?.battle_bonus) || 0,
-      progress,
-    };
-  }, [gradeData, termFilter]);
-
   const baseGrade = useMemo(() => {
     if (!termScoped.length) return null;
     let weightSum = 0;
@@ -485,13 +466,6 @@ export default function StudentDashboard() {
     if (weightSum === 0) return null;
     return Math.round((weightedNota / weightSum) * 10) / 10;
   }, [termScoped]);
-
-  const finalGrade = useMemo(() => {
-    if (baseGrade == null) return null;
-    const raw = baseGrade + termBonus.duel + termBonus.battle + termBonus.progress;
-    const clipped = Math.max(0, Math.min(10, raw));
-    return Math.round(clipped * 10) / 10;
-  }, [baseGrade, termBonus]);
 
   if (loading) {
     return (
@@ -828,14 +802,12 @@ export default function StudentDashboard() {
                 </div>
               )}
 
-              {/* Nota final (filtrada por evaluacion o curso completo) */}
-              {finalGrade != null && (() => {
-                const gradeColor = finalGrade >= 8 ? 'from-green-500 to-emerald-600' : finalGrade >= 5 ? 'from-blue-500 to-purple-600' : 'from-red-400 to-orange-500';
-                const msg = finalGrade >= 9 ? '¡Excelente!' : finalGrade >= 7 ? '¡Muy bien!' : finalGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
+              {/* Nota base de tareas (sin bonus) — filtrada por evaluacion o curso completo */}
+              {baseGrade != null && (() => {
+                const gradeColor = baseGrade >= 8 ? 'from-green-500 to-emerald-600' : baseGrade >= 5 ? 'from-blue-500 to-purple-600' : 'from-red-400 to-orange-500';
+                const msg = baseGrade >= 9 ? '¡Excelente!' : baseGrade >= 7 ? '¡Muy bien!' : baseGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
                 const doneCount = termScoped.filter(a => a.completed).length;
-                const header = termFilter === 'all' ? 'Nota final del curso' : `Nota de la ${termFilter}ª evaluación`;
-                const fmtSigned = n => (n > 0 ? '+' : n < 0 ? '−' : '+') + Math.abs(n).toFixed(2).replace('.', ',');
-                const hasBonus = termBonus.duel !== 0 || termBonus.battle !== 0 || termBonus.progress !== 0;
+                const header = termFilter === 'all' ? 'Nota del curso · solo tareas' : `Nota de la ${termFilter}ª evaluación · solo tareas`;
                 return (
                   <motion.div
                     key={termFilter}
@@ -848,36 +820,13 @@ export default function StudentDashboard() {
                         <p className="text-sm font-medium text-white/80 uppercase tracking-wide">{header}</p>
                         <p className="text-xs text-white/70 mt-0.5">Media ponderada de {termScoped.length} {termScoped.length === 1 ? 'tarea' : 'tareas'} · {doneCount} aprobada{doneCount !== 1 ? 's' : ''}</p>
                         <p className="text-lg font-semibold mt-2">{msg}</p>
+                        <p className="text-[11px] text-white/70 mt-1">Esta es la nota de tareas sin bonus. Tu nota completa con duelos, batallas, nivel y avatares está en el panel "Resumen".</p>
                       </div>
                       <div className="shrink-0 flex items-baseline">
-                        <span className="text-5xl font-black drop-shadow-sm">{finalGrade.toFixed(1)}</span>
+                        <span className="text-5xl font-black drop-shadow-sm">{baseGrade.toFixed(1)}</span>
                         <span className="text-xl font-bold text-white/80 ml-1">/10</span>
                       </div>
                     </div>
-                    {hasBonus && (
-                      <div className="mt-4 pt-3 border-t border-white/25 grid grid-cols-4 gap-2 text-center">
-                        <div>
-                          <p className="text-[10px] uppercase font-semibold text-white/70">Tareas</p>
-                          <p className="text-base font-bold">{baseGrade != null ? baseGrade.toFixed(1) : '—'}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] uppercase font-semibold text-white/70 flex items-center justify-center gap-1">
-                            <Swords className="w-3 h-3" /> Duelos
-                          </p>
-                          <p className="text-base font-bold">{fmtSigned(termBonus.duel)}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] uppercase font-semibold text-white/70 flex items-center justify-center gap-1">
-                            <Zap className="w-3 h-3" /> Batallas
-                          </p>
-                          <p className="text-base font-bold">{fmtSigned(termBonus.battle)}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] uppercase font-semibold text-white/70">Nivel</p>
-                          <p className="text-base font-bold">{fmtSigned(termBonus.progress)}</p>
-                        </div>
-                      </div>
-                    )}
                   </motion.div>
                 );
               })()}

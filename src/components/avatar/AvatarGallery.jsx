@@ -1,15 +1,26 @@
 import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, Check, Sparkles, X, Trophy } from 'lucide-react';
+import { Lock, Check, Sparkles, X, Trophy, Award, Star, Gem, Crown, Flame } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAvatarCollection } from '@/hooks/useAvatarCollection';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { rarityMeta, RarityBadge } from '@/components/ui/UserAvatar';
+import AnimatedNumber from '@/components/ui/AnimatedNumber';
 import { cn } from '@/lib/utils';
 
 const RARITY_ORDER = ['mythic', 'legendary', 'epic', 'rare', 'common'];
+
+// Estilos para las mini-cards de progreso por rareza (orden ascendente para la barra).
+const RARITY_PROGRESS_ORDER = ['common', 'rare', 'epic', 'legendary', 'mythic'];
+const RARITY_PROGRESS = {
+  common:    { label: 'Comunes',     icon: Award, ring: '#94a3b8', glow: '#cbd5e1', from: 'from-slate-400',  to: 'to-slate-500' },
+  rare:      { label: 'Raros',       icon: Star,  ring: '#3b82f6', glow: '#60a5fa', from: 'from-blue-400',   to: 'to-indigo-500' },
+  epic:      { label: 'Épicos',      icon: Gem,   ring: '#a855f7', glow: '#c084fc', from: 'from-purple-500', to: 'to-fuchsia-500' },
+  legendary: { label: 'Legendarios', icon: Crown, ring: '#f59e0b', glow: '#fbbf24', from: 'from-amber-400',  to: 'to-orange-500' },
+  mythic:    { label: 'Míticos',     icon: Flame, ring: '#ef4444', glow: '#f87171', from: 'from-rose-500',   to: 'to-pink-500' },
+};
 
 export default function AvatarGallery({ onSelected, mode = 'student' }) {
   const { student, updateStudentLocal, teacher, updateTeacherLocal } = useAuth();
@@ -30,6 +41,17 @@ export default function AvatarGallery({ onSelected, mode = 'student' }) {
     else if (filter !== 'all') list = list.filter((i) => i.rarity === filter);
     return list;
   }, [items, filter]);
+
+  const rarityStats = useMemo(() => {
+    const map = Object.fromEntries(RARITY_PROGRESS_ORDER.map((r) => [r, { earned: 0, total: 0 }]));
+    for (const it of items) {
+      if (!map[it.rarity]) map[it.rarity] = { earned: 0, total: 0 };
+      map[it.rarity].total += 1;
+      if (it.owned) map[it.rarity].earned += 1;
+    }
+    return map;
+  }, [items]);
+  const overallPct = totalCount > 0 ? (ownedCount / totalCount) * 100 : 0;
 
   const grouped = useMemo(() => {
     const map = new Map();
@@ -113,33 +135,175 @@ export default function AvatarGallery({ onSelected, mode = 'student' }) {
 
   return (
     <div className="space-y-4">
-      {/* Cabecera con stats y bonus */}
-      <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 rounded-2xl p-4 text-white shadow-lg">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-6 h-6" />
-            <div>
-              <p className="text-xs uppercase tracking-wider font-bold text-white/80">Tu colección</p>
-              <p className="text-xl font-black">{ownedCount} / {totalCount} avatares</p>
+      {/* Cabecera con stats globales + desglose por rareza */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 text-white shadow-xl"
+      >
+        <div
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 12% 22%, rgba(255,255,255,0.4) 0%, transparent 45%), radial-gradient(circle at 88% 80%, rgba(255,200,255,0.3) 0%, transparent 50%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+
+        <div className="relative p-5">
+          <div className="flex items-start justify-between gap-3 flex-wrap mb-5">
+            <div className="flex items-center gap-3">
+              <motion.div
+                initial={{ scale: 0, rotate: -45 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 14 }}
+                className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg"
+              >
+                <Sparkles className="w-6 h-6 text-yellow-300 drop-shadow" />
+              </motion.div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-white/70">Tu colección</p>
+                <p className="text-base font-black leading-tight">Progreso de avatares</p>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.18, duration: 0.4 }}
+              className="flex items-center gap-3"
+            >
+              <div className="text-right">
+                <div className="flex items-baseline gap-1 justify-end">
+                  <AnimatedNumber value={ownedCount} className="text-3xl font-black drop-shadow tabular-nums" />
+                  <span className="text-lg font-bold text-white/70">/{totalCount}</span>
+                </div>
+                <p className="text-[10px] text-white/70 uppercase tracking-wider mt-0.5">
+                  {totalCount - ownedCount} por desbloquear
+                </p>
+              </div>
+              {!isTeacherMode && (
+                <div className="bg-white/15 backdrop-blur rounded-xl px-3 py-1.5 border border-white/20 text-center">
+                  <p className="text-[9px] uppercase tracking-wider text-white/80 font-bold">Bonus nota</p>
+                  <p className="text-xl font-black tabular-nums">+{totalBonus.toFixed(2)}</p>
+                  <p className="text-[9px] text-white/70">tope +0,5</p>
+                </div>
+              )}
+            </motion.div>
+          </div>
+
+          {/* Barra global */}
+          <div className="mb-1">
+            <div className="flex items-center justify-between text-xs text-white/85 mb-1.5">
+              <span className="flex items-center gap-1.5">
+                <Trophy className="w-3.5 h-3.5 text-yellow-300" />
+                <span className="font-semibold">{Math.round(overallPct)}% completado</span>
+              </span>
+              <span className="text-white/60 tabular-nums">{ownedCount} de {totalCount}</span>
+            </div>
+            <div className="relative w-full h-3 bg-white/15 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${overallPct}%` }}
+                transition={{ duration: 1.2, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="h-full rounded-full bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-400 shadow-[0_0_16px_rgba(251,191,36,0.55)]"
+              />
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: '120%' }}
+                transition={{ duration: 1.6, delay: 0.45, ease: 'easeOut' }}
+                className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+              />
             </div>
           </div>
-          {!isTeacherMode && (
-            <div className="bg-white/15 backdrop-blur rounded-xl px-4 py-2 border border-white/20">
-              <p className="text-[10px] uppercase tracking-wider text-white/80 font-bold">Bonus en nota</p>
-              <p className="text-2xl font-black tabular-nums">+{totalBonus.toFixed(2)}</p>
-              <p className="text-[10px] text-white/70">tope +0,5</p>
-            </div>
-          )}
+
+          {/* Mini-cards por rareza */}
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+            {RARITY_PROGRESS_ORDER.map((r, i) => {
+              const cfg = RARITY_PROGRESS[r];
+              const stats = rarityStats[r] || { earned: 0, total: 0 };
+              const Icon = cfg.icon;
+              const pct = stats.total > 0 ? (stats.earned / stats.total) * 100 : 0;
+              const complete = stats.total > 0 && stats.earned === stats.total;
+              const active = filter === r;
+              return (
+                <motion.button
+                  key={r}
+                  type="button"
+                  initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.35 + i * 0.07, duration: 0.4, ease: 'easeOut' }}
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setFilter((prev) => (prev === r ? 'all' : r))}
+                  className="group relative overflow-hidden rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 p-3 text-left transition-colors"
+                  style={{
+                    boxShadow: complete
+                      ? `0 0 22px ${cfg.glow}80, inset 0 0 0 1.5px ${cfg.ring}`
+                      : active
+                        ? `inset 0 0 0 1.5px ${cfg.ring}`
+                        : undefined,
+                  }}
+                >
+                  <div
+                    className="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-xl"
+                    style={{ boxShadow: `inset 0 0 0 1.5px ${cfg.ring}` }}
+                  />
+
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className={`w-7 h-7 rounded-lg bg-gradient-to-br ${cfg.from} ${cfg.to} flex items-center justify-center shadow-md`}
+                      style={{ boxShadow: `0 0 12px ${cfg.glow}66` }}
+                    >
+                      <Icon className="w-3.5 h-3.5 text-white drop-shadow" />
+                    </div>
+                    <p className="text-[10px] uppercase font-black tracking-wider text-white/85 truncate">{cfg.label}</p>
+                    <AnimatePresence>
+                      {complete && (
+                        <motion.span
+                          initial={{ scale: 0, rotate: -90 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          exit={{ scale: 0 }}
+                          transition={{ type: 'spring', stiffness: 350 }}
+                          className="ml-auto text-yellow-300"
+                          title="¡Categoría completa!"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 drop-shadow" />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="flex items-baseline gap-1">
+                    <AnimatedNumber value={stats.earned} className="text-xl font-black tabular-nums drop-shadow" />
+                    <span className="text-xs font-bold text-white/60">/ {stats.total}</span>
+                    <span className="ml-auto text-[10px] font-bold text-white/70 tabular-nums">{Math.round(pct)}%</span>
+                  </div>
+
+                  <div className="mt-1.5 h-1.5 bg-white/15 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 1, delay: 0.55 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                      className="h-full rounded-full"
+                      style={{ background: `linear-gradient(90deg, ${cfg.ring}, ${cfg.glow})` }}
+                    />
+                  </div>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
-        <div className="mt-3 h-2 bg-white/20 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${totalCount ? (ownedCount / totalCount) * 100 : 0}%` }}
-            transition={{ duration: 0.6 }}
-            className="h-full bg-gradient-to-r from-yellow-300 to-amber-400"
-          />
-        </div>
-      </div>
+      </motion.div>
 
       {/* Filtros */}
       <div className="flex flex-wrap gap-2">

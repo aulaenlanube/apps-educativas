@@ -196,7 +196,7 @@ Score = 1·(1ᵒs) + 0,667·(2ᵒs) + 0,333·(3ᵒs).
 Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined con `avatar_definitions.active = true`), capada a +0,5. Helper: `_avatar_bonus(student_id) → numeric`. Es global (no por evaluación). Equipar un avatar es solo cosmético; el desbloqueo es lo que cuenta.
 
 ### Bonus de nivel
-`0,5 · √(min(level-1, 49) / 49)` → tope +0,5 al llegar a nivel 50.
+`0,5 · √(min(level-1, 49) / 49)` → tope +0,5 al llegar a nivel 50. La plataforma tiene 101 niveles (`xp_for_level`/`calculate_level` por tramos); del 50 al 101 no añaden bonus en nota, son prestigio (avatares legendarios/míticos + insignia `mythic_max_level`).
 
 ### Asignación por evaluación
 - Tareas: campo `assignments.term` (elegido por el profe al crear).
@@ -318,7 +318,7 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 ### Gamificación
 | Función | Argumentos |
 |---|---|
-| `calculate_level` / `xp_for_level` | Fórmula: `XP = 100 · nivel^1.5` |
+| `calculate_level` / `xp_for_level` | Curva por tramos hasta nivel 101 (ver "Niveles de XP" más abajo) |
 | `gamification_process_session` / `gamification_process_teacher_session` | Procesa XP + insignias al terminar una partida |
 | `gamification_process_battle` | Procesa Quiz Battle |
 | `gamification_check_teacher_actions` | Chequea insignias docentes (grupos, tareas, mensajes…) |
@@ -401,18 +401,30 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 | epic | púrpura | 150-200 |
 | legendary | dorado | 300-500 |
 
-### Niveles de XP
-Fórmula: `XP_necesario = round(100 · nivel^1.5)`
+### Niveles de XP (1..101, curva por tramos)
+Función `xp_for_level(L)` y `calculate_level(xp)` definidas en `20260505_xp_curve_101_levels.sql`. La nota "bonus de nivel" sigue topando a +0,5 al alcanzar nivel 50; del 50 al 101 es prestigio puro (avatares, insignia mítica `mythic_max_level`).
 
-| Nivel | XP |
+| Tramo | Coste por nivel `delta(L)` |
+|---|---|
+| 1..49 | `200 + (L-1)·34` |
+| 50..79 | `1832 + 200·(L-49)` (lineal +200/nivel) |
+| 80..89 | `floor(7832 · 1.05^(L-79))` (+5%/nivel) |
+| 90..99 | `floor(7832 · 1.05^10 · 1.25^(L-89))` (+25%/nivel — crece fuerte) |
+| 100→101 | `delta(100) = total acumulado a nivel 100` (el último escalón duplica todo) |
+
+Curva pensada para que llegar a 100 sea ambicioso pero teóricamente alcanzable por alumnos muy constantes a varios años de uso intenso (no solo retención en clase), y 101 una proeza casi simbólica.
+
+| Nivel | XP total |
 |---:|---:|
 | 1 | 0 |
-| 2 | 100 |
-| 3 | 283 |
-| 5 | 1.118 |
-| 10 | 3.162 |
-| 20 | 8.944 |
-| 50 | 35.355 |
+| 10 | 3.024 |
+| 25 | 13.520 |
+| 50 | 49.784 |
+| 80 | 197.744 |
+| 90 | 301.174 |
+| 99 | 712.635 |
+| 100 | 831.448 |
+| 101 | 1.662.896 (= 2 × XP a nivel 100) |
 
 ---
 

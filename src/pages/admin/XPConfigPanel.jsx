@@ -4,40 +4,71 @@ import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown
 import { supabase } from '@/lib/supabase';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 
+// Curva por tramos (mismo cálculo que xp_for_level / calculate_level en BD).
+function deltaXp(L) {
+  if (L < 50) return 200 + (L - 1) * 34;
+  if (L < 80) return 1832 + 200 * (L - 49);
+  if (L < 90) return Math.floor(7832 * Math.pow(1.05, L - 79));
+  if (L < 100) return Math.floor(7832 * Math.pow(1.05, 10) * Math.pow(1.25, L - 89));
+  return null; // L === 100 se trata aparte (duplica el total)
+}
+
+function xpForLevel(targetLevel) {
+  if (targetLevel <= 1) return 0;
+  const target = Math.min(targetLevel, 101);
+  let xp = 0;
+  for (let L = 1; L < Math.min(target, 100); L++) xp += deltaXp(L);
+  if (target === 101) xp = xp * 2;
+  return xp;
+}
+
+const MAX_LEVEL = 101;
+
 function LevelCurveChart() {
   const data = useMemo(() => {
     const points = [];
-    for (let lvl = 1; lvl <= 50; lvl++) {
-      let xp = 0;
-      for (let i = 1; i < lvl; i++) xp += 200 + (i - 1) * 34;
-      points.push({ lvl, xp });
+    // Saltamos el nivel 1 (xp = 0) porque rompe la escala log; el path arranca en nivel 2.
+    for (let lvl = 2; lvl <= MAX_LEVEL; lvl++) {
+      points.push({ lvl, xp: xpForLevel(lvl) });
     }
     return points;
   }, []);
 
+  // Escala logarítmica (la curva crece varios órdenes de magnitud).
   const maxXp = data[data.length - 1].xp;
+  const minLog = Math.log10(200);          // floor visual al primer escalón (nivel 2 = 200 XP)
+  const maxLog = Math.log10(maxXp);
+  const yFor = (xp) => (Math.log10(Math.max(xp, 200)) - minLog) / (maxLog - minLog);
 
-  const W = 700, H = 280, PL = 55, PR = 55, PT = 40, PB = 40;
+  const W = 700, H = 280, PL = 65, PR = 55, PT = 40, PB = 40;
   const cw = W - PL - PR, ch = H - PT - PB;
 
   const xpPath = data.map((p, i) => {
-    const x = PL + (i / 49) * cw;
-    const y = PT + ch - (p.xp / maxXp) * ch;
+    const x = PL + ((p.lvl - 1) / (MAX_LEVEL - 1)) * cw;
+    const y = PT + ch - yFor(p.xp) * ch;
     return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(' ');
 
-  const xpFill = xpPath + ` L${(PL + cw).toFixed(1)},${(PT + ch).toFixed(1)} L${PL.toFixed(1)},${(PT + ch).toFixed(1)} Z`;
+  const startX = PL + ((data[0].lvl - 1) / (MAX_LEVEL - 1)) * cw;
+  const xpFill = xpPath + ` L${(PL + cw).toFixed(1)},${(PT + ch).toFixed(1)} L${startX.toFixed(1)},${(PT + ch).toFixed(1)} Z`;
 
-  const gridLevels = [1, 10, 20, 30, 40, 50];
-  const gridXp = [0, 10000, 20000, 30000, 40000, 50000];
+  const gridLevels = [1, 25, 50, 75, 90, 101];
+  const gridXp = [200, 1000, 10000, 100000, 1000000];
+  const fmtXp = (xp) => xp >= 1_000_000 ? `${(xp/1_000_000).toFixed(1)}M` : xp >= 1_000 ? `${(xp/1_000).toFixed(0)}k` : `${xp}`;
 
   const [hoveredPoint, setHoveredPoint] = useState(null);
 
+  // Hitos a destacar como puntos
+  const milestones = [2, 10, 25, 50, 65, 75, 80, 85, 90, 95, 99, 100, 101];
+
   return (
     <div className="relative">
-      <div className="flex items-center gap-1.5 mb-2">
-        <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
-        <span className="text-[11px] text-slate-500 font-medium">XP total acumulada por nivel</span>
+      <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
+          <span className="text-[11px] text-slate-500 font-medium">XP total acumulada por nivel (escala logarítmica)</span>
+        </div>
+        <span className="text-[10px] text-slate-400 italic">Tramos: 1-49 lineal · 50-79 acelera · 80-89 +5%/lvl · 90-99 +25%/lvl · 100→101 duplica</span>
       </div>
 
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 300 }}>
@@ -54,12 +85,12 @@ function LevelCurveChart() {
 
         {/* Grid horizontal */}
         {gridXp.map(xp => {
-          const y = PT + ch - (xp / maxXp) * ch;
+          const y = PT + ch - yFor(xp) * ch;
           return (
             <g key={`gx-${xp}`}>
               <line x1={PL} y1={y} x2={PL + cw} y2={y} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4,4" />
               <text x={PL - 6} y={y + 3} textAnchor="end" fill="#94a3b8" fontSize="10" fontFamily="sans-serif">
-                {xp >= 1000 ? `${(xp/1000).toFixed(0)}k` : xp}
+                {fmtXp(xp)}
               </text>
             </g>
           );
@@ -67,7 +98,7 @@ function LevelCurveChart() {
 
         {/* Grid vertical */}
         {gridLevels.map(lvl => {
-          const x = PL + ((lvl - 1) / 49) * cw;
+          const x = PL + ((lvl - 1) / (MAX_LEVEL - 1)) * cw;
           return (
             <g key={`gl-${lvl}`}>
               <line x1={x} y1={PT} x2={x} y2={PT + ch} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4,4" />
@@ -99,17 +130,17 @@ function LevelCurveChart() {
           transition={{ duration: 1.5, ease: 'easeOut' }}
         />
 
-        {/* Puntos interactivos */}
-        {data.filter((_, i) => i % 5 === 0 || i === 49).map((p) => {
-          const x = PL + ((p.lvl - 1) / 49) * cw;
-          const y = PT + ch - (p.xp / maxXp) * ch;
+        {/* Puntos interactivos en hitos */}
+        {data.filter((p) => milestones.includes(p.lvl)).map((p) => {
+          const x = PL + ((p.lvl - 1) / (MAX_LEVEL - 1)) * cw;
+          const y = PT + ch - yFor(p.xp) * ch;
           const isHovered = hoveredPoint === p.lvl;
-          const isLast = p.lvl === 50;
-          const tooltipW = 100;
-          // Alinear tooltip a la izquierda si es el último punto
-          const tx = isLast ? x - tooltipW + 10 : x - tooltipW / 2;
-          const anchor = isLast ? 'end' : 'middle';
-          const textX = isLast ? x + 4 : x;
+          const isLast = p.lvl === MAX_LEVEL;
+          const isFirst = p.lvl === 1;
+          const tooltipW = 130;
+          const tx = isLast ? x - tooltipW + 10 : isFirst ? x - 8 : x - tooltipW / 2;
+          const anchor = isLast ? 'end' : isFirst ? 'start' : 'middle';
+          const textX = isLast ? x + 4 : isFirst ? x + 4 : x;
           return (
             <g key={`pt-${p.lvl}`}
               onMouseEnter={() => setHoveredPoint(p.lvl)}
@@ -272,24 +303,26 @@ export default function XPConfigPanel() {
           <Star className="w-5 h-5 text-purple-500" />
           Sistema de niveles
         </h3>
-        <p className="text-sm text-slate-500 mb-4">50 niveles con curva progresiva. Cada nivel requiere mas XP que el anterior.</p>
+        <p className="text-sm text-slate-500 mb-4">
+          <strong>101 niveles</strong> con curva por tramos. La dificultad sube suave hasta el 49, acelera entre 50 y 79, se vuelve dura del 80 al 89 (+5% por nivel), crece fuerte entre 90 y 99 (+25% por nivel), y el último escalón <strong>100 → 101 cuesta tanto como llegar a 100 entero</strong>. Pensado para que llegar a 100 sea ambicioso (años de uso intenso) y a 101 una proeza casi simbólica. El bonus de nota tope a +0,5 ya en nivel 50; del 50 al 101 es prestigio puro (avatares legendarios/míticos + insignia <em>Cima del Saber</em>).
+        </p>
 
         {/* Gráfico de curva */}
         <LevelCurveChart />
 
-        <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 mt-5">
-          {[1,2,3,4,5,6,7,8,9,10,15,20,25,30,35,40,45,50].map(lvl => {
-            let xp = 0;
-            for (let i = 1; i < lvl; i++) xp += 200 + (i - 1) * 34;
+        <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 mt-5">
+          {[1,5,10,25,50,65,75,80,85,90,95,99,100,101].map(lvl => {
+            const xp = xpForLevel(lvl);
+            const highlight = lvl === 50 || lvl === 80 || lvl === 90 || lvl === 100 || lvl === 101;
             return (
-              <div key={lvl} className="text-center p-2 rounded-lg bg-slate-50 border border-slate-100">
-                <p className="text-sm font-bold text-slate-700">{lvl}</p>
-                <p className="text-[10px] text-slate-400">{xp.toLocaleString()}</p>
+              <div key={lvl} className={`text-center p-2 rounded-lg border ${highlight ? 'bg-purple-50 border-purple-200' : 'bg-slate-50 border-slate-100'}`}>
+                <p className={`text-sm font-bold ${highlight ? 'text-purple-700' : 'text-slate-700'}`}>{lvl}</p>
+                <p className={`text-[10px] ${highlight ? 'text-purple-500' : 'text-slate-400'}`}>{xp.toLocaleString()}</p>
               </div>
             );
           })}
         </div>
-        <p className="text-xs text-slate-400 mt-2">Los numeros muestran el XP total necesario para alcanzar cada nivel</p>
+        <p className="text-xs text-slate-400 mt-2">XP total necesario para alcanzar cada nivel. Los hitos en violeta marcan los cambios de tramo y el escalón final.</p>
       </motion.div>
 
       {/* Catálogo completo de insignias */}

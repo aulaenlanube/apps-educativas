@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { UserCircle, KeyRound, Eye, EyeOff, Lock, Check, Users, Trophy, Sparkles, Award, Calendar } from 'lucide-react';
+import { UserCircle, KeyRound, Eye, EyeOff, Lock, Check, Users, Trophy, Sparkles, Award, Calendar, Zap } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
@@ -13,6 +13,7 @@ import GroupSelector from '@/components/student/GroupSelector';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import AvatarGallery from '@/components/avatar/AvatarGallery';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import AnimatedNumber from '@/components/ui/AnimatedNumber';
 
 const AVATAR_EMOJIS = [
   '🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄',
@@ -296,32 +297,98 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
 
         <div className="px-5 sm:px-6 pb-5 pt-4 relative">
 
-          {/* Barra XP */}
-          <div className="mt-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-2xl p-3.5 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm font-black text-sm">
-                  {level}
+          {/* Progreso de experiencia */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="relative overflow-hidden mt-5 rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white shadow-lg"
+          >
+            <div
+              className="absolute inset-0 opacity-25 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 12% 20%, rgba(255,255,255,0.4) 0%, transparent 45%), radial-gradient(circle at 88% 80%, rgba(255,200,255,0.3) 0%, transparent 50%)',
+              }}
+            />
+            <div
+              className="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+                backgroundSize: '28px 28px',
+              }}
+            />
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+
+            <div className="relative p-4 sm:p-5">
+              <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    initial={{ scale: 0, rotate: -45 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 14 }}
+                    className="relative w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg"
+                    style={{ boxShadow: '0 0 20px rgba(253,224,71,0.35)' }}
+                  >
+                    <span className="text-2xl font-black tabular-nums drop-shadow">{level}</span>
+                  </motion.div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-white/70">Tu progreso</p>
+                    <p className="text-base font-black leading-tight">Nivel {level} de 101</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Nivel actual</p>
-                  <p className="text-sm font-bold">Nivel {level}</p>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.18, duration: 0.4 }}
+                  className="text-right"
+                >
+                  <p className="text-[10px] uppercase tracking-wider text-white/70 font-bold">XP total</p>
+                  <div className="flex items-center justify-end gap-1.5">
+                    <Sparkles className="w-4 h-4 text-yellow-300" />
+                    <AnimatedNumber value={totalXp} className="text-2xl font-black tabular-nums drop-shadow" />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Barra principal */}
+              <div>
+                <div className="flex items-center justify-between text-[11px] text-white/85 mb-1.5">
+                  <span className="flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-yellow-300" />
+                    <span className="font-semibold">
+                      {level >= 101 ? '¡Nivel máximo alcanzado!' : `Camino al nivel ${level + 1}`}
+                    </span>
+                  </span>
+                  <span className="text-white/70 tabular-nums">
+                    {level >= 101 ? '—' : `${xpInLevel.toLocaleString('es-ES')} / ${xpNeeded.toLocaleString('es-ES')} XP`}
+                  </span>
+                </div>
+                <div className="relative w-full h-3 bg-white/15 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${xpProgress}%` }}
+                    transition={{ duration: 1.2, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-full rounded-full bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-400 shadow-[0_0_16px_rgba(251,191,36,0.55)]"
+                  />
+                  <motion.div
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '120%' }}
+                    transition={{ duration: 1.6, delay: 0.45, ease: 'easeOut' }}
+                    className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                  />
+                </div>
+                <div className="mt-1.5 flex items-center justify-between text-[10px] text-white/65">
+                  <span>{xpProgress}% del nivel</span>
+                  {level < 101 && (
+                    <span className="tabular-nums">Faltan {(xpNeeded - xpInLevel).toLocaleString('es-ES')} XP</span>
+                  )}
                 </div>
               </div>
-              <div className="text-right">
-                <p className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Progreso</p>
-                <p className="text-sm font-bold">{xpInLevel} / {xpNeeded} XP</p>
-              </div>
             </div>
-            <div className="w-full h-2.5 bg-white/20 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${xpProgress}%` }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="h-full bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-full"
-              />
-            </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
 
