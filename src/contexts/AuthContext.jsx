@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     try {
       const { data, error } = await supabase
         .from('teachers')
-        .select('id, role, display_name, email, teacher_code, avatar_emoji, avatar_color, bio, website, specialty, center_name, education_levels, created_at, updated_at')
+        .select('id, role, display_name, email, teacher_code, avatar_emoji, avatar_color, selected_avatar_code, bio, website, specialty, center_name, education_levels, created_at, updated_at')
         .eq('id', userId)
         .single();
       if (error) {
@@ -287,6 +287,11 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function updateTeacherLocal(updates) {
+    setTeacher(prev => prev ? { ...prev, ...updates } : prev);
+    setFreeUser(prev => prev ? { ...prev, ...updates } : prev);
+  }
+
   async function signInStudentEmail(email, password) {
     // Login via Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
@@ -364,7 +369,7 @@ export function AuthProvider({ children }) {
   const stableFns = useMemo(() => ({
     signUpTeacher, signUpFreeUser, signInTeacher, signInFreeUser, signInWithGoogle, signInWithGoogleAsFree,
     signInStudent, signInStudentEmail, resetPassword, resetStudentPassword, studentSetPassword, switchStudentGroup, signOut,
-    fetchTeacherProfile, updateTeacherProfile, updateStudentLocal,
+    fetchTeacherProfile, updateTeacherProfile, updateStudentLocal, updateTeacherLocal,
   }), [fetchTeacherProfile]);
 
   const value = useMemo(() => ({

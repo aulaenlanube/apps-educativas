@@ -11,13 +11,17 @@ import { cn } from '@/lib/utils';
 
 const RARITY_ORDER = ['mythic', 'legendary', 'epic', 'rare', 'common'];
 
-export default function AvatarGallery({ onSelected }) {
-  const { student, updateStudentLocal } = useAuth();
-  const { items, loading, refresh, ownedCount, totalCount, totalBonus } = useAvatarCollection();
+export default function AvatarGallery({ onSelected, mode = 'student' }) {
+  const { student, updateStudentLocal, teacher, updateTeacherLocal } = useAuth();
+  const { items, loading, refresh, ownedCount, totalCount, totalBonus } = useAvatarCollection(mode);
   const { toast } = useToast();
   const [filter, setFilter] = useState('all');
   const [detail, setDetail] = useState(null);
   const [busyCode, setBusyCode] = useState(null);
+  const isTeacherMode = mode === 'teacher';
+  const selectedAvatarCode = isTeacherMode
+    ? teacher?.selected_avatar_code
+    : student?.selected_avatar_code;
 
   const filtered = useMemo(() => {
     let list = items;
@@ -38,19 +42,29 @@ export default function AvatarGallery({ onSelected }) {
   }, [filtered]);
 
   const handleSelect = async (code) => {
-    if (!student?.id || !student?.session_token) return;
     setBusyCode(code);
-    const { data, error } = await supabase.rpc('avatar_select', {
-      p_student_id: student.id,
-      p_session_token: student.session_token,
-      p_code: code,
-    });
+    let data, error;
+    if (isTeacherMode) {
+      if (!teacher?.id) { setBusyCode(null); return; }
+      ({ data, error } = await supabase.rpc('teacher_avatar_select', { p_code: code }));
+    } else {
+      if (!student?.id || !student?.session_token) { setBusyCode(null); return; }
+      ({ data, error } = await supabase.rpc('avatar_select', {
+        p_student_id: student.id,
+        p_session_token: student.session_token,
+        p_code: code,
+      }));
+    }
     setBusyCode(null);
     if (error || data?.error) {
       toast({ variant: 'destructive', title: 'Error', description: error?.message || data?.error });
       return;
     }
-    updateStudentLocal({ selected_avatar_code: code });
+    if (isTeacherMode) {
+      updateTeacherLocal({ selected_avatar_code: code });
+    } else {
+      updateStudentLocal({ selected_avatar_code: code });
+    }
     toast({ title: 'Avatar equipado' });
     setDetail(null);
     refresh();
@@ -58,19 +72,29 @@ export default function AvatarGallery({ onSelected }) {
   };
 
   const handleRevertToEmoji = async () => {
-    if (!student?.id || !student?.session_token) return;
     setBusyCode('__null');
-    const { data, error } = await supabase.rpc('avatar_select', {
-      p_student_id: student.id,
-      p_session_token: student.session_token,
-      p_code: null,
-    });
+    let data, error;
+    if (isTeacherMode) {
+      if (!teacher?.id) { setBusyCode(null); return; }
+      ({ data, error } = await supabase.rpc('teacher_avatar_select', { p_code: null }));
+    } else {
+      if (!student?.id || !student?.session_token) { setBusyCode(null); return; }
+      ({ data, error } = await supabase.rpc('avatar_select', {
+        p_student_id: student.id,
+        p_session_token: student.session_token,
+        p_code: null,
+      }));
+    }
     setBusyCode(null);
     if (error || data?.error) {
       toast({ variant: 'destructive', title: 'Error', description: error?.message || data?.error });
       return;
     }
-    updateStudentLocal({ selected_avatar_code: null });
+    if (isTeacherMode) {
+      updateTeacherLocal({ selected_avatar_code: null });
+    } else {
+      updateStudentLocal({ selected_avatar_code: null });
+    }
     toast({ title: 'Volviste al emoji' });
     refresh();
     onSelected?.(null);
@@ -99,11 +123,13 @@ export default function AvatarGallery({ onSelected }) {
               <p className="text-xl font-black">{ownedCount} / {totalCount} avatares</p>
             </div>
           </div>
-          <div className="bg-white/15 backdrop-blur rounded-xl px-4 py-2 border border-white/20">
-            <p className="text-[10px] uppercase tracking-wider text-white/80 font-bold">Bonus en nota</p>
-            <p className="text-2xl font-black tabular-nums">+{totalBonus.toFixed(2)}</p>
-            <p className="text-[10px] text-white/70">tope +0,5</p>
-          </div>
+          {!isTeacherMode && (
+            <div className="bg-white/15 backdrop-blur rounded-xl px-4 py-2 border border-white/20">
+              <p className="text-[10px] uppercase tracking-wider text-white/80 font-bold">Bonus en nota</p>
+              <p className="text-2xl font-black tabular-nums">+{totalBonus.toFixed(2)}</p>
+              <p className="text-[10px] text-white/70">tope +0,5</p>
+            </div>
+          )}
         </div>
         <div className="mt-3 h-2 bg-white/20 rounded-full overflow-hidden">
           <motion.div
@@ -134,7 +160,7 @@ export default function AvatarGallery({ onSelected }) {
       </div>
 
       {/* Volver a emoji */}
-      {student?.selected_avatar_code && (
+      {selectedAvatarCode && (
         <div className="flex items-center justify-between rounded-xl bg-amber-50 border border-amber-200 px-3 py-2 text-xs">
           <span className="text-amber-800 font-medium">
             Tienes un avatar especial equipado. Si quieres, vuelve al emoji clásico.
@@ -182,6 +208,7 @@ export default function AvatarGallery({ onSelected }) {
             onClose={() => setDetail(null)}
             onSelect={handleSelect}
             busy={busyCode === detail.code}
+            isTeacherMode={isTeacherMode}
           />
         )}
       </AnimatePresence>
@@ -282,7 +309,7 @@ function AvatarCard({ item, onClick }) {
   );
 }
 
-function DetailModal({ item, onClose, onSelect, busy }) {
+function DetailModal({ item, onClose, onSelect, busy, isTeacherMode }) {
   const meta = rarityMeta(item.rarity);
   const locked = !item.owned;
   return (
@@ -329,12 +356,14 @@ function DetailModal({ item, onClose, onSelect, busy }) {
           </div>
           <p className="text-base text-slate-700 italic leading-relaxed">{item.description}</p>
 
-          <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
-            <Trophy className="w-4 h-4 text-amber-600" />
-            <span className="text-xs font-bold text-amber-800">
-              Aporta <span className="text-amber-600">+{Number(item.points_bonus).toFixed(2)}</span> a tu nota media
-            </span>
-          </div>
+          {!isTeacherMode && (
+            <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
+              <Trophy className="w-4 h-4 text-amber-600" />
+              <span className="text-xs font-bold text-amber-800">
+                Aporta <span className="text-amber-600">+{Number(item.points_bonus).toFixed(2)}</span> a tu nota media
+              </span>
+            </div>
+          )}
 
           {locked ? (
             <div className="space-y-1.5">

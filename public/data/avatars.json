@@ -8,8 +8,11 @@
     "image_lg": "/images/avatar/512/avatar-001.webp",
     "image_md": "/images/avatar/256/avatar-001.webp",
     "image_sm": "/images/avatar/128/avatar-001.webp",
-    "unlock_label": "Alcanza el nivel 15",
-    "unlock": { "type": "level", "value": 15 },
+    "unlock_label": "Valora 50 apps distintas",
+    "unlock": {
+      "type": "apps_rated",
+      "count": 50
+    },
     "sort_order": 1
   },
   {
@@ -22,7 +25,11 @@
     "image_md": "/images/avatar/256/avatar-002.webp",
     "image_sm": "/images/avatar/128/avatar-002.webp",
     "unlock_label": "Aprueba 10 exámenes con nota ≥ 8.5",
-    "unlock": { "type": "high_score_exams", "count": 10, "min_nota": 8.5 },
+    "unlock": {
+      "type": "high_score_exams",
+      "count": 10,
+      "min_nota": 8.5
+    },
     "sort_order": 2
   },
   {
@@ -35,7 +42,10 @@
     "image_md": "/images/avatar/256/avatar-003.webp",
     "image_sm": "/images/avatar/128/avatar-003.webp",
     "unlock_label": "Alcanza el nivel 25",
-    "unlock": { "type": "level", "value": 25 },
+    "unlock": {
+      "type": "level",
+      "value": 25
+    },
     "sort_order": 3
   },
   {
@@ -48,7 +58,10 @@
     "image_md": "/images/avatar/256/avatar-004.webp",
     "image_sm": "/images/avatar/128/avatar-004.webp",
     "unlock_label": "Gana 10 duelos",
-    "unlock": { "type": "duels_won", "count": 10 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 10
+    },
     "sort_order": 4
   },
   {
@@ -61,7 +74,13 @@
     "image_md": "/images/avatar/256/avatar-005.webp",
     "image_sm": "/images/avatar/128/avatar-005.webp",
     "unlock_label": "Aprueba 3 exámenes del Rosco del Saber",
-    "unlock": { "type": "app_sessions", "app_id": "rosco-del-saber", "mode": "test", "count": 3, "min_nota": 7 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "rosco-del-saber",
+      "mode": "test",
+      "count": 3,
+      "min_nota": 7
+    },
     "sort_order": 5
   },
   {
@@ -74,7 +93,13 @@
     "image_md": "/images/avatar/256/avatar-006.webp",
     "image_sm": "/images/avatar/128/avatar-006.webp",
     "unlock_label": "Aprueba 7 exámenes de Ahorcado con nota ≥ 8",
-    "unlock": { "type": "app_sessions", "app_id": "ahorcado", "mode": "test", "count": 7, "min_nota": 8 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "ahorcado",
+      "mode": "test",
+      "count": 7,
+      "min_nota": 8
+    },
     "sort_order": 6
   },
   {
@@ -87,7 +112,10 @@
     "image_md": "/images/avatar/256/avatar-007.webp",
     "image_sm": "/images/avatar/128/avatar-007.webp",
     "unlock_label": "Consigue 15 exámenes con nota perfecta (10)",
-    "unlock": { "type": "perfect_exams", "count": 15 },
+    "unlock": {
+      "type": "perfect_exams",
+      "count": 15
+    },
     "sort_order": 7
   },
   {
@@ -100,7 +128,13 @@
     "image_md": "/images/avatar/256/avatar-008.webp",
     "image_sm": "/images/avatar/128/avatar-008.webp",
     "unlock_label": "Aprueba 3 exámenes de Anagramas",
-    "unlock": { "type": "app_sessions", "app_id": "anagramas", "mode": "test", "count": 3, "min_nota": 7 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "anagramas",
+      "mode": "test",
+      "count": 3,
+      "min_nota": 7
+    },
     "sort_order": 8
   },
   {
@@ -113,7 +147,13 @@
     "image_md": "/images/avatar/256/avatar-009.webp",
     "image_sm": "/images/avatar/128/avatar-009.webp",
     "unlock_label": "Aprueba 3 exámenes de Comprensión Escrita",
-    "unlock": { "type": "app_sessions", "app_id": "comprension-escrita", "mode": "test", "count": 3, "min_nota": 7 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "comprension-escrita",
+      "mode": "test",
+      "count": 3,
+      "min_nota": 7
+    },
     "sort_order": 9
   },
   {
@@ -126,7 +166,11 @@
     "image_md": "/images/avatar/256/avatar-010.webp",
     "image_sm": "/images/avatar/128/avatar-010.webp",
     "unlock_label": "Aprueba 5 exámenes de Personajes Históricos",
-    "unlock": { "type": "app_sessions", "app_id": "generador-personajes-historicos", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "generador-personajes-historicos",
+      "count": 5
+    },
     "sort_order": 10
   },
   {
@@ -139,7 +183,11 @@
     "image_md": "/images/avatar/256/avatar-011.webp",
     "image_sm": "/images/avatar/128/avatar-011.webp",
     "unlock_label": "Completa 5 misiones del Laboratorio de Robótica",
-    "unlock": { "type": "app_sessions", "app_id": "laboratorio-robotica", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "laboratorio-robotica",
+      "count": 5
+    },
     "sort_order": 11
   },
   {
@@ -152,7 +200,11 @@
     "image_md": "/images/avatar/256/avatar-012.webp",
     "image_sm": "/images/avatar/128/avatar-012.webp",
     "unlock_label": "Completa 5 misiones de Programación por Bloques",
-    "unlock": { "type": "app_sessions", "app_id": "programacion-bloques", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "programacion-bloques",
+      "count": 5
+    },
     "sort_order": 12
   },
   {
@@ -165,7 +217,12 @@
     "image_md": "/images/avatar/256/avatar-013.webp",
     "image_sm": "/images/avatar/128/avatar-013.webp",
     "unlock_label": "Aprueba 10 exámenes con nota ≥ 8 en Lengua",
-    "unlock": { "type": "subject_exams", "subject_id": "lengua", "count": 10, "min_nota": 8 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "lengua",
+      "count": 10,
+      "min_nota": 8
+    },
     "sort_order": 13
   },
   {
@@ -178,7 +235,13 @@
     "image_md": "/images/avatar/256/avatar-014.webp",
     "image_sm": "/images/avatar/128/avatar-014.webp",
     "unlock_label": "Aprueba 3 exámenes de Regla de Tres con nota ≥ 8",
-    "unlock": { "type": "app_sessions", "app_id": "regla-de-tres", "mode": "test", "count": 3, "min_nota": 8 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "regla-de-tres",
+      "mode": "test",
+      "count": 3,
+      "min_nota": 8
+    },
     "sort_order": 14
   },
   {
@@ -191,7 +254,11 @@
     "image_md": "/images/avatar/256/avatar-015.webp",
     "image_sm": "/images/avatar/128/avatar-015.webp",
     "unlock_label": "Completa 3 sesiones de Mesa de Crafteo",
-    "unlock": { "type": "app_sessions", "app_id": "mesa-crafteo", "count": 3 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "mesa-crafteo",
+      "count": 3
+    },
     "sort_order": 15
   },
   {
@@ -204,7 +271,12 @@
     "image_md": "/images/avatar/256/avatar-016.webp",
     "image_sm": "/images/avatar/128/avatar-016.webp",
     "unlock_label": "Aprueba 3 exámenes de Excavación Selectiva",
-    "unlock": { "type": "app_sessions", "app_id": "excavacion-selectiva", "mode": "test", "count": 3 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "excavacion-selectiva",
+      "mode": "test",
+      "count": 3
+    },
     "sort_order": 16
   },
   {
@@ -216,8 +288,11 @@
     "image_lg": "/images/avatar/512/avatar-017.webp",
     "image_md": "/images/avatar/256/avatar-017.webp",
     "image_sm": "/images/avatar/128/avatar-017.webp",
-    "unlock_label": "Alcanza el nivel 5",
-    "unlock": { "type": "level", "value": 5 },
+    "unlock_label": "Publica 10 comentarios de valoración",
+    "unlock": {
+      "type": "feedback_messages",
+      "count": 10
+    },
     "sort_order": 17
   },
   {
@@ -230,7 +305,10 @@
     "image_md": "/images/avatar/256/avatar-018.webp",
     "image_sm": "/images/avatar/128/avatar-018.webp",
     "unlock_label": "Gana 7 batallas",
-    "unlock": { "type": "battles_won", "count": 7 },
+    "unlock": {
+      "type": "battles_won",
+      "count": 7
+    },
     "sort_order": 18
   },
   {
@@ -243,7 +321,10 @@
     "image_md": "/images/avatar/256/avatar-019.webp",
     "image_sm": "/images/avatar/128/avatar-019.webp",
     "unlock_label": "Gana 3 batallas",
-    "unlock": { "type": "battles_won", "count": 3 },
+    "unlock": {
+      "type": "battles_won",
+      "count": 3
+    },
     "sort_order": 19
   },
   {
@@ -256,7 +337,12 @@
     "image_md": "/images/avatar/256/avatar-020.webp",
     "image_sm": "/images/avatar/128/avatar-020.webp",
     "unlock_label": "Aprueba 5 exámenes de Velocidad de Respuesta",
-    "unlock": { "type": "app_sessions", "app_id": "velocidad-respuesta", "mode": "test", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "velocidad-respuesta",
+      "mode": "test",
+      "count": 5
+    },
     "sort_order": 20
   },
   {
@@ -268,8 +354,11 @@
     "image_lg": "/images/avatar/512/avatar-021.webp",
     "image_md": "/images/avatar/256/avatar-021.webp",
     "image_sm": "/images/avatar/128/avatar-021.webp",
-    "unlock_label": "Alcanza el nivel 18",
-    "unlock": { "type": "level", "value": 18 },
+    "unlock_label": "Publica 50 comentarios de valoración",
+    "unlock": {
+      "type": "feedback_messages",
+      "count": 50
+    },
     "sort_order": 21
   },
   {
@@ -282,7 +371,10 @@
     "image_md": "/images/avatar/256/avatar-022.webp",
     "image_sm": "/images/avatar/128/avatar-022.webp",
     "unlock_label": "Gana 3 duelos",
-    "unlock": { "type": "duels_won", "count": 3 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 3
+    },
     "sort_order": 22
   },
   {
@@ -295,7 +387,10 @@
     "image_md": "/images/avatar/256/avatar-023.webp",
     "image_sm": "/images/avatar/128/avatar-023.webp",
     "unlock_label": "Gana 5 duelos",
-    "unlock": { "type": "duels_won", "count": 5 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 5
+    },
     "sort_order": 23
   },
   {
@@ -308,7 +403,11 @@
     "image_md": "/images/avatar/256/avatar-024.webp",
     "image_sm": "/images/avatar/128/avatar-024.webp",
     "unlock_label": "Completa 5 sesiones de Excavación Selectiva",
-    "unlock": { "type": "app_sessions", "app_id": "excavacion-selectiva", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "excavacion-selectiva",
+      "count": 5
+    },
     "sort_order": 24
   },
   {
@@ -321,7 +420,12 @@
     "image_md": "/images/avatar/256/avatar-025.webp",
     "image_sm": "/images/avatar/128/avatar-025.webp",
     "unlock_label": "Aprueba 10 exámenes de Sociales con nota ≥ 8",
-    "unlock": { "type": "subject_exams", "subject_id": "sociales", "count": 10, "min_nota": 8 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "sociales",
+      "count": 10,
+      "min_nota": 8
+    },
     "sort_order": 25
   },
   {
@@ -334,7 +438,10 @@
     "image_md": "/images/avatar/256/avatar-026.webp",
     "image_sm": "/images/avatar/128/avatar-026.webp",
     "unlock_label": "Mantén una racha de 7 días jugando",
-    "unlock": { "type": "streak_days", "count": 7 },
+    "unlock": {
+      "type": "streak_days",
+      "count": 7
+    },
     "sort_order": 26
   },
   {
@@ -347,7 +454,10 @@
     "image_md": "/images/avatar/256/avatar-027.webp",
     "image_sm": "/images/avatar/128/avatar-027.webp",
     "unlock_label": "Entra en el top 3 de tu clase",
-    "unlock": { "type": "top_class", "position": 3 },
+    "unlock": {
+      "type": "top_class",
+      "position": 3
+    },
     "sort_order": 27
   },
   {
@@ -360,7 +470,11 @@
     "image_md": "/images/avatar/256/avatar-028.webp",
     "image_sm": "/images/avatar/128/avatar-028.webp",
     "unlock_label": "Aprueba 10 exámenes con nota ≥ 7",
-    "unlock": { "type": "high_score_exams", "count": 10, "min_nota": 7 },
+    "unlock": {
+      "type": "high_score_exams",
+      "count": 10,
+      "min_nota": 7
+    },
     "sort_order": 28
   },
   {
@@ -373,7 +487,10 @@
     "image_md": "/images/avatar/256/avatar-029.webp",
     "image_sm": "/images/avatar/128/avatar-029.webp",
     "unlock_label": "Gana 15 duelos",
-    "unlock": { "type": "duels_won", "count": 15 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 15
+    },
     "sort_order": 29
   },
   {
@@ -386,7 +503,11 @@
     "image_md": "/images/avatar/256/avatar-030.webp",
     "image_sm": "/images/avatar/128/avatar-030.webp",
     "unlock_label": "Completa 5 sesiones del Sistema Solar",
-    "unlock": { "type": "app_sessions", "app_id": "sistema-solar", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "sistema-solar",
+      "count": 5
+    },
     "sort_order": 30
   },
   {
@@ -399,7 +520,10 @@
     "image_md": "/images/avatar/256/avatar-031.webp",
     "image_sm": "/images/avatar/128/avatar-031.webp",
     "unlock_label": "Completa tu primera partida",
-    "unlock": { "type": "total_sessions", "count": 1 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 1
+    },
     "sort_order": 31
   },
   {
@@ -412,7 +536,12 @@
     "image_md": "/images/avatar/256/avatar-032.webp",
     "image_sm": "/images/avatar/128/avatar-032.webp",
     "unlock_label": "Aprueba 5 exámenes del Sistema Solar",
-    "unlock": { "type": "app_sessions", "app_id": "sistema-solar", "mode": "test", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "sistema-solar",
+      "mode": "test",
+      "count": 5
+    },
     "sort_order": 32
   },
   {
@@ -425,7 +554,10 @@
     "image_md": "/images/avatar/256/avatar-033.webp",
     "image_sm": "/images/avatar/128/avatar-033.webp",
     "unlock_label": "Alcanza el nivel 8",
-    "unlock": { "type": "level", "value": 8 },
+    "unlock": {
+      "type": "level",
+      "value": 8
+    },
     "sort_order": 33
   },
   {
@@ -438,7 +570,12 @@
     "image_md": "/images/avatar/256/avatar-034.webp",
     "image_sm": "/images/avatar/128/avatar-034.webp",
     "unlock_label": "Aprueba 5 exámenes de Detective de Palabras",
-    "unlock": { "type": "app_sessions", "app_id": "detective-de-palabras", "mode": "test", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "detective-de-palabras",
+      "mode": "test",
+      "count": 5
+    },
     "sort_order": 34
   },
   {
@@ -451,7 +588,11 @@
     "image_md": "/images/avatar/256/avatar-035.webp",
     "image_sm": "/images/avatar/128/avatar-035.webp",
     "unlock_label": "Completa 10 misiones de Robótica",
-    "unlock": { "type": "app_sessions", "app_id": "misiones-roboticas", "count": 10 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "misiones-roboticas",
+      "count": 10
+    },
     "sort_order": 35
   },
   {
@@ -464,7 +605,12 @@
     "image_md": "/images/avatar/256/avatar-036.webp",
     "image_sm": "/images/avatar/128/avatar-036.webp",
     "unlock_label": "Aprueba 10 exámenes de Memoria",
-    "unlock": { "type": "app_sessions", "app_id": "juego-memoria", "mode": "test", "count": 10 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "juego-memoria",
+      "mode": "test",
+      "count": 10
+    },
     "sort_order": 36
   },
   {
@@ -477,7 +623,10 @@
     "image_md": "/images/avatar/256/avatar-037.webp",
     "image_sm": "/images/avatar/128/avatar-037.webp",
     "unlock_label": "Gana 30 duelos",
-    "unlock": { "type": "duels_won", "count": 30 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 30
+    },
     "sort_order": 37
   },
   {
@@ -490,7 +639,12 @@
     "image_md": "/images/avatar/256/avatar-038.webp",
     "image_sm": "/images/avatar/128/avatar-038.webp",
     "unlock_label": "Aprueba 10 exámenes de Naturales con nota ≥ 8",
-    "unlock": { "type": "subject_exams", "subject_id": "naturales", "count": 10, "min_nota": 8 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "naturales",
+      "count": 10,
+      "min_nota": 8
+    },
     "sort_order": 38
   },
   {
@@ -503,7 +657,12 @@
     "image_md": "/images/avatar/256/avatar-039.webp",
     "image_sm": "/images/avatar/128/avatar-039.webp",
     "unlock_label": "Aprueba 15 exámenes de Matemáticas con nota ≥ 8",
-    "unlock": { "type": "subject_exams", "subject_id": "matematicas", "count": 15, "min_nota": 8 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "matematicas",
+      "count": 15,
+      "min_nota": 8
+    },
     "sort_order": 39
   },
   {
@@ -516,7 +675,13 @@
     "image_md": "/images/avatar/256/avatar-040.webp",
     "image_sm": "/images/avatar/128/avatar-040.webp",
     "unlock_label": "Aprueba 5 exámenes de Velocidad de Respuesta",
-    "unlock": { "type": "app_sessions", "app_id": "velocidad-respuesta", "mode": "test", "count": 5, "min_nota": 7 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "velocidad-respuesta",
+      "mode": "test",
+      "count": 5,
+      "min_nota": 7
+    },
     "sort_order": 40
   },
   {
@@ -529,7 +694,10 @@
     "image_md": "/images/avatar/256/avatar-041.webp",
     "image_sm": "/images/avatar/128/avatar-041.webp",
     "unlock_label": "Alcanza el nivel 30",
-    "unlock": { "type": "level", "value": 30 },
+    "unlock": {
+      "type": "level",
+      "value": 30
+    },
     "sort_order": 41
   },
   {
@@ -542,7 +710,10 @@
     "image_md": "/images/avatar/256/avatar-042.webp",
     "image_sm": "/images/avatar/128/avatar-042.webp",
     "unlock_label": "Termina en podio en 10 batallas",
-    "unlock": { "type": "battles_won", "count": 10 },
+    "unlock": {
+      "type": "battles_won",
+      "count": 10
+    },
     "sort_order": 42
   },
   {
@@ -555,7 +726,10 @@
     "image_md": "/images/avatar/256/avatar-043.webp",
     "image_sm": "/images/avatar/128/avatar-043.webp",
     "unlock_label": "Juega al menos 8 apps distintas",
-    "unlock": { "type": "unique_apps", "count": 8 },
+    "unlock": {
+      "type": "unique_apps",
+      "count": 8
+    },
     "sort_order": 43
   },
   {
@@ -567,8 +741,11 @@
     "image_lg": "/images/avatar/512/avatar-044.webp",
     "image_md": "/images/avatar/256/avatar-044.webp",
     "image_sm": "/images/avatar/128/avatar-044.webp",
-    "unlock_label": "Desbloquea 30 insignias",
-    "unlock": { "type": "badges_count", "count": 30 },
+    "unlock_label": "Publica 100 comentarios de valoración",
+    "unlock": {
+      "type": "feedback_messages",
+      "count": 100
+    },
     "sort_order": 44
   },
   {
@@ -581,7 +758,10 @@
     "image_md": "/images/avatar/256/avatar-045.webp",
     "image_sm": "/images/avatar/128/avatar-045.webp",
     "unlock_label": "Gana 25 batallas",
-    "unlock": { "type": "battles_won", "count": 25 },
+    "unlock": {
+      "type": "battles_won",
+      "count": 25
+    },
     "sort_order": 45
   },
   {
@@ -594,7 +774,10 @@
     "image_md": "/images/avatar/256/avatar-046.webp",
     "image_sm": "/images/avatar/128/avatar-046.webp",
     "unlock_label": "Gana 50 batallas",
-    "unlock": { "type": "battles_won", "count": 50 },
+    "unlock": {
+      "type": "battles_won",
+      "count": 50
+    },
     "sort_order": 46
   },
   {
@@ -607,7 +790,10 @@
     "image_md": "/images/avatar/256/avatar-047.webp",
     "image_sm": "/images/avatar/128/avatar-047.webp",
     "unlock_label": "Gana 30 duelos en racha",
-    "unlock": { "type": "duels_won", "count": 30 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 30
+    },
     "sort_order": 47
   },
   {
@@ -620,7 +806,10 @@
     "image_md": "/images/avatar/256/avatar-048.webp",
     "image_sm": "/images/avatar/128/avatar-048.webp",
     "unlock_label": "Alcanza el #1 del ranking de tu clase",
-    "unlock": { "type": "top_class", "position": 1 },
+    "unlock": {
+      "type": "top_class",
+      "position": 1
+    },
     "sort_order": 48
   },
   {
@@ -633,7 +822,12 @@
     "image_md": "/images/avatar/256/avatar-049.webp",
     "image_sm": "/images/avatar/128/avatar-049.webp",
     "unlock_label": "Aprueba 10 exámenes de Matemáticas con nota ≥ 9",
-    "unlock": { "type": "subject_exams", "subject_id": "matematicas", "count": 10, "min_nota": 9 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "matematicas",
+      "count": 10,
+      "min_nota": 9
+    },
     "sort_order": 49
   },
   {
@@ -646,7 +840,13 @@
     "image_md": "/images/avatar/256/avatar-050.webp",
     "image_sm": "/images/avatar/128/avatar-050.webp",
     "unlock_label": "Aprueba 15 exámenes del Sistema Solar con nota perfecta",
-    "unlock": { "type": "app_sessions", "app_id": "sistema-solar", "mode": "test", "count": 15, "min_nota": 9.5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "sistema-solar",
+      "mode": "test",
+      "count": 15,
+      "min_nota": 9.5
+    },
     "sort_order": 50
   },
   {
@@ -659,7 +859,10 @@
     "image_md": "/images/avatar/256/avatar-051.webp",
     "image_sm": "/images/avatar/128/avatar-051.webp",
     "unlock_label": "Consigue 100 exámenes con nota perfecta (10)",
-    "unlock": { "type": "perfect_exams", "count": 100 },
+    "unlock": {
+      "type": "perfect_exams",
+      "count": 100
+    },
     "sort_order": 51
   },
   {
@@ -672,7 +875,10 @@
     "image_md": "/images/avatar/256/avatar-052.webp",
     "image_sm": "/images/avatar/128/avatar-052.webp",
     "unlock_label": "Desbloquea 80 insignias",
-    "unlock": { "type": "badges_count", "count": 80 },
+    "unlock": {
+      "type": "badges_count",
+      "count": 80
+    },
     "sort_order": 52
   },
   {
@@ -685,7 +891,11 @@
     "image_md": "/images/avatar/256/avatar-053.webp",
     "image_sm": "/images/avatar/128/avatar-053.webp",
     "unlock_label": "Aprueba 20 exámenes con nota ≥ 9",
-    "unlock": { "type": "high_score_exams", "count": 20, "min_nota": 9 },
+    "unlock": {
+      "type": "high_score_exams",
+      "count": 20,
+      "min_nota": 9
+    },
     "sort_order": 53
   },
   {
@@ -698,7 +908,12 @@
     "image_md": "/images/avatar/256/avatar-054.webp",
     "image_sm": "/images/avatar/128/avatar-054.webp",
     "unlock_label": "Aprueba 20 exámenes de Matemáticas con nota ≥ 9.5",
-    "unlock": { "type": "subject_exams", "subject_id": "matematicas", "count": 20, "min_nota": 9.5 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "matematicas",
+      "count": 20,
+      "min_nota": 9.5
+    },
     "sort_order": 54
   },
   {
@@ -711,7 +926,10 @@
     "image_md": "/images/avatar/256/avatar-055.webp",
     "image_sm": "/images/avatar/128/avatar-055.webp",
     "unlock_label": "Alcanza el nivel 35",
-    "unlock": { "type": "level", "value": 35 },
+    "unlock": {
+      "type": "level",
+      "value": 35
+    },
     "sort_order": 55
   },
   {
@@ -724,7 +942,11 @@
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
     "unlock_label": "Aprueba 15 exámenes de Plástica/Arte",
-    "unlock": { "type": "subject_exams", "subject_id": "plastica", "count": 15 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "plastica",
+      "count": 15
+    },
     "sort_order": 56
   },
   {
@@ -736,8 +958,11 @@
     "image_lg": "/images/avatar/512/avatar-057.webp",
     "image_md": "/images/avatar/256/avatar-057.webp",
     "image_sm": "/images/avatar/128/avatar-057.webp",
-    "unlock_label": "Juega 5 partidas",
-    "unlock": { "type": "total_sessions", "count": 5 },
+    "unlock_label": "Publica tu primer comentario de valoración",
+    "unlock": {
+      "type": "feedback_messages",
+      "count": 1
+    },
     "sort_order": 57
   },
   {
@@ -750,7 +975,10 @@
     "image_md": "/images/avatar/256/avatar-058.webp",
     "image_sm": "/images/avatar/128/avatar-058.webp",
     "unlock_label": "Gana 15 duelos",
-    "unlock": { "type": "duels_won", "count": 15 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 15
+    },
     "sort_order": 58
   },
   {
@@ -763,7 +991,12 @@
     "image_md": "/images/avatar/256/avatar-059.webp",
     "image_sm": "/images/avatar/128/avatar-059.webp",
     "unlock_label": "Aprueba 10 exámenes de Lengua con nota ≥ 9",
-    "unlock": { "type": "subject_exams", "subject_id": "lengua", "count": 10, "min_nota": 9 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "lengua",
+      "count": 10,
+      "min_nota": 9
+    },
     "sort_order": 59
   },
   {
@@ -776,7 +1009,12 @@
     "image_md": "/images/avatar/256/avatar-060.webp",
     "image_sm": "/images/avatar/128/avatar-060.webp",
     "unlock_label": "Aprueba 30 exámenes de Naturales con nota ≥ 9,5",
-    "unlock": { "type": "subject_exams", "subject_id": "naturales", "count": 30, "min_nota": 9.5 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "naturales",
+      "count": 30,
+      "min_nota": 9.5
+    },
     "sort_order": 60
   },
   {
@@ -789,7 +1027,11 @@
     "image_md": "/images/avatar/256/avatar-061.webp",
     "image_sm": "/images/avatar/128/avatar-061.webp",
     "unlock_label": "Completa 50 misiones de Robótica",
-    "unlock": { "type": "app_sessions", "app_id": "misiones-roboticas", "count": 50 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "misiones-roboticas",
+      "count": 50
+    },
     "sort_order": 61
   },
   {
@@ -802,7 +1044,11 @@
     "image_md": "/images/avatar/256/avatar-062.webp",
     "image_sm": "/images/avatar/128/avatar-062.webp",
     "unlock_label": "Completa 50 partidas en modo examen",
-    "unlock": { "type": "total_sessions", "count": 50, "mode": "test" },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 50,
+      "mode": "test"
+    },
     "sort_order": 62
   },
   {
@@ -815,7 +1061,10 @@
     "image_md": "/images/avatar/256/avatar-063.webp",
     "image_sm": "/images/avatar/128/avatar-063.webp",
     "unlock_label": "Alcanza el nivel 28",
-    "unlock": { "type": "level", "value": 28 },
+    "unlock": {
+      "type": "level",
+      "value": 28
+    },
     "sort_order": 63
   },
   {
@@ -828,7 +1077,10 @@
     "image_md": "/images/avatar/256/avatar-064.webp",
     "image_sm": "/images/avatar/128/avatar-064.webp",
     "unlock_label": "Gana 20 duelos",
-    "unlock": { "type": "duels_won", "count": 20 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 20
+    },
     "sort_order": 64
   },
   {
@@ -840,8 +1092,11 @@
     "image_lg": "/images/avatar/512/avatar-065.webp",
     "image_md": "/images/avatar/256/avatar-065.webp",
     "image_sm": "/images/avatar/128/avatar-065.webp",
-    "unlock_label": "Desbloquea 50 insignias",
-    "unlock": { "type": "badges_count", "count": 50 },
+    "unlock_label": "Valora 100 apps distintas",
+    "unlock": {
+      "type": "apps_rated",
+      "count": 100
+    },
     "sort_order": 65
   },
   {
@@ -854,7 +1109,10 @@
     "image_md": "/images/avatar/256/avatar-066.webp",
     "image_sm": "/images/avatar/128/avatar-066.webp",
     "unlock_label": "Alcanza el nivel 50",
-    "unlock": { "type": "level", "value": 50 },
+    "unlock": {
+      "type": "level",
+      "value": 50
+    },
     "sort_order": 66
   },
   {
@@ -867,7 +1125,10 @@
     "image_md": "/images/avatar/256/avatar-067.webp",
     "image_sm": "/images/avatar/128/avatar-067.webp",
     "unlock_label": "Gana 50 duelos",
-    "unlock": { "type": "duels_won", "count": 50 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 50
+    },
     "sort_order": 67
   },
   {
@@ -880,7 +1141,10 @@
     "image_md": "/images/avatar/256/avatar-068.webp",
     "image_sm": "/images/avatar/128/avatar-068.webp",
     "unlock_label": "Alcanza el nivel 20",
-    "unlock": { "type": "level", "value": 20 },
+    "unlock": {
+      "type": "level",
+      "value": 20
+    },
     "sort_order": 68
   },
   {
@@ -893,7 +1157,10 @@
     "image_md": "/images/avatar/256/avatar-069.webp",
     "image_sm": "/images/avatar/128/avatar-069.webp",
     "unlock_label": "Consigue 50 exámenes con nota perfecta (10)",
-    "unlock": { "type": "perfect_exams", "count": 50 },
+    "unlock": {
+      "type": "perfect_exams",
+      "count": 50
+    },
     "sort_order": 69
   },
   {
@@ -906,7 +1173,11 @@
     "image_md": "/images/avatar/256/avatar-070.webp",
     "image_sm": "/images/avatar/128/avatar-070.webp",
     "unlock_label": "Aprueba 10 exámenes con nota ≥ 9.5",
-    "unlock": { "type": "high_score_exams", "count": 10, "min_nota": 9.5 },
+    "unlock": {
+      "type": "high_score_exams",
+      "count": 10,
+      "min_nota": 9.5
+    },
     "sort_order": 70
   },
   {
@@ -919,7 +1190,10 @@
     "image_md": "/images/avatar/256/avatar-071.webp",
     "image_sm": "/images/avatar/128/avatar-071.webp",
     "unlock_label": "Mantén una racha de 3 días jugando",
-    "unlock": { "type": "streak_days", "count": 3 },
+    "unlock": {
+      "type": "streak_days",
+      "count": 3
+    },
     "sort_order": 71
   },
   {
@@ -932,7 +1206,10 @@
     "image_md": "/images/avatar/256/avatar-072.webp",
     "image_sm": "/images/avatar/128/avatar-072.webp",
     "unlock_label": "Juega 8 partidas",
-    "unlock": { "type": "total_sessions", "count": 8 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 8
+    },
     "sort_order": 72
   },
   {
@@ -945,7 +1222,11 @@
     "image_md": "/images/avatar/256/avatar-073.webp",
     "image_sm": "/images/avatar/128/avatar-073.webp",
     "unlock_label": "Completa 2 sesiones de Mesa de Crafteo",
-    "unlock": { "type": "app_sessions", "app_id": "mesa-crafteo", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "mesa-crafteo",
+      "count": 2
+    },
     "sort_order": 73
   },
   {
@@ -958,7 +1239,11 @@
     "image_md": "/images/avatar/256/avatar-074.webp",
     "image_sm": "/images/avatar/128/avatar-074.webp",
     "unlock_label": "Completa 2 misiones de Robótica",
-    "unlock": { "type": "app_sessions", "app_id": "misiones-roboticas", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "misiones-roboticas",
+      "count": 2
+    },
     "sort_order": 74
   },
   {
@@ -971,7 +1256,10 @@
     "image_md": "/images/avatar/256/avatar-075.webp",
     "image_sm": "/images/avatar/128/avatar-075.webp",
     "unlock_label": "Juega 10 partidas",
-    "unlock": { "type": "total_sessions", "count": 10 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 10
+    },
     "sort_order": 75
   },
   {
@@ -984,7 +1272,10 @@
     "image_md": "/images/avatar/256/avatar-076.webp",
     "image_sm": "/images/avatar/128/avatar-076.webp",
     "unlock_label": "Mantén una racha de 4 días jugando",
-    "unlock": { "type": "streak_days", "count": 4 },
+    "unlock": {
+      "type": "streak_days",
+      "count": 4
+    },
     "sort_order": 76
   },
   {
@@ -996,8 +1287,11 @@
     "image_lg": "/images/avatar/512/avatar-077.webp",
     "image_md": "/images/avatar/256/avatar-077.webp",
     "image_sm": "/images/avatar/128/avatar-077.webp",
-    "unlock_label": "Juega 4 partidas",
-    "unlock": { "type": "total_sessions", "count": 4 },
+    "unlock_label": "Valora 1 app",
+    "unlock": {
+      "type": "apps_rated",
+      "count": 1
+    },
     "sort_order": 77
   },
   {
@@ -1010,7 +1304,11 @@
     "image_md": "/images/avatar/256/avatar-078.webp",
     "image_sm": "/images/avatar/128/avatar-078.webp",
     "unlock_label": "Completa 2 sesiones de Excavación Selectiva",
-    "unlock": { "type": "app_sessions", "app_id": "excavacion-selectiva", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "excavacion-selectiva",
+      "count": 2
+    },
     "sort_order": 78
   },
   {
@@ -1023,7 +1321,10 @@
     "image_md": "/images/avatar/256/avatar-079.webp",
     "image_sm": "/images/avatar/128/avatar-079.webp",
     "unlock_label": "Mantén una racha de 5 días jugando",
-    "unlock": { "type": "streak_days", "count": 5 },
+    "unlock": {
+      "type": "streak_days",
+      "count": 5
+    },
     "sort_order": 79
   },
   {
@@ -1036,7 +1337,11 @@
     "image_md": "/images/avatar/256/avatar-080.webp",
     "image_sm": "/images/avatar/128/avatar-080.webp",
     "unlock_label": "Completa 2 sesiones del Sistema Solar",
-    "unlock": { "type": "app_sessions", "app_id": "sistema-solar", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "sistema-solar",
+      "count": 2
+    },
     "sort_order": 80
   },
   {
@@ -1049,7 +1354,10 @@
     "image_md": "/images/avatar/256/avatar-081.webp",
     "image_sm": "/images/avatar/128/avatar-081.webp",
     "unlock_label": "Juega 12 partidas",
-    "unlock": { "type": "total_sessions", "count": 12 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 12
+    },
     "sort_order": 81
   },
   {
@@ -1062,7 +1370,10 @@
     "image_md": "/images/avatar/256/avatar-082.webp",
     "image_sm": "/images/avatar/128/avatar-082.webp",
     "unlock_label": "Juega 6 partidas",
-    "unlock": { "type": "total_sessions", "count": 6 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 6
+    },
     "sort_order": 82
   },
   {
@@ -1075,7 +1386,10 @@
     "image_md": "/images/avatar/256/avatar-083.webp",
     "image_sm": "/images/avatar/128/avatar-083.webp",
     "unlock_label": "Juega al menos 3 apps distintas",
-    "unlock": { "type": "unique_apps", "count": 3 },
+    "unlock": {
+      "type": "unique_apps",
+      "count": 3
+    },
     "sort_order": 83
   },
   {
@@ -1088,7 +1402,11 @@
     "image_md": "/images/avatar/256/avatar-084.webp",
     "image_sm": "/images/avatar/128/avatar-084.webp",
     "unlock_label": "Completa 2 sesiones de Memoria",
-    "unlock": { "type": "app_sessions", "app_id": "juego-memoria", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "juego-memoria",
+      "count": 2
+    },
     "sort_order": 84
   },
   {
@@ -1101,7 +1419,10 @@
     "image_md": "/images/avatar/256/avatar-085.webp",
     "image_sm": "/images/avatar/128/avatar-085.webp",
     "unlock_label": "Alcanza el nivel 3",
-    "unlock": { "type": "level", "value": 3 },
+    "unlock": {
+      "type": "level",
+      "value": 3
+    },
     "sort_order": 85
   },
   {
@@ -1114,7 +1435,11 @@
     "image_md": "/images/avatar/256/avatar-086.webp",
     "image_sm": "/images/avatar/128/avatar-086.webp",
     "unlock_label": "Completa 2 sesiones de Detective de Palabras",
-    "unlock": { "type": "app_sessions", "app_id": "detective-de-palabras", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "detective-de-palabras",
+      "count": 2
+    },
     "sort_order": 86
   },
   {
@@ -1127,7 +1452,10 @@
     "image_md": "/images/avatar/256/avatar-087.webp",
     "image_sm": "/images/avatar/128/avatar-087.webp",
     "unlock_label": "Juega 7 partidas",
-    "unlock": { "type": "total_sessions", "count": 7 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 7
+    },
     "sort_order": 87
   },
   {
@@ -1140,7 +1468,11 @@
     "image_md": "/images/avatar/256/avatar-088.webp",
     "image_sm": "/images/avatar/128/avatar-088.webp",
     "unlock_label": "Completa 2 sesiones de Comprensión Escrita",
-    "unlock": { "type": "app_sessions", "app_id": "comprension-escrita", "count": 2 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "comprension-escrita",
+      "count": 2
+    },
     "sort_order": 88
   },
   {
@@ -1153,7 +1485,10 @@
     "image_md": "/images/avatar/256/avatar-089.webp",
     "image_sm": "/images/avatar/128/avatar-089.webp",
     "unlock_label": "Juega 9 partidas",
-    "unlock": { "type": "total_sessions", "count": 9 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 9
+    },
     "sort_order": 89
   },
   {
@@ -1166,7 +1501,10 @@
     "image_md": "/images/avatar/256/avatar-090.webp",
     "image_sm": "/images/avatar/128/avatar-090.webp",
     "unlock_label": "Juega 2 partidas",
-    "unlock": { "type": "total_sessions", "count": 2 },
+    "unlock": {
+      "type": "total_sessions",
+      "count": 2
+    },
     "sort_order": 90
   },
   {
@@ -1179,7 +1517,10 @@
     "image_md": "/images/avatar/256/avatar-091.webp",
     "image_sm": "/images/avatar/128/avatar-091.webp",
     "unlock_label": "Juega al menos 15 apps distintas",
-    "unlock": { "type": "unique_apps", "count": 15 },
+    "unlock": {
+      "type": "unique_apps",
+      "count": 15
+    },
     "sort_order": 91
   },
   {
@@ -1192,7 +1533,10 @@
     "image_md": "/images/avatar/256/avatar-092.webp",
     "image_sm": "/images/avatar/128/avatar-092.webp",
     "unlock_label": "Consigue 25 exámenes con nota perfecta (10)",
-    "unlock": { "type": "perfect_exams", "count": 25 },
+    "unlock": {
+      "type": "perfect_exams",
+      "count": 25
+    },
     "sort_order": 92
   },
   {
@@ -1204,8 +1548,11 @@
     "image_lg": "/images/avatar/512/avatar-093.webp",
     "image_md": "/images/avatar/256/avatar-093.webp",
     "image_sm": "/images/avatar/128/avatar-093.webp",
-    "unlock_label": "Juega 25 partidas",
-    "unlock": { "type": "total_sessions", "count": 25 },
+    "unlock_label": "Valora 10 apps distintas",
+    "unlock": {
+      "type": "apps_rated",
+      "count": 10
+    },
     "sort_order": 93
   },
   {
@@ -1218,7 +1565,11 @@
     "image_md": "/images/avatar/256/avatar-094.webp",
     "image_sm": "/images/avatar/128/avatar-094.webp",
     "unlock_label": "Aprueba 10 exámenes con nota ≥ 8",
-    "unlock": { "type": "high_score_exams", "count": 10, "min_nota": 8 },
+    "unlock": {
+      "type": "high_score_exams",
+      "count": 10,
+      "min_nota": 8
+    },
     "sort_order": 94
   },
   {
@@ -1231,7 +1582,12 @@
     "image_md": "/images/avatar/256/avatar-095.webp",
     "image_sm": "/images/avatar/128/avatar-095.webp",
     "unlock_label": "Aprueba 5 exámenes de Memoria",
-    "unlock": { "type": "app_sessions", "app_id": "juego-memoria", "mode": "test", "count": 5 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "juego-memoria",
+      "mode": "test",
+      "count": 5
+    },
     "sort_order": 95
   },
   {
@@ -1244,7 +1600,10 @@
     "image_md": "/images/avatar/256/avatar-096.webp",
     "image_sm": "/images/avatar/128/avatar-096.webp",
     "unlock_label": "Mantén una racha de 10 días jugando",
-    "unlock": { "type": "streak_days", "count": 10 },
+    "unlock": {
+      "type": "streak_days",
+      "count": 10
+    },
     "sort_order": 96
   },
   {
@@ -1257,7 +1616,10 @@
     "image_md": "/images/avatar/256/avatar-097.webp",
     "image_sm": "/images/avatar/128/avatar-097.webp",
     "unlock_label": "Gana 12 duelos",
-    "unlock": { "type": "duels_won", "count": 12 },
+    "unlock": {
+      "type": "duels_won",
+      "count": 12
+    },
     "sort_order": 97
   },
   {
@@ -1270,7 +1632,13 @@
     "image_md": "/images/avatar/256/avatar-098.webp",
     "image_sm": "/images/avatar/128/avatar-098.webp",
     "unlock_label": "Aprueba 5 exámenes de Comprensión Escrita con nota ≥ 8",
-    "unlock": { "type": "app_sessions", "app_id": "comprension-escrita", "mode": "test", "count": 5, "min_nota": 8 },
+    "unlock": {
+      "type": "app_sessions",
+      "app_id": "comprension-escrita",
+      "mode": "test",
+      "count": 5,
+      "min_nota": 8
+    },
     "sort_order": 98
   },
   {
@@ -1283,7 +1651,12 @@
     "image_md": "/images/avatar/256/avatar-099.webp",
     "image_sm": "/images/avatar/128/avatar-099.webp",
     "unlock_label": "Aprueba 15 exámenes de Naturales con nota ≥ 9",
-    "unlock": { "type": "subject_exams", "subject_id": "naturales", "count": 15, "min_nota": 9 },
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "naturales",
+      "count": 15,
+      "min_nota": 9
+    },
     "sort_order": 99
   },
   {
@@ -1296,7 +1669,10 @@
     "image_md": "/images/avatar/256/avatar-100.webp",
     "image_sm": "/images/avatar/128/avatar-100.webp",
     "unlock_label": "Alcanza el nivel 40",
-    "unlock": { "type": "level", "value": 40 },
+    "unlock": {
+      "type": "level",
+      "value": 40
+    },
     "sort_order": 100
   }
 ]

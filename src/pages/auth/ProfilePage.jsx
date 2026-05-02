@@ -9,6 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Header from '@/components/layout/Header';
 import { sanitizePlainText } from '@/lib/sanitize';
+import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
+import AvatarGallery from '@/components/avatar/AvatarGallery';
+import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
 // Limites acordes con la BD (defensa en profundidad; la RPC debe truncar tambien).
 const MAX_DISPLAY_NAME = 80;
@@ -109,6 +112,10 @@ const ProfilePage = () => {
 
   const selectedColorObj = AVATAR_COLORS.find(c => c.id === selectedColor) || AVATAR_COLORS[0];
 
+  const { byCode } = useAvatarCatalog();
+  const equippedAvatar = teacher?.selected_avatar_code ? byCode(teacher.selected_avatar_code) : null;
+  const rMeta = equippedAvatar ? rarityMeta(equippedAvatar.rarity) : null;
+
   const handleSaveProfile = async () => {
     const cleanDisplayName = sanitizePlainText(displayName, MAX_DISPLAY_NAME);
     if (!cleanDisplayName) {
@@ -165,77 +172,179 @@ const ProfilePage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="relative bg-white rounded-3xl shadow-lg border border-purple-100 overflow-hidden"
           >
-            {/* Banner de fondo con nombre */}
-            <div
-              className={`h-40 sm:h-44 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}
-            >
-              <div className="absolute inset-0 opacity-20"
+            {equippedAvatar ? (
+              // Layout con avatar especial: fondo técnico oscuro con glow de rareza (sin panel de color)
+              <div
+                className="relative px-5 sm:px-7 py-6 sm:py-7 overflow-hidden"
                 style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
+                  background: `radial-gradient(circle at 20% 30%, ${rMeta.glow}33 0%, transparent 55%), radial-gradient(circle at 80% 70%, ${rMeta.ring}22 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
                 }}
-              />
-              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
-                <Shield className="w-3.5 h-3.5 text-white" />
-                <span className="text-xs font-bold text-white">{roleLabel}</span>
-              </div>
-              {/* Nombre sobre el banner */}
-              <div className="absolute bottom-3 left-48 sm:left-52 right-4">
-                <h1 className="text-3xl sm:text-4xl font-black text-white truncate drop-shadow-lg">
-                  {displayName || teacher?.display_name || 'Sin nombre'}
-                </h1>
-                {bio && (
-                  <p className="text-sm text-white/80 mt-1 italic truncate drop-shadow">"{bio}"</p>
-                )}
-              </div>
-            </div>
+              >
+                {/* Grid técnico */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-25"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+                    backgroundSize: '32px 32px',
+                  }}
+                />
+                {/* Líneas diagonales sutiles */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-15"
+                  style={{
+                    backgroundImage:
+                      `repeating-linear-gradient(45deg, transparent 0 80px, ${rMeta.ring}33 80px 81px)`,
+                  }}
+                />
+                {/* Highlight superior */}
+                <div
+                  className="absolute inset-x-0 top-0 h-px"
+                  style={{ background: `linear-gradient(90deg, transparent, ${rMeta.glow}, transparent)` }}
+                />
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/8 backdrop-blur-md rounded-full px-3 py-1 border border-white/15">
+                  <Shield className="w-3.5 h-3.5 text-white/80" />
+                  <span className="text-xs font-bold text-white/90">{roleLabel}</span>
+                </div>
 
-            <div className="px-6 pb-6 -mt-20 relative">
-              <div className="flex flex-col sm:flex-row gap-6 items-start">
-                {/* Avatar grande */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                  className="flex-shrink-0"
-                >
-                  <div
-                    className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}
+                <div className="relative flex flex-col sm:flex-row gap-5 sm:gap-7 items-start sm:items-center">
+                  <motion.div
+                    initial={{ scale: 0.85, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+                    className="flex-shrink-0"
                   >
-                    <div className="absolute inset-0 opacity-20"
-                      style={{
-                        backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)',
-                      }}
+                    <UserAvatar
+                      selectedAvatarCode={teacher.selected_avatar_code}
+                      size="mega"
+                      shape="rounded"
+                      showRarityBorder
+                      showRarityGlow
+                      className="shadow-[0_0_60px_rgba(0,0,0,0.6)]"
                     />
-                    <span className="text-8xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
-                  </div>
-                </motion.div>
+                  </motion.div>
 
-                {/* Chips */}
-                <div className="flex-1 min-w-0 pt-2 sm:pt-24">
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={handleCopyCode}
-                      className="inline-flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-purple-200"
-                    >
-                      <KeyRound className="w-3.5 h-3.5" />
-                      {teacher?.teacher_code}
-                    </button>
-                    <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
-                      <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
-                      <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
-                      <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-slate-50 text-slate-600 rounded-full px-3 py-1.5 text-xs font-bold border border-slate-200">
-                      <Calendar className="w-3.5 h-3.5" /> Desde {formatDate(teacher?.created_at)}
-                    </span>
+                  <div className="flex-1 min-w-0 space-y-3">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span
+                        className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-white"
+                        style={{ background: `linear-gradient(135deg, ${rMeta.ring}, ${rMeta.glow})` }}
+                      >
+                        {rMeta.label}
+                      </span>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-white/50">
+                        {equippedAvatar.title}
+                      </span>
+                    </div>
+
+                    <h1 className="text-2xl sm:text-3xl font-black text-white truncate">
+                      {displayName || teacher?.display_name || 'Sin nombre'}
+                    </h1>
+
+                    {(bio || equippedAvatar.description) && (
+                      <p className="text-sm text-white/70 italic leading-snug max-w-prose line-clamp-2">
+                        {bio ? `"${bio}"` : equippedAvatar.description}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      <button
+                        onClick={handleCopyCode}
+                        className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/15 text-purple-200 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-white/15 backdrop-blur"
+                      >
+                        <KeyRound className="w-3.5 h-3.5" />
+                        {teacher?.teacher_code}
+                      </button>
+                      <span className="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                        <Trophy className="w-3.5 h-3.5" /> Nivel {level}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-white/10 text-indigo-200 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                        <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-white/10 text-emerald-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                        <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-white/10 text-slate-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                        <Calendar className="w-3.5 h-3.5" /> Desde {formatDate(teacher?.created_at)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
+            ) : (
+              // Layout clásico: banner color + emoji
+              <>
+                <div
+                  className={`h-40 sm:h-44 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
+                    }}
+                  />
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
+                    <Shield className="w-3.5 h-3.5 text-white" />
+                    <span className="text-xs font-bold text-white">{roleLabel}</span>
+                  </div>
+                  <div className="absolute bottom-3 left-48 sm:left-52 right-4">
+                    <h1 className="text-3xl sm:text-4xl font-black text-white truncate drop-shadow-lg">
+                      {displayName || teacher?.display_name || 'Sin nombre'}
+                    </h1>
+                    {bio && (
+                      <p className="text-sm text-white/80 mt-1 italic truncate drop-shadow">"{bio}"</p>
+                    )}
+                  </div>
+                </div>
 
+                <div className="px-6 pb-6 -mt-20 relative">
+                  <div className="flex flex-col sm:flex-row gap-6 items-start">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+                      className="flex-shrink-0"
+                    >
+                      <div
+                        className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}
+                      >
+                        <div className="absolute inset-0 opacity-20"
+                          style={{
+                            backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)',
+                          }}
+                        />
+                        <span className="text-8xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
+                      </div>
+                    </motion.div>
+
+                    <div className="flex-1 min-w-0 pt-2 sm:pt-24">
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          onClick={handleCopyCode}
+                          className="inline-flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-purple-200"
+                        >
+                          <KeyRound className="w-3.5 h-3.5" />
+                          {teacher?.teacher_code}
+                        </button>
+                        <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
+                          <Trophy className="w-3.5 h-3.5" /> Nivel {level}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
+                          <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
+                          <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-slate-50 text-slate-600 rounded-full px-3 py-1.5 text-xs font-bold border border-slate-200">
+                          <Calendar className="w-3.5 h-3.5" /> Desde {formatDate(teacher?.created_at)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            <div className="px-6 pb-6 pt-2 relative">
               {/* Barra XP */}
               <div className="mt-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-2xl p-4 text-white">
                 <div className="flex items-center justify-between mb-2">
@@ -272,8 +381,8 @@ const ProfilePage = () => {
             transition={{ delay: 0.1 }}
             className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
           >
-            <h3 className="text-base font-bold text-slate-800 mb-1">Personaliza tu avatar</h3>
-            <p className="text-xs text-slate-500 mb-5">Elige un emoji y un color que te representen. Verás los cambios en la vista previa de arriba.</p>
+            <h3 className="text-base font-bold text-slate-800 mb-1">Avatar clásico (emoji)</h3>
+            <p className="text-xs text-slate-500 mb-5">Si no tienes ningún avatar especial equipado, se mostrará este emoji con su color de fondo.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Selector emoji */}
@@ -309,6 +418,21 @@ const ProfilePage = () => {
                 <p className="text-[11px] text-slate-400 mt-2">Color actual: <span className="font-semibold">{selectedColorObj.label}</span></p>
               </div>
             </div>
+          </motion.div>
+
+          {/* Colección de avatares especiales */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
+          >
+            <h3 className="text-base font-bold text-slate-800 mb-1">Tu colección de avatares</h3>
+            <p className="text-xs text-slate-500 mb-5">
+              Desbloquea avatares especiales valorando apps, publicando comentarios, ganando insignias o subiendo de nivel.
+              Si quieres equipar uno, selecciónalo aquí; reemplazará al emoji clásico.
+            </p>
+            <AvatarGallery mode="teacher" />
           </motion.div>
 
           {/* Datos del perfil */}
