@@ -112,23 +112,25 @@ npm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
 
 ## Sistema de nota y bonus (importantísimo)
 
-La nota del alumno que ve en **Resumen** es la de la **evaluación en curso** (`groups.current_term` o inferida por fecha). Se compone de 4 partes, cada bonus capado:
+La nota del alumno que ve en **Resumen** es la de la **evaluación en curso** (`groups.current_term` o inferida por fecha). Se compone de 5 partes, cada bonus capado:
 
 ```
 nota_evaluación = base_tareas
                 + bonus_duelos    (-0,5..+0,5)
                 + bonus_batallas  ( 0..+0,5)
                 + bonus_nivel     ( 0..+0,5)
+                + bonus_avatares  ( 0..+0,5)
                 → clip [0, 10]
 ```
 
 ### Lo no intentado cuenta como 0
 `_compute_student_term_grades` usa `COALESCE(best.best_nota, 0)` y promedia ponderando por `weight`. Las tareas sin intento o con nota inferior a `min_score` se incluyen en la media con su valor real (0 si no se intentó, la nota obtenida si se falló).
 
-### Curvas de los 3 bonus (función √, concava)
+### Curvas de los 4 bonus (función √, concava — duelos y avatares lineales)
 - **Nivel**: `0,5 · √((nivel-1)/49)` → tope +0,5 en nivel 50.
 - **Batallas**: score = `1·1ᵒs + 0,667·2ᵒs + 0,333·3ᵒs`, bonus = `0,5 · √(min(score, 10)/10)` → tope +0,5 con 10 primeros puestos.
 - **Duelos**: dos fuentes combinadas (ver siguiente sección).
+- **Avatares**: suma de `points_bonus` de los avatares **desbloqueados** (no equipados): común 0,1 / raro 0,2 / épico 0,3 / legendario 0,4 / mítico 0,5 — capada a +0,5. Es global (no por evaluación). Equipar un avatar es solo cosmético; el desbloqueo es lo que cuenta.
 
 ---
 
@@ -153,6 +155,26 @@ Dos tipos, diferenciados por `duels.assignment_pair_id`:
 
 ### Modo `'duel'` en `game_sessions`
 Las partidas lanzadas desde un Duel component (AhorcadoDuel, SnakeDuel, OrdenaBolasDuel, NavePalabrasDuel) guardan la sesión con `mode='duel'` para que **no cuenten como intento de examen** en la tarea. Solo el ledger dicta el resultado del duelo.
+
+---
+
+## Avatares (sistema de coleccionables)
+
+70 personajes pixel-art (PNG → webp 512/256/128 en [public/images/avatar/](public/images/avatar/)). Cada uno tiene rareza, descripción narrativa y un requisito de desbloqueo en `jsonb`. El catálogo editable está en [public/data/avatars.json](public/data/avatars.json) y replicado en `avatar_definitions` (seed inicial vía migración).
+
+**Tipos de requisito** (`unlock_requirement.type`):
+`first_session`, `total_sessions`, `unique_apps`, `app_sessions`, `subject_exams`, `perfect_exams`, `high_score_exams`, `badges_count`, `level`, `xp`, `duels_won`, `battles_won`, `top_class`, `top_global`, `streak_days`. La función `_avatar_progress(student, jsonb)` devuelve `{progress, target, pct}` para alimentar las barras de la galería.
+
+**RPCs principales**:
+- `avatar_list_definitions()` — catálogo público (cacheado en frontend con [src/hooks/useAvatarCatalog.js](src/hooks/useAvatarCatalog.js)).
+- `avatar_get_my_collection(student, token)` — colección del alumno con progreso, propiedad y selección.
+- `avatar_select(student, token, code)` — equipa un avatar (o `NULL` para volver al emoji).
+- `avatar_check_unlocks(student, token?)` — comprueba todos los requisitos y otorga los desbloqueados; devuelve los nuevos. Se llama automáticamente al final de cada partida desde `gamification_process_session`, que devuelve los códigos en `new_avatars` (paralelo a `new_badges`). [src/pages/AppRunnerPage.jsx](src/pages/AppRunnerPage.jsx) los muestra en `AvatarUnlockModal`.
+- `avatar_admin_list/upsert/delete` — sólo `teachers.role = 'admin'`.
+
+**Cálculo de nota**: `_compute_student_term_grades` añade `v_avatar_bonus = _avatar_bonus(student)` y lo suma a `bonus_total` y `final_grade`. La RPC pública `student_get_grade_with_duel_bonus` expone `avatar_bonus`, `avatar_count` y `selected_avatar_code`.
+
+**UI**: `<UserAvatar />` ([src/components/ui/UserAvatar.jsx](src/components/ui/UserAvatar.jsx)) renderiza imagen webp si `selected_avatar_code` está set, fallback al emoji+color clásico. Borde y glow por rareza. Aparece prominente en `DuelLobby` (PlayerCard), `QuizBattlePlayer` (espera + grid), `StudentDashboard` (header). `AvatarGallery` ([src/components/avatar/AvatarGallery.jsx](src/components/avatar/AvatarGallery.jsx)) es el selector con filtros, barras de progreso y modal de detalle, integrado en `StudentProfileEditor`.
 
 ---
 
@@ -188,7 +210,13 @@ La nota del panel **Resumen** del alumno y el desglose de la pestaña **Tareas**
 | `src/hooks/useDuel.js` / `useDuelChannel.js` / `useIncomingDuels.js` | Duelos en tiempo real |
 | `src/pages/AppRunnerPage.jsx` | Wrapper que monta cada app, inicia sesión, procesa resultado |
 | `src/apps/_shared/InstructionsModal.jsx` | Modal de instrucciones |
-| `src/components/duel/DuelGradePanel.jsx` | Panel "Mi nota actual" con los 3 bonus |
+| `src/components/duel/DuelGradePanel.jsx` | Panel "Mi nota actual" con los 4 bonus (tareas + duelos + batallas + nivel + avatares) |
+| `src/components/ui/UserAvatar.jsx` | Avatar unificado (imagen webp por rareza o emoji+color como fallback) |
+| `src/components/avatar/AvatarGallery.jsx` | Galería con filtros, progreso de desbloqueo y selector |
+| `src/components/avatar/AvatarUnlockModal.jsx` | Modal celebrativo cuando se desbloquea un avatar |
+| `src/hooks/useAvatarCatalog.js` | Cache global del catálogo (invalidate con `invalidateAvatarCatalog()`) |
+| `src/hooks/useAvatarCollection.js` | Colección del alumno con progreso y total bonus |
+| `public/data/avatars.json` | Catálogo editable (también seed de `avatar_definitions`) |
 | `src/components/duel/DuelInbox.jsx` | Bandeja de duelos entrantes/salientes |
 | `src/components/ui/RankingModal.jsx` | Modal de ranking |
 | `src/components/ui/BadgeIcon.jsx` | SVGs de las 128 insignias (64x64) |

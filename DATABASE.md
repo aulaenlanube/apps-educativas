@@ -1,7 +1,7 @@
 # Base de datos — Estructura completa
 
 > Snapshot de la instancia de Supabase. Última actualización: 2026-04-24.
-> 46 tablas · 150+ RPCs públicas · 128 insignias.
+> 49 tablas · 155+ RPCs públicas · 128 insignias · 70 avatares coleccionables.
 
 ---
 
@@ -97,6 +97,18 @@
 | `teacher_xp_log` | Historial XP docente | `teacher_id`, `xp_amount`, `source`, `source_id` |
 | `user_ranking_achievements` | Logros de ranking registrados | `user_id`, `user_type`, `app_id`, `global_rank`, `class_rank` |
 
+### Avatares (coleccionables)
+
+| Tabla | Descripción | Columnas clave |
+|---|---|---|
+| `avatar_definitions` | Catálogo de avatares | `code` (unique), `title`, `description`, `rarity` (common/rare/epic/legendary/mythic), `points_bonus` (0,1..0,5), `image_lg/md/sm`, `unlock_label`, `unlock_requirement` (jsonb), `sort_order`, `active` |
+| `student_avatars` | Avatares desbloqueados por el alumno | `student_id`, `avatar_id`, `earned_at` |
+| `teacher_avatars` | Avatares desbloqueados por el docente | `teacher_id`, `avatar_id`, `earned_at` |
+
+Las tablas `students` y `teachers` ganan también `selected_avatar_code` (FK a `avatar_definitions.code`) para indicar el avatar equipado. Si está NULL → se usa el `avatar_emoji` clásico como fallback.
+
+**Tipos de `unlock_requirement.type`**: `first_session`, `total_sessions`, `unique_apps`, `app_sessions` (con `app_id`, `mode?`, `min_nota?`), `subject_exams` (con `subject_id`), `perfect_exams`, `high_score_exams` (con `min_nota`), `badges_count`, `level`, `xp`, `duels_won`, `battles_won` (con `position?`), `top_class` (con `position`), `top_global`, `streak_days`. Cada uno mapea a una consulta en `_avatar_progress(student, jsonb)` que devuelve `{progress, target, pct}`.
+
 ### Feedback y valoraciones
 
 | Tabla | Descripción | Columnas clave |
@@ -146,6 +158,9 @@ duels ─────┬── duel_rounds (duel_id)
 badge_definitions ──┬── student_badges (badge_id)
                     └── teacher_badges (badge_id)
 
+avatar_definitions ──┬── student_avatars (avatar_id)
+                     └── teacher_avatars (avatar_id)
+
 app_feedback ── app_feedback_messages (feedback_id)
 ```
 
@@ -160,6 +175,7 @@ nota_evaluación = media_ponderada_tareas
                 + bonus_batallas  (0..+0,5)
                 + bonus_duelos    (-0,5..+0,5)
                 + bonus_nivel     (0..+0,5)
+                + bonus_avatares  (0..+0,5)
                 → clip [0, 10]
 ```
 
@@ -174,6 +190,9 @@ Score = 1·(1ᵒs) + 0,667·(2ᵒs) + 0,333·(3ᵒs).
 - **Duelos personales** (`duels.assignment_pair_id IS NULL`): ganador `+stake`, perdedor `−stake`. Suma de deltas del ledger → `personal_delta`.
 - **Duelos-tarea** (`duels.assignment_pair_id IS NOT NULL`): el ganador suma **`+0,10`** fijo; el perdedor **no tiene entrada** en el ledger (sin penalización). La suma positiva de deltas se capa en `min(0,5, Σ delta_task)`.
 - **Total** = `clamp(task_bonus + personal_delta, −0,5, +0,5)`.
+
+### Bonus de avatares
+Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined con `avatar_definitions.active = true`), capada a +0,5. Helper: `_avatar_bonus(student_id) → numeric`. Es global (no por evaluación). Equipar un avatar es solo cosmético; el desbloqueo es lo que cuenta.
 
 ### Bonus de nivel
 `0,5 · √(min(level-1, 49) / 49)` → tope +0,5 al llegar a nivel 50.
@@ -297,6 +316,17 @@ Score = 1·(1ᵒs) + 0,667·(2ᵒs) + 0,333·(3ᵒs).
 | `student_get_dashboard` | Stats agregadas del alumno (usado en el panel) |
 | `teacher_get_student_stats` | Versión docente |
 | `admin_reset_gamification` | — |
+
+### Avatares
+| Función | Argumentos / propósito |
+|---|---|
+| `_avatar_progress(student_id, requirement jsonb)` | Helper STABLE. Devuelve `{progress, target, pct}` para un requisito |
+| `_avatar_bonus(student_id)` | Helper STABLE. Suma `points_bonus` de los desbloqueados (cap 0,5) |
+| `avatar_list_definitions()` | Catálogo público (sólo activos) |
+| `avatar_get_my_collection(student_id, session_token)` | Colección con progreso, propiedad y selección |
+| `avatar_select(student_id, session_token, code)` | Equipa un avatar (o NULL para emoji) |
+| `avatar_check_unlocks(student_id, session_token?)` | Comprueba todos los requisitos y otorga los nuevos. Llamado automáticamente al final de `gamification_process_session`; los desbloqueos vienen en `new_avatars` del JSON resultado |
+| `avatar_admin_list / avatar_admin_upsert / avatar_admin_delete` | Sólo `teachers.role='admin'` |
 
 ### Robótica
 | Función | Argumentos |

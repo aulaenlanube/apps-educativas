@@ -7,6 +7,7 @@ import useDuelChannel from '@/hooks/useDuelChannel';
 import { getDuelState, startDuel, voidDuel } from '@/services/duelService';
 import { DUELABLE_APPS, getDuelConfig } from '@/apps/config/duelableApps';
 import InstructionsModal from '@/apps/_shared/InstructionsModal';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 // Instrucciones por app. Pueden extenderse libremente.
 const INSTRUCTIONS = {
@@ -69,6 +70,8 @@ export default function DuelLobby() {
     id: student.id,
     name: student.display_name || student.username,
     emoji: student.avatar_emoji || '🎓',
+    color: student.avatar_color,
+    selected_avatar_code: student.selected_avatar_code,
     role: state ? (state.challenger_id === student.id ? 'host' : 'guest') : 'player',
   }) : null, [student, state]);
 
@@ -216,12 +219,17 @@ export default function DuelLobby() {
               label="Tú"
               name={user.name}
               emoji={user.emoji}
+              color={user.color}
+              selectedAvatarCode={user.selected_avatar_code}
               present={presence.some(p => p.id === student.id)}
             />
             <PlayerCard
               label="Rival"
               name={rivalHidden ? 'Oculto' : rivalInfo?.name}
               emoji={rivalHidden ? '🕵️' : rivalInfo?.emoji}
+              color={rivalInfo?.color}
+              selectedAvatarCode={rivalHidden ? null : rivalInfo?.selected_avatar_code}
+              hidden={rivalHidden}
               present={presence.some(p => p.id !== student.id)}
             />
           </div>
@@ -366,12 +374,26 @@ export default function DuelLobby() {
   );
 }
 
-function PlayerCard({ label, name, emoji, present }) {
+function PlayerCard({ label, name, emoji, color, selectedAvatarCode, hidden, present }) {
   return (
     <div className={`p-4 rounded-xl border flex items-center gap-3 ${
       present ? 'bg-emerald-500/10 border-emerald-400/40' : 'bg-white/5 border-white/10'
     }`}>
-      <div className="text-3xl">{emoji || '🎓'}</div>
+      {hidden ? (
+        <div className="w-16 h-16 rounded-2xl bg-slate-700/60 border border-white/10 flex items-center justify-center text-3xl">
+          🕵️
+        </div>
+      ) : (
+        <UserAvatar
+          selectedAvatarCode={selectedAvatarCode}
+          avatarEmoji={emoji}
+          avatarColor={color}
+          size="lg"
+          shape="rounded"
+          showRarityBorder
+          showRarityGlow
+        />
+      )}
       <div className="min-w-0">
         <p className="text-[10px] uppercase tracking-wide text-white/60">{label}</p>
         <p className="font-bold truncate">{name || '…'}</p>

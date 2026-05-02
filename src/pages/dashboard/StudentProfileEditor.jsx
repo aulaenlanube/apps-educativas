@@ -10,6 +10,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import EmailLinkSection from '@/components/student/EmailLinkSection';
 import GroupSelector from '@/components/student/GroupSelector';
+import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
+import AvatarGallery from '@/components/avatar/AvatarGallery';
+import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
 const AVATAR_EMOJIS = [
   '🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄',
@@ -122,74 +125,176 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
   const xpProgress = xpNeeded > 0 ? Math.min(100, Math.round((xpInLevel / xpNeeded) * 100)) : 100;
   const selectedColorObj = AVATAR_COLORS.find(c => c.id === selectedColor) || AVATAR_COLORS[0];
 
+  const { byCode } = useAvatarCatalog();
+  const equippedAvatar = student?.selected_avatar_code ? byCode(student.selected_avatar_code) : null;
+  const equippedRarity = equippedAvatar?.rarity;
+  const rMeta = equippedRarity ? rarityMeta(equippedRarity) : null;
+
   return (
     <div className="space-y-6">
-      {/* HERO CARD: Banner + avatar grande + datos */}
+      {/* HERO CARD: layout técnico cuando hay avatar equipado, banner clásico cuando no */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative bg-white rounded-3xl shadow-lg border border-purple-100 overflow-hidden"
+        className="relative bg-white dark:bg-slate-900 rounded-3xl shadow-lg border border-purple-100 dark:border-slate-700 overflow-hidden"
       >
-        {/* Banner degradado con nombre */}
-        <div className={`h-36 sm:h-40 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}>
-          <div className="absolute inset-0 opacity-20"
+        {equippedAvatar ? (
+          // Layout con avatar: fondo técnico oscuro con grid + glow de rareza
+          <div
+            className="relative px-5 sm:px-7 py-6 sm:py-7 overflow-hidden"
             style={{
-              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
+              background: `radial-gradient(circle at 20% 30%, ${rMeta.glow}33 0%, transparent 55%), radial-gradient(circle at 80% 70%, ${rMeta.ring}22 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
             }}
-          />
-          {studentInfo?.group_name && (
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
-              <Users className="w-3.5 h-3.5 text-white" />
-              <span className="text-xs font-bold text-white">{studentInfo.group_name}</span>
-            </div>
-          )}
-          {/* Nombre sobre el banner */}
-          <div className="absolute bottom-3 left-40 sm:left-48 right-4">
-            <h1 className="text-2xl sm:text-3xl font-black text-white truncate drop-shadow-lg">
-              {studentInfo?.email_verified || student?.email_verified
-                ? (studentInfo?.display_name || 'Alumno')
-                : `@${username}`
-              }
-            </h1>
-          </div>
-        </div>
+          >
+            {/* Grid técnico */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-25"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+                backgroundSize: '32px 32px',
+              }}
+            />
+            {/* Líneas diagonales sutiles */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-15"
+              style={{
+                backgroundImage:
+                  `repeating-linear-gradient(45deg, transparent 0 80px, ${rMeta.ring}33 80px 81px)`,
+              }}
+            />
+            {/* Highlight superior */}
+            <div
+              className="absolute inset-x-0 top-0 h-px"
+              style={{ background: `linear-gradient(90deg, transparent, ${rMeta.glow}, transparent)` }}
+            />
+            {studentInfo?.group_name && (
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/8 backdrop-blur-md rounded-full px-3 py-1 border border-white/15">
+                <Users className="w-3.5 h-3.5 text-white/80" />
+                <span className="text-xs font-bold text-white/90">{studentInfo.group_name}</span>
+              </div>
+            )}
 
-        <div className="px-5 sm:px-6 pb-5 -mt-16 sm:-mt-20 relative">
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
-            {/* Avatar grande */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="flex-shrink-0"
-            >
-              <div
-                className={`w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}
+            <div className="relative flex flex-col sm:flex-row gap-5 sm:gap-7 items-start sm:items-center">
+              {/* Avatar enorme */}
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+                className="flex-shrink-0"
               >
-                <div className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)',
-                  }}
+                <UserAvatar
+                  selectedAvatarCode={student.selected_avatar_code}
+                  size="mega"
+                  shape="rounded"
+                  showRarityBorder
+                  showRarityGlow
+                  className="shadow-[0_0_60px_rgba(0,0,0,0.6)]"
                 />
-                <span className="text-6xl sm:text-7xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Chips */}
-            <div className="flex-1 min-w-0 pt-2 sm:pt-24">
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
-                  <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
-                  <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
-                  <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                </span>
+              <div className="flex-1 min-w-0 space-y-3">
+                {/* Etiqueta rareza + bonus */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span
+                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-white"
+                    style={{ background: `linear-gradient(135deg, ${rMeta.ring}, ${rMeta.glow})` }}
+                  >
+                    {rMeta.label}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/50">
+                    +{Number(equippedAvatar.points_bonus).toFixed(2)} pts · nota media
+                  </span>
+                </div>
+
+                {/* Nombre alumno */}
+                <h1 className="text-2xl sm:text-3xl font-black text-white truncate">
+                  {studentInfo?.email_verified || student?.email_verified
+                    ? (studentInfo?.display_name || 'Alumno')
+                    : `@${username}`}
+                </h1>
+
+                {/* Descripción del avatar */}
+                {equippedAvatar.description && (
+                  <p className="text-sm text-white/70 italic leading-snug max-w-prose">
+                    {equippedAvatar.description}
+                  </p>
+                )}
+
+                {/* Chips */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                    <Trophy className="w-3.5 h-3.5" /> Nivel {level}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-indigo-200 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                    <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-emerald-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
+                    <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+        ) : (
+          // Layout clásico (banner color + emoji) cuando no hay avatar
+          <>
+            <div className={`h-36 sm:h-40 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}>
+              <div className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
+                }}
+              />
+              {studentInfo?.group_name && (
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
+                  <Users className="w-3.5 h-3.5 text-white" />
+                  <span className="text-xs font-bold text-white">{studentInfo.group_name}</span>
+                </div>
+              )}
+              <div className="absolute bottom-3 left-40 sm:left-48 right-4">
+                <h1 className="text-2xl sm:text-3xl font-black text-white truncate drop-shadow-lg">
+                  {studentInfo?.email_verified || student?.email_verified
+                    ? (studentInfo?.display_name || 'Alumno')
+                    : `@${username}`}
+                </h1>
+              </div>
+            </div>
+
+            <div className="px-5 sm:px-6 pb-5 -mt-16 sm:-mt-20 relative">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+                  className="flex-shrink-0"
+                >
+                  <div className={`w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}>
+                    <div className="absolute inset-0 opacity-20"
+                      style={{ backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)' }}
+                    />
+                    <span className="text-6xl sm:text-7xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
+                  </div>
+                </motion.div>
+
+                <div className="flex-1 min-w-0 pt-2 sm:pt-24">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
+                      <Trophy className="w-3.5 h-3.5" /> Nivel {level}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
+                      <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
+                      <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className="px-5 sm:px-6 pb-5 pt-4 relative">
 
           {/* Barra XP */}
           <div className="mt-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-2xl p-3.5 text-white">
@@ -220,15 +325,29 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
         </div>
       </motion.div>
 
-      {/* Personalizar avatar */}
+      {/* Galería de personajes (avatar coleccionables) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
+      >
+        <h3 className="text-base font-bold text-slate-800 mb-1">Galería de personajes</h3>
+        <p className="text-xs text-slate-500 mb-4">
+          Desbloquea avatares jugando. Cada uno suma puntos a tu nota media (tope +0,5). Los más raros se ven sobre todo en duelo y batalla, como símbolo de estatus.
+        </p>
+        <AvatarGallery onSelected={() => onProfileUpdated?.()} />
+      </motion.div>
+
+      {/* Personalizar avatar (emoji + color clásico) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
       >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Personaliza tu avatar</h3>
-        <p className="text-xs text-slate-500 mb-5">Elige un emoji y un color. Los cambios se reflejan arriba.</p>
+        <h3 className="text-base font-bold text-slate-800 mb-1">Avatar clásico (emoji)</h3>
+        <p className="text-xs text-slate-500 mb-5">Si no tienes ningún avatar equipado, se mostrará este emoji con su color.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Selector emoji */}

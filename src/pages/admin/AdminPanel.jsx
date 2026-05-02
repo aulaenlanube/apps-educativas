@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Users2, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks } from 'lucide-react';
+import { Shield, Users, Users2, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -13,6 +13,7 @@ import DataExplorer from './DataExplorer';
 import XPConfigPanel from './XPConfigPanel';
 import AppsModeReport from './AppsModeReport';
 import GroupsPanel from './GroupsPanel';
+import AvatarsPanel from './AvatarsPanel';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const AdminPanel = () => {
     { id: 'data', label: 'Datos', icon: Database },
     { id: 'xp', label: 'Experiencia', icon: Zap },
     { id: 'apps', label: 'Apps', icon: ListChecks },
+    { id: 'avatars', label: 'Avatares', icon: Sparkles },
   ];
 
   if (selectedUser) {
@@ -128,6 +130,7 @@ const AdminPanel = () => {
               {activeTab === 'data' && <DataExplorer />}
               {activeTab === 'xp' && <XPConfigPanel />}
               {activeTab === 'apps' && <AppsModeReport />}
+              {activeTab === 'avatars' && <AvatarsPanel />}
             </>
           )}
         </div>

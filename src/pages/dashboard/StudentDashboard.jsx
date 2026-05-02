@@ -20,6 +20,7 @@ import DuelInbox from '@/components/duel/DuelInbox';
 import DuelGradePanel from '@/components/duel/DuelGradePanel';
 import useIncomingDuels from '@/hooks/useIncomingDuels';
 import { getGradeWithDuelBonus } from '@/services/duelService';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -147,7 +148,7 @@ function AppsDetail({ apps }) {
                     <AccuracyBadge value={app.accuracy} />
                   </td>
                   <td className="px-3 py-2.5 text-center">
-                    <NotaBadge value={app.best_nota ?? app.best_score} />
+                    <NotaBadge value={app.best_nota} />
                   </td>
                   <td className="px-3 py-2.5 text-center text-slate-500 hidden md:table-cell">{formatTime(app.total_time_seconds)}</td>
                   <td className="px-3 py-2.5 text-center">
@@ -475,7 +476,9 @@ export default function StudentDashboard() {
     let weightedNota = 0;
     for (const a of termScoped) {
       const w = Math.max(1, Number(a.weight) || 1);
-      const nota = Math.min(10, Math.max(0, Number(a.best_nota ?? a.best_score ?? 0)));
+      const nota = a.best_nota != null
+        ? Math.min(10, Math.max(0, Number(a.best_nota)))
+        : 0;
       weightSum += w;
       weightedNota += nota * w;
     }
@@ -560,7 +563,16 @@ export default function StudentDashboard() {
             className="bg-white rounded-2xl shadow-sm border border-purple-100 p-5 mb-6"
           >
             <div className="flex items-center gap-4 overflow-x-auto scrollbar-hide">
-              <div className="text-5xl shrink-0">{studentInfo.avatar_emoji || '🎓'}</div>
+              <div className="shrink-0">
+                <UserAvatar
+                  selectedAvatarCode={student?.selected_avatar_code || studentInfo.selected_avatar_code}
+                  avatarEmoji={studentInfo.avatar_emoji}
+                  avatarColor={studentInfo.avatar_color}
+                  size="lg"
+                  shape="rounded"
+                  showRarityBorder
+                />
+              </div>
               <div className="shrink-0">
                 <h1 className="text-xl font-bold text-slate-800">{studentInfo.display_name}</h1>
                 <p className="text-sm text-slate-500">@{studentInfo.username}</p>
@@ -656,8 +668,16 @@ export default function StudentDashboard() {
                 <StatCard icon={Target} label="Precision global" value={`${stats.avg_accuracy || 0}%`}
                   subValue={`${stats.total_correct || 0} de ${stats.total_questions || 0} aciertos`}
                   color="bg-green-500" delay={0.1} />
-                <StatCard icon={Trophy} label="Mejor nota" value={`${stats.best_nota ?? stats.best_score ?? 0}/10`}
-                  subValue={`Media examen: ${stats.avg_test_nota ?? '-'}/10`}
+                <StatCard icon={Trophy} label="Mejor nota" value={
+                    stats.best_nota != null && stats.best_nota >= 0 && stats.best_nota <= 11
+                      ? `${Number(stats.best_nota).toFixed(1)}/10`
+                      : '—/10'
+                  }
+                  subValue={
+                    stats.avg_test_nota != null && stats.avg_test_nota >= 0 && stats.avg_test_nota <= 11
+                      ? `Media examen: ${Number(stats.avg_test_nota).toFixed(1)}/10`
+                      : 'Media examen: —/10'
+                  }
                   color="bg-amber-500" delay={0.15} />
               </div>
 

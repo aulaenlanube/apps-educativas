@@ -7,6 +7,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import UserAvatar from '@/components/ui/UserAvatar';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from '@/components/ui/dialog';
@@ -239,7 +240,14 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                 className="flex items-center justify-between bg-white rounded-xl p-3 border border-gray-100 hover:shadow-sm transition-shadow"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{student.avatar_emoji}</span>
+                  <UserAvatar
+                    selectedAvatarCode={student.selected_avatar_code}
+                    avatarEmoji={student.avatar_emoji}
+                    avatarColor={student.avatar_color}
+                    size="md"
+                    shape="rounded"
+                    showRarityBorder
+                  />
                   <div>
                     <p className="font-medium text-gray-800">{student.display_name}</p>
                     <div className="flex items-center gap-2">

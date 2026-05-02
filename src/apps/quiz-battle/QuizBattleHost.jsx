@@ -13,6 +13,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
 import QBBackground from './QBBackground';
 import QBStageAnimation from './QBStageAnimation';
+import UserAvatar from '@/components/ui/UserAvatar';
 import QBStageAnimationSimple from './QBStageAnimationSimple';
 import './QuizBattle.css';
 
@@ -932,7 +933,20 @@ export default function QuizBattleHost() {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.7 }}>
-                    <div className="qb-player-emoji">{p.emoji}</div>
+                    <div className="qb-player-emoji">
+                      {p.selected_avatar_code ? (
+                        <UserAvatar
+                          selectedAvatarCode={p.selected_avatar_code}
+                          avatarEmoji={p.emoji}
+                          avatarColor={p.color}
+                          size="md"
+                          shape="rounded"
+                          showRarityBorder
+                        />
+                      ) : (
+                        <span>{p.emoji}</span>
+                      )}
+                    </div>
                     <div className="qb-player-name">{p.name}</div>
                   </motion.div>
                 ))}

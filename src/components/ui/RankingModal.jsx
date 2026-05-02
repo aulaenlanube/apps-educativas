@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
+import UserAvatar from '@/components/ui/UserAvatar';
 import './RankingModal.css';
 
 const formatDuration = (s) => {
@@ -49,7 +50,20 @@ const RankingRow = ({ r, highlight }) => (
     transition={{ delay: r.rank * 0.03 }}
   >
     <div className="rk-item-rank">{getMedalIcon(r.rank)}</div>
-    <div className="rk-item-avatar">{r.avatar || '🎮'}</div>
+    <div className="rk-item-avatar">
+      {r.selected_avatar_code ? (
+        <UserAvatar
+          selectedAvatarCode={r.selected_avatar_code}
+          avatarEmoji={r.avatar}
+          avatarColor={r.avatar_color}
+          size="sm"
+          shape="rounded"
+          showRarityBorder
+        />
+      ) : (
+        <span style={{ fontSize: '1.8rem' }}>{r.avatar || '🎮'}</span>
+      )}
+    </div>
     <div className="rk-item-body">
       <div className="rk-item-name">{r.display_name}</div>
       <div className="rk-item-meta">

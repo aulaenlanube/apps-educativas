@@ -21,6 +21,8 @@ import RatingPromptModal from '@/components/ui/RatingPromptModal';
 import RankingModal from '@/components/ui/RankingModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
+import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
+import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
 // ─── Header Presets ───────────────────────────────────────────────────
 // Cada preset define el estilo visual de la cabecera y el layout de la página.
@@ -149,6 +151,7 @@ const AppRunnerPage = () => {
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const [showDuelExitModal, setShowDuelExitModal] = useState(false);
     const [duelExitBusy, setDuelExitBusy] = useState(false);
+    const [unlockedAvatars, setUnlockedAvatars] = useState(null);
     const duelForfeitRef = useRef(null);
     const { startSession, trackGameSession, abandonSession } = useGameTracker();
     const { isAuthenticated, loading: authLoading } = useAuth();
@@ -260,6 +263,10 @@ const AppRunnerPage = () => {
               });
             }, 500);
           });
+        }
+        // Mostrar avatares desbloqueados
+        if (gamifResult.new_avatars?.length > 0) {
+          setUnlockedAvatars(gamifResult.new_avatars);
         }
       }
     }, [trackGameSession, toast, app?.id, app?.name, level, grade, activeSubjectId]);
@@ -482,6 +489,12 @@ const AppRunnerPage = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+            {unlockedAvatars && unlockedAvatars.length > 0 && (
+              <AvatarUnlockModal
+                avatars={unlockedAvatars}
+                onClose={() => { setUnlockedAvatars(null); invalidateAvatarCatalog(); }}
+              />
+            )}
         </>
     );
 };

@@ -11,6 +11,8 @@ import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
+import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
+import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
 export default function UserMenu() {
   const { displayName, role, teacher, freeUser, student, signOut } = useAuth();
@@ -32,6 +34,16 @@ export default function UserMenu() {
   const avatarColor = isStudentRole
     ? (student?.avatar_color || 'from-blue-500 to-purple-500')
     : (teacher?.avatar_color || freeUser?.avatar_color || 'from-blue-500 to-purple-500');
+
+  const selectedAvatarCode = isStudentRole
+    ? student?.selected_avatar_code
+    : (teacher?.selected_avatar_code || freeUser?.selected_avatar_code);
+
+  const { byCode } = useAvatarCatalog();
+  const avatarDef = selectedAvatarCode ? byCode(selectedAvatarCode) : null;
+  const avatarRarity = avatarDef?.rarity;
+  const rMeta = avatarRarity ? rarityMeta(avatarRarity) : null;
+  const hasImageAvatar = !!avatarDef;
 
   const xpInLevel = totalXp - xpForCurrentLevel;
   const xpNeeded = xpForNextLevel - xpForCurrentLevel;
@@ -62,37 +74,92 @@ export default function UserMenu() {
     <>
       <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger asChild>
-          <button className={`group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r ${avatarColor} px-1.5 py-1.5 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50`}>
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20 flex-shrink-0">
-              <span className="text-lg leading-none drop-shadow-sm">{avatarEmoji}</span>
-            </div>
-            <div className="hidden sm:flex flex-col items-start min-w-0 relative pr-2">
-              <span className="text-xs font-bold text-white truncate max-w-[100px] leading-tight drop-shadow-sm">
-                {displayName}
-              </span>
-              <div className="flex items-center gap-1 mt-0.5">
-                <span className="text-[10px] font-bold text-white/90 leading-tight bg-white/15 px-1.5 py-px rounded-full">
-                  Nv.{level}
-                </span>
+          {hasImageAvatar ? (
+            <button
+              className="group relative flex items-stretch rounded-2xl bg-slate-900/95 dark:bg-slate-950 overflow-hidden hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40 border border-white/10"
+              style={{
+                boxShadow: rMeta ? `0 0 16px ${rMeta.glow}55, inset 0 0 0 1px ${rMeta.ring}66` : undefined,
+              }}
+            >
+              {/* Sección 1: avatar a sangre, sin caja interior ni borde */}
+              <div className="relative w-12 h-12 flex-shrink-0">
+                <img
+                  src={avatarDef.image_md}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-            <div className="sm:hidden absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center border border-white/30">
-              <span className="text-[8px] font-black text-white leading-none">{level}</span>
-            </div>
-          </button>
+
+              {/* Sección 2 (sólo desktop): línea + nombre + nivel */}
+              <div className="hidden sm:flex items-stretch">
+                <div className="w-px self-stretch bg-white/15" />
+                <div className="flex flex-col items-start justify-center px-4 min-w-0">
+                  <span className="text-sm font-bold text-white truncate max-w-[140px] leading-tight">
+                    {displayName}
+                  </span>
+                  <span className="text-[11px] text-white/60 leading-tight font-medium uppercase tracking-wider mt-1">
+                    Nv. {level}
+                  </span>
+                </div>
+              </div>
+
+              {/* Mobile: badge de nivel sobre el avatar */}
+              <div
+                className="sm:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-900 shadow"
+                style={{ background: rMeta?.ring || '#475569' }}
+              >
+                <span className="text-[8px] font-black text-white leading-none">{level}</span>
+              </div>
+            </button>
+          ) : (
+            <button className={`group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r ${avatarColor} px-1.5 py-1.5 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50`}>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20 flex-shrink-0">
+                <span className="text-lg leading-none drop-shadow-sm">{avatarEmoji}</span>
+              </div>
+              <div className="hidden sm:flex flex-col items-start min-w-0 relative pr-2">
+                <span className="text-xs font-bold text-white truncate max-w-[100px] leading-tight drop-shadow-sm">
+                  {displayName}
+                </span>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <span className="text-[10px] font-bold text-white/90 leading-tight bg-white/15 px-1.5 py-px rounded-full">
+                    Nv.{level}
+                  </span>
+                </div>
+              </div>
+              <div className="sm:hidden absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                <span className="text-[8px] font-black text-white leading-none">{level}</span>
+              </div>
+            </button>
+          )}
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" className="w-64">
           <DropdownMenuLabel className="font-normal p-3">
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${avatarColor} flex items-center justify-center shadow-sm`}>
-                  <span className="text-2xl leading-none">{avatarEmoji}</span>
-                </div>
+                {hasImageAvatar ? (
+                  <UserAvatar
+                    selectedAvatarCode={selectedAvatarCode}
+                    avatarEmoji={avatarEmoji}
+                    avatarColor={avatarColor}
+                    size="lg"
+                    shape="rounded"
+                    showRarityBorder
+                  />
+                ) : (
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${avatarColor} flex items-center justify-center shadow-sm`}>
+                    <span className="text-2xl leading-none">{avatarEmoji}</span>
+                  </div>
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-slate-800 dark:text-gray-100 truncate">{displayName}</p>
                   <p className="text-xs text-slate-500 dark:text-gray-400 truncate">{subtitle}</p>
+                  {avatarDef && (
+                    <p className="text-[10px] font-bold uppercase tracking-wider mt-0.5" style={{ color: rMeta.ring }}>
+                      {rMeta.label}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="bg-gradient-to-r from-slate-50 to-purple-50 dark:from-slate-700 dark:to-purple-900/30 rounded-xl p-2.5 border border-purple-100/50 dark:border-slate-600">

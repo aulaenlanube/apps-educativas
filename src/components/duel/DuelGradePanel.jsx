@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Swords, AlertCircle, Zap, TrendingUp, Sparkles } from 'lucide-react';
+import { Swords, AlertCircle, Zap, TrendingUp, Sparkles, Users } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getGradeWithDuelBonus } from '@/services/duelService';
 
@@ -43,6 +43,8 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
   const battleBonus = Number(ct.battle_bonus) || 0;
   const battleScore = Number(ct.battle_score) || 0;
   const progressBonus = Number(d.progress_bonus) || 0;
+  const avatarBonus = Number(d.avatar_bonus ?? ct.avatar_bonus) || 0;
+  const avatarCount = Number(d.avatar_count) || 0;
   const level = Number(d.level) || 1;
   const finalGrade = ct.final_grade == null ? null : Number(ct.final_grade);
   const debts = d.debts || [];
@@ -60,6 +62,7 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
   const progressPct = Math.min(1, Math.max(0, (level - 1) / 49));
   const battlePct = Math.min(1, battleScore / 10);
   const duelTaskPct = Math.min(1, Math.abs(taskNet) / 10);
+  const avatarPct = Math.min(1, avatarBonus / 0.5);
 
   return (
     <motion.div
@@ -79,8 +82,8 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
         Progresión rápida al inicio y cada vez más lenta. Tope +0,5 en nivel 50, 10 batallas ganadas y 10 duelos-tarea ganados.
       </p>
 
-      {/* Fila principal: base + 3 bonus = final */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      {/* Fila principal: base + 4 bonus = final */}
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
         <BonusCard
           label="Tareas"
           value={base == null ? '—' : fmt(base)}
@@ -125,6 +128,15 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
           color={progressBonus > 0 ? 'bg-blue-50 border-blue-200 text-blue-700'
             : 'bg-slate-50 border-slate-200 text-slate-500'}
         />
+        <BonusCard
+          icon={<Users className="w-3 h-3" />}
+          label="Avatares"
+          value={signed(avatarBonus)}
+          sub={avatarCount === 0 ? 'sin avatares' : `${avatarCount} desbloqueados`}
+          progress={avatarPct}
+          color={avatarBonus > 0 ? 'bg-fuchsia-50 border-fuchsia-200 text-fuchsia-700'
+            : 'bg-slate-50 border-slate-200 text-slate-500'}
+        />
 
         <div className="col-span-2 md:col-span-1 p-3 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white text-center shadow">
           <p className="text-[11px] uppercase font-semibold text-white/80 flex items-center justify-center gap-1">
@@ -143,6 +155,7 @@ export default function DuelGradePanel({ refreshKey = 0 }) {
         {' '}{signed(duelBonus)} duelos
         {' '}{signed(battleBonus)} batallas
         {' '}{signed(progressBonus)} nivel
+        {' '}{signed(avatarBonus)} avatares
         {' '}= <span className="font-semibold text-slate-600">{fmt(finalGrade, 2)}</span>
       </div>
 

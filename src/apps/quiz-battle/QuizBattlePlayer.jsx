@@ -8,6 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
 import BadgeIcon from '@/components/ui/BadgeIcon';
+import UserAvatar from '@/components/ui/UserAvatar';
 import QBBackground from './QBBackground';
 import QBStageAnimation from './QBStageAnimation';
 import QBStageAnimationSimple from './QBStageAnimationSimple';
@@ -75,7 +76,13 @@ export default function QuizBattlePlayer() {
   // ── User info ──
   const userInfo = useMemo(() => {
     if (student) {
-      return { id: student.id, name: student.display_name, emoji: student.avatar_emoji || '🙂' };
+      return {
+        id: student.id,
+        name: student.display_name,
+        emoji: student.avatar_emoji || '🙂',
+        color: student.avatar_color,
+        selected_avatar_code: student.selected_avatar_code,
+      };
     }
     return { id: playerIdRef.current, name: guestName || 'Jugador', emoji: guestEmoji };
   }, [student, guestName, guestEmoji]);
@@ -372,9 +379,21 @@ export default function QuizBattlePlayer() {
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, damping: 12 }}
               className="qb-player-emoji-ripple"
-              style={{ fontSize: '3.2rem', marginBottom: '0.5rem' }}
+              style={{ marginBottom: '0.5rem', display: 'inline-block' }}
             >
-              {userInfo.emoji}
+              {userInfo.selected_avatar_code ? (
+                <UserAvatar
+                  selectedAvatarCode={userInfo.selected_avatar_code}
+                  avatarEmoji={userInfo.emoji}
+                  avatarColor={userInfo.color}
+                  size="xl"
+                  shape="rounded"
+                  showRarityBorder
+                  showRarityGlow
+                />
+              ) : (
+                <span style={{ fontSize: '3.2rem' }}>{userInfo.emoji}</span>
+              )}
             </motion.div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
             <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
@@ -394,7 +413,20 @@ export default function QuizBattlePlayer() {
             <div className="qb-players-grid">
               {players.map((p) => (
                 <div key={p.id} className="qb-player-card">
-                  <div className="qb-player-emoji">{p.emoji}</div>
+                  <div className="qb-player-emoji">
+                    {p.selected_avatar_code ? (
+                      <UserAvatar
+                        selectedAvatarCode={p.selected_avatar_code}
+                        avatarEmoji={p.emoji}
+                        avatarColor={p.color}
+                        size="md"
+                        shape="rounded"
+                        showRarityBorder
+                      />
+                    ) : (
+                      <span>{p.emoji}</span>
+                    )}
+                  </div>
                   <div className="qb-player-name">{p.name}</div>
                 </div>
               ))}
