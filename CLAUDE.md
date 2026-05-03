@@ -166,7 +166,9 @@ Las partidas lanzadas desde un Duel component (AhorcadoDuel, SnakeDuel, OrdenaBo
 70 personajes pixel-art (PNG → webp 512/256/128 en [public/images/avatar/](public/images/avatar/)). Cada uno tiene rareza, descripción narrativa y un requisito de desbloqueo en `jsonb`. El catálogo editable está en [public/data/avatars.json](public/data/avatars.json) y replicado en `avatar_definitions` (seed inicial vía migración).
 
 **Tipos de requisito** (`unlock_requirement.type`):
-`first_session`, `total_sessions`, `unique_apps`, `app_sessions`, `subject_exams`, `perfect_exams`, `high_score_exams`, `badges_count`, `level`, `xp`, `duels_won`, `battles_won`, `top_class`, `top_global`, `streak_days`. La función `_avatar_progress(student, jsonb)` devuelve `{progress, target, pct}` para alimentar las barras de la galería.
+`first_session`, `total_sessions`, `unique_apps`, `app_sessions`, `subject_exams`, `perfect_exams`, `high_score_exams`, `badges_count`, `level`, `xp`, `duels_won`, `battles_won`, `top_class`, `top_global`, `streak_days`, `apps_rated`, `feedback_messages`. La función `_avatar_progress(student, jsonb)` devuelve `{progress, target, pct}` para alimentar las barras de la galería.
+
+**Importante — `subject_exams`, `perfect_exams`, `high_score_exams` cuentan APPS DISTINTAS** (no sesiones). Para desbloquear "10 exámenes con nota ≥9" hay que aprobar con ≥9 en 10 apps distintas. Esto evita que un alumno spamee la misma app y obliga a recorrer la plataforma. `count` en `unlock_requirement` es el nº de apps distintas requeridas. `app_sessions` (atado a un `app_id`) sí cuenta sesiones — se reserva para "completa N veces ESTA app" con counts modestos (≤5).
 
 **RPCs principales**:
 - `avatar_list_definitions()` — catálogo público (cacheado en frontend con [src/hooks/useAvatarCatalog.js](src/hooks/useAvatarCatalog.js)).

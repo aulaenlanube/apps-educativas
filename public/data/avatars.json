@@ -24,10 +24,10 @@
     "image_lg": "/images/avatar/512/avatar-002.webp",
     "image_md": "/images/avatar/256/avatar-002.webp",
     "image_sm": "/images/avatar/128/avatar-002.webp",
-    "unlock_label": "Aprueba 10 exámenes con nota ≥ 8.5",
+    "unlock_label": "Aprueba con ≥8.5 en 6 apps distintas",
     "unlock": {
       "type": "high_score_exams",
-      "count": 10,
+      "count": 6,
       "min_nota": 8.5
     },
     "sort_order": 2
@@ -41,11 +41,11 @@
     "image_lg": "/images/avatar/512/avatar-003.webp",
     "image_md": "/images/avatar/256/avatar-003.webp",
     "image_sm": "/images/avatar/128/avatar-003.webp",
-    "unlock_label": "Aprueba 25 exámenes de Lengua con ≥9",
+    "unlock_label": "Aprueba con ≥9 en 8 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
-      "count": 25,
+      "count": 8,
       "min_nota": 9
     },
     "sort_order": 3
@@ -94,12 +94,12 @@
     "image_lg": "/images/avatar/512/avatar-006.webp",
     "image_md": "/images/avatar/256/avatar-006.webp",
     "image_sm": "/images/avatar/128/avatar-006.webp",
-    "unlock_label": "Aprueba 7 exámenes de Ahorcado con nota ≥ 8",
+    "unlock_label": "Aprueba 5 exámenes de Ahorcado con nota ≥ 8",
     "unlock": {
       "type": "app_sessions",
       "app_id": "ahorcado",
       "mode": "test",
-      "count": 7,
+      "count": 5,
       "min_nota": 8
     },
     "sort_order": 6
@@ -113,10 +113,10 @@
     "image_lg": "/images/avatar/512/avatar-007.webp",
     "image_md": "/images/avatar/256/avatar-007.webp",
     "image_sm": "/images/avatar/128/avatar-007.webp",
-    "unlock_label": "Consigue 15 exámenes con nota perfecta (10)",
+    "unlock_label": "Consigue nota perfecta en 8 apps distintas",
     "unlock": {
       "type": "perfect_exams",
-      "count": 15
+      "count": 8
     },
     "sort_order": 7
   },
@@ -218,11 +218,11 @@
     "image_lg": "/images/avatar/512/avatar-013.webp",
     "image_md": "/images/avatar/256/avatar-013.webp",
     "image_sm": "/images/avatar/128/avatar-013.webp",
-    "unlock_label": "Aprueba 10 exámenes con nota ≥ 8 en Lengua",
+    "unlock_label": "Aprueba con ≥8 en 5 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
-      "count": 10,
+      "count": 5,
       "min_nota": 8
     },
     "sort_order": 13
@@ -421,11 +421,11 @@
     "image_lg": "/images/avatar/512/avatar-025.webp",
     "image_md": "/images/avatar/256/avatar-025.webp",
     "image_sm": "/images/avatar/128/avatar-025.webp",
-    "unlock_label": "Aprueba 10 exámenes de Sociales con nota ≥ 8",
+    "unlock_label": "Aprueba con ≥8 en 5 apps distintas de Sociales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "sociales",
-      "count": 10,
+      "count": 5,
       "min_nota": 8
     },
     "sort_order": 25
@@ -471,10 +471,10 @@
     "image_lg": "/images/avatar/512/avatar-028.webp",
     "image_md": "/images/avatar/256/avatar-028.webp",
     "image_sm": "/images/avatar/128/avatar-028.webp",
-    "unlock_label": "Aprueba 10 exámenes con nota ≥ 7",
+    "unlock_label": "Aprueba con ≥7 en 5 apps distintas",
     "unlock": {
       "type": "high_score_exams",
-      "count": 10,
+      "count": 5,
       "min_nota": 7
     },
     "sort_order": 28
@@ -589,11 +589,11 @@
     "image_lg": "/images/avatar/512/avatar-035.webp",
     "image_md": "/images/avatar/256/avatar-035.webp",
     "image_sm": "/images/avatar/128/avatar-035.webp",
-    "unlock_label": "Completa 10 misiones de Robótica",
+    "unlock_label": "Completa 5 misiones de Robótica",
     "unlock": {
       "type": "app_sessions",
       "app_id": "misiones-roboticas",
-      "count": 10
+      "count": 5
     },
     "sort_order": 35
   },
@@ -606,12 +606,11 @@
     "image_lg": "/images/avatar/512/avatar-036.webp",
     "image_md": "/images/avatar/256/avatar-036.webp",
     "image_sm": "/images/avatar/128/avatar-036.webp",
-    "unlock_label": "Aprueba 10 exámenes de Memoria",
+    "unlock_label": "Aprueba con ≥7 en 6 apps distintas",
     "unlock": {
-      "type": "app_sessions",
-      "app_id": "juego-memoria",
-      "mode": "test",
-      "count": 10
+      "type": "high_score_exams",
+      "count": 6,
+      "min_nota": 7
     },
     "sort_order": 36
   },
@@ -640,11 +639,11 @@
     "image_lg": "/images/avatar/512/avatar-038.webp",
     "image_md": "/images/avatar/256/avatar-038.webp",
     "image_sm": "/images/avatar/128/avatar-038.webp",
-    "unlock_label": "Aprueba 10 exámenes de Naturales con nota ≥ 8",
+    "unlock_label": "Aprueba con ≥8 en 5 apps distintas de Naturales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
-      "count": 10,
+      "count": 5,
       "min_nota": 8
     },
     "sort_order": 38
@@ -658,11 +657,11 @@
     "image_lg": "/images/avatar/512/avatar-039.webp",
     "image_md": "/images/avatar/256/avatar-039.webp",
     "image_sm": "/images/avatar/128/avatar-039.webp",
-    "unlock_label": "Aprueba 15 exámenes de Matemáticas con nota ≥ 8",
+    "unlock_label": "Aprueba con ≥8 en 6 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 15,
+      "count": 6,
       "min_nota": 8
     },
     "sort_order": 39
@@ -823,11 +822,11 @@
     "image_lg": "/images/avatar/512/avatar-049.webp",
     "image_md": "/images/avatar/256/avatar-049.webp",
     "image_sm": "/images/avatar/128/avatar-049.webp",
-    "unlock_label": "Aprueba 10 exámenes de Matemáticas con nota ≥ 9",
+    "unlock_label": "Aprueba con ≥9 en 5 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 10,
+      "count": 5,
       "min_nota": 9
     },
     "sort_order": 49
@@ -841,12 +840,11 @@
     "image_lg": "/images/avatar/512/avatar-050.webp",
     "image_md": "/images/avatar/256/avatar-050.webp",
     "image_sm": "/images/avatar/128/avatar-050.webp",
-    "unlock_label": "Aprueba 15 exámenes del Sistema Solar con nota perfecta",
+    "unlock_label": "Consigue nota perfecta en 5 apps distintas de Naturales",
     "unlock": {
-      "type": "app_sessions",
-      "app_id": "sistema-solar",
-      "mode": "test",
-      "count": 15,
+      "type": "subject_exams",
+      "subject_id": "naturales",
+      "count": 5,
       "min_nota": 9.5
     },
     "sort_order": 50
@@ -860,10 +858,10 @@
     "image_lg": "/images/avatar/512/avatar-051.webp",
     "image_md": "/images/avatar/256/avatar-051.webp",
     "image_sm": "/images/avatar/128/avatar-051.webp",
-    "unlock_label": "Consigue 100 exámenes con nota perfecta (10)",
+    "unlock_label": "Consigue nota perfecta en 30 apps distintas",
     "unlock": {
       "type": "perfect_exams",
-      "count": 100
+      "count": 30
     },
     "sort_order": 51
   },
@@ -892,10 +890,10 @@
     "image_lg": "/images/avatar/512/avatar-053.webp",
     "image_md": "/images/avatar/256/avatar-053.webp",
     "image_sm": "/images/avatar/128/avatar-053.webp",
-    "unlock_label": "Aprueba 20 exámenes con nota ≥ 9",
+    "unlock_label": "Aprueba con ≥9 en 10 apps distintas",
     "unlock": {
       "type": "high_score_exams",
-      "count": 20,
+      "count": 10,
       "min_nota": 9
     },
     "sort_order": 53
@@ -909,11 +907,11 @@
     "image_lg": "/images/avatar/512/avatar-054.webp",
     "image_md": "/images/avatar/256/avatar-054.webp",
     "image_sm": "/images/avatar/128/avatar-054.webp",
-    "unlock_label": "Aprueba 20 exámenes de Matemáticas con nota ≥ 9.5",
+    "unlock_label": "Aprueba con ≥9.5 en 8 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 20,
+      "count": 8,
       "min_nota": 9.5
     },
     "sort_order": 54
@@ -927,11 +925,11 @@
     "image_lg": "/images/avatar/512/avatar-055.webp",
     "image_md": "/images/avatar/256/avatar-055.webp",
     "image_sm": "/images/avatar/128/avatar-055.webp",
-    "unlock_label": "Aprueba 25 exámenes de Matemáticas con ≥9,5",
+    "unlock_label": "Aprueba con ≥9.5 en 9 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 25,
+      "count": 9,
       "min_nota": 9.5
     },
     "sort_order": 55
@@ -945,11 +943,11 @@
     "image_lg": "/images/avatar/512/avatar-056.webp",
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
-    "unlock_label": "Aprueba 15 exámenes de Plástica/Arte",
+    "unlock_label": "Aprueba 4 apps distintas de Plástica",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "plastica",
-      "count": 15
+      "count": 4
     },
     "sort_order": 56
   },
@@ -994,11 +992,11 @@
     "image_lg": "/images/avatar/512/avatar-059.webp",
     "image_md": "/images/avatar/256/avatar-059.webp",
     "image_sm": "/images/avatar/128/avatar-059.webp",
-    "unlock_label": "Aprueba 10 exámenes de Lengua con nota ≥ 9",
+    "unlock_label": "Aprueba con ≥9 en 5 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
-      "count": 10,
+      "count": 5,
       "min_nota": 9
     },
     "sort_order": 59
@@ -1012,11 +1010,11 @@
     "image_lg": "/images/avatar/512/avatar-060.webp",
     "image_md": "/images/avatar/256/avatar-060.webp",
     "image_sm": "/images/avatar/128/avatar-060.webp",
-    "unlock_label": "Aprueba 30 exámenes de Naturales con nota ≥ 9,5",
+    "unlock_label": "Aprueba con ≥9.5 en 10 apps distintas de Naturales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
-      "count": 30,
+      "count": 10,
       "min_nota": 9.5
     },
     "sort_order": 60
@@ -1030,10 +1028,9 @@
     "image_lg": "/images/avatar/512/avatar-061.webp",
     "image_md": "/images/avatar/256/avatar-061.webp",
     "image_sm": "/images/avatar/128/avatar-061.webp",
-    "unlock_label": "Completa 50 misiones de Robótica",
+    "unlock_label": "Juega a 50 apps distintas de la plataforma",
     "unlock": {
-      "type": "app_sessions",
-      "app_id": "misiones-roboticas",
+      "type": "unique_apps",
       "count": 50
     },
     "sort_order": 61
@@ -1160,10 +1157,10 @@
     "image_lg": "/images/avatar/512/avatar-069.webp",
     "image_md": "/images/avatar/256/avatar-069.webp",
     "image_sm": "/images/avatar/128/avatar-069.webp",
-    "unlock_label": "Consigue 50 exámenes con nota perfecta (10)",
+    "unlock_label": "Consigue nota perfecta en 20 apps distintas",
     "unlock": {
       "type": "perfect_exams",
-      "count": 50
+      "count": 20
     },
     "sort_order": 69
   },
@@ -1176,10 +1173,10 @@
     "image_lg": "/images/avatar/512/avatar-070.webp",
     "image_md": "/images/avatar/256/avatar-070.webp",
     "image_sm": "/images/avatar/128/avatar-070.webp",
-    "unlock_label": "Aprueba 10 exámenes con nota ≥ 9.5",
+    "unlock_label": "Aprueba con ≥9.5 en 6 apps distintas",
     "unlock": {
       "type": "high_score_exams",
-      "count": 10,
+      "count": 6,
       "min_nota": 9.5
     },
     "sort_order": 70
@@ -1536,10 +1533,10 @@
     "image_lg": "/images/avatar/512/avatar-092.webp",
     "image_md": "/images/avatar/256/avatar-092.webp",
     "image_sm": "/images/avatar/128/avatar-092.webp",
-    "unlock_label": "Consigue 25 exámenes con nota perfecta (10)",
+    "unlock_label": "Consigue nota perfecta en 12 apps distintas",
     "unlock": {
       "type": "perfect_exams",
-      "count": 25
+      "count": 12
     },
     "sort_order": 92
   },
@@ -1568,10 +1565,10 @@
     "image_lg": "/images/avatar/512/avatar-094.webp",
     "image_md": "/images/avatar/256/avatar-094.webp",
     "image_sm": "/images/avatar/128/avatar-094.webp",
-    "unlock_label": "Aprueba 10 exámenes con nota ≥ 8",
+    "unlock_label": "Aprueba con ≥8 en 6 apps distintas",
     "unlock": {
       "type": "high_score_exams",
-      "count": 10,
+      "count": 6,
       "min_nota": 8
     },
     "sort_order": 94
@@ -1654,11 +1651,11 @@
     "image_lg": "/images/avatar/512/avatar-099.webp",
     "image_md": "/images/avatar/256/avatar-099.webp",
     "image_sm": "/images/avatar/128/avatar-099.webp",
-    "unlock_label": "Aprueba 15 exámenes de Naturales con nota ≥ 9",
+    "unlock_label": "Aprueba con ≥9 en 7 apps distintas de Naturales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
-      "count": 15,
+      "count": 7,
       "min_nota": 9
     },
     "sort_order": 99
