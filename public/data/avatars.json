@@ -790,10 +790,11 @@
     "image_lg": "/images/avatar/512/avatar-047.webp",
     "image_md": "/images/avatar/256/avatar-047.webp",
     "image_sm": "/images/avatar/128/avatar-047.webp",
-    "unlock_label": "Gana 30 duelos en racha",
+    "unlock_label": "Gana 15 Quiz Battles en 1ª posición",
     "unlock": {
-      "type": "duels_won",
-      "count": 30
+      "type": "battles_won",
+      "count": 15,
+      "position": 1
     },
     "sort_order": 47
   },
@@ -976,10 +977,10 @@
     "image_lg": "/images/avatar/512/avatar-058.webp",
     "image_md": "/images/avatar/256/avatar-058.webp",
     "image_sm": "/images/avatar/128/avatar-058.webp",
-    "unlock_label": "Gana 15 duelos",
+    "unlock_label": "Mantén una racha de 21 días",
     "unlock": {
-      "type": "duels_won",
-      "count": 15
+      "type": "streak_days",
+      "count": 21
     },
     "sort_order": 58
   },
