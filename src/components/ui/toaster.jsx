@@ -14,7 +14,9 @@ export function Toaster() {
 
 	return (
 		<ToastProvider>
-			{toasts.map(({ id, title, description, action, ...props }) => {
+			{toasts.map(({ id, title, description, action, dismiss, duration, ...props }) => {
+				// `dismiss` (función) y `duration` los gestiona el store; no deben
+				// llegar al DOM como atributos del <li> que renderiza Radix.
 				return (
 					<Toast key={id} {...props}>
 						<div className="grid gap-1">

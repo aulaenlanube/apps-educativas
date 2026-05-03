@@ -2,9 +2,11 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Matter from 'matter-js';
-import { Swords, Trophy, X, LogOut, CheckCircle2, XCircle } from 'lucide-react';
+import { Swords, Trophy, X, LogOut, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useDuel from '@/hooks/useDuel';
+import UserAvatar from '@/components/ui/UserAvatar';
+import DuelChatBar from '@/components/duel/DuelChatBar';
 
 const BALL_COUNT = 21;
 
@@ -371,54 +373,134 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-4 gap-4">
-      <div className="w-full max-w-4xl flex items-center gap-3 bg-white/90 dark:bg-slate-800/90 rounded-2xl px-4 py-3 shadow-lg border border-indigo-100">
-        <Swords className="w-5 h-5 text-indigo-600" />
-        <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">Ordena las Bolas · Duelo</h2>
-        {difficulty && phase !== 'picking' && (
-          <span className={`ml-2 px-2.5 py-0.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${difficulty.color}`}>
-            {difficulty.emoji} {difficulty.label}
-          </span>
-        )}
-        <div className="ml-auto flex items-center gap-3">
-          <span className="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 font-black text-sm border border-emerald-200">
-            Tú · {myScore}
-          </span>
-          <span className="px-3 py-1 rounded-lg bg-rose-50 text-rose-700 font-black text-sm border border-rose-200">
-            {rival.hidden ? 'Rival' : rival.name} · {rivalScore}
-          </span>
+      {/* Header con avatares enfrentados (sustituye a la barra plana de antes) */}
+      <div className="w-full max-w-4xl rounded-2xl shadow-lg overflow-hidden border border-indigo-200">
+        <div className="flex items-stretch bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white">
+          <PlayerHeader
+            side="left"
+            avatarCode={me.selectedAvatarCode}
+            avatarEmoji={me.emoji}
+            avatarColor={me.color}
+            name="Tú"
+            sub={me.name}
+            score={myScore}
+            scoreColor="bg-emerald-400 text-emerald-900"
+          />
+          <div className="flex flex-col items-center justify-center px-3 py-2 bg-black/20">
+            <Swords className="w-5 h-5 mb-1 opacity-90" />
+            <span className="text-[10px] uppercase font-bold tracking-widest opacity-80">Ordena Bolas</span>
+            {difficulty && phase !== 'picking' && (
+              <span className={`mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r ${difficulty.color} text-white shadow`}>
+                {difficulty.emoji} {difficulty.label}
+              </span>
+            )}
+          </div>
+          <PlayerHeader
+            side="right"
+            avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
+            avatarEmoji={rival.emoji}
+            avatarColor={rival.hidden ? null : rival.color}
+            name={rival.hidden ? 'Rival' : rival.name}
+            sub={rival.hidden ? 'Oculto' : ' '}
+            score={rivalScore}
+            scoreColor="bg-rose-400 text-rose-900"
+          />
         </div>
       </div>
 
       {phase === 'picking' && (
-        <div className="w-full max-w-3xl bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 border border-indigo-100">
-          {me.isHost ? (
-            <>
-              <h3 className="text-xl font-black text-slate-800 mb-1 text-center">Elige la dificultad</h3>
-              <p className="text-sm text-slate-500 text-center mb-4">21 bolas, de menor a mayor. El primero en marcar correctamente gana el punto. Si falla, el rival se lleva el punto.</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {DIFFICULTIES.map(d => (
-                  <button key={d.id}
-                    onClick={() => startWithDifficulty(d)}
-                    className={`p-4 rounded-xl text-white font-black flex flex-col items-center gap-1 bg-gradient-to-br ${d.color} hover:scale-[1.03] transition-transform shadow-lg`}>
-                    <span className="text-3xl">{d.emoji}</span>
-                    <span className="uppercase tracking-wide text-sm">{d.label}</span>
-                    <span className="text-[10px] font-medium opacity-90 text-center leading-tight mt-1">
-                      {d.ops.length === 1 ? 'Solo números' :
-                       d.ops.length === 3 ? 'Sumas y restas' :
-                       d.ops.length === 5 ? '+ Multiplicación y división' :
-                       'Todo, con tamaño engañoso'}
-                    </span>
-                  </button>
-                ))}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-700 text-white"
+        >
+          {/* glow decorativo */}
+          <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen"
+               style={{ background: 'radial-gradient(circle at 20% 0%, rgba(244,114,182,0.7), transparent 60%), radial-gradient(circle at 80% 100%, rgba(56,189,248,0.6), transparent 60%)' }} />
+
+          <div className="relative p-6">
+            {/* VS panel con avatares grandes */}
+            <div className="grid grid-cols-3 items-center gap-3 mb-6">
+              <DuelistCard
+                avatarCode={me.selectedAvatarCode}
+                avatarEmoji={me.emoji}
+                avatarColor={me.color}
+                name={me.name}
+                tag="Tú"
+                tagClass="bg-emerald-400/90 text-emerald-950"
+                from="left"
+              />
+              <div className="flex flex-col items-center justify-center select-none">
+                <motion.div
+                  initial={{ scale: 0.6, rotate: -10, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.15 }}
+                  className="text-5xl sm:text-6xl font-black drop-shadow-lg"
+                  style={{ background: 'linear-gradient(180deg, #fde68a, #f59e0b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+                >
+                  VS
+                </motion.div>
+                <Sparkles className="w-4 h-4 text-amber-300 mt-1 animate-pulse" />
               </div>
-            </>
-          ) : (
-            <div className="text-center py-8">
-              <div className="animate-pulse text-3xl mb-3">⏳</div>
-              <p className="font-bold text-slate-700">Esperando a que el retador elija la dificultad…</p>
+              <DuelistCard
+                avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
+                avatarEmoji={rival.emoji}
+                avatarColor={rival.hidden ? null : rival.color}
+                name={rival.hidden ? 'Oculto' : rival.name}
+                tag="Rival"
+                tagClass="bg-rose-400/90 text-rose-950"
+                from="right"
+              />
             </div>
-          )}
-        </div>
+
+            {me.isHost ? (
+              <>
+                <h3 className="text-xl sm:text-2xl font-black text-center mb-1">Elige la dificultad</h3>
+                <p className="text-xs sm:text-sm text-white/85 text-center mb-4">
+                  21 bolas, de menor a mayor. El primero en marcar correctamente gana el punto. Si falla, el rival se lleva el punto.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {DIFFICULTIES.map(d => (
+                    <button
+                      key={d.id}
+                      onClick={() => startWithDifficulty(d)}
+                      className={`p-4 rounded-xl text-white font-black flex flex-col items-center gap-1 bg-gradient-to-br ${d.color} hover:scale-[1.04] transition-transform shadow-lg ring-1 ring-white/30`}
+                    >
+                      <span className="text-3xl">{d.emoji}</span>
+                      <span className="uppercase tracking-wide text-sm">{d.label}</span>
+                      <span className="text-[10px] font-medium opacity-90 text-center leading-tight mt-1">
+                        {d.ops.length === 1 ? 'Solo números' :
+                         d.ops.length === 3 ? 'Sumas y restas' :
+                         d.ops.length === 5 ? '+ Multiplicación y división' :
+                         'Todo, con tamaño engañoso'}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-6">
+                <motion.div
+                  animate={{ scale: [1, 1.08, 1] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-3xl mb-2"
+                >⏳</motion.div>
+                <p className="font-bold text-white/95">Esperando a que el retador elija la dificultad…</p>
+                <div className="mt-2 inline-flex gap-1">
+                  {[0, 1, 2].map(i => (
+                    <motion.span
+                      key={i}
+                      animate={{ opacity: [0.2, 1, 0.2] }}
+                      transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+                      className="w-1.5 h-1.5 rounded-full bg-white"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
       )}
 
       {(phase === 'countdown' || phase === 'playing' || phase === 'ended') && (
@@ -473,7 +555,61 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
         <span className="inline-flex items-center gap-1 mr-3"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> acierto → punto para quien marca</span>
         <span className="inline-flex items-center gap-1"><XCircle className="w-3 h-3 text-rose-500" /> fallo → punto para el rival</span>
       </div>
+
+      {/* Caja de frases (chat predefinido) */}
+      <div className="w-full max-w-4xl">
+        <DuelChatBar channel={duel.channel} me={me} rival={rival} />
+      </div>
     </div>
+  );
+}
+
+function PlayerHeader({ side, avatarCode, avatarEmoji, avatarColor, name, sub, score, scoreColor }) {
+  return (
+    <div className={`flex-1 flex items-center gap-3 px-4 py-3 ${side === 'right' ? 'flex-row-reverse text-right' : ''}`}>
+      <UserAvatar
+        selectedAvatarCode={avatarCode}
+        avatarEmoji={avatarEmoji}
+        avatarColor={avatarColor}
+        size="md"
+        showRarityBorder={false}
+      />
+      <div className="min-w-0 flex-1">
+        <p className="text-[10px] uppercase font-bold tracking-widest opacity-80">{name}</p>
+        {sub && <p className="text-sm font-bold truncate">{sub}</p>}
+      </div>
+      <span className={`shrink-0 px-2.5 py-1 rounded-lg font-black text-sm shadow ${scoreColor}`}>{score}</span>
+    </div>
+  );
+}
+
+function DuelistCard({ avatarCode, avatarEmoji, avatarColor, name, tag, tagClass, from }) {
+  const initial = from === 'left' ? { x: -50, opacity: 0 } : { x: 50, opacity: 0 };
+  return (
+    <motion.div
+      initial={initial}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+      className="flex flex-col items-center gap-2"
+    >
+      <div className="relative">
+        <div className="absolute inset-0 rounded-full blur-2xl opacity-50"
+             style={{ background: from === 'left' ? '#22d3ee' : '#f472b6' }} />
+        <div className="relative">
+          <UserAvatar
+            selectedAvatarCode={avatarCode}
+            avatarEmoji={avatarEmoji}
+            avatarColor={avatarColor}
+            size="hero"
+            showRarityGlow
+          />
+        </div>
+      </div>
+      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest ${tagClass}`}>
+        {tag}
+      </span>
+      <p className="text-sm font-bold truncate max-w-[160px]">{name}</p>
+    </motion.div>
   );
 }
 

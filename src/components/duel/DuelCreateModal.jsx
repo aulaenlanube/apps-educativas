@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { getDuelOpponents, createDuel } from '@/services/duelService';
 import { DUELABLE_APPS } from '@/apps/config/duelableApps';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 const STAKES = [
+  { value: 0,   label: 'Amistoso',   color: 'from-slate-400 to-slate-500', display: 'Sin nota' },
   { value: 0.1, label: '0,1 puntos', color: 'from-emerald-400 to-emerald-600' },
   { value: 0.2, label: '0,2 puntos', color: 'from-amber-400 to-amber-600' },
   { value: 0.3, label: '0,3 puntos', color: 'from-rose-400 to-rose-600' },
@@ -23,6 +25,8 @@ export default function DuelCreateModal({ open, onClose }) {
   const [stake, setStake] = useState(0.1);
   const [isHidden, setIsHidden] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  // stake puede ser 0 (amistoso); la validación pide que sea uno de los valores permitidos.
+  const isStakeValid = STAKES.some(s => s.value === stake);
 
   useEffect(() => {
     if (!open || !student) return;
@@ -40,7 +44,7 @@ export default function DuelCreateModal({ open, onClose }) {
     }
   }, [open]);
 
-  const canSubmit = opponentId && appId && stake && !submitting;
+  const canSubmit = opponentId && appId && isStakeValid && !submitting;
 
   async function onSubmit() {
     if (!canSubmit) return;
@@ -123,7 +127,13 @@ export default function DuelCreateModal({ open, onClose }) {
                             : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
                         }`}
                       >
-                        <span className="text-2xl shrink-0">{o.emoji || '🎓'}</span>
+                        <UserAvatar
+                          selectedAvatarCode={o.selected_avatar_code}
+                          avatarEmoji={o.emoji}
+                          avatarColor={o.color}
+                          size="md"
+                          showRarityBorder={false}
+                        />
                         <div className="min-w-0">
                           <p className="text-sm font-semibold text-slate-800 truncate">{o.name}</p>
                           <p className="text-[10px] text-slate-400 truncate">{o.group_name}</p>
@@ -170,7 +180,7 @@ export default function DuelCreateModal({ open, onClose }) {
                   <Target className="w-4 h-4 text-violet-600" />
                   <h3 className="text-sm font-bold text-slate-800">¿Qué os jugáis?</h3>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {STAKES.map(s => (
                     <button
                       key={s.value}
@@ -183,12 +193,17 @@ export default function DuelCreateModal({ open, onClose }) {
                       }`}
                     >
                       <div className={`text-white font-bold text-lg bg-gradient-to-br ${s.color} rounded-lg py-2`}>
-                        +/- {s.value.toString().replace('.', ',')}
+                        {s.value === 0 ? s.display : `+/- ${s.value.toString().replace('.', ',')}`}
                       </div>
                       <p className="text-[11px] text-slate-500 mt-1">{s.label}</p>
                     </button>
                   ))}
                 </div>
+                {stake === 0 && (
+                  <p className="text-[11px] text-slate-500 mt-2 italic">
+                    Duelo amistoso: el resultado no afecta a la nota de ninguno.
+                  </p>
+                )}
               </section>
 
               {/* Oculto */}

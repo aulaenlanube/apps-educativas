@@ -236,7 +236,10 @@ export default function DuelLobby() {
 
           {/* Info duelo */}
           <div className="grid grid-cols-3 gap-2 text-center text-sm mb-6">
-            <InfoPill label="Apuesta" value={`${(+state.stake).toFixed(1).replace('.', ',')} pt`} />
+            <InfoPill
+              label="Apuesta"
+              value={Number(state.stake) === 0 ? 'Amistoso' : `${(+state.stake).toFixed(1).replace('.', ',')} pt`}
+            />
             <InfoPill label="Formato" value={state.best_of > 1 ? `Mejor de ${state.best_of}` : 'Una partida'} />
             <InfoPill label="Estado" value={state.status} />
           </div>

@@ -142,9 +142,10 @@ El docente puede reiniciar el progreso del curso de un alumno suyo desde `Studen
 Dos tipos, diferenciados por `duels.assignment_pair_id`:
 
 ### Duelo personal (`assignment_pair_id IS NULL`)
-- Un alumno reta a otro con una apuesta (`stake`, normalmente 0,1 / 0,2 / 0,3 puntos).
+- Un alumno reta a otro con una apuesta (`stake`: 0 / 0,1 / 0,2 / 0,3 puntos).
 - `student_report_duel_result`: ganador `+stake` en el ledger, perdedor `−stake`.
-- Al perdedor se le crea "deuda" recuperable jugando en modo examen en solitario (`student_apply_duel_debt_recovery`).
+- **Modo amistoso (`stake=0`)**: el duelo se juega normal pero NO se inserta nada en `duel_grade_ledger`, así que la nota de ninguno cambia. Útil para pique sin riesgo. Validado en RPC (`stake IN (0, 0.1, 0.2, 0.3)`).
+- Al perdedor se le crea "deuda" recuperable jugando en modo examen en solitario (`student_apply_duel_debt_recovery`) — solo cuando `stake>0`.
 
 ### Duelo-tarea (`assignment_pair_id IS NOT NULL`)
 - Creado por el docente con `teacher_create_duel_assignment`. Empareja al grupo por nota media similar y crea duelos ocultos + tareas.
@@ -158,6 +159,12 @@ Dos tipos, diferenciados por `duels.assignment_pair_id`:
 
 ### Modo `'duel'` en `game_sessions`
 Las partidas lanzadas desde un Duel component (AhorcadoDuel, SnakeDuel, OrdenaBolasDuel, NavePalabrasDuel) guardan la sesión con `mode='duel'` para que **no cuenten como intento de examen** en la tarea. Solo el ledger dicta el resultado del duelo.
+
+### Frases de duelo (chat predefinido)
+Cada alumno configura **4 frases** en su perfil ([DuelPhrasesEditor](src/components/duel/DuelPhrasesEditor.jsx)) elegidas del catálogo `duel_phrase_definitions` (20 default + 15 spicy desbloqueables). Durante el duelo, [DuelChatBar](src/components/duel/DuelChatBar.jsx) renderiza los 4 botones (5 si hay avatar equipado con signature, ver abajo); al pulsar emite un broadcast `phrase_message` por el canal Realtime del duelo. El receptor lo ve como bocadillo flotante (top-right, fixed) con el avatar del rival al lado. Cooldown 4s entre envíos. **No se persiste el chat** (efímero). Tabla pivote `student_duel_phrases (student_id, slot 0-3, phrase_id)`. RPCs: `phrase_list_definitions`, `student_get_my_phrases`, `student_set_phrase_slot`. Trigger `_student_seed_default_phrases` da 4 frases iniciales a cada alumno nuevo.
+
+### Frases desbloqueables (spicy tier)
+15 frases con `is_default=false` y `unlock_requirement` (mismo schema que avatares — `_avatar_progress` se reutiliza). Tabla `student_unlocked_phrases (student_id, phrase_id)`. RPC `phrase_check_unlocks` se llama dentro de `gamification_process_session` y devuelve los códigos en `new_phrases`. Mientras están bloqueadas se muestran en `DuelPhrasesEditor` con barra de progreso + rareza; al desbloquearlas pasan al pool de frases equipables. Criterios: duelos ganados, exámenes perfectos, top de clase, racha de días, etc.
 
 ---
 

@@ -40,6 +40,8 @@ export default function useDuel() {
       id: student.id,
       name: student.display_name || student.username,
       emoji: student.avatar_emoji || '🎓',
+      color: student.avatar_color,
+      selectedAvatarCode: student.selected_avatar_code,
       role: isHost ? 'host' : 'guest',
       isHost,
     };
@@ -49,11 +51,14 @@ export default function useDuel() {
     if (!duel || !student) return null;
     const isHost = duel.challenger_id === student.id;
     const info = isHost ? duel.opponent : duel.challenger;
+    const hidden = !!info?.hidden;
     return {
       id: isHost ? duel.opponent_id : duel.challenger_id,
-      name: info?.hidden ? 'Oculto' : info?.name,
-      emoji: info?.hidden ? '🕵️' : (info?.emoji || '🎓'),
-      hidden: !!info?.hidden,
+      name: hidden ? 'Oculto' : info?.name,
+      emoji: hidden ? '🕵️' : (info?.emoji || '🎓'),
+      color: hidden ? null : info?.color,
+      selectedAvatarCode: hidden ? null : info?.selected_avatar_code,
+      hidden,
     };
   }, [duel, student]);
 

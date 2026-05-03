@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, Trophy, X, LogOut, Lightbulb } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 const LIVES = 6;
 const TARGET_WINS = 3;
@@ -380,13 +381,15 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
         {/* Dos ahorcados + scoreboard */}
         <div className="grid grid-cols-2 gap-4 mb-4">
           <PlayerPanel
-            label="Tú" name={me.name} emoji={me.emoji}
+            label="Tú" name={me.name}
+            emoji={me.emoji} avatarColor={me.color} avatarCode={me.selectedAvatarCode}
             lives={myLives} fails={LIVES - myLives}
             points={myPoints} target={TARGET_WINS}
             color="#8b5cf6" isTurn={myTurn}
           />
           <PlayerPanel
-            label="Rival" name={rival.hidden ? 'Oculto' : rival.name} emoji={rival.emoji}
+            label="Rival" name={rival.hidden ? 'Oculto' : rival.name}
+            emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
             lives={rivalLives} fails={LIVES - rivalLives}
             points={rivalPoints} target={TARGET_WINS}
             color="#f59e0b" isTurn={!myTurn}
@@ -533,13 +536,19 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   );
 }
 
-function PlayerPanel({ label, name, emoji, lives, fails, points, target, color, isTurn }) {
+function PlayerPanel({ label, name, emoji, avatarColor, avatarCode, lives, fails, points, target, color, isTurn }) {
   return (
     <div className={`p-3 rounded-xl border-2 transition-colors ${
       isTurn ? 'border-violet-400 bg-violet-50 shadow-sm' : 'border-slate-200 bg-white'
     }`}>
       <div className="flex items-center gap-2 mb-2">
-        <div className="text-2xl">{emoji}</div>
+        <UserAvatar
+          selectedAvatarCode={avatarCode}
+          avatarEmoji={emoji}
+          avatarColor={avatarColor}
+          size="lg"
+          showRarityGlow={isTurn}
+        />
         <div className="flex-1 min-w-0">
           <p className="text-[10px] uppercase text-slate-500 tracking-wide">{label}</p>
           <p className="font-bold truncate text-sm">{name}</p>

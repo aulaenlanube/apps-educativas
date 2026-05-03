@@ -118,7 +118,7 @@ export default function GroupMatchesPanel({ groupId, groupName }) {
                     <div className="text-[11px] text-slate-400 flex items-center gap-2 flex-wrap">
                       <span>{d.app_name}</span>
                       <span>·</span>
-                      <span>stake {Number(d.stake).toFixed(2)}</span>
+                      <span>{Number(d.stake) === 0 ? 'amistoso' : `stake ${Number(d.stake).toFixed(2)}`}</span>
                       {winnerName && (<><span>·</span><span className="text-emerald-600 font-semibold">🏆 {winnerName}</span></>)}
                       <span>·</span>
                       <span className="flex items-center gap-0.5"><Clock className="w-3 h-3" /> {formatDateTime(d.created_at)}</span>

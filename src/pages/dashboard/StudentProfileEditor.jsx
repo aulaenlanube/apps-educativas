@@ -12,6 +12,7 @@ import EmailLinkSection from '@/components/student/EmailLinkSection';
 import GroupSelector from '@/components/student/GroupSelector';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import AvatarGallery from '@/components/avatar/AvatarGallery';
+import DuelPhrasesEditor from '@/components/duel/DuelPhrasesEditor';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 import AnimatedNumber from '@/components/ui/AnimatedNumber';
 
@@ -405,6 +406,9 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
         </p>
         <AvatarGallery onSelected={() => onProfileUpdated?.()} />
       </motion.div>
+
+      {/* Frases para duelos 1 vs 1 */}
+      <DuelPhrasesEditor />
 
       {/* Personalizar avatar (emoji + color clásico) */}
       <motion.div

@@ -5,10 +5,14 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.googletagmanager.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; worker-src 'self' blob:" />
-	<meta http-equiv="X-Frame-Options" content="DENY" />
+	<!-- CSP via meta. La copia HTTP en /public/.htaccess es la fuente de verdad
+	     en producción. Aquí mantenemos una versión equivalente para dev (vite)
+	     y como segunda red de seguridad. NO incluimos `frame-ancestors` ni
+	     `X-Frame-Options` porque ambos son ignorados en <meta> y deben llegar
+	     siempre por cabecera HTTP (ya están en .htaccess). connect-src incluye
+	     región-hosts de Google Analytics (region1.google-analytics.com, etc). -->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; form-action 'self'; worker-src 'self' blob:" />
 	<meta name="referrer" content="strict-origin-when-cross-origin" />
-	<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), interest-cohort=()" />
 
 	<!-- Favicon (se sirve desde /images/ en producción) -->
 	<link rel="icon" type="image/png" sizes="64x64" href="/images/favicon.png" />

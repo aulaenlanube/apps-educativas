@@ -194,12 +194,20 @@ export default function DuelInbox({ duels, onChange }) {
           <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-violet-300">
             <div className="flex flex-col items-center px-2">
               <span className="text-[9px] uppercase font-bold text-violet-600">En juego</span>
-              <span className="text-base font-black text-violet-700">±{stakeLabel(d.stake)}</span>
+              <span className="text-base font-black text-violet-700">
+                {Number(d.stake) === 0 ? 'Amistoso' : `±${stakeLabel(d.stake)}`}
+              </span>
             </div>
             <p className="text-[11px] text-slate-600 leading-tight">
-              Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+{stakeLabel(d.stake)}</strong> a tu nota.
-              Si <strong>pierdes</strong> restas <strong className="text-rose-600">−{stakeLabel(d.stake)}</strong>.
-              Decide si aceptas el reto.
+              {Number(d.stake) === 0 ? (
+                <>Duelo <strong>amistoso</strong>: el resultado no afecta a la nota de ninguno. Decide si aceptas el reto.</>
+              ) : (
+                <>
+                  Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+{stakeLabel(d.stake)}</strong> a tu nota.
+                  Si <strong>pierdes</strong> restas <strong className="text-rose-600">−{stakeLabel(d.stake)}</strong>.
+                  Decide si aceptas el reto.
+                </>
+              )}
             </p>
           </div>
         )}

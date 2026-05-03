@@ -55,9 +55,12 @@ export default function UserAvatar({
   const glow = showRarityGlow && def ? `0 0 ${Math.round(px / 6)}px ${meta.glow}` : 'none';
   const boxShadow = [ring, glow].filter((s) => s !== 'none').join(', ') || undefined;
 
-  // Selección por tamaño de imagen
+  // Selección por tamaño de imagen.
+  // image_sm (128w webp) cubre hasta lg (80px) — suficiente nitidez incluso en
+  // pantallas retina y minimiza tráfico para listas con muchos avatares
+  // (ej: opciones de duelo, paneles de jugador en duelos en vivo).
   const imgSrc = def
-    ? (px <= 64 ? def.image_sm : px <= 192 ? def.image_md : def.image_lg)
+    ? (px <= 96 ? def.image_sm : px <= 192 ? def.image_md : def.image_lg)
     : null;
 
   return (

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 const GRID = 35;               // tablero grande
 const TICK_MS = 180;
@@ -475,13 +476,15 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
 
         <div className="flex items-center gap-3">
           <PlayerScore
-            name={me.name} emoji={me.emoji}
+            name={me.name}
+            emoji={me.emoji} avatarColor={me.color} avatarCode={me.selectedAvatarCode}
             color="cyan" wins={myScore} target={TARGET_WINS}
             snakeScore={mySnake?.score || 0} alive={mySnake?.alive}
           />
           <span className="text-slate-400 font-black">VS</span>
           <PlayerScore
-            name={rival.hidden ? 'Oculto' : rival.name} emoji={rival.emoji}
+            name={rival.hidden ? 'Oculto' : rival.name}
+            emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
             color="fuchsia" wins={rivalScore} target={TARGET_WINS}
             snakeScore={rivalSnake?.score || 0} alive={rivalSnake?.alive}
           />
@@ -679,11 +682,16 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
   );
 }
 
-function PlayerScore({ name, emoji, color, wins, target, snakeScore, alive }) {
+function PlayerScore({ name, emoji, avatarColor, avatarCode, color, wins, target, snakeScore, alive }) {
   const bg = color === 'cyan' ? 'bg-cyan-500' : 'bg-fuchsia-500';
   return (
     <div className="flex items-center gap-2 bg-white rounded-xl p-2 shadow-sm border border-slate-100 min-w-[150px]">
-      <div className="text-2xl">{emoji}</div>
+      <UserAvatar
+        selectedAvatarCode={avatarCode}
+        avatarEmoji={emoji}
+        avatarColor={avatarColor}
+        size="md"
+      />
       <div className="flex-1 min-w-0">
         <p className="text-[11px] font-bold text-slate-700 truncate">{name}</p>
         <p className="text-xs text-slate-500">{snakeScore} pts · {alive ? 'viva' : '💀'}</p>
