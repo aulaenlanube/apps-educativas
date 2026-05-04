@@ -1682,8 +1682,8 @@
   },
   {
     "code": "avatar_101",
-    "title": "Bardo de las Runas",
-    "description": "Habla con los símbolos antes que con la gente. Lleva el saber escrito en los pliegues de su capa y en cada hueso del bosque.",
+    "title": "Dios del Engaño",
+    "description": "Sonrisa torcida, ojos verdes y un don para cambiar el rumbo de la conversación. No miente: solo elige qué verdad cuenta primero.",
     "rarity": "epic",
     "points_bonus": 0.3,
     "image_lg": "/images/avatar/512/avatar-101.webp",
@@ -1718,15 +1718,15 @@
     "code": "avatar_103",
     "title": "Alma Pacífica",
     "description": "Caminó descalzo y movió un imperio. La fuerza no es el grito; es la calma que se mantiene cuando todo se sacude.",
-    "rarity": "mythic",
-    "points_bonus": 0.5,
+    "rarity": "legendary",
+    "points_bonus": 0.4,
     "image_lg": "/images/avatar/512/avatar-103.webp",
     "image_md": "/images/avatar/256/avatar-103.webp",
     "image_sm": "/images/avatar/128/avatar-103.webp",
-    "unlock_label": "Acumula 1.000.000 XP",
+    "unlock_label": "Mantén una racha de 75 días seguidos jugando",
     "unlock": {
-      "type": "xp",
-      "amount": 1000000
+      "type": "streak_days",
+      "count": 75
     },
     "sort_order": 103
   },
@@ -1752,8 +1752,8 @@
     "code": "avatar_105",
     "title": "Héroe del Tiempo",
     "description": "Espada en una mano, escudo en la otra. Cada vez que el reino cae, alguien con la mirada del valor abre los ojos en otra época.",
-    "rarity": "mythic",
-    "points_bonus": 0.5,
+    "rarity": "legendary",
+    "points_bonus": 0.4,
     "image_lg": "/images/avatar/512/avatar-105.webp",
     "image_md": "/images/avatar/256/avatar-105.webp",
     "image_sm": "/images/avatar/128/avatar-105.webp",
@@ -1763,5 +1763,23 @@
       "value": 80
     },
     "sort_order": 105
+  },
+  {
+    "code": "avatar_106",
+    "title": "Maestro de la Sinfonía",
+    "description": "Pluma en una mano, partitura en la otra. Las notas le bailan en la cabeza antes de tocar el piano; cuando suenan, todo cuadra.",
+    "rarity": "mythic",
+    "points_bonus": 0.5,
+    "image_lg": "/images/avatar/512/avatar-106.webp",
+    "image_md": "/images/avatar/256/avatar-106.webp",
+    "image_sm": "/images/avatar/128/avatar-106.webp",
+    "unlock_label": "Consigue un 10 en un examen de Música en 20 apps distintas",
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "musica",
+      "count": 20,
+      "min_nota": 9.95
+    },
+    "sort_order": 106
   }
 ]

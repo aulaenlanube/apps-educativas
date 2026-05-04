@@ -7,11 +7,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Mapa: número avatar → ruta del PNG original (en raíz)
 const map = {
-  101: 'ChatGPT Image 4 may 2026, 11_21_41.png',  // Bardo místico (epic)
-  102: 'ChatGPT Image 4 may 2026, 11_21_46.png',  // Chaplin (legendary)
-  103: 'ChatGPT Image 4 may 2026, 11_21_51.png',  // Gandhi (mythic)
-  104: 'ChatGPT Image 4 may 2026, 11_22_09.png',  // Heisenberg (legendary)
-  105: 'ChatGPT Image 4 may 2026, 11_22_38.png',  // Link (mythic)
+  106: 'ChatGPT Image 4 may 2026, 11_36_17.png',  // Mozart (mythic)
 };
 
 for (const [n, file] of Object.entries(map)) {
