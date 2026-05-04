@@ -767,7 +767,6 @@ export default function QuizBattlePlayer() {
           channel={{ broadcast }}
           me={{ id: userInfo.id }}
           eventName="battle:phrase_message"
-          cooldownMs={10000}
           onSent={pushPhrase}
         />
       )}

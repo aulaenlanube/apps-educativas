@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import {
   Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
   BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
-  ChevronDown, ChevronUp, Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
+  Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
   Play, Compass, Swords
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
@@ -55,13 +55,6 @@ function formatTime(seconds) {
   return `${s}s`;
 }
 
-function formatDate(dateStr) {
-  if (!dateStr) return '-';
-  return new Date(dateStr).toLocaleDateString('es-ES', {
-    day: '2-digit', month: 'short', year: 'numeric'
-  });
-}
-
 function formatDateTime(dateStr) {
   if (!dateStr) return '-';
   return new Date(dateStr).toLocaleDateString('es-ES', {
@@ -89,149 +82,6 @@ function StatCard({ icon: Icon, label, value, subValue, color, delay = 0 }) {
         </div>
       </div>
     </motion.div>
-  );
-}
-
-// ─── Apps Detail Table ───────────────────────────────────
-function AppsDetail({ apps }) {
-  const [expanded, setExpanded] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-
-  if (!apps || apps.length === 0) {
-    return (
-      <div className="text-center py-8 text-slate-400">
-        <Gamepad2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
-        <p>Aun no has jugado ninguna partida</p>
-      </div>
-    );
-  }
-
-  const displayed = showAll ? apps : apps.slice(0, 10);
-
-  return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="bg-slate-50 text-left">
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 rounded-l-lg">App</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Partidas</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Practica</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Examen</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Precision</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center">Nota</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 text-center hidden md:table-cell">Tiempo</th>
-              <th className="px-3 py-2.5 text-xs font-medium text-slate-500 rounded-r-lg w-8"></th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-50">
-            {displayed.map((app) => (
-              <React.Fragment key={app.app_id + (app.level || '') + (app.grade || '')}>
-                <tr
-                  className="hover:bg-slate-50 cursor-pointer transition-colors"
-                  onClick={() => setExpanded(expanded === app.app_id ? null : app.app_id)}
-                >
-                  <td className="px-3 py-2.5">
-                    <div>
-                      <span className="font-medium text-slate-700">{app.app_name}</span>
-                      {app.level && (
-                        <span className="ml-2 text-xs text-slate-400 capitalize">
-                          {app.level} {app.grade}
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="px-3 py-2.5 text-center font-semibold text-slate-700">{app.total_plays}</td>
-                  <td className="px-3 py-2.5 text-center text-slate-500 hidden sm:table-cell">{app.practice_plays}</td>
-                  <td className="px-3 py-2.5 text-center text-slate-500 hidden sm:table-cell">{app.test_plays}</td>
-                  <td className="px-3 py-2.5 text-center">
-                    <AccuracyBadge value={app.accuracy} />
-                  </td>
-                  <td className="px-3 py-2.5 text-center">
-                    <NotaBadge value={app.best_nota} />
-                  </td>
-                  <td className="px-3 py-2.5 text-center text-slate-500 hidden md:table-cell">{formatTime(app.total_time_seconds)}</td>
-                  <td className="px-3 py-2.5 text-center">
-                    {expanded === app.app_id
-                      ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                      : <ChevronDown className="w-4 h-4 text-slate-400" />
-                    }
-                  </td>
-                </tr>
-                <AnimatePresence>
-                  {expanded === app.app_id && (
-                    <tr>
-                      <td colSpan={8}>
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="bg-slate-50 px-4 py-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <div>
-                              <p className="text-xs text-slate-400">Nota media</p>
-                              <p className="text-sm font-bold text-slate-700">{app.avg_nota ?? '-'}/10</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Nota media examen</p>
-                              <p className="text-sm font-bold text-slate-700">{app.avg_test_nota ?? '-'}/10</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Mejor nota examen</p>
-                              <p className="text-sm font-bold text-amber-600">{app.best_test_nota ?? '-'}/10</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Duracion media</p>
-                              <p className="text-sm font-bold text-slate-700">{formatTime(app.avg_duration_seconds)}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Aciertos totales</p>
-                              <p className="text-sm font-bold text-green-600">{app.total_correct} / {app.total_questions}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Asignatura</p>
-                              <p className="text-sm font-bold text-slate-700">{SUBJECT_LABELS[app.subject_id] || app.subject_id || '-'}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Ultima partida</p>
-                              <p className="text-sm font-bold text-slate-700">{formatDate(app.last_played)}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Tiempo total</p>
-                              <p className="text-sm font-bold text-slate-700">{formatTime(app.total_time_seconds)}</p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      </td>
-                    </tr>
-                  )}
-                </AnimatePresence>
-              </React.Fragment>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {apps.length > 10 && (
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="w-full mt-3 py-2 text-sm text-purple-600 hover:text-purple-800 font-medium transition-colors"
-        >
-          {showAll ? 'Mostrar menos' : `Ver todas (${apps.length} apps)`}
-        </button>
-      )}
-    </div>
-  );
-}
-
-function AccuracyBadge({ value }) {
-  const color = value >= 80 ? 'bg-green-100 text-green-700'
-    : value >= 50 ? 'bg-amber-100 text-amber-700'
-    : 'bg-red-100 text-red-700';
-  return (
-    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-bold ${color}`}>
-      {value}%
-    </span>
   );
 }
 
@@ -509,7 +359,6 @@ export default function StudentDashboard() {
       { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
       { id: 'messages', label: 'Mensajes', icon: MessageSquare },
     ] : []),
-    { id: 'apps', label: 'Apps', icon: Gamepad2 },
     { id: 'history', label: 'Historial', icon: CalendarDays },
     { id: 'feedback', label: 'Comentarios', icon: MessageSquare },
     { id: 'profile', label: 'Perfil', icon: Star },
@@ -967,21 +816,6 @@ export default function StudentDashboard() {
           {activeTab === 'messages' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <StudentChatTab />
-            </motion.div>
-          )}
-
-          {/* ── TAB: Apps ── */}
-          {activeTab === 'apps' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-            >
-              <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <Gamepad2 className="w-5 h-5 text-blue-500" />
-                Detalle por app ({apps.length})
-              </h3>
-              <AppsDetail apps={apps} />
             </motion.div>
           )}
 

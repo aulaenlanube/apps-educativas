@@ -4,19 +4,26 @@ import { MessageSquare, Lock, X } from 'lucide-react';
 import { getMyPhrases, teacherGetMyPhrases } from '@/services/phraseService';
 import useDuelActor from '@/hooks/useDuelActor';
 
+// Cooldown progresivo (anti-spam): 10s la primera vez, 15s la siguiente, 20s
+// la tercera y vuelve a 10s en la cuarta. Cíclico. La duración del bocadillo
+// (5s) y este cooldown son cosas distintas: el cooldown bloquea volver a
+// hablar; los bocadillos siguen apareciendo/desapareciendo a su ritmo.
+const COOLDOWN_SCHEDULE_MS = [10000, 15000, 20000];
+
 /**
  * Botón flotante (esquina inferior izquierda) para lanzar una de las 4 frases
  * configuradas por el jugador. Al pulsarlo se abre un popover con las frases.
  *
  * Reutilizable entre:
- *  - Duelos 1 vs 1 (event = 'phrase_message', cooldown ~4s)
- *  - Quiz Battle (event = 'battle:phrase_message', cooldown 10s)
+ *  - Duelos 1 vs 1 (event = 'phrase_message')
+ *  - Quiz Battle (event = 'battle:phrase_message')
+ *
+ * El cooldown sigue una secuencia 10→15→20→10... (ver COOLDOWN_SCHEDULE_MS).
  *
  * Props:
  *  - channel: { broadcast } — canal Realtime sobre el que emitir
  *  - me: { id } — identificador del emisor (puesto en payload.from)
  *  - eventName: nombre del broadcast event. Default 'phrase_message'.
- *  - cooldownMs: ms mínimos entre dos envíos. Default 4000.
  *  - onSent: callback opcional con el payload, útil para autoeco local
  *      (Realtime no devuelve el evento al emisor).
  */
@@ -24,7 +31,6 @@ export default function PhraseLauncher({
   channel,
   me,
   eventName = 'phrase_message',
-  cooldownMs = 4000,
   onSent,
 }) {
   const actor = useDuelActor();
@@ -33,6 +39,9 @@ export default function PhraseLauncher({
   const [open, setOpen] = useState(false);
   const [cooldownUntil, setCooldownUntil] = useState(0);
   const [now, setNow] = useState(Date.now());
+  // Contador de envíos para indexar COOLDOWN_SCHEDULE_MS. Persiste mientras
+  // el componente vive (toda la sala/partida); no se resetea en cada envío.
+  const sendCountRef = useRef(0);
   const popoverRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -86,10 +95,12 @@ export default function PhraseLauncher({
       sent_at: Date.now(),
     };
     channel.broadcast(eventName, payload);
-    setCooldownUntil(Date.now() + cooldownMs);
+    const idx = sendCountRef.current % COOLDOWN_SCHEDULE_MS.length;
+    setCooldownUntil(Date.now() + COOLDOWN_SCHEDULE_MS[idx]);
+    sendCountRef.current += 1;
     setOpen(false);
     onSent?.(payload);
-  }, [channel, me?.id, cooldownUntil, cooldownMs, eventName, onSent]);
+  }, [channel, me?.id, cooldownUntil, eventName, onSent]);
 
   if (!actor || loading || slots.length === 0) return null;
 

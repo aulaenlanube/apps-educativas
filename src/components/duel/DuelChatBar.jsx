@@ -4,7 +4,6 @@ import UserAvatar from '@/components/ui/UserAvatar';
 import PhraseLauncher from './PhraseLauncher';
 
 const RECEIVED_DURATION_MS = 5000;
-const SEND_COOLDOWN_MS = 4000;
 
 /**
  * Caja de frases en duelos 1 vs 1. Renderiza dos elementos flotantes:
@@ -120,7 +119,6 @@ export default function DuelChatBar({ channel, me, rival, onIncoming }) {
         channel={channel}
         me={me}
         eventName="phrase_message"
-        cooldownMs={SEND_COOLDOWN_MS}
       />
     </>
   );
