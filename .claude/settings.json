@@ -109,7 +109,24 @@
       "Bash(chmod +x /tmp/audit.sh)",
       "Bash(bash /tmp/audit.sh)",
       "Bash(bash /tmp/check_score.sh)",
-      "Bash(bash /tmp/full_audit.sh)"
+      "Bash(bash /tmp/full_audit.sh)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); console.log\\('OK'\\)\")",
+      "Bash(node C:/tmp/update-avatars.mjs)",
+      "Bash(node C:/tmp/rebalance-avatars.mjs)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); console.log\\('JSON OK'\\)\")",
+      "Bash(node C:/tmp/rewrite-avatar-labels.mjs)",
+      "Bash(magick -version)",
+      "PowerShell(magick -version)",
+      "PowerShell(cmd /c where magick 2>$null)",
+      "PowerShell(cmd /c where convert 2>$null)",
+      "Bash(node -e \"console.log\\(require\\('sharp'\\)\\(Buffer.from\\([]\\)\\).options\\)\")",
+      "Bash(node C:/tmp/convert-avatars.mjs)",
+      "Bash(node tools/convert-avatars-batch.mjs)",
+      "Bash(node C:/tmp/add-avatars-101-105.mjs)",
+      "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); console.log\\('total avatares:', a.length\\); console.log\\('últimos 3:', a.slice\\(-3\\).map\\(x=>x.code\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); console.log\\('total:', a.length\\); ['avatar_101','avatar_103','avatar_105','avatar_106'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.rarity, '/', x.unlock_label\\)}\\)\")",
+      "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); ['avatar_049','avatar_104'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.rarity, '/', x.unlock_label\\)}\\)\")",
+      "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); ['avatar_049','avatar_061','avatar_063'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.unlock_label\\)}\\)\")"
     ]
   }
 }
