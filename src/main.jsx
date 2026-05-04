@@ -128,7 +128,7 @@ const router = createBrowserRouter(
             {
               path: 'duelo/:duelId',
               element: (
-                <ProtectedRoute role="student">
+                <ProtectedRoute role={['student', 'teacher']}>
                   <SuspensePage><DuelLobby /></SuspensePage>
                 </ProtectedRoute>
               )

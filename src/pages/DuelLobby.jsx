@@ -2,9 +2,12 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, EyeOff, ArrowLeft, Play, Users, Trophy, XCircle } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
 import useDuelChannel from '@/hooks/useDuelChannel';
-import { getDuelState, startDuel, voidDuel } from '@/services/duelService';
+import useDuelActor from '@/hooks/useDuelActor';
+import {
+  getDuelState, startDuel, voidDuel,
+  teacherGetDuelState, teacherStartDuel, teacherVoidDuel,
+} from '@/services/duelService';
 import { DUELABLE_APPS, getDuelConfig } from '@/apps/config/duelableApps';
 import InstructionsModal from '@/apps/_shared/InstructionsModal';
 import UserAvatar from '@/components/ui/UserAvatar';
@@ -38,7 +41,7 @@ const COUNTDOWN_SECONDS = 3;
 
 export default function DuelLobby() {
   const { duelId } = useParams();
-  const { student } = useAuth();
+  const actor = useDuelActor();
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [err, setErr] = useState(null);
@@ -48,39 +51,48 @@ export default function DuelLobby() {
   const [showAbortModal, setShowAbortModal] = useState(false);
   const countdownStartedRef = useRef(false);
 
+  const isTeacherActor = actor?.type === 'teacher';
+  // Ruta a la que volver al cancelar/terminar el duelo (panel del rol).
+  const homePath = isTeacherActor ? '/dashboard' : '/mi-panel';
+
   const reload = useCallback(async () => {
+    if (!actor) return;
     try {
-      const s = await getDuelState({
-        studentId: student.id, sessionToken: student.session_token, duelId,
-      });
+      const s = isTeacherActor
+        ? await teacherGetDuelState({ duelId })
+        : await getDuelState({
+            studentId: actor.id, sessionToken: actor.sessionToken, duelId,
+          });
       setState(s);
       if (s.status === 'void' || s.status === 'cancelled' || s.status === 'rejected') setPhase('voided');
       else if (s.status === 'finished') setPhase('finished');
     } catch (e) {
       setErr(e.message);
     }
-  }, [duelId, student]);
+  }, [duelId, actor, isTeacherActor]);
 
   useEffect(() => {
-    if (!student) return;
+    if (!actor) return;
     reload();
-  }, [reload, student]);
+  }, [reload, actor]);
 
-  const user = useMemo(() => student ? ({
-    id: student.id,
-    name: student.display_name || student.username,
-    emoji: student.avatar_emoji || '🎓',
-    color: student.avatar_color,
-    selected_avatar_code: student.selected_avatar_code,
-    role: state ? (state.challenger_id === student.id ? 'host' : 'guest') : 'player',
-  }) : null, [student, state]);
+  const user = useMemo(() => actor ? ({
+    id: actor.id,
+    name: actor.name,
+    emoji: actor.emoji,
+    color: actor.color,
+    selected_avatar_code: actor.selectedAvatarCode,
+    role: state
+      ? (state.challenger_id === actor.id && state.challenger_type === actor.type ? 'host' : 'guest')
+      : 'player',
+  }) : null, [actor, state]);
 
   const enabled = !!state && state.status !== 'finished' && state.status !== 'void';
   const { presence, isConnected, broadcast, onBroadcast } = useDuelChannel(duelId, user, enabled);
 
   const bothPresent = presence.length >= 2;
-  const amHost = state && state.challenger_id === student?.id;
-  const opponentIsMe = state && state.opponent_id === student?.id;
+  const amHost = state && actor && state.challenger_id === actor.id && state.challenger_type === actor.type;
+  const opponentIsMe = state && actor && state.opponent_id === actor.id && state.opponent_type === actor.type;
 
   // Cuando cambia presence a "ambos presentes", recargar estado por si el
   // rival acaba de aceptar (el retador tiene state.status cacheado).
@@ -133,9 +145,13 @@ export default function DuelLobby() {
   }
 
   async function handleStart() {
-    if (!amHost) return;
+    if (!amHost || !actor) return;
     try {
-      await startDuel({ studentId: student.id, sessionToken: student.session_token, duelId });
+      if (isTeacherActor) {
+        await teacherStartDuel({ duelId });
+      } else {
+        await startDuel({ studentId: actor.id, sessionToken: actor.sessionToken, duelId });
+      }
       broadcast('game_started', { at: Date.now() });
       setPhase('starting');
       redirectToGame();
@@ -146,10 +162,15 @@ export default function DuelLobby() {
 
   async function confirmAbort() {
     setShowAbortModal(false);
+    if (!actor) return;
     try {
-      await voidDuel({ studentId: student.id, sessionToken: student.session_token, duelId, reason: 'user_aborted' });
+      if (isTeacherActor) {
+        await teacherVoidDuel({ duelId, reason: 'user_aborted' });
+      } else {
+        await voidDuel({ studentId: actor.id, sessionToken: actor.sessionToken, duelId, reason: 'user_aborted' });
+      }
       broadcast('duel_voided', { reason: 'user_aborted' });
-      navigate('/mi-panel');
+      navigate(homePath);
     } catch (e) { setErr(e.message); }
   }
 
@@ -160,7 +181,7 @@ export default function DuelLobby() {
           <XCircle className="w-12 h-12 mx-auto mb-3 text-rose-400" />
           <p className="font-bold">No se pudo cargar el duelo</p>
           <p className="text-sm text-slate-400 mt-1">{err}</p>
-          <button onClick={() => navigate('/mi-panel')} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
+          <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
             Volver al panel
           </button>
         </div>
@@ -221,7 +242,7 @@ export default function DuelLobby() {
               emoji={user.emoji}
               color={user.color}
               selectedAvatarCode={user.selected_avatar_code}
-              present={presence.some(p => p.id === student.id)}
+              present={presence.some(p => p.id === actor?.id)}
             />
             <PlayerCard
               label="Rival"
@@ -230,7 +251,7 @@ export default function DuelLobby() {
               color={rivalInfo?.color}
               selectedAvatarCode={rivalHidden ? null : rivalInfo?.selected_avatar_code}
               hidden={rivalHidden}
-              present={presence.some(p => p.id !== student.id)}
+              present={presence.some(p => p.id !== actor?.id)}
             />
           </div>
 
@@ -310,7 +331,7 @@ export default function DuelLobby() {
                 <XCircle className="w-12 h-12 mx-auto mb-3 text-rose-400" />
                 <p className="text-lg font-bold">Duelo cancelado</p>
                 <p className="text-sm text-white/70">{state.void_reason || 'La partida fue anulada.'}</p>
-                <button onClick={() => navigate('/mi-panel')} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
+                <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
                   Volver al panel
                 </button>
               </motion.div>
@@ -322,9 +343,9 @@ export default function DuelLobby() {
               >
                 <Trophy className="w-12 h-12 mx-auto mb-3 text-amber-300" />
                 <p className="text-lg font-bold">
-                  {state.winner_id === student.id ? '¡Has ganado!' : 'Has perdido'}
+                  {state.winner_id === actor?.id ? '¡Has ganado!' : 'Has perdido'}
                 </p>
-                <button onClick={() => navigate('/mi-panel')} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
+                <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
                   Volver al panel
                 </button>
               </motion.div>

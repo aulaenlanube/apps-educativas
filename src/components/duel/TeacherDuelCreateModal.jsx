@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, X, Users, Gamepad2, Search, Sparkles } from 'lucide-react';
 import { teacherGetDuelOpponents, teacherCreateDuel } from '@/services/duelService';
@@ -10,6 +11,7 @@ import UserAvatar from '@/components/ui/UserAvatar';
 // debe aceptarlo desde su panel para que el duelo arranque.
 
 export default function TeacherDuelCreateModal({ open, onClose, onCreated }) {
+  const navigate = useNavigate();
   const [opponents, setOpponents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
@@ -55,16 +57,17 @@ export default function TeacherDuelCreateModal({ open, onClose, onCreated }) {
         opponentId,
         appId,
         appName: app.name,
-        // El alumno tendrá su propio level/grade del grupo; aquí pasamos
-        // los del alumno seleccionado (resueltos en BD via group join sería
-        // más limpio, pero la RPC sólo lo guarda en duels.level/grade para
-        // referencia). Pasamos cadena vacía → el alumno los reasignará al
-        // entrar al lobby.
+        // duels.level/grade/subject_id son referenciales: la propia app
+        // duel los recoge de duelInfo cuando arranca. Pasamos vacíos:
+        // useDuel + las apps caen al fallback de level/grade del path.
         level: '', grade: '', subjectId: null,
         bestOf: app.duel?.bestOf || 1,
       });
       onCreated?.(res?.duel_id);
       onClose?.();
+      // Entra el profesor en la sala de duelo: el alumno verá el reto en
+      // su inbox, lo aceptará y se reunirá aquí.
+      if (res?.duel_id) navigate(`/duelo/${res.duel_id}`);
     } catch (e) {
       setErr(e.message);
     } finally {

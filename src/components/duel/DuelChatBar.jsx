@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Lock } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { getMyPhrases } from '@/services/phraseService';
+import { getMyPhrases, teacherGetMyPhrases } from '@/services/phraseService';
+import useDuelActor from '@/hooks/useDuelActor';
 import UserAvatar from '@/components/ui/UserAvatar';
 
 const SEND_COOLDOWN_MS = 4000;
@@ -20,7 +20,7 @@ const RECEIVED_DURATION_MS = 3500;
  *  - className: estilos opcionales para el contenedor
  */
 export default function DuelChatBar({ channel, me, rival, onIncoming, className }) {
-  const { student } = useAuth();
+  const actor = useDuelActor();
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cooldownUntil, setCooldownUntil] = useState(0);
@@ -30,15 +30,18 @@ export default function DuelChatBar({ channel, me, rival, onIncoming, className 
 
   // Carga de slots
   useEffect(() => {
-    if (!student) return;
+    if (!actor) return;
     let cancelled = false;
     setLoading(true);
-    getMyPhrases({ studentId: student.id, sessionToken: student.session_token })
+    const promise = actor.type === 'teacher'
+      ? teacherGetMyPhrases()
+      : getMyPhrases({ studentId: actor.id, sessionToken: actor.sessionToken });
+    promise
       .then(d => { if (!cancelled) setSlots(d?.slots || []); })
       .catch(() => { /* en duelo, fallar silenciosamente */ })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [student]);
+  }, [actor]);
 
   // Tick del cooldown
   useEffect(() => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
+// `role` admite string o array. Admin tiene acceso a todo.
 export default function ProtectedRoute({ children, role }) {
   const { isAuthenticated, isAdmin, role: currentRole, loading } = useAuth();
 
@@ -16,8 +17,8 @@ export default function ProtectedRoute({ children, role }) {
   if (!isAuthenticated) return <Navigate to="/login" replace />;
 
   if (role) {
-    // Admin puede acceder a rutas de teacher y admin
-    const hasAccess = isAdmin || currentRole === role;
+    const allowed = Array.isArray(role) ? role : [role];
+    const hasAccess = isAdmin || allowed.includes(currentRole);
     if (!hasAccess) return <Navigate to="/" replace />;
   }
 
