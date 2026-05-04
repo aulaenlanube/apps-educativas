@@ -1679,5 +1679,89 @@
       "count": 60
     },
     "sort_order": 100
+  },
+  {
+    "code": "avatar_101",
+    "title": "Bardo de las Runas",
+    "description": "Habla con los símbolos antes que con la gente. Lleva el saber escrito en los pliegues de su capa y en cada hueso del bosque.",
+    "rarity": "epic",
+    "points_bonus": 0.3,
+    "image_lg": "/images/avatar/512/avatar-101.webp",
+    "image_md": "/images/avatar/256/avatar-101.webp",
+    "image_sm": "/images/avatar/128/avatar-101.webp",
+    "unlock_label": "Aprueba con 8,5 o más en 8 apps distintas de Lengua",
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "lengua",
+      "count": 8,
+      "min_nota": 8.5
+    },
+    "sort_order": 101
+  },
+  {
+    "code": "avatar_102",
+    "title": "Vagabundo del Cine Mudo",
+    "description": "Sombrero hongo, bastón en alto y un gesto que vale más que mil palabras. Cuando el silencio sabe contar la historia, no hace falta nada más.",
+    "rarity": "legendary",
+    "points_bonus": 0.4,
+    "image_lg": "/images/avatar/512/avatar-102.webp",
+    "image_md": "/images/avatar/256/avatar-102.webp",
+    "image_sm": "/images/avatar/128/avatar-102.webp",
+    "unlock_label": "Mantén una racha de 35 días seguidos jugando",
+    "unlock": {
+      "type": "streak_days",
+      "count": 35
+    },
+    "sort_order": 102
+  },
+  {
+    "code": "avatar_103",
+    "title": "Alma Pacífica",
+    "description": "Caminó descalzo y movió un imperio. La fuerza no es el grito; es la calma que se mantiene cuando todo se sacude.",
+    "rarity": "mythic",
+    "points_bonus": 0.5,
+    "image_lg": "/images/avatar/512/avatar-103.webp",
+    "image_md": "/images/avatar/256/avatar-103.webp",
+    "image_sm": "/images/avatar/128/avatar-103.webp",
+    "unlock_label": "Acumula 1.000.000 XP",
+    "unlock": {
+      "type": "xp",
+      "amount": 1000000
+    },
+    "sort_order": 103
+  },
+  {
+    "code": "avatar_104",
+    "title": "Profesor en la Sombra",
+    "description": "Sombrero hundido, gafas oscuras y la tabla periódica como mapa. Cuando explica química, hasta los desiertos se quedan en silencio.",
+    "rarity": "legendary",
+    "points_bonus": 0.4,
+    "image_lg": "/images/avatar/512/avatar-104.webp",
+    "image_md": "/images/avatar/256/avatar-104.webp",
+    "image_sm": "/images/avatar/128/avatar-104.webp",
+    "unlock_label": "Aprueba con 9 o más en 15 apps distintas de Física y Química",
+    "unlock": {
+      "type": "subject_exams",
+      "subject_id": "fisica",
+      "count": 15,
+      "min_nota": 9
+    },
+    "sort_order": 104
+  },
+  {
+    "code": "avatar_105",
+    "title": "Héroe del Tiempo",
+    "description": "Espada en una mano, escudo en la otra. Cada vez que el reino cae, alguien con la mirada del valor abre los ojos en otra época.",
+    "rarity": "mythic",
+    "points_bonus": 0.5,
+    "image_lg": "/images/avatar/512/avatar-105.webp",
+    "image_md": "/images/avatar/256/avatar-105.webp",
+    "image_sm": "/images/avatar/128/avatar-105.webp",
+    "unlock_label": "Alcanza el nivel 80",
+    "unlock": {
+      "type": "level",
+      "value": 80
+    },
+    "sort_order": 105
   }
 ]
