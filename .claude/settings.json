@@ -133,7 +133,11 @@
       "Bash(grep -E '\\\\.sql$')",
       "Bash(Sort-Object -Descending)",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\edtor\\\\Desktop\\\\apps-educativas\" -Recurse -Directory -Name)",
-      "Bash(Select-String \"quiz-battle|duel\")"
+      "Bash(Select-String \"quiz-battle|duel\")",
+      "Bash(grep -n \"^}$\\\\|^  return \" src/apps/ahorcado/AhorcadoDuel.jsx)",
+      "Bash(grep -n \"^}$\\\\|^  return \" src/apps/rosco/RoscoDuel.jsx)",
+      "Bash(grep -n \"^}$\\\\|^  return\\\\|^export default\" src/apps/snake/SnakeDuel.jsx)",
+      "Bash(grep -n \"^}$\\\\|^  return\\\\|^export default\" src/apps/nave-palabras/NavePalabrasDuel.jsx)"
     ],
     "additionalDirectories": [
       "\\tmp"
