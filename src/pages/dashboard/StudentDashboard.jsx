@@ -456,13 +456,16 @@ export default function StudentDashboard() {
             </div>
           </motion.div>
 
-          {/* Tabs */}
+          {/* Tabs — `flex-auto` reparte el ancho proporcionalmente al
+              contenido (las pestañas con etiqueta más larga ocupan algo más
+              de espacio), sin dejar hueco a la derecha. En móvil, si no
+              caben, el contenedor pasa a scroll horizontal. */}
           <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-slate-100 shadow-sm overflow-x-auto scrollbar-hide">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+                className={`flex-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm'
                     : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
