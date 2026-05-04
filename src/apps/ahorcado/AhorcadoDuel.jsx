@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, Trophy, X, LogOut, Lightbulb } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
+import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
 
 const LIVES = 6;
@@ -532,6 +533,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           )}
         </AnimatePresence>
       </div>
+      <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
   );
 }

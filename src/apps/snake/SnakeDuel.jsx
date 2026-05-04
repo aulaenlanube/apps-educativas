@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
+import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
 
 const GRID = 35;               // tablero grande
@@ -678,6 +679,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
         <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: 1 })}><ArrowDown /></Button>
         <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 1, y: 0 })}><ArrowRight /></Button>
       </div>
+      <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
   );
 }

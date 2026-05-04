@@ -571,6 +571,8 @@ export default function QuizBattleHost() {
         id: p.id,
         name: p.name,
         emoji: p.emoji,
+        color: p.color || null,
+        selected_avatar_code: p.selected_avatar_code || null,
         score: scoresObj[p.id]?.score || 0,
         lastDelta: scoresObj[p.id]?.lastDelta || 0,
         correctCount: scoresObj[p.id]?.correctCount || 0,
@@ -948,7 +950,7 @@ export default function QuizBattleHost() {
                           selectedAvatarCode={p.selected_avatar_code}
                           avatarEmoji={p.emoji}
                           avatarColor={p.color}
-                          size="md"
+                          size="lg"
                           shape="rounded"
                           showRarityBorder
                         />
@@ -1114,7 +1116,18 @@ export default function QuizBattleHost() {
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
                   <span className="qb-lb-emoji" style={{ position: 'relative' }}>
-                    {p.emoji}
+                    {p.selected_avatar_code ? (
+                      <UserAvatar
+                        selectedAvatarCode={p.selected_avatar_code}
+                        avatarEmoji={p.emoji}
+                        avatarColor={p.color}
+                        size="md"
+                        shape="rounded"
+                        showRarityBorder
+                      />
+                    ) : (
+                      p.emoji
+                    )}
                     <BattlePhraseBubble phrase={livePhrases[p.id]} />
                   </span>
                   <span className="qb-lb-name">{p.name}</span>
@@ -1160,7 +1173,21 @@ export default function QuizBattleHost() {
                     initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay, type: 'spring', stiffness: 120, damping: 18 }}>
-                    <div className="qb-podium-emoji">{p.emoji}</div>
+                    <div className="qb-podium-emoji">
+                      {p.selected_avatar_code ? (
+                        <UserAvatar
+                          selectedAvatarCode={p.selected_avatar_code}
+                          avatarEmoji={p.emoji}
+                          avatarColor={p.color}
+                          size="xl"
+                          shape="rounded"
+                          showRarityBorder
+                          showRarityGlow
+                        />
+                      ) : (
+                        p.emoji
+                      )}
+                    </div>
                     <div className="qb-podium-name">{p.name}</div>
                     <div className="qb-podium-score">{p.score.toLocaleString('es-ES')} pts</div>
                     <motion.div className="qb-podium-bar"
@@ -1186,7 +1213,20 @@ export default function QuizBattleHost() {
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
-                  <span className="qb-lb-emoji">{p.emoji}</span>
+                  <span className="qb-lb-emoji">
+                    {p.selected_avatar_code ? (
+                      <UserAvatar
+                        selectedAvatarCode={p.selected_avatar_code}
+                        avatarEmoji={p.emoji}
+                        avatarColor={p.color}
+                        size="md"
+                        shape="rounded"
+                        showRarityBorder
+                      />
+                    ) : (
+                      p.emoji
+                    )}
+                  </span>
                   <span className="qb-lb-name">{p.name}</span>
                   <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
                 </motion.div>

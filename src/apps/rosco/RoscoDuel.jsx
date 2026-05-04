@@ -5,6 +5,7 @@ import { getRoscoData } from '@/services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
 import useDuel from '@/hooks/useDuel';
+import DuelChatBar from '@/components/duel/DuelChatBar';
 
 // Rosco 1 vs 1 reutilizando la UI del modo 2 jugadores.
 //   * Host-authority: el retador (player index 0) corre useRoscoGame real.
@@ -326,5 +327,10 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     );
   }
 
-  return <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton />;
+  return (
+    <>
+      <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton />
+      <DuelChatBar channel={channel} me={me} rival={rival} />
+    </>
+  );
 }

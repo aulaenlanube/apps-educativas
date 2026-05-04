@@ -32,6 +32,8 @@ export default function useQuizChannel(roomCode, userInfo, enabled = true) {
           id: p.id || p.presence_ref,
           name: p.name || 'Anon',
           emoji: p.emoji || '🙂',
+          color: p.color || null,
+          selected_avatar_code: p.selected_avatar_code || null,
         }));
       setPlayers(list);
     });
@@ -44,6 +46,8 @@ export default function useQuizChannel(roomCode, userInfo, enabled = true) {
             id: userInfo.id,
             name: userInfo.name,
             emoji: userInfo.emoji,
+            color: userInfo.color || null,
+            selected_avatar_code: userInfo.selected_avatar_code || null,
           });
         }
       }

@@ -1,54 +1,31 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Lock } from 'lucide-react';
-import { getMyPhrases, teacherGetMyPhrases } from '@/services/phraseService';
-import useDuelActor from '@/hooks/useDuelActor';
 import UserAvatar from '@/components/ui/UserAvatar';
+import PhraseLauncher from './PhraseLauncher';
 
+const RECEIVED_DURATION_MS = 5000;
 const SEND_COOLDOWN_MS = 4000;
-const RECEIVED_DURATION_MS = 3500;
 
 /**
- * Caja de frases predefinidas en duelos 1 vs 1.
+ * Caja de frases en duelos 1 vs 1. Renderiza dos elementos flotantes:
+ *   - Botón flotante (esquina inferior izq.) para emitir una de las 4 frases
+ *     equipadas (PhraseLauncher).
+ *   - Bocadillo flotante (esquina superior der.) que muestra el último
+ *     mensaje del rival, con su avatar al lado.
+ *
+ * Como ambos elementos son `fixed`, este componente no necesita un wrapper
+ * con tamaño/posición — basta con montarlo en cualquier parte del JSX.
  *
  * Props:
- *  - channel: el { broadcast, onBroadcast } de useDuelChannel
- *  - me: { id }
- *  - rival: { name, emoji, color, selectedAvatarCode, hidden } — para pintar
- *      la burbuja de mensaje recibido con el avatar del rival
- *  - onIncoming(phrase): callback opcional cuando llega un mensaje del rival
- *  - className: estilos opcionales para el contenedor
+ *   - channel: el { broadcast, onBroadcast } de useDuelChannel
+ *   - me: { id }
+ *   - rival: { name, emoji, color, selectedAvatarCode, hidden } — para pintar
+ *       la burbuja de mensaje recibido con el avatar del rival
+ *   - onIncoming(phrase): callback opcional cuando llega un mensaje del rival
  */
-export default function DuelChatBar({ channel, me, rival, onIncoming, className }) {
-  const actor = useDuelActor();
-  const [slots, setSlots] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [cooldownUntil, setCooldownUntil] = useState(0);
-  const [now, setNow] = useState(Date.now());
+export default function DuelChatBar({ channel, me, rival, onIncoming }) {
   const [received, setReceived] = useState(null); // { from, text, emoji, sentAt }
   const receivedTimerRef = useRef(null);
-
-  // Carga de slots
-  useEffect(() => {
-    if (!actor) return;
-    let cancelled = false;
-    setLoading(true);
-    const promise = actor.type === 'teacher'
-      ? teacherGetMyPhrases()
-      : getMyPhrases({ studentId: actor.id, sessionToken: actor.sessionToken });
-    promise
-      .then(d => { if (!cancelled) setSlots(d?.slots || []); })
-      .catch(() => { /* en duelo, fallar silenciosamente */ })
-      .finally(() => { if (!cancelled) setLoading(false); });
-    return () => { cancelled = true; };
-  }, [actor]);
-
-  // Tick del cooldown
-  useEffect(() => {
-    if (cooldownUntil <= Date.now()) return;
-    const id = setInterval(() => setNow(Date.now()), 250);
-    return () => clearInterval(id);
-  }, [cooldownUntil]);
 
   // Suscripción a mensajes entrantes
   useEffect(() => {
@@ -72,30 +49,10 @@ export default function DuelChatBar({ channel, me, rival, onIncoming, className 
     };
   }, [channel, me?.id, onIncoming]);
 
-  const send = useCallback((slot) => {
-    if (!slot || !channel?.broadcast) return;
-    if (Date.now() < cooldownUntil) return;
-    channel.broadcast('phrase_message', {
-      from: me.id,
-      phrase_id: slot.phrase_id,
-      text: slot.text,
-      emoji: slot.emoji,
-      sent_at: Date.now(),
-    });
-    setCooldownUntil(Date.now() + SEND_COOLDOWN_MS);
-  }, [channel, me?.id, cooldownUntil]);
-
-  if (loading) return null;
-  const remaining = Math.max(0, cooldownUntil - now);
-  const cooling = remaining > 0;
-
-  // Ordenamos por slot (0..3) y rellenamos los huecos para mostrar 4 botones.
-  const ordered = [0, 1, 2, 3].map(i => slots.find(s => s.slot === i) || null);
-
   return (
-    <div className={className}>
-      {/* Notificación flotante: aparece fija arriba-derecha sin importar el
-          scroll, así el jugador la ve aunque esté mirando el centro del juego. */}
+    <>
+      {/* Bocadillo flotante con la frase del rival, fijo arriba-derecha
+          para que el jugador la vea aunque esté mirando el centro del juego. */}
       <AnimatePresence>
         {received && (
           <motion.div
@@ -127,7 +84,7 @@ export default function DuelChatBar({ channel, me, rival, onIncoming, className 
               transition={{ type: 'spring', stiffness: 380, damping: 22, delay: 0.05 }}
               className="relative px-4 py-2.5 rounded-2xl bg-white border-2 border-violet-300 shadow-2xl"
             >
-              {/* Cola del bocadillo apuntando al avatar */}
+              {/* Cola del bocadillo apuntando al avatar (a la izquierda). */}
               <span
                 aria-hidden
                 className="absolute left-[-9px] bottom-3 w-0 h-0"
@@ -158,42 +115,13 @@ export default function DuelChatBar({ channel, me, rival, onIncoming, className 
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-        <div className="hidden sm:flex items-center gap-1.5 text-violet-600 px-2">
-          <MessageSquare className="w-4 h-4" />
-          <span className="text-[11px] font-bold uppercase tracking-wide">Frases</span>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 flex-1">
-          {ordered.map((s, idx) => s ? (
-            <button
-              key={s.slot}
-              type="button"
-              disabled={cooling}
-              onClick={() => send(s)}
-              className={`group relative px-3 py-2 rounded-xl text-left text-sm font-semibold transition-all border-2
-                ${cooling
-                  ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'
-                  : 'bg-white border-violet-200 hover:border-violet-400 hover:bg-violet-50 active:scale-[0.97] text-slate-800 shadow-sm'}`}
-              title={s.text}
-            >
-              <span className="text-lg mr-1.5">{s.emoji}</span>
-              <span className="truncate inline-block align-middle max-w-[calc(100%-1.7rem)]">{s.text}</span>
-            </button>
-          ) : (
-            <div
-              key={`empty-${idx}`}
-              className="px-3 py-2 rounded-xl text-xs text-slate-300 italic border-2 border-dashed border-slate-200 flex items-center justify-center"
-            >
-              Slot vacío
-            </div>
-          ))}
-        </div>
-        {cooling && (
-          <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-slate-400 px-2">
-            <Lock className="w-3 h-3" /> {Math.ceil(remaining / 1000)}s
-          </span>
-        )}
-      </div>
-    </div>
+      {/* Botón flotante (esquina inf. izq.) para emitir una frase. */}
+      <PhraseLauncher
+        channel={channel}
+        me={me}
+        eventName="phrase_message"
+        cooldownMs={SEND_COOLDOWN_MS}
+      />
+    </>
   );
 }

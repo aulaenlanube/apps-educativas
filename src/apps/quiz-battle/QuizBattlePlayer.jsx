@@ -8,8 +8,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
 import useBattlePhrases from './useBattlePhrases';
-import BattlePhraseBar from './BattlePhraseBar';
 import BattlePhraseBubble from './BattlePhraseBubble';
+import PhraseLauncher from '@/components/duel/PhraseLauncher';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import UserAvatar from '@/components/ui/UserAvatar';
 import QBBackground from './QBBackground';
@@ -98,7 +98,7 @@ export default function QuizBattlePlayer() {
   );
 
   // Frases efímeras (bocadillos) que llegan del canal Realtime.
-  const { phrases: livePhrases } = useBattlePhrases(
+  const { phrases: livePhrases, pushPhrase } = useBattlePhrases(
     { onBroadcast },
     joined && (phase === 'waiting' || phase === 'results' || phase === 'final'),
   );
@@ -395,13 +395,13 @@ export default function QuizBattlePlayer() {
                   selectedAvatarCode={userInfo.selected_avatar_code}
                   avatarEmoji={userInfo.emoji}
                   avatarColor={userInfo.color}
-                  size="xl"
+                  size="hero"
                   shape="rounded"
                   showRarityBorder
                   showRarityGlow
                 />
               ) : (
-                <span style={{ fontSize: '3.2rem' }}>{userInfo.emoji}</span>
+                <span style={{ fontSize: '4.8rem' }}>{userInfo.emoji}</span>
               )}
               <BattlePhraseBubble phrase={livePhrases[userInfo.id]} />
             </motion.div>
@@ -429,7 +429,7 @@ export default function QuizBattlePlayer() {
                         selectedAvatarCode={p.selected_avatar_code}
                         avatarEmoji={p.emoji}
                         avatarColor={p.color}
-                        size="md"
+                        size="lg"
                         shape="rounded"
                         showRarityBorder
                       />
@@ -442,12 +442,6 @@ export default function QuizBattlePlayer() {
                 </div>
               ))}
             </div>
-
-            <BattlePhraseBar
-              channel={{ broadcast }}
-              me={{ id: userInfo.id }}
-              className="mt-4 px-2"
-            />
 
             <div className="qb-spinner" style={{ minHeight: 60 }} />
           </motion.div>
@@ -607,7 +601,18 @@ export default function QuizBattlePlayer() {
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
                   <span className="qb-lb-emoji" style={{ position: 'relative' }}>
-                    {p.emoji}
+                    {p.selected_avatar_code ? (
+                      <UserAvatar
+                        selectedAvatarCode={p.selected_avatar_code}
+                        avatarEmoji={p.emoji}
+                        avatarColor={p.color}
+                        size="md"
+                        shape="rounded"
+                        showRarityBorder
+                      />
+                    ) : (
+                      p.emoji
+                    )}
                     <BattlePhraseBubble phrase={livePhrases[p.id]} />
                   </span>
                   <span className="qb-lb-name">{p.name}</span>
@@ -615,12 +620,6 @@ export default function QuizBattlePlayer() {
                 </div>
               ))}
             </div>
-
-            <BattlePhraseBar
-              channel={{ broadcast }}
-              me={{ id: userInfo.id }}
-              className="mt-3 px-2"
-            />
 
             <p className="qb-faint-text" style={{ textAlign: 'center', fontSize: '0.85rem', marginTop: '0.75rem' }}>
               Esperando al profesor...
@@ -731,7 +730,20 @@ export default function QuizBattlePlayer() {
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
-                  <span className="qb-lb-emoji">{p.emoji}</span>
+                  <span className="qb-lb-emoji">
+                    {p.selected_avatar_code ? (
+                      <UserAvatar
+                        selectedAvatarCode={p.selected_avatar_code}
+                        avatarEmoji={p.emoji}
+                        avatarColor={p.color}
+                        size="md"
+                        shape="rounded"
+                        showRarityBorder
+                      />
+                    ) : (
+                      p.emoji
+                    )}
+                  </span>
                   <span className="qb-lb-name">{p.name}</span>
                   <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
                 </div>
@@ -744,6 +756,21 @@ export default function QuizBattlePlayer() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Lanzador de frases (botón flotante esquina inferior izquierda).
+          Sólo en sala de espera y entre preguntas (no durante la pregunta
+          activa para no distraer). Se autoeco la frase enviada para que el
+          jugador vea su propio bocadillo (el canal Realtime no devuelve el
+          broadcast al emisor). */}
+      {joined && (phase === 'waiting' || phase === 'results') && (
+        <PhraseLauncher
+          channel={{ broadcast }}
+          me={{ id: userInfo.id }}
+          eventName="battle:phrase_message"
+          cooldownMs={10000}
+          onSent={pushPhrase}
+        />
+      )}
     </div>
   );
 }

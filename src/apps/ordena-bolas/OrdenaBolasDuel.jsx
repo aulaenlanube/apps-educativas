@@ -556,10 +556,9 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
         <span className="inline-flex items-center gap-1"><XCircle className="w-3 h-3 text-rose-500" /> fallo → punto para el rival</span>
       </div>
 
-      {/* Caja de frases (chat predefinido) */}
-      <div className="w-full max-w-4xl">
-        <DuelChatBar channel={duel.channel} me={me} rival={rival} />
-      </div>
+      {/* Botón flotante de frases (chat predefinido) + bocadillo del rival.
+          Se autoposiciona (fixed); no necesita wrapper. */}
+      <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Rocket, Swords, Trophy, X, LogOut, Target, Skull } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
+import DuelChatBar from '@/components/duel/DuelChatBar';
 import { Ship } from './NavePalabras';
 import './NavePalabras.css';
 
@@ -748,6 +749,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
           <Rocket className="w-6 h-6" /> DISPARAR
         </button>
       </div>
+      <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
   );
 }
