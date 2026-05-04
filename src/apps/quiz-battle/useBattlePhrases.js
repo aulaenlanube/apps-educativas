@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // Tiempo durante el que un mensaje permanece en pantalla mientras sube y
 // se difumina. Coincide con la animación del overlay (BattleRisingMessages).
@@ -12,9 +12,15 @@ const MESSAGE_LIFETIME_MS = 5000;
 // Devuelve también `pushPhrase(payload)` para inyectar localmente una frase
 // (Supabase Realtime no devuelve el broadcast al emisor, así que el propio
 // jugador lo usa para verse su propio mensaje al enviarlo).
-export default function useBattlePhrases(channel, enabled = true) {
+//
+// IMPORTANTE: el primer parámetro es la función `onBroadcast` directamente
+// (referencia estable, useCallback en useQuizChannel). Si se envuelve en
+// un objeto `{ onBroadcast }` la referencia cambia en cada render, el
+// useEffect se reejecuta sin parar y el cleanup mata los setTimeout de
+// expiración antes de que disparen — los mensajes se acumulan en estado y
+// reaparecen todos de golpe cuando la fase 'question' deja paso a 'results'.
+export default function useBattlePhrases(onBroadcast, enabled = true) {
   const [messages, setMessages] = useState([]);
-  const timersRef = useRef(new Map());
 
   const apply = useCallback((payload) => {
     if (!payload?.text) return;
@@ -28,23 +34,24 @@ export default function useBattlePhrases(channel, enabled = true) {
       x: 15 + Math.random() * 70,
     };
     setMessages((prev) => [...prev, msg]);
-    const t = setTimeout(() => {
+    // Fire-and-forget: el timer dispara solo, no lo trackeamos. Si el
+    // componente se desmonta, React simplemente ignora el setMessages.
+    setTimeout(() => {
       setMessages((prev) => prev.filter((m) => m.id !== id));
-      timersRef.current.delete(id);
     }, MESSAGE_LIFETIME_MS);
-    timersRef.current.set(id, t);
   }, []);
 
   useEffect(() => {
-    if (!channel?.onBroadcast || !enabled) return;
-    const unsub = channel.onBroadcast('battle:phrase_message', apply);
-    const timers = timersRef.current;
+    if (!onBroadcast || !enabled) return;
+    const unsub = onBroadcast('battle:phrase_message', apply);
     return () => {
       unsub?.();
-      timers.forEach((t) => clearTimeout(t));
-      timers.clear();
+      // Vaciamos al desactivar (transición a fase 'question' u otras): no
+      // queremos que mensajes "viejos" sobrevivan al cambio de fase y
+      // re-aparezcan cuando el overlay vuelva a montarse.
+      setMessages([]);
     };
-  }, [channel, enabled, apply]);
+  }, [onBroadcast, enabled, apply]);
 
   return { messages, pushPhrase: apply };
 }

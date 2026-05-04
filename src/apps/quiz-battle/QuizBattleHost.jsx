@@ -140,9 +140,10 @@ export default function QuizBattleHost() {
   );
 
   // Mensajes efímeros de los jugadores. El host sólo los muestra (no envía)
-  // a través del overlay global BattleRisingMessages.
+  // a través del overlay global BattleRisingMessages. `onBroadcast` se pasa
+  // directo (estable) para no matar los timers en cada render.
   const { messages: liveMessages } = useBattlePhrases(
-    { onBroadcast },
+    onBroadcast,
     phase === 'waiting' || phase === 'results' || phase === 'final',
   );
 

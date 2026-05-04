@@ -100,8 +100,11 @@ export default function QuizBattlePlayer() {
   // Mensajes efímeros que llegan del canal Realtime. Se renderizan como
   // un overlay global (BattleRisingMessages) que sube desde abajo y se
   // difumina; ya no van anclados al avatar de cada jugador.
+  // Pasamos `onBroadcast` directamente (referencia estable de useCallback)
+  // — si se envuelve en un objeto los timers de expiración se matan en
+  // cada render y los mensajes se apilan.
   const { messages: liveMessages, pushPhrase } = useBattlePhrases(
-    { onBroadcast },
+    onBroadcast,
     joined && (phase === 'waiting' || phase === 'results' || phase === 'final'),
   );
 
