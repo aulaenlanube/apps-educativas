@@ -859,10 +859,10 @@
     "image_lg": "/images/avatar/512/avatar-051.webp",
     "image_md": "/images/avatar/256/avatar-051.webp",
     "image_sm": "/images/avatar/128/avatar-051.webp",
-    "unlock_label": "Consigue nota perfecta en 30 apps distintas",
+    "unlock_label": "Mantén una racha de 101 días seguidos jugando",
     "unlock": {
-      "type": "perfect_exams",
-      "count": 30
+      "type": "streak_days",
+      "count": 101
     },
     "sort_order": 51
   },
@@ -875,10 +875,10 @@
     "image_lg": "/images/avatar/512/avatar-052.webp",
     "image_md": "/images/avatar/256/avatar-052.webp",
     "image_sm": "/images/avatar/128/avatar-052.webp",
-    "unlock_label": "Desbloquea 80 insignias",
+    "unlock_label": "Desbloquea 101 insignias",
     "unlock": {
       "type": "badges_count",
-      "count": 80
+      "count": 101
     },
     "sort_order": 52
   },
@@ -1011,12 +1011,12 @@
     "image_lg": "/images/avatar/512/avatar-060.webp",
     "image_md": "/images/avatar/256/avatar-060.webp",
     "image_sm": "/images/avatar/128/avatar-060.webp",
-    "unlock_label": "Aprueba con ≥9.5 en 10 apps distintas de Naturales",
+    "unlock_label": "Consigue nota perfecta en 50 apps distintas de Naturales o Biología",
     "unlock": {
       "type": "subject_exams",
-      "subject_id": "naturales",
-      "count": 10,
-      "min_nota": 9.5
+      "subject_ids": ["ciencias-naturales", "biologia"],
+      "count": 50,
+      "min_nota": 9.95
     },
     "sort_order": 60
   },
@@ -1158,10 +1158,10 @@
     "image_lg": "/images/avatar/512/avatar-069.webp",
     "image_md": "/images/avatar/256/avatar-069.webp",
     "image_sm": "/images/avatar/128/avatar-069.webp",
-    "unlock_label": "Consigue nota perfecta en 20 apps distintas",
+    "unlock_label": "Consigue nota perfecta en 101 apps distintas",
     "unlock": {
       "type": "perfect_exams",
-      "count": 20
+      "count": 101
     },
     "sort_order": 69
   },
