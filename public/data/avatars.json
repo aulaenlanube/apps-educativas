@@ -1773,11 +1773,11 @@
     "image_lg": "/images/avatar/512/avatar-106.webp",
     "image_md": "/images/avatar/256/avatar-106.webp",
     "image_sm": "/images/avatar/128/avatar-106.webp",
-    "unlock_label": "Consigue un 10 en un examen de Música en 20 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen de Música en 50 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "musica",
-      "count": 20,
+      "count": 50,
       "min_nota": 9.95
     },
     "sort_order": 106
