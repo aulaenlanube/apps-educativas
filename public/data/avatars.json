@@ -943,11 +943,12 @@
     "image_lg": "/images/avatar/512/avatar-056.webp",
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
-    "unlock_label": "Aprueba un examen de Plástica en 10 apps distintas",
+    "unlock_label": "Aprueba con un 9,5 o más en 20 apps distintas de Plástica",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "plastica",
-      "count": 10
+      "count": 20,
+      "min_nota": 9.5
     },
     "sort_order": 56
   },
