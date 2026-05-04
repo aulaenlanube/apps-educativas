@@ -8,7 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
 import useBattlePhrases from './useBattlePhrases';
-import BattlePhraseBubble from './BattlePhraseBubble';
+import BattleRisingMessages from './BattleRisingMessages';
 import PhraseLauncher from '@/components/duel/PhraseLauncher';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import UserAvatar from '@/components/ui/UserAvatar';
@@ -97,8 +97,10 @@ export default function QuizBattlePlayer() {
     joined
   );
 
-  // Frases efímeras (bocadillos) que llegan del canal Realtime.
-  const { phrases: livePhrases, pushPhrase } = useBattlePhrases(
+  // Mensajes efímeros que llegan del canal Realtime. Se renderizan como
+  // un overlay global (BattleRisingMessages) que sube desde abajo y se
+  // difumina; ya no van anclados al avatar de cada jugador.
+  const { messages: liveMessages, pushPhrase } = useBattlePhrases(
     { onBroadcast },
     joined && (phase === 'waiting' || phase === 'results' || phase === 'final'),
   );
@@ -403,7 +405,6 @@ export default function QuizBattlePlayer() {
               ) : (
                 <span style={{ fontSize: '4.8rem' }}>{userInfo.emoji}</span>
               )}
-              <BattlePhraseBubble phrase={livePhrases[userInfo.id]} />
             </motion.div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
             <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
@@ -423,7 +424,7 @@ export default function QuizBattlePlayer() {
             <div className="qb-players-grid">
               {players.map((p) => (
                 <div key={p.id} className="qb-player-card">
-                  <div className="qb-player-emoji" style={{ position: 'relative' }}>
+                  <div className="qb-player-emoji">
                     {p.selected_avatar_code ? (
                       <UserAvatar
                         selectedAvatarCode={p.selected_avatar_code}
@@ -436,7 +437,6 @@ export default function QuizBattlePlayer() {
                     ) : (
                       <span>{p.emoji}</span>
                     )}
-                    <BattlePhraseBubble phrase={livePhrases[p.id]} />
                   </div>
                   <div className="qb-player-name">{p.name}</div>
                 </div>
@@ -596,11 +596,11 @@ export default function QuizBattlePlayer() {
               <div className="qb-lb-title">Top 5</div>
               {leaderboard.slice(0, 5).map((p, i) => (
                 <div key={p.id} className={`qb-lb-row ${p.id === userInfo.id ? 'qb-opt-selected' : ''}`}
-                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10, position: 'relative' } : { position: 'relative' }}>
+                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10 } : undefined}>
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
-                  <span className="qb-lb-emoji" style={{ position: 'relative' }}>
+                  <span className="qb-lb-emoji">
                     {p.selected_avatar_code ? (
                       <UserAvatar
                         selectedAvatarCode={p.selected_avatar_code}
@@ -613,7 +613,6 @@ export default function QuizBattlePlayer() {
                     ) : (
                       p.emoji
                     )}
-                    <BattlePhraseBubble phrase={livePhrases[p.id]} />
                   </span>
                   <span className="qb-lb-name">{p.name}</span>
                   <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
@@ -757,10 +756,16 @@ export default function QuizBattlePlayer() {
         )}
       </AnimatePresence>
 
+      {/* Overlay global de mensajes ascendentes. Aparecen en posiciones
+          aleatorias de la parte inferior y suben mientras se difuminan. */}
+      {joined && (phase === 'waiting' || phase === 'results' || phase === 'final') && (
+        <BattleRisingMessages messages={liveMessages} />
+      )}
+
       {/* Lanzador de frases (botón flotante esquina inferior izquierda).
           Sólo en sala de espera y entre preguntas (no durante la pregunta
           activa para no distraer). Se autoeco la frase enviada para que el
-          jugador vea su propio bocadillo (el canal Realtime no devuelve el
+          jugador vea su propio mensaje (el canal Realtime no devuelve el
           broadcast al emisor). */}
       {joined && (phase === 'waiting' || phase === 'results') && (
         <PhraseLauncher

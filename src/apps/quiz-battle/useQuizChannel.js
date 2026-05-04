@@ -38,19 +38,8 @@ export default function useQuizChannel(roomCode, userInfo, enabled = true) {
       setPlayers(list);
     });
 
-    ch.subscribe(async (status) => {
-      if (status === 'SUBSCRIBED') {
-        setIsConnected(true);
-        if (userInfo) {
-          await ch.track({
-            id: userInfo.id,
-            name: userInfo.name,
-            emoji: userInfo.emoji,
-            color: userInfo.color || null,
-            selected_avatar_code: userInfo.selected_avatar_code || null,
-          });
-        }
-      }
+    ch.subscribe((status) => {
+      if (status === 'SUBSCRIBED') setIsConnected(true);
     });
 
     channelRef.current = ch;
@@ -62,6 +51,29 @@ export default function useQuizChannel(roomCode, userInfo, enabled = true) {
       setPlayers([]);
     };
   }, [roomCode, enabled]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Track presence (re-ejecuta si userInfo cambia) ──
+  // Importante: hacer track en un useEffect aparte para que, si el `student`
+  // de useAuth se carga DESPUÉS de la subscripción, se vuelva a publicar
+  // la presencia con el avatar/color/emoji correctos. Si no, los demás
+  // jugadores nunca vieron el avatar de quien se unió rápido.
+  useEffect(() => {
+    if (!isConnected || !channelRef.current || !userInfo) return;
+    channelRef.current.track({
+      id: userInfo.id,
+      name: userInfo.name,
+      emoji: userInfo.emoji,
+      color: userInfo.color || null,
+      selected_avatar_code: userInfo.selected_avatar_code || null,
+    }).catch(() => { /* track puede fallar si el canal está cerrándose */ });
+  }, [
+    isConnected,
+    userInfo?.id,
+    userInfo?.name,
+    userInfo?.emoji,
+    userInfo?.color,
+    userInfo?.selected_avatar_code,
+  ]);
 
   // ── Broadcast ──
   const broadcast = useCallback((event, payload) => {
