@@ -907,11 +907,11 @@
     "image_lg": "/images/avatar/512/avatar-054.webp",
     "image_md": "/images/avatar/256/avatar-054.webp",
     "image_sm": "/images/avatar/128/avatar-054.webp",
-    "unlock_label": "Consigue un 10 en un examen de Matemáticas en 25 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen de Matemáticas en 50 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 25,
+      "count": 50,
       "min_nota": 9.95
     },
     "sort_order": 54
@@ -943,11 +943,11 @@
     "image_lg": "/images/avatar/512/avatar-056.webp",
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
-    "unlock_label": "Consigue un 10 en un examen de Plástica en 20 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen de Plástica en 50 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "plastica",
-      "count": 20,
+      "count": 50,
       "min_nota": 9.95
     },
     "sort_order": 56
