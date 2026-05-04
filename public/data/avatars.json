@@ -817,16 +817,16 @@
     "code": "avatar_049",
     "title": "Padre de la Computación",
     "description": "Descifró un código que cambió la guerra. Aún hoy, las matemáticas le hacen reverencias.",
-    "rarity": "epic",
-    "points_bonus": 0.3,
+    "rarity": "legendary",
+    "points_bonus": 0.4,
     "image_lg": "/images/avatar/512/avatar-049.webp",
     "image_md": "/images/avatar/256/avatar-049.webp",
     "image_sm": "/images/avatar/128/avatar-049.webp",
-    "unlock_label": "Aprueba con 9 o más en 12 apps distintas de Matemáticas",
+    "unlock_label": "Aprueba con 9 o más en 18 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 12,
+      "count": 18,
       "min_nota": 9
     },
     "sort_order": 49
@@ -1739,12 +1739,12 @@
     "image_lg": "/images/avatar/512/avatar-104.webp",
     "image_md": "/images/avatar/256/avatar-104.webp",
     "image_sm": "/images/avatar/128/avatar-104.webp",
-    "unlock_label": "Aprueba con 9 o más en 15 apps distintas de Física y Química",
+    "unlock_label": "Consigue un 10 en un examen de Física y Química en 15 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "fisica",
       "count": 15,
-      "min_nota": 9
+      "min_nota": 9.95
     },
     "sort_order": 104
   },
