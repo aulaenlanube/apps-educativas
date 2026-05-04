@@ -122,17 +122,39 @@ La función `_avatar_progress(student, jsonb)` en BD interpreta estos tipos. Si 
 | `total_sessions` | `count`, `mode?` | Total de partidas (opcional: solo modo examen) |
 | `unique_apps` | `count` | Apps distintas jugadas |
 | `app_sessions` | `app_id`, `count`, `mode?`, `min_nota?` | Sesiones de una app concreta (opcional: modo y nota mínima) |
-| `subject_exams` | `subject_id`, `count`, `min_nota?` | Exámenes de una asignatura |
-| `perfect_exams` | `count` | Exámenes con nota 10 |
-| `high_score_exams` | `count`, `min_nota` | Exámenes con nota ≥ X |
+| `subject_exams` | `subject_id` o `subject_ids[]`, `count`, `min_nota?` | Exámenes en N apps distintas de una asignatura (o varias). |
+| `perfect_exams` | `count` | Apps distintas en las que has sacado un 10 (test). |
+| `high_score_exams` | `count`, `min_nota` | Apps distintas en las que has aprobado con ≥ X. |
+| `same_app_perfect_exams` | `count` | Sacar un 10 N veces en una **misma** app (cualquiera). |
+| `same_app_sessions` | `count`, `mode?`, `min_nota?` | Jugar N veces a una **misma** app (cualquiera). |
+| `fast_exams` | `count`, `max_seconds`, `min_nota?` | N exámenes resueltos en menos de `max_seconds` con nota ≥ `min_nota`. |
+| `combined` | `requirements[]` | AND lógico de varias sub-requirements (cada una es un objeto con `type` + sus campos). El target mostrado es la suma; el progreso, la suma de progresos individuales capados a su target. |
 | `badges_count` | `count` | Insignias desbloqueadas |
 | `level` | `value` | Nivel de XP alcanzado |
 | `xp` | `value` | XP acumulado |
 | `duels_won` | `count` | Duelos 1vs1 ganados |
-| `battles_won` | `count` | Batallas (Quiz Battle) ganadas |
+| `battles_won` | `count`, `position?` | Batallas (Quiz Battle) ganadas. `position` (default 1) admite podio. |
 | `top_class` | `position` | Quedar en posición ≤ X del ranking de clase |
 | `top_global` | `position` | Quedar en posición ≤ X del ranking global |
 | `streak_days` | `count` | Días seguidos jugando |
+
+Ejemplo `combined` (Vikingo Montañés, avatar_018):
+
+```json
+{
+  "type": "combined",
+  "requirements": [
+    { "type": "duels_won",   "count": 10 },
+    { "type": "battles_won", "count": 5 }
+  ]
+}
+```
+
+Ejemplo `fast_exams` (Director de Partida, avatar_094):
+
+```json
+{ "type": "fast_exams", "count": 100, "max_seconds": 30, "min_nota": 5 }
+```
 
 ---
 
