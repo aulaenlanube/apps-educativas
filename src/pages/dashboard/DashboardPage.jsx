@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText, Compass } from 'lucide-react';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText, Compass, UserCircle } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -16,19 +16,47 @@ import CoTeachersSection from './CoTeachersSection';
 import GroupMatchesPanel from './GroupMatchesPanel';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
+import TeacherProfileSection from './TeacherProfileSection';
 import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
 import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
+
+const VALID_TABS = ['grupos', 'logros', 'plantillas', 'comentarios', 'perfil'];
 
 const DashboardPage = () => {
   const { teacher } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [groups, setGroups] = useState([]);
   const [students, setStudents] = useState([]);
   const [selectedGroupId, setSelectedGroupId] = useState(null);
   const [loadingGroups, setLoadingGroups] = useState(true);
   const [loadingStudents, setLoadingStudents] = useState(false);
   const [viewingStudentId, setViewingStudentId] = useState(null);
+
+  const initialTab = (() => {
+    const t = searchParams.get('tab');
+    return VALID_TABS.includes(t) ? t : 'grupos';
+  })();
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  // Si la URL cambia (p.ej. desde el menú navegando a ?tab=perfil estando ya
+  // en /dashboard), sincroniza la pestaña activa.
+  useEffect(() => {
+    const t = new URLSearchParams(location.search).get('tab');
+    if (t && VALID_TABS.includes(t) && t !== activeTab) {
+      setActiveTab(t);
+    }
+  }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleTabChange = (next) => {
+    setActiveTab(next);
+    const params = new URLSearchParams(searchParams);
+    if (next === 'grupos') params.delete('tab');
+    else params.set('tab', next);
+    setSearchParams(params, { replace: true });
+  };
 
   const fetchGroups = useCallback(async () => {
     setLoadingGroups(true);
@@ -142,8 +170,8 @@ const DashboardPage = () => {
             <OposicionesIAPromo source="dashboard" />
           </div>
 
-          <Tabs defaultValue="grupos" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6">
+          <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 h-auto bg-white border border-purple-100 shadow-sm rounded-2xl p-1.5 mb-6 gap-1">
               <TabsTrigger
                 value="grupos"
                 className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-md"
@@ -171,6 +199,13 @@ const DashboardPage = () => {
               >
                 <MessageCircle className="w-4 h-4" />
                 <span className="font-semibold">Comentarios</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="perfil"
+                className="flex items-center gap-2 py-2.5 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-500 data-[state=active]:to-fuchsia-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+              >
+                <UserCircle className="w-4 h-4" />
+                <span className="font-semibold">Mi perfil</span>
               </TabsTrigger>
             </TabsList>
 
@@ -302,6 +337,12 @@ const DashboardPage = () => {
 
             <TabsContent value="comentarios" className="mt-0">
               <MyFeedbacksSection />
+            </TabsContent>
+
+            <TabsContent value="perfil" className="mt-0">
+              <div className="max-w-4xl mx-auto">
+                <TeacherProfileSection />
+              </div>
             </TabsContent>
           </Tabs>
         </div>

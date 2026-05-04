@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ConfettiProvider } from '/src/apps/_shared/ConfettiProvider';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
@@ -30,7 +30,6 @@ const LoginPage = lazy(() => import('@/pages/auth/LoginPage.jsx'));
 const RegisterPage = lazy(() => import('@/pages/auth/RegisterPage.jsx'));
 const RegisterFreePage = lazy(() => import('@/pages/auth/RegisterFreePage.jsx'));
 const DashboardPage = lazy(() => import('@/pages/dashboard/DashboardPage.jsx'));
-const ProfilePage = lazy(() => import('@/pages/auth/ProfilePage.jsx'));
 const AdminPanel = lazy(() => import('@/pages/admin/AdminPanel.jsx'));
 const QuizBattleHost = lazy(() => import('@/apps/quiz-battle/QuizBattleHost.jsx'));
 const QuizBattlePlayer = lazy(() => import('@/apps/quiz-battle/QuizBattlePlayer.jsx'));
@@ -81,10 +80,12 @@ const router = createBrowserRouter(
             { path: 'registro', element: <SuspensePage><RegisterPage /></SuspensePage> },
             { path: 'registro-libre', element: <SuspensePage><RegisterFreePage /></SuspensePage> },
             {
+              // /perfil ahora es una pestaña del dashboard del docente.
+              // Redirigimos para no romper bookmarks antiguos.
               path: 'perfil',
               element: (
                 <ProtectedRoute role="teacher">
-                  <SuspensePage><ProfilePage /></SuspensePage>
+                  <Navigate to="/dashboard?tab=perfil" replace />
                 </ProtectedRoute>
               )
             },

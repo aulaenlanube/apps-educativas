@@ -196,7 +196,7 @@ export default function UserMenu() {
               <DropdownMenuItem onClick={() => navigate('/dashboard')}>
                 <LayoutDashboard className="mr-2 h-4 w-4" /> Mi Panel
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/perfil')}>
+              <DropdownMenuItem onClick={() => navigate('/dashboard?tab=perfil')}>
                 <UserCircle className="mr-2 h-4 w-4" /> Mi Perfil
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopyCode}>

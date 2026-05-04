@@ -195,7 +195,7 @@ export default function MobileSidebar({ open, onClose }) {
 
                 {(role === 'teacher' || role === 'admin') && (
                   <>
-                    <SidebarItem icon={UserCircle} label="Mi Perfil" onClick={() => nav('/perfil')} />
+                    <SidebarItem icon={UserCircle} label="Mi Perfil" onClick={() => nav('/dashboard?tab=perfil')} />
                     <SidebarItem icon={LayoutDashboard} label="Mi Panel" onClick={() => nav('/dashboard')} />
                     <SidebarItem icon={Copy} label={`Codigo: ${teacher?.teacher_code}`} onClick={handleCopyCode} />
                   </>

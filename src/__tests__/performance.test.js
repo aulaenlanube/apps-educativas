@@ -124,7 +124,7 @@ describe('Performance: Lazy loading coverage', () => {
     // These pages should be lazy loaded
     const lazyPages = [
       'SubjectPage', 'AppListPage', 'AppRunnerPage', 'LoginPage',
-      'RegisterPage', 'RegisterFreePage', 'DashboardPage', 'ProfilePage',
+      'RegisterPage', 'RegisterFreePage', 'DashboardPage',
       'AdminPanel', 'QuizBattleHost', 'QuizBattlePlayer',
       'StudentDashboard', 'FreeUserDashboard',
     ];
