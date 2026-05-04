@@ -24,7 +24,7 @@
     "image_lg": "/images/avatar/512/avatar-002.webp",
     "image_md": "/images/avatar/256/avatar-002.webp",
     "image_sm": "/images/avatar/128/avatar-002.webp",
-    "unlock_label": "Aprueba con ≥8.5 en 12 apps distintas",
+    "unlock_label": "Aprueba con 8,5 o más en 12 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 12,
@@ -41,7 +41,7 @@
     "image_lg": "/images/avatar/512/avatar-003.webp",
     "image_md": "/images/avatar/256/avatar-003.webp",
     "image_sm": "/images/avatar/128/avatar-003.webp",
-    "unlock_label": "Aprueba con ≥9 en 20 apps distintas de Lengua",
+    "unlock_label": "Aprueba con 9 o más en 20 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
@@ -94,7 +94,7 @@
     "image_lg": "/images/avatar/512/avatar-006.webp",
     "image_md": "/images/avatar/256/avatar-006.webp",
     "image_sm": "/images/avatar/128/avatar-006.webp",
-    "unlock_label": "Aprueba 12 exámenes de Ahorcado con nota ≥ 8",
+    "unlock_label": "Aprueba 12 exámenes de Ahorcado con 8 o más",
     "unlock": {
       "type": "app_sessions",
       "app_id": "ahorcado",
@@ -113,7 +113,7 @@
     "image_lg": "/images/avatar/512/avatar-007.webp",
     "image_md": "/images/avatar/256/avatar-007.webp",
     "image_sm": "/images/avatar/128/avatar-007.webp",
-    "unlock_label": "Consigue nota perfecta en 25 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen en 25 apps distintas",
     "unlock": {
       "type": "perfect_exams",
       "count": 25
@@ -218,7 +218,7 @@
     "image_lg": "/images/avatar/512/avatar-013.webp",
     "image_md": "/images/avatar/256/avatar-013.webp",
     "image_sm": "/images/avatar/128/avatar-013.webp",
-    "unlock_label": "Aprueba con ≥8 en 12 apps distintas de Lengua",
+    "unlock_label": "Aprueba con 8 o más en 12 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
@@ -236,7 +236,7 @@
     "image_lg": "/images/avatar/512/avatar-014.webp",
     "image_md": "/images/avatar/256/avatar-014.webp",
     "image_sm": "/images/avatar/128/avatar-014.webp",
-    "unlock_label": "Aprueba 6 exámenes de Regla de Tres con nota ≥ 8",
+    "unlock_label": "Aprueba 6 exámenes de Regla de Tres con 8 o más",
     "unlock": {
       "type": "app_sessions",
       "app_id": "regla-de-tres",
@@ -421,7 +421,7 @@
     "image_lg": "/images/avatar/512/avatar-025.webp",
     "image_md": "/images/avatar/256/avatar-025.webp",
     "image_sm": "/images/avatar/128/avatar-025.webp",
-    "unlock_label": "Aprueba con ≥8 en 12 apps distintas de Sociales",
+    "unlock_label": "Aprueba con 8 o más en 12 apps distintas de Sociales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "sociales",
@@ -471,7 +471,7 @@
     "image_lg": "/images/avatar/512/avatar-028.webp",
     "image_md": "/images/avatar/256/avatar-028.webp",
     "image_sm": "/images/avatar/128/avatar-028.webp",
-    "unlock_label": "Aprueba con ≥7 en 10 apps distintas",
+    "unlock_label": "Aprueba con 7 o más en 10 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 10,
@@ -606,7 +606,7 @@
     "image_lg": "/images/avatar/512/avatar-036.webp",
     "image_md": "/images/avatar/256/avatar-036.webp",
     "image_sm": "/images/avatar/128/avatar-036.webp",
-    "unlock_label": "Aprueba con ≥7 en 14 apps distintas",
+    "unlock_label": "Aprueba con 7 o más en 14 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 14,
@@ -639,7 +639,7 @@
     "image_lg": "/images/avatar/512/avatar-038.webp",
     "image_md": "/images/avatar/256/avatar-038.webp",
     "image_sm": "/images/avatar/128/avatar-038.webp",
-    "unlock_label": "Aprueba con ≥8 en 12 apps distintas de Naturales",
+    "unlock_label": "Aprueba con 8 o más en 12 apps distintas de Naturales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
@@ -657,7 +657,7 @@
     "image_lg": "/images/avatar/512/avatar-039.webp",
     "image_md": "/images/avatar/256/avatar-039.webp",
     "image_sm": "/images/avatar/128/avatar-039.webp",
-    "unlock_label": "Aprueba con ≥8 en 14 apps distintas de Matemáticas",
+    "unlock_label": "Aprueba con 8 o más en 14 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
@@ -675,7 +675,7 @@
     "image_lg": "/images/avatar/512/avatar-040.webp",
     "image_md": "/images/avatar/256/avatar-040.webp",
     "image_sm": "/images/avatar/128/avatar-040.webp",
-    "unlock_label": "Aprueba 10 exámenes de Velocidad de Respuesta con nota ≥ 7",
+    "unlock_label": "Aprueba 10 exámenes de Velocidad de Respuesta con 7 o más",
     "unlock": {
       "type": "app_sessions",
       "app_id": "velocidad-respuesta",
@@ -806,7 +806,7 @@
     "image_lg": "/images/avatar/512/avatar-048.webp",
     "image_md": "/images/avatar/256/avatar-048.webp",
     "image_sm": "/images/avatar/128/avatar-048.webp",
-    "unlock_label": "Consigue nota 10 en examen en 50 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen en 50 apps distintas",
     "unlock": {
       "type": "perfect_exams",
       "count": 50
@@ -822,7 +822,7 @@
     "image_lg": "/images/avatar/512/avatar-049.webp",
     "image_md": "/images/avatar/256/avatar-049.webp",
     "image_sm": "/images/avatar/128/avatar-049.webp",
-    "unlock_label": "Aprueba con ≥9 en 12 apps distintas de Matemáticas",
+    "unlock_label": "Aprueba con 9 o más en 12 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
@@ -840,7 +840,7 @@
     "image_lg": "/images/avatar/512/avatar-050.webp",
     "image_md": "/images/avatar/256/avatar-050.webp",
     "image_sm": "/images/avatar/128/avatar-050.webp",
-    "unlock_label": "Consigue nota perfecta en 15 apps distintas de Naturales",
+    "unlock_label": "Consigue un 10 en un examen de Naturales en 15 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
@@ -890,7 +890,7 @@
     "image_lg": "/images/avatar/512/avatar-053.webp",
     "image_md": "/images/avatar/256/avatar-053.webp",
     "image_sm": "/images/avatar/128/avatar-053.webp",
-    "unlock_label": "Aprueba con ≥9 en 25 apps distintas",
+    "unlock_label": "Aprueba con 9 o más en 25 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 25,
@@ -907,7 +907,7 @@
     "image_lg": "/images/avatar/512/avatar-054.webp",
     "image_md": "/images/avatar/256/avatar-054.webp",
     "image_sm": "/images/avatar/128/avatar-054.webp",
-    "unlock_label": "Aprueba con ≥9.5 en 20 apps distintas de Matemáticas",
+    "unlock_label": "Aprueba con 9,5 o más en 20 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
@@ -925,7 +925,7 @@
     "image_lg": "/images/avatar/512/avatar-055.webp",
     "image_md": "/images/avatar/256/avatar-055.webp",
     "image_sm": "/images/avatar/128/avatar-055.webp",
-    "unlock_label": "Aprueba con ≥9.5 en 22 apps distintas de Matemáticas",
+    "unlock_label": "Aprueba con 9,5 o más en 22 apps distintas de Matemáticas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
@@ -943,7 +943,7 @@
     "image_lg": "/images/avatar/512/avatar-056.webp",
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
-    "unlock_label": "Aprueba 10 apps distintas de Plástica",
+    "unlock_label": "Aprueba un examen de Plástica en 10 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "plastica",
@@ -992,7 +992,7 @@
     "image_lg": "/images/avatar/512/avatar-059.webp",
     "image_md": "/images/avatar/256/avatar-059.webp",
     "image_sm": "/images/avatar/128/avatar-059.webp",
-    "unlock_label": "Aprueba con ≥9 en 12 apps distintas de Lengua",
+    "unlock_label": "Aprueba con 9 o más en 12 apps distintas de Lengua",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "lengua",
@@ -1010,7 +1010,7 @@
     "image_lg": "/images/avatar/512/avatar-060.webp",
     "image_md": "/images/avatar/256/avatar-060.webp",
     "image_sm": "/images/avatar/128/avatar-060.webp",
-    "unlock_label": "Consigue nota perfecta en 50 apps distintas de Naturales o Biología",
+    "unlock_label": "Consigue un 10 en un examen de Naturales o Biología en 50 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_ids": [
@@ -1160,7 +1160,7 @@
     "image_lg": "/images/avatar/512/avatar-069.webp",
     "image_md": "/images/avatar/256/avatar-069.webp",
     "image_sm": "/images/avatar/128/avatar-069.webp",
-    "unlock_label": "Consigue nota perfecta en 101 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen en 101 apps distintas",
     "unlock": {
       "type": "perfect_exams",
       "count": 101
@@ -1176,7 +1176,7 @@
     "image_lg": "/images/avatar/512/avatar-070.webp",
     "image_md": "/images/avatar/256/avatar-070.webp",
     "image_sm": "/images/avatar/128/avatar-070.webp",
-    "unlock_label": "Aprueba con ≥9.5 en 14 apps distintas",
+    "unlock_label": "Aprueba con 9,5 o más en 14 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 14,
@@ -1536,7 +1536,7 @@
     "image_lg": "/images/avatar/512/avatar-092.webp",
     "image_md": "/images/avatar/256/avatar-092.webp",
     "image_sm": "/images/avatar/128/avatar-092.webp",
-    "unlock_label": "Consigue nota perfecta en 30 apps distintas",
+    "unlock_label": "Consigue un 10 en un examen en 30 apps distintas",
     "unlock": {
       "type": "perfect_exams",
       "count": 30
@@ -1568,7 +1568,7 @@
     "image_lg": "/images/avatar/512/avatar-094.webp",
     "image_md": "/images/avatar/256/avatar-094.webp",
     "image_sm": "/images/avatar/128/avatar-094.webp",
-    "unlock_label": "Aprueba con ≥8 en 14 apps distintas",
+    "unlock_label": "Aprueba con 8 o más en 14 apps distintas",
     "unlock": {
       "type": "high_score_exams",
       "count": 14,
@@ -1635,7 +1635,7 @@
     "image_lg": "/images/avatar/512/avatar-098.webp",
     "image_md": "/images/avatar/256/avatar-098.webp",
     "image_sm": "/images/avatar/128/avatar-098.webp",
-    "unlock_label": "Aprueba 12 exámenes de Comprensión Escrita con nota ≥ 8",
+    "unlock_label": "Aprueba 12 exámenes de Comprensión Escrita con 8 o más",
     "unlock": {
       "type": "app_sessions",
       "app_id": "comprension-escrita",
@@ -1654,7 +1654,7 @@
     "image_lg": "/images/avatar/512/avatar-099.webp",
     "image_md": "/images/avatar/256/avatar-099.webp",
     "image_sm": "/images/avatar/128/avatar-099.webp",
-    "unlock_label": "Aprueba con ≥9 en 18 apps distintas de Naturales",
+    "unlock_label": "Aprueba con 9 o más en 18 apps distintas de Naturales",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "naturales",
