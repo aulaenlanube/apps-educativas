@@ -7,6 +7,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import useQuizChannel from './useQuizChannel';
+import useBattlePhrases from './useBattlePhrases';
+import BattlePhraseBar from './BattlePhraseBar';
+import BattlePhraseBubble from './BattlePhraseBubble';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import UserAvatar from '@/components/ui/UserAvatar';
 import QBBackground from './QBBackground';
@@ -92,6 +95,12 @@ export default function QuizBattlePlayer() {
     joined ? roomCode : '',
     userInfo,
     joined
+  );
+
+  // Frases efímeras (bocadillos) que llegan del canal Realtime.
+  const { phrases: livePhrases } = useBattlePhrases(
+    { onBroadcast },
+    joined && (phase === 'waiting' || phase === 'results' || phase === 'final'),
   );
 
   // ── Join handler ──
@@ -379,7 +388,7 @@ export default function QuizBattlePlayer() {
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, damping: 12 }}
               className="qb-player-emoji-ripple"
-              style={{ marginBottom: '0.5rem', display: 'inline-block' }}
+              style={{ marginBottom: '0.5rem', display: 'inline-block', position: 'relative' }}
             >
               {userInfo.selected_avatar_code ? (
                 <UserAvatar
@@ -394,6 +403,7 @@ export default function QuizBattlePlayer() {
               ) : (
                 <span style={{ fontSize: '3.2rem' }}>{userInfo.emoji}</span>
               )}
+              <BattlePhraseBubble phrase={livePhrases[userInfo.id]} />
             </motion.div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
             <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
@@ -413,7 +423,7 @@ export default function QuizBattlePlayer() {
             <div className="qb-players-grid">
               {players.map((p) => (
                 <div key={p.id} className="qb-player-card">
-                  <div className="qb-player-emoji">
+                  <div className="qb-player-emoji" style={{ position: 'relative' }}>
                     {p.selected_avatar_code ? (
                       <UserAvatar
                         selectedAvatarCode={p.selected_avatar_code}
@@ -426,11 +436,18 @@ export default function QuizBattlePlayer() {
                     ) : (
                       <span>{p.emoji}</span>
                     )}
+                    <BattlePhraseBubble phrase={livePhrases[p.id]} />
                   </div>
                   <div className="qb-player-name">{p.name}</div>
                 </div>
               ))}
             </div>
+
+            <BattlePhraseBar
+              channel={{ broadcast }}
+              me={{ id: userInfo.id }}
+              className="mt-4 px-2"
+            />
 
             <div className="qb-spinner" style={{ minHeight: 60 }} />
           </motion.div>
@@ -585,18 +602,27 @@ export default function QuizBattlePlayer() {
               <div className="qb-lb-title">Top 5</div>
               {leaderboard.slice(0, 5).map((p, i) => (
                 <div key={p.id} className={`qb-lb-row ${p.id === userInfo.id ? 'qb-opt-selected' : ''}`}
-                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10 } : {}}>
+                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10, position: 'relative' } : { position: 'relative' }}>
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
-                  <span className="qb-lb-emoji">{p.emoji}</span>
+                  <span className="qb-lb-emoji" style={{ position: 'relative' }}>
+                    {p.emoji}
+                    <BattlePhraseBubble phrase={livePhrases[p.id]} />
+                  </span>
                   <span className="qb-lb-name">{p.name}</span>
                   <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
                 </div>
               ))}
             </div>
 
-            <p className="qb-faint-text" style={{ textAlign: 'center', fontSize: '0.85rem' }}>
+            <BattlePhraseBar
+              channel={{ broadcast }}
+              me={{ id: userInfo.id }}
+              className="mt-3 px-2"
+            />
+
+            <p className="qb-faint-text" style={{ textAlign: 'center', fontSize: '0.85rem', marginTop: '0.75rem' }}>
               Esperando al profesor...
             </p>
           </motion.div>

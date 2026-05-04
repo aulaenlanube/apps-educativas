@@ -8,6 +8,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import Header from '@/components/layout/Header';
 import useQuizChannel, { generateRoomCode } from './useQuizChannel';
+import useBattlePhrases from './useBattlePhrases';
+import BattlePhraseBubble from './BattlePhraseBubble';
 import { buildQuizQuestions } from './quizQuestionBuilder';
 import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
@@ -135,6 +137,13 @@ export default function QuizBattleHost() {
     roomCode,
     userInfo,
     phase !== 'config'
+  );
+
+  // Bocadillos efímeros de jugadores en la sala (el host sólo los muestra,
+  // no envía).
+  const { phrases: livePhrases } = useBattlePhrases(
+    { onBroadcast },
+    phase === 'waiting' || phase === 'results' || phase === 'final',
   );
 
   // Filter out host from player list
@@ -933,7 +942,7 @@ export default function QuizBattleHost() {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.7 }}>
-                    <div className="qb-player-emoji">
+                    <div className="qb-player-emoji" style={{ position: 'relative' }}>
                       {p.selected_avatar_code ? (
                         <UserAvatar
                           selectedAvatarCode={p.selected_avatar_code}
@@ -946,6 +955,7 @@ export default function QuizBattleHost() {
                       ) : (
                         <span>{p.emoji}</span>
                       )}
+                      <BattlePhraseBubble phrase={livePhrases[p.id]} />
                     </div>
                     <div className="qb-player-name">{p.name}</div>
                   </motion.div>
@@ -1098,11 +1108,15 @@ export default function QuizBattleHost() {
                 <motion.div key={p.id} className="qb-lb-row"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}>
+                  transition={{ delay: i * 0.1 }}
+                  style={{ position: 'relative' }}>
                   <span className="qb-lb-rank">
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
                   </span>
-                  <span className="qb-lb-emoji">{p.emoji}</span>
+                  <span className="qb-lb-emoji" style={{ position: 'relative' }}>
+                    {p.emoji}
+                    <BattlePhraseBubble phrase={livePhrases[p.id]} />
+                  </span>
                   <span className="qb-lb-name">{p.name}</span>
                   {p.lastDelta > 0 && (
                     <span className="qb-lb-delta">+{p.lastDelta}</span>
