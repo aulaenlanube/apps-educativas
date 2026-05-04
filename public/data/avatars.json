@@ -8,10 +8,10 @@
     "image_lg": "/images/avatar/512/avatar-001.webp",
     "image_md": "/images/avatar/256/avatar-001.webp",
     "image_sm": "/images/avatar/128/avatar-001.webp",
-    "unlock_label": "Valora 90 apps distintas",
+    "unlock_label": "Valora 25 apps distintas",
     "unlock": {
       "type": "apps_rated",
-      "count": 90
+      "count": 25
     },
     "sort_order": 1
   },
@@ -59,10 +59,10 @@
     "image_lg": "/images/avatar/512/avatar-004.webp",
     "image_md": "/images/avatar/256/avatar-004.webp",
     "image_sm": "/images/avatar/128/avatar-004.webp",
-    "unlock_label": "Gana 25 duelos",
+    "unlock_label": "Gana 18 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 25
+      "count": 18
     },
     "sort_order": 4
   },
@@ -290,10 +290,10 @@
     "image_lg": "/images/avatar/512/avatar-017.webp",
     "image_md": "/images/avatar/256/avatar-017.webp",
     "image_sm": "/images/avatar/128/avatar-017.webp",
-    "unlock_label": "Publica 20 comentarios de valoración",
+    "unlock_label": "Publica 8 comentarios de valoración",
     "unlock": {
       "type": "feedback_messages",
-      "count": 20
+      "count": 8
     },
     "sort_order": 17
   },
@@ -306,10 +306,10 @@
     "image_lg": "/images/avatar/512/avatar-018.webp",
     "image_md": "/images/avatar/256/avatar-018.webp",
     "image_sm": "/images/avatar/128/avatar-018.webp",
-    "unlock_label": "Gana 18 batallas",
+    "unlock_label": "Gana 10 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 18
+      "count": 10
     },
     "sort_order": 18
   },
@@ -322,10 +322,10 @@
     "image_lg": "/images/avatar/512/avatar-019.webp",
     "image_md": "/images/avatar/256/avatar-019.webp",
     "image_sm": "/images/avatar/128/avatar-019.webp",
-    "unlock_label": "Gana 6 batallas",
+    "unlock_label": "Gana 5 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 6
+      "count": 5
     },
     "sort_order": 19
   },
@@ -356,10 +356,10 @@
     "image_lg": "/images/avatar/512/avatar-021.webp",
     "image_md": "/images/avatar/256/avatar-021.webp",
     "image_sm": "/images/avatar/128/avatar-021.webp",
-    "unlock_label": "Publica 100 comentarios de valoración",
+    "unlock_label": "Publica 25 comentarios de valoración",
     "unlock": {
       "type": "feedback_messages",
-      "count": 100
+      "count": 25
     },
     "sort_order": 21
   },
@@ -488,10 +488,10 @@
     "image_lg": "/images/avatar/512/avatar-029.webp",
     "image_md": "/images/avatar/256/avatar-029.webp",
     "image_sm": "/images/avatar/128/avatar-029.webp",
-    "unlock_label": "Gana 40 duelos",
+    "unlock_label": "Gana 32 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 40
+      "count": 32
     },
     "sort_order": 29
   },
@@ -623,10 +623,10 @@
     "image_lg": "/images/avatar/512/avatar-037.webp",
     "image_md": "/images/avatar/256/avatar-037.webp",
     "image_sm": "/images/avatar/128/avatar-037.webp",
-    "unlock_label": "Gana 70 duelos",
+    "unlock_label": "Gana 50 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 70
+      "count": 50
     },
     "sort_order": 37
   },
@@ -694,10 +694,10 @@
     "image_lg": "/images/avatar/512/avatar-041.webp",
     "image_md": "/images/avatar/256/avatar-041.webp",
     "image_sm": "/images/avatar/128/avatar-041.webp",
-    "unlock_label": "Gana 95 duelos",
+    "unlock_label": "Gana 75 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 95
+      "count": 75
     },
     "sort_order": 41
   },
@@ -710,10 +710,10 @@
     "image_lg": "/images/avatar/512/avatar-042.webp",
     "image_md": "/images/avatar/256/avatar-042.webp",
     "image_sm": "/images/avatar/128/avatar-042.webp",
-    "unlock_label": "Gana 22 batallas",
+    "unlock_label": "Gana 15 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 22
+      "count": 15
     },
     "sort_order": 42
   },
@@ -742,10 +742,10 @@
     "image_lg": "/images/avatar/512/avatar-044.webp",
     "image_md": "/images/avatar/256/avatar-044.webp",
     "image_sm": "/images/avatar/128/avatar-044.webp",
-    "unlock_label": "Publica 250 comentarios de valoración",
+    "unlock_label": "Publica 60 comentarios de valoración",
     "unlock": {
       "type": "feedback_messages",
-      "count": 250
+      "count": 60
     },
     "sort_order": 44
   },
@@ -758,10 +758,10 @@
     "image_lg": "/images/avatar/512/avatar-045.webp",
     "image_md": "/images/avatar/256/avatar-045.webp",
     "image_sm": "/images/avatar/128/avatar-045.webp",
-    "unlock_label": "Gana 55 batallas",
+    "unlock_label": "Gana 40 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 55
+      "count": 40
     },
     "sort_order": 45
   },
@@ -774,10 +774,10 @@
     "image_lg": "/images/avatar/512/avatar-046.webp",
     "image_md": "/images/avatar/256/avatar-046.webp",
     "image_sm": "/images/avatar/128/avatar-046.webp",
-    "unlock_label": "Gana 75 batallas",
+    "unlock_label": "Gana 50 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 75
+      "count": 50
     },
     "sort_order": 46
   },
@@ -790,10 +790,10 @@
     "image_lg": "/images/avatar/512/avatar-047.webp",
     "image_md": "/images/avatar/256/avatar-047.webp",
     "image_sm": "/images/avatar/128/avatar-047.webp",
-    "unlock_label": "Gana 40 batallas",
+    "unlock_label": "Gana 20 batallas",
     "unlock": {
       "type": "battles_won",
-      "count": 40
+      "count": 20
     },
     "sort_order": 47
   },
@@ -1080,10 +1080,10 @@
     "image_lg": "/images/avatar/512/avatar-064.webp",
     "image_md": "/images/avatar/256/avatar-064.webp",
     "image_sm": "/images/avatar/128/avatar-064.webp",
-    "unlock_label": "Gana 50 duelos",
+    "unlock_label": "Gana 40 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 50
+      "count": 40
     },
     "sort_order": 64
   },
@@ -1096,10 +1096,10 @@
     "image_lg": "/images/avatar/512/avatar-065.webp",
     "image_md": "/images/avatar/256/avatar-065.webp",
     "image_sm": "/images/avatar/128/avatar-065.webp",
-    "unlock_label": "Valora 200 apps distintas",
+    "unlock_label": "Valora 50 apps distintas",
     "unlock": {
       "type": "apps_rated",
-      "count": 200
+      "count": 50
     },
     "sort_order": 65
   },
@@ -1128,10 +1128,10 @@
     "image_lg": "/images/avatar/512/avatar-067.webp",
     "image_md": "/images/avatar/256/avatar-067.webp",
     "image_sm": "/images/avatar/128/avatar-067.webp",
-    "unlock_label": "Gana 85 duelos",
+    "unlock_label": "Gana 60 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 85
+      "count": 60
     },
     "sort_order": 67
   },
@@ -1552,10 +1552,10 @@
     "image_lg": "/images/avatar/512/avatar-093.webp",
     "image_md": "/images/avatar/256/avatar-093.webp",
     "image_sm": "/images/avatar/128/avatar-093.webp",
-    "unlock_label": "Valora 20 apps distintas",
+    "unlock_label": "Valora 10 apps distintas",
     "unlock": {
       "type": "apps_rated",
-      "count": 20
+      "count": 10
     },
     "sort_order": 93
   },
@@ -1619,10 +1619,10 @@
     "image_lg": "/images/avatar/512/avatar-097.webp",
     "image_md": "/images/avatar/256/avatar-097.webp",
     "image_sm": "/images/avatar/128/avatar-097.webp",
-    "unlock_label": "Gana 30 duelos",
+    "unlock_label": "Gana 25 duelos",
     "unlock": {
       "type": "duels_won",
-      "count": 30
+      "count": 25
     },
     "sort_order": 97
   },
