@@ -127,7 +127,16 @@
       "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); console.log\\('total:', a.length\\); ['avatar_101','avatar_103','avatar_105','avatar_106'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.rarity, '/', x.unlock_label\\)}\\)\")",
       "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); ['avatar_049','avatar_104'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.rarity, '/', x.unlock_label\\)}\\)\")",
       "Bash(node -e \"const a=JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json','utf8'\\)\\); ['avatar_049','avatar_061','avatar_063'].forEach\\(c=>{const x=a.find\\(y=>y.code===c\\); console.log\\(c, '->', x.title, '/', x.unlock_label\\)}\\)\")",
-      "Bash(node -e \"const d = require\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json'\\); console.log\\('OK', d.length, 'avatares'\\); const codes = ['avatar_004','avatar_018','avatar_019','avatar_022','avatar_028','avatar_040','avatar_047','avatar_053','avatar_064','avatar_068','avatar_070','avatar_072','avatar_075','avatar_081','avatar_087','avatar_089','avatar_094','avatar_105']; for \\(const c of codes\\) { const a = d.find\\(x => x.code === c\\); console.log\\(c, '→', a.unlock_label\\); }\")"
+      "Bash(node -e \"const d = require\\('c:/Users/edtor/Desktop/apps-educativas/public/data/avatars.json'\\); console.log\\('OK', d.length, 'avatares'\\); const codes = ['avatar_004','avatar_018','avatar_019','avatar_022','avatar_028','avatar_040','avatar_047','avatar_053','avatar_064','avatar_068','avatar_070','avatar_072','avatar_075','avatar_081','avatar_087','avatar_089','avatar_094','avatar_105']; for \\(const c of codes\\) { const a = d.find\\(x => x.code === c\\); console.log\\(c, '→', a.unlock_label\\); }\")",
+      "Bash(node -e \"console.log\\(require\\('fs'\\).readFileSync\\('c:/Users/edtor/Desktop/apps-educativas/supabase/migrations/20260515_avatar_creative_criteria.sql','utf8'\\).length, 'chars'\\)\")",
+      "mcp__claude_ai_Supabase__list_migrations",
+      "Bash(grep -E '\\\\.sql$')",
+      "Bash(Sort-Object -Descending)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\edtor\\\\Desktop\\\\apps-educativas\" -Recurse -Directory -Name)",
+      "Bash(Select-String \"quiz-battle|duel\")"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }
