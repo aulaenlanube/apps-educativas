@@ -371,11 +371,27 @@ const TeacherProfileSection = () => {
         </div>
       </motion.div>
 
-      {/* Personalización del avatar */}
+      {/* Colección de avatares especiales */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
+        className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
+      >
+        <h3 className="text-base font-bold text-slate-800 mb-1">Tu colección de avatares</h3>
+        <p className="text-xs text-slate-500 mb-5">
+          Desbloquea avatares especiales valorando apps, publicando comentarios, ganando insignias o subiendo de nivel.
+          Si quieres equipar uno, selecciónalo aquí; reemplazará al emoji clásico.
+        </p>
+        <AvatarGallery mode="teacher" />
+      </motion.div>
+
+      {/* Personalización del avatar clásico (emoji) — sólo se usa si no hay
+          ningún avatar especial equipado, por eso va al final. */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
         className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
       >
         <h3 className="text-base font-bold text-slate-800 mb-1">Avatar clásico (emoji)</h3>
@@ -415,21 +431,6 @@ const TeacherProfileSection = () => {
             <p className="text-[11px] text-slate-400 mt-2">Color actual: <span className="font-semibold">{selectedColorObj.label}</span></p>
           </div>
         </div>
-      </motion.div>
-
-      {/* Colección de avatares especiales */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
-      >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Tu colección de avatares</h3>
-        <p className="text-xs text-slate-500 mb-5">
-          Desbloquea avatares especiales valorando apps, publicando comentarios, ganando insignias o subiendo de nivel.
-          Si quieres equipar uno, selecciónalo aquí; reemplazará al emoji clásico.
-        </p>
-        <AvatarGallery mode="teacher" />
       </motion.div>
 
       {/* Datos del perfil */}
