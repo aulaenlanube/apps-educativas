@@ -807,10 +807,10 @@
     "image_lg": "/images/avatar/512/avatar-048.webp",
     "image_md": "/images/avatar/256/avatar-048.webp",
     "image_sm": "/images/avatar/128/avatar-048.webp",
-    "unlock_label": "Alcanza el #1 del ranking de tu clase",
+    "unlock_label": "Consigue nota 10 en examen en 50 apps distintas",
     "unlock": {
-      "type": "top_class",
-      "position": 1
+      "type": "perfect_exams",
+      "count": 50
     },
     "sort_order": 48
   },
