@@ -11,6 +11,7 @@ import { sanitizePlainText } from '@/lib/sanitize';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import AvatarGallery from '@/components/avatar/AvatarGallery';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import TeacherDuelPhrasesEditor from '@/components/duel/TeacherDuelPhrasesEditor';
 
 // Limites acordes con la BD (defensa en profundidad; la RPC debe truncar tambien).
 const MAX_DISPLAY_NAME = 80;
@@ -432,6 +433,9 @@ const TeacherProfileSection = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Frases para duelos (al final del bloque de avatar/colección) */}
+      <TeacherDuelPhrasesEditor />
 
       {/* Datos del perfil */}
       <motion.div

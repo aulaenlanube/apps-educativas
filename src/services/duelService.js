@@ -108,3 +108,49 @@ export async function teacherCreateDuelAssignment({
     p_best_of: bestOf, p_title: title, p_due_date: dueDate,
   }));
 }
+
+// --- Variantes para duelos personales iniciados por el docente ---
+// El docente reta a un alumno suyo en modo amistoso (stake siempre 0).
+
+export async function teacherGetDuelOpponents() {
+  const d = unwrap(await supabase.rpc('teacher_get_duel_opponents'));
+  return d?.opponents || [];
+}
+
+export async function teacherCreateDuel({
+  opponentId, appId, appName, level, grade, subjectId, bestOf = 1,
+}) {
+  return unwrap(await supabase.rpc('teacher_create_duel', {
+    p_opponent_id: opponentId,
+    p_app_id: appId,
+    p_app_name: appName,
+    p_level: level,
+    p_grade: String(grade),
+    p_subject_id: subjectId,
+    p_best_of: bestOf,
+  }));
+}
+
+export async function teacherGetMyDuels() {
+  return unwrap(await supabase.rpc('teacher_get_my_duels'));
+}
+
+export async function teacherGetDuelState({ duelId }) {
+  return unwrap(await supabase.rpc('teacher_get_duel_state', { p_duel_id: duelId }));
+}
+
+export async function teacherStartDuel({ duelId }) {
+  return unwrap(await supabase.rpc('teacher_start_duel', { p_duel_id: duelId }));
+}
+
+export async function teacherVoidDuel({ duelId, reason = 'cancelled' }) {
+  return unwrap(await supabase.rpc('teacher_void_duel', {
+    p_duel_id: duelId, p_reason: reason,
+  }));
+}
+
+export async function teacherReportDuelResult({ duelId, winnerId, winnerType = 'student', rounds = null }) {
+  return unwrap(await supabase.rpc('teacher_report_duel_result', {
+    p_duel_id: duelId, p_winner_id: winnerId, p_winner_type: winnerType, p_rounds: rounds,
+  }));
+}

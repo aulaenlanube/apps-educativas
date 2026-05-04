@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
-import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText, Compass, UserCircle } from 'lucide-react';
+import { Copy, GraduationCap, MessageSquare, Users, Trophy, MessageCircle, Zap, FileText, Compass, UserCircle, Swords } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -17,6 +17,8 @@ import GroupMatchesPanel from './GroupMatchesPanel';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
 import TeacherProfileSection from './TeacherProfileSection';
+import TeacherDuelInbox from '@/components/duel/TeacherDuelInbox';
+import TeacherDuelCreateModal from '@/components/duel/TeacherDuelCreateModal';
 import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
 import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
 
@@ -40,6 +42,8 @@ const DashboardPage = () => {
     return VALID_TABS.includes(t) ? t : 'grupos';
   })();
   const [activeTab, setActiveTab] = useState(initialTab);
+  const [duelInboxOpen, setDuelInboxOpen] = useState(false);
+  const [duelCreateOpen, setDuelCreateOpen] = useState(false);
 
   // Si la URL cambia (p.ej. desde el menú navegando a ?tab=perfil estando ya
   // en /dashboard), sincroniza la pestaña activa.
@@ -153,14 +157,15 @@ const DashboardPage = () => {
                   </div>
                 </button>
                 <button
-                  onClick={handleCopyCode}
-                  className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-purple-200 rounded-xl px-4 py-2.5 hover:shadow-md transition-all group"
+                  onClick={() => setDuelInboxOpen(true)}
+                  className="flex items-center gap-2 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-500 rounded-xl px-4 py-2.5 hover:shadow-lg transition-all text-white group"
+                  title="Retar a un alumno a un duelo amistoso"
                 >
+                  <Swords className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   <div>
-                    <p className="text-xs text-gray-500 text-left">Tu codigo de profesor</p>
-                    <p className="text-lg font-bold tracking-wider text-purple-700">{teacher?.teacher_code}</p>
+                    <p className="text-xs text-white/80 text-left">Reta a un alumno</p>
+                    <p className="text-lg font-bold tracking-wide">Duelo</p>
                   </div>
-                  <Copy className="w-4 h-4 text-purple-400 group-hover:text-purple-600 transition-colors" />
                 </button>
               </div>
             </div>
@@ -347,6 +352,24 @@ const DashboardPage = () => {
           </Tabs>
         </div>
       </div>
+
+      <TeacherDuelInbox
+        open={duelInboxOpen}
+        onClose={() => setDuelInboxOpen(false)}
+        onCreateClick={() => setDuelCreateOpen(true)}
+      />
+      <TeacherDuelCreateModal
+        open={duelCreateOpen}
+        onClose={() => setDuelCreateOpen(false)}
+        onCreated={() => {
+          toast({
+            title: 'Reto enviado',
+            description: 'El alumno lo verá en su bandeja de duelos.',
+          });
+          setDuelCreateOpen(false);
+          setDuelInboxOpen(true);
+        }}
+      />
     </div>
   );
 };

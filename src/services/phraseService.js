@@ -26,3 +26,16 @@ export async function setPhraseSlot({ studentId, sessionToken, slot, phraseId })
     p_phrase_id: phraseId, // null para vaciar
   }));
 }
+
+// --- Variantes para docente (auth via auth.uid()) ---
+
+export async function teacherGetMyPhrases() {
+  return unwrap(await supabase.rpc('teacher_get_my_phrases'));
+}
+
+export async function teacherSetPhraseSlot({ slot, phraseId }) {
+  return unwrap(await supabase.rpc('teacher_set_phrase_slot', {
+    p_slot: slot,
+    p_phrase_id: phraseId,
+  }));
+}
