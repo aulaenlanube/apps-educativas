@@ -822,12 +822,12 @@
     "image_lg": "/images/avatar/512/avatar-049.webp",
     "image_md": "/images/avatar/256/avatar-049.webp",
     "image_sm": "/images/avatar/128/avatar-049.webp",
-    "unlock_label": "Aprueba con 9 o más en 18 apps distintas de Matemáticas",
+    "unlock_label": "Consigue un 10 en un examen de Programación en 40 apps distintas",
     "unlock": {
       "type": "subject_exams",
-      "subject_id": "matematicas",
-      "count": 18,
-      "min_nota": 9
+      "subject_id": "programacion",
+      "count": 40,
+      "min_nota": 9.95
     },
     "sort_order": 49
   },
@@ -1032,10 +1032,12 @@
     "image_lg": "/images/avatar/512/avatar-061.webp",
     "image_md": "/images/avatar/256/avatar-061.webp",
     "image_sm": "/images/avatar/128/avatar-061.webp",
-    "unlock_label": "Juega a 80 apps distintas de la plataforma",
+    "unlock_label": "Consigue un 10 en un examen de Programación en 20 apps distintas",
     "unlock": {
-      "type": "unique_apps",
-      "count": 80
+      "type": "subject_exams",
+      "subject_id": "programacion",
+      "count": 20,
+      "min_nota": 9.95
     },
     "sort_order": 61
   },
@@ -1065,10 +1067,12 @@
     "image_lg": "/images/avatar/512/avatar-063.webp",
     "image_md": "/images/avatar/256/avatar-063.webp",
     "image_sm": "/images/avatar/128/avatar-063.webp",
-    "unlock_label": "Acumula 500.000 XP",
+    "unlock_label": "Consigue un 10 en un examen de Programación en 30 apps distintas",
     "unlock": {
-      "type": "xp",
-      "amount": 500000
+      "type": "subject_exams",
+      "subject_id": "programacion",
+      "count": 30,
+      "min_nota": 9.95
     },
     "sort_order": 63
   },
