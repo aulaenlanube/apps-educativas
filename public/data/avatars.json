@@ -902,17 +902,17 @@
     "code": "avatar_054",
     "title": "Padre de la Física",
     "description": "Vio caer una manzana y cambió el universo. Sus leyes te siguen aunque no lo sepas.",
-    "rarity": "legendary",
-    "points_bonus": 0.4,
+    "rarity": "mythic",
+    "points_bonus": 0.5,
     "image_lg": "/images/avatar/512/avatar-054.webp",
     "image_md": "/images/avatar/256/avatar-054.webp",
     "image_sm": "/images/avatar/128/avatar-054.webp",
-    "unlock_label": "Aprueba con 9,5 o más en 20 apps distintas de Matemáticas",
+    "unlock_label": "Consigue un 10 en un examen de Matemáticas en 25 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "matematicas",
-      "count": 20,
-      "min_nota": 9.5
+      "count": 25,
+      "min_nota": 9.95
     },
     "sort_order": 54
   },
@@ -938,17 +938,17 @@
     "code": "avatar_056",
     "title": "Maestro Cubista",
     "description": "Rompió los cuadros y los volvió a montar de otra manera. Después le dijeron que era arte.",
-    "rarity": "legendary",
-    "points_bonus": 0.4,
+    "rarity": "mythic",
+    "points_bonus": 0.5,
     "image_lg": "/images/avatar/512/avatar-056.webp",
     "image_md": "/images/avatar/256/avatar-056.webp",
     "image_sm": "/images/avatar/128/avatar-056.webp",
-    "unlock_label": "Aprueba con un 9,5 o más en 20 apps distintas de Plástica",
+    "unlock_label": "Consigue un 10 en un examen de Plástica en 20 apps distintas",
     "unlock": {
       "type": "subject_exams",
       "subject_id": "plastica",
       "count": 20,
-      "min_nota": 9.5
+      "min_nota": 9.95
     },
     "sort_order": 56
   },
