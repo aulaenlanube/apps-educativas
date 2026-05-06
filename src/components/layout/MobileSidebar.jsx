@@ -258,8 +258,11 @@ export default function MobileSidebar({ open, onClose }) {
                     </div>
                   ) : (
                     notifications.map(n => {
-                      const isQuizInvite = n.type === 'quiz_battle_invite';
-                      const quizCode = isQuizInvite && n.data?.room_code;
+                      const isTeamRep = n.type === 'quiz_battle_team_rep';
+                      const isTeamMember = n.type === 'quiz_battle_team_member';
+                      const isQuizInvite = n.type === 'quiz_battle_invite' || isTeamRep;
+                      const isQuizRelated = isQuizInvite || isTeamMember;
+                      const quizCode = isQuizRelated && n.data?.room_code;
 
                       return (
                         <div
@@ -276,11 +279,11 @@ export default function MobileSidebar({ open, onClose }) {
                         >
                           <div className="flex items-start gap-2.5">
                             <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
-                              isQuizInvite
+                              isQuizRelated
                                 ? (!n.read ? 'bg-amber-100 text-amber-600' : 'bg-amber-50 text-amber-400')
                                 : (!n.read ? 'bg-purple-100 text-purple-600' : 'bg-slate-100 text-slate-400')
                             }`}>
-                              {isQuizInvite ? <Zap className="w-3.5 h-3.5" /> : <MessageSquare className="w-3.5 h-3.5" />}
+                              {isQuizRelated ? <Zap className="w-3.5 h-3.5" /> : <MessageSquare className="w-3.5 h-3.5" />}
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className={`text-xs leading-tight ${!n.read ? 'font-semibold text-slate-800 dark:text-gray-100' : 'text-slate-600 dark:text-gray-300'}`}>
@@ -290,6 +293,11 @@ export default function MobileSidebar({ open, onClose }) {
                               {isQuizInvite && quizCode && (
                                 <span className="inline-flex items-center gap-0.5 mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
                                   <Zap className="w-2.5 h-2.5" /> Unirse: {quizCode}
+                                </span>
+                              )}
+                              {isTeamMember && (
+                                <span className="inline-flex items-center gap-0.5 mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
+                                  👥 {n.data?.team_name}
                                 </span>
                               )}
                               <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">

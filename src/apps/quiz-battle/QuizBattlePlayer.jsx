@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate, useTransform } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, Check, X, Trophy, Clock } from 'lucide-react';
+import { ArrowLeft, Check, X, Trophy, Clock, Crown, Users } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -72,6 +73,10 @@ export default function QuizBattlePlayer() {
   const [posPerm, setPosPerm]     = useState([0, 1, 2, 3]);
   const [colorPerm, setColorPerm] = useState([0, 1, 2, 3]);
 
+  // Team battles: cuando la sala es por equipos, el alumno debe ser el rep
+  // de algún equipo. Si no, no se conecta (recibe room:not-team-rep).
+  const [teamInfo, setTeamInfo] = useState(null); // { team_id, team_name } cuando soy rep
+
   const timerRef = useRef(null);
   const questionStartRef = useRef(0);
   const playerIdRef = useRef(student?.id || `guest-${crypto.randomUUID().slice(0, 8)}`);
@@ -109,7 +114,7 @@ export default function QuizBattlePlayer() {
   );
 
   // ── Join handler ──
-  const handleJoin = () => {
+  const handleJoin = async () => {
     if (!ROOM_CODE_RE.test(roomCode)) {
       setJoinError('Codigo invalido (4-8 letras/digitos)');
       return;
@@ -119,6 +124,31 @@ export default function QuizBattlePlayer() {
       if (!cleanName) { setJoinError('Introduce tu nombre'); return; }
       if (cleanName !== guestName) setGuestName(cleanName);
     }
+
+    // Si la sala es por equipos y este alumno no es representante, abortamos
+    // la conexión antes incluso de unirse al canal — así no consume slot.
+    if (student?.id) {
+      try {
+        const { data } = await supabase.rpc('get_team_for_battle', {
+          p_room_code: roomCode,
+          p_student_id: student.id,
+        });
+        if (data?.found) {
+          if (!data.is_rep) {
+            // El alumno está en algún equipo pero no es el rep
+            const repName = data.rep_name || 'tu compañero/a';
+            setJoinError(`Esta batalla es por equipos. Tu equipo es "${data.team_name}", y solo el representante (${repName}) puede conectarse. Ve a su PC para apoyar.`);
+            return;
+          }
+          setTeamInfo({ team_id: data.team_id, team_name: data.team_name });
+        }
+      } catch (err) {
+        // Si falla la RPC simplemente seguimos como batalla individual; el
+        // host hará la validación final igualmente.
+        console.warn('QuizBattle: get_team_for_battle failed', err);
+      }
+    }
+
     setJoinError('');
     setJoined(true);
     setPhase('waiting');
@@ -156,6 +186,21 @@ export default function QuizBattlePlayer() {
         setJoinError('La sala esta llena (maximo 30 jugadores).');
         setJoined(false);
         setPhase('join');
+      }
+    });
+
+    onBroadcast('room:not-team-rep', (data) => {
+      if (data.playerId === userInfo.id) {
+        setJoinError('Esta sala es por equipos y solo se conecta el representante de cada equipo. Ve al PC del representante de tu equipo.');
+        setJoined(false);
+        setPhase('join');
+        setTeamInfo(null);
+      }
+    });
+
+    onBroadcast('room:accepted', (data) => {
+      if (data.playerId === userInfo.id && data.team_name) {
+        setTeamInfo({ team_id: data.team_id, team_name: data.team_name });
       }
     });
   }, [joined, isConnected]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -410,6 +455,36 @@ export default function QuizBattlePlayer() {
               )}
             </motion.div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
+
+            {teamInfo && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 15 }}
+                style={{
+                  margin: '0.75rem auto',
+                  padding: '0.75rem 1rem',
+                  maxWidth: 360,
+                  borderRadius: 14,
+                  background: 'linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.1))',
+                  border: '2px solid rgba(251,191,36,0.5)',
+                  boxShadow: '0 4px 20px rgba(251,191,36,0.25)',
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginBottom: 4 }}>
+                  <Crown className="w-4 h-4" style={{ color: '#fbbf24' }} />
+                  <span style={{ fontWeight: 900, color: '#fbbf24', fontSize: '0.85rem', letterSpacing: '0.04em' }}>
+                    REPRESENTANTE DEL EQUIPO
+                  </span>
+                </div>
+                <div style={{ fontSize: '1.2rem', fontWeight: 900 }}>{teamInfo.team_name}</div>
+                <p style={{ fontSize: '0.72rem', opacity: 0.85, marginTop: 4, lineHeight: 1.35 }}>
+                  Juegas por todo tu equipo. Los demás miembros recibirán los mismos beneficios que tú al final.
+                </p>
+              </motion.div>
+            )}
+
             <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
               Esperando a que el profesor inicie la partida...
             </p>

@@ -129,11 +129,16 @@ export default function NotificationBell() {
                 </div>
               ) : (
                 notifications.map(n => {
-                  const isQuizInvite = n.type === 'quiz_battle_invite';
-                  const quizCode = isQuizInvite && n.data?.room_code;
+                  const isTeamRep = n.type === 'quiz_battle_team_rep';
+                  const isTeamMember = n.type === 'quiz_battle_team_member';
+                  const isQuizInvite = n.type === 'quiz_battle_invite' || isTeamRep;
+                  const isQuizRelated = isQuizInvite || isTeamMember;
+                  const quizCode = isQuizRelated && n.data?.room_code;
 
                   const handleClick = () => {
                     if (!n.read) handleMarkRead(n.id);
+                    // Solo el rep o las salas abiertas navegan a /join. Los
+                    // miembros de equipo no se conectan — solo leen el aviso.
                     if (isQuizInvite && quizCode) {
                       setOpen(false);
                       navigate(`/quiz-battle/join/${quizCode}`);
@@ -144,17 +149,19 @@ export default function NotificationBell() {
                     <div
                       key={n.id}
                       onClick={handleClick}
-                      className={`px-4 py-3 border-b border-gray-50 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors cursor-pointer ${
+                      className={`px-4 py-3 border-b border-gray-50 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors ${
+                        isQuizInvite ? 'cursor-pointer' : 'cursor-default'
+                      } ${
                         !n.read ? 'bg-purple-50/50 dark:bg-purple-900/20' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                          isQuizInvite
+                          isQuizRelated
                             ? (!n.read ? 'bg-amber-100 text-amber-600' : 'bg-amber-50 text-amber-400')
                             : (!n.read ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-400')
                         }`}>
-                          {isQuizInvite ? <Zap className="w-4 h-4" /> : <MessageSquare className="w-4 h-4" />}
+                          {isQuizRelated ? <Zap className="w-4 h-4" /> : <MessageSquare className="w-4 h-4" />}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800 dark:text-gray-100' : 'text-gray-600 dark:text-gray-300'}`}>
@@ -164,6 +171,11 @@ export default function NotificationBell() {
                           {isQuizInvite && quizCode && (
                             <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
                               <Zap className="w-3 h-3" /> Unirse: {quizCode}
+                            </span>
+                          )}
+                          {isTeamMember && (
+                            <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">
+                              👥 Equipo: {n.data?.team_name}
                             </span>
                           )}
                           <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-1">

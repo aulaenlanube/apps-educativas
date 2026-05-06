@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle, Check } from 'lucide-react';
+import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle, Check, Layers } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,7 +10,8 @@ import Header from '@/components/layout/Header';
 import useQuizChannel, { generateRoomCode } from './useQuizChannel';
 import useBattlePhrases from './useBattlePhrases';
 import BattleRisingMessages from './BattleRisingMessages';
-import { buildQuizQuestions } from './quizQuestionBuilder';
+import { buildQuizQuestions, difficultyLabel, GLOBAL_SUBJECT_ID } from './quizQuestionBuilder';
+import TeamSetupPanel from './TeamSetupPanel';
 import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
 import QBBackground from './QBBackground';
@@ -49,6 +50,7 @@ export default function QuizBattleHost() {
   const [templates, setTemplates] = useState([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState('');
   const [roomType, setRoomType] = useState('open'); // 'open' | 'group'
+  const [battleKind, setBattleKind] = useState('individual'); // 'individual' | 'team' (solo en modo grupo)
   const [selectedGroupId, setSelectedGroupId] = useState('');
   const [groups, setGroups] = useState([]);
   const [level, setLevel] = useState('primaria');
@@ -56,7 +58,10 @@ export default function QuizBattleHost() {
   const [subjectId, setSubjectId] = useState('');
   const [questionCount, setQuestionCount] = useState(10);
   const [timeLimit, setTimeLimit] = useState(20);
-  const [battleDifficulty, setBattleDifficulty] = useState('experto');
+  const [battleDifficulty, setBattleDifficulty] = useState(7); // 1-10 (antes 'experto')
+  // Equipos confirmados: [{ name, rep_student_id, member_ids[], team_id? }]
+  const [confirmedTeams, setConfirmedTeams] = useState([]);
+  const [showTeamSetup, setShowTeamSetup] = useState(false);
   const [shuffleColors, setShuffleColors] = useState(false); // cada alumno ve colores distintos
   const [bgAnimMode, setBgAnimMode] = useState('complex'); // 'none' | 'simple' | 'complex'
   // Evaluación a la que cuenta esta batalla (1|2|3|null). null => no suma a la nota.
@@ -118,12 +123,21 @@ export default function QuizBattleHost() {
     }
   }, [roomType, selectedGroupId, groups]);
 
-  // Auto-select first subject
+  // Auto-select first subject (preserva __global__ si ya estaba elegido)
   useEffect(() => {
+    if (subjectId === GLOBAL_SUBJECT_ID) return;
     if (subjects.length > 0 && !subjects.find((s) => s.id === subjectId)) {
       setSubjectId(subjects[0].id);
     }
   }, [subjects]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Si dejamos modo grupo o cambia el grupo, descartamos los equipos para
+  // evitar arrastrar configuraciones huérfanas.
+  useEffect(() => {
+    if (roomType !== 'group' || battleKind !== 'team') {
+      setConfirmedTeams([]);
+    }
+  }, [roomType, battleKind, selectedGroupId]);
 
   // ── Channel ──
   const userInfo = useMemo(() => ({
@@ -153,11 +167,26 @@ export default function QuizBattleHost() {
     [players, userInfo.id]
   );
 
+  // En batalla por equipos: para los renders mostramos el nombre del EQUIPO
+  // (no el del rep). Lo computamos como otra capa, sin alterar la lógica
+  // interna que sigue indexando por rep_student_id.
+  const isTeamBattle = roomType === 'group' && battleKind === 'team' && confirmedTeams.length > 0;
+  const teamByRepIdMemo = useMemo(
+    () => new Map(confirmedTeams.map(t => [t.rep_student_id, t])),
+    [confirmedTeams]
+  );
+  const decoratePlayer = useCallback((p) => {
+    if (!isTeamBattle) return p;
+    const team = teamByRepIdMemo.get(p.id);
+    if (!team) return p;
+    return { ...p, name: team.name, rep_name: p.name };
+  }, [isTeamBattle, teamByRepIdMemo]);
+
   // Keep refs in sync so the timer callback always reads the latest state
   useEffect(() => { gamePlayersRef.current = gamePlayers; }, [gamePlayers]);
   useEffect(() => { answersRef.current = answers; }, [answers]);
 
-  // ── Validate new players joining (group mode + max cap) ──
+  // ── Validate new players joining (group mode + max cap + team rep) ──
   useEffect(() => {
     if (phase === 'config' || !isConnected) return;
 
@@ -178,9 +207,27 @@ export default function QuizBattleHost() {
         }
       }
 
+      // En batalla por equipos solo aceptamos al representante de cada equipo.
+      // Los demás miembros del equipo deben acudir al PC del rep, no conectarse.
+      if (battleKind === 'team' && confirmedTeams.length > 0) {
+        const team = confirmedTeams.find((t) => t.rep_student_id === data.playerId);
+        if (!team) {
+          broadcast('room:not-team-rep', { playerId: data.playerId });
+          return;
+        }
+        // Anunciar al alumno qué equipo representa para que el cliente
+        // pueda mostrar el banner correspondiente.
+        broadcast('room:accepted', {
+          playerId: data.playerId,
+          team_id: team.team_id || null,
+          team_name: team.name,
+        });
+        return;
+      }
+
       broadcast('room:accepted', { playerId: data.playerId });
     });
-  }, [phase, isConnected, gamePlayers.length, roomType, selectedGroupId, onBroadcast, broadcast]);
+  }, [phase, isConnected, gamePlayers.length, roomType, selectedGroupId, battleKind, confirmedTeams, onBroadcast, broadcast]);
 
   // ── Listen for player answers ──
   useEffect(() => {
@@ -268,11 +315,34 @@ export default function QuizBattleHost() {
       setRoomCode(code);
       setPhase('waiting');
 
-      // Solo en modo "Solo mi grupo" se envía notificación a los alumnos del grupo
-      // para que puedan unirse con un clic. En modo "Abierta" no se notifica:
-      // los alumnos entran manualmente con el código.
-      if (roomType === 'group' && selectedGroupId) {
-        const groupName = groups.find((g) => g.id === selectedGroupId)?.name || 'tu grupo';
+      const groupName = groups.find((g) => g.id === selectedGroupId)?.name || 'tu grupo';
+
+      // En modo "Por equipos" usamos teacher_create_team_battle (graba teams +
+      // notifica solo al rep de cada equipo, los demás miembros reciben aviso
+      // informativo de que su rep es quien debe conectarse).
+      if (roomType === 'group' && battleKind === 'team' && confirmedTeams.length > 0) {
+        try {
+          const teamsPayload = confirmedTeams.map(t => ({
+            name: t.name,
+            rep_student_id: t.rep_student_id,
+            member_ids: t.member_ids,
+          }));
+          const { data, error } = await supabase.rpc('teacher_create_team_battle', {
+            p_group_id: selectedGroupId,
+            p_room_code: code,
+            p_teams: teamsPayload,
+            p_teacher_name: teacher?.display_name || 'Tu profesor',
+            p_group_name: groupName,
+          });
+          if (error || data?.error) {
+            console.warn('QuizBattle: error creating team battle', error || data?.error);
+            toast({ title: 'Error al notificar equipos', variant: 'destructive' });
+          }
+        } catch (err) {
+          console.warn('QuizBattle: could not create team battle', err);
+        }
+      } else if (roomType === 'group' && selectedGroupId) {
+        // Modo individual con grupo: notificación masiva clásica.
         try {
           await supabase.rpc('notify_group_quiz_battle', {
             p_group_id: selectedGroupId,
@@ -501,15 +571,34 @@ export default function QuizBattleHost() {
     setSaving(true);
     let playerBadges = {};
     try {
-      const playersPayload = lb.map((p, i) => ({
-        user_type: p.id.startsWith('guest-') ? 'guest' : 'student',
-        user_id: p.id.startsWith('guest-') ? null : p.id,
-        display_name: p.name,
-        avatar_emoji: p.emoji,
-        rank: i + 1,
-        score: p.score,
-        correct_answers: scores[p.id]?.correctCount || 0,
-      }));
+      // En team battles, cada lb[i] es un rep; lo convertimos a fila por equipo
+      // (un solo "p_player" por equipo, con team_id + played_by_user_id) para
+      // que la RPC replique el resultado a TODOS los miembros del equipo.
+      const isTeamBattle = roomType === 'group' && battleKind === 'team' && confirmedTeams.length > 0;
+      const teamByRepId = new Map(confirmedTeams.map(t => [t.rep_student_id, t]));
+
+      const playersPayload = isTeamBattle
+        ? lb.map((p, i) => {
+            const team = teamByRepId.get(p.id);
+            return {
+              team_id: team?.team_id || null,
+              team_name: team?.name || '',
+              played_by_user_id: p.id,
+              member_ids: team?.member_ids || [p.id],
+              rank: i + 1,
+              score: p.score,
+              correct_answers: scores[p.id]?.correctCount || 0,
+            };
+          })
+        : lb.map((p, i) => ({
+            user_type: p.id.startsWith('guest-') ? 'guest' : 'student',
+            user_id: p.id.startsWith('guest-') ? null : p.id,
+            display_name: p.name,
+            avatar_emoji: p.emoji,
+            rank: i + 1,
+            score: p.score,
+            correct_answers: scores[p.id]?.correctCount || 0,
+          }));
 
       const { data } = await supabase.rpc('save_quiz_battle_results', {
         p_room_code: roomCode,
@@ -522,6 +611,8 @@ export default function QuizBattleHost() {
         p_players: playersPayload,
         p_term: battleTerm,
         p_group_id: roomType === 'group' ? selectedGroupId : null,
+        p_battle_kind: isTeamBattle ? 'team' : 'individual',
+        p_difficulty: typeof battleDifficulty === 'number' ? battleDifficulty : null,
       });
       if (data?.player_badges && typeof data.player_badges === 'object') {
         playerBadges = data.player_badges;
@@ -568,16 +659,20 @@ export default function QuizBattleHost() {
   // ── Helpers ──
   function buildLeaderboard(scoresObj, playerList) {
     return playerList
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        emoji: p.emoji,
-        color: p.color || null,
-        selected_avatar_code: p.selected_avatar_code || null,
-        score: scoresObj[p.id]?.score || 0,
-        lastDelta: scoresObj[p.id]?.lastDelta || 0,
-        correctCount: scoresObj[p.id]?.correctCount || 0,
-      }))
+      .map((p) => {
+        const dec = decoratePlayer(p);
+        return {
+          id: p.id,
+          name: dec.name,
+          rep_name: dec.rep_name || null,
+          emoji: p.emoji,
+          color: p.color || null,
+          selected_avatar_code: p.selected_avatar_code || null,
+          score: scoresObj[p.id]?.score || 0,
+          lastDelta: scoresObj[p.id]?.lastDelta || 0,
+          correctCount: scoresObj[p.id]?.correctCount || 0,
+        };
+      })
       .sort((a, b) => b.score - a.score);
   }
 
@@ -682,6 +777,40 @@ export default function QuizBattleHost() {
                 </div>
               )}
 
+              {/* Modalidad: individual vs equipos (solo en modo grupo) */}
+              {roomType === 'group' && selectedGroupId && (
+                <div className="qb-field">
+                  <label>Modalidad</label>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                    <button type="button" onClick={() => setBattleKind('individual')}
+                      className={`qb-toggle-btn ${battleKind === 'individual' ? 'is-active' : ''}`}>
+                      <Users className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
+                      Individual
+                    </button>
+                    <button type="button" onClick={() => setBattleKind('team')}
+                      className={`qb-toggle-btn ${battleKind === 'team' ? 'is-active' : ''}`}>
+                      <Layers className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
+                      Por equipos
+                    </button>
+                  </div>
+                  {battleKind === 'team' && (
+                    <p style={{ fontSize: '0.7rem', color: 'rgba(251,191,36,0.85)', marginTop: '0.4rem', lineHeight: 1.4 }}>
+                      Solo el representante de cada equipo se conecta al PC. Los demás miembros van presencialmente y reciben los beneficios igual.
+                    </p>
+                  )}
+                  {battleKind === 'team' && (
+                    <button type="button"
+                      onClick={() => setShowTeamSetup(true)}
+                      className="qb-toggle-btn"
+                      style={{ width: '100%', marginTop: '0.5rem', fontWeight: 800, padding: '0.6rem' }}>
+                      {confirmedTeams.length > 0
+                        ? `✓ ${confirmedTeams.length} equipos configurados (cambiar)`
+                        : '⚙ Configurar equipos'}
+                    </button>
+                  )}
+                </div>
+              )}
+
               {/* Source mode */}
               <div className="qb-field">
                 <label>Origen de las preguntas</label>
@@ -719,39 +848,39 @@ export default function QuizBattleHost() {
                     </select>
                   </div>
 
-                  {/* Dificultad de la batalla */}
+                  {/* Dificultad de la batalla — escala 1-10 */}
                   <div className="qb-field">
-                    <label>Dificultad</label>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
-                      {[
-                        { id: 'principiante', emoji: '🟢', label: 'Principiante' },
-                        { id: 'intermedio', emoji: '🟡', label: 'Intermedio' },
-                        { id: 'avanzado', emoji: '🟠', label: 'Avanzado' },
-                        { id: 'experto', emoji: '🔴', label: 'Experto' },
-                      ].map(d => (
-                        <button key={d.id} type="button"
-                          onClick={() => setBattleDifficulty(d.id)}
-                          className={`qb-toggle-btn ${battleDifficulty === d.id ? 'is-active' : ''}`}
-                          style={{ fontSize: '0.8rem', padding: '0.4rem 0.5rem' }}>
-                          {d.emoji} {d.label}
-                        </button>
-                      ))}
+                    <label>
+                      Dificultad: {battleDifficulty}/10
+                      &nbsp;<span style={{ opacity: 0.7, fontWeight: 600 }}>
+                        {difficultyLabel(battleDifficulty).emoji} {difficultyLabel(battleDifficulty).label}
+                      </span>
+                    </label>
+                    <input type="range" min="1" max="10" step="1"
+                      value={typeof battleDifficulty === 'number' ? battleDifficulty : 7}
+                      onChange={(e) => setBattleDifficulty(parseInt(e.target.value, 10))} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6rem', opacity: 0.5, padding: '0 2px' }}>
+                      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                      <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
                     </div>
                     <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.3rem', lineHeight: 1.3 }}>
-                      {battleDifficulty === 'principiante' && 'Preguntas fáciles de cursos anteriores y cultura general.'}
-                      {battleDifficulty === 'intermedio' && 'Mezcla de la asignatura actual con repasos de cursos anteriores.'}
-                      {battleDifficulty === 'avanzado' && 'Solo la asignatura seleccionada, dificultad media-alta.'}
-                      {battleDifficulty === 'experto' && 'Todo del temario de la asignatura y nivel. El máximo reto.'}
+                      {difficultyLabel(battleDifficulty).desc}
                     </p>
                   </div>
 
                   <div className="qb-field">
                     <label>Asignatura</label>
                     <select value={subjectId} onChange={(e) => setSubjectId(e.target.value)}>
+                      <option value={GLOBAL_SUBJECT_ID}>🌐 Global (todas las asignaturas)</option>
                       {subjects.map((s) => (
                         <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
                       ))}
                     </select>
+                    {subjectId === GLOBAL_SUBJECT_ID && (
+                      <p style={{ fontSize: '0.65rem', color: 'rgba(251,191,36,0.8)', marginTop: '0.3rem' }}>
+                        Las preguntas vendrán de TODAS las asignaturas del nivel y curso elegido.
+                      </p>
+                    )}
                   </div>
 
                   <div className="qb-field">
@@ -878,10 +1007,13 @@ export default function QuizBattleHost() {
                   || (quota && quota.remaining <= 0)
                   || (sourceMode === 'random' && !subjectId)
                   || (sourceMode === 'template' && !selectedTemplateId)
+                  || (roomType === 'group' && battleKind === 'team' && confirmedTeams.length < 2)
                 }>
                 {loading ? 'Cargando preguntas...'
                   : quota && quota.remaining <= 0 ? 'Sin partidas disponibles'
-                  : 'Crear sala'}
+                  : (roomType === 'group' && battleKind === 'team' && confirmedTeams.length < 2)
+                    ? 'Configura los equipos primero'
+                    : 'Crear sala'}
               </button>
 
               <button className="qb-btn-back" onClick={() => navigate('/dashboard')}
@@ -933,37 +1065,79 @@ export default function QuizBattleHost() {
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
               >
-                <Users className="w-4 h-4" />
-                {gamePlayers.length} jugador{gamePlayers.length !== 1 ? 'es' : ''} en directo
+                {isTeamBattle ? <Layers className="w-4 h-4" /> : <Users className="w-4 h-4" />}
+                {isTeamBattle
+                  ? `${gamePlayers.length}/${confirmedTeams.length} equipos conectados`
+                  : `${gamePlayers.length} jugador${gamePlayers.length !== 1 ? 'es' : ''} en directo`}
               </motion.span>
             </div>
 
-            <div className="qb-players-grid">
-              <AnimatePresence>
-                {gamePlayers.map((p) => (
-                  <motion.div key={p.id} className="qb-player-card"
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.7 }}>
-                    <div className="qb-player-emoji">
-                      {p.selected_avatar_code ? (
-                        <UserAvatar
-                          selectedAvatarCode={p.selected_avatar_code}
-                          avatarEmoji={p.emoji}
-                          avatarColor={p.color}
-                          size="lg"
-                          shape="rounded"
-                          showRarityBorder
-                        />
-                      ) : (
-                        <span>{p.emoji}</span>
-                      )}
-                    </div>
-                    <div className="qb-player-name">{p.name}</div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
+            {isTeamBattle ? (
+              <div className="qb-players-grid">
+                <AnimatePresence>
+                  {confirmedTeams.map((t) => {
+                    const connected = gamePlayers.find(p => p.id === t.rep_student_id);
+                    return (
+                      <motion.div key={t.rep_student_id} className="qb-player-card"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.7 }}
+                        style={connected ? {} : { opacity: 0.5, filter: 'grayscale(0.6)' }}>
+                        <div className="qb-player-emoji">
+                          {connected?.selected_avatar_code ? (
+                            <UserAvatar
+                              selectedAvatarCode={connected.selected_avatar_code}
+                              avatarEmoji={connected.emoji}
+                              avatarColor={connected.color}
+                              size="lg"
+                              shape="rounded"
+                              showRarityBorder
+                            />
+                          ) : (
+                            <span>{connected ? connected.emoji : '🛡️'}</span>
+                          )}
+                        </div>
+                        <div className="qb-player-name" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                          <span>{t.name}</span>
+                          <span style={{ fontSize: '0.65rem', opacity: 0.7, fontWeight: 600 }}>
+                            {connected
+                              ? `${connected.name} ✓`
+                              : `Esperando rep (${t.member_ids.length} miembros)`}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <div className="qb-players-grid">
+                <AnimatePresence>
+                  {gamePlayers.map((p) => (
+                    <motion.div key={p.id} className="qb-player-card"
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.7 }}>
+                      <div className="qb-player-emoji">
+                        {p.selected_avatar_code ? (
+                          <UserAvatar
+                            selectedAvatarCode={p.selected_avatar_code}
+                            avatarEmoji={p.emoji}
+                            avatarColor={p.color}
+                            size="lg"
+                            shape="rounded"
+                            showRarityBorder
+                          />
+                        ) : (
+                          <span>{p.emoji}</span>
+                        )}
+                      </div>
+                      <div className="qb-player-name">{p.name}</div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            )}
 
             <button className="qb-btn-primary" onClick={handleStart}
               disabled={gamePlayers.length < 1}
@@ -1243,6 +1417,41 @@ export default function QuizBattleHost() {
       {(phase === 'waiting' || phase === 'results' || phase === 'final') && (
         <BattleRisingMessages messages={liveMessages} />
       )}
+
+      {/* Overlay del configurador de equipos */}
+      <AnimatePresence>
+        {showTeamSetup && roomType === 'group' && selectedGroupId && (
+          <motion.div
+            key="team-setup-overlay"
+            className="qb-team-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={(e) => { if (e.target === e.currentTarget) setShowTeamSetup(false); }}
+          >
+            <motion.div
+              className="qb-team-modal"
+              initial={{ y: 30, scale: 0.96, opacity: 0 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ y: 30, scale: 0.96, opacity: 0 }}
+            >
+              <TeamSetupPanel
+                groupId={selectedGroupId}
+                groupName={groups.find(g => g.id === selectedGroupId)?.name || ''}
+                onCancel={() => setShowTeamSetup(false)}
+                onConfirm={(teams) => {
+                  setConfirmedTeams(teams);
+                  setShowTeamSetup(false);
+                  toast({
+                    title: `${teams.length} equipos listos`,
+                    description: 'Pulsa "Crear sala" para lanzar la batalla.',
+                  });
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

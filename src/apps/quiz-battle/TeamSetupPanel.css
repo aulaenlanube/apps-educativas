@@ -1,0 +1,356 @@
+/* TeamSetupPanel — preparación de batallas por equipos. Sigue el lenguaje
+   visual oscuro / vibrante del Quiz Battle (gradientes, bordes brillantes). */
+
+.qb-team-setup {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  color: var(--qb-text, #fff);
+}
+
+.qb-team-setup-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.qb-team-setup-header p {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin: 0.25rem 0 0;
+}
+
+.qb-team-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.qb-team-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.qb-team-help {
+  font-size: 0.72rem;
+  opacity: 0.65;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.qb-team-students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.4rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.qb-team-student-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.qb-team-student-chip:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.qb-team-student-chip.is-absent {
+  opacity: 0.45;
+  text-decoration: line-through;
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.qb-team-student-chip.is-present {
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.qb-team-student-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tamaño + generador */
+.qb-team-size-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.qb-team-size-row label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.qb-team-size-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.qb-team-size-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.qb-team-size-btn:hover {
+  border-color: #fbbf24;
+}
+
+.qb-team-size-btn.is-active {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #0c0a09;
+  border-color: #fbbf24;
+}
+
+.qb-team-generate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.qb-team-generate-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+
+.qb-team-generate-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Equipos */
+.qb-teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.qb-team-card {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(251, 191, 36, 0.25);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+}
+
+.qb-team-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.qb-team-name-input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: inherit;
+  padding: 0.25rem 0.4rem;
+}
+
+.qb-team-name-input:hover, .qb-team-name-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  outline: none;
+}
+
+.qb-team-card-count {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+.qb-team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.qb-team-member {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.12s;
+}
+
+.qb-team-member:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.qb-team-member.is-rep {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+.qb-team-member.is-moving {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.qb-team-member-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qb-rep-crown {
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+.qb-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.qb-mini-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.qb-mini-btn.qb-mini-danger:hover {
+  border-color: #fca5a5;
+  background: rgba(220, 38, 38, 0.18);
+}
+
+.qb-move-popover {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 30;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.4rem;
+  border-radius: 8px;
+  background: #1f1f2e;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  min-width: 140px;
+}
+
+.qb-team-add-btn {
+  padding: 0.55rem;
+  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.qb-team-add-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.qb-team-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.qb-team-actions .qb-btn-primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+/* Overlay del modal de configuración de equipos */
+.qb-team-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.qb-team-modal {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+

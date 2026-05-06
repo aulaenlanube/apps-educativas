@@ -125,6 +125,31 @@ export async function getRoscoData(level, grade, subjectId, maxDifficulty = 3) {
 }
 
 /**
+ * Igual que getRoscoData pero sin filtrar por asignatura — devuelve preguntas
+ * de TODAS las asignaturas del nivel/curso. Usado por las "batallas globales".
+ */
+export async function getRoscoDataGlobal(level, grade, maxDifficulty = 3) {
+  const key = cacheKey('rosco-global', level, grade, `__global__:${maxDifficulty}`);
+  const cached = getCached(key);
+  if (cached) return cached;
+
+  const { data, error } = await supabase.rpc('get_rosco_data_global', {
+    p_level: level,
+    p_grade: parseInt(grade),
+    p_max_difficulty: maxDifficulty,
+  });
+
+  if (error) {
+    console.error('Error cargando rosco data global:', error.message);
+    return [];
+  }
+
+  const result = deepParseJSON(data || []);
+  setCache(key, result);
+  return result;
+}
+
+/**
  * Obtener sets de busca-el-intruso (formato: [{categoria, correctos, intrusos}])
  * Usado por: BuscaElIntruso
  */
