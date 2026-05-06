@@ -113,16 +113,18 @@ npm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
 
 ## Sistema de nota y bonus (importantísimo)
 
-La nota del alumno que ve en **Resumen** es la de la **evaluación en curso** (`groups.current_term` o inferida por fecha). Se compone de 5 partes, cada bonus capado:
+La nota del alumno que ve en **Resumen** es la de la **evaluación en curso** (`groups.current_term` o inferida por fecha). Se compone de 5 partes, cada bonus capado, con la base de tareas pesando solo el 90% para que los bonuses no saturen el cap a 10 trivialmente:
 
 ```
-nota_evaluación = base_tareas
+nota_evaluación = base_tareas · 0,9
                 + bonus_duelos    (-0,5..+0,5)
                 + bonus_batallas  ( 0..+0,5)
                 + bonus_nivel     ( 0..+0,5)
                 + bonus_avatares  ( 0..+0,5)
                 → clip [0, 10]
 ```
+
+La `base_tareas` que se muestra en la UI sigue siendo la media ponderada sobre 10 (no se reescala); el factor 0,9 solo aplica al combinarla con los bonuses para producir `final_grade`. Para llegar a 10 se necesita base alta **y** bonuses (10 · 0,9 = 9 + 1 punto en bonuses → 10).
 
 ### Lo no intentado cuenta como 0
 `_compute_student_term_grades` usa `COALESCE(best.best_nota, 0)` y promedia ponderando por `weight`. Las tareas sin intento o con nota inferior a `min_score` se incluyen en la media con su valor real (0 si no se intentó, la nota obtenida si se falló).
