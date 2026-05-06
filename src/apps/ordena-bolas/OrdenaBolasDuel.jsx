@@ -8,14 +8,17 @@ import useDuel from '@/hooks/useDuel';
 import UserAvatar from '@/components/ui/UserAvatar';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 
-const BALL_COUNT = 21;
-
-const DIFFICULTIES = [
-  { id: 'easy',      label: 'Fácil',     ops: ['numbers'],                                           rotation: 2, randomSize: false, showNext: true,  emoji: '🟢', color: 'from-emerald-500 to-emerald-600', ring: '#10b981' },
-  { id: 'medium',    label: 'Medio',     ops: ['numbers','add','sub'],                               rotation: 4, randomSize: false, showNext: true,  emoji: '🔵', color: 'from-blue-500 to-blue-600',       ring: '#3b82f6' },
-  { id: 'hard',      label: 'Difícil',   ops: ['numbers','add','sub','mul','div'],                   rotation: 6, randomSize: false, showNext: false, fixedOps: { add: 1, sub: 1, mul: 1, div: 1 }, emoji: '🟠', color: 'from-amber-500 to-orange-600', ring: '#f59e0b' },
-  { id: 'nightmare', label: 'Pesadilla', ops: ['numbers','add','sub','mul','div','pow','sqrt','eq'], rotation: 8, randomSize: true,  showNext: false, emoji: '💀', color: 'from-rose-600 to-rose-900', ring: '#e11d48' },
-];
+// El duelo es una experiencia rápida y predecible: cantidad fija de bolas, solo
+// con números, rotación moderada del recipiente y "siguiente valor" siempre
+// visible. El profesor/alumno no elige nada — entra y se juega.
+const BALL_COUNT = 25;
+const FIXED_DIFFICULTY = {
+  id: 'duel-default',
+  ops: ['numbers'],
+  rotation: 3,
+  randomSize: false,
+  showNext: true,
+};
 
 function makeOperand(type) {
   switch (type) {
@@ -82,14 +85,16 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
   const navigate = useNavigate();
   const { me, rival, channel, reportResult } = duel;
 
-  // Estado síncrono
-  const [phase, setPhase] = useState('picking'); // picking | countdown | playing | ended
+  // Estado síncrono. Ya no hay fase de selección — empieza directamente en
+  // 'connecting' hasta que el host arranque la partida.
+  const [phase, setPhase] = useState('connecting'); // connecting | countdown | playing | ended
   const [difficulty, setDifficulty] = useState(null); // object
   const [ballsData, setBallsData] = useState(null); // [{id, value, label, x0, y0, sizeFactor}]
   const [state, setState] = useState(null); // { marks: {id:{by,correct}}, scores: {uid: n}, remaining: [vals sorted asc] }
   const [winnerId, setWinnerId] = useState(null);
   const [countdown, setCountdown] = useState(null);
   const reportedRef = useRef(false);
+  const startedRef = useRef(false);
 
   const stateRef = useRef(null); stateRef.current = state;
   const ballsDataRef = useRef(null); ballsDataRef.current = ballsData;
@@ -177,6 +182,15 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
       channel.broadcast('game_end', { winner_id: me.id });
     });
   }, [me?.isHost, channel?.isConnected, me?.id, rival?.id, difficulty, phase]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Host: arranca automáticamente con la dificultad fija en cuanto se conecta.
+  // No hay selección manual — el duelo es siempre el mismo formato.
+  useEffect(() => {
+    if (!me?.isHost || !channel?.isConnected) return;
+    if (startedRef.current) return;
+    startedRef.current = true;
+    startWithDifficulty(FIXED_DIFFICULTY);
+  }, [me?.isHost, channel?.isConnected, startWithDifficulty]);
 
   // ============ GUEST ============
 
@@ -389,11 +403,9 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
           <div className="flex flex-col items-center justify-center px-3 py-2 bg-black/20">
             <Swords className="w-5 h-5 mb-1 opacity-90" />
             <span className="text-[10px] uppercase font-bold tracking-widest opacity-80">Ordena Bolas</span>
-            {difficulty && phase !== 'picking' && (
-              <span className={`mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r ${difficulty.color} text-white shadow`}>
-                {difficulty.emoji} {difficulty.label}
-              </span>
-            )}
+            <span className="mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-indigo-400 to-fuchsia-400 text-white shadow">
+              {BALL_COUNT} bolas
+            </span>
           </div>
           <PlayerHeader
             side="right"
@@ -408,20 +420,18 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
         </div>
       </div>
 
-      {phase === 'picking' && (
+      {phase === 'connecting' && (
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-700 text-white"
         >
-          {/* glow decorativo */}
           <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen"
                style={{ background: 'radial-gradient(circle at 20% 0%, rgba(244,114,182,0.7), transparent 60%), radial-gradient(circle at 80% 100%, rgba(56,189,248,0.6), transparent 60%)' }} />
 
           <div className="relative p-6">
-            {/* VS panel con avatares grandes */}
-            <div className="grid grid-cols-3 items-center gap-3 mb-6">
+            <div className="grid grid-cols-3 items-center gap-3 mb-4">
               <DuelistCard
                 avatarCode={me.selectedAvatarCode}
                 avatarEmoji={me.emoji}
@@ -453,52 +463,22 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
                 from="right"
               />
             </div>
-
-            {me.isHost ? (
-              <>
-                <h3 className="text-xl sm:text-2xl font-black text-center mb-1">Elige la dificultad</h3>
-                <p className="text-xs sm:text-sm text-white/85 text-center mb-4">
-                  21 bolas, de menor a mayor. El primero en marcar correctamente gana el punto. Si falla, el rival se lleva el punto.
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {DIFFICULTIES.map(d => (
-                    <button
-                      key={d.id}
-                      onClick={() => startWithDifficulty(d)}
-                      className={`p-4 rounded-xl text-white font-black flex flex-col items-center gap-1 bg-gradient-to-br ${d.color} hover:scale-[1.04] transition-transform shadow-lg ring-1 ring-white/30`}
-                    >
-                      <span className="text-3xl">{d.emoji}</span>
-                      <span className="uppercase tracking-wide text-sm">{d.label}</span>
-                      <span className="text-[10px] font-medium opacity-90 text-center leading-tight mt-1">
-                        {d.ops.length === 1 ? 'Solo números' :
-                         d.ops.length === 3 ? 'Sumas y restas' :
-                         d.ops.length === 5 ? '+ Multiplicación y división' :
-                         'Todo, con tamaño engañoso'}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="text-center py-6">
-                <motion.div
-                  animate={{ scale: [1, 1.08, 1] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                  className="text-3xl mb-2"
-                >⏳</motion.div>
-                <p className="font-bold text-white/95">Esperando a que el retador elija la dificultad…</p>
-                <div className="mt-2 inline-flex gap-1">
-                  {[0, 1, 2].map(i => (
-                    <motion.span
-                      key={i}
-                      animate={{ opacity: [0.2, 1, 0.2] }}
-                      transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
-                      className="w-1.5 h-1.5 rounded-full bg-white"
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+            <p className="text-sm text-center text-white/90">
+              {BALL_COUNT} bolas con números, de menor a mayor. El primero en marcar correctamente gana el punto; si falla, el rival se lleva el punto.
+            </p>
+            <div className="mt-3 flex items-center justify-center gap-2 text-white/80 text-xs">
+              <span className="animate-pulse">Preparando partida…</span>
+              <span className="inline-flex gap-1">
+                {[0, 1, 2].map(i => (
+                  <motion.span
+                    key={i}
+                    animate={{ opacity: [0.2, 1, 0.2] }}
+                    transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+                    className="w-1.5 h-1.5 rounded-full bg-white"
+                  />
+                ))}
+              </span>
+            </div>
           </div>
         </motion.div>
       )}
