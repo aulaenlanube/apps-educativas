@@ -11,7 +11,7 @@ import DuelChatBar from '@/components/duel/DuelChatBar';
 // El duelo es una experiencia rápida y predecible: cantidad fija de bolas, solo
 // con números, rotación moderada del recipiente y "siguiente valor" siempre
 // visible. El profesor/alumno no elige nada — entra y se juega.
-const BALL_COUNT = 25;
+const BALL_COUNT = 15;
 const FIXED_DIFFICULTY = {
   id: 'duel-default',
   ops: ['numbers'],
