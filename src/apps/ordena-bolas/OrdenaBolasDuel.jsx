@@ -20,6 +20,31 @@ const FIXED_DIFFICULTY = {
   showNext: true,
 };
 
+// Persistencia local del estado del duelo. Si un jugador refresca la página
+// (F5, accidente, navegación rara), recuperamos el progreso de la partida en
+// curso para que no se reinicie. Clave por duelId — al terminar se limpia.
+const STORAGE_PREFIX = 'orderballsduel:';
+function loadCheckpoint(duelId) {
+  if (!duelId || typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_PREFIX + duelId);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || parsed.phase === 'ended') return null;
+    return parsed;
+  } catch (_) { return null; }
+}
+function saveCheckpoint(duelId, data) {
+  if (!duelId || typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(STORAGE_PREFIX + duelId, JSON.stringify(data));
+  } catch (_) { /* quota / private mode → ignorar */ }
+}
+function clearCheckpoint(duelId) {
+  if (!duelId || typeof window === 'undefined') return;
+  try { window.localStorage.removeItem(STORAGE_PREFIX + duelId); } catch (_) {}
+}
+
 function makeOperand(type) {
   switch (type) {
     case 'numbers': { const val = Math.floor(Math.random()*50)+1; return { val, label: `${val}` }; }
@@ -83,18 +108,29 @@ function generateBallData(diff) {
 export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
   const duel = useDuel();
   const navigate = useNavigate();
-  const { me, rival, channel, reportResult } = duel;
+  const { duelId, me, rival, channel, reportResult } = duel;
 
-  // Estado síncrono. Ya no hay fase de selección — empieza directamente en
-  // 'connecting' hasta que el host arranque la partida.
-  const [phase, setPhase] = useState('connecting'); // connecting | countdown | playing | ended
-  const [difficulty, setDifficulty] = useState(null); // object
-  const [ballsData, setBallsData] = useState(null); // [{id, value, label, x0, y0, sizeFactor}]
-  const [state, setState] = useState(null); // { marks: {id:{by,correct}}, scores: {uid: n}, remaining: [vals sorted asc] }
-  const [winnerId, setWinnerId] = useState(null);
-  const [countdown, setCountdown] = useState(null);
+  // Si el navegador se refresca, recuperamos el estado guardado para no
+  // reiniciar la partida. Lo leemos UNA vez al montar (lazy init de useState).
+  const [restoredCheckpoint] = useState(() => loadCheckpoint(duelId));
+
+  // Estado síncrono. Si hubo refresh y había una partida en curso, saltamos
+  // directamente a la fase 'playing' (sin volver a hacer la cuenta atrás).
+  const [phase, setPhase] = useState(() => {
+    if (restoredCheckpoint && restoredCheckpoint.phase) {
+      return restoredCheckpoint.phase === 'countdown' ? 'playing' : restoredCheckpoint.phase;
+    }
+    return 'connecting';
+  });
+  const [difficulty, setDifficulty] = useState(restoredCheckpoint?.difficulty ?? null);
+  const [ballsData, setBallsData]   = useState(restoredCheckpoint?.ballsData ?? null);
+  const [state, setState]           = useState(restoredCheckpoint?.state ?? null);
+  const [winnerId, setWinnerId]     = useState(restoredCheckpoint?.winnerId ?? null);
+  const [countdown, setCountdown]   = useState(null);
   const reportedRef = useRef(false);
-  const startedRef = useRef(false);
+  // Si restauramos, marcamos como ya iniciado para que el host NO regenere
+  // las bolas al volver a montarse.
+  const startedRef = useRef(!!restoredCheckpoint);
 
   const stateRef = useRef(null); stateRef.current = state;
   const ballsDataRef = useRef(null); ballsDataRef.current = ballsData;
@@ -191,6 +227,28 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     startedRef.current = true;
     startWithDifficulty(FIXED_DIFFICULTY);
   }, [me?.isHost, channel?.isConnected, startWithDifficulty]);
+
+  // Si restauramos un checkpoint mid-game, el host re-emite setup+state y la
+  // fase 'playing' al canal en cuanto se conecta para que el guest (que pudo
+  // no haber refrescado) reciba el estado más reciente.
+  useEffect(() => {
+    if (!restoredCheckpoint) return;
+    if (!me?.isHost || !channel?.isConnected) return;
+    if (!ballsData || !difficulty || !state) return;
+    channel.broadcast('setup', { difficulty, ballsData });
+    channel.broadcast('state', state);
+    channel.broadcast('phase', { phase: 'playing' });
+  }, [restoredCheckpoint, me?.isHost, channel?.isConnected, ballsData, difficulty, state]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Persistencia: guarda el progreso del duelo cada vez que cambia algo
+  // relevante. Al terminar (phase 'ended') borra la entrada.
+  useEffect(() => {
+    if (!duelId) return;
+    if (phase === 'ended') { clearCheckpoint(duelId); return; }
+    if (phase === 'connecting') return; // todavía nada que guardar
+    if (!ballsData || !difficulty || !state) return;
+    saveCheckpoint(duelId, { phase, difficulty, ballsData, state, winnerId });
+  }, [duelId, phase, difficulty, ballsData, state, winnerId]);
 
   // ============ GUEST ============
 
