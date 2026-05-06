@@ -1,5 +1,7 @@
-/* TeamSetupPanel — preparación de batallas por equipos. Sigue el lenguaje
-   visual oscuro / vibrante del Quiz Battle (gradientes, bordes brillantes). */
+/* TeamSetupPanel — preparación de batallas por equipos. El panel se monta
+   en un overlay sobre el resto de la app, así que NO hereda el color del
+   contenedor del Quiz Battle: forzamos texto blanco explícito en todos los
+   bloques para evitar contrastes pobres. */
 
 .qb-team-setup {
   width: 100%;
@@ -9,7 +11,15 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  color: var(--qb-text, #fff);
+  color: #fff;
+}
+
+.qb-team-setup * {
+  color: inherit;
+}
+
+.qb-team-setup .qb-faint-text {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .qb-team-setup-header h2 {
@@ -19,12 +29,14 @@
   font-size: 1.25rem;
   font-weight: 900;
   margin: 0;
+  color: #fff;
 }
 
 .qb-team-setup-header p {
   font-size: 0.8rem;
-  opacity: 0.7;
+  opacity: 0.85;
   margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .qb-team-section {
@@ -43,11 +55,12 @@
   align-items: center;
   font-weight: 800;
   font-size: 0.95rem;
+  color: #fff;
 }
 
 .qb-team-help {
-  font-size: 0.72rem;
-  opacity: 0.65;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
   margin: 0;
   line-height: 1.4;
 }
@@ -56,8 +69,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 0.4rem;
-  max-height: 280px;
-  overflow-y: auto;
 }
 
 .qb-team-student-chip {
@@ -110,6 +121,7 @@
 .qb-team-size-row label {
   font-size: 0.85rem;
   font-weight: 700;
+  color: #fff;
 }
 
 .qb-team-size-buttons {
@@ -193,7 +205,7 @@
   border-radius: 6px;
   font-weight: 800;
   font-size: 0.95rem;
-  color: inherit;
+  color: #fff;
   padding: 0.25rem 0.4rem;
 }
 
@@ -334,13 +346,14 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: 2rem 1rem;
   overflow-y: auto;
+  color: #fff;
 }
 
 .qb-team-modal {
@@ -350,7 +363,13 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   width: 100%;
   max-width: 760px;
-  max-height: calc(100vh - 4rem);
-  overflow-y: auto;
+  color: #fff;
+}
+
+/* En el modal, los botones primarios y back deben tener texto blanco
+   independiente del tema del contenedor padre. */
+.qb-team-setup .qb-btn-primary,
+.qb-team-setup .qb-btn-back {
+  color: #fff;
 }
 
