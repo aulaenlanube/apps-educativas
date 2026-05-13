@@ -7,7 +7,8 @@ import {
   appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
-  appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal
+  appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal,
+  appInfografiasInteractivas
 } from './commonApps';
 
 export const bachilleratoSubjects = materiasData.bachillerato;
@@ -23,22 +24,26 @@ const appsBase = [
 const appsIdioma = [...appsBase.slice(0, appsBase.indexOf(appParejas) + 1), appDetectiveDePalabras, ...appsBase.slice(appsBase.indexOf(appLluviaDePalabras))];
 
 const appsCiencias = [
-  appMesaCrafteo, appEntrenadorTabla, ...appsBase
+  appInfografiasInteractivas, appMesaCrafteo, appEntrenadorTabla, ...appsBase
 ];
 
 const appsBiologia = [
-  appCelulaAnimal, appCelulaVegetal, appSistemaSolar, ...appsBase
+  appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar, ...appsBase
 ];
 
 const appsMatematicas = [
-  appFraccionesESO, appLaboratorioFunciones2D, appVisualizador3D, appOrdenaBolas, ...appsBase
+  appInfografiasInteractivas, appFraccionesESO, appLaboratorioFunciones2D, appVisualizador3D, appOrdenaBolas, ...appsBase
 ];
 
 const appsTutoria = [
   appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, ...appsBase
 ];
 
-const appsProgramacion = [appProgramacionBloques, appTerminalRetro, ...appsBase];
+const appsProgramacion = [appInfografiasInteractivas, appProgramacionBloques, appTerminalRetro, ...appsBase];
+
+const appsTecnologia = [appInfografiasInteractivas, ...appsBase];
+
+const appsQuimica = [appInfografiasInteractivas, appMesaCrafteo, appEntrenadorTabla, ...appsBase];
 
 export const bachilleratoApps = {
   '1': {
@@ -52,7 +57,7 @@ export const bachilleratoApps = {
     'economia':             [...appsBase],
     'latin':                [...appsBase],
     'literatura-universal': [...appsBase],
-    'tecnologia':           [...appsBase],
+    'tecnologia':           [...appsTecnologia],
     'ed-fisica':            [...appsBase],
     'ingles':               [...appsIdioma],
     'valenciano':           [...appsIdioma],
@@ -67,13 +72,13 @@ export const bachilleratoApps = {
     'filosofia':            [...appsBase],
     'biologia':             [...appsBiologia],
     'fisica':               [...appsCiencias],
-    'quimica':              [...appsCiencias],
+    'quimica':              [...appsQuimica],
     'dibujo-tecnico':       [...appsBase],
     'economia-empresa':     [...appsBase],
     'latin':                [...appsBase],
     'geografia':            [...appsBase],
     'arte':                 [...appsBase],
-    'tecnologia':           [...appsBase],
+    'tecnologia':           [...appsTecnologia],
     'ingles':               [...appsIdioma],
     'valenciano':           [...appsIdioma],
     'frances':              [...appsIdioma],

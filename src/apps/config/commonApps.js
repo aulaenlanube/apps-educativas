@@ -114,6 +114,7 @@ const VelocidadRespuesta = lazy(() => import('../velocidad-respuesta/VelocidadRe
 const ConectaParejas = lazy(() => import('../conecta-parejas/ConectaParejas'));
 const DictadoInteractivo = lazy(() => import('../dictado-interactivo/DictadoInteractivo'));
 const TorrePalabras = lazy(() => import('../torre-palabras/TorrePalabras'));
+const InfografiasInteractivas = lazy(() => import('../infografias-interactivas/InfografiasInteractivas'));
 
 
 // Apps Comunes
@@ -491,4 +492,11 @@ export const appTorrePalabras = {
   name: '🏗️ Torre de Palabras',
   description: 'Clasifica cada palabra en su categoría para apilar bloques. ¡Construye la torre más alta!',
   component: TorrePalabras
+};
+
+export const appInfografiasInteractivas = {
+  id: 'infografias-interactivas',
+  name: '🗺️ Infografías Interactivas',
+  description: 'Estudia una infografía y responde a preguntas sobre sus datos para obtener tu nota.',
+  component: InfografiasInteractivas
 };

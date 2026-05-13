@@ -836,6 +836,76 @@ const icons3 = {
       </g>
     </svg>
   ),
+
+  'infografias-interactivas': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ai3-info-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F5F3FF" />
+          <stop offset="1" stopColor="#FCE7F3" />
+        </linearGradient>
+        <linearGradient id="ai3-info-paper" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#FFFFFF" />
+          <stop offset="1" stopColor="#F3F4F6" />
+        </linearGradient>
+        <linearGradient id="ai3-info-img" x1="0" y1="0" x2="1" y2="1">
+          <stop stopColor="#A78BFA" />
+          <stop offset="1" stopColor="#F472B6" />
+        </linearGradient>
+        <linearGradient id="ai3-info-hot" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#FBBF24" />
+          <stop offset="1" stopColor="#F97316" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#ai3-info-bg)" />
+
+      {/* Sombra del poster */}
+      <rect x="9" y="8" width="32" height="34" rx="3" fill="rgba(0,0,0,0.06)" />
+
+      {/* Poster / infografía (papel) */}
+      <rect x="8" y="7" width="32" height="34" rx="3" fill="url(#ai3-info-paper)" stroke="#E5E7EB" strokeWidth="0.8" />
+
+      {/* Título (línea decorativa) */}
+      <rect x="11" y="10" width="14" height="1.6" rx="0.8" fill="#9333EA" />
+      <rect x="11" y="13" width="9" height="1" rx="0.5" fill="#D1D5DB" />
+
+      {/* Marco de la imagen */}
+      <rect x="11" y="16" width="26" height="14" rx="2" fill="url(#ai3-info-img)" />
+      {/* Sol */}
+      <circle cx="14.5" cy="19" r="1.5" fill="#FDE68A" />
+      {/* Montañas */}
+      <path d="M11 30 L17 22 L21 26 L26 20 L31 27 L37 23 L37 30 Z" fill="#7C3AED" opacity="0.85" />
+      <path d="M11 30 L19 25 L24 28 L29 23 L37 27 L37 30 Z" fill="#5B21B6" opacity="0.85" />
+      {/* Línea base */}
+      <rect x="11" y="29.6" width="26" height="0.5" fill="rgba(0,0,0,0.15)" />
+
+      {/* Líneas de texto inferiores */}
+      <rect x="11" y="33" width="20" height="1" rx="0.5" fill="#E5E7EB" />
+      <rect x="11" y="35.5" width="22" height="1" rx="0.5" fill="#E5E7EB" />
+      <rect x="11" y="38" width="14" height="1" rx="0.5" fill="#E5E7EB" />
+
+      {/* Hotspot numerado 1 */}
+      <g style={{ transformOrigin: '15px 19px', animation: 'ai-pulse 2.2s ease-in-out infinite' }}>
+        <circle cx="15" cy="19" r="3.2" fill="url(#ai3-info-hot)" stroke="white" strokeWidth="1.2" />
+        <text x="15" y="20.6" fontSize="4" fontWeight="800" fill="white" textAnchor="middle" fontFamily="system-ui">1</text>
+      </g>
+
+      {/* Hotspot numerado 2 */}
+      <g style={{ transformOrigin: '27px 24px', animation: 'ai-pulse 2.2s ease-in-out 0.5s infinite' }}>
+        <circle cx="27" cy="24" r="3.2" fill="url(#ai3-info-hot)" stroke="white" strokeWidth="1.2" />
+        <text x="27" y="25.6" fontSize="4" fontWeight="800" fill="white" textAnchor="middle" fontFamily="system-ui">2</text>
+      </g>
+
+      {/* Hotspot numerado 3 */}
+      <g style={{ transformOrigin: '34px 19px', animation: 'ai-pulse 2.2s ease-in-out 1s infinite' }}>
+        <circle cx="34" cy="19" r="3.2" fill="url(#ai3-info-hot)" stroke="white" strokeWidth="1.2" />
+        <text x="34" y="20.6" fontSize="4" fontWeight="800" fill="white" textAnchor="middle" fontFamily="system-ui">3</text>
+      </g>
+
+      {/* Brillo del papel */}
+      <rect x="8" y="7" width="32" height="2" rx="1" fill="white" opacity="0.4" />
+    </svg>
+  ),
 };
 
 export default icons3;
