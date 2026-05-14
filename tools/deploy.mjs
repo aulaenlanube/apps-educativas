@@ -3,7 +3,7 @@
 //
 // Flujo:
 //   1. Tests de seguridad (aborta si fallan).
-//   2. `npm run build` -> dist/.
+//   2. `pnpm run build` -> dist/.
 //   3. Empaqueta dist/ en dist.tar.gz (contenido en la raiz del tar).
 //   4. scp a domains/apps-educativas.com/.
 //   5. Swap atomico en el servidor:
@@ -14,6 +14,9 @@
 //   6. Limpieza local.
 //
 // Requiere: alias SSH `hostinger-wp` configurado en ~/.ssh/config.
+// Requiere: pnpm 11.1.2 disponible localmente (gestionado por corepack a partir
+// del campo `packageManager` de package.json). En el VPS no hay pnpm/npm: solo
+// recibe los archivos estaticos ya compilados.
 
 import { execSync, spawnSync } from 'node:child_process';
 import { existsSync, statSync, rmSync } from 'node:fs';
@@ -37,10 +40,10 @@ function step(n, title) {
 }
 
 step(1, 'Tests de seguridad');
-run('npx vitest run src/__tests__/security.test.js');
+run('pnpm exec vitest run src/__tests__/security.test.js');
 
 step(2, 'Build de produccion');
-run('npm run build');
+run('pnpm run build');
 
 if (!existsSync(distDir) || !statSync(distDir).isDirectory()) {
   console.error('\nERROR: dist/ no existe tras el build.');

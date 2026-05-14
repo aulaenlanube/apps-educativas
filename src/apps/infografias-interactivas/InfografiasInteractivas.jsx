@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Eye, BookOpen, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Clock, Award, FileSearch, RotateCcw, Sparkles, ZoomIn, ZoomOut, Maximize2, Minimize2 } from 'lucide-react';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
-import { INFOGRAFIAS, getInfografiasFor } from './data/infografiasData';
+import { getInfografiasFor } from './data/infografiasData';
 import './InfografiasInteractivas.css';
 
 const PHASE = {

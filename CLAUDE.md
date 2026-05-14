@@ -105,8 +105,8 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 
 ### 9. Build y deploy
 ```bash
-npm run build   # debe pasar sin errores
-npm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
+pnpm run build   # debe pasar sin errores
+pnpm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
 ```
 
 ---
@@ -250,14 +250,26 @@ La nota del panel **Resumen** del alumno y el desglose de la pestaña **Tareas**
 
 ## Comandos
 
+> Gestor de paquetes: **pnpm 11.1.2** (anclado por `packageManager` en `package.json` + Corepack). No usar `npm install` en este proyecto.
+
 ```bash
-npm install        # Dependencias
-npm run dev        # Dev server
-npm run build      # Build de producción
-npm run lint       # Lint
-npm run test       # Vitest (tests de seguridad)
-npm run deploy     # Build + scp a Hostinger (tests como gate)
+pnpm install       # Dependencias (genera node_modules + pnpm-lock.yaml)
+pnpm run dev       # Dev server
+pnpm run build     # Build de producción
+pnpm run lint      # Lint
+pnpm run test      # Vitest (tests de seguridad)
+pnpm run deploy    # Build + scp a Hostinger (tests como gate)
 ```
+
+Si pnpm no está instalado en una máquina nueva:
+```powershell
+$shimDir = "$env:LOCALAPPDATA\Corepack\bin"
+New-Item -ItemType Directory -Force -Path $shimDir | Out-Null
+corepack enable --install-directory $shimDir pnpm   # crea shim user-local
+# Añadir $shimDir al PATH del usuario (persistente).
+```
+En Linux/macOS: `corepack enable pnpm` directamente.
+La primera vez en cada máquina hay que aprobar los build scripts: `pnpm approve-builds` (esbuild + sharp).
 
 ---
 
