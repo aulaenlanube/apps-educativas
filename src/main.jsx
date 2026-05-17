@@ -41,6 +41,9 @@ const DuelLobby = lazy(() => import('@/pages/DuelLobby.jsx'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/legal/PrivacyPolicyPage.jsx'));
 const CookiesPolicyPage = lazy(() => import('@/pages/legal/CookiesPolicyPage.jsx'));
 const LegalNoticePage = lazy(() => import('@/pages/legal/LegalNoticePage.jsx'));
+const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage.jsx'));
+const BlogCategoryPage = lazy(() => import('@/pages/BlogCategoryPage.jsx'));
+const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -75,6 +78,9 @@ const router = createBrowserRouter(
             { path: 'politica-privacidad', element: <SuspensePage><PrivacyPolicyPage /></SuspensePage> },
             { path: 'politica-cookies',    element: <SuspensePage><CookiesPolicyPage /></SuspensePage> },
             { path: 'aviso-legal',         element: <SuspensePage><LegalNoticePage /></SuspensePage> },
+            { path: 'blog',                              element: <SuspensePage><BlogIndexPage /></SuspensePage> },
+            { path: 'blog/categoria/:categorySlug',      element: <SuspensePage><BlogCategoryPage /></SuspensePage> },
+            { path: 'blog/:slug',                        element: <SuspensePage><BlogPostPage /></SuspensePage> },
             { path: 'login', element: <SuspensePage><LoginPage /></SuspensePage> },
             { path: 'grupo/:groupCode', element: <SuspensePage><GroupLoginPage /></SuspensePage> },
             { path: 'registro', element: <SuspensePage><RegisterPage /></SuspensePage> },

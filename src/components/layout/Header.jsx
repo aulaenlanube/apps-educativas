@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Shield, Menu } from 'lucide-react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { Shield, Menu, BookOpen } from 'lucide-react';
 import MascotLogo from '../ui/MascotLogo';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginButton from '@/components/auth/LoginButton';
@@ -33,6 +33,19 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-4">
             {children}
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`
+              }
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Blog
+            </NavLink>
             {!loading && isAdmin && (
               <button
                 onClick={() => navigate('/admin')}

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Bell, CheckCheck, MessageSquare, Zap, LogOut, Copy,
   LayoutDashboard, UserCircle, BarChart3, Rocket, Trophy,
-  GraduationCap, Sun, Moon, Shield, ChevronRight, CheckCircle2,
+  GraduationCap, Sun, Moon, Shield, ChevronRight, CheckCircle2, BookOpen,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
@@ -216,6 +216,8 @@ export default function MobileSidebar({ open, onClose }) {
                     <SidebarItem icon={GraduationCap} label={student?.group_name} disabled />
                   </>
                 )}
+
+                <SidebarItem icon={BookOpen} label="Blog" onClick={() => nav('/blog')} />
 
                 <SidebarItem
                   icon={theme === 'dark' ? Sun : Moon}

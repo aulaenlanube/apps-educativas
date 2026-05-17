@@ -46,6 +46,10 @@ const Footer = () => {
                         <OposicionesIAPromo variant="inline" source="footer" className="text-sm" />
                     </div>
                     <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+                        <Link to="/blog" className="text-gray-300 hover:text-white hover:underline">
+                            Blog
+                        </Link>
+                        <span className="text-gray-600">·</span>
                         <Link to="/aviso-legal" className="text-gray-300 hover:text-white hover:underline">
                             Aviso legal
                         </Link>

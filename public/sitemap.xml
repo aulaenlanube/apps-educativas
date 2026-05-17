@@ -7,30 +7,177 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Primaria -->
-  <url><loc>https://apps-educativas.com/curso/primaria/1</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/primaria/2</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/primaria/3</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/primaria/4</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/primaria/5</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/primaria/6</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-  <!-- ESO -->
-  <url><loc>https://apps-educativas.com/curso/eso/1</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/eso/2</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/eso/3</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://apps-educativas.com/curso/eso/4</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-  <!-- Bachillerato -->
-  <url><loc>https://apps-educativas.com/curso/bachillerato/1</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://apps-educativas.com/curso/bachillerato/2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-  <!-- Atención a la Diversidad -->
-  <url><loc>https://apps-educativas.com/curso/ad/1</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-  <!-- Páginas legales -->
-  <url><loc>https://apps-educativas.com/politica-privacidad</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://apps-educativas.com/politica-cookies</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://apps-educativas.com/aviso-legal</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/5</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/primaria/6</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/eso/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/eso/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/eso/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/eso/4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/bachillerato/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/bachillerato/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/curso/ad/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/plataforma-eduapps</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/ia-en-educacion</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/gamificacion</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/flipped-classroom</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/abp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/innovacion-educativa</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/categoria/atencion-diversidad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/politica-privacidad</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/politica-cookies</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/aviso-legal</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <!-- Blog posts (generados desde src/blog/posts/) -->
+  <url>
+    <loc>https://apps-educativas.com/blog/la-plataforma-educativa-perfecta-sin-programar</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/crea-apps-educativas-nivel-pro-con-ia-sin-codigo</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/plataforma-educativa-gratis-sin-login-sin-publicidad</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/he-creado-la-web-de-apps-educativas-que-siempre-quise</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
