@@ -11,7 +11,7 @@
 	     `X-Frame-Options` porque ambos son ignorados en <meta> y deben llegar
 	     siempre por cabecera HTTP (ya están en .htaccess). connect-src incluye
 	     región-hosts de Google Analytics (region1.google-analytics.com, etc). -->
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; form-action 'self'; worker-src 'self' blob:" />
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; form-action 'self'; worker-src 'self' blob:; frame-src 'self' https://accounts.google.com https://*.supabase.co https://www.youtube-nocookie.com https://www.youtube.com" />
 	<meta name="referrer" content="strict-origin-when-cross-origin" />
 
 	<!-- Favicon (se sirve desde /images/ en producción) -->
