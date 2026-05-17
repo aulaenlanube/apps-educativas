@@ -153,8 +153,36 @@
 
   <!-- Blog posts (generados desde src/blog/posts/) -->
   <url>
+    <loc>https://apps-educativas.com/blog/motivacion-intrinseca-vs-recompensas-en-gamificacion</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/corregir-examenes-con-ia-sigue-siendo-el-docente</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/microlearning-por-que-funciona-y-cuando-no</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://apps-educativas.com/blog/la-plataforma-educativa-perfecta-sin-programar</loc>
     <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/dislexia-en-el-aula-deteccion-y-adaptacion</loc>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -167,8 +195,64 @@
   </url>
 
   <url>
+    <loc>https://apps-educativas.com/blog/20-prompts-de-ia-para-docentes</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/sistema-de-insignias-en-clase-metodologia-completa</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/neuroeducacion-7-hallazgos-que-cambian-como-doy-clase</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/aprendizaje-basado-en-proyectos-como-disenar-uno-que-enganche</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://apps-educativas.com/blog/plataforma-educativa-gratis-sin-login-sin-publicidad</loc>
     <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/como-empezar-con-ia-en-clase-sin-meter-la-pata</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/tdah-en-primaria-12-adaptaciones-que-funcionan</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/flipped-classroom-como-lo-monte-en-mi-clase</loc>
+    <lastmod>2025-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/gamificacion-en-el-aula-lo-que-funciona</loc>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

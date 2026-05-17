@@ -73,6 +73,78 @@ Mood: futuristic, magical, optimistic.`,
 Subject: an elegant cinematic dashboard view rendered in 3D, slightly angled, made of layered floating glassmorphism panels in violet and indigo. The panels suggest (abstractly, no real UI text): a stylized chart with rising bars, a circular progress ring, a small trophy silhouette, several rounded avatar circles, and a lightning bolt for "battle mode". Surrounding the panels, a few small floating icons: a chip, a graduation cap, a controller. The whole composition feels like the cover of a polished software product launch.
 
 Mood: powerful, polished, ambitious.`,
+
+  'gamificacion-en-el-aula-lo-que-funciona': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a large glowing golden trophy slightly off-center, surrounded by floating geometric badges and small medals in violet, pink and cyan, each badge with a different abstract symbol inside (star, flame, target, crown — no text). Above the trophy, a soft beam of light. Below, a stylized progression bar half-filled glowing from indigo to amber. Suggests achievement, levels and structured progress.
+
+Mood: motivating, structured, vibrant.`,
+
+  'flipped-classroom-como-lo-monte-en-mi-clase': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a floating play button icon morphing into an open book on its right side, connected by a soft luminous arc that "flips" between them. Above the play button, a stylized clock and a tiny home silhouette in glow. Below the book, a stylized desk with a pencil and a checked task list (abstract, no real text). Suggests "video at home, practice in class".
+
+Mood: clear, organized, hopeful.`,
+
+  'tdah-en-primaria-12-adaptaciones-que-funcionan': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized glowing brain rendered in 3D with several abstract puzzle pieces softly orbiting around it, each piece a different vibrant color (violet, cyan, amber, pink), some pieces fitting perfectly and others slightly offset. A few small floating icons: a clock, a checklist, a shield, a magnifier — representing structure and support. Soft volumetric glow around the brain.
+
+Mood: empathetic, supportive, hopeful.`,
+
+  'como-empezar-con-ia-en-clase-sin-meter-la-pata': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a friendly stylized AI assistant orb (glowing sphere with abstract neural mesh inside) floating next to a chalkboard rendered in 3D with several minimalist icons drawn on it (lightbulb, atom, book, math symbol — abstract shapes, no real text). A gentle bridge of light connects the AI orb and the chalkboard. Suggests AI as a guide for the teacher entering this new world.
+
+Mood: welcoming, optimistic, calm.`,
+
+  'aprendizaje-basado-en-proyectos-como-disenar-uno-que-enganche': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a large central question mark made of luminous lines, around which orbit several stylized 3D objects representing project outcomes: a small architectural blueprint roll, a gear, a tiny prototype shape, a stylized microphone, a video play icon, a paint palette. The objects connect to the question mark with soft glowing threads, suggesting "one driving question, many outputs".
+
+Mood: curious, ambitious, collaborative.`,
+
+  'neuroeducacion-7-hallazgos-que-cambian-como-doy-clase': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D brain glowing softly from within, with abstract neural pathways lighting up sequentially. Around the brain, seven small glowing nodes connected to it by luminous lines, each node a different geometric symbol (gear, lightbulb, clock, eye, book, heart, infinity — minimalist abstract). Subtle halo of cyan and violet light.
+
+Mood: enlightening, scientific, inspiring.`,
+
+  'sistema-de-insignias-en-clase-metodologia-completa': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a large central hexagonal badge in gold and violet with a stylized star inside (no text), elevated on a glowing pedestal. Around it, smaller badges of different shapes and colors arranged in a fanned pyramid, each suggesting a category: a shield for global, a calendar for trimester, a stack for accumulable, and a crown for super. Glowing connection lines between badges suggest a hierarchy.
+
+Mood: structured, prestigious, motivating.`,
+
+  '20-prompts-de-ia-para-docentes': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D chat bubble or terminal window made of translucent glass, slightly tilted, with abstract glowing lines inside representing prompts (horizontal stripes of varying length, no readable text). Around it, smaller floating bubbles each with a tiny icon: a pencil, a ruler, a checkmark, a magnifier, a graph. Soft sparks of golden light emerge from the main bubble suggesting "ready-to-use answers".
+
+Mood: practical, generous, energizing.`,
+
+  'dislexia-en-el-aula-deteccion-y-adaptacion': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized open book in 3D from which several letters (minimalist abstract shapes, NO real text, NO actual letters of any alphabet) are gently floating upward and rearranging themselves into a clear, ordered pattern in the air above. A subtle ear icon and a small headphone icon float beside the book suggesting audio access. Warm glow emerging from inside the book.
+
+Mood: hopeful, accessible, empathetic.`,
+
+  'microlearning-por-que-funciona-y-cuando-no': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a row of three glowing small capsule-shaped icons (like pills or modular blocks) of different vibrant colors, each containing a tiny abstract symbol (a number, an atom, a music note — minimalist). Above the row, a small clock with the hand positioned at "5 minutes". Below, a stylized stair stepping upward suggesting progress through micro-steps.
+
+Mood: focused, efficient, modern.`,
+
+  'corregir-examenes-con-ia-sigue-siendo-el-docente': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized stack of 3D exam papers slightly fanned out, with a glowing magnifying glass passing over them. From the magnifier, a soft beam of light reveals abstract checkmarks and small marks (no real text). Beside the stack, a small AI orb softly glowing, connected to the magnifier by a thread of light suggesting collaboration between teacher and AI.
+
+Mood: efficient, professional, balanced.`,
+
+  'motivacion-intrinseca-vs-recompensas-en-gamificacion': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a luminous heart shape in violet floating slightly to the left, balanced against a golden coin or medal on the right, both connected by a delicate glowing scale or balance beam. The heart radiates a soft warm light suggesting inner motivation; the coin sparkles but with a colder glow. The scale tips very gently toward the heart, suggesting that intrinsic motivation outweighs external rewards in the long run.
+
+Mood: contemplative, balanced, deep.`,
 };
 
 function die(msg, code = 1) {
