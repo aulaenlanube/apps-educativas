@@ -145,6 +145,30 @@ Mood: efficient, professional, balanced.`,
 Subject: a luminous heart shape in violet floating slightly to the left, balanced against a golden coin or medal on the right, both connected by a delicate glowing scale or balance beam. The heart radiates a soft warm light suggesting inner motivation; the coin sparkles but with a colder glow. The scale tips very gently toward the heart, suggesting that intrinsic motivation outweighs external rewards in the long run.
 
 Mood: contemplative, balanced, deep.`,
+
+  'ai-act-en-clase-obligaciones-y-prohibiciones': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D circle of twelve glowing stars arranged like the European Union flag, slightly tilted in perspective, with a soft luminous shield in the centre. Inside the shield, a stylized minimalist scale of justice balancing a small AI chip on one side and a tiny graduation cap on the other. Around the scene, a few floating translucent regulatory documents (no text) and a subtle gavel silhouette in glow. Indigo-to-violet gradient background with soft golden European star accents.
+
+Mood: institutional, serene, authoritative.`,
+
+  'detectores-de-ia-en-deberes-por-que-fallan': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a translucent magnifying glass rendered in 3D hovering over an abstract sheet of paper, with the lens showing a confused glitch effect and broken radar circles inside. Floating around the magnifier, several small question-mark symbols and a tiny "warning triangle" icon in amber. Below, a stack of papers slightly fanned out with some showing soft red highlight marks and others soft green checkmarks (abstract shapes, no real text or letters). The magnifying glass leans slightly to suggest unreliability.
+
+Mood: critical, thoughtful, alert.`,
+
+  'khanmigo-magicschool-chatgpt-edu-tutores-ia': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: three glowing translucent orbs arranged horizontally in the centre, each a different size and accent color. The left orb has a soft mathematical formula symbol inside (abstract, no real text); the middle orb shows a minimalist wand or magic spark with several tool icons orbiting it; the right orb shows an abstract chat bubble pattern. All three orbs are connected by thin luminous lines forming a triangle, and small floating book-and-chip icons drift between them. Suggests three different AI tutors coexisting in an educational ecosystem.
+
+Mood: comparative, modern, sophisticated.`,
+
+  'notebooklm-para-docentes-temario-en-podcast': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D open notebook in the centre slightly tilted, from whose pages emerge two glowing translucent sound waves intertwined in violet and cyan, morphing into a small floating headphones icon and a microphone silhouette above the notebook. Around the notebook, several abstract source documents (PDF shape, video play triangle, web globe) levitate, each connected to the notebook by a thin luminous thread. Bright spark of golden light at the centre of the open pages suggesting transformation from text to audio.
+
+Mood: transformative, inspiring, fresh.`,
 };
 
 function die(msg, code = 1) {
