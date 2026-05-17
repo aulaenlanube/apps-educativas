@@ -63,7 +63,7 @@ Más sobre esto en el [post de neuroeducación](/blog/neuroeducacion-7-hallazgos
 
 ### 3. Ventana de atención sostenida
 
-La atención sostenida en tareas pasivas (escuchar una explicación) cae significativamente a partir de **8-10 minutos** en adultos motivados (Wankat, 2002) y a partir de **5-7 minutos** en adolescentes. El microlearning respeta esa ventana en lugar de pelear contra ella.
+La atención sostenida en tareas pasivas (escuchar una explicación monológica) tiende a caer tras los primeros **8-10 minutos en adultos motivados** y antes en adolescentes (típicamente **5-8 minutos** según edad y contenido). Las cifras exactas varían según fuente, pero la dirección la corroboran décadas de investigación en educación superior y secundaria. El microlearning respeta esa ventana en lugar de pelear contra ella.
 
 ## El sweet spot por edad
 

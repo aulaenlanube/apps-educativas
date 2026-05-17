@@ -14,11 +14,11 @@ keywords:
   - Moodle gamificación
   - Daniel Pink
 tldr:
-  - "La gamificación bien diseñada sube la participación de la clase entre un 25 y un 40 %."
-  - "Los puntos por puntos no motivan: si solo das medallas, el alumnado se aburre en 6 semanas."
+  - "La gamificación bien diseñada se nota sobre todo en el bloque medio-bajo del grupo: más participación voluntaria y menos suspensos."
+  - "Los puntos por puntos no motivan: si solo das medallas, el alumnado se aburre en pocas semanas."
   - "El sistema gana cuando combina autonomía (elección), maestría (progresión) y propósito (sentido) — la tríada de Daniel Pink."
-  - "Las insignias trimestrales y las acumulables funcionan mejor que las globales para sostener el esfuerzo."
-  - "Si penalizas con insignias negativas, hazlo con conductas medibles, nunca con juicios subjetivos."
+  - "Las insignias trimestrales y las acumulables funcionan mejor que las globales para sostener el esfuerzo durante el curso."
+  - "Si penalizas con insignias negativas, hazlo con conductas medibles, nunca con juicios subjetivos sobre la persona."
 faq:
   - q: "¿Qué es la gamificación educativa exactamente?"
     a: "Es el uso de mecánicas de juego (puntos, niveles, insignias, retos, narrativa) aplicadas a un contexto que NO es un juego — el aula — para aumentar el compromiso del alumnado con el aprendizaje."
@@ -51,18 +51,18 @@ Gamificación **sí es**: aplicar de forma sistemática las **mecánicas que hac
 
 Si tu unidad didáctica se sostiene sin las mecánicas, es que las mecánicas son decoración. Y la decoración se pasa de moda rápido.
 
-## Lo que de verdad mueve la motivación (con números)
+## Lo que de verdad mueve la motivación
 
-Tengo registros de 8 cursos consecutivos. Promedio que veo cuando un grupo entra en un sistema gamificado bien diseñado:
+Cuando un grupo entra en un sistema gamificado bien diseñado, lo que se ve repetidamente en mis clases (y lo que coincide con la literatura sobre gamificación educativa cuando hay efecto real) sigue este patrón:
 
-| Métrica | Sin gamificación | Con sistema gamificado |
-|---|---|---|
-| Tareas entregadas a tiempo | 62 % | 84 % |
-| Participación voluntaria en clase | baja, ~5 alumnos | media-alta, 15-18 |
-| Alumnado que se queda a trabajar en recreos | 1-2 | 8-12 |
-| Suspensos al final del trimestre | 25-30 % | 8-12 % |
+| Métrica | Tendencia con un sistema gamificado bien diseñado |
+|---|---|
+| Tareas entregadas a tiempo | Sube de forma clara |
+| Participación voluntaria en clase | Aumenta notablemente (más manos levantadas, más intervenciones espontáneas) |
+| Alumnado que se queda a trabajar en recreos | Pasa de anecdótico a habitual |
+| Suspensos al final del trimestre | Caen, sobre todo en el bloque medio-bajo (el top apenas se mueve, ya iba bien) |
 
-Las cifras no son universales, pero el patrón se repite: **un 25-40 % más de participación** y **caída del fracaso a la mitad**. Y aquí el matiz importante: este efecto solo aparece cuando el sistema cumple tres condiciones, no antes.
+Las cifras concretas dependen del grupo, del centro y del sistema, así que mejor no vender medias falsas. Lo que sí se repite es la dirección: **más participación y menos fracaso en el bloque medio-bajo**. Y un matiz importante: este efecto solo aparece cuando el sistema cumple tres condiciones, no antes.
 
 ## Las tres condiciones (la tríada de Pink, aplicada al aula)
 

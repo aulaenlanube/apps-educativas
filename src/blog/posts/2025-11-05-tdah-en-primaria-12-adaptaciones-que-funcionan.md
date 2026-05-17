@@ -18,7 +18,7 @@ tldr:
   - "El DSM-5 reconoce tres presentaciones: inatenta (más común en niñas, infradiagnosticada), hiperactivo-impulsiva y combinada."
   - "Las adaptaciones más eficaces no son las que parecen 'más adaptación' — son las que reducen demanda de funciones ejecutivas, no las que dan más tiempo."
   - "Russell Barkley insiste desde los 90 en que el TDAH es un trastorno de la autorregulación y la memoria de trabajo, no de la atención."
-  - "Una sola adaptación bien hecha (rutinas visuales) puede mejorar la entrega de tareas del 30 % al 80 % en seis semanas."
+  - "Una sola adaptación bien hecha (rutinas visuales, fragmentación de tareas) puede mejorar de forma notable la entrega de trabajos en pocas semanas."
 faq:
   - q: "¿Qué porcentaje de alumnado tiene TDAH en una clase de Primaria?"
     a: "Entre el 5 y el 7 % según el DSM-5 y metaanálisis (Polanczyk 2015). En un grupo de 25 alumnos hay estadísticamente 1-2 con TDAH diagnosticado y casi siempre otro u otra sin diagnosticar, especialmente niñas con presentación inatenta."

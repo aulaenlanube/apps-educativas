@@ -27,7 +27,7 @@ faq:
   - q: "¿Qué es el 'testing effect' o efecto de evaluación recuperativa?"
     a: "Es el hallazgo de que recordar activamente la información (responder a preguntas) consolida el aprendizaje mucho mejor que releer pasivamente. La diferencia es del 20-50 % en retención a largo plazo según estudios de Roediger y Karpicke."
   - q: "¿Cuántas horas duerme un alumno de Secundaria de media y por qué importa?"
-    a: "Entre 6,5 y 7,5 horas en España (Estudio Hbsc-OMS 2024), por debajo de las 8-10 recomendadas. El sueño es donde se consolida el aprendizaje del día — dormir menos no es solo cansancio, es perder memoria a largo plazo."
+    a: "Estudios sobre hábitos de salud en adolescentes (HBSC, OMS) sitúan la media española por debajo de las 8-10 horas recomendadas por las sociedades médicas. El sueño es donde se consolida el aprendizaje del día — dormir menos no es solo cansancio, es perder memoria a largo plazo."
   - q: "¿Quién es la referencia en neuroeducación a día de hoy?"
     a: "Stanislas Dehaene (Collège de France) en neurociencia básica del aprendizaje. Daniel Willingham (UVA) en aplicación a aula. Anna Forés y David Bueno en España. Mariale Hardiman en EE. UU. Si solo lees uno: empieza por Willingham, *¿Por qué a los niños no les gusta ir a la escuela?*."
 tags: [neuroeducacion, evidencia, aprendizaje, neuromitos, dehaene, willingham]
@@ -77,9 +77,9 @@ Lo que **sí funciona**: presentar la información en **múltiples formatos simu
 
 ### 4. Atención focalizada > multitarea
 
-La multitarea no existe a nivel cognitivo: lo que el cerebro hace es alternar rápidamente entre tareas, con un coste cognitivo cada vez que cambia (task switching cost). Estudios de Earl Miller (MIT) muestran caídas de rendimiento del 20-40 % cuando intentamos hacer dos tareas cognitivas a la vez.
+La multitarea no existe a nivel cognitivo: lo que el cerebro hace es alternar rápidamente entre tareas, con un coste cognitivo cada vez que cambia (task switching cost). Investigaciones de neurocientíficos como Earl Miller (MIT) muestran caídas claras de rendimiento cuando intentamos compatibilizar dos tareas cognitivas exigentes a la vez.
 
-Aplicación brutal: **el móvil sobre la mesa, aunque esté boca abajo, baja el rendimiento del alumnado**. Estudios de Adrian Ward (2017) lo cuantifican: la mera presencia del móvil reduce la memoria de trabajo entre un 10 y un 20 %.
+Aplicación brutal: **el móvil sobre la mesa, aunque esté boca abajo y silenciado, baja el rendimiento del alumnado**. El estudio *Brain Drain* de Adrian Ward y colegas (2017) mostró que la simple presencia del móvil reduce de forma medible la memoria de trabajo disponible — y eso se traduce en peor aprendizaje en la sesión.
 
 Norma básica: durante el trabajo cognitivo serio, móviles fuera del aula o en cajón cerrado. No es "antitecnología" — es respetar cómo funciona el cerebro.
 
@@ -89,9 +89,9 @@ Esta es la que nadie quiere oír. **El sueño no es opcional para el aprendizaje
 
 Datos para tu próxima reunión de padres:
 
-- Un alumno de Secundaria necesita 8-10 horas de sueño (Academia Americana del Sueño, replicado en SEN España).
-- La media española actual está en 6,5-7,5 horas.
-- Cada hora menos de sueño se asocia con caídas medibles en rendimiento académico.
+- Un adolescente de Secundaria necesita **8-10 horas de sueño** (recomendaciones de la Academia Americana de Medicina del Sueño y de las sociedades pediátricas españolas).
+- La media real está claramente por debajo de esas cifras según los estudios HBSC (OMS) y los informes nacionales más recientes.
+- Cada hora menos de sueño habitual se asocia con caídas medibles en rendimiento académico y atención sostenida.
 
 Lo que tú puedes hacer en aula:
 

@@ -62,7 +62,7 @@ Lo que me convenció fue una clase concreta de bases de datos. Llevaba años exp
 
 Probé a grabar 3 vídeos de 5-7 minutos con los conceptos básicos. La clase siguiente, los que se los habían visto entraron al ordenador y empezaron a hacer consultas. Yo iba puesto por puesto. **Los que se atascaban tenían ayuda EN EL MOMENTO**, no a las 23:00 con sus padres rabiando.
 
-Resultado a final de trimestre: la nota media subió 1,2 puntos. La gente que normalmente suspendía aprobó. Y yo terminaba la clase MENOS cansado, no más.
+Resultado a final de trimestre: la nota media del grupo subió de forma clara, los que normalmente flotaban en el suspenso aprobaron, y yo terminaba la clase MENOS cansado, no más.
 
 ## La regla de los 8 minutos
 

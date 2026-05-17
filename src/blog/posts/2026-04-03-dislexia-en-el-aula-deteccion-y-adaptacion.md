@@ -15,9 +15,9 @@ keywords:
   - LOMLOE ACNEAE
 tldr:
   - "La dislexia afecta al 5-10 % del alumnado y sigue siendo la dificultad específica de aprendizaje (DEA) más infradiagnosticada."
-  - "Las 8 señales clave aparecen entre 2.º y 4.º de Primaria, pero el 60 % se detecta demasiado tarde (5.º Primaria o ESO)."
+  - "Las 8 señales clave suelen aparecer entre 2.º y 4.º de Primaria, pero una parte importante se detecta demasiado tarde (a partir de 5.º o ya en ESO)."
   - "La dislexia NO es problema de inteligencia: el alumnado con dislexia rinde IGUAL o MEJOR cuando se le presenta el contenido en formato adaptado."
-  - "Sally Shaywitz (Yale) ha documentado en 20 años de fMRI que el cerebro disléxico procesa el lenguaje escrito por una ruta distinta, no inferior."
+  - "Sally Shaywitz (Yale) lleva décadas documentando con fMRI que el cerebro disléxico procesa el lenguaje escrito por una ruta distinta, no inferior."
   - "Las adaptaciones más eficaces son: tiempo extra, fuentes adaptadas (OpenDyslexic, Lexend), audio para textos largos, y NO penalizar ortografía en evaluación de contenido."
 faq:
   - q: "¿Qué porcentaje de alumnado tiene dislexia?"
@@ -55,13 +55,12 @@ La dislexia no se cura. Se compensa. Y se compensa mucho si se detecta pronto.
 
 ## Los números que tienes que tener en cabeza
 
-- Prevalencia: **5-10 %** del alumnado (DSM-5; Federación Española de Dislexia).
+- Prevalencia: **5-10 %** del alumnado (DSM-5; Federación Española de Dislexia / DISFAM).
 - En tu aula de 25 alumnos hay **1-2 con dislexia** estadísticamente.
-- El **60 % no se diagnostica antes de 5.º de Primaria** o incluso ESO.
-- El **40 % del fracaso escolar** en España está asociado a DEA no detectadas o mal abordadas.
-- Detección **tardía multiplica por 4** el riesgo de abandono escolar.
+- **Una parte muy significativa de los casos se diagnostica tarde** (a partir de 5.º de Primaria o incluso ESO), aunque las señales son visibles mucho antes. Este es uno de los grandes problemas: cuando llega el diagnóstico, ya arrastra años de frustración académica.
+- Las DEA (dificultades específicas de aprendizaje) **están detrás de una proporción notable de los casos de fracaso escolar** cuando no se detectan ni se adaptan a tiempo, según asociaciones profesionales y orientadores.
 
-Estos datos no son anecdóticos. La dislexia mal gestionada destruye trayectorias escolares enteras.
+Estos no son detalles menores. La dislexia mal gestionada **destruye trayectorias escolares enteras** — y, peor aún, la autoestima del niño o niña que la sufre durante años sin entender por qué les cuesta tanto algo que a sus compañeros les parece trivial.
 
 ## Las 8 señales que tienes que vigilar
 

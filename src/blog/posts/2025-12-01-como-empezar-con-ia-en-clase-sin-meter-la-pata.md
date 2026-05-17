@@ -41,14 +41,14 @@ Vamos.
 
 ## Lo primero: aceptar la realidad
 
-Datos para que arranques con la cabeza fría:
+Lo que se ve día a día en las aulas de Secundaria y Bachillerato a finales de 2025:
 
-- En noviembre de 2025, **el 80 % del alumnado de Secundaria usa ChatGPT o similares de forma regular** (encuesta OCDE / España). En Bachillerato, sube al 92 %.
-- El **64 % declara haberlo usado para tareas escolares** sin que el docente lo supiera.
-- La detección automática de texto generado por IA tiene **tasas de falsos positivos del 9-30 %** según estudios independientes (Stanford, MIT).
-- La media de tiempo que un docente ahorra usando IA para preparar clases es de **5,8 horas semanales** según el último informe de la Fundación Telefónica.
+- **Una mayoría amplia del alumnado de Secundaria y Bachillerato usa ChatGPT o similares de forma habitual**, mucho más de lo que el profesorado suele suponer. Varios estudios y encuestas en distintos países lo confirman, con porcentajes que crecen cada trimestre.
+- **Una parte importante lo ha usado para tareas escolares** sin avisar al docente.
+- La detección automática de texto generado por IA tiene **tasas de falsos positivos preocupantes** según estudios independientes (Stanford, MIT). Acusar por software es jugar con fuego.
+- El tiempo que un docente puede ahorrar usando IA para preparar clases es **de varias horas semanales** una vez integrada en el flujo. No es marketing — es lo que coincidimos quienes ya la usamos en serio.
 
-Resumiendo: el alumnado ya está dentro, los detectores no funcionan, y tú puedes ahorrar casi un día de trabajo a la semana si la usas bien.
+Resumiendo: el alumnado ya está dentro, los detectores no funcionan de forma fiable, y tú puedes ahorrar mucho tiempo de tareas mecánicas si la usas bien.
 
 Ahora veamos cómo.
 
