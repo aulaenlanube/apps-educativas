@@ -4,7 +4,7 @@
 
 ## Categorías activas
 
-`plataforma-eduapps` · `gamificacion` · `flipped-classroom` · `atencion-diversidad` · `ia-en-educacion` · `abp` · `innovacion-educativa`
+`plataforma-eduapps` · `gamificacion` · `flipped-classroom` · `atencion-diversidad` · `ia-en-educacion` · `abp` · `innovacion-educativa` · `guias-plataforma`
 
 ---
 
@@ -25,8 +25,12 @@
 | 2026-03-25 | ia-en-educacion | Crea apps educativas nivel PRO con IA (sin código) | `crea-apps-educativas-nivel-pro-con-ia-sin-codigo` |
 | 2026-04-03 | atencion-diversidad | Dislexia en el aula: detectarla a tiempo y adaptar de verdad | `dislexia-en-el-aula-deteccion-y-adaptacion` |
 | 2026-04-16 | plataforma-eduapps | Plataforma educativa con grupos, tareas y modo batalla — sin programar | `la-plataforma-educativa-perfecta-sin-programar` |
+| 2026-04-20 | guias-plataforma | Registro y primer grupo: pon tu clase en marcha en 10 minutos | `registro-y-primer-grupo-en-10-minutos` |
+| 2026-04-25 | guias-plataforma | Tareas con modo examen: cómo se crean, cómo cuentan y qué ve el alumno | `tareas-con-modo-examen-como-crear-y-asignar` |
 | 2026-04-28 | innovacion-educativa | Microlearning: por qué fragmentar funciona (y cuándo no) | `microlearning-por-que-funciona-y-cuando-no` |
+| 2026-05-02 | guias-plataforma | Duelos 1 vs 1 y Quiz Battle: la competición sana, explicada | `duelos-1vs1-y-quiz-battle-competicion-sana` |
 | 2026-05-08 | ia-en-educacion | Corregir exámenes con IA: flujo realista y dónde están sus límites | `corregir-examenes-con-ia-sigue-siendo-el-docente` |
+| 2026-05-10 | guias-plataforma | Nota del alumno paso a paso: tareas, duelos, batallas, nivel y avatares | `nota-del-alumno-tareas-duelos-batallas-nivel-avatares` |
 | 2026-05-12 | ia-en-educacion | AI Act en clase: lo que tu centro tiene que saber ya | `ai-act-en-clase-obligaciones-y-prohibiciones` |
 | 2026-05-14 | ia-en-educacion | Detectores de IA en deberes: por qué fallan y qué hacer en su lugar | `detectores-de-ia-en-deberes-por-que-fallan` |
 | 2026-05-15 | gamificacion | Motivación intrínseca vs recompensas: cuándo la gamificación se vuelve en tu contra | `motivacion-intrinseca-vs-recompensas-en-gamificacion` |
@@ -66,6 +70,12 @@
 
 ### Plataforma EduApps
 - Anuncio inicial, recorrido del catálogo, mayor actualización (grupos, tareas, batalla).
+
+### Guías de la plataforma
+- Registro docente + creación de primer grupo + alta del alumnado (uno a uno / CSV).
+- Tareas con modo examen: creación, pesos, ventanas, mejor intento, reset de progreso.
+- Duelos 1 vs 1 (personales + duelos-tarea), Quiz Battle multijugador y frases de chat.
+- Cómo se calcula la nota: base de tareas · 0,9 + 4 bonus capados (duelos, batallas, nivel, avatares).
 
 ---
 

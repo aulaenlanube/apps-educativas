@@ -53,6 +53,13 @@ export const BLOG_CATEGORIES = [
     gradient: 'from-teal-500 via-cyan-600 to-indigo-600',
     accent: '#14B8A6',
   },
+  {
+    slug: 'guias-plataforma',
+    name: 'Guías de la plataforma',
+    description: 'Cómo usar apps-educativas.com: registro, grupos, tareas, duelos, batalla y sistema de nota',
+    gradient: 'from-violet-500 via-fuchsia-500 to-rose-500',
+    accent: '#A855F7',
+  },
 ];
 
 export const CATEGORIES_BY_SLUG = Object.fromEntries(

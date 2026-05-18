@@ -169,6 +169,30 @@ Mood: comparative, modern, sophisticated.`,
 Subject: a stylized 3D open notebook in the centre slightly tilted, from whose pages emerge two glowing translucent sound waves intertwined in violet and cyan, morphing into a small floating headphones icon and a microphone silhouette above the notebook. Around the notebook, several abstract source documents (PDF shape, video play triangle, web globe) levitate, each connected to the notebook by a thin luminous thread. Bright spark of golden light at the centre of the open pages suggesting transformation from text to audio.
 
 Mood: transformative, inspiring, fresh.`,
+
+  'registro-y-primer-grupo-en-10-minutos': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D rounded rectangular access card or ID tag rendered in violet and indigo, slightly tilted, with a small abstract avatar circle and a glowing QR-like pattern (purely decorative geometric squares, no readable text). Above the card, a small clock showing about 10 minutes and a tiny door-opening icon glowing softly. To one side, a translucent group of three small avatar bubbles appearing as if joining for the first time, connected to the card by thin luminous threads.
+
+Mood: welcoming, fresh, beginning.`,
+
+  'tareas-con-modo-examen-como-crear-y-asignar': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a stylized 3D translucent assignment card floating centrally, with abstract checkbox shapes inside (purely geometric circles and ticks, no text). Above it, a small clock showing a deadline window and a glowing pencil. To one side, a graduation cap icon and a small weight or scale icon suggesting weighted grading. Behind the card, a soft series of stacked smaller cards in a fan suggesting multiple tasks queued up.
+
+Mood: organized, professional, motivating.`,
+
+  'duelos-1vs1-y-quiz-battle-competicion-sana': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: two glowing avatar orbs facing each other in the centre, connected by a luminous lightning bolt down the middle suggesting a friendly duel. Above them, a small podium or champion crown icon. To one side, a translucent grid of 20 small avatar bubbles arranged in formation suggesting a multiplayer Quiz Battle lobby. Floating between the two main orbs, abstract speech bubble shapes suggesting predefined chat phrases (geometric ovals, no readable text).
+
+Mood: playful, energetic, balanced.`,
+
+  'nota-del-alumno-tareas-duelos-batallas-nivel-avatares': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a luminous 3D balance scale or pie chart in the centre divided into five abstract segments of different vibrant colors (violet, pink, amber, cyan, emerald), each segment glowing differently. Above the central element, a stylized "10" badge (abstract circle with a glow, no actual digits) suggesting a perfect score. Around the chart, five small floating icons each representing a component: a checklist (tasks), crossed swords (duels), a podium (battles), a level-up arrow (level), and a small character avatar (avatars). Connected to the central chart by thin luminous threads.
+
+Mood: analytical, transparent, rewarding.`,
 };
 
 function die(msg, code = 1) {
