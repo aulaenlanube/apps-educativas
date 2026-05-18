@@ -1,7 +1,7 @@
 ---
 title: "Detectores de IA en deberes: por qué fallan y qué hacer en su lugar"
 slug: detectores-de-ia-en-deberes-por-que-fallan
-date: 2026-05-29
+date: 2026-05-14
 category: ia-en-educacion
 excerpt: "OpenAI cerró su propio detector. Stanford demostró que marcan como IA al 61 % del alumnado no nativo. Por qué los detectores fallan y qué hacer en clase cuando sospechas que un trabajo es de ChatGPT."
 hero: /images/blog/detectores-de-ia-en-deberes-por-que-fallan.webp

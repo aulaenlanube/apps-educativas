@@ -1,7 +1,7 @@
 ---
 title: "NotebookLM para docentes: tu temario en podcast en 5 minutos"
 slug: notebooklm-para-docentes-temario-en-podcast
-date: 2026-06-12
+date: 2026-05-18
 category: ia-en-educacion
 excerpt: "NotebookLM convierte tu temario, apuntes o PDF en un podcast de dos voces, un resumen interactivo o un mapa mental. Cómo usarlo en clase con casos reales y los límites a tener en cuenta."
 hero: /images/blog/notebooklm-para-docentes-temario-en-podcast.webp

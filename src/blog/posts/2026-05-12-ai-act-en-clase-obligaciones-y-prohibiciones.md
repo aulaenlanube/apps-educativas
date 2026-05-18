@@ -1,7 +1,7 @@
 ---
 title: "AI Act en clase: lo que tu centro tiene que saber ya"
 slug: ai-act-en-clase-obligaciones-y-prohibiciones
-date: 2026-05-22
+date: 2026-05-12
 category: ia-en-educacion
 excerpt: "El Reglamento Europeo de IA entra en fase aplicable a centros educativos en agosto 2026. Qué está prohibido, qué es alto riesgo y qué tiene que hacer tu equipo directivo desde ya."
 hero: /images/blog/ai-act-en-clase-obligaciones-y-prohibiciones.webp

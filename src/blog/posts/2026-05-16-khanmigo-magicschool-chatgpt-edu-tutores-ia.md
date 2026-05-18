@@ -1,7 +1,7 @@
 ---
 title: "Khanmigo, MagicSchool, ChatGPT Edu: tutores IA 1-a-1 en clase"
 slug: khanmigo-magicschool-chatgpt-edu-tutores-ia
-date: 2026-06-05
+date: 2026-05-16
 category: ia-en-educacion
 excerpt: "Comparativa honesta de los tres tutores de IA con más tracción en aulas: Khanmigo de Khan Academy, MagicSchool para docentes y ChatGPT Edu. Qué hace bien cada uno y dónde no llegan."
 hero: /images/blog/khanmigo-magicschool-chatgpt-edu-tutores-ia.webp

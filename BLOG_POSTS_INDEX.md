@@ -27,11 +27,11 @@
 | 2026-04-16 | plataforma-eduapps | Plataforma educativa con grupos, tareas y modo batalla — sin programar | `la-plataforma-educativa-perfecta-sin-programar` |
 | 2026-04-28 | innovacion-educativa | Microlearning: por qué fragmentar funciona (y cuándo no) | `microlearning-por-que-funciona-y-cuando-no` |
 | 2026-05-08 | ia-en-educacion | Corregir exámenes con IA: flujo realista y dónde están sus límites | `corregir-examenes-con-ia-sigue-siendo-el-docente` |
+| 2026-05-12 | ia-en-educacion | AI Act en clase: lo que tu centro tiene que saber ya | `ai-act-en-clase-obligaciones-y-prohibiciones` |
+| 2026-05-14 | ia-en-educacion | Detectores de IA en deberes: por qué fallan y qué hacer en su lugar | `detectores-de-ia-en-deberes-por-que-fallan` |
 | 2026-05-15 | gamificacion | Motivación intrínseca vs recompensas: cuándo la gamificación se vuelve en tu contra | `motivacion-intrinseca-vs-recompensas-en-gamificacion` |
-| 2026-05-22 | ia-en-educacion | AI Act en clase: lo que tu centro tiene que saber ya | `ai-act-en-clase-obligaciones-y-prohibiciones` |
-| 2026-05-29 | ia-en-educacion | Detectores de IA en deberes: por qué fallan y qué hacer en su lugar | `detectores-de-ia-en-deberes-por-que-fallan` |
-| 2026-06-05 | ia-en-educacion | Khanmigo, MagicSchool, ChatGPT Edu: tutores IA 1-a-1 en clase | `khanmigo-magicschool-chatgpt-edu-tutores-ia` |
-| 2026-06-12 | ia-en-educacion | NotebookLM para docentes: tu temario en podcast en 5 minutos | `notebooklm-para-docentes-temario-en-podcast` |
+| 2026-05-16 | ia-en-educacion | Khanmigo, MagicSchool, ChatGPT Edu: tutores IA 1-a-1 en clase | `khanmigo-magicschool-chatgpt-edu-tutores-ia` |
+| 2026-05-18 | ia-en-educacion | NotebookLM para docentes: tu temario en podcast en 5 minutos | `notebooklm-para-docentes-temario-en-podcast` |
 
 ---
 
