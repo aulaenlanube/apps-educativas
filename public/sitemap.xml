@@ -154,28 +154,14 @@
   <!-- Blog posts (generados desde src/blog/posts/) -->
   <url>
     <loc>https://apps-educativas.com/blog/notebooklm-para-docentes-temario-en-podcast</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://apps-educativas.com/blog/khanmigo-magicschool-chatgpt-edu-tutores-ia</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://apps-educativas.com/blog/detectores-de-ia-en-deberes-por-que-fallan</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://apps-educativas.com/blog/ai-act-en-clase-obligaciones-y-prohibiciones</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -188,6 +174,27 @@
   </url>
 
   <url>
+    <loc>https://apps-educativas.com/blog/detectores-de-ia-en-deberes-por-que-fallan</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/ai-act-en-clase-obligaciones-y-prohibiciones</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://apps-educativas.com/blog/corregir-examenes-con-ia-sigue-siendo-el-docente</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -195,8 +202,29 @@
   </url>
 
   <url>
+    <loc>https://apps-educativas.com/blog/duelos-1vs1-y-quiz-battle-competicion-sana</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://apps-educativas.com/blog/microlearning-por-que-funciona-y-cuando-no</loc>
     <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/tareas-con-modo-examen-como-crear-y-asignar</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://apps-educativas.com/blog/registro-y-primer-grupo-en-10-minutos</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
