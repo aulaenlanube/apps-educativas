@@ -3,39 +3,39 @@ title: "Tareas con modo examen: cómo se crean, cómo cuentan y qué ve el alumn
 slug: tareas-con-modo-examen-como-crear-y-asignar
 date: 2026-04-25
 category: guias-plataforma
-excerpt: "Guía completa del módulo de tareas en apps-educativas.com: diferencia entre práctica y modo examen, asignación a un grupo, pesos en la nota y qué pasa cuando un alumno no la entrega."
+excerpt: "Guía completa del módulo de tareas en apps-educativas.com: tipos disponibles (estándar y duelo), nota mínima, peso, evaluación a la que cuentan y qué pasa cuando un alumno no la entrega."
 hero: /images/blog/tareas-con-modo-examen-como-crear-y-asignar.webp
 keywords:
   - tareas docente
   - modo examen
   - apps-educativas.com
-  - evaluación gamificada
-  - peso nota
-  - reset progreso curso
-  - ventana entrega
+  - min_score nota mínima
+  - peso tarea weight
+  - tarea duelo
+  - evaluación term
 tldr:
-  - "En apps-educativas.com hay tres modos de juego por app: Fácil y Medio NO cuentan para la nota; el modo Examen sí cuando lo asigna el docente como tarea."
-  - "Una tarea es un examen sobre una app concreta + un peso (porcentaje sobre la base de tareas) + una ventana de entrega opcional."
-  - "Lo no intentado cuenta como 0 al promediar — esto premia constancia y no solo rendimiento puntual."
-  - "El alumno ve el mejor intento de cada tarea; puede repetir el examen tantas veces como quiera durante la ventana abierta y solo cuenta su mejor nota."
-  - "Si necesitas reiniciar el progreso del alumno (cambio de evaluación, llegada tardía), hay un reset que solo borra notas y tareas del curso actual; los avatares, XP e insignias globales se mantienen."
+  - "En apps-educativas.com hay tres modos de juego por app: Fácil y Medio NO cuentan para la nota; el modo Examen sí cuando hay una tarea asignada que lo evalúa."
+  - "Las tareas tienen dos tipos en el panel del docente: estándar (sobre una app concreta) y duelo (emparejamiento automático en una de las 4 apps duelables)."
+  - "Cada tarea estándar lleva nota mínima (min_score, por defecto 5), peso (weight, por defecto 1) y evaluación (term 1/2/3) — define a qué evaluación cuenta y cuánto pesa en su promedio."
+  - "El alumno puede repetir el examen las veces que quiera dentro de la ventana — solo cuenta su mejor intento por encima del min_score."
+  - "Las tareas de tipo duelo siempre dan +0,10 al ganador en el ledger y nada al perdedor — el stake del docente se ignora (esa decisión está fijada en el modelo)."
 faq:
   - q: "¿Cuál es la diferencia entre modo Fácil, Medio y Examen?"
-    a: "Fácil tiene muchas ayudas (pistas, vidas extra, tiempo amplio). Medio tiene algunas. Examen tiene mínimas o ninguna y es el único que cuenta para la nota de una tarea asignada. Para apps de single_mode (Célula Animal, Sistema Solar, Excavación Selectiva, Célula Vegetal) todas las partidas son válidas; no hay distinción."
-  - q: "¿Puedo dejar que el alumno repita el examen cuantas veces quiera?"
-    a: "Sí. Por defecto la plataforma guarda el mejor intento del alumno dentro de la ventana de entrega de la tarea. Puede jugar 1 vez o 20 — solo cuenta su mejor resultado. Esto premia el esfuerzo de mejora y evita la angustia de 'una sola oportunidad'."
-  - q: "¿Qué pasa si el alumno no hace una tarea?"
-    a: "Se contabiliza como 0 en la media ponderada de la base de tareas. Esto es intencional: lo no intentado cuenta. Garantiza que la nota refleja constancia, no solo el rendimiento de las tareas que sí ha hecho. Si quieres ser flexible con alguien concreto, hay un reset del progreso del curso por alumno."
-  - q: "¿Puedo poner una fecha límite a la tarea?"
-    a: "Sí. Cada tarea admite ventana de entrega con fecha de inicio y fecha de cierre. Fuera de esa ventana, el alumno puede seguir jugando la app pero su nota ya no se actualiza. Si no pones fechas, la tarea queda abierta durante toda la evaluación actual."
-  - q: "¿Una tarea cuenta diferente si la juega como duelo?"
-    a: "Sí. Si la app de la tarea forma parte de un duelo (1 vs 1), esas partidas van con mode='duel' y NO cuentan como intento de examen para la tarea. Solo cuenta el resultado del duelo según el ledger. Esto evita que jugar duelos pise la nota del examen del alumno."
-tags: [tareas, modo-examen, evaluacion, grupos, plataforma]
+    a: "Fácil tiene muchas ayudas (pistas, vidas extra, tiempo amplio). Medio tiene algunas. Examen tiene las mínimas posibles y es el único que cuenta para tareas asignadas. Para las apps de modo único (Célula Animal, Célula Vegetal, Sistema Solar, Excavación Selectiva) no hay distinción — todas las partidas son válidas."
+  - q: "¿Puedo poner una nota mínima distinta para cada tarea?"
+    a: "Sí. Cada tarea tiene un campo min_score (por defecto 5/10). Sirve para definir qué cuenta como 'tarea aprobada'. Para tareas exigentes puedes subirlo a 7 u 8; para introducciones, dejarlo en 4. Es independiente del peso."
+  - q: "¿Qué pasa si un alumno no hace una tarea?"
+    a: "Cuenta como 0 en el promedio ponderado de la base de tareas. Esto es intencional: lo no intentado cuenta. Garantiza que la nota refleja constancia. Si necesitas ser flexible con alguien concreto (llegada tardía, cambio de centro), hay un reset del progreso del curso en la ficha del alumno."
+  - q: "¿Hay diferencia entre crear una tarea estándar y una tarea de duelo?"
+    a: "Sí. La estándar se asigna sobre una app concreta y la nota viene del mejor intento del alumno. La de duelo empareja automáticamente al alumnado por nota similar, juegan un duelo oculto en una de las 4 apps duelables y solo el ganador suma +0,10 al ledger — sin penalización para el perdedor. Si el grupo tiene número impar, queda un alumno con 'bye' (victoria automática)."
+  - q: "¿Y si una tarea coincide con un duelo personal de la misma app?"
+    a: "No se pisa: las partidas de duelo personal se guardan con modo 'duel', que NO cuenta como intento de examen para la tarea. La tarea sigue su flujo independiente. Las dos contabilidades viven en paralelo para que cada actividad sume donde toca."
+tags: [tareas, modo-examen, evaluacion, duelo-tarea, plataforma]
 ---
 
 Hola qué tal docente. Si ya tienes tu grupo creado (lo cuento en el [post de registro y primer grupo](/blog/registro-y-primer-grupo-en-10-minutos)), el siguiente paso natural es **asignar tu primera tarea evaluable**.
 
-Hoy te explico el modelo entero: práctica vs examen, cómo se crea una tarea, cómo se calcula la nota, qué ve el alumno y qué pasa con la gente que no las hace.
+Hoy te explico el modelo entero: práctica vs examen, los dos tipos de tarea, cómo afectan a la nota y qué ve el alumno en su panel.
 
 Vamos.
 
@@ -47,146 +47,160 @@ Cada app de [apps-educativas.com](https://www.apps-educativas.com) tiene una pan
 |---|---|---|
 | **Fácil** | Muchas (pistas, vidas extra, tiempo amplio) | No |
 | **Medio** | Algunas | No |
-| **Examen** | Mínimas o ninguna | **Sí**, cuando es una tarea asignada |
+| **Examen** | Mínimas o ninguna | **Sí**, cuando hay una tarea asignada que la evalúa |
 
-Esto es importante porque cambia el incentivo: el alumno puede practicar las veces que quiera en Fácil/Medio sin presión, y cuando se siente listo, va a Examen sabiendo que esa partida sí contará.
+Esto cambia el incentivo: el alumno practica las veces que quiera en Fácil/Medio sin presión, y cuando se siente listo, va a Examen sabiendo que esa partida sí puede contar para una tarea asignada.
 
-Hay tres excepciones:
+Excepciones:
 
 - **Apps de comprensión** (lectora/oral) — solo tienen modo examen.
-- **Sopa/Crucigrama** — práctica + examen.
-- **Apps de modo único** (Célula Animal, Célula Vegetal, Sistema Solar, Excavación Selectiva) — toda partida es válida.
+- **Sopa de letras / Crucigrama** — práctica + examen.
+- **Apps de modo único** (Célula Animal, Célula Vegetal, Sistema Solar, Excavación Selectiva) — toda partida es válida sin selector.
 
-## Qué es exactamente una tarea
+## Los dos tipos de tarea
 
-Una tarea es un objeto formado por **tres cosas**:
+Al pulsar **Tareas → Nueva tarea** en el panel del grupo, el modal te ofrece dos tipos:
 
-1. **App** sobre la que evalúas (Rosco, Ahorcado, Sistema Solar, etc.).
-2. **Peso** en la base de tareas (porcentaje, ej. 10 % = vale el 10 % de la base de tareas del trimestre).
-3. **Ventana de entrega** (fecha inicio + fecha cierre, opcional).
+### Tipo 1: Estándar
 
-Cuando creas la tarea y la asignas al grupo, **a partir de ese momento la partida del alumno en modo examen de esa app cuenta** para esa tarea. El sistema guarda automáticamente el **mejor intento** del alumno dentro de la ventana.
+Es la tarea clásica. La asignas sobre una **app concreta** y se cuenta con los exámenes que el alumno juega en esa app.
 
-## Crear una tarea paso a paso
+Campos del formulario:
 
-Desde el panel del docente:
+| Campo | Por defecto | Para qué sirve |
+|---|---|---|
+| Título | — | Lo que verá el alumno en su lista de tareas |
+| Descripción | (opcional) | Instrucciones extra que ve el alumno |
+| Nivel / Curso / Asignatura | Heredados del grupo | Filtran qué apps están disponibles |
+| App | — | La app sobre la que se evalúa |
+| **min_score** | **5** | Nota mínima para considerar la tarea "completada" |
+| **weight** | **1** | Peso de la tarea en el promedio ponderado |
+| **term** | **1** | A qué evaluación cuenta (1, 2 o 3) |
+| Destinatario | Grupo | A todo el grupo o a un alumno concreto |
+| Fecha límite | (opcional) | Cierre orientativo |
 
-1. **Grupos → tu grupo → Tareas → Nueva tarea**.
-2. Eliges la **app** de un listado filtrado por curso y asignatura.
-3. Asignas el **peso** (suma de pesos no tiene que dar 100; el sistema normaliza al promediar).
-4. Defines la **ventana de entrega** o la dejas vacía (queda abierta hasta el final de la evaluación actual).
-5. Opcional: **descripción** que verá el alumno (instrucciones especiales).
-6. **Guardar**.
+### Tipo 2: Duelo
 
-A los alumnos del grupo les aparece la tarea en su pestaña Tareas con un indicador "Sin intentar / Aprobada / Suspensa", la nota actual y el botón directo para ir al examen.
+La plataforma empareja automáticamente al alumnado del grupo por **nota media similar** (algoritmo de balanceo) y crea **duelos ocultos** entre cada pareja. Solo se juega en una de las 4 apps duelables (Rosco del Saber, Ahorcado, Snake palabras, Ordena Bolas).
+
+Diferencias clave:
+
+- **Solo el ganador** recibe entrada en el ledger: **+0,10 fijo**.
+- **El perdedor no es penalizado** — no tiene entrada.
+- Si el grupo es **impar**, queda un alumno con **bye** (victoria automática).
+- El **stake del docente se ignora** (la cifra fija +0,10 ya está decidida en el modelo).
+
+La UI del alumno avisa explícitamente: **"+0,10 si ganas · sin penalización si pierdes"**. El incentivo es 100 % positivo — útil para grupos donde no quieres asustar al alumnado más inseguro.
+
+## Cómo se calcula la base de tareas
+
+Si el alumno tiene 4 tareas con pesos 1, 2, 3, 2 (es decir, la tarea 3 vale el triple que la 1) y notas 7, 6, 8, 0 (la 4.ª no la intentó):
+
+```
+base_tareas = (7·1 + 6·2 + 8·3 + 0·2) / (1+2+3+2)
+            = (7 + 12 + 24 + 0) / 8
+            = 43 / 8
+            = 5,375 / 10
+```
+
+El 0 de la tarea no intentada **arrastra**. Es intencional: la constancia se premia. Si el alumno se atrasa, se nota.
+
+La `base_tareas` se combina luego con los 4 bonuses (duelos, batallas, nivel, avatares) para producir la nota final de la evaluación — lo expongo al detalle en el [post sobre el sistema de nota](/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares).
+
+## El factor 0,9 de la base de tareas
+
+Detalle importante para entender los números: cuando se combina con los bonuses, la base de tareas **pesa el 90 %** (no el 100 %).
+
+Razón:
+
+- Con base · 1,0: una base 10 + bonus +1 = 11 → cap a 10. El bonus no aporta nada.
+- Con base · 0,9: una base 10 + bonus +1 = 10. El bonus aporta su +1 real.
+
+**Para llegar a 10 hace falta base alta Y bonus**. Te obliga a recorrer la plataforma (duelos, batallas, avatares), no solo machacar tareas.
+
+En la UI, la `base_tareas` que ve el alumno sigue siendo sobre 10 (no se reescala visualmente); el 0,9 solo se aplica al combinar.
 
 ## Lo que ve el alumno
 
 Cuando un alumno entra a Tareas, ve algo así:
 
-| Tarea | Mejor nota | Estado | Cierra |
+| Tarea | Mejor nota | Estado | Evaluación |
 |---|---|---|---|
-| Rosco - Animales | 7,5 / 10 | Aprobada | 30 abr |
-| Sistema Solar | 4,2 / 10 | Necesita repasar | 30 abr |
-| Anagramas - Examen 2 | — | Sin intentar | 28 abr |
+| Rosco - Animales | 7,5 / 10 | Aprobada (min_score 5) | 2.ª |
+| Sistema Solar | 4,2 / 10 | Necesita repasar | 2.ª |
+| Anagramas - Examen | — | Sin intentar | 2.ª |
+| Duelo de Snake | — | Pendiente de jugar | 2.ª |
 
-Pulsa la tarea y va directo a la app en modo examen. Juega, saca su nota, vuelve. El sistema actualiza si es mejor que la anterior.
+Pulsa la tarea y va directo a la app en modo examen (o a la sala del duelo, según tipo). Juega, vuelve y el sistema actualiza si su nuevo intento mejora el anterior.
 
-**Importante**: ve solo la última nota (su mejor intento). No ve un historial de fallos. Esto baja la ansiedad y favorece que repita sin miedo.
+Ve solo el **mejor intento** (no un historial de fallos). Esto baja la ansiedad y favorece la repetición sin miedo.
 
-## Cómo se calcula la base de tareas
+## Ventanas y fechas límite
 
-Si el alumno tiene 4 tareas con pesos 10 %, 20 %, 30 %, 40 % y notas 7, 6, 8, 0:
+El campo `dueDate` del formulario de tarea es **opcional y orientativo**: marca al alumno cuándo "debería" tenerla, pero la plataforma no bloquea físicamente la entrega después de esa fecha. La función de la ventana es comunicativa, no restrictiva.
 
-```
-base_tareas = (7·0,10 + 6·0,20 + 8·0,30 + 0·0,40) / (0,10+0,20+0,30+0,40)
-            = (0,7 + 1,2 + 2,4 + 0) / 1,00
-            = 4,3 / 10
-```
+Si necesitas dureza real con plazos, lo más razonable es:
 
-El 0 de la tarea no intentada **arrastra mucho** la nota. Es intencional. La constancia se premia. Si el alumno se atrasa, lo nota.
-
-Esa `base_tareas` se combina luego con los 4 bonus (duelos, batallas, nivel, avatares) para producir la nota final de la evaluación — lo explico al detalle en el [post sobre el sistema de nota completo](/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares).
-
-## El factor 0,9 de la base de tareas
-
-Hay un detalle que pillará desprevenido al docente que mire los números fríos: la base de tareas **pesa el 90 %** en la fórmula final, no el 100 %.
-
-Razón: con bases altas (8-9) los bonuses positivos se quedarían sin margen, porque el sistema cappea la nota a 10. Multiplicando por 0,9 garantizamos que **un alumno con 10 perfecto en tareas + 0 en bonuses saca 9**. Para llegar a 10 necesita base alta **y** algún bonus — fomenta usar duelos/batallas/avatares como parte del aprendizaje, no solo machacar tareas.
-
-La `base_tareas` que ve el alumno en su panel sigue siendo sobre 10 (no se reescala visualmente); el 0,9 solo se aplica al combinar.
-
-## Ventanas de entrega: cuándo usarlas
-
-Tres patrones que funcionan bien:
-
-### Patrón A: tarea semanal con ventana corta
-
-Una tarea por semana, ventana de 7 días. El alumno tiene 1 semana para hacerla; si no, 0. **Mantiene ritmo** y bloquea la procrastinación masiva.
-
-### Patrón B: tareas por unidad sin ventana
-
-Asignas todas las tareas de una unidad y las dejas abiertas hasta final de la evaluación. El alumno se organiza. **Funciona en Bachillerato y ESO mayor**, no tanto en Primaria.
-
-### Patrón C: examen final cerrado
-
-Una tarea con ventana de 1 día (el día del examen presencial). Solo se puede entregar en esa fecha. Útil para apps que sustituyen exámenes tradicionales.
+- Asignar la tarea al inicio de un periodo.
+- Anunciar al alumnado la fecha de "corte" como una norma de aula.
+- Cambiar de evaluación cuando llegue el momento, lo que naturalmente reinicia el cálculo a las tareas de la nueva.
 
 ## Cómo afectan los duelos a las tareas
 
-Si una app de una tarea es jugable como duelo 1 vs 1 (Ahorcado, Snake, Ordena Bolas, Nave Palabras), cuando el alumno la juega como duelo la partida queda registrada con `mode='duel'` y **no cuenta como intento de examen** para esa tarea.
+Si el alumnado juega una app **como duelo personal** (no como tarea), esas partidas quedan registradas con `mode='duel'` y **NO cuentan como intento de examen** para una tarea estándar de esa misma app.
 
-Esto evita que un duelo perdido pise la nota del examen. La nota del duelo va por otro canal (bonus de duelos, ±0,5 sobre la nota final). El sistema mantiene **dos contadores paralelos** para que cada actividad cuente donde toca.
+Es decir: jugar un duelo no pisa la nota del examen. Las dos contabilidades viven en paralelo:
 
-## Reset del progreso del curso (sin perder lo global)
+- **Tareas estándar** → mejor intento en modo examen (`mode='test'`).
+- **Duelos personales** → entrada en `duel_grade_ledger` (bonus de duelos).
+- **Duelos-tarea** → +0,10 al ganador si lo es (bonus de duelos).
 
-A veces necesitas dar borrón y cuenta nueva a un alumno concreto:
+Tu nota base de tareas no se ve afectada por cuántos duelos juegue. Y al revés: una tarea estándar que el alumno fastidie no le penaliza en duelos. Cada cosa cuenta donde debe.
 
-- Llega tarde al curso y no es justo que las tareas del trimestre anterior cuenten como 0.
-- Hay un cambio de evaluación y empezáis de cero pedagógicamente.
-- El alumno ha cambiado de centro a mitad de curso.
+## Reset del progreso del curso
 
-Desde el panel del docente, en la ficha del alumno, hay un icono de **History** que abre un modal de confirmación: *"Reiniciar progreso del curso"*. Pulsando aceptar:
+A veces hace falta dar borrón y cuenta nueva — alumno que llega tarde, problema técnico, etc. En la **ficha del alumno** dentro del grupo hay un botón con icono de historial que abre un modal de confirmación: *"Reiniciar progreso del curso"*.
 
-- **Se borran** del cálculo de nota: game_sessions, quiz_battle_sessions, duel_grade_ledger anteriores a la fecha de reset.
-- **Se mantienen**: XP global, nivel, avatares desbloqueados, insignias, historial de partidas, tiempo total de juego.
+Aceptando:
 
-Es decir: **el progreso de la nota se reinicia, pero el alumno conserva todo su prestigio global**. No pierde sus avatares legendarios ni baja de nivel.
+- **Se borran del cálculo** de nota: partidas, batallas y ledger de duelos anteriores a la fecha de reset.
+- **Se mantienen**: XP global, nivel, avatares desbloqueados, insignias, historial visible y tiempo total de juego.
 
-Tras el reset, la nota empieza desde cero y las tareas se vuelven a contar. El alumno tiene que hacer cada tarea otra vez para que cuente.
+Es decir: **la nota se reinicia, el prestigio se conserva**. El alumno no pierde sus avatares legendarios ni baja de nivel. Tras el reset, vuelve a tener que hacer cada tarea para que cuente.
 
 ## Errores típicos al crear tareas
 
-Por equilibrio, lo que veo más:
+Por experiencia con docentes a los que he acompañado:
 
 - **Crear 30 tareas el primer día**: abruma al alumnado y la nota se vuelve loca. Empieza con 3-5 por evaluación.
-- **Pesos absurdos**: si todas las tareas pesan lo mismo, la nota no diferencia importancia. Pondera: las clave 20-30 %, las secundarias 5-10 %.
-- **Ventanas demasiado cortas**: 1 día solo vale para examen presencial. 7 días es el mínimo razonable para tarea online.
-- **Crear tarea de app que el alumnado no ha tocado nunca**: deja una semana de juego libre antes de la primera tarea. Si no, el examen mide cómo aprenden a usar la app, no el contenido.
+- **Pesos absurdos**: si todas las tareas pesan lo mismo, la nota no diferencia importancia. Pondera: las clave con weight 3, las secundarias con weight 1.
+- **min_score demasiado alto al principio**: subir min_score a 8 en una app que el alumnado acaba de conocer es frustrante. Empieza en 5; cuando dominen la app, sube el listón.
+- **Crear tarea de una app que el alumnado no ha tocado nunca**: deja una semana de juego libre antes de la primera tarea. Si no, el examen mide cómo aprenden a usar la app, no el contenido.
 
-## El flujo ideal de inicio de evaluación
+## El flujo ideal de inicio
 
 Lo que recomiendo a docentes que empiezan:
 
-1. **Semana 1**: alumnado juega libre. Tú observas qué apps les enganchan y cuáles ignoran.
-2. **Semana 2**: creas 2-3 tareas iniciales con peso bajo (10-15 % cada una). Ventana de 7 días.
-3. **Semana 3-4**: revisas resultados. Si el alumnado va con todo, sumas 2-3 tareas más.
-4. **Mes siguiente**: introduces duelos y batallas como cosa de aula (lo cuento en el [post sobre duelos y Quiz Battle](/blog/duelos-1vs1-y-quiz-battle-competicion-sana)).
-5. **Final de trimestre**: la nota se calcula sola.
+1. **Semana 1**: alumnado juega libre. Observas qué apps les enganchan.
+2. **Semana 2**: creas 2-3 tareas estándar con peso bajo (weight 1, min_score 5).
+3. **Semana 3-4**: revisas resultados y sumas 2-3 tareas más.
+4. **Mes siguiente**: introduces tu primera **tarea de duelo** (lo cuento en el [post sobre duelos y Quiz Battle](/blog/duelos-1vs1-y-quiz-battle-competicion-sana)).
+5. **Final de trimestre**: la nota se calcula sola y la consultas en el panel del grupo.
 
-Sin obsesión con la matemática del modelo, la plataforma trabaja sola.
+Sin obsesionarse con la matemática del modelo, la plataforma trabaja sola.
 
 ## Lo más importante
 
-Resumiendo todo:
+Resumiendo:
 
 - **Modo examen** es el único que cuenta — el resto es práctica libre.
 - **Lo no intentado cuenta como 0** — premia constancia.
 - **El mejor intento manda** — el alumno puede repetir sin miedo.
-- **Pesos diferenciados** entre tareas — refleja prioridad pedagógica.
-- **Ventanas opcionales** — flexibilidad según tu metodología.
+- **min_score** define qué nota considera la tarea aprobada (por defecto 5).
+- **weight** define cuánto pesa esa tarea en el promedio (por defecto 1).
+- **term** define a qué evaluación va (1, 2 o 3).
 - **Reset disponible** — flexibilidad cuando hace falta.
 
-Con esto, una evaluación entera se gestiona desde el panel sin tocar Excel ni cuadernos paralelos. Lo cobré caro hasta llegar a esta arquitectura — espero que tú lo aproveches sin pagar la curva.
+Con esto, una evaluación entera se gestiona desde el panel sin tocar Excel ni cuadernos paralelos.
 
 Nos vemos en el siguiente.
