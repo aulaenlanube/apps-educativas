@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Users, Pencil, Trash2, Copy, Hash, GraduationCap, BookOpen, Clock } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -74,6 +75,7 @@ const groupColors = [
 
 export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, onGroupsChanged }) {
   const { toast } = useToast();
+  const { isAdmin } = useAuth();
 
   const handleCopyCode = (code, e) => {
     e.stopPropagation();
@@ -249,14 +251,18 @@ export default function GroupsPanel({ groups, selectedGroupId, onSelectGroup, on
   };
 
   const ownedCount = groups.filter(g => g.is_owner !== false).length;
-  const atGroupLimit = ownedCount >= 3;
+  // Los admin no tienen límite de grupos (la RPC teacher_create_group_with_hours
+  // ya exime a role='admin' del tope de 3); aquí solo replicamos esa regla en la UI.
+  const atGroupLimit = !isAdmin && ownedCount >= 3;
 
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-lg font-bold text-gray-800">Mis Grupos</h2>
-          <p className="text-[11px] text-slate-400">{ownedCount}/3 grupos creados</p>
+          <p className="text-[11px] text-slate-400">
+            {isAdmin ? `${ownedCount} grupos creados` : `${ownedCount}/3 grupos creados`}
+          </p>
         </div>
         <Button
           size="sm"
