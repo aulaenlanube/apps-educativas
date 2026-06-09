@@ -257,6 +257,7 @@
 
 /* ============ GRID ============ */
 .cruci-grid-wrap {
+  position: relative;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), rgba(99, 102, 241, 0.04));
   border-radius: 16px;
   padding: 1rem;
@@ -265,6 +266,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Input invisible para invocar el teclado virtual en móvil.
+   font-size 16px evita el zoom automático de iOS al enfocar. */
+.cruci-hidden-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  opacity: 0;
+  font-size: 16px;
+  background: transparent;
+  caret-color: transparent;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .cruci-grid {

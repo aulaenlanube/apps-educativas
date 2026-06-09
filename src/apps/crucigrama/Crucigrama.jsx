@@ -19,6 +19,10 @@ const normalize = (s) =>
     .replace(/[\u0300-\u036f]/g, '')
     .toUpperCase();
 
+// Carácter "centinela" que mantenemos en el input oculto para que el botón de
+// borrar del teclado virtual siempre tenga algo que eliminar y dispare un evento.
+const HIDDEN_SENTINEL = ' ';
+
 const SIZE_CONFIG = {
   small:  { label: 'Pequeño',  words: 6,  maxSize: 13, icon: '🟢' },
   medium: { label: 'Mediano',  words: 10, maxSize: 16, icon: '🟡' },
@@ -62,6 +66,7 @@ const Crucigrama = ({ onGameComplete }) => {
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
   const cellRefs = useRef({});
+  const hiddenInputRef = useRef(null);
 
   // --- Cargar datos del rosco ---
   useEffect(() => {
@@ -298,26 +303,56 @@ const Crucigrama = ({ onGameComplete }) => {
     });
   }, [selected, crossword, completed, isBlack, direction, revealedCells]);
 
-  // --- Teclado físico ---
+  // --- Enfocar el input oculto (invoca el teclado virtual en móvil) ---
+  const focusHiddenInput = useCallback(() => {
+    const el = hiddenInputRef.current;
+    if (!el) return;
+    // El sentinel garantiza que el "Backspace" del teclado virtual (Android)
+    // siempre tenga algo que borrar y dispare un evento de input.
+    el.value = HIDDEN_SENTINEL;
+    try { el.focus({ preventScroll: true }); } catch { el.focus(); }
+  }, []);
+
+  // Mantener el foco en el input mientras haya una casilla seleccionada y la
+  // partida esté activa (permite teclear en desktop sin volver a hacer click).
   useEffect(() => {
-    const handler = (e) => {
-      if (!crossword || completed) return;
-      if (e.key === 'ArrowRight') { e.preventDefault(); moveSelection(0, 1); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); moveSelection(0, -1); }
-      else if (e.key === 'ArrowDown') { e.preventDefault(); moveSelection(1, 0); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); moveSelection(-1, 0); }
-      else if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); deleteLetter(); }
-      else if (e.key === ' ') {
-        e.preventDefault();
-        setDirection((d) => (d === 'h' ? 'v' : 'h'));
-      } else if (e.key.length === 1 && /[a-zA-ZñÑáéíóúÁÉÍÓÚ]/.test(e.key)) {
-        e.preventDefault();
-        writeLetter(normalize(e.key));
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    if (selected && crossword && !completed) focusHiddenInput();
+  }, [selected, crossword, completed, focusHiddenInput]);
+
+  // --- Teclado físico (eventos sobre el input oculto enfocado) ---
+  const handleInputKeyDown = useCallback((e) => {
+    if (!crossword || completed) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); moveSelection(0, 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); moveSelection(0, -1); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); moveSelection(1, 0); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); moveSelection(-1, 0); }
+    else if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); deleteLetter(); }
+    else if (e.key === ' ') {
+      e.preventDefault();
+      setDirection((d) => (d === 'h' ? 'v' : 'h'));
+    } else if (e.key.length === 1 && /[a-zA-ZñÑáéíóúÁÉÍÓÚ]/.test(e.key)) {
+      e.preventDefault();
+      writeLetter(normalize(e.key));
+    }
   }, [crossword, completed, moveSelection, deleteLetter, writeLetter]);
+
+  // --- Teclado virtual (móvil): leemos el evento de input cuando el keydown
+  //     no nos da una tecla utilizable (Android reporta key="Unidentified"). ---
+  const handleInputChange = useCallback((e) => {
+    const el = e.target;
+    if (!crossword || completed) { el.value = HIDDEN_SENTINEL; return; }
+    const inputType = e.nativeEvent?.inputType;
+    if (inputType === 'deleteContentBackward' || inputType === 'deleteContentForward') {
+      deleteLetter();
+    } else {
+      // Caracteres recién insertados (data del evento o, en su defecto, el valor sin el sentinel).
+      const data = e.nativeEvent?.data ?? el.value.split(HIDDEN_SENTINEL).join('');
+      for (const ch of String(data || '')) {
+        if (/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/.test(ch)) writeLetter(normalize(ch));
+      }
+    }
+    el.value = HIDDEN_SENTINEL;
+  }, [crossword, completed, deleteLetter, writeLetter]);
 
   // --- Click en una celda ---
   const handleCellClick = useCallback((row, col) => {
@@ -327,7 +362,9 @@ const Crucigrama = ({ onGameComplete }) => {
     } else {
       setSelected({ row, col });
     }
-  }, [isBlack, selected]);
+    // Enfocar dentro del gesto del usuario: esto es lo que abre el teclado en móvil.
+    focusHiddenInput();
+  }, [isBlack, selected, focusHiddenInput]);
 
   // --- Palabra / pista actual ---
   const currentWord = useMemo(() => {
@@ -568,6 +605,22 @@ const Crucigrama = ({ onGameComplete }) => {
         {/* Grid + Clues */}
         <div className="cruci-layout">
           <div className="cruci-grid-wrap">
+            {/* Input oculto: al enfocarlo (tap en una casilla) invoca el teclado virtual en móvil */}
+            <input
+              ref={hiddenInputRef}
+              className="cruci-hidden-input"
+              type="text"
+              defaultValue={HIDDEN_SENTINEL}
+              inputMode="text"
+              autoCapitalize="characters"
+              autoCorrect="off"
+              autoComplete="off"
+              spellCheck={false}
+              aria-hidden="true"
+              tabIndex={-1}
+              onKeyDown={handleInputKeyDown}
+              onInput={handleInputChange}
+            />
             {generating && <div className="cruci-generating">Generando crucigrama...</div>}
             {noPuzzle && (
               <div className="cruci-empty">
