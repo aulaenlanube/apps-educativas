@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Calendar, Clock, Sparkles, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Sparkles, HelpCircle, Pencil } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import { getPostBySlug, getRelatedPosts } from '@/blog/loader';
 import { getCategory } from '@/blog/categories';
 import { formatDateLong, buildCategoryUrl, buildPostUrl, buildAbsoluteUrl } from '@/blog/utils';
 import BlogProse from '@/components/blog/BlogProse';
+import BlogPostEditor from '@/components/blog/BlogPostEditor';
 import YouTubeEmbed from '@/components/blog/YouTubeEmbed';
 import PostCard from '@/components/blog/PostCard';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 const SITE_URL = 'https://apps-educativas.com';
 const SITE_NAME = 'Apps Educativas';
@@ -18,10 +21,33 @@ const AUTHOR_URL = 'https://edutorregrosa.com/';
 export default function BlogPostPage() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
+  const { isAdmin } = useAuth();
+  const [overrideBody, setOverrideBody] = useState(null);
+  const [overrideUpdatedAt, setOverrideUpdatedAt] = useState(null);
+  const [editing, setEditing] = useState(false);
 
   // Cuando el lector navega entre posts queremos arrancar arriba.
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [slug]);
+
+  // Carga el cuerpo editado por un admin (si existe) para este post.
+  useEffect(() => {
+    let cancelled = false;
+    setOverrideBody(null);
+    setOverrideUpdatedAt(null);
+    supabase
+      .from('blog_post_overrides')
+      .select('body, updated_at')
+      .eq('slug', slug)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!cancelled && data) {
+          setOverrideBody(data.body);
+          setOverrideUpdatedAt(data.updated_at);
+        }
+      });
+    return () => { cancelled = true; };
   }, [slug]);
 
   if (!post) {
@@ -29,6 +55,8 @@ export default function BlogPostPage() {
   }
 
   const category = getCategory(post.category);
+  const bodyToRender = overrideBody ?? post.body;
+  const dateModified = overrideUpdatedAt ? overrideUpdatedAt.slice(0, 10) : post.date;
   const related = getRelatedPosts(post.slug, 3);
   const canonical = `${SITE_URL}${buildPostUrl(post.slug)}`;
   // Para OG preferimos la miniatura propia del post sobre la de YouTube:
@@ -51,7 +79,7 @@ export default function BlogPostPage() {
       headline: post.title,
       description: seoDescription,
       datePublished: post.date,
-      dateModified: post.date,
+      dateModified: dateModified,
       author: { '@type': 'Person', name: AUTHOR, url: AUTHOR_URL },
       publisher: {
         '@type': 'Organization',
@@ -135,13 +163,25 @@ export default function BlogPostPage() {
       <Header />
 
       <div className="container mx-auto max-w-3xl px-4 sm:px-6 pt-8 pb-20">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline mb-6"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Volver al blog
-        </Link>
+        <div className="mb-6 flex items-center justify-between gap-3">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Volver al blog
+          </Link>
+          {isAdmin && (
+            <button
+              type="button"
+              onClick={() => setEditing(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/40 px-3.5 py-1.5 text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+            >
+              <Pencil className="w-4 h-4" />
+              Editar post
+            </button>
+          )}
+        </div>
 
         <header className="mb-8 pb-8 border-b-2 border-slate-100 dark:border-slate-700">
           {category && (
@@ -220,7 +260,7 @@ export default function BlogPostPage() {
         )}
 
         <article>
-          <BlogProse markdown={post.body} />
+          <BlogProse markdown={bodyToRender} />
         </article>
 
         {post.faq?.length > 0 && (
@@ -263,6 +303,16 @@ export default function BlogPostPage() {
           </section>
         )}
       </div>
+
+      {editing && (
+        <BlogPostEditor
+          slug={post.slug}
+          initialBody={bodyToRender}
+          onClose={() => setEditing(false)}
+          onSaved={(b, t) => { setOverrideBody(b); setOverrideUpdatedAt(t); setEditing(false); }}
+          onReset={() => { setOverrideBody(null); setOverrideUpdatedAt(null); setEditing(false); }}
+        />
+      )}
     </div>
   );
 }
