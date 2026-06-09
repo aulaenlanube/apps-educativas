@@ -33,7 +33,7 @@ faq:
 tags: [dislexia, dea, primaria, adaptaciones, evaluacion]
 ---
 
-Muy buenas docente. Hoy te quiero hablar de dislexia, y voy a empezar con honestidad: este tema lo he tocado personalmente. Mi mujer es maestra de Audición y Lenguaje, mi hija pequeña fue diagnosticada y nos costó Dios y ayuda que el sistema lo aceptara. La conozco desde dentro y desde fuera.
+Muy buenas docente. Hoy te quiero hablar de dislexia, y voy a empezar con honestidad: este tema lo he tocado personalmente. Mi mujer es maestra de Audición y Lenguaje, mi hija mayor fue diagnosticada y nos costó Dios y ayuda que el sistema lo aceptara. La conozco desde dentro y desde fuera.
 
 Lo que sigue es lo que **funciona en aula**, lo que **se sigue haciendo mal**, y cómo **detectar a tiempo** sin necesidad de ser especialista.
 
