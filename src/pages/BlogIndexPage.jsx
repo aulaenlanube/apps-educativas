@@ -36,7 +36,6 @@ export default function BlogIndexPage() {
             <GradientTitle tag="h1" className="text-4xl md:text-5xl">El Blog</GradientTitle>
             <Sparkles className="w-8 h-8 text-purple-500" />
           </motion.div>
-          <CategoryNav activeSlug={null} />
         </div>
       </section>
 
@@ -50,6 +49,9 @@ export default function BlogIndexPage() {
           >
             <FeaturedCarousel posts={ALL_POSTS} />
           </motion.div>
+          <div className="container mx-auto max-w-6xl mt-8">
+            <CategoryNav activeSlug={null} />
+          </div>
         </section>
       )}
 
