@@ -36,15 +36,6 @@ export default function BlogIndexPage() {
             <GradientTitle tag="h1" className="text-4xl md:text-5xl">El Blog</GradientTitle>
             <Sparkles className="w-8 h-8 text-purple-500" />
           </motion.div>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8"
-          >
-            Artículos sobre IA en el aula, gamificación, flipped classroom, ABP y todo lo que se está
-            cociendo en innovación educativa. Honesto, directo y sin humo.
-          </motion.p>
           <CategoryNav activeSlug={null} />
         </div>
       </section>

@@ -18,7 +18,7 @@ function CategoryPill({ to, active, accent, gradient, children, dot }) {
     >
       <Link
         to={to}
-        className={`group/pill relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors duration-300 ${
+        className={`group/pill relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-colors duration-300 ${
           active
             ? 'text-white'
             : 'bg-white/80 text-slate-700 ring-1 ring-slate-200 backdrop-blur-sm hover:text-slate-900 dark:bg-slate-800/70 dark:text-slate-200 dark:ring-slate-700 dark:hover:text-white'
@@ -39,10 +39,10 @@ function CategoryPill({ to, active, accent, gradient, children, dot }) {
         )}
         {/* Swatch / punto identificativo de la categoría */}
         {dot ? (
-          <LayoutGrid className="h-3.5 w-3.5 shrink-0" />
+          <LayoutGrid className="h-3 w-3 shrink-0" />
         ) : (
           <span
-            className={`h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br ${gradient} ${
+            className={`h-2 w-2 shrink-0 rounded-full bg-gradient-to-br ${gradient} ${
               active ? 'ring-2 ring-white/70' : 'ring-1 ring-black/5'
             } transition-transform duration-300 group-hover/pill:scale-125`}
           />
@@ -62,7 +62,7 @@ export default function CategoryNav({ activeSlug = null }) {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.15 } },
       }}
-      className="flex flex-wrap justify-center gap-2.5 md:gap-3"
+      className="flex flex-wrap justify-center gap-2"
     >
       <motion.div variants={{ hidden: { y: 12, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
         <CategoryPill
