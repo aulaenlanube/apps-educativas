@@ -86,7 +86,7 @@ export default function FeaturedCarousel({ posts }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="group/carousel relative mx-auto w-full max-w-5xl overflow-hidden rounded-[28px] shadow-2xl ring-1 ring-black/5 dark:ring-white/10 aspect-[3/4] sm:aspect-[16/9] md:aspect-[8/3]">
+      <div className="group/carousel relative mx-auto w-full max-w-5xl overflow-hidden rounded-[28px] shadow-2xl ring-1 ring-black/5 dark:ring-white/10 aspect-[3/4] sm:aspect-[16/9] md:aspect-[5/2]">
         {/* Capa de slides */}
         <AnimatePresence initial={false} custom={dir} mode="popLayout">
           <motion.div
@@ -128,6 +128,36 @@ export default function FeaturedCarousel({ posts }) {
           </motion.div>
         </AnimatePresence>
 
+        {/* Badges fijados arriba a la izquierda: independientes de la altura
+            del texto, así nunca los recorta el overflow del contenedor. */}
+        <div className="absolute left-5 top-5 z-20 sm:left-7 sm:top-7">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`badge-${post.slug}`}
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-2"
+            >
+              {category && (
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-lg ring-1 ring-white/30 backdrop-blur-sm"
+                  style={{ background: `linear-gradient(110deg, ${accent}, ${accent}cc)` }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                  {category.name}
+                </span>
+              )}
+              {post.videoId && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-600/90 px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-lg ring-1 ring-white/30">
+                  <Play className="h-3 w-3 fill-current" /> Vídeo
+                </span>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
         {/* Contenido textual (sobre los slides, animado por clave) */}
         <div className="absolute inset-0 flex items-end">
           <AnimatePresence mode="wait">
@@ -137,28 +167,11 @@ export default function FeaturedCarousel({ posts }) {
               initial="hidden"
               animate="show"
               exit={{ opacity: 0, y: -12, transition: { duration: 0.3 } }}
-              className="relative z-10 w-full p-6 sm:p-9 md:p-12 lg:max-w-3xl"
+              className="relative z-10 w-full p-6 sm:p-8 md:p-10 lg:max-w-3xl"
             >
-              <motion.div variants={contentChild} className="mb-4 flex items-center gap-3">
-                {category && (
-                  <span
-                    className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-lg ring-1 ring-white/30 backdrop-blur-sm"
-                    style={{ background: `linear-gradient(110deg, ${accent}, ${accent}cc)` }}
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                    {category.name}
-                  </span>
-                )}
-                {post.videoId && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-red-600/90 px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-lg ring-1 ring-white/30">
-                    <Play className="h-3 w-3 fill-current" /> Vídeo
-                  </span>
-                )}
-              </motion.div>
-
               <motion.h2
                 variants={contentChild}
-                className="text-2xl font-black leading-[1.1] text-white drop-shadow-xl sm:text-3xl md:text-4xl lg:text-5xl"
+                className="text-2xl font-black leading-[1.1] text-white drop-shadow-xl sm:text-3xl md:text-4xl line-clamp-2"
               >
                 <Link to={buildPostUrl(post.slug)} className="transition-opacity hover:opacity-90">
                   {post.title}
@@ -168,7 +181,7 @@ export default function FeaturedCarousel({ posts }) {
               {post.excerpt && (
                 <motion.p
                   variants={contentChild}
-                  className="mt-4 hidden max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:block md:text-base"
+                  className="mt-3 hidden max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:block md:text-base line-clamp-2"
                 >
                   {post.excerpt}
                 </motion.p>
