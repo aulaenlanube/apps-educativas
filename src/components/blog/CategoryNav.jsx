@@ -18,9 +18,9 @@ function CategoryPill({ to, active, accent, gradient, children, dot }) {
     >
       <Link
         to={to}
-        className={`group/pill relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-300 ${
+        className={`group/pill relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-colors duration-300 ${
           active
-            ? `text-white bg-gradient-to-r ${gradient}`
+            ? 'text-white'
             : 'bg-white/80 text-slate-700 ring-1 ring-slate-200 backdrop-blur-sm hover:text-slate-900 dark:bg-slate-800/70 dark:text-slate-200 dark:ring-slate-700 dark:hover:text-white'
         }`}
         style={
@@ -29,17 +29,30 @@ function CategoryPill({ to, active, accent, gradient, children, dot }) {
             : undefined
         }
       >
-        {/* Swatch / punto identificativo de la categoría */}
-        {dot ? (
-          <LayoutGrid className="h-3 w-3 shrink-0" />
-        ) : (
-          <span
-            className={`h-2 w-2 shrink-0 rounded-full bg-gradient-to-br ${gradient} ${
-              active ? 'ring-2 ring-white/70' : 'ring-1 ring-black/5'
-            } transition-transform duration-300 group-hover/pill:scale-125`}
+        {/* Fondo activo con gradiente: layoutId hace que se deslice de un
+            pill a otro al cambiar de categoría. Va detrás del contenido
+            (z-0) mientras el texto queda por encima (relative z-10), así
+            es visible (antes -z-10 lo ocultaba tras la tarjeta). */}
+        {active && (
+          <motion.span
+            layoutId="cat-active-bg"
+            className={`absolute inset-0 rounded-full bg-gradient-to-r ${gradient}`}
+            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
           />
         )}
-        {children}
+        <span className="relative z-10 flex items-center gap-1.5">
+          {/* Swatch / punto identificativo de la categoría */}
+          {dot ? (
+            <LayoutGrid className="h-3 w-3 shrink-0" />
+          ) : (
+            <span
+              className={`h-2 w-2 shrink-0 rounded-full bg-gradient-to-br ${gradient} ${
+                active ? 'ring-2 ring-white/70' : 'ring-1 ring-black/5'
+              } transition-transform duration-300 group-hover/pill:scale-125`}
+            />
+          )}
+          {children}
+        </span>
       </Link>
     </motion.div>
   );
