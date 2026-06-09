@@ -1,0 +1,74 @@
+/* Animaciones del carrusel destacado del blog.
+   Keyframes que Tailwind no cubre out-of-the-box: Ken Burns sobre la imagen,
+   brillo que cruza el botón, deriva de los orbes del fondo y el barrido de
+   la barra de progreso. Todo GPU-friendly (transform/opacity). */
+
+/* Zoom + paneo lento sobre el hero mientras el slide está activo. */
+@keyframes fc-kenburns {
+  0%   { transform: scale(1.06) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-2%, -2%, 0); }
+}
+.fc-kenburns {
+  animation: fc-kenburns 9s ease-out forwards;
+  will-change: transform;
+}
+
+/* Orbes de color que derivan por detrás del scrim para dar profundidad. */
+@keyframes fc-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(8%, -6%, 0) scale(1.15); }
+}
+@keyframes fc-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
+  50%      { transform: translate3d(-7%, 5%, 0) scale(0.92); }
+}
+.fc-orb-a { animation: fc-drift-a 14s ease-in-out infinite; }
+.fc-orb-b { animation: fc-drift-b 18s ease-in-out infinite; }
+
+/* Brillo diagonal que cruza el botón CTA en bucle. */
+@keyframes fc-shine {
+  0%   { transform: translateX(-160%) skewX(-18deg); }
+  60%, 100% { transform: translateX(260%) skewX(-18deg); }
+}
+.fc-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  animation: fc-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Barrido de la barra de progreso del slide activo. */
+@keyframes fc-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.fc-progress-fill {
+  transform-origin: left center;
+  animation: fc-progress linear forwards;
+}
+
+/* Grano sutil sobre el conjunto para textura "premium". */
+.fc-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-kenburns,
+  .fc-orb-a,
+  .fc-orb-b,
+  .fc-shine::after,
+  .fc-progress-fill {
+    animation: none !important;
+  }
+}

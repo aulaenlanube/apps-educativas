@@ -1,38 +1,96 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { LayoutGrid } from 'lucide-react';
 import { BLOG_CATEGORIES } from '@/blog/categories';
 import { buildCategoryUrl } from '@/blog/utils';
 
+// Pill de categoría con identidad propia: swatch con el gradiente de la
+// categoría, glow del color de acento, micro-elevación al hover y un anillo
+// animado compartido (layoutId) que se desliza hasta la categoría activa.
+function CategoryPill({ to, active, accent, gradient, children, dot }) {
+  return (
+    <motion.div
+      whileHover={{ y: -3 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: 'spring', stiffness: 420, damping: 26 }}
+      className="relative"
+    >
+      <Link
+        to={to}
+        className={`group/pill relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors duration-300 ${
+          active
+            ? 'text-white'
+            : 'bg-white/80 text-slate-700 ring-1 ring-slate-200 backdrop-blur-sm hover:text-slate-900 dark:bg-slate-800/70 dark:text-slate-200 dark:ring-slate-700 dark:hover:text-white'
+        }`}
+        style={
+          active
+            ? { boxShadow: `0 8px 24px -8px ${accent}aa, 0 0 0 1px ${accent}55` }
+            : undefined
+        }
+      >
+        {/* Fondo activo con gradiente, deslizándose entre pills */}
+        {active && (
+          <motion.span
+            layoutId="cat-active-bg"
+            className={`absolute inset-0 -z-10 rounded-full bg-gradient-to-r ${gradient}`}
+            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+          />
+        )}
+        {/* Swatch / punto identificativo de la categoría */}
+        {dot ? (
+          <LayoutGrid className="h-3.5 w-3.5 shrink-0" />
+        ) : (
+          <span
+            className={`h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br ${gradient} ${
+              active ? 'ring-2 ring-white/70' : 'ring-1 ring-black/5'
+            } transition-transform duration-300 group-hover/pill:scale-125`}
+          />
+        )}
+        {children}
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function CategoryNav({ activeSlug = null }) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-      <Link
-        to="/blog"
-        className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
-          activeSlug === null
-            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md'
-            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500'
-        }`}
-      >
-        Todos
-      </Link>
-      {BLOG_CATEGORIES.map((cat) => {
-        const active = cat.slug === activeSlug;
-        return (
-          <Link
-            key={cat.slug}
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.15 } },
+      }}
+      className="flex flex-wrap justify-center gap-2.5 md:gap-3"
+    >
+      <motion.div variants={{ hidden: { y: 12, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
+        <CategoryPill
+          to="/blog"
+          active={activeSlug === null}
+          accent="#0f172a"
+          gradient="from-slate-700 to-slate-900"
+          dot
+        >
+          Todos
+        </CategoryPill>
+      </motion.div>
+
+      {BLOG_CATEGORIES.map((cat) => (
+        <motion.div
+          key={cat.slug}
+          variants={{ hidden: { y: 12, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+        >
+          <CategoryPill
             to={buildCategoryUrl(cat.slug)}
-            className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
-              active
-                ? 'text-white shadow-md'
-                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500'
-            }`}
-            style={active ? { backgroundColor: cat.accent } : undefined}
+            active={cat.slug === activeSlug}
+            accent={cat.accent}
+            gradient={cat.gradient}
           >
             {cat.name}
-          </Link>
-        );
-      })}
-    </div>
+          </CategoryPill>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 }

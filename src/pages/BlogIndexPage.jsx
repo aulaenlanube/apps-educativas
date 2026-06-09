@@ -7,6 +7,7 @@ import useSEO from '@/hooks/useSEO';
 import { ALL_POSTS } from '@/blog/loader';
 import PostCard from '@/components/blog/PostCard';
 import CategoryNav from '@/components/blog/CategoryNav';
+import FeaturedCarousel from '@/components/blog/FeaturedCarousel';
 
 const SITE_URL = 'https://apps-educativas.com';
 
@@ -17,8 +18,6 @@ export default function BlogIndexPage() {
       'Artículos sobre educación, IA en el aula, gamificación, flipped classroom, ABP y atención a la diversidad. Por Edu Torregrosa, profesor de informática.',
     canonical: `${SITE_URL}/blog`,
   });
-
-  const [featured, ...rest] = ALL_POSTS;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
@@ -50,39 +49,53 @@ export default function BlogIndexPage() {
         </div>
       </section>
 
-      <section className="pb-20 px-6">
+      {ALL_POSTS.length > 0 && (
+        <section className="px-6 pb-2">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="container mx-auto max-w-6xl"
+          >
+            <FeaturedCarousel posts={ALL_POSTS} />
+          </motion.div>
+        </section>
+      )}
+
+      <section className="pb-20 pt-12 px-6">
         <div className="container mx-auto max-w-6xl">
           {ALL_POSTS.length === 0 ? (
             <div className="text-center py-20 text-slate-500 dark:text-slate-400">
               <p className="text-xl">Pronto habrá artículos por aquí. Quédate atento.</p>
             </div>
           ) : (
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-              }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-            >
-              {featured && (
-                <motion.div
-                  variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-                  className="md:col-span-2 lg:col-span-3"
-                >
-                  <PostCard post={featured} featured />
-                </motion.div>
-              )}
-              {rest.map((post) => (
-                <motion.div
-                  key={post.slug}
-                  variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-                >
-                  <PostCard post={post} />
-                </motion.div>
-              ))}
-            </motion.div>
+            <>
+              <div className="mb-8 flex items-center gap-4">
+                <h2 className="text-2xl font-black text-slate-900 dark:text-slate-100">
+                  Todos los artículos
+                </h2>
+                <span className="h-px flex-grow bg-gradient-to-r from-slate-200 to-transparent dark:from-slate-700" />
+              </div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-80px' }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+                }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+              >
+                {ALL_POSTS.map((post) => (
+                  <motion.div
+                    key={post.slug}
+                    variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+                  >
+                    <PostCard post={post} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </>
           )}
         </div>
       </section>
