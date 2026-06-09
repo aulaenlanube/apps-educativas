@@ -86,7 +86,7 @@ export default function FeaturedCarousel({ posts }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="group/carousel relative w-full overflow-hidden rounded-[28px] shadow-2xl ring-1 ring-black/5 dark:ring-white/10 aspect-[4/5] sm:aspect-[16/10] md:aspect-[21/9]">
+      <div className="group/carousel relative mx-auto w-full max-w-5xl overflow-hidden rounded-[28px] shadow-2xl ring-1 ring-black/5 dark:ring-white/10 aspect-[3/4] sm:aspect-[16/9] md:aspect-[8/3]">
         {/* Capa de slides */}
         <AnimatePresence initial={false} custom={dir} mode="popLayout">
           <motion.div

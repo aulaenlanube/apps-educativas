@@ -23,8 +23,7 @@ export default function BlogIndexPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
       <Header />
 
-      <section className="relative pt-12 pb-10 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-pink-400/10 rounded-full blur-3xl transform -rotate-6 scale-150 pointer-events-none" />
+      <section className="relative pt-12 pb-8 px-6 text-center overflow-hidden">
         <div className="relative z-10 container mx-auto max-w-4xl">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
