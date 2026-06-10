@@ -8,7 +8,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
-  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move,
+  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut,
 } from 'lucide-react';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
@@ -29,7 +29,7 @@ const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-
 
 const MINIGAME_BASE_POINTS = 50; // puntos = base · nº de acierto en la cadena
 
-const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools, sounds, onEnd, onProgress }) => {
+const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools, sounds, onEnd, onProgress, onExit }) => {
   const isExam = mode === 'exam';
 
   // --- motor (uno por montaje, determinista por seed) ---
@@ -89,6 +89,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   onEndRef.current = onEnd;
   const onProgressRef = useRef(onProgress);
   onProgressRef.current = onProgress;
+  const onExitRef = useRef(onExit);
+  onExitRef.current = onExit;
   const soundsRef = useRef(sounds);
 
   // --- fin de partida (una sola vez) ---
@@ -422,7 +424,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       let scale = speedRef.current;
       const ov = overlayRef.current;
       const mg = miniRef.current;
-      if ((ov && (ov.type === 'classify' || ((ov.type === 'boss' || ov.type === 'oracle') && !ov.feedback)))
+      if ((ov && (ov.type === 'classify' || ov.type === 'quit' || ov.type === 'exit'
+        || ((ov.type === 'boss' || ov.type === 'oracle') && !ov.feedback)))
         || (mg && (mg.stage === 'offer' || !mg.feedback))) {
         scale = isExam ? 0.25 : 0;
       }
@@ -675,6 +678,9 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {phase === 'run' && !isExam && (
           <button className="fort-hud-btn" onClick={() => setOverlay({ type: 'quit' })} title="Terminar partida"><Flag size={16} /></button>
         )}
+        {phase !== 'ended' && (
+          <button className="fort-hud-btn" onClick={() => setOverlay({ type: 'exit' })} title="Volver a la selección de modo"><LogOut size={16} /></button>
+        )}
         <button className="fort-hud-btn" onClick={toggleFullscreen} title="Pantalla completa"><Maximize2 size={16} /></button>
         <button className="fort-hud-btn" onClick={toggleSound} title="Sonido">
           {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
@@ -895,6 +901,23 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
               <div className="fort-quit-btns">
                 <button className="fort-btn-secondary" onClick={() => setOverlay(null)}>Seguir jugando</button>
                 <button className="fort-btn-danger" onClick={() => endGame('finished')}>Terminar</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- modal volver a la selección de modo ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'exit' && (
+            <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-classify-ask">🚪 ¿Volver a la selección de modo?</div>
+              <div className="fort-classify-hint">
+                Se perderá el progreso de la partida actual.
+                {isExam && ' El intento quedará registrado con tus aciertos hasta ahora.'}
+              </div>
+              <div className="fort-quit-btns">
+                <button className="fort-btn-secondary" onClick={() => setOverlay(null)}>Seguir jugando</button>
+                <button className="fort-btn-danger" onClick={() => onExitRef.current?.()}><LogOut size={15} /> Salir</button>
               </div>
             </motion.div>
           )}

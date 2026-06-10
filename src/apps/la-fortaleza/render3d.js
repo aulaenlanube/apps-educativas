@@ -102,14 +102,14 @@ export function createScene3D(container, game) {
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(COL.sky);
-  scene.fog = new THREE.Fog(COL.sky, 26, 55);
+  scene.fog = new THREE.Fog(COL.sky, 30, 95);
 
   // --- cámara orbital ---
-  const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 100);
+  const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 220);
   const cam = { azimuth: Math.PI / 2, elevation: 0.92, distance: 13, target: new THREE.Vector3(0, 0, 0.4) };
   const applyCamera = () => {
     cam.elevation = THREE.MathUtils.clamp(cam.elevation, 0.35, 1.35);
-    cam.distance = THREE.MathUtils.clamp(cam.distance, 6, 20);
+    cam.distance = THREE.MathUtils.clamp(cam.distance, 6, 26);
     const ce = Math.cos(cam.elevation);
     camera.position.set(
       cam.target.x + cam.distance * ce * Math.cos(cam.azimuth),
@@ -157,17 +157,26 @@ export function createScene3D(container, game) {
     }
   }
 
-  // --- colinas lejanas low-poly (vívidas) ---
+  // --- montañas lejanas que emergen del mar (siluetas tras la niebla) ---
   {
-    const palettes = [0x34d399, 0x60a5fa, 0xa78bfa, 0x2dd4bf];
-    for (let i = 0; i < 14; i++) {
+    const palettes = [0x60a5fa, 0x818cf8, 0x2dd4bf, 0x34d399];
+    const snowMat = new THREE.MeshLambertMaterial({ color: 0xf8fafc, flatShading: true });
+    for (let i = 0; i < 12; i++) {
       const a = rng() * Math.PI * 2;
-      const d = 17 + rng() * 9;
+      const d = 58 + rng() * 28;
+      const h = 8 + rng() * 14;
+      const rad = 5 + rng() * 9;
       const mat = new THREE.MeshLambertMaterial({ color: palettes[Math.floor(rng() * palettes.length)], flatShading: true });
-      const m = new THREE.Mesh(new THREE.ConeGeometry(2 + rng() * 3.4, 2.5 + rng() * 4, 5), mat);
-      m.position.set(Math.cos(a) * d, -0.3, Math.sin(a) * d);
+      const m = new THREE.Mesh(new THREE.ConeGeometry(rad, h, 5 + Math.floor(rng() * 3)), mat);
+      m.position.set(Math.cos(a) * d, h / 2 - 3, Math.sin(a) * d);
       m.rotation.y = rng() * Math.PI;
       scene.add(m);
+      if (h > 14) {
+        const snow = new THREE.Mesh(new THREE.ConeGeometry(rad * 0.34, h * 0.3, 5), snowMat);
+        snow.position.set(m.position.x, h - 3 - h * 0.15, m.position.z);
+        snow.rotation.y = m.rotation.y;
+        scene.add(snow);
+      }
     }
   }
 
@@ -180,23 +189,55 @@ export function createScene3D(container, game) {
     }
   }
 
-  // --- terreno low-poly con colores por vértice ---
+  // --- relieve de la isla: altura compartida (terreno + decoración) ---
+  // El tablero queda plano; alrededor suben colinas onduladas (ondas senoidales
+  // con fase por semilla) que caen al mar en el borde. Las vaguadas que bajan
+  // del nivel del mar forman lagos y calas con playa.
+  const SEA_Y = -0.42;
+  const ph = Array.from({ length: 6 }, () => rng() * Math.PI * 2);
+  function terrainHeight(X, Z) {
+    const field = Math.max(Math.abs(X) / 9.4, Math.abs(Z) / 5.8);
+    const rim = THREE.MathUtils.smoothstep(field, 1, 2.4); // 0 = campo plano → 1 = colinas
+    if (rim === 0) return 0;
+    const n = Math.sin(X * 0.42 + ph[0]) * Math.cos(Z * 0.46 + ph[1]) * 0.9
+      + Math.sin(X * 0.16 + ph[2]) * Math.sin(Z * 0.2 + ph[3]) * 1.5
+      + Math.sin((X + Z) * 0.09 + ph[4]) * Math.cos((X - Z) * 0.07 + ph[5]) * 1.1;
+    const coast = 1 - THREE.MathUtils.smoothstep(Math.hypot(X, Z), 38, 56);
+    return rim * (1.3 + n) * 0.9 * coast - (1 - coast) * 4.2;
+  }
+
+  // --- terreno low-poly de la isla, con colores por altura ---
   {
-    const geo = new THREE.PlaneGeometry(26, 17, 52, 34);
+    const geo = new THREE.PlaneGeometry(120, 120, 100, 100);
     geo.rotateX(-Math.PI / 2);
     const posAttr = geo.attributes.position;
     const colors = [];
+    const sand = new THREE.Color('#fcd34d');
+    const sandDeep = new THREE.Color('#b45309');
+    const peak = new THREE.Color('#d9f99d');
     for (let i = 0; i < posAttr.count; i++) {
       const X = posAttr.getX(i), Z = posAttr.getZ(i);
-      let nearPath = false;
-      for (const p of pathPts) {
-        if ((X - p.X) * (X - p.X) + (Z - p.Z) * (Z - p.Z) < 0.81) { nearPath = true; break; }
+      const onField = Math.abs(X) < 9.4 && Math.abs(Z) < 5.8;
+      let y;
+      if (onField) {
+        let nearPath = false;
+        for (const p of pathPts) {
+          if ((X - p.X) * (X - p.X) + (Z - p.Z) * (Z - p.Z) < 0.81) { nearPath = true; break; }
+        }
+        y = nearPath ? 0 : (rng() - 0.5) * 0.1;
+      } else {
+        y = terrainHeight(X, Z) + (rng() - 0.5) * 0.18;
       }
-      const onField = Math.abs(X) < 8.4 && Math.abs(Z) < 4.8;
-      const y = nearPath || onField ? (nearPath ? 0 : (rng() - 0.5) * 0.1) : (rng() - 0.5) * 0.55 + 0.1;
       posAttr.setY(i, y);
-      const t = rng() * 0.7 + (onField ? 0 : 0.25);
-      const col = COL.groundA.clone().lerp(COL.groundB, Math.min(t, 1));
+      let col;
+      if (y < SEA_Y + 0.18) {
+        // playa que se hunde en fondo marino
+        col = sand.clone().lerp(sandDeep, THREE.MathUtils.clamp((SEA_Y + 0.18 - y) / 2.4, 0, 1));
+      } else {
+        const t = rng() * 0.7 + (onField ? 0 : 0.25);
+        col = COL.groundA.clone().lerp(COL.groundB, Math.min(t, 1));
+        if (y > 1.7) col.lerp(peak, THREE.MathUtils.smoothstep(y, 1.7, 3.6) * 0.85);
+      }
       colors.push(col.r, col.g, col.b);
     }
     geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
@@ -205,6 +246,15 @@ export function createScene3D(container, game) {
     ground.receiveShadow = true;
     scene.add(ground);
   }
+
+  // --- mar hasta el horizonte (marea suave en render) ---
+  const sea = new THREE.Mesh(
+    new THREE.PlaneGeometry(360, 360),
+    new THREE.MeshLambertMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 }),
+  );
+  sea.rotation.x = -Math.PI / 2;
+  sea.position.y = SEA_Y;
+  scene.add(sea);
 
   // --- camino: baldosas cuadradas (estilo geométrico, giros de 90°) ---
   {
@@ -285,9 +335,42 @@ export function createScene3D(container, game) {
         leaf.castShadow = true;
         tree.add(leaf);
       }
-      tree.position.set(X, 0, Z);
+      tree.position.set(X, Math.max(terrainHeight(X, Z) - 0.05, 0), Z);
       tree.rotation.y = rng() * Math.PI;
       scene.add(tree);
+    }
+    // árboles grandes y rocas sobre las colinas de la isla
+    for (let i = 0; i < 30; i++) {
+      const a = rng() * Math.PI * 2;
+      const d = 13 + rng() * 22;
+      const X = Math.cos(a) * d, Z = Math.sin(a) * d;
+      const y = terrainHeight(X, Z);
+      if (y < SEA_Y + 0.35) continue; // ni en el agua ni en la playa
+      const tree = new THREE.Group();
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.5, 6), trunkMat);
+      trunk.position.y = 0.25;
+      tree.add(trunk);
+      const layers = 2 + Math.floor(rng() * 2);
+      for (let l = 0; l < layers; l++) {
+        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.55 - l * 0.14, 0.55, 6), leafMats[Math.floor(rng() * leafMats.length)]);
+        leaf.position.y = 0.65 + l * 0.38;
+        tree.add(leaf);
+      }
+      tree.scale.setScalar(1.1 + rng() * 1.3);
+      tree.position.set(X, y - 0.08, Z);
+      tree.rotation.y = rng() * Math.PI;
+      scene.add(tree);
+    }
+    for (let i = 0; i < 14; i++) {
+      const a = rng() * Math.PI * 2;
+      const d = 12 + rng() * 24;
+      const X = Math.cos(a) * d, Z = Math.sin(a) * d;
+      const y = terrainHeight(X, Z);
+      if (y < SEA_Y + 0.35) continue;
+      const rock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.3 + rng() * 0.5, 0), rockMat);
+      rock.position.set(X, y, Z);
+      rock.rotation.set(rng() * Math.PI, rng() * Math.PI, 0);
+      scene.add(rock);
     }
     // rocas en celdas libres del campo
     for (let i = 0; i < 9; i++) {
@@ -1141,6 +1224,8 @@ export function createScene3D(container, game) {
     }
     pos.needsUpdate = true;
     warmLight.intensity = 10 + Math.sin(game.time * 5) * 2.5;
+    // marea: el mar sube y baja suavemente sobre las playas
+    sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
   }
 
   function syncIndicators(ui) {

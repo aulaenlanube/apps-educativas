@@ -232,6 +232,12 @@ const LaFortaleza = ({ onGameComplete }) => {
     setScreen('summary');
   }, [mode, onGameComplete]);
 
+  // --- salir a la selección de modo (el desmontaje registra el parcial) ---
+  const handleExit = useCallback(() => {
+    setRun(null);
+    setScreen('select');
+  }, []);
+
   // --- derivados del resumen ---
   const nota = result ? Math.round((result.academic.correct / Math.max(result.academic.total, 1)) * 100) / 10 : 0;
   const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
@@ -306,6 +312,7 @@ const LaFortaleza = ({ onGameComplete }) => {
           pools={run.pools}
           sounds={sounds}
           onEnd={handleEnd}
+          onExit={handleExit}
         />
       )}
 
