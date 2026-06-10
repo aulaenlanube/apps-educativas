@@ -295,6 +295,12 @@ const LaFortaleza = ({ onGameComplete }) => {
         <h3>👑 Jefes</h3>
         <p>Cada 5 oleadas llega un jefe con una pregunta difícil. Acierta a tiempo y perderá el 70% de su vida.</p>
 
+        <h3>⚡ Energía y habilidades</h3>
+        <p>Cada acierto te da <strong>energía</strong>. Gástala durante la oleada en habilidades que tú mismo apuntas sobre el campo: ☄️ <strong>Meteoro</strong> (daño en área a cualquier categoría), 🌨️ <strong>Ventisca</strong> (congela la zona) y ⚡ <strong>Rayo</strong> (fulmina al enemigo más avanzado).</p>
+
+        <h3>🎥 Cámara</h3>
+        <p>Arrastra para girar la cámara y usa la rueda o el pellizco para acercarte. Un toque corto selecciona; un arrastre orbita.</p>
+
         <h3>🎓 Modos</h3>
         <div className="instr-modes">
           <div className="instr-mode easy"><strong>🟢 Práctica</strong>oleadas infinitas · tipo test · el color del enemigo insinúa su categoría</div>

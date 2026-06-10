@@ -92,6 +92,11 @@ export function createSounds() {
     crit() { arpeggio([659, 880, 1175, 1568], 0.06, 0.14); },
     jam() { tone(140, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60 }); },
     bossSpawn() { arpeggio([196, 185, 165], 0.16, 0.3, { type: 'sawtooth', vol: 0.5 }); },
+    ability(id) {
+      if (id === 'meteoro') { tone(180, 0.5, { type: 'sawtooth', vol: 0.5, slide: -120 }); noise(0.5, { freq: 900, vol: 0.8, delay: 0.25 }); }
+      else if (id === 'ventisca') { tone(1600, 0.5, { type: 'sine', vol: 0.35, slide: -900 }); noise(0.4, { freq: 2400, vol: 0.25 }); }
+      else if (id === 'rayo') { noise(0.12, { freq: 3000, vol: 0.6 }); tone(1100, 0.25, { type: 'sawtooth', vol: 0.4, slide: -700, delay: 0.04 }); }
+    },
     waveClear() { arpeggio([523, 659, 784, 1047], 0.08, 0.2); },
     victory() { arpeggio([523, 659, 784, 1047, 1319, 1568], 0.11, 0.3); },
     defeat() { arpeggio([392, 330, 262, 196], 0.18, 0.4, { type: 'sawtooth', vol: 0.4 }); },

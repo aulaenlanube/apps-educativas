@@ -36,16 +36,30 @@ export const WORLD = { w: GRID.cols * GRID.cell, h: GRID.rows * GRID.cell }; // 
 
 export const CATEGORY_COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ec4899'];
 
-export const STARTING_COINS = 200;
+export const STARTING_COINS = 220;
 export const STARTING_LIVES = 10;
-export const COINS_PER_CORRECT = 70;
+export const COINS_PER_CORRECT = 80;
 export const COINS_STREAK_BONUS = 10;   // por punto de racha, capado
 export const COINS_STREAK_CAP = 50;
-export const COINS_WAVE_CLEAR = 30;
+export const COINS_WAVE_CLEAR = 40;
 export const EXAM_WAVES = 10;           // examen: 10 oleadas, jefes en la 5 y la 10
 export const JAM_SECONDS = 3;           // atasco al fallar una clasificación
 export const CLASSIFY_DMG_PCT = 0.45;   // daño del disparo de precisión (sobre HP máx)
 export const REVEALED_DMG_MULT = 1.25;  // enemigos clasificados reciben más daño
+
+// --- energía y habilidades activas (el conocimiento se convierte en poder) ---
+export const ENERGY_MAX = 100;
+export const ENERGY_START = 40;
+export const ENERGY_PER_CORRECT = 25;   // por pregunta acertada
+export const ENERGY_PER_CRIT = 20;      // por clasificación correcta
+export const ENERGY_PER_KILL = 2;
+export const ABILITY_GLOBAL_CD = 2;     // segundos entre habilidades
+
+export const ABILITIES = {
+  meteoro:  { id: 'meteoro', name: 'Meteoro', emoji: '☄️', cost: 50, radius: 85, desc: 'Impacto en área que daña a CUALQUIER categoría.' },
+  ventisca: { id: 'ventisca', name: 'Ventisca', emoji: '🌨️', cost: 30, radius: 110, slowPct: 0.6, slowDur: 3.5, desc: 'Congela la zona: todos los enemigos van mucho más lentos.' },
+  rayo:     { id: 'rayo', name: 'Rayo', emoji: '⚡', cost: 40, radius: 70, desc: 'Fulmina al enemigo más avanzado de la zona.' },
+};
 
 export const TOWER_TYPES = {
   arquero: { id: 'arquero', name: 'Arquero', emoji: '🏹', cost: 80, dmg: 14, range: 115, rate: 1.1, projSpeed: 420, kind: 'single', needsCategory: true, desc: 'Equilibrado. Dispara flechas a su categoría.' },
@@ -60,14 +74,15 @@ export const upgradeCost = (type, level) => Math.round(TOWER_TYPES[type].cost * 
 export const sellValue = (tower) => Math.round(tower.invested * 0.6);
 
 export const ENEMY_TYPES = {
-  scout:  { id: 'scout', hp: 18, speed: 72, radius: 12 },
-  normal: { id: 'normal', hp: 32, speed: 46, radius: 16 },
-  brute:  { id: 'brute', hp: 80, speed: 30, radius: 21 },
-  boss:   { id: 'boss', hp: 380, speed: 22, radius: 30 },
+  scout:  { id: 'scout', hp: 18, speed: 80, radius: 12 },
+  normal: { id: 'normal', hp: 32, speed: 50, radius: 16 },
+  brute:  { id: 'brute', hp: 85, speed: 33, radius: 21 },
+  boss:   { id: 'boss', hp: 400, speed: 24, radius: 30 },
 };
 
-const waveHpMult = (wave) => 1 + 0.22 * (wave - 1) + 0.015 * (wave - 1) * (wave - 1);
-const waveSpeedMult = (wave) => 1 + Math.min(0.025 * (wave - 1), 0.5);
+// Curva agresiva: partidas cortas e intensas. La oleada 10 multiplica HP x6.4.
+const waveHpMult = (wave) => 1 + 0.3 * (wave - 1) + 0.033 * (wave - 1) * (wave - 1);
+const waveSpeedMult = (wave) => 1 + Math.min(0.04 * (wave - 1), 0.7);
 export const killPoints = (enemy, wave) => (enemy.type === 'boss' ? 300 : 10 + 2 * wave);
 
 // ---------------------------------------------------------------------------
@@ -181,6 +196,8 @@ export function createGame(cfg) {
     coins: STARTING_COINS,
     lives: STARTING_LIVES,
     score: 0,
+    energy: ENERGY_START,
+    abilityCdUntil: 0,
     enemies: [],
     towers: [],
     projectiles: [],
@@ -209,7 +226,8 @@ export function planNextWave(game) {
   const wave = game.wave + 1;
   const rng = game.rng;
   const isBossWave = wave % 5 === 0;
-  const n = Math.min(4 + Math.ceil(wave * 1.8), 26);
+  // arranque suave (oleada 1: 6) pero rampa fuerte (oleada 10: 27)
+  const n = Math.min(3 + Math.ceil(wave * 2.4), 30);
 
   // Oleada 1-2 usa solo 2 categorías; después, todas las activas
   const catCount = wave <= 2 ? Math.min(2, game.categories.length) : game.categories.length;
@@ -234,7 +252,7 @@ export function planNextWave(game) {
     entries.push({ type: 'boss', catIdx: Math.floor(rng() * catCount) });
   }
 
-  const interval = Math.max(1.5 - 0.05 * wave, 0.75);
+  const interval = Math.max(1.3 - 0.06 * wave, 0.55);
   game.nextWave = { wave, entries, interval, isBossWave };
   return game.nextWave;
 }
@@ -256,7 +274,7 @@ export function startWave(game) {
 
 function spawnEnemy(game, entry) {
   const base = ENEMY_TYPES[entry.type];
-  const hpMult = entry.type === 'boss' ? 1 + 0.35 * (game.wave - 1) : waveHpMult(game.wave);
+  const hpMult = entry.type === 'boss' ? 1 + 0.45 * (game.wave - 1) : waveHpMult(game.wave);
   const maxHp = Math.round(base.hp * hpMult);
   const enemy = {
     id: game.nextId++,
@@ -358,6 +376,7 @@ export function classifyEnemy(game, enemyId, catIdx) {
     const dmg = Math.max(Math.round(e.maxHp * CLASSIFY_DMG_PCT), 20);
     applyDamage(game, e, dmg, null);
     game.score += 150;
+    game.energy = Math.min(game.energy + ENERGY_PER_CRIT, ENERGY_MAX);
     pushText(game, e.x, e.y - 28, '¡CRÍTICO! +150', '#fbbf24');
   } else {
     game.jams[catIdx] = game.time + JAM_SECONDS;
@@ -551,6 +570,7 @@ export function stepGame(game, dt) {
         const pts = killPoints(e, game.wave);
         game.score += pts;
         game.stats.kills++;
+        game.energy = Math.min(game.energy + ENERGY_PER_KILL, ENERGY_MAX);
         const color = game.categories[e.catIdx].color;
         pushBurst(game, e.x, e.y, color, e.type === 'boss' ? 26 : 12);
         pushText(game, e.x, e.y - 20, `+${pts}`, '#e5e7eb');
@@ -605,5 +625,49 @@ export function rewardCorrectAnswer(game, streak) {
   const bonus = Math.min(streak * COINS_STREAK_BONUS, COINS_STREAK_CAP);
   const total = COINS_PER_CORRECT + bonus;
   game.coins += total;
+  game.energy = Math.min(game.energy + ENERGY_PER_CORRECT, ENERGY_MAX);
   return total;
+}
+
+// ---------------------------------------------------------------------------
+// Habilidades activas (se cargan con aciertos; se apuntan sobre el terreno)
+// ---------------------------------------------------------------------------
+
+export function canCastAbility(game, abilityId) {
+  const ab = ABILITIES[abilityId];
+  return !!ab && game.energy >= ab.cost && game.time >= game.abilityCdUntil && game.phase === 'wave';
+}
+
+/** Lanza una habilidad sobre el punto (x, y) del campo. Devuelve true si se lanzó. */
+export function castAbility(game, abilityId, x, y) {
+  if (!canCastAbility(game, abilityId)) return false;
+  const ab = ABILITIES[abilityId];
+  game.energy -= ab.cost;
+  game.abilityCdUntil = game.time + ABILITY_GLOBAL_CD;
+
+  const inArea = game.enemies.filter((e) => e.hp > 0 && Math.hypot(e.x - x, e.y - y) <= ab.radius);
+
+  if (abilityId === 'meteoro') {
+    const dmg = 55 + 16 * game.wave;
+    for (const e of inArea) applyDamage(game, e, dmg, null);
+    pushBurst(game, x, y, '#fb923c', 26, 160);
+    game.particles.push({ kind: 'ring', x, y, life: 0.4, maxLife: 0.4, color: '#fb923c', size: ab.radius });
+  } else if (abilityId === 'ventisca') {
+    for (const e of inArea) {
+      e.slowUntil = game.time + ab.slowDur;
+      e.slowPct = ab.slowPct;
+    }
+    pushBurst(game, x, y, '#bae6fd', 20, 110);
+    game.particles.push({ kind: 'ring', x, y, life: 0.5, maxLife: 0.5, color: '#bae6fd', size: ab.radius });
+  } else if (abilityId === 'rayo') {
+    let best = null;
+    for (const e of inArea) if (!best || e.dist > best.dist) best = e;
+    if (best) {
+      applyDamage(game, best, Math.round(best.maxHp * 0.55) + 45, null);
+      pushBurst(game, best.x, best.y, '#fde047', 16, 140);
+      pushText(game, best.x, best.y - 30, '¡ZAP!', '#fde047');
+      game.particles.push({ kind: 'bolt', x: best.x, y: best.y, life: 0.3, maxLife: 0.3, color: '#fde047', size: 1 });
+    }
+  }
+  return true;
 }
