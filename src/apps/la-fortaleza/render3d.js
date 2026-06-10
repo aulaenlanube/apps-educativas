@@ -383,6 +383,33 @@ export function createScene3D(container, game) {
     }
   }
 
+  // Muralla: bloque de piedra que corta el camino
+  const stoneMat = new THREE.MeshLambertMaterial({ color: 0x94a3b8, flatShading: true });
+  const stoneDarkMat = new THREE.MeshLambertMaterial({ color: 0x64748b, flatShading: true });
+  function buildBarrierMesh(tw) {
+    const g = new THREE.Group();
+    const block = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.55, 0.96), stoneMat);
+    block.position.y = 0.28;
+    block.castShadow = true;
+    g.add(block);
+    // sillares decorativos
+    for (let i = 0; i < 3; i++) {
+      const brick = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.12, 0.26), stoneDarkMat);
+      brick.position.set(0, 0.14 + i * 0.18, (i % 2 === 0 ? -1 : 1) * 0.18);
+      g.add(brick);
+    }
+    // almenas
+    for (let i = -1; i <= 1; i++) {
+      const cren = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.14, 0.18), stoneMat);
+      cren.position.set(0, 0.62, i * 0.34);
+      g.add(cren);
+    }
+    g.position.set(fx(tw.x), 0, fz(tw.y));
+    g.userData = { towerId: tw.id, barrier: true };
+    g.userData.hpBar = addTowerHpBar(g, 1.0);
+    return g;
+  }
+
   // El Oráculo no combate: pedestal con esfera de cristal levitante y anillo
   function buildOracleMesh(tw) {
     const g = new THREE.Group();
@@ -408,6 +435,7 @@ export function createScene3D(container, game) {
 
   function buildTowerMesh(tw) {
     if (tw.type === 'oraculo') return buildOracleMesh(tw);
+    if (tw.type === 'muralla') return buildBarrierMesh(tw);
     const color = new THREE.Color(towerColorHex(tw));
     const g = new THREE.Group();
     const base = new THREE.Mesh(shared.base, shared.baseMat); base.position.y = 0.08; base.castShadow = true;
@@ -758,11 +786,17 @@ export function createScene3D(container, game) {
       mesh.position.set(fx(tw.x), 0, fz(tw.y));
       syncTowerHpBar(mesh, tw);
 
+      if (mesh.userData.barrier) {
+        // temblor al recibir golpes
+        mesh.rotation.z = tw.flash > 0 ? Math.sin(game.time * 40) * 0.04 : 0;
+        continue;
+      }
+
       if (mesh.userData.oracle) {
         const { sphere, ring, sphereMat } = mesh.userData.oracle;
         sphere.position.y = 0.85 + Math.sin(game.time * 2 + tw.id) * 0.07;
         ring.rotation.z = game.time * 1.3;
-        const soon = game.phase === 'wave' && game.oracleNextAt - game.time < 3;
+        const soon = game.phase === 'run' && game.questionNextAt - game.time < 3;
         sphereMat.emissiveIntensity = soon ? 2.4 + Math.sin(game.time * 12) * 0.9 : 1.6;
         continue;
       }

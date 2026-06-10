@@ -16,7 +16,7 @@ import materiasData from '../../../public/data/materias.json';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import FortalezaGame from './FortalezaGame';
 import { createSounds } from './sound';
-import { mulberry32, seededShuffle, CATEGORY_COLORS, EXAM_WAVES } from './engine';
+import { mulberry32, seededShuffle, CATEGORY_COLORS, EXAM_VICTORY_LEVEL } from './engine';
 import './LaFortaleza.css';
 
 const MIN_WORDS_PER_CAT = 4;
@@ -212,12 +212,12 @@ const LaFortaleza = ({ onGameComplete }) => {
             <motion.button className="fort-mode practice" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startGame('practice')}>
               <span className="fort-mode-icon"><Swords size={30} /></span>
               <span className="fort-mode-name">🟢 Práctica</span>
-              <span className="fort-mode-desc">Supervivencia infinita · preguntas tipo test · colores de pista · ¿hasta qué oleada llegas?</span>
+              <span className="fort-mode-desc">Supervivencia sin fin · preguntas tipo test · colores de pista · ¿hasta qué nivel llegas?</span>
             </motion.button>
             <motion.button className="fort-mode exam" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startGame('exam')}>
               <span className="fort-mode-icon"><GraduationCap size={30} /></span>
               <span className="fort-mode-name">🔴 Examen</span>
-              <span className="fort-mode-desc">{EXAM_WAVES} oleadas + 2 jefes · escribir y tipo test · sin pistas · nota /10</span>
+              <span className="fort-mode-desc">Aguanta hasta el nivel {EXAM_VICTORY_LEVEL} · escribir y tipo test · sin pistas · nota /10</span>
             </motion.button>
           </div>
 
@@ -257,7 +257,7 @@ const LaFortaleza = ({ onGameComplete }) => {
               <div className="fort-nota-msg">{notaMsg}</div>
             </div>
           ) : (
-            <div className="fort-wave-reached">🌊 Has llegado a la oleada <strong>{result.wave}</strong></div>
+            <div className="fort-wave-reached">🌊 Has llegado al nivel de amenaza <strong>{result.level}</strong></div>
           )}
 
           <div className="fort-result-score"><Star size={18} /> {result.score.toLocaleString('es-ES')} puntos</div>
@@ -294,17 +294,20 @@ const LaFortaleza = ({ onGameComplete }) => {
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="La Fortaleza">
         <h3>🏰 Objetivo</h3>
-        <p>Los enemigos avanzan por el camino hacia tu <strong>Biblioteca</strong>. Si llegan, pierdes vidas. ¡Defiéndela construyendo torres!</p>
+        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> camino de tu Biblioteca. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: más enemigos, más fuertes. Si llegan, pierdes vidas. ¡Aguanta!</p>
 
         <h3>📜 Gana monedas con lo que sabes</h3>
-        <p>Antes de cada oleada respondes <strong>preguntas</strong>: cada acierto te da monedas (con bonus por racha) para construir y mejorar torres.</p>
+        <p>Respondes <strong>preguntas</strong> antes de empezar y cada poco tiempo en plena acción: cada acierto da monedas (con bonus por racha) y energía para construir, mejorar y lanzar habilidades.</p>
 
         <h3>🗼 Torres de categoría</h3>
         <p>Cada enemigo lleva una <strong>palabra</strong> de una categoría. Las torres 🏹 ⚡ 💣 solo disparan a los enemigos de SU categoría: lee las palabras y coloca bien tus defensas. ❄️ ralentiza a cualquiera y 🔮 daña a todos.</p>
         <p>Toca una construcción para <strong>mejorarla</strong>, <strong>moverla</strong> de sitio (30 🪙) o <strong>venderla</strong> (recuperas el 75%).</p>
 
+        <h3>🧱 La Muralla</h3>
+        <p>Se construye <strong>encima del camino</strong> y bloquea el paso: los enemigos se amontonan contra ella y la van derribando mientras tus torres los acribillan. Mejorarla la hace más resistente.</p>
+
         <h3>🧿 El Oráculo</h3>
-        <p>Construye el Oráculo y te lanzará preguntas exprés <strong>en plena oleada</strong>: acierta rápido y gana monedas y energía extra sin esperar a la siguiente fase de construcción. Solo puede haber uno.</p>
+        <p>Con el Oráculo construido, las preguntas sorpresa llegan <strong>casi el doble de rápido</strong>: más monedas y energía. Solo puede haber uno.</p>
 
         <h3>🗡️ Caballeros aliados</h3>
         <p>La fortaleza envía <strong>caballeros</strong> que avanzan por el camino y traban combate con los enemigos, frenándolos mientras tus torres disparan. ¡Cúbrelos bien!</p>
@@ -313,13 +316,13 @@ const LaFortaleza = ({ onGameComplete }) => {
         <p>Los enemigos con <strong>casco de obra</strong> se paran a destruir tus estructuras a martillazos. Las estructuras tienen vida (mejorar las repara) — si una cae, la pierdes. Puedes moverlas lejos del peligro.</p>
 
         <h3>⚡ Desafío Relámpago</h3>
-        <p>Cada 3 oleadas puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todos los puntos acumulados.</p>
+        <p>En los niveles 3, 6, 9... puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todos los puntos acumulados.</p>
 
         <h3>🎯 Disparo de precisión</h3>
         <p>Toca un enemigo y di a qué categoría pertenece su palabra. Si aciertas: <strong>golpe crítico</strong>. Si fallas: las torres de esa categoría se atascan 3 segundos.</p>
 
         <h3>👑 Jefes</h3>
-        <p>Cada 5 oleadas llega un jefe con una pregunta difícil. Acierta a tiempo y perderá el 70% de su vida.</p>
+        <p>En los niveles de amenaza 4, 8, 12... llega un jefe con una pregunta difícil. Acierta a tiempo y perderá el 70% de su vida.</p>
 
         <h3>⚡ Energía y habilidades</h3>
         <p>Cada acierto te da <strong>energía</strong>. Gástala durante la oleada en habilidades que tú mismo apuntas sobre el campo: ☄️ <strong>Meteoro</strong> (daño en área a cualquier categoría), 🌨️ <strong>Ventisca</strong> (congela la zona) y ⚡ <strong>Rayo</strong> (fulmina al enemigo más avanzado).</p>
@@ -329,8 +332,8 @@ const LaFortaleza = ({ onGameComplete }) => {
 
         <h3>🎓 Modos</h3>
         <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Práctica</strong>oleadas infinitas · tipo test · el color del enemigo insinúa su categoría</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>{EXAM_WAVES} oleadas + 2 jefes · mezcla de escribir y tipo test · nota /10 con preguntas, clasificaciones y jefes</div>
+          <div className="instr-mode easy"><strong>🟢 Práctica</strong>supervivencia sin fin · tipo test · el color del enemigo insinúa su categoría</div>
+          <div className="instr-mode exam"><strong>🔴 Examen</strong>aguanta hasta el nivel {EXAM_VICTORY_LEVEL} · mezcla de escribir y tipo test · nota /10 con preguntas, clasificaciones y jefes</div>
         </div>
 
         <div className="instr-tips"><strong>💡 Consejo:</strong> tu puntería no afecta a la nota — solo tus aciertos. Pero defender bien la Biblioteca multiplica tus puntos para el ranking.</div>

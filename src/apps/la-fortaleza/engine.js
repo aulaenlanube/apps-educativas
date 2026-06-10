@@ -41,9 +41,23 @@ export const STARTING_LIVES = 10;
 export const COINS_PER_CORRECT = 80;
 export const COINS_STREAK_BONUS = 10;   // por punto de racha, capado
 export const COINS_STREAK_CAP = 50;
-export const COINS_WAVE_CLEAR = 40;
-export const EXAM_WAVES = 10;           // examen: 10 oleadas, jefes en la 5 y la 10
 export const JAM_SECONDS = 3;           // atasco al fallar una clasificación
+
+// --- flujo continuo: nivel de amenaza en lugar de oleadas ---
+export const LEVEL_SECONDS = 30;        // cada 30 s sube el nivel de amenaza
+export const LEVEL_COIN_BONUS = 35;     // paga automática al subir de nivel
+export const EXAM_VICTORY_LEVEL = 9;    // examen: sobrevive hasta el nivel 9 (~4 min)
+export const BOSS_EVERY_LEVELS = 4;     // jefe al alcanzar los niveles 4, 8, 12...
+export const MINIGAME_EVERY_LEVELS = 3; // Desafío Relámpago en los niveles 3, 6, 9...
+export const SPAWN_BASE_INTERVAL = 3.4; // s entre enemigos al empezar
+export const SPAWN_DECAY = 0.88;        // el intervalo se multiplica por esto cada nivel
+export const SPAWN_MIN_INTERVAL = 0.55;
+export const GRACE_SECONDS = 6;         // respiro inicial antes del primer enemigo
+
+// --- preguntas periódicas durante la acción ---
+export const QUESTION_FIRST = 12;        // s hasta la primera pregunta
+export const QUESTION_INTERVAL = 30;     // s entre preguntas
+export const QUESTION_INTERVAL_ORACLE = 16; // con el Oráculo construido
 export const CLASSIFY_DMG_PCT = 0.45;   // daño del disparo de precisión (sobre HP máx)
 export const REVEALED_DMG_MULT = 1.25;  // enemigos clasificados reciben más daño
 
@@ -67,14 +81,12 @@ export const TOWER_TYPES = {
   canon:   { id: 'canon', name: 'Cañón', emoji: '💣', cost: 160, dmg: 24, range: 105, rate: 0.55, projSpeed: 300, kind: 'splash', splash: 55, needsCategory: true, desc: 'Daño en área a su categoría. Lento pero demoledor.' },
   hielo:   { id: 'hielo', name: 'Hielo', emoji: '❄️', cost: 130, dmg: 4, range: 105, rate: 1.0, projSpeed: 380, kind: 'slow', slowPct: 0.5, slowDur: 2, needsCategory: false, desc: 'Apoyo: ralentiza a CUALQUIER enemigo.' },
   prisma:  { id: 'prisma', name: 'Prisma', emoji: '🔮', cost: 260, dmg: 16, range: 130, rate: 1.3, kind: 'beam', needsCategory: false, desc: 'Rayo universal: daña a cualquier categoría.' },
-  oraculo: { id: 'oraculo', name: 'Oráculo', emoji: '🧿', cost: 150, dmg: 0, range: 0, rate: 0, kind: 'oracle', needsCategory: false, unique: true, desc: 'Te hace preguntas en plena oleada: acierta y gana monedas extra.' },
+  muralla: { id: 'muralla', name: 'Muralla', emoji: '🧱', cost: 100, dmg: 0, range: 0, rate: 0, kind: 'barrier', needsCategory: false, baseHp: 260, hpPerLevel: 140, desc: 'Se coloca SOBRE el camino y bloquea el paso hasta que la derriban.' },
+  oraculo: { id: 'oraculo', name: 'Oráculo', emoji: '🧿', cost: 150, dmg: 0, range: 0, rate: 0, kind: 'oracle', needsCategory: false, unique: true, desc: 'Acelera las preguntas durante la acción: más monedas y energía.' },
 };
 
 export const MAX_TOWER_LEVEL = 3;
 export const MOVE_COST = 30;            // recolocar cualquier construcción
-export const ORACLE_FIRST_DELAY = 8;    // s tras empezar la oleada
-export const ORACLE_INTERVAL = 20;      // s entre preguntas del oráculo
-
 // --- estructuras destructibles y saboteadores ---
 export const TOWER_BASE_HP = 90;        // +45 por nivel (mejorar repara del todo)
 export const TOWER_HP_PER_LEVEL = 45;
@@ -104,9 +116,10 @@ export const ENEMY_TYPES = {
   boss:   { id: 'boss', hp: 400, speed: 24, radius: 30, melee: 40 },
 };
 
-// Curva agresiva: partidas cortas e intensas. La oleada 10 multiplica HP x6.4.
-const waveHpMult = (wave) => 1 + 0.3 * (wave - 1) + 0.033 * (wave - 1) * (wave - 1);
-const waveSpeedMult = (wave) => 1 + Math.min(0.04 * (wave - 1), 0.7);
+// Curva agresiva por nivel de amenaza: partidas cortas e intensas.
+const levelHpMult = (level) => 1 + 0.3 * (level - 1) + 0.033 * (level - 1) * (level - 1);
+const levelSpeedMult = (level) => 1 + Math.min(0.04 * (level - 1), 0.7);
+export const spawnInterval = (level) => Math.max(SPAWN_BASE_INTERVAL * Math.pow(SPAWN_DECAY, level - 1), SPAWN_MIN_INTERVAL);
 export const killPoints = (enemy, wave) => (enemy.type === 'boss' ? 300 : 10 + 2 * wave);
 
 // ---------------------------------------------------------------------------
@@ -204,8 +217,9 @@ export function createGame(cfg) {
     map,
     categories,
     time: 0,
-    wave: 0,
-    phase: 'idle', // idle | wave (la fase de quiz/build la lleva el componente)
+    level: 1,              // nivel de amenaza (sube cada LEVEL_SECONDS)
+    levelUpAt: 0,
+    phase: 'idle',         // idle (preparación) | run (acción continua) | ended
     coins: STARTING_COINS,
     lives: STARTING_LIVES,
     score: 0,
@@ -217,14 +231,13 @@ export function createGame(cfg) {
     allyNextAt: 0,
     projectiles: [],
     particles: [],
-    spawnQueue: [],
+    injected: [],          // cola del duelo futuro (injectEnemies)
     spawnTimer: 0,
-    nextWave: null,        // composición precalculada (para el pronóstico)
+    cluster: { catIdx: 0, remaining: 0 }, // ráfagas de la misma categoría
     jams: categories.map(() => 0), // instante hasta el que cada categoría está atascada
-    oracleNextAt: 0,               // próxima pregunta del Oráculo (si está construido)
-    waveLeaks: 0,
+    questionNextAt: 0,             // próxima pregunta periódica
     nextId: 1,
-    stats: { kills: 0, leaks: 0, perfectWaves: 0, towersBuilt: 0 },
+    stats: { kills: 0, leaks: 0, towersBuilt: 0 },
   };
 }
 
@@ -235,68 +248,42 @@ function drawWord(game, catIdx) {
 }
 
 // ---------------------------------------------------------------------------
-// Oleadas
+// Flujo continuo: la acción empieza con startRun y ya no para
 // ---------------------------------------------------------------------------
 
-export function planNextWave(game) {
-  const wave = game.wave + 1;
-  const rng = game.rng;
-  const isBossWave = wave % 5 === 0;
-  // arranque suave (oleada 1: 6) pero rampa fuerte (oleada 10: 27)
-  const n = Math.min(3 + Math.ceil(wave * 2.4), 30);
-
-  // Oleada 1-2 usa solo 2 categorías; después, todas las activas
-  const catCount = wave <= 2 ? Math.min(2, game.categories.length) : game.categories.length;
-
-  // Los enemigos llegan en ráfagas de 2-4 de la misma categoría (defendible con
-  // torres de categoría, y refuerza la lectura de palabras en bloque)
-  const entries = [];
-  let remaining = n;
-  while (remaining > 0) {
-    const catIdx = Math.floor(rng() * catCount);
-    const cluster = Math.min(2 + Math.floor(rng() * 3), remaining);
-    for (let i = 0; i < cluster; i++) {
-      let type = 'normal';
-      const roll = rng();
-      const scoutP = wave >= 2 ? Math.min(0.12 + 0.02 * wave, 0.3) : 0;
-      const saboP = wave >= 3 ? Math.min(0.03 + 0.013 * wave, 0.14) : 0;
-      if (roll < scoutP) type = 'scout';
-      else if (roll < scoutP + saboP) type = 'sabo';
-      else if (wave >= 3 && roll > 1 - Math.min(0.08 + 0.025 * wave, 0.3)) type = 'brute';
-      entries.push({ type, catIdx });
-    }
-    remaining -= cluster;
-  }
-  if (isBossWave) {
-    entries.push({ type: 'boss', catIdx: Math.floor(rng() * catCount) });
-  }
-
-  const interval = Math.max(1.3 - 0.06 * wave, 0.55);
-  game.nextWave = { wave, entries, interval, isBossWave };
-  return game.nextWave;
+/** Arranca la acción continua tras la fase de preparación. */
+export function startRun(game) {
+  game.phase = 'run';
+  game.levelUpAt = game.time + LEVEL_SECONDS;
+  game.spawnTimer = GRACE_SECONDS;
+  game.questionNextAt = game.time + QUESTION_FIRST;
+  game.allyNextAt = game.time + ALLY.firstDelay;
 }
 
-export function startWave(game) {
-  if (!game.nextWave) planNextWave(game);
-  const plan = game.nextWave;
-  game.wave = plan.wave;
-  game.phase = 'wave';
-  game.waveLeaks = 0;
-  game.spawnTimer = 0.5;
-  game.spawnQueue = plan.entries.map((e, i) => ({
-    ...e,
-    delay: e.type === 'boss' ? plan.interval * 2 : plan.interval * (0.7 + game.rng() * 0.6),
-    order: i,
-  }));
-  game.nextWave = null;
-  game.oracleNextAt = game.time + ORACLE_FIRST_DELAY;
-  game.allies = [];
-  game.allyNextAt = game.time + ALLY.firstDelay;
+/** Elige tipo y categoría del siguiente enemigo según el nivel de amenaza. */
+function nextSpawnEntry(game) {
+  const rng = game.rng;
+  const level = game.level;
+  // ráfagas de 2-4 enemigos de la misma categoría
+  if (game.cluster.remaining <= 0) {
+    const catCount = level <= 1 ? Math.min(2, game.categories.length) : game.categories.length;
+    game.cluster = { catIdx: Math.floor(rng() * catCount), remaining: 2 + Math.floor(rng() * 3) };
+  }
+  game.cluster.remaining--;
+
+  let type = 'normal';
+  const roll = rng();
+  const scoutP = level >= 2 ? Math.min(0.12 + 0.02 * level, 0.3) : 0;
+  const saboP = level >= 3 ? Math.min(0.03 + 0.013 * level, 0.14) : 0;
+  if (roll < scoutP) type = 'scout';
+  else if (roll < scoutP + saboP) type = 'sabo';
+  else if (level >= 3 && roll > 1 - Math.min(0.08 + 0.025 * level, 0.3)) type = 'brute';
+  return { type, catIdx: game.cluster.catIdx };
 }
 
 function spawnEnemy(game, entry) {
   const base = ENEMY_TYPES[entry.type];
-  const hpMult = entry.type === 'boss' ? 1 + 0.45 * (game.wave - 1) : waveHpMult(game.wave);
+  const hpMult = entry.type === 'boss' ? 1 + 0.45 * (game.level - 1) : levelHpMult(game.level);
   const maxHp = Math.round(base.hp * hpMult);
   const enemy = {
     id: game.nextId++,
@@ -306,14 +293,14 @@ function spawnEnemy(game, entry) {
     dist: 0,
     hp: maxHp,
     maxHp,
-    speed: base.speed * waveSpeedMult(game.wave),
+    speed: base.speed * levelSpeedMult(game.level),
     radius: base.radius,
     slowUntil: 0,
     slowPct: 0,
     classified: false,
     revealed: false,
     enraged: false,
-    // forma procedural del blob: radios y fase de animación con semilla
+    // variación procedural con semilla (tamaño, fase de animación, tono)
     shape: Array.from({ length: 8 }, () => 0.82 + game.rng() * 0.32),
     phase: game.rng() * Math.PI * 2,
     hue: Math.floor(game.rng() * 360),
@@ -323,10 +310,10 @@ function spawnEnemy(game, entry) {
   return enemy;
 }
 
-/** Duelo futuro: el rival inyecta enemigos extra en la oleada en curso. */
+/** Duelo futuro: el rival inyecta enemigos extra en el flujo. */
 export function injectEnemies(game, entries) {
   for (const e of entries) {
-    game.spawnQueue.push({ type: e.type || 'normal', catIdx: e.catIdx ?? 0, delay: 0.4, order: 999 });
+    game.injected.push({ type: e.type || 'normal', catIdx: e.catIdx ?? 0 });
   }
 }
 
@@ -345,6 +332,7 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
   if (!type || game.coins < type.cost || !canBuildAt(game, col, row)) return null;
   if (type.unique && game.towers.some((t) => t.type === typeId)) return null;
   game.coins -= type.cost;
+  const baseHp = type.baseHp || TOWER_BASE_HP;
   const tower = {
     id: game.nextId++,
     type: typeId,
@@ -357,22 +345,53 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
     aim: -Math.PI / 2,
     invested: type.cost,
     flash: 0,
-    hp: TOWER_BASE_HP,
-    maxHp: TOWER_BASE_HP,
+    hp: baseHp,
+    maxHp: baseHp,
   };
+  if (type.kind === 'barrier') tower.pathDist = barrierPathDist(game, col, row);
   game.towers.push(tower);
   game.stats.towersBuilt++;
   return tower;
 }
 
-/** Recoloca una construcción a otra celda libre por MOVE_COST monedas. */
+/**
+ * La muralla se coloca SOBRE el camino: celda de camino libre de estructuras.
+ * El resto de construcciones usan canBuildAt (celdas fuera del camino).
+ */
+export function canPlaceBarrier(game, col, row) {
+  if (col < 0 || row < 0 || col >= GRID.cols || row >= GRID.rows) return false;
+  if (!game.map.pathCells.has(`${col},${row}`)) return false;
+  return !game.towers.some((t) => t.col === col && t.row === row);
+}
+
+export function canPlace(game, typeId, col, row) {
+  return TOWER_TYPES[typeId]?.kind === 'barrier'
+    ? canPlaceBarrier(game, col, row)
+    : canBuildAt(game, col, row);
+}
+
+/** Distancia a lo largo del camino del centro de una celda de camino. */
+function barrierPathDist(game, col, row) {
+  const cx = col * GRID.cell + GRID.cell / 2;
+  const cy = row * GRID.cell + GRID.cell / 2;
+  const { points, cum } = game.map;
+  let best = 0, bestD = Infinity;
+  for (let i = 0; i < points.length; i++) {
+    const d = Math.hypot(points[i].x - cx, points[i].y - cy);
+    if (d < bestD) { bestD = d; best = cum[i]; }
+  }
+  return best;
+}
+
+/** Recoloca una construcción a otra celda válida por MOVE_COST monedas. */
 export function moveTower(game, towerId, col, row) {
   const t = game.towers.find((x) => x.id === towerId);
-  if (!t || game.coins < MOVE_COST || !canBuildAt(game, col, row)) return false;
+  if (!t || game.coins < MOVE_COST || !canPlace(game, t.type, col, row)) return false;
   game.coins -= MOVE_COST;
   t.col = col; t.row = row;
   t.x = col * GRID.cell + GRID.cell / 2;
   t.y = row * GRID.cell + GRID.cell / 2;
+  if (TOWER_TYPES[t.type].kind === 'barrier') t.pathDist = barrierPathDist(game, col, row);
   return true;
 }
 
@@ -381,10 +400,11 @@ export function upgradeTower(game, towerId) {
   if (!t || t.level >= MAX_TOWER_LEVEL || TOWER_TYPES[t.type].kind === 'oracle') return false;
   const cost = upgradeCost(t.type, t.level);
   if (game.coins < cost) return false;
+  const type = TOWER_TYPES[t.type];
   game.coins -= cost;
   t.invested += cost;
   t.level++;
-  t.maxHp = TOWER_BASE_HP + TOWER_HP_PER_LEVEL * (t.level - 1);
+  t.maxHp = (type.baseHp || TOWER_BASE_HP) + (type.hpPerLevel || TOWER_HP_PER_LEVEL) * (t.level - 1);
   t.hp = t.maxHp; // mejorar también repara
   return true;
 }
@@ -481,34 +501,64 @@ function findTarget(game, tower) {
   return best;
 }
 
+const BARRIER_CONTACT = 22; // px de separación al chocar con una muralla
+
 /**
  * Avanza la simulación dt segundos. Devuelve una lista de eventos para
- * sonido/HUD: shoot, hit, death, leak, boss_spawn, wave_end, defeat, victory_wave.
+ * sonido/HUD: shoot, hit, death, leak, boss_spawn, level_up, question_time,
+ * minigame_offer, tower_hit, tower_destroyed, ally_spawn, ally_death,
+ * victory, defeat.
  */
 export function stepGame(game, dt) {
   const events = [];
-  if (game.phase !== 'wave') {
+  if (game.phase !== 'run') {
     updateParticles(game, dt);
     game.time += dt;
     return events;
   }
   game.time += dt;
 
-  // --- spawns ---
-  if (game.spawnQueue.length > 0) {
-    game.spawnTimer -= dt;
-    if (game.spawnTimer <= 0) {
-      const entry = game.spawnQueue.shift();
-      const e = spawnEnemy(game, entry);
-      if (entry.type === 'boss') events.push({ t: 'boss_spawn', enemy: e });
-      game.spawnTimer = game.spawnQueue.length > 0 ? game.spawnQueue[0].delay : 0;
+  // --- nivel de amenaza: sube cada LEVEL_SECONDS y acelera el flujo ---
+  if (game.time >= game.levelUpAt) {
+    game.level++;
+    game.levelUpAt = game.time + LEVEL_SECONDS;
+    game.coins += LEVEL_COIN_BONUS;
+    pushText(game, WORLD.w / 2, WORLD.h / 2 - 60, `¡Nivel ${game.level}! +${LEVEL_COIN_BONUS} 🪙`, '#fde047');
+    events.push({ t: 'level_up', level: game.level });
+    if (game.mode === 'exam' && game.level >= EXAM_VICTORY_LEVEL) {
+      game.phase = 'ended';
+      game.score += game.lives * 50; // bonus por vidas restantes
+      events.push({ t: 'victory' });
+      return events;
     }
+    if (game.level % BOSS_EVERY_LEVELS === 0) {
+      const boss = spawnEnemy(game, { type: 'boss', catIdx: Math.floor(game.rng() * game.categories.length) });
+      events.push({ t: 'boss_spawn', enemy: boss });
+    }
+    if (game.level % MINIGAME_EVERY_LEVELS === 0) {
+      events.push({ t: 'minigame_offer' });
+    }
+  }
+
+  // --- spawns continuos, cada vez más frecuentes ---
+  game.spawnTimer -= dt;
+  if (game.spawnTimer <= 0) {
+    const entry = game.injected.length ? game.injected.shift() : nextSpawnEntry(game);
+    spawnEnemy(game, entry);
+    game.spawnTimer = spawnInterval(game.level) * (0.8 + game.rng() * 0.4);
+  }
+
+  // --- pregunta periódica (el Oráculo las acelera) ---
+  if (game.time >= game.questionNextAt) {
+    const hasOracle = game.towers.some((t) => t.type === 'oraculo');
+    game.questionNextAt = game.time + (hasOracle ? QUESTION_INTERVAL_ORACLE : QUESTION_INTERVAL);
+    events.push({ t: 'question_time' });
   }
 
   // --- aliados: salen de la fortaleza y traban combate en el camino ---
   if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
     game.allyNextAt = game.time + ALLY.interval;
-    const hpMult = 1 + 0.2 * (game.wave - 1);
+    const hpMult = 1 + 0.2 * (game.level - 1);
     const ally = {
       id: game.nextId++,
       dist: game.map.totalLen - 50,
@@ -614,7 +664,34 @@ export function stepGame(game, dt) {
     }
 
     const slow = game.time < e.slowUntil ? 1 - e.slowPct : 1;
-    e.dist += e.speed * slow * dt;
+    let newDist = e.dist + e.speed * slow * dt;
+
+    // muralla: bloquea el paso; los enemigos en contacto la van derribando
+    let barrier = null;
+    for (const b of game.towers) {
+      if (b.pathDist == null) continue;
+      if (b.pathDist >= e.dist - 1 && newDist >= b.pathDist - BARRIER_CONTACT) {
+        if (!barrier || b.pathDist < barrier.pathDist) barrier = b;
+      }
+    }
+    if (barrier) {
+      newDist = Math.min(newDist, barrier.pathDist - BARRIER_CONTACT);
+      e.meleeCd = (e.meleeCd ?? 0.9) - dt;
+      if (e.meleeCd <= 0) {
+        e.meleeCd = 0.9;
+        barrier.hp -= ENEMY_TYPES[e.type].melee;
+        barrier.flash = 0.12;
+        events.push({ t: 'tower_hit' });
+        if (barrier.hp <= 0) {
+          game.towers = game.towers.filter((x) => x.id !== barrier.id);
+          pushBurst(game, barrier.x, barrier.y, '#f87171', 22, 140);
+          pushText(game, barrier.x, barrier.y - 20, '¡Muralla derribada!', '#ef4444');
+          events.push({ t: 'tower_destroyed', towerId: barrier.id });
+        }
+      }
+    }
+
+    e.dist = newDist;
     const p = pointAtDistance(game.map, e.dist);
     e.x = p.x; e.y = p.y; e.angle = p.angle;
     if (e.dist >= game.map.totalLen) {
@@ -622,7 +699,6 @@ export function stepGame(game, dt) {
       e.leaked = true;
       const dmgLives = e.type === 'boss' ? 3 : 1;
       game.lives = Math.max(0, game.lives - dmgLives);
-      game.waveLeaks++;
       game.stats.leaks++;
       events.push({ t: 'leak', enemy: e });
       if (game.lives <= 0) {
@@ -633,18 +709,12 @@ export function stepGame(game, dt) {
     }
   }
 
-  // --- oráculo: pregunta periódica durante la oleada ---
-  if (game.towers.some((t) => t.type === 'oraculo') && game.time >= game.oracleNextAt) {
-    game.oracleNextAt = game.time + ORACLE_INTERVAL;
-    events.push({ t: 'oracle' });
-  }
-
   // --- torres ---
   for (const tw of game.towers) {
     tw.cooldown -= dt;
     if (tw.flash > 0) tw.flash -= dt;
     const type = TOWER_TYPES[tw.type];
-    if (type.kind === 'oracle') continue; // no combate
+    if (type.kind === 'oracle' || type.kind === 'barrier') continue; // no disparan
     if (type.needsCategory && game.time < game.jams[tw.catIdx]) continue; // atascada
     if (tw.cooldown > 0) continue;
     const target = findTarget(game, tw);
@@ -716,7 +786,7 @@ export function stepGame(game, dt) {
     if (e.hp <= 0 && !e.counted) {
       e.counted = true;
       if (!e.leaked) {
-        const pts = killPoints(e, game.wave);
+        const pts = killPoints(e, game.level);
         game.score += pts;
         game.stats.kills++;
         game.energy = Math.min(game.energy + ENERGY_PER_KILL, ENERGY_MAX);
@@ -730,26 +800,6 @@ export function stepGame(game, dt) {
   game.enemies = game.enemies.filter((e) => e.hp > 0);
 
   updateParticles(game, dt);
-
-  // --- fin de oleada ---
-  if (game.spawnQueue.length === 0 && game.enemies.every((e) => e.hp <= 0)) {
-    game.enemies = [];
-    game.allies = []; // los caballeros vuelven a la fortaleza
-    game.phase = 'idle';
-    const perfect = game.waveLeaks === 0;
-    if (perfect) {
-      game.stats.perfectWaves++;
-      game.score += 100 + 10 * game.wave;
-    }
-    game.coins += COINS_WAVE_CLEAR;
-    if (game.mode === 'exam' && game.wave >= EXAM_WAVES) {
-      game.phase = 'ended';
-      game.score += game.lives * 50; // bonus por vidas restantes
-      events.push({ t: 'victory' });
-    } else {
-      events.push({ t: 'wave_end', wave: game.wave, perfect });
-    }
-  }
 
   return events;
 }
@@ -785,7 +835,7 @@ export function rewardCorrectAnswer(game, streak) {
 
 export function canCastAbility(game, abilityId) {
   const ab = ABILITIES[abilityId];
-  return !!ab && game.energy >= ab.cost && game.time >= game.abilityCdUntil && game.phase === 'wave';
+  return !!ab && game.energy >= ab.cost && game.time >= game.abilityCdUntil && game.phase === 'run';
 }
 
 /** Lanza una habilidad sobre el punto (x, y) del campo. Devuelve true si se lanzó. */
@@ -798,7 +848,7 @@ export function castAbility(game, abilityId, x, y) {
   const inArea = game.enemies.filter((e) => e.hp > 0 && Math.hypot(e.x - x, e.y - y) <= ab.radius);
 
   if (abilityId === 'meteoro') {
-    const dmg = 55 + 16 * game.wave;
+    const dmg = 55 + 16 * game.level;
     for (const e of inArea) applyDamage(game, e, dmg, null);
     pushBurst(game, x, y, '#fb923c', 26, 160);
     game.particles.push({ kind: 'ring', x, y, life: 0.4, maxLife: 0.4, color: '#fb923c', size: ab.radius });
