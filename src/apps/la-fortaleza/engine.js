@@ -83,7 +83,13 @@ export const TOWER_TYPES = {
   prisma:  { id: 'prisma', name: 'Prisma', emoji: '🔮', cost: 260, dmg: 16, range: 130, rate: 1.3, kind: 'beam', needsCategory: false, desc: 'Rayo universal: daña a cualquier categoría.' },
   muralla: { id: 'muralla', name: 'Muralla', emoji: '🧱', cost: 100, dmg: 0, range: 0, rate: 0, kind: 'barrier', needsCategory: false, baseHp: 260, hpPerLevel: 140, desc: 'Se coloca SOBRE el camino y bloquea el paso hasta que la derriban.' },
   oraculo: { id: 'oraculo', name: 'Oráculo', emoji: '🧿', cost: 150, dmg: 0, range: 0, rate: 0, kind: 'oracle', needsCategory: false, unique: true, desc: 'Acelera las preguntas durante la acción: más monedas y energía.' },
+  santuario: { id: 'santuario', name: 'Santuario', emoji: '💖', cost: 200, dmg: 0, range: 130, rate: 0, kind: 'sanctuary', needsCategory: false, unique: true, desc: 'Cura 1 vida a la Biblioteca cada 30 s y ralentiza a los enemigos cercanos.' },
 };
+
+// --- Santuario: se desbloquea acertando preguntas durante la partida ---
+export const SANCT_UNLOCK_CORRECT = 8;  // aciertos académicos para desbloquearlo
+export const SANCT_HEAL_INTERVAL = 30;  // s entre curaciones (+1 vida, máx 10)
+export const SANCT_SLOW_PCT = 0.25;     // ralentización del aura
 
 export const MAX_TOWER_LEVEL = 3;
 export const MOVE_COST = 30;            // recolocar cualquier construcción
@@ -126,8 +132,21 @@ export const killPoints = (enemy, wave) => (enemy.type === 'boss' ? 300 : 10 + 2
 // Generación procedural del mapa (camino ortogonal + suavizado Chaikin)
 // ---------------------------------------------------------------------------
 
+function buildPathData(pts) {
+  const cum = [0];
+  for (let i = 1; i < pts.length; i++) {
+    cum.push(cum[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+  }
+  return { points: pts, cum, totalLen: cum[cum.length - 1] };
+}
+
+const center = ([cc, rr]) => ({ x: cc * GRID.cell + GRID.cell / 2, y: rr * GRID.cell + GRID.cell / 2 });
+
+// Mapa con bifurcación: un tronco principal de izquierda a derecha y una rama
+// que entra por el borde superior o inferior y se une a mitad de recorrido.
+// Dos frentes que defender; el tramo común tras la unión es el cuello de botella.
 function generateMap(rng) {
-  const { cols, cell } = GRID;
+  const { cols, rows, cell } = GRID;
   let r = 2 + Math.floor(rng() * 5); // fila inicial 2..6
   let c = 0;
   const cells = [[c, r]];
@@ -145,27 +164,67 @@ function generateMap(rng) {
     const vLen = Math.floor(rng() * 4);
     for (let i = 0; i < vLen; i++) {
       const nr = r + dir;
-      if (nr < 1 || nr > GRID.rows - 2 || visited.has(`${c},${nr}`)) break;
+      if (nr < 1 || nr > rows - 2 || visited.has(`${c},${nr}`)) break;
       r = nr; cells.push([c, r]); visited.add(`${c},${r}`);
     }
   }
 
-  // Polilínea por los centros, con entrada y salida fuera de pantalla.
-  // Sin suavizado: tramos rectos y giros de 90° (estilo geométrico).
-  let pts = cells.map(([cc, rr]) => ({ x: cc * cell + cell / 2, y: rr * cell + cell / 2 }));
-  pts = [{ x: -cell / 2, y: pts[0].y }, ...pts, { x: WORLD.w + cell / 2, y: pts[pts.length - 1].y }];
-
-  // Distancias acumuladas para mover enemigos por distancia recorrida
-  const cum = [0];
-  for (let i = 1; i < pts.length; i++) {
-    cum.push(cum[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+  // --- rama secundaria: en L desde un borde hasta una celda de unión ---
+  let branchCells = null;
+  let junctionIdx = -1;
+  const candidates = [];
+  for (let i = Math.floor(cells.length * 0.3); i < Math.floor(cells.length * 0.65); i++) candidates.push(i);
+  for (const idx of seededShuffle(candidates, rng)) {
+    const [jc, jr] = cells[idx];
+    const fromTop = jr >= Math.floor(rows / 2); // entra por el borde más lejano
+    const edgeRow = fromTop ? 0 : rows - 1;
+    const step = fromTop ? 1 : -1;
+    for (const cc of seededShuffle([jc - 3, jc - 2, jc + 2, jc + 3, jc - 1, jc + 1], rng)) {
+      if (cc < 1 || cc > cols - 2) continue;
+      const tryCells = [];
+      let ok = true;
+      for (let rr = edgeRow; rr !== jr && ok; rr += step) {
+        if (visited.has(`${cc},${rr}`)) ok = false;
+        else tryCells.push([cc, rr]);
+      }
+      const dirH = cc < jc ? 1 : -1;
+      for (let xx = cc; xx !== jc && ok; xx += dirH) {
+        if (visited.has(`${xx},${jr}`)) ok = false;
+        else tryCells.push([xx, jr]);
+      }
+      if (ok && tryCells.length >= 3) {
+        branchCells = tryCells;
+        junctionIdx = idx;
+        break;
+      }
+    }
+    if (branchCells) break;
   }
 
+  // Camino principal: entrada y salida fuera de pantalla
+  const mainPts = [
+    { x: -cell / 2, y: center(cells[0]).y },
+    ...cells.map(center),
+    { x: WORLD.w + cell / 2, y: center(cells[cells.length - 1]).y },
+  ];
+  const paths = [buildPathData(mainPts)];
+
+  if (branchCells) {
+    for (const [cc, rr] of branchCells) visited.add(`${cc},${rr}`);
+    const first = center(branchCells[0]);
+    const entry = { x: first.x, y: branchCells[0][1] === 0 ? -cell / 2 : WORLD.h + cell / 2 };
+    // la rama continúa por el tronco desde la unión (índice +1 por el punto de entrada)
+    const branchPts = [entry, ...branchCells.map(center), ...mainPts.slice(junctionIdx + 1)];
+    paths.push(buildPathData(branchPts));
+  }
+
+  const main = paths[0];
   return {
+    paths,
     pathCells: visited,
-    points: pts,
-    cum,
-    totalLen: cum[cum.length - 1],
+    points: main.points,
+    cum: main.cum,
+    totalLen: main.totalLen,
     endCell: cells[cells.length - 1],
   };
 }
@@ -236,6 +295,7 @@ export function createGame(cfg) {
     cluster: { catIdx: 0, remaining: 0 }, // ráfagas de la misma categoría
     jams: categories.map(() => 0), // instante hasta el que cada categoría está atascada
     questionNextAt: 0,             // próxima pregunta periódica
+    sanctHealAt: 0,                // próxima curación del Santuario
     nextId: 1,
     stats: { kills: 0, leaks: 0, towersBuilt: 0 },
   };
@@ -267,7 +327,11 @@ function nextSpawnEntry(game) {
   // ráfagas de 2-4 enemigos de la misma categoría
   if (game.cluster.remaining <= 0) {
     const catCount = level <= 1 ? Math.min(2, game.categories.length) : game.categories.length;
-    game.cluster = { catIdx: Math.floor(rng() * catCount), remaining: 2 + Math.floor(rng() * 3) };
+    game.cluster = {
+      catIdx: Math.floor(rng() * catCount),
+      remaining: 2 + Math.floor(rng() * 3),
+      pathId: Math.floor(rng() * game.map.paths.length), // cada ráfaga elige frente
+    };
   }
   game.cluster.remaining--;
 
@@ -278,16 +342,18 @@ function nextSpawnEntry(game) {
   if (roll < scoutP) type = 'scout';
   else if (roll < scoutP + saboP) type = 'sabo';
   else if (level >= 3 && roll > 1 - Math.min(0.08 + 0.025 * level, 0.3)) type = 'brute';
-  return { type, catIdx: game.cluster.catIdx };
+  return { type, catIdx: game.cluster.catIdx, pathId: game.cluster.pathId };
 }
 
 function spawnEnemy(game, entry) {
   const base = ENEMY_TYPES[entry.type];
   const hpMult = entry.type === 'boss' ? 1 + 0.45 * (game.level - 1) : levelHpMult(game.level);
   const maxHp = Math.round(base.hp * hpMult);
+  const pathId = Math.min(entry.pathId ?? 0, game.map.paths.length - 1);
   const enemy = {
     id: game.nextId++,
     type: entry.type,
+    pathId,
     catIdx: entry.catIdx,
     word: drawWord(game, entry.catIdx),
     dist: 0,
@@ -304,7 +370,9 @@ function spawnEnemy(game, entry) {
     shape: Array.from({ length: 8 }, () => 0.82 + game.rng() * 0.32),
     phase: game.rng() * Math.PI * 2,
     hue: Math.floor(game.rng() * 360),
-    x: -30, y: game.map.points[0].y, angle: 0,
+    x: game.map.paths[pathId].points[0].x,
+    y: game.map.paths[pathId].points[0].y,
+    angle: 0,
   };
   game.enemies.push(enemy);
   return enemy;
@@ -329,7 +397,8 @@ export function canBuildAt(game, col, row) {
 
 export function placeTower(game, col, row, typeId, catIdx = null) {
   const type = TOWER_TYPES[typeId];
-  if (!type || game.coins < type.cost || !canBuildAt(game, col, row)) return null;
+  // la muralla va SOBRE el camino; el resto, fuera de él (canPlace decide)
+  if (!type || game.coins < type.cost || !canPlace(game, typeId, col, row)) return null;
   if (type.unique && game.towers.some((t) => t.type === typeId)) return null;
   game.coins -= type.cost;
   const baseHp = type.baseHp || TOWER_BASE_HP;
@@ -348,7 +417,8 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
     hp: baseHp,
     maxHp: baseHp,
   };
-  if (type.kind === 'barrier') tower.pathDist = barrierPathDist(game, col, row);
+  if (type.kind === 'barrier') tower.pathDists = barrierPathDists(game, col, row);
+  if (type.kind === 'sanctuary') game.sanctHealAt = game.time + SANCT_HEAL_INTERVAL;
   game.towers.push(tower);
   game.stats.towersBuilt++;
   return tower;
@@ -370,17 +440,22 @@ export function canPlace(game, typeId, col, row) {
     : canBuildAt(game, col, row);
 }
 
-/** Distancia a lo largo del camino del centro de una celda de camino. */
-function barrierPathDist(game, col, row) {
+/**
+ * Distancia a lo largo de cada camino del centro de una celda de camino.
+ * null si la celda no pertenece a ese camino (una muralla en el tramo común
+ * tras la unión bloquea AMBOS frentes).
+ */
+function barrierPathDists(game, col, row) {
   const cx = col * GRID.cell + GRID.cell / 2;
   const cy = row * GRID.cell + GRID.cell / 2;
-  const { points, cum } = game.map;
-  let best = 0, bestD = Infinity;
-  for (let i = 0; i < points.length; i++) {
-    const d = Math.hypot(points[i].x - cx, points[i].y - cy);
-    if (d < bestD) { bestD = d; best = cum[i]; }
-  }
-  return best;
+  return game.map.paths.map(({ points, cum }) => {
+    let best = null, bestD = Infinity;
+    for (let i = 0; i < points.length; i++) {
+      const d = Math.hypot(points[i].x - cx, points[i].y - cy);
+      if (d < bestD) { bestD = d; best = cum[i]; }
+    }
+    return bestD <= GRID.cell / 2 ? best : null;
+  });
 }
 
 /** Recoloca una construcción a otra celda válida por MOVE_COST monedas. */
@@ -391,7 +466,7 @@ export function moveTower(game, towerId, col, row) {
   t.col = col; t.row = row;
   t.x = col * GRID.cell + GRID.cell / 2;
   t.y = row * GRID.cell + GRID.cell / 2;
-  if (TOWER_TYPES[t.type].kind === 'barrier') t.pathDist = barrierPathDist(game, col, row);
+  if (TOWER_TYPES[t.type].kind === 'barrier') t.pathDists = barrierPathDists(game, col, row);
   return true;
 }
 
@@ -559,9 +634,12 @@ export function stepGame(game, dt) {
   if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
     game.allyNextAt = game.time + ALLY.interval;
     const hpMult = 1 + 0.2 * (game.level - 1);
+    const pathId = game.allies.length % game.map.paths.length; // reparte frentes
+    const path = game.map.paths[pathId];
     const ally = {
       id: game.nextId++,
-      dist: game.map.totalLen - 50,
+      pathId,
+      dist: path.totalLen - 50,
       hp: Math.round(ALLY.hp * hpMult),
       maxHp: Math.round(ALLY.hp * hpMult),
       targetId: null,
@@ -571,7 +649,7 @@ export function stepGame(game, dt) {
       phase: game.rng() * Math.PI * 2,
       x: 0, y: 0, angle: 0,
     };
-    const p0 = pointAtDistance(game.map, ally.dist);
+    const p0 = pointAtDistance(path, ally.dist);
     ally.x = p0.x; ally.y = p0.y;
     game.allies.push(ally);
     events.push({ t: 'ally_spawn', ally });
@@ -587,7 +665,8 @@ export function stepGame(game, dt) {
       a.targetId = null;
       for (const e of game.enemies) {
         if (e.hp <= 0 || e.leaked || e.blockedBy) continue;
-        if (Math.abs(e.dist - a.dist) < ALLY.engageDist) { target = e; break; }
+        // por proximidad real (los caminos comparten el tramo final)
+        if (Math.hypot(e.x - a.x, e.y - a.y) < ALLY.engageDist) { target = e; break; }
       }
       if (target) { a.targetId = target.id; a.attackCd = 0.3; }
     }
@@ -614,9 +693,9 @@ export function stepGame(game, dt) {
         }
       }
     } else {
-      // avanza hacia la entrada y monta guardia allí
+      // avanza hacia la entrada de su frente y monta guardia allí
       a.dist = Math.max(a.dist - ALLY.speed * dt, 30);
-      const p = pointAtDistance(game.map, a.dist);
+      const p = pointAtDistance(game.map.paths[a.pathId], a.dist);
       a.x = p.x; a.y = p.y; a.angle = p.angle + Math.PI;
     }
   }
@@ -663,19 +742,22 @@ export function stepGame(game, dt) {
       }
     }
 
+    const path = game.map.paths[e.pathId];
     const slow = game.time < e.slowUntil ? 1 - e.slowPct : 1;
     let newDist = e.dist + e.speed * slow * dt;
 
     // muralla: bloquea el paso; los enemigos en contacto la van derribando
     let barrier = null;
+    let barrierDist = 0;
     for (const b of game.towers) {
-      if (b.pathDist == null) continue;
-      if (b.pathDist >= e.dist - 1 && newDist >= b.pathDist - BARRIER_CONTACT) {
-        if (!barrier || b.pathDist < barrier.pathDist) barrier = b;
+      const bd = b.pathDists?.[e.pathId];
+      if (bd == null) continue;
+      if (bd >= e.dist - 1 && newDist >= bd - BARRIER_CONTACT) {
+        if (!barrier || bd < barrierDist) { barrier = b; barrierDist = bd; }
       }
     }
     if (barrier) {
-      newDist = Math.min(newDist, barrier.pathDist - BARRIER_CONTACT);
+      newDist = Math.min(newDist, barrierDist - BARRIER_CONTACT);
       e.meleeCd = (e.meleeCd ?? 0.9) - dt;
       if (e.meleeCd <= 0) {
         e.meleeCd = 0.9;
@@ -692,9 +774,9 @@ export function stepGame(game, dt) {
     }
 
     e.dist = newDist;
-    const p = pointAtDistance(game.map, e.dist);
+    const p = pointAtDistance(path, e.dist);
     e.x = p.x; e.y = p.y; e.angle = p.angle;
-    if (e.dist >= game.map.totalLen) {
+    if (e.dist >= path.totalLen) {
       e.hp = 0;
       e.leaked = true;
       const dmgLives = e.type === 'boss' ? 3 : 1;
@@ -709,12 +791,34 @@ export function stepGame(game, dt) {
     }
   }
 
+  // --- santuario: cura periódica + aura ralentizadora ---
+  const sanct = game.towers.find((t) => t.type === 'santuario');
+  if (sanct) {
+    if (game.time >= game.sanctHealAt) {
+      game.sanctHealAt = game.time + SANCT_HEAL_INTERVAL;
+      if (game.lives < STARTING_LIVES) {
+        game.lives++;
+        pushText(game, sanct.x, sanct.y - 30, '+1 ❤', '#f472b6');
+        events.push({ t: 'heal' });
+      }
+    }
+    const range = towerRange(sanct);
+    for (const e of game.enemies) {
+      if (e.hp <= 0 || Math.hypot(e.x - sanct.x, e.y - sanct.y) > range) continue;
+      // no pisar una ralentización más fuerte (Hielo/Ventisca)
+      if (!(game.time < e.slowUntil && e.slowPct > SANCT_SLOW_PCT)) {
+        e.slowUntil = game.time + 0.25;
+        e.slowPct = SANCT_SLOW_PCT;
+      }
+    }
+  }
+
   // --- torres ---
   for (const tw of game.towers) {
     tw.cooldown -= dt;
     if (tw.flash > 0) tw.flash -= dt;
     const type = TOWER_TYPES[tw.type];
-    if (type.kind === 'oracle' || type.kind === 'barrier') continue; // no disparan
+    if (type.kind === 'oracle' || type.kind === 'barrier' || type.kind === 'sanctuary') continue; // no disparan
     if (type.needsCategory && game.time < game.jams[tw.catIdx]) continue; // atascada
     if (tw.cooldown > 0) continue;
     const target = findTarget(game, tw);

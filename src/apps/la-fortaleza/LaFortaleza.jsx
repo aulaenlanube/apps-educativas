@@ -34,6 +34,83 @@ const getSubjectInfo = (level, grade, subjectId) => {
   return curso.find((m) => m.id === subjectId) || { nombre: '', icon: '📚' };
 };
 
+/**
+ * Construye el mazo de preguntas con 5 formatos generados a partir del
+ * contenido real (sin IA): definición→palabra, palabra→definición,
+ * verdadero/falso, categoría de una palabra y busca el intruso.
+ */
+function buildQuestionDeck(rng, allQuestions, categories) {
+  const deck = [];
+  const allSolutions = [...new Set(allQuestions.map((q) => q.solucion))];
+  const allDefs = [...new Set(allQuestions.map((q) => q.definicion))];
+  const diffOf = (q) => Math.min(Math.max(parseInt(q.difficulty, 10) || 1, 1), 3);
+  const mk4 = (correct, pool) => {
+    const distractors = seededShuffle(pool.filter((x) => x !== correct), rng).slice(0, 3);
+    return seededShuffle([correct, ...distractors], rng);
+  };
+
+  for (const q of allQuestions) {
+    const d = diffOf(q);
+    // 1) clásico: definición → palabra (la única escribible)
+    deck.push({
+      format: 'def', difficulty: d, writable: true,
+      definicion: q.definicion,
+      solucion: q.solucion,
+      options: mk4(q.solucion, allSolutions),
+    });
+    // 2) inversa: palabra → su definición
+    if (allDefs.length >= 4 && rng() < 0.45) {
+      deck.push({
+        format: 'rev', difficulty: d, writable: false,
+        definicion: `¿Qué significa «${q.solucion}»?`,
+        solucion: q.definicion,
+        options: mk4(q.definicion, allDefs),
+      });
+    }
+    // 3) verdadero o falso
+    if (allDefs.length >= 2 && rng() < 0.3) {
+      const lie = rng() < 0.5;
+      const shown = lie
+        ? seededShuffle(allDefs.filter((x) => x !== q.definicion), rng)[0]
+        : q.definicion;
+      deck.push({
+        format: 'vf', difficulty: d, writable: false,
+        definicion: `¿Verdadero o falso? «${q.solucion}» significa: ${shown}`,
+        solucion: lie ? 'Falso' : 'Verdadero',
+        options: ['Verdadero', 'Falso'],
+      });
+    }
+  }
+
+  // 4) y 5) con las categorías de palabras activas
+  if (categories.length >= 2) {
+    const catNames = categories.map((c) => c.name);
+    for (const cat of categories) {
+      for (const w of seededShuffle(cat.words, rng).slice(0, 6)) {
+        deck.push({
+          format: 'cat', difficulty: 1, writable: false,
+          definicion: `¿A qué categoría pertenece «${w}»?`,
+          solucion: cat.name,
+          options: seededShuffle(catNames, rng),
+        });
+      }
+      const others = categories.filter((c) => c !== cat);
+      for (let i = 0; i < 4 && cat.words.length >= 3 && others.length > 0; i++) {
+        const own = seededShuffle(cat.words, rng).slice(0, 3);
+        const other = others[Math.floor(rng() * others.length)];
+        const intruder = other.words[Math.floor(rng() * other.words.length)];
+        deck.push({
+          format: 'intruso', difficulty: 2, writable: false,
+          definicion: `¿Cuál NO pertenece a la categoría «${cat.name}»?`,
+          solucion: intruder,
+          options: seededShuffle([...own, intruder], rng),
+        });
+      }
+    }
+  }
+  return deck;
+}
+
 /** Prepara el contenido de una partida de forma determinista a partir del seed. */
 function prepareRun(seed, allCategories, allQuestions) {
   const rng = mulberry32(seed ^ 0x51ab3f);
@@ -43,39 +120,29 @@ function prepareRun(seed, allCategories, allQuestions) {
     .slice(0, MAX_ACTIVE_CATEGORIES)
     .map(([name, words]) => ({ name: formatCategoryName(name), words }));
 
-  // 2) Preguntas ordenadas por dificultad creciente (barajadas dentro de cada nivel)
+  // 2) Mazo variado con 5 formatos, agrupado por dificultad
+  const deck = buildQuestionDeck(rng, allQuestions, picked);
+  // En examen, las escribibles alternan escribir/test (~50/50, por seed)
+  const withQtype = (q) => ({ ...q, qtype: q.writable && rng() < 0.5 ? 'write' : 'choice' });
   const byDiff = { 1: [], 2: [], 3: [] };
-  allQuestions.forEach((q) => {
-    const d = Math.min(Math.max(parseInt(q.difficulty, 10) || 1, 1), 3);
-    byDiff[d].push(q);
-  });
-
-  const allSolutions = [...new Set(allQuestions.map((q) => q.solucion))];
-  // En examen se alternan preguntas de escribir y tipo test (~50/50, por seed)
-  const withOptions = (q) => {
-    const distractors = seededShuffle(allSolutions.filter((s) => s !== q.solucion), rng).slice(0, 3);
-    return {
-      ...q,
-      options: seededShuffle([q.solucion, ...distractors], rng),
-      qtype: rng() < 0.5 ? 'write' : 'choice',
-    };
-  };
+  deck.forEach((q) => byDiff[q.difficulty].push(withQtype(q)));
 
   const questions = [
     ...seededShuffle(byDiff[1], rng),
     ...seededShuffle(byDiff[2], rng),
     ...seededShuffle(byDiff[3], rng),
-  ].map(withOptions);
+  ];
 
-  // 3) Preguntas de jefe: del nivel más difícil disponible
-  const bossPool = byDiff[3].length ? byDiff[3] : byDiff[2].length ? byDiff[2] : byDiff[1];
-  const bossQuestions = seededShuffle(bossPool, rng).map(withOptions);
+  // 3) Preguntas de jefe: formato clásico del nivel más difícil disponible
+  const defs = deck.filter((q) => q.format === 'def');
+  const bossPool = [3, 2, 1].map((d) => defs.filter((q) => q.difficulty === d)).find((p) => p.length > 0) || defs;
+  const bossQuestions = seededShuffle(bossPool, rng).map(withQtype);
 
   // 4) Pools por dificultad para el Desafío Relámpago (siempre tipo test)
   const pools = {
-    1: seededShuffle(byDiff[1], rng).map(withOptions),
-    2: seededShuffle(byDiff[2], rng).map(withOptions),
-    3: seededShuffle(byDiff[3], rng).map(withOptions),
+    1: seededShuffle(byDiff[1], rng),
+    2: seededShuffle(byDiff[2], rng),
+    3: seededShuffle(byDiff[3], rng),
   };
 
   return { categories: picked, questions, bossQuestions, pools };
@@ -294,10 +361,10 @@ const LaFortaleza = ({ onGameComplete }) => {
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="La Fortaleza">
         <h3>🏰 Objetivo</h3>
-        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> camino de tu Biblioteca. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: más enemigos, más fuertes. Si llegan, pierdes vidas. ¡Aguanta!</p>
+        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> por <strong>dos caminos</strong> que se unen antes de llegar a tu Biblioteca. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: más enemigos, más fuertes. Vigila los dos frentes y domina el cuello de botella donde se juntan.</p>
 
         <h3>📜 Gana monedas con lo que sabes</h3>
-        <p>Respondes <strong>preguntas</strong> antes de empezar y cada poco tiempo en plena acción: cada acierto da monedas (con bonus por racha) y energía para construir, mejorar y lanzar habilidades.</p>
+        <p>Respondes <strong>preguntas de todo tipo</strong> (definiciones, qué significa una palabra, verdadero o falso, categorías, busca el intruso) antes de empezar y cada poco tiempo en plena acción: cada acierto da monedas (con bonus por racha) y energía.</p>
 
         <h3>🗼 Torres de categoría</h3>
         <p>Cada enemigo lleva una <strong>palabra</strong> de una categoría. Las torres 🏹 ⚡ 💣 solo disparan a los enemigos de SU categoría: lee las palabras y coloca bien tus defensas. ❄️ ralentiza a cualquiera y 🔮 daña a todos.</p>
@@ -308,6 +375,9 @@ const LaFortaleza = ({ onGameComplete }) => {
 
         <h3>🧿 El Oráculo</h3>
         <p>Con el Oráculo construido, las preguntas sorpresa llegan <strong>casi el doble de rápido</strong>: más monedas y energía. Solo puede haber uno.</p>
+
+        <h3>💖 El Santuario</h3>
+        <p>Se desbloquea al acertar <strong>8 preguntas</strong> en la partida. Cura 1 vida a la Biblioteca cada 30 segundos y su aura ralentiza a los enemigos cercanos: colócalo cerca del final para proteger el último tramo.</p>
 
         <h3>🗡️ Caballeros aliados</h3>
         <p>La fortaleza envía <strong>caballeros</strong> que avanzan por el camino y traban combate con los enemigos, frenándolos mientras tus torres disparan. ¡Cúbrelos bien!</p>

@@ -291,9 +291,10 @@
   padding: 8px 12px;
 }
 .fort-palette {
-  flex: 1; min-width: 320px;
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+  flex: 1; min-width: 360px;
+  display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px;
 }
+.fort-palette-btn.locked { opacity: 0.5; filter: grayscale(0.6); }
 
 .fort-abilities { display: flex; align-items: center; gap: 10px; }
 .fort-energy { display: flex; align-items: center; gap: 6px; color: #fde047; }
@@ -402,7 +403,7 @@
   .fort-root { padding: 8px; }
   .fort-card { padding: 18px; margin-top: 8px; }
   .fort-modes { grid-template-columns: 1fr; }
-  .fort-palette { grid-template-columns: repeat(6, 1fr); gap: 4px; min-width: 0; }
+  .fort-palette { grid-template-columns: repeat(4, 1fr); gap: 4px; min-width: 0; }
   .fort-palette-name { font-size: 0.62rem; }
   .fort-palette-emoji { font-size: 1.15rem; }
   .fort-palette-btn { padding: 6px 2px; }

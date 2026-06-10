@@ -97,6 +97,8 @@ export function createSounds() {
     towerDown() { noise(0.45, { freq: 350, vol: 0.8 }); tone(110, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60, delay: 0.1 }); },
     chain(step) { tone(440 * Math.pow(1.12, Math.min(step, 14)), 0.14, { type: 'triangle', vol: 0.5 }); },
     minigame() { arpeggio([659, 784, 988, 1319], 0.07, 0.18); },
+    heal() { arpeggio([784, 988, 1175], 0.09, 0.25, { type: 'sine', vol: 0.5 }); },
+    unlock() { arpeggio([523, 659, 784, 1047, 1319], 0.08, 0.22); },
     ability(id) {
       if (id === 'meteoro') { tone(180, 0.5, { type: 'sawtooth', vol: 0.5, slide: -120 }); noise(0.5, { freq: 900, vol: 0.8, delay: 0.25 }); }
       else if (id === 'ventisca') { tone(1600, 0.5, { type: 'sine', vol: 0.35, slide: -900 }); noise(0.4, { freq: 2400, vol: 0.25 }); }

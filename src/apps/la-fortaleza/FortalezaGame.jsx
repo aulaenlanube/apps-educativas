@@ -15,6 +15,7 @@ import {
   sellTower, moveTower, classifyEnemy, bossStrike, bossEnrage, canPlace, rewardCorrectAnswer,
   castAbility, ABILITIES, ENERGY_MAX, MOVE_COST,
   TOWER_TYPES, MAX_TOWER_LEVEL, upgradeCost, sellValue, EXAM_VICTORY_LEVEL,
+  SANCT_UNLOCK_CORRECT,
 } from './engine';
 import { createScene3D } from './render3d';
 
@@ -129,7 +130,10 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   const tally = useCallback((kind, correct) => {
     const a = academicRef.current;
     a.total++; a[kind].t++;
-    if (correct) { a.correct++; a[kind].c++; }
+    if (correct) {
+      a.correct++; a[kind].c++;
+      if (a.correct === SANCT_UNLOCK_CORRECT) setTimeout(() => soundsRef.current.unlock(), 600);
+    }
   }, []);
 
   // --- preguntas ---
@@ -376,6 +380,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           break;
         case 'ally_spawn': snd.allySpawn(); break;
         case 'ally_death': snd.jam(); break;
+        case 'heal': snd.heal(); break;
         case 'tower_hit': snd.towerHit(); break;
         case 'tower_destroyed':
           snd.towerDown();
@@ -957,24 +962,27 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       {phase !== 'ended' && (
         <div className="fort-bottombar">
           <div className="fort-palette">
-            {Object.values(TOWER_TYPES).map((t) => (
-              <button
-                key={t.id}
-                className={`fort-palette-btn ${placingType === t.id ? 'selected' : ''}`}
-                disabled={hud.coins < t.cost || (t.unique && game.towers.some((tw) => tw.type === t.id))}
-                onClick={() => {
-                  setSelectedTowerId(null);
-                  setAimingAbility(null);
-                  setMovingTowerId(null);
-                  setPlacingType((p) => (p === t.id ? null : t.id));
-                }}
-                title={t.desc}
-              >
-                <span className="fort-palette-emoji">{t.emoji}</span>
-                <span className="fort-palette-name">{t.name}</span>
-                <span className="fort-palette-cost">{t.cost} 🪙</span>
-              </button>
-            ))}
+            {Object.values(TOWER_TYPES).map((t) => {
+              const sanctLocked = t.id === 'santuario' && a.correct < SANCT_UNLOCK_CORRECT;
+              return (
+                <button
+                  key={t.id}
+                  className={`fort-palette-btn ${placingType === t.id ? 'selected' : ''} ${sanctLocked ? 'locked' : ''}`}
+                  disabled={sanctLocked || hud.coins < t.cost || (t.unique && game.towers.some((tw) => tw.type === t.id))}
+                  onClick={() => {
+                    setSelectedTowerId(null);
+                    setAimingAbility(null);
+                    setMovingTowerId(null);
+                    setPlacingType((p) => (p === t.id ? null : t.id));
+                  }}
+                  title={sanctLocked ? `Se desbloquea con ${SANCT_UNLOCK_CORRECT} aciertos (llevas ${a.correct})` : t.desc}
+                >
+                  <span className="fort-palette-emoji">{sanctLocked ? '🔒' : t.emoji}</span>
+                  <span className="fort-palette-name">{t.name}</span>
+                  <span className="fort-palette-cost">{sanctLocked ? `${a.correct}/${SANCT_UNLOCK_CORRECT} 🎓` : `${t.cost} 🪙`}</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="fort-abilities">

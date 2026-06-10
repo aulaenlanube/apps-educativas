@@ -171,11 +171,13 @@ export function createScene3D(container, game) {
     }
   }
 
-  // --- muestras del camino (para aplanar el terreno y construir la cinta) ---
+  // --- muestras de TODOS los caminos (terreno, decoración, marcas) ---
   const pathPts = [];
-  for (let d = 0; d <= game.map.totalLen; d += 8) {
-    const p = pointAtDistance(game.map, d);
-    pathPts.push({ X: fx(p.x), Z: fz(p.y), angle: p.angle });
+  for (const path of game.map.paths) {
+    for (let d = 0; d <= path.totalLen; d += 8) {
+      const p = pointAtDistance(path, d);
+      pathPts.push({ X: fx(p.x), Z: fz(p.y), angle: p.angle });
+    }
   }
 
   // --- terreno low-poly con colores por vértice ---
@@ -221,35 +223,98 @@ export function createScene3D(container, game) {
       tile.receiveShadow = true;
       scene.add(edge, tile);
     }
-    // rombos que marcan la dirección de avance
+    // rombos que marcan la dirección de avance (en cada camino)
     const diamondGeo = new THREE.OctahedronGeometry(0.07);
     diamondGeo.scale(1, 0.4, 1);
     const diamondMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
-    for (let d = 30; d < game.map.totalLen - 30; d += 60) {
-      const p = pointAtDistance(game.map, d);
-      const m = new THREE.Mesh(diamondGeo, diamondMat);
-      m.position.set(fx(p.x), 0.1, fz(p.y));
-      m.rotation.y = -p.angle;
-      scene.add(m);
+    for (const path of game.map.paths) {
+      for (let d = 30; d < path.totalLen - 30; d += 60) {
+        const p = pointAtDistance(path, d);
+        const m = new THREE.Mesh(diamondGeo, diamondMat);
+        m.position.set(fx(p.x), 0.1, fz(p.y));
+        m.rotation.y = -p.angle;
+        scene.add(m);
+      }
     }
-    // portal de entrada (arco geométrico)
-    const start = pathPts[0];
+    // un portal de entrada por camino, orientado según su dirección
     const portalMat = new THREE.MeshLambertMaterial({ color: 0x7c3aed, flatShading: true });
-    const portal = new THREE.Group();
-    for (const side of [-1, 1]) {
-      const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), portalMat);
-      pillar.position.set(0, 0.55, side * 0.5);
-      portal.add(pillar);
+    for (const path of game.map.paths) {
+      const p0 = pointAtDistance(path, 6);
+      const portal = new THREE.Group();
+      for (const side of [-1, 1]) {
+        const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), portalMat);
+        pillar.position.set(0, 0.55, side * 0.5);
+        portal.add(pillar);
+      }
+      const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), portalMat);
+      lintel.position.y = 1.15;
+      portal.add(lintel);
+      const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), new THREE.MeshBasicMaterial({ color: 0x1e1b4b, side: THREE.DoubleSide }));
+      dark.position.y = 0.5;
+      dark.rotation.y = Math.PI / 2;
+      portal.add(dark);
+      portal.position.set(fx(p0.x), 0, fz(p0.y));
+      portal.rotation.y = -p0.angle;
+      scene.add(portal);
     }
-    const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), portalMat);
-    lintel.position.y = 1.15;
-    portal.add(lintel);
-    const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), new THREE.MeshBasicMaterial({ color: 0x1e1b4b }));
-    dark.position.y = 0.5;
-    dark.rotation.y = Math.PI / 2;
-    portal.add(dark);
-    portal.position.set(start.X + 0.1, 0, start.Z);
-    scene.add(portal);
+  }
+
+  // --- decoración del escenario: árboles, rocas y flores ---
+  {
+    const trunkMat = new THREE.MeshLambertMaterial({ color: 0x92400e, flatShading: true });
+    const leafMats = [0x16a34a, 0x15803d, 0x65a30d].map((c) => new THREE.MeshLambertMaterial({ color: c, flatShading: true }));
+    const rockMat = new THREE.MeshLambertMaterial({ color: 0x9ca3af, flatShading: true });
+    const flowerMats = [0xf472b6, 0xfbbf24, 0xf87171, 0xc084fc].map((c) => new THREE.MeshBasicMaterial({ color: c }));
+
+    const nearPath = (X, Z, margin) => pathPts.some((p) => (X - p.X) * (X - p.X) + (Z - p.Z) * (Z - p.Z) < margin * margin);
+
+    // árboles en el anillo exterior (no estorban a las torres)
+    for (let i = 0; i < 18; i++) {
+      const a = rng() * Math.PI * 2;
+      const d = 9.6 + rng() * 3.5;
+      const X = Math.cos(a) * d, Z = Math.sin(a) * d * 0.65;
+      if (Math.abs(Z) > 7.5 || nearPath(X, Z, 1.2)) continue;
+      const tree = new THREE.Group();
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.5, 6), trunkMat);
+      trunk.position.y = 0.25;
+      tree.add(trunk);
+      const layers = 2 + Math.floor(rng() * 2);
+      for (let l = 0; l < layers; l++) {
+        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.55 - l * 0.14, 0.55, 6), leafMats[Math.floor(rng() * leafMats.length)]);
+        leaf.position.y = 0.65 + l * 0.38;
+        leaf.castShadow = true;
+        tree.add(leaf);
+      }
+      tree.position.set(X, 0, Z);
+      tree.rotation.y = rng() * Math.PI;
+      scene.add(tree);
+    }
+    // rocas en celdas libres del campo
+    for (let i = 0; i < 9; i++) {
+      const X = (rng() - 0.5) * 15, Z = (rng() - 0.5) * 8;
+      if (nearPath(X, Z, 1.0)) continue;
+      const rock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.14 + rng() * 0.14, 0), rockMat);
+      rock.position.set(X, 0.08, Z);
+      rock.rotation.set(rng() * Math.PI, rng() * Math.PI, 0);
+      rock.castShadow = true;
+      scene.add(rock);
+    }
+    // flores diminutas junto al camino
+    const stemGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.14, 4);
+    const petalGeo = new THREE.SphereGeometry(0.045, 6, 6);
+    for (let i = 0; i < 36; i++) {
+      const p = pathPts[Math.floor(rng() * pathPts.length)];
+      const off = 0.7 + rng() * 0.5;
+      const side = rng() < 0.5 ? 1 : -1;
+      const X = p.X - Math.sin(p.angle) * off * side;
+      const Z = p.Z + Math.cos(p.angle) * off * side;
+      if (nearPath(X, Z, 0.55)) continue;
+      const stem = new THREE.Mesh(stemGeo, trunkMat);
+      stem.position.set(X, 0.07, Z);
+      const petal = new THREE.Mesh(petalGeo, flowerMats[Math.floor(rng() * flowerMats.length)]);
+      petal.position.set(X, 0.16, Z);
+      scene.add(stem, petal);
+    }
   }
 
   // --- fortaleza (al final del camino) ---
@@ -303,21 +368,24 @@ export function createScene3D(container, game) {
   }
 
   // --- puntos de construcción (visibles al colocar) ---
-  const gridGroup = new THREE.Group();
+  const gridGroup = new THREE.Group();     // celdas libres (torres)
+  const gridPathGroup = new THREE.Group(); // celdas de camino (muralla)
   {
     const dotGeo = new THREE.CircleGeometry(0.07, 10);
     dotGeo.rotateX(-Math.PI / 2);
     const dotMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
+    const dotPathMat = new THREE.MeshBasicMaterial({ color: 0xfde047, transparent: true, opacity: 0.55 });
     for (let c = 0; c < GRID.cols; c++) {
       for (let r = 0; r < GRID.rows; r++) {
-        if (game.map.pathCells.has(`${c},${r}`)) continue;
-        const m = new THREE.Mesh(dotGeo, dotMat);
-        m.position.set(fx(c * GRID.cell + 30), 0.03, fz(r * GRID.cell + 30));
-        gridGroup.add(m);
+        const onPath = game.map.pathCells.has(`${c},${r}`);
+        const m = new THREE.Mesh(dotGeo, onPath ? dotPathMat : dotMat);
+        m.position.set(fx(c * GRID.cell + 30), onPath ? 0.09 : 0.03, fz(r * GRID.cell + 30));
+        (onPath ? gridPathGroup : gridGroup).add(m);
       }
     }
     gridGroup.visible = false;
-    scene.add(gridGroup);
+    gridPathGroup.visible = false;
+    scene.add(gridGroup, gridPathGroup);
   }
 
   // --- grupos dinámicos ---
@@ -410,6 +478,34 @@ export function createScene3D(container, game) {
     return g;
   }
 
+  // Santuario: altar con corazón de cristal levitante y aura curativa
+  function buildSanctuaryMesh(tw) {
+    const g = new THREE.Group();
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.4, 0.12, 8), new THREE.MeshLambertMaterial({ color: 0xf9fafb, flatShading: true }));
+    base.position.y = 0.06; base.castShadow = true;
+    g.add(base);
+    for (let i = 0; i < 4; i++) {
+      const a = (i / 4) * Math.PI * 2;
+      const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.55, 0.08), new THREE.MeshLambertMaterial({ color: 0xe9d5ff, flatShading: true }));
+      pillar.position.set(Math.cos(a) * 0.26, 0.38, Math.sin(a) * 0.26);
+      g.add(pillar);
+    }
+    const heartMat = new THREE.MeshStandardMaterial({ color: 0xf472b6, emissive: 0xf472b6, emissiveIntensity: 1.8, roughness: 0.3 });
+    const heart = new THREE.Mesh(new THREE.OctahedronGeometry(0.18), heartMat);
+    heart.scale.set(1, 1.25, 1);
+    heart.position.y = 0.78;
+    g.add(heart);
+    // anillo de aura en el suelo
+    const aura = new THREE.Mesh(shared.ringGeo, new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.35 }));
+    aura.position.y = 0.05;
+    aura.scale.setScalar(TOWER_TYPES.santuario.range * U);
+    g.add(aura);
+    g.position.set(fx(tw.x), 0, fz(tw.y));
+    g.userData = { towerId: tw.id, sanctuary: { heart, heartMat, aura } };
+    g.userData.hpBar = addTowerHpBar(g, 1.25);
+    return g;
+  }
+
   // El Oráculo no combate: pedestal con esfera de cristal levitante y anillo
   function buildOracleMesh(tw) {
     const g = new THREE.Group();
@@ -436,6 +532,7 @@ export function createScene3D(container, game) {
   function buildTowerMesh(tw) {
     if (tw.type === 'oraculo') return buildOracleMesh(tw);
     if (tw.type === 'muralla') return buildBarrierMesh(tw);
+    if (tw.type === 'santuario') return buildSanctuaryMesh(tw);
     const color = new THREE.Color(towerColorHex(tw));
     const g = new THREE.Group();
     const base = new THREE.Mesh(shared.base, shared.baseMat); base.position.y = 0.08; base.castShadow = true;
@@ -792,6 +889,15 @@ export function createScene3D(container, game) {
         continue;
       }
 
+      if (mesh.userData.sanctuary) {
+        const { heart, heartMat, aura } = mesh.userData.sanctuary;
+        heart.position.y = 0.78 + Math.sin(game.time * 2.2 + tw.id) * 0.06;
+        heart.rotation.y = game.time * 1.1;
+        heartMat.emissiveIntensity = 1.5 + Math.sin(game.time * 3) * 0.5;
+        aura.material.opacity = 0.25 + Math.sin(game.time * 3) * 0.12;
+        continue;
+      }
+
       if (mesh.userData.oracle) {
         const { sphere, ring, sphereMat } = mesh.userData.oracle;
         sphere.position.y = 0.85 + Math.sin(game.time * 2 + tw.id) * 0.07;
@@ -1038,7 +1144,9 @@ export function createScene3D(container, game) {
   }
 
   function syncIndicators(ui) {
-    gridGroup.visible = !!ui.placingType;
+    const placingBarrier = ui.placingType && TOWER_TYPES[ui.placingType].kind === 'barrier';
+    gridGroup.visible = !!ui.placingType && !placingBarrier;
+    gridPathGroup.visible = !!placingBarrier;
     placeGhost.visible = !!(ui.placingType && ui.hoverCell);
     if (placeGhost.visible) {
       const [c, r] = ui.hoverCell;
