@@ -4,7 +4,7 @@ import materiasData from '../../../public/data/materias.json';
 import {
   appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas,
   appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo,
-  appTorrePalabras, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
+  appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
   appBuscaElIntruso, appRosco, appRunner, appNavePalabras, appLluviaDePalabras, appParejas,
   appClasificador, appSnake, appJuegoMemoria, appComprensionEscrita, appComprensionOral,
   appExcavacionSelectiva, appIslaDeLaCalma, appBancoRecursosTutoria, appGeneradorPersonajes
@@ -18,7 +18,7 @@ export const adApps = {
     'tutoria':               [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes],
     // Audición y Lenguaje
     'articulacion':          [appAhorcado, appAnagramas, appSopaDeLetras, appDictadoInteractivo, appVelocidadRespuesta, appLluviaDePalabras, appRosco, appCrucigrama, appJuegoMemoria],
-    'vocabulario':           [appConectaParejas, appSopaDeLetras, appCrucigrama, appAhorcado, appAnagramas, appBuscaElIntruso, appClasificador, appTorrePalabras, appRosco, appMillonario, appLluviaDePalabras, appSnake, appRunner, appNavePalabras, appExcavacionSelectiva],
+    'vocabulario':           [appConectaParejas, appSopaDeLetras, appCrucigrama, appAhorcado, appAnagramas, appBuscaElIntruso, appClasificador, appTorrePalabras, appLaFortaleza, appRosco, appMillonario, appLluviaDePalabras, appSnake, appRunner, appNavePalabras, appExcavacionSelectiva],
     'morfosintaxis':         [appOrdenaLaFrase, appDetectiveDePalabras, appDictadoInteractivo, appCriptograma, appAhorcado, appAnagramas, appConectaParejas, appMillonario, appRosco],
     'pragmatica':            [appComprensionEscrita, appComprensionOral, appOrdenaLaHistoria, appOrdenaLaFrase, appConectaParejas, appMillonario, appBuscaElIntruso, appDetectiveDePalabras],
     'conciencia-fonologica': [appAnagramas, appAhorcado, appSopaDeLetras, appDictadoInteractivo, appLluviaDePalabras, appVelocidadRespuesta, appRosco, appCrucigrama],

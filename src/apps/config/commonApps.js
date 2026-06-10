@@ -114,6 +114,7 @@ const VelocidadRespuesta = lazy(() => import('../velocidad-respuesta/VelocidadRe
 const ConectaParejas = lazy(() => import('../conecta-parejas/ConectaParejas'));
 const DictadoInteractivo = lazy(() => import('../dictado-interactivo/DictadoInteractivo'));
 const TorrePalabras = lazy(() => import('../torre-palabras/TorrePalabras'));
+const LaFortaleza = lazy(() => import('../la-fortaleza/LaFortaleza'));
 const InfografiasInteractivas = lazy(() => import('../infografias-interactivas/InfografiasInteractivas'));
 
 
@@ -492,6 +493,13 @@ export const appTorrePalabras = {
   name: '🏗️ Torre de Palabras',
   description: 'Clasifica cada palabra en su categoría para apilar bloques. ¡Construye la torre más alta!',
   component: TorrePalabras
+};
+
+export const appLaFortaleza = {
+  id: 'la-fortaleza',
+  name: '🏰 La Fortaleza',
+  description: 'Tower defense educativo: responde preguntas para ganar monedas, construye torres de categoría y defiende la Biblioteca.',
+  component: LaFortaleza
 };
 
 export const appInfografiasInteractivas = {

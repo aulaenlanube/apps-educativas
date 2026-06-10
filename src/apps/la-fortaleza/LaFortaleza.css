@@ -1,0 +1,356 @@
+/* src/apps/la-fortaleza/LaFortaleza.css */
+
+.fort-root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+  background: linear-gradient(160deg, #1e1b4b 0%, #4c1d95 45%, #831843 100%);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ---------- tarjeta genérica (selección, resumen, errores) ---------- */
+.fort-card {
+  width: 100%;
+  max-width: 640px;
+  margin-top: 24px;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 22px;
+  padding: 28px;
+  color: #f1f5f9;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+.fort-loading { font-size: 1.2rem; padding: 40px 0; animation: fort-pulse 1.4s ease-in-out infinite; }
+@keyframes fort-pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+.fort-title-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.fort-title {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 1.6rem; font-weight: 800;
+  background: linear-gradient(90deg, #c084fc, #f0abfc, #fbbf24);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fort-title svg { color: #c084fc; }
+.fort-subject { margin: 6px 0 0; color: #cbd5e1; font-weight: 600; }
+.fort-tagline { margin: 10px 0 22px; color: #94a3b8; font-size: 0.95rem; }
+.fort-empty { color: #cbd5e1; padding: 16px 8px; line-height: 1.5; }
+
+/* ---------- selección de modo ---------- */
+.fort-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.fort-mode {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 20px 14px; border-radius: 18px; cursor: pointer;
+  border: 2px solid transparent; color: #f8fafc;
+  transition: border-color 0.2s;
+}
+.fort-mode.practice { background: linear-gradient(150deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.08)); border-color: rgba(16, 185, 129, 0.5); }
+.fort-mode.exam { background: linear-gradient(150deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.08)); border-color: rgba(239, 68, 68, 0.5); }
+.fort-mode-icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.1); }
+.fort-mode.practice .fort-mode-icon { color: #34d399; }
+.fort-mode.exam .fort-mode-icon { color: #f87171; }
+.fort-mode-name { font-size: 1.1rem; font-weight: 800; }
+.fort-mode-desc { font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; }
+
+.fort-study-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(168, 85, 247, 0.18); color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  padding: 10px 18px; border-radius: 12px; cursor: pointer;
+  font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
+}
+.fort-study-btn:hover { background: rgba(168, 85, 247, 0.32); }
+
+/* ---------- juego ---------- */
+.fort-game { width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 8px; }
+
+.fort-hud {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 14px; padding: 8px 12px; color: #f1f5f9;
+}
+.fort-hud-item {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 700; font-size: 0.95rem; padding: 3px 9px; border-radius: 9px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.fort-hud-item.lives { color: #f87171; }
+.fort-hud-item.coins { color: #fbbf24; }
+.fort-hud-item.wave { color: #7dd3fc; }
+.fort-hud-item.score { color: #e9d5ff; }
+.fort-hud-item.streak { color: #fb923c; animation: fort-pulse 1s infinite; }
+.fort-hud-spacer { flex: 1; }
+.fort-hud-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(255, 255, 255, 0.08); color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9px; padding: 6px 10px; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+}
+.fort-hud-btn.active { background: rgba(251, 191, 36, 0.25); color: #fbbf24; border-color: rgba(251, 191, 36, 0.5); }
+
+.fort-canvas-wrap { position: relative; width: 100%; }
+.fort-canvas {
+  width: 100%; aspect-ratio: 16 / 9; display: block;
+  border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  touch-action: manipulation; cursor: pointer;
+}
+.fort-canvas.placing { cursor: crosshair; }
+
+/* ---------- panel de quiz ---------- */
+.fort-quiz {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(92%, 460px);
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  border-radius: 18px; padding: 18px; color: #f1f5f9;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+}
+.fort-quiz-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.fort-quiz-tag { font-size: 0.8rem; font-weight: 700; color: #c084fc; }
+.fort-quiz-timer {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-weight: 800; font-size: 0.85rem; color: #7dd3fc;
+  background: rgba(125, 211, 252, 0.12); padding: 3px 9px; border-radius: 9px;
+}
+.fort-quiz-timer.urgent { color: #f87171; background: rgba(239, 68, 68, 0.15); animation: fort-pulse 0.7s infinite; }
+.fort-quiz-def { font-size: 1.02rem; line-height: 1.45; margin: 0 0 14px; text-align: left; }
+
+.fort-quiz-form { display: flex; gap: 8px; }
+.fort-quiz-form input {
+  flex: 1; background: rgba(255, 255, 255, 0.08); color: #f8fafc;
+  border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 11px;
+  padding: 11px 14px; font-size: 1rem; outline: none;
+}
+.fort-quiz-form input:focus { border-color: #c084fc; }
+.fort-quiz-form button {
+  background: linear-gradient(135deg, #a855f7, #ec4899); color: #fff;
+  border: none; border-radius: 11px; padding: 11px 18px;
+  font-weight: 800; cursor: pointer; font-size: 0.95rem;
+}
+.fort-quiz-form button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.fort-quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fort-quiz-options button {
+  background: rgba(168, 85, 247, 0.16); color: #f1f5f9;
+  border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 11px;
+  padding: 11px 10px; font-weight: 600; cursor: pointer; font-size: 0.92rem;
+  transition: background 0.15s, transform 0.1s;
+}
+.fort-quiz-options button:hover { background: rgba(168, 85, 247, 0.35); transform: translateY(-1px); }
+
+.fort-quiz-feedback {
+  border-radius: 11px; padding: 12px; font-size: 0.98rem; font-weight: 600;
+}
+.fort-quiz-feedback.correct { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+.fort-quiz-feedback.wrong { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+
+/* ---------- modal clasificación / catpick / quit ---------- */
+.fort-classify {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(90%, 380px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 18px; padding: 20px; color: #f1f5f9; text-align: center;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+}
+.fort-classify-close {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255, 255, 255, 0.08); border: none; color: #94a3b8;
+  border-radius: 8px; padding: 5px; cursor: pointer; display: grid; place-items: center;
+}
+.fort-classify-word { font-size: 1.35rem; font-weight: 800; color: #fbbf24; margin-bottom: 4px; }
+.fort-classify-ask { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 14px; }
+.fort-classify-opts { display: flex; flex-direction: column; gap: 8px; }
+.fort-classify-opts button {
+  background: color-mix(in srgb, var(--cat) 18%, transparent);
+  border: 2px solid var(--cat); color: #f8fafc;
+  border-radius: 11px; padding: 11px; font-weight: 700; font-size: 0.98rem;
+  cursor: pointer; transition: background 0.15s, transform 0.1s;
+}
+.fort-classify-opts button:hover { background: color-mix(in srgb, var(--cat) 38%, transparent); transform: translateY(-1px); }
+.fort-classify-hint { margin-top: 12px; font-size: 0.75rem; color: #94a3b8; }
+.fort-quit-btns { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+
+/* ---------- modal jefe ---------- */
+.fort-boss {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  width: min(94%, 480px);
+  background: linear-gradient(160deg, rgba(76, 29, 149, 0.96), rgba(15, 23, 42, 0.96));
+  border: 2px solid #fbbf24;
+  border-radius: 18px; padding: 16px; color: #f1f5f9;
+  box-shadow: 0 0 35px rgba(251, 191, 36, 0.35);
+}
+.fort-boss-head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 900; color: #fbbf24; margin-bottom: 8px; letter-spacing: 0.5px;
+}
+
+/* ---------- barra de construcción ---------- */
+.fort-buildbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 14px; padding: 10px 14px; color: #e2e8f0;
+}
+.fort-forecast { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.88rem; }
+.fort-forecast-label { font-weight: 800; color: #7dd3fc; }
+.fort-forecast-cat {
+  background: color-mix(in srgb, var(--cat, #94a3b8) 20%, transparent);
+  border: 1px solid var(--cat, #64748b);
+  padding: 3px 10px; border-radius: 9px; font-weight: 700; font-size: 0.82rem;
+}
+.fort-buildbar-actions { display: flex; gap: 8px; }
+
+.fort-btn-launch {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, #10b981, #059669); color: #fff;
+  border: none; border-radius: 12px; padding: 11px 20px;
+  font-weight: 800; font-size: 1rem; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+  transition: transform 0.1s;
+}
+.fort-btn-launch:hover { transform: translateY(-1px); }
+.fort-btn-secondary {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255, 255, 255, 0.08); color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
+}
+.fort-btn-danger {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(239, 68, 68, 0.16); color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
+}
+.fort-btn-upgrade {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(16, 185, 129, 0.16); color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
+}
+.fort-btn-upgrade:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- panel torre ---------- */
+.fort-towerpanel {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 14px; padding: 10px 14px; color: #f1f5f9;
+}
+.fort-towerpanel-name { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; flex: 1; }
+.fort-towerpanel-cat {
+  background: color-mix(in srgb, var(--cat) 22%, transparent);
+  border: 1px solid var(--cat);
+  padding: 2px 9px; border-radius: 8px; font-size: 0.78rem; font-weight: 700;
+}
+.fort-towerpanel-lvl { color: #fbbf24; font-size: 0.85rem; }
+.fort-towerpanel-max { color: #fbbf24; font-weight: 700; font-size: 0.88rem; }
+
+/* ---------- paleta de torres ---------- */
+.fort-palette {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+}
+.fort-palette-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: rgba(15, 23, 42, 0.78); color: #e2e8f0;
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: 13px; padding: 9px 4px; cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s, background 0.15s;
+}
+.fort-palette-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(192, 132, 252, 0.7); }
+.fort-palette-btn.selected { border-color: #fbbf24; background: rgba(251, 191, 36, 0.14); box-shadow: 0 0 14px rgba(251, 191, 36, 0.3); }
+.fort-palette-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.fort-palette-emoji { font-size: 1.4rem; }
+.fort-palette-name { font-size: 0.74rem; font-weight: 700; }
+.fort-palette-cost { font-size: 0.7rem; color: #fbbf24; font-weight: 700; }
+
+.fort-placing-hint {
+  text-align: center; font-size: 0.82rem; color: #fde68a;
+  background: rgba(251, 191, 36, 0.1); border-radius: 10px; padding: 7px 12px;
+}
+
+.fort-academic {
+  text-align: center; font-size: 0.8rem; color: #94a3b8; padding-bottom: 6px;
+}
+
+/* ---------- resumen ---------- */
+.fort-result-banner { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 16px; }
+.fort-result-banner h2 { margin: 0; font-size: 1.45rem; }
+.fort-result-banner.victory svg { color: #fbbf24; }
+.fort-result-banner.defeat svg { color: #f87171; }
+.fort-result-banner.finished svg { color: #c084fc; }
+
+.fort-nota { border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.fort-nota.excellent { background: rgba(16, 185, 129, 0.16); color: #34d399; }
+.fort-nota.good { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
+.fort-nota.fail { background: rgba(239, 68, 68, 0.16); color: #f87171; }
+.fort-nota-big { font-size: 3.2rem; font-weight: 900; line-height: 1; }
+.fort-nota-small { font-size: 1.3rem; opacity: 0.7; }
+.fort-nota-msg { font-weight: 700; margin-top: 6px; }
+
+.fort-wave-reached { font-size: 1.15rem; color: #7dd3fc; margin-bottom: 14px; }
+.fort-wave-reached strong { font-size: 1.5rem; }
+
+.fort-result-score {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 1.2rem; font-weight: 800; color: #fbbf24; margin-bottom: 18px;
+}
+
+.fort-breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 20px; }
+.fort-breakdown-item {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.05); border-radius: 11px; padding: 10px 13px;
+  font-size: 0.86rem; color: #cbd5e1;
+}
+.fort-breakdown-item svg { color: #c084fc; flex-shrink: 0; }
+.fort-breakdown-item span { flex: 1; text-align: left; }
+.fort-breakdown-item strong { color: #f8fafc; }
+
+.fort-summary-actions { display: flex; justify-content: center; gap: 10px; }
+
+/* ---------- material de estudio ---------- */
+.fort-study-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.fort-study-tabs button {
+  flex: 1; background: rgba(168, 85, 247, 0.1); color: inherit;
+  border: 1.5px solid rgba(168, 85, 247, 0.3); border-radius: 10px;
+  padding: 8px; font-weight: 700; cursor: pointer; font-size: 0.88rem;
+}
+.fort-study-tabs button.active { background: rgba(168, 85, 247, 0.3); border-color: #a855f7; }
+.fort-study-cat { margin-bottom: 14px; }
+.fort-study-cat h3 { margin: 0 0 8px; }
+.fort-study-words { display: flex; flex-wrap: wrap; gap: 6px; }
+.fort-study-chip {
+  background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px; padding: 3px 10px; font-size: 0.82rem;
+}
+.fort-study-letter h3 {
+  margin: 12px 0 6px; color: #c084fc;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 3px;
+}
+.fort-study-def { margin: 5px 0; font-size: 0.88rem; line-height: 1.45; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .fort-root { padding: 8px; }
+  .fort-card { padding: 18px; margin-top: 8px; }
+  .fort-modes { grid-template-columns: 1fr; }
+  .fort-palette { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .fort-palette-name { font-size: 0.62rem; }
+  .fort-palette-emoji { font-size: 1.15rem; }
+  .fort-hud { padding: 6px 8px; gap: 5px; }
+  .fort-hud-item { font-size: 0.8rem; padding: 2px 7px; }
+  .fort-quiz { padding: 14px; }
+  .fort-quiz-options { grid-template-columns: 1fr; }
+  .fort-breakdown { grid-template-columns: 1fr; }
+  .fort-buildbar { flex-direction: column; align-items: stretch; }
+  .fort-buildbar-actions { justify-content: stretch; }
+  .fort-buildbar-actions .fort-btn-launch { flex: 1; justify-content: center; }
+}
