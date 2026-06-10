@@ -67,11 +67,15 @@ export const TOWER_TYPES = {
   canon:   { id: 'canon', name: 'Cañón', emoji: '💣', cost: 160, dmg: 24, range: 105, rate: 0.55, projSpeed: 300, kind: 'splash', splash: 55, needsCategory: true, desc: 'Daño en área a su categoría. Lento pero demoledor.' },
   hielo:   { id: 'hielo', name: 'Hielo', emoji: '❄️', cost: 130, dmg: 4, range: 105, rate: 1.0, projSpeed: 380, kind: 'slow', slowPct: 0.5, slowDur: 2, needsCategory: false, desc: 'Apoyo: ralentiza a CUALQUIER enemigo.' },
   prisma:  { id: 'prisma', name: 'Prisma', emoji: '🔮', cost: 260, dmg: 16, range: 130, rate: 1.3, kind: 'beam', needsCategory: false, desc: 'Rayo universal: daña a cualquier categoría.' },
+  oraculo: { id: 'oraculo', name: 'Oráculo', emoji: '🧿', cost: 150, dmg: 0, range: 0, rate: 0, kind: 'oracle', needsCategory: false, unique: true, desc: 'Te hace preguntas en plena oleada: acierta y gana monedas extra.' },
 };
 
 export const MAX_TOWER_LEVEL = 3;
+export const MOVE_COST = 30;            // recolocar cualquier construcción
+export const ORACLE_FIRST_DELAY = 8;    // s tras empezar la oleada
+export const ORACLE_INTERVAL = 20;      // s entre preguntas del oráculo
 export const upgradeCost = (type, level) => Math.round(TOWER_TYPES[type].cost * (level === 1 ? 0.6 : 0.9));
-export const sellValue = (tower) => Math.round(tower.invested * 0.6);
+export const sellValue = (tower) => Math.round(tower.invested * 0.75);
 
 export const ENEMY_TYPES = {
   scout:  { id: 'scout', hp: 18, speed: 80, radius: 12 },
@@ -206,6 +210,7 @@ export function createGame(cfg) {
     spawnTimer: 0,
     nextWave: null,        // composición precalculada (para el pronóstico)
     jams: categories.map(() => 0), // instante hasta el que cada categoría está atascada
+    oracleNextAt: 0,               // próxima pregunta del Oráculo (si está construido)
     waveLeaks: 0,
     nextId: 1,
     stats: { kills: 0, leaks: 0, perfectWaves: 0, towersBuilt: 0 },
@@ -270,6 +275,7 @@ export function startWave(game) {
     order: i,
   }));
   game.nextWave = null;
+  game.oracleNextAt = game.time + ORACLE_FIRST_DELAY;
 }
 
 function spawnEnemy(game, entry) {
@@ -321,6 +327,7 @@ export function canBuildAt(game, col, row) {
 export function placeTower(game, col, row, typeId, catIdx = null) {
   const type = TOWER_TYPES[typeId];
   if (!type || game.coins < type.cost || !canBuildAt(game, col, row)) return null;
+  if (type.unique && game.towers.some((t) => t.type === typeId)) return null;
   game.coins -= type.cost;
   const tower = {
     id: game.nextId++,
@@ -340,9 +347,20 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
   return tower;
 }
 
+/** Recoloca una construcción a otra celda libre por MOVE_COST monedas. */
+export function moveTower(game, towerId, col, row) {
+  const t = game.towers.find((x) => x.id === towerId);
+  if (!t || game.coins < MOVE_COST || !canBuildAt(game, col, row)) return false;
+  game.coins -= MOVE_COST;
+  t.col = col; t.row = row;
+  t.x = col * GRID.cell + GRID.cell / 2;
+  t.y = row * GRID.cell + GRID.cell / 2;
+  return true;
+}
+
 export function upgradeTower(game, towerId) {
   const t = game.towers.find((x) => x.id === towerId);
-  if (!t || t.level >= MAX_TOWER_LEVEL) return false;
+  if (!t || t.level >= MAX_TOWER_LEVEL || TOWER_TYPES[t.type].kind === 'oracle') return false;
   const cost = upgradeCost(t.type, t.level);
   if (game.coins < cost) return false;
   game.coins -= cost;
@@ -491,11 +509,18 @@ export function stepGame(game, dt) {
     }
   }
 
+  // --- oráculo: pregunta periódica durante la oleada ---
+  if (game.towers.some((t) => t.type === 'oraculo') && game.time >= game.oracleNextAt) {
+    game.oracleNextAt = game.time + ORACLE_INTERVAL;
+    events.push({ t: 'oracle' });
+  }
+
   // --- torres ---
   for (const tw of game.towers) {
     tw.cooldown -= dt;
     if (tw.flash > 0) tw.flash -= dt;
     const type = TOWER_TYPES[tw.type];
+    if (type.kind === 'oracle') continue; // no combate
     if (type.needsCategory && game.time < game.jams[tw.catIdx]) continue; // atascada
     if (tw.cooldown > 0) continue;
     const target = findTarget(game, tw);

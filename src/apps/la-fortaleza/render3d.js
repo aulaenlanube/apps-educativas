@@ -345,7 +345,30 @@ export function createScene3D(container, game) {
     return game.categories[tw.catIdx].color;
   }
 
+  // El Oráculo no combate: pedestal con esfera de cristal levitante y anillo
+  function buildOracleMesh(tw) {
+    const g = new THREE.Group();
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.38, 0.14, 8), shared.baseMat);
+    base.position.y = 0.07; base.castShadow = true;
+    const column = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.15, 0.5, 8), shared.bodyMat);
+    column.position.y = 0.38; column.castShadow = true;
+    const sphereMat = new THREE.MeshStandardMaterial({ color: 0x22d3ee, emissive: 0x22d3ee, emissiveIntensity: 1.6, roughness: 0.25 });
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.2, 14, 14), sphereMat);
+    sphere.position.y = 0.85;
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.3, 0.022, 8, 30),
+      new THREE.MeshBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.8 }),
+    );
+    ring.position.y = 0.85;
+    ring.rotation.x = Math.PI / 2.3;
+    g.add(base, column, sphere, ring);
+    g.position.set(fx(tw.x), 0, fz(tw.y));
+    g.userData = { towerId: tw.id, oracle: { sphere, ring, sphereMat } };
+    return g;
+  }
+
   function buildTowerMesh(tw) {
+    if (tw.type === 'oraculo') return buildOracleMesh(tw);
     const color = new THREE.Color(towerColorHex(tw));
     const g = new THREE.Group();
     const base = new THREE.Mesh(shared.base, shared.baseMat); base.position.y = 0.08; base.castShadow = true;
@@ -390,37 +413,79 @@ export function createScene3D(container, game) {
     return g;
   }
 
-  // --- enemigos ---
-  function buildEnemyMesh(e) {
-    const radius = e.radius * U * 1.45;
-    const geo = new THREE.IcosahedronGeometry(radius, 1);
+  // --- enemigos (silueta distinta por tipo) ---
+  function jitterGeometry(geo, e, amount) {
     const pos = geo.attributes.position;
     const v = new THREE.Vector3();
     for (let i = 0; i < pos.count; i++) {
       v.set(pos.getX(i), pos.getY(i), pos.getZ(i));
-      const k = 0.85 + e.shape[(i * 7) % e.shape.length] * 0.28;
+      const k = 1 - amount / 2 + e.shape[(i * 7) % e.shape.length] * amount;
       v.multiplyScalar(k);
       pos.setXYZ(i, v.x, v.y, v.z);
     }
     geo.computeVertexNormals();
+    return geo;
+  }
 
-    const showColor = game.mode !== 'exam';
-    const baseColor = showColor ? game.categories[e.catIdx].color : `hsl(${e.hue}, 24%, 52%)`;
-    const mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(baseColor), flatShading: true });
-    const body = new THREE.Mesh(geo, mat);
-    body.position.y = radius + 0.06;
-    body.castShadow = true;
-
-    // ojos
-    const eyeR = Math.max(radius * 0.24, 0.05);
-    for (const side of [-1, 1]) {
+  function addEyes(body, radius, { count = 2, size = 0.24, fx2 = 0.7, fy = 0.25, spread = 0.4 } = {}) {
+    const eyeR = Math.max(radius * size, 0.05);
+    const sides = count === 1 ? [0] : [-1, 1];
+    for (const side of sides) {
       const white = new THREE.Mesh(new THREE.SphereGeometry(eyeR, 8, 8), shared.eyeWhite);
-      white.position.set(radius * 0.7, radius * 0.25, side * radius * 0.4);
+      white.position.set(radius * fx2, radius * fy, side * radius * spread);
       const pupil = new THREE.Mesh(new THREE.SphereGeometry(eyeR * 0.5, 6, 6), shared.eyeDark);
       pupil.position.set(eyeR * 0.6, 0, 0);
       white.add(pupil);
       body.add(white);
     }
+  }
+
+  function buildEnemyMesh(e) {
+    const radius = e.radius * U * 1.45;
+    const showColor = game.mode !== 'exam';
+    const base = new THREE.Color(showColor ? game.categories[e.catIdx].color : `hsl(${e.hue}, 24%, 52%)`);
+
+    let geo, body;
+    const mat = new THREE.MeshLambertMaterial({ flatShading: true });
+
+    if (e.type === 'scout') {
+      // dardo veloz: cono tumbado con aletas y un solo ojo de cíclope
+      base.lerp(new THREE.Color(0xffffff), 0.18);
+      geo = jitterGeometry(new THREE.ConeGeometry(radius * 0.85, radius * 2.7, 7), e, 0.14);
+      geo.rotateZ(-Math.PI / 2); // punta hacia +X (dirección de avance)
+      body = new THREE.Mesh(geo, mat);
+      const finGeo = new THREE.BoxGeometry(radius * 0.9, radius * 0.1, radius * 0.55);
+      for (const side of [-1, 1]) {
+        const fin = new THREE.Mesh(finGeo, mat);
+        fin.position.set(-radius * 0.9, 0, side * radius * 0.55);
+        fin.rotation.y = side * 0.5;
+        body.add(fin);
+      }
+      addEyes(body, radius, { count: 1, size: 0.34, fx2: 0.9, fy: 0.35, spread: 0 });
+    } else if (e.type === 'brute') {
+      // golem pesado: dodecaedro alto con cuernos y ojillos juntos
+      base.multiplyScalar(0.72);
+      geo = jitterGeometry(new THREE.DodecahedronGeometry(radius, 0), e, 0.2);
+      geo.scale(1, 1.2, 1);
+      body = new THREE.Mesh(geo, mat);
+      for (const side of [-1, 1]) {
+        const horn = new THREE.Mesh(new THREE.ConeGeometry(radius * 0.18, radius * 0.6, 5), shared.crownMat);
+        horn.position.set(0, radius * 0.95, side * radius * 0.45);
+        horn.rotation.x = side * 0.5;
+        body.add(horn);
+      }
+      addEyes(body, radius, { size: 0.16, fx2: 0.8, fy: 0.3, spread: 0.22 });
+    } else {
+      // normal y jefe: blob orgánico (icosaedro deformado)
+      geo = jitterGeometry(new THREE.IcosahedronGeometry(radius, 1), e, 0.3);
+      body = new THREE.Mesh(geo, mat);
+      addEyes(body, radius, {});
+    }
+
+    mat.color.copy(base);
+    body.position.y = radius + 0.06;
+    body.castShadow = true;
+
     // corona del jefe
     if (e.type === 'boss') {
       const crown = new THREE.Group();
@@ -432,7 +497,6 @@ export function createScene3D(container, game) {
       }
       body.add(crown);
     }
-
     // anillo de clasificado (oculto hasta revelar)
     const ring = new THREE.Mesh(shared.ringGeo, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 }));
     ring.scale.setScalar(radius * 1.5);
@@ -452,7 +516,7 @@ export function createScene3D(container, game) {
     const group = new THREE.Group();
     group.add(body, ring, label);
     group.userData = { enemyId: e.id };
-    return { group, body, mat, geo, label, labelCanvas, labelTex, ring, lastBucket: 10, lastBorder: null, radius, baseColor: new THREE.Color(baseColor) };
+    return { group, body, mat, geo, label, labelCanvas, labelTex, ring, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
   }
 
   // --- pool de anillos de FX y texturas de texto flotante ---
@@ -560,6 +624,18 @@ export function createScene3D(container, game) {
         towerMeshes.set(tw.id, mesh);
         towerGroup.add(mesh);
       }
+      // posición (puede haberse movido con moveTower)
+      mesh.position.set(fx(tw.x), 0, fz(tw.y));
+
+      if (mesh.userData.oracle) {
+        const { sphere, ring, sphereMat } = mesh.userData.oracle;
+        sphere.position.y = 0.85 + Math.sin(game.time * 2 + tw.id) * 0.07;
+        ring.rotation.z = game.time * 1.3;
+        const soon = game.phase === 'wave' && game.oracleNextAt - game.time < 3;
+        sphereMat.emissiveIntensity = soon ? 2.4 + Math.sin(game.time * 12) * 0.9 : 1.6;
+        continue;
+      }
+
       const { coreMat, barrelPivot, core, pips } = mesh.userData;
       barrelPivot.rotation.y = -tw.aim;
       const type = TOWER_TYPES[tw.type];

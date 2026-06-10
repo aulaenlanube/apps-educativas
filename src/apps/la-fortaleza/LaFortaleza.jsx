@@ -51,9 +51,14 @@ function prepareRun(seed, allCategories, allQuestions) {
   });
 
   const allSolutions = [...new Set(allQuestions.map((q) => q.solucion))];
+  // En examen se alternan preguntas de escribir y tipo test (~50/50, por seed)
   const withOptions = (q) => {
     const distractors = seededShuffle(allSolutions.filter((s) => s !== q.solucion), rng).slice(0, 3);
-    return { ...q, options: seededShuffle([q.solucion, ...distractors], rng) };
+    return {
+      ...q,
+      options: seededShuffle([q.solucion, ...distractors], rng),
+      qtype: rng() < 0.5 ? 'write' : 'choice',
+    };
   };
 
   const questions = [
@@ -205,7 +210,7 @@ const LaFortaleza = ({ onGameComplete }) => {
             <motion.button className="fort-mode exam" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startGame('exam')}>
               <span className="fort-mode-icon"><GraduationCap size={30} /></span>
               <span className="fort-mode-name">🔴 Examen</span>
-              <span className="fort-mode-desc">{EXAM_WAVES} oleadas + 2 jefes · respuestas escritas · sin pistas · nota /10</span>
+              <span className="fort-mode-desc">{EXAM_WAVES} oleadas + 2 jefes · escribir y tipo test · sin pistas · nota /10</span>
             </motion.button>
           </div>
 
@@ -288,6 +293,10 @@ const LaFortaleza = ({ onGameComplete }) => {
 
         <h3>🗼 Torres de categoría</h3>
         <p>Cada enemigo lleva una <strong>palabra</strong> de una categoría. Las torres 🏹 ⚡ 💣 solo disparan a los enemigos de SU categoría: lee las palabras y coloca bien tus defensas. ❄️ ralentiza a cualquiera y 🔮 daña a todos.</p>
+        <p>Toca una construcción para <strong>mejorarla</strong>, <strong>moverla</strong> de sitio (30 🪙) o <strong>venderla</strong> (recuperas el 75%).</p>
+
+        <h3>🧿 El Oráculo</h3>
+        <p>Construye el Oráculo y te lanzará preguntas exprés <strong>en plena oleada</strong>: acierta rápido y gana monedas y energía extra sin esperar a la siguiente fase de construcción. Solo puede haber uno.</p>
 
         <h3>🎯 Disparo de precisión</h3>
         <p>Toca un enemigo y di a qué categoría pertenece su palabra. Si aciertas: <strong>golpe crítico</strong>. Si fallas: las torres de esa categoría se atascan 3 segundos.</p>
@@ -304,7 +313,7 @@ const LaFortaleza = ({ onGameComplete }) => {
         <h3>🎓 Modos</h3>
         <div className="instr-modes">
           <div className="instr-mode easy"><strong>🟢 Práctica</strong>oleadas infinitas · tipo test · el color del enemigo insinúa su categoría</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>{EXAM_WAVES} oleadas + 2 jefes · respuestas escritas · nota /10 con preguntas, clasificaciones y jefes</div>
+          <div className="instr-mode exam"><strong>🔴 Examen</strong>{EXAM_WAVES} oleadas + 2 jefes · mezcla de escribir y tipo test · nota /10 con preguntas, clasificaciones y jefes</div>
         </div>
 
         <div className="instr-tips"><strong>💡 Consejo:</strong> tu puntería no afecta a la nota — solo tus aciertos. Pero defender bien la Biblioteca multiplica tus puntos para el ranking.</div>

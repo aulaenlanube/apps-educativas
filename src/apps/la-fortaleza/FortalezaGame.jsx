@@ -8,12 +8,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
-  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap,
+  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move,
 } from 'lucide-react';
 import {
   createGame, planNextWave, startWave, stepGame, placeTower, upgradeTower,
-  sellTower, classifyEnemy, bossStrike, bossEnrage, canBuildAt, rewardCorrectAnswer,
-  castAbility, canCastAbility, ABILITIES, ENERGY_MAX,
+  sellTower, moveTower, classifyEnemy, bossStrike, bossEnrage, canBuildAt, rewardCorrectAnswer,
+  castAbility, ABILITIES, ENERGY_MAX, MOVE_COST,
   TOWER_TYPES, MAX_TOWER_LEVEL, upgradeCost, sellValue, EXAM_WAVES,
 } from './engine';
 import { createScene3D } from './render3d';
@@ -44,6 +44,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   const [overlay, setOverlay] = useState(null); // classify | boss | catpick | quit
   const [placingType, setPlacingType] = useState(null);
   const [aimingAbility, setAimingAbility] = useState(null);
+  const [movingTowerId, setMovingTowerId] = useState(null);
   const [selectedTowerId, setSelectedTowerId] = useState(null);
   const [speed, setSpeed] = useState(1);
   const [soundOn, setSoundOn] = useState(sounds.isEnabled());
@@ -55,6 +56,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   const speedRef = useRef(speed);
   const placingRef = useRef(placingType);
   const aimingRef = useRef(aimingAbility);
+  const movingRef = useRef(movingTowerId);
   const selectedRef = useRef(selectedTowerId);
   const hoverCellRef = useRef(null);
   const hoverFieldRef = useRef(null);
@@ -71,6 +73,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   speedRef.current = speed;
   placingRef.current = placingType;
   aimingRef.current = aimingAbility;
+  movingRef.current = movingTowerId;
   selectedRef.current = selectedTowerId;
 
   const mountRef = useRef(null);
@@ -226,6 +229,38 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
     return () => clearTimeout(t);
   }, [overlay]);
 
+  // --- oráculo: pregunta exprés en plena oleada (siempre tipo test) ---
+  const answerOracle = useCallback((answer) => {
+    setOverlay((prev) => {
+      if (prev?.type !== 'oracle' || prev.feedback) return prev;
+      const correct = answer != null && norm(answer) === norm(prev.question.solucion);
+      tally('questions', correct);
+      let reward = 0;
+      if (correct) {
+        streakRef.current++;
+        reward = rewardCorrectAnswer(gameRef.current, streakRef.current);
+        soundsRef.current.correct();
+      } else {
+        streakRef.current = 0;
+        soundsRef.current.wrong();
+      }
+      setStreak(streakRef.current);
+      return { ...prev, feedback: correct ? 'correct' : 'wrong', reward };
+    });
+  }, [tally]);
+
+  // Temporizador del oráculo + cierre tras el feedback
+  useEffect(() => {
+    if (overlay?.type !== 'oracle') return;
+    if (overlay.feedback) {
+      const t = setTimeout(() => setOverlay(null), 1100);
+      return () => clearTimeout(t);
+    }
+    if (overlay.timeLeft <= 0) { answerOracle(null); return; }
+    const t = setTimeout(() => setOverlay((p) => (p?.type === 'oracle' && !p.feedback ? { ...p, timeLeft: p.timeLeft - 1 } : p)), 1000);
+    return () => clearTimeout(t);
+  }, [overlay, answerOracle]);
+
   // --- clasificación manual ---
   const answerClassify = useCallback((catIdx) => {
     const ov = overlayRef.current;
@@ -258,6 +293,13 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
           setOverlay({ type: 'boss', enemyId: ev.enemy.id, question: q, input: '', feedback: null, timeLeft: BOSS_SECONDS });
           break;
         }
+        case 'oracle':
+          // si hay otro modal abierto, el oráculo pierde su turno
+          if (!overlayRef.current) {
+            snd.coin();
+            setOverlay({ type: 'oracle', question: nextQuestion(), feedback: null, reward: 0, timeLeft: 12 });
+          }
+          break;
         case 'wave_end':
           snd.waveClear();
           setForecast(planNextWave(gameRef.current));
@@ -277,7 +319,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
         default: break;
       }
     }
-  }, [bossQuestions, openQuiz, endGame]);
+  }, [bossQuestions, openQuiz, endGame, nextQuestion]);
 
   // --- escena 3D + bucle principal ---
   useEffect(() => {
@@ -299,7 +341,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
       // Escala temporal: modal abierto → pausa (práctica) o cámara lenta (examen)
       let scale = speedRef.current;
       const ov = overlayRef.current;
-      if (ov && (ov.type === 'classify' || (ov.type === 'boss' && !ov.feedback))) {
+      if (ov && (ov.type === 'classify' || ((ov.type === 'boss' || ov.type === 'oracle') && !ov.feedback))) {
         scale = isExam ? 0.25 : 0;
       }
       if (phaseRef.current === 'ended') scale = 0.3;
@@ -323,13 +365,16 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
         return { coins: g.coins, lives: g.lives, wave: g.wave, score: g.score, energy, abilityReady };
       });
 
-      const placing = placingRef.current;
+      // El modo "mover" reutiliza el fantasma de colocación con el tipo de la torre
+      const movingTower = movingRef.current ? g.towers.find((t) => t.id === movingRef.current) : null;
+      const placing = placingRef.current || (movingTower ? movingTower.type : null);
+      const placeCost = placingRef.current ? TOWER_TYPES[placingRef.current].cost : MOVE_COST;
       scene.render({
         selectedTowerId: selectedRef.current,
         placingType: placing,
         hoverCell: placing ? hoverCellRef.current : null,
         placingValid: placing && hoverCellRef.current
-          ? canBuildAt(g, hoverCellRef.current[0], hoverCellRef.current[1]) && g.coins >= TOWER_TYPES[placing].cost
+          ? canBuildAt(g, hoverCellRef.current[0], hoverCellRef.current[1]) && g.coins >= placeCost
           : false,
         aimingAbility: aimingRef.current,
         hoverField: hoverFieldRef.current,
@@ -380,7 +425,17 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
       return;
     }
 
-    // 3) Colocación de torre
+    // 3) Recolocar una construcción
+    if (movingRef.current && hit.kind === 'ground') {
+      const [col, row] = hit.cell;
+      if (moveTower(g, movingRef.current, col, row)) {
+        soundsRef.current.build();
+        setMovingTowerId(null);
+      }
+      return;
+    }
+
+    // 4) Colocación de torre
     if (placingRef.current && hit.kind === 'ground') {
       const [col, row] = hit.cell;
       const type = TOWER_TYPES[placingRef.current];
@@ -395,14 +450,14 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
       return;
     }
 
-    // 4) Selección de torre / deseleccionar
+    // 5) Selección de torre / deseleccionar
     if (hit.kind === 'tower') setSelectedTowerId(hit.towerId);
     else setSelectedTowerId(null);
   }, []);
 
   const updateHover = useCallback((clientX, clientY) => {
     const scene = sceneRef.current;
-    if (!scene || (!placingRef.current && !aimingRef.current)) return;
+    if (!scene || (!placingRef.current && !aimingRef.current && !movingRef.current)) return;
     const hit = scene.pick(clientX, clientY);
     if (hit?.kind === 'ground') {
       hoverCellRef.current = hit.cell;
@@ -487,6 +542,13 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
     if (upgradeTower(gameRef.current, selectedRef.current)) soundsRef.current.build();
   }, []);
 
+  const startMove = useCallback(() => {
+    setPlacingType(null);
+    setAimingAbility(null);
+    setMovingTowerId(selectedRef.current);
+    setSelectedTowerId(null);
+  }, []);
+
   const doSell = useCallback(() => {
     if (sellTower(gameRef.current, selectedRef.current)) {
       soundsRef.current.coin();
@@ -504,6 +566,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   const toggleAbility = useCallback((id) => {
     setPlacingType(null);
     setSelectedTowerId(null);
+    setMovingTowerId(null);
     setAimingAbility((prev) => (prev === id ? null : id));
   }, []);
 
@@ -566,7 +629,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
                     ? <>✅ ¡Correcto! <strong>+{quiz.reward} 🪙 +25 ⚡</strong>{streak > 1 ? ` (racha x${streak})` : ''}</>
                     : <>❌ Era: <strong>{quiz.question.solucion}</strong></>}
                 </div>
-              ) : isExam ? (
+              ) : isExam && quiz.question.qtype === 'write' ? (
                 <form className="fort-quiz-form" onSubmit={(e) => { e.preventDefault(); if (quiz.input.trim()) answerQuiz(quiz.input); }}>
                   <input
                     autoFocus
@@ -622,7 +685,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
                     ? '⚡ ¡Golpe de sabiduría! El jefe pierde el 70% de su vida'
                     : <>😤 El jefe se enfurece. Era: <strong>{overlay.question.solucion}</strong></>}
                 </div>
-              ) : isExam ? (
+              ) : isExam && overlay.question.qtype === 'write' ? (
                 <form className="fort-quiz-form" onSubmit={(e) => { e.preventDefault(); if (overlay.input.trim()) answerBoss(overlay.input); }}>
                   <input
                     autoFocus
@@ -637,6 +700,32 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
                 <div className="fort-quiz-options">
                   {overlay.question.options.map((opt) => (
                     <button key={opt} onClick={() => answerBoss(opt)}>{opt}</button>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- pregunta del Oráculo (exprés, tipo test) ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'oracle' && (
+            <motion.div className="fort-oracle" initial={{ opacity: 0, y: -24, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-boss-head oracle">
+                <span>🧿 ¡El Oráculo pregunta!</span>
+                <span className={`fort-quiz-timer ${overlay.timeLeft <= 4 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
+              </div>
+              <p className="fort-quiz-def">{overlay.question.definicion}</p>
+              {overlay.feedback ? (
+                <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                  {overlay.feedback === 'correct'
+                    ? <>✅ ¡Correcto! <strong>+{overlay.reward} 🪙 +25 ⚡</strong></>
+                    : <>❌ Era: <strong>{overlay.question.solucion}</strong></>}
+                </div>
+              ) : (
+                <div className="fort-quiz-options">
+                  {overlay.question.options.map((opt) => (
+                    <button key={opt} onClick={() => answerOracle(opt)}>{opt}</button>
                   ))}
                 </div>
               )}
@@ -718,7 +807,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
                 )}
                 <span className="fort-towerpanel-lvl">Nv. {selectedTower.level}</span>
               </span>
-              {selectedTower.level < MAX_TOWER_LEVEL ? (
+              {TOWER_TYPES[selectedTower.type].kind === 'oracle' ? null : selectedTower.level < MAX_TOWER_LEVEL ? (
                 <button
                   className="fort-btn-upgrade"
                   disabled={hud.coins < upgradeCost(selectedTower.type, selectedTower.level)}
@@ -729,18 +818,23 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
               ) : (
                 <span className="fort-towerpanel-max">⭐ Nivel máximo</span>
               )}
+              <button className="fort-btn-secondary" disabled={hud.coins < MOVE_COST} onClick={startMove}>
+                <Move size={15} /> Mover ({MOVE_COST} 🪙)
+              </button>
               <button className="fort-btn-danger" onClick={doSell}><Trash2 size={15} /> Vender (+{sellValue(selectedTower)} 🪙)</button>
               <button className="fort-hud-btn" onClick={() => setSelectedTowerId(null)}><X size={15} /></button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ---------- aviso de colocación/apuntado ---------- */}
-        {(placingType || aimingAbility) && (
+        {/* ---------- aviso de colocación/apuntado/mover ---------- */}
+        {(placingType || aimingAbility || movingTowerId) && (
           <div className="fort-placing-hint">
             {placingType
               ? `${TOWER_TYPES[placingType].desc} — toca una celda libre para construir`
-              : `${ABILITIES[aimingAbility].desc} — toca el campo para lanzarla`}
+              : aimingAbility
+                ? `${ABILITIES[aimingAbility].desc} — toca el campo para lanzarla`
+                : `Recolocando construcción — toca una celda libre (${MOVE_COST} 🪙)`}
           </div>
         )}
       </div>
@@ -753,10 +847,11 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
               <button
                 key={t.id}
                 className={`fort-palette-btn ${placingType === t.id ? 'selected' : ''}`}
-                disabled={hud.coins < t.cost}
+                disabled={hud.coins < t.cost || (t.unique && game.towers.some((tw) => tw.type === t.id))}
                 onClick={() => {
                   setSelectedTowerId(null);
                   setAimingAbility(null);
+                  setMovingTowerId(null);
                   setPlacingType((p) => (p === t.id ? null : t.id));
                 }}
                 title={t.desc}

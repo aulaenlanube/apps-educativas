@@ -195,6 +195,17 @@
   display: flex; justify-content: space-between; align-items: center;
   font-weight: 900; color: #fbbf24; margin-bottom: 8px; letter-spacing: 0.5px;
 }
+.fort-boss-head.oracle { color: #67e8f9; }
+
+/* ---------- pregunta del Oráculo ---------- */
+.fort-oracle {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  width: min(94%, 440px);
+  background: linear-gradient(160deg, rgba(8, 51, 68, 0.96), rgba(15, 23, 42, 0.96));
+  border: 2px solid #22d3ee;
+  border-radius: 18px; padding: 14px; color: #f1f5f9;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.35);
+}
 
 /* ---------- barra de construcción (flotante sobre el 3D) ---------- */
 .fort-buildbar {
@@ -269,8 +280,8 @@
   padding: 8px 12px;
 }
 .fort-palette {
-  flex: 1; min-width: 280px;
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  flex: 1; min-width: 320px;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
 }
 
 .fort-abilities { display: flex; align-items: center; gap: 10px; }
@@ -380,7 +391,7 @@
   .fort-root { padding: 8px; }
   .fort-card { padding: 18px; margin-top: 8px; }
   .fort-modes { grid-template-columns: 1fr; }
-  .fort-palette { grid-template-columns: repeat(5, 1fr); gap: 5px; min-width: 0; }
+  .fort-palette { grid-template-columns: repeat(6, 1fr); gap: 4px; min-width: 0; }
   .fort-palette-name { font-size: 0.62rem; }
   .fort-palette-emoji { font-size: 1.15rem; }
   .fort-palette-btn { padding: 6px 2px; }
