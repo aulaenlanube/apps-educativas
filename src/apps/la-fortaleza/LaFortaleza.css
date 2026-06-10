@@ -197,6 +197,17 @@
 }
 .fort-boss-head.oracle { color: #67e8f9; }
 
+/* ---------- Desafío Relámpago ---------- */
+.fort-mini { border-color: rgba(253, 224, 71, 0.6); text-align: center; }
+.fort-mini-title {
+  font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;
+  background: linear-gradient(90deg, #fde047, #fb923c);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fort-mini-chain { font-size: 0.95rem; font-weight: 700; color: #fde047; }
+.fort-mini .fort-quiz-def { text-align: left; }
+
 /* ---------- pregunta del Oráculo ---------- */
 .fort-oracle {
   position: absolute; left: 50%; top: 12px; transform: translateX(-50%);

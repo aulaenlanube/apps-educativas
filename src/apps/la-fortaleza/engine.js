@@ -34,7 +34,7 @@ export function seededShuffle(arr, rng) {
 export const GRID = { cols: 16, rows: 9, cell: 60 };
 export const WORLD = { w: GRID.cols * GRID.cell, h: GRID.rows * GRID.cell }; // 960x540
 
-export const CATEGORY_COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ec4899'];
+export const CATEGORY_COLORS = ['#22c55e', '#38bdf8', '#fbbf24', '#f472b6'];
 
 export const STARTING_COINS = 220;
 export const STARTING_LIVES = 10;
@@ -74,14 +74,34 @@ export const MAX_TOWER_LEVEL = 3;
 export const MOVE_COST = 30;            // recolocar cualquier construcción
 export const ORACLE_FIRST_DELAY = 8;    // s tras empezar la oleada
 export const ORACLE_INTERVAL = 20;      // s entre preguntas del oráculo
+
+// --- estructuras destructibles y saboteadores ---
+export const TOWER_BASE_HP = 90;        // +45 por nivel (mejorar repara del todo)
+export const TOWER_HP_PER_LEVEL = 45;
+export const SABO_RANGE = 65;           // px: distancia a la que ataca torres
+export const SABO_DMG = 12;             // por golpe (1/s) → ~8s por torre nueva
+
+// --- aliados: caballeros que salen de la fortaleza ---
+export const ALLY = {
+  interval: 16,      // s entre caballeros
+  firstDelay: 3,     // s tras empezar la oleada
+  max: 2,            // vivos a la vez
+  hp: 60,            // escalado por oleada
+  dmg: 13,
+  attackRate: 0.7,   // s entre espadazos
+  speed: 55,
+  radius: 14,
+  engageDist: 26,    // px sobre el camino para trabar combate
+};
 export const upgradeCost = (type, level) => Math.round(TOWER_TYPES[type].cost * (level === 1 ? 0.6 : 0.9));
 export const sellValue = (tower) => Math.round(tower.invested * 0.75);
 
 export const ENEMY_TYPES = {
-  scout:  { id: 'scout', hp: 18, speed: 80, radius: 12 },
-  normal: { id: 'normal', hp: 32, speed: 50, radius: 16 },
-  brute:  { id: 'brute', hp: 85, speed: 33, radius: 21 },
-  boss:   { id: 'boss', hp: 400, speed: 24, radius: 30 },
+  scout:  { id: 'scout', hp: 18, speed: 80, radius: 12, melee: 5 },
+  normal: { id: 'normal', hp: 32, speed: 50, radius: 16, melee: 8 },
+  brute:  { id: 'brute', hp: 85, speed: 33, radius: 21, melee: 16 },
+  sabo:   { id: 'sabo', hp: 55, speed: 40, radius: 17, melee: 10 }, // demoledor de torres
+  boss:   { id: 'boss', hp: 400, speed: 24, radius: 30, melee: 40 },
 };
 
 // Curva agresiva: partidas cortas e intensas. La oleada 10 multiplica HP x6.4.
@@ -117,21 +137,10 @@ function generateMap(rng) {
     }
   }
 
-  // Polilínea por los centros, con entrada y salida fuera de pantalla
+  // Polilínea por los centros, con entrada y salida fuera de pantalla.
+  // Sin suavizado: tramos rectos y giros de 90° (estilo geométrico).
   let pts = cells.map(([cc, rr]) => ({ x: cc * cell + cell / 2, y: rr * cell + cell / 2 }));
   pts = [{ x: -cell / 2, y: pts[0].y }, ...pts, { x: WORLD.w + cell / 2, y: pts[pts.length - 1].y }];
-
-  // Suavizado Chaikin (2 pasadas) conservando extremos
-  for (let pass = 0; pass < 2; pass++) {
-    const out = [pts[0]];
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p = pts[i], q = pts[i + 1];
-      out.push({ x: p.x * 0.75 + q.x * 0.25, y: p.y * 0.75 + q.y * 0.25 });
-      out.push({ x: p.x * 0.25 + q.x * 0.75, y: p.y * 0.25 + q.y * 0.75 });
-    }
-    out.push(pts[pts.length - 1]);
-    pts = out;
-  }
 
   // Distancias acumuladas para mover enemigos por distancia recorrida
   const cum = [0];
@@ -204,6 +213,8 @@ export function createGame(cfg) {
     abilityCdUntil: 0,
     enemies: [],
     towers: [],
+    allies: [],
+    allyNextAt: 0,
     projectiles: [],
     particles: [],
     spawnQueue: [],
@@ -247,7 +258,10 @@ export function planNextWave(game) {
     for (let i = 0; i < cluster; i++) {
       let type = 'normal';
       const roll = rng();
-      if (wave >= 2 && roll < Math.min(0.12 + 0.02 * wave, 0.3)) type = 'scout';
+      const scoutP = wave >= 2 ? Math.min(0.12 + 0.02 * wave, 0.3) : 0;
+      const saboP = wave >= 3 ? Math.min(0.03 + 0.013 * wave, 0.14) : 0;
+      if (roll < scoutP) type = 'scout';
+      else if (roll < scoutP + saboP) type = 'sabo';
       else if (wave >= 3 && roll > 1 - Math.min(0.08 + 0.025 * wave, 0.3)) type = 'brute';
       entries.push({ type, catIdx });
     }
@@ -276,6 +290,8 @@ export function startWave(game) {
   }));
   game.nextWave = null;
   game.oracleNextAt = game.time + ORACLE_FIRST_DELAY;
+  game.allies = [];
+  game.allyNextAt = game.time + ALLY.firstDelay;
 }
 
 function spawnEnemy(game, entry) {
@@ -341,6 +357,8 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
     aim: -Math.PI / 2,
     invested: type.cost,
     flash: 0,
+    hp: TOWER_BASE_HP,
+    maxHp: TOWER_BASE_HP,
   };
   game.towers.push(tower);
   game.stats.towersBuilt++;
@@ -366,6 +384,8 @@ export function upgradeTower(game, towerId) {
   game.coins -= cost;
   t.invested += cost;
   t.level++;
+  t.maxHp = TOWER_BASE_HP + TOWER_HP_PER_LEVEL * (t.level - 1);
+  t.hp = t.maxHp; // mejorar también repara
   return true;
 }
 
@@ -485,14 +505,118 @@ export function stepGame(game, dt) {
     }
   }
 
+  // --- aliados: salen de la fortaleza y traban combate en el camino ---
+  if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
+    game.allyNextAt = game.time + ALLY.interval;
+    const hpMult = 1 + 0.2 * (game.wave - 1);
+    const ally = {
+      id: game.nextId++,
+      dist: game.map.totalLen - 50,
+      hp: Math.round(ALLY.hp * hpMult),
+      maxHp: Math.round(ALLY.hp * hpMult),
+      targetId: null,
+      attackCd: 0,
+      swing: 0,
+      hitFlash: 0,
+      phase: game.rng() * Math.PI * 2,
+      x: 0, y: 0, angle: 0,
+    };
+    const p0 = pointAtDistance(game.map, ally.dist);
+    ally.x = p0.x; ally.y = p0.y;
+    game.allies.push(ally);
+    events.push({ t: 'ally_spawn', ally });
+  }
+
+  for (const a of game.allies) {
+    if (a.hp <= 0) continue;
+    if (a.hitFlash > 0) a.hitFlash -= dt;
+    if (a.swing > 0) a.swing -= dt;
+
+    let target = a.targetId ? game.enemies.find((e) => e.id === a.targetId && e.hp > 0 && !e.leaked) : null;
+    if (!target) {
+      a.targetId = null;
+      for (const e of game.enemies) {
+        if (e.hp <= 0 || e.leaked || e.blockedBy) continue;
+        if (Math.abs(e.dist - a.dist) < ALLY.engageDist) { target = e; break; }
+      }
+      if (target) { a.targetId = target.id; a.attackCd = 0.3; }
+    }
+
+    if (target) {
+      target.blockedBy = a.id;
+      a.attackCd -= dt;
+      if (a.attackCd <= 0) {
+        a.attackCd = ALLY.attackRate;
+        a.swing = 0.25;
+        applyDamage(game, target, ALLY.dmg, null);
+        events.push({ t: 'hit' });
+      }
+      // el enemigo contraataca
+      target.meleeCd = (target.meleeCd ?? 0.9) - dt;
+      if (target.meleeCd <= 0) {
+        target.meleeCd = 0.9;
+        a.hp -= ENEMY_TYPES[target.type].melee;
+        a.hitFlash = 0.12;
+        if (a.hp <= 0) {
+          target.blockedBy = null;
+          pushBurst(game, a.x, a.y, '#c4b5fd', 12);
+          events.push({ t: 'ally_death', ally: a });
+        }
+      }
+    } else {
+      // avanza hacia la entrada y monta guardia allí
+      a.dist = Math.max(a.dist - ALLY.speed * dt, 30);
+      const p = pointAtDistance(game.map, a.dist);
+      a.x = p.x; a.y = p.y; a.angle = p.angle + Math.PI;
+    }
+  }
+  game.allies = game.allies.filter((a) => a.hp > 0);
+
   // --- enemigos ---
   for (const e of game.enemies) {
     if (e.hp <= 0) continue;
+    if (e.hitFlash > 0) e.hitFlash -= dt;
+
+    // trabado en combate con un caballero: no avanza
+    if (e.blockedBy) {
+      if (game.allies.some((a) => a.id === e.blockedBy && a.hp > 0)) continue;
+      e.blockedBy = null;
+    }
+
+    // saboteador: si hay una estructura a tiro, se para a demolerla
+    if (e.type === 'sabo') {
+      if (!e.attackTowerId) {
+        const t = game.towers.find((tw) => Math.hypot(tw.x - e.x, tw.y - e.y) <= SABO_RANGE);
+        if (t) { e.attackTowerId = t.id; e.towerCd = 1; }
+      }
+      if (e.attackTowerId) {
+        const t = game.towers.find((tw) => tw.id === e.attackTowerId);
+        if (!t) {
+          e.attackTowerId = null;
+        } else {
+          e.towerCd -= dt;
+          if (e.towerCd <= 0) {
+            e.towerCd = 1;
+            t.hp -= SABO_DMG;
+            t.flash = 0.12;
+            pushBurst(game, t.x, t.y, '#f87171', 5, 70);
+            events.push({ t: 'tower_hit' });
+            if (t.hp <= 0) {
+              game.towers = game.towers.filter((x) => x.id !== t.id);
+              pushBurst(game, t.x, t.y, '#f87171', 22, 140);
+              pushText(game, t.x, t.y - 20, '¡Estructura destruida!', '#ef4444');
+              events.push({ t: 'tower_destroyed', towerId: t.id });
+            }
+          }
+          continue; // ocupado demoliendo
+        }
+      }
+    }
+
     const slow = game.time < e.slowUntil ? 1 - e.slowPct : 1;
     e.dist += e.speed * slow * dt;
     const p = pointAtDistance(game.map, e.dist);
     e.x = p.x; e.y = p.y; e.angle = p.angle;
-    if (e.hitFlash > 0) e.hitFlash -= dt;
     if (e.dist >= game.map.totalLen) {
       e.hp = 0;
       e.leaked = true;
@@ -610,6 +734,7 @@ export function stepGame(game, dt) {
   // --- fin de oleada ---
   if (game.spawnQueue.length === 0 && game.enemies.every((e) => e.hp <= 0)) {
     game.enemies = [];
+    game.allies = []; // los caballeros vuelven a la fortaleza
     game.phase = 'idle';
     const perfect = game.waveLeaks === 0;
     if (perfect) {

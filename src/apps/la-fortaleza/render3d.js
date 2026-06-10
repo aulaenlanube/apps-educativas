@@ -15,14 +15,15 @@ const fx = (x) => (x - WORLD.w / 2) * U;
 const fz = (y) => (y - WORLD.h / 2) * U;
 const toField = (X, Z) => ({ x: X / U + WORLD.w / 2, y: Z / U + WORLD.h / 2 });
 
+// Paleta diurna vívida (estilo cartoon geométrico)
 const COL = {
-  sky: 0x16133a,
-  groundA: new THREE.Color('#1d7a45'),
-  groundB: new THREE.Color('#0f4d2d'),
-  path: 0x92703f,
-  pathEdge: 0x3f2d1d,
-  wall: 0x7c6f9f,
-  wallDark: 0x4c4368,
+  sky: 0x53c8ff,
+  groundA: new THREE.Color('#4ade80'),
+  groundB: new THREE.Color('#16a34a'),
+  tile: 0xffd166,
+  tileEdge: 0xf59e0b,
+  wall: 0xc4b5fd,
+  wallDark: 0x8b5cf6,
 };
 
 // ---------------------------------------------------------------------------
@@ -101,7 +102,7 @@ export function createScene3D(container, game) {
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(COL.sky);
-  scene.fog = new THREE.Fog(COL.sky, 22, 48);
+  scene.fog = new THREE.Fog(COL.sky, 26, 55);
 
   // --- cámara orbital ---
   const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 100);
@@ -119,43 +120,50 @@ export function createScene3D(container, game) {
   };
   applyCamera();
 
-  // --- luces ---
-  scene.add(new THREE.HemisphereLight(0x6a5fd0, 0x0a2540, 0.85));
-  const moonLight = new THREE.DirectionalLight(0xb8c2ff, 1.6);
-  moonLight.position.set(7, 12, -5);
-  moonLight.castShadow = true;
-  moonLight.shadow.mapSize.set(1024, 1024);
-  moonLight.shadow.camera.left = -11; moonLight.shadow.camera.right = 11;
-  moonLight.shadow.camera.top = 8; moonLight.shadow.camera.bottom = -8;
-  moonLight.shadow.bias = -0.002;
-  scene.add(moonLight);
-  const warmLight = new THREE.PointLight(0xffb347, 12, 8);
+  // --- luces (día soleado) ---
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x2dd4bf, 1.0));
+  const sunLight = new THREE.DirectionalLight(0xfff3c4, 2.2);
+  sunLight.position.set(7, 14, -5);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.set(1024, 1024);
+  sunLight.shadow.camera.left = -11; sunLight.shadow.camera.right = 11;
+  sunLight.shadow.camera.top = 8; sunLight.shadow.camera.bottom = -8;
+  sunLight.shadow.bias = -0.002;
+  scene.add(sunLight);
+  const warmLight = new THREE.PointLight(0xffb347, 8, 8);
   scene.add(warmLight);
 
-  // --- cielo: estrellas + luna ---
+  // --- cielo: sol + nubes geométricas ---
   {
-    const starGeo = new THREE.BufferGeometry();
-    const pos = [];
-    for (let i = 0; i < 350; i++) {
-      const a = rng() * Math.PI * 2, e = rng() * Math.PI * 0.45 + 0.08, r = 38 + rng() * 6;
-      pos.push(r * Math.cos(e) * Math.cos(a), r * Math.sin(e), r * Math.cos(e) * Math.sin(a));
-    }
-    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-    scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.12, sizeAttenuation: true, transparent: true, opacity: 0.85, fog: false })));
-    const moon = new THREE.Mesh(
-      new THREE.SphereGeometry(1.6, 20, 20),
-      new THREE.MeshBasicMaterial({ color: 0xfde68a, fog: false }),
+    const sun = new THREE.Mesh(
+      new THREE.SphereGeometry(2, 16, 16),
+      new THREE.MeshBasicMaterial({ color: 0xffe372, fog: false }),
     );
-    moon.position.set(-14, 16, -26);
-    scene.add(moon);
+    sun.position.set(16, 18, -28);
+    scene.add(sun);
+    const cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true });
+    for (let i = 0; i < 10; i++) {
+      const cloud = new THREE.Group();
+      const blocks = 2 + Math.floor(rng() * 3);
+      for (let b = 0; b < blocks; b++) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(1.6 + rng() * 1.6, 0.5 + rng() * 0.4, 0.9 + rng() * 0.7), cloudMat);
+        m.position.set(b * 1.1 - blocks * 0.5, rng() * 0.3, (rng() - 0.5) * 0.6);
+        cloud.add(m);
+      }
+      const a = rng() * Math.PI * 2;
+      const d = 16 + rng() * 14;
+      cloud.position.set(Math.cos(a) * d, 7 + rng() * 6, Math.sin(a) * d);
+      scene.add(cloud);
+    }
   }
 
-  // --- montañas lejanas low-poly ---
+  // --- colinas lejanas low-poly (vívidas) ---
   {
-    const mat = new THREE.MeshLambertMaterial({ color: 0x241f55, flatShading: true });
+    const palettes = [0x34d399, 0x60a5fa, 0xa78bfa, 0x2dd4bf];
     for (let i = 0; i < 14; i++) {
       const a = rng() * Math.PI * 2;
       const d = 17 + rng() * 9;
+      const mat = new THREE.MeshLambertMaterial({ color: palettes[Math.floor(rng() * palettes.length)], flatShading: true });
       const m = new THREE.Mesh(new THREE.ConeGeometry(2 + rng() * 3.4, 2.5 + rng() * 4, 5), mat);
       m.position.set(Math.cos(a) * d, -0.3, Math.sin(a) * d);
       m.rotation.y = rng() * Math.PI;
@@ -196,48 +204,52 @@ export function createScene3D(container, game) {
     scene.add(ground);
   }
 
-  // --- camino: cinta de triángulos + bordes + guijarros ---
+  // --- camino: baldosas cuadradas (estilo geométrico, giros de 90°) ---
   {
-    const mkRibbon = (halfW, y, color) => {
-      const verts = [], idx = [];
-      for (let i = 0; i < pathPts.length; i++) {
-        const p = pathPts[i];
-        const nx = -Math.sin(p.angle) * halfW, nz = Math.cos(p.angle) * halfW;
-        verts.push(p.X - nx, y, p.Z - nz, p.X + nx, y, p.Z + nz);
-        if (i > 0) {
-          const b = i * 2;
-          idx.push(b - 2, b - 1, b, b - 1, b + 1, b);
-        }
-      }
-      const g = new THREE.BufferGeometry();
-      g.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
-      g.setIndex(idx);
-      g.computeVertexNormals();
-      const m = new THREE.Mesh(g, new THREE.MeshLambertMaterial({ color }));
-      m.receiveShadow = true;
-      return m;
-    };
-    scene.add(mkRibbon(0.36, 0.015, COL.pathEdge));
-    scene.add(mkRibbon(0.29, 0.025, COL.path));
-    // guijarros del centro
-    const pebbleGeo = new THREE.SphereGeometry(0.035, 6, 5);
-    const pebbleMat = new THREE.MeshBasicMaterial({ color: 0xffe7aa, transparent: true, opacity: 0.5 });
-    for (let d = 12; d < game.map.totalLen - 6; d += 42) {
+    const edgeGeo = new THREE.BoxGeometry(1.0, 0.05, 1.0);
+    const tileGeo = new THREE.BoxGeometry(0.88, 0.07, 0.88);
+    const edgeMat = new THREE.MeshLambertMaterial({ color: COL.tileEdge, flatShading: true });
+    const tileMat = new THREE.MeshLambertMaterial({ color: COL.tile, flatShading: true });
+    for (const key of game.map.pathCells) {
+      const [c, r] = key.split(',').map(Number);
+      const X = fx(c * GRID.cell + GRID.cell / 2), Z = fz(r * GRID.cell + GRID.cell / 2);
+      const edge = new THREE.Mesh(edgeGeo, edgeMat);
+      edge.position.set(X, 0.02, Z);
+      edge.receiveShadow = true;
+      const tile = new THREE.Mesh(tileGeo, tileMat);
+      tile.position.set(X, 0.05, Z);
+      tile.receiveShadow = true;
+      scene.add(edge, tile);
+    }
+    // rombos que marcan la dirección de avance
+    const diamondGeo = new THREE.OctahedronGeometry(0.07);
+    diamondGeo.scale(1, 0.4, 1);
+    const diamondMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
+    for (let d = 30; d < game.map.totalLen - 30; d += 60) {
       const p = pointAtDistance(game.map, d);
-      const m = new THREE.Mesh(pebbleGeo, pebbleMat);
-      m.position.set(fx(p.x), 0.04, fz(p.y));
+      const m = new THREE.Mesh(diamondGeo, diamondMat);
+      m.position.set(fx(p.x), 0.1, fz(p.y));
+      m.rotation.y = -p.angle;
       scene.add(m);
     }
-    // boca de cueva en el inicio
-    const cave = new THREE.Mesh(
-      new THREE.SphereGeometry(0.65, 10, 8, 0, Math.PI),
-      new THREE.MeshLambertMaterial({ color: 0x0b0f1e, flatShading: true }),
-    );
+    // portal de entrada (arco geométrico)
     const start = pathPts[0];
-    cave.position.set(start.X - 0.2, 0.1, start.Z);
-    cave.rotation.y = Math.PI / 2;
-    cave.scale.set(0.7, 1, 1);
-    scene.add(cave);
+    const portalMat = new THREE.MeshLambertMaterial({ color: 0x7c3aed, flatShading: true });
+    const portal = new THREE.Group();
+    for (const side of [-1, 1]) {
+      const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), portalMat);
+      pillar.position.set(0, 0.55, side * 0.5);
+      portal.add(pillar);
+    }
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), portalMat);
+    lintel.position.y = 1.15;
+    portal.add(lintel);
+    const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), new THREE.MeshBasicMaterial({ color: 0x1e1b4b }));
+    dark.position.y = 0.5;
+    dark.rotation.y = Math.PI / 2;
+    portal.add(dark);
+    portal.position.set(start.X + 0.1, 0, start.Z);
+    scene.add(portal);
   }
 
   // --- fortaleza (al final del camino) ---
@@ -345,6 +357,32 @@ export function createScene3D(container, game) {
     return game.categories[tw.catIdx].color;
   }
 
+  // Barra de vida de estructura (solo visible cuando está dañada)
+  const hpBgMat = new THREE.MeshBasicMaterial({ color: 0x111827 });
+  const hpFgMat = new THREE.MeshBasicMaterial({ color: 0x4ade80 });
+  function addTowerHpBar(g, y) {
+    const bg = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.06, 0.06), hpBgMat);
+    bg.position.y = y;
+    const fg = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.07, 0.07), hpFgMat.clone());
+    fg.position.y = y;
+    bg.visible = false; fg.visible = false;
+    g.add(bg, fg);
+    return { bg, fg };
+  }
+  function syncTowerHpBar(mesh, tw) {
+    const bar = mesh.userData.hpBar;
+    if (!bar) return;
+    const damaged = tw.hp < tw.maxHp;
+    bar.bg.visible = damaged;
+    bar.fg.visible = damaged;
+    if (damaged) {
+      const ratio = Math.max(tw.hp / tw.maxHp, 0.02);
+      bar.fg.scale.x = ratio;
+      bar.fg.position.x = -0.25 * (1 - ratio);
+      bar.fg.material.color.setHex(ratio > 0.5 ? 0x4ade80 : ratio > 0.25 ? 0xfbbf24 : 0xef4444);
+    }
+  }
+
   // El Oráculo no combate: pedestal con esfera de cristal levitante y anillo
   function buildOracleMesh(tw) {
     const g = new THREE.Group();
@@ -364,6 +402,7 @@ export function createScene3D(container, game) {
     g.add(base, column, sphere, ring);
     g.position.set(fx(tw.x), 0, fz(tw.y));
     g.userData = { towerId: tw.id, oracle: { sphere, ring, sphereMat } };
+    g.userData.hpBar = addTowerHpBar(g, 1.25);
     return g;
   }
 
@@ -410,80 +449,110 @@ export function createScene3D(container, game) {
 
     g.position.set(fx(tw.x), 0, fz(tw.y));
     g.userData = { towerId: tw.id, coreMat, barrelPivot, core, top, pips };
+    g.userData.hpBar = addTowerHpBar(g, 1.2);
     return g;
   }
 
-  // --- enemigos (silueta distinta por tipo) ---
-  function jitterGeometry(geo, e, amount) {
-    const pos = geo.attributes.position;
-    const v = new THREE.Vector3();
-    for (let i = 0; i < pos.count; i++) {
-      v.set(pos.getX(i), pos.getY(i), pos.getZ(i));
-      const k = 1 - amount / 2 + e.shape[(i * 7) % e.shape.length] * amount;
-      v.multiplyScalar(k);
-      pos.setXYZ(i, v.x, v.y, v.z);
-    }
-    geo.computeVertexNormals();
-    return geo;
-  }
+  // --- enemigos: cubos con caras y expresiones (cara en +X, dirección de avance) ---
+  const faceWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  const faceDarkMat = new THREE.MeshBasicMaterial({ color: 0x1f2937 });
+  const hatMat = new THREE.MeshLambertMaterial({ color: 0xfacc15, flatShading: true });
 
-  function addEyes(body, radius, { count = 2, size = 0.24, fx2 = 0.7, fy = 0.25, spread = 0.4 } = {}) {
-    const eyeR = Math.max(radius * size, 0.05);
-    const sides = count === 1 ? [0] : [-1, 1];
-    for (const side of sides) {
-      const white = new THREE.Mesh(new THREE.SphereGeometry(eyeR, 8, 8), shared.eyeWhite);
-      white.position.set(radius * fx2, radius * fy, side * radius * spread);
-      const pupil = new THREE.Mesh(new THREE.SphereGeometry(eyeR * 0.5, 6, 6), shared.eyeDark);
-      pupil.position.set(eyeR * 0.6, 0, 0);
-      white.add(pupil);
-      body.add(white);
-    }
+  // Rasgo facial: caja fina pegada a la cara +X del cubo
+  function facePart(body, s, { w, h, y, z, mat = faceDarkMat, rotX = 0, depth = 0.02 }) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(depth, h, w), mat);
+    m.position.set(s / 2 + depth / 2, y, z);
+    m.rotation.x = rotX;
+    body.add(m);
+    return m;
   }
 
   function buildEnemyMesh(e) {
     const radius = e.radius * U * 1.45;
     const showColor = game.mode !== 'exam';
-    const base = new THREE.Color(showColor ? game.categories[e.catIdx].color : `hsl(${e.hue}, 24%, 52%)`);
-
-    let geo, body;
+    const base = new THREE.Color(showColor ? game.categories[e.catIdx].color : `hsl(${e.hue}, 30%, 58%)`);
     const mat = new THREE.MeshLambertMaterial({ flatShading: true });
+    const wob = 0.9 + e.shape[0] * 0.18; // ligera variación de tamaño por semilla
+
+    let body;
+    let hammer = null;
+    const s = radius * 1.8 * wob; // lado del cubo
 
     if (e.type === 'scout') {
-      // dardo veloz: cono tumbado con aletas y un solo ojo de cíclope
-      base.lerp(new THREE.Color(0xffffff), 0.18);
-      geo = jitterGeometry(new THREE.ConeGeometry(radius * 0.85, radius * 2.7, 7), e, 0.14);
-      geo.rotateZ(-Math.PI / 2); // punta hacia +X (dirección de avance)
-      body = new THREE.Mesh(geo, mat);
-      const finGeo = new THREE.BoxGeometry(radius * 0.9, radius * 0.1, radius * 0.55);
-      for (const side of [-1, 1]) {
-        const fin = new THREE.Mesh(finGeo, mat);
-        fin.position.set(-radius * 0.9, 0, side * radius * 0.55);
+      // veloz: cubo bajo y alargado con visera de un solo ojo
+      base.lerp(new THREE.Color(0xffffff), 0.2);
+      body = new THREE.Mesh(new THREE.BoxGeometry(s * 1.5, s * 0.65, s * 0.85), mat);
+      facePart(body, s * 1.5, { w: s * 0.6, h: s * 0.18, y: s * 0.1, z: 0 }); // visera
+      facePart(body, s * 1.5, { w: s * 0.16, h: s * 0.12, y: s * 0.1, z: 0, mat: faceWhiteMat, depth: 0.03 }); // pupila
+      facePart(body, s * 1.5, { w: s * 0.3, h: s * 0.05, y: -s * 0.18, z: 0 }); // boca fina
+      for (const side of [-1, 1]) { // aletas traseras
+        const fin = new THREE.Mesh(new THREE.BoxGeometry(s * 0.5, s * 0.08, s * 0.3), mat);
+        fin.position.set(-s * 0.8, s * 0.1, side * s * 0.4);
         fin.rotation.y = side * 0.5;
         body.add(fin);
       }
-      addEyes(body, radius, { count: 1, size: 0.34, fx2: 0.9, fy: 0.35, spread: 0 });
     } else if (e.type === 'brute') {
-      // golem pesado: dodecaedro alto con cuernos y ojillos juntos
-      base.multiplyScalar(0.72);
-      geo = jitterGeometry(new THREE.DodecahedronGeometry(radius, 0), e, 0.2);
-      geo.scale(1, 1.2, 1);
-      body = new THREE.Mesh(geo, mat);
+      // pesado: cubo grande, cejas en V, dientes apretados y cuernos
+      base.multiplyScalar(0.78);
+      body = new THREE.Mesh(new THREE.BoxGeometry(s * 1.1, s * 1.2, s * 1.1), mat);
       for (const side of [-1, 1]) {
-        const horn = new THREE.Mesh(new THREE.ConeGeometry(radius * 0.18, radius * 0.6, 5), shared.crownMat);
-        horn.position.set(0, radius * 0.95, side * radius * 0.45);
-        horn.rotation.x = side * 0.5;
+        facePart(body, s * 1.1, { w: s * 0.32, h: s * 0.09, y: s * 0.34, z: side * s * 0.22, rotX: side * 0.5 }); // ceja en V
+        facePart(body, s * 1.1, { w: s * 0.14, h: s * 0.14, y: s * 0.16, z: side * s * 0.22, mat: faceWhiteMat }); // ojo
+        facePart(body, s * 1.1, { w: s * 0.07, h: s * 0.07, y: s * 0.16, z: side * s * 0.22, depth: 0.035 }); // pupila
+        const horn = new THREE.Mesh(new THREE.ConeGeometry(s * 0.14, s * 0.4, 4), shared.crownMat);
+        horn.position.set(0, s * 0.72, side * s * 0.4);
+        horn.rotation.x = side * 0.45;
         body.add(horn);
       }
-      addEyes(body, radius, { size: 0.16, fx2: 0.8, fy: 0.3, spread: 0.22 });
+      facePart(body, s * 1.1, { w: s * 0.5, h: s * 0.12, y: -s * 0.25, z: 0 }); // boca
+      for (let i = -1; i <= 1; i++) {
+        facePart(body, s * 1.1, { w: s * 0.09, h: s * 0.09, y: -s * 0.23, z: i * s * 0.14, mat: faceWhiteMat, depth: 0.03 }); // dientes
+      }
+    } else if (e.type === 'sabo') {
+      // demoledor: cubo con casco de obra, ceño fruncido y martillo
+      body = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), mat);
+      const hat = new THREE.Mesh(new THREE.BoxGeometry(s * 0.85, s * 0.22, s * 0.85), hatMat);
+      hat.position.y = s * 0.58;
+      const brim = new THREE.Mesh(new THREE.BoxGeometry(s * 1.15, s * 0.07, s * 1.0), hatMat);
+      brim.position.set(s * 0.1, s * 0.48, 0);
+      body.add(hat, brim);
+      for (const side of [-1, 1]) {
+        facePart(body, s, { w: s * 0.26, h: s * 0.07, y: s * 0.26, z: side * s * 0.2, rotX: side * 0.4 }); // ceño
+        facePart(body, s, { w: s * 0.13, h: s * 0.13, y: s * 0.1, z: side * s * 0.2, mat: faceWhiteMat });
+        facePart(body, s, { w: s * 0.06, h: s * 0.06, y: s * 0.1, z: side * s * 0.2, depth: 0.035 });
+      }
+      facePart(body, s, { w: s * 0.3, h: s * 0.07, y: -s * 0.24, z: 0, rotX: 0.2 }); // mueca
+      // martillo (se anima al demoler)
+      hammer = new THREE.Group();
+      const handle = new THREE.Mesh(new THREE.BoxGeometry(0.05, s * 0.8, 0.05), shared.barrelMat);
+      handle.position.y = s * 0.4;
+      const head = new THREE.Mesh(new THREE.BoxGeometry(s * 0.28, s * 0.2, s * 0.42), new THREE.MeshLambertMaterial({ color: 0x94a3b8, flatShading: true }));
+      head.position.y = s * 0.8;
+      hammer.add(handle, head);
+      hammer.position.set(s * 0.35, 0, s * 0.6);
+      body.add(hammer);
     } else {
-      // normal y jefe: blob orgánico (icosaedro deformado)
-      geo = jitterGeometry(new THREE.IcosahedronGeometry(radius, 1), e, 0.3);
-      body = new THREE.Mesh(geo, mat);
-      addEyes(body, radius, {});
+      // normal y jefe: cubo clásico con carita
+      body = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), mat);
+      const boss = e.type === 'boss';
+      for (const side of [-1, 1]) {
+        if (boss) facePart(body, s, { w: s * 0.26, h: s * 0.07, y: s * 0.33, z: side * s * 0.18, rotX: side * 0.45 }); // cejas de jefe
+        facePart(body, s, { w: s * 0.18, h: s * 0.18, y: s * 0.14, z: side * s * 0.18, mat: faceWhiteMat }); // ojo
+        facePart(body, s, { w: s * 0.09, h: s * 0.09, y: s * 0.12, z: side * s * 0.18, depth: 0.035 }); // pupila
+      }
+      if (boss) {
+        facePart(body, s, { w: s * 0.44, h: s * 0.1, y: -s * 0.22, z: 0 });
+        for (let i = -1; i <= 1; i += 2) {
+          facePart(body, s, { w: s * 0.08, h: s * 0.08, y: -s * 0.2, z: i * s * 0.12, mat: faceWhiteMat, depth: 0.03 }); // colmillos
+        }
+      } else {
+        facePart(body, s, { w: s * 0.32, h: s * 0.06, y: -s * 0.2, z: 0, rotX: -0.15 }); // sonrisilla
+      }
     }
 
+    const geo = body.geometry;
     mat.color.copy(base);
-    body.position.y = radius + 0.06;
+    body.position.y = radius + 0.08;
     body.castShadow = true;
 
     // corona del jefe
@@ -516,7 +585,68 @@ export function createScene3D(container, game) {
     const group = new THREE.Group();
     group.add(body, ring, label);
     group.userData = { enemyId: e.id };
-    return { group, body, mat, geo, label, labelCanvas, labelTex, ring, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
+    return { group, body, mat, geo, label, labelCanvas, labelTex, ring, hammer, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
+  }
+
+  // --- caballeros aliados (cubitos con casco y espada) ---
+  const allyMeshes = new Map();
+  const allyBodyMat = new THREE.MeshLambertMaterial({ color: 0x8b5cf6, flatShading: true });
+  const allyHeadMat = new THREE.MeshLambertMaterial({ color: 0xfde68a, flatShading: true });
+  const allyHelmMat = new THREE.MeshLambertMaterial({ color: 0xe2e8f0, flatShading: true });
+
+  function buildAllyMesh(a) {
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.3, 0.26), allyBodyMat);
+    body.position.y = 0.21;
+    body.castShadow = true;
+    const head = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.18, 0.2), allyHeadMat);
+    head.position.y = 0.46;
+    const helm = new THREE.Mesh(new THREE.BoxGeometry(0.23, 0.08, 0.23), allyHelmMat);
+    helm.position.y = 0.57;
+    const plume = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.12, 0.06), new THREE.MeshLambertMaterial({ color: 0xf472b6 }));
+    plume.position.y = 0.66;
+    // ojitos
+    for (const side of [-1, 1]) {
+      const eye = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.035, 0.035), faceDarkMat);
+      eye.position.set(0.11, 0.47, side * 0.05);
+      g.add(eye);
+    }
+    // espada (pivote en la mano para el espadazo)
+    const swordPivot = new THREE.Group();
+    const blade = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.045, 0.045), allyHelmMat);
+    blade.position.x = 0.2;
+    const guard = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 0.04), shared.barrelMat);
+    swordPivot.add(blade, guard);
+    swordPivot.position.set(0.12, 0.3, 0.16);
+    g.add(body, head, helm, plume, swordPivot);
+    g.userData = { allyId: a.id, swordPivot, body };
+    return g;
+  }
+
+  function syncAllies() {
+    const alive = new Set();
+    for (const a of game.allies) {
+      if (a.hp <= 0) continue;
+      alive.add(a.id);
+      let m = allyMeshes.get(a.id);
+      if (!m) {
+        m = buildAllyMesh(a);
+        allyMeshes.set(a.id, m);
+        fxGroup.add(m);
+      }
+      m.position.set(fx(a.x), Math.abs(Math.sin(game.time * 8 + a.phase)) * 0.04, fz(a.y));
+      m.rotation.y = -a.angle;
+      // espadazo: la hoja barre hacia delante
+      m.userData.swordPivot.rotation.z = a.swing > 0 ? -1.6 * (1 - a.swing / 0.25) : -0.25;
+      m.userData.body.material = a.hitFlash > 0 ? shared.eyeWhite : allyBodyMat;
+    }
+    for (const [id, m] of allyMeshes) {
+      if (!alive.has(id)) {
+        fxGroup.remove(m);
+        m.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+        allyMeshes.delete(id);
+      }
+    }
   }
 
   // --- pool de anillos de FX y texturas de texto flotante ---
@@ -626,6 +756,7 @@ export function createScene3D(container, game) {
       }
       // posición (puede haberse movido con moveTower)
       mesh.position.set(fx(tw.x), 0, fz(tw.y));
+      syncTowerHpBar(mesh, tw);
 
       if (mesh.userData.oracle) {
         const { sphere, ring, sphereMat } = mesh.userData.oracle;
@@ -715,6 +846,11 @@ export function createScene3D(container, game) {
         m.ring.material.color.set(game.categories[e.catIdx].color);
       }
 
+      // martillo del saboteador: golpea mientras demuele
+      if (m.hammer) {
+        m.hammer.rotation.z = e.attackTowerId ? Math.sin(game.time * 10) * 0.9 - 0.4 : -0.2;
+      }
+
       // etiqueta: redibujar solo cuando cambia el bucket de vida o el borde
       const bucket = Math.ceil((e.hp / e.maxHp) * 10);
       const border = e.revealed ? game.categories[e.catIdx].color : (e.classified ? '#94a3b8' : null);
@@ -729,7 +865,8 @@ export function createScene3D(container, game) {
     for (const [id, m] of enemyMeshes) {
       if (!alive.has(id)) {
         enemyGroup.remove(m.group);
-        m.geo.dispose(); m.mat.dispose(); m.labelTex.dispose(); m.label.material.dispose();
+        m.group.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+        m.mat.dispose(); m.labelTex.dispose(); m.label.material.dispose();
         enemyMeshes.delete(id);
       }
     }
@@ -855,7 +992,7 @@ export function createScene3D(container, game) {
 
   function syncFortress() {
     const ratio = game.lives / 10;
-    fortWallMat.color.setHex(ratio > 0.6 ? COL.wall : ratio > 0.3 ? 0x9f6f6f : 0x9f4f4f);
+    fortWallMat.color.setHex(ratio > 0.6 ? COL.wall : ratio > 0.3 ? 0xfb923c : 0xf87171);
     // bandera ondeante
     const pos = flagGeo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
@@ -889,6 +1026,7 @@ export function createScene3D(container, game) {
   function render(ui) {
     syncTowers(ui);
     syncEnemies();
+    syncAllies();
     syncProjectiles();
     syncParticles();
     syncFortress();

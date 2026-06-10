@@ -71,7 +71,14 @@ function prepareRun(seed, allCategories, allQuestions) {
   const bossPool = byDiff[3].length ? byDiff[3] : byDiff[2].length ? byDiff[2] : byDiff[1];
   const bossQuestions = seededShuffle(bossPool, rng).map(withOptions);
 
-  return { categories: picked, questions, bossQuestions };
+  // 4) Pools por dificultad para el Desafío Relámpago (siempre tipo test)
+  const pools = {
+    1: seededShuffle(byDiff[1], rng).map(withOptions),
+    2: seededShuffle(byDiff[2], rng).map(withOptions),
+    3: seededShuffle(byDiff[3], rng).map(withOptions),
+  };
+
+  return { categories: picked, questions, bossQuestions, pools };
 }
 
 const LaFortaleza = ({ onGameComplete }) => {
@@ -229,6 +236,7 @@ const LaFortaleza = ({ onGameComplete }) => {
           categories={run.categories}
           questions={run.questions}
           bossQuestions={run.bossQuestions}
+          pools={run.pools}
           sounds={sounds}
           onEnd={handleEnd}
         />
@@ -297,6 +305,15 @@ const LaFortaleza = ({ onGameComplete }) => {
 
         <h3>🧿 El Oráculo</h3>
         <p>Construye el Oráculo y te lanzará preguntas exprés <strong>en plena oleada</strong>: acierta rápido y gana monedas y energía extra sin esperar a la siguiente fase de construcción. Solo puede haber uno.</p>
+
+        <h3>🗡️ Caballeros aliados</h3>
+        <p>La fortaleza envía <strong>caballeros</strong> que avanzan por el camino y traban combate con los enemigos, frenándolos mientras tus torres disparan. ¡Cúbrelos bien!</p>
+
+        <h3>⛏️ ¡Cuidado con los demoledores!</h3>
+        <p>Los enemigos con <strong>casco de obra</strong> se paran a destruir tus estructuras a martillazos. Las estructuras tienen vida (mejorar las repara) — si una cae, la pierdes. Puedes moverlas lejos del peligro.</p>
+
+        <h3>⚡ Desafío Relámpago</h3>
+        <p>Cada 3 oleadas puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todos los puntos acumulados.</p>
 
         <h3>🎯 Disparo de precisión</h3>
         <p>Toca un enemigo y di a qué categoría pertenece su palabra. Si aciertas: <strong>golpe crítico</strong>. Si fallas: las torres de esa categoría se atascan 3 segundos.</p>

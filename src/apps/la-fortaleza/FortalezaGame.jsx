@@ -25,7 +25,10 @@ const DRAG_THRESHOLD = 8; // px: por debajo es un toque, por encima orbita la c�
 
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
 
-const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sounds, onEnd, onProgress }) => {
+const MINIGAME_EVERY = 3;      // se ofrece tras las oleadas 2, 5, 8...
+const MINIGAME_BASE_POINTS = 50; // puntos = base · nº de acierto en la cadena
+
+const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools, sounds, onEnd, onProgress }) => {
   const isExam = mode === 'exam';
 
   // --- motor (uno por montaje, determinista por seed) ---
@@ -37,7 +40,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   const game = gameRef.current;
 
   // --- estado React (HUD y UI) ---
-  const [phase, setPhase] = useState('quiz'); // quiz | build | wave | ended
+  const [phase, setPhase] = useState('quiz'); // quiz | minigame | build | wave | ended
+  const [mini, setMini] = useState(null); // {stage:'offer'|'playing', step, question, timeLeft, total, feedback}
   const [hud, setHud] = useState({ coins: game.coins, lives: game.lives, wave: game.wave, score: game.score, energy: game.energy, abilityReady: true });
   const [streak, setStreak] = useState(0);
   const [quiz, setQuiz] = useState(null);
@@ -64,6 +68,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
   const endedRef = useRef(false);
   const qPointerRef = useRef(0);
   const bossPointerRef = useRef(0);
+  const miniPtrRef = useRef({ 1: 0, 2: 0, 3: 0 });
   const academicRef = useRef({
     correct: 0, total: 0,
     questions: { c: 0, t: 0 }, classify: { c: 0, t: 0 }, boss: { c: 0, t: 0 },
@@ -229,6 +234,66 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
     return () => clearTimeout(t);
   }, [overlay]);
 
+  // --- Desafío Relámpago: cadena de aciertos con dificultad creciente ---
+  const miniQuestion = useCallback((step) => {
+    const want = step <= 3 ? 1 : step <= 6 ? 2 : 3;
+    // usa el nivel deseado o el más alto disponible por debajo
+    const diff = [want, want - 1, want - 2, want + 1, want + 2].find((d) => pools[d]?.length > 0) ?? 1;
+    const pool = pools[diff] || [];
+    const q = pool[miniPtrRef.current[diff] % pool.length];
+    miniPtrRef.current[diff]++;
+    return q;
+  }, [pools]);
+
+  const miniTimeFor = (step) => Math.max(10 - (step - 1), 4);
+
+  const startMini = useCallback(() => {
+    soundsRef.current.minigame();
+    setMini({ stage: 'playing', step: 1, question: miniQuestion(1), timeLeft: miniTimeFor(1), total: 0, feedback: null });
+  }, [miniQuestion]);
+
+  const endMini = useCallback(() => {
+    setMini(null);
+    openQuiz();
+  }, [openQuiz]);
+
+  const answerMini = useCallback((answer) => {
+    setMini((prev) => {
+      if (!prev || prev.stage !== 'playing' || prev.feedback) return prev;
+      const g = gameRef.current;
+      const correct = answer != null && norm(answer) === norm(prev.question.solucion);
+      tally('questions', correct);
+      if (correct) {
+        const points = MINIGAME_BASE_POINTS * prev.step;
+        g.score += points;
+        g.energy = Math.min(g.energy + 5, ENERGY_MAX);
+        soundsRef.current.chain(prev.step);
+        return { ...prev, feedback: 'correct', reward: points, total: prev.total + points };
+      }
+      soundsRef.current.wrong();
+      return { ...prev, feedback: 'wrong' };
+    });
+  }, [tally]);
+
+  // Avance/cierre de la cadena + temporizador
+  useEffect(() => {
+    if (!mini || mini.stage !== 'playing') return;
+    if (mini.feedback === 'correct') {
+      const t = setTimeout(() => setMini((p) => (p ? {
+        ...p, step: p.step + 1, question: miniQuestion(p.step + 1),
+        timeLeft: miniTimeFor(p.step + 1), feedback: null, reward: 0,
+      } : p)), 800);
+      return () => clearTimeout(t);
+    }
+    if (mini.feedback === 'wrong') {
+      const t = setTimeout(endMini, 1600);
+      return () => clearTimeout(t);
+    }
+    if (mini.timeLeft <= 0) { answerMini(null); return; }
+    const t = setTimeout(() => setMini((p) => (p && !p.feedback ? { ...p, timeLeft: p.timeLeft - 1 } : p)), 1000);
+    return () => clearTimeout(t);
+  }, [mini, miniQuestion, answerMini, endMini]);
+
   // --- oráculo: pregunta exprés en plena oleada (siempre tipo test) ---
   const answerOracle = useCallback((answer) => {
     setOverlay((prev) => {
@@ -305,7 +370,21 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
           setForecast(planNextWave(gameRef.current));
           setAimingAbility(null);
           onProgressRef.current?.({ type: 'wave_complete', wave: ev.wave, score: gameRef.current.score });
-          openQuiz();
+          if (ev.wave % MINIGAME_EVERY === MINIGAME_EVERY - 1) {
+            // Desafío Relámpago antes del quiz normal
+            setPhase('minigame');
+            setMini({ stage: 'offer', step: 0, total: 0 });
+          } else {
+            openQuiz();
+          }
+          break;
+        case 'ally_spawn': snd.allySpawn(); break;
+        case 'ally_death': snd.jam(); break;
+        case 'tower_hit': snd.towerHit(); break;
+        case 'tower_destroyed':
+          snd.towerDown();
+          if (selectedRef.current === ev.towerId) setSelectedTowerId(null);
+          if (movingRef.current === ev.towerId) setMovingTowerId(null);
           break;
         case 'victory':
           snd.victory();
@@ -646,6 +725,51 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, sound
                     <button key={opt} onClick={() => answerQuiz(opt)}>{opt}</button>
                   ))}
                 </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- Desafío Relámpago ---------- */}
+        <AnimatePresence>
+          {phase === 'minigame' && mini && (
+            <motion.div className="fort-quiz fort-mini" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              {mini.stage === 'offer' ? (
+                <>
+                  <div className="fort-mini-title">⚡ ¡Desafío Relámpago!</div>
+                  <p className="fort-quiz-def">
+                    Encadena aciertos: cada respuesta correcta vale más que la anterior
+                    ({MINIGAME_BASE_POINTS}, {MINIGAME_BASE_POINTS * 2}, {MINIGAME_BASE_POINTS * 3}... puntos),
+                    pero las preguntas se vuelven más difíciles y el tiempo se acorta. ¡La cadena dura hasta que falles!
+                  </p>
+                  <div className="fort-quit-btns">
+                    <button className="fort-btn-secondary" onClick={endMini}>Ahora no</button>
+                    <button className="fort-btn-launch" onClick={startMini}><Zap size={16} /> ¡Acepto!</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="fort-quiz-head">
+                    <span className="fort-mini-chain">⚡ Cadena x{mini.step} · <strong>{mini.total.toLocaleString('es-ES')} pts</strong></span>
+                    {!mini.feedback && (
+                      <span className={`fort-quiz-timer ${mini.timeLeft <= 3 ? 'urgent' : ''}`}><Timer size={14} /> {mini.timeLeft}s</span>
+                    )}
+                  </div>
+                  <p className="fort-quiz-def">{mini.question.definicion}</p>
+                  {mini.feedback ? (
+                    <div className={`fort-quiz-feedback ${mini.feedback}`}>
+                      {mini.feedback === 'correct'
+                        ? <>✅ ¡+{mini.reward} puntos! La siguiente vale {MINIGAME_BASE_POINTS * (mini.step + 1)}...</>
+                        : <>💥 Cadena rota. Era: <strong>{mini.question.solucion}</strong> · Te llevas {mini.total.toLocaleString('es-ES')} puntos</>}
+                    </div>
+                  ) : (
+                    <div className="fort-quiz-options">
+                      {mini.question.options.map((opt) => (
+                        <button key={opt} onClick={() => answerMini(opt)}>{opt}</button>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </motion.div>
           )}

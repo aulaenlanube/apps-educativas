@@ -92,6 +92,11 @@ export function createSounds() {
     crit() { arpeggio([659, 880, 1175, 1568], 0.06, 0.14); },
     jam() { tone(140, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60 }); },
     bossSpawn() { arpeggio([196, 185, 165], 0.16, 0.3, { type: 'sawtooth', vol: 0.5 }); },
+    allySpawn() { arpeggio([392, 523, 659], 0.07, 0.18, { type: 'square', vol: 0.3 }); }, // trompetilla
+    towerHit() { noise(0.08, { freq: 600, vol: 0.4 }); },
+    towerDown() { noise(0.45, { freq: 350, vol: 0.8 }); tone(110, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60, delay: 0.1 }); },
+    chain(step) { tone(440 * Math.pow(1.12, Math.min(step, 14)), 0.14, { type: 'triangle', vol: 0.5 }); },
+    minigame() { arpeggio([659, 784, 988, 1319], 0.07, 0.18); },
     ability(id) {
       if (id === 'meteoro') { tone(180, 0.5, { type: 'sawtooth', vol: 0.5, slide: -120 }); noise(0.5, { freq: 900, vol: 0.8, delay: 0.25 }); }
       else if (id === 'ventisca') { tone(1600, 0.5, { type: 'sine', vol: 0.35, slide: -900 }); noise(0.4, { freq: 2400, vol: 0.25 }); }
