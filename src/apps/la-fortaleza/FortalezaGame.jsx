@@ -8,14 +8,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
-  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut,
+  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle,
 } from 'lucide-react';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
   sellTower, moveTower, classifyEnemy, bossStrike, bossEnrage, canPlace, rewardCorrectAnswer,
   castAbility, ABILITIES, ENERGY_MAX, MOVE_COST,
   TOWER_TYPES, MAX_TOWER_LEVEL, upgradeCost, sellValue, EXAM_VICTORY_LEVEL,
-  SANCT_UNLOCK_CORRECT,
+  SANCT_UNLOCK_CORRECT, FORT_UPGRADES, buyFortUpgrade,
 } from './engine';
 import { createScene3D } from './render3d';
 
@@ -42,7 +42,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   // --- estado React (HUD y UI) ---
   const [phase, setPhase] = useState('quiz'); // quiz (preparación) | build (preparación) | run | ended
   const [mini, setMini] = useState(null); // {stage:'offer'|'playing', step, question, timeLeft, total, feedback}
-  const [hud, setHud] = useState({ coins: game.coins, lives: game.lives, level: game.level, score: game.score, energy: game.energy, abilityReady: true });
+  const [hud, setHud] = useState({ coins: game.coins, lives: game.lives, level: game.level, score: game.score, energy: game.energy, abilityReady: true, shield: 0, fortLevel: 0 });
+  const [fortOpen, setFortOpen] = useState(false);
   const [streak, setStreak] = useState(0);
   const [quiz, setQuiz] = useState(null);
   const [overlay, setOverlay] = useState(null); // classify | boss | question | catpick | quit
@@ -383,6 +384,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         case 'ally_spawn': snd.allySpawn(); break;
         case 'ally_death': snd.jam(); break;
         case 'heal': snd.heal(); break;
+        case 'shield_hit': snd.shield(); break;
         case 'tower_hit': snd.towerHit(); break;
         case 'tower_destroyed':
           snd.towerDown();
@@ -446,8 +448,12 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         const energy = Math.round(g.energy);
         const abilityReady = g.time >= g.abilityCdUntil;
         if (prev.coins === g.coins && prev.lives === g.lives && prev.level === g.level
-          && prev.score === g.score && prev.energy === energy && prev.abilityReady === abilityReady) return prev;
-        return { coins: g.coins, lives: g.lives, level: g.level, score: g.score, energy, abilityReady };
+          && prev.score === g.score && prev.energy === energy && prev.abilityReady === abilityReady
+          && prev.shield === g.fortShield && prev.fortLevel === g.fortUpgrades.length) return prev;
+        return {
+          coins: g.coins, lives: g.lives, level: g.level, score: g.score, energy, abilityReady,
+          shield: g.fortShield, fortLevel: g.fortUpgrades.length,
+        };
       });
 
       // El modo "mover" reutiliza el fantasma de colocación con el tipo de la torre
@@ -535,9 +541,15 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       return;
     }
 
-    // 5) Selección de torre / deseleccionar
+    // 5) Selección de fortaleza / torre / deseleccionar
+    if (hit.kind === 'fortress' && !placingRef.current && !movingRef.current) {
+      setSelectedTowerId(null);
+      setFortOpen(true);
+      return;
+    }
     if (hit.kind === 'tower') setSelectedTowerId(hit.towerId);
     else setSelectedTowerId(null);
+    setFortOpen(false);
   }, []);
 
   const updateHover = useCallback((clientX, clientY) => {
@@ -640,6 +652,11 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     }
   }, []);
 
+  const doFortUpgrade = useCallback(() => {
+    const up = buyFortUpgrade(gameRef.current);
+    if (up) soundsRef.current.fortify();
+  }, []);
+
   const toggleSound = useCallback(() => setSoundOn(soundsRef.current.toggle()), []);
 
   const toggleFullscreen = useCallback(() => {
@@ -651,6 +668,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     setPlacingType(null);
     setSelectedTowerId(null);
     setMovingTowerId(null);
+    setFortOpen(false);
     setAimingAbility((prev) => (prev === id ? null : id));
   }, []);
 
@@ -658,12 +676,14 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   const selectedTower = selectedTowerId ? game.towers.find((t) => t.id === selectedTowerId) : null;
   const levelLabel = isExam ? `Nv. ${Math.min(hud.level, EXAM_VICTORY_LEVEL)}/${EXAM_VICTORY_LEVEL}` : `Nv. ${hud.level}`;
   const a = academicRef.current;
+  const nextUp = FORT_UPGRADES[hud.fortLevel] ?? null;
 
   return (
     <div className="fort-game" ref={rootRef}>
       {/* ---------- HUD superior ---------- */}
       <div className="fort-hud">
         <span className="fort-hud-item lives"><Heart size={16} /> {hud.lives}</span>
+        {game.fortShieldMax > 0 && <span className="fort-hud-item shield" title="Escudo de la muralla externa">🛡️ {hud.shield}</span>}
         <span className="fort-hud-item coins"><Coins size={16} /> {hud.coins}</span>
         <span className="fort-hud-item wave"><Waves size={16} /> {levelLabel}</span>
         <span className="fort-hud-item score"><Star size={16} /> {hud.score.toLocaleString('es-ES')}</span>
@@ -673,6 +693,21 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {phase === 'run' && (
           <button className={`fort-hud-btn ${speed === 2 ? 'active' : ''}`} onClick={() => setSpeed((s) => (s === 1 ? 2 : 1))} title="Velocidad x2">
             <FastForward size={16} />{speed === 2 ? ' x2' : ' x1'}
+          </button>
+        )}
+        {(phase === 'build' || phase === 'run') && (
+          <button
+            className={`fort-hud-btn ${nextUp && hud.coins >= nextUp.cost ? 'fort-glow' : ''}`}
+            onClick={() => {
+              setSelectedTowerId(null);
+              setPlacingType(null);
+              setAimingAbility(null);
+              setMovingTowerId(null);
+              setFortOpen((o) => !o);
+            }}
+            title="Mejoras de la fortaleza"
+          >
+            <Castle size={16} />
           </button>
         )}
         {phase === 'run' && !isExam && (
@@ -969,6 +1004,33 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           )}
         </AnimatePresence>
 
+        {/* ---------- panel de mejoras de la fortaleza ---------- */}
+        <AnimatePresence>
+          {fortOpen && !selectedTower && (
+            <motion.div className="fort-towerpanel fort-fortpanel" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
+              <span className="fort-towerpanel-name">
+                <Castle size={15} /> La Biblioteca
+                {game.fortUpgrades.map((id) => {
+                  const up = FORT_UPGRADES.find((u) => u.id === id);
+                  return <span key={id} className="fort-fortpanel-owned" title={up.name}>{up.emoji}</span>;
+                })}
+                {game.fortShieldMax > 0 && <span className="fort-towerpanel-lvl">🛡️ {hud.shield}/{game.fortShieldMax}</span>}
+              </span>
+              {nextUp ? (
+                <>
+                  <span className="fort-fortpanel-desc">{nextUp.emoji} <strong>{nextUp.name}:</strong> {nextUp.desc}</span>
+                  <button className="fort-btn-upgrade" disabled={hud.coins < nextUp.cost} onClick={doFortUpgrade}>
+                    <ArrowUpCircle size={15} /> Construir ({nextUp.cost} 🪙)
+                  </button>
+                </>
+              ) : (
+                <span className="fort-towerpanel-max">⭐ Fortaleza al máximo</span>
+              )}
+              <button className="fort-hud-btn" onClick={() => setFortOpen(false)}><X size={15} /></button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* ---------- aviso de colocación/apuntado/mover ---------- */}
         {(placingType || aimingAbility || movingTowerId) && (
           <div className="fort-placing-hint">
@@ -996,6 +1058,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                     setSelectedTowerId(null);
                     setAimingAbility(null);
                     setMovingTowerId(null);
+                    setFortOpen(false);
                     setPlacingType((p) => (p === t.id ? null : t.id));
                   }}
                   title={sanctLocked ? `Se desbloquea con ${SANCT_UNLOCK_CORRECT} aciertos (llevas ${a.correct})` : t.desc}

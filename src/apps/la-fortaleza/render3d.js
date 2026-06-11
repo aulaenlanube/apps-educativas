@@ -6,7 +6,7 @@
 
 import * as THREE from 'three';
 import {
-  GRID, WORLD, TOWER_TYPES, towerRange, mulberry32, pointAtDistance, ABILITIES,
+  GRID, WORLD, TOWER_TYPES, towerRange, mulberry32, pointAtDistance, ABILITIES, FORT_WALL_R,
 } from './engine';
 
 // Mapeo campo 2D (960x540 px) → mundo 3D (16x9 unidades, Y arriba)
@@ -401,11 +401,14 @@ export function createScene3D(container, game) {
   }
 
   // --- fortaleza (al final del camino) ---
+  const fortressRoot = new THREE.Group(); // fortaleza + mejoras (picking conjunto)
+  scene.add(fortressRoot);
   const fortress = new THREE.Group();
   let flagGeo = null;
   let fortWallMat = null;
+  const fortParts = {}; // piezas que las mejoras ocultan/sustituyen
   {
-    const end = pathPts[Math.max(pathPts.length - 4, 0)];
+    const end = { X: fx(game.map.fort.x), Z: fz(game.map.fort.y) };
     fortWallMat = new THREE.MeshLambertMaterial({ color: COL.wall, flatShading: true });
     const darkMat = new THREE.MeshLambertMaterial({ color: COL.wallDark, flatShading: true });
     const wall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.9, 1.2), fortWallMat);
@@ -445,9 +448,198 @@ export function createScene3D(container, game) {
     const flag = new THREE.Mesh(flagGeo, new THREE.MeshLambertMaterial({ color: 0xa855f7, side: THREE.DoubleSide }));
     flag.position.set(0.27, 1.62, 0);
     fortress.add(flag);
-    fortress.position.set(end.X + 0.3, 0, end.Z);
-    scene.add(fortress);
-    warmLight.position.set(end.X + 0.3, 1.2, end.Z);
+    fortParts.pole = pole;
+    fortParts.flag = flag;
+    fortress.position.set(end.X, 0, end.Z);
+    fortressRoot.add(fortress);
+    warmLight.position.set(end.X, 1.2, end.Z);
+  }
+
+  // --- mejoras de la fortaleza: muralla externa, torretas gemelas, gran cañón ---
+  // Se construyen ocultas (o bajo demanda) y syncFortUpgrades() las enseña
+  // según lo que el jugador haya comprado en el engine.
+  const fortUpWallMat = new THREE.MeshLambertMaterial({ color: 0xddd6fe, flatShading: true });
+  const fortUpDarkMat = new THREE.MeshLambertMaterial({ color: 0x8b5cf6, flatShading: true });
+  const fortWallGroup = new THREE.Group();
+  const fortEmblems = [];
+  const fortFrontRoofs = [];
+  {
+    const W = FORT_WALL_R / GRID.cell; // media anchura del anillo en unidades 3D
+    const h = 0.42, thick = 0.16, gate = 0.38;
+    const seg = (geo, x, y, z) => {
+      const m = new THREE.Mesh(geo, fortUpWallMat);
+      m.position.set(x, y, z);
+      m.castShadow = true;
+      fortWallGroup.add(m);
+      return m;
+    };
+    // frente con hueco de puerta + laterales + trasera
+    const frontLen = W - gate;
+    seg(new THREE.BoxGeometry(thick, h, frontLen), -W, h / 2, -(gate + frontLen / 2));
+    seg(new THREE.BoxGeometry(thick, h, frontLen), -W, h / 2, gate + frontLen / 2);
+    seg(new THREE.BoxGeometry(thick, h, 2 * W + thick), W, h / 2, 0);
+    seg(new THREE.BoxGeometry(2 * W + thick, h, thick), 0, h / 2, -W);
+    seg(new THREE.BoxGeometry(2 * W + thick, h, thick), 0, h / 2, W);
+    // almenas sobre los muros
+    const crenGeo = new THREE.BoxGeometry(0.11, 0.11, 0.11);
+    for (let z = -W + 0.14; z <= W; z += 0.3) {
+      if (Math.abs(z) > gate + 0.05) { // el frente respeta la puerta
+        const c = new THREE.Mesh(crenGeo, fortUpDarkMat);
+        c.position.set(-W, h + 0.05, z);
+        fortWallGroup.add(c);
+      }
+      const cb = new THREE.Mesh(crenGeo, fortUpDarkMat);
+      cb.position.set(W, h + 0.05, z);
+      fortWallGroup.add(cb);
+    }
+    for (let x = -W + 0.3; x <= W - 0.2; x += 0.3) {
+      for (const side of [-1, 1]) {
+        const c = new THREE.Mesh(crenGeo, fortUpDarkMat);
+        c.position.set(x, h + 0.05, side * W);
+        fortWallGroup.add(c);
+      }
+    }
+    // arco de la puerta (el camino entra por aquí)
+    seg(new THREE.BoxGeometry(thick, 0.62, 0.12), -W, 0.31, -gate);
+    seg(new THREE.BoxGeometry(thick, 0.62, 0.12), -W, 0.31, gate);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(thick, 0.14, gate * 2 + 0.12), fortUpDarkMat);
+    lintel.position.set(-W, 0.69, 0);
+    fortWallGroup.add(lintel);
+    // postes de esquina con tejadillo (los frontales se ceden a las torretas)
+    const roofMat = new THREE.MeshLambertMaterial({ color: 0xa855f7, flatShading: true });
+    for (const sx of [-1, 1]) {
+      for (const sz of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.15, 0.62, 8), fortUpDarkMat);
+        post.position.set(sx * W, 0.31, sz * W);
+        post.castShadow = true;
+        fortWallGroup.add(post);
+        const roof = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.24, 8), roofMat);
+        roof.position.set(sx * W, 0.74, sz * W);
+        fortWallGroup.add(roof);
+        if (sx === -1) fortFrontRoofs.push(post, roof);
+      }
+    }
+    // emblemas dorados flotantes: una carga de escudo cada uno
+    const embGeo = new THREE.OctahedronGeometry(0.09);
+    for (const z of [-1.05, -0.62, 0.62, 1.05]) {
+      const em = new THREE.Mesh(embGeo, new THREE.MeshBasicMaterial({ color: 0xfbbf24 }));
+      em.position.set(-W, h + 0.36, z);
+      em.userData.baseY = h + 0.36;
+      fortEmblems.push(em);
+      fortWallGroup.add(em);
+    }
+    fortWallGroup.visible = false;
+    fortress.add(fortWallGroup);
+  }
+
+  const fortTurretMeshes = []; // paralelo a game.fortTurrets
+  let fortCannonMesh = null;
+
+  function buildFortTurretMesh() {
+    const g = new THREE.Group();
+    const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.78, 8), fortUpWallMat);
+    ped.position.y = 0.39;
+    ped.castShadow = true;
+    g.add(ped);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.21, 0.21, 0.08, 8), fortUpDarkMat);
+    collar.position.y = 0.8;
+    g.add(collar);
+    const pivot = new THREE.Group();
+    pivot.position.y = 0.94;
+    g.add(pivot);
+    const headMat = new THREE.MeshLambertMaterial({ color: 0x22d3ee, emissive: 0x0e7490, emissiveIntensity: 1.2, flatShading: true });
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.17, 10, 8), headMat);
+    pivot.add(head);
+    const barrels = new THREE.Group();
+    for (const side of [-1, 1]) {
+      const b = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.05, 0.05), shared.barrelMat);
+      b.position.set(0.18, 0.02, side * 0.06);
+      barrels.add(b);
+    }
+    pivot.add(barrels);
+    return { group: g, pivot, barrels, headMat };
+  }
+
+  function buildFortCannonMesh() {
+    const g = new THREE.Group();
+    const platform = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.42, 0.14, 8), fortUpDarkMat);
+    platform.position.y = 0.97;
+    platform.castShadow = true;
+    g.add(platform);
+    const pivot = new THREE.Group();
+    pivot.position.y = 1.12;
+    g.add(pivot);
+    const housing = new THREE.Mesh(new THREE.SphereGeometry(0.21, 10, 8), fortUpWallMat);
+    housing.castShadow = true;
+    pivot.add(housing);
+    const barrel = new THREE.Group();
+    const tubeGeo = new THREE.CylinderGeometry(0.075, 0.095, 0.8, 10);
+    tubeGeo.rotateZ(-Math.PI / 2); // el eje pasa a +X
+    const tube = new THREE.Mesh(tubeGeo, shared.barrelMat);
+    tube.position.x = 0.42;
+    tube.castShadow = true;
+    barrel.add(tube);
+    const muzzleMat = new THREE.MeshLambertMaterial({ color: 0x1f2937, emissive: 0xc4b5fd, emissiveIntensity: 0.4 });
+    const muzzleGeo = new THREE.CylinderGeometry(0.105, 0.105, 0.12, 10);
+    muzzleGeo.rotateZ(-Math.PI / 2);
+    const muzzle = new THREE.Mesh(muzzleGeo, muzzleMat);
+    muzzle.position.x = 0.78;
+    barrel.add(muzzle);
+    const counter = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.18, 0.18), fortUpDarkMat);
+    counter.position.x = -0.2;
+    barrel.add(counter);
+    pivot.add(barrel);
+    // el Gran Cañón hereda la bandera (misma geometría: ondea a la vez)
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.55), new THREE.MeshBasicMaterial({ color: 0xd1d5db }));
+    pole.position.set(0, 1.6, 0);
+    g.add(pole);
+    const flag = new THREE.Mesh(flagGeo, new THREE.MeshLambertMaterial({ color: 0xa855f7, side: THREE.DoubleSide }));
+    flag.position.set(0.22, 1.78, 0);
+    g.add(flag);
+    return { group: g, pivot, barrel, muzzleMat };
+  }
+
+  function syncFortUpgrades() {
+    // muralla externa: visible con cargas; gris cuando el escudo está roto
+    fortWallGroup.visible = game.fortShieldMax > 0;
+    if (fortWallGroup.visible) {
+      fortUpWallMat.color.setHex(game.fortShield > 0 ? 0xddd6fe : 0x94a3b8);
+      fortEmblems.forEach((em, i) => {
+        em.visible = i < game.fortShield;
+        em.rotation.y = game.time * 2 + i * 1.3;
+        em.position.y = em.userData.baseY + Math.sin(game.time * 2.5 + i) * 0.045;
+      });
+    }
+    // torretas gemelas: giran hacia su objetivo y se encienden al disparar
+    for (let i = 0; i < game.fortTurrets.length; i++) {
+      const tr = game.fortTurrets[i];
+      let m = fortTurretMeshes[i];
+      if (!m) {
+        m = buildFortTurretMesh();
+        m.group.position.set(fx(tr.x), 0, fz(tr.y));
+        fortTurretMeshes[i] = m;
+        fortressRoot.add(m.group);
+        for (const r of fortFrontRoofs) r.visible = false; // las torretas ocupan los postes frontales
+      }
+      m.pivot.rotation.y = -tr.aim;
+      m.headMat.emissiveIntensity = tr.flash > 0 ? 2.6 : 1.1 + Math.sin(game.time * 5 + i * 2) * 0.3;
+      m.barrels.position.x = tr.flash > 0 ? -0.05 : 0;
+    }
+    // gran cañón: retroceso al disparar y brillo de carga al estar listo
+    if (game.fortCannon && !fortCannonMesh) {
+      fortCannonMesh = buildFortCannonMesh();
+      fortress.add(fortCannonMesh.group);
+      fortParts.pole.visible = false;
+      fortParts.flag.visible = false;
+    }
+    if (fortCannonMesh && game.fortCannon) {
+      const c = game.fortCannon;
+      fortCannonMesh.pivot.rotation.y = -c.aim;
+      fortCannonMesh.barrel.position.x = c.flash > 0 ? -(c.flash / 0.35) * 0.16 : 0;
+      fortCannonMesh.muzzleMat.emissiveIntensity = c.cooldown <= 0.4
+        ? 1.8 + Math.sin(game.time * 8) * 0.7
+        : 0.4;
+    }
   }
 
   // --- puntos de construcción (visibles al colocar) ---
@@ -489,6 +681,7 @@ export function createScene3D(container, game) {
     projArrow: new THREE.ConeGeometry(0.05, 0.22, 6),
     projBall: new THREE.SphereGeometry(0.1, 8, 8),
     projSpark: new THREE.SphereGeometry(0.055, 6, 6),
+    projShell: new THREE.SphereGeometry(0.13, 10, 10),
     projIce: new THREE.OctahedronGeometry(0.09),
     ringGeo: new THREE.RingGeometry(0.92, 1, 40),
     baseMat: new THREE.MeshLambertMaterial({ color: 0x374151, flatShading: true }),
@@ -939,6 +1132,9 @@ export function createScene3D(container, game) {
       while (o && o.userData.towerId == null) o = o.parent;
       if (o) return { kind: 'tower', towerId: o.userData.towerId };
     }
+    if (raycaster.intersectObjects(fortressRoot.children, true).length) {
+      return { kind: 'fortress' };
+    }
     if (raycaster.ray.intersectPlane(groundPlane, hitPoint)) {
       const f = toField(hitPoint.x, hitPoint.z);
       return {
@@ -1104,11 +1300,14 @@ export function createScene3D(container, game) {
         if (pr.type === 'arquero') mesh = new THREE.Mesh(shared.projArrow, new THREE.MeshBasicMaterial({ color: 0xfde68a }));
         else if (pr.type === 'rafaga') mesh = new THREE.Mesh(shared.projSpark, new THREE.MeshBasicMaterial({ color: 0xfef08a }));
         else if (pr.type === 'canon') mesh = new THREE.Mesh(shared.projBall, new THREE.MeshLambertMaterial({ color: 0x1f2937 }));
+        else if (pr.type === 'fort_turret') mesh = new THREE.Mesh(shared.projSpark, new THREE.MeshBasicMaterial({ color: 0x67e8f9 }));
+        else if (pr.type === 'fort_canon') mesh = new THREE.Mesh(shared.projShell, new THREE.MeshLambertMaterial({ color: 0x4c1d95, emissive: 0x8b5cf6, emissiveIntensity: 0.9 }));
         else mesh = new THREE.Mesh(shared.projIce, new THREE.MeshBasicMaterial({ color: 0xbae6fd }));
         projMeshes.set(pr.id, mesh);
         fxGroup.add(mesh);
       }
-      mesh.position.set(fx(pr.x), 0.45, fz(pr.y));
+      const projY = pr.type === 'fort_canon' ? 1.05 : pr.type === 'fort_turret' ? 0.9 : 0.45;
+      mesh.position.set(fx(pr.x), projY, fz(pr.y));
       if (pr.type === 'arquero') {
         mesh.rotation.z = Math.PI / 2 + 0; // base
         mesh.rotation.y = -(pr.angle || 0);
@@ -1257,6 +1456,7 @@ export function createScene3D(container, game) {
     syncProjectiles();
     syncParticles();
     syncFortress();
+    syncFortUpgrades();
     syncIndicators(ui);
     applyCamera();
     renderer.render(scene, camera);

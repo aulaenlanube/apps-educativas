@@ -80,6 +80,8 @@ export function createSounds() {
       else if (type === 'canon') noise(0.18, { freq: 500, vol: 0.5 });
       else if (type === 'hielo') tone(1400, 0.12, { type: 'sine', vol: 0.3, slide: -600 });
       else if (type === 'prisma') tone(660, 0.14, { type: 'sawtooth', vol: 0.25, slide: 440 });
+      else if (type === 'fort_turret') tone(760, 0.04, { type: 'square', vol: 0.16, slide: -280 });
+      else if (type === 'fort_canon') { noise(0.32, { freq: 300, vol: 0.7 }); tone(85, 0.4, { type: 'sine', vol: 0.6, slide: -35 }); }
     },
     hit() { noise(0.06, { freq: 1200, vol: 0.18 }); },
     explosion() { noise(0.35, { freq: 700, vol: 0.7 }); },
@@ -94,6 +96,8 @@ export function createSounds() {
     bossSpawn() { arpeggio([196, 185, 165], 0.16, 0.3, { type: 'sawtooth', vol: 0.5 }); },
     allySpawn() { arpeggio([392, 523, 659], 0.07, 0.18, { type: 'square', vol: 0.3 }); }, // trompetilla
     towerHit() { noise(0.08, { freq: 600, vol: 0.4 }); },
+    shield() { tone(1250, 0.18, { type: 'triangle', vol: 0.5, slide: -420 }); noise(0.07, { freq: 2600, vol: 0.25 }); }, // clang metálico
+    fortify() { noise(0.12, { freq: 380, vol: 0.35 }); arpeggio([392, 494, 587, 784], 0.07, 0.2); },
     towerDown() { noise(0.45, { freq: 350, vol: 0.8 }); tone(110, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60, delay: 0.1 }); },
     chain(step) { tone(440 * Math.pow(1.12, Math.min(step, 14)), 0.14, { type: 'triangle', vol: 0.5 }); },
     minigame() { arpeggio([659, 784, 988, 1319], 0.07, 0.18); },

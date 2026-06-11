@@ -283,6 +283,20 @@
 .fort-towerpanel-lvl { color: #fbbf24; font-size: 0.85rem; }
 .fort-towerpanel-max { color: #fbbf24; font-weight: 700; font-size: 0.88rem; }
 
+/* ---------- panel de mejoras de la fortaleza ---------- */
+/* va más alto que el towerpanel/buildbar (ambos en bottom 14px) para no solaparse en fase de construcción */
+.fort-fortpanel { border-color: rgba(168, 85, 247, 0.55); max-width: min(94%, 640px); bottom: 92px; }
+.fort-fortpanel-owned { font-size: 1.05rem; margin-left: 2px; }
+.fort-fortpanel-desc {
+  flex-basis: 100%; font-size: 0.82rem; color: #cbd5e1; line-height: 1.35;
+}
+.fort-fortpanel-desc strong { color: #e9d5ff; }
+.fort-hud-item.shield { color: #fbbf24; }
+.fort-hud-btn.fort-glow {
+  border-color: #fbbf24; color: #fbbf24;
+  animation: fort-pulse 1.2s infinite;
+}
+
 /* ---------- barra inferior: torres + habilidades ---------- */
 .fort-bottombar {
   display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap;
@@ -414,6 +428,7 @@
   .fort-quiz-options { grid-template-columns: 1fr; }
   .fort-breakdown { grid-template-columns: 1fr; }
   .fort-buildbar { flex-direction: column; align-items: stretch; bottom: 8px; }
+  .fort-fortpanel { bottom: 132px; font-size: 0.85rem; }
   .fort-buildbar-actions { justify-content: stretch; }
   .fort-buildbar-actions .fort-btn-launch { flex: 1; justify-content: center; }
   .fort-bottombar { flex-direction: column; gap: 6px; padding: 6px 8px; }

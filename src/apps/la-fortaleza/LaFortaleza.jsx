@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Castle, GraduationCap, Swords, Trophy, Star, BookOpen, Skull,
-  Target, Crown, ScrollText, RotateCcw,
+  Target, Crown, ScrollText, RotateCcw, Shield,
 } from 'lucide-react';
 import { getRoscoData, getRunnerData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -357,6 +357,13 @@ const LaFortaleza = ({ onGameComplete }) => {
               <span>Enemigos abatidos</span>
               <strong>{result.stats.kills}</strong>
             </div>
+            {result.stats.shielded > 0 && (
+              <div className="fort-breakdown-item">
+                <Shield size={16} />
+                <span>Parados por la muralla externa</span>
+                <strong>{result.stats.shielded}</strong>
+              </div>
+            )}
           </div>
 
           <div className="fort-summary-actions">
@@ -385,6 +392,9 @@ const LaFortaleza = ({ onGameComplete }) => {
 
         <h3>💖 El Santuario</h3>
         <p>Se desbloquea al acertar <strong>8 preguntas</strong> en la partida. Cura 1 vida a la Biblioteca cada 30 segundos y su aura ralentiza a los enemigos cercanos: colócalo cerca del final para proteger el último tramo.</p>
+
+        <h3>🏰 Mejoras de la fortaleza</h3>
+        <p>Toca la <strong>Biblioteca</strong> (o el botón del castillo 🏰 arriba) para comprar sus 3 mejoras, en orden y cada una más cara: <strong>🛡️ Muralla externa</strong> (absorbe los primeros enemigos que lleguen y recupera 1 escudo por nivel), <strong>🗼 Torretas gemelas</strong> (disparo rápido de corto alcance a cualquier categoría) y <strong>💥 Gran Cañón</strong> (recarga lenta pero devastadora en área). ¡Cada mejora transforma el aspecto de la fortaleza!</p>
 
         <h3>🗡️ Caballeros aliados</h3>
         <p>La fortaleza envía <strong>caballeros</strong> que avanzan por el camino y traban combate con los enemigos, frenándolos mientras tus torres disparan. ¡Cúbrelos bien!</p>

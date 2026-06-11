@@ -91,6 +91,30 @@ export const SANCT_UNLOCK_CORRECT = 8;  // aciertos académicos para desbloquear
 export const SANCT_HEAL_INTERVAL = 30;  // s entre curaciones (+1 vida, máx 10)
 export const SANCT_SLOW_PCT = 0.25;     // ralentización del aura
 
+// --- mejoras de la fortaleza: se compran en orden, cada una más cara ---
+export const FORT_WALL_R = 80; // px: media anchura de la muralla externa (anillo)
+export const FORT_UPGRADES = [
+  {
+    id: 'muralla_fort', name: 'Muralla externa', emoji: '🛡️', cost: 150, shield: 4,
+    desc: 'Rodea la Biblioteca: absorbe los 4 primeros enemigos que lleguen (un jefe gasta 3). Recupera 1 escudo al subir de nivel.',
+  },
+  {
+    id: 'torretas_fort', name: 'Torretas gemelas', emoji: '🗼', cost: 280,
+    dmg: 7, range: 140, rate: 2.8, projSpeed: 500, proj: 'fort_turret',
+    desc: 'Dos torretas en las esquinas de la muralla: disparo rápido de corto alcance que daña a CUALQUIER categoría.',
+  },
+  {
+    id: 'canon_fort', name: 'Gran Cañón', emoji: '💥', cost: 450,
+    dmg: 95, range: 430, rate: 1 / 6, projSpeed: 240, splash: 70, proj: 'fort_canon',
+    desc: 'Cañón de largo alcance en el tejado: tarda 6 s en recargar pero su impacto devasta en área a cualquier categoría.',
+  },
+];
+// proyectiles del armamento de la fortaleza (universales, sin categoría)
+const FORT_PROJ = {
+  fort_turret: { kind: 'single' },
+  fort_canon: { kind: 'splash', splash: FORT_UPGRADES[2].splash },
+};
+
 export const MAX_TOWER_LEVEL = 3;
 export const MOVE_COST = 30;            // recolocar cualquier construcción
 // --- estructuras destructibles y saboteadores ---
@@ -219,9 +243,21 @@ function generateMap(rng) {
   }
 
   const main = paths[0];
+
+  // ancla de la fortaleza (justo tras el final del tronco) y explanada
+  // reservada: las celdas que ocupará la muralla externa no son edificables
+  const fortP = pointAtDistance(main, main.totalLen - 24);
+  const [ec, er] = cells[cells.length - 1];
+  const fortCells = new Set();
+  for (const rr of [er - 1, er + 1]) {
+    if (rr >= 0 && rr < rows) fortCells.add(`${ec},${rr}`);
+  }
+
   return {
     paths,
     pathCells: visited,
+    fortCells,
+    fort: { x: fortP.x + 18, y: fortP.y },
     points: main.points,
     cum: main.cum,
     totalLen: main.totalLen,
@@ -296,8 +332,13 @@ export function createGame(cfg) {
     jams: categories.map(() => 0), // instante hasta el que cada categoría está atascada
     questionNextAt: 0,             // próxima pregunta periódica
     sanctHealAt: 0,                // próxima curación del Santuario
+    fortUpgrades: [],              // ids de FORT_UPGRADES comprados (en orden)
+    fortShield: 0,                 // cargas de la muralla externa
+    fortShieldMax: 0,
+    fortTurrets: [],               // {x, y, cooldown, aim, flash}
+    fortCannon: null,              // {x, y, cooldown, aim, flash}
     nextId: 1,
-    stats: { kills: 0, leaks: 0, towersBuilt: 0 },
+    stats: { kills: 0, leaks: 0, towersBuilt: 0, shielded: 0 },
   };
 }
 
@@ -392,6 +433,7 @@ export function injectEnemies(game, entries) {
 export function canBuildAt(game, col, row) {
   if (col < 0 || row < 0 || col >= GRID.cols || row >= GRID.rows) return false;
   if (game.map.pathCells.has(`${col},${row}`)) return false;
+  if (game.map.fortCells.has(`${col},${row}`)) return false; // explanada de la fortaleza
   return !game.towers.some((t) => t.col === col && t.row === row);
 }
 
@@ -494,6 +536,37 @@ export function sellTower(game, towerId) {
 
 const towerDmg = (t) => TOWER_TYPES[t.type].dmg * Math.pow(1.4, t.level - 1);
 export const towerRange = (t) => TOWER_TYPES[t.type].range + 12 * (t.level - 1);
+
+// ---------------------------------------------------------------------------
+// Mejoras de la fortaleza (muralla externa → torretas → gran cañón)
+// ---------------------------------------------------------------------------
+
+/** Siguiente mejora disponible (se compran en orden) o null si está al máximo. */
+export function nextFortUpgrade(game) {
+  return FORT_UPGRADES[game.fortUpgrades.length] || null;
+}
+
+export function buyFortUpgrade(game) {
+  const up = nextFortUpgrade(game);
+  if (!up || game.coins < up.cost) return null;
+  game.coins -= up.cost;
+  game.fortUpgrades.push(up.id);
+  const f = game.map.fort;
+  if (up.id === 'muralla_fort') {
+    game.fortShield = up.shield;
+    game.fortShieldMax = up.shield;
+  } else if (up.id === 'torretas_fort') {
+    game.fortTurrets = [
+      { x: f.x - FORT_WALL_R, y: f.y - FORT_WALL_R, cooldown: 0, aim: Math.PI, flash: 0 },
+      { x: f.x - FORT_WALL_R, y: f.y + FORT_WALL_R, cooldown: 0, aim: Math.PI, flash: 0 },
+    ];
+  } else if (up.id === 'canon_fort') {
+    game.fortCannon = { x: f.x, y: f.y, cooldown: 0, aim: Math.PI, flash: 0 };
+  }
+  pushBurst(game, f.x - 50, f.y, '#fbbf24', 18, 130);
+  pushText(game, f.x - 50, f.y - 45, `¡${up.name}!`, '#fbbf24');
+  return up;
+}
 
 // ---------------------------------------------------------------------------
 // Clasificación manual (disparo de precisión)
@@ -605,6 +678,12 @@ export function stepGame(game, dt) {
       game.score += game.lives * 50; // bonus por vidas restantes
       events.push({ t: 'victory' });
       return events;
+    }
+    // la muralla externa se reconstruye poco a poco con cada nivel superado
+    if (game.fortShieldMax > 0 && game.fortShield < game.fortShieldMax) {
+      game.fortShield++;
+      pushText(game, game.map.fort.x - 50, game.map.fort.y - 30, '+1 🛡️', '#fbbf24');
+      events.push({ t: 'shield_regen', left: game.fortShield });
     }
     if (game.level % BOSS_EVERY_LEVELS === 0) {
       const boss = spawnEnemy(game, { type: 'boss', catIdx: Math.floor(game.rng() * game.categories.length) });
@@ -780,13 +859,25 @@ export function stepGame(game, dt) {
       e.hp = 0;
       e.leaked = true;
       const dmgLives = e.type === 'boss' ? 3 : 1;
-      game.lives = Math.max(0, game.lives - dmgLives);
-      game.stats.leaks++;
-      events.push({ t: 'leak', enemy: e });
-      if (game.lives <= 0) {
-        game.phase = 'ended';
-        events.push({ t: 'defeat' });
-        return events;
+      // la muralla externa absorbe el golpe antes que las vidas
+      const absorbed = Math.min(game.fortShield, dmgLives);
+      if (absorbed > 0) {
+        game.fortShield -= absorbed;
+        game.stats.shielded++;
+        pushBurst(game, e.x, e.y, '#fbbf24', 10, 110);
+        pushText(game, e.x, e.y - 24, '¡Escudo!', '#fbbf24');
+        events.push({ t: 'shield_hit', enemy: e, left: game.fortShield });
+      }
+      const through = dmgLives - absorbed;
+      if (through > 0) {
+        game.lives = Math.max(0, game.lives - through);
+        game.stats.leaks++;
+        events.push({ t: 'leak', enemy: e });
+        if (game.lives <= 0) {
+          game.phase = 'ended';
+          events.push({ t: 'defeat' });
+          return events;
+        }
       }
     }
   }
@@ -847,6 +938,36 @@ export function stepGame(game, dt) {
     }
   }
 
+  // --- armamento de la fortaleza (torretas gemelas + gran cañón) ---
+  const fireFortWeapon = (w, up) => {
+    w.cooldown -= dt;
+    if (w.flash > 0) w.flash -= dt;
+    if (w.cooldown > 0) return;
+    let target = null;
+    for (const e of game.enemies) {
+      if (e.hp <= 0) continue;
+      if (Math.hypot(e.x - w.x, e.y - w.y) > up.range) continue;
+      if (!target || e.dist > target.dist) target = e; // el más avanzado
+    }
+    if (!target) return;
+    w.aim = Math.atan2(target.y - w.y, target.x - w.x);
+    w.cooldown = 1 / up.rate;
+    w.flash = up.proj === 'fort_canon' ? 0.35 : 0.1;
+    game.projectiles.push({
+      id: game.nextId++,
+      type: up.proj,
+      x: w.x, y: w.y,
+      targetId: target.id,
+      lastX: target.x, lastY: target.y,
+      speed: up.projSpeed,
+      dmg: up.dmg,
+      catIdx: null, // universal: daña a cualquier categoría
+    });
+    events.push({ t: 'shoot', tower: up.proj });
+  };
+  for (const tr of game.fortTurrets) fireFortWeapon(tr, FORT_UPGRADES[1]);
+  if (game.fortCannon) fireFortWeapon(game.fortCannon, FORT_UPGRADES[2]);
+
   // --- proyectiles ---
   for (const pr of game.projectiles) {
     const target = game.enemies.find((e) => e.id === pr.targetId && e.hp > 0);
@@ -859,19 +980,21 @@ export function stepGame(game, dt) {
     pr.angle = Math.atan2(dy, dx);
     if (d <= step + 6) {
       pr.done = true;
-      const type = TOWER_TYPES[pr.type];
+      const type = TOWER_TYPES[pr.type] || FORT_PROJ[pr.type];
       if (type.kind === 'splash') {
-        pushBurst(game, tx, ty, '#f97316', 14, 120);
-        game.particles.push({ kind: 'ring', x: tx, y: ty, life: 0.3, maxLife: 0.3, color: '#f97316', size: type.splash });
+        const burstCol = pr.type === 'fort_canon' ? '#c4b5fd' : '#f97316';
+        pushBurst(game, tx, ty, burstCol, 14, 120);
+        game.particles.push({ kind: 'ring', x: tx, y: ty, life: 0.3, maxLife: 0.3, color: burstCol, size: type.splash });
         for (const e of game.enemies) {
-          if (e.hp <= 0 || e.catIdx !== pr.catIdx) continue;
+          // catIdx null = proyectil universal (armamento de la fortaleza)
+          if (e.hp <= 0 || (pr.catIdx != null && e.catIdx !== pr.catIdx)) continue;
           if (Math.hypot(e.x - tx, e.y - ty) <= type.splash) {
-            applyDamage(game, e, pr.dmg, { catIdx: pr.catIdx });
+            applyDamage(game, e, pr.dmg, pr.catIdx != null ? { catIdx: pr.catIdx } : null);
           }
         }
         events.push({ t: 'explosion' });
       } else if (target) {
-        applyDamage(game, target, pr.dmg, { catIdx: pr.catIdx });
+        applyDamage(game, target, pr.dmg, pr.catIdx != null ? { catIdx: pr.catIdx } : null);
         if (type.kind === 'slow') {
           target.slowUntil = game.time + type.slowDur;
           target.slowPct = type.slowPct;
