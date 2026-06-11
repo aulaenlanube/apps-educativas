@@ -28,6 +28,7 @@ const DRAG_THRESHOLD = 8; // px: por debajo es un toque, por encima orbita la c�
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
 
 const MINIGAME_BASE_POINTS = 50; // puntos = base · nº de acierto en la cadena
+const MINIGAME_BASE_COINS = 15;  // monedas = base · nº de acierto en la cadena
 
 const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools, sounds, onEnd, onProgress, onExit }) => {
   const isExam = mode === 'exam';
@@ -257,7 +258,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
 
   const startMini = useCallback(() => {
     soundsRef.current.minigame();
-    setMini({ stage: 'playing', step: 1, question: miniQuestion(1), timeLeft: miniTimeFor(1), total: 0, feedback: null });
+    setMini({ stage: 'playing', step: 1, question: miniQuestion(1), timeLeft: miniTimeFor(1), total: 0, totalCoins: 0, feedback: null });
   }, [miniQuestion]);
 
   const endMini = useCallback(() => {
@@ -272,10 +273,15 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       tally('questions', correct);
       if (correct) {
         const points = MINIGAME_BASE_POINTS * prev.step;
+        const coins = MINIGAME_BASE_COINS * prev.step;
         g.score += points;
+        g.coins += coins;
         g.energy = Math.min(g.energy + 5, ENERGY_MAX);
         soundsRef.current.chain(prev.step);
-        return { ...prev, feedback: 'correct', reward: points, total: prev.total + points };
+        return {
+          ...prev, feedback: 'correct', reward: points, rewardCoins: coins,
+          total: prev.total + points, totalCoins: prev.totalCoins + coins,
+        };
       }
       soundsRef.current.wrong();
       return { ...prev, feedback: 'wrong' };
@@ -385,6 +391,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         case 'ally_death': snd.jam(); break;
         case 'heal': snd.heal(); break;
         case 'shield_hit': snd.shield(); break;
+        case 'gate_open': snd.gateOpen(); break;
         case 'tower_hit': snd.towerHit(); break;
         case 'tower_destroyed':
           snd.towerDown();
@@ -781,7 +788,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   <div className="fort-mini-title">⚡ ¡Desafío Relámpago!</div>
                   <p className="fort-quiz-def">
                     Encadena aciertos: cada respuesta correcta vale más que la anterior
-                    ({MINIGAME_BASE_POINTS}, {MINIGAME_BASE_POINTS * 2}, {MINIGAME_BASE_POINTS * 3}... puntos),
+                    ({MINIGAME_BASE_POINTS}, {MINIGAME_BASE_POINTS * 2}, {MINIGAME_BASE_POINTS * 3}... puntos
+                    y {MINIGAME_BASE_COINS}, {MINIGAME_BASE_COINS * 2}, {MINIGAME_BASE_COINS * 3}... monedas),
                     pero las preguntas se vuelven más difíciles y el tiempo se acorta. ¡La cadena dura hasta que falles!
                   </p>
                   <div className="fort-quit-btns">
@@ -792,7 +800,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
               ) : (
                 <>
                   <div className="fort-quiz-head">
-                    <span className="fort-mini-chain">⚡ Cadena x{mini.step} · <strong>{mini.total.toLocaleString('es-ES')} pts</strong></span>
+                    <span className="fort-mini-chain">⚡ Cadena x{mini.step} · <strong>{mini.total.toLocaleString('es-ES')} pts · {mini.totalCoins} 🪙</strong></span>
                     {!mini.feedback && (
                       <span className={`fort-quiz-timer ${mini.timeLeft <= 3 ? 'urgent' : ''}`}><Timer size={14} /> {mini.timeLeft}s</span>
                     )}
@@ -801,8 +809,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   {mini.feedback ? (
                     <div className={`fort-quiz-feedback ${mini.feedback}`}>
                       {mini.feedback === 'correct'
-                        ? <>✅ ¡+{mini.reward} puntos! La siguiente vale {MINIGAME_BASE_POINTS * (mini.step + 1)}...</>
-                        : <>💥 Cadena rota. Era: <strong>{mini.question.solucion}</strong> · Te llevas {mini.total.toLocaleString('es-ES')} puntos</>}
+                        ? <>✅ ¡+{mini.reward} puntos +{mini.rewardCoins} 🪙! La siguiente vale {MINIGAME_BASE_POINTS * (mini.step + 1)} pts y {MINIGAME_BASE_COINS * (mini.step + 1)} 🪙...</>
+                        : <>💥 Cadena rota. Era: <strong>{mini.question.solucion}</strong> · Te llevas {mini.total.toLocaleString('es-ES')} puntos y {mini.totalCoins} 🪙</>}
                     </div>
                   ) : (
                     <div className="fort-quiz-options">
@@ -963,7 +971,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           <motion.div className="fort-buildbar" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="fort-forecast">
               <span className="fort-forecast-label">🛠️ Prepara tus defensas:</span>
-              <span className="fort-forecast-cat">los enemigos saldrán sin parar, cada vez más rápido. {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
+              <span className="fort-forecast-cat">los enemigos saldrán sin parar y cada vez más rápido — y al subir la amenaza se abrirán nuevas puertas (hasta 3 a la vez). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
             </div>
             <div className="fort-buildbar-actions">
               <button className="fort-btn-launch" onClick={startDefense}><Play size={17} /> ¡Defender la Fortaleza!</button>

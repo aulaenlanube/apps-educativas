@@ -257,6 +257,7 @@ export function createScene3D(container, game) {
   scene.add(sea);
 
   // --- camino: baldosas cuadradas (estilo geométrico, giros de 90°) ---
+  const portals = []; // {pillarMat, darkMat, dark} por puerta (índice = pathId)
   {
     const edgeGeo = new THREE.BoxGeometry(1.0, 0.05, 1.0);
     const tileGeo = new THREE.BoxGeometry(0.88, 0.07, 0.88);
@@ -286,26 +287,30 @@ export function createScene3D(container, game) {
         scene.add(m);
       }
     }
-    // un portal de entrada por camino, orientado según su dirección
-    const portalMat = new THREE.MeshLambertMaterial({ color: 0x7c3aed, flatShading: true });
+    // un portal de entrada por camino, orientado según su dirección.
+    // Los portales empiezan sellados (gris) y se "abren" cuando el nivel de
+    // amenaza activa su puerta (game.gatesOpen) — ver syncGates().
     for (const path of game.map.paths) {
       const p0 = pointAtDistance(path, 6);
       const portal = new THREE.Group();
+      const pillarMat = new THREE.MeshLambertMaterial({ color: 0x7c3aed, flatShading: true });
       for (const side of [-1, 1]) {
-        const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), portalMat);
+        const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), pillarMat);
         pillar.position.set(0, 0.55, side * 0.5);
         portal.add(pillar);
       }
-      const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), portalMat);
+      const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), pillarMat);
       lintel.position.y = 1.15;
       portal.add(lintel);
-      const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), new THREE.MeshBasicMaterial({ color: 0x1e1b4b, side: THREE.DoubleSide }));
+      const darkMat = new THREE.MeshBasicMaterial({ color: 0x1e1b4b, side: THREE.DoubleSide });
+      const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), darkMat);
       dark.position.y = 0.5;
       dark.rotation.y = Math.PI / 2;
       portal.add(dark);
       portal.position.set(fx(p0.x), 0, fz(p0.y));
       portal.rotation.y = -p0.angle;
       scene.add(portal);
+      portals.push({ pillarMat, darkMat, dark });
     }
   }
 
@@ -1427,6 +1432,17 @@ export function createScene3D(container, game) {
     sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
   }
 
+  function syncGates() {
+    for (let i = 0; i < portals.length; i++) {
+      const open = i < game.gatesOpen;
+      const po = portals[i];
+      po.pillarMat.color.setHex(open ? 0x7c3aed : 0x52525b);
+      po.darkMat.color.setHex(open ? 0x1e1b4b : 0x3f3f46);
+      // el vórtice late cuando la puerta está activa
+      po.dark.scale.set(open ? 1 + Math.sin(game.time * 3 + i * 2) * 0.06 : 0.85, open ? 1 : 0.85, 1);
+    }
+  }
+
   function syncIndicators(ui) {
     const placingBarrier = ui.placingType && TOWER_TYPES[ui.placingType].kind === 'barrier';
     gridGroup.visible = !!ui.placingType && !placingBarrier;
@@ -1457,6 +1473,7 @@ export function createScene3D(container, game) {
     syncParticles();
     syncFortress();
     syncFortUpgrades();
+    syncGates();
     syncIndicators(ui);
     applyCamera();
     renderer.render(scene, camera);

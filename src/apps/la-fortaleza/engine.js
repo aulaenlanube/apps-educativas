@@ -53,6 +53,9 @@ export const SPAWN_BASE_INTERVAL = 3.4; // s entre enemigos al empezar
 export const SPAWN_DECAY = 0.88;        // el intervalo se multiplica por esto cada nivel
 export const SPAWN_MIN_INTERVAL = 0.55;
 export const GRACE_SECONDS = 6;         // respiro inicial antes del primer enemigo
+// puertas activas según el nivel de amenaza: 1 (nv. 1-2) → 2 (nv. 3-4) → 3 (nv. 5+)
+export const gateCountForLevel = (level, totalGates) =>
+  Math.min(1 + Math.floor((level - 1) / 2), totalGates);
 
 // --- preguntas periódicas durante la acción ---
 export const QUESTION_FIRST = 12;        // s hasta la primera pregunta
@@ -166,9 +169,11 @@ function buildPathData(pts) {
 
 const center = ([cc, rr]) => ({ x: cc * GRID.cell + GRID.cell / 2, y: rr * GRID.cell + GRID.cell / 2 });
 
-// Mapa con bifurcación: un tronco principal de izquierda a derecha y una rama
-// que entra por el borde superior o inferior y se une a mitad de recorrido.
-// Dos frentes que defender; el tramo común tras la unión es el cuello de botella.
+// Mapa con 3 puertas: un tronco principal de izquierda a derecha y dos ramas
+// en L que entran por los bordes superior/inferior y se unen al tronco en dos
+// puntos distintos. Las puertas se abren progresivamente con el nivel de
+// amenaza (1 → 2 → 3); el tramo común tras la última unión es el cuello de
+// botella definitivo.
 function generateMap(rng) {
   const { cols, rows, cell } = GRID;
   let r = 2 + Math.floor(rng() * 5); // fila inicial 2..6
@@ -193,37 +198,49 @@ function generateMap(rng) {
     }
   }
 
-  // --- rama secundaria: en L desde un borde hasta una celda de unión ---
-  let branchCells = null;
-  let junctionIdx = -1;
-  const candidates = [];
-  for (let i = Math.floor(cells.length * 0.3); i < Math.floor(cells.length * 0.65); i++) candidates.push(i);
-  for (const idx of seededShuffle(candidates, rng)) {
-    const [jc, jr] = cells[idx];
-    const fromTop = jr >= Math.floor(rows / 2); // entra por el borde más lejano
-    const edgeRow = fromTop ? 0 : rows - 1;
-    const step = fromTop ? 1 : -1;
-    for (const cc of seededShuffle([jc - 3, jc - 2, jc + 2, jc + 3, jc - 1, jc + 1], rng)) {
-      if (cc < 1 || cc > cols - 2) continue;
-      const tryCells = [];
-      let ok = true;
-      for (let rr = edgeRow; rr !== jr && ok; rr += step) {
-        if (visited.has(`${cc},${rr}`)) ok = false;
-        else tryCells.push([cc, rr]);
-      }
-      const dirH = cc < jc ? 1 : -1;
-      for (let xx = cc; xx !== jc && ok; xx += dirH) {
-        if (visited.has(`${xx},${jr}`)) ok = false;
-        else tryCells.push([xx, jr]);
-      }
-      if (ok && tryCells.length >= 3) {
-        branchCells = tryCells;
-        junctionIdx = idx;
-        break;
+  // --- ramas secundarias: en L desde un borde hasta una celda de unión ---
+  // Busca una rama cuya unión caiga en la ventana [loFrac, hiFrac) del tronco.
+  // preferTop fuerza el borde de entrada (con fallback al contrario).
+  const tryBranch = (loFrac, hiFrac, preferTop) => {
+    const candidates = [];
+    for (let i = Math.floor(cells.length * loFrac); i < Math.floor(cells.length * hiFrac); i++) candidates.push(i);
+    for (const idx of seededShuffle(candidates, rng)) {
+      const [jc, jr] = cells[idx];
+      const farTop = jr >= Math.floor(rows / 2); // el borde más lejano da ramas más largas
+      const first = preferTop != null ? preferTop : farTop;
+      for (const fromTop of [first, !first]) {
+        const edgeRow = fromTop ? 0 : rows - 1;
+        const step = fromTop ? 1 : -1;
+        for (const cc of seededShuffle([jc - 3, jc - 2, jc + 2, jc + 3, jc - 1, jc + 1], rng)) {
+          if (cc < 1 || cc > cols - 2) continue;
+          const tryCells = [];
+          let ok = true;
+          for (let rr = edgeRow; rr !== jr && ok; rr += step) {
+            if (visited.has(`${cc},${rr}`)) ok = false;
+            else tryCells.push([cc, rr]);
+          }
+          const dirH = cc < jc ? 1 : -1;
+          for (let xx = cc; xx !== jc && ok; xx += dirH) {
+            if (visited.has(`${xx},${jr}`)) ok = false;
+            else tryCells.push([xx, jr]);
+          }
+          if (ok && tryCells.length >= 3) return { cells: tryCells, junctionIdx: idx, fromTop };
+        }
       }
     }
-    if (branchCells) break;
-  }
+    return null;
+  };
+
+  const branches = [];
+  const commitBranch = (b) => {
+    if (!b) return;
+    for (const [cc, rr] of b.cells) visited.add(`${cc},${rr}`);
+    branches.push(b);
+  };
+  const b1 = tryBranch(0.18, 0.46, null);
+  commitBranch(b1);
+  // la segunda rama intenta entrar por el borde contrario y unirse más adelante
+  commitBranch(tryBranch(0.5, 0.78, b1 ? !b1.fromTop : null));
 
   // Camino principal: entrada y salida fuera de pantalla
   const mainPts = [
@@ -233,12 +250,11 @@ function generateMap(rng) {
   ];
   const paths = [buildPathData(mainPts)];
 
-  if (branchCells) {
-    for (const [cc, rr] of branchCells) visited.add(`${cc},${rr}`);
-    const first = center(branchCells[0]);
-    const entry = { x: first.x, y: branchCells[0][1] === 0 ? -cell / 2 : WORLD.h + cell / 2 };
+  for (const b of branches) {
+    const first = center(b.cells[0]);
+    const entry = { x: first.x, y: b.cells[0][1] === 0 ? -cell / 2 : WORLD.h + cell / 2 };
     // la rama continúa por el tronco desde la unión (índice +1 por el punto de entrada)
-    const branchPts = [entry, ...branchCells.map(center), ...mainPts.slice(junctionIdx + 1)];
+    const branchPts = [entry, ...b.cells.map(center), ...mainPts.slice(b.junctionIdx + 1)];
     paths.push(buildPathData(branchPts));
   }
 
@@ -324,6 +340,8 @@ export function createGame(cfg) {
     towers: [],
     allies: [],
     allyNextAt: 0,
+    allyGateRot: 0,        // reparto rotatorio de caballeros entre puertas abiertas
+    gatesOpen: 1,          // puertas activas (sube con el nivel de amenaza)
     projectiles: [],
     particles: [],
     injected: [],          // cola del duelo futuro (injectEnemies)
@@ -371,7 +389,7 @@ function nextSpawnEntry(game) {
     game.cluster = {
       catIdx: Math.floor(rng() * catCount),
       remaining: 2 + Math.floor(rng() * 3),
-      pathId: Math.floor(rng() * game.map.paths.length), // cada ráfaga elige frente
+      pathId: Math.floor(rng() * game.gatesOpen), // cada ráfaga elige una puerta ABIERTA
     };
   }
   game.cluster.remaining--;
@@ -679,6 +697,15 @@ export function stepGame(game, dt) {
       events.push({ t: 'victory' });
       return events;
     }
+    // apertura progresiva de puertas: 1 → 2 → 3 frentes
+    const gates = gateCountForLevel(game.level, game.map.paths.length);
+    if (gates > game.gatesOpen) {
+      game.gatesOpen = gates;
+      const p = pointAtDistance(game.map.paths[gates - 1], 45);
+      pushBurst(game, p.x, p.y, '#c4b5fd', 18, 130);
+      pushText(game, p.x, p.y - 28, '¡Nueva puerta abierta!', '#c4b5fd');
+      events.push({ t: 'gate_open', pathId: gates - 1 });
+    }
     // la muralla externa se reconstruye poco a poco con cada nivel superado
     if (game.fortShieldMax > 0 && game.fortShield < game.fortShieldMax) {
       game.fortShield++;
@@ -686,7 +713,11 @@ export function stepGame(game, dt) {
       events.push({ t: 'shield_regen', left: game.fortShield });
     }
     if (game.level % BOSS_EVERY_LEVELS === 0) {
-      const boss = spawnEnemy(game, { type: 'boss', catIdx: Math.floor(game.rng() * game.categories.length) });
+      const boss = spawnEnemy(game, {
+        type: 'boss',
+        catIdx: Math.floor(game.rng() * game.categories.length),
+        pathId: Math.floor(game.rng() * game.gatesOpen),
+      });
       events.push({ t: 'boss_spawn', enemy: boss });
     }
     if (game.level % MINIGAME_EVERY_LEVELS === 0) {
@@ -713,7 +744,8 @@ export function stepGame(game, dt) {
   if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
     game.allyNextAt = game.time + ALLY.interval;
     const hpMult = 1 + 0.2 * (game.level - 1);
-    const pathId = game.allies.length % game.map.paths.length; // reparte frentes
+    game.allyGateRot = (game.allyGateRot + 1) % game.gatesOpen; // reparte puertas abiertas
+    const pathId = game.allyGateRot;
     const path = game.map.paths[pathId];
     const ally = {
       id: game.nextId++,

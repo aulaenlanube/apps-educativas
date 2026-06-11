@@ -375,7 +375,7 @@ const LaFortaleza = ({ onGameComplete }) => {
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="La Fortaleza">
         <h3>🏰 Objetivo</h3>
-        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> por <strong>dos caminos</strong> que se unen antes de llegar a tu Biblioteca. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: más enemigos, más fuertes. Vigila los dos frentes y domina el cuello de botella donde se juntan.</p>
+        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> por caminos que se unen antes de llegar a tu Biblioteca. Hay hasta <strong>3 puertas</strong>: empiezas defendiendo una sola, en el nivel 3 se abre la segunda y en el 5 la tercera — al final atacan por <strong>todas a la vez</strong>. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: vigila los frentes nuevos y domina los cuellos de botella donde se juntan.</p>
 
         <h3>📜 Gana monedas con lo que sabes</h3>
         <p>Respondes <strong>preguntas de todo tipo</strong> (definiciones, qué significa una palabra, verdadero o falso, categorías, busca el intruso) antes de empezar y cada poco tiempo en plena acción: cada acierto da monedas (con bonus por racha) y energía.</p>
@@ -403,7 +403,7 @@ const LaFortaleza = ({ onGameComplete }) => {
         <p>Los enemigos con <strong>casco de obra</strong> se paran a destruir tus estructuras a martillazos. Las estructuras tienen vida (mejorar las repara) — si una cae, la pierdes. Puedes moverlas lejos del peligro.</p>
 
         <h3>⚡ Desafío Relámpago</h3>
-        <p>En los niveles 3, 6, 9... puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todos los puntos acumulados.</p>
+        <p>En los niveles 3, 6, 9... puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior <strong>en puntos Y en monedas</strong>... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todo lo acumulado.</p>
 
         <h3>🎯 Disparo de precisión</h3>
         <p>Toca un enemigo y di a qué categoría pertenece su palabra. Si aciertas: <strong>golpe crítico</strong>. Si fallas: las torres de esa categoría se atascan 3 segundos.</p>
