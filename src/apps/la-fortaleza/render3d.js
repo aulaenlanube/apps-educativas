@@ -251,7 +251,6 @@ export function createScene3D(container, game) {
   scene.add(sea);
 
   // --- camino: baldosas cuadradas (estilo geométrico, giros de 90°) ---
-  const portals = []; // {pillarMat, darkMat, dark} por puerta (índice = pathId)
   {
     const edgeGeo = new THREE.BoxGeometry(1.0, 0.05, 1.0);
     const tileGeo = new THREE.BoxGeometry(0.88, 0.07, 0.88);
@@ -281,31 +280,8 @@ export function createScene3D(container, game) {
         scene.add(m);
       }
     }
-    // un portal de entrada por camino, orientado según su dirección.
-    // Los portales empiezan sellados (gris) y se "abren" cuando el nivel de
-    // amenaza activa su puerta (game.gatesOpen) — ver syncGates().
-    for (const path of game.map.paths) {
-      const p0 = pointAtDistance(path, 6);
-      const portal = new THREE.Group();
-      const pillarMat = new THREE.MeshLambertMaterial({ color: 0x7c3aed, flatShading: true });
-      for (const side of [-1, 1]) {
-        const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), pillarMat);
-        pillar.position.set(0, 0.55, side * 0.5);
-        portal.add(pillar);
-      }
-      const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.2, 1.25), pillarMat);
-      lintel.position.y = 1.15;
-      portal.add(lintel);
-      const darkMat = new THREE.MeshBasicMaterial({ color: 0x1e1b4b, side: THREE.DoubleSide });
-      const dark = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 1.0), darkMat);
-      dark.position.y = 0.5;
-      dark.rotation.y = Math.PI / 2;
-      portal.add(dark);
-      portal.position.set(fx(p0.x), 0, fz(p0.y));
-      portal.rotation.y = -p0.angle;
-      scene.add(portal);
-      portals.push({ pillarMat, darkMat, dark });
-    }
+    // (las mini-fortalezas enemigas de cada entrada se construyen más abajo,
+    // cuando ya existen los helpers de geometría cacheada)
   }
 
   // --- decoración del escenario: árboles, rocas y flores ---
@@ -721,6 +697,79 @@ export function createScene3D(container, game) {
   // colores reutilizados en el bucle de render (cero allocations por frame)
   const COL_SLOW = new THREE.Color(0x7dd3fc);
   const COL_RAGE = new THREE.Color(0xef4444);
+
+  // --- mini-fortalezas enemigas: una por camino, de donde brotan los
+  // enemigos. Solo la primera está en pie al empezar; las demás emergen del
+  // suelo cuando el nivel de amenaza las despierta (game.gatesOpen). ---
+  const keeps = [];
+  {
+    const keepStone = new THREE.MeshLambertMaterial({ color: 0x52525b, flatShading: true });
+    const keepDark = new THREE.MeshLambertMaterial({ color: 0x3f3f46, flatShading: true });
+    const keepRoof = new THREE.MeshLambertMaterial({ color: 0x991b1b, flatShading: true });
+    const keepVoid = new THREE.MeshBasicMaterial({ color: 0x0c0a09 });
+    const keepEye = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+    for (const path of game.map.paths) {
+      const p0 = pointAtDistance(path, 10);
+      const keep = new THREE.Group();
+      const block = new THREE.Mesh(box(0.9, 0.75, 1.3), keepStone);
+      block.position.y = 0.38;
+      keep.add(block);
+      // boca del portón (de aquí salen los enemigos) con arco y ojos rojos
+      const gateV = new THREE.Mesh(box(0.06, 0.5, 0.46), keepVoid);
+      gateV.position.set(0.45, 0.26, 0);
+      const lintel = new THREE.Mesh(box(0.1, 0.14, 0.6), keepDark);
+      lintel.position.set(0.44, 0.56, 0);
+      keep.add(gateV, lintel);
+      for (const side of [-1, 1]) {
+        const eye = new THREE.Mesh(box(0.04, 0.05, 0.09), keepEye);
+        eye.position.set(0.46, 0.66, side * 0.14);
+        keep.add(eye);
+      }
+      // almenas frontales
+      for (let zi = -2; zi <= 2; zi++) {
+        const cren = new THREE.Mesh(box(0.16, 0.12, 0.14), keepDark);
+        cren.position.set(0.38, 0.81, zi * 0.26);
+        keep.add(cren);
+      }
+      // torreones de esquina con tejado rojo
+      for (const sx of [-1, 1]) {
+        for (const sz of [-1, 1]) {
+          const towerK = new THREE.Mesh(cyl(0.16, 0.19, 1.0, 7), keepDark);
+          towerK.position.set(sx * 0.38, 0.5, sz * 0.6);
+          keep.add(towerK);
+          const roofK = new THREE.Mesh(cone(0.22, 0.3, 7), keepRoof);
+          roofK.position.set(sx * 0.38, 1.13, sz * 0.6);
+          keep.add(roofK);
+        }
+      }
+      // estandarte central con banderín carmesí
+      const pole = new THREE.Mesh(box(0.03, 0.6, 0.03), keepDark);
+      pole.position.set(-0.1, 1.05, 0);
+      const flagK = new THREE.Mesh(box(0.02, 0.14, 0.22), keepRoof);
+      flagK.position.set(0, 0.22, 0.12);
+      pole.add(flagK);
+      keep.add(pole);
+
+      keep.position.set(fx(p0.x), 0, fz(p0.y));
+      keep.rotation.y = -p0.angle; // el portón mira hacia el camino
+      keep.scale.setScalar(0.001);
+      keep.visible = false;
+      scene.add(keep);
+      keeps.push({ group: keep, flag: flagK });
+    }
+  }
+
+  function syncKeeps() {
+    for (let i = 0; i < keeps.length; i++) {
+      const kp = keeps[i];
+      if (i < game.gatesOpen && !kp.group.visible) kp.group.visible = true;
+      if (kp.group.visible) {
+        // emerge del suelo creciendo al despertar
+        kp.group.scale.setScalar(THREE.MathUtils.lerp(kp.group.scale.x, 1, 0.06));
+        kp.flag.rotation.x = Math.sin(game.time * 3 + i * 2) * 0.25;
+      }
+    }
+  }
 
   // --- torres ---
   function towerColorHex(tw) {
@@ -1360,8 +1409,8 @@ export function createScene3D(container, game) {
       u.armL.rotation.z = -0.1 - sw * 0.3; // el brazo del escudo acompaña la marcha
       u.capePivot.rotation.z = -0.12 - Math.abs(sw) * 0.18 - Math.sin(game.time * 2.2 + a.phase) * 0.05;
       u.body.rotation.z = engaged ? -0.1 : 0; // se inclina al luchar
-      // espadazo: la hoja barre hacia delante con estela
-      u.swordPivot.rotation.z = a.swing > 0 ? -1.6 * (1 - a.swing / 0.25) : -0.25;
+      // espadazo frontal: barre de media altura a la horizontal, con estela
+      u.swordPivot.rotation.z = a.swing > 0 ? -0.5 - 1.2 * (1 - a.swing / 0.25) : -0.35;
       const swinging = a.swing > 0;
       u.trail.visible = swinging;
       if (swinging) u.trailMat.opacity = (a.swing / 0.25) * 0.7;
@@ -1621,7 +1670,8 @@ export function createScene3D(container, game) {
         const aw = Math.sin(walkT) * 0.28;
         w.arms[0].rotation.z = -0.12 + aw;
         w.arms[1].rotation.z = -0.12 - aw;
-        if (e.blockedBy) w.arms[0].rotation.z = Math.sin(game.time * 9 + e.phase) * 0.8 - 0.5;
+        // mandoble frontal: el brazo barre alrededor de la horizontal
+        if (e.blockedBy) w.arms[0].rotation.z = -1.05 + Math.sin(game.time * 9 + e.phase) * 0.55;
       }
       if (w.cape) w.cape.rotation.z = -0.18 - Math.abs(Math.sin(walkT)) * 0.12 - Math.sin(game.time * 2.4 + e.phase) * 0.06;
       if (w.banner) w.banner.rotation.x = Math.sin(game.time * 4 + e.phase) * 0.22;
@@ -1821,16 +1871,6 @@ export function createScene3D(container, game) {
     sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
   }
 
-  function syncGates() {
-    for (let i = 0; i < portals.length; i++) {
-      const open = i < game.gatesOpen;
-      const po = portals[i];
-      po.pillarMat.color.setHex(open ? 0x7c3aed : 0x52525b);
-      po.darkMat.color.setHex(open ? 0x1e1b4b : 0x3f3f46);
-      // el vórtice late cuando la puerta está activa
-      po.dark.scale.set(open ? 1 + Math.sin(game.time * 3 + i * 2) * 0.06 : 0.85, open ? 1 : 0.85, 1);
-    }
-  }
 
   function syncIndicators(ui) {
     const placingBarrier = ui.placingType && TOWER_TYPES[ui.placingType].kind === 'barrier';
@@ -1862,7 +1902,7 @@ export function createScene3D(container, game) {
     syncParticles();
     syncFortress();
     syncFortUpgrades();
-    syncGates();
+    syncKeeps();
     syncIndicators(ui);
     applyCamera();
     renderer.render(scene, camera);

@@ -375,7 +375,7 @@ const LaFortaleza = ({ onGameComplete }) => {
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="La Fortaleza">
         <h3>🏰 Objetivo</h3>
-        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> por caminos que se unen antes de llegar a tu Biblioteca. Hay hasta <strong>3 puertas</strong>: empiezas defendiendo una sola, en el nivel 3 se abre la segunda y en el 5 la tercera — al final atacan por <strong>todas a la vez</strong>. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: vigila los frentes nuevos y domina los cuellos de botella donde se juntan.</p>
+        <p>Los enemigos salen <strong>sin parar y cada vez más rápido</strong> de <strong>mini-fortalezas enemigas</strong> conectadas a tu Biblioteca por caminos que se van uniendo. Empiezas con una sola a la vista; en el nivel 3 <strong>emerge la segunda</strong> y en el 5 la tercera — al final atacan por <strong>todos los frentes a la vez</strong>. Cada 30 segundos sube el <strong>nivel de amenaza</strong>: vigila las fortalezas nuevas y domina los cuellos de botella donde se juntan los caminos.</p>
 
         <h3>📜 Gana monedas con lo que sabes</h3>
         <p>Respondes <strong>preguntas de todo tipo</strong> (definiciones, qué significa una palabra, verdadero o falso, categorías, busca el intruso) antes de empezar y cada poco tiempo en plena acción: cada acierto da monedas (con bonus por racha) y energía.</p>

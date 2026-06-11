@@ -182,15 +182,15 @@ function generateMap(rng) {
   const visited = new Set([`${c},${r}`]);
 
   while (c < cols - 1) {
-    // tramo horizontal hacia la derecha (1..3 celdas)
-    const hLen = 1 + Math.floor(rng() * 3);
+    // tramo horizontal corto (1..2 celdas): el camino serpentea más y es más largo
+    const hLen = 1 + Math.floor(rng() * 2);
     for (let i = 0; i < hLen && c < cols - 1; i++) {
       c++; cells.push([c, r]); visited.add(`${c},${r}`);
     }
     if (c >= cols - 1) break;
-    // tramo vertical (0..3 celdas) sin salirse de 1..7 ni pisar celdas previas
+    // tramo vertical (1..3 celdas) sin salirse de 1..7 ni pisar celdas previas
     const dir = rng() < 0.5 ? -1 : 1;
-    const vLen = Math.floor(rng() * 4);
+    const vLen = 1 + Math.floor(rng() * 3);
     for (let i = 0; i < vLen; i++) {
       const nr = r + dir;
       if (nr < 1 || nr > rows - 2 || visited.has(`${c},${nr}`)) break;
@@ -224,7 +224,7 @@ function generateMap(rng) {
             if (visited.has(`${xx},${jr}`)) ok = false;
             else tryCells.push([xx, jr]);
           }
-          if (ok && tryCells.length >= 3) return { cells: tryCells, junctionIdx: idx, fromTop };
+          if (ok && tryCells.length >= 4) return { cells: tryCells, junctionIdx: idx, fromTop };
         }
       }
     }
@@ -697,13 +697,13 @@ export function stepGame(game, dt) {
       events.push({ t: 'victory' });
       return events;
     }
-    // apertura progresiva de puertas: 1 → 2 → 3 frentes
+    // despertar progresivo de las mini-fortalezas enemigas: 1 → 2 → 3 frentes
     const gates = gateCountForLevel(game.level, game.map.paths.length);
     if (gates > game.gatesOpen) {
       game.gatesOpen = gates;
       const p = pointAtDistance(game.map.paths[gates - 1], 45);
-      pushBurst(game, p.x, p.y, '#c4b5fd', 18, 130);
-      pushText(game, p.x, p.y - 28, '¡Nueva puerta abierta!', '#c4b5fd');
+      pushBurst(game, p.x, p.y, '#f87171', 22, 150);
+      pushText(game, p.x, p.y - 28, '¡Fortaleza enemiga!', '#f87171');
       events.push({ t: 'gate_open', pathId: gates - 1 });
     }
     // la muralla externa se reconstruye poco a poco con cada nivel superado

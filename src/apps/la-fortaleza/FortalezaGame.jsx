@@ -971,7 +971,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           <motion.div className="fort-buildbar" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="fort-forecast">
               <span className="fort-forecast-label">🛠️ Prepara tus defensas:</span>
-              <span className="fort-forecast-cat">los enemigos saldrán sin parar y cada vez más rápido — y al subir la amenaza se abrirán nuevas puertas (hasta 3 a la vez). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
+              <span className="fort-forecast-cat">los enemigos saldrán sin parar y cada vez más rápido — y al subir la amenaza despertarán nuevas fortalezas enemigas (hasta 3 frentes). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
             </div>
             <div className="fort-buildbar-actions">
               <button className="fort-btn-launch" onClick={startDefense}><Play size={17} /> ¡Defender la Fortaleza!</button>
