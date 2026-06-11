@@ -700,8 +700,6 @@ export function createScene3D(container, game) {
     woodLightMat: new THREE.MeshLambertMaterial({ color: 0xb45309, flatShading: true }),
     steelMat: new THREE.MeshLambertMaterial({ color: 0x94a3b8, flatShading: true }),
     accentDarkMat: new THREE.MeshLambertMaterial({ color: 0x334155, flatShading: true }),
-    dynamiteMat: new THREE.MeshLambertMaterial({ color: 0xdc2626, flatShading: true }),
-    engineMat: new THREE.MeshBasicMaterial({ color: 0x67e8f9 }),
     orbMat: new THREE.MeshBasicMaterial({ color: 0xc084fc }),
   };
   shared.ringGeo.rotateX(-Math.PI / 2);
@@ -1038,17 +1036,6 @@ export function createScene3D(container, game) {
   // --- enemigos: cubos con caras y expresiones (cara en +X, dirección de avance) ---
   const faceWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
   const faceDarkMat = new THREE.MeshBasicMaterial({ color: 0x1f2937 });
-  const hatMat = new THREE.MeshLambertMaterial({ color: 0xfacc15, flatShading: true });
-
-  // Rasgo facial: caja fina pegada a la cara +X del cubo (geometría cacheada)
-  function facePart(body, s, { w, h, y, z, mat = faceDarkMat, rotX = 0, depth = 0.02 }) {
-    const m = new THREE.Mesh(box(depth, h, w), mat);
-    m.position.set(s / 2 + depth / 2, y, z);
-    m.rotation.x = rotX;
-    body.add(m);
-    return m;
-  }
-
   // Piernas articuladas colgadas de un pivote propio (no del cuerpo: el
   // squash no las deforma; el pivote gira con la dirección de avance y cada
   // pierna se balancea rotando en la cadera)
@@ -1070,187 +1057,152 @@ export function createScene3D(container, game) {
     return { pivot, legs };
   }
 
+  // Enemigos: soldados humanoides medievales. Mismo patrón que el caballero
+  // aliado (piernas + túnica + peto + yelmo + arma), diferenciados por COLOR
+  // (categoría de su palabra) y TAMAÑO (radio del tipo). El jefe es mucho más
+  // grande y va recargado: corona, capa, estandarte, espadón, orbes y aura.
   function buildEnemyMesh(e) {
-    const radius = e.radius * U * 1.45; // canónico por tipo → geometrías cacheadas
+    const radius = e.radius * U * 1.45; // para anillos, aura y etiqueta
     const showColor = game.mode !== 'exam';
     const base = new THREE.Color(showColor ? game.categories[e.catIdx].color : `hsl(${e.hue}, 30%, 58%)`);
     const mat = new THREE.MeshLambertMaterial({ flatShading: true });
     const wob = 0.9 + e.shape[0] * 0.18; // variación por semilla → escala del grupo
+    const boss = e.type === 'boss';
 
     const group = new THREE.Group();
-    let body;
-    let hammer = null;
     const anim = { pupils: [] };
-    const s = radius * 1.65; // lado del cubo (canónico): grande pero con hueco abajo
-    let bodyY = s * 0.76;    // centro del cuerpo: deja las piernas a la vista
+    // unidad humanoide: ≈1 para el soldado normal; el jefe casi 2.3x
+    const k = e.radius * U * 3.75 * (boss ? 1.2 : 1);
 
-    if (e.type === 'scout') {
-      // corredor flotante: cubo bajo y alargado, visera cíclope, aletas que
-      // vibran, motor trasero brillante y antena con luz
-      base.lerp(faceWhiteMat.color, 0.2);
-      body = new THREE.Mesh(box(s * 1.5, s * 0.65, s * 0.85), mat);
-      facePart(body, s * 1.5, { w: s * 0.6, h: s * 0.18, y: s * 0.1, z: 0 }); // visera
-      anim.pupils.push(facePart(body, s * 1.5, { w: s * 0.16, h: s * 0.12, y: s * 0.1, z: 0, mat: faceWhiteMat, depth: 0.03 }));
-      facePart(body, s * 1.5, { w: s * 0.3, h: s * 0.05, y: -s * 0.18, z: 0 }); // boca fina
-      anim.fins = [];
+    // figura completa (rota con la dirección de avance y rebota al andar)
+    const figure = new THREE.Group();
+    group.add(figure);
+    const body = figure;
+    const add = (mesh) => { figure.add(mesh); return mesh; };
+
+    // túnica y cabeza del color de la palabra (se lee la categoría); el resto
+    // es armadura compartida (acero, correajes)
+    if (e.type === 'scout') base.lerp(faceWhiteMat.color, 0.15);
+    if (e.type === 'brute') base.multiplyScalar(0.82);
+    const torso = add(new THREE.Mesh(box(k * 0.3, k * 0.34, k * 0.34), mat));
+    torso.position.y = k * 0.45;
+    const belt = add(new THREE.Mesh(box(k * 0.32, k * 0.07, k * 0.36), shared.accentDarkMat));
+    belt.position.y = k * 0.32;
+    const chest = add(new THREE.Mesh(box(k * 0.33, k * 0.13, k * 0.37), shared.steelMat)); // peto
+    chest.position.y = k * 0.54;
+    const head = add(new THREE.Mesh(box(k * 0.24, k * 0.22, k * 0.26), mat));
+    head.position.y = k * 0.74;
+    for (const side of [-1, 1]) {
+      const eye = add(new THREE.Mesh(box(0.02, k * 0.05, k * 0.05), faceWhiteMat));
+      eye.position.set(k * 0.125, k * 0.75, side * k * 0.06);
+      const pupil = add(new THREE.Mesh(box(0.022, k * 0.028, k * 0.028), faceDarkMat));
+      pupil.position.set(k * 0.128, k * 0.745, side * k * 0.06);
+      anim.pupils.push(pupil);
+      const brow = add(new THREE.Mesh(box(0.02, k * 0.025, k * 0.07), faceDarkMat));
+      brow.position.set(k * 0.126, k * 0.81, side * k * 0.06);
+      brow.rotation.x = side * 0.45; // ceño amenazante
+    }
+    // yelmo con protector nasal y hombreras
+    const helm = add(new THREE.Mesh(box(k * 0.28, k * 0.12, k * 0.3), shared.steelMat));
+    helm.position.y = k * 0.88;
+    const nasal = add(new THREE.Mesh(box(k * 0.03, k * 0.14, k * 0.05), shared.steelMat));
+    nasal.position.set(k * 0.135, k * 0.8, 0);
+    for (const side of [-1, 1]) {
+      const pad = add(new THREE.Mesh(box(k * 0.16, k * 0.09, k * (boss ? 0.2 : 0.14)), shared.steelMat));
+      pad.position.set(0, k * 0.6, side * k * 0.23);
+    }
+    if (e.type === 'brute') { // cuernos en el yelmo
       for (const side of [-1, 1]) {
-        const fin = new THREE.Mesh(box(s * 0.5, s * 0.08, s * 0.3), mat);
-        fin.position.set(-s * 0.8, s * 0.1, side * s * 0.4);
-        fin.rotation.y = side * 0.5;
-        body.add(fin);
-        anim.fins.push(fin);
-      }
-      const engine = new THREE.Mesh(box(s * 0.16, s * 0.26, s * 0.45), shared.engineMat);
-      engine.position.set(-s * 0.82, -s * 0.08, 0);
-      body.add(engine);
-      anim.engine = engine;
-      const mast = new THREE.Mesh(box(0.02, s * 0.45, 0.02), shared.barrelMat);
-      mast.position.set(-s * 0.45, s * 0.5, 0);
-      const tip = new THREE.Mesh(sph(0.035, 6), shared.pipMat);
-      tip.position.y = s * 0.24;
-      mast.add(tip);
-      body.add(mast);
-      anim.antenna = mast;
-      anim.hover = true; // sin piernas: levita
-      bodyY = s * 0.62;
-    } else if (e.type === 'brute') {
-      // mole de asedio: hombreras, puños que se balancean, púas dorsales,
-      // cuernos y pisotones lentos
-      base.multiplyScalar(0.78);
-      body = new THREE.Mesh(box(s * 1.1, s * 1.2, s * 1.1), mat);
-      for (const side of [-1, 1]) {
-        facePart(body, s * 1.1, { w: s * 0.32, h: s * 0.09, y: s * 0.34, z: side * s * 0.22, rotX: side * 0.5 }); // ceja en V
-        facePart(body, s * 1.1, { w: s * 0.14, h: s * 0.14, y: s * 0.16, z: side * s * 0.22, mat: faceWhiteMat }); // ojo
-        anim.pupils.push(facePart(body, s * 1.1, { w: s * 0.07, h: s * 0.07, y: s * 0.16, z: side * s * 0.22, depth: 0.035 }));
-        const horn = new THREE.Mesh(cone(s * 0.14, s * 0.4, 4), shared.crownMat);
-        horn.position.set(0, s * 0.72, side * s * 0.4);
-        horn.rotation.x = side * 0.45;
-        body.add(horn);
-        // hombreras + puños colgantes
-        const pad = new THREE.Mesh(box(s * 0.46, s * 0.2, s * 0.34), shared.accentDarkMat);
-        pad.position.set(0, s * 0.5, side * s * 0.66);
-        body.add(pad);
-      }
-      anim.fists = [];
-      for (const side of [-1, 1]) {
-        const arm = new THREE.Group();
-        arm.position.set(0, s * 0.32, side * s * 0.72);
-        const fist = new THREE.Mesh(box(s * 0.32, s * 0.34, s * 0.28), shared.accentDarkMat);
-        fist.position.y = -s * 0.62;
-        arm.add(fist);
-        body.add(arm);
-        anim.fists.push(arm);
-      }
-      for (let i = 0; i < 3; i++) { // púas dorsales
-        const spike = new THREE.Mesh(cone(s * 0.1, s * 0.26, 4), shared.steelMat);
-        spike.position.set(-s * 0.56, s * (0.35 - i * 0.28), 0);
-        spike.rotation.z = Math.PI / 2;
-        body.add(spike);
-      }
-      facePart(body, s * 1.1, { w: s * 0.5, h: s * 0.12, y: -s * 0.25, z: 0 }); // boca
-      for (let i = -1; i <= 1; i++) {
-        facePart(body, s * 1.1, { w: s * 0.09, h: s * 0.09, y: -s * 0.23, z: i * s * 0.14, mat: faceWhiteMat, depth: 0.03 }); // dientes
-      }
-      anim.walk = addLegs(group, s, { scale: 1.3, spread: 0.26, hipY: 0.4 });
-      anim.slowWalk = true;
-      bodyY = s * 0.88; // el bruto es más alto: cuerpo de 1.2s
-    } else if (e.type === 'sabo') {
-      // demoledor: casco de obra, cinturón de herramientas, mochila con
-      // dinamita y martillo animado
-      body = new THREE.Mesh(box(s, s, s), mat);
-      const hat = new THREE.Mesh(box(s * 0.85, s * 0.22, s * 0.85), hatMat);
-      hat.position.y = s * 0.58;
-      const brim = new THREE.Mesh(box(s * 1.15, s * 0.07, s * 1.0), hatMat);
-      brim.position.set(s * 0.1, s * 0.48, 0);
-      body.add(hat, brim);
-      for (const side of [-1, 1]) {
-        facePart(body, s, { w: s * 0.26, h: s * 0.07, y: s * 0.26, z: side * s * 0.2, rotX: side * 0.4 }); // ceño
-        facePart(body, s, { w: s * 0.13, h: s * 0.13, y: s * 0.1, z: side * s * 0.2, mat: faceWhiteMat });
-        anim.pupils.push(facePart(body, s, { w: s * 0.06, h: s * 0.06, y: s * 0.1, z: side * s * 0.2, depth: 0.035 }));
-      }
-      facePart(body, s, { w: s * 0.3, h: s * 0.07, y: -s * 0.24, z: 0, rotX: 0.2 }); // mueca
-      const belt = new THREE.Mesh(box(s * 1.06, s * 0.12, s * 1.06), shared.accentDarkMat);
-      belt.position.y = -s * 0.3;
-      const buckle = new THREE.Mesh(box(0.02, s * 0.1, s * 0.12), shared.pipMat);
-      buckle.position.set(s * 0.54, -s * 0.3, 0);
-      body.add(belt, buckle);
-      for (let i = -1; i <= 1; i++) { // cartuchos de dinamita a la espalda
-        const stick = new THREE.Mesh(cyl(s * 0.07, s * 0.07, s * 0.45, 6), shared.dynamiteMat);
-        stick.position.set(-s * 0.56, s * 0.1 + Math.abs(i) * s * 0.04, i * s * 0.18);
-        body.add(stick);
-        const fuse = new THREE.Mesh(sph(0.02, 6), shared.pipMat);
-        fuse.position.set(-s * 0.56, s * 0.36, i * s * 0.18);
-        body.add(fuse);
-      }
-      hammer = new THREE.Group();
-      const handle = new THREE.Mesh(box(0.05, s * 0.8, 0.05), shared.barrelMat);
-      handle.position.y = s * 0.4;
-      const head = new THREE.Mesh(box(s * 0.28, s * 0.2, s * 0.42), shared.steelMat);
-      head.position.y = s * 0.8;
-      hammer.add(handle, head);
-      hammer.position.set(s * 0.35, 0, s * 0.6);
-      body.add(hammer);
-      anim.walk = addLegs(group, s);
-    } else {
-      // normal y jefe: cubo con carita; el jefe lleva capa, corona y orbes
-      body = new THREE.Mesh(box(s, s, s), mat);
-      const boss = e.type === 'boss';
-      for (const side of [-1, 1]) {
-        if (boss) facePart(body, s, { w: s * 0.26, h: s * 0.07, y: s * 0.33, z: side * s * 0.18, rotX: side * 0.45 });
-        facePart(body, s, { w: s * 0.18, h: s * 0.18, y: s * 0.14, z: side * s * 0.18, mat: faceWhiteMat }); // ojo
-        anim.pupils.push(facePart(body, s, { w: s * 0.09, h: s * 0.09, y: s * 0.12, z: side * s * 0.18, depth: 0.035 }));
-      }
-      if (boss) {
-        facePart(body, s, { w: s * 0.44, h: s * 0.1, y: -s * 0.22, z: 0 });
-        for (let i = -1; i <= 1; i += 2) {
-          facePart(body, s, { w: s * 0.08, h: s * 0.12, y: -s * 0.18, z: i * s * 0.12, mat: faceWhiteMat, depth: 0.03 }); // colmillos
-        }
-        // capa ondeante anclada a los hombros
-        const capePivot = new THREE.Group();
-        capePivot.position.set(-s * 0.48, s * 0.42, 0);
-        const cape = new THREE.Mesh(box(s * 0.06, s * 0.95, s * 0.85), shared.accentDarkMat);
-        cape.position.y = -s * 0.48;
-        capePivot.add(cape);
-        body.add(capePivot);
-        anim.cape = capePivot;
-        anim.slowWalk = true;
-        anim.walk = addLegs(group, s, { scale: 1.35, spread: 0.22, hipY: 0.34 });
-      } else {
-        facePart(body, s, { w: s * 0.32, h: s * 0.06, y: -s * 0.2, z: 0, rotX: -0.15 }); // sonrisilla
-        // antenita con muelle y mochila de explorador
-        const boing = new THREE.Mesh(box(0.02, s * 0.32, 0.02), shared.barrelMat);
-        boing.position.set(0, s * 0.62, 0);
-        const bob = new THREE.Mesh(sph(0.035, 6), shared.orbMat);
-        bob.position.y = s * 0.2;
-        boing.add(bob);
-        body.add(boing);
-        anim.boing = boing;
-        const pack = new THREE.Mesh(box(s * 0.3, s * 0.5, s * 0.55), shared.accentDarkMat);
-        pack.position.set(-s * 0.6, 0, 0);
-        const flap = new THREE.Mesh(box(s * 0.32, s * 0.14, s * 0.57), shared.steelMat);
-        flap.position.set(-s * 0.6, s * 0.3, 0);
-        body.add(pack, flap);
-        anim.walk = addLegs(group, s);
+        const horn = add(new THREE.Mesh(cone(k * 0.06, k * 0.2, 4), shared.crownMat));
+        horn.position.set(0, k * 0.95, side * k * 0.16);
+        horn.rotation.x = side * 0.55;
       }
     }
 
-    mat.color.copy(base);
-    body.position.y = bodyY;
-    body.castShadow = true;
-
-    // corona y orbes orbitantes del jefe
-    let auraMat = null;
-    if (e.type === 'boss') {
-      const crown = new THREE.Group();
-      for (let i = 0; i < 5; i++) {
-        const spike = new THREE.Mesh(cone(0.07, 0.22, 4), shared.crownMat);
-        const a = (i / 5) * Math.PI * 2;
-        spike.position.set(Math.cos(a) * radius * 0.5, radius * 0.95, Math.sin(a) * radius * 0.5);
-        crown.add(spike);
+    // arma en la mano derecha (pivote para los ataques)
+    const weapon = new THREE.Group();
+    weapon.position.set(k * 0.12, k * 0.42, k * 0.22);
+    let hammer = null;
+    if (e.type === 'sabo') {
+      // martillo de demolición (conserva su animación de derribo)
+      const handle = new THREE.Mesh(box(0.045, k * 0.55, 0.045), shared.woodMat);
+      handle.position.y = k * 0.22;
+      const headH = new THREE.Mesh(box(k * 0.2, k * 0.14, k * 0.26), shared.steelMat);
+      headH.position.y = k * 0.5;
+      weapon.add(handle, headH);
+      hammer = weapon;
+    } else if (e.type === 'brute') {
+      // hacha pesada
+      const handle = new THREE.Mesh(box(0.05, k * 0.6, 0.05), shared.woodMat);
+      handle.position.y = k * 0.22;
+      const blade = new THREE.Mesh(box(k * 0.06, k * 0.22, k * 0.26), shared.steelMat);
+      blade.position.set(0, k * 0.5, k * 0.12);
+      weapon.add(handle, blade);
+    } else {
+      // espada (el jefe la lleva mayor y con gema en el pomo)
+      const swordLen = boss ? k * 0.55 : k * 0.42;
+      const blade = new THREE.Mesh(box(0.045, swordLen, 0.045), shared.steelMat);
+      blade.position.y = k * 0.16 + swordLen / 2;
+      const guard = new THREE.Mesh(box(k * 0.12, 0.035, 0.06), shared.crownMat);
+      guard.position.y = k * 0.16;
+      weapon.add(blade, guard);
+      if (boss) {
+        const gem = new THREE.Mesh(octa(0.05), shared.orbMat);
+        gem.position.y = k * 0.1;
+        weapon.add(gem);
       }
-      body.add(crown);
+    }
+    figure.add(weapon);
+    anim.weapon = weapon;
+
+    // escudo en el flanco izquierdo con borde del color de la categoría
+    // (el scout va ligero y el demoledor lleva las dos manos en el martillo)
+    if (e.type !== 'scout' && e.type !== 'sabo') {
+      const shield = new THREE.Group();
+      const rim = new THREE.Mesh(box(k * 0.24, k * 0.34, k * 0.02), mat);
+      const plate = new THREE.Mesh(box(k * 0.2, k * 0.3, k * 0.04), shared.accentDarkMat);
+      plate.position.z = -k * 0.012;
+      const emblem = new THREE.Mesh(sph(0.03, 6), shared.pipMat);
+      emblem.position.z = -k * 0.035;
+      shield.add(rim, plate, emblem);
+      shield.position.set(k * 0.05, k * 0.45, -k * 0.26);
+      figure.add(shield);
+    }
+
+    // piernas (más recias en el bruto y el jefe)
+    const heavy = boss || e.type === 'brute';
+    anim.walk = addLegs(group, k * 0.62, { scale: heavy ? 1.25 : 1, spread: 0.14, hipY: 0.38 });
+    if (heavy) anim.slowWalk = true;
+
+    mat.color.copy(base);
+    const bodyY = 0; // las piezas de la figura llevan alturas absolutas
+    // sin castShadow: enemigos y aliados no proyectan sombra (ahorro)
+
+    // jefe: corona, capa, estandarte, orbes orbitantes y aura
+    let auraMat = null;
+    if (boss) {
+      for (let i = 0; i < 5; i++) {
+        const spike = add(new THREE.Mesh(cone(0.05, 0.16, 4), shared.crownMat));
+        const a = (i / 5) * Math.PI * 2;
+        spike.position.set(Math.cos(a) * k * 0.11, k * 1.0, Math.sin(a) * k * 0.11);
+      }
+      const capePivot = new THREE.Group();
+      capePivot.position.set(-k * 0.16, k * 0.6, 0);
+      const cape = new THREE.Mesh(box(k * 0.05, k * 0.55, k * 0.34), shared.accentDarkMat);
+      cape.position.y = -k * 0.26;
+      capePivot.add(cape);
+      figure.add(capePivot);
+      anim.cape = capePivot;
+      // estandarte a la espalda con banderín del color de su categoría
+      const pole = new THREE.Mesh(box(0.025, k * 0.85, 0.025), shared.woodMat);
+      pole.position.set(-k * 0.22, k * 0.75, 0);
+      const flagB = new THREE.Mesh(box(0.02, k * 0.18, k * 0.26), mat);
+      flagB.position.set(0, k * 0.32, k * 0.15);
+      pole.add(flagB);
+      figure.add(pole);
+      anim.banner = flagB;
       const orbiter = new THREE.Group();
-      orbiter.position.y = bodyY;
+      orbiter.position.y = k * 0.6;
       for (const side of [-1, 1]) {
         const orb = new THREE.Mesh(octa(0.07), shared.orbMat);
         orb.position.set(side * radius * 1.05, 0, 0);
@@ -1279,9 +1231,9 @@ export function createScene3D(container, game) {
     const label = new THREE.Sprite(new THREE.SpriteMaterial({ map: labelTex, depthTest: false, transparent: true }));
     const lh = e.type === 'boss' ? 0.62 : 0.5;
     label.scale.set(lh * aspect, lh, 1);
-    label.position.y = radius * 2 + 0.55;
+    label.position.y = k * 1.05 + 0.35;
 
-    group.add(body, ring, label);
+    group.add(ring, label);
     group.scale.setScalar(wob); // variación por semilla sin romper la caché de geometrías
     group.userData = { enemyId: e.id };
     return { group, body, mat, label, labelCanvas, labelTex, ring, hammer, anim, auraMat, bodyY, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
@@ -1299,8 +1251,7 @@ export function createScene3D(container, game) {
   function buildAllyMesh(a) {
     const g = new THREE.Group();
     const body = new THREE.Mesh(box(0.26, 0.3, 0.26), allyBodyMat);
-    body.position.y = 0.24;
-    body.castShadow = true;
+    body.position.y = 0.24; // sin castShadow: los aliados tampoco proyectan
     const chest = new THREE.Mesh(box(0.28, 0.13, 0.28), allyHelmMat); // peto
     chest.position.y = 0.31;
     const belt = new THREE.Mesh(box(0.27, 0.05, 0.27), shared.accentDarkMat);
@@ -1621,10 +1572,10 @@ export function createScene3D(container, game) {
       m.body.rotation.y = -e.angle;
       const squash = 1 + Math.sin(game.time * 7 + e.phase) * 0.07;
       m.body.scale.set(1, squash, 1);
-      m.body.position.y = m.bodyY + Math.abs(Math.sin(game.time * 7 + e.phase)) * (m.anim.hover ? 0.09 : 0.04);
+      m.body.position.y = m.bodyY + Math.abs(Math.sin(game.time * 7 + e.phase)) * 0.04;
 
-      // --- animación por tipo (solo transforms; el ciclo de andar va ligado a
-      // la distancia recorrida: si el enemigo está bloqueado, las piernas paran) ---
+      // --- animación (solo transforms; el ciclo de andar va ligado a la
+      // distancia recorrida: si el enemigo está bloqueado, las piernas paran) ---
       const w = m.anim;
       const walkT = e.dist * (w.slowWalk ? 0.09 : 0.16) + e.phase;
       if (w.walk) {
@@ -1637,19 +1588,15 @@ export function createScene3D(container, game) {
         const blink = Math.sin(game.time * 1.6 + e.phase * 3) > 0.97 ? 0.12 : 1;
         for (const p of w.pupils) p.scale.y = blink;
       }
-      if (w.fins) {
-        const flut = Math.sin(game.time * 16 + e.phase) * 0.22;
-        w.fins[0].rotation.y = 0.5 + flut;
-        w.fins[1].rotation.y = -0.5 - flut;
-      }
-      if (w.engine) w.engine.scale.y = 1 + Math.sin(game.time * 22 + e.phase) * 0.35;
-      if (w.antenna) w.antenna.rotation.x = Math.sin(game.time * 5 + e.phase) * 0.25;
-      if (w.boing) w.boing.rotation.x = Math.sin(walkT * 2) * 0.35;
-      if (w.fists) {
-        w.fists[0].rotation.z = Math.sin(walkT) * 0.45;
-        w.fists[1].rotation.z = -Math.sin(walkT) * 0.45;
+      // arma: balanceo al andar y mandobles al luchar con un caballero
+      if (w.weapon && !m.hammer) {
+        const fighting = !!e.blockedBy;
+        w.weapon.rotation.z = fighting
+          ? Math.sin(game.time * 9 + e.phase) * 0.7 - 0.45
+          : -0.12 + Math.sin(walkT) * 0.12;
       }
       if (w.cape) w.cape.rotation.z = -0.18 - Math.abs(Math.sin(walkT)) * 0.12 - Math.sin(game.time * 2.4 + e.phase) * 0.06;
+      if (w.banner) w.banner.rotation.x = Math.sin(game.time * 4 + e.phase) * 0.22;
       if (w.orbiter) w.orbiter.rotation.y = game.time * 1.8 + e.phase;
       if (w.aura) {
         m.auraMat.opacity = 0.18 + Math.sin(game.time * 3) * 0.08;
