@@ -1049,19 +1049,25 @@ export function createScene3D(container, game) {
     return m;
   }
 
-  // Pies que caminan, colgados de un pivote propio (no del cuerpo: el squash
-  // no los deforma; el pivote gira con la dirección de avance)
-  function addFeet(group, s, footY, spread, scale = 1) {
+  // Piernas articuladas colgadas de un pivote propio (no del cuerpo: el
+  // squash no las deforma; el pivote gira con la dirección de avance y cada
+  // pierna se balancea rotando en la cadera)
+  function addLegs(group, s, { scale = 1, spread = 0.2, hipY = 0.3 } = {}) {
     const pivot = new THREE.Group();
     group.add(pivot);
-    const feet = [];
+    const legs = [];
     for (const side of [-1, 1]) {
-      const f = new THREE.Mesh(box(s * 0.3 * scale, s * 0.14 * scale, s * 0.22 * scale), shared.accentDarkMat);
-      f.position.set(0, footY, side * spread);
-      pivot.add(f);
-      feet.push(f);
+      const hip = new THREE.Group();
+      hip.position.set(0, s * hipY, side * s * spread);
+      const leg = new THREE.Mesh(box(s * 0.16 * scale, s * 0.3, s * 0.16 * scale), shared.accentDarkMat);
+      leg.position.y = -s * 0.13;
+      const foot = new THREE.Mesh(box(s * 0.3 * scale, s * 0.11, s * 0.2 * scale), shared.accentDarkMat);
+      foot.position.set(s * 0.05, -s * 0.28, 0);
+      hip.add(leg, foot);
+      pivot.add(hip);
+      legs.push(hip);
     }
-    return { pivot, feet };
+    return { pivot, legs };
   }
 
   function buildEnemyMesh(e) {
@@ -1074,8 +1080,9 @@ export function createScene3D(container, game) {
     const group = new THREE.Group();
     let body;
     let hammer = null;
-    const anim = { pupils: [], stride: radius * 0.32, footY: radius * 0.12 };
-    const s = radius * 1.8; // lado del cubo (canónico)
+    const anim = { pupils: [] };
+    const s = radius * 1.65; // lado del cubo (canónico): grande pero con hueco abajo
+    let bodyY = s * 0.76;    // centro del cuerpo: deja las piernas a la vista
 
     if (e.type === 'scout') {
       // corredor flotante: cubo bajo y alargado, visera cíclope, aletas que
@@ -1104,7 +1111,8 @@ export function createScene3D(container, game) {
       mast.add(tip);
       body.add(mast);
       anim.antenna = mast;
-      anim.hover = true; // sin pies: levita
+      anim.hover = true; // sin piernas: levita
+      bodyY = s * 0.62;
     } else if (e.type === 'brute') {
       // mole de asedio: hombreras, puños que se balancean, púas dorsales,
       // cuernos y pisotones lentos
@@ -1143,8 +1151,9 @@ export function createScene3D(container, game) {
       for (let i = -1; i <= 1; i++) {
         facePart(body, s * 1.1, { w: s * 0.09, h: s * 0.09, y: -s * 0.23, z: i * s * 0.14, mat: faceWhiteMat, depth: 0.03 }); // dientes
       }
-      anim.walk = addFeet(group, s, anim.footY, s * 0.3, 1.4);
+      anim.walk = addLegs(group, s, { scale: 1.3, spread: 0.26, hipY: 0.4 });
       anim.slowWalk = true;
+      bodyY = s * 0.88; // el bruto es más alto: cuerpo de 1.2s
     } else if (e.type === 'sabo') {
       // demoledor: casco de obra, cinturón de herramientas, mochila con
       // dinamita y martillo animado
@@ -1181,7 +1190,7 @@ export function createScene3D(container, game) {
       hammer.add(handle, head);
       hammer.position.set(s * 0.35, 0, s * 0.6);
       body.add(hammer);
-      anim.walk = addFeet(group, s, anim.footY, s * 0.24);
+      anim.walk = addLegs(group, s);
     } else {
       // normal y jefe: cubo con carita; el jefe lleva capa, corona y orbes
       body = new THREE.Mesh(box(s, s, s), mat);
@@ -1205,7 +1214,7 @@ export function createScene3D(container, game) {
         body.add(capePivot);
         anim.cape = capePivot;
         anim.slowWalk = true;
-        anim.walk = addFeet(group, s, anim.footY, s * 0.24, 1.3);
+        anim.walk = addLegs(group, s, { scale: 1.35, spread: 0.22, hipY: 0.34 });
       } else {
         facePart(body, s, { w: s * 0.32, h: s * 0.06, y: -s * 0.2, z: 0, rotX: -0.15 }); // sonrisilla
         // antenita con muelle y mochila de explorador
@@ -1221,12 +1230,12 @@ export function createScene3D(container, game) {
         const flap = new THREE.Mesh(box(s * 0.32, s * 0.14, s * 0.57), shared.steelMat);
         flap.position.set(-s * 0.6, s * 0.3, 0);
         body.add(pack, flap);
-        anim.walk = addFeet(group, s, anim.footY, s * 0.24);
+        anim.walk = addLegs(group, s);
       }
     }
 
     mat.color.copy(base);
-    body.position.y = radius + 0.08;
+    body.position.y = bodyY;
     body.castShadow = true;
 
     // corona y orbes orbitantes del jefe
@@ -1241,7 +1250,7 @@ export function createScene3D(container, game) {
       }
       body.add(crown);
       const orbiter = new THREE.Group();
-      orbiter.position.y = radius + 0.15;
+      orbiter.position.y = bodyY;
       for (const side of [-1, 1]) {
         const orb = new THREE.Mesh(octa(0.07), shared.orbMat);
         orb.position.set(side * radius * 1.05, 0, 0);
@@ -1275,7 +1284,7 @@ export function createScene3D(container, game) {
     group.add(body, ring, label);
     group.scale.setScalar(wob); // variación por semilla sin romper la caché de geometrías
     group.userData = { enemyId: e.id };
-    return { group, body, mat, label, labelCanvas, labelTex, ring, hammer, anim, auraMat, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
+    return { group, body, mat, label, labelCanvas, labelTex, ring, hammer, anim, auraMat, bodyY, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
   }
 
   // --- caballeros aliados (cubitos con casco y espada) ---
@@ -1612,20 +1621,17 @@ export function createScene3D(container, game) {
       m.body.rotation.y = -e.angle;
       const squash = 1 + Math.sin(game.time * 7 + e.phase) * 0.07;
       m.body.scale.set(1, squash, 1);
-      m.body.position.y = m.radius + 0.06 + Math.abs(Math.sin(game.time * 7 + e.phase)) * 0.05;
+      m.body.position.y = m.bodyY + Math.abs(Math.sin(game.time * 7 + e.phase)) * (m.anim.hover ? 0.09 : 0.04);
 
       // --- animación por tipo (solo transforms; el ciclo de andar va ligado a
-      // la distancia recorrida: si el enemigo está bloqueado, los pies paran) ---
+      // la distancia recorrida: si el enemigo está bloqueado, las piernas paran) ---
       const w = m.anim;
       const walkT = e.dist * (w.slowWalk ? 0.09 : 0.16) + e.phase;
       if (w.walk) {
         const sw = Math.sin(walkT);
-        const [fL, fR] = w.walk.feet;
-        w.walk.pivot.rotation.y = -e.angle; // los pies miran hacia donde anda
-        fL.position.x = sw * w.stride;
-        fR.position.x = -sw * w.stride;
-        fL.position.y = w.footY + Math.max(0, sw) * w.stride * 0.5;
-        fR.position.y = w.footY + Math.max(0, -sw) * w.stride * 0.5;
+        w.walk.pivot.rotation.y = -e.angle; // las piernas miran hacia donde anda
+        w.walk.legs[0].rotation.z = sw * 0.6;  // balanceo de cadera
+        w.walk.legs[1].rotation.z = -sw * 0.6;
       }
       if (w.pupils.length) {
         const blink = Math.sin(game.time * 1.6 + e.phase * 3) > 0.97 ? 0.12 : 1;
