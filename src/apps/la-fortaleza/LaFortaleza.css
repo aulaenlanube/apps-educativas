@@ -521,3 +521,43 @@
   .fort-palette-emoji .fort-icon { width: 22px !important; height: 22px !important; }
   .fort-palette-emoji { min-height: 22px; }
 }
+
+/* ---------- reliquias, asedio infinito y ambiente ---------- */
+.fort-relic { max-width: min(94%, 620px); }
+.fort-relic-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fort-relic-opts button {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: rgba(168, 85, 247, 0.1); color: #f1f5f9;
+  border: 1px solid rgba(168, 85, 247, 0.45); border-radius: 14px;
+  padding: 14px 10px; cursor: pointer; text-align: center;
+  transition: all 0.15s;
+}
+.fort-relic-opts button:hover {
+  background: rgba(168, 85, 247, 0.22); border-color: #c084fc;
+  transform: translateY(-2px);
+}
+.fort-relic-ico {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 12px; color: #e9d5ff;
+  background: rgba(168, 85, 247, 0.25);
+}
+.fort-relic-opts strong { font-size: 0.88rem; color: #e9d5ff; }
+.fort-relic-desc { font-size: 0.76rem; color: #cbd5e1; line-height: 1.3; }
+
+.fort-victory { max-width: min(94%, 520px); border-color: rgba(251, 191, 36, 0.55); }
+.fort-victory .fort-mini-title { color: #fbbf24; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+.fort-hud-item.relics { color: #c084fc; cursor: help; }
+.fort-forecast-amb {
+  font-size: 0.78rem; font-weight: 700; color: #93c5fd;
+  background: rgba(255, 255, 255, 0.07); border-radius: 999px; padding: 2px 10px;
+}
+.fort-endless-line {
+  text-align: center; font-size: 0.92rem; color: #fca5a5; font-weight: 700;
+  background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 10px; padding: 7px 12px; margin: 10px 0 4px;
+}
+
+@media (max-width: 720px) {
+  .fort-relic-opts { grid-template-columns: 1fr; }
+}

@@ -351,6 +351,12 @@ const LaFortaleza = ({ onGameComplete }) => {
             <div className="fort-wave-reached">🌊 Has llegado al nivel de amenaza <strong>{result.level}</strong></div>
           )}
 
+          {result.endless && (
+            <div className="fort-endless-line">
+              ⚔️ Asedio infinito: {result.lives > 0 ? 'aguantaste' : 'caíste en el'} nivel <strong>{result.level}</strong> — la nota se selló al ganar
+            </div>
+          )}
+
           <div className="fort-result-score"><Star size={18} /> {result.score.toLocaleString('es-ES')} puntos</div>
 
           <div className="fort-breakdown">
@@ -439,6 +445,15 @@ const LaFortaleza = ({ onGameComplete }) => {
           <div className="instr-mode easy"><strong>🟢 Práctica</strong>supervivencia sin fin · tipo test · el color del enemigo insinúa su categoría</div>
           <div className="instr-mode exam"><strong>🔴 Examen</strong>aguanta hasta el nivel {EXAM_VICTORY_LEVEL} · mezcla de escribir y tipo test · nota /10 con preguntas, clasificaciones y jefes</div>
         </div>
+
+        <h3>🏺 Reliquias</h3>
+        <p>Cada 2 niveles de amenaza encontrarás una <strong>reliquia</strong>: elige 1 de 3 poderes permanentes (más alcance, murallas que se reparan, caballeros veteranos...). Cada partida tu arsenal será distinto.</p>
+
+        <h3>🌦️ Clima de la isla</h3>
+        <p>Cada partida amanece distinta: día radiante, atardecer, niebla, lluvia o noche de antorchas. Solo cambia el paisaje — tus torres funcionan igual.</p>
+
+        <h3>⚔️ Asedio infinito</h3>
+        <p>Si ganas el examen, tu nota queda <strong>sellada</strong> y puedes seguir luchando: enemigos cada vez más brutales y puntos multiplicados para el ranking. Caer en el asedio no cambia tu nota.</p>
 
         <div className="instr-tips"><strong>💡 Consejo:</strong> tu puntería no afecta a la nota — solo tus aciertos. Pero defender bien la Biblioteca multiplica tus puntos para el ranking.</div>
       </InstructionsModal>

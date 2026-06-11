@@ -33,6 +33,39 @@ const COL = {
 };
 
 // ---------------------------------------------------------------------------
+// Ambientes: cada partida sortea clima/hora del día por su semilla. Solo capa
+// visual (luz, niebla, cielo, mar, lluvia, estrellas): el engine no se entera.
+// ---------------------------------------------------------------------------
+export const AMBIENCES = [
+  { id: 'dia', name: 'Día radiante', w: 7,
+    sky: 0x53c8ff, fog: [30, 95], hemi: 1.0, hemiSky: 0xffffff, hemiGround: 0x2dd4bf,
+    sun: 0xfff3c4, sunI: 2.2, sea: 0x38bdf8, glow: 1 },
+  { id: 'atardecer', name: 'Atardecer dorado', w: 4,
+    sky: 0xffac6b, fog: [28, 90], hemi: 0.85, hemiSky: 0xffd9b0, hemiGround: 0xc2705a,
+    sun: 0xff9a4d, sunI: 2.1, sunPos: [15, 6, -6], sea: 0x4f93cf, glow: 1.4 },
+  { id: 'niebla', name: 'Niebla espesa', w: 3,
+    sky: 0xb9c6d4, fog: [13, 52], hemi: 0.9, hemiSky: 0xdfe7ee, hemiGround: 0x8aa39a,
+    sun: 0xeef2f7, sunI: 1.35, sea: 0x7fa8c0, glow: 1.5 },
+  { id: 'lluvia', name: 'Lluvia sobre la isla', w: 3,
+    sky: 0x7c93ab, fog: [22, 72], hemi: 0.8, hemiSky: 0xcdd9e4, hemiGround: 0x5b7d74,
+    sun: 0xdce6f0, sunI: 1.45, sea: 0x3a7ca8, glow: 1.5, rain: true },
+  { id: 'noche', name: 'Noche de antorchas', w: 3,
+    sky: 0x101d40, fog: [26, 80], hemi: 0.42, hemiSky: 0x8fa8ff, hemiGround: 0x1c3a44,
+    sun: 0xbcd0ff, sunI: 0.9, sea: 0x16335e, glow: 2.1, night: true },
+];
+
+export function pickAmbience(seed) {
+  const r = mulberry32((seed ^ 0x9e3779b9) >>> 0)();
+  const total = AMBIENCES.reduce((s, a) => s + a.w, 0);
+  let acc = 0;
+  for (const a of AMBIENCES) {
+    acc += a.w;
+    if (r < acc / total) return a;
+  }
+  return AMBIENCES[0];
+}
+
+// ---------------------------------------------------------------------------
 // Sprites de texto (canvas → textura). Cache global por contenido.
 // ---------------------------------------------------------------------------
 
@@ -107,9 +140,10 @@ export function createScene3D(container, game, qualityTier = 'high') {
   renderer.toneMappingExposure = 1.15;
   container.appendChild(renderer.domElement);
 
+  const amb = pickAmbience(game.seed); // clima/hora del día de esta partida
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(COL.sky);
-  scene.fog = new THREE.Fog(COL.sky, 30, 95);
+  scene.background = new THREE.Color(amb.sky);
+  scene.fog = new THREE.Fog(amb.sky, amb.fog[0], amb.fog[1]);
 
   // --- cámara orbital ---
   const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 220);
@@ -127,10 +161,10 @@ export function createScene3D(container, game, qualityTier = 'high') {
   };
   applyCamera();
 
-  // --- luces (día soleado) ---
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x2dd4bf, 1.0));
-  const sunLight = new THREE.DirectionalLight(0xfff3c4, 2.2);
-  sunLight.position.set(7, 14, -5);
+  // --- luces (según el ambiente sorteado) ---
+  scene.add(new THREE.HemisphereLight(amb.hemiSky, amb.hemiGround, amb.hemi));
+  const sunLight = new THREE.DirectionalLight(amb.sun, amb.sunI);
+  sunLight.position.set(...(amb.sunPos || [7, 14, -5]));
   scene.add(sunLight);
   if (Q.shadows) {
     // una única luz con sombra, frustum ceñido al tablero (la isla decorativa
@@ -173,17 +207,35 @@ export function createScene3D(container, game, qualityTier = 'high') {
     pmrem.dispose();
   }
 
-  // --- cielo: sol + nubes geométricas (derivan girando despacio) ---
+  // --- cielo: sol (o luna), estrellas y nubes geométricas que derivan ---
   const cloudGroup = new THREE.Group();
   scene.add(cloudGroup);
   {
     const sun = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 16, 16),
-      new THREE.MeshBasicMaterial({ color: 0xffe372, fog: false }),
+      new THREE.SphereGeometry(amb.night ? 1.5 : 2, 16, 16),
+      new THREE.MeshBasicMaterial({ color: amb.night ? 0xe8f1ff : 0xffe372, fog: false }),
     );
     sun.position.set(16, 18, -28);
     scene.add(sun);
-    const cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true });
+    if (amb.night) {
+      // cúpula de estrellas (un único Points, sin niebla)
+      const N = 180;
+      const arr = new Float32Array(N * 3);
+      const sr = mulberry32(game.seed ^ 0x57a85);
+      for (let i = 0; i < N; i++) {
+        const a = sr() * Math.PI * 2;
+        const e = 0.15 + sr() * 1.35; // elevación
+        const d = 70 + sr() * 25;
+        arr[i * 3] = Math.cos(a) * Math.cos(e) * d;
+        arr[i * 3 + 1] = Math.sin(e) * d * 0.6 + 6;
+        arr[i * 3 + 2] = Math.sin(a) * Math.cos(e) * d;
+      }
+      const sg = new THREE.BufferGeometry();
+      sg.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+      const stars = new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xdfe8ff, size: 0.35, fog: false, transparent: true, opacity: 0.9 }));
+      scene.add(stars);
+    }
+    const cloudMat = new THREE.MeshLambertMaterial({ color: amb.night ? 0x6f7f9e : 0xffffff, flatShading: true });
     for (let i = 0; i < 10; i++) {
       const cloud = new THREE.Group();
       const blocks = 2 + Math.floor(rng() * 3);
@@ -292,11 +344,30 @@ export function createScene3D(container, game, qualityTier = 'high') {
   // --- mar hasta el horizonte (marea suave en render) ---
   const sea = new THREE.Mesh(
     new THREE.PlaneGeometry(360, 360),
-    new THREE.MeshLambertMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 }),
+    new THREE.MeshLambertMaterial({ color: amb.sea, transparent: true, opacity: 0.85 }),
   );
   sea.rotation.x = -Math.PI / 2;
   sea.position.y = SEA_Y;
   scene.add(sea);
+
+  // --- lluvia: un único Points reciclado, gotas cayendo en bucle ---
+  let rainPts = null;
+  let rainBase = null;
+  if (amb.rain) {
+    const N = 320;
+    const arr = new Float32Array(N * 3);
+    const rr = mulberry32(game.seed ^ 0x51f15e);
+    for (let i = 0; i < N; i++) {
+      arr[i * 3] = (rr() - 0.5) * 30;
+      arr[i * 3 + 1] = rr() * 12;
+      arr[i * 3 + 2] = (rr() - 0.5) * 18;
+    }
+    rainBase = arr.slice();
+    const rg = new THREE.BufferGeometry();
+    rg.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    rainPts = new THREE.Points(rg, new THREE.PointsMaterial({ color: 0xaecbe8, size: 0.07, transparent: true, opacity: 0.55 }));
+    scene.add(rainPts);
+  }
 
   // --- camino: baldosas cuadradas instanciadas (estilo geométrico) ---
   // Todas las losetas en 2 draw calls (antes: 2 meshes por celda).
@@ -932,8 +1003,8 @@ export function createScene3D(container, game, qualityTier = 'high') {
         // emerge del suelo creciendo al despertar
         kp.group.scale.setScalar(THREE.MathUtils.lerp(kp.group.scale.x, 1, 0.06));
         kp.flag.rotation.x = Math.sin(game.time * 3 + i * 2) * 0.25;
-        kp.ember.material.opacity = 0.34 + Math.sin(game.time * 7 + i * 2.1) * 0.12;
-        if (kp.light) kp.light.intensity = 1.6 + Math.sin(game.time * 9 + i) * 0.4;
+        kp.ember.material.opacity = Math.min((0.34 + Math.sin(game.time * 7 + i * 2.1) * 0.12) * amb.glow, 1);
+        if (kp.light) kp.light.intensity = (1.6 + Math.sin(game.time * 9 + i) * 0.4) * (amb.night ? 1.4 : 1);
       }
     }
   }
@@ -1839,7 +1910,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
     rangeRing.visible = !!sel;
     if (sel) {
       rangeRing.position.set(fx(sel.x), 0.04, fz(sel.y));
-      rangeRing.scale.setScalar(towerRange(sel) * U);
+      rangeRing.scale.setScalar(towerRange(sel, game) * U); // con reliquias
     }
   }
 
@@ -2095,14 +2166,24 @@ export function createScene3D(container, game, qualityTier = 'high') {
       pos.setZ(i, Math.sin(game.time * 6 + x * 7) * 0.05 * (x + 0.25) * 2);
     }
     pos.needsUpdate = true;
-    warmLight.intensity = 10 + Math.sin(game.time * 5) * 2.5;
-    // velas de las ventanas: parpadeo desfasado
-    fortGlows[0].material.opacity = 0.32 + Math.sin(game.time * 6.3) * 0.1;
-    fortGlows[1].material.opacity = 0.32 + Math.sin(game.time * 5.1 + 2) * 0.1;
+    warmLight.intensity = (10 + Math.sin(game.time * 5) * 2.5) * (amb.night ? 1.5 : 1);
+    // velas de las ventanas: parpadeo desfasado (más vivas de noche/niebla)
+    fortGlows[0].material.opacity = Math.min((0.32 + Math.sin(game.time * 6.3) * 0.1) * amb.glow, 1);
+    fortGlows[1].material.opacity = Math.min((0.32 + Math.sin(game.time * 5.1 + 2) * 0.1) * amb.glow, 1);
     // marea: el mar sube y baja suavemente sobre las playas
     sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
     // las nubes derivan girando alrededor de la isla
     cloudGroup.rotation.y = game.time * 0.006;
+    // gotas de lluvia en bucle (320 floats por frame: despreciable)
+    if (rainPts) {
+      const attr = rainPts.geometry.attributes.position;
+      const a = attr.array;
+      for (let i = 0; i < a.length; i += 3) {
+        const y = rainBase[i + 1] - game.time * 13;
+        a[i + 1] = y - Math.floor(y / 12) * 12; // wrap [0, 12)
+      }
+      attr.needsUpdate = true;
+    }
   }
 
 

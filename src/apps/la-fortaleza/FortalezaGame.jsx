@@ -4,11 +4,12 @@
 // Recibe el contenido ya preparado por LaFortaleza.jsx y devuelve el resultado
 // por onEnd(). onProgress() emite eventos de progreso (preparado para el duelo).
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
   FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle, Settings2, Lock,
+  Crosshair, Hammer, Landmark, Bomb, Hourglass, Trophy, Swords,
 } from 'lucide-react';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
@@ -16,8 +17,9 @@ import {
   castAbility, ABILITIES, ENERGY_MAX, MOVE_COST,
   TOWER_TYPES, MAX_TOWER_LEVEL, upgradeCost, sellValue, EXAM_VICTORY_LEVEL,
   SANCT_UNLOCK_CORRECT, FORT_UPGRADES, buyFortUpgrade,
+  RELICS, chooseRelic, enterEndless, scoreMult,
 } from './engine';
-import { createScene3D } from './render3d';
+import { createScene3D, pickAmbience } from './render3d';
 import FortIcon from './FortIcons';
 import {
   QUALITY_LEVELS, QUALITY_LABELS, loadQualityPref, saveQualityPref,
@@ -35,6 +37,12 @@ const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-
 const MINIGAME_BASE_POINTS = 50; // puntos = base · nº de acierto en la cadena
 const MINIGAME_BASE_COINS = 15;  // monedas = base · nº de acierto en la cadena
 
+// icono lucide por reliquia (coherente con la UI, sin emojis)
+const RELIC_ICONS = {
+  catalejo: Crosshair, forja: Hammer, argamasa: Landmark, bolsa: Coins,
+  estandarte: Flag, polvora: Bomb, reloj: Hourglass, amuleto: Heart,
+};
+
 const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools, sounds, onEnd, onProgress, onExit }) => {
   const isExam = mode === 'exam';
 
@@ -48,7 +56,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   // --- estado React (HUD y UI) ---
   const [phase, setPhase] = useState('quiz'); // quiz (preparación) | build (preparación) | run | ended
   const [mini, setMini] = useState(null); // {stage:'offer'|'playing', step, question, timeLeft, total, feedback}
-  const [hud, setHud] = useState({ coins: game.coins, lives: game.lives, level: game.level, score: game.score, energy: game.energy, abilityReady: true, shield: 0, fortLevel: 0 });
+  const [hud, setHud] = useState({ coins: game.coins, lives: game.lives, level: game.level, score: game.score, energy: game.energy, abilityReady: true, shield: 0, fortLevel: 0, relics: 0, endless: false });
   const [fortOpen, setFortOpen] = useState(false);
   const [streak, setStreak] = useState(0);
   const [quiz, setQuiz] = useState(null);
@@ -96,6 +104,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     correct: 0, total: 0,
     questions: { c: 0, t: 0 }, classify: { c: 0, t: 0 }, boss: { c: 0, t: 0 },
   });
+  // nota sellada al ganar el examen: el asedio infinito ya no la toca
+  const sealedRef = useRef(null);
   phaseRef.current = phase;
   overlayRef.current = overlay;
   miniRef.current = mini;
@@ -128,7 +138,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       score: g.score,
       level: g.level,
       lives: g.lives,
-      academic: { ...academicRef.current },
+      endless: g.endless,
+      academic: sealedRef.current ? JSON.parse(JSON.stringify(sealedRef.current)) : { ...academicRef.current },
       durationSeconds: Math.round(g.time),
       stats: { ...g.stats },
     });
@@ -144,7 +155,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         score: g.score,
         level: g.level,
         lives: g.lives,
-        academic: { ...academicRef.current },
+        endless: g.endless,
+        academic: sealedRef.current ? JSON.parse(JSON.stringify(sealedRef.current)) : { ...academicRef.current },
         durationSeconds: Math.round(g.time),
         stats: { ...g.stats },
       });
@@ -153,6 +165,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
 
   // --- contabilidad académica ---
   const tally = useCallback((kind, correct) => {
+    if (sealedRef.current) return; // asedio infinito: la nota ya está sellada
     const a = academicRef.current;
     a.total++; a[kind].t++;
     if (correct) {
@@ -293,7 +306,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       const correct = answer != null && norm(answer) === norm(prev.question.solucion);
       tally('questions', correct);
       if (correct) {
-        const points = MINIGAME_BASE_POINTS * prev.step;
+        const points = Math.round(MINIGAME_BASE_POINTS * prev.step * scoreMult(g));
         const coins = MINIGAME_BASE_COINS * prev.step;
         g.score += points;
         g.coins += coins;
@@ -419,19 +432,30 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           if (selectedRef.current === ev.towerId) setSelectedTowerId(null);
           if (movingRef.current === ev.towerId) setMovingTowerId(null);
           break;
+        case 'relic_offer':
+          snd.unlock();
+          setOverlay({ type: 'relic', options: ev.options });
+          break;
         case 'victory':
           snd.victory();
-          endGame('victory');
+          if (isExam) {
+            // sella la nota en este instante y deja elegir: terminar o asedio
+            sealedRef.current = JSON.parse(JSON.stringify(academicRef.current));
+            setOverlay({ type: 'victory' });
+          } else {
+            endGame('victory');
+          }
           break;
         case 'defeat':
           snd.defeat();
           setOverlay(null);
-          endGame('defeat');
+          // caer en el asedio infinito sigue siendo una victoria (nota sellada)
+          endGame(gameRef.current.endless ? 'victory' : 'defeat');
           break;
         default: break;
       }
     }
-  }, [bossQuestions, endGame, nextQuestion]);
+  }, [bossQuestions, endGame, nextQuestion, isExam]);
 
   // --- escena 3D + bucle principal ---
   // gfxTier en las deps: cambiar la calidad desecha y reconstruye la escena
@@ -473,6 +497,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       const ov = overlayRef.current;
       const mg = miniRef.current;
       if ((ov && (ov.type === 'classify' || ov.type === 'quit' || ov.type === 'exit'
+        || ov.type === 'relic' || ov.type === 'victory'
         || ((ov.type === 'boss' || ov.type === 'oracle') && !ov.feedback)))
         || (mg && (mg.stage === 'offer' || !mg.feedback))) {
         scale = isExam ? 0.25 : 0;
@@ -495,10 +520,12 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         const abilityReady = g.time >= g.abilityCdUntil;
         if (prev.coins === g.coins && prev.lives === g.lives && prev.level === g.level
           && prev.score === g.score && prev.energy === energy && prev.abilityReady === abilityReady
-          && prev.shield === g.fortShield && prev.fortLevel === g.fortUpgrades.length) return prev;
+          && prev.shield === g.fortShield && prev.fortLevel === g.fortUpgrades.length
+          && prev.relics === g.relics.length && prev.endless === g.endless) return prev;
         return {
           coins: g.coins, lives: g.lives, level: g.level, score: g.score, energy, abilityReady,
           shield: g.fortShield, fortLevel: g.fortUpgrades.length,
+          relics: g.relics.length, endless: g.endless,
         };
       });
 
@@ -703,6 +730,19 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     if (up) soundsRef.current.fortify();
   }, []);
 
+  const pickRelic = useCallback((id) => {
+    if (chooseRelic(gameRef.current, id)) {
+      soundsRef.current.fortify();
+      setOverlay(null);
+    }
+  }, []);
+
+  const continueEndless = useCallback(() => {
+    enterEndless(gameRef.current);
+    soundsRef.current.gateOpen();
+    setOverlay(null);
+  }, []);
+
   const toggleSound = useCallback(() => setSoundOn(soundsRef.current.toggle()), []);
 
   const toggleFullscreen = useCallback(() => {
@@ -721,9 +761,15 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
 
   // --- derivados ---
   const selectedTower = selectedTowerId ? game.towers.find((t) => t.id === selectedTowerId) : null;
-  const levelLabel = isExam ? `Nv. ${Math.min(hud.level, EXAM_VICTORY_LEVEL)}/${EXAM_VICTORY_LEVEL}` : `Nv. ${hud.level}`;
+  const levelLabel = isExam
+    ? (hud.endless ? `Nv. ${hud.level} ⚔️` : `Nv. ${Math.min(hud.level, EXAM_VICTORY_LEVEL)}/${EXAM_VICTORY_LEVEL}`)
+    : `Nv. ${hud.level}`;
   const a = academicRef.current;
   const nextUp = FORT_UPGRADES[hud.fortLevel] ?? null;
+  const ambience = useMemo(() => pickAmbience(seed), [seed]);
+  const sealedNota = sealedRef.current
+    ? (Math.round((sealedRef.current.correct / Math.max(sealedRef.current.total, 1)) * 100) / 10).toFixed(1)
+    : null;
 
   return (
     <div className="fort-game" ref={rootRef}>
@@ -731,6 +777,11 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       <div className="fort-hud">
         <span className="fort-hud-item lives"><Heart size={16} /> {hud.lives}</span>
         {game.fortShieldMax > 0 && <span className="fort-hud-item shield" title="Escudo de la muralla externa">🛡️ {hud.shield}</span>}
+        {hud.relics > 0 && (
+          <span className="fort-hud-item relics" title={game.relics.map((id) => `${RELICS[id].name}: ${RELICS[id].desc}`).join('\n')}>
+            🏺 {hud.relics}
+          </span>
+        )}
         <span className="fort-hud-item coins"><Coins size={16} /> {hud.coins}</span>
         <span className="fort-hud-item wave"><Waves size={16} /> {levelLabel}</span>
         <span className="fort-hud-item score"><Star size={16} /> {hud.score.toLocaleString('es-ES')}</span>
@@ -1047,12 +1098,53 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           )}
         </AnimatePresence>
 
+        {/* ---------- reliquia: elegir 1 de 3 (pausa/cámara lenta) ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'relic' && (
+            <motion.div className="fort-quiz fort-relic" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-mini-title">🏺 ¡Reliquia del nivel {hud.level}!</div>
+              <p className="fort-quiz-def">Elige un poder permanente para esta partida:</p>
+              <div className="fort-relic-opts">
+                {overlay.options.map((id) => {
+                  const RelicIcon = RELIC_ICONS[id];
+                  return (
+                    <button key={id} onClick={() => pickRelic(id)}>
+                      <span className="fort-relic-ico"><RelicIcon size={24} /></span>
+                      <strong>{RELICS[id].name}</strong>
+                      <span className="fort-relic-desc">{RELICS[id].desc}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- victoria del examen: terminar o asedio infinito ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'victory' && (
+            <motion.div className="fort-quiz fort-victory" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-mini-title"><Trophy size={20} /> ¡Fortaleza defendida!</div>
+              <p className="fort-quiz-def">
+                Tu nota queda sellada: <strong>{sealedNota}/10</strong>. Puedes terminar aquí
+                o lanzarte al <strong>Asedio infinito</strong>: enemigos cada vez más brutales
+                y puntos multiplicados para el ranking. Pase lo que pase, la nota ya no cambia.
+              </p>
+              <div className="fort-quit-btns">
+                <button className="fort-btn-secondary" onClick={() => endGame('victory')}><Flag size={15} /> Terminar con victoria</button>
+                <button className="fort-btn-launch" onClick={continueEndless}><Swords size={16} /> ¡Asedio infinito!</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* ---------- fase de preparación: construir y arrancar ---------- */}
         {phase === 'build' && (
           <motion.div className="fort-buildbar" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="fort-forecast">
               <span className="fort-forecast-label">🛠️ Prepara tus defensas:</span>
               <span className="fort-forecast-cat">los enemigos saldrán sin parar y cada vez más rápido — y al subir la amenaza despertarán nuevas fortalezas enemigas (hasta 3 frentes). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
+              <span className="fort-forecast-amb">{ambience.name}</span>
             </div>
             <div className="fort-buildbar-actions">
               <button className="fort-btn-launch" onClick={startDefense}><Play size={17} /> ¡Defender la Fortaleza!</button>

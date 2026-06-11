@@ -118,6 +118,72 @@ const FORT_PROJ = {
   fort_canon: { kind: 'splash', splash: FORT_UPGRADES[2].splash },
 };
 
+// ---------------------------------------------------------------------------
+// Reliquias (roguelite): cada RELIC_OFFER_EVERY niveles el juego ofrece 3 al
+// azar (con la rng de la partida: determinista) y el jugador se queda una.
+// Efectos pasivos acumulables que el resto del engine lee en game.relicMods.
+// ---------------------------------------------------------------------------
+export const RELICS = {
+  catalejo:   { id: 'catalejo', name: 'Catalejo del vigía', desc: '+15% de alcance para todas las torres.' },
+  forja:      { id: 'forja', name: 'Forja encantada', desc: '+20% de daño para todas las torres.' },
+  argamasa:   { id: 'argamasa', name: 'Argamasa de obsidiana', desc: 'Las murallas nuevas tienen +60% de vida y todas se reparan solas (4/s).' },
+  bolsa:      { id: 'bolsa', name: 'Bolsa del mercader', desc: '+35% de monedas en respuestas y pagas de nivel.' },
+  estandarte: { id: 'estandarte', name: 'Estandarte real', desc: 'Los caballeros salen un 35% más a menudo y con +40% de vida.' },
+  polvora:    { id: 'polvora', name: 'Pólvora refinada', desc: '+40% de radio de explosión para cañones y Gran Cañón.' },
+  reloj:      { id: 'reloj', name: 'Reloj de arena', desc: 'Las habilidades se recargan un 40% más rápido.' },
+  amuleto:    { id: 'amuleto', name: 'Amuleto del bibliotecario', desc: 'La Biblioteca recupera 1 vida al subir de nivel (máx. 10).' },
+};
+export const RELIC_OFFER_EVERY = 2;  // niveles entre ofertas
+export const MAX_RELICS = 5;         // tope por partida
+
+const RELIC_EFFECTS = {
+  catalejo:   (m) => { m.range *= 1.15; },
+  forja:      (m) => { m.dmg *= 1.2; },
+  argamasa:   (m) => { m.wallHp *= 1.6; m.wallRegen += 4; },
+  bolsa:      (m) => { m.coins *= 1.35; },
+  estandarte: (m) => { m.allyRate *= 0.74; m.allyHp *= 1.4; },
+  polvora:    (m) => { m.splash *= 1.4; },
+  reloj:      (m) => { m.abilityCd *= 0.6; },
+  amuleto:    (m) => { m.lifePerLevel += 1; },
+};
+
+function defaultRelicMods() {
+  return { range: 1, dmg: 1, wallHp: 1, wallRegen: 0, coins: 1, allyRate: 1, allyHp: 1, splash: 1, abilityCd: 1, lifePerLevel: 0 };
+}
+
+function recomputeRelicMods(game) {
+  const m = defaultRelicMods();
+  for (const id of game.relics) RELIC_EFFECTS[id]?.(m);
+  game.relicMods = m;
+}
+
+/** El jugador elige una de las reliquias ofrecidas (evento relic_offer). */
+export function chooseRelic(game, relicId) {
+  if (!game.pendingRelics || !game.pendingRelics.includes(relicId)) return false;
+  game.relics.push(relicId);
+  game.pendingRelics = null;
+  recomputeRelicMods(game);
+  pushText(game, WORLD.w / 2, WORLD.h / 2 - 30, `¡${RELICS[relicId].name}!`, '#c084fc');
+  return true;
+}
+
+// ---------------------------------------------------------------------------
+// Asedio infinito: tras ganar el examen se puede seguir jugando. La nota ya
+// está sellada en la UI; aquí solo crece la dificultad y el botín de puntos.
+// ---------------------------------------------------------------------------
+export const scoreMult = (game) => (game.endless ? 1 + 0.25 * (game.level - EXAM_VICTORY_LEVEL) : 1);
+const endlessHpMult = (game) => (game.endless ? 1 + 0.15 * (game.level - EXAM_VICTORY_LEVEL) : 1);
+const endlessSpeedMult = (game) => (game.endless ? 1 + Math.min(0.03 * (game.level - EXAM_VICTORY_LEVEL), 0.45) : 1);
+
+export function enterEndless(game) {
+  if (game.mode !== 'exam' || game.endless || game.level < EXAM_VICTORY_LEVEL) return false;
+  game.endless = true;
+  game.phase = 'run';
+  game.levelUpAt = game.time + LEVEL_SECONDS;
+  pushText(game, WORLD.w / 2, WORLD.h / 2 - 40, '⚔️ ¡ASEDIO INFINITO!', '#f87171');
+  return true;
+}
+
 export const MAX_TOWER_LEVEL = 3;
 export const MOVE_COST = 30;            // recolocar cualquier construcción
 // --- estructuras destructibles y saboteadores ---
@@ -356,6 +422,10 @@ export function createGame(cfg) {
     fortTurrets: [],               // {x, y, cooldown, aim, flash}
     fortCannon: null,              // {x, y, cooldown, aim, flash}
     nextId: 1,
+    relics: [],                    // ids de RELICS elegidas
+    relicMods: defaultRelicMods(), // efectos acumulados (se recalculan al elegir)
+    pendingRelics: null,           // oferta activa [3 ids] a la espera de elección
+    endless: false,                // asedio infinito tras la victoria del examen
     stats: { kills: 0, leaks: 0, towersBuilt: 0, shielded: 0 },
   };
 }
@@ -407,7 +477,7 @@ function nextSpawnEntry(game) {
 function spawnEnemy(game, entry) {
   const base = ENEMY_TYPES[entry.type];
   const hpMult = entry.type === 'boss' ? 1 + 0.45 * (game.level - 1) : levelHpMult(game.level);
-  const maxHp = Math.round(base.hp * hpMult);
+  const maxHp = Math.round(base.hp * hpMult * endlessHpMult(game));
   const pathId = Math.min(entry.pathId ?? 0, game.map.paths.length - 1);
   const enemy = {
     id: game.nextId++,
@@ -418,7 +488,7 @@ function spawnEnemy(game, entry) {
     dist: 0,
     hp: maxHp,
     maxHp,
-    speed: base.speed * levelSpeedMult(game.level),
+    speed: base.speed * levelSpeedMult(game.level) * endlessSpeedMult(game),
     radius: base.radius,
     slowUntil: 0,
     slowPct: 0,
@@ -461,7 +531,7 @@ export function placeTower(game, col, row, typeId, catIdx = null) {
   if (!type || game.coins < type.cost || !canPlace(game, typeId, col, row)) return null;
   if (type.unique && game.towers.some((t) => t.type === typeId)) return null;
   game.coins -= type.cost;
-  const baseHp = type.baseHp || TOWER_BASE_HP;
+  const baseHp = Math.round((type.baseHp || TOWER_BASE_HP) * (type.kind === 'barrier' ? game.relicMods.wallHp : 1));
   const tower = {
     id: game.nextId++,
     type: typeId,
@@ -539,7 +609,8 @@ export function upgradeTower(game, towerId) {
   game.coins -= cost;
   t.invested += cost;
   t.level++;
-  t.maxHp = (type.baseHp || TOWER_BASE_HP) + (type.hpPerLevel || TOWER_HP_PER_LEVEL) * (t.level - 1);
+  const wallMult = type.kind === 'barrier' ? game.relicMods.wallHp : 1;
+  t.maxHp = Math.round(((type.baseHp || TOWER_BASE_HP) + (type.hpPerLevel || TOWER_HP_PER_LEVEL) * (t.level - 1)) * wallMult);
   t.hp = t.maxHp; // mejorar también repara
   return true;
 }
@@ -552,8 +623,9 @@ export function sellTower(game, towerId) {
   return true;
 }
 
-const towerDmg = (t) => TOWER_TYPES[t.type].dmg * Math.pow(1.4, t.level - 1);
-export const towerRange = (t) => TOWER_TYPES[t.type].range + 12 * (t.level - 1);
+// El segundo parámetro (game) aplica las reliquias; sin él, valores base.
+const towerDmg = (t, g) => TOWER_TYPES[t.type].dmg * Math.pow(1.4, t.level - 1) * (g?.relicMods.dmg ?? 1);
+export const towerRange = (t, g) => (TOWER_TYPES[t.type].range + 12 * (t.level - 1)) * (g?.relicMods.range ?? 1);
 
 // ---------------------------------------------------------------------------
 // Mejoras de la fortaleza (muralla externa → torretas → gran cañón)
@@ -599,9 +671,10 @@ export function classifyEnemy(game, enemyId, catIdx) {
     e.revealed = true;
     const dmg = Math.max(Math.round(e.maxHp * CLASSIFY_DMG_PCT), 20);
     applyDamage(game, e, dmg, null);
-    game.score += 150;
+    const pts = Math.round(150 * scoreMult(game));
+    game.score += pts;
     game.energy = Math.min(game.energy + ENERGY_PER_CRIT, ENERGY_MAX);
-    pushText(game, e.x, e.y - 28, '¡CRÍTICO! +150', '#fbbf24');
+    pushText(game, e.x, e.y - 28, `¡CRÍTICO! +${pts}`, '#fbbf24');
   } else {
     game.jams[catIdx] = game.time + JAM_SECONDS;
     pushText(game, e.x, e.y - 28, '¡Torres atascadas!', '#ef4444');
@@ -655,7 +728,7 @@ function applyDamage(game, enemy, dmg, tower) {
 }
 
 function findTarget(game, tower) {
-  const range = towerRange(tower);
+  const range = towerRange(tower, game);
   let best = null;
   for (const e of game.enemies) {
     if (e.hp <= 0) continue;
@@ -688,14 +761,33 @@ export function stepGame(game, dt) {
   if (game.time >= game.levelUpAt) {
     game.level++;
     game.levelUpAt = game.time + LEVEL_SECONDS;
-    game.coins += LEVEL_COIN_BONUS;
-    pushText(game, WORLD.w / 2, WORLD.h / 2 - 60, `¡Nivel ${game.level}! +${LEVEL_COIN_BONUS} 🪙`, '#fde047');
+    const lvlCoins = Math.round(LEVEL_COIN_BONUS * game.relicMods.coins);
+    game.coins += lvlCoins;
+    pushText(game, WORLD.w / 2, WORLD.h / 2 - 60, `¡Nivel ${game.level}! +${lvlCoins} 🪙`, '#fde047');
     events.push({ t: 'level_up', level: game.level });
-    if (game.mode === 'exam' && game.level >= EXAM_VICTORY_LEVEL) {
+    // amuleto del bibliotecario: recupera 1 vida al subir de nivel
+    if (game.relicMods.lifePerLevel > 0 && game.lives < STARTING_LIVES) {
+      game.lives = Math.min(STARTING_LIVES, game.lives + game.relicMods.lifePerLevel);
+      pushText(game, game.map.fort.x, game.map.fort.y - 55, '+1 ❤️', '#f87171');
+    }
+    if (game.mode === 'exam' && game.level >= EXAM_VICTORY_LEVEL && !game.endless) {
       game.phase = 'ended';
       game.score += game.lives * 50; // bonus por vidas restantes
       events.push({ t: 'victory' });
       return events;
+    }
+    // oferta de reliquia (determinista): 3 opciones del catálogo restante
+    if (game.level % RELIC_OFFER_EVERY === 0 && !game.pendingRelics && game.relics.length < MAX_RELICS) {
+      const pool = Object.keys(RELICS).filter((id) => !game.relics.includes(id));
+      if (pool.length) {
+        const options = [];
+        while (options.length < Math.min(3, pool.length)) {
+          const pick = pool[Math.floor(game.rng() * pool.length)];
+          if (!options.includes(pick)) options.push(pick);
+        }
+        game.pendingRelics = options;
+        events.push({ t: 'relic_offer', options });
+      }
     }
     // despertar progresivo de las mini-fortalezas enemigas: 1 → 2 → 3 frentes
     const gates = gateCountForLevel(game.level, game.map.paths.length);
@@ -742,8 +834,8 @@ export function stepGame(game, dt) {
 
   // --- aliados: salen de la fortaleza y traban combate en el camino ---
   if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
-    game.allyNextAt = game.time + ALLY.interval;
-    const hpMult = 1 + 0.2 * (game.level - 1);
+    game.allyNextAt = game.time + ALLY.interval * game.relicMods.allyRate;
+    const hpMult = (1 + 0.2 * (game.level - 1)) * game.relicMods.allyHp;
     game.allyGateRot = (game.allyGateRot + 1) % game.gatesOpen; // reparte puertas abiertas
     const pathId = game.allyGateRot;
     const path = game.map.paths[pathId];
@@ -925,7 +1017,7 @@ export function stepGame(game, dt) {
         events.push({ t: 'heal' });
       }
     }
-    const range = towerRange(sanct);
+    const range = towerRange(sanct, game);
     for (const e of game.enemies) {
       if (e.hp <= 0 || Math.hypot(e.x - sanct.x, e.y - sanct.y) > range) continue;
       // no pisar una ralentización más fuerte (Hielo/Ventisca)
@@ -941,6 +1033,10 @@ export function stepGame(game, dt) {
     tw.cooldown -= dt;
     if (tw.flash > 0) tw.flash -= dt;
     const type = TOWER_TYPES[tw.type];
+    // argamasa de obsidiana: las murallas se reparan solas
+    if (type.kind === 'barrier' && game.relicMods.wallRegen > 0 && tw.hp < tw.maxHp) {
+      tw.hp = Math.min(tw.maxHp, tw.hp + game.relicMods.wallRegen * dt);
+    }
     if (type.kind === 'oracle' || type.kind === 'barrier' || type.kind === 'sanctuary') continue; // no disparan
     if (type.needsCategory && game.time < game.jams[tw.catIdx]) continue; // atascada
     if (tw.cooldown > 0) continue;
@@ -950,7 +1046,7 @@ export function stepGame(game, dt) {
     tw.cooldown = 1 / type.rate;
     tw.flash = 0.1;
     if (type.kind === 'beam') {
-      applyDamage(game, target, towerDmg(tw), tw);
+      applyDamage(game, target, towerDmg(tw, game), tw);
       tw.beam = { x: target.x, y: target.y, life: 0.12 };
       events.push({ t: 'shoot', tower: tw.type });
       events.push({ t: 'hit' });
@@ -962,7 +1058,7 @@ export function stepGame(game, dt) {
         targetId: target.id,
         lastX: target.x, lastY: target.y,
         speed: type.projSpeed,
-        dmg: towerDmg(tw),
+        dmg: towerDmg(tw, game),
         catIdx: tw.catIdx,
         towerLevel: tw.level,
       });
@@ -1015,12 +1111,13 @@ export function stepGame(game, dt) {
       const type = TOWER_TYPES[pr.type] || FORT_PROJ[pr.type];
       if (type.kind === 'splash') {
         const burstCol = pr.type === 'fort_canon' ? '#c4b5fd' : '#f97316';
+        const splashR = type.splash * game.relicMods.splash; // pólvora refinada
         pushBurst(game, tx, ty, burstCol, 14, 120);
-        game.particles.push({ kind: 'ring', x: tx, y: ty, life: 0.3, maxLife: 0.3, color: burstCol, size: type.splash });
+        game.particles.push({ kind: 'ring', x: tx, y: ty, life: 0.3, maxLife: 0.3, color: burstCol, size: splashR });
         for (const e of game.enemies) {
           // catIdx null = proyectil universal (armamento de la fortaleza)
           if (e.hp <= 0 || (pr.catIdx != null && e.catIdx !== pr.catIdx)) continue;
-          if (Math.hypot(e.x - tx, e.y - ty) <= type.splash) {
+          if (Math.hypot(e.x - tx, e.y - ty) <= splashR) {
             applyDamage(game, e, pr.dmg, pr.catIdx != null ? { catIdx: pr.catIdx } : null);
           }
         }
@@ -1045,7 +1142,7 @@ export function stepGame(game, dt) {
     if (e.hp <= 0 && !e.counted) {
       e.counted = true;
       if (!e.leaked) {
-        const pts = killPoints(e, game.level);
+        const pts = Math.round(killPoints(e, game.level) * scoreMult(game));
         game.score += pts;
         game.stats.kills++;
         game.energy = Math.min(game.energy + ENERGY_PER_KILL, ENERGY_MAX);
@@ -1082,7 +1179,7 @@ function updateParticles(game, dt) {
 
 export function rewardCorrectAnswer(game, streak) {
   const bonus = Math.min(streak * COINS_STREAK_BONUS, COINS_STREAK_CAP);
-  const total = COINS_PER_CORRECT + bonus;
+  const total = Math.round((COINS_PER_CORRECT + bonus) * game.relicMods.coins);
   game.coins += total;
   game.energy = Math.min(game.energy + ENERGY_PER_CORRECT, ENERGY_MAX);
   return total;
@@ -1102,7 +1199,7 @@ export function castAbility(game, abilityId, x, y) {
   if (!canCastAbility(game, abilityId)) return false;
   const ab = ABILITIES[abilityId];
   game.energy -= ab.cost;
-  game.abilityCdUntil = game.time + ABILITY_GLOBAL_CD;
+  game.abilityCdUntil = game.time + ABILITY_GLOBAL_CD * game.relicMods.abilityCd;
 
   const inArea = game.enemies.filter((e) => e.hp > 0 && Math.hypot(e.x - x, e.y - y) <= ab.radius);
 
