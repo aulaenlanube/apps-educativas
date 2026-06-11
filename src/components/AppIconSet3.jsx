@@ -906,6 +906,90 @@ const icons3 = {
       <rect x="8" y="7" width="32" height="2" rx="1" fill="white" opacity="0.4" />
     </svg>
   ),
+
+  'la-fortaleza': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ai3-fort-bg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F5F3FF" />
+          <stop offset="1" stopColor="#FEF3C7" />
+        </linearGradient>
+        <linearGradient id="ai3-fort-wall" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#8B5CF6" />
+          <stop offset="1" stopColor="#7C3AED" />
+        </linearGradient>
+        <linearGradient id="ai3-fort-tower" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#7C3AED" />
+          <stop offset="1" stopColor="#6D28D9" />
+        </linearGradient>
+        <linearGradient id="ai3-fort-flag" x1="0" y1="0" x2="1" y2="0">
+          <stop stopColor="#FBBF24" />
+          <stop offset="1" stopColor="#F59E0B" />
+        </linearGradient>
+        <linearGradient id="ai3-fort-enemy" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#F87171" />
+          <stop offset="1" stopColor="#DC2626" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#ai3-fort-bg)" />
+
+      {/* Camino hacia la puerta */}
+      <path d="M4 44 C 13 43, 17 40, 22 38 C 26 36.5, 28 35, 29 32" stroke="#FDE68A" strokeWidth="5.5" strokeLinecap="round" fill="none" />
+      <path d="M4 44 C 13 43, 17 40, 22 38 C 26 36.5, 28 35, 29 32" stroke="#FCD34D" strokeWidth="3" strokeLinecap="round" fill="none" strokeDasharray="3 2.4" />
+
+      {/* Sombra de la fortaleza */}
+      <rect x="14" y="35" width="30" height="2" rx="1" fill="rgba(0,0,0,0.06)" />
+
+      {/* Muralla */}
+      <rect x="17" y="22" width="24" height="14" rx="1.5" fill="url(#ai3-fort-wall)" />
+      {/* Almenas de la muralla */}
+      <rect x="22.5" y="19.8" width="3.4" height="3" rx="0.6" fill="#7C3AED" />
+      <rect x="32.5" y="19.8" width="3.4" height="3" rx="0.6" fill="#7C3AED" />
+
+      {/* Torres laterales */}
+      <rect x="14.5" y="16" width="7" height="20" rx="1.5" fill="url(#ai3-fort-tower)" />
+      <rect x="36.5" y="16" width="7" height="20" rx="1.5" fill="url(#ai3-fort-tower)" />
+      {/* Almenas de las torres */}
+      <rect x="14.5" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      <rect x="17" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      <rect x="19.5" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      <rect x="36.5" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      <rect x="39" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      <rect x="41.5" y="13.8" width="2" height="3" rx="0.5" fill="#6D28D9" />
+      {/* Ventanas con luz */}
+      <rect x="17.3" y="20" width="1.6" height="3.4" rx="0.8" fill="#FDE68A" style={{ animation: 'ai-shimmer 2.6s ease-in-out infinite' }} />
+      <rect x="39.3" y="20" width="1.6" height="3.4" rx="0.8" fill="#FDE68A" style={{ animation: 'ai-shimmer 2.6s ease-in-out 0.8s infinite' }} />
+
+      {/* Torre del homenaje central */}
+      <rect x="25" y="12" width="8" height="12" rx="1.2" fill="url(#ai3-fort-tower)" />
+      <rect x="25" y="10.2" width="1.9" height="2.6" rx="0.5" fill="#6D28D9" />
+      <rect x="28" y="10.2" width="1.9" height="2.6" rx="0.5" fill="#6D28D9" />
+      <rect x="31.1" y="10.2" width="1.9" height="2.6" rx="0.5" fill="#6D28D9" />
+
+      {/* Estandarte ondeando */}
+      <rect x="28.6" y="3.5" width="0.9" height="7" rx="0.45" fill="#92400E" />
+      <path d="M29.5 4 L37 5.6 L29.5 7.6 Z" fill="url(#ai3-fort-flag)" style={{ transformOrigin: '29.5px 5.5px', animation: 'ai-swing 2.4s ease-in-out infinite' }} />
+
+      {/* Puerta */}
+      <path d="M26.4 36 L26.4 31.5 Q26.4 28.6 29 28.6 Q31.6 28.6 31.6 31.5 L31.6 36 Z" fill="#312E81" />
+      <rect x="26.4" y="33.4" width="5.2" height="0.7" fill="#4338CA" opacity="0.7" />
+
+      {/* Enemigo geométrico avanzando por el camino */}
+      <g style={{ transformOrigin: '11px 40.5px', animation: 'ai-wiggle 1.6s ease-in-out infinite' }}>
+        <rect x="8" y="37.5" width="6" height="6" rx="1.4" fill="url(#ai3-fort-enemy)" />
+        <rect x="9.4" y="39.4" width="1.3" height="1.3" rx="0.3" fill="white" />
+        <rect x="11.4" y="39.4" width="1.3" height="1.3" rx="0.3" fill="white" />
+        <path d="M9 38.9 L10.8 39.4" stroke="#7F1D1D" strokeWidth="0.7" strokeLinecap="round" />
+        <path d="M13 38.9 L11.2 39.4" stroke="#7F1D1D" strokeWidth="0.7" strokeLinecap="round" />
+      </g>
+
+      {/* Proyectil defensivo */}
+      <circle cx="18" cy="31" r="1.5" fill="#FBBF24" style={{ transformOrigin: '18px 31px', animation: 'ai-pulse 1.4s ease-in-out infinite' }} />
+
+      {/* Brillo superior */}
+      <rect x="17" y="22" width="24" height="1.4" rx="0.7" fill="white" opacity="0.25" />
+    </svg>
+  ),
 };
 
 export default icons3;
