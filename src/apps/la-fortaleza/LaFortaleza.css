@@ -107,7 +107,8 @@
 
 /* ---------- panel de quiz ---------- */
 .fort-quiz {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  /* centrado sin transform: framer-motion pisa el transform al animar */
+  position: absolute; inset: 0; margin: auto; height: fit-content;
   width: min(92%, 460px);
   background: rgba(15, 23, 42, 0.94);
   border: 1px solid rgba(168, 85, 247, 0.5);
@@ -155,7 +156,7 @@
 
 /* ---------- modal clasificación / catpick / quit ---------- */
 .fort-classify {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  position: absolute; inset: 0; margin: auto; height: fit-content;
   width: min(90%, 380px);
   background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(251, 191, 36, 0.5);
@@ -182,7 +183,7 @@
 
 /* ---------- modal jefe ---------- */
 .fort-boss {
-  position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  position: absolute; inset: 0; margin: auto; height: fit-content;
   width: min(94%, 480px);
   background: linear-gradient(160deg, rgba(76, 29, 149, 0.96), rgba(15, 23, 42, 0.96));
   border: 2px solid #fbbf24;
@@ -208,7 +209,7 @@
 
 /* ---------- pregunta del Oráculo ---------- */
 .fort-oracle {
-  position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  position: absolute; inset: 0; margin: auto; height: fit-content;
   width: min(94%, 440px);
   background: linear-gradient(160deg, rgba(8, 51, 68, 0.96), rgba(15, 23, 42, 0.96));
   border: 2px solid #22d3ee;

@@ -94,8 +94,7 @@ export function createScene3D(container, game) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.enabled = false; // sin sombras en toda la escena (rendimiento)
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.15;
   container.appendChild(renderer.domElement);
@@ -124,11 +123,6 @@ export function createScene3D(container, game) {
   scene.add(new THREE.HemisphereLight(0xffffff, 0x2dd4bf, 1.0));
   const sunLight = new THREE.DirectionalLight(0xfff3c4, 2.2);
   sunLight.position.set(7, 14, -5);
-  sunLight.castShadow = true;
-  sunLight.shadow.mapSize.set(1024, 1024);
-  sunLight.shadow.camera.left = -11; sunLight.shadow.camera.right = 11;
-  sunLight.shadow.camera.top = 8; sunLight.shadow.camera.bottom = -8;
-  sunLight.shadow.bias = -0.002;
   scene.add(sunLight);
   const warmLight = new THREE.PointLight(0xffb347, 8, 8);
   scene.add(warmLight);
@@ -1119,44 +1113,63 @@ export function createScene3D(container, game) {
       }
     }
 
-    // arma en la mano derecha (pivote para los ataques)
+    // brazos con hombro articulado: manga del color del cuerpo, brazal de
+    // acero y guantelete. El derecho empuña el arma (mandobles en combate),
+    // el izquierdo embraza el escudo; ambos se balancean al marchar.
+    const buildArm = (side) => {
+      const arm = new THREE.Group();
+      arm.position.set(0, k * 0.58, side * k * 0.23);
+      const sleeve = new THREE.Mesh(box(k * 0.1, k * 0.16, k * 0.1), mat);
+      sleeve.position.y = -k * 0.05;
+      const bracer = new THREE.Mesh(box(k * 0.09, k * 0.12, k * 0.09), shared.steelMat);
+      bracer.position.y = -k * 0.18;
+      const fist = new THREE.Mesh(box(k * 0.08, k * 0.07, k * 0.08), shared.accentDarkMat);
+      fist.position.y = -k * 0.27;
+      arm.add(sleeve, bracer, fist);
+      arm.rotation.z = -0.12;
+      figure.add(arm);
+      return arm;
+    };
+    const armR = buildArm(1);
+    const armL = buildArm(-1);
+    anim.arms = [armR, armL];
+
+    // arma empuñada en el guantelete derecho
     const weapon = new THREE.Group();
-    weapon.position.set(k * 0.12, k * 0.42, k * 0.22);
+    weapon.position.y = -k * 0.27;
     let hammer = null;
     if (e.type === 'sabo') {
-      // martillo de demolición (conserva su animación de derribo)
+      // martillo de demolición (la animación de derribo gira el hombro entero)
       const handle = new THREE.Mesh(box(0.045, k * 0.55, 0.045), shared.woodMat);
-      handle.position.y = k * 0.22;
+      handle.position.y = k * 0.16;
       const headH = new THREE.Mesh(box(k * 0.2, k * 0.14, k * 0.26), shared.steelMat);
-      headH.position.y = k * 0.5;
+      headH.position.y = k * 0.42;
       weapon.add(handle, headH);
-      hammer = weapon;
+      hammer = armR;
     } else if (e.type === 'brute') {
       // hacha pesada
       const handle = new THREE.Mesh(box(0.05, k * 0.6, 0.05), shared.woodMat);
-      handle.position.y = k * 0.22;
+      handle.position.y = k * 0.18;
       const blade = new THREE.Mesh(box(k * 0.06, k * 0.22, k * 0.26), shared.steelMat);
-      blade.position.set(0, k * 0.5, k * 0.12);
+      blade.position.set(0, k * 0.44, k * 0.12);
       weapon.add(handle, blade);
     } else {
       // espada (el jefe la lleva mayor y con gema en el pomo)
       const swordLen = boss ? k * 0.55 : k * 0.42;
       const blade = new THREE.Mesh(box(0.045, swordLen, 0.045), shared.steelMat);
-      blade.position.y = k * 0.16 + swordLen / 2;
+      blade.position.y = k * 0.06 + swordLen / 2;
       const guard = new THREE.Mesh(box(k * 0.12, 0.035, 0.06), shared.crownMat);
-      guard.position.y = k * 0.16;
+      guard.position.y = k * 0.06;
       weapon.add(blade, guard);
       if (boss) {
         const gem = new THREE.Mesh(octa(0.05), shared.orbMat);
-        gem.position.y = k * 0.1;
-        weapon.add(gem);
+        weapon.add(gem); // pomo
       }
     }
-    figure.add(weapon);
-    anim.weapon = weapon;
+    armR.add(weapon);
 
-    // escudo en el flanco izquierdo con borde del color de la categoría
-    // (el scout va ligero y el demoledor lleva las dos manos en el martillo)
+    // escudo embrazado en el izquierdo, con borde del color de la categoría
+    // (el scout va ligero y el demoledor necesita el brazo libre)
     if (e.type !== 'scout' && e.type !== 'sabo') {
       const shield = new THREE.Group();
       const rim = new THREE.Mesh(box(k * 0.24, k * 0.34, k * 0.02), mat);
@@ -1165,8 +1178,8 @@ export function createScene3D(container, game) {
       const emblem = new THREE.Mesh(sph(0.03, 6), shared.pipMat);
       emblem.position.z = -k * 0.035;
       shield.add(rim, plate, emblem);
-      shield.position.set(k * 0.05, k * 0.45, -k * 0.26);
-      figure.add(shield);
+      shield.position.set(k * 0.02, -k * 0.2, -k * 0.07);
+      armL.add(shield);
     }
 
     // piernas (más recias en el bruto y el jefe)
@@ -1277,37 +1290,51 @@ export function createScene3D(container, game) {
       g.add(leg);
       legs.push(leg);
     }
-    // escudo en el flanco izquierdo, con emblema
+    // brazos articulados en el hombro: manga violeta + brazal de acero
+    const mkArm = (side) => {
+      const arm = new THREE.Group();
+      arm.position.set(0, 0.4, side * 0.16);
+      const sleeve = new THREE.Mesh(box(0.07, 0.12, 0.07), allyBodyMat);
+      sleeve.position.y = -0.04;
+      const bracer = new THREE.Mesh(box(0.06, 0.09, 0.06), allyHelmMat);
+      bracer.position.y = -0.13;
+      arm.add(sleeve, bracer);
+      g.add(arm);
+      return arm;
+    };
+    const armR = mkArm(1);
+    const armL = mkArm(-1);
+    // escudo embrazado en el izquierdo, con emblema
     const shield = new THREE.Group();
     const plate = new THREE.Mesh(box(0.18, 0.26, 0.05), allyShieldMat);
-    shield.add(plate);
     const emblem = new THREE.Mesh(sph(0.035, 6), shared.pipMat);
     emblem.position.z = -0.035;
-    shield.add(emblem);
-    shield.position.set(0.02, 0.28, -0.18);
+    shield.add(plate, emblem);
+    shield.position.set(0.02, -0.17, -0.06);
+    armL.add(shield);
     // capa ondeante
     const capePivot = new THREE.Group();
     capePivot.position.set(-0.12, 0.42, 0);
     const cape = new THREE.Mesh(box(0.03, 0.34, 0.22), allyCapeMat);
     cape.position.y = -0.16;
     capePivot.add(cape);
-    // espada con estela luminosa durante el barrido
-    const swordPivot = new THREE.Group();
+    // espada en la mano derecha, con estela luminosa durante el barrido
+    const sword = new THREE.Group();
+    sword.position.y = -0.18;
     const blade = new THREE.Mesh(box(0.34, 0.045, 0.045), allyHelmMat);
-    blade.position.x = 0.2;
+    blade.position.x = 0.18;
     const guard = new THREE.Mesh(box(0.04, 0.12, 0.04), shared.barrelMat);
-    swordPivot.add(blade, guard);
     const trailMat = new THREE.MeshBasicMaterial({
       color: 0xe9d5ff, transparent: true, opacity: 0,
       blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
     });
     const trail = new THREE.Mesh(box(0.36, 0.005, 0.18), trailMat);
-    trail.position.set(0.2, -0.06, 0);
+    trail.position.set(0.18, -0.06, 0);
     trail.visible = false;
-    swordPivot.add(trail);
-    swordPivot.position.set(0.12, 0.3, 0.16);
-    g.add(body, chest, belt, head, helm, brimH, plume, shield, capePivot, swordPivot);
-    g.userData = { allyId: a.id, swordPivot, body, legs, capePivot, trail, trailMat };
+    sword.add(blade, guard, trail);
+    armR.add(sword);
+    g.add(body, chest, belt, head, helm, brimH, plume, capePivot);
+    g.userData = { allyId: a.id, swordPivot: armR, armL, body, legs, capePivot, trail, trailMat };
     return g;
   }
 
@@ -1330,6 +1357,7 @@ export function createScene3D(container, game) {
       const sw = engaged ? 0 : Math.sin(a.dist * 0.45 + a.phase);
       u.legs[0].rotation.x = sw * 0.7;
       u.legs[1].rotation.x = -sw * 0.7;
+      u.armL.rotation.z = -0.1 - sw * 0.3; // el brazo del escudo acompaña la marcha
       u.capePivot.rotation.z = -0.12 - Math.abs(sw) * 0.18 - Math.sin(game.time * 2.2 + a.phase) * 0.05;
       u.body.rotation.z = engaged ? -0.1 : 0; // se inclina al luchar
       // espadazo: la hoja barre hacia delante con estela
@@ -1588,12 +1616,12 @@ export function createScene3D(container, game) {
         const blink = Math.sin(game.time * 1.6 + e.phase * 3) > 0.97 ? 0.12 : 1;
         for (const p of w.pupils) p.scale.y = blink;
       }
-      // arma: balanceo al andar y mandobles al luchar con un caballero
-      if (w.weapon && !m.hammer) {
-        const fighting = !!e.blockedBy;
-        w.weapon.rotation.z = fighting
-          ? Math.sin(game.time * 9 + e.phase) * 0.7 - 0.45
-          : -0.12 + Math.sin(walkT) * 0.12;
+      // brazos: balanceo de marcha; el del arma lanza mandobles en combate
+      if (w.arms) {
+        const aw = Math.sin(walkT) * 0.28;
+        w.arms[0].rotation.z = -0.12 + aw;
+        w.arms[1].rotation.z = -0.12 - aw;
+        if (e.blockedBy) w.arms[0].rotation.z = Math.sin(game.time * 9 + e.phase) * 0.8 - 0.5;
       }
       if (w.cape) w.cape.rotation.z = -0.18 - Math.abs(Math.sin(walkT)) * 0.12 - Math.sin(game.time * 2.4 + e.phase) * 0.06;
       if (w.banner) w.banner.rotation.x = Math.sin(game.time * 4 + e.phase) * 0.22;
@@ -1616,11 +1644,13 @@ export function createScene3D(container, game) {
         m.ring.material.color.set(game.categories[e.catIdx].color);
       }
 
-      // martillo del saboteador: golpea mientras demuele (+ inclinación)
-      if (m.hammer) {
-        const working = !!e.attackTowerId;
-        m.hammer.rotation.z = working ? Math.sin(game.time * 10) * 0.9 - 0.4 : -0.2;
-        m.body.rotation.z = working ? Math.sin(game.time * 10) * 0.06 : 0;
+      // demoledor: martillazos con todo el brazo mientras derriba estructuras
+      // (en marcha, el balanceo del brazo lo lleva el bloque de arriba)
+      if (m.hammer && e.attackTowerId) {
+        m.hammer.rotation.z = Math.sin(game.time * 10) * 0.9 - 0.4;
+        m.body.rotation.z = Math.sin(game.time * 10) * 0.06;
+      } else if (m.hammer) {
+        m.body.rotation.z = 0;
       }
 
       // etiqueta: redibujar solo cuando cambia el bucket de vida o el borde
