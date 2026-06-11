@@ -8,7 +8,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
-  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle,
+  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle, Settings2,
 } from 'lucide-react';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
@@ -18,6 +18,10 @@ import {
   SANCT_UNLOCK_CORRECT, FORT_UPGRADES, buyFortUpgrade,
 } from './engine';
 import { createScene3D } from './render3d';
+import {
+  QUALITY_LEVELS, QUALITY_LABELS, loadQualityPref, saveQualityPref,
+  resolveQuality, lowerTier, createFpsGovernor,
+} from './quality';
 
 const PREP_QUESTIONS = 2;       // preguntas de la fase de preparación
 const QUIZ_SECONDS_EXAM = 30;
@@ -54,6 +58,22 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   const [selectedTowerId, setSelectedTowerId] = useState(null);
   const [speed, setSpeed] = useState(1);
   const [soundOn, setSoundOn] = useState(sounds.isEnabled());
+
+  // --- calidad gráfica: preferencia persistida + nivel efectivo resuelto ---
+  const [gfxPref, setGfxPref] = useState(loadQualityPref);
+  const [gfxTier, setGfxTier] = useState(() => resolveQuality(loadQualityPref()));
+  const [gfxOpen, setGfxOpen] = useState(false);
+  const [gfxToast, setGfxToast] = useState(null);
+  const gfxPrefRef = useRef(gfxPref);
+  gfxPrefRef.current = gfxPref;
+  const gfxToastTimer = useRef(null);
+
+  const changeQuality = useCallback((pref) => {
+    saveQualityPref(pref);
+    setGfxPref(pref);
+    setGfxTier(resolveQuality(pref));
+    setGfxOpen(false);
+  }, []);
 
   // --- refs espejo para el bucle rAF y los handlers de puntero ---
   const phaseRef = useRef(phase);
@@ -413,13 +433,30 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   }, [bossQuestions, endGame, nextQuestion]);
 
   // --- escena 3D + bucle principal ---
+  // gfxTier en las deps: cambiar la calidad desecha y reconstruye la escena
+  // desde el estado del engine (la partida no se entera del cambio).
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
-    const scene = createScene3D(mount, gameRef.current);
+    const scene = createScene3D(mount, gameRef.current, gfxTier);
     sceneRef.current = scene;
     const ro = new ResizeObserver(() => scene.resize());
     ro.observe(mount);
+
+    // governor: si el equipo no sostiene los FPS en modo Auto, baja un nivel
+    const governor = createFpsGovernor({
+      onDowngrade: () => {
+        if (gfxPrefRef.current !== 'auto') return;
+        setGfxTier((tier) => {
+          const next = lowerTier(tier);
+          if (next === tier) return tier;
+          setGfxToast(`Rendimiento bajo: calidad ajustada a ${QUALITY_LABELS[next]}`);
+          clearTimeout(gfxToastTimer.current);
+          gfxToastTimer.current = setTimeout(() => setGfxToast(null), 4500);
+          return next;
+        });
+      },
+    });
 
     let raf = 0;
     let last = performance.now();
@@ -427,6 +464,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       raf = requestAnimationFrame(loop);
       const dt = Math.min((ts - last) / 1000, 0.05);
       last = ts;
+      governor.tick(dt);
       const g = gameRef.current;
 
       // Escala temporal: modal abierto → pausa (práctica) o cámara lenta (examen)
@@ -485,7 +523,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       scene.dispose();
       sceneRef.current = null;
     };
-  }, [handleEvents, isExam]);
+  }, [handleEvents, isExam, gfxTier]);
 
   // --- interacción: toque corto = acción, arrastre = orbitar, rueda/pellizco = zoom ---
   const pointersRef = useRef(new Map());
@@ -676,6 +714,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     setSelectedTowerId(null);
     setMovingTowerId(null);
     setFortOpen(false);
+    setGfxOpen(false);
     setAimingAbility((prev) => (prev === id ? null : id));
   }, []);
 
@@ -710,6 +749,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
               setPlacingType(null);
               setAimingAbility(null);
               setMovingTowerId(null);
+              setGfxOpen(false);
               setFortOpen((o) => !o);
             }}
             title="Mejoras de la fortaleza"
@@ -723,6 +763,13 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {phase !== 'ended' && (
           <button className="fort-hud-btn" onClick={() => setOverlay({ type: 'exit' })} title="Volver a la selección de modo"><LogOut size={16} /></button>
         )}
+        <button
+          className={`fort-hud-btn ${gfxOpen ? 'active' : ''}`}
+          onClick={() => { setFortOpen(false); setGfxOpen((o) => !o); }}
+          title="Calidad gráfica"
+        >
+          <Settings2 size={16} />
+        </button>
         <button className="fort-hud-btn" onClick={toggleFullscreen} title="Pantalla completa"><Maximize2 size={16} /></button>
         <button className="fort-hud-btn" onClick={toggleSound} title="Sonido">
           {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
@@ -739,6 +786,39 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         onPointerCancel={onPointerUp}
         onWheel={onWheel}
       >
+        {/* viñeta cinematográfica (CSS puro: coste cero) */}
+        <div className="fort-vignette" />
+
+        {/* ---------- panel de calidad gráfica ---------- */}
+        <AnimatePresence>
+          {gfxOpen && (
+            <motion.div className="fort-gfxpanel" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+              <div className="fort-gfxpanel-title"><Settings2 size={15} /> Calidad gráfica</div>
+              <div className="fort-gfx-options">
+                <button className={gfxPref === 'auto' ? 'active' : ''} onClick={() => changeQuality('auto')}>🪄 Auto</button>
+                {QUALITY_LEVELS.map((l) => (
+                  <button key={l.id} className={gfxPref === l.id ? 'active' : ''} onClick={() => changeQuality(l.id)}>
+                    {l.icon} {l.name}
+                  </button>
+                ))}
+              </div>
+              <p className="fort-gfx-note">
+                Nivel activo: <strong>{QUALITY_LABELS[gfxTier]}</strong> · se aplica al instante, la partida no se pierde.
+                {gfxPref === 'auto' && ' En Auto, si el equipo va justo se baja solo.'}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* aviso del governor de FPS */}
+        <AnimatePresence>
+          {gfxToast && (
+            <motion.div className="fort-gfx-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+              ⚙️ {gfxToast}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* ---------- panel de quiz ---------- */}
         <AnimatePresence>
           {phase === 'quiz' && quiz && (

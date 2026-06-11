@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Castle, GraduationCap, Swords, Trophy, Star, BookOpen, Skull,
-  Target, Crown, ScrollText, RotateCcw, Shield,
+  Target, Crown, ScrollText, RotateCcw, Shield, Settings2,
 } from 'lucide-react';
 import { getRoscoData, getRunnerData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -17,6 +17,7 @@ import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsMo
 import FortalezaGame from './FortalezaGame';
 import { createSounds } from './sound';
 import { mulberry32, seededShuffle, CATEGORY_COLORS, EXAM_VICTORY_LEVEL } from './engine';
+import { QUALITY_LEVELS, loadQualityPref, saveQualityPref } from './quality';
 import './LaFortaleza.css';
 
 const MIN_WORDS_PER_CAT = 4;
@@ -164,6 +165,12 @@ const LaFortaleza = ({ onGameComplete }) => {
   const [showHelp, setShowHelp] = useState(false);
   const [showStudy, setShowStudy] = useState(false);
   const [studyTab, setStudyTab] = useState('categorias');
+  const [gfxPref, setGfxPref] = useState(loadQualityPref);
+
+  const pickQuality = useCallback((pref) => {
+    saveQualityPref(pref);
+    setGfxPref(pref);
+  }, []);
 
   const sounds = useMemo(() => createSounds(), []);
   const trackedRef = useRef(false);
@@ -297,6 +304,16 @@ const LaFortaleza = ({ onGameComplete }) => {
           <button className="fort-study-btn" onClick={() => setShowStudy(true)}>
             <BookOpen size={16} /> Ver material de estudio
           </button>
+
+          <div className="fort-gfx-row">
+            <span className="fort-gfx-row-label"><Settings2 size={14} /> Gráficos</span>
+            <button className={gfxPref === 'auto' ? 'active' : ''} onClick={() => pickQuality('auto')}>🪄 Auto</button>
+            {QUALITY_LEVELS.map((l) => (
+              <button key={l.id} className={gfxPref === l.id ? 'active' : ''} onClick={() => pickQuality(l.id)}>
+                {l.icon} {l.name}
+              </button>
+            ))}
+          </div>
         </motion.div>
       )}
 

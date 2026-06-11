@@ -5,9 +5,15 @@
 // Nada de imágenes ni modelos externos: todo generado en runtime.
 
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import {
   GRID, WORLD, TOWER_TYPES, towerRange, mulberry32, pointAtDistance, ABILITIES, FORT_WALL_R,
 } from './engine';
+import { QUALITY_PARAMS } from './quality';
 
 // Mapeo campo 2D (960x540 px) → mundo 3D (16x9 unidades, Y arriba)
 const U = 1 / GRID.cell;
@@ -89,12 +95,14 @@ function drawEnemyLabel(cv, word, hpRatio, borderColor) {
 // Escena
 // ---------------------------------------------------------------------------
 
-export function createScene3D(container, game) {
+export function createScene3D(container, game, qualityTier = 'high') {
+  const Q = QUALITY_PARAMS[qualityTier] || QUALITY_PARAMS.high;
   const rng = mulberry32(game.seed ^ 0x3dfca7);
-  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const renderer = new THREE.WebGLRenderer({ antialias: Q.antialias, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, Q.pixelRatio));
   renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.shadowMap.enabled = false; // sin sombras en toda la escena (rendimiento)
+  renderer.shadowMap.enabled = Q.shadows; // en Bajo: cero pase de sombras
+  if (Q.shadows) renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.15;
   container.appendChild(renderer.domElement);
@@ -124,10 +132,50 @@ export function createScene3D(container, game) {
   const sunLight = new THREE.DirectionalLight(0xfff3c4, 2.2);
   sunLight.position.set(7, 14, -5);
   scene.add(sunLight);
+  if (Q.shadows) {
+    // una única luz con sombra, frustum ceñido al tablero (la isla decorativa
+    // de alrededor no entra: mapa más nítido al mismo coste)
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.set(Q.shadowMapSize, Q.shadowMapSize);
+    const sc = sunLight.shadow.camera;
+    sc.left = -13; sc.right = 13; sc.top = 10; sc.bottom = -9;
+    sc.near = 2; sc.far = 45;
+    sunLight.shadow.bias = -0.0004;
+    sunLight.shadow.normalBias = 0.03;
+    scene.add(sunLight.target);
+  }
   const warmLight = new THREE.PointLight(0xffb347, 8, 8);
   scene.add(warmLight);
 
-  // --- cielo: sol + nubes geométricas ---
+  // --- environment map procedural (Medio/Alto): un PMREM de un cielo
+  // degradado que da reflejos suaves a los materiales Standard (cristales,
+  // núcleos, corazón del Santuario) sin cargar ninguna textura externa ---
+  if (Q.envMap) {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const envScene = new THREE.Scene();
+    const skyGeo = new THREE.SphereGeometry(10, 16, 12);
+    const pos = skyGeo.attributes.position;
+    const cols = [];
+    const cTop = new THREE.Color(0x53c8ff);
+    const cMid = new THREE.Color(0xfff7e8);
+    const cBot = new THREE.Color(0x4ade80);
+    for (let i = 0; i < pos.count; i++) {
+      const t = pos.getY(i) / 10;
+      const c = t > 0 ? cMid.clone().lerp(cTop, t) : cMid.clone().lerp(cBot, -t);
+      cols.push(c.r, c.g, c.b);
+    }
+    skyGeo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+    const skyBall = new THREE.Mesh(skyGeo, new THREE.MeshBasicMaterial({ side: THREE.BackSide, vertexColors: true }));
+    envScene.add(skyBall);
+    scene.environment = pmrem.fromScene(envScene, 0.04).texture;
+    skyGeo.dispose();
+    skyBall.material.dispose();
+    pmrem.dispose();
+  }
+
+  // --- cielo: sol + nubes geométricas (derivan girando despacio) ---
+  const cloudGroup = new THREE.Group();
+  scene.add(cloudGroup);
   {
     const sun = new THREE.Mesh(
       new THREE.SphereGeometry(2, 16, 16),
@@ -147,7 +195,7 @@ export function createScene3D(container, game) {
       const a = rng() * Math.PI * 2;
       const d = 16 + rng() * 14;
       cloud.position.set(Math.cos(a) * d, 7 + rng() * 6, Math.sin(a) * d);
-      scene.add(cloud);
+      cloudGroup.add(cloud);
     }
   }
 
@@ -250,129 +298,189 @@ export function createScene3D(container, game) {
   sea.position.y = SEA_Y;
   scene.add(sea);
 
-  // --- camino: baldosas cuadradas (estilo geométrico, giros de 90°) ---
+  // --- camino: baldosas cuadradas instanciadas (estilo geométrico) ---
+  // Todas las losetas en 2 draw calls (antes: 2 meshes por celda).
+  const instDummy = new THREE.Object3D();
   {
     const edgeGeo = new THREE.BoxGeometry(1.0, 0.05, 1.0);
     const tileGeo = new THREE.BoxGeometry(0.88, 0.07, 0.88);
     const edgeMat = new THREE.MeshLambertMaterial({ color: COL.tileEdge, flatShading: true });
     const tileMat = new THREE.MeshLambertMaterial({ color: COL.tile, flatShading: true });
-    for (const key of game.map.pathCells) {
+    const cells = [...game.map.pathCells];
+    const edges = new THREE.InstancedMesh(edgeGeo, edgeMat, cells.length);
+    const tiles = new THREE.InstancedMesh(tileGeo, tileMat, cells.length);
+    edges.receiveShadow = true;
+    tiles.receiveShadow = true;
+    cells.forEach((key, i) => {
       const [c, r] = key.split(',').map(Number);
       const X = fx(c * GRID.cell + GRID.cell / 2), Z = fz(r * GRID.cell + GRID.cell / 2);
-      const edge = new THREE.Mesh(edgeGeo, edgeMat);
-      edge.position.set(X, 0.02, Z);
-      edge.receiveShadow = true;
-      const tile = new THREE.Mesh(tileGeo, tileMat);
-      tile.position.set(X, 0.05, Z);
-      tile.receiveShadow = true;
-      scene.add(edge, tile);
+      instDummy.rotation.set(0, 0, 0);
+      instDummy.scale.set(1, 1, 1);
+      instDummy.position.set(X, 0.02, Z);
+      instDummy.updateMatrix();
+      edges.setMatrixAt(i, instDummy.matrix);
+      instDummy.position.y = 0.05;
+      instDummy.updateMatrix();
+      tiles.setMatrixAt(i, instDummy.matrix);
+    });
+    scene.add(edges, tiles);
+    // rombos que marcan la dirección de avance (instanciados, 1 draw call)
+    const marks = [];
+    for (const path of game.map.paths) {
+      for (let d = 30; d < path.totalLen - 30; d += 60) marks.push(pointAtDistance(path, d));
     }
-    // rombos que marcan la dirección de avance (en cada camino)
     const diamondGeo = new THREE.OctahedronGeometry(0.07);
     diamondGeo.scale(1, 0.4, 1);
     const diamondMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
-    for (const path of game.map.paths) {
-      for (let d = 30; d < path.totalLen - 30; d += 60) {
-        const p = pointAtDistance(path, d);
-        const m = new THREE.Mesh(diamondGeo, diamondMat);
-        m.position.set(fx(p.x), 0.1, fz(p.y));
-        m.rotation.y = -p.angle;
-        scene.add(m);
-      }
-    }
+    const diamonds = new THREE.InstancedMesh(diamondGeo, diamondMat, marks.length);
+    marks.forEach((p, i) => {
+      instDummy.position.set(fx(p.x), 0.1, fz(p.y));
+      instDummy.rotation.set(0, -p.angle, 0);
+      instDummy.scale.set(1, 1, 1);
+      instDummy.updateMatrix();
+      diamonds.setMatrixAt(i, instDummy.matrix);
+    });
+    scene.add(diamonds);
     // (las mini-fortalezas enemigas de cada entrada se construyen más abajo,
     // cuando ya existen los helpers de geometría cacheada)
   }
 
-  // --- decoración del escenario: árboles, rocas y flores ---
+  // --- decoración del escenario: árboles, rocas y flores INSTANCIADOS ---
+  // Toda la vegetación de la isla cabe en 5 draw calls (troncos, copas,
+  // rocas, tallos y pétalos). En Bajo se reduce la densidad.
   {
-    const trunkMat = new THREE.MeshLambertMaterial({ color: 0x92400e, flatShading: true });
-    const leafMats = [0x16a34a, 0x15803d, 0x65a30d].map((c) => new THREE.MeshLambertMaterial({ color: c, flatShading: true }));
-    const rockMat = new THREE.MeshLambertMaterial({ color: 0x9ca3af, flatShading: true });
-    const flowerMats = [0xf472b6, 0xfbbf24, 0xf87171, 0xc084fc].map((c) => new THREE.MeshBasicMaterial({ color: c }));
-
+    const density = Q.decorDensity;
     const nearPath = (X, Z, margin) => pathPts.some((p) => (X - p.X) * (X - p.X) + (Z - p.Z) * (Z - p.Z) < margin * margin);
 
+    const trunks = [];  // {x, y, z, s, ry}
+    const leaves = [];  // {x, y, z, sxz, sy, ry, color}
+    const rocks = [];   // {x, y, z, s, rx, ry}
+    const stems = [];   // {x, y, z}
+    const petals = [];  // {x, y, z, color}
+    const leafPalette = [0x16a34a, 0x15803d, 0x65a30d].map((c) => new THREE.Color(c));
+    const flowerPalette = [0xf472b6, 0xfbbf24, 0xf87171, 0xc084fc].map((c) => new THREE.Color(c));
+
+    const addTree = (X, Y, Z, s, ry) => {
+      trunks.push({ x: X, y: Y + 0.25 * s, z: Z, s, ry });
+      const layers = 2 + Math.floor(rng() * 2);
+      for (let l = 0; l < layers; l++) {
+        leaves.push({
+          x: X, y: Y + (0.65 + l * 0.38) * s, z: Z,
+          sxz: s * ((0.55 - l * 0.14) / 0.55), sy: s, ry,
+          color: leafPalette[Math.floor(rng() * leafPalette.length)],
+        });
+      }
+    };
+
     // árboles en el anillo exterior (no estorban a las torres)
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < Math.round(18 * density); i++) {
       const a = rng() * Math.PI * 2;
       const d = 9.6 + rng() * 3.5;
       const X = Math.cos(a) * d, Z = Math.sin(a) * d * 0.65;
       if (Math.abs(Z) > 7.5 || nearPath(X, Z, 1.2)) continue;
-      const tree = new THREE.Group();
-      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.5, 6), trunkMat);
-      trunk.position.y = 0.25;
-      tree.add(trunk);
-      const layers = 2 + Math.floor(rng() * 2);
-      for (let l = 0; l < layers; l++) {
-        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.55 - l * 0.14, 0.55, 6), leafMats[Math.floor(rng() * leafMats.length)]);
-        leaf.position.y = 0.65 + l * 0.38;
-        leaf.castShadow = true;
-        tree.add(leaf);
-      }
-      tree.position.set(X, Math.max(terrainHeight(X, Z) - 0.05, 0), Z);
-      tree.rotation.y = rng() * Math.PI;
-      scene.add(tree);
+      addTree(X, Math.max(terrainHeight(X, Z) - 0.05, 0), Z, 1, rng() * Math.PI);
     }
-    // árboles grandes y rocas sobre las colinas de la isla
-    for (let i = 0; i < 30; i++) {
+    // árboles grandes sobre las colinas de la isla
+    for (let i = 0; i < Math.round(30 * density); i++) {
       const a = rng() * Math.PI * 2;
       const d = 13 + rng() * 22;
       const X = Math.cos(a) * d, Z = Math.sin(a) * d;
       const y = terrainHeight(X, Z);
       if (y < SEA_Y + 0.35) continue; // ni en el agua ni en la playa
-      const tree = new THREE.Group();
-      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.5, 6), trunkMat);
-      trunk.position.y = 0.25;
-      tree.add(trunk);
-      const layers = 2 + Math.floor(rng() * 2);
-      for (let l = 0; l < layers; l++) {
-        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.55 - l * 0.14, 0.55, 6), leafMats[Math.floor(rng() * leafMats.length)]);
-        leaf.position.y = 0.65 + l * 0.38;
-        tree.add(leaf);
-      }
-      tree.scale.setScalar(1.1 + rng() * 1.3);
-      tree.position.set(X, y - 0.08, Z);
-      tree.rotation.y = rng() * Math.PI;
-      scene.add(tree);
+      addTree(X, y - 0.08, Z, 1.1 + rng() * 1.3, rng() * Math.PI);
     }
-    for (let i = 0; i < 14; i++) {
+    // rocas en las colinas y en celdas libres del campo
+    for (let i = 0; i < Math.round(14 * density); i++) {
       const a = rng() * Math.PI * 2;
       const d = 12 + rng() * 24;
       const X = Math.cos(a) * d, Z = Math.sin(a) * d;
       const y = terrainHeight(X, Z);
       if (y < SEA_Y + 0.35) continue;
-      const rock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.3 + rng() * 0.5, 0), rockMat);
-      rock.position.set(X, y, Z);
-      rock.rotation.set(rng() * Math.PI, rng() * Math.PI, 0);
-      scene.add(rock);
+      rocks.push({ x: X, y, z: Z, s: 0.3 + rng() * 0.5, rx: rng() * Math.PI, ry: rng() * Math.PI });
     }
-    // rocas en celdas libres del campo
     for (let i = 0; i < 9; i++) {
       const X = (rng() - 0.5) * 15, Z = (rng() - 0.5) * 8;
       if (nearPath(X, Z, 1.0)) continue;
-      const rock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.14 + rng() * 0.14, 0), rockMat);
-      rock.position.set(X, 0.08, Z);
-      rock.rotation.set(rng() * Math.PI, rng() * Math.PI, 0);
-      rock.castShadow = true;
-      scene.add(rock);
+      rocks.push({ x: X, y: 0.08, z: Z, s: 0.14 + rng() * 0.14, rx: rng() * Math.PI, ry: rng() * Math.PI });
     }
     // flores diminutas junto al camino
-    const stemGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.14, 4);
-    const petalGeo = new THREE.SphereGeometry(0.045, 6, 6);
-    for (let i = 0; i < 36; i++) {
+    for (let i = 0; i < Math.round(36 * density); i++) {
       const p = pathPts[Math.floor(rng() * pathPts.length)];
       const off = 0.7 + rng() * 0.5;
       const side = rng() < 0.5 ? 1 : -1;
       const X = p.X - Math.sin(p.angle) * off * side;
       const Z = p.Z + Math.cos(p.angle) * off * side;
       if (nearPath(X, Z, 0.55)) continue;
-      const stem = new THREE.Mesh(stemGeo, trunkMat);
-      stem.position.set(X, 0.07, Z);
-      const petal = new THREE.Mesh(petalGeo, flowerMats[Math.floor(rng() * flowerMats.length)]);
-      petal.position.set(X, 0.16, Z);
-      scene.add(stem, petal);
+      stems.push({ x: X, y: 0.07, z: Z });
+      petals.push({ x: X, y: 0.16, z: Z, color: flowerPalette[Math.floor(rng() * flowerPalette.length)] });
     }
+
+    const fill = (geo, mat, items, place, { shadow = false, colored = false } = {}) => {
+      if (!items.length) return;
+      const im = new THREE.InstancedMesh(geo, mat, items.length);
+      items.forEach((it, i) => {
+        place(it);
+        instDummy.updateMatrix();
+        im.setMatrixAt(i, instDummy.matrix);
+        if (colored) im.setColorAt(i, it.color);
+      });
+      if (shadow && Q.shadows) im.castShadow = true;
+      scene.add(im);
+    };
+
+    fill(
+      new THREE.CylinderGeometry(0.08, 0.12, 0.5, 6),
+      new THREE.MeshLambertMaterial({ color: 0x92400e, flatShading: true }),
+      trunks,
+      (t) => {
+        instDummy.position.set(t.x, t.y, t.z);
+        instDummy.rotation.set(0, t.ry, 0);
+        instDummy.scale.setScalar(t.s);
+      },
+    );
+    fill(
+      new THREE.ConeGeometry(0.55, 0.55, 6),
+      new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true }),
+      leaves,
+      (l) => {
+        instDummy.position.set(l.x, l.y, l.z);
+        instDummy.rotation.set(0, l.ry, 0);
+        instDummy.scale.set(l.sxz, l.sy, l.sxz);
+      },
+      { shadow: true, colored: true },
+    );
+    fill(
+      new THREE.IcosahedronGeometry(1, 0),
+      new THREE.MeshLambertMaterial({ color: 0x9ca3af, flatShading: true }),
+      rocks,
+      (r) => {
+        instDummy.position.set(r.x, r.y, r.z);
+        instDummy.rotation.set(r.rx, r.ry, 0);
+        instDummy.scale.setScalar(r.s);
+      },
+      { shadow: true },
+    );
+    fill(
+      new THREE.CylinderGeometry(0.012, 0.012, 0.14, 4),
+      new THREE.MeshLambertMaterial({ color: 0x92400e, flatShading: true }),
+      stems,
+      (s) => {
+        instDummy.position.set(s.x, s.y, s.z);
+        instDummy.rotation.set(0, 0, 0);
+        instDummy.scale.set(1, 1, 1);
+      },
+    );
+    fill(
+      new THREE.SphereGeometry(0.045, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xffffff }),
+      petals,
+      (p) => {
+        instDummy.position.set(p.x, p.y, p.z);
+        instDummy.rotation.set(0, 0, 0);
+        instDummy.scale.set(1, 1, 1);
+      },
+      { colored: true },
+    );
   }
 
   // --- fortaleza (al final del camino) ---
@@ -685,7 +793,16 @@ export function createScene3D(container, game) {
     if (!g) { g = make(); geoCache.set(key, g); }
     return g;
   };
-  const box = (w, h, d) => { w = r3(w); h = r3(h); d = r3(d); return G(`b:${w}:${h}:${d}`, () => new THREE.BoxGeometry(w, h, d)); };
+  // En Medio/Alto las cajas van biseladas (RoundedBox): el low-poly pasa de
+  // "cajas" a "juguete pulido" sin tocar ni una animación. Igual de cacheado.
+  const box = (w, h, d) => {
+    w = r3(w); h = r3(h); d = r3(d);
+    if (Q.rounded) {
+      const rad = r3(Math.min(w, h, d) * 0.22);
+      return G(`rb:${w}:${h}:${d}`, () => new RoundedBoxGeometry(w, h, d, 2, rad));
+    }
+    return G(`b:${w}:${h}:${d}`, () => new THREE.BoxGeometry(w, h, d));
+  };
   const cyl = (rt, rb, h, seg = 8) => { rt = r3(rt); rb = r3(rb); h = r3(h); return G(`c:${rt}:${rb}:${h}:${seg}`, () => new THREE.CylinderGeometry(rt, rb, h, seg)); };
   const cone = (r, h, seg = 6) => { r = r3(r); h = r3(h); return G(`k:${r}:${h}:${seg}`, () => new THREE.ConeGeometry(r, h, seg)); };
   const sph = (r, seg = 8) => { r = r3(r); return G(`s:${r}:${seg}`, () => new THREE.SphereGeometry(r, seg, seg)); };
@@ -697,6 +814,41 @@ export function createScene3D(container, game) {
   // colores reutilizados en el bucle de render (cero allocations por frame)
   const COL_SLOW = new THREE.Color(0x7dd3fc);
   const COL_RAGE = new THREE.Color(0xef4444);
+
+  // --- glow: textura radial compartida para halos aditivos (ventanas,
+  // brasas de las fortalezas enemigas). Un sprite = 1 draw call y cero luces
+  // extra; las PointLights reales solo existen en Alto (Q.keepLights). ---
+  const glowTex = (() => {
+    const cv = document.createElement('canvas');
+    cv.width = 64; cv.height = 64;
+    const ctx = cv.getContext('2d');
+    const grad = ctx.createRadialGradient(32, 32, 2, 32, 32, 30);
+    grad.addColorStop(0, 'rgba(255,255,255,0.9)');
+    grad.addColorStop(0.4, 'rgba(255,255,255,0.35)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 64, 64);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  })();
+  const mkGlow = (color, size) => {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: glowTex, color, transparent: true, opacity: 0.8,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    }));
+    s.scale.setScalar(size);
+    return s;
+  };
+
+  // halos cálidos en las ventanas de la Biblioteca (parpadean como velas)
+  const fortGlows = [];
+  for (const side of [-1, 1]) {
+    const gl = mkGlow(0xffc857, 0.55);
+    gl.position.set(-0.36, 0.95, side * 0.62);
+    fortress.add(gl);
+    fortGlows.push(gl);
+  }
 
   // --- mini-fortalezas enemigas: una por camino, de donde brotan los
   // enemigos. Solo la primera está en pie al empezar; las demás emergen del
@@ -749,13 +901,26 @@ export function createScene3D(container, game) {
       flagK.position.set(0, 0.22, 0.12);
       pole.add(flagK);
       keep.add(pole);
+      // brasa del portón: halo rojizo que palpita (y luz real solo en Alto)
+      const ember = mkGlow(0xff5040, 1.1);
+      ember.position.set(0.58, 0.42, 0);
+      keep.add(ember);
+      let keepLight = null;
+      if (keeps.length < Q.keepLights) {
+        keepLight = new THREE.PointLight(0xef4444, 2.4, 3.5);
+        keepLight.position.set(0.6, 0.5, 0);
+        keep.add(keepLight);
+      }
+      if (Q.shadows) {
+        keep.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+      }
 
       keep.position.set(fx(p0.x), 0, fz(p0.y));
       keep.rotation.y = -p0.angle; // el portón mira hacia el camino
       keep.scale.setScalar(0.001);
       keep.visible = false;
       scene.add(keep);
-      keeps.push({ group: keep, flag: flagK });
+      keeps.push({ group: keep, flag: flagK, ember, light: keepLight });
     }
   }
 
@@ -767,6 +932,8 @@ export function createScene3D(container, game) {
         // emerge del suelo creciendo al despertar
         kp.group.scale.setScalar(THREE.MathUtils.lerp(kp.group.scale.x, 1, 0.06));
         kp.flag.rotation.x = Math.sin(game.time * 3 + i * 2) * 0.25;
+        kp.ember.material.opacity = 0.55 + Math.sin(game.time * 7 + i * 2.1) * 0.25;
+        if (kp.light) kp.light.intensity = 2.2 + Math.sin(game.time * 9 + i) * 0.7;
       }
     }
   }
@@ -1079,6 +1246,33 @@ export function createScene3D(container, game) {
   // --- enemigos: cubos con caras y expresiones (cara en +X, dirección de avance) ---
   const faceWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
   const faceDarkMat = new THREE.MeshBasicMaterial({ color: 0x1f2937 });
+  // cara pintada en canvas compartido (ojos con brillo + ceño amenazante):
+  // 1 plano por enemigo en vez de 6 cajas — más expresiva y más barata
+  const faceTex = (() => {
+    const cv = document.createElement('canvas');
+    cv.width = 96; cv.height = 64;
+    const c = cv.getContext('2d');
+    for (const sx of [26, 70]) {
+      c.fillStyle = '#f8fafc';
+      c.beginPath(); c.roundRect(sx - 13, 22, 26, 24, 8); c.fill();
+      c.fillStyle = '#111827';
+      c.beginPath(); c.arc(sx + 3, 35, 6.5, 0, Math.PI * 2); c.fill();
+      c.fillStyle = '#f8fafc';
+      c.beginPath(); c.arc(sx + 5.5, 32, 2, 0, Math.PI * 2); c.fill();
+    }
+    c.strokeStyle = '#111827'; c.lineWidth = 7; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(12, 10); c.lineTo(38, 20); c.stroke();
+    c.beginPath(); c.moveTo(84, 10); c.lineTo(58, 20); c.stroke();
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  })();
+  const faceMat = new THREE.MeshBasicMaterial({ map: faceTex, transparent: true });
+  const plX = (w, h) => G(`fp:${r3(w)}:${r3(h)}`, () => {
+    const g = new THREE.PlaneGeometry(w, h);
+    g.rotateY(Math.PI / 2); // mira a +X, la dirección de avance
+    return g;
+  });
   // Piernas articuladas colgadas de un pivote propio (no del cuerpo: el
   // squash no las deforma; el pivote gira con la dirección de avance y cada
   // pierna se balancea rotando en la cadera)
@@ -1135,16 +1329,9 @@ export function createScene3D(container, game) {
     chest.position.y = k * 0.54;
     const head = add(new THREE.Mesh(box(k * 0.24, k * 0.22, k * 0.26), mat));
     head.position.y = k * 0.74;
-    for (const side of [-1, 1]) {
-      const eye = add(new THREE.Mesh(box(0.02, k * 0.05, k * 0.05), faceWhiteMat));
-      eye.position.set(k * 0.125, k * 0.75, side * k * 0.06);
-      const pupil = add(new THREE.Mesh(box(0.022, k * 0.028, k * 0.028), faceDarkMat));
-      pupil.position.set(k * 0.128, k * 0.745, side * k * 0.06);
-      anim.pupils.push(pupil);
-      const brow = add(new THREE.Mesh(box(0.02, k * 0.025, k * 0.07), faceDarkMat));
-      brow.position.set(k * 0.126, k * 0.81, side * k * 0.06);
-      brow.rotation.x = side * 0.45; // ceño amenazante
-    }
+    const face = add(new THREE.Mesh(plX(k * 0.23, k * 0.16), faceMat));
+    face.position.set(k * 0.128, k * 0.775, 0);
+    anim.face = face;
     // yelmo con protector nasal y hombreras
     const helm = add(new THREE.Mesh(box(k * 0.28, k * 0.12, k * 0.3), shared.steelMat));
     helm.position.y = k * 0.88;
@@ -1310,6 +1497,11 @@ export function createScene3D(container, game) {
     group.add(ring, label);
     group.scale.setScalar(wob); // variación por semilla sin romper la caché de geometrías
     group.userData = { enemyId: e.id };
+    if (Q.unitShadows) {
+      // solo en Alto: las tropas proyectan sombra (anillos, auras, cara y
+      // etiqueta quedan fuera por transparentes o por no ser Mesh)
+      group.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+    }
     return { group, body, mat, label, labelCanvas, labelTex, ring, hammer, anim, auraMat, bodyY, lastBucket: 10, lastBorder: null, radius, baseColor: base.clone() };
   }
 
@@ -1396,6 +1588,9 @@ export function createScene3D(container, game) {
     armR.add(sword);
     g.add(body, chest, belt, head, helm, brimH, plume, capePivot);
     g.userData = { allyId: a.id, swordPivot: armR, armL, body, legs, capePivot, trail, trailMat };
+    if (Q.unitShadows) {
+      g.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+    }
     return g;
   }
 
@@ -1675,9 +1870,9 @@ export function createScene3D(container, game) {
         w.walk.legs[0].rotation.z = sw * 0.6;  // balanceo de cadera
         w.walk.legs[1].rotation.z = -sw * 0.6;
       }
-      if (w.pupils.length) {
-        const blink = Math.sin(game.time * 1.6 + e.phase * 3) > 0.97 ? 0.12 : 1;
-        for (const p of w.pupils) p.scale.y = blink;
+      if (w.face) {
+        // parpadeo: la cara entera se entrecierra un instante
+        w.face.scale.y = Math.sin(game.time * 1.6 + e.phase * 3) > 0.97 ? 0.15 : 1;
       }
       // brazos: balanceo de marcha; el del arma lanza mandobles en combate.
       // Rotation.z POSITIVO lleva el puño hacia delante (la figura mira a +X).
@@ -1901,8 +2096,13 @@ export function createScene3D(container, game) {
     }
     pos.needsUpdate = true;
     warmLight.intensity = 10 + Math.sin(game.time * 5) * 2.5;
+    // velas de las ventanas: parpadeo desfasado
+    fortGlows[0].material.opacity = 0.55 + Math.sin(game.time * 6.3) * 0.2;
+    fortGlows[1].material.opacity = 0.55 + Math.sin(game.time * 5.1 + 2) * 0.2;
     // marea: el mar sube y baja suavemente sobre las playas
     sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
+    // las nubes derivan girando alrededor de la isla
+    cloudGroup.rotation.y = game.time * 0.006;
   }
 
 
@@ -1928,6 +2128,31 @@ export function createScene3D(container, game) {
     }
   }
 
+  // --- post-procesado (solo Alto): bloom selectivo sobre emisivos/brillos.
+  // El OutputPass aplica el tone mapping ACES al final de la cadena. ---
+  let composer = null;
+  if (Q.bloom) {
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(
+      new THREE.Vector2(container.clientWidth, container.clientHeight),
+      0.32, 0.5, 0.82, // strength, radius, threshold (solo lo muy brillante)
+    ));
+    composer.addPass(new OutputPass());
+  }
+
+  // --- overlay de métricas (dev): localStorage 'fortaleza-stats' = '1' ---
+  let statsDiv = null;
+  try {
+    if (localStorage.getItem('fortaleza-stats') === '1') {
+      statsDiv = document.createElement('div');
+      statsDiv.className = 'fort-stats';
+      container.appendChild(statsDiv);
+    }
+  } catch { /* modo privado */ }
+  let statsLast = 0;
+  let statsFrames = 0;
+
   function render(ui) {
     syncTowers(ui);
     syncEnemies();
@@ -1939,8 +2164,21 @@ export function createScene3D(container, game) {
     syncKeeps();
     syncIndicators(ui);
     applyCamera();
-    renderer.render(scene, camera);
+    if (statsDiv) renderer.info.reset();
+    if (composer) composer.render();
+    else renderer.render(scene, camera);
+    if (statsDiv) {
+      statsFrames++;
+      const now = performance.now();
+      if (now - statsLast > 500) {
+        const fps = Math.round((statsFrames * 1000) / (now - statsLast || 1));
+        statsDiv.textContent = `${fps} fps · ${renderer.info.render.calls} calls · ${Math.round(renderer.info.render.triangles / 1000)}k tris · ${qualityTier}`;
+        statsLast = now;
+        statsFrames = 0;
+      }
+    }
   }
+  if (statsDiv) renderer.info.autoReset = false;
 
   function resize() {
     const w = container.clientWidth, h = container.clientHeight;
@@ -1948,6 +2186,7 @@ export function createScene3D(container, game) {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    composer?.setSize(w, h);
   }
 
   function orbit(dx, dy) {
@@ -1959,6 +2198,8 @@ export function createScene3D(container, game) {
   }
 
   function dispose() {
+    composer?.dispose();
+    if (scene.environment) scene.environment.dispose();
     renderer.dispose();
     scene.traverse((o) => {
       if (o.geometry) o.geometry.dispose();
@@ -1970,6 +2211,9 @@ export function createScene3D(container, game) {
     for (const g of geoCache.values()) g.dispose(); // caché compartida (idempotente)
     geoCache.clear();
     for (const { tex } of textTexCache.values()) tex.dispose();
+    glowTex.dispose();
+    faceTex.dispose();
+    if (statsDiv && statsDiv.parentNode === container) container.removeChild(statsDiv);
     if (renderer.domElement.parentNode === container) container.removeChild(renderer.domElement);
   }
 

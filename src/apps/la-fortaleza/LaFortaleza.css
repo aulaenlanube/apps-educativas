@@ -434,3 +434,77 @@
   .fort-abilities { justify-content: space-between; }
   .fort-ability-btn { padding: 6px 8px; flex: 1; }
 }
+
+/* ---------- calidad grafica: selector, panel, toast, vineta y stats ---------- */
+.fort-gfx-row {
+  display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap;
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid rgba(168, 85, 247, 0.22);
+}
+.fort-gfx-row-label {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.82rem; font-weight: 700; color: #c4b5fd;
+}
+.fort-gfx-row button {
+  background: rgba(255, 255, 255, 0.07); color: #e2e8f0;
+  border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 999px;
+  padding: 5px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: all 0.15s;
+}
+.fort-gfx-row button:hover { border-color: rgba(251, 191, 36, 0.6); }
+.fort-gfx-row button.active {
+  background: rgba(251, 191, 36, 0.22); color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.65);
+}
+
+.fort-gfxpanel {
+  position: absolute; top: 10px; right: 10px; z-index: 30;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(168, 85, 247, 0.55); border-radius: 14px;
+  padding: 12px 14px; color: #f1f5f9; max-width: 320px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+.fort-gfxpanel-title {
+  display: flex; align-items: center; gap: 6px;
+  font-weight: 800; font-size: 0.92rem; margin-bottom: 9px; color: #e9d5ff;
+}
+.fort-gfx-options { display: flex; gap: 6px; flex-wrap: wrap; }
+.fort-gfx-options button {
+  background: rgba(255, 255, 255, 0.07); color: #e2e8f0;
+  border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 999px;
+  padding: 6px 12px; font-size: 0.84rem; font-weight: 700; cursor: pointer;
+  transition: all 0.15s;
+}
+.fort-gfx-options button:hover { border-color: rgba(251, 191, 36, 0.6); }
+.fort-gfx-options button.active {
+  background: rgba(251, 191, 36, 0.22); color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.65);
+}
+.fort-gfx-note { margin: 9px 0 0; font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
+.fort-gfx-note strong { color: #fbbf24; }
+
+.fort-gfx-toast {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 30;
+  background: rgba(15, 23, 42, 0.94); color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.5); border-radius: 12px;
+  padding: 8px 16px; font-size: 0.86rem; font-weight: 700;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+  pointer-events: none; white-space: nowrap;
+}
+
+.fort-vignette {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 58%, rgba(8, 6, 24, 0.28) 100%);
+}
+
+.fort-stats {
+  position: absolute; left: 8px; bottom: 8px; z-index: 40;
+  background: rgba(0, 0, 0, 0.65); color: #4ade80;
+  font: 700 11px/1.4 ui-monospace, Consolas, monospace;
+  padding: 4px 8px; border-radius: 8px; pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .fort-gfxpanel { right: 6px; left: 6px; max-width: none; }
+  .fort-gfx-row button { padding: 4px 9px; font-size: 0.76rem; }
+}
