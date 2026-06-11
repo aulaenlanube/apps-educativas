@@ -705,7 +705,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
         for (const r of fortFrontRoofs) r.visible = false; // las torretas ocupan los postes frontales
       }
       m.pivot.rotation.y = -tr.aim;
-      m.headMat.emissiveIntensity = tr.flash > 0 ? 2.6 : 1.1 + Math.sin(game.time * 5 + i * 2) * 0.3;
+      m.headMat.emissiveIntensity = tr.flash > 0 ? 1.9 : 0.8 + Math.sin(game.time * 5 + i * 2) * 0.2;
       m.barrels.position.x = tr.flash > 0 ? -0.05 : 0;
     }
     // gran cañón: retroceso al disparar y brillo de carga al estar listo
@@ -720,8 +720,8 @@ export function createScene3D(container, game, qualityTier = 'high') {
       fortCannonMesh.pivot.rotation.y = -c.aim;
       fortCannonMesh.barrel.position.x = c.flash > 0 ? -(c.flash / 0.35) * 0.16 : 0;
       fortCannonMesh.muzzleMat.emissiveIntensity = c.cooldown <= 0.4
-        ? 1.8 + Math.sin(game.time * 8) * 0.7
-        : 0.4;
+        ? 1.2 + Math.sin(game.time * 8) * 0.45
+        : 0.3;
     }
   }
 
@@ -834,7 +834,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
   })();
   const mkGlow = (color, size) => {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({
-      map: glowTex, color, transparent: true, opacity: 0.8,
+      map: glowTex, color, transparent: true, opacity: 0.45,
       blending: THREE.AdditiveBlending, depthWrite: false,
     }));
     s.scale.setScalar(size);
@@ -844,7 +844,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
   // halos cálidos en las ventanas de la Biblioteca (parpadean como velas)
   const fortGlows = [];
   for (const side of [-1, 1]) {
-    const gl = mkGlow(0xffc857, 0.55);
+    const gl = mkGlow(0xffc857, 0.4);
     gl.position.set(-0.36, 0.95, side * 0.62);
     fortress.add(gl);
     fortGlows.push(gl);
@@ -902,7 +902,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
       pole.add(flagK);
       keep.add(pole);
       // brasa del portón: halo rojizo que palpita (y luz real solo en Alto)
-      const ember = mkGlow(0xff5040, 1.1);
+      const ember = mkGlow(0xff5040, 0.8);
       ember.position.set(0.58, 0.42, 0);
       keep.add(ember);
       let keepLight = null;
@@ -932,8 +932,8 @@ export function createScene3D(container, game, qualityTier = 'high') {
         // emerge del suelo creciendo al despertar
         kp.group.scale.setScalar(THREE.MathUtils.lerp(kp.group.scale.x, 1, 0.06));
         kp.flag.rotation.x = Math.sin(game.time * 3 + i * 2) * 0.25;
-        kp.ember.material.opacity = 0.55 + Math.sin(game.time * 7 + i * 2.1) * 0.25;
-        if (kp.light) kp.light.intensity = 2.2 + Math.sin(game.time * 9 + i) * 0.7;
+        kp.ember.material.opacity = 0.34 + Math.sin(game.time * 7 + i * 2.1) * 0.12;
+        if (kp.light) kp.light.intensity = 1.6 + Math.sin(game.time * 9 + i) * 0.4;
       }
     }
   }
@@ -1010,7 +1010,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
       pillar.position.set(Math.cos(a) * 0.26, 0.38, Math.sin(a) * 0.26);
       g.add(pillar);
     }
-    const heartMat = new THREE.MeshStandardMaterial({ color: 0xf472b6, emissive: 0xf472b6, emissiveIntensity: 1.8, roughness: 0.3 });
+    const heartMat = new THREE.MeshStandardMaterial({ color: 0xf472b6, emissive: 0xf472b6, emissiveIntensity: 1.1, roughness: 0.3 });
     const heart = new THREE.Mesh(new THREE.OctahedronGeometry(0.18), heartMat);
     heart.scale.set(1, 1.25, 1);
     heart.position.y = 0.78;
@@ -1042,7 +1042,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
     base.position.y = 0.07; base.castShadow = true;
     const column = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.15, 0.5, 8), shared.bodyMat);
     column.position.y = 0.38; column.castShadow = true;
-    const sphereMat = new THREE.MeshStandardMaterial({ color: 0x22d3ee, emissive: 0x22d3ee, emissiveIntensity: 1.6, roughness: 0.25 });
+    const sphereMat = new THREE.MeshStandardMaterial({ color: 0x22d3ee, emissive: 0x22d3ee, emissiveIntensity: 1.0, roughness: 0.25 });
     const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.2, 14, 14), sphereMat);
     sphere.position.y = 0.85;
     const ring = new THREE.Mesh(
@@ -1076,7 +1076,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
     const color = new THREE.Color(towerColorHex(tw));
     const g = new THREE.Group();
     const anim = {};
-    const coreMat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.6, roughness: 0.4 });
+    const coreMat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.1, roughness: 0.4 });
     const topMat = new THREE.MeshLambertMaterial({ color, flatShading: true });
     const barrelPivot = new THREE.Group();
     let core = null;
@@ -2097,8 +2097,8 @@ export function createScene3D(container, game, qualityTier = 'high') {
     pos.needsUpdate = true;
     warmLight.intensity = 10 + Math.sin(game.time * 5) * 2.5;
     // velas de las ventanas: parpadeo desfasado
-    fortGlows[0].material.opacity = 0.55 + Math.sin(game.time * 6.3) * 0.2;
-    fortGlows[1].material.opacity = 0.55 + Math.sin(game.time * 5.1 + 2) * 0.2;
+    fortGlows[0].material.opacity = 0.32 + Math.sin(game.time * 6.3) * 0.1;
+    fortGlows[1].material.opacity = 0.32 + Math.sin(game.time * 5.1 + 2) * 0.1;
     // marea: el mar sube y baja suavemente sobre las playas
     sea.position.y = SEA_Y + Math.sin(game.time * 0.7) * 0.045;
     // las nubes derivan girando alrededor de la isla
@@ -2136,7 +2136,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
     composer.addPass(new RenderPass(scene, camera));
     composer.addPass(new UnrealBloomPass(
       new THREE.Vector2(container.clientWidth, container.clientHeight),
-      0.32, 0.5, 0.82, // strength, radius, threshold (solo lo muy brillante)
+      0.18, 0.4, 0.9, // strength, radius, threshold: sutil, solo lo MUY brillante
     ));
     composer.addPass(new OutputPass());
   }

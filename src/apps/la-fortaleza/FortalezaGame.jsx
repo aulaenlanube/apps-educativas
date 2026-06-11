@@ -8,7 +8,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
-  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle, Settings2,
+  FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle, Settings2, Lock,
 } from 'lucide-react';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
@@ -18,6 +18,7 @@ import {
   SANCT_UNLOCK_CORRECT, FORT_UPGRADES, buyFortUpgrade,
 } from './engine';
 import { createScene3D } from './render3d';
+import FortIcon from './FortIcons';
 import {
   QUALITY_LEVELS, QUALITY_LABELS, loadQualityPref, saveQualityPref,
   resolveQuality, lowerTier, createFpsGovernor,
@@ -1003,7 +1004,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           {overlay?.type === 'catpick' && (
             <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
               <button className="fort-classify-close" onClick={() => setOverlay(null)}><X size={16} /></button>
-              <div className="fort-classify-ask">{TOWER_TYPES[overlay.towerType].emoji} ¿Qué categoría vigilará esta torre?</div>
+              <div className="fort-classify-ask"><FortIcon id={overlay.towerType} size={20} className="fort-icon-inline" /> ¿Qué categoría vigilará esta torre?</div>
               <div className="fort-classify-opts">
                 {game.categories.map((cat, i) => (
                   <button key={cat.name} style={{ '--cat': cat.color }} onClick={() => pickCategoryAndPlace(i)}>
@@ -1064,7 +1065,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           {selectedTower && (
             <motion.div className="fort-towerpanel" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
               <span className="fort-towerpanel-name">
-                {TOWER_TYPES[selectedTower.type].emoji} {TOWER_TYPES[selectedTower.type].name}
+                <FortIcon id={selectedTower.type} size={20} className="fort-icon-inline" /> {TOWER_TYPES[selectedTower.type].name}
                 {selectedTower.catIdx != null && (
                   <span className="fort-towerpanel-cat" style={{ '--cat': game.categories[selectedTower.catIdx].color }}>
                     {game.categories[selectedTower.catIdx].name}
@@ -1100,13 +1101,13 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                 <Castle size={15} /> La Biblioteca
                 {game.fortUpgrades.map((id) => {
                   const up = FORT_UPGRADES.find((u) => u.id === id);
-                  return <span key={id} className="fort-fortpanel-owned" title={up.name}>{up.emoji}</span>;
+                  return <span key={id} className="fort-fortpanel-owned" title={up.name}><FortIcon id={up.id} size={18} className="fort-icon-inline" /></span>;
                 })}
                 {game.fortShieldMax > 0 && <span className="fort-towerpanel-lvl">🛡️ {hud.shield}/{game.fortShieldMax}</span>}
               </span>
               {nextUp ? (
                 <>
-                  <span className="fort-fortpanel-desc">{nextUp.emoji} <strong>{nextUp.name}:</strong> {nextUp.desc}</span>
+                  <span className="fort-fortpanel-desc"><FortIcon id={nextUp.id} size={18} className="fort-icon-inline" /> <strong>{nextUp.name}:</strong> {nextUp.desc}</span>
                   <button className="fort-btn-upgrade" disabled={hud.coins < nextUp.cost} onClick={doFortUpgrade}>
                     <ArrowUpCircle size={15} /> Construir ({nextUp.cost} 🪙)
                   </button>
@@ -1151,7 +1152,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   }}
                   title={sanctLocked ? `Se desbloquea con ${SANCT_UNLOCK_CORRECT} aciertos (llevas ${a.correct})` : t.desc}
                 >
-                  <span className="fort-palette-emoji">{sanctLocked ? '🔒' : t.emoji}</span>
+                  <span className="fort-palette-emoji">{sanctLocked ? <Lock size={20} /> : <FortIcon id={t.id} size={28} />}</span>
                   <span className="fort-palette-name">{t.name}</span>
                   <span className="fort-palette-cost">{sanctLocked ? `${a.correct}/${SANCT_UNLOCK_CORRECT} 🎓` : `${t.cost} 🪙`}</span>
                 </button>
@@ -1176,7 +1177,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   onClick={() => toggleAbility(ab.id)}
                   title={ab.desc}
                 >
-                  <span className="fort-palette-emoji">{ab.emoji}</span>
+                  <span className="fort-palette-emoji"><FortIcon id={ab.id} size={28} /></span>
                   <span className="fort-palette-name">{ab.name}</span>
                   <span className="fort-ability-cost">{ab.cost} ⚡</span>
                 </button>
