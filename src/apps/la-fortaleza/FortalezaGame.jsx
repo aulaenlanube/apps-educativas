@@ -1244,7 +1244,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   }}
                   title={sanctLocked ? `Se desbloquea con ${SANCT_UNLOCK_CORRECT} aciertos (llevas ${a.correct})` : t.desc}
                 >
-                  <span className="fort-palette-emoji">{sanctLocked ? <Lock size={20} /> : <FortIcon id={t.id} size={28} />}</span>
+                  <span className="fort-palette-emoji">{sanctLocked ? <Lock size={26} /> : <FortIcon id={t.id} size={40} />}</span>
                   <span className="fort-palette-name">{t.name}</span>
                   <span className="fort-palette-cost">{sanctLocked ? `${a.correct}/${SANCT_UNLOCK_CORRECT} 🎓` : `${t.cost} 🪙`}</span>
                 </button>
@@ -1269,7 +1269,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   onClick={() => toggleAbility(ab.id)}
                   title={ab.desc}
                 >
-                  <span className="fort-palette-emoji"><FortIcon id={ab.id} size={28} /></span>
+                  <span className="fort-palette-emoji"><FortIcon id={ab.id} size={40} /></span>
                   <span className="fort-palette-name">{ab.name}</span>
                   <span className="fort-ability-cost">{ab.cost} ⚡</span>
                 </button>

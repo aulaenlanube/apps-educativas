@@ -513,13 +513,18 @@
 .fort-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .fort-icon svg { width: 100%; height: 100%; display: block; }
 .fort-icon-inline { vertical-align: -4px; }
-.fort-palette-emoji { display: flex; align-items: center; justify-content: center; min-height: 28px; }
-.fort-palette-btn.locked .fort-palette-emoji { color: #64748b; }
+.fort-palette-emoji {
+  display: flex; align-items: center; justify-content: center; min-height: 42px;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+  transition: transform 0.15s;
+}
+.fort-palette-btn:not(:disabled):hover .fort-palette-emoji { transform: scale(1.12); }
+.fort-palette-btn.locked .fort-palette-emoji { color: #64748b; filter: none; }
 .fort-classify-ask .fort-icon-inline { vertical-align: -4px; margin-right: 2px; }
 
 @media (max-width: 720px) {
-  .fort-palette-emoji .fort-icon { width: 22px !important; height: 22px !important; }
-  .fort-palette-emoji { min-height: 22px; }
+  .fort-palette-emoji .fort-icon { width: 30px !important; height: 30px !important; }
+  .fort-palette-emoji { min-height: 30px; }
 }
 
 /* ---------- reliquias, asedio infinito y ambiente ---------- */
