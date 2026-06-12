@@ -3,20 +3,29 @@
  * Verifica memoización, estados derivados, sesiones de estudiante,
  * y el correcto manejo del ciclo de vida de autenticación.
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import { render, screen, act, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 
 // Mock supabase before importing AuthContext — vi.hoisted runs before mock hoisting
-const { mockSupabase, mockUnsubscribe } = vi.hoisted(() => {
+const { mockSupabase, mockUnsubscribe, onAuthStateChangeImpl } = vi.hoisted(() => {
   const mockUnsubscribe = vi.fn();
+  // El cliente real de Supabase emite INITIAL_SESSION al suscribirse, y el
+  // AuthContext (refactor anti race condition) depende de ese evento para
+  // terminar la carga: el mock debe emitirlo igual, con la sesión que cada
+  // test haya configurado en getSession. Va como implementación ORIGINAL del
+  // vi.fn para que el mockReset automático de vitest la restaure entre tests.
+  function onAuthStateChangeImpl(callback) {
+    Promise.resolve(mockSupabase.auth.getSession())
+      .then((res) => callback('INITIAL_SESSION', res?.data?.session ?? null))
+      .catch(() => {});
+    return { data: { subscription: { unsubscribe: mockUnsubscribe } } };
+  }
   const mockSupabase = {
     auth: {
       getSession: vi.fn().mockResolvedValue({ data: { session: null } }),
-      onAuthStateChange: vi.fn(() => ({
-        data: { subscription: { unsubscribe: mockUnsubscribe } },
-      })),
+      onAuthStateChange: vi.fn(onAuthStateChangeImpl),
       signUp: vi.fn(),
       signInWithPassword: vi.fn(),
       signInWithOAuth: vi.fn(),
@@ -38,14 +47,12 @@ const { mockSupabase, mockUnsubscribe } = vi.hoisted(() => {
     })),
     rpc: vi.fn(),
   };
-  return { mockSupabase, mockUnsubscribe };
+  return { mockSupabase, mockUnsubscribe, onAuthStateChangeImpl };
 });
 
 vi.mock('@/lib/supabase', () => ({
   supabase: mockSupabase,
 }));
-
-import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 
 // Helper component to access auth context in tests
 function AuthConsumer({ onAuth }) {
@@ -75,9 +82,7 @@ describe('AuthContext: Initialization', () => {
     sessionStorage.clear();
     // Reset mocks with default implementations
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null } });
-    mockSupabase.auth.onAuthStateChange.mockImplementation(() => ({
-      data: { subscription: { unsubscribe: mockUnsubscribe } },
-    }));
+    mockSupabase.auth.onAuthStateChange.mockImplementation(onAuthStateChangeImpl);
     mockSupabase.auth.signOut.mockResolvedValue({});
     mockSupabase.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({
@@ -146,9 +151,7 @@ describe('AuthContext: Derived state', () => {
     sessionStorage.clear();
     // Reset mocks with default implementations
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null } });
-    mockSupabase.auth.onAuthStateChange.mockImplementation(() => ({
-      data: { subscription: { unsubscribe: mockUnsubscribe } },
-    }));
+    mockSupabase.auth.onAuthStateChange.mockImplementation(onAuthStateChangeImpl);
     mockSupabase.auth.signOut.mockResolvedValue({});
     mockSupabase.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({
@@ -258,9 +261,7 @@ describe('AuthContext: Input validation', () => {
     sessionStorage.clear();
     // Reset mocks with default implementations
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null } });
-    mockSupabase.auth.onAuthStateChange.mockImplementation(() => ({
-      data: { subscription: { unsubscribe: mockUnsubscribe } },
-    }));
+    mockSupabase.auth.onAuthStateChange.mockImplementation(onAuthStateChangeImpl);
     mockSupabase.auth.signOut.mockResolvedValue({});
     mockSupabase.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({
@@ -346,9 +347,7 @@ describe('AuthContext: Sign out', () => {
     sessionStorage.clear();
     // Reset mocks with default implementations
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null } });
-    mockSupabase.auth.onAuthStateChange.mockImplementation(() => ({
-      data: { subscription: { unsubscribe: mockUnsubscribe } },
-    }));
+    mockSupabase.auth.onAuthStateChange.mockImplementation(onAuthStateChangeImpl);
     mockSupabase.auth.signOut.mockResolvedValue({});
     mockSupabase.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({
@@ -393,9 +392,7 @@ describe('AuthContext: Memoization', () => {
     sessionStorage.clear();
     // Reset mocks with default implementations
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null } });
-    mockSupabase.auth.onAuthStateChange.mockImplementation(() => ({
-      data: { subscription: { unsubscribe: mockUnsubscribe } },
-    }));
+    mockSupabase.auth.onAuthStateChange.mockImplementation(onAuthStateChangeImpl);
     mockSupabase.auth.signOut.mockResolvedValue({});
     mockSupabase.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({

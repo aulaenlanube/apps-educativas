@@ -5,7 +5,18 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import React from 'react';
+import { useGameTracker } from '@/hooks/useGameTracker';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
+
+// Mock AuthContext — vi.hoisted se eleva junto a los vi.mock, antes de los imports
+const mockAuthValue = vi.hoisted(() => ({
+  user: null,
+  student: null,
+  isTeacher: false,
+  isStudent: false,
+  isFreeUser: false,
+}));
 
 // Mock supabase
 vi.mock('@/lib/supabase', () => ({
@@ -17,22 +28,9 @@ vi.mock('@/lib/supabase', () => ({
   },
 }));
 
-// Mock AuthContext
-const mockAuthValue = {
-  user: null,
-  student: null,
-  isTeacher: false,
-  isStudent: false,
-  isFreeUser: false,
-};
-
 vi.mock('@/contexts/AuthContext', () => ({
   useAuth: vi.fn(() => mockAuthValue),
 }));
-
-import { useGameTracker } from '@/hooks/useGameTracker';
-import { supabase } from '@/lib/supabase';
-import { useAuth } from '@/contexts/AuthContext';
 
 describe('useGameTracker: calculateNota', () => {
   // We test nota calculation indirectly through trackGameSession

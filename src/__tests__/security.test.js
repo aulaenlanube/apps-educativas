@@ -3,7 +3,7 @@
  * Verifica que no se exponen secretos, que las sesiones se manejan de forma segura,
  * y que la validación de entrada funciona correctamente.
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
@@ -73,19 +73,6 @@ describe('Security: Session storage', () => {
 });
 
 describe('Security: Input validation', () => {
-  let mockSupabase;
-
-  beforeEach(() => {
-    mockSupabase = {
-      auth: {
-        getSession: vi.fn().mockResolvedValue({ data: { session: null } }),
-        onAuthStateChange: vi.fn().mockReturnValue({ data: { subscription: { unsubscribe: vi.fn() } } }),
-      },
-      rpc: vi.fn(),
-      from: vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue({ eq: vi.fn().mockReturnValue({ single: vi.fn() }) }) }),
-    };
-  });
-
   it('AuthContext source should contain input validation for signInStudent', () => {
     const authPath = path.resolve(__dirname, '../contexts/AuthContext.jsx');
     const content = fs.readFileSync(authPath, 'utf-8');
