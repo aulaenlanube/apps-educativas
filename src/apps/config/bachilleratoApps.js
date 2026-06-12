@@ -5,7 +5,7 @@ import {
   appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
   appGeneradorPersonajes, appJuegoMemoria, appBuscaElIntruso, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaBolas, appRunner, appNavePalabras,
   appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
-  appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla,
+  appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appLaboratorioFisica,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal,
   appInfografiasInteractivas
@@ -24,7 +24,7 @@ const appsBase = [
 const appsIdioma = [...appsBase.slice(0, appsBase.indexOf(appParejas) + 1), appDetectiveDePalabras, ...appsBase.slice(appsBase.indexOf(appLluviaDePalabras))];
 
 const appsCiencias = [
-  appInfografiasInteractivas, appMesaCrafteo, appEntrenadorTabla, ...appsBase
+  appInfografiasInteractivas, appLaboratorioFisica, appMesaCrafteo, appEntrenadorTabla, ...appsBase
 ];
 
 const appsBiologia = [

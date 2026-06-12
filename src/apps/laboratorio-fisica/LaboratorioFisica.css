@@ -1,0 +1,339 @@
+/* Laboratorio de Física 3D — tema azul-cian de laboratorio sobre fondo oscuro */
+
+.fislab-root {
+  min-height: 100dvh;
+  background: linear-gradient(160deg, #0b1026 0%, #122244 55%, #0c2b3f 100%);
+  color: #e2e8f0;
+  padding: 18px clamp(10px, 3vw, 34px) 40px;
+  font-family: inherit;
+  position: relative;
+}
+
+/* ---------- selección de modo ---------- */
+.fislab-select { max-width: 880px; margin: 0 auto; text-align: center; }
+.fislab-hero { position: relative; padding: 26px 0 8px; }
+.fislab-hero-icon { font-size: 3.4rem; display: block; filter: drop-shadow(0 6px 18px rgba(34, 211, 238, 0.35)); }
+.fislab-hero h1 {
+  margin: 10px 0 6px; font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900;
+  background: linear-gradient(90deg, #22d3ee, #60a5fa, #a78bfa);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.fislab-hero-sub { color: #94a3b8; margin: 0; }
+.fislab-hero-sub strong { color: #67e8f9; }
+.fislab-help-btn { position: absolute; top: 8px; right: 0; background: rgba(255,255,255,0.08); border: 1px solid rgba(103,232,249,0.35); color: #67e8f9; border-radius: 999px; padding: 8px; cursor: pointer; }
+
+.fislab-modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0 18px; }
+.fislab-mode {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.045); border-radius: 18px; padding: 22px 14px;
+  cursor: pointer; color: inherit; border: 1px solid transparent; transition: border-color .15s;
+}
+.fislab-mode.explora { border-color: rgba(16, 185, 129, 0.4); }
+.fislab-mode.retos { border-color: rgba(251, 191, 36, 0.4); }
+.fislab-mode.examen { border-color: rgba(239, 68, 68, 0.4); }
+.fislab-mode.explora:hover { border-color: #10b981; background: rgba(16,185,129,0.08); }
+.fislab-mode.retos:hover { border-color: #fbbf24; background: rgba(251,191,36,0.08); }
+.fislab-mode.examen:hover { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+.fislab-mode-icon { opacity: 0.9; }
+.fislab-mode.explora .fislab-mode-icon { color: #34d399; }
+.fislab-mode.retos .fislab-mode-icon { color: #fbbf24; }
+.fislab-mode.examen .fislab-mode-icon { color: #f87171; }
+.fislab-mode-name { font-weight: 800; font-size: 1.05rem; }
+.fislab-mode-desc { font-size: 0.8rem; color: #94a3b8; line-height: 1.45; }
+
+.fislab-study-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.07); color: #e2e8f0;
+  border: 1px solid rgba(103, 232, 249, 0.35); border-radius: 999px;
+  padding: 9px 18px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
+}
+.fislab-study-btn:hover { border-color: #67e8f9; color: #67e8f9; }
+.fislab-gfx-row { justify-content: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(103, 232, 249, 0.18); }
+
+/* ---------- barra superior común ---------- */
+.fislab-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.fislab-topbar h2 { margin: 0; font-size: 1.15rem; font-weight: 800; display: inline-flex; align-items: center; gap: 7px; }
+.fislab-back {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.07); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.3);
+  border-radius: 999px; padding: 7px 14px; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+}
+.fislab-back:hover { border-color: #67e8f9; color: #67e8f9; }
+.fislab-points-badge {
+  margin-left: auto; background: rgba(251,191,36,0.15); color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.4); border-radius: 999px; padding: 5px 13px; font-weight: 800; font-size: 0.85rem;
+}
+.fislab-abandon {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.4);
+  border-radius: 999px; padding: 6px 13px; cursor: pointer; font-weight: 700; font-size: 0.82rem;
+}
+
+/* ---------- catálogo ---------- */
+.fislab-catalog { max-width: 1100px; margin: 0 auto; }
+.fislab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: 13px; }
+.fislab-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(103,232,249,0.18);
+  border-radius: 16px; padding: 16px; cursor: pointer; color: inherit;
+}
+.fislab-card:hover { border-color: rgba(103,232,249,0.6); background: rgba(103,232,249,0.06); }
+.fislab-card-icon { font-size: 2rem; }
+.fislab-card-name { font-weight: 800; font-size: 0.98rem; }
+.fislab-card-desc { font-size: 0.78rem; color: #94a3b8; line-height: 1.4; }
+.fislab-card-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.fislab-badge { font-size: 0.66rem; font-weight: 800; border-radius: 999px; padding: 2.5px 9px; letter-spacing: 0.02em; }
+.fislab-badge.nueva { background: rgba(16,185,129,0.16); color: #34d399; border: 1px solid rgba(16,185,129,0.45); }
+.fislab-badge.repaso { background: rgba(148,163,184,0.13); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+.fislab-badge.ampliacion { background: rgba(167,139,250,0.15); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.45); }
+.fislab-badge.retos { background: rgba(251,191,36,0.13); color: #fbbf24; border: 1px solid rgba(251,191,36,0.4); }
+.fislab-badge.retos.completos { background: rgba(16,185,129,0.16); color: #34d399; border-color: rgba(16,185,129,0.45); }
+
+/* ---------- pantalla de simulación ---------- */
+.fislab-sim-screen { max-width: 1280px; margin: 0 auto; }
+.fislab-sim-main { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 14px; align-items: start; }
+.fislab-sim-left { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.fislab-viewport {
+  position: relative; width: 100%; height: clamp(340px, 56vh, 600px);
+  border-radius: 16px; overflow: hidden; border: 1px solid rgba(103,232,249,0.25);
+  background: #0b1026;
+  touch-action: none; /* OrbitControls gestiona el gesto dentro del canvas */
+}
+.fislab-viewport canvas { display: block; }
+
+/* ---------- panel de parámetros ---------- */
+.fislab-panel {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(103,232,249,0.2);
+  border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px;
+}
+.fislab-controls { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; }
+.fislab-btn-play {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(90deg, #0891b2, #2563eb); color: #fff;
+  border: none; border-radius: 12px; padding: 9px 16px; font-weight: 800; cursor: pointer; font-size: 0.9rem;
+}
+.fislab-btn-play:hover { filter: brightness(1.12); }
+.fislab-btn-reset {
+  background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.3);
+  border-radius: 12px; padding: 9px 11px; cursor: pointer;
+}
+.fislab-speeds { display: flex; gap: 4px; margin-left: auto; }
+.fislab-speeds button, .fislab-aids button {
+  background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(148,163,184,0.25);
+  border-radius: 999px; padding: 5px 10px; font-size: 0.74rem; font-weight: 700; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.fislab-speeds button.active, .fislab-aids button.active {
+  background: rgba(34,211,238,0.15); color: #67e8f9; border-color: rgba(34,211,238,0.5);
+}
+.fislab-aids { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.fislab-params { display: flex; flex-direction: column; gap: 11px; }
+.fislab-param { display: flex; flex-direction: column; gap: 5px; }
+.fislab-param.disabled { opacity: 0.5; pointer-events: none; }
+.fislab-param-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: #94a3b8; font-weight: 700; }
+.fislab-param-label strong { color: #67e8f9; font-variant-numeric: tabular-nums; }
+.fislab-param input[type='range'] { width: 100%; accent-color: #22d3ee; cursor: pointer; }
+.fislab-param-options { display: flex; gap: 5px; flex-wrap: wrap; }
+.fislab-param-options button {
+  background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.3);
+  border-radius: 10px; padding: 6px 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer;
+}
+.fislab-param-options button.active { background: rgba(34,211,238,0.15); color: #67e8f9; border-color: rgba(34,211,238,0.55); }
+.fislab-param-toggle { flex-direction: row; justify-content: space-between; align-items: center; }
+.fislab-switch {
+  width: 44px; height: 24px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.4);
+  background: rgba(255,255,255,0.08); position: relative; cursor: pointer; transition: background .15s;
+}
+.fislab-switch.on { background: rgba(34,211,238,0.45); border-color: #22d3ee; }
+.fislab-switch-knob {
+  position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: #e2e8f0; transition: transform .15s;
+}
+.fislab-switch.on .fislab-switch-knob { transform: translateX(20px); }
+
+.fislab-readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.fislab-readout {
+  background: rgba(8, 14, 36, 0.55); border: 1px solid rgba(103,232,249,0.15);
+  border-radius: 10px; padding: 7px 10px; display: flex; flex-direction: column; gap: 1px;
+}
+.fislab-readout span { font-size: 0.66rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.fislab-readout strong { font-size: 0.95rem; color: #e2e8f0; font-variant-numeric: tabular-nums; }
+
+.fislab-formula-viva {
+  background: rgba(34, 211, 238, 0.08); border: 1px dashed rgba(34,211,238,0.4);
+  color: #67e8f9; border-radius: 10px; padding: 9px 12px;
+  font-family: ui-monospace, Consolas, monospace; font-size: 0.82rem; font-weight: 600;
+  overflow-x: auto; white-space: nowrap;
+}
+
+/* ---------- retos ---------- */
+.fislab-retos { border-top: 1px solid rgba(148,163,184,0.18); padding-top: 10px; display: flex; flex-direction: column; gap: 9px; }
+.fislab-retos h4 { margin: 0; font-size: 0.85rem; color: #fbbf24; display: inline-flex; align-items: center; gap: 6px; }
+.fislab-reto { background: rgba(8,14,36,0.5); border: 1px solid rgba(251,191,36,0.2); border-radius: 11px; padding: 9px 11px; }
+.fislab-reto.done { border-color: rgba(16,185,129,0.45); background: rgba(16,185,129,0.07); }
+.fislab-reto-head { display: flex; align-items: center; gap: 6px; font-size: 0.83rem; }
+.fislab-reto p { margin: 5px 0 0; font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
+.fislab-reto-pista-btn {
+  margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+  background: none; border: 1px solid rgba(251,191,36,0.35); color: #fbbf24;
+  border-radius: 999px; padding: 3px 9px; font-size: 0.68rem; font-weight: 700; cursor: pointer;
+}
+.fislab-reto-pista { color: #fde68a !important; font-style: italic; }
+
+/* ---------- gráficas ---------- */
+.fislab-graph {
+  background: rgba(8, 14, 36, 0.6); border: 1px solid rgba(103,232,249,0.2);
+  border-radius: 14px; padding: 8px 10px 4px;
+}
+.fislab-graph-legend { display: flex; gap: 14px; font-size: 0.72rem; font-weight: 700; padding: 2px 4px 6px; }
+.fislab-graph canvas { width: 100%; display: block; }
+
+/* ---------- examen ---------- */
+.fislab-exam-wrap { max-width: 1100px; margin: 0 auto; }
+.fislab-exam { display: flex; flex-direction: column; gap: 12px; }
+.fislab-exam-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.fislab-exam-progress { font-weight: 800; color: #67e8f9; }
+.fislab-exam-sim { color: #94a3b8; font-weight: 700; font-size: 0.9rem; }
+.fislab-exam-streak { margin-left: auto; color: #fbbf24; font-weight: 800; }
+.fislab-exam-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.fislab-exam-question {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(103,232,249,0.22);
+  border-radius: 16px; padding: 18px;
+}
+.fislab-exam-enunciado { font-size: 1.02rem; line-height: 1.55; margin: 0 0 14px; }
+.fislab-exam-answer { display: flex; flex-direction: column; gap: 8px; }
+.fislab-exam-input-row { display: flex; align-items: center; gap: 8px; }
+.fislab-exam-input-row input {
+  flex: 1; background: rgba(8,14,36,0.7); border: 1px solid rgba(103,232,249,0.4);
+  color: #e2e8f0; border-radius: 11px; padding: 11px 14px; font-size: 1.05rem; font-weight: 700;
+  outline: none; min-width: 0;
+}
+.fislab-exam-input-row input:focus { border-color: #22d3ee; }
+.fislab-exam-unit { font-weight: 800; color: #67e8f9; min-width: 42px; }
+.fislab-exam-hint-coma { margin: 0; font-size: 0.7rem; color: #64748b; }
+.fislab-exam-options { display: flex; flex-direction: column; gap: 7px; }
+.fislab-exam-options button {
+  text-align: left; background: rgba(8,14,36,0.6); border: 1px solid rgba(148,163,184,0.3);
+  color: #e2e8f0; border-radius: 11px; padding: 11px 14px; font-size: 0.9rem; cursor: pointer; font-weight: 600;
+}
+.fislab-exam-options button:hover:not(:disabled) { border-color: #67e8f9; }
+.fislab-exam-options button.selected { border-color: #22d3ee; background: rgba(34,211,238,0.12); color: #67e8f9; }
+.fislab-exam-options button.right { border-color: #10b981; background: rgba(16,185,129,0.14); color: #34d399; }
+.fislab-exam-options button.wrong { border-color: #ef4444; background: rgba(239,68,68,0.12); color: #f87171; }
+.fislab-btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: linear-gradient(90deg, #0891b2, #2563eb); color: #fff; border: none;
+  border-radius: 12px; padding: 11px 18px; font-weight: 800; cursor: pointer; font-size: 0.92rem;
+  margin-top: 10px;
+}
+.fislab-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.fislab-btn-primary:hover:not(:disabled) { filter: brightness(1.12); }
+.fislab-btn-ghost {
+  background: rgba(255,255,255,0.07); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 12px; padding: 11px 18px; font-weight: 700; cursor: pointer;
+}
+.fislab-btn-danger {
+  background: linear-gradient(90deg, #dc2626, #b91c1c); color: #fff; border: none;
+  border-radius: 12px; padding: 11px 18px; font-weight: 800; cursor: pointer;
+}
+.fislab-exam-verdict {
+  display: flex; gap: 10px; align-items: flex-start; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;
+  font-size: 0.9rem; line-height: 1.45;
+}
+.fislab-exam-verdict.ok { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.45); color: #34d399; }
+.fislab-exam-verdict.ko { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.45); color: #f87171; }
+.fislab-exam-verdict span { color: #cbd5e1; display: block; font-weight: 500; }
+.fislab-exam-explica { border-top: 1px dashed rgba(148,163,184,0.3); margin-top: 12px; padding-top: 12px; }
+.fislab-exam-explica h4 { margin: 0 0 10px; font-size: 0.92rem; color: #c4b5fd; }
+.fislab-exam-viewport { position: relative; }
+.fislab-exam-viewport .fislab-viewport { height: clamp(300px, 46vh, 480px); }
+.fislab-exam-observing {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  background: rgba(8,14,36,0.85); border: 1px solid rgba(103,232,249,0.4); color: #67e8f9;
+  border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 0.82rem; pointer-events: none;
+}
+
+/* ---------- resumen ---------- */
+.fislab-summary { max-width: 720px; margin: 0 auto; text-align: center; }
+.fislab-summary h2 { font-size: 1.3rem; }
+.fislab-nota {
+  width: 130px; height: 130px; margin: 14px auto 6px; border-radius: 50%;
+  border: 4px solid; display: flex; align-items: center; justify-content: center;
+  font-size: 2.9rem; font-weight: 900; font-variant-numeric: tabular-nums;
+  background: rgba(8,14,36,0.5); box-shadow: 0 0 50px rgba(34,211,238,0.12);
+}
+.fislab-nota-msg { font-size: 1.15rem; font-weight: 800; margin: 4px 0 16px; }
+.fislab-summary-stats { display: flex; justify-content: center; gap: 26px; margin-bottom: 18px; }
+.fislab-summary-stats div { display: flex; flex-direction: column; }
+.fislab-summary-stats strong { font-size: 1.25rem; color: #67e8f9; }
+.fislab-summary-stats span { font-size: 0.72rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+.fislab-summary-list {
+  text-align: left; display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px;
+  max-height: 320px; overflow-y: auto; padding-right: 4px;
+}
+.fislab-summary-row {
+  display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(148,163,184,0.18); border-radius: 11px; padding: 8px 12px;
+}
+.fislab-summary-sim { font-size: 1.1rem; }
+.fislab-summary-enun { flex: 1; font-size: 0.76rem; color: #94a3b8; line-height: 1.35; }
+.fislab-summary-mark { font-weight: 900; font-size: 0.9rem; }
+.fislab-summary-mark.ok { color: #34d399; }
+.fislab-summary-mark.ko { color: #f87171; }
+.fislab-summary-mark.expl { font-size: 0.78rem; }
+.fislab-summary-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- toasts y modales ---------- */
+.fislab-toast {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 60;
+  background: rgba(8, 14, 36, 0.95); color: #fbbf24; border: 1px solid rgba(251,191,36,0.5);
+  border-radius: 12px; padding: 9px 18px; font-weight: 700; font-size: 0.88rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45); pointer-events: none; white-space: nowrap;
+}
+.fislab-toast.reto { color: #34d399; border-color: rgba(16,185,129,0.5); }
+.fislab-modal-overlay {
+  position: fixed; inset: 0; z-index: 70; background: rgba(2, 6, 23, 0.72);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.fislab-modal {
+  background: #101b33; border: 1px solid rgba(103,232,249,0.3); border-radius: 18px;
+  padding: 22px; max-width: 430px; width: 100%; text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.fislab-modal h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.fislab-modal p { color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin: 0 0 16px; }
+.fislab-modal-actions { display: flex; gap: 9px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- formulario ---------- */
+.fislab-formulario-sim h3 { margin: 14px 0 6px; font-size: 0.98rem; }
+.fislab-formulario-row { margin: 6px 0; line-height: 1.5; }
+.fislab-formulario-row code {
+  background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3);
+  border-radius: 6px; padding: 1px 7px; color: #0e7490; font-weight: 700;
+}
+.fislab-formulario-row small { color: #64748b; }
+
+/* ---------- energía (compartido por escenas que lo usan) ---------- */
+.fislab-energy { display: flex; flex-direction: column; gap: 6px; }
+.fislab-energy-row { display: flex; align-items: center; gap: 8px; }
+.fislab-energy-label { width: 56px; font-size: 0.7rem; font-weight: 800; color: #94a3b8; }
+.fislab-energy-track { flex: 1; height: 10px; border-radius: 999px; background: rgba(8,14,36,0.7); overflow: hidden; }
+.fislab-energy-fill { height: 100%; border-radius: 999px; transition: width 0.12s linear; }
+.fislab-energy-value { width: 64px; text-align: right; font-size: 0.72rem; color: #cbd5e1; font-variant-numeric: tabular-nums; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+  .fislab-sim-main { grid-template-columns: 1fr; }
+  .fislab-exam-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .fislab-root { padding: 12px 10px 30px; }
+  .fislab-modes { grid-template-columns: 1fr; }
+  /* viewport limitado en alto para que el panel quede accesible con scroll */
+  .fislab-viewport { height: 45vh; min-height: 280px; }
+  .fislab-exam-viewport .fislab-viewport { height: 38vh; min-height: 240px; }
+  .fislab-readouts { grid-template-columns: 1fr 1fr; }
+  .fislab-nota { width: 110px; height: 110px; font-size: 2.4rem; }
+  .fislab-summary-stats { gap: 16px; }
+}

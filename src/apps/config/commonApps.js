@@ -115,6 +115,7 @@ const ConectaParejas = lazy(() => import('../conecta-parejas/ConectaParejas'));
 const DictadoInteractivo = lazy(() => import('../dictado-interactivo/DictadoInteractivo'));
 const TorrePalabras = lazy(() => import('../torre-palabras/TorrePalabras'));
 const LaFortaleza = lazy(() => import('../la-fortaleza/LaFortaleza'));
+const LaboratorioFisica = lazy(() => import('../laboratorio-fisica/LaboratorioFisica'));
 const InfografiasInteractivas = lazy(() => import('../infografias-interactivas/InfografiasInteractivas'));
 
 
@@ -137,6 +138,13 @@ export const appEntrenadorTabla = {
   name: '🔬 Entrenador de Tabla Periódica',
   description: 'Aprende nombres, símbolos y números atómicos de forma divertida.',
   component: EntrenadorTabla
+};
+
+export const appLaboratorioFisica = {
+  id: 'laboratorio-fisica',
+  name: '🧲 Laboratorio de Física 3D',
+  description: 'Simulador 3D de fuerzas y fluidos: experimenta, supera retos y examínate.',
+  component: LaboratorioFisica
 };
 
 export const appIslaDeLaCalma = {
