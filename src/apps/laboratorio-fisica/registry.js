@@ -18,6 +18,14 @@ import presionAtmosferica from './scenes/presion-atmosferica';
 import gravitacion from './scenes/gravitacion';
 import energia from './scenes/energia';
 import movimientoCircular from './scenes/movimiento-circular';
+import tiroParabolico from './scenes/tiro-parabolico';
+import choques from './scenes/choques';
+import estatica from './scenes/estatica';
+import orbitas from './scenes/orbitas';
+import oscilaciones from './scenes/oscilaciones';
+import cargasCampos from './scenes/cargas-campos';
+import tunelViento from './scenes/tunel-viento';
+import stokes from './scenes/stokes';
 import { courseIndex } from './engine/exam';
 
 export const SIMS = [
@@ -39,6 +47,17 @@ export const SIMS = [
   gravitacion,
   energia,
   movimientoCircular,
+  // 1º Bachillerato
+  tiroParabolico,
+  choques,
+  estatica,
+  // 2º Bachillerato
+  orbitas,
+  oscilaciones,
+  cargasCampos,
+  // ampliaciones de fluidodinámica (nunca entran en examen)
+  tunelViento,
+  stokes,
 ];
 
 // Valores por defecto de los parámetros de una simulación
