@@ -172,6 +172,14 @@ const LaFortaleza = ({ onGameComplete }) => {
     setGfxPref(pref);
   }, []);
 
+  // La estrella de valoración (FAB global de AppRunnerPage) solo debe verse
+  // en la selección de modo: en partida y resumen tapa el HUD a pantalla
+  // completa. Se oculta vía clase en <body> + regla CSS (.app-rating-fab).
+  useEffect(() => {
+    document.body.classList.toggle('fort-in-game', screen !== 'select');
+    return () => document.body.classList.remove('fort-in-game');
+  }, [screen]);
+
   const sounds = useMemo(() => createSounds(), []);
   const trackedRef = useRef(false);
 

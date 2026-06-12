@@ -566,3 +566,6 @@
 @media (max-width: 720px) {
   .fort-relic-opts { grid-template-columns: 1fr; }
 }
+
+/* la estrella de valorar la app solo se ve en la seleccion de modo */
+body.fort-in-game .app-rating-fab { display: none !important; }

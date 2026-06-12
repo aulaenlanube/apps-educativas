@@ -258,7 +258,7 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: 'spring' }}
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-[6000] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
+        className={`app-rating-fab fixed bottom-6 right-6 z-[6000] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
         title="Valorar esta app"
       >
         <Star className="w-6 h-6" />

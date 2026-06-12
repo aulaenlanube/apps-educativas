@@ -12,7 +12,7 @@ import { supabase } from '@/lib/supabase';
  * Si las funciones nuevas no existen aun en Supabase, usa fallback al metodo antiguo.
  */
 export function useGameTracker() {
-  const { user, student, freeUser, isTeacher, isStudent, isFreeUser } = useAuth();
+  const { user, student, isTeacher, isStudent, isFreeUser } = useAuth();
   const sessionIdRef = useRef(null);
   const completedRef = useRef(false);
   const startTimeRef = useRef(null);
@@ -24,6 +24,36 @@ export function useGameTracker() {
     return { type: 'anonymous', id: null };
   }, [user, student, isTeacher, isStudent, isFreeUser]);
 
+  // Identidad capturada al INICIAR la sesión. En partidas largas el estado de
+  // auth puede perderse a mitad (token caducado, carrera de refresh): el dueño
+  // de la partida es quien la empezó, no "anonymous". Pasó con La Fortaleza:
+  // un asedio de 9 min acabó con el récord guardado como anónimo.
+  const userInfoRef = useRef(null);
+  const resolveUserInfo = useCallback(() => {
+    const live = getUserInfo();
+    if (live.id) return live;
+    if (userInfoRef.current?.id) return userInfoRef.current;
+    return live;
+  }, [getUserInfo]);
+
+  // RPC con la anon key "a pelo": las RPC de tracking son SECURITY DEFINER,
+  // así que funcionan aunque el token de auth del cliente esté caducado.
+  const rpcAnonFetch = useCallback(async (fnName, payload) => {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    const res = await fetch(`${supabaseUrl}/rest/v1/rpc/${fnName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`rpc ${fnName}: HTTP ${res.status}`);
+    return res.json().catch(() => null);
+  }, []);
+
   /**
    * Inicia una sesion de tracking. Llamar al montar la app.
    */
@@ -34,6 +64,7 @@ export function useGameTracker() {
 
     try {
       const userInfo = getUserInfo();
+      userInfoRef.current = userInfo; // dueño de la sesión (ver resolveUserInfo)
       const { data, error } = await supabase.rpc('track_session_start', {
         p_user_type: userInfo.type,
         p_user_id: userInfo.id,
@@ -103,36 +134,44 @@ export function useGameTracker() {
     // de lo contrario track_session_finish sobrescribe la anterior y se pierde.
     let trackingOk = false;
     if (sessionIdRef.current) {
+      const finishPayload = {
+        p_session_id: sessionIdRef.current,
+        p_mode: mode,
+        p_score: score,
+        p_max_score: maxScore,
+        p_correct_answers: correctAnswers,
+        p_total_questions: totalQuestions,
+        p_duration_seconds: duration,
+        p_completed: completed,
+        p_difficulty: difficulty || null,
+        p_nota: nota,
+      };
       try {
-        const { error } = await supabase.rpc('track_session_finish', {
-          p_session_id: sessionIdRef.current,
-          p_mode: mode,
-          p_score: score,
-          p_max_score: maxScore,
-          p_correct_answers: correctAnswers,
-          p_total_questions: totalQuestions,
-          p_duration_seconds: duration,
-          p_completed: completed,
-          p_difficulty: difficulty || null,
-          p_nota: nota,
-        });
-        if (!error) {
-          trackingOk = true;
-          // Consumimos el session_id: la siguiente ronda debe crear fila nueva.
-          sessionIdRef.current = null;
-        }
+        const { error } = await supabase.rpc('track_session_finish', finishPayload);
+        if (error) throw error;
+        trackingOk = true;
+        // Consumimos el session_id: la siguiente ronda debe crear fila nueva.
+        sessionIdRef.current = null;
       } catch (err) {
-        // Fallo track_session_finish, intentar fallback
+        // El cliente puede llevar un token caducado (partidas largas): la RPC
+        // es SECURITY DEFINER, reintentar con la anon key antes de rendirse.
+        try {
+          await rpcAnonFetch('track_session_finish', finishPayload);
+          trackingOk = true;
+          sessionIdRef.current = null;
+        } catch (err2) {
+          // Fallo definitivo: intentar fallback (ruta 2)
+        }
       }
     }
 
     // Ruta 2 (fallback): insertar directamente si ruta 1 fallo
     if (!trackingOk) {
-    const userInfo = getUserInfo();
+    const userInfo = resolveUserInfo();
     try {
       if ((userInfo.type === 'teacher' || userInfo.type === 'free') && userInfo.id) {
         // Teacher/Free: insert directo (tiene auth de Supabase)
-        await supabase.from('game_sessions').insert({
+        const { error: insErr } = await supabase.from('game_sessions').insert({
           user_type: userInfo.type,
           user_id: userInfo.id,
           app_id: appId,
@@ -149,6 +188,27 @@ export function useGameTracker() {
           completed,
           nota,
         });
+        if (insErr) {
+          // Sin auth válida el insert directo choca con RLS: RPC definer
+          await rpcAnonFetch('track_session_start_and_finish', {
+            p_user_type: userInfo.type,
+            p_user_id: userInfo.id,
+            p_app_id: appId,
+            p_app_name: appName,
+            p_level: level || null,
+            p_grade: grade || null,
+            p_subject_id: subjectId || null,
+            p_mode: mode,
+            p_score: score,
+            p_max_score: maxScore,
+            p_correct_answers: correctAnswers,
+            p_total_questions: totalQuestions,
+            p_duration_seconds: duration,
+            p_completed: completed,
+            p_difficulty: difficulty || null,
+            p_nota: nota,
+          });
+        }
       } else if (userInfo.type === 'student' && userInfo.id) {
         // Student: via RPC (no tiene auth de Supabase)
         await supabase.rpc('track_student_session', {
@@ -195,7 +255,7 @@ export function useGameTracker() {
 
     // Gamificación: procesar XP e insignias (students, teachers, free - solo sesiones completadas)
     // Paralelizamos lo que es independiente para reducir latencia en ~60 %.
-    const userInfo2 = getUserInfo();
+    const userInfo2 = resolveUserInfo();
     if (userInfo2.id && completed) {
       try {
         const groupId = student?.group_id || null;
@@ -306,32 +366,35 @@ export function useGameTracker() {
       }
     }
 
-    // Para usuarios sin gamificacion (anonimos), aun asi registrar high score
+    // Para usuarios sin gamificacion (anonimos) o si la ola anterior falló,
+    // aun asi registrar high score (con reintento via anon key)
     if (completed && score > 0) {
+      const userInfo3 = resolveUserInfo();
+      const hsPayload = {
+        p_user_id: userInfo3.id,
+        p_user_type: userInfo3.type,
+        p_app_id: appId,
+        p_level: level || null,
+        p_grade: grade ? String(grade) : null,
+        p_subject_id: subjectId || null,
+        p_score: score,
+        p_nota: nota,
+        p_correct_answers: correctAnswers,
+        p_total_questions: totalQuestions,
+        p_duration_seconds: duration,
+        p_mode: mode,
+        p_group_id: null,
+      };
       try {
-        const userInfo3 = getUserInfo();
-        await supabase.rpc('upsert_high_score', {
-          p_user_id: userInfo3.id,
-          p_user_type: userInfo3.type,
-          p_app_id: appId,
-          p_level: level || null,
-          p_grade: grade ? String(grade) : null,
-          p_subject_id: subjectId || null,
-          p_score: score,
-          p_nota: nota,
-          p_correct_answers: correctAnswers,
-          p_total_questions: totalQuestions,
-          p_duration_seconds: duration,
-          p_mode: mode,
-          p_group_id: null,
-        });
+        const { error } = await supabase.rpc('upsert_high_score', hsPayload);
+        if (error) throw error;
       } catch (err) {
-        // Best-effort
+        try { await rpcAnonFetch('upsert_high_score', hsPayload); } catch { /* best-effort */ }
       }
     }
 
     return null;
-  }, [getUserInfo, student]);
+  }, [resolveUserInfo, rpcAnonFetch, student]);
 
   /**
    * Marca la sesion actual como abandonada. Se llama automaticamente al desmontar.
