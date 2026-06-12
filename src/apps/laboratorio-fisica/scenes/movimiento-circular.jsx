@@ -4,7 +4,8 @@
 // despedida en línea recta TANGENTE (la lección estrella de la escena).
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -181,9 +182,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
 
       {/* tensiómetro */}
       <Billboard position={[0, ALTURA + 1.6, 0]}>
-        <Text fontSize={0.46} color={tensionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
-          {d.rota ? '💥 ¡Cuerda rota!' : `T cuerda = ${fmt(fc, 1)} N / ${T_MAX}`}
-        </Text>
+        <Texto3D fontSize={0.46} color={tensionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          {d.rota ? '¡CUERDA ROTA!' : `T cuerda = ${fmt(fc, 1)} N / ${T_MAX}`}
+        </Texto3D>
       </Billboard>
 
       {showVectors && (

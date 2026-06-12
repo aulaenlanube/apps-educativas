@@ -5,7 +5,8 @@
 // la calidad gráfica jamás cambia lo que se mide.
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useThrottledTick from '../components/useThrottledTick';
 import { fmt } from '../engine/integrator';
@@ -128,14 +129,14 @@ function Scene({ world, params, playing, resetToken, quality, onTelemetry }) {
 
       {/* manómetro */}
       <Billboard position={[0, arista / 2 + 1.1, 0]}>
-        <Text fontSize={0.52} color={presionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.52} color={presionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           {fmt(kPa, 1)} kPa
-        </Text>
+        </Texto3D>
       </Billboard>
       <Billboard position={[0, -arista / 2 - 0.75, 0]}>
-        <Text fontSize={0.3} color="#94a3b8" anchorX="center">
+        <Texto3D fontSize={0.3} color="#94a3b8" anchorX="center">
           {fmt(p.V, 0)} L · {fmt(p.T, 0)} K · {fmt(p.n, 1)} mol
-        </Text>
+        </Texto3D>
       </Billboard>
     </group>
   );

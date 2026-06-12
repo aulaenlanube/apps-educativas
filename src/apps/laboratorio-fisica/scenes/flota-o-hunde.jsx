@@ -5,7 +5,8 @@
 // asiente; las magnitudes medibles salen de la fórmula analítica.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -168,7 +169,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshBasicMaterial color={liqColor} transparent opacity={0.65} />
       </mesh>
       <Billboard position={[glassW / 2 + 1.7, liqH, 0]}>
-        <Text fontSize={0.26} color="#94a3b8" anchorX="center">línea de flotación</Text>
+        <Texto3D fontSize={0.26} color="#94a3b8" anchorX="center">línea de flotación</Texto3D>
       </Billboard>
 
       {/* el cubo (imperativo en useFrame) */}
@@ -184,27 +185,27 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <Edges color="#1e293b" />
       </mesh>
       <Billboard position={[-(glassW / 2) - 1.6, cubeY + lado / 2 + 0.45, 0]}>
-        <Text fontSize={0.28} color="#e2e8f0" anchorX="center">
+        <Texto3D fontSize={0.28} color="#e2e8f0" anchorX="center">
           m = {fmt(m, 2)} kg · {fmt(p.volumen, 1)} L
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* densidades a un lado del tanque */}
       <Billboard position={[-(glassW / 2) - 1.6, liqH + 1.5, 0]}>
-        <Text fontSize={0.3} color={matColor} outlineWidth={0.015} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.3} color={matColor} outlineWidth={0.015} outlineColor="#0f172a" anchorX="center">
           ρ obj = {fmt(rhoObj, 0)} kg/m³
-        </Text>
+        </Texto3D>
       </Billboard>
       <Billboard position={[-(glassW / 2) - 1.6, liqH + 0.9, 0]}>
-        <Text fontSize={0.3} color={liqColor} outlineWidth={0.015} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.3} color={liqColor} outlineWidth={0.015} outlineColor="#0f172a" anchorX="center">
           ρ líq = {fmt(rhoLiq, 0)} kg/m³
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* marcador sobre el tanque */}
       {d.done && (
         <Billboard position={[0, glassH + 1.5, 0]}>
-          <Text
+          <Texto3D
             fontSize={0.56}
             color={flota ? '#4ade80' : '#f87171'}
             outlineWidth={0.025}
@@ -212,13 +213,13 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             anchorX="center"
           >
             {flota ? 'FLOTA' : 'SE HUNDE'}
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
       <Billboard position={[0, glassH + 0.8, 0]}>
-        <Text fontSize={0.34} color="#cbd5e1" anchorX="center">
+        <Texto3D fontSize={0.34} color="#cbd5e1" anchorX="center">
           {fmt(pct, 1)} % sumergido · E = {fmt(E, 1)} N
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* vectores peso y empuje (declarativos, 12 Hz) */}

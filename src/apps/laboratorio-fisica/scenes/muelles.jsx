@@ -3,7 +3,8 @@
 // en el alargamiento de equilibrio x_eq = m·g/k (la "báscula de muelle").
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -131,7 +132,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#0ea5e9" roughness={0.5} metalness={0.2} />
       </mesh>
       <Billboard position={[1.35, massY, 0]}>
-        <Text fontSize={0.34} color="#e2e8f0" anchorX="left">{fmt(p.masa, 2)} kg</Text>
+        <Texto3D fontSize={0.34} color="#e2e8f0" anchorX="left">{fmt(p.masa, 2)} kg</Texto3D>
       </Billboard>
 
       {/* marca del equilibrio teórico */}
@@ -141,7 +142,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshBasicMaterial color="#fbbf24" transparent opacity={0.7} />
         </mesh>
         <Billboard position={[-2.7, 0, 0]}>
-          <Text fontSize={0.3} color="#fbbf24" anchorX="center">x_eq = {fmt(xEq * 100, 1)} cm</Text>
+          <Texto3D fontSize={0.3} color="#fbbf24" anchorX="center">x_eq = {fmt(xEq * 100, 1)} cm</Texto3D>
         </Billboard>
       </group>
 

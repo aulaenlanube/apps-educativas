@@ -5,7 +5,8 @@
 // llano); las energías Ep/Ec/E total salen de fórmulas, nunca del visual.
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -198,7 +199,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#46557a" roughness={0.7} metalness={0.2} />
       </mesh>
       <Billboard position={[0, -0.7, 0.6]}>
-        <Text fontSize={0.3} color="#cbd5e1" anchorX="center">llano 20 m · μ = {fmt(p.mu, 2)}</Text>
+        <Texto3D fontSize={0.3} color="#cbd5e1" anchorX="center">llano 20 m · μ = {fmt(p.mu, 2)}</Texto3D>
       </Billboard>
 
       {/* postes de apoyo */}
@@ -219,7 +220,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#64748b" metalness={0.3} roughness={0.6} />
       </mesh>
       <Billboard position={[-xTop * VS - 0.6, p.altura * VS + 0.55, 0]}>
-        <Text fontSize={0.34} color="#e2e8f0" anchorX="center">SALIDA · H = {fmt(p.altura, 0)} m</Text>
+        <Texto3D fontSize={0.34} color="#e2e8f0" anchorX="center">SALIDA · H = {fmt(p.altura, 0)} m</Texto3D>
       </Billboard>
 
       {/* línea de referencia a la altura de salida (¿llega el carro al otro lado?) */}
@@ -236,7 +237,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshBasicMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[0.85, 0, 0]}>
-            <Text fontSize={0.3} color="#cbd5e1" anchorX="center">{h} m</Text>
+            <Texto3D fontSize={0.3} color="#cbd5e1" anchorX="center">{h} m</Texto3D>
           </Billboard>
         </group>
       ))}

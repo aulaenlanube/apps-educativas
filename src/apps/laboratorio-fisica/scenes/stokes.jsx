@@ -4,7 +4,8 @@
 // cuando el modelo de Stokes deja de valer (esa es la otra lección).
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -162,7 +163,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshBasicMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[0.65, 0, 0]}>
-            <Text fontSize={0.22} color="#94a3b8" anchorX="center">{fmt(h, 1)} m</Text>
+            <Texto3D fontSize={0.22} color="#94a3b8" anchorX="center">{fmt(h, 1)} m</Texto3D>
           </Billboard>
         </group>
       ))}
@@ -175,9 +176,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color={matInfo.color} metalness={p.material === 'oro' || p.material === 'acero' ? 0.7 : 0.1} roughness={0.35} />
       </mesh>
       <Billboard position={[0, -d.h * VSY + radioVisual + 0.4, 0]}>
-        <Text fontSize={0.3} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
-          {d.flota ? '🛟 flota' : `v = ${fmt((world.data?.v || 0) * 100, 1)} cm/s`}
-        </Text>
+        <Texto3D fontSize={0.3} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          {d.flota ? 'FLOTA' : `v = ${fmt((world.data?.v || 0) * 100, 1)} cm/s`}
+        </Texto3D>
       </Billboard>
 
       {/* fuerzas */}

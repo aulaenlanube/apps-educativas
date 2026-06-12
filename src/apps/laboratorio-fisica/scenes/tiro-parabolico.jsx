@@ -3,7 +3,8 @@
 // del vector velocidad en vx (cian) y vy (amarillo) es el oro didáctico.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -125,7 +126,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
             <meshBasicMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[0, 0.4, 0.5]}>
-            <Text fontSize={0.26} color="#cbd5e1" anchorX="center">{m}</Text>
+            <Texto3D fontSize={0.26} color="#cbd5e1" anchorX="center">{m}</Texto3D>
           </Billboard>
         </group>
       ))}
@@ -156,7 +157,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
             <meshStandardMaterial color="#e2e8f0" />
           </mesh>
           <Billboard position={[0, 1.3, 0]}>
-            <Text fontSize={0.3} color="#4ade80" anchorX="center">R teórico = {fmt(alcanceTeorico, 1)} m</Text>
+            <Texto3D fontSize={0.3} color="#4ade80" anchorX="center">R teórico = {fmt(alcanceTeorico, 1)} m</Texto3D>
           </Billboard>
         </group>
       )}

@@ -4,7 +4,8 @@
 // para verla frenar es parte de la gracia).
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -125,7 +126,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshBasicMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[0, 0.5, 0.4]}>
-            <Text fontSize={0.32} color="#cbd5e1" anchorX="center">{m} m</Text>
+            <Texto3D fontSize={0.32} color="#cbd5e1" anchorX="center">{m} m</Texto3D>
           </Billboard>
         </group>
       ))}
@@ -140,7 +141,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshBasicMaterial color="#22c55e" side={2} />
         </mesh>
         <Billboard position={[0, 2.6, -1.6]}>
-          <Text fontSize={0.36} color="#4ade80" anchorX="center">META</Text>
+          <Texto3D fontSize={0.36} color="#4ade80" anchorX="center">META</Texto3D>
         </Billboard>
       </group>
 

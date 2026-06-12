@@ -5,7 +5,8 @@
 // es solo visualización determinista a paso fijo.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -214,41 +215,41 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <Coche shadows={quality.shadows} />
         </group>
         <Billboard position={[XB, Y2_PISTON + 0.2 + 1.75 * csCoche, 0]}>
-          <Text fontSize={0.3} color="#e2e8f0" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.3} color="#e2e8f0" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             {fmt(p.carga, 0)} kg · P = {fmt(peso, 0)} N
-          </Text>
+          </Texto3D>
         </Billboard>
       </group>
 
       {/* marcador F₂: verde si puede levantar la carga, rojo si no */}
       <Billboard position={[XB, 4.6 + lift, 0]}>
-        <Text fontSize={0.5} color={colorF2} outlineWidth={0.024} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.5} color={colorF2} outlineWidth={0.024} outlineColor="#0f172a" anchorX="center">
           F₂ = {fmt(f2, 0)} N
-        </Text>
+        </Texto3D>
       </Billboard>
       {d.done && (
         <Billboard position={[XB, 5.3 + lift, 0]}>
-          <Text fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             ✔ Carga levantada
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
 
       {/* conservación del volumen: cuánto baja realmente el émbolo pequeño */}
       {d.d2 > 0.001 && (
         <Billboard position={[XS - 0.2, y1c + 2.3, 0]}>
-          <Text fontSize={0.28} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.28} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             d₁ = d₂·S₂/S₁ = {fmt(d1, 1)} m (×{fmt(ratio, 0)})
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
 
       {/* etiquetas de las superficies */}
       <Billboard position={[XS, 0.42, 1.35]}>
-        <Text fontSize={0.26} color="#94a3b8" anchorX="center">S₁ = {fmt(p.s1, 0)} cm²</Text>
+        <Texto3D fontSize={0.26} color="#94a3b8" anchorX="center">S₁ = {fmt(p.s1, 0)} cm²</Texto3D>
       </Billboard>
       <Billboard position={[XB, 0.42, 1.55]}>
-        <Text fontSize={0.26} color="#94a3b8" anchorX="center">S₂ = {fmt(p.s2, 0)} cm²</Text>
+        <Texto3D fontSize={0.26} color="#94a3b8" anchorX="center">S₂ = {fmt(p.s2, 0)} cm²</Texto3D>
       </Billboard>
 
       {/* vectores de fuerza */}

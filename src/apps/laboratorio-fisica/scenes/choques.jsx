@@ -3,7 +3,8 @@
 // el momento total se conserva SIEMPRE; la energía cinética, solo si e = 1.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -133,7 +134,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshStandardMaterial color="#22d3ee" roughness={0.45} />
         </mesh>
         <Billboard position={[0, lado1 / 2 + 0.5, 0]}>
-          <Text fontSize={0.32} color="#67e8f9" anchorX="center">{fmt(p.m1, 1)} kg</Text>
+          <Texto3D fontSize={0.32} color="#67e8f9" anchorX="center">{fmt(p.m1, 1)} kg</Texto3D>
         </Billboard>
       </group>
       <group ref={c2Ref} position={pos2}>
@@ -142,7 +143,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshStandardMaterial color="#f472b6" roughness={0.45} />
         </mesh>
         <Billboard position={[0, lado2 / 2 + 0.5, 0]}>
-          <Text fontSize={0.32} color="#f9a8d4" anchorX="center">{fmt(p.m2, 1)} kg</Text>
+          <Texto3D fontSize={0.32} color="#f9a8d4" anchorX="center">{fmt(p.m2, 1)} kg</Texto3D>
         </Billboard>
       </group>
 

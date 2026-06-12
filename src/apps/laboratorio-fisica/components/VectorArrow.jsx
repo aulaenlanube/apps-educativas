@@ -3,7 +3,8 @@
 // unidades de escena (la escena escala magnitud física → longitud visual).
 import React from 'react';
 import * as THREE from 'three';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from './Texto3D';
 
 const UP = new THREE.Vector3(0, 1, 0);
 
@@ -36,7 +37,7 @@ export default function VectorArrow({
       </mesh>
       {label && (
         <Billboard position={[0, length + 0.32, 0]}>
-          <Text
+          <Texto3D
             fontSize={labelSize}
             color={color}
             outlineWidth={0.022}
@@ -45,7 +46,7 @@ export default function VectorArrow({
             anchorY="middle"
           >
             {label}
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
     </group>

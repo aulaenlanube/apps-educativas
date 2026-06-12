@@ -6,7 +6,7 @@
 //   y la escena se reconstruye desde `world`.
 // - Governor de FPS: con preferencia 'auto', si el equipo no sostiene los FPS
 //   se baja un tier en caliente.
-import React, { useCallback, useRef, useState } from 'react';
+import React, { Suspense, useCallback, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import {
@@ -75,7 +75,12 @@ export default function SimViewport({
           shadow-bias={-0.0004}
         />
         {prefAuto && <GovernorTicker onDowngrade={handleDowngrade} />}
-        {children}
+        {/* Suspense LOCAL: cualquier carga async dentro del Canvas (la fuente
+            de los textos 3D) se queda aquí y no burbujea al Suspense global
+            de AppRunnerPage, que sustituiría toda la app por el spinner. */}
+        <Suspense fallback={null}>
+          {children}
+        </Suspense>
         <OrbitControls
           makeDefault
           enableDamping

@@ -3,7 +3,8 @@
 // MINÚSCULA, ese es el mensaje) y báscula planetaria (P = m·g en cada cuerpo).
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
 import { G_UNIVERSAL, PLANETAS } from '../engine/constants';
@@ -92,12 +93,12 @@ function Scene({ world, params, playing, resetToken, showVectors, quality, onTel
           <meshBasicMaterial color="#fbbf24" transparent opacity={0.65} />
         </mesh>
         <Billboard position={[0, 0.6, 0]}>
-          <Text fontSize={0.3} color="#fbbf24" anchorX="center">r = {fmt(p.r, 1)} m</Text>
+          <Texto3D fontSize={0.3} color="#fbbf24" anchorX="center">r = {fmt(p.r, 1)} m</Texto3D>
         </Billboard>
         <Billboard position={[0, 3.4, 0]}>
-          <Text fontSize={0.5} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.5} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             F = {fmt(F * 1e6, 2)} µN
-          </Text>
+          </Texto3D>
         </Billboard>
 
         {/* fuerzas mutuas (3ª ley): mismo módulo, sentidos opuestos */}
@@ -134,14 +135,14 @@ function Scene({ world, params, playing, resetToken, showVectors, quality, onTel
       </mesh>
       {/* display de la báscula */}
       <Billboard position={[0, 0.85, 1.1]}>
-        <Text fontSize={0.42} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.42} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           {fmt(p.m2 * g, 1)} N
-        </Text>
+        </Texto3D>
       </Billboard>
       <Billboard position={[0, 4, 0]}>
-        <Text fontSize={0.4} color="#cbd5e1" anchorX="center">
-          {PLANETAS[p.cuerpo].label} · g = {fmt(g, 1)} m/s²
-        </Text>
+        <Texto3D fontSize={0.4} color="#cbd5e1" anchorX="center">
+          {PLANETAS[p.cuerpo].label.replace(/^\S+\s/, '')} · g = {fmt(g, 1)} m/s²
+        </Texto3D>
       </Billboard>
       {showVectors && (
         <VectorArrow origin={[1.1, 1.5, 0]} dir={[0, -1, 0]} length={Math.min(3, 0.4 + p.m2 * g * 0.0012)} color="#f87171" label={`P = ${fmt(p.m2 * g, 0)} N`} />

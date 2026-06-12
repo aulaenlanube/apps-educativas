@@ -6,7 +6,8 @@
 // máxima quepa siempre, tanto con mercurio (~0,76 m) como con agua (~10,3 m).
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import { LIQUIDOS } from '../engine/constants';
@@ -172,14 +173,14 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
 
       {/* vacío de Torricelli (entre la columna y el cierre del tubo) */}
       <Billboard position={[0, (SURF_Y + hVis + TUBO_TOP) / 2 + 0.05, 0]}>
-        <Text fontSize={0.24} color="#94a3b8" anchorX="center">vacío de Torricelli</Text>
+        <Texto3D fontSize={0.24} color="#94a3b8" anchorX="center">vacío de Torricelli</Texto3D>
       </Billboard>
 
       {/* lectura de la altura, anclada al nivel de la columna */}
       <Billboard position={[-1.5, SURF_Y + hVis, 0]}>
-        <Text fontSize={0.34} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.34} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           {`h = ${fmt(d.h, decH)} m`}
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* línea del equilibrio teórico */}
@@ -204,16 +205,16 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
             <meshStandardMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[0.8, 0, 0]}>
-            <Text fontSize={0.26} color="#cbd5e1" anchorX="left">{`${fmt(m, decMarcas)} m`}</Text>
+            <Texto3D fontSize={0.26} color="#cbd5e1" anchorX="left">{`${fmt(m, decMarcas)} m`}</Texto3D>
           </Billboard>
         </group>
       ))}
 
       {/* rótulo del lugar */}
       <Billboard position={[0, TUBO_TOP + 1, 0]}>
-        <Text fontSize={0.4} color="#e2e8f0" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.4} color="#e2e8f0" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           {`${lug.label} · ${lug.pTxt} kPa`}
-        </Text>
+        </Texto3D>
       </Billboard>
     </group>
   );

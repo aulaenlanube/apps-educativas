@@ -6,7 +6,8 @@
 // (E = ρ·g·V_sum), determinista a paso fijo.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -173,9 +174,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <Edges color="#7dd3fc" />
       </mesh>
       <Billboard position={[0, 0.55, 2.4]}>
-        <Text fontSize={0.3} color="#94a3b8" anchorX="center">
-          {liq.label} · ρ = {fmt(liq.rho, 0)} kg/m³
-        </Text>
+        <Texto3D fontSize={0.3} color="#94a3b8" anchorX="center">
+          {liq.label.replace(/^\S+\s/, '')} · ρ = {fmt(liq.rho, 0)} kg/m³
+        </Texto3D>
       </Billboard>
 
       {/* pórtico-grúa */}
@@ -200,12 +201,12 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#1e293b" metalness={0.3} roughness={0.45} />
       </mesh>
       <Billboard position={[0.55, DYN_Y + 0.05, 0]}>
-        <Text fontSize={0.68} color={colorLectura} outlineWidth={0.026} outlineColor="#0f172a" anchorX="left">
+        <Texto3D fontSize={0.68} color={colorLectura} outlineWidth={0.026} outlineColor="#0f172a" anchorX="left">
           {fmt(d.T, 1)} N
-        </Text>
+        </Texto3D>
       </Billboard>
       <Billboard position={[0.55, DYN_Y - 0.55, 0]}>
-        <Text fontSize={0.24} color="#94a3b8" anchorX="left">peso aparente</Text>
+        <Texto3D fontSize={0.24} color="#94a3b8" anchorX="left">peso aparente</Texto3D>
       </Billboard>
 
       {/* cable de la grúa (longitud y color actualizados en useFrame) */}
@@ -227,9 +228,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
       </group>
       {slack && (
         <Billboard position={[0, topY + 0.8, 0]}>
-          <Text fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             ¡Flota! · cuerda destensada
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
 

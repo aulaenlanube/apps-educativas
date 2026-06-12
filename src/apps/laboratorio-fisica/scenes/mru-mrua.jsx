@@ -6,7 +6,8 @@
 // se mueven vía ref en useFrame; vectores y textos declarativos a 12 Hz.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -165,10 +166,10 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
 
       {/* etiquetas de carril */}
       <Billboard position={[-half - 1.7, 0.8, Z_A]}>
-        <Text fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">A · MRU</Text>
+        <Texto3D fontSize={0.34} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">A · MRU</Texto3D>
       </Billboard>
       <Billboard position={[-half - 1.7, 0.8, Z_B]}>
-        <Text fontSize={0.34} color="#22d3ee" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">B · MRUA</Text>
+        <Texto3D fontSize={0.34} color="#22d3ee" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">B · MRUA</Texto3D>
       </Billboard>
 
       {/* línea y bandera de salida */}
@@ -186,7 +187,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshBasicMaterial color="#fbbf24" side={2} />
         </mesh>
         <Billboard position={[0, 2.25, -2.5]}>
-          <Text fontSize={0.36} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">SALIDA</Text>
+          <Texto3D fontSize={0.36} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">SALIDA</Texto3D>
         </Billboard>
       </group>
 
@@ -198,7 +199,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshBasicMaterial color="#64748b" />
           </mesh>
           <Billboard position={[0, 0.45, 2.55]}>
-            <Text fontSize={0.3} color="#94a3b8" anchorX="center">{m} m</Text>
+            <Texto3D fontSize={0.3} color="#94a3b8" anchorX="center">{m} m</Texto3D>
           </Billboard>
         </group>
       ))}
@@ -222,9 +223,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshBasicMaterial color="#22c55e" side={2} />
         </mesh>
         <Billboard position={[0, 2.35, 0]}>
-          <Text fontSize={0.4} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.4} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             META · {fmt(p.meta, 0)} m
-          </Text>
+          </Texto3D>
         </Billboard>
       </group>
 
@@ -236,9 +237,9 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshBasicMaterial color="#fbbf24" transparent opacity={0.85} />
           </mesh>
           <Billboard position={[0, 1.7, 0]}>
-            <Text fontSize={0.3} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+            <Texto3D fontSize={0.3} color="#fbbf24" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
               Alcance: x* = {fmt(xStar, 1)} m
-            </Text>
+            </Texto3D>
           </Billboard>
         </group>
       )}
@@ -250,21 +251,21 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
       {/* tiempos de llegada */}
       {d.tA != null && (
         <Billboard position={[half + 1, 1.4, Z_A]}>
-          <Text fontSize={0.32} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="left">
+          <Texto3D fontSize={0.32} color="#4ade80" outlineWidth={0.02} outlineColor="#0f172a" anchorX="left">
             A: {fmt(d.tA, 2)} s
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
       {d.tB != null && (
         <Billboard position={[half + 1, 1.4, Z_B]}>
-          <Text fontSize={0.32} color="#22d3ee" outlineWidth={0.02} outlineColor="#0f172a" anchorX="left">
+          <Texto3D fontSize={0.32} color="#22d3ee" outlineWidth={0.02} outlineColor="#0f172a" anchorX="left">
             B: {fmt(d.tB, 2)} s
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
       {d.done && ganador && (
         <Billboard position={[0, 3.6, 0]}>
-          <Text
+          <Texto3D
             fontSize={0.6}
             color={ganador === 'A' ? '#4ade80' : ganador === 'B' ? '#22d3ee' : '#fbbf24'}
             outlineWidth={0.03}
@@ -272,7 +273,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             anchorX="center"
           >
             {ganador === 'empate' ? '¡Empate!' : ganador === 'A' ? '¡Gana A (MRU)!' : '¡Gana B (MRUA)!'}
-          </Text>
+          </Texto3D>
         </Billboard>
       )}
 

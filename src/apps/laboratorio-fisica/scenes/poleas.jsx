@@ -4,7 +4,8 @@
 // nombra literalmente y que faltaba en el catálogo.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -187,10 +188,10 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#f472b6" roughness={0.5} />
       </mesh>
       <Billboard position={[m1Pos[0] - 1, m1Pos[1], 0]}>
-        <Text fontSize={0.3} color="#7dd3fc" anchorX="center">{fmt(p.m1, 0)} kg</Text>
+        <Texto3D fontSize={0.3} color="#7dd3fc" anchorX="center">{fmt(p.m1, 0)} kg</Texto3D>
       </Billboard>
       <Billboard position={[m2Pos[0] + 1, m2Pos[1], 0]}>
-        <Text fontSize={0.3} color="#f9a8d4" anchorX="center">{fmt(p.m2, 0)} kg</Text>
+        <Texto3D fontSize={0.3} color="#f9a8d4" anchorX="center">{fmt(p.m2, 0)} kg</Texto3D>
       </Billboard>
 
       {/* vectores: tensión y pesos */}

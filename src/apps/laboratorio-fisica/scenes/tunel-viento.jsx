@@ -5,7 +5,8 @@
 // Los trazadores son visuales (advectados por el campo analítico exacto).
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -179,9 +180,9 @@ function Scene({ world, params, playing, resetToken, showVectors, quality, onTel
       )}
 
       <Billboard position={[0, Y_MAX + 1, 0]}>
-        <Text fontSize={0.46} color={L >= 0 ? '#4ade80' : '#f87171'} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.46} color={L >= 0 ? '#4ade80' : '#f87171'} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           Sustentación: {fmt(L, 0)} N/m
-        </Text>
+        </Texto3D>
       </Billboard>
     </group>
   );

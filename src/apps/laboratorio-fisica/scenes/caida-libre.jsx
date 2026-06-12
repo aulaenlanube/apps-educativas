@@ -5,7 +5,8 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -134,7 +135,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
             <meshStandardMaterial color="#fbbf24" />
           </mesh>
           <Billboard position={[-0.8, 0, 0]}>
-            <Text fontSize={0.34} color="#cbd5e1" anchorX="center">{h} m</Text>
+            <Texto3D fontSize={0.34} color="#cbd5e1" anchorX="center">{h} m</Texto3D>
           </Billboard>
         </group>
       ))}

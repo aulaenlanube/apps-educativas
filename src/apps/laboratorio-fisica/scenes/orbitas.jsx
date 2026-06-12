@@ -4,7 +4,8 @@
 // orbitales (a, e, T, perigeo, apogeo) se calculan ANALÍTICAMENTE del estado.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -189,7 +190,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
       )}
 
       <Billboard position={[0, 3.4, 0]}>
-        <Text fontSize={0.36} color="#94a3b8" anchorX="center">⏩ 1 s real = 15 min simulados</Text>
+        <Texto3D fontSize={0.36} color="#94a3b8" anchorX="center">1 s real = 15 min simulados</Texto3D>
       </Billboard>
     </group>
   );

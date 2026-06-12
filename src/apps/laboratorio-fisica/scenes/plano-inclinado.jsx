@@ -4,7 +4,8 @@
 // a = g·(sen θ − μk·cos θ) a paso fijo. Magnitudes 100% analíticas.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -186,7 +187,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
               <meshBasicMaterial color="#fbbf24" />
             </mesh>
             <Billboard position={[mx, my + 0.42, RAMP_D / 2 + 0.35]}>
-              <Text fontSize={0.26} color="#cbd5e1" anchorX="center">{m} m</Text>
+              <Texto3D fontSize={0.26} color="#cbd5e1" anchorX="center">{m} m</Texto3D>
             </Billboard>
           </group>
         );
@@ -204,7 +205,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           RAMP_D / 2 + 0.1,
         ]}
       >
-        <Text fontSize={0.34} color="#fbbf24" anchorX="center">θ = {fmt(p.angulo, 0)}°</Text>
+        <Texto3D fontSize={0.34} color="#fbbf24" anchorX="center">θ = {fmt(p.angulo, 0)}°</Texto3D>
       </Billboard>
 
       {/* meta al pie de la rampa */}
@@ -218,7 +219,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
           <meshBasicMaterial color="#22c55e" side={2} />
         </mesh>
         <Billboard position={[0, 2.15, 0]}>
-          <Text fontSize={0.32} color="#4ade80" anchorX="center">META</Text>
+          <Texto3D fontSize={0.32} color="#4ade80" anchorX="center">META</Texto3D>
         </Billboard>
       </group>
 
@@ -228,7 +229,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
         <meshStandardMaterial color="#0ea5e9" roughness={0.5} metalness={0.15} />
       </mesh>
       <Billboard position={[bx + 1.0, by + 0.85, 0]}>
-        <Text fontSize={0.3} color="#e2e8f0" anchorX="left">{fmt(p.masa, 0)} kg</Text>
+        <Texto3D fontSize={0.3} color="#e2e8f0" anchorX="left">{fmt(p.masa, 0)} kg</Texto3D>
       </Billboard>
 
       {/* vectores: peso, normal y rozamiento (declarativos, 12 Hz) */}

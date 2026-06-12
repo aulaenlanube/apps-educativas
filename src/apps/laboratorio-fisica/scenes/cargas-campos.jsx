@@ -4,7 +4,8 @@
 // el radio R = m·v/(q·B) y el periodo T = 2π·m/(q·B) — que NO depende de v.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -136,10 +137,10 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
               <meshStandardMaterial color={signoColor(q)} emissive={signoColor(q)} emissiveIntensity={0.3} roughness={0.4} />
             </mesh>
             <Billboard position={[0, 1.85, 0.62]}>
-              <Text fontSize={0.5} color="#0f172a" anchorX="center">{q > 0 ? '+' : q < 0 ? '−' : '0'}</Text>
+              <Texto3D fontSize={0.5} color="#0f172a" anchorX="center">{q > 0 ? '+' : q < 0 ? '−' : '0'}</Texto3D>
             </Billboard>
             <Billboard position={[0, 2.85, 0]}>
-              <Text fontSize={0.3} color="#cbd5e1" anchorX="center">{fmt(q, 0)} µC</Text>
+              <Texto3D fontSize={0.3} color="#cbd5e1" anchorX="center">{fmt(q, 0)} µC</Texto3D>
             </Billboard>
           </group>
         ))}
@@ -149,12 +150,12 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
           <meshBasicMaterial color="#fbbf24" transparent opacity={0.6} />
         </mesh>
         <Billboard position={[0, 0.6, 0]}>
-          <Text fontSize={0.3} color="#fbbf24" anchorX="center">r = {fmt(p.r, 1)} m</Text>
+          <Texto3D fontSize={0.3} color="#fbbf24" anchorX="center">r = {fmt(p.r, 1)} m</Texto3D>
         </Billboard>
         <Billboard position={[0, 3.7, 0]}>
-          <Text fontSize={0.5} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+          <Texto3D fontSize={0.5} color="#67e8f9" outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
             F = {fmt(F, 3)} N {atraccion ? '(atracción)' : p.q1 * p.q2 > 0 ? '(repulsión)' : ''}
-          </Text>
+          </Texto3D>
         </Billboard>
 
         {/* fuerzas mutuas: 3ª ley */}
@@ -199,7 +200,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
         </group>
       )))}
       <Billboard position={[-9, 1.2, -9]}>
-        <Text fontSize={0.4} color="#a78bfa" anchorX="center">B = {fmt(p.B, 2)} T (saliente ⊙)</Text>
+        <Texto3D fontSize={0.4} color="#a78bfa" anchorX="center">B = {fmt(p.B, 2)} T (saliente)</Texto3D>
       </Billboard>
 
       {/* círculo teórico R = m·v/(qB) */}

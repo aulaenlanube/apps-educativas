@@ -3,7 +3,8 @@
 // y momento de una fuerza, con la tabla inclinándose hacia el lado ganador.
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Text } from '@react-three/drei';
+import { Billboard } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
@@ -106,7 +107,7 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshStandardMaterial color="#22d3ee" roughness={0.5} />
           </mesh>
           <Billboard position={[0, lado1 / 2 + 0.42, 0]}>
-            <Text fontSize={0.3} color="#67e8f9" anchorX="center">{fmt(p.m1, 0)} kg · {fmt(p.d1, 1)} m</Text>
+            <Texto3D fontSize={0.3} color="#67e8f9" anchorX="center">{fmt(p.m1, 0)} kg · {fmt(p.d1, 1)} m</Texto3D>
           </Billboard>
         </group>
         {/* pesa derecha */}
@@ -116,16 +117,16 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
             <meshStandardMaterial color="#f472b6" roughness={0.5} />
           </mesh>
           <Billboard position={[0, lado2 / 2 + 0.42, 0]}>
-            <Text fontSize={0.3} color="#f9a8d4" anchorX="center">{fmt(p.m2, 0)} kg · {fmt(p.d2, 1)} m</Text>
+            <Texto3D fontSize={0.3} color="#f9a8d4" anchorX="center">{fmt(p.m2, 0)} kg · {fmt(p.d2, 1)} m</Texto3D>
           </Billboard>
         </group>
       </group>
 
       {/* indicador del momento neto */}
       <Billboard position={[0, ALTURA + 2.6, 0]}>
-        <Text fontSize={0.44} color={eqColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.44} color={eqColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
           τ neto = {fmt(d.tau, 1)} N·m
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* pesos aplicados en cada pesa (aproximados sin la rotación para legibilidad) */}

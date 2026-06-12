@@ -5,7 +5,8 @@
 // sonda. Las burbujas son visualización pura (escaladas por particleBudget).
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Billboard, Edges, Text } from '@react-three/drei';
+import { Billboard, Edges } from '@react-three/drei';
+import Texto3D from '../components/Texto3D';
 import * as THREE from 'three';
 import useFixedStep from '../components/useFixedStep';
 import useThrottledTick from '../components/useThrottledTick';
@@ -174,9 +175,9 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
         <meshBasicMaterial color={liq.color} transparent opacity={0.55} />
       </mesh>
       <Billboard position={[0, Y_BORDE + 0.5, 0]}>
-        <Text fontSize={0.32} color={liq.color} outlineWidth={0.018} outlineColor="#0f172a" anchorX="center">
+        <Texto3D fontSize={0.32} color={liq.color} outlineWidth={0.018} outlineColor="#0f172a" anchorX="center">
           {liq.label} · ρ = {fmt(liq.rho, 0)} kg/m³
-        </Text>
+        </Texto3D>
       </Billboard>
 
       {/* pórtico del cable */}
@@ -236,7 +237,7 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
               <meshStandardMaterial color="#fbbf24" />
             </mesh>
             <Billboard position={[-0.72, 0, 0]}>
-              <Text fontSize={0.3} color="#cbd5e1" anchorX="center">{m} m</Text>
+              <Texto3D fontSize={0.3} color="#cbd5e1" anchorX="center">{m} m</Texto3D>
             </Billboard>
           </group>
         ))}
@@ -244,7 +245,7 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
 
       {/* manómetro junto a la sonda (declarativo, 12 Hz) */}
       <Billboard position={[1.35, probeY + 0.16, 0]}>
-        <Text
+        <Texto3D
           fontSize={0.48}
           color={colorPresion(pTot)}
           outlineWidth={0.022}
@@ -252,12 +253,12 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
           anchorX="center"
         >
           {fmt(pTot, 1)} kPa
-        </Text>
+        </Texto3D>
       </Billboard>
       <Billboard position={[1.35, probeY - 0.38, 0]}>
-        <Text fontSize={0.26} color="#94a3b8" anchorX="center">
+        <Texto3D fontSize={0.26} color="#94a3b8" anchorX="center">
           h = {fmt(d.h, 1)} m
-        </Text>
+        </Texto3D>
       </Billboard>
     </group>
   );
