@@ -7,13 +7,38 @@ import caidaLibre from './scenes/caida-libre';
 import rozamiento from './scenes/rozamiento';
 import muelles from './scenes/muelles';
 import gases from './scenes/gases';
+import planoInclinado from './scenes/plano-inclinado';
+import flotaOHunde from './scenes/flota-o-hunde';
+import mruMrua from './scenes/mru-mrua';
+import poleas from './scenes/poleas';
+import presionHidrostatica from './scenes/presion-hidrostatica';
+import pascal from './scenes/pascal';
+import arquimedes from './scenes/arquimedes';
+import presionAtmosferica from './scenes/presion-atmosferica';
+import gravitacion from './scenes/gravitacion';
+import energia from './scenes/energia';
+import movimientoCircular from './scenes/movimiento-circular';
 import { courseIndex } from './engine/exam';
 
 export const SIMS = [
+  // ciclo ESO (1º-2º)
   caidaLibre,
   rozamiento,
   muelles,
   gases,
+  // 3º ESO
+  planoInclinado,
+  flotaOHunde,
+  // 4º ESO
+  mruMrua,
+  poleas,
+  presionHidrostatica,
+  pascal,
+  arquimedes,
+  presionAtmosferica,
+  gravitacion,
+  energia,
+  movimientoCircular,
 ];
 
 // Valores por defecto de los parámetros de una simulación

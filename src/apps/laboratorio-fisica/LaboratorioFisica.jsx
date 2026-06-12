@@ -17,6 +17,7 @@ import { GLOBAL_QUALITY_PARAMS, QUALITY_LABELS } from '@/services/graphicsQualit
 import SimViewport from './components/SimViewport';
 import ParamPanel from './components/ParamPanel';
 import GraphPanel from './components/GraphPanel';
+import EnergyBars from './components/EnergyBars';
 import ExamScreen from './components/ExamScreen';
 import { SIMS, catalogoPara, defaultsDe, simPorId } from './registry';
 import { generarExamen, cursoLabel } from './engine/exam';
@@ -93,6 +94,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const [showTrajectory, setShowTrajectory] = useState(true);
   const [readouts, setReadouts] = useState([]);
   const [formulaViva, setFormulaViva] = useState('');
+  const [energia, setEnergia] = useState(null);
   const [retosDone, setRetosDone] = useState({});
   const [retosPoints, setRetosPoints] = useState(0);
   const [pistasAbiertas, setPistasAbiertas] = useState({});
@@ -163,6 +165,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
       lastUiRef.current = now;
       setReadouts(tel.readouts || []);
       setFormulaViva(tel.formulaViva || '');
+      setEnergia(tel.energia || null);
     }
   }, [completarReto]);
 
@@ -418,6 +421,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
                 readouts={readouts}
                 formulaViva={formulaViva}
               >
+                {energia?.length > 0 && <EnergyBars items={energia} />}
                 {mode === 'retos' && activeSim.retos?.length > 0 && (
                   <RetosList
                     sim={activeSim}
