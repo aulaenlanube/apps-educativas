@@ -1,0 +1,51 @@
+/* Selector global de calidad gráfica. Por defecto estilizado para fondos
+   claros (perfil/ajustes); el tema oscuro de la plataforma (clase .dark en
+   el root) y el modificador .gfxsel-on-dark (apps con fondo oscuro propio,
+   independiente del tema) cambian a la paleta oscura. */
+
+.gfxsel-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.gfxsel-label {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.82rem; font-weight: 700; color: #7c3aed;
+}
+.gfxsel-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+.gfxsel-buttons button {
+  background: #fff; color: #475569;
+  border: 1px solid #cbd5e1; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: all 0.15s;
+}
+.gfxsel-buttons button:hover { border-color: #a855f7; color: #7c3aed; }
+.gfxsel-buttons button.active {
+  background: #f3e8ff; color: #7c3aed; border-color: #a855f7;
+}
+
+.gfxsel-card-title {
+  display: flex; align-items: center; gap: 6px;
+  font-weight: 800; font-size: 0.92rem; margin-bottom: 9px; color: #6d28d9;
+}
+.gfxsel-note { margin: 9px 0 0; font-size: 0.76rem; color: #64748b; line-height: 1.4; }
+.gfxsel-note strong { color: #7c3aed; }
+
+/* ---- paleta oscura (tema dark de la plataforma o fondo oscuro de app) ---- */
+.dark .gfxsel-label, .gfxsel-on-dark .gfxsel-label { color: #c4b5fd; }
+.dark .gfxsel-buttons button, .gfxsel-on-dark .gfxsel-buttons button {
+  background: rgba(255, 255, 255, 0.07); color: #e2e8f0;
+  border-color: rgba(168, 85, 247, 0.35);
+}
+.dark .gfxsel-buttons button:hover, .gfxsel-on-dark .gfxsel-buttons button:hover {
+  border-color: rgba(251, 191, 36, 0.6); color: #e2e8f0;
+}
+.dark .gfxsel-buttons button.active, .gfxsel-on-dark .gfxsel-buttons button.active {
+  background: rgba(251, 191, 36, 0.22); color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.65);
+}
+.dark .gfxsel-card-title, .gfxsel-on-dark .gfxsel-card-title { color: #e9d5ff; }
+.dark .gfxsel-note, .gfxsel-on-dark .gfxsel-note { color: #94a3b8; }
+.dark .gfxsel-note strong, .gfxsel-on-dark .gfxsel-note strong { color: #fbbf24; }
+
+@media (max-width: 720px) {
+  .gfxsel-buttons button { padding: 4px 9px; font-size: 0.76rem; }
+}

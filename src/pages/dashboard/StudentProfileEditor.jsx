@@ -13,6 +13,7 @@ import GroupSelector from '@/components/student/GroupSelector';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import AvatarGallery from '@/components/avatar/AvatarGallery';
 import DuelPhrasesEditor from '@/components/duel/DuelPhrasesEditor';
+import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 import AnimatedNumber from '@/components/ui/AnimatedNumber';
 
@@ -409,6 +410,21 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
 
       {/* Frases para duelos 1 vs 1 */}
       <DuelPhrasesEditor />
+
+      {/* Calidad gráfica global (se guarda por dispositivo) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.08 }}
+        className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm"
+      >
+        <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Calidad gráfica</h3>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
+          Ajusta los gráficos de las apps 3D (La Fortaleza, Laboratorio de Física…) en este dispositivo.
+          En Auto se adapta sola a la potencia del equipo.
+        </p>
+        <GraphicsQualitySelector variant="row" />
+      </motion.div>
 
       {/* Personalizar avatar (emoji + color clásico) */}
       <motion.div
