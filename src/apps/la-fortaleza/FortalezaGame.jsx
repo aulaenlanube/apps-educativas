@@ -18,6 +18,8 @@ import {
   TOWER_TYPES, MAX_TOWER_LEVEL, upgradeCost, sellValue, EXAM_VICTORY_LEVEL,
   SANCT_UNLOCK_CORRECT, FORT_UPGRADES, buyFortUpgrade,
   RELICS, chooseRelic, enterEndless, scoreMult,
+  merchantBoard, merchantResolve, wellEngage, wellCancel, wellBet, wellResolve,
+  crackGeode, WELL_BETS, WELL_MULT,
 } from './engine';
 import { createScene3D, pickAmbience } from './render3d';
 import FortIcon from './FortIcons';
@@ -99,6 +101,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   const qPointerRef = useRef(0);
   const bossPointerRef = useRef(0);
   const miniPtrRef = useRef({ 1: 0, 2: 0, 3: 0 });
+  const hardPtrRef = useRef(0); // preguntas difíciles del mercader y el pozo
   const miniRef = useRef(null);
   const academicRef = useRef({
     correct: 0, total: 0,
@@ -373,6 +376,113 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     return () => clearTimeout(t);
   }, [overlay, answerOracle]);
 
+  // --- minijuegos opcionales: Mercader Errante y Pozo de los Deseos ---
+  // pregunta de la dificultad más alta disponible (puntero circular propio)
+  const hardQuestion = useCallback(() => {
+    const diff = [3, 2, 1].find((d) => pools[d]?.length > 0) ?? 1;
+    const pool = pools[diff] || [];
+    const q = pool[hardPtrRef.current % pool.length];
+    hardPtrRef.current++;
+    return q;
+  }, [pools]);
+
+  const answerMerchant = useCallback((answer) => {
+    setOverlay((prev) => {
+      if (prev?.type !== 'merchant' || prev.stage !== 'question' || prev.feedback) return prev;
+      const correct = answer != null && norm(answer) === norm(prev.question.solucion);
+      tally('questions', correct);
+      const reward = merchantResolve(gameRef.current, correct);
+      if (correct) {
+        soundsRef.current.correct();
+        setTimeout(() => soundsRef.current.coin(), 250);
+      } else {
+        soundsRef.current.wrong();
+      }
+      return { ...prev, feedback: correct ? 'correct' : 'wrong', reward };
+    });
+  }, [tally]);
+
+  // Aceptar el trato revela la pregunta; ya no hay vuelta atrás (como en el
+  // Desafío Relámpago: se declina ANTES de ver la pregunta, nunca después,
+  // para que no se pueda filtrar solo las que sabes e inflar la nota).
+  const acceptMerchant = useCallback(() => {
+    const ov = overlayRef.current;
+    if (ov?.type !== 'merchant' || ov.stage !== 'offer') return;
+    setOverlay({ type: 'merchant', stage: 'question', question: hardQuestion(), feedback: null, reward: 0, timeLeft: PERIODIC_SECONDS });
+  }, [hardQuestion]);
+
+  const declineMerchant = useCallback(() => {
+    merchantResolve(gameRef.current, null);
+    setOverlay(null);
+  }, []);
+
+  const placeWellBet = useCallback((amount) => {
+    if (!wellBet(gameRef.current, amount)) return;
+    soundsRef.current.coin();
+    setOverlay({ type: 'well', stage: 'question', bet: amount, question: hardQuestion(), feedback: null, payout: 0, timeLeft: PERIODIC_SECONDS });
+  }, [hardQuestion]);
+
+  const answerWell = useCallback((answer) => {
+    setOverlay((prev) => {
+      if (prev?.type !== 'well' || prev.stage !== 'question' || prev.feedback) return prev;
+      const correct = answer != null && norm(answer) === norm(prev.question.solucion);
+      tally('questions', correct);
+      const payout = wellResolve(gameRef.current, correct);
+      if (correct) {
+        soundsRef.current.correct();
+        setTimeout(() => soundsRef.current.coin(), 250);
+      } else {
+        soundsRef.current.wrong();
+      }
+      return { ...prev, feedback: correct ? 'correct' : 'wrong', payout };
+    });
+  }, [tally]);
+
+  // Si otro overlay va a sustituir al del mercader/pozo (jefe, reliquia,
+  // victoria, quit/exit, catpick), liquida antes el estado del engine para
+  // que el barco no quede en 'trading' ni el pozo 'engaged' para siempre.
+  // Pregunta vista sin responder = fallo (sin escapatoria para cherry-picking);
+  // oferta/apuesta sin pregunta vista se cancelan sin coste ni tally.
+  const settleMiniOverlay = useCallback(() => {
+    const ov = overlayRef.current;
+    if (!ov || ov.feedback) return;
+    const g = gameRef.current;
+    if (ov.type === 'merchant') {
+      if (ov.stage === 'question') tally('questions', false);
+      merchantResolve(g, null);
+    } else if (ov.type === 'well') {
+      if (ov.stage === 'question') {
+        tally('questions', false);
+        wellResolve(g, false);
+      } else {
+        wellCancel(g);
+      }
+    }
+  }, [tally]);
+
+  // Temporizador + cierre de los modales del mercader y el pozo. La oferta y
+  // la apuesta también caducan (sin pregunta vista no hay penalización).
+  useEffect(() => {
+    const ov = overlay;
+    if (ov?.type !== 'merchant' && ov?.type !== 'well') return;
+    if (ov.feedback) {
+      const t = setTimeout(() => setOverlay((p) => (p === ov ? null : p)), 1500);
+      return () => clearTimeout(t);
+    }
+    if (ov.timeLeft <= 0) {
+      if (ov.stage === 'question') {
+        (ov.type === 'merchant' ? answerMerchant : answerWell)(null);
+      } else {
+        if (ov.type === 'merchant') merchantResolve(gameRef.current, null);
+        else wellCancel(gameRef.current);
+        setOverlay((p) => (p === ov ? null : p));
+      }
+      return;
+    }
+    const t = setTimeout(() => setOverlay((p) => (p === ov ? { ...p, timeLeft: p.timeLeft - 1 } : p)), 1000);
+    return () => clearTimeout(t);
+  }, [overlay, answerMerchant, answerWell]);
+
   // --- clasificación manual ---
   const answerClassify = useCallback((catIdx) => {
     const ov = overlayRef.current;
@@ -402,6 +512,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           snd.bossSpawn();
           const q = bossQuestions[bossPointerRef.current % bossQuestions.length];
           bossPointerRef.current++;
+          settleMiniOverlay(); // el jefe pisa el modal del mercader/pozo: liquidar antes
           setOverlay({ type: 'boss', enemyId: ev.enemy.id, question: q, input: '', feedback: null, timeLeft: BOSS_SECONDS });
           break;
         }
@@ -421,6 +532,9 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
             setMini({ stage: 'offer', step: 0, total: 0 });
           }
           break;
+        case 'merchant_docked': snd.shipBell(); break;
+        case 'well_spawn': snd.splash(); break;
+        case 'geode_spawn': snd.coin(); break;
         case 'ally_spawn': snd.allySpawn(); break;
         case 'ally_death': snd.jam(); break;
         case 'heal': snd.heal(); break;
@@ -434,10 +548,12 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           break;
         case 'relic_offer':
           snd.unlock();
+          settleMiniOverlay();
           setOverlay({ type: 'relic', options: ev.options });
           break;
         case 'victory':
           snd.victory();
+          settleMiniOverlay();
           if (isExam) {
             // sella la nota en este instante y deja elegir: terminar o asedio
             sealedRef.current = JSON.parse(JSON.stringify(academicRef.current));
@@ -455,7 +571,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         default: break;
       }
     }
-  }, [bossQuestions, endGame, nextQuestion, isExam]);
+  }, [bossQuestions, endGame, nextQuestion, isExam, settleMiniOverlay]);
 
   // --- escena 3D + bucle principal ---
   // gfxTier en las deps: cambiar la calidad desecha y reconstruye la escena
@@ -498,7 +614,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       const mg = miniRef.current;
       if ((ov && (ov.type === 'classify' || ov.type === 'quit' || ov.type === 'exit'
         || ov.type === 'relic' || ov.type === 'victory'
-        || ((ov.type === 'boss' || ov.type === 'oracle') && !ov.feedback)))
+        || ((ov.type === 'boss' || ov.type === 'oracle' || ov.type === 'merchant' || ov.type === 'well') && !ov.feedback)))
         || (mg && (mg.stage === 'offer' || !mg.feedback))) {
         scale = isExam ? 0.25 : 0;
       }
@@ -589,6 +705,34 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       return;
     }
 
+    // 2b) Minijuegos opcionales: barco atracado, pozo de los deseos y geoda
+    // (miniRef también bloquea: nada de apilarse sobre el Desafío Relámpago
+    // ni de picar la geoda gratis con el tiempo congelado por su pausa)
+    if (hit.kind === 'merchant' && phaseRef.current === 'run' && !overlayRef.current && !miniRef.current) {
+      if (merchantBoard(g)) {
+        soundsRef.current.shipBell();
+        setSelectedTowerId(null);
+        setOverlay({ type: 'merchant', stage: 'offer', feedback: null, timeLeft: PERIODIC_SECONDS });
+      }
+      return;
+    }
+    if (hit.kind === 'well' && phaseRef.current === 'run' && !overlayRef.current && !miniRef.current) {
+      if (wellEngage(g)) {
+        soundsRef.current.splash();
+        setSelectedTowerId(null);
+        setOverlay({ type: 'well', stage: 'bet', bet: 0, question: null, feedback: null, timeLeft: PERIODIC_SECONDS });
+      }
+      return;
+    }
+    if (hit.kind === 'geode' && phaseRef.current === 'run' && !overlayRef.current && !miniRef.current) {
+      const res = crackGeode(g);
+      if (res) {
+        if (res.broken) soundsRef.current.geodeBreak();
+        else soundsRef.current.geodeCrack(res.hits);
+      }
+      return;
+    }
+
     // 3) Recolocar una construcción
     if (movingRef.current && hit.kind === 'ground') {
       const [col, row] = hit.cell;
@@ -605,6 +749,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
       const type = TOWER_TYPES[placingRef.current];
       if (canPlace(g, placingRef.current, col, row) && g.coins >= type.cost) {
         if (type.needsCategory) {
+          settleMiniOverlay(); // catpick pisa el overlay vigente
           setOverlay({ type: 'catpick', col, row, towerType: placingRef.current });
         } else {
           placeTower(g, col, row, placingRef.current);
@@ -623,7 +768,7 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     if (hit.kind === 'tower') setSelectedTowerId(hit.towerId);
     else setSelectedTowerId(null);
     setFortOpen(false);
-  }, []);
+  }, [settleMiniOverlay]);
 
   const updateHover = useCallback((clientX, clientY) => {
     const scene = sceneRef.current;
@@ -702,8 +847,12 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
   const pickCategoryAndPlace = useCallback((catIdx) => {
     const ov = overlayRef.current;
     if (ov?.type !== 'catpick') return;
-    placeTower(gameRef.current, ov.col, ov.row, ov.towerType, catIdx);
-    soundsRef.current.build();
+    // la celda pudo ocuparse mientras elegías (p.ej. brotó una geoda ahí)
+    if (placeTower(gameRef.current, ov.col, ov.row, ov.towerType, catIdx)) {
+      soundsRef.current.build();
+    } else {
+      soundsRef.current.wrong();
+    }
     setOverlay(null);
   }, []);
 
@@ -810,10 +959,10 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           </button>
         )}
         {phase === 'run' && !isExam && (
-          <button className="fort-hud-btn" onClick={() => setOverlay({ type: 'quit' })} title="Terminar partida"><Flag size={16} /></button>
+          <button className="fort-hud-btn" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'quit' }); }} title="Terminar partida"><Flag size={16} /></button>
         )}
         {phase !== 'ended' && (
-          <button className="fort-hud-btn" onClick={() => setOverlay({ type: 'exit' })} title="Volver a la selección de modo"><LogOut size={16} /></button>
+          <button className="fort-hud-btn" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'exit' }); }} title="Volver a la selección de modo"><LogOut size={16} /></button>
         )}
         <button
           className={`fort-hud-btn ${gfxOpen ? 'active' : ''}`}
@@ -1134,6 +1283,99 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                 <button className="fort-btn-secondary" onClick={() => endGame('victory')}><Flag size={15} /> Terminar con victoria</button>
                 <button className="fort-btn-launch" onClick={continueEndless}><Swords size={16} /> ¡Asedio infinito!</button>
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- Mercader Errante: pregunta difícil por monedas ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'merchant' && (
+            <motion.div className="fort-quiz fort-merchant" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-quiz-head">
+                <span className="fort-merchant-title">⛵ El Mercader Errante</span>
+                {!overlay.feedback && (
+                  <span className={`fort-quiz-timer ${overlay.timeLeft <= 5 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
+                )}
+              </div>
+              {overlay.stage === 'offer' ? (
+                <>
+                  <p className="fort-quiz-def">
+                    «Llevo una <strong>bolsa de monedas</strong> para quien responda mi pregunta,
+                    grumete. Pero aviso: una vez la oigas, no hay vuelta atrás. ¿Cerramos el trato?»
+                  </p>
+                  <div className="fort-quit-btns">
+                    <button className="fort-btn-secondary" onClick={declineMerchant}>Dejarlo zarpar</button>
+                    <button className="fort-btn-launch" onClick={acceptMerchant}>¡Acepto el trato!</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="fort-quiz-def">{overlay.question.definicion}</p>
+                  {overlay.feedback ? (
+                    <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                      {overlay.feedback === 'correct'
+                        ? <>✅ ¡Trato cerrado! <strong>+{overlay.reward} 🪙</strong></>
+                        : <>❌ Era: <strong>{overlay.question.solucion}</strong>. El barco zarpa sin trato.</>}
+                    </div>
+                  ) : (
+                    <div className="fort-quiz-options">
+                      {overlay.question.options.map((opt) => (
+                        <button key={opt} onClick={() => answerMerchant(opt)}>{opt}</button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---------- Pozo de los Deseos: apuesta + pregunta difícil ---------- */}
+        <AnimatePresence>
+          {overlay?.type === 'well' && (
+            <motion.div className="fort-quiz fort-well" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-quiz-head">
+                <span className="fort-well-title">⛲ El Pozo de los Deseos</span>
+                {overlay.stage === 'question' && !overlay.feedback && (
+                  <span className={`fort-quiz-timer ${overlay.timeLeft <= 5 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
+                )}
+              </div>
+              {overlay.stage === 'bet' ? (
+                <>
+                  <p className="fort-quiz-def">
+                    Lanza monedas al pozo y responde una pregunta difícil: si aciertas
+                    el pozo te devuelve <strong>×{WELL_MULT}</strong>; si fallas, se hunden para siempre.
+                  </p>
+                  <div className="fort-well-bets">
+                    {WELL_BETS.map((b) => (
+                      <button key={b} disabled={hud.coins < b} onClick={() => placeWellBet(b)}>
+                        <strong>{b} 🪙</strong>
+                        <span className="fort-well-win">acierto: +{Math.round(b * WELL_MULT)}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <button className="fort-btn-secondary fort-mini-skip" onClick={() => { wellCancel(gameRef.current); setOverlay(null); }}>
+                    Ahora no
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="fort-quiz-def">{overlay.question.definicion}</p>
+                  {overlay.feedback ? (
+                    <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                      {overlay.feedback === 'correct'
+                        ? <>✅ ¡El pozo te lo devuelve con creces! <strong>+{overlay.payout} 🪙</strong></>
+                        : <>❌ Era: <strong>{overlay.question.solucion}</strong>. Las monedas se hunden… <strong>−{overlay.bet} 🪙</strong></>}
+                    </div>
+                  ) : (
+                    <div className="fort-quiz-options">
+                      {overlay.question.options.map((opt) => (
+                        <button key={opt} onClick={() => answerWell(opt)}>{opt}</button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

@@ -552,6 +552,34 @@
 .fort-victory { max-width: min(94%, 520px); border-color: rgba(251, 191, 36, 0.55); }
 .fort-victory .fort-mini-title { color: #fbbf24; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
+/* ---------- minijuegos: mercader, pozo y geoda ---------- */
+.fort-merchant { border-color: rgba(45, 212, 191, 0.55); }
+.fort-merchant-title { font-size: 0.92rem; font-weight: 800; color: #5eead4; }
+.fort-merchant .fort-quiz-options button {
+  background: rgba(45, 212, 191, 0.14); border-color: rgba(45, 212, 191, 0.4);
+}
+.fort-merchant .fort-quiz-options button:hover { background: rgba(45, 212, 191, 0.3); }
+
+.fort-well { border-color: rgba(103, 232, 249, 0.55); }
+.fort-well-title { font-size: 0.92rem; font-weight: 800; color: #67e8f9; }
+.fort-well .fort-quiz-options button {
+  background: rgba(103, 232, 249, 0.12); border-color: rgba(103, 232, 249, 0.4);
+}
+.fort-well .fort-quiz-options button:hover { background: rgba(103, 232, 249, 0.28); }
+.fort-well-bets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fort-well-bets button {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  background: rgba(103, 232, 249, 0.12); color: #f1f5f9;
+  border: 1.5px solid rgba(103, 232, 249, 0.45); border-radius: 12px;
+  padding: 12px 8px; cursor: pointer; font-size: 1rem;
+  transition: background 0.15s, transform 0.1s;
+}
+.fort-well-bets button:hover:not(:disabled) { background: rgba(103, 232, 249, 0.28); transform: translateY(-1px); }
+.fort-well-bets button:disabled { opacity: 0.4; cursor: not-allowed; }
+.fort-well-win { font-size: 0.74rem; font-weight: 700; color: #6ee7b7; }
+
+.fort-mini-skip { width: 100%; margin-top: 10px; padding: 9px 12px; border-radius: 11px; font-size: 0.88rem; }
+
 .fort-hud-item.relics { color: #c084fc; cursor: help; }
 .fort-forecast-amb {
   font-size: 0.78rem; font-weight: 700; color: #93c5fd;

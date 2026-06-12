@@ -57,6 +57,28 @@ export const GRACE_SECONDS = 6;         // respiro inicial antes del primer enem
 export const gateCountForLevel = (level, totalGates) =>
   Math.min(1 + Math.floor((level - 1) / 2), totalGates);
 
+// --- minijuegos opcionales: objetos temporales que dan monedas extra ---
+// Mercader Errante: un barco atraca en la cala; púlsalo y responde una pregunta
+// difícil por una bolsa de monedas. Pozo de los Deseos: brota durante un nivel;
+// apuesta monedas y responde para multiplicarlas. Geoda: rómpela a clics antes
+// de que se desvanezca. Todo su azar sale de game.rng (determinista).
+export const MERCHANT_FIRST_AT = 40;     // s de acción hasta el primer barco
+export const MERCHANT_INTERVAL_MIN = 70; // s entre barcos (+ variación rng)
+export const MERCHANT_INTERVAL_VAR = 35;
+export const MERCHANT_SAIL_SECONDS = 7;  // travesía de llegada y de salida
+export const MERCHANT_DOCK_SECONDS = 22; // ventana para pulsar el barco
+export const MERCHANT_COINS = 85;        // base de la recompensa; +10 por nivel
+export const WELL_EVERY_LEVELS = 5;      // brota en los niveles 5, 10, 15...
+export const WELL_BETS = [25, 50, 100];
+export const WELL_MULT = 2.5;            // pago del acierto (la apuesta ya se descontó)
+export const GEODE_FIRST_AT = 25;        // s de acción hasta la primera geoda
+export const GEODE_INTERVAL_MIN = 45;    // s entre geodas (+ variación rng)
+export const GEODE_INTERVAL_VAR = 25;
+export const GEODE_LIFETIME = 14;        // s antes de desvanecerse
+export const GEODE_CLICKS = 5;           // golpes para romperla
+export const GEODE_CLICK_COINS = 5;      // monedas por golpe
+export const GEODE_FINAL_COINS = 30;     // estallido del último golpe
+
 // --- preguntas periódicas durante la acción ---
 export const QUESTION_FIRST = 12;        // s hasta la primera pregunta
 export const QUESTION_INTERVAL = 30;     // s entre preguntas
@@ -425,6 +447,11 @@ export function createGame(cfg) {
     relics: [],                    // ids de RELICS elegidas
     relicMods: defaultRelicMods(), // efectos acumulados (se recalculan al elegir)
     pendingRelics: null,           // oferta activa [3 ids] a la espera de elección
+    merchant: null,                // barco {state: sailing|docked|trading|leaving, until, used}
+    merchantNextAt: 0,
+    well: null,                    // pozo {col, row, x, y, until, engaged, bet}
+    geode: null,                   // geoda {col, row, x, y, hits, until}
+    geodeNextAt: 0,
     endless: false,                // asedio infinito tras la victoria del examen
     stats: { kills: 0, leaks: 0, towersBuilt: 0, shielded: 0 },
   };
@@ -447,6 +474,8 @@ export function startRun(game) {
   game.spawnTimer = GRACE_SECONDS;
   game.questionNextAt = game.time + QUESTION_FIRST;
   game.allyNextAt = game.time + ALLY.firstDelay;
+  game.merchantNextAt = game.time + MERCHANT_FIRST_AT + game.rng() * 15;
+  game.geodeNextAt = game.time + GEODE_FIRST_AT + game.rng() * 10;
 }
 
 /** Elige tipo y categoría del siguiente enemigo según el nivel de amenaza. */
@@ -522,6 +551,8 @@ export function canBuildAt(game, col, row) {
   if (col < 0 || row < 0 || col >= GRID.cols || row >= GRID.rows) return false;
   if (game.map.pathCells.has(`${col},${row}`)) return false;
   if (game.map.fortCells.has(`${col},${row}`)) return false; // explanada de la fortaleza
+  if (game.well && game.well.col === col && game.well.row === row) return false;
+  if (game.geode && game.geode.col === col && game.geode.row === row) return false;
   return !game.towers.some((t) => t.col === col && t.row === row);
 }
 
@@ -742,10 +773,80 @@ function findTarget(game, tower) {
 
 const BARRIER_CONTACT = 22; // px de separación al chocar con una muralla
 
+// ---------------------------------------------------------------------------
+// Minijuegos opcionales (Mercader, Pozo, Geoda): aparición y caducidad
+// ---------------------------------------------------------------------------
+
+/** Celda libre al azar (rng de la partida); border/nearPath acotan candidatas. */
+function freeCellFor(game, { nearPath = false, border = false } = {}) {
+  const cands = [];
+  for (let c = 0; c < GRID.cols; c++) {
+    for (let r = 0; r < GRID.rows; r++) {
+      if (!canBuildAt(game, c, r)) continue;
+      if (border && !(c <= 1 || c >= GRID.cols - 2 || r === 0 || r === GRID.rows - 1)) continue;
+      if (nearPath) {
+        const adj = [`${c + 1},${r}`, `${c - 1},${r}`, `${c},${r + 1}`, `${c},${r - 1}`];
+        if (!adj.some((k) => game.map.pathCells.has(k))) continue;
+      }
+      cands.push([c, r]);
+    }
+  }
+  if (!cands.length) return null;
+  const [col, row] = cands[Math.floor(game.rng() * cands.length)];
+  return { col, row, x: col * GRID.cell + GRID.cell / 2, y: row * GRID.cell + GRID.cell / 2 };
+}
+
+function stepMinis(game, events) {
+  // Mercader Errante: navega → atraca → zarpa (el estado 'trading' congela
+  // la cuenta atrás hasta merchantResolve, para que el modal no lo pierda)
+  const m = game.merchant;
+  if (!m && game.time >= game.merchantNextAt) {
+    game.merchant = { state: 'sailing', until: game.time + MERCHANT_SAIL_SECONDS, used: false };
+    events.push({ t: 'merchant_spawn' });
+  } else if (m && m.state === 'sailing' && game.time >= m.until) {
+    m.state = 'docked';
+    m.until = game.time + MERCHANT_DOCK_SECONDS;
+    pushText(game, WORLD.w - 130, WORLD.h - 45, '⛵ ¡Mercader en la cala!', '#5eead4');
+    events.push({ t: 'merchant_docked' });
+  } else if (m && m.state === 'docked' && game.time >= m.until) {
+    m.state = 'leaving';
+    m.until = game.time + MERCHANT_SAIL_SECONDS;
+    events.push({ t: 'merchant_gone' });
+  } else if (m && m.state === 'leaving' && game.time >= m.until) {
+    game.merchant = null;
+    game.merchantNextAt = game.time + MERCHANT_INTERVAL_MIN + game.rng() * MERCHANT_INTERVAL_VAR;
+  }
+
+  // Geoda: brota junto al camino y se desvanece si no la rompes a tiempo
+  const gd = game.geode;
+  if (!gd && game.time >= game.geodeNextAt) {
+    const cell = freeCellFor(game, { nearPath: true });
+    if (cell) {
+      game.geode = { ...cell, hits: 0, until: game.time + GEODE_LIFETIME };
+      pushText(game, cell.x, cell.y - 26, '💎 ¡Una geoda!', '#c084fc');
+      events.push({ t: 'geode_spawn' });
+    } else {
+      game.geodeNextAt = game.time + 20; // sin hueco junto al camino: reintenta
+    }
+  } else if (gd && game.time >= gd.until) {
+    game.geode = null;
+    game.geodeNextAt = game.time + GEODE_INTERVAL_MIN + game.rng() * GEODE_INTERVAL_VAR;
+    events.push({ t: 'geode_gone' });
+  }
+
+  // Pozo de los Deseos: caduca al acabar el nivel (salvo en plena apuesta)
+  const w = game.well;
+  if (w && !w.engaged && game.time >= w.until) {
+    game.well = null;
+    events.push({ t: 'well_gone' });
+  }
+}
+
 /**
  * Avanza la simulación dt segundos. Devuelve una lista de eventos para
  * sonido/HUD: shoot, hit, death, leak, boss_spawn, level_up, question_time,
  * minigame_offer, tower_hit, tower_destroyed, ally_spawn, ally_death,
+ * merchant_spawn/docked/gone, well_spawn/gone, geode_spawn/gone,
  * victory, defeat.
  */
 export function stepGame(game, dt) {
@@ -815,6 +916,15 @@ export function stepGame(game, dt) {
     if (game.level % MINIGAME_EVERY_LEVELS === 0) {
       events.push({ t: 'minigame_offer' });
     }
+    // Pozo de los Deseos: brota en una celda libre del borde durante un nivel
+    if (game.level % WELL_EVERY_LEVELS === 0 && !game.well) {
+      const cell = freeCellFor(game, { border: true }) || freeCellFor(game);
+      if (cell) {
+        game.well = { ...cell, until: game.levelUpAt, engaged: false, bet: 0 };
+        pushText(game, cell.x, cell.y - 26, '⛲ ¡Pozo de los deseos!', '#67e8f9');
+        events.push({ t: 'well_spawn' });
+      }
+    }
   }
 
   // --- spawns continuos, cada vez más frecuentes ---
@@ -831,6 +941,9 @@ export function stepGame(game, dt) {
     game.questionNextAt = game.time + (hasOracle ? QUESTION_INTERVAL_ORACLE : QUESTION_INTERVAL);
     events.push({ t: 'question_time' });
   }
+
+  // --- minijuegos opcionales: mercader, pozo y geoda ---
+  stepMinis(game, events);
 
   // --- aliados: salen de la fortaleza y traban combate en el camino ---
   if (game.time >= game.allyNextAt && game.allies.length < ALLY.max) {
@@ -1183,6 +1296,92 @@ export function rewardCorrectAnswer(game, streak) {
   game.coins += total;
   game.energy = Math.min(game.energy + ENERGY_PER_CORRECT, ENERGY_MAX);
   return total;
+}
+
+// ---------------------------------------------------------------------------
+// Minijuegos opcionales: interacción del jugador
+// ---------------------------------------------------------------------------
+
+/** Aborda el barco atracado: congela su cuenta atrás hasta merchantResolve. */
+export function merchantBoard(game) {
+  const m = game.merchant;
+  if (!m || m.state !== 'docked' || m.used || game.phase !== 'run') return false;
+  m.state = 'trading';
+  return true;
+}
+
+/** Cierra el trato (correct true/false; null = zarpar sin responder). Devuelve monedas. */
+export function merchantResolve(game, correct) {
+  const m = game.merchant;
+  if (!m || m.state !== 'trading') return 0;
+  m.used = true;
+  m.state = 'leaving';
+  m.until = game.time + MERCHANT_SAIL_SECONDS;
+  if (!correct) return 0;
+  const total = Math.round((MERCHANT_COINS + 10 * game.level) * game.relicMods.coins);
+  game.coins += total;
+  game.energy = Math.min(game.energy + 10, ENERGY_MAX);
+  pushText(game, WORLD.w - 130, WORLD.h - 65, `+${total} 🪙`, '#fde047');
+  return total;
+}
+
+/** Abre el pozo: pausa su desaparición mientras el jugador elige apuesta. */
+export function wellEngage(game) {
+  const w = game.well;
+  if (!w || w.engaged || game.phase !== 'run') return false;
+  w.engaged = true;
+  return true;
+}
+
+/** Cierra el pozo sin apostar: sigue disponible hasta que acabe el nivel. */
+export function wellCancel(game) {
+  const w = game.well;
+  if (w && w.engaged && !w.bet) w.engaged = false;
+}
+
+/** Apuesta monedas (una de WELL_BETS, con saldo). Se descuentan ya. */
+export function wellBet(game, amount) {
+  const w = game.well;
+  if (!w || !w.engaged || w.bet || !WELL_BETS.includes(amount) || game.coins < amount) return false;
+  game.coins -= amount;
+  w.bet = amount;
+  return true;
+}
+
+/** Resuelve la apuesta: acierto paga bet × WELL_MULT; fallo la pierde. */
+export function wellResolve(game, correct) {
+  const w = game.well;
+  if (!w || !w.bet) return 0;
+  const payout = correct ? Math.round(w.bet * WELL_MULT) : 0;
+  if (payout) {
+    game.coins += payout;
+    pushBurst(game, w.x, w.y, '#67e8f9', 16, 120);
+    pushText(game, w.x, w.y - 30, `+${payout} 🪙`, '#fde047');
+  } else {
+    pushText(game, w.x, w.y - 30, `-${w.bet} 🪙`, '#f87171');
+  }
+  game.well = null;
+  return payout;
+}
+
+/** Golpea la geoda. Devuelve { broken, coins, hits } o null si no hay geoda. */
+export function crackGeode(game) {
+  const gd = game.geode;
+  if (!gd || game.phase !== 'run') return null;
+  gd.hits++;
+  if (gd.hits >= GEODE_CLICKS) {
+    const total = Math.round(GEODE_FINAL_COINS * game.relicMods.coins);
+    game.coins += total;
+    pushBurst(game, gd.x, gd.y, '#c084fc', 22, 150);
+    pushText(game, gd.x, gd.y - 28, `+${total} 🪙`, '#fde047');
+    game.geode = null;
+    game.geodeNextAt = game.time + GEODE_INTERVAL_MIN + game.rng() * GEODE_INTERVAL_VAR;
+    return { broken: true, coins: total, hits: gd.hits };
+  }
+  const c = Math.round(GEODE_CLICK_COINS * game.relicMods.coins);
+  game.coins += c;
+  pushText(game, gd.x + (game.rng() - 0.5) * 24, gd.y - 18, `+${c}`, '#e9d5ff');
+  return { broken: false, coins: c, hits: gd.hits };
 }
 
 // ---------------------------------------------------------------------------

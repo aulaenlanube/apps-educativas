@@ -102,6 +102,10 @@ export function createSounds() {
     towerDown() { noise(0.45, { freq: 350, vol: 0.8 }); tone(110, 0.4, { type: 'sawtooth', vol: 0.5, slide: -60, delay: 0.1 }); },
     chain(step) { tone(440 * Math.pow(1.12, Math.min(step, 14)), 0.14, { type: 'triangle', vol: 0.5 }); },
     minigame() { arpeggio([659, 784, 988, 1319], 0.07, 0.18); },
+    shipBell() { tone(880, 0.5, { type: 'triangle', vol: 0.5 }); tone(880, 0.55, { type: 'triangle', vol: 0.45, delay: 0.35 }); }, // campana del puerto
+    splash() { tone(900, 0.3, { type: 'sine', vol: 0.4, slide: -650 }); noise(0.22, { freq: 2200, vol: 0.25, delay: 0.06 }); },    // chapoteo del pozo
+    geodeCrack(step) { noise(0.05, { freq: 2600, vol: 0.35 }); tone(620 * Math.pow(1.15, step), 0.09, { type: 'square', vol: 0.3, delay: 0.02 }); },
+    geodeBreak() { noise(0.25, { freq: 1800, vol: 0.5 }); arpeggio([988, 1319, 1568, 2093], 0.06, 0.16); },
     heal() { arpeggio([784, 988, 1175], 0.09, 0.25, { type: 'sine', vol: 0.5 }); },
     unlock() { arpeggio([523, 659, 784, 1047, 1319], 0.08, 0.22); },
     ability(id) {

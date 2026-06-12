@@ -12,6 +12,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import {
   GRID, WORLD, TOWER_TYPES, towerRange, mulberry32, pointAtDistance, ABILITIES, FORT_WALL_R,
+  MERCHANT_SAIL_SECONDS, GEODE_CLICKS,
 } from './engine';
 import { QUALITY_PARAMS } from './quality';
 
@@ -289,6 +290,15 @@ export function createScene3D(container, game, qualityTier = 'high') {
   // del nivel del mar forman lagos y calas con playa.
   const SEA_Y = -0.42;
   const ph = Array.from({ length: 6 }, () => rng() * Math.PI * 2);
+  // Cala del mercader: canal excavado en el relieve hacia el sur (Z+) por el
+  // que el barco entra y atraca. Posición fija: agua garantizada en toda seed.
+  const BAY = { X: 5.2, halfW: 2.2, dockZ: 6.3, spawnZ: 20 };
+  function bayFactor(X, Z) {
+    if (Z < 4.5) return 0;
+    const across = Math.abs(X - BAY.X) / BAY.halfW; // 0 centro → 1 borde
+    if (across >= 1) return 0;
+    return (1 - across * across) * THREE.MathUtils.smoothstep(Z, 4.5, 7);
+  }
   function terrainHeight(X, Z) {
     const field = Math.max(Math.abs(X) / 9.4, Math.abs(Z) / 5.8);
     const rim = THREE.MathUtils.smoothstep(field, 1, 2.4); // 0 = campo plano → 1 = colinas
@@ -297,7 +307,9 @@ export function createScene3D(container, game, qualityTier = 'high') {
       + Math.sin(X * 0.16 + ph[2]) * Math.sin(Z * 0.2 + ph[3]) * 1.5
       + Math.sin((X + Z) * 0.09 + ph[4]) * Math.cos((X - Z) * 0.07 + ph[5]) * 1.1;
     const coast = 1 - THREE.MathUtils.smoothstep(Math.hypot(X, Z), 38, 56);
-    return rim * (1.3 + n) * 0.9 * coast - (1 - coast) * 4.2;
+    const h = rim * (1.3 + n) * 0.9 * coast - (1 - coast) * 4.2;
+    const bay = bayFactor(X, Z);
+    return h * (1 - bay) + bay * (SEA_Y - 0.9);
   }
 
   // --- terreno low-poly de la isla, con colores por altura ---
@@ -449,6 +461,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
       const d = 9.6 + rng() * 3.5;
       const X = Math.cos(a) * d, Z = Math.sin(a) * d * 0.65;
       if (Math.abs(Z) > 7.5 || nearPath(X, Z, 1.2)) continue;
+      if (terrainHeight(X, Z) < SEA_Y + 0.35) continue; // la cala del mercader es agua
       addTree(X, Math.max(terrainHeight(X, Z) - 0.05, 0), Z, 1, rng() * Math.PI);
     }
     // árboles grandes sobre las colinas de la isla
@@ -1007,6 +1020,173 @@ export function createScene3D(container, game, qualityTier = 'high') {
         if (kp.light) kp.light.intensity = (1.6 + Math.sin(game.time * 9 + i) * 0.4) * (amb.night ? 1.4 : 1);
       }
     }
+  }
+
+  // --- minijuegos opcionales: barco mercante, pozo de los deseos y geoda ---
+  // Estructuras singleton (patrón keeps): se construyen una vez, se muestran
+  // según el estado del engine y se animan con game.time. miniGroup es el
+  // objetivo del raycast de pick() (userData.mini identifica cada una).
+  const miniGroup = new THREE.Group();
+  scene.add(miniGroup);
+
+  // Barco mercante: casco de madera, vela con franja turquesa y farolillo.
+  // Navega por la cala del sur (mira hacia -Z al llegar).
+  const shipG = new THREE.Group();
+  let shipFlag, shipGlow;
+  {
+    const sailMat = new THREE.MeshLambertMaterial({ color: 0xfef3c7, flatShading: true });
+    const tealMat = new THREE.MeshLambertMaterial({ color: 0x2dd4bf, flatShading: true });
+    const hull = new THREE.Mesh(box(0.62, 0.3, 1.7), shared.woodMat);
+    hull.position.y = 0.05;
+    const strake = new THREE.Mesh(box(0.7, 0.1, 1.5), shared.woodLightMat);
+    strake.position.y = 0.2;
+    const bow = new THREE.Mesh(cone(0.3, 0.55, 4), shared.woodMat);
+    bow.rotation.x = -Math.PI / 2;
+    bow.rotation.y = Math.PI / 4;
+    bow.position.set(0, 0.08, -1.05);
+    const stern = new THREE.Mesh(box(0.5, 0.22, 0.3), shared.woodLightMat);
+    stern.position.set(0, 0.3, 0.72);
+    const mast = new THREE.Mesh(cyl(0.035, 0.05, 1.3, 7), shared.accentDarkMat);
+    mast.position.set(0, 0.85, 0.05);
+    const sail = new THREE.Mesh(box(0.56, 0.64, 0.04), sailMat);
+    sail.position.set(0, 1.0, 0.05);
+    const stripe = new THREE.Mesh(box(0.57, 0.15, 0.05), tealMat);
+    stripe.position.set(0, 1.0, 0.05);
+    shipFlag = new THREE.Mesh(box(0.02, 0.1, 0.2), tealMat);
+    shipFlag.position.set(0, 1.55, 0.16);
+    const crate = new THREE.Mesh(box(0.2, 0.2, 0.2), shared.woodLightMat);
+    crate.position.set(0.12, 0.32, 0.35);
+    const gem = new THREE.Mesh(octa(0.08), shared.pipMat);
+    gem.position.set(-0.14, 0.3, 0.38);
+    shipGlow = mkGlow(0xffc857, 0.5);
+    shipGlow.position.set(0, 0.55, 0.85);
+    shipG.add(hull, strake, bow, stern, mast, sail, stripe, shipFlag, crate, gem, shipGlow);
+    if (Q.shadows) shipG.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+    shipG.userData = { mini: 'merchant' };
+    shipG.visible = false;
+    miniGroup.add(shipG);
+  }
+
+  // Pozo de los deseos: brocal de piedra, tejadillo a cuatro aguas y agua
+  // cian que brilla. Emerge creciendo en su celda como los keeps.
+  const wellG = new THREE.Group();
+  let wellBucket, wellGlow, wellWaterMat;
+  {
+    const wellStone = new THREE.MeshLambertMaterial({ color: 0x64748b, flatShading: true });
+    const wellRoof = new THREE.MeshLambertMaterial({ color: 0x0e7490, flatShading: true });
+    const ring = new THREE.Mesh(cyl(0.32, 0.36, 0.3, 10), wellStone);
+    ring.position.y = 0.15;
+    const voidIn = new THREE.Mesh(cyl(0.26, 0.26, 0.32, 10), new THREE.MeshBasicMaterial({ color: 0x0c0a09 }));
+    voidIn.position.y = 0.15;
+    wellWaterMat = new THREE.MeshStandardMaterial({ color: 0x22d3ee, emissive: 0x22d3ee, emissiveIntensity: 0.9, roughness: 0.3 });
+    const water = new THREE.Mesh(cyl(0.24, 0.24, 0.02, 10), wellWaterMat);
+    water.position.y = 0.26;
+    wellG.add(ring, voidIn, water);
+    for (const side of [-1, 1]) {
+      const post = new THREE.Mesh(box(0.06, 0.55, 0.06), shared.woodMat);
+      post.position.set(side * 0.3, 0.55, 0);
+      wellG.add(post);
+    }
+    const axle = new THREE.Mesh(cylX(0.03, 0.03, 0.62, 7), shared.woodLightMat);
+    axle.position.y = 0.8;
+    const roof = new THREE.Mesh(cone(0.52, 0.32, 4), wellRoof);
+    roof.position.y = 1.04;
+    roof.rotation.y = Math.PI / 4;
+    const rope = new THREE.Mesh(box(0.015, 0.24, 0.015), shared.accentDarkMat);
+    rope.position.y = 0.68;
+    wellBucket = new THREE.Mesh(cyl(0.07, 0.055, 0.1, 7), shared.woodLightMat);
+    wellBucket.position.y = 0.52;
+    wellGlow = mkGlow(0x67e8f9, 0.55);
+    wellGlow.position.y = 0.32;
+    wellG.add(axle, roof, rope, wellBucket, wellGlow);
+    if (Q.shadows) wellG.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+    wellG.userData = { mini: 'well' };
+    wellG.visible = false;
+    miniGroup.add(wellG);
+  }
+
+  // Geoda: roca con cristales amatista que brillan más con cada golpe.
+  const geodeG = new THREE.Group();
+  let geodeGlow, geodeCrystalMat;
+  {
+    const rockMat = new THREE.MeshLambertMaterial({ color: 0x57534e, flatShading: true });
+    const rock = new THREE.Mesh(sph(0.24, 7), rockMat);
+    rock.scale.set(1.15, 0.65, 1);
+    rock.position.y = 0.1;
+    geodeG.add(rock);
+    geodeCrystalMat = new THREE.MeshStandardMaterial({ color: 0xc084fc, emissive: 0xa855f7, emissiveIntensity: 0.9, roughness: 0.35 });
+    const tips = [
+      [0, 0.3, 0, 0.13, 2.1, 0],
+      [0.12, 0.24, 0.06, 0.09, 1.7, 0.4],
+      [-0.11, 0.22, 0.08, 0.08, 1.6, -0.45],
+      [0.04, 0.2, -0.12, 0.07, 1.5, 0.25],
+      [-0.06, 0.18, -0.09, 0.06, 1.4, -0.2],
+    ];
+    for (const [x, y, z, r, sy, tilt] of tips) {
+      const c = new THREE.Mesh(octaS(r, sy), geodeCrystalMat);
+      c.position.set(x, y, z);
+      c.rotation.set(tilt, x * 7, tilt * 0.7);
+      geodeG.add(c);
+    }
+    geodeGlow = mkGlow(0xc084fc, 0.6);
+    geodeGlow.position.y = 0.35;
+    geodeG.add(geodeGlow);
+    if (Q.shadows) geodeG.traverse((o) => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+    geodeG.userData = { mini: 'geode' };
+    geodeG.visible = false;
+    miniGroup.add(geodeG);
+  }
+
+  function syncMinis() {
+    // Mercader: entra por la cala con ease-out, cabecea atracado y zarpa
+    const m = game.merchant;
+    if (m) {
+      if (!shipG.visible) shipG.visible = true;
+      let z = BAY.dockZ;
+      if (m.state === 'sailing') {
+        const t = THREE.MathUtils.clamp(1 - (m.until - game.time) / MERCHANT_SAIL_SECONDS, 0, 1);
+        z = THREE.MathUtils.lerp(BAY.spawnZ, BAY.dockZ, 1 - (1 - t) * (1 - t));
+      } else if (m.state === 'leaving') {
+        const t = THREE.MathUtils.clamp(1 - (m.until - game.time) / MERCHANT_SAIL_SECONDS, 0, 1);
+        z = THREE.MathUtils.lerp(BAY.dockZ, BAY.spawnZ, t * t);
+      }
+      shipG.position.set(BAY.X + Math.sin(game.time * 0.5) * 0.05, SEA_Y + 0.16 + Math.sin(game.time * 1.7) * 0.05, z);
+      shipG.rotation.z = Math.sin(game.time * 1.3) * 0.04;
+      shipG.rotation.x = Math.sin(game.time * 1.9 + 1) * 0.03;
+      shipFlag.rotation.x = Math.sin(game.time * 5) * 0.3;
+      // el farolillo parpadea más deprisa cuando queda poco para zarpar
+      const blink = m.state === 'docked' ? (m.until - game.time < 5 ? 9 : 4) : 2;
+      shipGlow.material.opacity = Math.min((0.35 + Math.sin(game.time * blink) * 0.18) * amb.glow, 1);
+    } else if (shipG.visible) shipG.visible = false;
+
+    // Pozo: emerge creciendo; el agua y el halo respiran
+    const w = game.well;
+    if (w) {
+      if (!wellG.visible) {
+        wellG.visible = true;
+        wellG.scale.setScalar(0.001);
+        wellG.position.set(fx(w.x), 0, fz(w.y));
+      }
+      wellG.scale.setScalar(THREE.MathUtils.lerp(wellG.scale.x, 1, 0.09));
+      wellWaterMat.emissiveIntensity = 0.8 + Math.sin(game.time * 2.6) * 0.3;
+      wellBucket.position.y = 0.52 + Math.sin(game.time * 1.4) * 0.03;
+      wellGlow.material.opacity = Math.min((0.4 + Math.sin(game.time * 3) * 0.15) * amb.glow, 1);
+    } else if (wellG.visible) wellG.visible = false;
+
+    // Geoda: palpita (más urgente al agotarse) y se enciende con cada golpe
+    const gd = game.geode;
+    if (gd) {
+      if (!geodeG.visible) {
+        geodeG.visible = true;
+        geodeG.scale.setScalar(0.001);
+        geodeG.position.set(fx(gd.x), 0, fz(gd.y));
+      }
+      const urgency = gd.until - game.time < 4 ? 7 : 2.4;
+      const open = gd.hits / GEODE_CLICKS;
+      geodeG.scale.setScalar(THREE.MathUtils.lerp(geodeG.scale.x, 1 + Math.sin(game.time * urgency) * 0.05, 0.25));
+      geodeCrystalMat.emissiveIntensity = 0.8 + open * 1.6 + Math.sin(game.time * 4) * 0.2;
+      geodeGlow.material.opacity = Math.min((0.3 + open * 0.4 + Math.sin(game.time * urgency) * 0.12) * amb.glow, 1);
+    } else if (geodeG.visible) geodeG.visible = false;
   }
 
   // --- torres ---
@@ -1776,7 +1956,25 @@ export function createScene3D(container, game, qualityTier = 'high') {
     ndc.set(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
     raycaster.setFromCamera(ndc, camera);
 
+    // minijuegos (el Raycaster NO ignora lo invisible: filtrar a mano)
+    const mTargets = miniGroup.children.filter((ch) => ch.visible);
+    const mHits = mTargets.length ? raycaster.intersectObjects(mTargets, true) : [];
+    let miniKind = null;
+    if (mHits.length) {
+      let o = mHits[0].object;
+      while (o && o.userData.mini == null) o = o.parent;
+      const k = o?.userData.mini;
+      if ((k === 'merchant' && (game.merchant?.state === 'docked' || game.merchant?.state === 'trading'))
+        || (k === 'well' && game.well) || (k === 'geode' && game.geode)) {
+        miniKind = k;
+      }
+    }
     const eHits = raycaster.intersectObjects(enemyGroup.children, true);
+    // la geoda brota pegada al camino, entre enemigos y sus etiquetas: si el
+    // rayo toca ambos, gana el más cercano a la cámara (no el grupo enemigo)
+    if (miniKind && (!eHits.length || mHits[0].distance < eHits[0].distance)) {
+      return { kind: miniKind };
+    }
     if (eHits.length) {
       let o = eHits[0].object;
       while (o && o.userData.enemyId == null) o = o.parent;
@@ -1788,6 +1986,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
       while (o && o.userData.towerId == null) o = o.parent;
       if (o) return { kind: 'tower', towerId: o.userData.towerId };
     }
+    if (miniKind) return { kind: miniKind };
     if (raycaster.intersectObjects(fortressRoot.children, true).length) {
       return { kind: 'fortress' };
     }
@@ -2243,6 +2442,7 @@ export function createScene3D(container, game, qualityTier = 'high') {
     syncFortress();
     syncFortUpgrades();
     syncKeeps();
+    syncMinis();
     syncIndicators(ui);
     applyCamera();
     if (statsDiv) renderer.info.reset();

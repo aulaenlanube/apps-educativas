@@ -436,6 +436,15 @@ const LaFortaleza = ({ onGameComplete }) => {
         <h3>⚡ Desafío Relámpago</h3>
         <p>En los niveles 3, 6, 9... puedes aceptar el desafío: <strong>encadena aciertos</strong> y cada respuesta vale más que la anterior <strong>en puntos Y en monedas</strong>... pero sube la dificultad y baja el tiempo. La cadena dura hasta que falles, y te llevas todo lo acumulado.</p>
 
+        <h3>⛵ El Mercader Errante</h3>
+        <p>De vez en cuando un <strong>barco mercante</strong> atraca en la cala del sur. Tócalo antes de que zarpe y responde su pregunta difícil: si aciertas te llevas una <strong>bolsa de monedas</strong> que crece con el nivel de amenaza. Si fallas, zarpa sin trato — no pierdes nada.</p>
+
+        <h3>⛲ El Pozo de los Deseos</h3>
+        <p>En los niveles 5, 10, 15... brota un <strong>pozo encantado</strong> que dura un nivel. Lanza 25, 50 o 100 monedas, responde una pregunta difícil y el pozo te devuelve <strong>×2,5</strong>... o se queda tu apuesta si fallas. Tú decides cuánto arriesgar.</p>
+
+        <h3>💎 La Geoda</h3>
+        <p>A veces brilla una <strong>geoda</strong> junto al camino. ¡Golpéala a toques! Cada golpe suelta monedas y el quinto la <strong>revienta en una lluvia de cristales</strong>. Date prisa: se desvanece en segundos, y pararte a picar en plena oleada tiene su riesgo.</p>
+
         <h3>🎯 Disparo de precisión</h3>
         <p>Toca un enemigo y di a qué categoría pertenece su palabra. Si aciertas: <strong>golpe crítico</strong>. Si fallas: las torres de esa categoría se atascan 3 segundos.</p>
 
