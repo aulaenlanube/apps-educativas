@@ -101,6 +101,7 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 - `framer-motion`, `canvas-confetti`, `lucide-react`.
 - Responsive: `@media (max-width: 720px)`.
 - Colores de modos: verde `#10b981`, ámbar `#fbbf24`, rojo `#ef4444`.
+- **Apps con gráficos 3D/avanzados**: usa el ajuste GLOBAL de calidad (`src/services/graphicsQuality.js` + hook `useGraphicsQuality` + selector compartido `src/components/ui/GraphicsQualitySelector.jsx`). Preferencia por dispositivo en localStorage `eduapps-graphics-quality` (default `auto` con detección de hardware), niveles low/medium/high; La Fortaleza re-exporta de este servicio. La calidad afecta SOLO a lo visual, nunca a resultados de juego/física. Patrón r3f completo (Canvas con `key={tier}`, governor de FPS, pérdida de contexto WebGL, física determinista a paso fijo) en `src/apps/laboratorio-fisica/` — contrato de escenas en su `CONTRATO_ESCENAS.md`.
 - **NUNCA `window.confirm`, `window.alert` ni `window.prompt`** ni equivalentes nativos del navegador. Cualquier confirmación, aviso o entrada de texto debe ser un **modal propio** (overlay + `motion.div`, estilo coherente con el resto de la app — patrón en `_shared/InstructionsModal.jsx` o el modal de entrega del examen en `sopa-de-letras/SopaDeLetras.jsx`).
 
 ### 9. Build y deploy
