@@ -193,6 +193,12 @@ Mood: playful, energetic, balanced.`,
 Subject: a luminous 3D balance scale or pie chart in the centre divided into five abstract segments of different vibrant colors (violet, pink, amber, cyan, emerald), each segment glowing differently. Above the central element, a stylized "10" badge (abstract circle with a glow, no actual digits) suggesting a perfect score. Around the chart, five small floating icons each representing a component: a checklist (tasks), crossed swords (duels), a podium (battles), a level-up arrow (level), and a small character avatar (avatars). Connected to the central chart by thin luminous threads.
 
 Mood: analytical, transparent, rewarding.`,
+
+  'ia-vs-correccion-manual-en-clase': `Modern editorial illustration for an educational technology blog. 16:9 horizontal composition.
+
+Subject: a luminous 3D balance scale in the centre slightly tilted, with two distinct objects perfectly balanced. On one side, a stylized fountain pen tip glowing softly in warm amber suggesting human craft. On the other side, a small glowing neural-network orb in violet and cyan suggesting AI. Below the scale, a translucent exam paper with several abstract green checkmarks and a single small red mark (purely geometric, no actual letters or text). Behind the scale, a soft halo of magnifying-glass shapes suggesting careful comparison. The scale is balanced but the AI orb side glows a touch brighter.
+
+Mood: comparative, fair, thoughtful.`,
 };
 
 function die(msg, code = 1) {

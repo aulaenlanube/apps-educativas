@@ -990,6 +990,78 @@ const icons3 = {
       <rect x="17" y="22" width="24" height="1.4" rx="0.7" fill="white" opacity="0.25" />
     </svg>
   ),
+
+  'laboratorio-fisica': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+      <defs>
+        <linearGradient id="ai3-fis-bg" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#0b1026" />
+          <stop offset="100%" stopColor="#122a44" />
+        </linearGradient>
+        <linearGradient id="ai3-fis-ball" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#67e8f9" />
+          <stop offset="100%" stopColor="#2563eb" />
+        </linearGradient>
+        <linearGradient id="ai3-fis-tr" x1="0" y1="0" x2="48" y2="0">
+          <stop offset="0%" stopColor="#a78bfa" />
+          <stop offset="100%" stopColor="#22d3ee" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#ai3-fis-bg)" />
+      {/* Suelo con rejilla */}
+      {[0, 1, 2, 3].map((i) => (
+        <line key={`fg${i}`} x1="5" y1={40 - i * 2.4} x2="43" y2={40 - i * 2.4} stroke="#1e3a5f" strokeWidth="0.4" opacity="0.7" />
+      ))}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <line key={`fv${i}`} x1={9 + i * 7.5} y1="33" x2={9 + i * 7.5} y2="41" stroke="#1e3a5f" strokeWidth="0.4" opacity="0.7" />
+      ))}
+      {/* Trayectoria parabólica */}
+      <path d="M7 38 Q20 4 41 30" stroke="url(#ai3-fis-tr)" strokeWidth="1.8" strokeLinecap="round" fill="none" strokeDasharray="2.5 2.5" style={{ animation: 'ai-draw 3s ease-in-out infinite' }} />
+      {/* Vector velocidad */}
+      <line x1="24" y1="14" x2="31" y2="9" stroke="#fbbf24" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M28.6 8 L31.6 8.5 L30.7 11.4" stroke="#fbbf24" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      {/* Bola */}
+      <circle cx="24" cy="14" r="4.4" fill="url(#ai3-fis-ball)" style={{ animation: 'ai-pulse 2.4s ease-in-out infinite' }} />
+      <circle cx="22.4" cy="12.4" r="1.3" fill="white" opacity="0.55" />
+      {/* Partícula flotante */}
+      <circle cx="40" cy="30" r="1.8" fill="#a78bfa" style={{ animation: 'ai-float 3s ease-in-out infinite' }} />
+    </svg>
+  ),
+
+  'cazapalabras-3d': () => (
+    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+      <defs>
+        <linearGradient id="ai3-caza-bg" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#0a1230" />
+          <stop offset="100%" stopColor="#05060f" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#ai3-caza-bg)" />
+      {/* Estrellas */}
+      <circle cx="10" cy="11" r="0.9" fill="#bae6fd" opacity="0.8" />
+      <circle cx="39" cy="9" r="0.7" fill="#bae6fd" opacity="0.6" />
+      <circle cx="13" cy="39" r="0.7" fill="#bae6fd" opacity="0.5" />
+      {/* Panel de palabra (cian) */}
+      <g style={{ animation: 'ai-float 3.4s ease-in-out infinite' }}>
+        <rect x="6" y="28" width="15" height="8" rx="2.5" fill="rgba(8,13,30,0.9)" stroke="#67e8f9" strokeWidth="1.3" />
+        <text x="13.5" y="34" fontSize="5" fontWeight="800" fill="#a5f3fc" textAnchor="middle" fontFamily="system-ui, sans-serif">SOL</text>
+      </g>
+      {/* Panel de palabra (dorada = más puntos) */}
+      <g style={{ animation: 'ai-float 3s ease-in-out 0.5s infinite' }}>
+        <rect x="26" y="10" width="16" height="8.5" rx="2.5" fill="rgba(8,13,30,0.92)" stroke="#fde68a" strokeWidth="1.4" />
+        <text x="34" y="16.4" fontSize="5" fontWeight="800" fill="#fde68a" textAnchor="middle" fontFamily="system-ui, sans-serif">MAR</text>
+      </g>
+      {/* Mirilla FPS */}
+      <circle cx="24" cy="25" r="7.5" stroke="#7dd3fc" strokeWidth="1.6" fill="none" style={{ animation: 'ai-pulse 2.2s ease-in-out infinite' }} />
+      <circle cx="24" cy="25" r="1.4" fill="#7dd3fc" />
+      <line x1="24" y1="14.5" x2="24" y2="18.5" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="24" y1="31.5" x2="24" y2="35.5" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="13.5" y1="25" x2="17.5" y2="25" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="30.5" y1="25" x2="34.5" y2="25" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" />
+      {/* +5 */}
+      <text x="36" y="41" fontSize="6" fontWeight="800" fill="#fde68a" fontFamily="system-ui, sans-serif" style={{ animation: 'ai-float 2.6s ease-in-out infinite' }}>+5</text>
+    </svg>
+  ),
 };
 
 export default icons3;

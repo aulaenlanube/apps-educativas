@@ -36,6 +36,7 @@
 | 2026-05-15 | gamificacion | Motivación intrínseca vs recompensas: cuándo la gamificación se vuelve en tu contra | `motivacion-intrinseca-vs-recompensas-en-gamificacion` |
 | 2026-05-16 | ia-en-educacion | Khanmigo, MagicSchool, ChatGPT Edu: tutores IA 1-a-1 en clase | `khanmigo-magicschool-chatgpt-edu-tutores-ia` |
 | 2026-05-18 | ia-en-educacion | NotebookLM para docentes: tu temario en podcast en 5 minutos | `notebooklm-para-docentes-temario-en-podcast` |
+| 2026-06-12 | ia-en-educacion | Corrección con IA vs manual: lo que vimos al compararlas | `ia-vs-correccion-manual-en-clase` |
 
 ---
 
