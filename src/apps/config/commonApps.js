@@ -101,6 +101,7 @@ const ProgramacionBloques = lazy(() => import('../programacion-bloques/Programac
 const LaboratorioRobotica = lazy(() => import('../laboratorio-robotica/LaboratorioRobotica'));
 const MisionesRoboticas = lazy(() => import('../misiones-roboticas/MisionesRoboticas'));
 const SistemaSolar = lazy(() => import('../sistema-solar/SistemaSolar'));
+const Cazapalabras3D = lazy(() => import('../cazapalabras-3d/Cazapalabras3D'));
 const CelulaAnimal = lazy(() => import('../celula-animal/CelulaAnimal'));
 const CelulaVegetal = lazy(() => import('../celula-vegetal/CelulaVegetal'));
 const JuegoMemoria = lazy(() => import('../juego-memoria/JuegoMemoria'));
@@ -402,6 +403,13 @@ export const appSistemaSolar = {
   name: '🌌 Sistema Solar 3D',
   description: 'Explora y aprende sobre los planetas de nuestro sistema solar en 3D.',
   component: SistemaSolar
+};
+
+export const appCazapalabras3D = {
+  id: 'cazapalabras-3d',
+  name: '🎯 Cazapalabras 3D',
+  description: 'Shooter 3D en primera persona: dispara a las palabras y aprende vocabulario y definiciones.',
+  component: Cazapalabras3D
 };
 
 export const appFraccionesESO = {

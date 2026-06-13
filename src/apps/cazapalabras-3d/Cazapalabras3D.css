@@ -1,0 +1,173 @@
+/* Cazapalabras 3D — FPS educativo de vocabulario. Tema oscuro neón. */
+.cz3d-root {
+  position: relative; width: 100%; height: 100%; min-height: 100dvh;
+  background: radial-gradient(120% 120% at 50% 0%, #0a1230 0%, #05060f 70%);
+  color: #e2e8f0; overflow: hidden; font-family: inherit;
+}
+.cz3d-center {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; text-align: center; padding: 24px;
+}
+.cz3d-center p { color: #94a3b8; max-width: 460px; line-height: 1.5; }
+.cz3d-big-emoji { font-size: 3.4rem; }
+.cz3d-spinner { width: 46px; height: 46px; border-radius: 50%; border: 4px solid rgba(56,189,248,0.25); border-top-color: #38bdf8; animation: cz3d-spin 0.9s linear infinite; }
+@keyframes cz3d-spin { to { transform: rotate(360deg); } }
+
+/* ---------- selección ---------- */
+.cz3d-select { max-width: 920px; margin: 0 auto; padding: 56px 18px 40px; text-align: center; }
+.cz3d-hero { position: relative; padding: 4px 0 10px; }
+.cz3d-hero-icon { font-size: 3.2rem; display: block; filter: drop-shadow(0 6px 22px rgba(56,189,248,0.5)); }
+.cz3d-hero h1 {
+  margin: 8px 0 6px; font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 900;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #f472b6);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.cz3d-hero-sub { color: #94a3b8; margin: 0; max-width: 620px; margin-inline: auto; line-height: 1.5; }
+.cz3d-hero-sub strong { color: #7dd3fc; text-transform: capitalize; }
+.cz3d-help-btn { position: absolute; top: 0; right: 6px; background: rgba(255,255,255,0.08); border: 1px solid rgba(125,211,252,0.4); color: #7dd3fc; border-radius: 999px; padding: 8px; cursor: pointer; }
+
+.cz3d-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 28px 0 18px; }
+.cz3d-mode {
+  display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center;
+  background: rgba(255,255,255,0.045); border: 1px solid transparent; border-radius: 18px;
+  padding: 22px 16px; cursor: pointer; color: inherit; transition: border-color .15s, background .15s;
+}
+.cz3d-mode .cz3d-mode-icon { font-size: 1.9rem; }
+.cz3d-mode-name { font-weight: 800; font-size: 1.08rem; }
+.cz3d-mode-desc { font-size: 0.82rem; color: #94a3b8; line-height: 1.45; min-height: 2.4em; }
+.cz3d-mode-time { font-size: 0.74rem; color: #64748b; font-weight: 700; }
+.cz3d-mode.facil { border-color: rgba(16,185,129,0.4); }
+.cz3d-mode.medio { border-color: rgba(251,191,36,0.4); }
+.cz3d-mode.dificil { border-color: rgba(239,68,68,0.4); }
+.cz3d-mode.examen { border-color: rgba(129,140,248,0.45); }
+.cz3d-mode.facil:hover { border-color: #10b981; background: rgba(16,185,129,0.08); }
+.cz3d-mode.medio:hover { border-color: #fbbf24; background: rgba(251,191,36,0.08); }
+.cz3d-mode.dificil:hover { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+.cz3d-mode.examen:hover { border-color: #818cf8; background: rgba(129,140,248,0.1); }
+
+.cz3d-select-actions { display: flex; justify-content: center; }
+.cz3d-study-btn {
+  display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.07); color: #e2e8f0;
+  border: 1px solid rgba(125,211,252,0.4); border-radius: 999px; padding: 9px 18px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
+}
+.cz3d-study-btn:hover { border-color: #7dd3fc; color: #7dd3fc; }
+.cz3d-gfx { justify-content: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(125,211,252,0.18); }
+
+/* ---------- juego ---------- */
+.cz3d-play { position: absolute; inset: 0; }
+.cz3d-canvas { position: absolute; inset: 0; z-index: 1; touch-action: none; cursor: none; }
+.cz3d-canvas canvas { display: block; }
+
+/* mirilla FPS */
+.cz3d-crosshair {
+  position: absolute; top: 50%; left: 50%; width: 56px; height: 56px;
+  transform: translate(-50%, -50%); z-index: 25; pointer-events: none;
+  transition: opacity .15s; opacity: 0.95;
+}
+.cz3d-crosshair.cooling { opacity: 0.35; }
+.cz3d-ch-ring { position: absolute; inset: 0; border: 2px solid rgba(125,211,252,0.55); border-radius: 50%; box-shadow: 0 0 8px rgba(56,189,248,0.45); }
+.cz3d-ch-dot { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; background: #7dd3fc; border-radius: 50%; box-shadow: 0 0 6px #38bdf8; }
+.cz3d-ch.arm { position: absolute; background: #7dd3fc; box-shadow: 0 0 6px rgba(56,189,248,0.6); }
+.cz3d-ch.arm.t, .cz3d-ch.arm.b { left: 50%; width: 2px; height: 10px; margin-left: -1px; }
+.cz3d-ch.arm.l, .cz3d-ch.arm.r { top: 50%; height: 2px; width: 10px; margin-top: -1px; }
+.cz3d-ch.arm.t { top: -14px; } .cz3d-ch.arm.b { bottom: -14px; }
+.cz3d-ch.arm.l { left: -14px; } .cz3d-ch.arm.r { right: -14px; }
+
+/* HUD */
+.cz3d-hud { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+.cz3d-objective {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  max-width: min(560px, 70vw); width: max-content;
+}
+.cz3d-def {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: rgba(8,13,30,0.82); backdrop-filter: blur(10px);
+  border: 1px solid rgba(251,191,36,0.5); border-radius: 14px; padding: 9px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+.cz3d-def-tag { font-size: 0.72rem; color: #fbbf24; font-weight: 800; letter-spacing: 0.02em; }
+.cz3d-def-text { font-size: 1.02rem; font-weight: 700; text-align: center; line-height: 1.35; }
+.cz3d-def-bar { width: 100%; height: 4px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.cz3d-def-bar i { display: block; height: 100%; background: #fbbf24; border-radius: 999px; transition: width .1s linear; }
+.cz3d-hint {
+  background: rgba(8,13,30,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(125,211,252,0.25);
+  border-radius: 999px; padding: 7px 16px; font-size: 0.82rem; color: #cbd5e1; white-space: nowrap;
+}
+.cz3d-hint .g5 { color: #fde68a; } .cz3d-hint .g2 { color: #a5f3fc; } .cz3d-hint .bomb { color: #fca5a5; }
+
+.cz3d-stats { position: absolute; top: 56px; right: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.cz3d-time { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.cz3d-time-val { font-weight: 800; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.cz3d-time.low .cz3d-time-val { color: #f87171; animation: cz3d-pulse 0.8s ease-in-out infinite; }
+@keyframes cz3d-pulse { 50% { opacity: 0.45; } }
+.cz3d-time-bar { width: 140px; height: 5px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.cz3d-time-bar i { display: block; height: 100%; background: linear-gradient(90deg, #38bdf8, #818cf8); border-radius: 999px; transition: width .12s linear; }
+.cz3d-score { font-weight: 900; font-size: 1.3rem; color: #fde68a; font-variant-numeric: tabular-nums; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.cz3d-sub { display: flex; gap: 8px; font-size: 0.78rem; font-weight: 700; }
+.cz3d-combo { color: #fb923c; }
+.cz3d-examinfo { color: #c4b5fd; }
+.cz3d-powerups { display: flex; gap: 6px; }
+.cz3d-pu { font-size: 0.74rem; font-weight: 800; border-radius: 999px; padding: 3px 10px; }
+.cz3d-pu.x2 { background: rgba(244,114,182,0.18); color: #f9a8d4; border: 1px solid rgba(244,114,182,0.5); }
+.cz3d-pu.rapid { background: rgba(167,139,250,0.18); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.5); }
+
+.cz3d-feedback {
+  position: absolute; top: 58%; left: 50%; transform: translateX(-50%);
+  font-size: 1.5rem; font-weight: 900; text-shadow: 0 3px 14px rgba(0,0,0,0.6);
+  animation: cz3d-fb 1.1s ease-out forwards; pointer-events: none; white-space: nowrap;
+}
+@keyframes cz3d-fb {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(0.8); }
+  18% { opacity: 1; transform: translate(-50%, -4px) scale(1.05); }
+  100% { opacity: 0; transform: translate(-50%, -34px) scale(1); }
+}
+
+.cz3d-exit {
+  position: absolute; top: 14px; right: 16px; z-index: 40; pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(239,68,68,0.14); color: #fca5a5; border: 1px solid rgba(239,68,68,0.45);
+  border-radius: 999px; padding: 7px 14px; font-weight: 800; font-size: 0.82rem; cursor: pointer; backdrop-filter: blur(8px);
+}
+.cz3d-exit:hover { background: rgba(239,68,68,0.24); color: #fff; }
+.cz3d-paused { position: absolute; inset: 0; z-index: 28; display: flex; align-items: center; justify-content: center; background: rgba(5,6,15,0.55); }
+.cz3d-paused span { font-size: 1.6rem; font-weight: 800; color: #e2e8f0; }
+
+/* ---------- resumen ---------- */
+.cz3d-summary { max-width: 600px; margin: 0 auto; padding: 56px 20px; text-align: center; }
+.cz3d-summary h2 { font-size: 1.4rem; margin-bottom: 6px; }
+.cz3d-nota {
+  width: 130px; height: 130px; margin: 16px auto 8px; border-radius: 50%; border: 4px solid;
+  display: flex; align-items: center; justify-content: center; font-size: 2.9rem; font-weight: 900;
+  font-variant-numeric: tabular-nums; background: rgba(8,13,30,0.6); box-shadow: 0 0 50px rgba(56,189,248,0.18);
+}
+.cz3d-nota-msg { font-size: 1.15rem; font-weight: 800; margin: 4px 0 18px; }
+.cz3d-final-score { display: inline-flex; align-items: center; gap: 10px; font-size: 2rem; font-weight: 900; color: #fde68a; margin: 16px 0 18px; }
+.cz3d-summary-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; margin-bottom: 22px; }
+.cz3d-summary-stats div { display: flex; flex-direction: column; }
+.cz3d-summary-stats strong { font-size: 1.3rem; color: #7dd3fc; }
+.cz3d-summary-stats span { font-size: 0.72rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+.cz3d-summary-actions { display: flex; justify-content: center; gap: 10px; }
+.cz3d-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(90deg, #0891b2, #4f46e5); color: #fff;
+  border: none; border-radius: 12px; padding: 12px 22px; font-weight: 800; font-size: 0.95rem; cursor: pointer;
+}
+.cz3d-btn-primary:hover { filter: brightness(1.12); }
+
+/* ---------- toast / vocab ---------- */
+.cz3d-toast {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 60;
+  background: rgba(8,13,30,0.95); color: #fbbf24; border: 1px solid rgba(251,191,36,0.5);
+  border-radius: 12px; padding: 9px 18px; font-weight: 700; font-size: 0.88rem; box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+}
+.cz3d-vocab-row { margin: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+.cz3d-vocab-row strong { color: #7dd3fc; }
+.cz3d-vocab-cats { color: #94a3b8; line-height: 1.7; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .cz3d-modes { grid-template-columns: 1fr; }
+  .cz3d-objective { max-width: 86vw; }
+  .cz3d-hint { white-space: normal; text-align: center; }
+  .cz3d-stats { top: 52px; right: 10px; }
+  .cz3d-time-bar { width: 110px; }
+}

@@ -118,7 +118,7 @@ const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 function getHeaderPresetName(appId) {
     if (appId === 'terminal-retro') return 'dark-green';
     if (appId.startsWith('isla-de-la-calma')) return 'calma';
-    if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria'].some(id => appId.includes(id))) return 'dark-glass';
+    if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria', 'cazapalabras-3d'].some(id => appId.includes(id))) return 'dark-glass';
     if (appId === 'runner') return 'reduced';
     return 'standard';
 }

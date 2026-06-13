@@ -8,13 +8,14 @@ import {
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appLaboratorioFisica,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal,
-  appInfografiasInteractivas
+  appInfografiasInteractivas, appCazapalabras3D
 } from './commonApps';
 
 export const bachilleratoSubjects = materiasData.bachillerato;
 
 // Apps base comunes a la mayoría de asignaturas de bachillerato
 const appsBase = [
+  appCazapalabras3D,
   appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva,
   appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza,
   appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
