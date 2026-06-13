@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   ArrowLeft, BookOpen, Compass, Target, GraduationCap, Lightbulb,
-  CheckCircle2, Circle, X, FlaskConical,
+  CheckCircle2, Circle, X, FlaskConical, SlidersHorizontal, ChevronRight, LineChart,
 } from 'lucide-react';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
@@ -102,10 +102,15 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const [showHelp, setShowHelp] = useState(false);
   const [showFormulario, setShowFormulario] = useState(false);
   const [showAbandon, setShowAbandon] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(true);   // panel de control flotante (pantalla de simulación)
+  const [graphOpen, setGraphOpen] = useState(true);   // gráfica flotante
   const [examQuestions, setExamQuestions] = useState(null);
   const [summary, setSummary] = useState(null);
 
-  const worldRef = useRef({ t: 0, _acc: 0, data: {} });
+  // data: null (no {}) — así el guard `if (!d) return` de cada escena salta hasta
+  // que su reinit (en useEffect) puebla world.data; con {} (truthy) el useFrame
+  // rápido leía subcampos aún inexistentes (d.trail.length…) en el primer frame.
+  const worldRef = useRef({ t: 0, _acc: 0, data: null });
   const seriesRef = useRef([]);
   const lastUiRef = useRef(0);
   const visitedRef = useRef(new Set());
@@ -265,12 +270,14 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const abrirSim = (sim) => {
     setActiveSimId(sim.id);
     setParams(defaultsDe(sim));
-    worldRef.current = { t: 0, _acc: 0, data: {} };
+    worldRef.current = { t: 0, _acc: 0, data: null }; // ver nota en la def. de worldRef
     seriesRef.current = [];
     setResetToken((t) => t + 1);
     setPlaying(false);
     setReadouts([]);
     setFormulaViva('');
+    setPanelOpen(true);
+    setGraphOpen(true);
     visitedRef.current.add(sim.id);
     setScreen('sim');
   };
@@ -372,67 +379,114 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
         </motion.div>
       )}
 
-      {/* ============ SIMULACIÓN ============ */}
+      {/* ============ SIMULACIÓN (escenario 3D a pantalla completa) ============ */}
       {screen === 'sim' && activeSim && (
-        <div className="fislab-sim-screen">
-          <div className="fislab-topbar">
-            <button type="button" className="fislab-back" onClick={volverACatalogo}><ArrowLeft size={17} /> Catálogo</button>
-            <h2>{activeSim.icono} {activeSim.nombre}</h2>
-            {mode === 'retos' && <span className="fislab-points-badge">⭐ {retosPoints} pts</span>}
-          </div>
-          <div className="fislab-sim-main">
-            <div className="fislab-sim-left">
-              <SimViewport
-                tier={tier}
-                prefAuto={pref === 'auto'}
-                onAutoDowngrade={handleAutoDowngrade}
-                camera={activeSim.camara}
-                controls={activeSim.controles}
-                background={activeSim.fondo ? activeSim.fondo(params) : '#0b1026'}
-              >
-                <ActiveScene
-                  world={worldRef.current}
-                  params={params}
-                  playing={playing}
-                  speed={speed}
-                  resetToken={resetToken}
-                  showVectors={showVectors}
-                  showTrajectory={showTrajectory}
-                  quality={qualityObj}
-                  onTelemetry={handleTelemetry}
-                />
-              </SimViewport>
-              {activeSim.graficas && <GraphPanel seriesRef={seriesRef} lines={activeSim.graficas} />}
-            </div>
-            <div className="fislab-sim-right">
-              <ParamPanel
-                simDef={activeSim}
+        <div className="fislab-stage">
+          {/* 3D a sangre completa, de fondo */}
+          <div className="fislab-stage-canvas">
+            <SimViewport
+              tier={tier}
+              prefAuto={pref === 'auto'}
+              onAutoDowngrade={handleAutoDowngrade}
+              camera={activeSim.camara}
+              controls={activeSim.controles}
+              background={activeSim.fondo ? activeSim.fondo(params) : '#0b1026'}
+              className="fislab-viewport-full"
+            >
+              <ActiveScene
+                world={worldRef.current}
                 params={params}
-                onParamChange={(key, value) => setParams((prev) => ({ ...prev, [key]: value }))}
                 playing={playing}
-                onPlayPause={() => setPlaying((p) => !p)}
-                onReset={resetSim}
                 speed={speed}
-                onSpeedChange={setSpeed}
+                resetToken={resetToken}
                 showVectors={showVectors}
-                onToggleVectors={() => setShowVectors((v) => !v)}
                 showTrajectory={showTrajectory}
-                onToggleTrajectory={() => setShowTrajectory((v) => !v)}
-                readouts={readouts}
-                formulaViva={formulaViva}
-              >
-                {energia?.length > 0 && <EnergyBars items={energia} />}
-                {mode === 'retos' && activeSim.retos?.length > 0 && (
-                  <RetosList
-                    sim={activeSim}
-                    done={retosDone[activeSim.id] || []}
-                    pistas={pistasAbiertas}
-                    onTogglePista={(key) => setPistasAbiertas((prev) => ({ ...prev, [key]: true }))}
-                  />
-                )}
-              </ParamPanel>
+                quality={qualityObj}
+                onTelemetry={handleTelemetry}
+              />
+            </SimViewport>
+          </div>
+
+          {/* Barra superior flotante (deja orbitar por los huecos) */}
+          <div className="fislab-stage-top">
+            <button type="button" className="fislab-back" onClick={volverACatalogo}>
+              <ArrowLeft size={17} /> Catálogo
+            </button>
+            <div className="fislab-stage-title">
+              <span className="fislab-stage-title-icon">{activeSim.icono}</span>
+              <h2>{activeSim.nombre}</h2>
+            </div>
+            <div className="fislab-stage-top-actions">
+              {mode === 'retos' && <span className="fislab-points-badge">⭐ {retosPoints} pts</span>}
+              {!panelOpen && (
+                <button type="button" className="fislab-stage-open" onClick={() => setPanelOpen(true)}>
+                  <SlidersHorizontal size={16} /> Controles
+                </button>
+              )}
             </div>
           </div>
+
+          {/* Gráfica flotante (abajo-izquierda, plegable) */}
+          {activeSim.graficas && (
+            <div className={`fislab-stage-graph ${graphOpen ? '' : 'collapsed'}`}>
+              <button type="button" className="fislab-stage-graph-toggle" onClick={() => setGraphOpen((o) => !o)}>
+                <LineChart size={14} /> Gráfica
+                <ChevronRight
+                  size={15}
+                  style={{ marginLeft: 'auto', transform: graphOpen ? 'rotate(90deg)' : 'none', transition: 'transform .15s' }}
+                />
+              </button>
+              {graphOpen && <GraphPanel seriesRef={seriesRef} lines={activeSim.graficas} height={130} />}
+            </div>
+          )}
+
+          {/* Panel de control flotante (derecha, plegable) */}
+          <AnimatePresence>
+            {panelOpen && (
+              <motion.aside
+                className="fislab-stage-panel"
+                initial={{ x: 30, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 30, opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 32 }}
+              >
+                <div className="fislab-stage-panel-head">
+                  <span><SlidersHorizontal size={15} /> Controles</span>
+                  <button type="button" onClick={() => setPanelOpen(false)} title="Ocultar panel">
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+                <div className="fislab-stage-panel-body">
+                  <ParamPanel
+                    simDef={activeSim}
+                    params={params}
+                    onParamChange={(key, value) => setParams((prev) => ({ ...prev, [key]: value }))}
+                    playing={playing}
+                    onPlayPause={() => setPlaying((p) => !p)}
+                    onReset={resetSim}
+                    speed={speed}
+                    onSpeedChange={setSpeed}
+                    showVectors={showVectors}
+                    onToggleVectors={() => setShowVectors((v) => !v)}
+                    showTrajectory={showTrajectory}
+                    onToggleTrajectory={() => setShowTrajectory((v) => !v)}
+                    readouts={readouts}
+                    formulaViva={formulaViva}
+                  >
+                    {energia?.length > 0 && <EnergyBars items={energia} />}
+                    {mode === 'retos' && activeSim.retos?.length > 0 && (
+                      <RetosList
+                        sim={activeSim}
+                        done={retosDone[activeSim.id] || []}
+                        pistas={pistasAbiertas}
+                        onTogglePista={(key) => setPistasAbiertas((prev) => ({ ...prev, [key]: true }))}
+                      />
+                    )}
+                  </ParamPanel>
+                </div>
+              </motion.aside>
+            )}
+          </AnimatePresence>
         </div>
       )}
 

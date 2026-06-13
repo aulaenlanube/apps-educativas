@@ -55,6 +55,7 @@ function Trazadores({ world, params, budget, playing }) {
   useEffect(() => {
     const count = Math.max(120, Math.round(MAX * budget));
     const rng = mulberry32(777);
+    world.data = world.data || {}; // el efecto del hijo corre antes que el reinit del padre
     world.data.parts = Array.from({ length: count }, () => ({
       x: X_MIN + rng() * (X_MAX - X_MIN),
       y: -Y_MAX + rng() * 2 * Y_MAX,

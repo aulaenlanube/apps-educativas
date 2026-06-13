@@ -48,6 +48,7 @@ function Motas({ world, params, budget }) {
   useEffect(() => {
     const count = Math.max(15, Math.round(MAX * budget));
     const rng = mulberry32(4242);
+    world.data = world.data || {}; // el efecto del hijo corre antes que el reinit del padre
     world.data.motas = Array.from({ length: count }, () => ({
       x: (rng() - 0.5) * 1.5,
       y: -rng() * PROFUNDIDAD * VSY,

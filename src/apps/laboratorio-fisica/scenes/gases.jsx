@@ -33,6 +33,7 @@ function Particulas({ world, params, budget }) {
     const count = Math.max(10, Math.min(MAX, Math.round(params.n * 70 * budget)));
     const half = aristaDe(params.V) / 2 - 0.12;
     const rng = mulberry32(12345);
+    world.data = world.data || {}; // el efecto del hijo corre antes que el reinit del padre
     world.data.parts = Array.from({ length: count }, () => ({
       x: (rng() - 0.5) * 2 * half,
       y: (rng() - 0.5) * 2 * half,
