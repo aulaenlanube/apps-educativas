@@ -48,7 +48,8 @@
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "troika-three-text": "0.52.4"
   },
   "devDependencies": {
     "@babel/generator": "^7.27.0",

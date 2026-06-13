@@ -110,6 +110,9 @@ importers:
       three:
         specifier: ^0.182.0
         version: 0.182.0
+      troika-three-text:
+        specifier: 0.52.4
+        version: 0.52.4(three@0.182.0)
     devDependencies:
       '@babel/generator':
         specifier: ^7.27.0
