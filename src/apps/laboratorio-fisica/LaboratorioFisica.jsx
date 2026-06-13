@@ -440,6 +440,9 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
             </div>
           )}
 
+          {/* Fórmula viva flotante (abajo, centrada sobre el 3D — sin scroll) */}
+          {formulaViva && <div className="fislab-stage-formula">{formulaViva}</div>}
+
           {/* Panel de control flotante (derecha, plegable) */}
           <AnimatePresence>
             {panelOpen && (
@@ -471,7 +474,6 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
                     showTrajectory={showTrajectory}
                     onToggleTrajectory={() => setShowTrajectory((v) => !v)}
                     readouts={readouts}
-                    formulaViva={formulaViva}
                   >
                     {energia?.length > 0 && <EnergyBars items={energia} />}
                     {mode === 'retos' && activeSim.retos?.length > 0 && (
