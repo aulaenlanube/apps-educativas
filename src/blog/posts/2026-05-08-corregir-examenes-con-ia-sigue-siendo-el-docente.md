@@ -14,7 +14,7 @@ keywords:
   - LOPDGDD
   - ética IA educativa
 tldr:
-  - "El tiempo que la IA te ahorra corrigiendo depende ENORMEMENTE del tipo de examen: mucho en pruebas estructuradas, poco en código complejo o creación libre."
+  - "Lo que la IA aporta corrigiendo depende mucho del tipo de examen: mucho en pruebas estructuradas, poco en código complejo o creación libre."
   - "El docente sigue siendo quien valida CADA nota y CADA comentario antes de cerrarlos — la IA propone, el humano dispone."
   - "Funciona mejor en preguntas de desarrollo con rúbrica clara; falla en respuestas creativas, código complejo o trabajos donde los criterios son subjetivos."
   - "Anonimizar SIEMPRE antes de subir respuestas a un chat público (ChatGPT, Claude). Con cuenta de empresa (Enterprise/Workspace) los datos no se usan para entrenar."
@@ -22,8 +22,6 @@ tldr:
 faq:
   - q: "¿La IA corrige bien los exámenes?"
     a: "Con buena rúbrica y supervisión humana, sí en pruebas estructuradas. En exámenes creativos, código complejo o respuestas muy abiertas, hay que revisar tanto que el ahorro de tiempo se reduce mucho. La calidad depende totalmente de cómo le pidas que evalúe y de tu validación posterior."
-  - q: "¿Cuánto tiempo me ahorra realmente la IA corrigiendo?"
-    a: "Depende del tipo de examen. En tests cortos o preguntas con rúbrica clara puedes ahorrar el 50-70 % del tiempo. En código complejo, redacciones literarias o defensas de proyecto, el ahorro baja al 20-40 % o incluso menos. Quien te promete 'X horas en 1 hora' te está vendiendo una media falsa."
   - q: "¿Es legal usar IA para corregir exámenes con datos del alumnado?"
     a: "Sí, con dos condiciones: anonimizar las respuestas (quitar nombres y datos identificativos) si usas servicios públicos, o usar plataformas con acuerdo de tratamiento de datos (ChatGPT Enterprise, Claude Workspace). En cualquier caso, la nota final la valida el docente."
   - q: "¿Puedo dejar que la IA ponga la nota directamente sin revisar?"
@@ -41,29 +39,18 @@ Te aviso por delante: este post va a la práctica directa. Si no estás familiar
 
 Vamos.
 
-## El tiempo de corrección depende MUCHO del tipo de examen
+## Dónde la IA aporta de verdad (y dónde no)
 
-Aviso por delante para que no te vendan humo: **no existe un "ahorro medio" universal**. Corregir 30 tests de respuesta corta y corregir 30 exámenes de programación o de redacción literaria son mundos completamente distintos. Y la IA tampoco ayuda igual en cada uno.
+Aviso por delante para que no te vendan humo: **no hay un "ahorro medio" universal**. Corregir tests de respuesta corta, exámenes de programación con código no trivial y redacciones literarias son mundos distintos, y la IA tampoco ayuda igual en cada uno.
 
-Estos son rangos realistas según mi experiencia (informática y programación) y la de colegas a los que asesoro en otras asignaturas:
+Lo que sí se sostiene, con la experiencia y con honestidad:
 
-| Tipo de examen | Tiempo SIN IA por alumno | Tiempo CON IA por alumno | Ahorro real |
-|---|---|---|---|
-| Test de respuesta múltiple | 1-3 min (o automático) | igual o algo menos | ~0 % (ya está optimizado) |
-| Preguntas cortas con rúbrica | 3-8 min | 1-3 min | 50-70 % |
-| Examen de desarrollo (humanidades, ciencias) | 10-20 min | 4-8 min | 50-60 % |
-| Redacción libre / ensayo | 15-30 min | 10-20 min | 30-40 % |
-| Examen de programación / código | 30-90 min | 20-60 min | 20-40 % |
-| Trabajo creativo (literario, plástico, opinión) | 15-30 min | 12-25 min | 10-20 % |
-| Defensa de proyecto / oral | irreemplazable | irreemplazable | 0 % |
+- **En programación**, la IA detecta sintaxis y errores comunes muy bien, pero la valoración del **diseño del código** (si es elegante, mantenible, si usa patrones adecuados) sigue siendo lectura humana experta.
+- **En redacción literaria**, la IA puede señalar ortografía y estructura, pero valorar la voz propia, el matiz y la originalidad es trabajo del docente. Y revisar lo que la IA propone te lleva casi tanto como hacerlo desde cero.
+- **En matemáticas con desarrollo paso a paso, preguntas cortas con rúbrica clara y exámenes de desarrollo bien estructurados**, la IA encaja muy bien y libera tiempo de verdad.
+- **En tests cerrados**, no aporta mucho porque ya están optimizados con corrección automática.
 
-Algunas notas que NUNCA verás en los posts entusiastas sobre IA:
-
-- **En programación**, la IA detecta sintaxis y errores comunes, pero la valoración del **diseño del código** (¿es elegante? ¿es mantenible? ¿usa los patrones adecuados?) sigue siendo lectura humana experta. Un examen de 1.º DAW puede llevarme 30 minutos por alumno; uno de 2.º DAM con código no trivial, hasta 90 minutos. La IA me lo acerca a 20-60 minutos, no a uno.
-- **En redacción literaria**, la IA puede señalar ortografía y estructura, pero la valoración de la voz propia, el matiz, la originalidad — eso es tuyo. Y revisar lo que la IA propone te lleva casi tanto como hacerlo desde cero.
-- **En matemáticas con desarrollo paso a paso**, la IA es muy buena. Aquí sí ves ahorros importantes.
-
-**El ahorro real está más en el feedback formativo que en la corrección bruta**: lo que antes no podías hacer (un comentario individualizado decente para 150 alumnos) ahora pasa a ser viable. Esa es la palanca de verdad.
+Pero la palanca más importante no es esa. **El verdadero valor está en el feedback formativo**: dar un comentario individualizado decente a cada alumno cuando tienes muchos grupos era algo que la mayoría no podíamos hacer por puro tiempo. Con IA pasa a ser viable. Esa es la diferencia educativa de verdad, no la velocidad bruta de poner notas.
 
 ## El flujo que sí funciona (paso a paso)
 
@@ -119,7 +106,7 @@ Aquí está el examen del Alumno_XX:
 [RESPUESTAS DEL ALUMNO]
 ```
 
-El tiempo de generación de la IA va de 20 segundos a 2 minutos por examen según la longitud y el modelo. Esto SOLO es la propuesta — todavía no has revisado nada.
+La IA tarda unos segundos en generar la propuesta de corrección. Insisto: esto SOLO es la propuesta — todavía no has revisado nada.
 
 ### Paso 4 — Revisión humana (la parte irrenunciable)
 
@@ -137,14 +124,14 @@ Por eso **revisas siempre**. La revisión es típicamente:
 2. Mirar la respuesta del alumno.
 3. Ajustar la nota si es necesario.
 
-En preguntas estructuradas con rúbrica clara, esto es rápido (1-2 min por alumno). En preguntas creativas o código complejo, la revisión puede ser tan larga como la corrección manual — y entonces el valor de la IA se reduce a generar el primer borrador del feedback, no a ahorrarte tiempo bruto.
+En preguntas estructuradas con rúbrica clara, esto es rápido. En preguntas creativas o código complejo, la revisión puede ser tan larga como la corrección manual — y entonces el valor de la IA se reduce a generar el primer borrador del feedback, no a ahorrarte tiempo bruto.
 
 ### Paso 5 — Feedback personalizado individual
 
-Esta es la joya. Con el tiempo que has ganado, **genera un comentario individualizado de 80-100 palabras para cada alumno** con la IA:
+Esta es la joya. Con el tiempo que has ganado, **genera un comentario individualizado para cada alumno** con la IA:
 
 ```
-Genera un comentario individualizado de 80-100 palabras para el
+Genera un comentario individualizado de unas 100 palabras para el
 Alumno_07 a partir de su corrección:
 
 [CORRECCIÓN COMPLETA]
@@ -156,7 +143,7 @@ el siguiente examen.
 Evita frases hechas. Habla del trabajo de ESTE alumno, no en abstracto.
 ```
 
-Esto es algo que antes muy poca gente hacía en sus 150 alumnos por pura falta de tiempo. Con IA se vuelve viable de verdad.
+Esto es algo que antes muy poca gente hacía con muchos alumnos por pura falta de tiempo. Con IA se vuelve viable de verdad.
 
 ### Paso 6 — Análisis agregado: dónde falla la clase
 
@@ -178,7 +165,7 @@ Sé concreto. Indica porcentaje aproximado de alumnos afectados por cada
 patrón.
 ```
 
-El análisis agregado manual de un grupo grande lleva un par de horas si se hace bien. Con IA bajas a 5-10 minutos. **Y te cambia la próxima clase**: en lugar de avanzar contenido, dedicas 20 minutos a deshacer el malentendido común.
+El análisis agregado manual de un grupo grande es trabajo arduo si se hace bien; con IA se vuelve abordable en una fracción de tiempo. **Y te cambia la próxima clase**: en lugar de avanzar contenido, dedicas la sesión a deshacer el malentendido común.
 
 ## Los límites éticos y profesionales
 
@@ -225,16 +212,6 @@ Hay tipos de evaluación donde la IA aporta poco o nada — no por capricho téc
 - **Defensa de proyectos**: la evaluación es presencial y multimodal.
 
 En el resto — pruebas estructuradas, preguntas cortas, exámenes de desarrollo con rúbrica clara — la IA acelera de verdad y permite añadir un nivel de feedback formativo que antes no era viable.
-
-## Las herramientas que mejor rinden hoy (mayo 2026)
-
-| Tarea | Herramienta recomendada |
-|---|---|
-| Transcribir examen desde foto | Claude Sonnet (mejor que GPT en OCR a mi gusto) |
-| Corregir con rúbrica | GPT-5 o Claude Sonnet 4.6 (similares) |
-| Generar feedback en cascada | Claude por consistencia narrativa |
-| Análisis agregado de patrones | GPT-5 con código (interpreta tablas mejor) |
-| Detector de plagio entre alumnos | Turnitin sigue ganando; los gratis tienen falsos positivos altos |
 
 ## Cómo arrancar el siguiente examen
 
