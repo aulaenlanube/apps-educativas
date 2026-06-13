@@ -1,22 +1,30 @@
-// Un objetivo disparable: panel de palabra (textura canvas, billboard hacia la
-// cámara) u orbe especial (power-up / bomba). Se anima a sí mismo en useFrame
-// avanzando hacia la cámara (+z); cuando la rebasa, llama onExpire(id).
-// userData.targetId en cada mesh para el raycast desde el centro de pantalla.
+// Un objetivo disparable.
+//  · Palabra: PRISMA 3D (rectángulo con grosor) con la palabra impresa en la
+//    cara frontal y un marco de color luminoso en los cantos. Tiene orientación
+//    de mundo (NO billboard) y gira/oscila según su estilo de movimiento para
+//    que se aprecie el volumen; opcionalmente un halo radial detrás.
+//  · Especial: orbe (power-up / bomba) con anillo, billboard hacia la cámara.
+// Cada movimiento (avance + serpenteo + rotación) se anima en useFrame; cuando
+// rebasa la cámara llama onExpire(id). userData.targetId en los meshes para el
+// raycast de disparo desde el centro de pantalla.
 import React, { memo, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { TIERS, SPECIALS } from '../engine/config';
-import { makeWordTexture, makeIconTexture } from '../engine/wordTexture';
+import { makeWordTexture, makeIconTexture, makeGlowTexture } from '../engine/wordTexture';
 
-const WORD_H = 1.05; // alto base del panel (unidades de mundo)
-const DESPAWN_Z = 5.5; // se desvanecen 1.5u antes de la cámara (z=7), sin agigantarse
+const WORD_H = 1.02;   // alto base del prisma (unidades de mundo)
+const DEPTH = 0.22;    // grosor del prisma
+const DESPAWN_Z = 5.5; // se desvanecen 1.5u antes de la cámara (z=7)
 
 function Target({ data, onExpire }) {
-  const grp = useRef();
+  const grp = useRef();   // posición (serpenteo + avance)
+  const box = useRef();   // rotación propia del prisma
   const ring = useRef();
+  const orb = useRef();
   const expired = useRef(false);
   const motion = useRef(null);
-  if (!motion.current) motion.current = { x: data.x, y: data.y, z: data.z, t: data.phase || 0 };
+  if (!motion.current) motion.current = { t: data.phase || 0, z: data.z };
 
   const visual = useMemo(() => {
     if (data.kind === 'special') {
@@ -25,8 +33,13 @@ function Target({ data, onExpire }) {
     }
     const tier = TIERS[data.points] || TIERS[1];
     const accent = data.isAnswer ? '#fbbf24' : tier.color;
-    const { texture, aspect } = makeWordTexture(data.text, { accent });
-    return { type: 'word', tier, texture, aspect };
+    const { texture, aspect } = makeWordTexture(data.text, {
+      accent, design: data.design || 0, points: data.points, isAnswer: data.isAnswer,
+    });
+    const halo = (data.isAnswer || data.points === 5)
+      ? { tex: makeGlowTexture(data.isAnswer ? '#fbbf24' : tier.emissive).texture, opacity: data.isAnswer ? 0.95 : 0.55 }
+      : null;
+    return { type: 'word', tier, accent, edgeEmissive: data.isAnswer ? '#f59e0b' : tier.emissive, texture, aspect, halo };
   }, [data]);
 
   useFrame((state, dt) => {
@@ -34,14 +47,29 @@ function Target({ data, onExpire }) {
     const step = Math.min(dt, 0.05);
     m.t += step;
     m.z += data.vz * step;
-    m.x += data.vx * step;
-    const g = grp.current;
-    if (g) {
-      const bob = Math.sin(m.t * data.bobFreq) * data.bobAmp;
-      g.position.set(m.x, m.y + bob, m.z);
-      g.quaternion.copy(state.camera.quaternion); // billboard
+
+    const wx = data.weaveAmpX ? data.weaveAmpX * Math.sin(m.t * data.weaveFreqX + data.weavePhX) : 0;
+    const wy = data.weaveAmpY ? data.weaveAmpY * Math.sin(m.t * data.weaveFreqY + data.weavePhY) : 0;
+    const bob = Math.sin(m.t * data.bobFreq + data.phase) * data.bobAmp;
+
+    if (data.kind === 'special') {
+      if (grp.current) {
+        grp.current.position.set(data.x + wx, data.y + bob, m.z);
+        grp.current.quaternion.copy(state.camera.quaternion); // billboard del orbe
+      }
+      if (orb.current) orb.current.rotation.y += step * 0.9;
+      if (ring.current) ring.current.rotation.z += step * 1.6;
+    } else {
+      if (grp.current) grp.current.position.set(data.x + wx, data.y + wy + bob, m.z);
+      if (box.current) {
+        box.current.rotation.set(
+          data.pitchAmp * Math.sin(m.t * data.pitchFreq + data.pitchPh),
+          data.yawAmp * Math.sin(m.t * data.yawFreq + data.yawPh) + data.spinY * m.t,
+          data.rollAmp * Math.sin(m.t * data.rollFreq + data.rollPh),
+        );
+      }
     }
-    if (ring.current) ring.current.rotation.z += step * 1.6;
+
     if (!expired.current && m.z > DESPAWN_Z) {
       expired.current = true;
       onExpire(data.id);
@@ -52,7 +80,7 @@ function Target({ data, onExpire }) {
     const sp = visual.sp;
     return (
       <group ref={grp} position={[data.x, data.y, data.z]} userData={{ targetId: data.id }}>
-        <mesh userData={{ targetId: data.id }}>
+        <mesh ref={orb} userData={{ targetId: data.id }}>
           <icosahedronGeometry args={[0.6, 0]} />
           <meshStandardMaterial
             color={sp.color}
@@ -89,23 +117,30 @@ function Target({ data, onExpire }) {
   const big = Math.max(w, h);
   return (
     <group ref={grp} position={[data.x, data.y, data.z]} userData={{ targetId: data.id }}>
-      {(data.isAnswer || data.points === 5) && (
-        <mesh ref={ring} position={[0, 0, -0.05]}>
-          <ringGeometry args={[big * 0.62, big * 0.72, 44]} />
+      {visual.halo && (
+        <mesh position={[0, 0, -DEPTH / 2 - 0.06]}>
+          <planeGeometry args={[big * 1.9, big * 1.9]} />
           <meshBasicMaterial
-            color={data.isAnswer ? '#fbbf24' : visual.tier.emissive}
+            map={visual.halo.tex}
             transparent
-            opacity={data.isAnswer ? 0.85 : 0.4}
+            opacity={visual.halo.opacity}
             blending={THREE.AdditiveBlending}
-            side={THREE.DoubleSide}
             depthWrite={false}
             toneMapped={false}
           />
         </mesh>
       )}
-      <mesh userData={{ targetId: data.id }}>
-        <planeGeometry args={[w, h]} />
-        <meshBasicMaterial map={visual.texture} transparent depthWrite={false} />
+      <mesh ref={box} userData={{ targetId: data.id }} castShadow>
+        <boxGeometry args={[w, h, DEPTH]} />
+        {/* cantos (px, nx, py, ny) — marco luminoso del prisma */}
+        <meshStandardMaterial attach="material-0" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
+        <meshStandardMaterial attach="material-1" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
+        <meshStandardMaterial attach="material-2" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
+        <meshStandardMaterial attach="material-3" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
+        {/* cara frontal (+z) — palabra impresa */}
+        <meshBasicMaterial attach="material-4" map={visual.texture} toneMapped={false} />
+        {/* cara trasera (-z) — reverso oscuro */}
+        <meshStandardMaterial attach="material-5" color="#0a1024" emissive={visual.edgeEmissive} emissiveIntensity={0.25} metalness={0.4} roughness={0.5} />
       </mesh>
     </group>
   );

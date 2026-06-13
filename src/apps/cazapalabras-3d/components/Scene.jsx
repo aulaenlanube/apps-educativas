@@ -11,8 +11,49 @@ import { SPECIAL_GOOD, SPECIALS, TIERS } from '../engine/config';
 
 let TID = 0;
 const rnd = (a, b) => a + Math.random() * (b - a);
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const YAW_MAX = 0.85;
 const PITCH_MAX = 0.5;
+
+// Estilo de movimiento de cada palabra. Las de más valor y la respuesta usan
+// estilos siempre legibles (sin giro completo); las comunes pueden voltear.
+function pickStyle(isAnswer, points) {
+  if (isAnswer) return pick(['drift', 'weave', 'rise']);
+  if (points >= 5) return pick(['drift', 'weave', 'spiral']);
+  if (points >= 2) return pick(['drift', 'weave', 'spiral', 'rise']);
+  return pick(['drift', 'weave', 'spiral', 'rise', 'tumble']);
+}
+
+function buildMotion(style) {
+  const m = {
+    weaveAmpX: 0, weaveFreqX: 0, weavePhX: 0,
+    weaveAmpY: 0, weaveFreqY: 0, weavePhY: 0,
+    yawAmp: rnd(0.12, 0.30), yawFreq: rnd(0.5, 1.1), yawPh: rnd(0, 6),
+    pitchAmp: rnd(0.05, 0.14), pitchFreq: rnd(0.5, 1.0), pitchPh: rnd(0, 6),
+    rollAmp: rnd(0.03, 0.10), rollFreq: rnd(0.4, 0.9), rollPh: rnd(0, 6),
+    spinY: 0,
+    bobAmp: rnd(0.06, 0.22), bobFreq: rnd(0.5, 1.2), phase: rnd(0, 6),
+  };
+  switch (style) {
+    case 'weave':
+      m.weaveAmpX = rnd(1.2, 2.4); m.weaveFreqX = rnd(0.5, 0.9); m.weavePhX = rnd(0, 6);
+      break;
+    case 'spiral':
+      m.weaveAmpX = rnd(0.8, 1.6); m.weaveFreqX = rnd(0.6, 1.0); m.weavePhX = rnd(0, 6);
+      m.weaveAmpY = rnd(0.5, 1.1); m.weaveFreqY = rnd(0.6, 1.0); m.weavePhY = rnd(0, 6);
+      break;
+    case 'rise':
+      m.weaveAmpY = rnd(0.8, 1.6); m.weaveFreqY = rnd(0.4, 0.8); m.weavePhY = rnd(0, 6);
+      m.pitchAmp = rnd(0.10, 0.20);
+      break;
+    case 'tumble':
+      m.spinY = rnd(0.5, 1.0) * (Math.random() < 0.5 ? -1 : 1); m.yawAmp = 0;
+      m.rollAmp = rnd(0.08, 0.18);
+      break;
+    default: break; // drift: solo balanceo base
+  }
+  return m;
+}
 
 function Burst({ pos, color, onDone }) {
   const ref = useRef();
@@ -84,13 +125,18 @@ export default function Scene({ gameRef, controlRef, onHit, onShoot, quality }) 
     }
 
     const max = p.maxTargets + (isAnswer ? 5 : 0);
+    const motion = kind === 'word' ? buildMotion(pickStyle(isAnswer, points)) : {
+      bobAmp: rnd(0.08, 0.26), bobFreq: rnd(0.5, 1.2), phase: Math.random() * 6,
+      weaveAmpX: rnd(0, 0.6), weaveFreqX: rnd(0.4, 0.9), weavePhX: rnd(0, 6),
+    };
     setTargets((ts) => {
       if (ts.length >= max) return ts;
       return [...ts, {
         id: ++TID, kind, special, text, points, isAnswer: !!isAnswer,
-        x: rnd(-5.5, 5.5), y: rnd(1.1, 4.3), z: rnd(-48, -40),
-        vz: rnd(p.speed[0], p.speed[1]), vx: rnd(-0.5, 0.5),
-        bobAmp: rnd(0.05, 0.28), bobFreq: rnd(0.4, 1.3), phase: Math.random() * 6,
+        design: Math.floor(rnd(0, 4)),
+        x: rnd(-5.2, 5.2), y: rnd(1.2, 4.2), z: rnd(-48, -40),
+        vz: rnd(p.speed[0], p.speed[1]),
+        ...motion,
       }];
     });
   }, [gameRef]);
