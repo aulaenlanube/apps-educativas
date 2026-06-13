@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import YouTubeEmbed from './YouTubeEmbed';
 
 // Wrapper de tipografía para el cuerpo de un post.
 // Mismo enfoque que LegalLayout: arbitrary variants de Tailwind sobre los hijos
@@ -42,7 +43,13 @@ const PROSE_CLASSES = [
   '[&_hr]:my-10 [&_hr]:border-t-2 [&_hr]:border-dashed [&_hr]:border-slate-200 [&_hr]:dark:border-slate-700',
 ].join(' ');
 
-// Componentes personalizados para abrir enlaces externos en pestaña nueva.
+// Patrón inline para embeber un vídeo de YouTube desde el markdown:
+// un párrafo cuyo único contenido sea [YOUTUBE:VIDEO_ID] se renderiza como
+// YouTubeEmbed con miniatura lazy.
+const YOUTUBE_INLINE_RE = /^\[YOUTUBE:([a-zA-Z0-9_-]{6,20})\]$/;
+
+// Componentes personalizados para abrir enlaces externos en pestaña nueva
+// y reconocer el patrón [YOUTUBE:ID] dentro de un párrafo.
 const MD_COMPONENTS = {
   a({ href = '', children, ...props }) {
     const isExternal = /^https?:\/\//i.test(href) && !href.includes('apps-educativas.com');
@@ -56,6 +63,20 @@ const MD_COMPONENTS = {
         {children}
       </a>
     );
+  },
+  p({ children, ...props }) {
+    const arr = React.Children.toArray(children);
+    if (arr.length === 1 && typeof arr[0] === 'string') {
+      const match = arr[0].trim().match(YOUTUBE_INLINE_RE);
+      if (match) {
+        return (
+          <div className="my-8">
+            <YouTubeEmbed videoId={match[1]} title="Vídeo de YouTube" />
+          </div>
+        );
+      }
+    }
+    return <p {...props}>{children}</p>;
   },
 };
 

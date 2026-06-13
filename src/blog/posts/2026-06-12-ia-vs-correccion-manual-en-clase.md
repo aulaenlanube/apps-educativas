@@ -55,6 +55,14 @@ Cuando sentábamos a leer el informe detallado de la IA junto al examen, varias 
 
 No te vendo esto como ciencia: es la observación de un equipo docente que ha hecho muchas pruebas, no un estudio replicable. Pero la coincidencia con lo que aparece en la literatura académica reciente es notable. El estudio de [Floden en el British Educational Research Journal](https://bera-journals.onlinelibrary.wiley.com/doi/10.1002/berj.4069) comparó 463 exámenes de máster corregidos con ChatGPT frente a la nota humana: la gran mayoría de las notas IA cayeron a una calificación de distancia o menos de la del profesor, con un porcentaje sustancial de coincidencia exacta. Traducido: en muchas tareas, la IA ya acierta dentro del margen en el que dos profesores tampoco se ponen del todo de acuerdo.
 
+## Esto no es de ayer: hace más de un año ya funcionaba
+
+Por si te suena a tendencia recién estrenada, te dejo aquí un vídeo que grabé el [9 de junio de 2025](https://youtu.be/jGhicjeUz24) probando corrección de exámenes con IA en directo. Hace más de un año, con modelos que hoy se consideran viejos, **el resultado ya era sorprendentemente bueno**.
+
+[YOUTUBE:jGhicjeUz24]
+
+Lo cuento porque mucha gente, cuando hablo de esto en el claustro, asume que la calidad de la corrección por IA es una promesa de marketing del último trimestre. No lo es. La curva lleva años subiendo, los modelos de 2026 son notablemente mejores que los de 2025, y los de 2025 ya eran muy útiles para esto. Si te tomas un rato para ver el vídeo, hazte una pregunta: **¿qué será capaz de hacer la IA con los exámenes dentro de tres cursos?** Yo no lo sé exactamente. Pero sí sé en qué dirección está apuntando todo.
+
 ## La distinción que falta en el debate público
 
 Aquí toca medir las palabras, porque hay una distinción clave que casi nadie hace.
