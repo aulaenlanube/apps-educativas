@@ -13,11 +13,18 @@ export function cursoLabel(curso) {
   return curso.level === 'bachillerato' ? `${curso.grade}º Bach` : `${curso.grade}º ESO`;
 }
 
-export function generarExamen(sims, level, grade, seed, total = 10) {
+// Simulaciones que SÍ entran en el examen del curso (mismo criterio que
+// generarExamen). Sirve para avisar de antemano de qué temas se preguntará.
+export function examPool(sims, level, grade) {
   const idx = courseIndex(level, grade);
-  const pool = sims.filter((s) => !s.esAmpliacion
+  return sims.filter((s) => !s.esAmpliacion
     && courseIndex(s.curso.level, s.curso.grade) <= idx
     && s.examTemplates?.length);
+}
+
+export function generarExamen(sims, level, grade, seed, total = 10) {
+  const idx = courseIndex(level, grade);
+  const pool = examPool(sims, level, grade);
   const rng = mulberry32(seed >>> 0);
 
   const nuevas = pool.filter((s) => courseIndex(s.curso.level, s.curso.grade) === idx);

@@ -345,6 +345,33 @@
   border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 0.82rem; pointer-events: none;
 }
 
+/* ---------- aviso previo al examen ---------- */
+.fislab-exam-intro { max-width: 760px; margin: 0 auto; }
+.fislab-exam-intro-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(103,232,249,0.22);
+  border-radius: 18px; padding: 22px;
+}
+.fislab-exam-intro-lead { font-size: 1rem; line-height: 1.6; margin: 0 0 16px; color: #e2e8f0; }
+.fislab-exam-intro-lead strong { color: #67e8f9; }
+.fislab-exam-intro-list { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 16px; }
+.fislab-exam-intro-tema {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(8,14,36,0.55); border: 1px solid rgba(103,232,249,0.2);
+  border-radius: 11px; padding: 7px 12px; font-size: 0.85rem; font-weight: 700;
+}
+.fislab-exam-intro-icono { font-size: 1.1rem; }
+.fislab-exam-intro-tema small {
+  color: #94a3b8; font-weight: 800; font-size: 0.64rem;
+  background: rgba(148,163,184,0.13); border-radius: 999px; padding: 2px 8px;
+}
+.fislab-exam-intro-nota {
+  background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.35);
+  color: #fde68a; border-radius: 12px; padding: 11px 14px; font-size: 0.86rem; line-height: 1.5; margin: 0 0 18px;
+}
+.fislab-exam-intro-nota strong { color: #fbbf24; }
+.fislab-exam-intro-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.fislab-exam-intro-actions .fislab-btn-primary { margin-top: 0; }
+
 /* ---------- resumen ---------- */
 .fislab-summary { max-width: 720px; margin: 0 auto; text-align: center; }
 .fislab-summary h2 { font-size: 1.3rem; }

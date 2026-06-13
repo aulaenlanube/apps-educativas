@@ -20,7 +20,7 @@ import GraphPanel from './components/GraphPanel';
 import EnergyBars from './components/EnergyBars';
 import ExamScreen from './components/ExamScreen';
 import { SIMS, catalogoPara, defaultsDe, simPorId } from './registry';
-import { generarExamen, cursoLabel } from './engine/exam';
+import { generarExamen, examPool, cursoLabel } from './engine/exam';
 import './LaboratorioFisica.css';
 
 const notaColor = (nota) => (nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444');
@@ -62,6 +62,12 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     [gradeProp, routeParams.grade],
   );
   const catalogo = useMemo(() => catalogoPara(level, grade), [level, grade]);
+  const examIncluidos = useMemo(() => examPool(SIMS, level, grade), [level, grade]);
+  // ¿hay simulaciones explorables (otros cursos / ampliación) que NO se examinan?
+  const hayExcluidasDelExamen = useMemo(
+    () => catalogo.some(({ sim }) => !examIncluidos.includes(sim)),
+    [catalogo, examIncluidos],
+  );
 
   // ---- calidad gráfica global + governor ----
   const { pref, tier: prefTier } = useGraphicsQuality();
@@ -258,13 +264,17 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     setPistasAbiertas({});
     trackedRef.current = false;
     sessionStartRef.current = Date.now();
-    if (m === 'examen') {
-      examResultsRef.current = [];
-      setExamQuestions(generarExamen(SIMS, level, grade, (Date.now() & 0x7fffffff) || 1));
-      setScreen('exam');
-    } else {
-      setScreen('catalog');
-    }
+    // El examen pasa primero por una pantalla de aviso (temas incluidos) y
+    // arranca de verdad con comenzarExamen().
+    setScreen(m === 'examen' ? 'exam-intro' : 'catalog');
+  };
+
+  const comenzarExamen = () => {
+    examResultsRef.current = [];
+    trackedRef.current = false;
+    sessionStartRef.current = Date.now();
+    setExamQuestions(generarExamen(SIMS, level, grade, (Date.now() & 0x7fffffff) || 1));
+    setScreen('exam');
   };
 
   const abrirSim = (sim) => {
@@ -490,6 +500,43 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
             )}
           </AnimatePresence>
         </div>
+      )}
+
+      {/* ============ AVISO PREVIO AL EXAMEN ============ */}
+      {screen === 'exam-intro' && (
+        <motion.div className="fislab-exam-intro" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="fislab-topbar">
+            <button type="button" className="fislab-back" onClick={volverASelect}><ArrowLeft size={17} /> Modos</button>
+            <h2><GraduationCap size={20} /> Examen · {cursoActual}</h2>
+          </div>
+          <div className="fislab-exam-intro-card">
+            <p className="fislab-exam-intro-lead">
+              10 preguntas en tres pasos (<strong>Predice → Observa → Explica</strong>).
+              El examen de <strong>{cursoActual}</strong> solo pregunta sobre estos temas:
+            </p>
+            <div className="fislab-exam-intro-list">
+              {examIncluidos.map((s) => (
+                <span key={s.id} className="fislab-exam-intro-tema">
+                  <span className="fislab-exam-intro-icono">{s.icono}</span>
+                  <span className="fislab-exam-intro-nombre">{s.nombre}</span>
+                  <small>{cursoLabel(s.curso)}</small>
+                </span>
+              ))}
+            </div>
+            {hayExcluidasDelExamen && (
+              <p className="fislab-exam-intro-nota">
+                ℹ️ En los modos <strong>Explora</strong> y <strong>Retos</strong> tienes más simulaciones
+                (de otros cursos o de ampliación) para practicar, pero <strong>no entran en el examen de {cursoActual}</strong>.
+              </p>
+            )}
+            <div className="fislab-exam-intro-actions">
+              <button type="button" className="fislab-btn-primary" onClick={comenzarExamen}>
+                <GraduationCap size={16} /> Comenzar examen
+              </button>
+              <button type="button" className="fislab-btn-ghost" onClick={volverASelect}>Volver</button>
+            </div>
+          </div>
+        </motion.div>
       )}
 
       {/* ============ EXAMEN ============ */}
