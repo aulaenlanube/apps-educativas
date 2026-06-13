@@ -73,6 +73,35 @@
 .cz3d-ch.arm.t { top: -14px; } .cz3d-ch.arm.b { bottom: -14px; }
 .cz3d-ch.arm.l { left: -14px; } .cz3d-ch.arm.r { right: -14px; }
 
+/* hit-marker (X) que aparece al acertar, coloreado por tipo de objetivo */
+.cz3d-hitmark { position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; color: #e2e8f0; animation: cz3d-hit 0.34s ease-out forwards; }
+.cz3d-hitmark::before, .cz3d-hitmark::after { content: ''; position: absolute; top: 50%; left: 50%; width: 17px; height: 3px; margin: -1.5px 0 0 -8.5px; border-radius: 2px; background: currentColor; box-shadow: 0 0 7px currentColor; }
+.cz3d-hitmark::before { transform: rotate(45deg); }
+.cz3d-hitmark::after { transform: rotate(-45deg); }
+.cz3d-hitmark.word { color: #7dd3fc; }
+.cz3d-hitmark.special { color: #c4b5fd; }
+.cz3d-hitmark.answer { color: #fbbf24; }
+.cz3d-hitmark.bomb { color: #fca5a5; }
+@keyframes cz3d-hit {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  30% { transform: scale(1.15) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.6) rotate(0deg); opacity: 0; }
+}
+
+/* viñeta que se intensifica con el combo (caliente a partir de ×5) */
+.cz3d-vignette {
+  position: absolute; inset: 0; z-index: 18; pointer-events: none;
+  background: radial-gradient(125% 125% at 50% 50%, transparent 52%, rgba(2,6,20,0.6) 100%);
+  transition: opacity 0.25s ease, background 0.3s ease;
+}
+.cz3d-vignette[data-hot="1"] {
+  background: radial-gradient(125% 125% at 50% 50%, transparent 46%, rgba(251,146,60,0.32) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cz3d-hitmark { animation-duration: 0.06s; }
+  .cz3d-vignette { transition: none; }
+}
+
 /* HUD */
 .cz3d-hud { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
 .cz3d-objective {

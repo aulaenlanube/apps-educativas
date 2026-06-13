@@ -1,106 +1,266 @@
-// Entorno 3D que transmite AVANCE: suelo con rejilla neón cuya textura se
-// desplaza hacia la cámara, obeliscos laterales que vienen de lejos y se
-// reciclan, y un campo de estrellas de fondo. Todo escala con el tier de
-// calidad (cantidad de decorado ∝ particleBudget).
+// Entorno 3D cinematográfico que transmite AVANCE a alta velocidad:
+//  · Skydome con shader (gradiente + nebulosa FBM animada).
+//  · Suelo con shader tipo Tron (rejilla AA por fwidth + pulso de energía que
+//    viaja + desvanecido por distancia). En tier 'low' se usa una CanvasTexture
+//    más barata.
+//  · 3 capas de estrellas con PARALLAX (vienen hacia la cámara a distinta
+//    velocidad y se reciclan).
+//  · Estructuras variadas que pasan de largo: obeliscos, anillos de energía y
+//    esquirlas flotantes.
+// Los elementos luminosos se marcan en BLOOM_LAYER para el bloom selectivo.
+// Todo el decorado escala con particleBudget (∝ tier de calidad).
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { BLOOM_LAYER } from '../engine/config';
+
+const markBloom = (o) => { if (o) o.layers.enable(BLOOM_LAYER); };
+
+/* ───────────────────────── Skydome ───────────────────────── */
+const SKY_VERT = /* glsl */`
+  varying vec3 vDir;
+  void main() {
+    vDir = normalize(position);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+const SKY_FRAG = /* glsl */`
+  precision highp float;
+  varying vec3 vDir;
+  uniform float uTime;
+  uniform float uOctaves;
+  float hash(vec3 p){ return fract(sin(dot(p, vec3(12.9898,78.233,37.719)))*43758.5453); }
+  float noise(vec3 p){
+    vec3 i = floor(p); vec3 f = fract(p);
+    f = f*f*(3.0-2.0*f);
+    float n000=hash(i), n100=hash(i+vec3(1,0,0)), n010=hash(i+vec3(0,1,0)), n110=hash(i+vec3(1,1,0));
+    float n001=hash(i+vec3(0,0,1)), n101=hash(i+vec3(1,0,1)), n011=hash(i+vec3(0,1,1)), n111=hash(i+vec3(1,1,1));
+    float nx00=mix(n000,n100,f.x), nx10=mix(n010,n110,f.x), nx01=mix(n001,n101,f.x), nx11=mix(n011,n111,f.x);
+    return mix(mix(nx00,nx10,f.y), mix(nx01,nx11,f.y), f.z);
+  }
+  float fbm(vec3 p){
+    float v=0.0, a=0.5;
+    for(int i=0;i<5;i++){ if(float(i)>=uOctaves) break; v+=a*noise(p); p*=2.02; a*=0.5; }
+    return v;
+  }
+  void main(){
+    float h = clamp(vDir.y*0.5+0.5, 0.0, 1.0);
+    vec3 top = vec3(0.02,0.03,0.10);
+    vec3 mid = vec3(0.05,0.06,0.18);
+    vec3 bot = vec3(0.02,0.02,0.06);
+    vec3 base = mix(bot, mix(mid, top, smoothstep(0.45,1.0,h)), smoothstep(0.0,0.55,h));
+    // nebulosa
+    vec3 q = vDir*2.2 + vec3(0.0, 0.0, uTime*0.02);
+    float n = fbm(q);
+    float neb = smoothstep(0.55, 0.95, n) * smoothstep(0.05, 0.5, h);
+    vec3 nebCol = mix(vec3(0.25,0.10,0.45), vec3(0.05,0.25,0.5), n);
+    vec3 col = base + nebCol * neb * 0.6;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function Skydome({ tier }) {
+  const mat = useMemo(() => new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uOctaves: { value: tier === 'high' ? 5 : tier === 'medium' ? 3 : 2 } },
+    vertexShader: SKY_VERT, fragmentShader: SKY_FRAG, side: THREE.BackSide, fog: false, depthWrite: false,
+  }), [tier]);
+  useEffect(() => () => mat.dispose(), [mat]);
+  useFrame((_, dt) => { mat.uniforms.uTime.value += dt; });
+  return (
+    <mesh material={mat} frustumCulled={false}>
+      <sphereGeometry args={[200, 32, 24]} />
+    </mesh>
+  );
+}
+
+/* ───────────────────────── Suelo shader (Tron) ───────────────────────── */
+const FLOOR_VERT = /* glsl */`
+  varying vec3 vWorld;
+  void main(){
+    vec4 wp = modelMatrix * vec4(position, 1.0);
+    vWorld = wp.xyz;
+    gl_Position = projectionMatrix * viewMatrix * wp;
+  }
+`;
+const FLOOR_FRAG = /* glsl */`
+  precision highp float;
+  varying vec3 vWorld;
+  uniform float uTime;
+  void main(){
+    vec2 coord = vWorld.xz * 0.22;
+    coord.y += uTime * 1.1;                 // desplazamiento hacia la cámara
+    vec2 g = abs(fract(coord) - 0.5);
+    vec2 d = fwidth(coord) * 1.5 + 1e-4;
+    vec2 l = vec2(1.0) - smoothstep(vec2(0.0), d, g);
+    float grid = clamp(max(l.x, l.y), 0.0, 1.0);
+    float dist = length(vWorld.xz);
+    float fade = 1.0 - smoothstep(20.0, 130.0, dist);
+    float pulse = 0.5 + 0.5 * sin(uTime * 2.0 - dist * 0.16);
+    vec3 base = vec3(0.015, 0.03, 0.07);
+    vec3 lineCol = mix(vec3(0.10,0.65,1.0), vec3(0.55,0.25,1.0), pulse);
+    vec3 col = base + lineCol * grid * (0.45 + 0.7 * pulse) * fade;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
 
 function makeGridTexture() {
   const s = 256;
   const c = document.createElement('canvas');
   c.width = s; c.height = s;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = '#070a18';
-  ctx.fillRect(0, 0, s, s);
-  ctx.strokeStyle = 'rgba(56, 189, 248, 0.55)';
-  ctx.lineWidth = 3;
-  ctx.strokeRect(0, 0, s, s);
-  ctx.strokeStyle = 'rgba(56, 189, 248, 0.18)';
-  ctx.lineWidth = 1;
+  ctx.fillStyle = '#070a18'; ctx.fillRect(0, 0, s, s);
+  ctx.strokeStyle = 'rgba(56,189,248,0.55)'; ctx.lineWidth = 3; ctx.strokeRect(0, 0, s, s);
+  ctx.strokeStyle = 'rgba(56,189,248,0.18)'; ctx.lineWidth = 1;
   for (let i = 1; i < 4; i++) {
     const p = (s / 4) * i;
     ctx.beginPath(); ctx.moveTo(p, 0); ctx.lineTo(p, s); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, p); ctx.lineTo(s, p); ctx.stroke();
   }
   const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.wrapT = THREE.RepeatWrapping;
+  tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(40, 80);
   return tex;
 }
 
-function Stars({ count }) {
+function Floor({ tier }) {
+  if (tier === 'low') {
+    return <FloorCanvas />;
+  }
+  return <FloorShader />;
+}
+
+function FloorShader() {
+  const mat = useMemo(() => new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 } }, vertexShader: FLOOR_VERT, fragmentShader: FLOOR_FRAG, fog: false,
+  }), []);
+  useEffect(() => () => mat.dispose(), [mat]);
+  useFrame((_, dt) => { mat.uniforms.uTime.value += dt; });
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -40]} material={mat}>
+      <planeGeometry args={[200, 280]} />
+    </mesh>
+  );
+}
+
+function FloorCanvas() {
+  const grid = useMemo(makeGridTexture, []);
+  useEffect(() => () => grid.dispose(), [grid]);
+  useFrame((_, dt) => { grid.offset.y -= dt * 0.6; });
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -40]} receiveShadow>
+      <planeGeometry args={[160, 240]} />
+      <meshStandardMaterial map={grid} color="#0a0f24" emissive="#0b2a44" emissiveIntensity={0.35} roughness={0.9} metalness={0.1} />
+    </mesh>
+  );
+}
+
+/* ───────────────────────── Estrellas con parallax ───────────────────────── */
+function StarLayer({ count, size, color, speed, spread, opacity }) {
+  const ref = useRef();
   const geo = useMemo(() => {
     const g = new THREE.BufferGeometry();
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 160;
-      pos[i * 3 + 1] = Math.random() * 60 + 4;
-      pos[i * 3 + 2] = -Math.random() * 140 - 20;
+      pos[i * 3] = (Math.random() - 0.5) * spread;
+      pos[i * 3 + 1] = Math.random() * 70 + 2;
+      pos[i * 3 + 2] = -Math.random() * 200 - 10;
     }
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     return g;
-  }, [count]);
+  }, [count, spread]);
   useEffect(() => () => geo.dispose(), [geo]);
-  const ref = useRef();
-  useFrame((_, dt) => { if (ref.current) ref.current.rotation.y += dt * 0.01; });
+  useFrame((_, dt) => {
+    const arr = geo.attributes.position.array;
+    const step = speed * dt;
+    for (let i = 0; i < count; i++) {
+      let z = arr[i * 3 + 2] + step;
+      if (z > 12) { z = -210; arr[i * 3] = (Math.random() - 0.5) * spread; arr[i * 3 + 1] = Math.random() * 70 + 2; }
+      arr[i * 3 + 2] = z;
+    }
+    geo.attributes.position.needsUpdate = true;
+  });
   return (
-    <points ref={ref} geometry={geo}>
-      <pointsMaterial size={0.45} color="#bae6fd" transparent opacity={0.85} sizeAttenuation depthWrite={false} />
+    <points ref={(o) => { ref.current = o; markBloom(o); }} geometry={geo}>
+      <pointsMaterial size={size} color={color} transparent opacity={opacity} sizeAttenuation depthWrite={false} toneMapped={false} />
     </points>
   );
 }
 
-function Obelisks({ count }) {
-  const grp = useRef();
-  const items = useMemo(() => Array.from({ length: count }, (_, i) => ({
-    side: i % 2 === 0 ? -1 : 1,
-    x: (i % 2 === 0 ? -1 : 1) * (9 + Math.random() * 7),
-    h: 3 + Math.random() * 7,
-    z: -Math.random() * 140,
-    hue: Math.random() < 0.5 ? '#6d28d9' : '#0e7490',
-    speed: 6 + Math.random() * 4,
-  })), [count]);
+/* ───────────────────────── Estructuras que pasan de largo ───────────────────────── */
+function FlyByStructures({ count }) {
+  const items = useMemo(() => Array.from({ length: count }, (_, i) => {
+    const kind = i % 3; // 0 obelisco · 1 anillo · 2 esquirla
+    const side = i % 2 === 0 ? -1 : 1;
+    return {
+      kind, side,
+      x: side * (9 + Math.random() * 9),
+      y: kind === 1 ? 4 + Math.random() * 8 : (kind === 2 ? 3 + Math.random() * 10 : 0),
+      h: 3 + Math.random() * 8,
+      z: -Math.random() * 200,
+      speed: 7 + Math.random() * 5,
+      hue: Math.random() < 0.5 ? '#6d28d9' : '#0e7490',
+      rot: Math.random() * 6,
+      spin: (Math.random() - 0.5) * 1.2,
+    };
+  }), [count]);
   const refs = useRef([]);
   useFrame((_, dt) => {
-    items.forEach((it, i) => {
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
       it.z += it.speed * dt;
-      if (it.z > 14) { it.z = -140 - Math.random() * 20; }
+      if (it.z > 16) { it.z = -200 - Math.random() * 20; it.x = it.side * (9 + Math.random() * 9); }
+      it.rot += it.spin * dt;
       const m = refs.current[i];
-      if (m) m.position.set(it.x, it.h / 2, it.z);
-    });
+      if (m) {
+        m.position.set(it.x, it.kind === 0 ? it.h / 2 : it.y, it.z);
+        m.rotation.set(it.kind === 2 ? it.rot : 0, it.kind === 1 ? it.rot : it.rot * 0.3, it.kind === 1 ? Math.PI / 2.4 : 0);
+      }
+    }
   });
   return (
-    <group ref={grp}>
-      {items.map((it, i) => (
-        <mesh key={i} ref={(el) => (refs.current[i] = el)} position={[it.x, it.h / 2, it.z]}>
-          <boxGeometry args={[1.1, it.h, 1.1]} />
-          <meshStandardMaterial color="#0b1026" emissive={it.hue} emissiveIntensity={0.7} metalness={0.6} roughness={0.35} />
-        </mesh>
-      ))}
+    <group>
+      {items.map((it, i) => {
+        const setRef = (el) => { refs.current[i] = el; };
+        if (it.kind === 1) {
+          return (
+            <mesh key={i} ref={(el) => { setRef(el); markBloom(el); }}>
+              <torusGeometry args={[2.4 + (i % 3) * 0.7, 0.16, 10, 36]} />
+              <meshStandardMaterial color="#0b1026" emissive={it.hue} emissiveIntensity={1.6} metalness={0.5} roughness={0.3} toneMapped={false} />
+            </mesh>
+          );
+        }
+        if (it.kind === 2) {
+          return (
+            <mesh key={i} ref={(el) => { setRef(el); markBloom(el); }}>
+              <octahedronGeometry args={[0.7 + (i % 4) * 0.25, 0]} />
+              <meshStandardMaterial color="#0b1026" emissive={it.hue} emissiveIntensity={1.2} metalness={0.7} roughness={0.25} toneMapped={false} />
+            </mesh>
+          );
+        }
+        return (
+          <mesh key={i} ref={setRef} castShadow>
+            <boxGeometry args={[1.1, it.h, 1.1]} />
+            <meshStandardMaterial color="#0b1026" emissive={it.hue} emissiveIntensity={0.7} metalness={0.6} roughness={0.35} />
+          </mesh>
+        );
+      })}
     </group>
   );
 }
 
-export default function Environment({ budget = 1 }) {
-  const grid = useMemo(makeGridTexture, []);
-  const matRef = useRef();
-  useEffect(() => () => grid.dispose(), [grid]); // libera la textura al desmontar
-  useFrame((_, dt) => {
-    // desplaza la rejilla hacia la cámara → sensación de avance constante
-    grid.offset.y -= dt * 0.6;
-  });
-  const stars = Math.round(700 * budget) + 120;
-  const obel = Math.max(6, Math.round(16 * budget));
+export default function Environment({ budget = 1, tier = 'medium' }) {
+  const s1 = Math.round(220 * budget) + 60;
+  const s2 = Math.round(380 * budget) + 80;
+  const s3 = Math.round(160 * budget) + 40;
+  const structs = Math.max(9, Math.round(24 * budget));
   return (
     <group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -40]} receiveShadow>
-        <planeGeometry args={[160, 240]} />
-        <meshStandardMaterial ref={matRef} map={grid} color="#0a0f24" emissive="#0b2a44" emissiveIntensity={0.35} roughness={0.9} metalness={0.1} />
-      </mesh>
-      <Obelisks count={obel} />
-      <Stars count={stars} />
+      <Skydome tier={tier} />
+      <Floor tier={tier} />
+      <StarLayer count={s1} size={0.9} color="#e0f2fe" speed={10} spread={170} opacity={0.95} />
+      <StarLayer count={s2} size={0.5} color="#bae6fd" speed={5} spread={190} opacity={0.8} />
+      <StarLayer count={s3} size={1.4} color="#c4b5fd" speed={16} spread={150} opacity={0.9} />
+      <FlyByStructures count={structs} />
     </group>
   );
 }

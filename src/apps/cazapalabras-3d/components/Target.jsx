@@ -10,9 +10,10 @@
 import React, { memo, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { TIERS, SPECIALS } from '../engine/config';
+import { TIERS, SPECIALS, BLOOM_LAYER } from '../engine/config';
 import { makeWordTexture, makeIconTexture, makeGlowTexture } from '../engine/wordTexture';
 
+const markBloom = (o) => { if (o) o.layers.enable(BLOOM_LAYER); };
 const WORD_H = 1.02;   // alto base del prisma (unidades de mundo)
 const DEPTH = 0.22;    // grosor del prisma
 const DESPAWN_Z = 5.5; // se desvanecen 1.5u antes de la cámara (z=7)
@@ -80,7 +81,7 @@ function Target({ data, onExpire }) {
     const sp = visual.sp;
     return (
       <group ref={grp} position={[data.x, data.y, data.z]} userData={{ targetId: data.id }}>
-        <mesh ref={orb} userData={{ targetId: data.id }}>
+        <mesh ref={(o) => { orb.current = o; markBloom(o); }} userData={{ targetId: data.id }}>
           <icosahedronGeometry args={[0.6, 0]} />
           <meshStandardMaterial
             color={sp.color}
@@ -92,7 +93,7 @@ function Target({ data, onExpire }) {
             opacity={0.92}
           />
         </mesh>
-        <mesh ref={ring}>
+        <mesh ref={(o) => { ring.current = o; markBloom(o); }}>
           <ringGeometry args={[0.74, 0.96, 40]} />
           <meshBasicMaterial
             color={sp.color}
@@ -104,7 +105,7 @@ function Target({ data, onExpire }) {
             toneMapped={false}
           />
         </mesh>
-        <mesh position={[0, 0, 0.05]} userData={{ targetId: data.id }}>
+        <mesh position={[0, 0, 0.05]} ref={markBloom} userData={{ targetId: data.id }}>
           <planeGeometry args={[1.15, 1.15]} />
           <meshBasicMaterial map={visual.iconTex} transparent depthWrite={false} toneMapped={false} />
         </mesh>
@@ -118,7 +119,7 @@ function Target({ data, onExpire }) {
   return (
     <group ref={grp} position={[data.x, data.y, data.z]} userData={{ targetId: data.id }}>
       {visual.halo && (
-        <mesh position={[0, 0, -DEPTH / 2 - 0.06]}>
+        <mesh position={[0, 0, -DEPTH / 2 - 0.06]} ref={markBloom}>
           <planeGeometry args={[big * 1.9, big * 1.9]} />
           <meshBasicMaterial
             map={visual.halo.tex}
@@ -137,8 +138,8 @@ function Target({ data, onExpire }) {
         <meshStandardMaterial attach="material-1" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
         <meshStandardMaterial attach="material-2" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
         <meshStandardMaterial attach="material-3" color="#0b1228" emissive={visual.edgeEmissive} emissiveIntensity={0.9} metalness={0.45} roughness={0.35} />
-        {/* cara frontal (+z) — palabra impresa */}
-        <meshBasicMaterial attach="material-4" map={visual.texture} toneMapped={false} />
+        {/* cara frontal (+z) — palabra impresa (fog:false → legible al spawnear lejos) */}
+        <meshBasicMaterial attach="material-4" map={visual.texture} toneMapped={false} fog={false} />
         {/* cara trasera (-z) — reverso oscuro */}
         <meshStandardMaterial attach="material-5" color="#0a1024" emissive={visual.edgeEmissive} emissiveIntensity={0.25} metalness={0.4} roughness={0.5} />
       </mesh>

@@ -2,6 +2,12 @@
 // La calidad gráfica NO se configura aquí: se hereda del ajuste global de
 // plataforma (graphicsQuality) + selector dentro de la app.
 
+// Capa de render reservada al BLOOM SELECTIVO (post-proceso). Solo los objetos
+// "luminosos" (halos, orbes, FX de impacto, estrellas, estructuras emisivas) se
+// marcan con layers.enable(BLOOM_LAYER); los prismas de palabra NO, para que el
+// texto quede SIEMPRE nítido (no se difumina con el glow).
+export const BLOOM_LAYER = 1;
+
 // Tiers de puntuación de las palabras: color, emisivo (brillo) y escala.
 // El jugador prioriza las de más valor (doradas) antes de que pasen de largo.
 export const TIERS = {

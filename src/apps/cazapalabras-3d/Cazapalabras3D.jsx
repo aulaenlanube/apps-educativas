@@ -133,7 +133,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     const gs = gsRef.current;
     if (!gs.running || gs.paused) return;
     const now = performance.now();
-    const fb = (text, color) => { gs.feedback = { text, color, id: ++fbId.current }; gs.feedbackUntil = now + 1100; };
+    const hitKind = data.kind === 'special'
+      ? (data.special === 'bomb' ? 'bomb' : 'special')
+      : (data.isAnswer ? 'answer' : 'word');
+    // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
+    // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
+    const fb = (text, color) => {
+      const id = ++fbId.current;
+      gs.feedback = { text, color, id };
+      gs.feedbackUntil = now + 1100;
+      gs.hit = { id, kind: hitKind };
+      setHud(snapshot(gs, now));
+    };
 
     if (data.kind === 'special') {
       switch (data.special) {
@@ -330,7 +341,12 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             controlRef={controlRef}
             onHit={onHit}
           />
-          <Crosshair cooling={cooling} />
+          <div
+            className="cz3d-vignette"
+            data-hot={hud && hud.combo >= 5 ? '1' : '0'}
+            style={{ opacity: Math.min(0.55, (hud?.combo || 0) * 0.045) }}
+          />
+          <Crosshair cooling={cooling} hit={hud?.hit} />
           {hud && (
             <HUD
               mode={hud.mode}
@@ -445,6 +461,7 @@ function snapshot(gs, now) {
     defSolved: gs.defSolved,
     defPresented: gs.defPresented,
     feedback: gs.feedback,
+    hit: gs.hit,
   };
 }
 

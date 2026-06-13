@@ -7,7 +7,11 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import Target from './Target';
 import Environment from './Environment';
+import ImpactFX from './ImpactFX';
 import { SPECIAL_GOOD, SPECIALS, TIERS } from '../engine/config';
+
+const prefersReducedMotion = () => typeof window !== 'undefined'
+  && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let TID = 0;
 const rnd = (a, b) => a + Math.random() * (b - a);
@@ -55,46 +59,22 @@ function buildMotion(style) {
   return m;
 }
 
-function Burst({ pos, color, onDone }) {
-  const ref = useRef();
-  const t = useRef(0);
-  useFrame((_, dt) => {
-    t.current += dt;
-    const k = t.current / 0.45;
-    if (k >= 1) { onDone(); return; }
-    if (ref.current) {
-      ref.current.scale.setScalar(0.3 + k * 2.4);
-      ref.current.material.opacity = (1 - k) * 0.85;
-    }
-  });
-  return (
-    <mesh ref={ref} position={pos}>
-      <sphereGeometry args={[0.5, 16, 16]} />
-      <meshBasicMaterial color={color} transparent opacity={0.85} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
-    </mesh>
-  );
-}
-
-export default function Scene({ gameRef, controlRef, onHit, onShoot, quality }) {
+export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
   const { camera } = useThree();
   const groupRef = useRef();
+  const fxRef = useRef();
   const [targets, setTargets] = useState([]);
   const targetsRef = useRef(targets);
   targetsRef.current = targets;
-  const [bursts, setBursts] = useState([]);
   const spawnAcc = useRef(0);
   const answerWord = useRef(null);
   const raycaster = useMemo(() => new THREE.Raycaster(), []);
   const euler = useMemo(() => new THREE.Euler(0, 0, 0, 'YXZ'), []);
+  const reduceMotion = useMemo(prefersReducedMotion, []);
   const budget = quality?.particleBudget ?? 0.8;
 
   const removeTarget = useCallback((id) => {
     setTargets((ts) => ts.filter((t) => t.id !== id));
-  }, []);
-
-  const addBurst = useCallback((pos, color) => {
-    const id = ++TID;
-    setBursts((b) => [...b, { id, pos: [pos.x, pos.y, pos.z], color }]);
   }, []);
 
   const spawnTarget = useCallback((forceWord, isAnswer) => {
@@ -181,7 +161,8 @@ export default function Scene({ gameRef, controlRef, onHit, onShoot, quality }) 
       const now = performance.now();
       if (now >= (g.nextShotAt || 0)) {
         g.nextShotAt = now + (g.rapid ? 110 : (p.fireCooldownMs || 320));
-        onShoot?.();
+        fxRef.current?.onShoot();
+        g.shake = Math.max(g.shake || 0, 0.12); // leve retroceso
         raycaster.setFromCamera({ x: 0, y: 0 }, camera);
         const inter = groupRef.current ? raycaster.intersectObjects(groupRef.current.children, true) : [];
         let hitId = null;
@@ -197,22 +178,36 @@ export default function Scene({ gameRef, controlRef, onHit, onShoot, quality }) 
             const col = data.kind === 'special'
               ? (SPECIALS[data.special]?.color || '#fff')
               : (TIERS[data.points]?.color || '#fff');
-            if (point) addBurst(point, col);
+            const power = data.kind === 'special'
+              ? (data.special === 'bomb' ? 2 : data.special === 'gem' ? 2 : 1.5)
+              : (data.isAnswer ? 2 : data.points >= 5 ? 1.6 : 1);
+            fxRef.current?.onHit(point, col, { combo: g.combo || 0, power });
+            g.shake = Math.max(g.shake || 0, data.kind === 'special' ? 0.45 : 0.22 + power * 0.06);
             onHit?.(data);
             removeTarget(hitId);
           }
         }
       }
     }
+
+    // --- screen shake: SIEMPRE al final, tras el raycast (no desvía la puntería) ---
+    let sh = g.shake || 0;
+    if (sh > 0.002 && !reduceMotion) {
+      const a = sh * 0.22;
+      camera.position.x += (Math.random() - 0.5) * a;
+      camera.position.y += (Math.random() - 0.5) * a;
+      camera.rotateZ((Math.random() - 0.5) * sh * 0.045);
+      g.shake = Math.max(0, sh - dt * 3.2);
+    } else if (sh) { g.shake = 0; }
   });
 
   const Q = quality || {};
   return (
     <>
       <color attach="background" args={['#05060f']} />
-      <fog attach="fog" args={['#05060f', 18, 70]} />
-      <ambientLight intensity={0.45} />
-      <hemisphereLight args={['#a5d8ff', '#1e1b3a', 0.6]} />
+      <fogExp2 attach="fog" args={['#070a18', 0.014]} />
+      <ambientLight intensity={0.4} />
+      <hemisphereLight args={['#a5d8ff', '#1e1b3a', 0.55]} />
       <directionalLight
         position={[8, 18, 6]}
         intensity={1.15}
@@ -223,17 +218,14 @@ export default function Scene({ gameRef, controlRef, onHit, onShoot, quality }) 
       <pointLight position={[0, 6, 2]} intensity={0.7} color="#38bdf8" distance={40} />
       <pointLight position={[-10, 4, -20]} intensity={0.5} color="#a855f7" distance={50} />
 
-      <Environment budget={budget} />
+      <Environment budget={budget} tier={tier} />
+      <ImpactFX ref={fxRef} quality={Q} />
 
       <group ref={groupRef}>
         {targets.map((t) => (
           <Target key={t.id} data={t} onExpire={removeTarget} />
         ))}
       </group>
-
-      {bursts.map((b) => (
-        <Burst key={b.id} pos={b.pos} color={b.color} onDone={() => setBursts((x) => x.filter((y) => y.id !== b.id))} />
-      ))}
     </>
   );
 }

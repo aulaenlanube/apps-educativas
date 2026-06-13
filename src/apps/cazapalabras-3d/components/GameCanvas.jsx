@@ -10,6 +10,7 @@ import {
   GLOBAL_QUALITY_PARAMS, effectiveDpr, createFpsGovernor, lowerTier,
 } from '@/services/graphicsQuality';
 import Scene from './Scene';
+import Effects from './Effects';
 
 function Governor({ onDowngrade }) {
   const ref = useRef(null);
@@ -18,9 +19,10 @@ function Governor({ onDowngrade }) {
   return null;
 }
 
-function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHit, onShoot }) {
+function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHit }) {
   const Q = GLOBAL_QUALITY_PARAMS[tier] || GLOBAL_QUALITY_PARAMS.medium;
   const [ctxKey, setCtxKey] = useState(0);
+  const [lost, setLost] = useState(false);
   const drag = useRef({ down: false, moved: 0, lx: 0, ly: 0, t0: 0 });
 
   const onCreated = useCallback(({ gl }) => {
@@ -29,7 +31,8 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
     const el = gl.domElement;
     el.addEventListener('webglcontextlost', (e) => {
       e.preventDefault();
-      setTimeout(() => setCtxKey((k) => k + 1), 350);
+      setLost(true); // congela el render-loop: no rasterizar sobre el contexto muerto
+      setTimeout(() => { setLost(false); setCtxKey((k) => k + 1); }, 350);
     }, false);
   }, []);
 
@@ -72,6 +75,7 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
     >
       <Canvas
         key={`${tier}-${ctxKey}`}
+        frameloop={lost ? 'never' : 'always'}
         dpr={effectiveDpr(tier)}
         shadows={Q.shadows}
         gl={{ antialias: Q.antialias, powerPreference: 'high-performance' }}
@@ -79,7 +83,8 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
         onCreated={onCreated}
       >
         {prefAuto && <Governor onDowngrade={handleDowngrade} />}
-        <Scene gameRef={gameRef} controlRef={controlRef} onHit={onHit} onShoot={onShoot} quality={Q} />
+        <Scene gameRef={gameRef} controlRef={controlRef} onHit={onHit} quality={Q} tier={tier} />
+        {Q.bloom && <Effects />}
       </Canvas>
     </div>
   );
