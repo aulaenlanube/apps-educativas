@@ -13,7 +13,7 @@ const fmtTime = (s) => {
 const tierClass = (p) => (p >= 5 ? 't5' : p === 2 ? 't2' : 't1');
 
 export default function HUD({
-  timeLeft, totalTime, score, combo, mult, rapid,
+  timeLeft, totalTime, score, combo,
   activeDef, defRemaining, defWindow, feedback, examInfo, categories,
 }) {
   const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
@@ -49,10 +49,6 @@ export default function HUD({
         <div className="cz3d-sub">
           {combo >= 2 && <span className="cz3d-combo">🔥 Combo ×{combo}</span>}
           {examInfo && <span className="cz3d-examinfo">📖 {examInfo}</span>}
-        </div>
-        <div className="cz3d-powerups">
-          {mult > 1 && <span className="cz3d-pu x2">✖️ ×2</span>}
-          {rapid && <span className="cz3d-pu rapid">⚡ Rápido</span>}
         </div>
       </div>
 

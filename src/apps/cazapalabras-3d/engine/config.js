@@ -8,68 +8,59 @@
 // texto quede SIEMPRE nítido (no se difumina con el glow).
 export const BLOOM_LAYER = 1;
 
-// Tiers de puntuación de las palabras: color, emisivo (brillo) y escala.
-// El jugador prioriza las de más valor (doradas) antes de que pasen de largo.
-export const TIERS = {
-  1: { points: 1, color: '#e2e8f0', emissive: '#475569', glow: 0.35, scale: 1.0, label: 'común' },
-  2: { points: 2, color: '#a5f3fc', emissive: '#0891b2', glow: 0.6, scale: 1.08, label: 'frecuente' },
-  5: { points: 5, color: '#fde68a', emissive: '#f59e0b', glow: 1.0, scale: 1.18, label: 'rara' },
-};
-export const TIER_VALUES = [1, 2, 5];
+// ── Muros de palabras (estructuras densas con gravedad) ──
+// Geometría de cada celda del muro (prisma de palabra de tamaño UNIFORME).
+export const CELL = { w: 2.5, h: 1.05, depth: 0.22, gap: 0.16, baseY: 0.8 };
+export const GRAV_WALL = 16; // aceleración de caída al recolapsar columnas
 
-// Objetos especiales (orbes brillantes, NO paneles de palabra).
-export const SPECIALS = {
-  time:  { id: 'time',  icon: '⏱️', color: '#34d399', emissive: '#10b981', label: '+5 segundos',   good: true },
-  rapid: { id: 'rapid', icon: '⚡', color: '#c4b5fd', emissive: '#7c3aed', label: 'Cadencia rápida', good: true },
-  x2:    { id: 'x2',    icon: '✖️', color: '#f9a8d4', emissive: '#db2777', label: 'Puntos ×2',       good: true },
-  gem:   { id: 'gem',   icon: '💎', color: '#7dd3fc', emissive: '#0ea5e9', label: 'Bonus gordo',     good: true },
-  bomb:  { id: 'bomb',  icon: '💀', color: '#fca5a5', emissive: '#b91c1c', label: '¡Bomba!',         good: false },
+// Knob de calidad PROPIO de la app (NO usar particleBudget para capar nº de cajas).
+// Define cuántos muros viven a la vez y su tamaño de rejilla por tier.
+export const WALL_QUALITY = {
+  low: { walls: 2, cols: 4, rows: 4 },
+  medium: { walls: 3, cols: 5, rows: 5 },
+  high: { walls: 3, cols: 5, rows: 6 },
 };
-export const SPECIAL_GOOD = ['time', 'rapid', 'x2', 'gem'];
 
-// Efectos de power-ups.
-export const POWERUP = {
-  timeBonusSec: 5,
-  rapidMs: 8000,       // dispara sin cooldown durante este tiempo
-  x2Ms: 10000,         // multiplicador ×2 durante este tiempo
-  gemPoints: 20,
-  bombPenaltyPoints: 8,
-  bombPenaltySec: 2,
+// ── Cámara por secciones (coreografía discreta: HOLD → TURN → HOLD → ADVANCE → …) ──
+export const CAM = {
+  pos: [0, 2.4, 7],        // posición fija (las fases ADVANCE mueven los MUROS, no la cámara)
+  holdMin: 2.4, holdMax: 4.2, // reposo para apuntar/disparar
+  turnDur: 1.5,            // duración del giro a un muro lateral
+  advanceDur: 1.7,         // duración del avance (los muros pasan de largo)
+  breathPos: 0.10, breathY: 0.05, breathRoll: 0.022, // respiración cosmética mínima
+  bankRoll: 0.10,          // alabeo proporcional al giro (lean into the turn)
+};
+
+// Colocación de los muros de una "estación" (fila de muros que la cámara recorre).
+export const WALL_LAYOUT = {
+  z: -17,                  // z de reposo de la estación
+  xSpread: 7.8,            // separación lateral entre muros
+  wrapZ: 3,                // al rebasar esta z (cerca de la cámara) el muro se recicla
+  respawnZ: -50,           // z a la que reaparece (lejos) tras reciclar
 };
 
 // Puntos de la respuesta a una definición (sobre los puntos base de la palabra).
 export const DEF_BONUS_MULT = 4; // p.ej. palabra rara (5) acertada por definición → 20
 
-// Dificultades (práctica) + examen. Todas las partidas son por TIEMPO.
+// Dificultades (práctica) + examen. Todas las partidas son por TIEMPO. El valor
+// de cada palabra sale de su categoría (pool), no de la dificultad.
 export const DIFICULTADES = {
   facil: {
     key: 'facil', label: 'Fácil', icon: '🟢',
-    durationSec: 120, spawnMs: 1150, maxTargets: 9, speed: [1.6, 2.7],
-    specialChance: 0.16, bombChance: 0.10,
-    defEverySec: 16, defWindowSec: 11, defDistractors: 4,
-    wrongPenaltySec: 0, fireCooldownMs: 360,
+    durationSec: 120, defEverySec: 16, defWindowSec: 11, fireCooldownMs: 360,
   },
   medio: {
     key: 'medio', label: 'Medio', icon: '🟡',
-    durationSec: 95, spawnMs: 880, maxTargets: 12, speed: [2.2, 3.6],
-    specialChance: 0.18, bombChance: 0.17,
-    defEverySec: 13, defWindowSec: 9, defDistractors: 6,
-    wrongPenaltySec: 1, fireCooldownMs: 320,
+    durationSec: 95, defEverySec: 13, defWindowSec: 9, fireCooldownMs: 320,
   },
   dificil: {
     key: 'dificil', label: 'Difícil', icon: '🔴',
-    durationSec: 80, spawnMs: 660, maxTargets: 15, speed: [3.0, 4.9],
-    specialChance: 0.20, bombChance: 0.23,
-    defEverySec: 11, defWindowSec: 7.5, defDistractors: 8,
-    wrongPenaltySec: 1.5, fireCooldownMs: 280,
+    durationSec: 80, defEverySec: 11, defWindowSec: 7.5, fireCooldownMs: 280,
   },
-  // Examen: sin power-ups de ayuda salvo tiempo; nota = definiciones acertadas / presentadas.
+  // Examen: nota = definiciones acertadas / presentadas.
   examen: {
     key: 'examen', label: 'Examen', icon: '🎓', isExam: true,
-    durationSec: 90, spawnMs: 850, maxTargets: 12, speed: [2.2, 3.7],
-    specialChance: 0.08, bombChance: 0.18,
-    defEverySec: 8, defWindowSec: 9, defDistractors: 6,
-    wrongPenaltySec: 1, fireCooldownMs: 320,
+    durationSec: 90, defEverySec: 8, defWindowSec: 9, fireCooldownMs: 320,
   },
 };
 

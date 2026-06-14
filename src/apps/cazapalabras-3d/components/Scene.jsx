@@ -1,172 +1,180 @@
-// Escena de juego: luces, entorno, cámara en primera persona (orientación por
-// arrastre + avance) y gestor de objetivos (spawn / movimiento / raycast de
-// disparo desde el CENTRO de la pantalla / estallidos). Toda la lógica de
-// puntuación vive en el shell; aquí solo se emite onHit(data) por cada impacto.
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+// Escena de juego: luces, entorno, CÁMARA POR SECCIONES (coreografía discreta
+// HOLD→TURN→HOLD→ADVANCE con el mouse-look del jugador sumado encima) y GESTOR DE
+// MUROS de palabras con gravedad. El raycast del disparo sale del CENTRO de la
+// mirilla. Toda la puntuación vive en el shell; aquí solo se emite onHit(data) y se
+// recolapsa la columna (destroyBox). Sin pistas de valor: todas las cajas iguales.
+import React, { useEffect, useMemo, useReducer, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import Target from './Target';
 import Environment from './Environment';
 import ImpactFX from './ImpactFX';
-import { SPECIAL_GOOD, SPECIALS, TIERS } from '../engine/config';
+import WordWall from './WordWall';
+import { CAM, WALL_LAYOUT, WALL_QUALITY } from '../engine/config';
+import {
+  mulberry32, buildWall, destroyBox, faceYaw, layoutXs, injectWord, restoreBox, wallEmpty,
+} from '../engine/walls';
 
 const prefersReducedMotion = () => typeof window !== 'undefined'
   && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-let TID = 0;
-const rnd = (a, b) => a + Math.random() * (b - a);
-const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const YAW_MAX = 0.85;
 const PITCH_MAX = 0.5;
-
-// Estilo de movimiento de cada palabra. Las de más valor y la respuesta usan
-// estilos siempre legibles (sin giro completo); las comunes pueden voltear.
-function pickStyle(isAnswer, points) {
-  if (isAnswer) return pick(['drift', 'weave', 'rise']);
-  if (points >= 5) return pick(['drift', 'weave', 'spiral']);
-  if (points >= 2) return pick(['drift', 'weave', 'spiral', 'rise']);
-  return pick(['drift', 'weave', 'spiral', 'rise', 'tumble']);
-}
-
-function buildMotion(style) {
-  const m = {
-    weaveAmpX: 0, weaveFreqX: 0, weavePhX: 0,
-    weaveAmpY: 0, weaveFreqY: 0, weavePhY: 0,
-    yawAmp: rnd(0.12, 0.30), yawFreq: rnd(0.5, 1.1), yawPh: rnd(0, 6),
-    pitchAmp: rnd(0.05, 0.14), pitchFreq: rnd(0.5, 1.0), pitchPh: rnd(0, 6),
-    rollAmp: rnd(0.03, 0.10), rollFreq: rnd(0.4, 0.9), rollPh: rnd(0, 6),
-    spinY: 0,
-    bobAmp: rnd(0.06, 0.22), bobFreq: rnd(0.5, 1.2), phase: rnd(0, 6),
-  };
-  switch (style) {
-    case 'weave':
-      m.weaveAmpX = rnd(1.2, 2.4); m.weaveFreqX = rnd(0.5, 0.9); m.weavePhX = rnd(0, 6);
-      break;
-    case 'spiral':
-      m.weaveAmpX = rnd(0.8, 1.6); m.weaveFreqX = rnd(0.6, 1.0); m.weavePhX = rnd(0, 6);
-      m.weaveAmpY = rnd(0.5, 1.1); m.weaveFreqY = rnd(0.6, 1.0); m.weavePhY = rnd(0, 6);
-      break;
-    case 'rise':
-      m.weaveAmpY = rnd(0.8, 1.6); m.weaveFreqY = rnd(0.4, 0.8); m.weavePhY = rnd(0, 6);
-      m.pitchAmp = rnd(0.10, 0.20);
-      break;
-    case 'tumble':
-      m.spinY = rnd(0.5, 1.0) * (Math.random() < 0.5 ? -1 : 1); m.yawAmp = 0;
-      m.rollAmp = rnd(0.08, 0.18);
-      break;
-    default: break; // drift: solo balanceo base
-  }
-  return m;
-}
+const ADV_TOTAL = WALL_LAYOUT.wrapZ - WALL_LAYOUT.respawnZ; // distancia de un ciclo de avance
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const smooth = (t) => t * t * (3 - 2 * t);
 
 export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
   const { camera } = useThree();
   const groupRef = useRef();
   const fxRef = useRef();
-  const [targets, setTargets] = useState([]);
-  const targetsRef = useRef(targets);
-  targetsRef.current = targets;
-  const spawnAcc = useRef(0);
-  const answerWord = useRef(null);
   const raycaster = useMemo(() => new THREE.Raycaster(), []);
   const euler = useMemo(() => new THREE.Euler(0, 0, 0, 'YXZ'), []);
   const reduceMotion = useMemo(prefersReducedMotion, []);
   const budget = quality?.particleBudget ?? 0.8;
+  const wq = WALL_QUALITY[tier] || WALL_QUALITY.medium;
 
-  const removeTarget = useCallback((id) => {
-    setTargets((ts) => ts.filter((t) => t.id !== id));
+  const wallsRef = useRef([]);
+  const prngRef = useRef(null);
+  const camRef = useRef(null);
+  const defInjRef = useRef(null);
+  const [, bumpState] = useReducer((x) => (x + 1) & 0xffff, 0);
+  const renderDirty = useRef(false);
+  const bump = () => { renderDirty.current = true; };
+
+  const wallById = (id) => wallsRef.current.find((w) => w.id === id);
+
+  // ---- construir la estación inicial de muros al montar (pool ya disponible) ----
+  useEffect(() => {
+    const g = gameRef.current;
+    const pool = g && g.pool;
+    const prng = mulberry32((Math.floor(Math.random() * 0x7fffffff)) >>> 0);
+    prngRef.current = prng;
+    const xs = layoutXs(wq.walls, WALL_LAYOUT.xSpread);
+    wallsRef.current = xs.map((x) => buildWall(pool, prng, {
+      cols: wq.cols, rows: wq.rows, x, y: 0, z: WALL_LAYOUT.z,
+    }));
+    camRef.current = {
+      phase: 'hold', phaseT: 0, phaseDur: CAM.holdMin,
+      fromYaw: 0, toYaw: 0, focusIdx: Math.floor(wq.walls / 2),
+      sinceAdvance: 0, advanceEvery: 2,
+    };
+    // encarar el muro central de salida
+    const w0 = wallsRef.current[camRef.current.focusIdx];
+    if (w0) { camRef.current.toYaw = faceYaw(w0.x, w0.z); camRef.current.fromYaw = camRef.current.toYaw; }
+    bump();
+    bumpState();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const spawnTarget = useCallback((forceWord, isAnswer) => {
-    const g = gameRef.current;
-    const pool = g.pool;
-    const p = g.params;
-    if (!pool || !pool.words.length) return;
-
-    let kind = 'word';
-    let special = null;
-    let text = null;
-    let points = 1;
-    let penalty = false;
-
-    if (!isAnswer) {
-      const r = Math.random();
-      if (r < p.bombChance) { kind = 'special'; special = 'bomb'; }
-      else if (r < p.bombChance + p.specialChance) {
-        kind = 'special';
-        special = SPECIAL_GOOD[Math.floor(Math.random() * SPECIAL_GOOD.length)];
+  // ---- transición de fase de la cámara ----
+  const nextPhase = (cam, g) => {
+    const prng = prngRef.current;
+    const walls = wallsRef.current;
+    if (cam.phase === 'hold') {
+      const wantAdvance = !g.activeDef && walls.length
+        && (walls.some(wallEmpty) || cam.sinceAdvance >= cam.advanceEvery);
+      if (wantAdvance) {
+        cam.phase = 'advance'; cam.phaseT = 0; cam.phaseDur = CAM.advanceDur;
+        cam.fromYaw = cam.toYaw; cam.toYaw = 0; // mirar al frente al avanzar
+        cam.sinceAdvance = 0; cam.advanceEvery = 2 + Math.floor(prng() * 2);
+      } else {
+        // preferir muros NO vacíos para no encarar un muro destruido
+        const cand = walls.map((_, i) => i).filter((i) => !wallEmpty(walls[i]));
+        const opts = cand.length ? cand : walls.map((_, i) => i);
+        let idx = cam.focusIdx;
+        if (opts.length > 1) { let t = 0; do { idx = opts[Math.floor(prng() * opts.length)]; t += 1; } while (idx === cam.focusIdx && t < 8); }
+        else idx = opts.length ? opts[0] : cam.focusIdx;
+        cam.focusIdx = idx;
+        const w = walls[idx];
+        cam.fromYaw = cam.toYaw; cam.toYaw = w ? faceYaw(w.x, w.z) : 0;
+        cam.phase = 'turn'; cam.phaseT = 0; cam.phaseDur = CAM.turnDur;
+        cam.sinceAdvance += 1;
       }
-    }
-    if (kind === 'word') {
-      if (forceWord) { text = forceWord.text; points = forceWord.points; } // respuesta de definición: nunca penaliza
-      else {
-        const wd = pool.words[Math.floor(Math.random() * pool.words.length)];
-        text = wd.text; points = wd.points; penalty = !!wd.penalty;
+    } else {
+      if (cam.phase === 'advance') {
+        // fin del avance: estación fresca en reposo, encarando el muro de foco
+        for (const w of walls) w.z = WALL_LAYOUT.z;
+        const w = walls[cam.focusIdx] || walls[0];
+        cam.toYaw = w ? faceYaw(w.x, w.z) : 0; cam.fromYaw = cam.toYaw;
+        bump();
       }
+      cam.phase = 'hold'; cam.phaseT = 0;
+      cam.phaseDur = CAM.holdMin + prng() * (CAM.holdMax - CAM.holdMin);
+      cam.fromYaw = cam.toYaw;
     }
-
-    const max = p.maxTargets + (isAnswer ? 5 : 0);
-    const motion = kind === 'word' ? buildMotion(pickStyle(isAnswer, points)) : {
-      bobAmp: rnd(0.08, 0.26), bobFreq: rnd(0.5, 1.2), phase: Math.random() * 6,
-      weaveAmpX: rnd(0, 0.6), weaveFreqX: rnd(0.4, 0.9), weavePhX: rnd(0, 6),
-    };
-    setTargets((ts) => {
-      if (ts.length >= max) return ts;
-      return [...ts, {
-        id: ++TID, kind, special, text, points, penalty, isAnswer: !!isAnswer,
-        design: Math.floor(rnd(0, 4)),
-        x: rnd(-5.2, 5.2), y: rnd(1.2, 4.2), z: rnd(-48, -40),
-        vz: rnd(p.speed[0], p.speed[1]),
-        ...motion,
-      }];
-    });
-  }, [gameRef]);
+  };
 
   useFrame((state, dt) => {
     const g = gameRef.current;
     const c = controlRef.current;
-
-    // --- cámara: mouse-look del jugador (c.yaw/c.pitch) SOBRE un rumbo
-    // PROCEDURAL impredecible (sumas de senos con frecuencias inconmensurables +
-    // componente lenta para giros amplios), con alabeo (banking) y vaivén → da
-    // sensación de volar un recorrido cambiante. El jugador corrige con el ratón.
+    const cam = camRef.current;
+    if (!cam) return;
     const tt = state.clock.elapsedTime;
-    const mo = reduceMotion ? 0.12 : 1; // accesibilidad: casi sin movimiento procedural
-    const procYaw = (0.07 * Math.sin(tt * 0.31 + 0.6)
-                   + 0.05 * Math.sin(tt * 0.137 + 2.1)
-                   + 0.06 * Math.sin(tt * 0.083 + 4.0)) * mo;
-    const procPitch = (0.035 * Math.sin(tt * 0.27 + 1.3)
-                     + 0.025 * Math.sin(tt * 0.119 + 3.2)) * mo;
-    const bank = (0.10 * Math.sin(tt * 0.23 + 0.9)
-                + 0.06 * Math.sin(tt * 0.061 + 2.7)) * mo; // alabeo de los giros (solo visual: no mueve la mirilla)
-    const yaw = procYaw + Math.max(-YAW_MAX, Math.min(YAW_MAX, c.yaw));
-    const pitch = procPitch + Math.max(-PITCH_MAX, Math.min(PITCH_MAX, c.pitch));
-    euler.set(pitch, yaw, bank, 'YXZ');
-    camera.quaternion.setFromEuler(euler);
-    camera.position.set(
-      (Math.sin(tt * 0.41) * 0.35 + Math.sin(tt * 0.17 + 1.0) * 0.25) * mo,
-      2.4 + (Math.sin(tt * 0.53) * 0.10 + Math.sin(tt * 0.23 + 2.0) * 0.06) * mo,
-      7,
-    );
+    const mo = reduceMotion ? 0.12 : 1;
+    const active = g.running && !g.paused;
 
-    if (!g.running || g.paused) return;
-    const p = g.params;
-
-    // --- spawn por intervalo ---
-    spawnAcc.current += dt * 1000;
-    if (spawnAcc.current >= p.spawnMs) {
-      spawnAcc.current -= p.spawnMs;
-      spawnTarget();
+    // --- avanzar cronómetro de fase (congela en pausa) ---
+    if (active) {
+      cam.phaseT += dt;
+      if (cam.phaseT >= cam.phaseDur) nextPhase(cam, g);
     }
 
-    // --- target-respuesta de la definición activa ---
-    const def = g.activeDef; // { word, points } | null
-    if (def && answerWord.current !== def.word) {
-      answerWord.current = def.word;
-      spawnTarget({ text: def.word, points: def.points || 5 }, true);
-    } else if (!def && answerWord.current) {
-      answerWord.current = null;
-      setTargets((ts) => ts.filter((t) => !t.isAnswer));
+    // --- pose base: yaw interpolado de sección + alabeo + respiración ---
+    const s = smooth(clamp(cam.phaseDur > 0 ? cam.phaseT / cam.phaseDur : 1, 0, 1));
+    const baseYaw = lerp(cam.fromYaw, cam.toYaw, s);
+    const turnDelta = cam.toYaw - cam.fromYaw;
+    const bankRoll = (cam.phase === 'turn' ? -turnDelta * (CAM.bankRoll / 0.5) * Math.sin(Math.PI * s) : 0);
+    const breRoll = Math.sin(tt * 0.7) * CAM.breathRoll * mo;
+    const breX = Math.sin(tt * 0.5) * CAM.breathPos * mo;
+    const breY = Math.sin(tt * 0.8 + 1) * CAM.breathY * mo;
+
+    const yaw = baseYaw + clamp(c.yaw, -YAW_MAX, YAW_MAX);
+    const pitch = clamp(c.pitch, -PITCH_MAX, PITCH_MAX);
+    euler.set(pitch, yaw, bankRoll * mo + breRoll, 'YXZ');
+    camera.quaternion.setFromEuler(euler);
+    camera.position.set(CAM.pos[0] + breX, CAM.pos[1] + breY, CAM.pos[2]);
+
+    if (!active) {
+      if (renderDirty.current) { renderDirty.current = false; bumpState(); }
+      return;
+    }
+    const p = g.params;
+    const pool = g.pool;
+    const prng = prngRef.current;
+
+    // --- ADVANCE: los muros avanzan hacia/pasan la cámara y se reciclan con palabras nuevas ---
+    if (cam.phase === 'advance') {
+      const v = ADV_TOTAL / CAM.advanceDur;
+      const adt = Math.min(dt, 0.05); // clamp: un stutter no teletransporta los muros
+      for (const w of wallsRef.current) {
+        w.z += v * adt;
+        if (w.z > WALL_LAYOUT.wrapZ) {
+          w.z -= ADV_TOTAL;
+          // si el muro reciclado tenía la palabra-respuesta inyectada, invalidar para reinyectar limpio
+          if (defInjRef.current && defInjRef.current.wallId === w.id) defInjRef.current = null;
+          buildWall(pool, prng, { cols: w.cols, rows: w.rows, x: w.x, y: w.y, z: w.z, wall: w });
+          bump();
+        }
+      }
+    }
+
+    // --- DEFINICIÓN sin resaltar: garantizar la palabra-respuesta en el muro enfocado ---
+    const def = g.activeDef;
+    const inj = defInjRef.current;
+    if (def && (!inj || inj.word !== def.word)) {
+      if (inj && inj.saved) restoreBox(wallById(inj.wallId), inj.boxId, inj.saved);
+      const focus = wallsRef.current[cam.focusIdx];
+      const w = (focus && !wallEmpty(focus)) ? focus : wallsRef.current.find((x) => !wallEmpty(x));
+      const res = w ? injectWord(w, def.word, def.points || 5) : null;
+      defInjRef.current = res ? { word: def.word, wallId: w.id, boxId: res.boxId, saved: res.saved } : null;
+      // cuenta la definición como "presentada" SOLO cuando ya está visible en un muro
+      // (si no hay muro con sitio aún, se reintenta el próximo frame y no infla la nota)
+      if (res) { g.defPresented += 1; bump(); }
+    } else if (!def && inj) {
+      if (inj.saved) restoreBox(wallById(inj.wallId), inj.boxId, inj.saved);
+      defInjRef.current = null;
+      bump();
     }
 
     // --- disparo: raycast desde el centro (mirilla), con cooldown de cadencia ---
@@ -174,35 +182,34 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
       c.shootQueued = false;
       const now = performance.now();
       if (now >= (g.nextShotAt || 0)) {
-        g.nextShotAt = now + (g.rapid ? 110 : (p.fireCooldownMs || 320));
+        g.nextShotAt = now + (p.fireCooldownMs || 320);
         fxRef.current?.onShoot();
-        g.shake = Math.max(g.shake || 0, 0.12); // leve retroceso
-        // recomponer matrixWorld desde el position/quaternion ya fijados ESTE frame:
-        // r3f la actualiza tras los useFrame, así que sin esto el rayo iría 1 frame
-        // tarde (al girar rápido el disparo no coincidiría con la mirilla pintada).
-        camera.updateMatrixWorld();
+        g.shake = Math.max(g.shake || 0, 0.12);
+        camera.updateMatrixWorld(); // mirilla del frame ACTUAL (no 1 frame tarde)
         raycaster.setFromCamera({ x: 0, y: 0 }, camera);
+        raycaster.far = 60;
+        // refrescar las matrices de mundo de los muros ESTE frame (avance/gravedad):
+        // r3f las recalcula tras los useFrame, así que sin esto el disparo impactaría
+        // donde estaban los muros el frame anterior.
+        if (groupRef.current) groupRef.current.updateWorldMatrix(false, true);
         const inter = groupRef.current ? raycaster.intersectObjects(groupRef.current.children, true) : [];
-        let hitId = null;
-        let point = null;
+        let mesh = null; let point = null;
         for (const h of inter) {
           let o = h.object;
           while (o && (o.userData == null || o.userData.targetId == null)) o = o.parent;
-          if (o && o.userData.targetId != null) { hitId = o.userData.targetId; point = h.point; break; }
+          if (o && o.userData.targetId != null) { mesh = o; point = h.point; break; }
         }
-        if (hitId != null) {
-          const data = targetsRef.current.find((t) => t.id === hitId);
-          if (data) {
-            const col = data.kind === 'special'
-              ? (SPECIALS[data.special]?.color || '#fff')
-              : (data.penalty ? '#ef4444' : (TIERS[data.points]?.color || '#fff'));
-            const power = data.kind === 'special'
-              ? (data.special === 'bomb' ? 2 : data.special === 'gem' ? 2 : 1.5)
-              : (data.penalty ? 1.8 : data.isAnswer ? 2 : data.points >= 5 ? 1.6 : 1);
-            fxRef.current?.onHit(point, col, { combo: g.combo || 0, power });
-            g.shake = Math.max(g.shake || 0, data.kind === 'special' ? 0.45 : 0.22 + power * 0.06);
-            onHit?.(data);
-            removeTarget(hitId);
+        if (mesh) {
+          const w = wallById(mesh.userData.wallId);
+          const box = w && w.boxes.get(mesh.userData.targetId);
+          if (box) {
+            // FX y color NEUTROS (no revelan el valor): el alumno lo deduce por categoría
+            fxRef.current?.onHit(point, '#9fc7ff', { combo: g.combo || 0, power: 1.2 });
+            g.shake = Math.max(g.shake || 0, 0.28);
+            onHit?.({ kind: 'word', text: box.text, points: box.points, penalty: box.penalty, category: box.category });
+            destroyBox(w, mesh.userData.targetId);
+            if (defInjRef.current && defInjRef.current.boxId === mesh.userData.targetId) defInjRef.current = null;
+            bump();
           }
         }
       }
@@ -217,6 +224,9 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
       camera.rotateZ((Math.random() - 0.5) * sh * 0.045);
       g.shake = Math.max(0, sh - dt * 3.2);
     } else if (sh) { g.shake = 0; }
+
+    // re-render React solo si cambió la estructura de algún muro (no por frame)
+    if (renderDirty.current) { renderDirty.current = false; bumpState(); }
   });
 
   const Q = quality || {};
@@ -224,7 +234,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
     <>
       <color attach="background" args={['#05060f']} />
       <fogExp2 attach="fog" args={['#070a18', 0.014]} />
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.45} />
       <hemisphereLight args={['#a5d8ff', '#1e1b3a', 0.55]} />
       <directionalLight
         position={[8, 18, 6]}
@@ -240,8 +250,8 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
       <ImpactFX ref={fxRef} quality={Q} />
 
       <group ref={groupRef}>
-        {targets.map((t) => (
-          <Target key={t.id} data={t} onExpire={removeTarget} />
+        {wallsRef.current.map((w) => (
+          <WordWall key={w.id} wall={w} />
         ))}
       </group>
     </>

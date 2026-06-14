@@ -1,8 +1,8 @@
 // Cazapalabras 3D — FPS educativo de vocabulario a pantalla completa.
-// Disparas a objetos 3D con palabras (de la BD: categorías del runner +
-// definiciones del rosco). Categorías con distinto valor (1/2/5) para priorizar;
-// objetos especiales (power-ups y bombas); retos de definición. Modo práctica
-// (3 dificultades) + examen, todos POR TIEMPO. Calidad gráfica global + manual.
+// Disparas a palabras en MUROS 3D (de la BD: categorías del runner +
+// definiciones del rosco). El valor de cada palabra depende de su CATEGORÍA
+// (sin pistas visuales); retos de definición sin resaltar. Cámara por secciones
+// y muros con gravedad. Modo práctica (3 dificultades) + examen, todos POR TIEMPO.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,15 +19,15 @@ import HUD from './components/HUD';
 import { buildPool, poolUsable } from './engine/pool';
 import { clearTextureCache } from './engine/wordTexture';
 import {
-  DIFICULTADES, MODOS, POWERUP, TIERS, DEF_BONUS_MULT, notaColor, notaMensaje,
+  DIFICULTADES, MODOS, DEF_BONUS_MULT, notaColor, notaMensaje,
 } from './engine/config';
 import './Cazapalabras3D.css';
 
 const MODE_DESC = {
-  facil: 'Más tiempo, menos objetos y más lentos. Ideal para empezar.',
-  medio: 'Ritmo y densidad equilibrados. El reto estándar.',
-  dificil: 'Rápido, lleno de objetos y más bombas. Para expertos.',
-  examen: 'Sin ayudas. Tu nota sale de las definiciones que aciertes.',
+  facil: 'Más tiempo y definiciones más espaciadas. Ideal para empezar.',
+  medio: 'Ritmo equilibrado. El reto estándar.',
+  dificil: 'Menos tiempo, cadencia rápida y más definiciones. Para expertos.',
+  examen: 'Tu nota sale de las definiciones que encuentres y aciertes.',
 };
 
 const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subjectProp, onGameComplete, isPaused }) => {
@@ -145,9 +145,10 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     const gs = gsRef.current;
     if (!gs.running || gs.paused) return;
     const now = performance.now();
-    const hitKind = data.kind === 'special'
-      ? (data.special === 'bomb' ? 'bomb' : 'special')
-      : (data.penalty ? 'penalty' : (data.isAnswer ? 'answer' : 'word'));
+    // la palabra-respuesta de la definición se reconoce por TEXTO (no se resalta)
+    const isDef = !!gs.activeDef && !!data.text
+      && data.text.trim().toLowerCase() === gs.activeDef.word.trim().toLowerCase();
+    const hitKind = isDef ? 'answer' : (data.penalty ? 'penalty' : 'word');
     // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
     // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
     const fb = (text, color) => {
@@ -158,36 +159,8 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       setHud(snapshot(gs, now));
     };
 
-    if (data.kind === 'special') {
-      switch (data.special) {
-        case 'bomb':
-          gs.score = Math.max(0, gs.score - POWERUP.bombPenaltyPoints);
-          gs.timeLeft = Math.max(0, gs.timeLeft - POWERUP.bombPenaltySec);
-          gs.combo = 0;
-          fb(`💀 −${POWERUP.bombPenaltyPoints}`, '#fca5a5');
-          break;
-        case 'time':
-          gs.timeLeft += POWERUP.timeBonusSec;
-          fb(`⏱️ +${POWERUP.timeBonusSec}s`, '#34d399');
-          break;
-        case 'rapid':
-          gs.rapid = true; gs.rapidUntil = now + POWERUP.rapidMs;
-          fb('⚡ ¡Cadencia rápida!', '#c4b5fd');
-          break;
-        case 'x2':
-          gs.mult = 2; gs.x2Until = now + POWERUP.x2Ms;
-          fb('✖️ ¡Puntos ×2!', '#f9a8d4');
-          break;
-        default: { // gem
-          const pts = POWERUP.gemPoints * gs.mult;
-          gs.score += pts; fb(`💎 +${pts}`, '#7dd3fc');
-        }
-      }
-      return;
-    }
-
-    if (data.isAnswer && gs.activeDef) {
-      const pts = (data.points || 5) * DEF_BONUS_MULT * gs.mult;
+    if (isDef) {
+      const pts = (data.points || 5) * DEF_BONUS_MULT;
       gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
       gs.defSolved += 1; gs.activeDef = null; gs.defTimer = gs.params.defEverySec;
       fb(`📖 ¡Correcto! +${pts}`, '#fde68a');
@@ -203,9 +176,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       return;
     }
 
-    const pts = (data.points || 1) * gs.mult;
+    const pts = data.points || 1;
     gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo); gs.wordsHit += 1;
-    fb(`+${pts}`, TIERS[data.points]?.color || '#e2e8f0');
+    fb(`+${pts}`, '#a5f3fc'); // color neutro: el resultado no revela el valor por color
   }, []);
 
   // ---- iniciar partida ----
@@ -215,8 +188,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     gsRef.current = {
       running: true, paused: false, mode, params, pool,
       timeLeft: params.durationSec, totalTime: params.durationSec,
-      score: 0, combo: 0, bestCombo: 0, wordsHit: 0, mult: 1,
-      rapid: false, rapidUntil: 0, x2Until: 0, nextShotAt: 0,
+      score: 0, combo: 0, bestCombo: 0, wordsHit: 0, nextShotAt: 0,
       activeDef: null, defEndsAt: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
       feedback: null, feedbackUntil: 0,
     };
@@ -228,7 +200,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     setScreen('play');
   }, [pool]);
 
-  // ---- bucle maestro (tiempo, definiciones, power-ups, HUD) ----
+  // ---- bucle maestro (tiempo, definiciones, HUD) ----
   useEffect(() => {
     if (screen !== 'play') return undefined;
     let raf = 0;
@@ -243,8 +215,6 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       if (!gs.running) return;
       if (!gs.paused) {
         gs.timeLeft -= dt;
-        if (gs.rapid && now > gs.rapidUntil) gs.rapid = false;
-        if (gs.mult > 1 && now > gs.x2Until) gs.mult = 1;
         if (gs.activeDef) {
           if (now > gs.defEndsAt) { gs.activeDef = null; gs.defTimer = gs.params.defEverySec; }
         } else {
@@ -253,7 +223,8 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             const d = gs.pool.definitions[Math.floor(Math.random() * gs.pool.definitions.length)];
             gs.activeDef = { word: d.word, definition: d.definition, points: d.points };
             gs.defEndsAt = now + gs.params.defWindowSec * 1000;
-            gs.defPresented += 1;
+            // defPresented++ lo hace Scene al INYECTAR la palabra en un muro (visible),
+            // para no inflar la nota si todavía no hay muro donde mostrarla.
           }
         }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
@@ -369,8 +340,6 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               totalTime={hud.totalTime}
               score={hud.score}
               combo={hud.combo}
-              mult={hud.mult}
-              rapid={hud.rapid}
               activeDef={hud.activeDef}
               defRemaining={hud.defRemaining}
               defWindow={hud.defWindow}
@@ -429,13 +398,13 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
         <h3>🎯 Cómo se juega</h3>
-        <p><strong>En ordenador:</strong> haz clic para capturar el ratón y empezar a disparar; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara avanza sola por un recorrido cambiante con giros inesperados.</p>
-        <h3>⭐ Categorías que puntúan y que penalizan</h3>
-        <p>Abajo verás qué <strong>categorías dan puntos</strong> (✓) y cuáles <strong>penalizan</strong> (⛔, marco rojo): <b style={{ color: '#fca5a5' }}>no dispares a esas</b>. Entre las que puntúan, la rareza vale más: <b style={{ color: '#e2e8f0' }}>blanca = 1</b>, <b style={{ color: '#a5f3fc' }}>cian = 2</b>, <b style={{ color: '#fde68a' }}>dorada = 5</b>. <strong>Lee la palabra antes de disparar.</strong></p>
+        <p><strong>En ordenador:</strong> haz clic para capturar el ratón y empezar a disparar; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara recorre los muros por secciones: se detiene, gira hacia un muro y avanza al siguiente.</p>
+        <h3>🧱 Muros con gravedad</h3>
+        <p>Las palabras forman <strong>muros</strong> de muchas cajas apiladas. Elige bien a cuáles disparas: si rompes las de abajo, las de arriba <strong>caen</strong> para rellenar el hueco.</p>
+        <h3>🗂️ El valor depende de la categoría</h3>
+        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. El valor de cada una depende de su <strong>categoría</strong>. Mira la leyenda de abajo: las categorías <b style={{ color: '#34d399' }}>✓ dan puntos</b> y las <b style={{ color: '#f87171' }}>⛔ penalizan</b>. Reconoce a qué categoría pertenece cada palabra y <strong>lee antes de disparar</strong>.</p>
         <h3>📖 Retos de definición</h3>
-        <p>De vez en cuando aparece una definición arriba. Dispara a la palabra <b style={{ color: '#fbbf24' }}>resaltada en dorado</b> que la cumple para ganar muchos puntos. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
-        <h3>✨ Objetos especiales</h3>
-        <p>⏱️ +5 segundos · ⚡ cadencia rápida · ✖️ puntos ×2 · 💎 bonus gordo. Cuidado con las <b style={{ color: '#fca5a5' }}>💀 bombas</b>: si disparas a una, pierdes puntos y tiempo.</p>
+        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra está en los muros como una más (<strong>no se resalta</strong>): tienes que encontrarla y dispararle. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
         <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
       </InstructionsModal>
 
@@ -481,8 +450,6 @@ function snapshot(gs, now) {
     totalTime: gs.totalTime,
     score: gs.score,
     combo: gs.combo,
-    mult: gs.mult,
-    rapid: gs.rapid,
     activeDef: gs.activeDef,
     defRemaining: gs.activeDef ? (gs.defEndsAt - now) / 1000 : 0,
     defWindow: gs.params?.defWindowSec || 9,
