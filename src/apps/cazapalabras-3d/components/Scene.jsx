@@ -87,6 +87,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
     let special = null;
     let text = null;
     let points = 1;
+    let penalty = false;
 
     if (!isAnswer) {
       const r = Math.random();
@@ -97,10 +98,10 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
       }
     }
     if (kind === 'word') {
-      if (forceWord) { text = forceWord.text; points = forceWord.points; }
+      if (forceWord) { text = forceWord.text; points = forceWord.points; } // respuesta de definición: nunca penaliza
       else {
         const wd = pool.words[Math.floor(Math.random() * pool.words.length)];
-        text = wd.text; points = wd.points;
+        text = wd.text; points = wd.points; penalty = !!wd.penalty;
       }
     }
 
@@ -112,7 +113,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
     setTargets((ts) => {
       if (ts.length >= max) return ts;
       return [...ts, {
-        id: ++TID, kind, special, text, points, isAnswer: !!isAnswer,
+        id: ++TID, kind, special, text, points, penalty, isAnswer: !!isAnswer,
         design: Math.floor(rnd(0, 4)),
         x: rnd(-5.2, 5.2), y: rnd(1.2, 4.2), z: rnd(-48, -40),
         vz: rnd(p.speed[0], p.speed[1]),
@@ -125,15 +126,28 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
     const g = gameRef.current;
     const c = controlRef.current;
 
-    // --- cámara: orientación por arrastre + avance con leve balanceo ---
-    euler.set(
-      Math.max(-PITCH_MAX, Math.min(PITCH_MAX, c.pitch)),
-      Math.max(-YAW_MAX, Math.min(YAW_MAX, c.yaw)),
-      0, 'YXZ',
-    );
-    camera.quaternion.setFromEuler(euler);
+    // --- cámara: mouse-look del jugador (c.yaw/c.pitch) SOBRE un rumbo
+    // PROCEDURAL impredecible (sumas de senos con frecuencias inconmensurables +
+    // componente lenta para giros amplios), con alabeo (banking) y vaivén → da
+    // sensación de volar un recorrido cambiante. El jugador corrige con el ratón.
     const tt = state.clock.elapsedTime;
-    camera.position.set(Math.sin(tt * 0.5) * 0.18, 2.4 + Math.sin(tt * 0.9) * 0.07, 7);
+    const mo = reduceMotion ? 0.12 : 1; // accesibilidad: casi sin movimiento procedural
+    const procYaw = (0.07 * Math.sin(tt * 0.31 + 0.6)
+                   + 0.05 * Math.sin(tt * 0.137 + 2.1)
+                   + 0.06 * Math.sin(tt * 0.083 + 4.0)) * mo;
+    const procPitch = (0.035 * Math.sin(tt * 0.27 + 1.3)
+                     + 0.025 * Math.sin(tt * 0.119 + 3.2)) * mo;
+    const bank = (0.10 * Math.sin(tt * 0.23 + 0.9)
+                + 0.06 * Math.sin(tt * 0.061 + 2.7)) * mo; // alabeo de los giros (solo visual: no mueve la mirilla)
+    const yaw = procYaw + Math.max(-YAW_MAX, Math.min(YAW_MAX, c.yaw));
+    const pitch = procPitch + Math.max(-PITCH_MAX, Math.min(PITCH_MAX, c.pitch));
+    euler.set(pitch, yaw, bank, 'YXZ');
+    camera.quaternion.setFromEuler(euler);
+    camera.position.set(
+      (Math.sin(tt * 0.41) * 0.35 + Math.sin(tt * 0.17 + 1.0) * 0.25) * mo,
+      2.4 + (Math.sin(tt * 0.53) * 0.10 + Math.sin(tt * 0.23 + 2.0) * 0.06) * mo,
+      7,
+    );
 
     if (!g.running || g.paused) return;
     const p = g.params;
@@ -163,6 +177,10 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
         g.nextShotAt = now + (g.rapid ? 110 : (p.fireCooldownMs || 320));
         fxRef.current?.onShoot();
         g.shake = Math.max(g.shake || 0, 0.12); // leve retroceso
+        // recomponer matrixWorld desde el position/quaternion ya fijados ESTE frame:
+        // r3f la actualiza tras los useFrame, así que sin esto el rayo iría 1 frame
+        // tarde (al girar rápido el disparo no coincidiría con la mirilla pintada).
+        camera.updateMatrixWorld();
         raycaster.setFromCamera({ x: 0, y: 0 }, camera);
         const inter = groupRef.current ? raycaster.intersectObjects(groupRef.current.children, true) : [];
         let hitId = null;
@@ -177,10 +195,10 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier }) {
           if (data) {
             const col = data.kind === 'special'
               ? (SPECIALS[data.special]?.color || '#fff')
-              : (TIERS[data.points]?.color || '#fff');
+              : (data.penalty ? '#ef4444' : (TIERS[data.points]?.color || '#fff'));
             const power = data.kind === 'special'
               ? (data.special === 'bomb' ? 2 : data.special === 'gem' ? 2 : 1.5)
-              : (data.isAnswer ? 2 : data.points >= 5 ? 1.6 : 1);
+              : (data.penalty ? 1.8 : data.isAnswer ? 2 : data.points >= 5 ? 1.6 : 1);
             fxRef.current?.onHit(point, col, { combo: g.combo || 0, power });
             g.shake = Math.max(g.shake || 0, data.kind === 'special' ? 0.45 : 0.22 + power * 0.06);
             onHit?.(data);

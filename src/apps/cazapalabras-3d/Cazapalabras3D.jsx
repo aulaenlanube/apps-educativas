@@ -135,7 +135,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     const now = performance.now();
     const hitKind = data.kind === 'special'
       ? (data.special === 'bomb' ? 'bomb' : 'special')
-      : (data.isAnswer ? 'answer' : 'word');
+      : (data.penalty ? 'penalty' : (data.isAnswer ? 'answer' : 'word'));
     // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
     // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
     const fb = (text, color) => {
@@ -179,6 +179,15 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
       gs.defSolved += 1; gs.activeDef = null; gs.defTimer = gs.params.defEverySec;
       fb(`📖 ¡Correcto! +${pts}`, '#fde68a');
+      return;
+    }
+
+    // palabra de categoría PENALIZADORA: resta puntos y rompe el combo
+    if (data.penalty) {
+      const pen = data.points || 3;
+      gs.score = Math.max(0, gs.score - pen);
+      gs.combo = 0;
+      fb(`⛔ −${pen}`, '#fca5a5');
       return;
     }
 
@@ -256,13 +265,8 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   };
   useEffect(() => () => { cleanupRef.current(); clearTimeout(gfxTimer.current); clearTextureCache(); }, []);
 
-  // ESC termina la partida (convención FPS); el botón "Terminar" es el equivalente visible.
-  useEffect(() => {
-    if (screen !== 'play') return undefined;
-    const onKey = (e) => { if (e.key === 'Escape') endGameRef.current(); };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [screen]);
+  // Nota: ESC ya NO termina la partida — con mouse-look (pointer lock) ESC libera
+  // el ratón; para terminar está el botón "Terminar".
 
   const cursoLabel = level === 'bachillerato' ? `${grade}º Bach` : `${grade}º ESO`;
 
@@ -349,7 +353,6 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
           <Crosshair cooling={cooling} hit={hud?.hit} />
           {hud && (
             <HUD
-              mode={hud.mode}
               timeLeft={hud.timeLeft}
               totalTime={hud.totalTime}
               score={hud.score}
@@ -361,6 +364,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               defWindow={hud.defWindow}
               feedback={hud.feedback}
               examInfo={hud.isExam ? `${hud.defSolved}/${hud.defPresented}` : null}
+              categories={pool.categories}
             />
           )}
           <button type="button" className="cz3d-exit" onClick={endGame}>
@@ -413,9 +417,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
         <h3>🎯 Cómo se juega</h3>
-        <p><strong>Arrastra</strong> para mirar alrededor y <strong>toca/haz clic</strong> para disparar al centro de la mirilla. La cámara avanza sola por el entorno y los objetos vienen hacia ti.</p>
-        <h3>⭐ Puntos por color</h3>
-        <p>Cada palabra vale según su rareza: <b style={{ color: '#e2e8f0' }}>blanca = 1</b>, <b style={{ color: '#a5f3fc' }}>cian = 2</b>, <b style={{ color: '#fde68a' }}>dorada = 5</b>. Si hay muchas a la vez, prioriza las doradas antes de que pasen.</p>
+        <p><strong>En ordenador:</strong> haz clic para capturar el ratón y empezar a disparar; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara avanza sola por un recorrido cambiante con giros inesperados.</p>
+        <h3>⭐ Categorías que puntúan y que penalizan</h3>
+        <p>Abajo verás qué <strong>categorías dan puntos</strong> (✓) y cuáles <strong>penalizan</strong> (⛔, marco rojo): <b style={{ color: '#fca5a5' }}>no dispares a esas</b>. Entre las que puntúan, la rareza vale más: <b style={{ color: '#e2e8f0' }}>blanca = 1</b>, <b style={{ color: '#a5f3fc' }}>cian = 2</b>, <b style={{ color: '#fde68a' }}>dorada = 5</b>. <strong>Lee la palabra antes de disparar.</strong></p>
         <h3>📖 Retos de definición</h3>
         <p>De vez en cuando aparece una definición arriba. Dispara a la palabra <b style={{ color: '#fbbf24' }}>resaltada en dorado</b> que la cumple para ganar muchos puntos. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
         <h3>✨ Objetos especiales</h3>

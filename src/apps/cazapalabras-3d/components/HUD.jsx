@@ -1,6 +1,7 @@
 // HUD (overlay DOM sobre el Canvas). Solo informativo → pointer-events:none
-// salvo en los chips. Muestra objetivo (definición o pista de prioridad),
-// tiempo, puntuación, combo, power-ups activos y feedback de impacto.
+// salvo en los chips. Muestra objetivo (definición), tiempo, puntuación, combo,
+// power-ups, feedback y la LEYENDA de categorías (qué dispara da puntos y qué
+// penaliza), bien visible en la parte inferior.
 import React from 'react';
 
 const fmtTime = (s) => {
@@ -9,12 +10,18 @@ const fmtTime = (s) => {
   return `${m}:${String(v % 60).padStart(2, '0')}`;
 };
 
+const tierClass = (p) => (p >= 5 ? 't5' : p === 2 ? 't2' : 't1');
+
 export default function HUD({
   timeLeft, totalTime, score, combo, mult, rapid,
-  activeDef, defRemaining, defWindow, feedback, examInfo,
+  activeDef, defRemaining, defWindow, feedback, examInfo, categories,
 }) {
   const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
   const low = timeLeft <= 10;
+  const cats = categories || [];
+  const scoring = cats.filter((c) => !c.penalty);
+  const penalties = cats.filter((c) => c.penalty);
+
   return (
     <div className="cz3d-hud">
       {/* Objetivo / definición */}
@@ -28,9 +35,7 @@ export default function HUD({
             </span>
           </div>
         ) : (
-          <div className="cz3d-hint">
-            🎯 Prioriza las <b className="g5">doradas (5)</b> · <b className="g2">cian (2)</b> · evita las <b className="bomb">💀 bombas</b>
-          </div>
+          <div className="cz3d-hint">🎯 Lee la palabra antes de disparar</div>
         )}
       </div>
 
@@ -50,6 +55,30 @@ export default function HUD({
           {rapid && <span className="cz3d-pu rapid">⚡ Rápido</span>}
         </div>
       </div>
+
+      {/* Leyenda de categorías (abajo, bien legible) */}
+      {cats.length > 0 && (
+        <div className="cz3d-legend">
+          <div className="cz3d-legend-row">
+            <span className="cz3d-legend-label good">✓ DISPARA</span>
+            {scoring.map((c) => (
+              <span key={c.name} className={`cz3d-cat ${tierClass(c.points)}`}>
+                {c.name} <b>+{c.points}</b>
+              </span>
+            ))}
+          </div>
+          {penalties.length > 0 && (
+            <div className="cz3d-legend-row">
+              <span className="cz3d-legend-label bad">⛔ NO dispares</span>
+              {penalties.map((c) => (
+                <span key={c.name} className="cz3d-cat pen">
+                  {c.name} <b>−{c.points}</b>
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Feedback de impacto (centro, bajo la mirilla) */}
       {feedback && (

@@ -33,14 +33,17 @@ function Target({ data, onExpire }) {
       return { type: 'special', sp, iconTex: makeIconTexture(sp.icon).texture };
     }
     const tier = TIERS[data.points] || TIERS[1];
-    const accent = data.isAnswer ? '#fbbf24' : tier.color;
+    const isPenalty = !!data.penalty;
+    const accent = data.isAnswer ? '#fbbf24' : (isPenalty ? '#ef4444' : tier.color);
     const { texture, aspect } = makeWordTexture(data.text, {
-      accent, design: data.design || 0, points: data.points, isAnswer: data.isAnswer,
+      accent, design: data.design || 0, points: data.points, isAnswer: data.isAnswer, penalty: isPenalty,
     });
-    const halo = (data.isAnswer || data.points === 5)
+    // las penalizadoras NO llevan halo de recompensa (deben "leerse" como peligro)
+    const halo = (data.isAnswer || (!isPenalty && data.points === 5))
       ? { tex: makeGlowTexture(data.isAnswer ? '#fbbf24' : tier.emissive).texture, opacity: data.isAnswer ? 0.95 : 0.55 }
       : null;
-    return { type: 'word', tier, accent, edgeEmissive: data.isAnswer ? '#f59e0b' : tier.emissive, texture, aspect, halo };
+    const edgeEmissive = data.isAnswer ? '#f59e0b' : (isPenalty ? '#b91c1c' : tier.emissive);
+    return { type: 'word', tier, accent, edgeEmissive, texture, aspect, halo };
   }, [data]);
 
   useFrame((state, dt) => {

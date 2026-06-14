@@ -3,7 +3,7 @@
 // modo auto). Captura el control en el wrapper DOM: ARRASTRAR para mirar +
 // TAP para disparar (universal ratón/táctil). El disparo se resuelve en la
 // escena como raycast desde el CENTRO de la pantalla (la mirilla).
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import {
@@ -41,23 +41,81 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
     if (next !== tier) onAutoDowngrade?.(next);
   }, [tier, onAutoDowngrade]);
 
+  // ── control: RATÓN = mover gira (pointer lock) + clic dispara · TÁCTIL = arrastrar gira + tap dispara ──
+  const hasMouse = useMemo(() => typeof window !== 'undefined' && window.matchMedia
+    && window.matchMedia('(pointer: fine)').matches, []);
+  const [locked, setLocked] = useState(false);
+  const lockedRef = useRef(false);
+  const lockTarget = useRef(null);
+  const SENS = 0.0022;
+
+  // estado del pointer lock (mover el ratón gira sin arrastrar)
+  useEffect(() => {
+    const onChange = () => {
+      const l = document.pointerLockElement === lockTarget.current;
+      lockedRef.current = l; setLocked(l);
+      if (!l) drag.current.down = false; // al soltar el lock, desarma el arrastre de respaldo (evita giro espurio)
+    };
+    const onError = () => {}; // silencia errores de pointer lock (p.ej. re-lock tras ESC en cooldown)
+    document.addEventListener('pointerlockchange', onChange);
+    document.addEventListener('pointerlockerror', onError);
+    return () => {
+      document.removeEventListener('pointerlockchange', onChange);
+      document.removeEventListener('pointerlockerror', onError);
+    };
+  }, []);
+  // giro por movimiento del ratón mientras está capturado
+  useEffect(() => {
+    const onMove = (e) => {
+      if (!lockedRef.current) return;
+      const c = controlRef.current;
+      c.yaw -= (e.movementX || 0) * SENS;
+      c.pitch -= (e.movementY || 0) * SENS;
+    };
+    document.addEventListener('mousemove', onMove);
+    return () => document.removeEventListener('mousemove', onMove);
+  }, [controlRef]);
+  // al desmontar (fin de partida) libera el ratón para que vuelva el cursor
+  useEffect(() => () => { if (document.pointerLockElement) document.exitPointerLock?.(); }, []);
+
   const onPointerDown = (e) => {
+    if (e.pointerType === 'mouse') {
+      controlRef.current.shootQueued = true; // clic = disparo (siempre)
+      // captura el ratón para girar moviéndolo (no en navegadores automatizados,
+      // donde el pointer lock secuestraría el control del test)
+      if (!lockedRef.current && !navigator.webdriver && lockTarget.current?.requestPointerLock) {
+        try {
+          const req = lockTarget.current.requestPointerLock();
+          if (req && typeof req.then === 'function') req.catch(() => {}); // rechazo asíncrono (no es throw síncrono)
+        } catch { /* denegado: queda el arrastre de respaldo */ }
+      }
+      const d = drag.current; d.down = true; d.lx = e.clientX; d.ly = e.clientY; // respaldo arrastre si no hay lock
+      return;
+    }
     const d = drag.current;
     d.down = true; d.moved = 0; d.lx = e.clientX; d.ly = e.clientY; d.t0 = performance.now();
     e.currentTarget.setPointerCapture?.(e.pointerId);
   };
   const onPointerMove = (e) => {
+    const c = controlRef.current;
+    if (e.pointerType === 'mouse') {
+      if (lockedRef.current) return; // el giro lo lleva el listener de mousemove (movementX)
+      const d = drag.current;
+      if (!d.down) return; // respaldo: solo con botón pulsado mientras no hay lock
+      c.yaw -= (e.clientX - d.lx) * 0.0026; c.pitch -= (e.clientY - d.ly) * 0.0024;
+      d.lx = e.clientX; d.ly = e.clientY;
+      return;
+    }
     const d = drag.current;
     if (!d.down) return;
     const dx = e.clientX - d.lx; const dy = e.clientY - d.ly;
     d.lx = e.clientX; d.ly = e.clientY;
     d.moved += Math.abs(dx) + Math.abs(dy);
-    const c = controlRef.current;
-    c.yaw -= dx * 0.0026;
-    c.pitch -= dy * 0.0024;
+    c.yaw -= dx * 0.0026; c.pitch -= dy * 0.0024;
   };
   const onPointerUp = (e) => {
     const d = drag.current;
+    if (e.pointerType === 'mouse') { d.down = false; return; }
     if (!d.down) return;
     d.down = false;
     const elapsed = performance.now() - d.t0;
@@ -68,11 +126,15 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
   return (
     <div
       className="cz3d-canvas"
+      ref={lockTarget}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerLeave={() => { drag.current.down = false; }}
     >
+      {hasMouse && !locked && (
+        <div className="cz3d-lockhint">🖱️ Haz clic para mirar y disparar · mueve el ratón para girar</div>
+      )}
       <Canvas
         key={`${tier}-${ctxKey}`}
         frameloop={lost ? 'never' : 'always'}

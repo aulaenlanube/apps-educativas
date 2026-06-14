@@ -41,9 +41,10 @@ function drawCorners(ctx, x, y, w, h, len, accent) {
   ctx.shadowBlur = 0;
 }
 
-// Pastilla de puntos en una esquina (1/2/5) para que el jugador priorice.
-function drawPill(ctx, cx, cy, value, accent) {
-  const r = 22;
+// Pastilla en una esquina: "+N" (puntúa) o "−N" (penaliza) para que el jugador
+// decida de un vistazo si disparar o no.
+function drawPill(ctx, cx, cy, label, accent) {
+  const r = 24;
   ctx.beginPath();
   ctx.arc(cx, cy, r, 0, Math.PI * 2);
   ctx.fillStyle = accent;
@@ -52,16 +53,16 @@ function drawPill(ctx, cx, cy, value, accent) {
   ctx.fill();
   ctx.shadowBlur = 0;
   ctx.fillStyle = '#0b1024';
-  ctx.font = FONT(28);
+  ctx.font = FONT(26);
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(String(value), cx, cy + 1);
+  ctx.fillText(label, cx, cy + 1);
 }
 
 // Panel de palabra "a sangre": gradiente oscuro opaco + marco de color (según
 // diseño) + texto claro. Devuelve { texture, aspect } para dimensionar el prisma.
-export function makeWordTexture(text, { accent = '#22d3ee', fg = '#ffffff', design = 0, points = 0, isAnswer = false } = {}) {
-  const key = `w|${text}|${accent}|${design}|${points}|${isAnswer ? 1 : 0}`;
+export function makeWordTexture(text, { accent = '#22d3ee', fg = '#ffffff', design = 0, points = 0, isAnswer = false, penalty = false } = {}) {
+  const key = `w|${text}|${accent}|${design}|${points}|${isAnswer ? 1 : 0}|${penalty ? 1 : 0}`;
   if (cache.has(key)) return cache.get(key);
 
   const fontSize = 78;
@@ -120,15 +121,17 @@ export function makeWordTexture(text, { accent = '#22d3ee', fg = '#ffffff', desi
   ctx.fillText(text, w / 2, h / 2 + 3);
   ctx.shadowBlur = 0;
 
-  // pastilla de puntos (solo tiers 2 y 5) o estrella de respuesta
-  if (isAnswer) {
+  // pastilla: penaliza (−N, roja) · estrella de respuesta · puntos (tiers 2 y 5)
+  if (penalty) {
+    drawPill(ctx, w - 32, 32, `−${points}`, accent);
+  } else if (isAnswer) {
     ctx.fillStyle = accent;
     ctx.font = FONT(34);
     ctx.shadowColor = accent; ctx.shadowBlur = 12;
     ctx.fillText('★', 30, 30);
     ctx.shadowBlur = 0;
   } else if (points >= 2) {
-    drawPill(ctx, w - 30, 30, points, accent);
+    drawPill(ctx, w - 32, 32, `+${points}`, accent);
   }
 
   const texture = new THREE.CanvasTexture(c);
