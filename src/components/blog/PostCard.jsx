@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Clock, Calendar } from 'lucide-react';
 import { buildPostUrl, buildCategoryUrl, formatDateLong } from '@/blog/utils';
 import { getCategory } from '@/blog/categories';
+import PostValidationBadge from '@/components/blog/PostValidationBadge';
 
 export default function PostCard({ post, featured = false }) {
   const category = getCategory(post.category);
@@ -15,6 +16,7 @@ export default function PostCard({ post, featured = false }) {
       }`}
     >
       <Link to={buildPostUrl(post.slug)} className="block relative overflow-hidden">
+        <PostValidationBadge slug={post.slug} className="absolute top-3 right-3 z-10 h-7 w-7" />
         {post.hero ? (
           <div className="relative aspect-video bg-slate-900">
             <img

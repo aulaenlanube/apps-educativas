@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { buildPostUrl, formatDateLong } from '@/blog/utils';
 import { getCategory } from '@/blog/categories';
+import PostValidationBadge from '@/components/blog/PostValidationBadge';
 import './FeaturedCarousel.css';
 
 const SLIDE_MS = 6000;
@@ -154,6 +155,7 @@ export default function FeaturedCarousel({ posts }) {
                   <Play className="h-3 w-3 fill-current" /> Vídeo
                 </span>
               )}
+              <PostValidationBadge slug={post.slug} className="h-7 w-7" />
             </motion.div>
           </AnimatePresence>
         </div>

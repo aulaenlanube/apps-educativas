@@ -8,6 +8,7 @@ import { getCategory } from '@/blog/categories';
 import { formatDateLong, buildCategoryUrl, buildPostUrl, buildAbsoluteUrl } from '@/blog/utils';
 import BlogProse from '@/components/blog/BlogProse';
 import BlogPostEditor from '@/components/blog/BlogPostEditor';
+import PostValidationToggle from '@/components/blog/PostValidationToggle';
 import YouTubeEmbed from '@/components/blog/YouTubeEmbed';
 import PostCard from '@/components/blog/PostCard';
 import { useAuth } from '@/contexts/AuthContext';
@@ -172,14 +173,17 @@ export default function BlogPostPage() {
             Volver al blog
           </Link>
           {isAdmin && (
-            <button
-              type="button"
-              onClick={() => setEditing(true)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/40 px-3.5 py-1.5 text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
-            >
-              <Pencil className="w-4 h-4" />
-              Editar post
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setEditing(true)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/40 px-3.5 py-1.5 text-sm font-bold text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+              >
+                <Pencil className="w-4 h-4" />
+                Editar post
+              </button>
+              <PostValidationToggle slug={post.slug} />
+            </div>
           )}
         </div>
 
