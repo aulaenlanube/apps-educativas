@@ -22,6 +22,11 @@ import './LaFortaleza.css';
 
 const MIN_WORDS_PER_CAT = 4;
 const MIN_QUESTIONS = 8;
+// Categorías "activas" por partida: las que tienen color, generan enemigos y se
+// clasifican/cubren con torres (la mecánica visual quiere pocas a la vez). El
+// pool COMPLETO del curso sí alimenta las preguntas (ver buildQuestionDeck), así
+// que una misma partida puede preguntar por cualquier categoría aunque solo se
+// "muestren" estas. El subconjunto activo lo baraja el seed (varía entre partidas).
 const MAX_ACTIVE_CATEGORIES = 3;
 
 const formatCategoryName = (name) => {
@@ -83,24 +88,46 @@ function buildQuestionDeck(rng, allQuestions, categories) {
     }
   }
 
-  // 4) y 5) con las categorías de palabras activas
+  // 4) y 5) preguntas de categoría con TODO el pool del curso (no solo las
+  // activas). Generamos candidatas de todas las categorías y recortamos a un
+  // presupuesto FIJO (independiente de N) para no inundar el mazo de preguntas
+  // fáciles cuando el pool es grande. Con 3 categorías entran todas (= antes).
   if (categories.length >= 2) {
+    const norm = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+    const TOTAL_CAT = 18;
+    const TOTAL_INTRUSO = 12;
     const catNames = categories.map((c) => c.name);
+    // nº de categorías del pool que contienen cada palabra (para descartar las
+    // ambiguas: si una palabra está en 2 categorías, "¿a cuál pertenece?" no
+    // tiene respuesta única)
+    const wordCats = new Map();
+    for (const c of categories) {
+      for (const w of new Set(c.words.map(norm))) wordCats.set(w, (wordCats.get(w) || 0) + 1);
+    }
+    const catQs = [];
+    const intrusoQs = [];
     for (const cat of categories) {
-      for (const w of seededShuffle(cat.words, rng).slice(0, 6)) {
-        deck.push({
+      const ownSet = new Set(cat.words.map(norm));
+      // 'cat': solo palabras que pertenecen a UNA categoría (sin ambigüedad)
+      const unique = cat.words.filter((w) => wordCats.get(norm(w)) === 1);
+      for (const w of seededShuffle(unique, rng).slice(0, 6)) {
+        catQs.push({
           format: 'cat', difficulty: 1, writable: false,
           definicion: `¿A qué categoría pertenece «${w}»?`,
           solucion: cat.name,
-          options: seededShuffle(catNames, rng),
+          options: mk4(cat.name, catNames), // 4 opciones aunque el pool sea grande
         });
       }
+      // 'intruso': el intruso NUNCA puede pertenecer también a la categoría
+      // preguntada (categorías con vocabulario solapado darían una respuesta falsa)
       const others = categories.filter((c) => c !== cat);
       for (let i = 0; i < 4 && cat.words.length >= 3 && others.length > 0; i++) {
         const own = seededShuffle(cat.words, rng).slice(0, 3);
         const other = others[Math.floor(rng() * others.length)];
-        const intruder = other.words[Math.floor(rng() * other.words.length)];
-        deck.push({
+        const candidates = other.words.filter((w) => !ownSet.has(norm(w)));
+        if (candidates.length === 0) continue;
+        const intruder = candidates[Math.floor(rng() * candidates.length)];
+        intrusoQs.push({
           format: 'intruso', difficulty: 2, writable: false,
           definicion: `¿Cuál NO pertenece a la categoría «${cat.name}»?`,
           solucion: intruder,
@@ -108,6 +135,8 @@ function buildQuestionDeck(rng, allQuestions, categories) {
         });
       }
     }
+    deck.push(...seededShuffle(catQs, rng).slice(0, TOTAL_CAT));
+    deck.push(...seededShuffle(intrusoQs, rng).slice(0, TOTAL_INTRUSO));
   }
   return deck;
 }
@@ -116,13 +145,30 @@ function buildQuestionDeck(rng, allQuestions, categories) {
 function prepareRun(seed, allCategories, allQuestions) {
   const rng = mulberry32(seed ^ 0x51ab3f);
 
-  // 1) Categorías activas (2-3, las baraja el seed)
-  const picked = seededShuffle(Object.entries(allCategories), rng)
-    .slice(0, MAX_ACTIVE_CATEGORIES)
-    .map(([name, words]) => ({ name: formatCategoryName(name), words }));
+  // Pool COMPLETO del curso (de aquí salen las preguntas de categoría/intruso).
+  // Fusiona categorías que colapsan al mismo nombre formateado (p.ej.
+  // "los_animales" y "los-animales") para no duplicar opciones ni perder palabras.
+  const pool = [];
+  const byName = new Map();
+  for (const [name, words] of Object.entries(allCategories)) {
+    const fname = formatCategoryName(name);
+    const existing = byName.get(fname);
+    if (existing) {
+      existing.words = [...new Set([...existing.words, ...words])];
+    } else {
+      const entry = { name: fname, words: [...words] };
+      byName.set(fname, entry);
+      pool.push(entry);
+    }
+  }
 
-  // 2) Mazo variado con 5 formatos, agrupado por dificultad
-  const deck = buildQuestionDeck(rng, allQuestions, picked);
+  // 1) Categorías ACTIVAS (2-3, las baraja el seed): color, enemigos y torres.
+  // El resto del pool no se "muestra" pero sí alimenta el mazo de preguntas.
+  const picked = seededShuffle(pool, rng).slice(0, MAX_ACTIVE_CATEGORIES);
+
+  // 2) Mazo variado con 5 formatos, agrupado por dificultad. Las preguntas de
+  // categoría/intruso usan el pool ENTERO; las palabras de enemigos, solo picked.
+  const deck = buildQuestionDeck(rng, allQuestions, pool);
   // En examen, las escribibles alternan escribir/test (~50/50, por seed)
   const withQtype = (q) => ({ ...q, qtype: q.writable && rng() < 0.5 ? 'write' : 'choice' });
   const byDiff = { 1: [], 2: [], 3: [] };
