@@ -76,6 +76,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     return () => { cancelled = true; };
   }, [level, grade, asignatura]);
 
+  // Material de estudio: palabras agrupadas por su categoría (las del rosco van
+  // en la sección "con definición"). Conserva el orden del catálogo de categorías.
+  const wordsByCategory = useMemo(() => {
+    const m = new Map();
+    (pool?.words || []).forEach((w) => {
+      if (w.category === 'rosco') return;
+      if (!m.has(w.category)) m.set(w.category, []);
+      m.get(w.category).push(w.text);
+    });
+    return m;
+  }, [pool]);
+
   // ---- estado de juego (autoritativo en ref, espejo en React para el HUD) ----
   const [screen, setScreen] = useState('select'); // select | play | summary
   const screenRef = useRef(screen); screenRef.current = screen;
@@ -326,7 +338,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
 
           <div className="cz3d-select-actions">
             <button type="button" className="cz3d-study-btn" onClick={() => setShowVocab(true)}>
-              <BookOpen size={16} /> Ver vocabulario
+              <BookOpen size={16} /> Ver material de estudio
             </button>
           </div>
 
@@ -427,20 +439,32 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
       </InstructionsModal>
 
-      {/* ============ VOCABULARIO ============ */}
-      <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Vocabulario · ${asignatura}`}>
+      {/* ============ MATERIAL DE ESTUDIO ============ */}
+      <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
+        {pool.categories.length > 0 && (
+          <>
+            <h3>🗂️ Categorías y sus palabras</h3>
+            {pool.categories.map((c) => {
+              const words = wordsByCategory.get(c.name) || [];
+              if (!words.length) return null;
+              return (
+                <div key={c.name} className="cz3d-study-cat">
+                  <h4 className={c.penalty ? 'pen' : ''}>
+                    {c.penalty ? '⛔' : '✓'} {c.name}
+                    <span>{c.penalty ? `−${c.points} · no dispares` : `+${c.points}`}</span>
+                  </h4>
+                  <p className="cz3d-study-words">{words.join(' · ')}</p>
+                </div>
+              );
+            })}
+          </>
+        )}
         {pool.definitions.length > 0 && (
           <>
             <h3>📖 Palabras con definición</h3>
-            {pool.definitions.slice(0, 60).map((d, i) => (
+            {pool.definitions.map((d, i) => (
               <p key={`${d.word}-${i}`} className="cz3d-vocab-row"><strong>{d.word}:</strong> {d.definition}</p>
             ))}
-          </>
-        )}
-        {pool.categories.length > 0 && (
-          <>
-            <h3>🗂️ Categorías</h3>
-            <p className="cz3d-vocab-cats">{pool.categories.map((c) => `${c.name} (${c.points})`).join(' · ')}</p>
           </>
         )}
       </InstructionsModal>
