@@ -3,47 +3,57 @@
 // plataforma (graphicsQuality) + selector dentro de la app.
 
 // Capa de render reservada al BLOOM SELECTIVO (post-proceso). Solo los objetos
-// "luminosos" (halos, orbes, FX de impacto, estrellas, estructuras emisivas) se
-// marcan con layers.enable(BLOOM_LAYER); los prismas de palabra NO, para que el
-// texto quede SIEMPRE nítido (no se difumina con el glow).
+// "luminosos" (halos, FX de impacto, estrellas, estructuras emisivas) se marcan
+// con layers.enable(BLOOM_LAYER); los prismas de palabra NO, para que el texto
+// quede SIEMPRE nítido (no se difumina con el glow).
 export const BLOOM_LAYER = 1;
 
-// ── Muros de palabras (estructuras densas con gravedad) ──
-// Geometría de cada celda del muro (prisma de palabra de tamaño UNIFORME).
-export const CELL = { w: 2.5, h: 1.05, depth: 0.22, gap: 0.16, baseY: 0.8 };
-export const GRAV_WALL = 16; // aceleración de caída al recolapsar columnas
+// ── Montones de palabras (estructuras con gravedad) ──
+// Geometría de cada celda del montón (prisma de palabra de tamaño UNIFORME).
+// baseY = 0: el origen local del montón coincide con la base de la fila inferior;
+// la altura en el mundo la fija PILE_LAYOUT (cada montón flota a distinta altura).
+export const CELL = { w: 2.5, h: 1.05, depth: 0.22, gap: 0.16, baseY: 0 };
+export const GRAV_PILE = 16; // aceleración de caída al recolapsar columnas
 
 // Knob de calidad PROPIO de la app (NO usar particleBudget para capar nº de cajas).
-// Define cuántos muros viven a la vez y su tamaño de rejilla por tier.
-export const WALL_QUALITY = {
-  low: { walls: 2, cols: 4, rows: 4 },
-  medium: { walls: 3, cols: 5, rows: 5 },
-  high: { walls: 3, cols: 5, rows: 6 },
+// Define cuántos MONTONES viven a la vez y de cuántas cajas (pocas válidas).
+export const PILE_QUALITY = {
+  low: { piles: 3, cols: 2, boxesMin: 5, boxesMax: 7, validMin: 2, validMax: 2 },
+  medium: { piles: 5, cols: 3, boxesMin: 6, boxesMax: 9, validMin: 2, validMax: 3 },
+  high: { piles: 6, cols: 3, boxesMin: 6, boxesMax: 10, validMin: 2, validMax: 3 },
 };
 
-// ── Cámara por secciones (coreografía discreta: HOLD → TURN → HOLD → ADVANCE → …) ──
+// ── Cámara por secciones (coreografía discreta y CALMADA: HOLD → TURN → HOLD …) ──
+// La cámara NO se traslada ni el mundo se desplaza (evita el mareo): solo GIRA para
+// encarar montones colocados a distintos ángulos a su alrededor.
 export const CAM = {
-  pos: [0, 2.4, 7],        // posición fija (las fases ADVANCE mueven los MUROS, no la cámara)
-  holdMin: 2.4, holdMax: 4.2, // reposo para apuntar/disparar
-  turnDur: 1.5,            // duración del giro a un muro lateral
-  advanceDur: 1.7,         // duración del avance (los muros pasan de largo)
-  breathPos: 0.10, breathY: 0.05, breathRoll: 0.022, // respiración cosmética mínima
-  bankRoll: 0.10,          // alabeo proporcional al giro (lean into the turn)
+  pos: [0, 2.4, 7],            // posición FIJA (nunca avanza)
+  holdMin: 2.6, holdMax: 4.6,  // reposo para apuntar/disparar
+  turnDur: 1.6,                // duración del giro a otro montón
+  breathPos: 0.04, breathY: 0.025, breathRoll: 0.012, // respiración cosmética mínima
+  bankRoll: 0.08,              // alabeo proporcional al giro (lean into the turn)
 };
 
-// Colocación de los muros de una "estación" (fila de muros que la cámara recorre).
-export const WALL_LAYOUT = {
-  z: -17,                  // z de reposo de la estación
-  xSpread: 7.8,            // separación lateral entre muros
-  wrapZ: 3,                // al rebasar esta z (cerca de la cámara) el muro se recicla
-  respawnZ: -50,           // z a la que reaparece (lejos) tras reciclar
+// Colocación de los montones: un arco a izquierda/derecha de la cámara, a distintas
+// distancias y alturas (aparecen "por todas partes" del campo de visión).
+export const PILE_LAYOUT = {
+  angleMax: 1.15,              // arco máx. (rad) a cada lado que la cámara puede encarar
+  distMin: 13, distMax: 19,    // distancia de la cámara
+  baseYMin: 1.0, baseYMax: 5.0, // altura de la base del montón
 };
+
+// Puntuación por categoría: SOLO 2 categorías puntúan.
+export const SCORE_PRINCIPAL = 5;   // categoría principal
+export const SCORE_SECUNDARIA = 2;  // categoría secundaria
+// Al disparar una palabra NO válida no se restan puntos, pero DESAPARECEN N válidas
+// del montón (optas a menos puntos).
+export const WRONG_REMOVES_VALID = 2;
 
 // Puntos de la respuesta a una definición (sobre los puntos base de la palabra).
-export const DEF_BONUS_MULT = 4; // p.ej. palabra rara (5) acertada por definición → 20
+export const DEF_BONUS_MULT = 4;
 
-// Dificultades (práctica) + examen. Todas las partidas son por TIEMPO. El valor
-// de cada palabra sale de su categoría (pool), no de la dificultad.
+// Dificultades (práctica) + examen. Todas las partidas son por TIEMPO. El valor de
+// cada palabra sale de su categoría (principal/secundaria), no de la dificultad.
 export const DIFICULTADES = {
   facil: {
     key: 'facil', label: 'Fácil', icon: '🟢',

@@ -1,8 +1,9 @@
 // Cazapalabras 3D — FPS educativo de vocabulario a pantalla completa.
-// Disparas a palabras en MUROS 3D (de la BD: categorías del runner +
-// definiciones del rosco). El valor de cada palabra depende de su CATEGORÍA
-// (sin pistas visuales); retos de definición sin resaltar. Cámara por secciones
-// y muros con gravedad. Modo práctica (3 dificultades) + examen, todos POR TIEMPO.
+// Disparas a palabras en MONTONES 3D con gravedad (de la BD: categorías del runner +
+// definiciones del rosco). SOLO 2 categorías puntúan: principal (+5) y secundaria
+// (+2); el resto son neutras (sin pistas visuales) y dispararlas NO resta puntos pero
+// hace desaparecer válidas del montón. Retos de definición sin resaltar. Cámara por
+// secciones (calmada, sin avance). Modo práctica (3 dificultades) + examen, por TIEMPO.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -76,17 +77,21 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     return () => { cancelled = true; };
   }, [level, grade, asignatura]);
 
-  // Material de estudio: palabras agrupadas por su categoría (las del rosco van
-  // en la sección "con definición"). Conserva el orden del catálogo de categorías.
-  const wordsByCategory = useMemo(() => {
+  // Material de estudio: palabras de las 2 categorías que puntúan, agrupadas por su
+  // VALOR (5 = principal · 2 = secundaria). Las "otras" (neutras, no puntúan) se
+  // listan aparte para reconocerlas.
+  const wordsByValue = useMemo(() => {
     const m = new Map();
-    (pool?.words || []).forEach((w) => {
-      if (w.category === 'rosco') return;
-      if (!m.has(w.category)) m.set(w.category, []);
-      m.get(w.category).push(w.text);
+    (pool?.validWords || []).forEach((w) => {
+      if (!m.has(w.value)) m.set(w.value, []);
+      m.get(w.value).push(w.text);
     });
     return m;
   }, [pool]);
+  const neutralWordsList = useMemo(
+    () => (pool?.neutralWords || []).filter((w) => w.category !== 'rosco').map((w) => w.text),
+    [pool],
+  );
 
   // ---- estado de juego (autoritativo en ref, espejo en React para el HUD) ----
   const [screen, setScreen] = useState('select'); // select | play | summary
@@ -148,7 +153,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     // la palabra-respuesta de la definición se reconoce por TEXTO (no se resalta)
     const isDef = !!gs.activeDef && !!data.text
       && data.text.trim().toLowerCase() === gs.activeDef.word.trim().toLowerCase();
-    const hitKind = isDef ? 'answer' : (data.penalty ? 'penalty' : 'word');
+    const hitKind = isDef ? 'answer' : (data.valid ? 'word' : 'penalty');
     // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
     // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
     const fb = (text, color) => {
@@ -160,25 +165,25 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     };
 
     if (isDef) {
-      const pts = (data.points || 5) * DEF_BONUS_MULT;
+      const pts = (gs.activeDef.points || 5) * DEF_BONUS_MULT;
       gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
-      gs.defSolved += 1; gs.activeDef = null; gs.defTimer = gs.params.defEverySec;
+      gs.defSolved += 1; gs.activeDef = null; gs.activeDefCounted = false; gs.defTimer = gs.params.defEverySec;
       fb(`📖 ¡Correcto! +${pts}`, '#fde68a');
       return;
     }
 
-    // palabra de categoría PENALIZADORA: resta puntos y rompe el combo
-    if (data.penalty) {
-      const pen = data.points || 3;
-      gs.score = Math.max(0, gs.score - pen);
-      gs.combo = 0;
-      fb(`⛔ −${pen}`, '#fca5a5');
+    // palabra VÁLIDA (categoría principal +5 / secundaria +2)
+    if (data.valid) {
+      const pts = data.value || 1;
+      gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo); gs.wordsHit += 1;
+      fb(`+${pts}`, '#a5f3fc'); // color neutro: el resultado no revela el valor por color
       return;
     }
 
-    const pts = data.points || 1;
-    gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo); gs.wordsHit += 1;
-    fb(`+${pts}`, '#a5f3fc'); // color neutro: el resultado no revela el valor por color
+    // palabra NO válida: SIN penalización de puntos, pero desaparecen válidas del montón
+    gs.combo = 0;
+    const rv = data.removedValid || 0;
+    fb(rv > 0 ? `❌ No válida · ${rv} válida${rv > 1 ? 's' : ''} menos` : '❌ No válida', '#fca5a5');
   }, []);
 
   // ---- iniciar partida ----
@@ -189,7 +194,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       running: true, paused: false, mode, params, pool,
       timeLeft: params.durationSec, totalTime: params.durationSec,
       score: 0, combo: 0, bestCombo: 0, wordsHit: 0, nextShotAt: 0,
-      activeDef: null, defEndsAt: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
+      activeDef: null, activeDefCounted: false, defEndsAt: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
       feedback: null, feedbackUntil: 0,
     };
     controlRef.current = { yaw: 0, pitch: 0, shootQueued: false };
@@ -216,15 +221,16 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       if (!gs.paused) {
         gs.timeLeft -= dt;
         if (gs.activeDef) {
-          if (now > gs.defEndsAt) { gs.activeDef = null; gs.defTimer = gs.params.defEverySec; }
+          if (now > gs.defEndsAt) { gs.activeDef = null; gs.activeDefCounted = false; gs.defTimer = gs.params.defEverySec; }
         } else {
           gs.defTimer -= dt;
           if (gs.defTimer <= 0 && gs.pool.definitions.length) {
             const d = gs.pool.definitions[Math.floor(Math.random() * gs.pool.definitions.length)];
             gs.activeDef = { word: d.word, definition: d.definition, points: d.points };
+            gs.activeDefCounted = false;
             gs.defEndsAt = now + gs.params.defWindowSec * 1000;
-            // defPresented++ lo hace Scene al INYECTAR la palabra en un muro (visible),
-            // para no inflar la nota si todavía no hay muro donde mostrarla.
+            // defPresented++ lo hace Scene al INYECTAR la palabra en un montón (visible),
+            // para no inflar la nota si todavía no hay montón donde mostrarla.
           }
         }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
@@ -398,13 +404,13 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
         <h3>🎯 Cómo se juega</h3>
-        <p><strong>En ordenador:</strong> haz clic para capturar el ratón y empezar a disparar; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara recorre los muros por secciones: se detiene, gira hacia un muro y avanza al siguiente.</p>
-        <h3>🧱 Muros con gravedad</h3>
-        <p>Las palabras forman <strong>muros</strong> de muchas cajas apiladas. Elige bien a cuáles disparas: si rompes las de abajo, las de arriba <strong>caen</strong> para rellenar el hueco.</p>
-        <h3>🗂️ El valor depende de la categoría</h3>
-        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. El valor de cada una depende de su <strong>categoría</strong>. Mira la leyenda de abajo: las categorías <b style={{ color: '#34d399' }}>✓ dan puntos</b> y las <b style={{ color: '#f87171' }}>⛔ penalizan</b>. Reconoce a qué categoría pertenece cada palabra y <strong>lee antes de disparar</strong>.</p>
+        <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara está casi quieta y de vez en cuando <strong>gira</strong> para encarar otro montón (no avanza ni se desplaza).</p>
+        <h3>🧱 Montones con gravedad</h3>
+        <p>Las palabras forman <strong>montones</strong> de cajas apiladas que aparecen a tu alrededor. Elige bien a cuáles disparas: si rompes las de abajo, las de arriba <strong>caen</strong> para rellenar el hueco.</p>
+        <h3>🗂️ Solo 2 categorías puntúan</h3>
+        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Reconoce a qué categoría pertenece cada palabra y <strong>lee antes de disparar</strong>. El resto de palabras <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero desaparecen varias válidas</strong> del montón (optas a menos puntos).</p>
         <h3>📖 Retos de definición</h3>
-        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra está en los muros como una más (<strong>no se resalta</strong>): tienes que encontrarla y dispararle. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
+        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra está en los montones como una más (<strong>no se resalta</strong>): tienes que encontrarla y dispararle. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
         <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
       </InstructionsModal>
 
@@ -412,21 +418,27 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
         {pool.categories.length > 0 && (
           <>
-            <h3>🗂️ Categorías y sus palabras</h3>
+            <h3>🗂️ Categorías que puntúan</h3>
             {pool.categories.map((c) => {
-              const words = wordsByCategory.get(c.name) || [];
+              const words = wordsByValue.get(c.points) || [];
               if (!words.length) return null;
               return (
                 <div key={c.name} className="cz3d-study-cat">
-                  <h4 className={c.penalty ? 'pen' : ''}>
-                    {c.penalty ? '⛔' : '✓'} {c.name}
-                    <span>{c.penalty ? `−${c.points} · no dispares` : `+${c.points}`}</span>
+                  <h4>
+                    ✓ {c.name} <span>{c.role === 'principal' ? 'principal · +5' : 'secundaria · +2'}</span>
                   </h4>
                   <p className="cz3d-study-words">{words.join(' · ')}</p>
                 </div>
               );
             })}
           </>
+        )}
+        {neutralWordsList.length > 0 && (
+          <div className="cz3d-study-cat">
+            <h4 className="pen">🚫 Otras palabras (no puntúan)</h4>
+            <p className="cz3d-study-words">{neutralWordsList.join(' · ')}</p>
+            <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>desaparecer válidas</strong> del montón.</p>
+          </div>
         )}
         {pool.definitions.length > 0 && (
           <>

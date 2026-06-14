@@ -1,32 +1,33 @@
-// Render de un MURO: rejilla de prismas de palabra IDÉNTICOS (sin pistas de valor).
-// Cada caja es un prisma 3D con la palabra en su textura uniforme (una sola
-// material → 1 draw call; el texto va fog:false/toneMapped:false para legibilidad).
+// Render de un MONTÓN: grupito de prismas de palabra IDÉNTICOS (sin pistas de valor),
+// con alturas irregulares y ligero jitter (posición/rotación) → aspecto de "montón".
+// Cada caja es un prisma 3D con la palabra en su textura uniforme (una sola material
+// → 1 draw call; el texto va fog:false/toneMapped:false para legibilidad).
 // La caída por gravedad (cajas con settling) se integra en UN ÚNICO useFrame del
-// muro (no uno por caja) y se escribe imperativamente en mesh.position.y. El grupo
-// sigue cada frame la posición/orientación del muro (wall.z cambia en los ADVANCE).
+// montón (no uno por caja) y se escribe imperativamente en mesh.position.y. El grupo
+// sigue cada frame la posición/orientación del montón (cambia al reubicarse).
 import React, { memo, useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { CELL, GRAV_WALL } from '../engine/config';
+import { CELL, GRAV_PILE } from '../engine/config';
 import { faceYaw } from '../engine/walls';
 import { makeWallWordTexture } from '../engine/wordTexture';
 
-function WordBoxRaw({ box, wallId }) {
+function WordBoxRaw({ box, pileId }) {
   const ref = useRef();
   const { texture } = makeWallWordTexture(box.text);
   useEffect(() => {
     const m = ref.current;
-    if (m) { m.userData.targetId = box.id; m.userData.wallId = wallId; box._mesh = m; }
+    if (m) { m.userData.targetId = box.id; m.userData.wallId = pileId; box._mesh = m; }
     return () => { if (box._mesh === m) box._mesh = null; };
-  }, [box, wallId]);
+  }, [box, pileId]);
   return (
-    <mesh ref={ref} position={[box.x, box.y, 0]}>
+    <mesh ref={ref} position={[box.x, box.y, box.z || 0]} rotation={[0, 0, box.jrot || 0]}>
       <boxGeometry args={[CELL.w, CELL.h, CELL.depth]} />
       <meshBasicMaterial map={texture} toneMapped={false} fog={false} />
     </mesh>
   );
 }
 // memo: solo re-renderiza una caja si cambia su id o su texto (inyección de definición)
-const WordBox = memo(WordBoxRaw, (a, b) => a.box.id === b.box.id && a.box.text === b.box.text && a.wallId === b.wallId);
+const WordBox = memo(WordBoxRaw, (a, b) => a.box.id === b.box.id && a.box.text === b.box.text && a.pileId === b.pileId);
 
 function WordWall({ wall }) {
   const grp = useRef();
@@ -40,7 +41,7 @@ function WordWall({ wall }) {
     const dt = Math.min(dtRaw, 0.05);
     wall.boxes.forEach((b) => {
       if (!b.settling) return;
-      b.vy -= GRAV_WALL * dt;
+      b.vy -= GRAV_PILE * dt;
       b.y += b.vy * dt;
       if (b.y <= b.targetY) {
         b.y = b.targetY;
@@ -55,7 +56,7 @@ function WordWall({ wall }) {
   wall.boxes.forEach((b) => boxes.push(b));
   return (
     <group ref={grp} position={[wall.x, wall.y, wall.z]} rotation-y={faceYaw(wall.x, wall.z)}>
-      {boxes.map((b) => <WordBox key={b.id} box={b} wallId={wall.id} />)}
+      {boxes.map((b) => <WordBox key={b.id} box={b} pileId={wall.id} />)}
     </group>
   );
 }

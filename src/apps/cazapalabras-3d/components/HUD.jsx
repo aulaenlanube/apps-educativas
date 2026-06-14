@@ -1,7 +1,7 @@
-// HUD (overlay DOM sobre el Canvas). Solo informativo → pointer-events:none
-// salvo en los chips. Muestra objetivo (definición), tiempo, puntuación, combo,
-// power-ups, feedback y la LEYENDA de categorías (qué dispara da puntos y qué
-// penaliza), bien visible en la parte inferior.
+// HUD (overlay DOM sobre el Canvas). Solo informativo → pointer-events:none.
+// Muestra objetivo (definición), tiempo, puntuación, combo, feedback y la LEYENDA
+// de las 2 categorías que puntúan (principal +5 · secundaria +2). El resto de
+// palabras no puntúan: dispararlas hace desaparecer válidas (regla, abajo).
 import React from 'react';
 
 const fmtTime = (s) => {
@@ -10,8 +10,6 @@ const fmtTime = (s) => {
   return `${m}:${String(v % 60).padStart(2, '0')}`;
 };
 
-const tierClass = (p) => (p >= 5 ? 't5' : p === 2 ? 't2' : 't1');
-
 export default function HUD({
   timeLeft, totalTime, score, combo,
   activeDef, defRemaining, defWindow, feedback, examInfo, categories,
@@ -19,8 +17,6 @@ export default function HUD({
   const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
   const low = timeLeft <= 10;
   const cats = categories || [];
-  const scoring = cats.filter((c) => !c.penalty);
-  const penalties = cats.filter((c) => c.penalty);
 
   return (
     <div className="cz3d-hud">
@@ -52,27 +48,20 @@ export default function HUD({
         </div>
       </div>
 
-      {/* Leyenda de categorías (abajo, bien legible) */}
+      {/* Leyenda: SOLO las 2 categorías que puntúan + regla del resto */}
       {cats.length > 0 && (
         <div className="cz3d-legend">
           <div className="cz3d-legend-row">
             <span className="cz3d-legend-label good">✓ DISPARA</span>
-            {scoring.map((c) => (
-              <span key={c.name} className={`cz3d-cat ${tierClass(c.points)}`}>
+            {cats.map((c) => (
+              <span key={c.name} className={`cz3d-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
                 {c.name} <b>+{c.points}</b>
               </span>
             ))}
           </div>
-          {penalties.length > 0 && (
-            <div className="cz3d-legend-row">
-              <span className="cz3d-legend-label bad">⛔ NO dispares</span>
-              {penalties.map((c) => (
-                <span key={c.name} className="cz3d-cat pen">
-                  {c.name} <b>−{c.points}</b>
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="cz3d-legend-note">
+            ⚠️ El resto de palabras no puntúan: dispararlas hace <b>desaparecer válidas</b>
+          </div>
         </div>
       )}
 

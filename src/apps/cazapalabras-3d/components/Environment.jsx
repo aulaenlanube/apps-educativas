@@ -1,12 +1,10 @@
-// Entorno 3D cinematográfico que transmite AVANCE a alta velocidad:
-//  · Skydome con shader (gradiente + nebulosa FBM animada).
-//  · Suelo con shader tipo Tron (rejilla AA por fwidth + pulso de energía que
-//    viaja + desvanecido por distancia). En tier 'low' se usa una CanvasTexture
-//    más barata.
-//  · 3 capas de estrellas con PARALLAX (vienen hacia la cámara a distinta
-//    velocidad y se reciclan).
-//  · Estructuras variadas que pasan de largo: obeliscos, anillos de energía y
-//    esquirlas flotantes.
+// Entorno 3D cinematográfico CALMADO (sin sensación de desplazamiento → no marea):
+//  · Skydome con shader (gradiente + nebulosa FBM muy lenta).
+//  · Suelo con shader tipo Tron ESTÁTICO (rejilla AA por fwidth + pulso de energía
+//    radial que NO traslada la rejilla). En tier 'low' una CanvasTexture más barata.
+//  · 3 capas de estrellas FIJAS (sin parallax hacia la cámara).
+//  · Estructuras flotantes que giran sobre sí mismas EN SU SITIO (no pasan de largo):
+//    obeliscos, anillos de energía y esquirlas.
 // Los elementos luminosos se marcan en BLOOM_LAYER para el bloom selectivo.
 // Todo el decorado escala con particleBudget (∝ tier de calidad).
 import React, { useEffect, useMemo, useRef } from 'react';
@@ -87,8 +85,7 @@ const FLOOR_FRAG = /* glsl */`
   varying vec3 vWorld;
   uniform float uTime;
   void main(){
-    vec2 coord = vWorld.xz * 0.22;
-    coord.y += uTime * 1.1;                 // desplazamiento hacia la cámara
+    vec2 coord = vWorld.xz * 0.22;          // rejilla ESTÁTICA (sin scroll → no marea)
     vec2 g = abs(fract(coord) - 0.5);
     vec2 d = fwidth(coord) * 1.5 + 1e-4;
     vec2 l = vec2(1.0) - smoothstep(vec2(0.0), d, g);
@@ -144,8 +141,7 @@ function FloorShader() {
 
 function FloorCanvas() {
   const grid = useMemo(makeGridTexture, []);
-  useEffect(() => () => grid.dispose(), [grid]);
-  useFrame((_, dt) => { grid.offset.y -= dt * 0.6; });
+  useEffect(() => () => grid.dispose(), [grid]); // rejilla estática (sin scroll → no marea)
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -40]} receiveShadow>
       <planeGeometry args={[160, 240]} />
@@ -154,8 +150,8 @@ function FloorCanvas() {
   );
 }
 
-/* ───────────────────────── Estrellas con parallax ───────────────────────── */
-function StarLayer({ count, size, color, speed, spread, opacity }) {
+/* ───────────────────────── Estrellas FIJAS (sin parallax → no marea) ───────────────────────── */
+function StarLayer({ count, size, color, spread, opacity }) {
   const ref = useRef();
   const geo = useMemo(() => {
     const g = new THREE.BufferGeometry();
@@ -169,16 +165,6 @@ function StarLayer({ count, size, color, speed, spread, opacity }) {
     return g;
   }, [count, spread]);
   useEffect(() => () => geo.dispose(), [geo]);
-  useFrame((_, dt) => {
-    const arr = geo.attributes.position.array;
-    const step = speed * dt;
-    for (let i = 0; i < count; i++) {
-      let z = arr[i * 3 + 2] + step;
-      if (z > 12) { z = -210; arr[i * 3] = (Math.random() - 0.5) * spread; arr[i * 3 + 1] = Math.random() * 70 + 2; }
-      arr[i * 3 + 2] = z;
-    }
-    geo.attributes.position.needsUpdate = true;
-  });
   return (
     <points ref={(o) => { ref.current = o; markBloom(o); }} geometry={geo}>
       <pointsMaterial size={size} color={color} transparent opacity={opacity} sizeAttenuation depthWrite={false} toneMapped={false} />
@@ -186,30 +172,27 @@ function StarLayer({ count, size, color, speed, spread, opacity }) {
   );
 }
 
-/* ───────────────────────── Estructuras que pasan de largo ───────────────────────── */
+/* ───────────────────────── Estructuras flotantes (giran EN SU SITIO, no se trasladan) ───────────────────────── */
 function FlyByStructures({ count }) {
   const items = useMemo(() => Array.from({ length: count }, (_, i) => {
     const kind = i % 3; // 0 obelisco · 1 anillo · 2 esquirla
     const side = i % 2 === 0 ? -1 : 1;
     return {
       kind, side,
-      x: side * (9 + Math.random() * 9),
+      x: side * (11 + Math.random() * 13),
       y: kind === 1 ? 4 + Math.random() * 8 : (kind === 2 ? 3 + Math.random() * 10 : 0),
       h: 3 + Math.random() * 8,
-      z: -Math.random() * 200,
-      speed: 7 + Math.random() * 5,
+      z: -14 - Math.random() * 180, // repartidas en profundidad, sin acercarse nunca
       hue: Math.random() < 0.5 ? '#6d28d9' : '#0e7490',
       rot: Math.random() * 6,
-      spin: (Math.random() - 0.5) * 1.2,
+      spin: (Math.random() - 0.5) * 0.5, // giro lento sobre sí mismas
     };
   }), [count]);
   const refs = useRef([]);
   useFrame((_, dt) => {
     for (let i = 0; i < items.length; i++) {
       const it = items[i];
-      it.z += it.speed * dt;
-      if (it.z > 16) { it.z = -200 - Math.random() * 20; it.x = it.side * (9 + Math.random() * 9); }
-      it.rot += it.spin * dt;
+      it.rot += it.spin * dt; // solo rota en su sitio (sin trasladarse → no marea)
       const m = refs.current[i];
       if (m) {
         m.position.set(it.x, it.kind === 0 ? it.h / 2 : it.y, it.z);
@@ -257,9 +240,9 @@ export default function Environment({ budget = 1, tier = 'medium' }) {
     <group>
       <Skydome tier={tier} />
       <Floor tier={tier} />
-      <StarLayer count={s1} size={0.9} color="#e0f2fe" speed={10} spread={170} opacity={0.95} />
-      <StarLayer count={s2} size={0.5} color="#bae6fd" speed={5} spread={190} opacity={0.8} />
-      <StarLayer count={s3} size={1.4} color="#c4b5fd" speed={16} spread={150} opacity={0.9} />
+      <StarLayer count={s1} size={0.9} color="#e0f2fe" spread={170} opacity={0.95} />
+      <StarLayer count={s2} size={0.5} color="#bae6fd" spread={190} opacity={0.8} />
+      <StarLayer count={s3} size={1.4} color="#c4b5fd" spread={150} opacity={0.9} />
       <FlyByStructures count={structs} />
     </group>
   );
