@@ -45,18 +45,33 @@
    glifo, independientemente del relleno transparente. Se hereda a los hijos,
    así que basta ponerla en el contenedor del texto (logo, enlaces, botones). */
 .glass-hdr-pop {
-  /* Borde nítido fino (sin halo difuso, que sobre el degradado se veía como
-     una nube blanca). Outline limpio de ~0,5px en las 4 direcciones. */
+  /* Borde blanco de 1px, nítido (8 direcciones, sin halo difuso). Para EduApps. */
   text-shadow:
-    -0.5px 0 0 rgba(255, 255, 255, 0.7),
-     0.5px 0 0 rgba(255, 255, 255, 0.7),
-     0 -0.5px 0 rgba(255, 255, 255, 0.7),
-     0  0.5px 0 rgba(255, 255, 255, 0.7);
+     1px 0 0 rgba(255, 255, 255, 0.9),
+    -1px 0 0 rgba(255, 255, 255, 0.9),
+     0  1px 0 rgba(255, 255, 255, 0.9),
+     0 -1px 0 rgba(255, 255, 255, 0.9),
+     0.7px  0.7px 0 rgba(255, 255, 255, 0.9),
+    -0.7px  0.7px 0 rgba(255, 255, 255, 0.9),
+     0.7px -0.7px 0 rgba(255, 255, 255, 0.9),
+    -0.7px -0.7px 0 rgba(255, 255, 255, 0.9);
 }
-/* En tema oscuro el texto ya es claro; un outline blanco no aporta y podría
-   emborronar: lo suavizamos a un leve halo. */
+/* En tema oscuro el texto ya es claro: borde más fino y tenue. */
 .dark .glass-hdr-pop {
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.30);
+  text-shadow:
+     0.5px 0 0 rgba(255, 255, 255, 0.4),
+    -0.5px 0 0 rgba(255, 255, 255, 0.4),
+     0  0.5px 0 rgba(255, 255, 255, 0.4),
+     0 -0.5px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Borde fino (~0,5px) para el subtítulo del logo: legible sin recargar. */
+.glass-hdr-pop-sm {
+  text-shadow:
+    -0.5px 0 0 rgba(255, 255, 255, 0.6),
+     0.5px 0 0 rgba(255, 255, 255, 0.6),
+     0 -0.5px 0 rgba(255, 255, 255, 0.6),
+     0  0.5px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ---- Hairline especular superior + anillo interior (firma liquid glass) ---- */

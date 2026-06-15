@@ -8,7 +8,6 @@ import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/component
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from '@/apps/appList';
-import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
 
 const SubjectList = ({ subjects, level, grade }) => {
@@ -154,7 +153,6 @@ const SubjectPage = () => {
             colors={['#A855F7', '#EC4899']}
             glowColor="rgba(168,85,247,0.3)"
             shape="arrow"
-            className="glass-hdr-pop"
           >
             Inicio
           </AnimatedBorderButton>
@@ -182,9 +180,6 @@ const SubjectPage = () => {
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">
-                <div style={{ marginBottom: '-24px', zIndex: 10, position: 'relative' }}>
-                  <Mascot />
-                </div>
                 <div className="bg-white/70 backdrop-blur-md border border-purple-200 border-t-[4px] border-t-purple-400 shadow-lg rounded-2xl px-8 py-4">
                   <p className="text-xl text-gray-600 font-medium">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
                 </div>

@@ -35,7 +35,7 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
               <h1 className="glass-hdr-pop text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                 EduApps
               </h1>
-              <p className="glass-hdr-pop text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 font-medium tracking-wide">{subtitle}</p>
+              <p className="glass-hdr-pop-sm text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 font-medium tracking-wide">{subtitle}</p>
             </div>
           </div>
 
@@ -45,7 +45,7 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
             <NavLink
               to="/blog"
               className={({ isActive }) =>
-                `glass-hdr-pop inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
                     ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
                     : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
