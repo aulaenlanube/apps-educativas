@@ -15,6 +15,7 @@ import SimInfoModal from './components/SimInfoModal';
 import SIM_INFO from './simInfo';
 import { temaDeSim, pickAmbience, NEUTRAL_AMBIENCE } from './engine/ambiences';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
+import Scene3DBackground from '@/components/ui/Scene3DBackground';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { GLOBAL_QUALITY_PARAMS, QUALITY_LABELS } from '@/services/graphicsQuality';
 import SimViewport from './components/SimViewport';
@@ -353,8 +354,13 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const ActiveScene = activeSim?.Scene;
   const cursoActual = cursoLabel({ level, grade });
 
+  // las pantallas de menú (sin escenario propio) muestran el entorno 3D de fondo
+  const enPantallaMenu = screen === 'select' || screen === 'catalog' || screen === 'summary';
+
   return (
     <div className="fislab-root">
+      {enPantallaMenu && <Scene3DBackground />}
+
       {/* ============ SELECCIÓN DE MODO ============ */}
       {screen === 'select' && (
         <motion.div className="fislab-select" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>

@@ -7,7 +7,13 @@
   padding: 18px clamp(10px, 3vw, 34px) 40px;
   font-family: inherit;
   position: relative;
+  isolation: isolate; /* acota el fondo 3D (Scene3DBackground) a esta capa */
 }
+
+/* el contenido de los menús va por encima del fondo 3D */
+.fislab-select,
+.fislab-catalog,
+.fislab-summary { position: relative; z-index: 1; }
 
 /* ---------- selección de modo ---------- */
 .fislab-select { max-width: 880px; margin: 0 auto; text-align: center; }
