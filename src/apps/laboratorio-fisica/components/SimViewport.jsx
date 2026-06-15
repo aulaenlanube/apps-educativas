@@ -12,6 +12,8 @@ import { OrbitControls } from '@react-three/drei';
 import {
   GLOBAL_QUALITY_PARAMS, effectiveDpr, createFpsGovernor, lowerTier,
 } from '@/services/graphicsQuality';
+import LabEnvironment from './LabEnvironment';
+import { DEFAULT_AMBIENCE } from '../engine/ambiences';
 
 function GovernorTicker({ onDowngrade }) {
   const govRef = useRef(null);
@@ -27,10 +29,12 @@ export default function SimViewport({
   camera,
   controls,
   background = '#0b1026',
+  ambience,
   children,
   className = '',
 }) {
   const Q = GLOBAL_QUALITY_PARAMS[tier] || GLOBAL_QUALITY_PARAMS.medium;
+  const amb = ambience || DEFAULT_AMBIENCE;
   const [ctxKey, setCtxKey] = useState(0);
 
   const onCreated = useCallback(({ gl }) => {
@@ -57,13 +61,14 @@ export default function SimViewport({
         camera={{ position: camera?.position || [9, 6, 11], fov: camera?.fov || 45 }}
         onCreated={onCreated}
       >
-        <color attach="background" args={[background]} />
-        <fog attach="fog" args={[background, 38, 90]} />
-        <ambientLight intensity={0.5} />
-        <hemisphereLight args={['#bfe3ff', '#2c2354', 0.55]} />
+        <color attach="background" args={[amb.sky]} />
+        <fog attach="fog" args={[amb.horizon, amb.fog[0], amb.fog[1]]} />
+        <ambientLight intensity={amb.ambient ?? 0.5} />
+        <hemisphereLight args={[amb.hemiSky || '#bfe3ff', amb.hemiGround || '#2c2354', amb.hemi ?? 0.55]} />
         <directionalLight
-          position={[10, 16, 7]}
-          intensity={1.2}
+          position={amb.sunPos || [10, 16, 7]}
+          color={amb.sun || '#ffffff'}
+          intensity={amb.sunI ?? 1.2}
           castShadow={Q.shadows}
           shadow-mapSize-width={Q.shadowMapSize || 512}
           shadow-mapSize-height={Q.shadowMapSize || 512}
@@ -74,6 +79,7 @@ export default function SimViewport({
           shadow-camera-far={60}
           shadow-bias={-0.0004}
         />
+        <LabEnvironment amb={amb} budget={Q.particleBudget} />
         {prefAuto && <GovernorTicker onDowngrade={handleDowngrade} />}
         {/* Suspense LOCAL: cualquier carga async dentro del Canvas (la fuente
             de los textos 3D) se queda aquí y no burbujea al Suspense global

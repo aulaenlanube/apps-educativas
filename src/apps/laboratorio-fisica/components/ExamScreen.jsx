@@ -9,6 +9,7 @@ import { GLOBAL_QUALITY_PARAMS } from '@/services/graphicsQuality';
 import { simPorId, defaultsDe } from '../registry';
 import { answerMatches, relError, parseStudentNumber, fmt } from '../engine/integrator';
 import { puntosPregunta } from '../engine/exam';
+import { temaDeSim, pickAmbience } from '../engine/ambiences';
 
 export default function ExamScreen({ questions, tier, prefAuto, onAutoDowngrade, onProgress, onFinish }) {
   const [qIndex, setQIndex] = useState(0);
@@ -25,6 +26,11 @@ export default function ExamScreen({ questions, tier, prefAuto, onAutoDowngrade,
   const q = questions[qIndex];
   const sim = useMemo(() => simPorId(q.simId), [q.simId]);
   const simParams = useMemo(() => ({ ...defaultsDe(sim), ...q.simParams }), [sim, q]);
+  // clima del entorno, estable por pregunta (semilla derivada del índice)
+  const ambience = useMemo(
+    () => pickAmbience(temaDeSim(q.simId), ((qIndex * 2654435761) >>> 0) / 4294967296),
+    [q.simId, qIndex],
+  );
   const current = resultsRef.current[qIndex];
 
   // la fase Observa termina cuando la simulación acaba o cumple su duración
@@ -238,7 +244,7 @@ export default function ExamScreen({ questions, tier, prefAuto, onAutoDowngrade,
                 onAutoDowngrade={onAutoDowngrade}
                 camera={sim.camara}
                 controls={sim.controles}
-                background={sim.fondo ? sim.fondo(simParams) : '#0b1026'}
+                ambience={ambience}
               >
                 <SimScene
                   world={worldRef.current}

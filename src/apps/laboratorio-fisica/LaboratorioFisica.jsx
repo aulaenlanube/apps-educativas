@@ -13,6 +13,7 @@ import {
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import SimInfoModal from './components/SimInfoModal';
 import SIM_INFO from './simInfo';
+import { temaDeSim, pickAmbience } from './engine/ambiences';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { GLOBAL_QUALITY_PARAMS, QUALITY_LABELS } from '@/services/graphicsQuality';
@@ -97,6 +98,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const [params, setParams] = useState({});
   const [playing, setPlaying] = useState(false);
   const [simDone, setSimDone] = useState(false); // la simulación llegó a su final (congelada)
+  const [ambiente, setAmbiente] = useState(null); // clima/entorno sorteado al entrar
   const [speed, setSpeed] = useState(1);
   const [resetToken, setResetToken] = useState(0);
   const [showVectors, setShowVectors] = useState(true);
@@ -297,6 +299,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     setPanelOpen(true);
     setGraphOpen(true);
     visitedRef.current.add(sim.id);
+    setAmbiente(pickAmbience(temaDeSim(sim.id), Math.random())); // clima sorteado al entrar
     setShowInfo(!infoHidden); // se abre la info al entrar (salvo "no volver a mostrar")
     setScreen('sim');
   };
@@ -440,7 +443,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
               onAutoDowngrade={handleAutoDowngrade}
               camera={activeSim.camara}
               controls={activeSim.controles}
-              background={activeSim.fondo ? activeSim.fondo(params) : '#0b1026'}
+              ambience={ambiente}
               className="fislab-viewport-full"
             >
               <ActiveScene
