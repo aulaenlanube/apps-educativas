@@ -24,15 +24,13 @@ import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
 import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
-// Fondo 3D ambiental del CURSO. Se monta por defecto en las apps con preset
-// 'standard' (las de tarjetas claras) y se respeta el fondo propio de las apps
-// inmersivas. La política y la configuración por curso viven en
-// services/courseBackgrounds.js; CourseBackground carga three.js en LAZY.
-// Overrides por app (opcionales) en su config (commonApps.js):
-//   `fondo3D` (true → forzar / false → desactivar),
-//   `fondo3DAmbiente` ('dia'|'atardecer'|'niebla'|'lluvia'|'noche'), `fondo3DScrim` (0..1).
-import CourseBackground from '@/components/ui/CourseBackground';
-import { courseBackgroundEnabledForApp } from '@/services/courseBackgrounds';
+// Fondo 3D ambiental del CURSO. Lo monta de forma PERSISTENTE
+// PersistentCourseBackground (en App), detrás de todo, para que no se reinicie
+// al navegar. Aquí solo decidimos si esta app lo usa (preset 'standard' sin
+// fondo propio) para dejar el contenedor transparente. La política y la config
+// por curso viven en services/courseBackgrounds.js. Override por app vía
+// `fondo3D` (true → forzar / false → desactivar) en su config (commonApps.js).
+import { courseBackgroundEnabledForApp, getHeaderPresetName } from '@/services/courseBackgrounds';
 
 // ─── Header Presets ───────────────────────────────────────────────────
 // Cada preset define el estilo visual de la cabecera y el layout de la página.
@@ -139,21 +137,9 @@ const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 
 const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 
 /**
- * Determina el preset de cabecera para una app dada.
- * @param {string} appId - Identificador de la app
- * @returns {string} - Nombre del preset ('standard' | 'reduced' | 'dark-green' | 'dark-glass' | 'calma')
- */
-function getHeaderPresetName(appId) {
-    if (appId === 'terminal-retro') return 'dark-green';
-    if (appId.startsWith('isla-de-la-calma')) return 'calma';
-    if (appId === 'laboratorio-fisica') return 'inmersivo';
-    if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria', 'cazapalabras-3d'].some(id => appId.includes(id))) return 'dark-glass';
-    if (appId === 'runner') return 'reduced';
-    return 'standard';
-}
-
-/**
  * Devuelve el preset completo para una app, incluyendo override de containerClass para apps wide.
+ * (El nombre del preset lo resuelve getHeaderPresetName en courseBackgrounds.js,
+ * fuente única compartida con el fondo de curso.)
  */
 function getHeaderPreset(appId) {
     const presetName = getHeaderPresetName(appId);
@@ -372,14 +358,8 @@ const AppRunnerPage = () => {
 
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
-                {useCourseBg && (
-                    <CourseBackground
-                        level={level}
-                        grade={grade}
-                        ambienceId={app.fondo3DAmbiente}
-                        scrim={app.fondo3DScrim}
-                    />
-                )}
+                {/* El fondo 3D de curso lo monta PersistentCourseBackground (en App),
+                    detrás de todo; aquí el contenedor solo se vuelve transparente. */}
 
                 <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} flex items-center gap-3`}>
 

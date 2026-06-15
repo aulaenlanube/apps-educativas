@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import useGAPageView from '@/hooks/useGAPageView';
+import PersistentCourseBackground from '@/components/ui/PersistentCourseBackground';
 
 // Tras un callback OAuth (Google), supabase-js procesa el hash/query y dispara
 // SIGNED_IN. Como redirectTo = raiz del sitio, el usuario aterriza en `/`, no
@@ -36,6 +37,7 @@ function App() {
   return (
     <>
       <OAuthPostLoginRedirect />
+      <PersistentCourseBackground />
       <Outlet />
     </>
   );

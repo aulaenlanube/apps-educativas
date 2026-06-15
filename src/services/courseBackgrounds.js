@@ -95,3 +95,24 @@ export function courseBackgroundEnabledForApp(appId, presetName, appFlag) {
   if (presetName && presetName !== 'standard') return false;
   return !appHasOwnBackground(appId);
 }
+
+// Nombre del preset de cabecera de una app a partir SOLO de su id (reglas de
+// string). Fuente única compartida por AppRunnerPage (estilo del header) y por
+// el fondo persistente (PersistentCourseBackground) para decidir, a partir de la
+// URL, si una app individual debe mostrar el fondo de curso.
+export function getHeaderPresetName(appId = '') {
+  if (appId === 'terminal-retro') return 'dark-green';
+  if (appId.startsWith('isla-de-la-calma')) return 'calma';
+  if (appId === 'laboratorio-fisica') return 'inmersivo';
+  if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria', 'cazapalabras-3d'].some((id) => appId.includes(id))) return 'dark-glass';
+  if (appId === 'runner') return 'reduced';
+  return 'standard';
+}
+
+// Versión que solo necesita el id (deriva el preset). La usa el fondo persistente
+// para decidir desde la URL. No considera el override `fondo3D` por app (que vive
+// en la config y hoy no usa ninguna): AppRunnerPage sí lo respeta vía la función
+// de arriba para el estilo del propio contenedor.
+export function courseBackgroundEnabledForAppId(appId) {
+  return courseBackgroundEnabledForApp(appId, getHeaderPresetName(appId), undefined);
+}

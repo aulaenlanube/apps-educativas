@@ -11,7 +11,6 @@ import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps,
 import Mascot from '@/components/Mascot';
 import StarRating from '@/components/ui/StarRating';
 import AppIcon from '@/components/AppIcon';
-import CourseBackground from '@/components/ui/CourseBackground';
 import { supabase } from '@/lib/supabase';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
@@ -84,15 +83,15 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
             animate={{ opacity: 1, scale: 1 }}
             className="w-full max-w-xl mx-auto mb-12"
         >
-            <div className="bg-white/90 backdrop-blur-sm border-2 border-indigo-100 rounded-3xl p-1 shadow-xl overflow-hidden relative">
+            <div className="bg-white/35 backdrop-blur-lg border border-white/30 rounded-3xl p-1 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" />
                 <div className="p-6 md:p-8 text-center flex flex-col items-center">
-                    <h3 className="text-lg font-semibold text-gray-600 mb-6 flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-6 flex items-center gap-2">
                         <Zap className="w-5 h-5 text-purple-500 fill-current" />
                         ¡Deja que el azar elija por ti!
                     </h3>
 
-                    <div className="w-full h-24 mb-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100 flex items-center justify-center relative overflow-hidden shadow-inner">
+                    <div className="w-full h-24 mb-6 bg-white/25 backdrop-blur-sm rounded-2xl border border-white/30 flex items-center justify-center relative overflow-hidden shadow-inner">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentAppIndex}
@@ -250,8 +249,7 @@ const AppListPage = () => {
                     ],
                 })}</script>
             </Helmet>
-            <div className="relative min-h-screen overflow-x-hidden" style={{ isolation: 'isolate' }}>
-                <CourseBackground level={level} grade={grade} />
+            <div className="relative min-h-screen overflow-x-hidden">
                 <div className="relative z-10">
                 <Header subtitle={headerSubtitle}>
                     <AnimatedBorderButton

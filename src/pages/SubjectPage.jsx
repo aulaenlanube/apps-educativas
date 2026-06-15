@@ -10,7 +10,6 @@ import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from '@/apps/appList';
 import Mascot from '@/components/Mascot';
 import SubjectIcon from '@/components/SubjectIcon';
-import CourseBackground from '@/components/ui/CourseBackground';
 
 const SubjectList = ({ subjects, level, grade }) => {
   const navigate = useNavigate();
@@ -147,8 +146,7 @@ const SubjectPage = () => {
           ],
         })}</script>
       </Helmet>
-      <div className="relative min-h-screen overflow-x-hidden" style={{ isolation: 'isolate' }}>
-        <CourseBackground level={level} grade={grade} />
+      <div className="relative min-h-screen overflow-x-hidden">
         <div className="relative z-10">
         <Header>
           <AnimatedBorderButton
