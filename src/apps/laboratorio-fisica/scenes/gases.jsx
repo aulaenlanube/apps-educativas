@@ -110,31 +110,39 @@ function Scene({ world, params, playing, resetToken, quality, onTelemetry }) {
   const kPa = presionKPa(p.n, p.T, p.V);
   // el manómetro se tiñe según la presión (verde ~atmosférica, rojo alta)
   const presionColor = kPa > 250 ? '#f87171' : kPa > 130 ? '#fbbf24' : '#4ade80';
+  // la caja se apoya sobre la mesa (fondo ≈ y=0), como el resto de simulaciones,
+  // para que el suelo del entorno no la corte aunque cambie el volumen.
+  const cy = arista / 2 + 0.05;
 
   return (
     <group>
-      {/* mesa del laboratorio */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -arista / 2 - 0.25, 0]} receiveShadow>
+      {/* mesa del laboratorio (a ras de suelo) */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
         <circleGeometry args={[10, 40]} />
         <meshStandardMaterial color="#1c2840" roughness={0.95} />
       </mesh>
 
-      {/* caja de vidrio (el volumen del gas) */}
-      <mesh>
-        <boxGeometry args={[arista, arista, arista]} />
-        <meshStandardMaterial color="#7dd3fc" transparent opacity={0.07} depthWrite={false} />
-        <Edges color="#7dd3fc" />
-      </mesh>
+      {/* aparato del gas, apoyado sobre la mesa */}
+      <group position={[0, cy, 0]}>
+        {/* caja de vidrio (el volumen del gas) */}
+        <mesh>
+          <boxGeometry args={[arista, arista, arista]} />
+          <meshStandardMaterial color="#7dd3fc" transparent opacity={0.07} depthWrite={false} />
+          <Edges color="#7dd3fc" />
+        </mesh>
 
-      <Particulas world={world} params={p} budget={quality.particleBudget || 0.6} />
+        <Particulas world={world} params={p} budget={quality.particleBudget || 0.6} />
 
-      {/* manómetro */}
-      <Billboard position={[0, arista / 2 + 1.1, 0]}>
-        <Texto3D fontSize={0.52} color={presionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
-          {fmt(kPa, 1)} kPa
-        </Texto3D>
-      </Billboard>
-      <Billboard position={[0, -arista / 2 - 0.75, 0]}>
+        {/* manómetro sobre la caja */}
+        <Billboard position={[0, arista / 2 + 1.1, 0]}>
+          <Texto3D fontSize={0.52} color={presionColor} outlineWidth={0.02} outlineColor="#0f172a" anchorX="center">
+            {fmt(kPa, 1)} kPa
+          </Texto3D>
+        </Billboard>
+      </group>
+
+      {/* datos al pie, justo sobre la mesa */}
+      <Billboard position={[0, 0.5, arista / 2 + 0.4]}>
         <Texto3D fontSize={0.3} color="#94a3b8" anchorX="center">
           {fmt(p.V, 0)} L · {fmt(p.T, 0)} K · {fmt(p.n, 1)} mol
         </Texto3D>
@@ -162,8 +170,8 @@ const simDef = {
     { titulo: 'Modelo cinético', expr: 'T ∝ velocidad de las partículas', leyenda: 'más temperatura → más agitación → más choques con las paredes → más presión' },
   ],
   fondo: () => '#0d1530',
-  camara: { position: [6, 4, 8], fov: 45 },
-  controles: { target: [0, 0, 0], maxDistance: 25, maxPolarAngle: Math.PI * 0.6 },
+  camara: { position: [6, 5, 8.5], fov: 45 },
+  controles: { target: [0, 1.6, 0], maxDistance: 25, maxPolarAngle: Math.PI * 0.6 },
   Scene,
   retos: [
     {
