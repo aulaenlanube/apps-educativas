@@ -150,7 +150,7 @@ const SubjectPage = () => {
         <Header>
           <AnimatedBorderButton
             onClick={() => navigate('/')}
-            colors={['#A855F7', '#EC4899']}
+            colors={['#ffffff', '#ffffff']}
             glowColor="rgba(255,255,255,0.45)"
             borderColor="#ffffff"
             shape="arrow"

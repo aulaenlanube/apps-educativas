@@ -166,23 +166,28 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-white/30 group"
+                        whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+                        whileTap={{ scale: 0.98 }}
+                        className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white/55"
                         onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
                     >
-                        <div className="flex items-start gap-4 mb-3">
-                            <div className="transition-transform duration-300 group-hover:scale-110">
-                                <AppIcon appId={app.id} size={64} />
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="relative z-10">
+                            <div className="flex items-start gap-4 mb-3">
+                                <div className="transition-transform duration-300 group-hover:scale-110">
+                                    <AppIcon appId={app.id} size={64} />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors leading-tight">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
+                                    <p className="text-sm text-gray-700 mt-1 line-clamp-2">{app.description}</p>
+                                </div>
                             </div>
-                            <div className="flex-1 min-w-0">
-                                <h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors leading-tight">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
-                                <p className="text-sm text-gray-700 mt-1 line-clamp-2">{app.description}</p>
-                            </div>
+                            {r && r.total_ratings > 0 && (
+                                <div className="mt-3 flex items-center gap-1">
+                                    <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />
+                                </div>
+                            )}
                         </div>
-                        {r && r.total_ratings > 0 && (
-                            <div className="mt-3 flex items-center gap-1">
-                                <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />
-                            </div>
-                        )}
                     </motion.div>
                 );
             })}
