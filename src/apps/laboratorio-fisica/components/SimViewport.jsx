@@ -30,6 +30,7 @@ export default function SimViewport({
   controls,
   background = '#0b1026',
   ambience,
+  groundY,
   children,
   className = '',
 }) {
@@ -79,7 +80,7 @@ export default function SimViewport({
           shadow-camera-far={60}
           shadow-bias={-0.0004}
         />
-        <LabEnvironment amb={amb} budget={Q.particleBudget} />
+        <LabEnvironment amb={amb} budget={Q.particleBudget} groundY={groundY} />
         {prefAuto && <GovernorTicker onDowngrade={handleDowngrade} />}
         {/* Suspense LOCAL: cualquier carga async dentro del Canvas (la fuente
             de los textos 3D) se queda aquí y no burbujea al Suspense global

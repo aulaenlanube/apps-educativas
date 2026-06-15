@@ -245,6 +245,7 @@ export default function ExamScreen({ questions, tier, prefAuto, onAutoDowngrade,
                 camera={sim.camara}
                 controls={sim.controles}
                 ambience={ambience}
+                groundY={sim.entornoY}
               >
                 <SimScene
                   world={worldRef.current}

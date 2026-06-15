@@ -223,6 +223,9 @@ const simDef = {
     { titulo: 'Número de Reynolds', expr: 'Re = ρ_f·v·2R/η', leyenda: 'si Re > 1, Stokes deja de valer' },
   ],
   fondo: () => '#0d1426',
+  // el montaje es una columna vertical: el suelo del laboratorio está muy abajo
+  // (≈ -5,5). El entorno coloca su pradera a este nivel para que no corte el tubo.
+  entornoY: -5.8,
   camara: { position: [5, -1, 7], fov: 45 },
   controles: { target: [0, -2.2, 0], maxDistance: 22, maxPolarAngle: Math.PI },
   Scene,

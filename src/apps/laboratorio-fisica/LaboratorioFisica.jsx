@@ -444,6 +444,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
               camera={activeSim.camara}
               controls={activeSim.controles}
               ambience={ambiente}
+              groundY={activeSim.entornoY}
               className="fislab-viewport-full"
             >
               <ActiveScene

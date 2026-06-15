@@ -208,6 +208,9 @@ const simDef = {
     { titulo: 'Bernoulli', expr: 'p + ½·ρ·v² = cte', leyenda: 'donde el aire va más rápido, la presión baja' },
   ],
   fondo: () => '#0a1228',
+  // túnel alto centrado en y=0 con el suelo muy abajo (≈ -7,1): el entorno baja su
+  // pradera a este nivel para no cortar la cámara de ensayo por la mitad.
+  entornoY: -7.4,
   camara: { position: [0, 0, 19], fov: 50 },
   controles: { target: [0, 0, 0], maxDistance: 40, maxPolarAngle: Math.PI },
   Scene,

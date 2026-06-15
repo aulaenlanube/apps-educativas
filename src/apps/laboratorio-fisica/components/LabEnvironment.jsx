@@ -436,7 +436,7 @@ function Rain({ count }) {
 }
 
 /* ----------------------------- composición ----------------------------- */
-export default function LabEnvironment({ amb, budget = 0.8 }) {
+export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) {
   const seedRef = useRef();
   if (seedRef.current == null) seedRef.current = (Math.random() * 4294967296) >>> 0;
 
@@ -565,20 +565,26 @@ export default function LabEnvironment({ amb, budget = 0.8 }) {
 
   const stars = amb.night ? Math.round(280 * env.b) : 0;
   const clouds = amb.id !== 'niebla' ? Math.max(3, Math.round(10 * env.b)) : 0;
+  // la isla (suelo + mar + relieve) se baja para apoyarse bajo el suelo de la
+  // escena: la mayoría de simulaciones tienen el suelo en y≈0 (shift 0), pero las
+  // que viven a profundidad (stokes, túnel de viento) lo declaran con entornoY.
+  const shift = groundY - BASE_Y;
 
   return (
     <group>
       <Skydome amb={amb} />
       <Astro amb={amb} />
       {stars > 0 && <Stars count={stars} />}
-      <Terrain heightFn={env.heightFn} palette={env.palette} seed={env.terrainSeed} seg={env.seg} />
-      <Sea color={env.seaColor} seg={env.seaSeg} />
-      <Mountains specs={env.mountains} />
-      {env.trees.trunks.length > 0 && <Trees trunks={env.trees.trunks} leaves={env.trees.leaves} />}
-      {env.rocks.length > 0 && <Rocks items={env.rocks} />}
-      {env.flowers.stems.length > 0 && <Flowers stems={env.flowers.stems} petals={env.flowers.petals} />}
-      {clouds > 0 && <Clouds count={clouds} night={!!amb.night} />}
-      {amb.rain && <Rain count={Math.round(420 * env.b)} />}
+      <group position={[0, shift, 0]}>
+        <Terrain heightFn={env.heightFn} palette={env.palette} seed={env.terrainSeed} seg={env.seg} />
+        <Sea color={env.seaColor} seg={env.seaSeg} />
+        <Mountains specs={env.mountains} />
+        {env.trees.trunks.length > 0 && <Trees trunks={env.trees.trunks} leaves={env.trees.leaves} />}
+        {env.rocks.length > 0 && <Rocks items={env.rocks} />}
+        {env.flowers.stems.length > 0 && <Flowers stems={env.flowers.stems} petals={env.flowers.petals} />}
+        {clouds > 0 && <Clouds count={clouds} night={!!amb.night} />}
+        {amb.rain && <Rain count={Math.round(420 * env.b)} />}
+      </group>
     </group>
   );
 }
