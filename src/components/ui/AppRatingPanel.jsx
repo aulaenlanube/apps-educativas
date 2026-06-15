@@ -11,7 +11,7 @@ import StarRating from './StarRating';
  *
  * Props:
  *  - appId, appName, level, grade, subjectId: identifies the app version
- *  - variant: 'default' | 'retro' | 'fullscreen' (visual style matching app type)
+ *  - variant: 'default' | 'retro' | 'fullscreen' | 'glass' (visual style matching app type)
  */
 export default function AppRatingPanel({ appId, appName, level, grade, subjectId, variant = 'default' }) {
   const { user, student, role, displayName, isAuthenticated } = useAuth();
@@ -248,7 +248,9 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
     ? 'bg-black border-2 border-green-500 text-green-400 hover:bg-green-900/50 hover:shadow-[0_0_15px_rgba(0,255,0,0.5)]'
     : variant === 'fullscreen'
       ? 'bg-gradient-to-br from-purple-600 to-pink-600 border-2 border-white/30 text-white shadow-2xl hover:scale-110'
-      : 'bg-white shadow-lg border border-purple-200 text-purple-600 hover:bg-purple-50 hover:shadow-xl dark:bg-slate-800 dark:border-purple-500/40 dark:text-amber-300 dark:hover:bg-slate-700';
+      : variant === 'glass'
+        ? 'bg-slate-900/40 backdrop-blur-md border border-white/20 text-amber-300 shadow-lg hover:bg-slate-900/60 hover:text-amber-200 hover:shadow-xl'
+        : 'bg-white shadow-lg border border-purple-200 text-purple-600 hover:bg-purple-50 hover:shadow-xl dark:bg-slate-800 dark:border-purple-500/40 dark:text-amber-300 dark:hover:bg-slate-700';
 
   return (
     <>

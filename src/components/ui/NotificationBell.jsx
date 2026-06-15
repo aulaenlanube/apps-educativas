@@ -5,7 +5,8 @@ import { Bell, X, Check, CheckCheck, MessageSquare, Zap } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 
-export default function NotificationBell() {
+export default function NotificationBell({ variant = 'default' }) {
+  const isGlass = variant === 'glass';
   const { user, student, role, isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -85,9 +86,13 @@ export default function NotificationBell() {
     <div className="relative" ref={panelRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="relative flex items-center justify-center w-9 h-9 rounded-full border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300"
+        className={`relative flex items-center justify-center w-9 h-9 rounded-full transition-colors focus:outline-none ${
+          isGlass
+            ? 'border border-white/15 bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 focus:ring-2 focus:ring-white/20'
+            : 'border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 focus:ring-2 focus:ring-purple-300'
+        }`}
       >
-        <Bell className="w-4.5 h-4.5 text-gray-600" />
+        <Bell className={`w-4.5 h-4.5 ${isGlass ? 'text-white/85' : 'text-gray-600'}`} />
         {unreadCount > 0 && (
           <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
             {unreadCount > 9 ? '9+' : unreadCount}

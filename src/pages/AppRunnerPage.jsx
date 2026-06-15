@@ -110,6 +110,24 @@ const APP_HEADER_PRESETS = {
         containerClass: 'max-w-4xl w-full',
         useAnimatedBack: false,
     },
+    // Apps con fondo 3D inmersivo (p. ej. Laboratorio de Física): mismo layout que
+    // 'standard' pero con chrome de CRISTAL (translúcido oscuro + blur) para que los
+    // botones no resalten sobre el mundo 3D. `glassChrome` activa además la variante
+    // de cristal en la campana de notificaciones y en el FAB de valoración.
+    inmersivo: {
+        bgClass: 'bg-[#0b1026]',
+        btnBackClass: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0',
+        btnHeartClass: 'bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 text-pink-300 border border-white/15 hover:border-pink-300/40 shadow-md transition-all group rounded-xl',
+        btnRankingClass: 'bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 text-amber-300 border border-white/15 hover:border-amber-300/40 shadow-md transition-all group rounded-xl',
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-300 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: true,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'max-w-4xl w-full',
+        useAnimatedBack: true,
+        glassChrome: true,
+    },
 };
 
 // Apps "wide" usan header standard pero contenedor ancho
@@ -124,6 +142,7 @@ const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 function getHeaderPresetName(appId) {
     if (appId === 'terminal-retro') return 'dark-green';
     if (appId.startsWith('isla-de-la-calma')) return 'calma';
+    if (appId === 'laboratorio-fisica') return 'inmersivo';
     if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria', 'cazapalabras-3d'].some(id => appId.includes(id))) return 'dark-glass';
     if (appId === 'runner') return 'reduced';
     return 'standard';
@@ -316,7 +335,8 @@ const AppRunnerPage = () => {
     // Variante para AppRatingPanel
     const ratingVariant = preset._name === 'dark-green' || preset._name === 'reduced'
         ? 'retro'
-        : preset.isAbsolute ? 'fullscreen' : 'default';
+        : preset.glassChrome ? 'glass'
+            : preset.isAbsolute ? 'fullscreen' : 'default';
 
     return (
         <>
@@ -399,7 +419,7 @@ const AppRunnerPage = () => {
                     {preset.showUserControls && !authLoading && isAuthenticated && (
                         <>
                             <div className="hidden md:flex items-center gap-2">
-                                <NotificationBell />
+                                <NotificationBell variant={preset.glassChrome ? 'glass' : 'default'} />
                                 <UserMenu />
                             </div>
                             <button
