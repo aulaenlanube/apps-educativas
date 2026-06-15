@@ -1,0 +1,211 @@
+/* ============================================================================
+   Cabecera "liquid glass" — efecto cristal premium (visionOS/iOS 18)
+   Prefijo único: glass-hdr-
+   Síntesis del workflow de diseño: base Liquid Glass (hairline especular +
+   anillo interior + foco de luz) + aurora de marca animada tras el cristal +
+   canto inferior de marca + barrido especular.
+
+   IMPORTANTE: el <header> NO lleva overflow-hidden a propósito — el desplegable
+   de NotificationBell se renderiza inline (absolute, z-50) y cuelga por debajo
+   del borde; un overflow-hidden lo recortaría. El recorte de los efectos
+   animados vive SOLO en .glass-hdr__sheen.
+
+   Todas las capas son pointer-events:none y van en z-index NEGATIVO (detrás del
+   contenido, que va en z auto, pero por delante del fondo del header). El
+   <header> es sticky con z-index → ya crea su propio contexto de apilado.
+   ============================================================================ */
+
+.glass-hdr {
+  /* Tinte de cristal: degradado claro arriba (brillo) → más transparente abajo.
+     Calibrado para seguir legible (texto slate-600) incluso sobre la escena 3D
+     oscura, gracias al blur, la saturación y los realces. */
+  background-color: rgba(255, 255, 255, 0.10);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+.dark .glass-hdr {
+  background-color: rgba(2, 6, 23, 0.34);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.00) 100%
+  );
+}
+
+/* ---- Hairline especular superior + anillo interior (firma liquid glass) ---- */
+.glass-hdr::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+.dark .glass-hdr::before {
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ---- Foco de luz pulida en la franja superior izquierda ---- */
+.glass-hdr::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -6;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 80% at 18% -40%,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+.dark .glass-hdr::after {
+  background: radial-gradient(
+    120% 80% at 18% -40%,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 38%,
+    rgba(255, 255, 255, 0) 62%
+  );
+}
+
+/* ---- Contenedor que RECORTA los efectos animados (no el header) ---- */
+.glass-hdr__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ---- Aurora de marca respirando tras el cristal (el "wow") ---- */
+.glass-hdr__aurora {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 140% at 12% 30%, rgba(37, 99, 235, 0.30) 0%, transparent 60%),
+    radial-gradient(55% 130% at 50% 90%, rgba(124, 58, 237, 0.28) 0%, transparent 62%),
+    radial-gradient(60% 150% at 88% 25%, rgba(236, 72, 153, 0.24) 0%, transparent 60%);
+  background-repeat: no-repeat;
+  background-size: 180% 320%;
+  filter: blur(14px) saturate(135%);
+  opacity: 0.5;
+  mix-blend-mode: plus-lighter;
+  animation: glass-hdr-aurora 26s ease-in-out infinite alternate;
+  will-change: background-position;
+}
+.dark .glass-hdr__aurora {
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  filter: blur(16px) saturate(150%);
+}
+
+@keyframes glass-hdr-aurora {
+  0%   { background-position: 0% 0%, 50% 100%, 100% 0%; }
+  50%  { background-position: 40% 60%, 10% 20%, 60% 80%; }
+  100% { background-position: 100% 100%, 80% 0%, 0% 60%; }
+}
+
+/* ---- Barrido especular: reflejo que cruza el cristal (sobre la aurora) ---- */
+.glass-hdr__sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 45%;
+  transform: translateX(-160%) skewX(-18deg);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.35) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: glass-hdr-sweep 9s ease-in-out 2s infinite;
+}
+.dark .glass-hdr__sweep {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(186, 210, 255, 0.14) 45%,
+    rgba(210, 225, 255, 0.22) 50%,
+    rgba(186, 210, 255, 0.14) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes glass-hdr-sweep {
+  0%   { transform: translateX(-160%) skewX(-18deg); }
+  18%  { transform: translateX(320%)  skewX(-18deg); }
+  100% { transform: translateX(320%)  skewX(-18deg); }
+}
+
+/* ---- Canto inferior de marca (azul → morado → rosa), en movimiento lento ---- */
+.glass-hdr__edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  z-index: -4;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 6%,
+    rgba(37, 99, 235, 0.55) 28%,
+    rgba(124, 58, 237, 0.75) 52%,
+    rgba(236, 72, 153, 0.55) 74%,
+    transparent 94%
+  );
+  background-size: 220% 100%;
+  animation: glass-hdr-edge 18s linear infinite;
+  will-change: background-position;
+}
+.dark .glass-hdr__edge {
+  background: linear-gradient(
+    90deg,
+    transparent 6%,
+    rgba(96, 165, 250, 0.60) 28%,
+    rgba(167, 139, 250, 0.80) 52%,
+    rgba(244, 114, 182, 0.60) 74%,
+    transparent 94%
+  );
+  background-size: 220% 100%;
+}
+
+@keyframes glass-hdr-edge {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 220% 0; }
+}
+
+/* ---- Móvil: aligerar (backdrop-blur es caro) ---- */
+@media (max-width: 720px) {
+  .glass-hdr__sweep { display: none; }
+  .glass-hdr__aurora { filter: blur(10px) saturate(130%); animation-duration: 32s; }
+}
+
+/* ---- Accesibilidad: sin movimiento si el usuario lo pide (cristal estático) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .glass-hdr__sweep { animation: none; transform: translateX(-160%) skewX(-18deg); }
+  .glass-hdr__aurora { animation: none; background-position: 30% 40%, 50% 90%, 80% 20%; opacity: 0.42; }
+  .dark .glass-hdr__aurora { opacity: 0.55; }
+  .glass-hdr__edge { animation: none; background-position: 50% 0; }
+}
+
+/* ---- Fallback sin backdrop-filter: subir opacidad para legibilidad ---- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-hdr { background-color: rgba(255, 255, 255, 0.85); }
+  .dark .glass-hdr { background-color: rgba(2, 6, 23, 0.85); }
+}

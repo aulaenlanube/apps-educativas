@@ -7,6 +7,7 @@ import LoginButton from '@/components/auth/LoginButton';
 import UserMenu from '@/components/auth/UserMenu';
 import NotificationBell from '@/components/ui/NotificationBell';
 import MobileSidebar from './MobileSidebar';
+import './Header.css';
 
 const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
   const navigate = useNavigate();
@@ -14,7 +15,15 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <header className="bg-white/30 dark:bg-slate-900/35 backdrop-blur-xl shadow-sm border-b border-white/25 dark:border-purple-900/40 sticky top-0 z-50">
+    <header className="glass-hdr relative isolate sticky top-0 z-50 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.35)] dark:shadow-[0_14px_40px_-16px_rgba(0,0,0,0.7)]">
+      {/* Capas decorativas del cristal (no interactivas, detrás del contenido).
+          El recorte de los efectos animados vive aquí, NO en el <header>. */}
+      <div className="glass-hdr__sheen" aria-hidden="true">
+        <div className="glass-hdr__aurora" />
+        <div className="glass-hdr__sweep" />
+      </div>
+      <div className="glass-hdr__edge" aria-hidden="true" />
+
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <div
