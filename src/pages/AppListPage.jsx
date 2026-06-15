@@ -156,16 +156,37 @@ const AppList = ({ apps, level, grade, subjectId }) => {
         if (level && grade && subjectId) loadRatings();
     }, [level, grade, subjectId]);
 
+    // Mismas animaciones que las tarjetas de asignatura (SubjectPage): entrada en
+    // cascada con escalado y, al pasar el ratón, el contenedor entero se escala.
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0, scale: 0.95 },
+        show: { y: 0, opacity: 1, scale: 1 }
+    };
+
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {apps.map((app, index) => {
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            {apps.map((app) => {
                 const r = ratings[app.id];
                 return (
                     <motion.div
                         key={app.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                        variants={itemVariants}
                         whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
                         whileTap={{ scale: 0.98 }}
                         className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white/55"
@@ -191,7 +212,7 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                     </motion.div>
                 );
             })}
-        </div>
+        </motion.div>
     );
 };
 
