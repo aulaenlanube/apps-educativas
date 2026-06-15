@@ -48,7 +48,7 @@ const SubjectList = ({ subjects, level, grade }) => {
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
           whileTap={{ scale: 0.98 }}
-          className="bg-white/80 p-6 rounded-2xl shadow-lg border border-indigo-100 flex items-center space-x-4 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white"
+          className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/40 flex items-center space-x-4 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white/85"
           onClick={() => handleSubjectClick(subject.id)}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />

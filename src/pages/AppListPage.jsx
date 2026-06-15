@@ -168,7 +168,7 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100 group"
+                        className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-white/40 group"
                         onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
                     >
                         <div className="flex items-start gap-4 mb-3">
