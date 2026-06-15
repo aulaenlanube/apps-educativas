@@ -87,12 +87,13 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
   const cableRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world);
-  }, [world, playing, params.profundidad, params.liquido, params.lugar]);
+    if (!playingRef.current) reinit(world);
+  }, [world, params.profundidad, params.liquido, params.lugar]);
 
   // La sonda desciende suavemente hacia la profundidad objetivo (sin done: continua)
   useFixedStep(world, playing, speed, (dt) => {

@@ -64,12 +64,13 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
   const masaRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world, paramsRef.current); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world, paramsRef.current);
-  }, [world, playing, params.montaje, params.longitud, params.amplitud, params.k, params.masa, params.lugar]);
+    if (!playingRef.current) reinit(world, paramsRef.current);
+  }, [world, params.montaje, params.longitud, params.amplitud, params.k, params.masa, params.lugar]);
 
   useFixedStep(world, playing, speed, (dt) => {
     const d = world.data;

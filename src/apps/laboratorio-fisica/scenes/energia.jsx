@@ -58,12 +58,13 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
   const cartRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world);
-  }, [world, playing, params.altura, params.masa, params.mu]);
+    if (!playingRef.current) reinit(world);
+  }, [world, params.altura, params.masa, params.mu]);
 
   useFixedStep(world, playing && !world.data?.done, speed, (dt) => {
     const d = world.data;

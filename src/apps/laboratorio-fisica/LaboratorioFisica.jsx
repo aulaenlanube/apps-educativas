@@ -96,6 +96,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const [activeSimId, setActiveSimId] = useState(null);
   const [params, setParams] = useState({});
   const [playing, setPlaying] = useState(false);
+  const [simDone, setSimDone] = useState(false); // la simulación llegó a su final (congelada)
   const [speed, setSpeed] = useState(1);
   const [resetToken, setResetToken] = useState(0);
   const [showVectors, setShowVectors] = useState(true);
@@ -134,7 +135,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   // espejo del estado para callbacks estables (telemetría a 60 Hz) y cleanup
   const stateRef = useRef({});
   stateRef.current = {
-    screen, mode, activeSimId, params, playing, retosDone, retosPoints,
+    screen, mode, activeSimId, params, playing, simDone, retosDone, retosPoints,
     pistasAbiertas, examQuestions,
   };
 
@@ -166,7 +167,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
       else if (tel.t - lastT >= 1 / 30) buf.push({ t: tel.t, ...tel.series });
       if (buf.length > 2400) buf.splice(0, buf.length - 2400);
     }
-    if (tel.done && st.playing) setPlaying(false);
+    if (tel.done) { if (st.playing) setPlaying(false); if (!st.simDone) setSimDone(true); }
     if (st.mode === 'retos' && st.activeSimId) {
       const sim = simPorId(st.activeSimId);
       const done = st.retosDone[st.activeSimId] || [];
@@ -290,6 +291,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     seriesRef.current = [];
     setResetToken((t) => t + 1);
     setPlaying(false);
+    setSimDone(false);
     setReadouts([]);
     setFormulaViva('');
     setPanelOpen(true);
@@ -313,6 +315,27 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     seriesRef.current = [];
     setResetToken((t) => t + 1);
     setPlaying(false);
+    setSimDone(false);
+  };
+
+  // Play/Pause: si la simulación ya terminó (congelada en el final), al pulsar Play
+  // se reinicia desde el principio y se reproduce de nuevo (evita un botón "muerto").
+  const handlePlayPause = () => {
+    if (!playing && simDone) {
+      seriesRef.current = [];
+      setSimDone(false);
+      setResetToken((t) => t + 1);
+      setPlaying(true);
+      return;
+    }
+    setPlaying((p) => !p);
+  };
+
+  // Cambiar un parámetro tras finalizar quita el estado "congelado" (la escena
+  // se reinicia con las nuevas condiciones iniciales mientras está en pausa).
+  const handleParamChange = (key, value) => {
+    if (simDone) setSimDone(false);
+    setParams((prev) => ({ ...prev, [key]: value }));
   };
 
   const volverACatalogo = () => { setScreen('catalog'); setActiveSimId(null); };
@@ -493,9 +516,9 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
                   <ParamPanel
                     simDef={activeSim}
                     params={params}
-                    onParamChange={(key, value) => setParams((prev) => ({ ...prev, [key]: value }))}
+                    onParamChange={handleParamChange}
                     playing={playing}
-                    onPlayPause={() => setPlaying((p) => !p)}
+                    onPlayPause={handlePlayPause}
                     onReset={resetSim}
                     speed={speed}
                     onSpeedChange={setSpeed}

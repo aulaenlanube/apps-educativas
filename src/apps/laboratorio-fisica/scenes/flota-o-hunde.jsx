@@ -47,12 +47,13 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, quality
   const cubeRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world, paramsRef.current); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world, paramsRef.current);
-  }, [world, playing, params.material, params.volumen, params.liquido]);
+    if (!playingRef.current) reinit(world, paramsRef.current);
+  }, [world, params.material, params.volumen, params.liquido]);
 
   useFixedStep(world, playing && !world.data?.done, speed, (dt) => {
     const d = world.data;

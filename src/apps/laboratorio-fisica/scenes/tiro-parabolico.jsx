@@ -40,12 +40,13 @@ function Scene({ world, params, playing, speed, resetToken, showVectors, showTra
   const trailRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world, paramsRef.current); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world, paramsRef.current);
-  }, [world, playing, params.v0, params.angulo, params.h0, params.aire]);
+    if (!playingRef.current) reinit(world, paramsRef.current);
+  }, [world, params.v0, params.angulo, params.h0, params.aire]);
 
   useFixedStep(world, playing && !world.data?.done, speed, (dt) => {
     const d = world.data;

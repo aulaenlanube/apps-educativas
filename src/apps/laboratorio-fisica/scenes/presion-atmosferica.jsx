@@ -53,12 +53,13 @@ function Scene({ world, params, playing, speed, resetToken, quality, onTelemetry
   const colRef = useRef(null);
   const paramsRef = useRef(params);
   paramsRef.current = params;
+  const playingRef = useRef(playing); playingRef.current = playing;
   useThrottledTick(12);
 
   useEffect(() => { reinit(world); }, [world, resetToken]);
   useEffect(() => {
-    if (!playing) reinit(world);
-  }, [world, playing, params.liquido, params.lugar]);
+    if (!playingRef.current) reinit(world);
+  }, [world, params.liquido, params.lugar]);
 
   // Lerp determinista hacia el equilibrio; sigue activo tras asentarse para
   // que cambiar el lugar/líquido EN VIVO re-anime la columna hacia el nuevo h.
