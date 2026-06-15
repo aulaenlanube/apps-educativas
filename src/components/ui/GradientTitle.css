@@ -1,0 +1,13 @@
+/* Borde blanco muy fino SOLO en el contorno externo de los títulos en degradado
+   (cursos y asignaturas). Misma técnica que el logo de la cabecera: con
+   background-clip:text el relleno es transparente, así que un text-stroke normal
+   taparía el degradado. En su lugar apilamos drop-shadows blancos en las 4
+   direcciones: el halo se pinta ALREDEDOR de la silueta del glifo, por fuera,
+   sin cubrir el relleno del degradado. */
+.gradient-title-stroke {
+  filter:
+    drop-shadow( 1px 0 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(0  1px 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.95));
+}

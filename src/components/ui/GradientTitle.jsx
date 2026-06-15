@@ -1,4 +1,5 @@
 import React from 'react';
+import './GradientTitle.css';
 
 const GradientTitle = ({ children, className = "", tag = "h1" }) => {
   const Tag = tag;
@@ -15,7 +16,7 @@ export const AnimatedGradientTitle = ({ children, className = "", tag = "h1" }) 
   const words = text.split(' ');
   let charIndex = 0;
   return (
-    <Tag className={`font-bold ${className}`} style={{ lineHeight: 1.4 }}>
+    <Tag className={`font-bold gradient-title-stroke ${className}`} style={{ lineHeight: 1.4 }}>
       {words.map((word, wi) => (
         <React.Fragment key={wi}>
           {wi > 0 && <span>{'\u00A0'}</span>}
