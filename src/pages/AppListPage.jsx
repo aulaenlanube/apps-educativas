@@ -253,7 +253,7 @@ const AppListPage = () => {
                 <Header subtitle={headerSubtitle}>
                     <AnimatedBorderButton
                         onClick={() => navigate(`/curso/${level}/${grade}`)}
-                        colors={['#3B82F6', '#8B5CF6']}
+                        colors={['#ffffff', '#ffffff']}
                         glowColor="rgba(255,255,255,0.45)"
                         borderColor="#ffffff"
                         shape="arrow"
