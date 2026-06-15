@@ -151,7 +151,8 @@ const SubjectPage = () => {
           <AnimatedBorderButton
             onClick={() => navigate('/')}
             colors={['#A855F7', '#EC4899']}
-            glowColor="rgba(168,85,247,0.3)"
+            glowColor="rgba(255,255,255,0.45)"
+            borderColor="#ffffff"
             shape="arrow"
           >
             Inicio
@@ -170,13 +171,13 @@ const SubjectPage = () => {
             <div className="text-center">
               <div className="flex items-center justify-center space-x-3 md:space-x-8 mb-4">
                 {prevStep && (
-                  <NavArrowButton direction="left" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
+                  <NavArrowButton direction="left" borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
                 )}
 
-                <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap drop-shadow-sm">{fullTitle}</AnimatedGradientTitle>
+                <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap">{fullTitle}</AnimatedGradientTitle>
 
                 {nextStep && (
-                  <NavArrowButton direction="right" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
+                  <NavArrowButton direction="right" borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">

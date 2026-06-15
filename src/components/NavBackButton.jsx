@@ -174,7 +174,7 @@ const NavBackButton = ({ variant = 'home', onClick }) => {
 };
 
 /* ── Botón flecha circular con borde animado ──────────────── */
-export const NavArrowButton = ({ direction = 'left', onClick, colors = ['#6366F1', '#8B5CF6'], glowColor = 'rgba(99,102,241,0.35)' }) => {
+export const NavArrowButton = ({ direction = 'left', onClick, colors = ['#6366F1', '#8B5CF6'], glowColor = 'rgba(99,102,241,0.35)', borderColor = null }) => {
   useEffect(() => { injectStyles(); }, []);
 
   const gradId = `nb-arrow-${direction}`;
@@ -202,7 +202,7 @@ export const NavArrowButton = ({ direction = 'left', onClick, colors = ['#6366F1
             stroke={glowColor} strokeWidth="3"
             style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
           <circle cx="22" cy="22" r="20" fill="none"
-            stroke={`url(#${gradId})`} strokeWidth="2"
+            stroke={borderColor || `url(#${gradId})`} strokeWidth="2"
             strokeDasharray="8 5" strokeLinecap="round"
             style={{ animation: 'nb-border-spin 6s linear infinite' }} />
           <circle cx="22" cy="22" r="17" fill="white" opacity="0.15" />
@@ -229,6 +229,7 @@ export const AnimatedBorderButton = ({
   glowColor = 'rgba(168,85,247,0.3)',
   shape = 'rect',
   className = '',
+  borderColor = null,
 }) => {
   useEffect(() => { injectStyles(); }, []);
 
@@ -284,13 +285,13 @@ export const AnimatedBorderButton = ({
         )}
         {/* Animated dashes */}
         {isArrow ? (
-          <path d={arrowPath} fill="none" stroke={`url(#${gradId})`} strokeWidth="1.8"
+          <path d={arrowPath} fill="none" stroke={borderColor || `url(#${gradId})`} strokeWidth="1.8"
             strokeDasharray="10 6" strokeLinecap="round" strokeLinejoin="round"
             style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
         ) : (
           <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
-            fill="none" stroke={`url(#${gradId})`} strokeWidth="1.8"
+            fill="none" stroke={borderColor || `url(#${gradId})`} strokeWidth="1.8"
             strokeDasharray="10 6" strokeLinecap="round"
             style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
