@@ -45,22 +45,31 @@
    glifo, independientemente del relleno transparente. Se hereda a los hijos,
    así que basta ponerla en el contenedor del texto (logo, enlaces, botones). */
 .glass-hdr-pop {
-  /* Borde blanco SUAVE de 1px con -webkit-text-stroke (contorno vectorial, sin
-     el dentado de offsets que dejaba el text-shadow). paint-order: stroke deja
-     el contorno DETRÁS del relleno, así que se conserva el degradado de EduApps
-     y el borde queda como una línea limpia alrededor. */
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.92);
-  paint-order: stroke;
+  /* Borde blanco SOLO en el contorno EXTERNO. Con drop-shadow apilado el halo
+     blanco se pinta ALREDEDOR del texto, por FUERA, sin cubrir el relleno: el
+     degradado de EduApps queda intacto y el blanco queda solo en el borde. */
+  filter:
+    drop-shadow( 0.8px 0 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(-0.8px 0 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(0  0.8px 0 rgba(255, 255, 255, 0.95))
+    drop-shadow(0 -0.8px 0 rgba(255, 255, 255, 0.95));
 }
-/* En tema oscuro el texto ya es claro: contorno más fino y tenue. */
+/* En tema oscuro el texto ya es claro: borde más fino y tenue. */
 .dark .glass-hdr-pop {
-  -webkit-text-stroke: 0.6px rgba(255, 255, 255, 0.45);
+  filter:
+    drop-shadow( 0.6px 0 0 rgba(255, 255, 255, 0.45))
+    drop-shadow(-0.6px 0 0 rgba(255, 255, 255, 0.45))
+    drop-shadow(0  0.6px 0 rgba(255, 255, 255, 0.45))
+    drop-shadow(0 -0.6px 0 rgba(255, 255, 255, 0.45));
 }
 
-/* Contorno fino (~0,5px) para el subtítulo del logo: legible sin recargar. */
+/* Contorno externo fino para el subtítulo del logo. */
 .glass-hdr-pop-sm {
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
-  paint-order: stroke;
+  filter:
+    drop-shadow( 0.5px 0 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(0  0.5px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.75));
 }
 
 /* ---- Hairline especular superior + anillo interior (firma liquid glass) ---- */
