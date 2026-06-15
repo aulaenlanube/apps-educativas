@@ -7,10 +7,13 @@
   padding: 18px clamp(10px, 3vw, 34px) 40px;
   font-family: inherit;
   position: relative;
-  isolation: isolate; /* acota el fondo 3D (Scene3DBackground) a esta capa */
+  /* OJO: no usar `isolation: isolate` aquí. Convertiría .fislab-root en contexto
+     de apilado y atraparía a .fislab-stage (z-index 45) por debajo de la cabecera
+     de AppRunnerPage (z-30) → la cabecera se vería sobre la simulación. El orden
+     natural ya funciona: fondo 3D (z-0) < menú (z-1) < cabecera (z-30) < stage (z-45). */
 }
 
-/* el contenido de los menús va por encima del fondo 3D */
+/* el contenido de los menús va por encima del fondo 3D (Scene3DBackground, z-0) */
 .fislab-select,
 .fislab-catalog,
 .fislab-summary { position: relative; z-index: 1; }
