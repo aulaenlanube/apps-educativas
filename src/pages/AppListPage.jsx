@@ -195,11 +195,11 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="relative z-10">
                             <div className="flex items-start gap-4 mb-3">
-                                <div className="transition-transform duration-300 group-hover:scale-110">
+                                <div>
                                     <AppIcon appId={app.id} size={64} />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors leading-tight">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
+                                    <h3 className="text-xl font-bold text-gray-800">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
                                     <p className="text-sm text-gray-700 mt-1 line-clamp-2">{app.description}</p>
                                 </div>
                             </div>
@@ -288,6 +288,17 @@ const AppListPage = () => {
                     </AnimatedBorderButton>
                 </Header>
                 <main className="container mx-auto px-6 py-16">
+                  {/* Wrapper con `filter` (igual que SubjectPage): deja un filter:blur(0px)
+                      permanente que aisla el backdrop-filter de las tarjetas. Sin esto, el
+                      backdrop-blur de las tarjetas esmerila el fondo 3D y se ven mas opacas
+                      que las de asignaturas; con el ancestro filtrado se ven identicas. */}
+                  <motion.div
+                    key={`${level}-${grade}-${subjectId}`}
+                    initial={{ opacity: 0, scale: 1.05, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="w-full"
+                  >
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
                         <div className="mb-4">
                             <AnimatedGradientTitle className="text-5xl md:text-6xl">{subjectName}</AnimatedGradientTitle>
@@ -316,6 +327,7 @@ const AppListPage = () => {
                             <p className="text-lg text-gray-600 max-w-md">Estamos trabajando para añadir las mejores apps para esta asignatura. ¡Vuelve pronto!</p>
                         </motion.div>
                     )}
+                  </motion.div>
                 </main>
                 </div>
             </div>
