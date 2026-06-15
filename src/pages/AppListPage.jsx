@@ -257,6 +257,7 @@ const AppListPage = () => {
                         colors={['#3B82F6', '#8B5CF6']}
                         glowColor="rgba(59,130,246,0.3)"
                         shape="arrow"
+                        className="glass-hdr-pop"
                     >
                         Asignaturas
                     </AnimatedBorderButton>

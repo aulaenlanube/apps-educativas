@@ -154,6 +154,7 @@ const SubjectPage = () => {
             colors={['#A855F7', '#EC4899']}
             glowColor="rgba(168,85,247,0.3)"
             shape="arrow"
+            className="glass-hdr-pop"
           >
             Inicio
           </AnimatedBorderButton>

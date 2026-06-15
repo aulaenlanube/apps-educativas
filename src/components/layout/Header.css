@@ -16,26 +16,46 @@
    ============================================================================ */
 
 .glass-hdr {
-  /* Tinte de cristal: degradado claro arriba (brillo) → más transparente abajo.
-     Calibrado para seguir legible (texto slate-600) incluso sobre la escena 3D
-     oscura, gracias al blur, la saturación y los realces. */
-  background-color: rgba(255, 255, 255, 0.10);
+  /* Tinte de cristal MUY transparente: degradado tenue arriba (brillo) → casi
+     nada abajo. La legibilidad la garantiza el outline blanco del texto
+     (.glass-hdr-pop) + el blur + la saturación, así que podemos dejar el cristal
+     muy translúcido para máximo impacto. */
+  background-color: rgba(255, 255, 255, 0.05);
   background-image: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 255, 255, 0.08) 100%
+    rgba(255, 255, 255, 0.24) 0%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.03) 100%
   );
 }
 
 .dark .glass-hdr {
-  background-color: rgba(2, 6, 23, 0.34);
+  background-color: rgba(2, 6, 23, 0.22);
   background-image: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
     rgba(255, 255, 255, 0.00) 100%
   );
+}
+
+/* ---- Outline blanco fino para que el texto destaque sobre el cristal ----
+   Borde nítido de ~0,5px (4 esquinas) + halo suave. Funciona también con texto
+   en degradado (bg-clip-text): el text-shadow se dibuja según la silueta del
+   glifo, independientemente del relleno transparente. Se hereda a los hijos,
+   así que basta ponerla en el contenedor del texto (logo, enlaces, botones). */
+.glass-hdr-pop {
+  text-shadow:
+    -0.5px -0.5px 0 rgba(255, 255, 255, 0.92),
+     0.5px -0.5px 0 rgba(255, 255, 255, 0.92),
+    -0.5px  0.5px 0 rgba(255, 255, 255, 0.92),
+     0.5px  0.5px 0 rgba(255, 255, 255, 0.92),
+     0 0 4px rgba(255, 255, 255, 0.55);
+}
+/* En tema oscuro el texto ya es claro; un outline blanco no aporta y podría
+   emborronar: lo suavizamos a un leve halo. */
+.dark .glass-hdr-pop {
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.30);
 }
 
 /* ---- Hairline especular superior + anillo interior (firma liquid glass) ---- */
