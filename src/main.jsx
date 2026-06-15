@@ -48,6 +48,43 @@ const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
 
+// --- Recuperación ante deploys: chunks/CSS antiguos ya no existen en el servidor ---
+// Cuando se sube una versión nueva, los hashes de los assets cambian. Un usuario que
+// tenía la pestaña abierta (con el index.html / chunks viejos) y dispara un import()
+// dinámico recibe un 404 al precargar el .css o el .js → la promesa se rechaza y React
+// Router muestra la pantalla de error. Recargamos una vez para traer el index.html nuevo.
+// Guarda anti-bucle: si el fallo persiste (404 real), no recargamos en cadena.
+(() => {
+  const reloadOnce = (label) => {
+    const KEY = 'eduapps-chunk-reload';
+    let last = 0;
+    try { last = Number(sessionStorage.getItem(KEY)) || 0; } catch { /* sin storage */ }
+    const now = Date.now();
+    if (now - last < 10000) {
+      // Ya recargamos hace <10s: el problema no es un deploy stale. No insistir.
+      console.error(`[chunk-recovery] fallo persistente (${label}); no se recarga de nuevo.`);
+      return;
+    }
+    try { sessionStorage.setItem(KEY, String(now)); } catch { /* sin storage */ }
+    window.location.reload();
+  };
+
+  // Evento nativo de Vite cuando falla la precarga de un módulo/CSS dinámico.
+  window.addEventListener('vite:preloadError', (event) => {
+    event.preventDefault(); // evita que el error se propague sin control
+    reloadOnce('vite:preloadError');
+  });
+
+  // Red de seguridad: import() dinámicos que se rechazan por un chunk inexistente.
+  window.addEventListener('unhandledrejection', (event) => {
+    const msg = String(event?.reason?.message || event?.reason || '');
+    if (/Unable to preload CSS|Failed to fetch dynamically imported module|error loading dynamically imported module|Importing a module script failed/i.test(msg)) {
+      event.preventDefault();
+      reloadOnce('unhandledrejection');
+    }
+  });
+})();
+
 // Reusable suspense loading fallback
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-[50vh]">
