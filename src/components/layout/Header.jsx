@@ -29,7 +29,26 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
       <div className="glass-hdr__edge" aria-hidden="true" />
 
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
+          {/* Blog centrado en la cabecera (solo en la home y en desktop). Posición
+              absoluta para que quede en el centro real, sin afectar al logo ni a la
+              navegación de la derecha. */}
+          {isHome && (
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `hidden md:inline-flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`
+              }
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Blog
+            </NavLink>
+          )}
+
           <div
             className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group"
             onClick={() => navigate('/')}
@@ -46,21 +65,6 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-4">
             {children}
-            {isHome && (
-              <NavLink
-                to="/blog"
-                className={({ isActive }) =>
-                  `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                  }`
-                }
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                Blog
-              </NavLink>
-            )}
             {!loading && isAdmin && (
               <button
                 onClick={() => navigate('/admin')}
