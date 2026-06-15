@@ -24,6 +24,12 @@ import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
 import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
+// Fondo 3D ambiental reutilizable (entorno tipo La Fortaleza). Se carga en LAZY
+// para NO arrastrar three.js al bundle de las apps que no lo usan: solo se monta
+// cuando la app declara `fondo3D: true` en su config (commonApps.js). Opcionales:
+// `fondo3DAmbiente` ('dia'|'atardecer'|'niebla'|'lluvia'|'noche') y `fondo3DScrim` (0..1).
+const Scene3DBackground = React.lazy(() => import('@/components/ui/Scene3DBackground'));
+
 // ─── Header Presets ───────────────────────────────────────────────────
 // Cada preset define el estilo visual de la cabecera y el layout de la página.
 // bgClass:           clase de fondo de la página
@@ -305,6 +311,7 @@ const AppRunnerPage = () => {
     const preset = getHeaderPreset(app.id);
     const isTerminal = app.id.includes('terminal-retro');
     const isRunner = app.id === 'runner';
+    const wants3DBg = !!app.fondo3D; // opt-in por app: fondo 3D ambiental
 
     // Variante para AppRatingPanel
     const ratingVariant = preset._name === 'dark-green' || preset._name === 'reduced'
@@ -332,10 +339,18 @@ const AppRunnerPage = () => {
                 subjectId={activeSubjectId}
             />
 
-            <div className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${preset.bgClass} relative overflow-hidden`}>
+            <div
+                className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${preset.bgClass} relative overflow-hidden`}
+                style={wants3DBg ? { isolation: 'isolate' } : undefined}
+            >
 
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
+                {wants3DBg && (
+                    <Suspense fallback={null}>
+                        <Scene3DBackground ambienceId={app.fondo3DAmbiente} scrim={app.fondo3DScrim ?? 0.3} />
+                    </Suspense>
+                )}
 
                 <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} flex items-center gap-3`}>
 
