@@ -8,9 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   ArrowLeft, BookOpen, Compass, Target, GraduationCap, Lightbulb,
-  CheckCircle2, Circle, X, FlaskConical, SlidersHorizontal, ChevronRight, LineChart,
+  CheckCircle2, Circle, X, FlaskConical, SlidersHorizontal, ChevronRight, LineChart, Info,
 } from 'lucide-react';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import SimInfoModal from './components/SimInfoModal';
+import SIM_INFO from './simInfo';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { GLOBAL_QUALITY_PARAMS, QUALITY_LABELS } from '@/services/graphicsQuality';
@@ -108,6 +110,10 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   const [showHelp, setShowHelp] = useState(false);
   const [showFormulario, setShowFormulario] = useState(false);
   const [showAbandon, setShowAbandon] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);          // modal de info de la simulación
+  const [infoHidden, setInfoHidden] = useState(() => {       // "No volver a mostrar" (global)
+    try { return localStorage.getItem('fislab-info-hidden') === '1'; } catch { return false; }
+  });
   const [panelOpen, setPanelOpen] = useState(true);   // panel de control flotante (pantalla de simulación)
   const [graphOpen, setGraphOpen] = useState(true);   // gráfica flotante
   const [examQuestions, setExamQuestions] = useState(null);
@@ -289,8 +295,19 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     setPanelOpen(true);
     setGraphOpen(true);
     visitedRef.current.add(sim.id);
+    setShowInfo(!infoHidden); // se abre la info al entrar (salvo "no volver a mostrar")
     setScreen('sim');
   };
+
+  // "No volver a mostrar": preferencia global persistente (afecta solo a la apertura
+  // automática; el botón "Info" de la barra sigue funcionando siempre).
+  const toggleInfoHidden = useCallback(() => {
+    setInfoHidden((h) => {
+      const next = !h;
+      try { localStorage.setItem('fislab-info-hidden', next ? '1' : '0'); } catch { /* noop */ }
+      return next;
+    });
+  }, []);
 
   const resetSim = () => {
     seriesRef.current = [];
@@ -421,6 +438,9 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
           <div className="fislab-stage-top">
             <button type="button" className="fislab-back" onClick={volverACatalogo}>
               <ArrowLeft size={17} /> Catálogo
+            </button>
+            <button type="button" className="fislab-info-btn" onClick={() => setShowInfo(true)} title="¿Qué es esta simulación?">
+              <Info size={16} /> Info
             </button>
             <div className="fislab-stage-title">
               <span className="fislab-stage-title-icon">{activeSim.icono}</span>
@@ -655,6 +675,16 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
           )
         ))}
       </InstructionsModal>
+
+      {/* ============ INFO DE LA SIMULACIÓN ============ */}
+      <SimInfoModal
+        isOpen={showInfo && screen === 'sim'}
+        onClose={() => setShowInfo(false)}
+        sim={activeSim}
+        info={activeSimId ? SIM_INFO[activeSimId] : null}
+        dontShow={infoHidden}
+        onToggleDontShow={toggleInfoHidden}
+      />
     </div>
   );
 };
