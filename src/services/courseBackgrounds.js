@@ -1,0 +1,97 @@
+// =============================================================================
+// Fondos 3D por curso — punto ÚNICO de configuración
+// =============================================================================
+// Hoy TODOS los cursos comparten el mismo fondo por defecto (la isla low-poly de
+// Scene3DBackground, el entorno del Laboratorio de Física). El objetivo de este
+// módulo es dejar el sistema CABLEADO para que, en el futuro, dar a un curso su
+// propio fondo 3D sea trivial: basta con añadir una entrada a COURSE_BACKGROUNDS.
+// Ninguna página necesita cambios para eso.
+
+// Configuración por defecto que reciben todos los cursos sin override.
+export const DEFAULT_COURSE_BACKGROUND = {
+  kind: 'scene3d',        // tipo de fondo (hoy solo 'scene3d'; ver CourseBackground.jsx)
+  ambienceId: undefined,  // ambiente concreto ('dia'|'atardecer'|'niebla'|'lluvia'|'noche'); undefined → cielo al azar
+  scrim: 0.3,             // velo oscuro para legibilidad del contenido (0..1)
+};
+
+// Overrides por curso. Clave admitida (de más específica a más general):
+//   `${level}/${grade}`   ej. 'primaria/3'
+//   `${level}`            ej. 'eso'
+// Ejemplos para el futuro (descomentar/añadir cuando haya fondos nuevos):
+//   'primaria':    { kind: 'scene3d', ambienceId: 'dia',       scrim: 0.28 },
+//   'eso':         { kind: 'scene3d', ambienceId: 'atardecer', scrim: 0.32 },
+//   'bachillerato':{ kind: 'scene3d', ambienceId: 'noche',     scrim: 0.36 },
+//   'eso/4':       { kind: 'scene3d', ambienceId: 'niebla' },
+export const COURSE_BACKGROUNDS = {};
+
+// Devuelve la config de fondo para un curso (level + grade), aplicando overrides.
+export function getCourseBackground(level, grade) {
+  if (!level) return DEFAULT_COURSE_BACKGROUND;
+  return (
+    COURSE_BACKGROUNDS[`${level}/${grade}`] ||
+    COURSE_BACKGROUNDS[level] ||
+    DEFAULT_COURSE_BACKGROUND
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Política del fondo de curso en las APPS individuales
+// -----------------------------------------------------------------------------
+// El fondo de curso se monta por DEFECTO en las apps con preset 'standard' (las
+// de tarjetas claras). Quedan fuera:
+//   · Las apps con preset NO 'standard' (terminal-retro, runner, isla-de-la-calma,
+//     laboratorio-fisica, sistema-solar, célula animal/vegetal, mesa-crafteo,
+//     juego-memoria, cazapalabras-3d): ya traen su propio fondo inmersivo (esto
+//     lo resuelve el preset, no hace falta listarlas aquí).
+//   · Las dos listas de abajo (se comparan por id EXACTO de app).
+
+// (1) Apps 'standard' que pintan su PROPIO lienzo a pantalla completa (3D u otro):
+//     el fondo de curso no aportaría nada y solo gastaría GPU.
+export const APPS_WITH_OWN_SCENE = [
+  'la-fortaleza',
+  'visualizador-3d',
+  'laboratorio-funciones-2d',
+  'excavacion-selectiva',
+  'misiones-roboticas',
+  'laboratorio-robotica',
+  'programacion-bloques',
+];
+
+// (2) Apps 'standard' cuyo diseño NO permite (todavía) el fondo 3D: colocan texto
+//     o controles oscuros DIRECTAMENTE sobre el fondo de página, que perderían
+//     legibilidad sobre la escena 3D con velo. Conservan su fondo claro clásico.
+//     Esta lista se puede ir REDUCIENDO según se adapten esas apps (mover su texto
+//     a tarjetas o aclarar sus colores).
+export const APPS_KEEP_LIGHT_BG = [
+  // Medidas (comparar / ordenar) — texto guía gris directo sobre el fondo
+  'longitud-comparar', 'longitud-ordenar',
+  'masa-comparar', 'masa-ordenar',
+  'capacidad-comparar', 'capacidad-ordenar',
+  // Resto de apps con texto/UI oscuro directo sobre el fondo
+  'sopa-de-letras',
+  'anagramas',
+  'lluvia-de-palabras',
+  'parejas',                          // Parejas de Cartas
+  'porcentajes-proporciones',
+  'banco-recursos-tutoria',
+  'generador-personajes-historicos',
+  'comprension-escrita', 'comprension-oral',
+  'infografias-interactivas',
+];
+
+const _appsWithoutCourseBg = new Set([...APPS_WITH_OWN_SCENE, ...APPS_KEEP_LIGHT_BG]);
+
+export function appHasOwnBackground(appId = '') {
+  return _appsWithoutCourseBg.has(appId);
+}
+
+// ¿Debe montarse el fondo de curso para esta app?
+//   appFlag === true  → forzar SIEMPRE (override por app vía `fondo3D: true`)
+//   appFlag === false → desactivar SIEMPRE (override por app vía `fondo3D: false`)
+//   undefined         → por defecto: solo apps 'standard' sin fondo propio
+export function courseBackgroundEnabledForApp(appId, presetName, appFlag) {
+  if (appFlag === true) return true;
+  if (appFlag === false) return false;
+  if (presetName && presetName !== 'standard') return false;
+  return !appHasOwnBackground(appId);
+}

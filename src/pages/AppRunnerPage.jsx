@@ -24,11 +24,15 @@ import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
 import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
-// Fondo 3D ambiental reutilizable (entorno tipo La Fortaleza). Se carga en LAZY
-// para NO arrastrar three.js al bundle de las apps que no lo usan: solo se monta
-// cuando la app declara `fondo3D: true` en su config (commonApps.js). Opcionales:
-// `fondo3DAmbiente` ('dia'|'atardecer'|'niebla'|'lluvia'|'noche') y `fondo3DScrim` (0..1).
-const Scene3DBackground = React.lazy(() => import('@/components/ui/Scene3DBackground'));
+// Fondo 3D ambiental del CURSO. Se monta por defecto en las apps con preset
+// 'standard' (las de tarjetas claras) y se respeta el fondo propio de las apps
+// inmersivas. La política y la configuración por curso viven en
+// services/courseBackgrounds.js; CourseBackground carga three.js en LAZY.
+// Overrides por app (opcionales) en su config (commonApps.js):
+//   `fondo3D` (true → forzar / false → desactivar),
+//   `fondo3DAmbiente` ('dia'|'atardecer'|'niebla'|'lluvia'|'noche'), `fondo3DScrim` (0..1).
+import CourseBackground from '@/components/ui/CourseBackground';
+import { courseBackgroundEnabledForApp } from '@/services/courseBackgrounds';
 
 // ─── Header Presets ───────────────────────────────────────────────────
 // Cada preset define el estilo visual de la cabecera y el layout de la página.
@@ -330,7 +334,9 @@ const AppRunnerPage = () => {
     const preset = getHeaderPreset(app.id);
     const isTerminal = app.id.includes('terminal-retro');
     const isRunner = app.id === 'runner';
-    const wants3DBg = !!app.fondo3D; // opt-in por app: fondo 3D ambiental
+    // Fondo 3D del curso: por defecto en apps 'standard' sin fondo propio
+    // (con override por app vía `fondo3D`). Política en courseBackgrounds.js.
+    const useCourseBg = courseBackgroundEnabledForApp(app.id, preset._name, app.fondo3D);
 
     // Variante para AppRatingPanel
     const ratingVariant = preset._name === 'dark-green' || preset._name === 'reduced'
@@ -360,16 +366,19 @@ const AppRunnerPage = () => {
             />
 
             <div
-                className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${preset.bgClass} relative overflow-hidden`}
-                style={wants3DBg ? { isolation: 'isolate' } : undefined}
+                className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${useCourseBg ? 'bg-transparent' : preset.bgClass} relative overflow-hidden`}
+                style={useCourseBg ? { isolation: 'isolate' } : undefined}
             >
 
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
-                {wants3DBg && (
-                    <Suspense fallback={null}>
-                        <Scene3DBackground ambienceId={app.fondo3DAmbiente} scrim={app.fondo3DScrim ?? 0.3} />
-                    </Suspense>
+                {useCourseBg && (
+                    <CourseBackground
+                        level={level}
+                        grade={grade}
+                        ambienceId={app.fondo3DAmbiente}
+                        scrim={app.fondo3DScrim}
+                    />
                 )}
 
                 <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} flex items-center gap-3`}>

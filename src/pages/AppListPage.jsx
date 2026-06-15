@@ -11,6 +11,7 @@ import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps,
 import Mascot from '@/components/Mascot';
 import StarRating from '@/components/ui/StarRating';
 import AppIcon from '@/components/AppIcon';
+import CourseBackground from '@/components/ui/CourseBackground';
 import { supabase } from '@/lib/supabase';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
@@ -249,7 +250,9 @@ const AppListPage = () => {
                     ],
                 })}</script>
             </Helmet>
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+            <div className="relative min-h-screen overflow-x-hidden" style={{ isolation: 'isolate' }}>
+                <CourseBackground level={level} grade={grade} />
+                <div className="relative z-10">
                 <Header subtitle={headerSubtitle}>
                     <AnimatedBorderButton
                         onClick={() => navigate(`/curso/${level}/${grade}`)}
@@ -265,7 +268,7 @@ const AppListPage = () => {
                         <div className="mb-4">
                             <AnimatedGradientTitle className="text-5xl md:text-6xl">{subjectName}</AnimatedGradientTitle>
                         </div>
-                        <p className="text-xl text-gray-600 mt-4">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
+                        <p className="text-xl text-white/90 mt-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
                     </motion.div>
 
                     {appsForSubject.length > 0 ? (
@@ -293,6 +296,7 @@ const AppListPage = () => {
                         </motion.div>
                     )}
                 </main>
+                </div>
             </div>
         </>
     );
