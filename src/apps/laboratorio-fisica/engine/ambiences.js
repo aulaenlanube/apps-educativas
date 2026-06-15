@@ -9,6 +9,8 @@
 //        el "escenario" central de cada simulación
 //   ambient, hemi/hemiSky/hemiGround, sun/sunI/sunPos → iluminación
 //   night/rain/nebula/space/mountains → activan elementos del entorno
+//   grass:[a,b]/sand/sea → paleta del terreno (isla low-poly que rodea el montaje)
+//   planet → color del planeta lejano en los temas de espacio
 
 // sky = cenit · horizon = franja de brillo en el horizonte · low = base OSCURA bajo
 // el horizonte (mezcla con el suelo oscuro de cada escena → sin corte brusco).
@@ -16,47 +18,54 @@ export const AMBIENCES = {
   cielo: [
     {
       id: 'dia', name: 'Cielo despejado', w: 5,
-      sky: '#2f7fc9', horizon: '#bfe3ff', low: '#0a1a2e', fog: [55, 155],
-      ambient: 0.5, hemi: 0.85, hemiSky: '#dff0ff', hemiGround: '#1f6f63',
-      sun: '#fff3c4', sunI: 1.6, sunPos: [10, 9, -16], mountains: true,
+      sky: '#2f7fc9', horizon: '#bfe3ff', low: '#0a1a2e', fog: [52, 170],
+      ambient: 0.52, hemi: 0.9, hemiSky: '#dff0ff', hemiGround: '#2f8f4a',
+      sun: '#fff3c4', sunI: 1.55, sunPos: [12, 11, -16], mountains: true,
+      grass: ['#5fb85f', '#2f8f3e'], sand: '#e6cf8a', sea: '#3b82c4',
     },
     {
       id: 'atardecer', name: 'Atardecer dorado', w: 4,
-      sky: '#9a4fb0', horizon: '#ffb067', low: '#23122e', fog: [48, 145],
-      ambient: 0.46, hemi: 0.75, hemiSky: '#ffcaa0', hemiGround: '#5a2f48',
-      sun: '#ff7a2d', sunI: 1.9, sunPos: [4, 4, -18], mountains: true, warm: true,
+      sky: '#9a4fb0', horizon: '#ffb067', low: '#23122e', fog: [46, 158],
+      ambient: 0.46, hemi: 0.8, hemiSky: '#ffcaa0', hemiGround: '#5a3a2f',
+      sun: '#ff7a2d', sunI: 1.85, sunPos: [5, 5, -18], mountains: true, warm: true,
+      grass: ['#6f9a4e', '#46692f'], sand: '#d8b06a', sea: '#7d5a86',
     },
     {
       id: 'niebla', name: 'Niebla espesa', w: 3,
-      sky: '#8b9aab', horizon: '#c2ccd6', low: '#5a6672', fog: [24, 74],
-      ambient: 0.7, hemi: 0.85, hemiSky: '#dfe7ee', hemiGround: '#8aa39a',
-      sun: '#eef2f7', sunI: 1.0, sunPos: [8, 14, -8], mountains: true,
+      sky: '#8b9aab', horizon: '#c2ccd6', low: '#5a6672', fog: [22, 82],
+      ambient: 0.72, hemi: 0.9, hemiSky: '#dfe7ee', hemiGround: '#8aa39a',
+      sun: '#eef2f7', sunI: 0.95, sunPos: [8, 16, -8], mountains: true,
+      grass: ['#7f9c84', '#5e7d68'], sand: '#b9b39a', sea: '#90a0aa',
     },
     {
       id: 'lluvia', name: 'Cielo de tormenta', w: 3,
-      sky: '#3a4a5e', horizon: '#7e8fa2', low: '#141d28', fog: [40, 112],
-      ambient: 0.5, hemi: 0.75, hemiSky: '#b8c6d4', hemiGround: '#48645d',
-      sun: '#cbd6e2', sunI: 1.0, sunPos: [8, 14, -10], rain: true, mountains: true,
+      sky: '#3a4a5e', horizon: '#7e8fa2', low: '#141d28', fog: [40, 134],
+      ambient: 0.5, hemi: 0.78, hemiSky: '#b8c6d4', hemiGround: '#44645a',
+      sun: '#cbd6e2', sunI: 0.95, sunPos: [9, 15, -10], rain: true, mountains: true,
+      grass: ['#4f7a5a', '#33543d'], sand: '#9a9576', sea: '#48667a',
     },
     {
       id: 'noche', name: 'Noche estrellada', w: 4,
-      sky: '#0a1430', horizon: '#26345e', low: '#060b1c', fog: [46, 135],
-      ambient: 0.34, hemi: 0.5, hemiSky: '#8fa8ff', hemiGround: '#1c3a44',
-      sun: '#cdd9ff', sunI: 0.7, sunPos: [12, 10, -16], night: true, mountains: true,
+      sky: '#0a1430', horizon: '#26345e', low: '#060b1c', fog: [44, 152],
+      ambient: 0.36, hemi: 0.55, hemiSky: '#8fa8ff', hemiGround: '#1c3a44',
+      sun: '#cdd9ff', sunI: 0.72, sunPos: [12, 11, -16], night: true, mountains: true,
+      grass: ['#2e4f4a', '#1f3a39'], sand: '#585848', sea: '#1c3550',
     },
   ],
   espacio: [
     {
       id: 'estrellas', name: 'Campo estelar', w: 6,
-      sky: '#04060f', horizon: '#0b1024', low: '#02030a', fog: [70, 190],
+      sky: '#04060f', horizon: '#0b1024', low: '#02030a', fog: [70, 200],
       ambient: 0.4, hemi: 0.5, hemiSky: '#9db4ff', hemiGround: '#0a0f24',
       sun: '#d6e4ff', sunI: 1.3, sunPos: [16, 9, -16], night: true, space: true,
+      planet: '#3b6fb0',
     },
     {
       id: 'nebulosa', name: 'Nebulosa lejana', w: 4,
-      sky: '#0c0826', horizon: '#2a1a5a', low: '#070420', fog: [70, 190],
+      sky: '#0c0826', horizon: '#2a1a5a', low: '#070420', fog: [70, 200],
       ambient: 0.46, hemi: 0.6, hemiSky: '#c8a8ff', hemiGround: '#140a2a',
       sun: '#e6ccff', sunI: 1.2, sunPos: [14, 9, -14], night: true, space: true, nebula: true,
+      planet: '#7a4fc0',
     },
   ],
 };
