@@ -13,7 +13,7 @@ import {
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import SimInfoModal from './components/SimInfoModal';
 import SIM_INFO from './simInfo';
-import { temaDeSim, pickAmbience } from './engine/ambiences';
+import { temaDeSim, pickAmbience, NEUTRAL_AMBIENCE } from './engine/ambiences';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { GLOBAL_QUALITY_PARAMS, QUALITY_LABELS } from '@/services/graphicsQuality';
@@ -299,7 +299,8 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
     setPanelOpen(true);
     setGraphOpen(true);
     visitedRef.current.add(sim.id);
-    setAmbiente(pickAmbience(temaDeSim(sim.id), Math.random())); // clima sorteado al entrar
+    // cámaras cerradas (túnel) → estudio neutro; el resto, clima sorteado al entrar
+    setAmbiente(sim.entornoNeutro ? NEUTRAL_AMBIENCE : pickAmbience(temaDeSim(sim.id), Math.random()));
     setShowInfo(!infoHidden); // se abre la info al entrar (salvo "no volver a mostrar")
     setScreen('sim');
   };

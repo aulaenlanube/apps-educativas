@@ -94,3 +94,13 @@ export function ambienceById(id) {
 }
 
 export const DEFAULT_AMBIENCE = AMBIENCES.cielo[0];
+
+// Estudio neutro para simulaciones de "cámara cerrada" (túnel de viento): fondo
+// oscuro y limpio, SIN isla/vegetación, para que los trazadores de flujo resalten.
+// Lo marca el flag `neutral`; LabEnvironment solo dibuja la cúpula degradada.
+export const NEUTRAL_AMBIENCE = {
+  id: 'estudio', name: 'Estudio', neutral: true,
+  sky: '#0e1730', horizon: '#1b2742', low: '#070b18', fog: [55, 200],
+  ambient: 0.62, hemi: 0.7, hemiSky: '#9fb4d8', hemiGround: '#2a3550',
+  sun: '#dce6ff', sunI: 1.15, sunPos: [10, 12, 6],
+};

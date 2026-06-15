@@ -443,6 +443,7 @@ export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) 
   const env = useMemo(() => {
     if (!amb) return null;
     const b = Math.max(0.3, budget);
+    if (amb.neutral) return { neutral: true, b };
     if (amb.space) return { space: true, b };
 
     const seed = (hashStr(amb.id) ^ seedRef.current) >>> 0;
@@ -550,6 +551,15 @@ export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) 
   }, [amb, budget]);
 
   if (!env) return null;
+
+  // estudio neutro (cámara cerrada): solo la cúpula oscura, sin isla ni vegetación
+  if (env.neutral) {
+    return (
+      <group>
+        <Skydome amb={amb} />
+      </group>
+    );
+  }
 
   if (env.space) {
     return (

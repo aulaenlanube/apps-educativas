@@ -11,7 +11,6 @@ import * as THREE from 'three';
 import useThrottledTick from '../components/useThrottledTick';
 import VectorArrow from '../components/VectorArrow';
 import { fmt } from '../engine/integrator';
-import { mulberry32 } from '../engine/rng';
 
 const A = 0.8;          // radio del cilindro-perfil
 const RHO = 1.2;        // densidad del aire
@@ -51,16 +50,24 @@ function Trazadores({ world, params, budget, playing }) {
   const mat = useMemo(() => new THREE.Matrix4(), []);
   const col = useMemo(() => new THREE.Color(), []);
 
-  // siembra determinista; re-siembra al cambiar el presupuesto
+  // Siembra en FILAS uniformes (como el humo de un túnel real): cada trazador
+  // pertenece a una línea de corriente fija a la que vuelve al salir, así el flujo
+  // se ve homogéneo (sin amontonarse en el suelo) y se aprecia cómo se curva.
   useEffect(() => {
     const count = Math.max(120, Math.round(MAX * budget));
-    const rng = mulberry32(777);
+    const rows = Math.max(12, Math.min(34, Math.round(Math.sqrt(count))));
+    const perRow = Math.ceil(count / rows);
     world.data = world.data || {}; // el efecto del hijo corre antes que el reinit del padre
-    world.data.parts = Array.from({ length: count }, () => ({
-      x: X_MIN + rng() * (X_MAX - X_MIN),
-      y: -Y_MAX + rng() * 2 * Y_MAX,
-      seed: rng(),
-    }));
+    world.data.parts = Array.from({ length: count }, (_, i) => {
+      const row = i % rows;
+      const k = Math.floor(i / rows);
+      const y0 = -Y_MAX + ((row + 0.5) / rows) * 2 * Y_MAX; // fila (línea de corriente)
+      return {
+        x: X_MIN + ((k + 0.5) / perRow) * (X_MAX - X_MIN), // repartidos por x desde el inicio
+        y: y0,
+        y0,
+      };
+    });
   }, [world, budget]);
 
   useFrame((_, delta) => {
@@ -78,9 +85,9 @@ function Trazadores({ world, params, budget, playing }) {
         q.x += vx * VEL_VISUAL * dt;
         q.y += vy * VEL_VISUAL * dt;
       }
-      if (dentro || q.x > X_MAX || Math.abs(q.y) > Y_MAX + 0.5) {
-        q.x = X_MIN;
-        q.y = -Y_MAX + ((q.seed * 9301 + 49297) % 233280) / 233280 * 2 * Y_MAX;
+      if (dentro || q.x > X_MAX || Math.abs(q.y) > Y_MAX + 0.3) {
+        q.x = X_MIN;          // vuelve al inicio de SU línea de corriente
+        q.y = q.y0;
       }
       mat.setPosition(q.x, q.y, 0);
       inst.setMatrixAt(i, mat);
@@ -208,9 +215,9 @@ const simDef = {
     { titulo: 'Bernoulli', expr: 'p + ½·ρ·v² = cte', leyenda: 'donde el aire va más rápido, la presión baja' },
   ],
   fondo: () => '#0a1228',
-  // túnel alto centrado en y=0 con el suelo muy abajo (≈ -7,1): el entorno baja su
-  // pradera a este nivel para no cortar la cámara de ensayo por la mitad.
-  entornoY: -7.4,
+  // cámara de ensayo cerrada: usa fondo de estudio neutro (sin isla/vegetación)
+  // para que los trazadores de flujo resalten en vez de mezclarse con el paisaje.
+  entornoNeutro: true,
   camara: { position: [0, 0, 19], fov: 50 },
   controles: { target: [0, 0, 0], maxDistance: 40, maxPolarAngle: Math.PI },
   Scene,
