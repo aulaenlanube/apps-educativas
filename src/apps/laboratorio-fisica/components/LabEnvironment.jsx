@@ -16,7 +16,9 @@ const clamp = THREE.MathUtils.clamp;
 
 // --- geometría de la isla (unidades de mundo) ---
 const SEA_Y = -3.2;     // nivel del mar (muy por debajo del escenario en y≈0)
-const BASE_Y = -0.18;   // pradera plana, justo bajo el suelo de cada escena
+const BASE_Y = -0.40;   // pradera plana, por debajo del suelo de TODAS las escenas
+                        // (el más bajo es arquimedes en y=-0,21) para que la hierba
+                        // nunca asome a traves del suelo oscuro del montaje.
 const R_FLAT = 23;      // radio de pradera plana (cubre el escenario más grande)
 const R_RAMP = 15;      // transición pradera → colinas
 const R_COAST = 62;     // a partir de aquí la tierra cae hacia el mar (visible al fondo)
@@ -47,7 +49,7 @@ function makeHeight(ph) {
   return (x, z) => {
     const r = Math.hypot(x, z);
     const rim = smooth(r, R_FLAT, R_FLAT + R_RAMP);
-    if (rim <= 0) return BASE_Y + Math.sin(x * 0.6) * Math.cos(z * 0.55) * 0.05;
+    if (rim <= 0) return BASE_Y + Math.sin(x * 0.6) * Math.cos(z * 0.55) * 0.04;
     const n = Math.sin(x * 0.085 + ph[0]) * Math.cos(z * 0.10 + ph[1]) * 2.0
       + Math.sin(x * 0.05 + ph[2]) * Math.sin(z * 0.043 + ph[3]) * 3.2
       + Math.sin((x + z) * 0.028 + ph[4]) * Math.cos((x - z) * 0.022 + ph[5]) * 1.6;
@@ -196,7 +198,7 @@ function Terrain({ heightFn, palette, seed, seg }) {
     const peak = new THREE.Color(palette.peak);
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i), z = pos.getZ(i);
-      const y = heightFn(x, z) + (rng() - 0.5) * 0.12;
+      const y = heightFn(x, z) + (rng() - 0.5) * 0.08;
       pos.setY(i, y);
       let col;
       if (y < SEA_Y + 0.5) {
