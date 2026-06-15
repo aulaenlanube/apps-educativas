@@ -254,7 +254,8 @@ const AppListPage = () => {
                     <AnimatedBorderButton
                         onClick={() => navigate(`/curso/${level}/${grade}`)}
                         colors={['#3B82F6', '#8B5CF6']}
-                        glowColor="rgba(59,130,246,0.3)"
+                        glowColor="rgba(255,255,255,0.45)"
+                        borderColor="#ffffff"
                         shape="arrow"
                     >
                         Asignaturas

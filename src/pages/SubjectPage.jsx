@@ -171,13 +171,13 @@ const SubjectPage = () => {
             <div className="text-center">
               <div className="flex items-center justify-center space-x-3 md:space-x-8 mb-4">
                 {prevStep && (
-                  <NavArrowButton direction="left" borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
+                  <NavArrowButton direction="left" colors={['#ffffff', '#ffffff']} borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
                 )}
 
                 <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap">{fullTitle}</AnimatedGradientTitle>
 
                 {nextStep && (
-                  <NavArrowButton direction="right" borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
+                  <NavArrowButton direction="right" colors={['#ffffff', '#ffffff']} borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">
