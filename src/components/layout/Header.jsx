@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { Shield, Menu, BookOpen } from 'lucide-react';
 import MascotLogo from '../ui/MascotLogo';
 import { useAuth } from '@/contexts/AuthContext';
@@ -11,8 +11,12 @@ import './Header.css';
 
 const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuthenticated, isAdmin, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // El botón de Blog solo se muestra en la página de inicio.
+  const isHome = location.pathname === '/';
 
   return (
     <header className="glass-hdr relative isolate sticky top-0 z-50 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.35)] dark:shadow-[0_14px_40px_-16px_rgba(0,0,0,0.7)]">
@@ -42,19 +46,21 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-4">
             {children}
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                }`
-              }
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              Blog
-            </NavLink>
+            {isHome && (
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`
+                }
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                Blog
+              </NavLink>
+            )}
             {!loading && isAdmin && (
               <button
                 onClick={() => navigate('/admin')}
