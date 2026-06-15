@@ -168,7 +168,7 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-white/40 group"
+                        className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-white/30 group"
                         onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
                     >
                         <div className="flex items-start gap-4 mb-3">
@@ -177,7 +177,7 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                             </div>
                             <div className="flex-1 min-w-0">
                                 <h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors leading-tight">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
-                                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{app.description}</p>
+                                <p className="text-sm text-gray-700 mt-1 line-clamp-2">{app.description}</p>
                             </div>
                         </div>
                         {r && r.total_ratings > 0 && (

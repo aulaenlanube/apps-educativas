@@ -14,7 +14,7 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <header className="bg-white/55 dark:bg-slate-900/55 backdrop-blur-xl shadow-sm border-b border-white/40 dark:border-purple-900/40 sticky top-0 z-50">
+    <header className="bg-white/30 dark:bg-slate-900/35 backdrop-blur-xl shadow-sm border-b border-white/25 dark:border-purple-900/40 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <div
