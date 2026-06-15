@@ -45,12 +45,13 @@
    glifo, independientemente del relleno transparente. Se hereda a los hijos,
    así que basta ponerla en el contenedor del texto (logo, enlaces, botones). */
 .glass-hdr-pop {
+  /* Borde nítido fino (sin halo difuso, que sobre el degradado se veía como
+     una nube blanca). Outline limpio de ~0,5px en las 4 direcciones. */
   text-shadow:
-    -0.5px -0.5px 0 rgba(255, 255, 255, 0.92),
-     0.5px -0.5px 0 rgba(255, 255, 255, 0.92),
-    -0.5px  0.5px 0 rgba(255, 255, 255, 0.92),
-     0.5px  0.5px 0 rgba(255, 255, 255, 0.92),
-     0 0 4px rgba(255, 255, 255, 0.55);
+    -0.5px 0 0 rgba(255, 255, 255, 0.7),
+     0.5px 0 0 rgba(255, 255, 255, 0.7),
+     0 -0.5px 0 rgba(255, 255, 255, 0.7),
+     0  0.5px 0 rgba(255, 255, 255, 0.7);
 }
 /* En tema oscuro el texto ya es claro; un outline blanco no aporta y podría
    emborronar: lo suavizamos a un leve halo. */
