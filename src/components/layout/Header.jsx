@@ -43,9 +43,11 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
               to="/blog"
               className={({ isActive }) =>
                 `hidden md:inline-flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  isOver3D
+                    ? (isActive ? 'bg-white/20 text-white' : 'text-white/85 hover:bg-white/10')
+                    : (isActive
+                      ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800')
                 }`
               }
             >

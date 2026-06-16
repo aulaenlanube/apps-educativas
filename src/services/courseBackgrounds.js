@@ -24,9 +24,10 @@ export const DEFAULT_COURSE_BACKGROUND = {
 //   'eso/4':       { kind: 'scene3d', ambienceId: 'niebla' },
 export const COURSE_BACKGROUNDS = {};
 
-// ¿La ruta dada se renderiza SOBRE el fondo 3D de curso? (páginas de selección de
+// ¿La ruta dada se renderiza SOBRE el fondo 3D? (home + páginas de selección de
 // asignatura y de app, que vuelven su contenedor transparente). Misma regla que
-// resolveFromPath de PersistentCourseBackground para las rutas de selección:
+// resolveFromPath de PersistentCourseBackground para esas rutas:
+//   /                               (home)         → 0 segmentos
 //   /curso/:level/:grade            (asignaturas)  → 3 segmentos
 //   /curso/:level/:grade/:subjectId (apps)         → 4 segmentos
 // NO incluye la ruta de app individual (/app/:appId): esa monta su propio header
@@ -35,7 +36,7 @@ export const COURSE_BACKGROUNDS = {};
 // variante de cristal en AMBOS temas, en vez de depender de light/dark.
 export function isOver3DRoute(pathname = '') {
   const parts = pathname.split('/').filter(Boolean);
-  return parts[0] === 'curso' && (parts.length === 3 || parts.length === 4);
+  return parts.length === 0 || (parts[0] === 'curso' && (parts.length === 3 || parts.length === 4));
 }
 
 // Devuelve la config de fondo para un curso (level + grade), aplicando overrides.

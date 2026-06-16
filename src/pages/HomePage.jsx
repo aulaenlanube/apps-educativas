@@ -122,7 +122,7 @@ const HomePage = () => {
                 ));
               })()}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 drop-shadow-md max-w-3xl mx-auto leading-relaxed">
               Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block" />
               Desde 1º de Primaria hasta 2º de Bachillerato, ¡el aprendizaje nunca fue tan divertido!
             </p>
@@ -230,7 +230,7 @@ const HomePage = () => {
               <GradientTitle tag="h2" className="text-4xl">Educación Primaria</GradientTitle>
               <Sparkles className="w-8 h-8 text-purple-500" />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
               Apps diseñadas especialmente para los más pequeños, con contenido adaptado a cada nivel.
             </p>
           </motion.div>
@@ -287,7 +287,7 @@ const HomePage = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-transparent dark:to-transparent dark:bg-none"
+        className="py-16 px-6"
       >
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
@@ -296,7 +296,7 @@ const HomePage = () => {
               <GradientTitle tag="h2" className="text-4xl">Educación Secundaria</GradientTitle>
               <Trophy className="w-8 h-8 text-purple-500" />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
               Contenido avanzado y especializado para estudiantes de ESO.
             </p>
           </motion.div>
@@ -362,7 +362,7 @@ const HomePage = () => {
               <GradientTitle tag="h2" className="text-4xl">Bachillerato</GradientTitle>
               <Star className="w-8 h-8 text-teal-500" />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
               Prepárate para la universidad con contenido de alto nivel adaptado a cada asignatura.
             </p>
           </motion.div>
@@ -415,7 +415,7 @@ const HomePage = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6 bg-gradient-to-r from-rose-50/50 via-amber-50/50 to-teal-50/50 dark:from-transparent dark:via-transparent dark:to-transparent dark:bg-none"
+        className="py-16 px-6"
       >
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
@@ -424,7 +424,7 @@ const HomePage = () => {
               <GradientTitle tag="h2" className="text-4xl">Atención a la Diversidad</GradientTitle>
               <Brain className="w-8 h-8 text-teal-500" />
             </div>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
               Apps especializadas para profesionales de Audición y Lenguaje, Pedagogía Terapéutica y apoyo al desarrollo cognitivo y comunicativo.
             </p>
           </motion.div>
@@ -482,7 +482,7 @@ const HomePage = () => {
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
             <GradientTitle tag="h2" className="text-4xl mb-4">¿Por qué elegir EduApps?</GradientTitle>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-white/85 drop-shadow max-w-3xl mx-auto">
               Una plataforma diseñada para hacer el aprendizaje más efectivo y divertido.
             </p>
           </motion.div>

@@ -9,6 +9,7 @@ import { courseBackgroundEnabledForAppId } from '@/services/courseBackgrounds';
 // reinicia ni cambia el cielo, solo cambia la UI de delante.
 //
 // Rutas con fondo:
+//   /                                             → página de inicio (home)
 //   /curso/:level/:grade                          → asignaturas
 //   /curso/:level/:grade/:subjectId               → apps
 //   /curso/:level/:grade/:subjectId/app/:appId    → app individual (si es 'standard')
@@ -16,6 +17,8 @@ import { courseBackgroundEnabledForAppId } from '@/services/courseBackgrounds';
 // Va DETRÁS de todo (z-index -1); las páginas con fondo son transparentes.
 function resolveFromPath(pathname) {
   const parts = pathname.split('/').filter(Boolean);
+  // Home ('/'): fondo 3D por defecto, sin curso concreto (ambiente de cielo al azar).
+  if (parts.length === 0) return { level: undefined, grade: undefined };
   if (parts[0] !== 'curso' || parts.length < 3) return null;
   const level = parts[1];
   const grade = parts[2];
