@@ -73,20 +73,12 @@ export const APPS_WITH_OWN_SCENE = [
   'programacion-bloques',
 ];
 
-// (2) Apps que conservan su fondo clásico de página en vez de la escena 3D a
-//     pantalla completa. Dos motivos distintos:
-//       · Fondo CONTENIDO: la app pinta su PROPIA superficie acotada a su área
-//         (un panel intermedio), no quiere la escena 3D a pantalla completa.
-//       · Diseño aún no adaptado: coloca texto/controles oscuros DIRECTAMENTE
-//         sobre el fondo y perdería legibilidad sobre la escena 3D con velo.
-//     La parte "no adaptada" se puede ir REDUCIENDO según se adapten esas apps
-//     (mover su texto a tarjetas o aclarar sus colores).
+// (2) Apps 'standard' cuyo diseño NO permite (todavía) el fondo 3D: colocan texto
+//     o controles oscuros DIRECTAMENTE sobre el fondo de página, que perderían
+//     legibilidad sobre la escena 3D con velo. Conservan su fondo claro clásico.
+//     Esta lista se puede ir REDUCIENDO según se adapten esas apps (mover su texto
+//     a tarjetas o aclarar sus colores).
 export const APPS_KEEP_LIGHT_BG = [
-  // Fondo CONTENIDO propio (panel acotado al área de la app, no la escena 3D
-  // a pantalla completa). Pintan su superficie en su contenedor raíz.
-  'parejas',                          // Parejas de Cartas
-  'rotaciones-grid',                  // Rotaciones en cuadrícula
-  // Diseño aún no adaptado: texto/UI oscuro directo sobre el fondo
   'banco-recursos-tutoria',
   'generador-personajes-historicos',
 ];

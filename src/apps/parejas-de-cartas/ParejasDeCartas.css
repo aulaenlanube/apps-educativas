@@ -10,16 +10,6 @@
 .contenedor-parejas {
   @apply flex flex-col justify-center w-full p-4 relative;
   min-height: 60vh;
-  /* Fondo CONTENIDO: superficie acotada al área de la app (no la escena 3D a
-     pantalla completa). Tokens de tema -> clara en tema claro, oscura en oscuro.
-     isolation:isolate acota el overlay del resumen (position:absolute). */
-  max-width: 1100px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, var(--app-bg-surface) 0%, var(--app-bg-elevated) 100%);
-  border-radius: 1.5rem;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.10);
-  isolation: isolate;
 }
 
 /* Animación de entrada suave */

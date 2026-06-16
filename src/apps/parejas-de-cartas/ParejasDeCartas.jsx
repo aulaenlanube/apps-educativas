@@ -327,13 +327,13 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
   };
   const calcularNota = () => calcularNotaNum().toFixed(1);
 
-  if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando... 🃏</div>;
+  if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-white/80 drop-shadow">Cargando... 🃏</div>;
 
   return (
     <div className="contenedor-parejas">
       {fase === 'menu' && (
         <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center w-full max-w-5xl">
-          <h1 className="text-4xl md:text-6xl font-black mb-10 text-indigo-900 dark:text-indigo-100 drop-shadow-sm tracking-tight">PAREJAS DE CARTAS</h1>
+          <h1 className="text-4xl md:text-6xl font-black mb-10 text-indigo-100 drop-shadow-lg tracking-tight">PAREJAS DE CARTAS</h1>
 
           <div className="w-full space-y-12">
             {/* SECCIÓN ENTRENAMIENTO */}
@@ -395,7 +395,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
 
       {(fase === 'juego' || fase === 'resumen') && (
         <div className="juego-area relative w-full flex flex-col justify-center items-center animate-fade-in gap-4">
-          <h1 className="text-3xl md:text-5xl font-black text-indigo-900 dark:text-indigo-100 drop-shadow-sm tracking-tight mb-2 uppercase">PAREJAS DE CARTAS</h1>
+          <h1 className="text-3xl md:text-5xl font-black text-indigo-100 drop-shadow-lg tracking-tight mb-2 uppercase">PAREJAS DE CARTAS</h1>
 
           {/* --- BARRA DE CONTROLES SUPERIOR --- */}
           <div className="w-full max-w-[1000px] flex flex-wrap justify-center items-center px-2 z-20 gap-4 md:gap-6 mb-2">
