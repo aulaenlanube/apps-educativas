@@ -181,8 +181,8 @@ const SubjectPage = () => {
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">
-                <div className="bg-white/70 backdrop-blur-md border border-purple-200 border-t-[4px] border-t-purple-400 shadow-lg rounded-2xl px-8 py-4">
-                  <p className="text-xl text-gray-600 font-medium">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
+                <div className="bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl px-8 py-4">
+                  <p className="text-xl text-white/85 font-medium">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@ const SubjectPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-16 flex flex-col items-center justify-center text-center bg-white/60 backdrop-blur-sm p-12 rounded-[3rem] shadow-xl border-b-4 border-indigo-200"
+                className="mt-16 flex flex-col items-center justify-center text-center bg-slate-900/35 backdrop-blur-md p-12 rounded-[3rem] shadow-xl border border-white/20"
               >
                 <motion.img
                   animate={{ y: [0, -15, 0] }}
@@ -202,8 +202,8 @@ const SubjectPage = () => {
                   alt="Cohete"
                   src="/images/portada.webp"
                 />
-                <h2 className="text-3xl font-black text-gray-800 mb-4 uppercase tracking-tight">¡Próximamente!</h2>
-                <p className="text-lg text-gray-600 max-w-md">Estamos preparando los mejores contenidos para este nivel. ¡Vuelve pronto!</p>
+                <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-tight">¡Próximamente!</h2>
+                <p className="text-lg text-white/80 max-w-md">Estamos preparando los mejores contenidos para este nivel. ¡Vuelve pronto!</p>
               </motion.div>
             )}
           </motion.div>

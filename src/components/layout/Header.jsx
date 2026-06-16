@@ -7,6 +7,7 @@ import LoginButton from '@/components/auth/LoginButton';
 import UserMenu from '@/components/auth/UserMenu';
 import NotificationBell from '@/components/ui/NotificationBell';
 import MobileSidebar from './MobileSidebar';
+import { isOver3DRoute } from '@/services/courseBackgrounds';
 import './Header.css';
 
 const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
@@ -17,6 +18,10 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
 
   // El botón de Blog solo se muestra en la página de inicio.
   const isHome = location.pathname === '/';
+
+  // Sobre el fondo 3D de curso (escena oscura en AMBOS temas) el chrome debe
+  // leerse como cristal claro-sobre-oscuro, no depender de light/dark.
+  const isOver3D = isOver3DRoute(location.pathname);
 
   return (
     <header className="glass-hdr relative isolate sticky top-0 z-50 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.35)] dark:shadow-[0_14px_40px_-16px_rgba(0,0,0,0.7)]">
@@ -58,7 +63,7 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
               <h1 className="glass-hdr-pop text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                 EduApps
               </h1>
-              <p className="glass-hdr-pop-sm text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 font-medium tracking-wide">{subtitle}</p>
+              <p className={`glass-hdr-pop-sm text-[10px] sm:text-xs font-medium tracking-wide ${isOver3D ? 'text-white/85' : 'text-gray-600 dark:text-gray-400'}`}>{subtitle}</p>
             </div>
           </div>
 
@@ -74,7 +79,7 @@ const Header = ({ children, rightExtra, subtitle = "Apps Educativas" }) => {
                 Admin
               </button>
             )}
-            {!loading && isAuthenticated && <NotificationBell />}
+            {!loading && isAuthenticated && <NotificationBell variant={isOver3D ? 'glass' : 'default'} />}
             {!loading && (isAuthenticated ? <UserMenu /> : <LoginButton />)}
             {rightExtra}
           </nav>

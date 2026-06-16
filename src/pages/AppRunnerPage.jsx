@@ -324,11 +324,26 @@ const AppRunnerPage = () => {
     // (con override por app vía `fondo3D`). Política en courseBackgrounds.js.
     const useCourseBg = courseBackgroundEnabledForApp(app.id, preset._name, app.fondo3D);
 
+    // Cuando el fondo 3D de curso está activo en una app 'standard', su chrome
+    // claro (campana blanca, botones bg-white/80) desentona sobre la escena oscura.
+    // Usamos el chrome de CRISTAL (el del preset 'inmersivo') en AMBOS temas: el
+    // interruptor es "¿estoy sobre el 3D?", no el tema claro/oscuro.
+    const chrome = (useCourseBg && !preset.glassChrome)
+        ? {
+            ...preset,
+            glassChrome: true,
+            btnHeartClass: APP_HEADER_PRESETS.inmersivo.btnHeartClass,
+            iconHeartClass: APP_HEADER_PRESETS.inmersivo.iconHeartClass,
+            btnRankingClass: APP_HEADER_PRESETS.inmersivo.btnRankingClass,
+            iconRankingClass: APP_HEADER_PRESETS.inmersivo.iconRankingClass,
+        }
+        : preset;
+
     // Variante para AppRatingPanel
-    const ratingVariant = preset._name === 'dark-green' || preset._name === 'reduced'
+    const ratingVariant = chrome._name === 'dark-green' || chrome._name === 'reduced'
         ? 'retro'
-        : preset.glassChrome ? 'glass'
-            : preset.isAbsolute ? 'fullscreen' : 'default';
+        : chrome.glassChrome ? 'glass'
+            : chrome.isAbsolute ? 'fullscreen' : 'default';
 
     return (
         <>
@@ -386,20 +401,20 @@ const AppRunnerPage = () => {
                         <>
                             <Button
                                 onClick={() => setIsDonationModalOpen(true)}
-                                className={preset.btnHeartClass}
+                                className={chrome.btnHeartClass}
                                 size="icon"
                                 title="Apoya el proyecto"
                             >
-                                <Heart className={preset.iconHeartClass} />
+                                <Heart className={chrome.iconHeartClass} />
                             </Button>
 
                             <Button
                                 onClick={() => setIsRankingModalOpen(true)}
-                                className={preset.btnRankingClass}
+                                className={chrome.btnRankingClass}
                                 size="icon"
                                 title="Ver ranking"
                             >
-                                <Trophy className={preset.iconRankingClass} />
+                                <Trophy className={chrome.iconRankingClass} />
                             </Button>
                         </>
                     )}
@@ -409,7 +424,7 @@ const AppRunnerPage = () => {
                     {preset.showUserControls && !authLoading && isAuthenticated && (
                         <>
                             <div className="hidden md:flex items-center gap-2">
-                                <NotificationBell variant={preset.glassChrome ? 'glass' : 'default'} />
+                                <NotificationBell variant={chrome.glassChrome ? 'glass' : 'default'} />
                                 <UserMenu />
                             </div>
                             <button
