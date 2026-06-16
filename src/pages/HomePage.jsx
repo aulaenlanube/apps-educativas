@@ -69,8 +69,6 @@ const HomePage = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative pt-10 pb-72 px-6 text-center overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl transform -rotate-12 scale-150 pointer-events-none"></div>
-
         <div className="relative z-10 container mx-auto">
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -79,7 +77,7 @@ const HomePage = () => {
             className="mb-8"
           >
             <h1
-              className="font-bold text-5xl md:text-7xl mb-8"
+              className="font-bold gradient-title-stroke text-5xl md:text-7xl mb-8"
               style={{ lineHeight: 1.4 }}
             >
               {(() => {
