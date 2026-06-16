@@ -8,7 +8,12 @@
     width: fit-content;
     min-width: min(800px, 94vw);
     max-width: 98vw;
-    background: var(--app-bg);
+    /* Panel de cristal translúcido: toda la app vive dentro de este contenedor,
+       así que con un solo cambio el texto guía suelto queda sobre una superficie
+       legible y la escena 3D de curso se ve por los márgenes. */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -17,6 +22,11 @@
     position: relative;
     border: 1px solid #e2e8f0;
     transition: border-color 0.3s;
+}
+
+.dark .medidas-container {
+    background: rgba(30, 27, 46, 0.72);
+    border-color: rgba(255, 255, 255, 0.08);
 }
 
 .medidas-container h1 {

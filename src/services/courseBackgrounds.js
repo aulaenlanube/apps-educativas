@@ -53,10 +53,12 @@ export function getCourseBackground(level, grade) {
 // -----------------------------------------------------------------------------
 // El fondo de curso se monta por DEFECTO en las apps con preset 'standard' (las
 // de tarjetas claras). Quedan fuera:
-//   · Las apps con preset NO 'standard' (terminal-retro, runner, isla-de-la-calma,
+//   · Las apps con preset NO 'standard' (terminal-retro, isla-de-la-calma,
 //     laboratorio-fisica, sistema-solar, célula animal/vegetal, mesa-crafteo,
-//     juego-memoria, cazapalabras-3d): ya traen su propio fondo inmersivo (esto
-//     lo resuelve el preset, no hace falta listarlas aquí).
+//     cazapalabras-3d): ya traen su propio fondo inmersivo (esto lo resuelve el
+//     preset, no hace falta listarlas aquí).
+//   · runner: preset 'reduced' (chrome retro) PERO usa el fondo 3D de curso
+//     (excepción explícita en courseBackgroundEnabledForApp).
 //   · Las dos listas de abajo (se comparan por id EXACTO de app).
 
 // (1) Apps 'standard' que pintan su PROPIO lienzo a pantalla completa (3D u otro):
@@ -71,26 +73,22 @@ export const APPS_WITH_OWN_SCENE = [
   'programacion-bloques',
 ];
 
-// (2) Apps 'standard' cuyo diseño NO permite (todavía) el fondo 3D: colocan texto
-//     o controles oscuros DIRECTAMENTE sobre el fondo de página, que perderían
-//     legibilidad sobre la escena 3D con velo. Conservan su fondo claro clásico.
-//     Esta lista se puede ir REDUCIENDO según se adapten esas apps (mover su texto
-//     a tarjetas o aclarar sus colores).
+// (2) Apps que conservan su fondo clásico de página en vez de la escena 3D a
+//     pantalla completa. Dos motivos distintos:
+//       · Fondo CONTENIDO: la app pinta su PROPIA superficie acotada a su área
+//         (un panel intermedio), no quiere la escena 3D a pantalla completa.
+//       · Diseño aún no adaptado: coloca texto/controles oscuros DIRECTAMENTE
+//         sobre el fondo y perdería legibilidad sobre la escena 3D con velo.
+//     La parte "no adaptada" se puede ir REDUCIENDO según se adapten esas apps
+//     (mover su texto a tarjetas o aclarar sus colores).
 export const APPS_KEEP_LIGHT_BG = [
-  // Medidas (comparar / ordenar) — texto guía gris directo sobre el fondo
-  'longitud-comparar', 'longitud-ordenar',
-  'masa-comparar', 'masa-ordenar',
-  'capacidad-comparar', 'capacidad-ordenar',
-  // Resto de apps con texto/UI oscuro directo sobre el fondo
-  'sopa-de-letras',
-  'anagramas',
-  'lluvia-de-palabras',
+  // Fondo CONTENIDO propio (panel acotado al área de la app, no la escena 3D
+  // a pantalla completa). Pintan su superficie en su contenedor raíz.
   'parejas',                          // Parejas de Cartas
-  'porcentajes-proporciones',
+  'rotaciones-grid',                  // Rotaciones en cuadrícula
+  // Diseño aún no adaptado: texto/UI oscuro directo sobre el fondo
   'banco-recursos-tutoria',
   'generador-personajes-historicos',
-  'comprension-escrita', 'comprension-oral',
-  'infografias-interactivas',
 ];
 
 const _appsWithoutCourseBg = new Set([...APPS_WITH_OWN_SCENE, ...APPS_KEEP_LIGHT_BG]);
@@ -106,6 +104,9 @@ export function appHasOwnBackground(appId = '') {
 export function courseBackgroundEnabledForApp(appId, presetName, appFlag) {
   if (appFlag === true) return true;
   if (appFlag === false) return false;
+  // runner conserva su preset 'reduced' (chrome retro verde sobre el juego) pero
+  // SÍ muestra el fondo 3D de curso: excepción explícita al guard de preset.
+  if (appId === 'runner') return !appHasOwnBackground(appId);
   if (presetName && presetName !== 'standard') return false;
   return !appHasOwnBackground(appId);
 }
@@ -118,7 +119,7 @@ export function getHeaderPresetName(appId = '') {
   if (appId === 'terminal-retro') return 'dark-green';
   if (appId.startsWith('isla-de-la-calma')) return 'calma';
   if (appId === 'laboratorio-fisica') return 'inmersivo';
-  if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'juego-memoria', 'cazapalabras-3d'].some((id) => appId.includes(id))) return 'dark-glass';
+  if (['sistema-solar', 'celula-animal', 'celula-vegetal', 'mesa-crafteo', 'cazapalabras-3d'].some((id) => appId.includes(id))) return 'dark-glass';
   if (appId === 'runner') return 'reduced';
   return 'standard';
 }

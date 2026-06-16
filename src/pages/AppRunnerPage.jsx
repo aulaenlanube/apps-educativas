@@ -20,7 +20,6 @@ import AppRatingPanel from '@/components/ui/AppRatingPanel';
 import RatingPromptModal from '@/components/ui/RatingPromptModal';
 import RankingModal from '@/components/ui/RankingModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
-import GeometryDashBackground from '@/components/ui/GeometryDashBackground';
 import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
 import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
 
@@ -319,7 +318,6 @@ const AppRunnerPage = () => {
     // --- Header preset ---
     const preset = getHeaderPreset(app.id);
     const isTerminal = app.id.includes('terminal-retro');
-    const isRunner = app.id === 'runner';
     // Fondo 3D del curso: por defecto en apps 'standard' sin fondo propio
     // (con override por app vía `fondo3D`). Política en courseBackgrounds.js.
     const useCourseBg = courseBackgroundEnabledForApp(app.id, preset._name, app.fondo3D);
@@ -372,7 +370,6 @@ const AppRunnerPage = () => {
             >
 
                 {isTerminal && <MatrixBackground />}
-                {isRunner && <GeometryDashBackground />}
                 {/* El fondo 3D de curso lo monta PersistentCourseBackground (en App),
                     detrás de todo; aquí el contenedor solo se vuelve transparente. */}
 

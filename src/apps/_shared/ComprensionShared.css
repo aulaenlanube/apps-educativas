@@ -28,7 +28,11 @@
 /* --- 3. TÍTULO Y TIPOGRAFÍA --- */
 .main-title {
     font-family: 'Fredoka One', cursive;
-    color: var(--app-text);
+    /* El título va directo sobre el fondo (sin tarjeta). Sobre la escena 3D con
+       velo oscuro debe ser claro en AMBOS temas (en claro var(--app-text) es
+       oscuro e ilegible). La parte .gradient-text mantiene su clip de color. */
+    color: #f8fafc;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
@@ -117,7 +121,9 @@
 }
 
 .config-item {
-    background: #f8fafc;
+    background: var(--app-card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 12px 15px;
     border-radius: 16px;
     border: 1px solid #e2e8f0;
@@ -297,7 +303,10 @@ input:checked+.slider:before {
 
 /* --- 5. TARJETA DE LECTURA Y TEXTO --- */
 .card-principal {
-    background: var(--app-bg);
+    /* Cristal translúcido sobre la escena 3D (en vez de blanco opaco). */
+    background: var(--app-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -412,7 +421,9 @@ input:checked+.slider:before {
 
 /* --- 7. PREGUNTAS Y BOTONES --- */
 .pregunta-card {
-    background: var(--app-bg);
+    background: var(--app-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 16px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;

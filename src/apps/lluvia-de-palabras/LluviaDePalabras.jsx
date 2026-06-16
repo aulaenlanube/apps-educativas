@@ -363,7 +363,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                     <h2 className="text-5xl md:text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-600 to-pink-500 bg-clip-text text-transparent drop-shadow-sm pb-2 font-fredoka">
                         {configData.title || "Lluvia de Palabras"}
                     </h2>
-                    <p className="text-xl text-slate-500 max-w-lg mx-auto leading-relaxed font-fredoka">
+                    <p className="text-xl text-white/85 drop-shadow-md max-w-lg mx-auto leading-relaxed font-fredoka">
                         {showExamMenu
                             ? "Selecciona la velocidad del examen para ajustarla a tu nivel."
                             : (configData.instructions || "Atrapa las palabras en la caja correcta. ¡Usa los botones mágicos para mover las cajas!")}
@@ -494,7 +494,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                     animate={{ scale: 1, opacity: 1 }}
                     className="w-full flex flex-col items-center"
                 >
-                    <h2 className={`text-4xl md:text-5xl font-black mb-10 tracking-tight font-fredoka ${hasPassedExam ? 'text-green-600' : 'text-slate-800'}`}>
+                    <h2 className={`text-4xl md:text-5xl font-black mb-10 tracking-tight font-fredoka drop-shadow-lg ${hasPassedExam ? 'text-green-300' : 'text-white'}`}>
                         {hasPassedExam ? "🏆 ¡EXAMEN SUPERADO!" : (isExam ? "🏁 EXAMEN FINALIZADO" : "🎮 PARTIDA TERMINADA")}
                     </h2>
 

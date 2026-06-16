@@ -49,9 +49,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: transparent;
-  color: #6b7280;
-  border: 1px solid #d1d5db;
+  /* Píldora de cristal: el botón flota sobre la escena 3D, así que texto y borde
+     claros para que se vea en ambos temas (antes gris sobre fondo gris). */
+  background: rgba(255, 255, 255, 0.14);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 0.6rem 1rem;
   border-radius: 0.65rem;
   font-weight: 500;
@@ -60,8 +62,8 @@
 }
 
 .btn-ghost:hover {
-  background: #f3f4f6;
-  color: #1f2937;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 :where(.dark) .btn-ghost {
@@ -98,7 +100,8 @@
 
 .infografias-subtitle {
   margin: 0.25rem 0 0;
-  color: #6b7280;
+  /* Va directo sobre la escena 3D (sin tarjeta) -> claro en ambos temas. */
+  color: rgba(255, 255, 255, 0.82);
   font-size: 0.95rem;
 }
 
@@ -259,12 +262,15 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
+  /* Cabecera de sección directa sobre la escena 3D -> clara en ambos temas. */
+  color: #f1f5f9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .study-title p {
   margin: 0;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 :where(.dark) .study-title p {
@@ -276,11 +282,11 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0.85rem 1rem;
-  background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.28), rgba(236, 72, 153, 0.28));
+  border: 1px solid rgba(139, 92, 246, 0.45);
   border-radius: 0.75rem;
   font-size: 0.9rem;
-  color: #4c1d95;
+  color: #ede9fe;
   margin-bottom: 1rem;
 }
 
@@ -441,11 +447,14 @@
   margin: 0.5rem 0 0.25rem;
   font-size: 1.5rem;
   font-weight: 700;
+  /* Cabecera de fase directa sobre la escena 3D -> clara en ambos temas. */
+  color: #f1f5f9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .phase-header p {
   margin: 0;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
 }
 
@@ -759,6 +768,9 @@
   margin: 0 0 1rem;
   font-size: 1.4rem;
   font-weight: 700;
+  /* Cabecera de resumen directa sobre la escena 3D -> clara en ambos temas. */
+  color: #f1f5f9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .summary-nota {

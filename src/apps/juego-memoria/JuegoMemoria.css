@@ -15,7 +15,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    /* Transparente: deja ver el fondo 3D de curso (la escena oscura + velo hace
+       de telón). Antes pintaba un degradado oscuro opaco que lo tapaba. */
+    background: transparent;
     color: #fff;
     font-family: 'Fredoka', sans-serif;
     overflow-y: auto;
