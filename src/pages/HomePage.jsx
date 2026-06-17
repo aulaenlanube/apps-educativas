@@ -56,8 +56,9 @@ const HomePage = () => {
       <Header>
         <AnimatedBorderButton
           onClick={() => setIsModalOpen(true)}
-          colors={['#A855F7', '#EC4899']}
-          glowColor="rgba(168,85,247,0.3)"
+          colors={['#ffffff', '#ffffff']}
+          glowColor="rgba(255,255,255,0.45)"
+          borderColor="#ffffff"
         >
           Quién soy
         </AnimatedBorderButton>
