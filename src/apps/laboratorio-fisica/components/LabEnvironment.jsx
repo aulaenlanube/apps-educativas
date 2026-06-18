@@ -435,6 +435,48 @@ function Rain({ count }) {
   return <points ref={ref} geometry={geo} material={mat} dispose={null} />;
 }
 
+/* ----------------------------- nieve ----------------------------- */
+// Copos suaves (sprite radial blanco) que caen DESPACIO y derivan de lado a lado.
+// Mismo patrón que la lluvia pero más lentos, más grandes y con vaivén: ambiente
+// "nevada". Volumen amplio para cubrir la isla en la vista orbital del fondo.
+function Snow({ count }) {
+  const ref = useRef();
+  const tex = useMemo(makeGlowTexture, []);
+  const geo = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 88;
+      arr[i * 3 + 1] = Math.random() * 34;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 88;
+    }
+    g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    return g;
+  }, [count]);
+  const mat = useMemo(() => new THREE.PointsMaterial({
+    map: tex, color: 0xffffff, size: 0.55, sizeAttenuation: true,
+    transparent: true, opacity: 0.9, depthWrite: false,
+  }), [tex]);
+  useEffect(() => () => { geo.dispose(); mat.dispose(); tex.dispose(); }, [geo, mat, tex]);
+  useFrame((state, delta) => {
+    const pts = ref.current; if (!pts) return;
+    const dt = Math.min(delta, 0.05);
+    const t = state.clock.elapsedTime;
+    const arr = geo.attributes.position.array;
+    for (let i = 0; i < count; i++) {
+      arr[i * 3 + 1] -= (2.0 + (i % 4) * 0.6) * dt;          // caen despacio
+      arr[i * 3] += Math.sin(t * 0.5 + i * 1.3) * 0.8 * dt;  // vaivén lateral suave
+      if (arr[i * 3 + 1] < 0) {
+        arr[i * 3 + 1] = 34;
+        arr[i * 3] = (Math.random() - 0.5) * 88;
+        arr[i * 3 + 2] = (Math.random() - 0.5) * 88;
+      }
+    }
+    geo.attributes.position.needsUpdate = true;
+  });
+  return <points ref={ref} geometry={geo} material={mat} dispose={null} />;
+}
+
 /* ----------------------------- composición ----------------------------- */
 export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) {
   const seedRef = useRef();
@@ -454,10 +496,15 @@ export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) 
     // paleta del terreno y la vegetación, teñida por el clima
     const tf = amb.night ? 0.55 : amb.warm ? 0.92 : 1;
     const warm = amb.warm ? 0.16 : 0;
-    const peak = amb.night ? '#7f93a8' : amb.warm ? '#e8d6a0' : '#d8f0c8';
+    const peak = amb.snow ? '#ffffff' : amb.night ? '#7f93a8' : amb.warm ? '#e8d6a0' : '#d8f0c8';
     const palette = { grassA: amb.grass[0], grassB: amb.grass[1], sand: amb.sand, peak };
-    const leafPal = ['#3a9b46', '#2f8f3e', '#287a36', '#46a84e']
-      .map((hex) => new THREE.Color(tintHex(hex, tf, warm)));
+    // en nevada las copas quedan ESCARCHADAS (verde lavado hacia blanco-azulado); en
+    // el resto de climas se tiñen por noche/calidez.
+    const leafPal = amb.snow
+      ? ['#3a9b46', '#2f8f3e', '#287a36', '#46a84e']
+        .map((hex) => new THREE.Color(hex).lerp(new THREE.Color('#dde9ec'), 0.5))
+      : ['#3a9b46', '#2f8f3e', '#287a36', '#46a84e']
+        .map((hex) => new THREE.Color(tintHex(hex, tf, warm)));
 
     // --- árboles (anillo de colinas, fuera de la pradera del montaje) ---
     const trunks = []; const leaves = [];
@@ -498,7 +545,8 @@ export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) 
     const stems = []; const petals = [];
     const petalPal = ['#f472b6', '#fbbf24', '#f87171', '#c084fc', '#ffffff']
       .map((hex) => new THREE.Color(tintHex(hex, amb.night ? 0.6 : 1)));
-    const nFlowers = Math.round(70 * b);
+    // sin flores en la nevada (el suelo está cubierto): se omiten por completo.
+    const nFlowers = amb.snow ? 0 : Math.round(70 * b);
     for (let i = 0; i < nFlowers; i++) {
       const a = rng() * TWO_PI; const d = 22 + rng() * 12;
       const x = Math.cos(a) * d; const z = Math.sin(a) * d;
@@ -594,6 +642,7 @@ export default function LabEnvironment({ amb, budget = 0.8, groundY = BASE_Y }) 
         {env.flowers.stems.length > 0 && <Flowers stems={env.flowers.stems} petals={env.flowers.petals} />}
         {clouds > 0 && <Clouds count={clouds} night={!!amb.night} />}
         {amb.rain && <Rain count={Math.round(420 * env.b)} />}
+        {amb.snow && <Snow count={Math.round(360 * env.b)} />}
       </group>
     </group>
   );
