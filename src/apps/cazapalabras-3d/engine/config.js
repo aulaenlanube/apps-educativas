@@ -84,24 +84,24 @@ export const DEF_BONUS_MULT = 4;
 export const DIFICULTADES = {
   facil: {
     key: 'facil', label: 'Fácil', icon: '🟢',
-    durationSec: 120, spawnEverySec: 0.95, validRatio: 0.62, speed: 0.82, sizeBias: 0.06,
-    defEverySec: 16, defWindowSec: 12, fireCooldownMs: 300,
+    durationSec: 60, spawnEverySec: 0.9, validRatio: 0.62, speed: 0.82, sizeBias: 0.06,
+    defEverySec: 14, defWindowSec: 12, fireCooldownMs: 300, catRotateSec: 24,
   },
   medio: {
     key: 'medio', label: 'Medio', icon: '🟡',
-    durationSec: 95, spawnEverySec: 0.74, validRatio: 0.56, speed: 1.0, sizeBias: 0.28,
-    defEverySec: 13, defWindowSec: 10, fireCooldownMs: 270,
+    durationSec: 60, spawnEverySec: 0.72, validRatio: 0.56, speed: 1.0, sizeBias: 0.28,
+    defEverySec: 11, defWindowSec: 10, fireCooldownMs: 270, catRotateSec: 18,
   },
   dificil: {
     key: 'dificil', label: 'Difícil', icon: '🔴',
-    durationSec: 80, spawnEverySec: 0.58, validRatio: 0.5, speed: 1.22, sizeBias: 0.55,
-    defEverySec: 11, defWindowSec: 8, fireCooldownMs: 240,
+    durationSec: 60, spawnEverySec: 0.56, validRatio: 0.5, speed: 1.22, sizeBias: 0.55,
+    defEverySec: 9, defWindowSec: 8, fireCooldownMs: 240, catRotateSec: 13,
   },
   // Examen: nota = definiciones acertadas / presentadas.
   examen: {
     key: 'examen', label: 'Examen', icon: '🎓', isExam: true,
-    durationSec: 90, spawnEverySec: 0.7, validRatio: 0.55, speed: 1.05, sizeBias: 0.34,
-    defEverySec: 8, defWindowSec: 10, fireCooldownMs: 270,
+    durationSec: 60, spawnEverySec: 0.68, validRatio: 0.55, speed: 1.05, sizeBias: 0.34,
+    defEverySec: 8, defWindowSec: 10, fireCooldownMs: 270, catRotateSec: 18,
   },
 };
 

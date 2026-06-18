@@ -10,11 +10,38 @@
 // único useFrame (imperativo sobre el mesh, para que el raycast del disparo use la
 // posición de ESTE frame). Cada diana lleva además un `scale` (tamaño): hay palabras
 // muy pequeñas (difíciles de acertar) y grandes, para más rejugabilidad y dificultad.
-import { FLYER, SIZE, BONUS } from './config';
+import {
+  FLYER, SIZE, BONUS, SCORE_PRINCIPAL, SCORE_SECUNDARIA,
+} from './config';
 
 let FLYER_ID = 0;
 
 const rand = ([a, b], rng) => a + rng() * (b - a);
+
+// Valor de una palabra según el par de categorías ACTIVO (rotan durante la partida):
+// principal +5, secundaria +2, resto 0 (señuelo). Lo usan el spawn y el re-etiquetado
+// de las dianas en vuelo cuando cambian las categorías.
+export function valueForCategory(cat, principalName, secundariaName) {
+  if (cat && cat === principalName) return SCORE_PRINCIPAL;
+  if (cat && cat === secundariaName) return SCORE_SECUNDARIA;
+  return 0;
+}
+
+// Elige un nuevo par {principal, secundaria} de entre las categorías que pueden
+// puntuar, intentando que sea DISTINTO del actual (aunque sea intercambiando roles).
+export function pickPair(rotatable, rng, curP = null, curS = null) {
+  if (!rotatable || !rotatable.length) return { principalName: null, secundariaName: null };
+  if (rotatable.length === 1) return { principalName: rotatable[0], secundariaName: null };
+  let p; let s; let tries = 0;
+  do {
+    const a = Math.floor(rng() * rotatable.length);
+    let b = Math.floor(rng() * (rotatable.length - 1));
+    if (b >= a) b += 1;
+    p = rotatable[a]; s = rotatable[b];
+    tries += 1;
+  } while (tries < 8 && p === curP && s === curS);
+  return { principalName: p, secundariaName: s };
+}
 
 // Tamaño (multiplicador) de una palabra. `bias` (0..1) sesga hacia tamaños pequeños:
 // en dificultades altas aparecen MUCHAS palabras diminutas, casi imposibles.
@@ -29,18 +56,24 @@ function pickScale(rng, bias = 0) {
   return rand(SIZE.normal, rng);
 }
 
-// Elige una palabra para una diana. Sortea válida/neutra según validRatio (con
-// fallbacks si falta alguno de los dos conjuntos).
-function pickWord(pool, rng, validRatio) {
-  const valids = (pool && pool.validWords) || [];
-  const neutrals = (pool && pool.neutralWords) || [];
+// Elige una palabra para una diana según el par de categorías ACTIVO. Con prob.
+// validRatio toma una palabra de una categoría que puntúa (válida); si no, de otra
+// categoría (señuelo). Fallbacks si solo hay categorías de un tipo.
+function pickWord(pool, rng, active, validRatio) {
+  const { principalName, secundariaName } = active || {};
+  const scoring = [principalName, secundariaName].filter(Boolean);
+  const names = (pool && pool.categoryNames) || [];
+  const others = names.filter((n) => !scoring.includes(n));
   let useValid;
-  if (!valids.length) useValid = false;
-  else if (!neutrals.length) useValid = true;
+  if (!scoring.length) useValid = false;
+  else if (!others.length) useValid = true;
   else useValid = rng() < validRatio;
-  const src = useValid ? valids : neutrals;
-  const wd = src[Math.floor(rng() * src.length)] || valids[0] || neutrals[0];
-  return wd || { text: '¿?', value: 0, valid: false, category: '__none__' };
+  const pick = useValid ? scoring : others;
+  const cat = pick[Math.floor(rng() * pick.length)] || names[0];
+  const list = (pool && pool.byCategory && pool.byCategory.get(cat)) || [];
+  const text = list[Math.floor(rng() * list.length)] || '¿?';
+  const value = valueForCategory(cat, principalName, secundariaName);
+  return { text, value, valid: value > 0, category: cat };
 }
 
 // Trayectoria de una diana. `speed` escala la velocidad horizontal (no la vertical,
@@ -88,7 +121,7 @@ function makeTrajectory(rng, speed, isDef, forceKind = null) {
 //   opts.bonus = true             → gema de bonificación (objeto pequeño y veloz).
 //   opts.validRatio/speed/sizeBias vienen de la dificultad.
 export function spawnFlyer(pool, rng, {
-  validRatio = 0.55, speed = 1, sizeBias = 0, def = null, bonus = false,
+  validRatio = 0.55, speed = 1, sizeBias = 0, def = null, bonus = false, active = null,
 } = {}) {
   if (bonus) {
     const traj = makeTrajectory(rng, speed * BONUS.speedMult, false, 'cross');
@@ -105,7 +138,7 @@ export function spawnFlyer(pool, rng, {
   if (isDef) {
     text = def.word; value = def.points || 5; valid = false; category = '__def__';
   } else {
-    const wd = pickWord(pool, rng, validRatio);
+    const wd = pickWord(pool, rng, active, validRatio);
     text = wd.text; value = wd.value || 0; valid = !!wd.valid; category = wd.category;
   }
   // las definiciones se mantienen legibles (tamaño normal); el resto varía mucho.

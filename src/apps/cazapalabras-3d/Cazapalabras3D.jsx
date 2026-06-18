@@ -21,10 +21,21 @@ import Crosshair from './components/Crosshair';
 import HUD from './components/HUD';
 import { buildPool, poolUsable } from './engine/pool';
 import { clearTextureCache } from './engine/wordTexture';
+import { pickPair } from './engine/flyers';
 import {
   DIFICULTADES, MODOS, DEF_BONUS_MULT, notaColor, notaMensaje,
+  SCORE_PRINCIPAL, SCORE_SECUNDARIA,
 } from './engine/config';
 import './Cazapalabras3D.css';
+
+// Categorías que puntúan AHORA (par activo) en el formato de la leyenda/aviso.
+function currentCats(gs) {
+  if (!gs) return [];
+  const out = [];
+  if (gs.principalName) out.push({ name: gs.pool.displayName(gs.principalName), role: 'principal', points: SCORE_PRINCIPAL });
+  if (gs.secundariaName) out.push({ name: gs.pool.displayName(gs.secundariaName), role: 'secundaria', points: SCORE_SECUNDARIA });
+  return out;
+}
 
 const MODE_DESC = {
   facil: 'Más tiempo y definiciones más espaciadas. Ideal para empezar.',
@@ -89,21 +100,20 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     return () => { cancelled = true; };
   }, [level, grade, asignatura]);
 
-  // Material de estudio: palabras de las 2 categorías que puntúan, agrupadas por su
-  // VALOR (5 = principal · 2 = secundaria). Las "otras" (neutras, no puntúan) se
-  // listan aparte para reconocerlas.
-  const wordsByValue = useMemo(() => {
-    const m = new Map();
-    (pool?.validWords || []).forEach((w) => {
-      if (!m.has(w.value)) m.set(w.value, []);
-      m.get(w.value).push(w.text);
-    });
-    return m;
-  }, [pool]);
-  const neutralWordsList = useMemo(
-    () => (pool?.neutralWords || []).filter((w) => w.category !== 'rosco').map((w) => w.text),
+  // Material de estudio: como las categorías que puntúan ROTAN, se listan TODAS las
+  // categorías que pueden puntuar (cada una con sus palabras) y, aparte, las "otras"
+  // (señuelos: soluciones del rosco y categorías pequeñas que no rotan).
+  const studyCats = useMemo(
+    () => (pool?.rotatableNames || []).map((n) => ({ name: pool.displayName(n), words: pool.byCategory.get(n) || [] })),
     [pool],
   );
+  const studyOther = useMemo(() => {
+    if (!pool) return [];
+    const rot = new Set(pool.rotatableNames);
+    const out = [];
+    pool.categoryNames.forEach((n) => { if (!rot.has(n)) out.push(...(pool.byCategory.get(n) || [])); });
+    return [...new Set(out)];
+  }, [pool]);
 
   // ---- estado de juego (autoritativo en ref, espejo en React para el HUD) ----
   const [screen, setScreen] = useState('select'); // select | play | summary
@@ -120,6 +130,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   const [summary, setSummary] = useState(null);
   const [showHelp, setShowHelp] = useState(false);
   const [showVocab, setShowVocab] = useState(false);
+  // aviso GRANDE de cambio de categorías (encima de la mirilla, pocos segundos)
+  const [catBanner, setCatBanner] = useState(null);
+  const catBannerId = useRef(0);
+  const catBannerTimer = useRef(null);
+  const announceCats = useCallback((gs, isChange) => {
+    const id = ++catBannerId.current;
+    setCatBanner({ id, isChange, cats: currentCats(gs) });
+    clearTimeout(catBannerTimer.current);
+    catBannerTimer.current = setTimeout(() => {
+      setCatBanner((b) => (b && b.id === id ? null : b));
+    }, 3400);
+  }, []);
 
   // ---- registro de resultado (una sola vez por partida) ----
   const commitResult = useCallback(() => {
@@ -132,7 +154,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     onGameComplete?.({
       mode: isExam ? 'test' : 'practice',
       score: gs.score || 0,
-      maxScore: Math.round((gs.totalTime || 90) * 12),
+      maxScore: Math.round((gs.totalTime || 60) * 12),
       correctAnswers: isExam ? (gs.defSolved || 0) : (gs.wordsHit || 0),
       totalQuestions: isExam ? Math.max(1, gs.defPresented || 0) : Math.max(1, gs.wordsHit || 0),
       durationSeconds,
@@ -212,11 +234,14 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   const start = useCallback((mode) => {
     if (!pool) return;
     const params = DIFICULTADES[mode];
+    // par inicial de categorías que puntúan (rotará durante la partida)
+    const { principalName, secundariaName } = pickPair(pool.rotatableNames, Math.random);
     gsRef.current = {
       running: true, paused: false, mode, params, pool,
       timeLeft: params.durationSec, totalTime: params.durationSec,
       score: 0, combo: 0, bestCombo: 0, wordsHit: 0, nextShotAt: 0,
       activeDef: null, activeDefCounted: false, defLeft: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
+      principalName, secundariaName, catEpoch: 0, catTimer: params.catRotateSec,
       feedback: null, feedbackUntil: 0,
     };
     controlRef.current = { yaw: 0, pitch: 0, shootQueued: false };
@@ -224,8 +249,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     sessionStartRef.current = Date.now();
     setSummary(null);
     setHud(snapshot(gsRef.current));
+    announceCats(gsRef.current, false); // aviso inicial de categorías
     setScreen('play');
-  }, [pool]);
+  }, [pool, announceCats]);
 
   // ---- bucle maestro (tiempo, definiciones, HUD) ----
   useEffect(() => {
@@ -260,6 +286,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             // para no inflar la nota si todavía no hay diana donde mostrarla.
           }
         }
+        // CAMBIO de las 2 categorías que puntúan cada catRotateSec (si hay ≥2 que roten):
+        // se reasigna el par, Scene re-etiqueta las dianas y se avisa en grande en pantalla.
+        if (gs.pool.rotatableNames.length >= 2) {
+          gs.catTimer -= dt;
+          if (gs.catTimer <= 0) {
+            const np = pickPair(gs.pool.rotatableNames, Math.random, gs.principalName, gs.secundariaName);
+            gs.principalName = np.principalName; gs.secundariaName = np.secundariaName;
+            gs.catEpoch += 1;
+            gs.catTimer = gs.params.catRotateSec;
+            announceCats(gs, true);
+          }
+        }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
       }
       hudAcc += dt;
@@ -272,14 +310,14 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [screen]);
+  }, [screen, announceCats]);
 
   // ---- abandono (desmontaje a mitad de partida) → resultado parcial ----
   const cleanupRef = useRef(() => {});
   cleanupRef.current = () => {
     if (screenRef.current === 'play' && gsRef.current.running) commitResult();
   };
-  useEffect(() => () => { cleanupRef.current(); clearTimeout(gfxTimer.current); clearTextureCache(); }, []);
+  useEffect(() => () => { cleanupRef.current(); clearTimeout(gfxTimer.current); clearTimeout(catBannerTimer.current); clearTextureCache(); }, []);
 
   // Nota: ESC ya NO termina la partida — con mouse-look (pointer lock) ESC libera
   // el ratón; para terminar está el botón "Terminar".
@@ -391,9 +429,33 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               defWindow={hud.defWindow}
               feedback={hud.feedback}
               examInfo={hud.isExam ? `${hud.defSolved}/${hud.defPresented}` : null}
-              categories={pool.categories}
+              categories={hud.categories}
             />
           )}
+          {/* AVISO GRANDE de categorías, justo encima de la mirilla, pocos segundos */}
+          <AnimatePresence>
+            {catBanner && (
+              <motion.div
+                key={catBanner.id}
+                className="cz3d-catbanner"
+                initial={{ opacity: 0, y: 14, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 360, damping: 26 }}
+              >
+                <span className="cz3d-catbanner-tag">
+                  {catBanner.isChange ? '🔄 ¡CAMBIO DE CATEGORÍAS!' : '🎯 DISPARA A ESTAS CATEGORÍAS'}
+                </span>
+                <span className="cz3d-catbanner-cats">
+                  {catBanner.cats.map((c) => (
+                    <span key={c.name} className={`cz3d-catbanner-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
+                      {c.name} <b>+{c.points}</b>
+                    </span>
+                  ))}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <button type="button" className="cz3d-exit" onClick={endGame}>
             <Square size={14} /> Terminar
           </button>
@@ -449,8 +511,8 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
         <h3>⭐ Gemas de bonificación</h3>
         <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota; suma a la puntuación). Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
-        <h3>🗂️ Solo 2 categorías puntúan</h3>
-        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto de palabras <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando (optas a menos puntos).</p>
+        <h3>🗂️ Solo 2 categorías puntúan (¡y van cambiando!)</h3>
+        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Cada poco tiempo <strong>cambian las categorías que puntúan</strong> y se avisa <strong>en grande sobre la mirilla</strong>: ¡atento al cambio! Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando.</p>
         <h3>📖 Retos de definición</h3>
         <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra vuela <strong>entre las demás</strong> (<strong>no se resalta</strong>): tienes que reconocerla y dispararle al vuelo. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
         <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
@@ -459,27 +521,27 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {/* ============ MATERIAL DE ESTUDIO ============ */}
       {pool && (
       <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
-        {pool.categories.length > 0 && (
+        {studyCats.length > 0 && (
           <>
-            <h3>🗂️ Categorías que puntúan</h3>
-            {pool.categories.map((c) => {
-              const words = wordsByValue.get(c.points) || [];
-              if (!words.length) return null;
+            <h3>🗂️ Categorías que pueden puntuar</h3>
+            {studyCats.length >= 2 && (
+              <p className="cz3d-study-note">Durante la partida, 2 de estas categorías puntúan a la vez (+5 y +2) y <strong>van cambiando</strong>.</p>
+            )}
+            {studyCats.map((c) => {
+              if (!c.words.length) return null;
               return (
                 <div key={c.name} className="cz3d-study-cat">
-                  <h4>
-                    ✓ {c.name} <span>{c.role === 'principal' ? 'principal · +5' : 'secundaria · +2'}</span>
-                  </h4>
-                  <p className="cz3d-study-words">{words.join(' · ')}</p>
+                  <h4>✓ {c.name}</h4>
+                  <p className="cz3d-study-words">{c.words.join(' · ')}</p>
                 </div>
               );
             })}
           </>
         )}
-        {neutralWordsList.length > 0 && (
+        {studyOther.length > 0 && (
           <div className="cz3d-study-cat">
-            <h4 className="pen">🚫 Otras palabras (no puntúan)</h4>
-            <p className="cz3d-study-words">{neutralWordsList.join(' · ')}</p>
+            <h4 className="pen">🚫 Otras palabras (señuelos, no puntúan)</h4>
+            <p className="cz3d-study-words">{studyOther.join(' · ')}</p>
             <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>huir válidas</strong> que estuvieran volando.</p>
           </div>
         )}
@@ -513,6 +575,7 @@ function snapshot(gs) {
     defPresented: gs.defPresented,
     feedback: gs.feedback,
     hit: gs.hit,
+    categories: currentCats(gs), // par activo (rotan durante la partida)
   };
 }
 

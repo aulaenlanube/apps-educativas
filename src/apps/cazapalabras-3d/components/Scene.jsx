@@ -14,7 +14,7 @@ import ImpactFX from './ImpactFX';
 import Flyer from './Flyer';
 import { CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS } from '../engine/config';
 import {
-  spawnFlyer, updateFlyer, makeEscape, resetFlyerIds,
+  spawnFlyer, updateFlyer, makeEscape, resetFlyerIds, valueForCategory,
 } from '../engine/flyers';
 
 const prefersReducedMotion = () => typeof window !== 'undefined'
@@ -39,6 +39,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
   const lastSpawnRef = useRef(0);
   const defSpawnRef = useRef(0);
   const nextBonusRef = useRef(0);
+  const lastEpochRef = useRef(0);
   const [, bumpState] = useReducer((x) => (x + 1) & 0xffff, 0);
   const renderDirty = useRef(false);
   const markDirty = () => { renderDirty.current = true; };
@@ -56,11 +57,13 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     const g = gameRef.current;
     const p = g && g.params;
     if (g && g.pool && p) {
+      const active = { principalName: g.principalName, secundariaName: g.secundariaName };
       const seed = Math.min(fq.minLive + 1, fq.max);
       for (let i = 0; i < seed; i += 1) {
-        flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias }));
+        flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias, active }));
       }
     }
+    lastEpochRef.current = (g && g.catEpoch) || 0;
     nextBonusRef.current = performance.now() + (BONUS.everyMin + Math.random() * (BONUS.everyMax - BONUS.everyMin)) * 1000;
     markDirty();
     bumpState();
@@ -118,6 +121,18 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     }
 
     const now = performance.now();
+    const active2 = { principalName: g.principalName, secundariaName: g.secundariaName };
+
+    // --- cambio de categorías: re-etiqueta las dianas EN VUELO (valor/válida) según
+    //     el par activo nuevo (sin pista visual: el alumno se guía por el aviso/leyenda).
+    if (g.catEpoch !== lastEpochRef.current) {
+      lastEpochRef.current = g.catEpoch;
+      for (const f of flyersRef.current) {
+        if (f.bonus || f.isDef) continue;
+        f.value = valueForCategory(f.category, g.principalName, g.secundariaName);
+        f.valid = f.value > 0;
+      }
+    }
 
     // --- spawner ---
     const def = g.activeDef;
@@ -143,7 +158,9 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     const live = flyersRef.current.length;
     const needFill = live < fq.minLive;
     if (live < fq.max && (now >= lastSpawnRef.current || needFill)) {
-      flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias }));
+      flyersRef.current.push(spawnFlyer(g.pool, Math.random, {
+        validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias, active: active2,
+      }));
       lastSpawnRef.current = now + (needFill ? 220 : (p.spawnEverySec || 0.75) * 1000);
       markDirty();
     }

@@ -2,19 +2,23 @@
 //  - getRunnerData → { categoria: [palabras] }  (palabras por categoría)
 //  - getRoscoData  → [{ solucion, definicion, difficulty, tipo }]  (definiciones)
 //
-// SOLO 2 categorías puntúan: la PRINCIPAL (+5) y la SECUNDARIA (+2) — se eligen las
-// dos con más palabras. El RESTO de palabras (otras categorías + soluciones del
-// rosco) son NEUTRAS (decoys): no dan puntos y dispararlas hace desaparecer válidas.
-import { SCORE_PRINCIPAL, SCORE_SECUNDARIA } from './config';
+// A diferencia del modelo antiguo (2 categorías fijas), aquí las 2 categorías que
+// PUNTÚAN van ROTANDO durante la partida. Por eso el pool no precalcula valid/value:
+// expone TODAS las categorías (byCategory) y la lista de las que pueden puntuar
+// (rotatableNames). En tiempo de juego se elige un par principal/secundaria y el
+// valor de cada palabra se calcula con valueForCategory (engine/flyers.js).
 
-// Tier de puntos de una definición del rosco según su dificultad (para el bonus).
 const tierFromDifficulty = (d) => (d >= 3 ? 5 : d === 2 ? 2 : 1);
-
 const clean = (w) => String(w == null ? '' : w).trim();
 const ok = (t) => t.length > 0 && t.length <= 24 && !/^\d+$/.test(t);
 
+export const VOC_CAT = '__voc__';   // categoría única cuando solo hay rosco
+export const ROSCO_CAT = '__rosco__'; // soluciones del rosco como señuelos (no puntúan)
+const MIN_ROTATABLE = 3;            // palabras mínimas para que una categoría pueda puntuar
+
 export function buildPool(roscoData = [], runnerData = null) {
-  // 1) Reunir categorías del runner con sus palabras válidas.
+  // 1) categorías del runner con sus palabras (deduplicadas a su PRIMERA categoría,
+  //    para que cada palabra pertenezca a una sola → su valor es consistente).
   const runnerCats = [];
   if (runnerData && typeof runnerData === 'object' && !Array.isArray(runnerData)) {
     Object.keys(runnerData).forEach((cat) => {
@@ -24,76 +28,79 @@ export function buildPool(roscoData = [], runnerData = null) {
     });
   }
 
-  // 2) Elegir principal y secundaria = las dos categorías con MÁS palabras
-  //    (desempate por orden original → estable dentro de un mismo curso).
-  const ranked = runnerCats
-    .map((c, i) => ({ ...c, i }))
-    .sort((a, b) => b.words.length - a.words.length || a.i - b.i);
-  let principalName = ranked[0]?.name || null;
-  let secundariaName = ranked[1]?.name || null;
-  // Fallback: sin categorías del runner pero con soluciones del rosco, todas las
-  // palabras forman una única categoría principal (juego sin decoys).
-  const onlyRosco = !principalName;
-
-  const valueFor = (cat) => {
-    if (onlyRosco) return SCORE_PRINCIPAL;
-    if (cat === principalName) return SCORE_PRINCIPAL;
-    if (cat === secundariaName) return SCORE_SECUNDARIA;
-    return 0;
-  };
-
-  // 3) Volcar palabras a un mapa por texto (el mayor valor domina si se repite).
-  const byText = new Map(); // key minúsculas → { text, value, valid, category }
-  runnerCats.forEach((c) => {
-    const value = valueFor(c.name);
-    c.words.forEach((text) => {
-      const key = text.toLowerCase();
-      const existing = byText.get(key);
-      if (!existing || value > existing.value) {
-        byText.set(key, { text, value, valid: value > 0, category: c.name });
-      }
-    });
-  });
-
-  // 4) Rosco: definiciones + soluciones (las soluciones son decoys neutros salvo
+  // 2) rosco: definiciones + soluciones (las soluciones son señuelos neutros salvo
   //    cuando son la respuesta activa a una definición, que se reconoce por texto).
   const definitions = [];
   const seenDef = new Set();
+  const roscoWords = [];
+  const roscoSeen = new Set();
   (Array.isArray(roscoData) ? roscoData : []).forEach((it) => {
     const word = clean(it && it.solucion);
     const def = clean(it && it.definicion);
     if (!ok(word)) return;
     const key = word.toLowerCase();
     const points = tierFromDifficulty(Number(it && it.difficulty) || 1);
-    if (!byText.has(key)) {
-      const value = onlyRosco ? SCORE_PRINCIPAL : 0;
-      byText.set(key, { text: word, value, valid: value > 0, category: onlyRosco ? '__voc__' : 'rosco' });
-    }
+    if (!roscoSeen.has(key)) { roscoSeen.add(key); roscoWords.push(word); }
     if (def && def.length >= 6) {
       const dk = `${key}|${def.toLowerCase()}`;
       if (!seenDef.has(dk)) { seenDef.add(dk); definitions.push({ word, definition: def, points }); }
     }
   });
 
-  const words = [...byText.values()];
-  const validWords = words.filter((w) => w.valid);
-  const neutralWords = words.filter((w) => !w.valid);
+  const byCategory = new Map();   // nombre → [palabras]
+  const display = new Map();      // nombre → etiqueta visible
+  let onlyVoc = false;
 
-  // Categorías mostradas en la leyenda (solo las que puntúan).
-  const categories = [];
-  if (onlyRosco) {
-    categories.push({ name: 'Vocabulario', role: 'principal', points: SCORE_PRINCIPAL });
-    principalName = '__voc__';
-  } else {
-    if (principalName) categories.push({ name: principalName, role: 'principal', points: SCORE_PRINCIPAL });
-    if (secundariaName) categories.push({ name: secundariaName, role: 'secundaria', points: SCORE_SECUNDARIA });
+  if (runnerCats.length) {
+    const assigned = new Set();
+    runnerCats.forEach((c) => {
+      const uniq = c.words.filter((w) => {
+        const k = w.toLowerCase();
+        if (assigned.has(k)) return false;
+        assigned.add(k); return true;
+      });
+      if (uniq.length) { byCategory.set(c.name, uniq); display.set(c.name, c.name); }
+    });
+    // soluciones del rosco que no estén ya en una categoría → señuelos ("Otras")
+    const roscoNeutral = roscoWords.filter((w) => !assigned.has(w.toLowerCase()));
+    if (roscoNeutral.length) { byCategory.set(ROSCO_CAT, roscoNeutral); display.set(ROSCO_CAT, 'Otras'); }
+  } else if (roscoWords.length) {
+    // solo rosco: una única categoría "Vocabulario" (todo puntúa, sin señuelos)
+    onlyVoc = true;
+    byCategory.set(VOC_CAT, roscoWords); display.set(VOC_CAT, 'Vocabulario');
   }
 
+  const categoryNames = [...byCategory.keys()];
+  // categorías que pueden PUNTUAR (rotan): runner cats con suficientes palabras,
+  // ordenadas por tamaño desc; si ninguna llega al mínimo, se usan todas las del runner.
+  let rotatableNames;
+  if (onlyVoc) {
+    rotatableNames = [VOC_CAT];
+  } else {
+    const eligible = runnerCats
+      .map((c) => c.name)
+      .filter((n) => (byCategory.get(n)?.length || 0) >= MIN_ROTATABLE);
+    const list = eligible.length ? eligible : runnerCats.map((c) => c.name).filter((n) => byCategory.has(n));
+    rotatableNames = list.sort((a, b) => (byCategory.get(b)?.length || 0) - (byCategory.get(a)?.length || 0));
+  }
+
+  // todas las palabras con su categoría (para el material de estudio)
+  const words = [];
+  byCategory.forEach((list, cat) => list.forEach((text) => words.push({ text, category: cat })));
+
   return {
-    words, validWords, neutralWords, categories, definitions,
-    principalName, secundariaName: onlyRosco ? null : secundariaName,
+    definitions,
+    byCategory,
+    categoryNames,
+    rotatableNames,
+    onlyVoc,
+    words,
+    displayName: (n) => display.get(n) || n,
   };
 }
 
-// ¿Hay datos suficientes para jugar? Necesitamos palabras y al menos una válida.
-export const poolUsable = (pool) => !!pool && pool.words.length >= 6 && pool.validWords.length >= 1;
+// ¿Hay datos suficientes para jugar? Necesitamos palabras y al menos una categoría
+// que pueda puntuar.
+export const poolUsable = (pool) => !!pool
+  && pool.words.length >= 6
+  && pool.rotatableNames.length >= 1;

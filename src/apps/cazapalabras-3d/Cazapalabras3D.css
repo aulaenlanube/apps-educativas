@@ -171,6 +171,31 @@
   100% { opacity: 0; transform: translate(-50%, -34px) scale(1); }
 }
 
+/* aviso GRANDE de cambio de categorías, justo encima de la mirilla (pocos segundos) */
+.cz3d-catbanner {
+  position: absolute; left: 50%; top: 36%; transform: translateX(-50%);
+  z-index: 24; pointer-events: none; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 94vw;
+}
+.cz3d-catbanner-tag {
+  font-size: clamp(1rem, 2.4vw, 1.5rem); font-weight: 900; letter-spacing: 0.03em;
+  color: #fff; text-shadow: 0 3px 16px rgba(2,6,20,0.9), 0 0 22px rgba(56,189,248,0.5);
+}
+.cz3d-catbanner-cats { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.cz3d-catbanner-cat {
+  font-size: clamp(1.3rem, 3.6vw, 2.3rem); font-weight: 900; text-transform: capitalize;
+  padding: 8px 22px; border-radius: 16px; border: 2.5px solid;
+  background: rgba(8,13,30,0.8); backdrop-filter: blur(8px);
+  box-shadow: 0 14px 44px rgba(0,0,0,0.55); white-space: nowrap;
+}
+.cz3d-catbanner-cat b { margin-left: 8px; }
+.cz3d-catbanner-cat.t5 { border-color: #fbbf24; color: #fde68a; }
+.cz3d-catbanner-cat.t2 { border-color: #7dd3fc; color: #a5f3fc; }
+@media (max-width: 720px) {
+  .cz3d-catbanner { top: 32%; gap: 7px; }
+  .cz3d-catbanner-cat { padding: 6px 14px; }
+}
+
 .cz3d-exit {
   position: absolute; top: 14px; right: 16px; z-index: 40; pointer-events: auto;
   display: inline-flex; align-items: center; gap: 6px;
