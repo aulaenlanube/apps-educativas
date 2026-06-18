@@ -11,7 +11,7 @@
 // posición de ESTE frame). Cada diana lleva además un `scale` (tamaño): hay palabras
 // muy pequeñas (difíciles de acertar) y grandes, para más rejugabilidad y dificultad.
 import {
-  FLYER, SIZE, BONUS, SCORE_PRINCIPAL, SCORE_SECUNDARIA,
+  FLYER, SIZE, BONUS, HAZARD, SCORE_PRINCIPAL, SCORE_SECUNDARIA,
 } from './config';
 
 let FLYER_ID = 0;
@@ -121,15 +121,16 @@ function makeTrajectory(rng, speed, isDef, forceKind = null) {
 //   opts.bonus = true             → gema de bonificación (objeto pequeño y veloz).
 //   opts.validRatio/speed/sizeBias vienen de la dificultad.
 export function spawnFlyer(pool, rng, {
-  validRatio = 0.55, speed = 1, sizeBias = 0, def = null, bonus = false, active = null,
+  validRatio = 0.55, speed = 1, sizeBias = 0, def = null, bonus = false, hazard = false, active = null,
 } = {}) {
-  if (bonus) {
-    const traj = makeTrajectory(rng, speed * BONUS.speedMult, false, 'cross');
+  if (bonus || hazard) {
+    const cfg = hazard ? HAZARD : BONUS;
+    const traj = makeTrajectory(rng, speed * cfg.speedMult, false, 'cross');
     return {
       id: ++FLYER_ID,
-      text: '', value: 0, valid: false, category: '__bonus__', isDef: false,
-      bonus: true, bonusPoints: BONUS.points,
-      scale: rand([BONUS.scaleMin, BONUS.scaleMax], rng),
+      text: '', value: 0, valid: false, category: hazard ? '__hazard__' : '__bonus__', isDef: false,
+      bonus: !hazard, hazard, bonusPoints: cfg.points,
+      scale: rand([cfg.scaleMin, cfg.scaleMax], rng),
       ...traj, age: 0, escaping: false, spinA: 0, _mesh: null,
     };
   }

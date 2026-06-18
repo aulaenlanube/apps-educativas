@@ -25,8 +25,20 @@ import { pickPair } from './engine/flyers';
 import {
   DIFICULTADES, MODOS, DEF_BONUS_MULT, notaColor, notaMensaje,
   SCORE_PRINCIPAL, SCORE_SECUNDARIA,
+  DEBUFF, DEBUFF_TYPES, MISS_DEBUFF_CHANCE,
 } from './engine/config';
 import './Cazapalabras3D.css';
+
+// Etiquetas de los debuffs (penalizaciones de mirilla) para el feedback/HUD.
+const DEBUFF_LABEL = { slow: '🐌 mirilla lenta', invert: '🔄 controles al revés', shake: '📳 vibración' };
+
+// Aplica un debuff aleatorio (o el indicado) durante DEBUFF.durationSec. Devuelve el tipo.
+function applyDebuff(gs, type) {
+  const t = type || DEBUFF_TYPES[Math.floor(Math.random() * DEBUFF_TYPES.length)];
+  if (!gs.debuffs) gs.debuffs = { slow: 0, invert: 0, shake: 0 };
+  gs.debuffs[t] = DEBUFF.durationSec;
+  return t;
+}
 
 // Categorías que puntúan AHORA (par activo) en el formato de la leyenda/aviso.
 function currentCats(gs) {
@@ -185,10 +197,11 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     if (!gs.running || gs.paused) return;
     const now = performance.now();
     const isBonus = data.kind === 'bonus';
+    const isHazard = data.kind === 'hazard';
     // la palabra-respuesta de la definición se reconoce por TEXTO (no se resalta)
-    const isDef = !isBonus && !!gs.activeDef && !!data.text
+    const isDef = !isBonus && !isHazard && !!gs.activeDef && !!data.text
       && data.text.trim().toLowerCase() === gs.activeDef.word.trim().toLowerCase();
-    const hitKind = isBonus ? 'bonus' : (isDef ? 'answer' : (data.valid ? 'word' : 'penalty'));
+    const hitKind = (isBonus || isHazard) ? 'bonus' : (isDef ? 'answer' : (data.valid ? 'word' : 'penalty'));
     // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
     // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
     const fb = (text, color) => {
@@ -208,6 +221,15 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       return;
     }
 
+    // gema TRAMPA: da MÁS puntos pero aplica una penalización temporal a la mirilla.
+    if (isHazard) {
+      const pts = data.value || 14;
+      gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
+      const t = applyDebuff(gs);
+      fb(`⚡ +${pts} · ${DEBUFF_LABEL[t]}`, '#e879f9');
+      return;
+    }
+
     if (isDef) {
       const pts = (gs.activeDef.points || 5) * DEF_BONUS_MULT;
       gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
@@ -224,10 +246,13 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       return;
     }
 
-    // palabra NO válida: SIN penalización de puntos, pero desaparecen válidas del montón
+    // palabra NO válida: SIN penalización de puntos, pero huyen válidas en vuelo y,
+    // a veces, FALLAR castiga además con una penalización temporal de mirilla.
     gs.combo = 0;
     const rv = data.removedValid || 0;
-    fb(rv > 0 ? `❌ No válida · ${rv} válida${rv > 1 ? 's' : ''} menos` : '❌ No válida', '#fca5a5');
+    const debuffed = Math.random() < MISS_DEBUFF_CHANCE ? applyDebuff(gs) : null;
+    const base = rv > 0 ? `❌ No válida · ${rv} válida${rv > 1 ? 's' : ''} menos` : '❌ No válida';
+    fb(debuffed ? `${base} · ${DEBUFF_LABEL[debuffed]}` : base, '#fca5a5');
   }, []);
 
   // ---- iniciar partida ----
@@ -242,6 +267,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       score: 0, combo: 0, bestCombo: 0, wordsHit: 0, nextShotAt: 0,
       activeDef: null, activeDefCounted: false, defLeft: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
       principalName, secundariaName, catEpoch: 0, catTimer: params.catRotateSec,
+      debuffs: { slow: 0, invert: 0, shake: 0 },
       feedback: null, feedbackUntil: 0,
     };
     controlRef.current = { yaw: 0, pitch: 0, shootQueued: false };
@@ -297,6 +323,13 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             gs.catTimer = gs.params.catRotateSec;
             announceCats(gs, true);
           }
+        }
+        // descontar las penalizaciones de mirilla activas (pausa-safe, dt-based)
+        const db = gs.debuffs;
+        if (db) {
+          if (db.slow > 0) db.slow = Math.max(0, db.slow - dt);
+          if (db.invert > 0) db.invert = Math.max(0, db.invert - dt);
+          if (db.shake > 0) db.shake = Math.max(0, db.shake - dt);
         }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
       }
@@ -417,6 +450,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             data-hot={hud && hud.combo >= 5 ? '1' : '0'}
             style={{ opacity: Math.min(0.55, (hud?.combo || 0) * 0.045) }}
           />
+          {hud && hud.debuffs && hud.debuffs.length > 0 && <div className="cz3d-debuff-tint" />}
           <Crosshair cooling={cooling} hit={hud?.hit} />
           {hud && (
             <HUD
@@ -430,6 +464,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               feedback={hud.feedback}
               examInfo={hud.isExam ? `${hud.defSolved}/${hud.defPresented}` : null}
               categories={hud.categories}
+              debuffs={hud.debuffs}
             />
           )}
           {/* AVISO GRANDE de categorías, justo encima de la mirilla, pocos segundos */}
@@ -511,6 +546,8 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
         <h3>⭐ Gemas de bonificación</h3>
         <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota; suma a la puntuación). Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
+        <h3>⚡ Gemas trampa (riesgo)</h3>
+        <p>Las <strong>gemas moradas</strong> dan <strong>aún más puntos</strong>, pero al acertarlas <strong>fastidian tu mirilla</strong> unos segundos: <b>🐌 más lenta</b>, <b>🔄 al revés</b> o <b>📳 que vibra</b>. ¡Tú decides si el premio compensa! Ojo: <strong>fallar</strong> (disparar una palabra que no puntúa) también puede provocar uno de estos castigos.</p>
         <h3>🗂️ Solo 2 categorías puntúan (¡y van cambiando!)</h3>
         <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Cada poco tiempo <strong>cambian las categorías que puntúan</strong> y se avisa <strong>en grande sobre la mirilla</strong>: ¡atento al cambio! Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando.</p>
         <h3>📖 Retos de definición</h3>
@@ -576,6 +613,7 @@ function snapshot(gs) {
     feedback: gs.feedback,
     hit: gs.hit,
     categories: currentCats(gs), // par activo (rotan durante la partida)
+    debuffs: gs.debuffs ? DEBUFF_TYPES.filter((t) => gs.debuffs[t] > 0) : [],
   };
 }
 

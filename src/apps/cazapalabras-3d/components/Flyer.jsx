@@ -22,16 +22,18 @@ function FlyerRaw({ flyer }) {
     return () => { if (flyer._mesh === g) flyer._mesh = null; };
   }, [flyer]);
 
-  // ---- gema de bonificación (objeto pequeño y veloz; brilla y gira) ----
-  if (flyer.bonus) {
+  // ---- gemas especiales (objetos pequeños y veloces; brillan y giran) ----
+  //   dorada (octaedro) = bonificación pura · morada (icosaedro) = trampa (puntos + castigo)
+  if (flyer.bonus || flyer.hazard) {
     const s = flyer.scale || 0.6;
+    const hz = flyer.hazard;
     return (
       <group ref={ref} position={[flyer.px, flyer.py, flyer.pz]} scale={s}>
         <mesh ref={markBloom}>
-          <octahedronGeometry args={[1.0, 0]} />
+          {hz ? <icosahedronGeometry args={[1.0, 0]} /> : <octahedronGeometry args={[1.0, 0]} />}
           <meshStandardMaterial
-            color="#2a1f00"
-            emissive="#fbbf24"
+            color={hz ? '#250a2c' : '#2a1f00'}
+            emissive={hz ? '#d946ef' : '#fbbf24'}
             emissiveIntensity={2.0}
             metalness={0.6}
             roughness={0.2}

@@ -11,7 +11,7 @@ import {
 } from '@/services/graphicsQuality';
 import Scene from './Scene';
 import Effects from './Effects';
-import { CAM } from '../engine/config';
+import { CAM, DEBUFF } from '../engine/config';
 
 function Governor({ onDowngrade }) {
   const ref = useRef(null);
@@ -65,17 +65,29 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
       document.removeEventListener('pointerlockerror', onError);
     };
   }, []);
+  // factor de mirilla por debuffs: lenta (×slowFactor) o invertida (×-1). Lo provocan
+  // los objetos trampa y, a veces, fallar; se aplica a TODO movimiento de mirilla.
+  const aimMult = () => {
+    const d = gameRef.current && gameRef.current.debuffs;
+    let m = 1;
+    if (d) { if (d.slow > 0) m *= DEBUFF.slowFactor; if (d.invert > 0) m *= -1; }
+    return m;
+  };
+
   // giro por movimiento del ratón mientras está capturado
   useEffect(() => {
     const onMove = (e) => {
       if (!lockedRef.current) return;
       const c = controlRef.current;
-      c.yaw -= (e.movementX || 0) * SENS;
-      c.pitch -= (e.movementY || 0) * SENS;
+      const g = gameRef.current;
+      let m = 1;
+      if (g && g.debuffs) { if (g.debuffs.slow > 0) m *= DEBUFF.slowFactor; if (g.debuffs.invert > 0) m *= -1; }
+      c.yaw -= (e.movementX || 0) * SENS * m;
+      c.pitch -= (e.movementY || 0) * SENS * m;
     };
     document.addEventListener('mousemove', onMove);
     return () => document.removeEventListener('mousemove', onMove);
-  }, [controlRef]);
+  }, [controlRef, gameRef]);
   // al desmontar (fin de partida) libera el ratón para que vuelva el cursor
   useEffect(() => () => { if (document.pointerLockElement) document.exitPointerLock?.(); }, []);
 
@@ -103,7 +115,8 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
       if (lockedRef.current) return; // el giro lo lleva el listener de mousemove (movementX)
       const d = drag.current;
       if (!d.down) return; // respaldo: solo con botón pulsado mientras no hay lock
-      c.yaw -= (e.clientX - d.lx) * 0.0026; c.pitch -= (e.clientY - d.ly) * 0.0024;
+      const m = aimMult();
+      c.yaw -= (e.clientX - d.lx) * 0.0026 * m; c.pitch -= (e.clientY - d.ly) * 0.0024 * m;
       d.lx = e.clientX; d.ly = e.clientY;
       return;
     }
@@ -112,7 +125,8 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
     const dx = e.clientX - d.lx; const dy = e.clientY - d.ly;
     d.lx = e.clientX; d.ly = e.clientY;
     d.moved += Math.abs(dx) + Math.abs(dy);
-    c.yaw -= dx * 0.0026; c.pitch -= dy * 0.0024;
+    const m = aimMult();
+    c.yaw -= dx * 0.0026 * m; c.pitch -= dy * 0.0024 * m;
   };
   const onPointerUp = (e) => {
     const d = drag.current;

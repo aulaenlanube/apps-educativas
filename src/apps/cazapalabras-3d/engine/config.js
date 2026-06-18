@@ -64,6 +64,27 @@ export const BONUS = {
   speedMult: 2.0,                // pasan MUY rápido (cruzan)
 };
 
+// Objetos TRAMPA (riesgo/recompensa): gemas moradas que dan MÁS puntos que las
+// doradas pero, al acertarlas, aplican una PENALIZACIÓN temporal a la mirilla
+// (lenta, invertida o vibrante). El jugador decide si el premio compensa el riesgo.
+export const HAZARD = {
+  everyMin: 10, everyMax: 17,    // segundos entre apariciones
+  points: 14,                    // recompensa mayor (compensa el riesgo)
+  scaleMin: 0.6, scaleMax: 0.82,
+  speedMult: 1.35,
+};
+
+// Penalizaciones temporales de la mirilla (debuffs). Las provocan los objetos trampa
+// y, con cierta probabilidad, FALLAR (disparar una palabra que no puntúa).
+export const DEBUFF_TYPES = ['slow', 'invert', 'shake'];
+export const DEBUFF = {
+  durationSec: 4.5,   // cuánto dura cada penalización
+  slowFactor: 0.32,   // factor de sensibilidad cuando la mirilla va "lenta"
+  shakeAmp: 0.16,     // amplitud de la vibración de cámara
+};
+// Probabilidad de sufrir un debuff al disparar una palabra NO válida (fallar).
+export const MISS_DEBUFF_CHANCE = 0.45;
+
 // Puntuación por categoría: SOLO 2 categorías puntúan.
 export const SCORE_PRINCIPAL = 5;   // categoría principal
 export const SCORE_SECUNDARIA = 2;  // categoría secundaria

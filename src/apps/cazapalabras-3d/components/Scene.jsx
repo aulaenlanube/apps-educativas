@@ -12,7 +12,9 @@ import LabEnvironment from '@/apps/laboratorio-fisica/components/LabEnvironment'
 import { DEFAULT_AMBIENCE } from '@/apps/laboratorio-fisica/engine/ambiences';
 import ImpactFX from './ImpactFX';
 import Flyer from './Flyer';
-import { CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS } from '../engine/config';
+import {
+  CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS, HAZARD, DEBUFF,
+} from '../engine/config';
 import {
   spawnFlyer, updateFlyer, makeEscape, resetFlyerIds, valueForCategory,
 } from '../engine/flyers';
@@ -39,6 +41,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
   const lastSpawnRef = useRef(0);
   const defSpawnRef = useRef(0);
   const nextBonusRef = useRef(0);
+  const nextHazardRef = useRef(0);
   const lastEpochRef = useRef(0);
   const [, bumpState] = useReducer((x) => (x + 1) & 0xffff, 0);
   const renderDirty = useRef(false);
@@ -65,6 +68,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     }
     lastEpochRef.current = (g && g.catEpoch) || 0;
     nextBonusRef.current = performance.now() + (BONUS.everyMin + Math.random() * (BONUS.everyMax - BONUS.everyMin)) * 1000;
+    nextHazardRef.current = performance.now() + (HAZARD.everyMin + Math.random() * (HAZARD.everyMax - HAZARD.everyMin)) * 1000;
     markDirty();
     bumpState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,6 +94,15 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     camera.quaternion.setFromEuler(euler);
     camera.position.set(CAM.pos[0] + breX, CAM.pos[1] + breY, CAM.pos[2]);
 
+    // --- debuff "vibración": sacude la cámara de forma sostenida (castiga la puntería:
+    //     se aplica ANTES del raycast, así el disparo también se desvía) ---
+    if (active && g.debuffs && g.debuffs.shake > 0 && !reduceMotion) {
+      const a = DEBUFF.shakeAmp;
+      camera.position.x += (Math.random() - 0.5) * a;
+      camera.position.y += (Math.random() - 0.5) * a;
+      camera.rotateZ((Math.random() - 0.5) * a * 0.12);
+    }
+
     // --- integrar trayectorias (solo activo) y purgar las que salen del campo ---
     if (active) {
       let changed = false;
@@ -106,7 +119,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
       const m = f._mesh;
       if (!m) continue;
       m.position.set(f.px, f.py, f.pz);
-      if (f.bonus) {
+      if (f.bonus || f.hazard) {
         // las gemas giran sobre sí mismas (no billboard); el giro solo avanza activo
         if (active) f.spinA += dt * 2.6;
         m.rotation.set(f.spinA * 0.6, f.spinA, 0);
@@ -154,6 +167,12 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
       nextBonusRef.current = now + (BONUS.everyMin + Math.random() * (BONUS.everyMax - BONUS.everyMin)) * 1000;
       markDirty();
     }
+    // gema TRAMPA morada (más puntos pero castiga la mirilla) cada cierto tiempo
+    if (now >= nextHazardRef.current && flyersRef.current.length < fq.max) {
+      flyersRef.current.push(spawnFlyer(g.pool, Math.random, { speed: p.speed, hazard: true }));
+      nextHazardRef.current = now + (HAZARD.everyMin + Math.random() * (HAZARD.everyMax - HAZARD.everyMin)) * 1000;
+      markDirty();
+    }
     // cadencia normal + relleno si quedan muy pocas en pantalla
     const live = flyersRef.current.length;
     const needFill = live < fq.minLive;
@@ -187,11 +206,11 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
         if (hitGroup) {
           const f = flyersRef.current.find((x) => x.id === hitGroup.userData.targetId);
           if (f && !f.escaping) {
-            if (f.bonus) {
-              // gema de bonificación: puntos extra, sin penalización; FX dorado
-              fxRef.current?.onHit(point, '#fde68a', { combo: g.combo || 0, power: 1.8 });
-              g.shake = Math.max(g.shake || 0, 0.34);
-              onHit?.({ kind: 'bonus', value: f.bonusPoints });
+            if (f.bonus || f.hazard) {
+              // gemas especiales: dorada = puntos · morada = puntos + castigo (debuff)
+              fxRef.current?.onHit(point, f.hazard ? '#e879f9' : '#fde68a', { combo: g.combo || 0, power: 1.8 });
+              g.shake = Math.max(g.shake || 0, f.hazard ? 0.45 : 0.34);
+              onHit?.({ kind: f.hazard ? 'hazard' : 'bonus', value: f.bonusPoints });
               removeFlyer(f.id);
             } else {
               const isDef = !!g.activeDef && f.text.trim().toLowerCase() === g.activeDef.word.trim().toLowerCase();
@@ -200,7 +219,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
               if (!isDef && !f.valid) {
                 for (const x of flyersRef.current) {
                   if (removedValid >= WRONG_REMOVES_VALID) break;
-                  if (x.valid && !x.escaping && !x.bonus && x.id !== f.id) { makeEscape(x); removedValid += 1; }
+                  if (x.valid && !x.escaping && !x.bonus && !x.hazard && x.id !== f.id) { makeEscape(x); removedValid += 1; }
                 }
               }
               // FX/color NEUTROS (no revelan el valor): el alumno lo deduce por categoría

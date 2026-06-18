@@ -10,16 +10,33 @@ const fmtTime = (s) => {
   return `${m}:${String(v % 60).padStart(2, '0')}`;
 };
 
+const DEBUFF_META = {
+  slow: { ic: '🐌', label: 'Mirilla lenta' },
+  invert: { ic: '🔄', label: 'Controles al revés' },
+  shake: { ic: '📳', label: 'Vibración' },
+};
+
 export default function HUD({
   timeLeft, totalTime, score, combo,
-  activeDef, defRemaining, defWindow, feedback, examInfo, categories,
+  activeDef, defRemaining, defWindow, feedback, examInfo, categories, debuffs,
 }) {
   const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
   const low = timeLeft <= 10;
   const cats = categories || [];
+  const dbf = debuffs || [];
 
   return (
     <div className="cz3d-hud">
+      {/* penalización activa: avisos (el tinte rojo lo pinta el shell, bajo el HUD) */}
+      {dbf.length > 0 && (
+        <div className="cz3d-debuffs">
+          {dbf.map((t) => (DEBUFF_META[t] ? (
+            <span key={t} className="cz3d-debuff">
+              <span className="ic">{DEBUFF_META[t].ic}</span> {DEBUFF_META[t].label}
+            </span>
+          ) : null))}
+        </div>
+      )}
       {/* Objetivo / definición */}
       <div className="cz3d-objective">
         {activeDef ? (

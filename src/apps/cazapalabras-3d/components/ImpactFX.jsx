@@ -203,16 +203,17 @@ const ImpactFX = forwardRef(function ImpactFX({ quality }, apiRef) {
       const m = muzzle.current;
       if (m.active) {
         m.t += dt;
-        const k = m.t / 0.1;
+        const k = m.t / 0.09;
         if (k >= 1) { m.active = false; mz.visible = false; }
         else {
+          // brillo MINÚSCULO en el centro de la mirilla (no un fogonazo grande)
           mz.visible = true;
           fwd.set(0, 0, -1).applyQuaternion(camera.quaternion);
-          mz.position.copy(camera.position).addScaledVector(fwd, 2.4);
+          mz.position.copy(camera.position).addScaledVector(fwd, 3.2);
           mz.quaternion.copy(camera.quaternion);
-          const sc = 0.8 + k * 1.6;
+          const sc = 0.16 + k * 0.22;
           mz.scale.set(sc, sc, sc);
-          mz.material.opacity = (1 - k) * 0.8;
+          mz.material.opacity = (1 - k) * 0.85;
         }
       } else if (mz.visible) { mz.visible = false; }
     }
@@ -235,7 +236,7 @@ const ImpactFX = forwardRef(function ImpactFX({ quality }, apiRef) {
       </points>
 
       <mesh ref={(o) => { muzzleRef.current = o; markBloom(o); }} visible={false} frustumCulled={false}>
-        <planeGeometry args={[1.6, 1.6]} />
+        <planeGeometry args={[0.7, 0.7]} />
         <meshBasicMaterial map={muzzleTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} opacity={0} />
       </mesh>
     </>

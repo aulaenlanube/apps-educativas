@@ -171,19 +171,20 @@
   100% { opacity: 0; transform: translate(-50%, -34px) scale(1); }
 }
 
-/* aviso GRANDE de cambio de categorías, justo encima de la mirilla (pocos segundos) */
+/* aviso GRANDE de cambio de categorías: CENTRADO y ARRIBA, justo bajo el objetivo
+   (top fijo en px para no solaparse con la caja de definición, que vive en top:14px). */
 .cz3d-catbanner {
-  position: absolute; left: 50%; top: 36%; transform: translateX(-50%);
+  position: absolute; left: 50%; top: 116px; transform: translateX(-50%);
   z-index: 24; pointer-events: none; text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 94vw;
+  display: flex; flex-direction: column; align-items: center; gap: 9px; max-width: 94vw;
 }
 .cz3d-catbanner-tag {
-  font-size: clamp(1rem, 2.4vw, 1.5rem); font-weight: 900; letter-spacing: 0.03em;
+  font-size: clamp(1rem, 2.4vw, 1.45rem); font-weight: 900; letter-spacing: 0.03em;
   color: #fff; text-shadow: 0 3px 16px rgba(2,6,20,0.9), 0 0 22px rgba(56,189,248,0.5);
 }
 .cz3d-catbanner-cats { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .cz3d-catbanner-cat {
-  font-size: clamp(1.3rem, 3.6vw, 2.3rem); font-weight: 900; text-transform: capitalize;
+  font-size: clamp(1.25rem, 3.4vw, 2.1rem); font-weight: 900; text-transform: capitalize;
   padding: 8px 22px; border-radius: 16px; border: 2.5px solid;
   background: rgba(8,13,30,0.8); backdrop-filter: blur(8px);
   box-shadow: 0 14px 44px rgba(0,0,0,0.55); white-space: nowrap;
@@ -192,9 +193,29 @@
 .cz3d-catbanner-cat.t5 { border-color: #fbbf24; color: #fde68a; }
 .cz3d-catbanner-cat.t2 { border-color: #7dd3fc; color: #a5f3fc; }
 @media (max-width: 720px) {
-  .cz3d-catbanner { top: 32%; gap: 7px; }
+  .cz3d-catbanner { top: 128px; gap: 6px; }
   .cz3d-catbanner-cat { padding: 6px 14px; }
 }
+
+/* penalizaciones de mirilla (debuffs): aviso + tinte rojo pulsante en pantalla */
+.cz3d-debuff-tint {
+  position: absolute; inset: 0; z-index: 19; pointer-events: none;
+  background: radial-gradient(125% 125% at 50% 50%, transparent 48%, rgba(239,68,68,0.32) 100%);
+  animation: cz3d-debuff-pulse 0.9s ease-in-out infinite;
+}
+@keyframes cz3d-debuff-pulse { 50% { opacity: 0.45; } }
+.cz3d-debuffs {
+  position: absolute; left: 50%; top: 19%; transform: translateX(-50%);
+  z-index: 23; pointer-events: none; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.cz3d-debuff {
+  display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.92rem;
+  color: #fecaca; background: rgba(45,10,12,0.85); border: 1.5px solid rgba(239,68,68,0.7);
+  border-radius: 999px; padding: 5px 13px; box-shadow: 0 6px 20px rgba(0,0,0,0.45); white-space: nowrap;
+}
+.cz3d-debuff .ic { font-size: 1.05rem; }
+@media (prefers-reduced-motion: reduce) { .cz3d-debuff-tint { animation: none; opacity: 0.4; } }
+@media (max-width: 720px) { .cz3d-debuffs { top: 16%; } .cz3d-debuff { font-size: 0.8rem; padding: 4px 10px; } }
 
 .cz3d-exit {
   position: absolute; top: 14px; right: 16px; z-index: 40; pointer-events: auto;
