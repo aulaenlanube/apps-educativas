@@ -14,6 +14,8 @@ import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { QUALITY_LABELS } from '@/services/graphicsQuality';
 import { getRoscoData, getRunnerData } from '@/services/gameDataService';
+import Scene3DBackground from '@/components/ui/Scene3DBackground';
+import { ambienceById } from '@/apps/laboratorio-fisica/engine/ambiences';
 import GameCanvas from './components/GameCanvas';
 import Crosshair from './components/Crosshair';
 import HUD from './components/HUD';
@@ -37,6 +39,16 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   const grade = useMemo(() => parseInt(gradeProp ?? routeParams.grade, 10) || 1, [gradeProp, routeParams.grade]);
   const subjectId = subjectProp || routeParams.subjectId;
   const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
+
+  // Fondo 3D de la plataforma (la isla low-poly): el MISMO que se ve al elegir la
+  // app. Se fija un ambiente de cielo DESPEJADO (buena visibilidad para apuntar) y se
+  // comparte entre la pantalla de selección/resumen (Scene3DBackground, isla orbitando)
+  // y el mundo de juego (Scene monta la misma isla con cámara en primera persona).
+  const ambienceId = useMemo(() => {
+    const clear = ['dia', 'atardecer', 'noche'];
+    return clear[Math.floor(Math.random() * clear.length)];
+  }, []);
+  const amb = useMemo(() => ambienceById(ambienceId), [ambienceId]);
 
   // ---- calidad gráfica global + governor ----
   const { pref, tier: prefTier } = useGraphicsQuality();
@@ -161,7 +173,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       gs.feedback = { text, color, id };
       gs.feedbackUntil = now + 1100;
       gs.hit = { id, kind: hitKind };
-      setHud(snapshot(gs, now));
+      setHud(snapshot(gs));
     };
 
     if (isDef) {
@@ -194,14 +206,14 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       running: true, paused: false, mode, params, pool,
       timeLeft: params.durationSec, totalTime: params.durationSec,
       score: 0, combo: 0, bestCombo: 0, wordsHit: 0, nextShotAt: 0,
-      activeDef: null, activeDefCounted: false, defEndsAt: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
+      activeDef: null, activeDefCounted: false, defLeft: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
       feedback: null, feedbackUntil: 0,
     };
     controlRef.current = { yaw: 0, pitch: 0, shootQueued: false };
     trackedRef.current = false;
     sessionStartRef.current = Date.now();
     setSummary(null);
-    setHud(snapshot(gsRef.current, performance.now()));
+    setHud(snapshot(gsRef.current));
     setScreen('play');
   }, [pool]);
 
@@ -221,16 +233,21 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       if (!gs.paused) {
         gs.timeLeft -= dt;
         if (gs.activeDef) {
-          if (now > gs.defEndsAt) { gs.activeDef = null; gs.activeDefCounted = false; gs.defTimer = gs.params.defEverySec; }
+          // ventana de la definición en SEGUNDOS restantes (dt-based → pausa-safe: no
+          // caduca al reanudar tras una pausa, a diferencia de un timestamp de reloj).
+          gs.defLeft -= dt;
+          if (gs.defLeft <= 0) { gs.activeDef = null; gs.activeDefCounted = false; gs.defTimer = gs.params.defEverySec; }
         } else {
           gs.defTimer -= dt;
-          if (gs.defTimer <= 0 && gs.pool.definitions.length) {
+          // No presentar una definición que NO quepa en el tiempo restante (sería
+          // imposible de resolver y contaría como 0 en la nota): exige ≥60% de la ventana.
+          if (gs.defTimer <= 0 && gs.pool.definitions.length && gs.timeLeft > gs.params.defWindowSec * 0.6) {
             const d = gs.pool.definitions[Math.floor(Math.random() * gs.pool.definitions.length)];
             gs.activeDef = { word: d.word, definition: d.definition, points: d.points };
             gs.activeDefCounted = false;
-            gs.defEndsAt = now + gs.params.defWindowSec * 1000;
-            // defPresented++ lo hace Scene al INYECTAR la palabra en un montón (visible),
-            // para no inflar la nota si todavía no hay montón donde mostrarla.
+            gs.defLeft = gs.params.defWindowSec;
+            // defPresented++ lo hace Scene al hacer VISIBLE la palabra (diana voladora),
+            // para no inflar la nota si todavía no hay diana donde mostrarla.
           }
         }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
@@ -239,7 +256,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       if (hudAcc > 0.085) {
         hudAcc = 0;
         if (gs.feedback && now > gs.feedbackUntil) gs.feedback = null;
-        setHud(snapshot(gs, now));
+        setHud(snapshot(gs));
         setCooling(now < (gs.nextShotAt || 0));
       }
     };
@@ -260,28 +277,35 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   const cursoLabel = level === 'bachillerato' ? `${grade}º Bach` : `${grade}º ESO`;
 
   // ====================== RENDER ======================
-  if (loading) {
-    return (
-      <div className="cz3d-root cz3d-center">
-        <div className="cz3d-spinner" />
-        <p>Cargando vocabulario de {cursoLabel}…</p>
-      </div>
-    );
-  }
-  if (loadError || !pool) {
-    return (
-      <div className="cz3d-root cz3d-center">
-        <span className="cz3d-big-emoji">🛰️</span>
-        <h2>Sin vocabulario disponible</h2>
-        <p>No hay suficientes palabras para <strong>{asignatura}</strong> en {cursoLabel}.<br />Prueba con otra asignatura o curso.</p>
-      </div>
-    );
-  }
-
   return (
     <div className="cz3d-root">
+      {/* Fondo 3D de la plataforma (la isla orbitando): el MISMO que se ve al elegir
+          la app. En JUEGO no se monta — el mundo de juego ya es esa misma isla en 3D. */}
+      {screen !== 'play' && (
+        <Scene3DBackground
+          ambienceId={ambienceId}
+          scrim={0.28}
+          style={{ position: 'absolute', inset: 0, zIndex: 0 }}
+        />
+      )}
+
+      {/* ============ CARGA / ERROR ============ */}
+      {loading && (
+        <div className="cz3d-center">
+          <div className="cz3d-spinner" />
+          <p>Cargando vocabulario de {cursoLabel}…</p>
+        </div>
+      )}
+      {!loading && (loadError || !pool) && (
+        <div className="cz3d-center">
+          <span className="cz3d-big-emoji">🛰️</span>
+          <h2>Sin vocabulario disponible</h2>
+          <p>No hay suficientes palabras para <strong>{asignatura}</strong> en {cursoLabel}.<br />Prueba con otra asignatura o curso.</p>
+        </div>
+      )}
+
       {/* ============ SELECCIÓN ============ */}
-      {screen === 'select' && (
+      {screen === 'select' && !loading && pool && (
         <motion.div className="cz3d-select" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
           <div className="cz3d-hero">
             <span className="cz3d-hero-icon">🎯</span>
@@ -293,7 +317,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
           </div>
 
           <div className="cz3d-modes">
-            {MODOS.map((m) => {
+            {/* El examen puntúa por definiciones acertadas; si la asignatura no tiene
+                definiciones del rosco, la nota sería siempre 0 → se oculta ese modo. */}
+            {MODOS.filter((m) => m !== 'examen' || pool.definitions.length > 0).map((m) => {
               const d = DIFICULTADES[m];
               return (
                 <motion.button
@@ -312,6 +338,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               );
             })}
           </div>
+          {pool.definitions.length === 0 && (
+            <p className="cz3d-modes-note">ℹ️ El modo <strong>Examen</strong> no está disponible para esta asignatura (no tiene definiciones).</p>
+          )}
 
           <div className="cz3d-select-actions">
             <button type="button" className="cz3d-study-btn" onClick={() => setShowVocab(true)}>
@@ -333,6 +362,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             gameRef={gsRef}
             controlRef={controlRef}
             onHit={onHit}
+            amb={amb}
           />
           <div
             className="cz3d-vignette"
@@ -404,17 +434,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
         <h3>🎯 Cómo se juega</h3>
-        <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para girar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para mirar y toca para disparar. La cámara está casi quieta y de vez en cuando <strong>gira</strong> para encarar otro montón (no avanza ni se desplaza).</p>
-        <h3>🧱 Montones con gravedad</h3>
-        <p>Las palabras forman <strong>montones</strong> de cajas apiladas que aparecen a tu alrededor. Elige bien a cuáles disparas: si rompes las de abajo, las de arriba <strong>caen</strong> para rellenar el hueco.</p>
+        <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para apuntar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para apuntar y toca para disparar. Estás de pie en la isla: la cámara no se mueve sola, eres tú quien apunta.</p>
+        <h3>🛩️ Dianas voladoras</h3>
+        <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen.</p>
         <h3>🗂️ Solo 2 categorías puntúan</h3>
-        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Reconoce a qué categoría pertenece cada palabra y <strong>lee antes de disparar</strong>. El resto de palabras <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero desaparecen varias válidas</strong> del montón (optas a menos puntos).</p>
+        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto de palabras <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando (optas a menos puntos).</p>
         <h3>📖 Retos de definición</h3>
-        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra está en los montones como una más (<strong>no se resalta</strong>): tienes que encontrarla y dispararle. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
+        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra vuela <strong>entre las demás</strong> (<strong>no se resalta</strong>): tienes que reconocerla y dispararle al vuelo. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
         <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
       </InstructionsModal>
 
       {/* ============ MATERIAL DE ESTUDIO ============ */}
+      {pool && (
       <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
         {pool.categories.length > 0 && (
           <>
@@ -437,7 +468,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
           <div className="cz3d-study-cat">
             <h4 className="pen">🚫 Otras palabras (no puntúan)</h4>
             <p className="cz3d-study-words">{neutralWordsList.join(' · ')}</p>
-            <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>desaparecer válidas</strong> del montón.</p>
+            <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>huir válidas</strong> que estuvieran volando.</p>
           </div>
         )}
         {pool.definitions.length > 0 && (
@@ -449,12 +480,13 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
           </>
         )}
       </InstructionsModal>
+      )}
     </div>
   );
 };
 
 // Espejo del estado autoritativo → props del HUD.
-function snapshot(gs, now) {
+function snapshot(gs) {
   return {
     mode: gs.mode,
     isExam: !!gs.params?.isExam,
@@ -463,7 +495,7 @@ function snapshot(gs, now) {
     score: gs.score,
     combo: gs.combo,
     activeDef: gs.activeDef,
-    defRemaining: gs.activeDef ? (gs.defEndsAt - now) / 1000 : 0,
+    defRemaining: gs.activeDef ? gs.defLeft : 0,
     defWindow: gs.params?.defWindowSec || 9,
     defSolved: gs.defSolved,
     defPresented: gs.defPresented,

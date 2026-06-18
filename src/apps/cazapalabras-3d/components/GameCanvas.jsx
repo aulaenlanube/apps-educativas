@@ -11,6 +11,7 @@ import {
 } from '@/services/graphicsQuality';
 import Scene from './Scene';
 import Effects from './Effects';
+import { CAM } from '../engine/config';
 
 function Governor({ onDowngrade }) {
   const ref = useRef(null);
@@ -19,7 +20,7 @@ function Governor({ onDowngrade }) {
   return null;
 }
 
-function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHit }) {
+function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHit, amb }) {
   const Q = GLOBAL_QUALITY_PARAMS[tier] || GLOBAL_QUALITY_PARAMS.medium;
   const [ctxKey, setCtxKey] = useState(0);
   const [lost, setLost] = useState(false);
@@ -141,11 +142,11 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
         dpr={effectiveDpr(tier)}
         shadows={Q.shadows}
         gl={{ antialias: Q.antialias, powerPreference: 'high-performance' }}
-        camera={{ position: [0, 2.4, 7], fov: 64, near: 0.1, far: 240 }}
+        camera={{ position: CAM.pos, fov: 62, near: 0.1, far: 240 }}
         onCreated={onCreated}
       >
         {prefAuto && <Governor onDowngrade={handleDowngrade} />}
-        <Scene gameRef={gameRef} controlRef={controlRef} onHit={onHit} quality={Q} tier={tier} />
+        <Scene gameRef={gameRef} controlRef={controlRef} onHit={onHit} quality={Q} tier={tier} amb={amb} />
         {Q.bloom && <Effects />}
       </Canvas>
     </div>

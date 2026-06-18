@@ -1,52 +1,54 @@
 // Configuración de Cazapalabras 3D (FPS educativo de vocabulario).
 // La calidad gráfica NO se configura aquí: se hereda del ajuste global de
 // plataforma (graphicsQuality) + selector dentro de la app.
+//
+// MECÁNICA: "dianas voladoras". Las palabras NO están quietas: surcan el cielo de
+// la isla (la misma escena 3D de la plataforma) describiendo arcos — unas cruzan de
+// lado a lado, otras se lanzan hacia arriba desde el suelo y caen. El jugador apunta
+// con la mirilla y dispara a las de las 2 categorías que puntúan. El resto son
+// señuelos: dispararlas no resta puntos pero hace huir válidas (optas a menos puntos).
 
 // Capa de render reservada al BLOOM SELECTIVO (post-proceso). Solo los objetos
-// "luminosos" (halos, FX de impacto, estrellas, estructuras emisivas) se marcan
-// con layers.enable(BLOOM_LAYER); los prismas de palabra NO, para que el texto
-// quede SIEMPRE nítido (no se difumina con el glow).
+// "luminosos" (halos de las dianas, FX de impacto, sol) brillan; el panel con el
+// TEXTO de la palabra NO se marca, para que quede SIEMPRE nítido (sin difuminarse).
 export const BLOOM_LAYER = 1;
 
-// ── Montones de palabras (estructuras con gravedad) ──
-// Geometría de cada celda del montón (prisma de palabra de tamaño UNIFORME).
-// baseY = 0: el origen local del montón coincide con la base de la fila inferior;
-// la altura en el mundo la fija PILE_LAYOUT (cada montón flota a distinta altura).
-export const CELL = { w: 2.5, h: 1.05, depth: 0.22, gap: 0.16, baseY: 0 };
-export const GRAV_PILE = 16; // aceleración de caída al recolapsar columnas
-
-// Knob de calidad PROPIO de la app (NO usar particleBudget para capar nº de cajas).
-// Define cuántos MONTONES viven a la vez y de cuántas cajas (pocas válidas).
-export const PILE_QUALITY = {
-  low: { piles: 3, cols: 2, boxesMin: 5, boxesMax: 7, validMin: 2, validMax: 2 },
-  medium: { piles: 5, cols: 3, boxesMin: 6, boxesMax: 9, validMin: 2, validMax: 3 },
-  high: { piles: 6, cols: 3, boxesMin: 6, boxesMax: 10, validMin: 2, validMax: 3 },
-};
-
-// ── Cámara por secciones (coreografía discreta y CALMADA: HOLD → TURN → HOLD …) ──
-// La cámara NO se traslada ni el mundo se desplaza (evita el mareo): solo GIRA para
-// encarar montones colocados a distintos ángulos a su alrededor.
+// ── Cámara en primera persona (FIJA: ni avanza ni gira sola; el jugador apunta) ──
+// El jugador está de pie en la isla mirando al cielo/horizonte; solo el mouse-look
+// (yaw/pitch) mueve la vista para seguir las dianas. Respiración cosmética mínima.
 export const CAM = {
-  pos: [0, 2.4, 7],            // posición FIJA (nunca avanza)
-  holdMin: 2.6, holdMax: 4.6,  // reposo para apuntar/disparar
-  turnDur: 1.6,                // duración del giro a otro montón
-  breathPos: 0.04, breathY: 0.025, breathRoll: 0.012, // respiración cosmética mínima
-  bankRoll: 0.08,              // alabeo proporcional al giro (lean into the turn)
+  pos: [0, 5, 20],            // posición FIJA sobre la pradera de la isla
+  basePitch: -0.06,           // leve inclinación hacia el campo de juego
+  yawMax: 1.05,               // arco horizontal que el jugador puede barrer (rad)
+  pitchMax: 0.62,             // arco vertical
+  breathPos: 0.05, breathY: 0.03, breathRoll: 0.01, // micro-respiración (no marea)
 };
 
-// Colocación de los montones: un arco a izquierda/derecha de la cámara, a distintas
-// distancias y alturas (aparecen "por todas partes" del campo de visión).
-export const PILE_LAYOUT = {
-  angleMax: 1.15,              // arco máx. (rad) a cada lado que la cámara puede encarar
-  distMin: 13, distMax: 19,    // distancia de la cámara
-  baseYMin: 1.0, baseYMax: 5.0, // altura de la base del montón
+// ── Dianas voladoras ──
+// Geometría del panel de palabra (billboard que SIEMPRE encara la cámara → legible),
+// límites del campo de vuelo y gravedad (arcos suaves para poder leer y seguir).
+export const FLYER = {
+  gravity: 3.4,               // gravedad suave → arcos amplios y trackeable
+  panelW: 3.7,                // ancho del panel (la altura sale del aspecto del texto)
+  haloScale: 0.66,            // radio del halo luminoso tras el panel (∝ panelW)
+  spawnHalfW: 20,             // medio-ancho de aparición (x ∈ [-20, 20], sobre la pradera)
+  zMin: -13, zMax: 6,         // banda de profundidad frente a la cámara
+  floorY: -3,                 // por debajo de esto la diana "cae" y desaparece
+  riseY: -1.4,                // altura de lanzamiento de las dianas que ascienden
+};
+
+// Calidad PROPIA de la app: nº MÁXIMO de dianas vivas a la vez por tier.
+export const FLYER_QUALITY = {
+  low: { max: 5, minLive: 2 },
+  medium: { max: 7, minLive: 3 },
+  high: { max: 9, minLive: 3 },
 };
 
 // Puntuación por categoría: SOLO 2 categorías puntúan.
 export const SCORE_PRINCIPAL = 5;   // categoría principal
 export const SCORE_SECUNDARIA = 2;  // categoría secundaria
-// Al disparar una palabra NO válida no se restan puntos, pero DESAPARECEN N válidas
-// del montón (optas a menos puntos).
+// Al disparar una palabra NO válida no se restan puntos, pero HUYEN N válidas que
+// estuvieran volando (se aceleran y escapan → optas a menos puntos).
 export const WRONG_REMOVES_VALID = 2;
 
 // Puntos de la respuesta a una definición (sobre los puntos base de la palabra).
@@ -54,23 +56,32 @@ export const DEF_BONUS_MULT = 4;
 
 // Dificultades (práctica) + examen. Todas las partidas son por TIEMPO. El valor de
 // cada palabra sale de su categoría (principal/secundaria), no de la dificultad.
+//   spawnEverySec → cadencia de aparición de dianas
+//   validRatio    → proporción de dianas que pertenecen a una categoría que puntúa
+//   speed         → multiplicador de velocidad de vuelo (más alto = más difícil leer)
+//   defEverySec   → cada cuánto aparece un reto de definición
+//   defWindowSec  → ventana para acertar la definición
 export const DIFICULTADES = {
   facil: {
     key: 'facil', label: 'Fácil', icon: '🟢',
-    durationSec: 120, defEverySec: 16, defWindowSec: 11, fireCooldownMs: 360,
+    durationSec: 120, spawnEverySec: 0.95, validRatio: 0.62, speed: 0.82,
+    defEverySec: 16, defWindowSec: 12, fireCooldownMs: 300,
   },
   medio: {
     key: 'medio', label: 'Medio', icon: '🟡',
-    durationSec: 95, defEverySec: 13, defWindowSec: 9, fireCooldownMs: 320,
+    durationSec: 95, spawnEverySec: 0.74, validRatio: 0.56, speed: 1.0,
+    defEverySec: 13, defWindowSec: 10, fireCooldownMs: 270,
   },
   dificil: {
     key: 'dificil', label: 'Difícil', icon: '🔴',
-    durationSec: 80, defEverySec: 11, defWindowSec: 7.5, fireCooldownMs: 280,
+    durationSec: 80, spawnEverySec: 0.58, validRatio: 0.5, speed: 1.22,
+    defEverySec: 11, defWindowSec: 8, fireCooldownMs: 240,
   },
   // Examen: nota = definiciones acertadas / presentadas.
   examen: {
     key: 'examen', label: 'Examen', icon: '🎓', isExam: true,
-    durationSec: 90, defEverySec: 8, defWindowSec: 9, fireCooldownMs: 320,
+    durationSec: 90, spawnEverySec: 0.7, validRatio: 0.55, speed: 1.05,
+    defEverySec: 8, defWindowSec: 10, fireCooldownMs: 270,
   },
 };
 
