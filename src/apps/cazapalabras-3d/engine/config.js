@@ -44,6 +44,26 @@ export const FLYER_QUALITY = {
   high: { max: 9, minLive: 3 },
 };
 
+// Tamaños de las palabras (multiplicador sobre panelW). Más variedad = más
+// rejugabilidad y dificultad: las "tiny" son MUY pequeñas y difíciles de acertar.
+// `sizeBias` (por dificultad) sesga la distribución hacia tamaños pequeños.
+export const SIZE = {
+  tiny: [0.40, 0.58],
+  small: [0.58, 0.82],
+  normal: [0.82, 1.08],
+  big: [1.08, 1.42],
+};
+
+// Dianas de BONIFICACIÓN: gemas pequeñas y MUY rápidas (objetos, no palabras) que,
+// al acertarlas, dan puntos extra. No cuentan como palabra ni como definición (no
+// afectan a la nota de examen; suman a los puntos paralelos). No penalizan si fallas.
+export const BONUS = {
+  everyMin: 6.5, everyMax: 11,   // segundos entre apariciones
+  points: 9,                     // bonificación base por acierto
+  scaleMin: 0.5, scaleMax: 0.7,  // pequeñas
+  speedMult: 2.0,                // pasan MUY rápido (cruzan)
+};
+
 // Puntuación por categoría: SOLO 2 categorías puntúan.
 export const SCORE_PRINCIPAL = 5;   // categoría principal
 export const SCORE_SECUNDARIA = 2;  // categoría secundaria
@@ -64,23 +84,23 @@ export const DEF_BONUS_MULT = 4;
 export const DIFICULTADES = {
   facil: {
     key: 'facil', label: 'Fácil', icon: '🟢',
-    durationSec: 120, spawnEverySec: 0.95, validRatio: 0.62, speed: 0.82,
+    durationSec: 120, spawnEverySec: 0.95, validRatio: 0.62, speed: 0.82, sizeBias: 0.06,
     defEverySec: 16, defWindowSec: 12, fireCooldownMs: 300,
   },
   medio: {
     key: 'medio', label: 'Medio', icon: '🟡',
-    durationSec: 95, spawnEverySec: 0.74, validRatio: 0.56, speed: 1.0,
+    durationSec: 95, spawnEverySec: 0.74, validRatio: 0.56, speed: 1.0, sizeBias: 0.28,
     defEverySec: 13, defWindowSec: 10, fireCooldownMs: 270,
   },
   dificil: {
     key: 'dificil', label: 'Difícil', icon: '🔴',
-    durationSec: 80, spawnEverySec: 0.58, validRatio: 0.5, speed: 1.22,
+    durationSec: 80, spawnEverySec: 0.58, validRatio: 0.5, speed: 1.22, sizeBias: 0.55,
     defEverySec: 11, defWindowSec: 8, fireCooldownMs: 240,
   },
   // Examen: nota = definiciones acertadas / presentadas.
   examen: {
     key: 'examen', label: 'Examen', icon: '🎓', isExam: true,
-    durationSec: 90, spawnEverySec: 0.7, validRatio: 0.55, speed: 1.05,
+    durationSec: 90, spawnEverySec: 0.7, validRatio: 0.55, speed: 1.05, sizeBias: 0.34,
     defEverySec: 8, defWindowSec: 10, fireCooldownMs: 270,
   },
 };

@@ -162,10 +162,11 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
     const gs = gsRef.current;
     if (!gs.running || gs.paused) return;
     const now = performance.now();
+    const isBonus = data.kind === 'bonus';
     // la palabra-respuesta de la definición se reconoce por TEXTO (no se resalta)
-    const isDef = !!gs.activeDef && !!data.text
+    const isDef = !isBonus && !!gs.activeDef && !!data.text
       && data.text.trim().toLowerCase() === gs.activeDef.word.trim().toLowerCase();
-    const hitKind = isDef ? 'answer' : (data.valid ? 'word' : 'penalty');
+    const hitKind = isBonus ? 'bonus' : (isDef ? 'answer' : (data.valid ? 'word' : 'penalty'));
     // fb() actualiza feedback + hit-marker y emite UN único setHud por impacto
     // (nunca por frame): re-render puntual del HUD/mirilla, no del Canvas (memo).
     const fb = (text, color) => {
@@ -175,6 +176,15 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       gs.hit = { id, kind: hitKind };
       setHud(snapshot(gs));
     };
+
+    // gema de BONIFICACIÓN: puntos extra (paralelos, no cuenta como palabra ni def → no
+    // afecta a la nota de examen). Sube el combo como recompensa por acertar algo veloz.
+    if (isBonus) {
+      const pts = data.value || 9;
+      gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
+      fb(`⭐ +${pts} ¡Bonus!`, '#fde68a');
+      return;
+    }
 
     if (isDef) {
       const pts = (gs.activeDef.points || 5) * DEF_BONUS_MULT;
@@ -436,7 +446,9 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         <h3>🎯 Cómo se juega</h3>
         <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para apuntar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para apuntar y toca para disparar. Estás de pie en la isla: la cámara no se mueve sola, eres tú quien apunta.</p>
         <h3>🛩️ Dianas voladoras</h3>
-        <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen.</p>
+        <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
+        <h3>⭐ Gemas de bonificación</h3>
+        <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota; suma a la puntuación). Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
         <h3>🗂️ Solo 2 categorías puntúan</h3>
         <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto de palabras <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando (optas a menos puntos).</p>
         <h3>📖 Retos de definición</h3>

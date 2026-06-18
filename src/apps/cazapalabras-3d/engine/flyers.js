@@ -1,19 +1,36 @@
 // Motor de DIANAS VOLADORAS (puro, sin r3f). Una diana es una palabra del pool que
-// vuela por el cielo describiendo un arco parabólico (gravedad suave). Hay dos tipos:
+// vuela por el cielo describiendo un arco parabólico (gravedad suave). Hay dos tipos
+// de trayectoria:
 //   · 'cross' → entra por un lado y cruza el campo de visión hacia el otro.
 //   · 'rise'  → se lanza hacia arriba desde el suelo, sube y vuelve a caer.
+// Además hay dianas de BONIFICACIÓN: gemas pequeñas y MUY rápidas (no son palabras)
+// que dan puntos extra al acertarlas.
 // La verdad lógica vive en números (px,py,pz / vx,vy,vz); el render (Flyer.jsx) solo
-// pinta el panel y el halo, y la integración del movimiento la hace la escena en un
+// pinta el panel o la gema, y la integración del movimiento la hace la escena en un
 // único useFrame (imperativo sobre el mesh, para que el raycast del disparo use la
-// posición de ESTE frame). Cada diana lleva una palabra: válida (categoría que
-// puntúa), neutra (señuelo) o la respuesta a una definición activa.
-import { FLYER } from './config';
+// posición de ESTE frame). Cada diana lleva además un `scale` (tamaño): hay palabras
+// muy pequeñas (difíciles de acertar) y grandes, para más rejugabilidad y dificultad.
+import { FLYER, SIZE, BONUS } from './config';
 
 let FLYER_ID = 0;
 
-// Elige una palabra para una diana. `forceWord` (respuesta de definición) tiene
-// prioridad; si no, sortea válida/neutra según validRatio (con fallbacks si falta
-// alguno de los dos conjuntos).
+const rand = ([a, b], rng) => a + rng() * (b - a);
+
+// Tamaño (multiplicador) de una palabra. `bias` (0..1) sesga hacia tamaños pequeños:
+// en dificultades altas aparecen MUCHAS palabras diminutas, casi imposibles.
+function pickScale(rng, bias = 0) {
+  const r = rng();
+  const tinyP = 0.10 + bias * 0.24;
+  const smallP = 0.26 + bias * 0.10;
+  const bigP = Math.max(0.05, 0.14 - bias * 0.10);
+  if (r < tinyP) return rand(SIZE.tiny, rng);
+  if (r < tinyP + smallP) return rand(SIZE.small, rng);
+  if (r > 1 - bigP) return rand(SIZE.big, rng);
+  return rand(SIZE.normal, rng);
+}
+
+// Elige una palabra para una diana. Sortea válida/neutra según validRatio (con
+// fallbacks si falta alguno de los dos conjuntos).
 function pickWord(pool, rng, validRatio) {
   const valids = (pool && pool.validWords) || [];
   const neutrals = (pool && pool.neutralWords) || [];
@@ -27,9 +44,10 @@ function pickWord(pool, rng, validRatio) {
 }
 
 // Trayectoria de una diana. `speed` escala la velocidad horizontal (no la vertical,
-// para que el arco siga siendo legible). Las dianas de definición ('rise' centrado y
-// calmado) son un poco más lentas y longevas para que dé tiempo a encontrarlas.
-function makeTrajectory(rng, speed, isDef) {
+// para que el arco siga siendo legible). `forceKind` fuerza 'cross'/'rise' (las
+// gemas de bonificación siempre cruzan, muy rápido). Las dianas de definición
+// ('rise' centrado y calmado) son un poco más lentas y longevas.
+function makeTrajectory(rng, speed, isDef, forceKind = null) {
   const G = FLYER.gravity;
   if (isDef) {
     const px = (rng() * 2 - 1) * 7;
@@ -41,8 +59,8 @@ function makeTrajectory(rng, speed, isDef) {
       maxLife: (2 * vy) / G + 2.4,
     };
   }
-  // 55% cruzan de lado, 45% ascienden desde el suelo
-  if (rng() < 0.55) {
+  const kind = forceKind || (rng() < 0.55 ? 'cross' : 'rise');
+  if (kind === 'cross') {
     const s = rng() < 0.5 ? -1 : 1;
     const cross = (6.4 + rng() * 3.2) * speed;
     return {
@@ -65,10 +83,23 @@ function makeTrajectory(rng, speed, isDef) {
   };
 }
 
-// Crea una diana. `opts.def` = { word, points } fuerza la palabra-respuesta (sin
-// marcarla; valid:false para no puntuar como categoría). `opts.validRatio`/`speed`
-// vienen de la dificultad.
-export function spawnFlyer(pool, rng, { validRatio = 0.55, speed = 1, def = null } = {}) {
+// Crea una diana.
+//   opts.def   = { word, points } → palabra-respuesta de una definición (sin marcar).
+//   opts.bonus = true             → gema de bonificación (objeto pequeño y veloz).
+//   opts.validRatio/speed/sizeBias vienen de la dificultad.
+export function spawnFlyer(pool, rng, {
+  validRatio = 0.55, speed = 1, sizeBias = 0, def = null, bonus = false,
+} = {}) {
+  if (bonus) {
+    const traj = makeTrajectory(rng, speed * BONUS.speedMult, false, 'cross');
+    return {
+      id: ++FLYER_ID,
+      text: '', value: 0, valid: false, category: '__bonus__', isDef: false,
+      bonus: true, bonusPoints: BONUS.points,
+      scale: rand([BONUS.scaleMin, BONUS.scaleMax], rng),
+      ...traj, age: 0, escaping: false, spinA: 0, _mesh: null,
+    };
+  }
   const isDef = !!def;
   let text; let value; let valid; let category;
   if (isDef) {
@@ -77,12 +108,14 @@ export function spawnFlyer(pool, rng, { validRatio = 0.55, speed = 1, def = null
     const wd = pickWord(pool, rng, validRatio);
     text = wd.text; value = wd.value || 0; valid = !!wd.valid; category = wd.category;
   }
+  // las definiciones se mantienen legibles (tamaño normal); el resto varía mucho.
+  const scale = isDef ? (0.95 + rng() * 0.2) : pickScale(rng, sizeBias);
   const traj = makeTrajectory(rng, speed, isDef);
   return {
     id: ++FLYER_ID,
-    text, value, valid, category, isDef,
-    ...traj,
-    age: 0, escaping: false, _mesh: null,
+    text, value, valid, category, isDef, bonus: false,
+    scale,
+    ...traj, age: 0, escaping: false, spinA: 0, _mesh: null,
   };
 }
 

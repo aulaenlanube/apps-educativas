@@ -99,6 +99,7 @@
 .cz3d-hitmark.word { color: #7dd3fc; }
 .cz3d-hitmark.special { color: #c4b5fd; }
 .cz3d-hitmark.answer { color: #fbbf24; }
+.cz3d-hitmark.bonus { color: #fde68a; }
 .cz3d-hitmark.bomb { color: #fca5a5; }
 .cz3d-hitmark.penalty { color: #ef4444; }
 @keyframes cz3d-hit {

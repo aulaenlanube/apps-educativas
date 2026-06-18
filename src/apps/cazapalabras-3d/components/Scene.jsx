@@ -12,7 +12,7 @@ import LabEnvironment from '@/apps/laboratorio-fisica/components/LabEnvironment'
 import { DEFAULT_AMBIENCE } from '@/apps/laboratorio-fisica/engine/ambiences';
 import ImpactFX from './ImpactFX';
 import Flyer from './Flyer';
-import { CAM, FLYER_QUALITY, WRONG_REMOVES_VALID } from '../engine/config';
+import { CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS } from '../engine/config';
 import {
   spawnFlyer, updateFlyer, makeEscape, resetFlyerIds,
 } from '../engine/flyers';
@@ -38,6 +38,7 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
   const flyersRef = useRef([]);
   const lastSpawnRef = useRef(0);
   const defSpawnRef = useRef(0);
+  const nextBonusRef = useRef(0);
   const [, bumpState] = useReducer((x) => (x + 1) & 0xffff, 0);
   const renderDirty = useRef(false);
   const markDirty = () => { renderDirty.current = true; };
@@ -57,9 +58,10 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     if (g && g.pool && p) {
       const seed = Math.min(fq.minLive + 1, fq.max);
       for (let i = 0; i < seed; i += 1) {
-        flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed }));
+        flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias }));
       }
     }
+    nextBonusRef.current = performance.now() + (BONUS.everyMin + Math.random() * (BONUS.everyMax - BONUS.everyMin)) * 1000;
     markDirty();
     bumpState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,10 +98,18 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
       if (changed) { flyersRef.current = next; markDirty(); }
     }
 
-    // --- colocar y orientar (billboard) cada diana viva, también en pausa ---
+    // --- colocar y orientar cada diana viva (también en pausa) ---
     for (const f of flyersRef.current) {
       const m = f._mesh;
-      if (m) { m.position.set(f.px, f.py, f.pz); m.quaternion.copy(camera.quaternion); }
+      if (!m) continue;
+      m.position.set(f.px, f.py, f.pz);
+      if (f.bonus) {
+        // las gemas giran sobre sí mismas (no billboard); el giro solo avanza activo
+        if (active) f.spinA += dt * 2.6;
+        m.rotation.set(f.spinA * 0.6, f.spinA, 0);
+      } else {
+        m.quaternion.copy(camera.quaternion); // billboard → el texto siempre de frente
+      }
     }
 
     if (!active) {
@@ -123,11 +133,17 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
       // el reto acabó: que huyan las dianas-respuesta que sigan en vuelo
       for (const f of flyersRef.current) if (f.isDef && !f.escaping) makeEscape(f);
     }
+    // gema de BONIFICACIÓN (objeto pequeño y muy veloz) cada cierto tiempo
+    if (now >= nextBonusRef.current && flyersRef.current.length < fq.max) {
+      flyersRef.current.push(spawnFlyer(g.pool, Math.random, { speed: p.speed, bonus: true }));
+      nextBonusRef.current = now + (BONUS.everyMin + Math.random() * (BONUS.everyMax - BONUS.everyMin)) * 1000;
+      markDirty();
+    }
     // cadencia normal + relleno si quedan muy pocas en pantalla
     const live = flyersRef.current.length;
     const needFill = live < fq.minLive;
     if (live < fq.max && (now >= lastSpawnRef.current || needFill)) {
-      flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed }));
+      flyersRef.current.push(spawnFlyer(g.pool, Math.random, { validRatio: p.validRatio, speed: p.speed, sizeBias: p.sizeBias }));
       lastSpawnRef.current = now + (needFill ? 220 : (p.spawnEverySec || 0.75) * 1000);
       markDirty();
     }
@@ -154,22 +170,30 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
         if (hitGroup) {
           const f = flyersRef.current.find((x) => x.id === hitGroup.userData.targetId);
           if (f && !f.escaping) {
-            const isDef = !!g.activeDef && f.text.trim().toLowerCase() === g.activeDef.word.trim().toLowerCase();
-            // al fallar (palabra NO válida y no es la respuesta) huyen válidas en vuelo
-            let removedValid = 0;
-            if (!isDef && !f.valid) {
-              for (const x of flyersRef.current) {
-                if (removedValid >= WRONG_REMOVES_VALID) break;
-                if (x.valid && !x.escaping && x.id !== f.id) { makeEscape(x); removedValid += 1; }
+            if (f.bonus) {
+              // gema de bonificación: puntos extra, sin penalización; FX dorado
+              fxRef.current?.onHit(point, '#fde68a', { combo: g.combo || 0, power: 1.8 });
+              g.shake = Math.max(g.shake || 0, 0.34);
+              onHit?.({ kind: 'bonus', value: f.bonusPoints });
+              removeFlyer(f.id);
+            } else {
+              const isDef = !!g.activeDef && f.text.trim().toLowerCase() === g.activeDef.word.trim().toLowerCase();
+              // al fallar (palabra NO válida y no es la respuesta) huyen válidas en vuelo
+              let removedValid = 0;
+              if (!isDef && !f.valid) {
+                for (const x of flyersRef.current) {
+                  if (removedValid >= WRONG_REMOVES_VALID) break;
+                  if (x.valid && !x.escaping && !x.bonus && x.id !== f.id) { makeEscape(x); removedValid += 1; }
+                }
               }
+              // FX/color NEUTROS (no revelan el valor): el alumno lo deduce por categoría
+              fxRef.current?.onHit(point, '#9fc7ff', { combo: g.combo || 0, power: isDef ? 1.6 : 1.2 });
+              g.shake = Math.max(g.shake || 0, isDef ? 0.4 : (removedValid > 0 ? 0.34 : 0.26));
+              onHit?.({
+                kind: 'word', text: f.text, value: f.value, valid: f.valid, removedValid,
+              });
+              removeFlyer(f.id);
             }
-            // FX/color NEUTROS (no revelan el valor): el alumno lo deduce por categoría
-            fxRef.current?.onHit(point, '#9fc7ff', { combo: g.combo || 0, power: isDef ? 1.6 : 1.2 });
-            g.shake = Math.max(g.shake || 0, isDef ? 0.4 : (removedValid > 0 ? 0.34 : 0.26));
-            onHit?.({
-              kind: 'word', text: f.text, value: f.value, valid: f.valid, removedValid,
-            });
-            removeFlyer(f.id);
           }
         }
       }
