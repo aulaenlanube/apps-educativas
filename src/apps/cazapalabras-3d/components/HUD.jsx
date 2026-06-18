@@ -15,24 +15,38 @@ const DEBUFF_META = {
   invert: { ic: '🔄', label: 'Controles al revés' },
   shake: { ic: '📳', label: 'Vibración' },
 };
+const BUFF_META = {
+  rapid: { ic: '⚡', label: 'Disparo rápido' },
+  swift: { ic: '🚀', label: 'Mirilla ágil' },
+};
+const effectPct = (e) => Math.max(0, Math.min(100, (e.remaining / e.total) * 100));
 
 export default function HUD({
   timeLeft, totalTime, score, combo,
-  activeDef, defRemaining, defWindow, feedback, examInfo, categories, debuffs,
+  activeDef, defRemaining, defWindow, feedback, examInfo, categories, debuffs, buffs,
 }) {
   const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
   const low = timeLeft <= 10;
   const cats = categories || [];
   const dbf = debuffs || [];
+  const bff = buffs || [];
 
   return (
     <div className="cz3d-hud">
-      {/* penalización activa: avisos (el tinte rojo lo pinta el shell, bajo el HUD) */}
-      {dbf.length > 0 && (
-        <div className="cz3d-debuffs">
-          {dbf.map((t) => (DEBUFF_META[t] ? (
-            <span key={t} className="cz3d-debuff">
-              <span className="ic">{DEBUFF_META[t].ic}</span> {DEBUFF_META[t].label}
+      {/* efectos activos: buffs (verde, gema dorada) y debuffs (rojo, penalización),
+          cada uno con su BARRA DE DURACIÓN. El tinte rojo de fondo lo pinta el shell. */}
+      {(bff.length > 0 || dbf.length > 0) && (
+        <div className="cz3d-effects">
+          {bff.map((b) => (BUFF_META[b.type] ? (
+            <span key={`b-${b.type}`} className="cz3d-effect buff">
+              <span className="cz3d-effect-label"><span className="ic">{BUFF_META[b.type].ic}</span> {BUFF_META[b.type].label}</span>
+              <span className="cz3d-effect-bar"><i style={{ width: `${effectPct(b)}%` }} /></span>
+            </span>
+          ) : null))}
+          {dbf.map((d) => (DEBUFF_META[d.type] ? (
+            <span key={`d-${d.type}`} className="cz3d-effect debuff">
+              <span className="cz3d-effect-label"><span className="ic">{DEBUFF_META[d.type].ic}</span> {DEBUFF_META[d.type].label}</span>
+              <span className="cz3d-effect-bar"><i style={{ width: `${effectPct(d)}%` }} /></span>
             </span>
           ) : null))}
         </div>

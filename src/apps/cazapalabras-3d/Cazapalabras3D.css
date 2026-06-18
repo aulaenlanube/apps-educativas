@@ -172,10 +172,15 @@
 }
 
 /* aviso GRANDE de cambio de categorías: CENTRADO y ARRIBA, justo bajo el objetivo
-   (top fijo en px para no solaparse con la caja de definición, que vive en top:14px). */
+   (top fijo en px para no solaparse con la caja de definición, que vive en top:14px).
+   El centrado horizontal lo hace ESTE wrapper (flex), NO un translateX(-50%) en el
+   motion.div: framer-motion sobrescribe `transform` con su y/scale y lo descentraría. */
+.cz3d-catbanner-wrap {
+  position: absolute; left: 0; right: 0; top: 112px; z-index: 24; pointer-events: none;
+  display: flex; justify-content: center;
+}
 .cz3d-catbanner {
-  position: absolute; left: 50%; top: 116px; transform: translateX(-50%);
-  z-index: 24; pointer-events: none; text-align: center;
+  text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: 9px; max-width: 94vw;
 }
 .cz3d-catbanner-tag {
@@ -193,29 +198,50 @@
 .cz3d-catbanner-cat.t5 { border-color: #fbbf24; color: #fde68a; }
 .cz3d-catbanner-cat.t2 { border-color: #7dd3fc; color: #a5f3fc; }
 @media (max-width: 720px) {
-  .cz3d-catbanner { top: 128px; gap: 6px; }
+  .cz3d-catbanner-wrap { top: 128px; }
+  .cz3d-catbanner { gap: 6px; }
   .cz3d-catbanner-cat { padding: 6px 14px; }
 }
 
-/* penalizaciones de mirilla (debuffs): aviso + tinte rojo pulsante en pantalla */
+/* penalizaciones de mirilla (debuffs): tinte rojo pulsante de fondo en pantalla */
 .cz3d-debuff-tint {
   position: absolute; inset: 0; z-index: 19; pointer-events: none;
   background: radial-gradient(125% 125% at 50% 50%, transparent 48%, rgba(239,68,68,0.32) 100%);
   animation: cz3d-debuff-pulse 0.9s ease-in-out infinite;
 }
 @keyframes cz3d-debuff-pulse { 50% { opacity: 0.45; } }
-.cz3d-debuffs {
-  position: absolute; left: 50%; top: 19%; transform: translateX(-50%);
-  z-index: 23; pointer-events: none; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+
+/* efectos activos (buffs + debuffs): cada uno como una "píldora" con icono, etiqueta
+   y BARRA DE DURACIÓN debajo (remaining/total). Buff = verde, debuff = rojo. */
+/* top fijo en px (no %) para quedar SIEMPRE por debajo de la banda del aviso de
+   categorías (cz3d-catbanner-wrap, top 112px + su altura) en cualquier viewport, y
+   no esconder las barras de duración bajo el banner mientras éste se muestra. */
+.cz3d-effects {
+  position: absolute; left: 50%; top: 206px; transform: translateX(-50%);
+  z-index: 23; pointer-events: none; display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; max-width: 94vw;
 }
-.cz3d-debuff {
-  display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.92rem;
-  color: #fecaca; background: rgba(45,10,12,0.85); border: 1.5px solid rgba(239,68,68,0.7);
-  border-radius: 999px; padding: 5px 13px; box-shadow: 0 6px 20px rgba(0,0,0,0.45); white-space: nowrap;
+.cz3d-effect {
+  display: flex; flex-direction: column; gap: 4px; min-width: 132px;
+  border-radius: 13px; padding: 5px 13px 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.45);
 }
-.cz3d-debuff .ic { font-size: 1.05rem; }
+.cz3d-effect-label {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-weight: 800; font-size: 0.9rem; white-space: nowrap;
+}
+.cz3d-effect-label .ic { font-size: 1.05rem; }
+.cz3d-effect-bar { height: 4px; border-radius: 999px; background: rgba(255,255,255,0.18); overflow: hidden; }
+.cz3d-effect-bar i { display: block; height: 100%; border-radius: 999px; transition: width .12s linear; }
+.cz3d-effect.debuff { color: #fecaca; background: rgba(45,10,12,0.85); border: 1.5px solid rgba(239,68,68,0.7); }
+.cz3d-effect.debuff .cz3d-effect-bar i { background: #f87171; }
+.cz3d-effect.buff { color: #bbf7d0; background: rgba(6,38,26,0.85); border: 1.5px solid rgba(16,185,129,0.7); }
+.cz3d-effect.buff .cz3d-effect-bar i { background: #34d399; }
 @media (prefers-reduced-motion: reduce) { .cz3d-debuff-tint { animation: none; opacity: 0.4; } }
-@media (max-width: 720px) { .cz3d-debuffs { top: 16%; } .cz3d-debuff { font-size: 0.8rem; padding: 4px 10px; } }
+@media (max-width: 720px) {
+  .cz3d-effects { top: 212px; }
+  .cz3d-effect { min-width: 112px; padding: 4px 10px 5px; }
+  .cz3d-effect-label { font-size: 0.8rem; }
+}
 
 .cz3d-exit {
   position: absolute; top: 14px; right: 16px; z-index: 40; pointer-events: auto;

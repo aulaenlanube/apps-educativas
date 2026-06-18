@@ -11,7 +11,7 @@ import {
 } from '@/services/graphicsQuality';
 import Scene from './Scene';
 import Effects from './Effects';
-import { CAM, DEBUFF } from '../engine/config';
+import { CAM, DEBUFF, BUFF } from '../engine/config';
 
 function Governor({ onDowngrade }) {
   const ref = useRef(null);
@@ -65,12 +65,17 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
       document.removeEventListener('pointerlockerror', onError);
     };
   }, []);
-  // factor de mirilla por debuffs: lenta (×slowFactor) o invertida (×-1). Lo provocan
-  // los objetos trampa y, a veces, fallar; se aplica a TODO movimiento de mirilla.
+  // factor de mirilla por debuffs/buffs: lenta (×slowFactor), invertida (×-1) o ágil
+  // (×swiftFactor, gema dorada). Lo provocan objetos especiales y, a veces, fallar;
+  // se aplica a TODO movimiento de mirilla.
   const aimMult = () => {
-    const d = gameRef.current && gameRef.current.debuffs;
+    const g = gameRef.current;
     let m = 1;
-    if (d) { if (d.slow > 0) m *= DEBUFF.slowFactor; if (d.invert > 0) m *= -1; }
+    if (g) {
+      const d = g.debuffs; const b = g.buffs;
+      if (d) { if (d.slow > 0) m *= DEBUFF.slowFactor; if (d.invert > 0) m *= -1; }
+      if (b && b.swift > 0) m *= BUFF.swiftFactor;
+    }
     return m;
   };
 
@@ -81,7 +86,10 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
       const c = controlRef.current;
       const g = gameRef.current;
       let m = 1;
-      if (g && g.debuffs) { if (g.debuffs.slow > 0) m *= DEBUFF.slowFactor; if (g.debuffs.invert > 0) m *= -1; }
+      if (g) {
+        if (g.debuffs) { if (g.debuffs.slow > 0) m *= DEBUFF.slowFactor; if (g.debuffs.invert > 0) m *= -1; }
+        if (g.buffs && g.buffs.swift > 0) m *= BUFF.swiftFactor;
+      }
       c.yaw -= (e.movementX || 0) * SENS * m;
       c.pitch -= (e.movementY || 0) * SENS * m;
     };

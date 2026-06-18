@@ -26,17 +26,32 @@ import {
   DIFICULTADES, MODOS, DEF_BONUS_MULT, notaColor, notaMensaje,
   SCORE_PRINCIPAL, SCORE_SECUNDARIA,
   DEBUFF, DEBUFF_TYPES, MISS_DEBUFF_CHANCE,
+  BUFF, BUFF_TYPES,
 } from './engine/config';
 import './Cazapalabras3D.css';
 
 // Etiquetas de los debuffs (penalizaciones de mirilla) para el feedback/HUD.
 const DEBUFF_LABEL = { slow: '🐌 mirilla lenta', invert: '🔄 controles al revés', shake: '📳 vibración' };
+// Etiquetas de los buffs (bonificaciones de las gemas doradas) para el feedback.
+const BUFF_LABEL = { rapid: '⚡ disparo rápido', swift: '🚀 mirilla ágil', time: `⏱ +${BUFF.timeBonusSec}s` };
 
 // Aplica un debuff aleatorio (o el indicado) durante DEBUFF.durationSec. Devuelve el tipo.
 function applyDebuff(gs, type) {
   const t = type || DEBUFF_TYPES[Math.floor(Math.random() * DEBUFF_TYPES.length)];
   if (!gs.debuffs) gs.debuffs = { slow: 0, invert: 0, shake: 0 };
   gs.debuffs[t] = DEBUFF.durationSec;
+  return t;
+}
+
+// Aplica un buff aleatorio (o el indicado). 'rapid'/'swift' duran BUFF.durationSec;
+// 'time' es instantáneo (suma segundos al reloj). Devuelve el tipo.
+function applyBuff(gs, type) {
+  const t = type || BUFF_TYPES[Math.floor(Math.random() * BUFF_TYPES.length)];
+  if (!gs.buffs) gs.buffs = { rapid: 0, swift: 0 };
+  // 'time' suma al reloj; también a totalTime para que la barra de tiempo refleje el
+  // extra (si solo subiéramos timeLeft, la barra quedaría clavada al 100%).
+  if (t === 'time') { gs.timeLeft += BUFF.timeBonusSec; gs.totalTime += BUFF.timeBonusSec; }
+  else gs.buffs[t] = BUFF.durationSec;
   return t;
 }
 
@@ -212,12 +227,14 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       setHud(snapshot(gs));
     };
 
-    // gema de BONIFICACIÓN: puntos extra (paralelos, no cuenta como palabra ni def → no
-    // afecta a la nota de examen). Sube el combo como recompensa por acertar algo veloz.
+    // gema de BONIFICACIÓN (dorada): puntos extra (paralelos, no cuenta como palabra ni
+    // def → no afecta a la nota de examen) MÁS un buff: ⚡ disparo rápido, 🚀 mirilla ágil
+    // o ⏱ tiempo extra. Sube el combo como recompensa por acertar algo veloz.
     if (isBonus) {
       const pts = data.value || 9;
       gs.score += pts; gs.combo += 1; gs.bestCombo = Math.max(gs.bestCombo, gs.combo);
-      fb(`⭐ +${pts} ¡Bonus!`, '#fde68a');
+      const b = applyBuff(gs);
+      fb(`⭐ +${pts} · ${BUFF_LABEL[b]}`, '#fde68a');
       return;
     }
 
@@ -268,6 +285,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       activeDef: null, activeDefCounted: false, defLeft: 0, defTimer: params.defEverySec, defPresented: 0, defSolved: 0,
       principalName, secundariaName, catEpoch: 0, catTimer: params.catRotateSec,
       debuffs: { slow: 0, invert: 0, shake: 0 },
+      buffs: { rapid: 0, swift: 0 },
       feedback: null, feedbackUntil: 0,
     };
     controlRef.current = { yaw: 0, pitch: 0, shootQueued: false };
@@ -324,12 +342,18 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
             announceCats(gs, true);
           }
         }
-        // descontar las penalizaciones de mirilla activas (pausa-safe, dt-based)
+        // descontar las penalizaciones (debuffs) y bonificaciones (buffs) temporales
+        // activas (pausa-safe, dt-based)
         const db = gs.debuffs;
         if (db) {
           if (db.slow > 0) db.slow = Math.max(0, db.slow - dt);
           if (db.invert > 0) db.invert = Math.max(0, db.invert - dt);
           if (db.shake > 0) db.shake = Math.max(0, db.shake - dt);
+        }
+        const bf = gs.buffs;
+        if (bf) {
+          if (bf.rapid > 0) bf.rapid = Math.max(0, bf.rapid - dt);
+          if (bf.swift > 0) bf.swift = Math.max(0, bf.swift - dt);
         }
         if (gs.timeLeft <= 0) { gs.timeLeft = 0; endGameRef.current(); return; }
       }
@@ -465,32 +489,37 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               examInfo={hud.isExam ? `${hud.defSolved}/${hud.defPresented}` : null}
               categories={hud.categories}
               debuffs={hud.debuffs}
+              buffs={hud.buffs}
             />
           )}
-          {/* AVISO GRANDE de categorías, justo encima de la mirilla, pocos segundos */}
-          <AnimatePresence>
-            {catBanner && (
-              <motion.div
-                key={catBanner.id}
-                className="cz3d-catbanner"
-                initial={{ opacity: 0, y: 14, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ type: 'spring', stiffness: 360, damping: 26 }}
-              >
-                <span className="cz3d-catbanner-tag">
-                  {catBanner.isChange ? '🔄 ¡CAMBIO DE CATEGORÍAS!' : '🎯 DISPARA A ESTAS CATEGORÍAS'}
-                </span>
-                <span className="cz3d-catbanner-cats">
-                  {catBanner.cats.map((c) => (
-                    <span key={c.name} className={`cz3d-catbanner-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
-                      {c.name} <b>+{c.points}</b>
-                    </span>
-                  ))}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* AVISO GRANDE de categorías, CENTRADO y arriba, pocos segundos. El centrado
+              lo hace el wrapper flex (no `translateX(-50%)` en el motion.div: framer-motion
+              sobrescribe `transform` con su y/scale y lo descentraría a la derecha). */}
+          <div className="cz3d-catbanner-wrap">
+            <AnimatePresence>
+              {catBanner && (
+                <motion.div
+                  key={catBanner.id}
+                  className="cz3d-catbanner"
+                  initial={{ opacity: 0, y: 14, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 360, damping: 26 }}
+                >
+                  <span className="cz3d-catbanner-tag">
+                    {catBanner.isChange ? '🔄 ¡CAMBIO DE CATEGORÍAS!' : '🎯 DISPARA A ESTAS CATEGORÍAS'}
+                  </span>
+                  <span className="cz3d-catbanner-cats">
+                    {catBanner.cats.map((c) => (
+                      <span key={c.name} className={`cz3d-catbanner-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
+                        {c.name} <b>+{c.points}</b>
+                      </span>
+                    ))}
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <button type="button" className="cz3d-exit" onClick={endGame}>
             <Square size={14} /> Terminar
           </button>
@@ -545,7 +574,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         <h3>🛩️ Dianas voladoras</h3>
         <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
         <h3>⭐ Gemas de bonificación</h3>
-        <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota; suma a la puntuación). Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
+        <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota) y además una <strong>ventaja temporal</strong>: <b>⚡ disparo rápido</b>, <b>🚀 mirilla más ágil</b> o <b>⏱ segundos extra</b>. Cada ventaja muestra su <strong>barra de duración</strong> en pantalla. Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
         <h3>⚡ Gemas trampa (riesgo)</h3>
         <p>Las <strong>gemas moradas</strong> dan <strong>aún más puntos</strong>, pero al acertarlas <strong>fastidian tu mirilla</strong> unos segundos: <b>🐌 más lenta</b>, <b>🔄 al revés</b> o <b>📳 que vibra</b>. ¡Tú decides si el premio compensa! Ojo: <strong>fallar</strong> (disparar una palabra que no puntúa) también puede provocar uno de estos castigos.</p>
         <h3>🗂️ Solo 2 categorías puntúan (¡y van cambiando!)</h3>
@@ -613,7 +642,16 @@ function snapshot(gs) {
     feedback: gs.feedback,
     hit: gs.hit,
     categories: currentCats(gs), // par activo (rotan durante la partida)
-    debuffs: gs.debuffs ? DEBUFF_TYPES.filter((t) => gs.debuffs[t] > 0) : [],
+    // efectos activos con barra de duración (remaining/total). Debuffs (penalización)
+    // y buffs temporizados (bonificación); 'time' es instantáneo → no aparece aquí.
+    debuffs: gs.debuffs
+      ? DEBUFF_TYPES.filter((t) => gs.debuffs[t] > 0)
+        .map((t) => ({ type: t, remaining: gs.debuffs[t], total: DEBUFF.durationSec }))
+      : [],
+    buffs: gs.buffs
+      ? ['rapid', 'swift'].filter((t) => gs.buffs[t] > 0)
+        .map((t) => ({ type: t, remaining: gs.buffs[t], total: BUFF.durationSec }))
+      : [],
   };
 }
 

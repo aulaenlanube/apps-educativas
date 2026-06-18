@@ -85,6 +85,18 @@ export const DEBUFF = {
 // Probabilidad de sufrir un debuff al disparar una palabra NO válida (fallar).
 export const MISS_DEBUFF_CHANCE = 0.45;
 
+// Bonificaciones temporales (buffs) que dan las gemas DORADAS al acertarlas, además
+// de los puntos extra: más cadencia de disparo, mirilla más ágil o segundos extra de
+// reloj. Son el reverso positivo de los debuffs (mismo sistema de duración + barra).
+//   'rapid' y 'swift' duran `durationSec`; 'time' es INSTANTÁNEO (suma al reloj).
+export const BUFF_TYPES = ['rapid', 'swift', 'time'];
+export const BUFF = {
+  durationSec: 5.5,    // duración de rapid/swift
+  rapidFactor: 0.45,   // multiplica el cooldown de disparo (↓ = dispara más seguido)
+  swiftFactor: 1.7,    // multiplica la sensibilidad de la mirilla (↑ = más ágil)
+  timeBonusSec: 6,     // segundos que añade el bonus de tiempo
+};
+
 // Puntuación por categoría: SOLO 2 categorías puntúan.
 export const SCORE_PRINCIPAL = 5;   // categoría principal
 export const SCORE_SECUNDARIA = 2;  // categoría secundaria

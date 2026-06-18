@@ -13,7 +13,7 @@ import { DEFAULT_AMBIENCE } from '@/apps/laboratorio-fisica/engine/ambiences';
 import ImpactFX from './ImpactFX';
 import Flyer from './Flyer';
 import {
-  CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS, HAZARD, DEBUFF,
+  CAM, FLYER_QUALITY, WRONG_REMOVES_VALID, BONUS, HAZARD, DEBUFF, BUFF,
 } from '../engine/config';
 import {
   spawnFlyer, updateFlyer, makeEscape, resetFlyerIds, valueForCategory,
@@ -188,7 +188,9 @@ export default function Scene({ gameRef, controlRef, onHit, quality, tier, amb }
     if (c.shootQueued) {
       c.shootQueued = false;
       if (now >= (g.nextShotAt || 0)) {
-        g.nextShotAt = now + (p.fireCooldownMs || 280);
+        // buff 'rapid' (gema dorada): reduce el cooldown → mayor cadencia de disparo
+        const cd = (p.fireCooldownMs || 280) * (g.buffs && g.buffs.rapid > 0 ? BUFF.rapidFactor : 1);
+        g.nextShotAt = now + cd;
         fxRef.current?.onShoot();
         g.shake = Math.max(g.shake || 0, 0.1);
         camera.updateMatrixWorld(); // mirilla del frame ACTUAL (no 1 frame tarde)
