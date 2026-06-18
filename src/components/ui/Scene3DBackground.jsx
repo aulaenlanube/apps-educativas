@@ -14,7 +14,7 @@
 import React, { useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import LabEnvironment from '@/apps/laboratorio-fisica/components/LabEnvironment';
-import { AMBIENCES, ambienceById } from '@/apps/laboratorio-fisica/engine/ambiences';
+import { ambienceById, pickCieloBackground } from '@/apps/laboratorio-fisica/engine/ambiences';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { GLOBAL_QUALITY_PARAMS, effectiveDpr } from '@/services/graphicsQuality';
 
@@ -37,11 +37,13 @@ export default function Scene3DBackground({
   const { tier } = useGraphicsQuality();
   const Q = GLOBAL_QUALITY_PARAMS[tier] || GLOBAL_QUALITY_PARAMS.medium;
 
-  // ambiente fijo indicado, o uno bonito de cielo al azar (estable mientras viva)
+  // ambiente fijo indicado, o uno de cielo al azar PESADO hacia el día despejado /
+  // soleado (pickCieloBackground): la plataforma es normalmente de día y con buen
+  // tiempo; la noche y el mal tiempo aparecen, pero con baja probabilidad. Estable
+  // mientras viva el componente (se sortea una vez por sesión: el fondo persiste).
   const amb = useMemo(() => {
     if (ambienceId) return ambienceById(ambienceId);
-    const opts = AMBIENCES.cielo;
-    return opts[Math.floor(Math.random() * opts.length)];
+    return pickCieloBackground(Math.random());
   }, [ambienceId]);
 
   // de fondo gastamos algo menos que en una simulación a pantalla completa
