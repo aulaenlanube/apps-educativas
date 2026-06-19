@@ -79,10 +79,11 @@ export const APPS_WITH_OWN_SCENE = [
 //     legibilidad sobre la escena 3D con velo. Conservan su fondo claro clásico.
 //     Esta lista se puede ir REDUCIENDO según se adapten esas apps (mover su texto
 //     a tarjetas o aclarar sus colores).
-export const APPS_KEEP_LIGHT_BG = [
-  'banco-recursos-tutoria',
-  'generador-personajes-historicos',
-];
+//     Banco de Recursos Tutoriales y Generador de Personajes Históricos ya se han
+//     adaptado (su UI va en tarjetas/paneles blancos legibles y sus títulos se
+//     aclararon con sombra), así que ahora muestran el fondo 3D de curso como el
+//     resto de apps 'standard'.
+export const APPS_KEEP_LIGHT_BG = [];
 
 const _appsWithoutCourseBg = new Set([...APPS_WITH_OWN_SCENE, ...APPS_KEEP_LIGHT_BG]);
 
