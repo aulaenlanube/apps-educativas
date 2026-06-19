@@ -226,7 +226,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <BookOpen className="w-8 h-8 text-blue-500" />
-              <GradientTitle tag="h2" className="text-4xl">Educación Primaria</GradientTitle>
+              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Educación Primaria</GradientTitle>
               <Sparkles className="w-8 h-8 text-purple-500" />
             </div>
             <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
@@ -292,7 +292,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <GraduationCap className="w-8 h-8 text-indigo-500" />
-              <GradientTitle tag="h2" className="text-4xl">Educación Secundaria</GradientTitle>
+              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Educación Secundaria</GradientTitle>
               <Trophy className="w-8 h-8 text-purple-500" />
             </div>
             <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
@@ -358,7 +358,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <GraduationCap className="w-8 h-8 text-emerald-600" />
-              <GradientTitle tag="h2" className="text-4xl">Bachillerato</GradientTitle>
+              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Bachillerato</GradientTitle>
               <Star className="w-8 h-8 text-teal-500" />
             </div>
             <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
@@ -420,7 +420,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <HeartHandshake className="w-8 h-8 text-rose-500" />
-              <GradientTitle tag="h2" className="text-4xl">Atención a la Diversidad</GradientTitle>
+              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Atención a la Diversidad</GradientTitle>
               <Brain className="w-8 h-8 text-teal-500" />
             </div>
             <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
@@ -480,7 +480,7 @@ const HomePage = () => {
       >
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <GradientTitle tag="h2" className="text-4xl mb-4">¿Por qué elegir EduApps?</GradientTitle>
+            <GradientTitle tag="h2" className="text-4xl mb-4 gradient-title-stroke">¿Por qué elegir EduApps?</GradientTitle>
             <p className="text-xl text-white/85 drop-shadow max-w-3xl mx-auto">
               Una plataforma diseñada para hacer el aprendizaje más efectivo y divertido.
             </p>
