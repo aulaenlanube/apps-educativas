@@ -19,6 +19,8 @@ function resolveFromPath(pathname) {
   const parts = pathname.split('/').filter(Boolean);
   // Home ('/'): fondo 3D por defecto, sin curso concreto (ambiente de cielo al azar).
   if (parts.length === 0) return { level: undefined, grade: undefined };
+  // Catálogo público: mismo fondo 3D por defecto que la home.
+  if (parts.length === 1 && parts[0] === 'catalogo') return { level: undefined, grade: undefined };
   if (parts[0] !== 'curso' || parts.length < 3) return null;
   const level = parts[1];
   const grade = parts[2];
