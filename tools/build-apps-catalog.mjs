@@ -316,6 +316,81 @@ Total de apps analizadas: **${ordered.length}** de ${EXPECTED_KEYS.length} previ
   return out;
 }
 
+// Síntesis editorial de patrones que se repiten en las ideasMejora de muchas apps.
+const TRANSVERSAL_MD = `## 🎯 Temas transversales (afectan a varias apps a la vez)
+
+Estos patrones aparecen en el análisis de muchas apps; abordarlos de forma común
+tiene más impacto que app por app.
+
+### 1. Unificar el cálculo de nota y el tracking
+Varias apps calculan la nota /10 "inline" en lugar de usar el helper estándar
+\`Math.round(correct/total*100)/10\`, no envían \`durationSeconds\` real, o fijan un
+\`maxScore\` heurístico que distorsiona el ranking. Conviene una pasada que homogenice
+\`onGameComplete\` (nota, durationSeconds, maxScore coherente) en todas. *Apps citadas:*
+Rosco, Velocidad, Runner, entre otras.
+
+### 2. Selección de dificultad en pantalla previa (no en pestañas durante la partida)
+CLAUDE.md exige elegir el modo ANTES de jugar; algunas apps aún usan tabs que reinician
+la partida al cambiarlas a mitad. *Apps citadas:* Velocidad. Revisar el resto.
+
+### 3. El modo examen no debería ser un toggle desactivable
+En apps donde "examen" es un interruptor que el alumno puede dejar en práctica, las
+partidas pueden no contar como intento de tarea. Forzar examen cuando corresponde.
+*Apps citadas:* Runner.
+
+### 4. Duelos 1 vs 1 pendientes
+Apps con formato idóneo para duelo que aún no lo tienen (componente \`<Nombre>Duel.jsx\`
++ \`duelableApps.js\` + \`DuelChatBar\`). *Candidatas:* Velocidad, Runner, La Fortaleza
+(motor ya preparado), y revisar más en cada ficha.
+
+### 5. Instrucciones y material de estudio
+Hay \`InstructionsModal\` desactualizados respecto al código real o ausentes, y apps de
+vocabulario sin "material de estudio" (glosario por letra, patrón de Anagramas/RoscoUI).
+*Apps citadas:* Velocidad (modal desactualizado), Runner (sin modal estándar).
+
+### 6. Feedback sensorial y accesibilidad coherentes
+Confeti/sonidos de acierto-fallo inconsistentes entre apps; oportunidades de TTS opcional
+y modos de más tiempo para accesibilidad. Definir un estándar y aplicarlo.
+
+> El detalle por app está debajo. Es un volcado de las "ideas de mejora" detectadas al
+> leer el código de cada una; priorízalas según impacto y esfuerzo.
+
+`;
+
+function buildMejorasMd(byKey) {
+  const ordered = EXPECTED_KEYS.filter(k => byKey.has(k));
+  const byCat = {};
+  let totalIdeas = 0;
+  for (const k of ordered) {
+    const o = byKey.get(k);
+    const ideas = (o.internal && o.internal.ideasMejora) || [];
+    totalIdeas += ideas.length;
+    const cat = CONCEPT_CATEGORY[k] || 'otros';
+    (byCat[cat] ||= []).push(o);
+  }
+  let out = `# MEJORAS_APPS.md — Backlog de mejoras y ampliaciones de las apps
+
+> AUTOGENERADO por tools/build-apps-catalog.mjs a partir del análisis de código de cada
+> app (campo \`ideasMejora\` de APPS_INTERNAL.md) + síntesis de patrones transversales.
+> Es un backlog para implementar en el futuro; no es un compromiso ni un orden de prioridad.
+
+Apps con propuestas: **${ordered.length}** · Ideas registradas: **${totalIdeas}**.
+
+${TRANSVERSAL_MD}
+`;
+  for (const cat of CATALOG_CATEGORIES) {
+    const items = byCat[cat.id];
+    if (!items || !items.length) continue;
+    out += `\n## ${cat.emoji} ${cat.label}\n\n`;
+    for (const o of items) {
+      const ideas = (o.internal && o.internal.ideasMejora) || [];
+      out += `### ${o.emoji || ''} ${o.name} \`(${o.key})\`\n`;
+      out += ideas.length ? ideas.map(x => `- [ ] ${x}`).join('\n') + '\n\n' : '_Sin propuestas registradas._\n\n';
+    }
+  }
+  return out;
+}
+
 // ---- Main -------------------------------------------------------------------
 
 const byKey = loadData();
@@ -331,6 +406,7 @@ fs.writeFileSync(RAW_SNAPSHOT, JSON.stringify(snapshot, null, 2), 'utf8');
 
 fs.writeFileSync(path.join(ROOT, 'src', 'data', 'appsCatalog.js'), buildCatalogJs(byKey), 'utf8');
 fs.writeFileSync(path.join(ROOT, 'APPS_INTERNAL.md'), buildInternalMd(byKey), 'utf8');
+fs.writeFileSync(path.join(ROOT, 'MEJORAS_APPS.md'), buildMejorasMd(byKey), 'utf8');
 
-console.log('Generados: src/data/appsCatalog.js, APPS_INTERNAL.md, tools/apps-analysis.json');
+console.log('Generados: src/data/appsCatalog.js, APPS_INTERNAL.md, MEJORAS_APPS.md, tools/apps-analysis.json');
 if (missing.length) process.exitCode = 2;
