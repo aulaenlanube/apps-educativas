@@ -1015,5 +1015,8 @@ const AppIcon = memo(({ appId, className = '', size = 48 }) => {
 
 AppIcon.displayName = 'AppIcon';
 
+// Indica si existe un icono SVG (propio o por alias) para un appId dado.
+export const hasAppIcon = (appId) => Boolean(allIcons[aliases[appId] || appId]);
+
 export default AppIcon;
 export { allIcons as appIcons };

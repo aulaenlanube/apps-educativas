@@ -44,6 +44,7 @@ const LegalNoticePage = lazy(() => import('@/pages/legal/LegalNoticePage.jsx'));
 const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage.jsx'));
 const BlogCategoryPage = lazy(() => import('@/pages/BlogCategoryPage.jsx'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
+const CatalogoPage = lazy(() => import('@/pages/CatalogoPage.jsx'));
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -110,6 +111,7 @@ const router = createBrowserRouter(
           element: <MainLayout />,
           children: [
             { index: true, element: <HomePage /> },
+            { path: 'catalogo', element: <SuspensePage><CatalogoPage /></SuspensePage> },
             { path: 'curso/:level/:grade', element: <SuspensePage><SubjectPage /></SuspensePage> },
             { path: 'curso/:level/:grade/:subjectId', element: <SuspensePage><AppListPage /></SuspensePage> },
             { path: 'politica-privacidad', element: <SuspensePage><PrivacyPolicyPage /></SuspensePage> },

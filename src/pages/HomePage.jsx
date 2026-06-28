@@ -145,6 +145,20 @@ const HomePage = () => {
             ))}
           </motion.div>
 
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <Link
+              to="/catalogo"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white/90 hover:bg-white text-indigo-700 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 no-underline"
+            >
+              <Gamepad2 className="w-5 h-5" />
+              Explora el catálogo de apps
+            </Link>
+          </motion.div>
+
         </div>
       </motion.section>
 
