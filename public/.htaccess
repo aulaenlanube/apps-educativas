@@ -1,3 +1,17 @@
+# mod_dir anade por su cuenta un 301 de /blog a /blog/ en cuanto existe el
+# directorio blog/ (donde viven los posts prerenderizados), y lo hace ANTES de
+# que corra mod_rewrite, asi que la regla PRERENDER de abajo no llegaba a
+# servir blog.html: /blog -> 301 -> /blog/ -> 403, con el indice del blog caido.
+# Esa barra final ademas contradiria el <link rel="canonical"> de la pagina.
+# Aqui ningun directorio se sirve por si mismo (no hay ningun index.html dentro
+# de assets/, images/ o data/), asi que no perdemos nada desactivandolo.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+# Sin DirectorySlash, un directorio sin index podria intentar listarse.
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -11,10 +25,18 @@
   # mod_dir redirigiria /blog/mi-post -> /blog/mi-post/ (301), y esa barra final
   # contradiria el <link rel="canonical"> que emite la propia pagina.
   # Se sirve internamente, sin redireccion, asi que la URL no cambia.
+  #
+  # OJO con dos detalles, ambos aprendidos rompiendo /blog en produccion:
+  #  1) NO se filtra por !-d. /blog es a la vez fichero (blog.html) y directorio
+  #     (blog/, con los posts). Con !-d la regla no entraba, mod_dir redirigia
+  #     /blog -> /blog/ (301) y ese directorio no tiene index.html: 403.
+  #     La condicion de que exista el .html ya es bastante especifica; los
+  #     directorios reales (images/, assets/) no tienen un .html hermano.
+  #  2) El patron admite barra final opcional para que /blog/ sirva blog.html
+  #     en vez de caer en el 403 de mod_dir.
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
-  RewriteRule ^(.+)$ /$1.html [L]
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L]
 
   # --- FALLBACK SPA ---
   # Rutas sin prerender (login, dashboard, duelos...) y 404: las pinta React.
