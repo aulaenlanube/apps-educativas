@@ -1,4 +1,101 @@
-## Pages
-- [- EduApps`}](/apprunner): No description available
-- [- EduApps`}](/course): No description available
-- [· $ — Apps Educativas`}](/applist): No description available
+# Apps Educativas
+
+> Plataforma web gratuita con más de 100 apps y juegos educativos para Primaria (1.º-6.º), ESO (1.º-4.º), Bachillerato (1.º-2.º) y Atención a la Diversidad. Se juega desde el navegador, sin descargas, sin publicidad y sin registro. El profesorado puede crear grupos, asignar tareas con modo examen y seguir la nota del alumnado.
+
+- Autor: Edu Torregrosa, profesor de informática en un instituto público de la Comunidad Valenciana.
+- El alumnado juega sin cuenta; el registro solo hace falta para el panel del docente.
+- Contenido completo del blog en texto plano: https://apps-educativas.com/llms-full.txt
+- Índice de URLs para crawlers: https://apps-educativas.com/sitemap.xml
+
+## Secciones principales
+
+- [Portada](https://apps-educativas.com/): Acceso por etapa y curso a todas las apps educativas.
+- [Catálogo de apps](https://apps-educativas.com/catalogo): Ficha de cada app: qué es, cómo se juega y en qué cursos y asignaturas está disponible.
+- [Blog](https://apps-educativas.com/blog): Artículos sobre IA en educación, gamificación, metodologías activas y atención a la diversidad.
+
+## Cursos
+
+- [1.º de Primaria](https://apps-educativas.com/curso/primaria/1): Apps y juegos educativos de 1.º de Primaria por asignatura.
+- [2.º de Primaria](https://apps-educativas.com/curso/primaria/2): Apps y juegos educativos de 2.º de Primaria por asignatura.
+- [3.º de Primaria](https://apps-educativas.com/curso/primaria/3): Apps y juegos educativos de 3.º de Primaria por asignatura.
+- [4.º de Primaria](https://apps-educativas.com/curso/primaria/4): Apps y juegos educativos de 4.º de Primaria por asignatura.
+- [5.º de Primaria](https://apps-educativas.com/curso/primaria/5): Apps y juegos educativos de 5.º de Primaria por asignatura.
+- [6.º de Primaria](https://apps-educativas.com/curso/primaria/6): Apps y juegos educativos de 6.º de Primaria por asignatura.
+- [1.º de ESO](https://apps-educativas.com/curso/eso/1): Apps y juegos educativos de 1.º de ESO por asignatura.
+- [2.º de ESO](https://apps-educativas.com/curso/eso/2): Apps y juegos educativos de 2.º de ESO por asignatura.
+- [3.º de ESO](https://apps-educativas.com/curso/eso/3): Apps y juegos educativos de 3.º de ESO por asignatura.
+- [4.º de ESO](https://apps-educativas.com/curso/eso/4): Apps y juegos educativos de 4.º de ESO por asignatura.
+- [1.º de Bachillerato](https://apps-educativas.com/curso/bachillerato/1): Apps y juegos educativos de 1.º de Bachillerato por asignatura.
+- [2.º de Bachillerato](https://apps-educativas.com/curso/bachillerato/2): Apps y juegos educativos de 2.º de Bachillerato por asignatura.
+- [Atención a la Diversidad](https://apps-educativas.com/curso/ad/1): Apps adaptadas para alumnado con necesidades específicas de apoyo educativo.
+
+## Blog
+
+27 artículos publicados. Texto completo en https://apps-educativas.com/llms-full.txt
+
+### Plataforma EduApps
+
+Novedades, releases y demos de la plataforma apps-educativas.com.
+
+- [Plataforma educativa con grupos, tareas y modo batalla — sin programar](https://apps-educativas.com/blog/la-plataforma-educativa-perfecta-sin-programar): Mayor actualización de apps-educativas.com: registro de docentes, grupos, tareas, gamificación, modo batalla y módulo de oposiciones con IA.
+- [Plataforma educativa gratis, sin login y sin publicidad — recorrido completo](https://apps-educativas.com/blog/plataforma-educativa-gratis-sin-login-sin-publicidad): Cuatro meses después del lanzamiento, apps-educativas.com cubre matemáticas, lengua, juegos tipo Pasapalabra y simuladores. Recorrido del catálogo.
+- [He creado la web de apps educativas que siempre quise](https://apps-educativas.com/blog/he-creado-la-web-de-apps-educativas-que-siempre-quise): apps-educativas.com es una plataforma gratuita de juegos para Primaria y ESO: sin publicidad, sin login. Os cuento por qué nace y cómo colaborar.
+
+### IA en educación
+
+Uso de LLMs y herramientas de IA en el aula, prompts y flujos para docentes.
+
+- [AI Act en clase: qué se aplaza a 2027 y qué no](https://apps-educativas.com/blog/ai-act-en-clase-obligaciones-y-prohibiciones): El Digital Omnibus aplaza a diciembre de 2027 las obligaciones de alto riesgo en educación. Pero lo prohibido sigue prohibido y ya hay multas de 650.000 €.
+- [Corrección con IA vs manual: lo que vimos al compararlas](https://apps-educativas.com/blog/ia-vs-correccion-manual-en-clase): Llevamos meses comparando corrección manual con corrección por IA en mi centro. Los resultados sorprenden, y en varios casos la nota más justa la había puesto la máquina.
+- [NotebookLM para docentes: tu temario en podcast en 5 minutos](https://apps-educativas.com/blog/notebooklm-para-docentes-temario-en-podcast): NotebookLM convierte tu temario, apuntes o PDF en un podcast de dos voces, un resumen interactivo o un mapa mental. Cómo usarlo en clase con casos reales y los límites a tener en cuenta.
+- [Khanmigo, MagicSchool, ChatGPT Edu: tutores IA 1-a-1 en clase](https://apps-educativas.com/blog/khanmigo-magicschool-chatgpt-edu-tutores-ia): Comparativa honesta de los tres tutores de IA con más tracción en aulas: Khanmigo de Khan Academy, MagicSchool para docentes y ChatGPT Edu. Qué hace bien cada uno y dónde no llegan.
+- [Detectores de IA en deberes: por qué fallan y qué hacer en su lugar](https://apps-educativas.com/blog/detectores-de-ia-en-deberes-por-que-fallan): OpenAI cerró su propio detector. Stanford demostró que marcan como IA al 61 % del alumnado no nativo. Por qué los detectores fallan y qué hacer en clase cuando sospechas que un trabajo es de ChatGPT.
+- [Corregir exámenes con IA: flujo realista y dónde están sus límites](https://apps-educativas.com/blog/corregir-examenes-con-ia-sigue-siendo-el-docente): Flujo realista para corregir exámenes con IA según el tipo de prueba: qué se acelera mucho, qué poco, qué no se debe automatizar y dónde están los límites éticos.
+- [Crea apps educativas nivel PRO con IA (sin código)](https://apps-educativas.com/blog/crea-apps-educativas-nivel-pro-con-ia-sin-codigo): Cómo he creado 4 apps educativas (Sistema solar, Mesa de crafteo, Célula animal y vegetal) usando IA generativa, sin escribir código manualmente.
+- [20 prompts de IA que todo docente debería tener guardados](https://apps-educativas.com/blog/20-prompts-de-ia-para-docentes): Veinte prompts listos para copiar-pegar y usar con ChatGPT o Claude que te ahorran horas semanales: ejercicios, rúbricas, adaptaciones, informes y mucho más.
+- [Cómo empezar a usar IA en clase sin meter la pata (guía 2026)](https://apps-educativas.com/blog/como-empezar-con-ia-en-clase-sin-meter-la-pata): Guía paso a paso para introducir IA en el aula: por dónde empezar, qué errores evitar, qué herramientas elegir y cómo gestionar el famoso ChatGPT en los deberes.
+
+### Gamificación
+
+Insignias, puntos, mecánicas de juego y cómo motivar al alumnado de verdad.
+
+- [Motivación intrínseca vs recompensas: cuándo la gamificación se vuelve en tu contra](https://apps-educativas.com/blog/motivacion-intrinseca-vs-recompensas-en-gamificacion): Cuando las recompensas matan las ganas de aprender: por qué la gamificación mal diseñada destruye la motivación intrínseca y cómo evitarlo en el aula.
+- [Sistema de insignias en clase: la metodología que uso desde 2015](https://apps-educativas.com/blog/sistema-de-insignias-en-clase-metodologia-completa): Cómo está montado mi sistema de insignias en clase, tipo por tipo, con los pesos en la nota, los privilegios y los errores de calibración que cuestan caro.
+- [Gamificación en el aula: qué funciona después de 10 años](https://apps-educativas.com/blog/gamificacion-en-el-aula-lo-que-funciona): Diez años aplicando gamificación en clases de ESO. Lo que de verdad mueve la motivación del alumnado, lo que solo suena bonito, y los errores que pagué caros.
+
+### Flipped Classroom
+
+Aula invertida, vídeo como deber y tiempo de clase para práctica guiada.
+
+- [Flipped classroom de verdad: cómo lo monté sin volverme loco](https://apps-educativas.com/blog/flipped-classroom-como-lo-monte-en-mi-clase): Flipped classroom en la práctica: vídeos cortos, qué grabo y qué no, cómo gestiono al alumno que no se lo prepara y los errores que pagué al empezar.
+
+### Aprendizaje basado en proyectos
+
+Proyectos transversales, evaluación por producto y retos reales.
+
+- [ABP: cómo diseñar un proyecto que de verdad enganche](https://apps-educativas.com/blog/aprendizaje-basado-en-proyectos-como-disenar-uno-que-enganche): Cómo diseñar un Aprendizaje Basado en Proyectos que funcione en el aula: producto final, evaluación por fases, rol del docente y errores que matan cualquier ABP.
+
+### Innovación educativa
+
+Metodologías activas, neuroeducación y herramientas que cambian el aula.
+
+- [FP en auge: cómo orientar la decisión desde la ESO](https://apps-educativas.com/blog/boom-fp-como-orientar-desde-la-eso): La FP en España batió récord en el curso 2025-26 con 1.218.347 matriculados y tasas de inserción cercanas al 90 %. Guía para orientar la decisión ESO–FP en tutoría, con cifras oficiales.
+- [Microlearning: por qué fragmentar funciona (y cuándo no)](https://apps-educativas.com/blog/microlearning-por-que-funciona-y-cuando-no): Microlearning aplicado al aula: cuándo fragmentar el aprendizaje en píldoras de 5-10 minutos rinde más que la clase de 50 y cuándo es contraproducente.
+- [Neuroeducación: 7 hallazgos que cambian cómo doy clase](https://apps-educativas.com/blog/neuroeducacion-7-hallazgos-que-cambian-como-doy-clase): Siete hallazgos sólidos de neuroeducación aplicados al aula: lo que de verdad cambia cómo aprende el alumnado y lo que es solo marketing pedagógico.
+
+### Atención a la diversidad
+
+TDAH, dislexia, TEA, altas capacidades, AL y PT — guía para docentes.
+
+- [Refuerzo educativo y PROA+: el dinero y cómo usarlo](https://apps-educativas.com/blog/programas-refuerzo-proa-competencia-lectora): El Gobierno reparte más de 1.170 millones en refuerzo educativo, PROA+ y FP. Te cuento qué hay detrás de la cifra y cómo aterrizarlo en tu aula si te toca.
+- [Dislexia en el aula: detectarla a tiempo y adaptar de verdad](https://apps-educativas.com/blog/dislexia-en-el-aula-deteccion-y-adaptacion): Señales de dislexia que se confunden con otras cosas, protocolo de detección realista y adaptaciones que funcionan. Lo que aprendí también por experiencia familiar.
+- [TDAH en Primaria: 12 adaptaciones que funcionan de verdad](https://apps-educativas.com/blog/tdah-en-primaria-12-adaptaciones-que-funcionan): Doce adaptaciones concretas para alumnado con TDAH en Primaria, validadas en aula. Lo que sí cambia las cosas y lo que solo es marketing pedagógico.
+
+### Guías de la plataforma
+
+Cómo usar apps-educativas.com: registro, grupos, tareas, duelos, batalla y sistema de nota.
+
+- [Nota del alumno paso a paso: tareas, duelos, batallas, nivel y avatares](https://apps-educativas.com/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares): Cómo se calcula la nota del alumno en apps-educativas.com: base de tareas al 90 % más cuatro bonus capados (duelos, batallas, nivel y avatares). Fórmula, casos reales y cómo lo ve el alumno.
+- [Duelos 1 vs 1 y Quiz Battle: la competición sana, explicada](https://apps-educativas.com/blog/duelos-1vs1-y-quiz-battle-competicion-sana): Cómo funcionan los duelos 1 vs 1 (personales y duelos-tarea), el Quiz Battle multijugador con hasta 30 jugadores, los modos individual y por equipos, y cómo afecta cada formato a la nota del alumno.
+- [Tareas con modo examen: cómo se crean, cómo cuentan y qué ve el alumno](https://apps-educativas.com/blog/tareas-con-modo-examen-como-crear-y-asignar): Guía completa del módulo de tareas en apps-educativas.com: tipos disponibles (estándar y duelo), nota mínima, peso, evaluación a la que cuentan y qué pasa cuando un alumno no la entrega.
+- [Registro y primer grupo: pon tu clase en marcha en 10 minutos](https://apps-educativas.com/blog/registro-y-primer-grupo-en-10-minutos): Tutorial paso a paso para crear tu cuenta de docente en apps-educativas.com, crear tu primer grupo con su propio código GRP-XXXX y dar de alta al alumnado en lote desde la misma pantalla.

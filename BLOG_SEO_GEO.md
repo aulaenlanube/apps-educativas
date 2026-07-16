@@ -227,9 +227,23 @@ Si un post viejo no rinde:
 
 ---
 
-## 7. Sitemap.xml
+## 7. Ficheros generados en el build (sitemap.xml, llms.txt, llms-full.txt)
 
-Se genera en `pnpm run build` por [tools/generate-llms.js](tools/generate-llms.js) (extiende `public/sitemap.xml` añadiendo el índice del blog, las categorías y cada post). **No edites `public/sitemap.xml` a mano** para los posts; el script lo regenera. Si tienes que añadir una URL nueva del resto de la web, edita la plantilla en el script.
+`pnpm run build` ejecuta dos scripts **antes** de vite. Ninguno de los tres ficheros se edita a mano:
+
+| Fichero | Lo genera | Contiene |
+|---|---|---|
+| `public/sitemap.xml` | [tools/generate-sitemap.mjs](tools/generate-sitemap.mjs) | URLs estáticas curadas + índice del blog + categorías + cada post con su `lastmod` |
+| `public/llms.txt` | [tools/generate-llms.js](tools/generate-llms.js) | Índice [llmstxt.org](https://llmstxt.org/): identidad del sitio, secciones, cursos y posts agrupados por categoría |
+| `public/llms-full.txt` | [tools/generate-llms.js](tools/generate-llms.js) | Cuerpo íntegro de todos los posts en markdown plano |
+
+Ambos scripts leen la misma fuente de verdad que la web: los `.md` de `src/blog/posts/` (respetando `draft: true`) y las categorías de [src/blog/categories.js](src/blog/categories.js). **No dupliques la lista de categorías en un script**: cuando se mantenía a mano, `guias-plataforma` se quedó fuera del sitemap con 4 posts ya publicados. Para añadir una URL nueva del resto de la web, edita `STATIC_URLS` (sitemap) o `STATIC_PAGES` / `COURSE_PAGES` (llms).
+
+### Por qué llms-full.txt no es opcional
+
+La web es una **SPA de Vite sin SSR ni prerender**: cualquier ruta devuelve el mismo `index.html` vacío y el contenido lo pinta React en el cliente. Googlebot ejecuta JavaScript y acaba viendo el post, pero **los crawlers de motores generativos (GPTBot, ClaudeBot, PerplexityBot) no ejecutan JS**: para ellos `/blog/<slug>` es una página en blanco, y con ella el `tldr`, el `faq` y el schema `FAQPage` que tanto cuidamos.
+
+Mientras no haya prerender, `llms-full.txt` es **el único canal por el que un motor generativo puede leer el blog**. Si algún día se añade prerender o SSR, sigue siendo útil, pero deja de ser el único.
 
 ---
 

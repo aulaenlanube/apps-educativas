@@ -13,13 +13,20 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://apps-educativas.com';
+
+// Las categorías se leen del módulo real, no de una copia: cuando esta lista
+// se mantenía a mano aquí, `guias-plataforma` se quedó fuera del sitemap con
+// 4 posts ya publicados.
+const { BLOG_CATEGORIES } = await import(
+  pathToFileURL(path.join(ROOT, 'src', 'blog', 'categories.js')).href
+);
 
 // ─── URLs estáticas curadas a mano ────────────────────────────────────────
 // Si añades una nueva sección a la web, edita aquí.
@@ -54,17 +61,9 @@ const STATIC_URLS = [
   // Blog
   { loc: '/blog', changefreq: 'weekly', priority: '0.9' },
 
-  // Categorías del blog (slugs sincronizados con src/blog/categories.js)
-  ...[
-    'plataforma-eduapps',
-    'ia-en-educacion',
-    'gamificacion',
-    'flipped-classroom',
-    'abp',
-    'innovacion-educativa',
-    'atencion-diversidad',
-  ].map((slug) => ({
-    loc: `/blog/categoria/${slug}`,
+  // Categorías del blog (leídas de src/blog/categories.js)
+  ...BLOG_CATEGORIES.map((c) => ({
+    loc: `/blog/categoria/${c.slug}`,
     changefreq: 'weekly',
     priority: '0.6',
   })),
