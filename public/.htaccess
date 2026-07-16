@@ -1,6 +1,23 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # --- PRERENDER ---
+  # tools/prerender.mjs genera un .html plano por ruta publica
+  # (p. ej. blog/mi-post.html). Si existe, se sirve tal cual: los bots que no
+  # ejecutan JS (GPTBot, ClaudeBot, PerplexityBot) reciben el contenido real
+  # en vez del index.html vacio de la SPA.
+  # Son ficheros planos y no directorios a proposito: con blog/mi-post/index.html
+  # mod_dir redirigiria /blog/mi-post -> /blog/mi-post/ (301), y esa barra final
+  # contradiria el <link rel="canonical"> que emite la propia pagina.
+  # Se sirve internamente, sin redireccion, asi que la URL no cambia.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+  RewriteRule ^(.+)$ /$1.html [L]
+
+  # --- FALLBACK SPA ---
+  # Rutas sin prerender (login, dashboard, duelos...) y 404: las pinta React.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [L]

@@ -20,36 +20,35 @@
 	<link rel="apple-touch-icon" href="/images/favicon.png" />
 	<link rel="manifest" href="/manifest.webmanifest" />
 
-	<!-- Primary Meta -->
+	<!-- Primary Meta — SOLO lo que es cierto para TODAS las rutas.
+	     Nada de canonical, description ni og:url/title/description aquí: este
+	     head es la plantilla de toda la SPA, así que un valor de la portada se
+	     servía tal cual en /catalogo y en cada /curso/*, diciéndole a Google
+	     que eran duplicados de la home (y duplicando el canonical en los posts,
+	     donde react-helmet-async añade el suyo sin borrar el estático: con dos
+	     canonical en conflicto, Google ignora ambos).
+	     Cada página fija los suyos con useSEO (src/hooks/useSEO.js, que
+	     actualiza el tag existente o lo crea) o con <Helmet>. El <title> se
+	     queda solo como fallback antes de que React monte; toda ruta pública
+	     lo pisa con el propio. -->
 	<title>Apps educativas interactivas para primaria y secundaria</title>
-	<meta name="title" content="Apps educativas interactivas para primaria y secundaria" />
-	<meta name="description"
-		content="Plataforma gratuita con más de 100 apps educativas, desde 1º de primaria hasta 2º de bachillerato." />
 	<meta name="keywords"
 		content="apps educativas, juegos educativos, primaria, ESO, bachillerato, recursos docentes, lengua, matemáticas, ciencias, pasapalabra, ahorcado, quiz battle, duelo 1 vs 1, gratis, sin registro" />
 	<meta name="author" content="Edu Torregrosa" />
 	<meta name="generator" content="Apps Educativas" />
 	<meta name="theme-color" content="#6d28d9" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-	<link rel="canonical" href="https://apps-educativas.com/" />
 
-	<!-- Open Graph -->
+	<!-- Open Graph — solo los invariantes del sitio. og:url/title/description
+	     los pone cada página. -->
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Apps Educativas" />
 	<meta property="og:locale" content="es_ES" />
-	<meta property="og:url" content="https://apps-educativas.com/" />
-	<meta property="og:title" content="Apps educativas interactivas para primaria y secundaria" />
-	<meta property="og:description"
-		content="Plataforma gratuita con más de 100 apps educativas, desde 1º de primaria hasta 2º de bachillerato." />
 	<meta property="og:image" content="https://apps-educativas.com/images/logo.webp" />
 	<meta property="og:image:alt" content="Apps Educativas — plataforma de juegos educativos" />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:url" content="https://apps-educativas.com/" />
-	<meta name="twitter:title" content="Apps educativas interactivas para primaria y secundaria" />
-	<meta name="twitter:description"
-		content="Plataforma gratuita con más de 100 apps educativas, desde 1º de primaria hasta 2º de bachillerato." />
 	<meta name="twitter:image" content="https://apps-educativas.com/images/logo.webp" />
 
 	<!-- Google Analytics 4 con Consent Mode v2 (RGPD / LSSI-CE).
@@ -141,41 +140,13 @@
 <body>
 	<div id="root"></div>
 
-	<!-- Contenido visible sin JS (para SEO y crawlers que no ejecutan JS) -->
-	<noscript>
-		<main style="max-width: 860px; margin: 0 auto; padding: 24px; font-family: system-ui, sans-serif; color: #1e293b;">
-			<h1>Apps educativas interactivas para primaria y secundaria</h1>
-			<p>Plataforma gratuita con <strong>más de 100 apps educativas</strong>, desde 1º de primaria hasta 2º de bachillerato. Cubre <strong>Lengua, Matemáticas, Ciencias Naturales, Ciencias Sociales, Inglés, Valenciano, Francés, Programación, Tutoría y Atención a la Diversidad</strong>.</p>
-			<h2>Qué incluye la plataforma</h2>
-			<ul>
-				<li><strong>Apps de repaso y gamificación</strong>: Rosco del saber, Ahorcado, Crucigrama, Sopa de letras, Millonario, Anagramas, Criptograma, Nave Palabras, Education Dash, Comprensión oral/escrita, Dictado interactivo.</li>
-				<li><strong>Matemáticas</strong>: Supermercado matemático, Sumas, Restas, Multiplicaciones, Divisiones, Fracciones, Ordena las Bolas, Mayor/Menor, Números romanos, Medidas, Figuras 3D, Laboratorio de funciones 2D.</li>
-				<li><strong>Ciencias</strong>: Célula animal y vegetal, Sistema Solar, Entrenador de tabla periódica, Laboratorio y Misiones de Robótica.</li>
-				<li><strong>Tutoría y diversidad</strong>: Isla de la Calma, Generador de personajes históricos, Banco de recursos.</li>
-				<li><strong>Quiz Battle</strong> multijugador en directo y <strong>modo duelo 1 vs 1</strong> para competir en clase.</li>
-				<li><strong>Panel del docente</strong> con grupos, tareas asignables con nota sobre 10, horario de clase y ranking.</li>
-			</ul>
-			<h2>Navega por curso</h2>
-			<p>
-				<strong>Primaria:</strong>
-				<a href="/curso/primaria/1">1º</a> · <a href="/curso/primaria/2">2º</a> · <a href="/curso/primaria/3">3º</a> · <a href="/curso/primaria/4">4º</a> · <a href="/curso/primaria/5">5º</a> · <a href="/curso/primaria/6">6º</a>
-			</p>
-			<p>
-				<strong>ESO:</strong>
-				<a href="/curso/eso/1">1º</a> · <a href="/curso/eso/2">2º</a> · <a href="/curso/eso/3">3º</a> · <a href="/curso/eso/4">4º</a>
-			</p>
-			<p>
-				<strong>Bachillerato:</strong>
-				<a href="/curso/bachillerato/1">1º</a> · <a href="/curso/bachillerato/2">2º</a>
-			</p>
-			<p>
-				<strong>Atención a la diversidad:</strong>
-				<a href="/curso/ad/1">Entrar</a>
-			</p>
-			<p><a href="/login">Iniciar sesión</a> · <a href="/registro">Registro docente</a></p>
-			<p style="font-size: 13px; color: #64748b; margin-top: 32px;">Activa JavaScript para usar la versión interactiva completa.</p>
-		</main>
-	</noscript>
+	<!-- Aquí vivía un <noscript> con un resumen de la PORTADA, pensado para los
+	     crawlers que no ejecutan JS. Lo sustituye tools/prerender.mjs, que
+	     vuelca en dist/ el HTML real de cada ruta pública: el bot recibe el
+	     contenido de LA PÁGINA que ha pedido, no el de la home. Mantenerlo
+	     ahora sería contraproducente: al ser esta la plantilla de toda la SPA,
+	     el bloque de la portada acabaría incrustado en los 27 posts y en cada
+	     página de curso. -->
 
 	<script type="module" src="/src/main.jsx"></script>
 </body>

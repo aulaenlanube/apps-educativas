@@ -227,23 +227,45 @@ Si un post viejo no rinde:
 
 ---
 
-## 7. Ficheros generados en el build (sitemap.xml, llms.txt, llms-full.txt)
+## 7. Qué genera el build (sitemap.xml, llms.txt, llms-full.txt, prerender)
 
-`pnpm run build` ejecuta dos scripts **antes** de vite. Ninguno de los tres ficheros se edita a mano:
+`pnpm run build` encadena tres scripts alrededor de vite. Nada de esto se edita a mano:
 
-| Fichero | Lo genera | Contiene |
+```
+generate-llms.js → generate-sitemap.mjs → vite build → prerender.mjs
+```
+
+| Salida | Lo genera | Contiene |
 |---|---|---|
 | `public/sitemap.xml` | [tools/generate-sitemap.mjs](tools/generate-sitemap.mjs) | URLs estáticas curadas + índice del blog + categorías + cada post con su `lastmod` |
 | `public/llms.txt` | [tools/generate-llms.js](tools/generate-llms.js) | Índice [llmstxt.org](https://llmstxt.org/): identidad del sitio, secciones, cursos y posts agrupados por categoría |
 | `public/llms-full.txt` | [tools/generate-llms.js](tools/generate-llms.js) | Cuerpo íntegro de todos los posts en markdown plano |
+| `dist/**/*.html` | [tools/prerender.mjs](tools/prerender.mjs) | Un HTML estático por ruta pública (54), con su contenido y sus `<meta>` ya renderizados |
 
-Ambos scripts leen la misma fuente de verdad que la web: los `.md` de `src/blog/posts/` (respetando `draft: true`) y las categorías de [src/blog/categories.js](src/blog/categories.js). **No dupliques la lista de categorías en un script**: cuando se mantenía a mano, `guias-plataforma` se quedó fuera del sitemap con 4 posts ya publicados. Para añadir una URL nueva del resto de la web, edita `STATIC_URLS` (sitemap) o `STATIC_PAGES` / `COURSE_PAGES` (llms).
+Los tres leen la misma fuente de verdad que la web: los `.md` de `src/blog/posts/` (respetando `draft: true`) y las categorías de [src/blog/categories.js](src/blog/categories.js). **No dupliques la lista de categorías en un script**: cuando se mantenía a mano, `guias-plataforma` se quedó fuera del sitemap con 4 posts ya publicados. Para añadir una URL nueva, edita `STATIC_URLS` (sitemap), `STATIC_PAGES`/`COURSE_PAGES` (llms) y `collectRoutes()` (prerender).
 
-### Por qué llms-full.txt no es opcional
+### El prerender y por qué existe
 
-La web es una **SPA de Vite sin SSR ni prerender**: cualquier ruta devuelve el mismo `index.html` vacío y el contenido lo pinta React en el cliente. Googlebot ejecuta JavaScript y acaba viendo el post, pero **los crawlers de motores generativos (GPTBot, ClaudeBot, PerplexityBot) no ejecutan JS**: para ellos `/blog/<slug>` es una página en blanco, y con ella el `tldr`, el `faq` y el schema `FAQPage` que tanto cuidamos.
+La web es una SPA: sin prerender, **cualquier ruta devuelve el mismo `index.html` vacío** y el contenido lo pinta React. Googlebot ejecuta JS y acaba viendo el post, pero lo hace en una segunda oleada (indexación más lenta), y **los crawlers de motores generativos (GPTBot, ClaudeBot, PerplexityBot) no ejecutan JS**: para ellos `/blog/<slug>` era una página en blanco con el `<title>` de la portada, y con ella se perdían el `tldr`, el `faq` y el schema `FAQPage`.
 
-Mientras no haya prerender, `llms-full.txt` es **el único canal por el que un motor generativo puede leer el blog**. Si algún día se añade prerender o SSR, sigue siendo útil, pero deja de ser el único.
+`prerender.mjs` levanta el preview de Vite, visita cada ruta con Chrome headless y vuelca el HTML ya renderizado. Detalles que **no** hay que romper:
+
+- **Renderiza la app real**, no reconstruye los `<meta>` a mano: el SEO de cada página sigue viviendo en su componente y no hay dos fuentes que diverjan.
+- **Genera ficheros planos** (`blog/mi-post.html`), no `blog/mi-post/index.html`: con directorios, `mod_dir` redirige `/blog/mi-post` → `/blog/mi-post/` (301) y esa barra final contradice el canonical de la página. La regla `PRERENDER` de [public/.htaccess](public/.htaccess) los sirve sin redirección.
+- **Escribe todo al final, en memoria**: el preview sirve `dist/`, así que volcar `index.html` a mitad de faena hace que las rutas siguientes hereden la home como plantilla.
+- **Espera a que el `<title>` cambie** respecto al del shell: el layout ya pinta texto antes de que cargue el componente lazy de la página, así que "hay contenido en #root" captura páginas a medio montar.
+- **Valida y aborta el build** si alguna página no acaba con exactamente 1 canonical (a su propia URL), 1 description y 1 title.
+
+Si necesitas construir sin prerender (depurar el bundle, por ejemplo): `pnpm run build:nopre`.
+
+### El `<head>` compartido es solo para invariantes
+
+[index.html](index.html) es la plantilla de **todas** las rutas. Todo `<meta>` de página que se ponga ahí se sirve en todas:
+
+- Llevaba `<link rel="canonical" href="https://apps-educativas.com/" />`, así que `/catalogo` y las 13 páginas de `/curso/*` le decían a Google **que eran duplicados de la portada**, y los 27 posts servían **dos canonical en conflicto** (con más de uno, Google los ignora todos) porque `react-helmet-async` añade el suyo sin borrar el estático.
+- Lo mismo con `description` y `og:url`/`og:title`/`og:description`.
+
+Regla: en `index.html` solo va lo cierto para todo el sitio (`og:type`, `og:site_name`, `og:locale`, `og:image`, `twitter:card`, CSP, favicon). **Cada página fija los suyos** con [useSEO](src/hooks/useSEO.js) (actualiza el tag existente o lo crea) o con `<Helmet>`. El `<title>` estático se queda solo como fallback antes de que React monte. La validación del prerender protege esta regla.
 
 ---
 

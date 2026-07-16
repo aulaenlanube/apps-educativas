@@ -106,9 +106,12 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 
 ### 9. Build y deploy
 ```bash
-pnpm run build   # debe pasar sin errores
+pnpm run build   # debe pasar sin errores (incluye prerender de las rutas públicas)
 pnpm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
 ```
+`build` encadena `generate-llms.js → generate-sitemap.mjs → vite build → prerender.mjs`. El prerender vuelca un HTML estático por ruta pública (necesario porque la SPA es invisible para los crawlers que no ejecutan JS) y **aborta el build** si alguna página no acaba con exactamente 1 canonical, 1 description y 1 title. Si una ruta pública nueva debe indexarse, añádela a `collectRoutes()` en [tools/prerender.mjs](tools/prerender.mjs). Detalles en [BLOG_SEO_GEO.md](BLOG_SEO_GEO.md) §7.
+
+**Nunca pongas `<meta>` de página en [index.html](index.html)** (canonical, description, og:url/title/description): es la plantilla de todas las rutas y se sirve en todas. Cada página fija los suyos con `useSEO` o `<Helmet>`.
 
 ---
 
