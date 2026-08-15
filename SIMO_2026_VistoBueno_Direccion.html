@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aprobación de la dirección — SIMO 2026</title>
+<style>
+  @page { size: A4; margin: 2.5cm; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 12pt; line-height: 1.5; color: #111; }
+  .membrete { text-align: center; border-bottom: 1px solid #999; padding-bottom: 8px; margin-bottom: 28px; font-size: 11pt; color: #333; }
+  h1 { font-size: 13pt; text-align: center; text-transform: uppercase; letter-spacing: .3px; margin: 0 0 26px; }
+  p { margin: 0 0 12px; text-align: justify; }
+  ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 10px; text-align: justify; }
+  .firma { margin-top: 48px; }
+  .firma .linea { margin-top: 46px; border-top: 1px solid #333; width: 7cm; }
+  .ph { background: #fff2a8; padding: 0 2px; border-radius: 2px; }
+  .banner { background: #eaf3ff; border: 1px solid #9cc3f0; padding: 10px 14px; border-radius: 6px; margin-bottom: 22px; font-size: 10pt; }
+  @media print { .noprint { display: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="banner noprint">
+  <b>Antes de imprimir:</b> rellena los datos en <span class="ph">amarillo</span>. Luego <b>Imprimir → Guardar como PDF</b> (A4), o imprime en papel con membrete del centro para <b>firma y sello</b> de la dirección y escanéalo. Esta caja azul no se imprime.
+</div>
+
+<div class="membrete">
+  [NOMBRE DEL CENTRO]<br>
+  [Dirección · Localidad · Provincia] · Código de centro: [CÓDIGO]
+</div>
+
+<h1>Autorización para la presentación de una experiencia docente innovadora</h1>
+
+<p>D./D.ª <b>[NOMBRE DEL DIRECTOR/A]</b>, en calidad de <b>Director/a</b> del centro <b>[NOMBRE DEL CENTRO]</b>, con código de centro <b>[CÓDIGO]</b>, de <b>[LOCALIDAD, PROVINCIA]</b>,</p>
+
+<p><b>HACE CONSTAR</b> que:</p>
+
+<ol>
+<li>D./D.ª <b>[NOMBRE DEL AUTOR/A]</b>, [cuerpo/especialidad], docente de este centro, ha desarrollado y aplicado con su alumnado la experiencia educativa titulada <b>«Jugar cuenta para la nota»</b>, basada en la gamificación del aprendizaje a través de la plataforma apps-educativas.com.</li>
+<li>Dicha experiencia se ha desarrollado en este centro durante el/los curso(s) <b>[20__-__]</b> y encaja en [el Proyecto Educativo de Centro / el Plan de Digitalización / el Plan de Atención a la Diversidad].</li>
+<li>Por lo anterior, <b>AUTORIZA</b> a dicho docente a presentar esta experiencia a los <b>XIV Premios a la Innovación Educativa y Experiencias Docentes Innovadoras — SIMO EDUCACIÓN 2026</b>, en la modalidad <i>Mejor Experiencia de Gamificación</i>.</li>
+</ol>
+
+<p>Y para que conste a los efectos oportunos, firma la presente.</p>
+
+<p>En <b>[LOCALIDAD]</b>, a <b>____</b> de <b>__________________</b> de 2026.</p>
+
+<div class="firma">
+  <div class="linea"></div>
+  Fdo.: <b>[NOMBRE DEL DIRECTOR/A]</b><br>
+  Director/a de [NOMBRE DEL CENTRO]<br>
+  <span style="color:#555">(firma y sello del centro)</span>
+</div>
+
+<script>
+// Resalta los [huecos] a rellenar.
+(function(){
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+  var nodes = [], n;
+  while (n = walker.nextNode()) {
+    if (n.parentNode && n.parentNode.closest('.noprint, script, style')) continue;
+    if (/\[[^\]]+\]/.test(n.nodeValue)) nodes.push(n);
+  }
+  nodes.forEach(function(node){
+    var frag = document.createDocumentFragment();
+    node.nodeValue.split(/(\[[^\]]+\])/).forEach(function(p){
+      if (/^\[[^\]]+\]$/.test(p)) { var s=document.createElement('span'); s.className='ph'; s.textContent=p; frag.appendChild(s); }
+      else frag.appendChild(document.createTextNode(p));
+    });
+    node.parentNode.replaceChild(frag, node);
+  });
+})();
+</script>
+</body>
+</html>
