@@ -210,7 +210,15 @@ async function main() {
 
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-dev-shm-usage'],
+    // --disable-3d-apis apaga WebGL en el Chrome del prerender. Sin él, cada
+    // una de las 54 rutas levanta la escena 3D de fondo y la rasteriza POR
+    // SOFTWARE (swiftshader: no hay GPU en headless), con CONCURRENCY pestañas
+    // a la vez: en una máquina cargada eso agota los 30 s de NAV_TIMEOUT_MS y
+    // el build aborta. Al bloquearlo, CourseBackground detecta que no hay
+    // WebGL y pinta su fondo plano. No perdemos nada: el contenido de un
+    // <canvas> no se serializa en el HTML, así que el 3D nunca llegó al
+    // prerenderizado — solo costaba CPU.
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-3d-apis'],
   });
 
   // Renderizamos TODO en memoria y escribimos al final, a propósito: el
