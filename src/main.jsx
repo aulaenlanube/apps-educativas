@@ -21,6 +21,7 @@ import App from '@/App';
 import MainLayout from '@/components/layout/MainLayout';
 import HomePage from '@/pages/HomePage.jsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import ErrorPage from '@/pages/ErrorPage.jsx';
 
 // Route-level lazy loading for pages not needed on initial render
 const SubjectPage = lazy(() => import('@/pages/SubjectPage.jsx'));
@@ -106,6 +107,10 @@ const router = createBrowserRouter(
   [
     {
       element: <App />,
+      // Red de seguridad: cualquier error de render no capturado (p. ej. un
+      // navegador que bloquea WebGL y hace fallar una escena 3D) muestra NUESTRA
+      // pantalla, no la de react-router con el stack trace.
+      errorElement: <ErrorPage />,
       children: [
         {
           element: <MainLayout />,

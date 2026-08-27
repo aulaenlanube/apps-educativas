@@ -124,3 +124,38 @@ export function createFpsGovernor({ warmup = 5, windowSecs = 4, minFps = 42, onD
     },
   };
 }
+
+/**
+ * ¿Puede este navegador crear un contexto WebGL?
+ *
+ * Brave con "Bloquear huella digital: estricto" (y cualquier Chrome/Firefox con
+ * la aceleración por hardware desactivada o WebGL bloqueado por política) hace
+ * que `new THREE.WebGLRenderer()` lance "Error creating WebGL context" DURANTE
+ * el render de React: sin nadie que lo capture, react-router sustituye toda la
+ * plataforma por su pantalla de error. Sondamos ANTES de montar cualquier
+ * <Canvas> para poder degradar a un fondo plano en vez de romper la página.
+ *
+ * El resultado se cachea (crear contextos cuesta y hay un máximo por pestaña) y
+ * el contexto de sonda se libera inmediatamente.
+ */
+let _webglOk = null;
+
+export function isWebGLAvailable() {
+  if (_webglOk !== null) return _webglOk;
+  if (typeof document === 'undefined') return (_webglOk = false);
+  let gl = null;
+  try {
+    const cv = document.createElement('canvas');
+    gl = cv.getContext('webgl2') || cv.getContext('webgl') || cv.getContext('experimental-webgl');
+  } catch { /* getContext puede lanzar, no solo devolver null */ }
+  _webglOk = !!gl;
+  try { gl?.getExtension('WEBGL_lose_context')?.loseContext(); } catch { /* ya perdido */ }
+  return _webglOk;
+}
+
+// Marca WebGL como no disponible tras un fallo real al crear el renderer (la
+// sonda puede pasar y aun así fallar la creación con ciertas opciones de GL).
+// Así el resto de la sesión ni lo intenta.
+export function markWebGLUnavailable() {
+  _webglOk = false;
+}
