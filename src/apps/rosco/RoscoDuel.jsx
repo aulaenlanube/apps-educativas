@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Trophy, LogOut } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
@@ -130,11 +130,12 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     if (!me?.isHost || !channel?.isConnected) return;
     if (hostApi.gameState === 'config') return;
     channel.broadcast('rosco_state', snapshot(hostApi));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     me?.isHost, channel?.isConnected,
     hostApi.gameState, hostApi.players, hostApi.activePlayerIndex,
     hostApi.feedback, hostApi.animState, hostApi.showExitConfirm,
-  ]); // eslint-disable-line react-hooks/exhaustive-deps
+  ]);
 
   // === HOST: escucha acciones del guest + peticiones de estado ===
   useEffect(() => {
@@ -296,8 +297,11 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     const won = duelOverWinnerId === me.id;
     return (
       <div className="min-h-[60vh] flex items-center justify-center p-6">
-        <div className={`max-w-md w-full p-8 rounded-3xl text-center text-white shadow-2xl bg-gradient-to-br ${won ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'}`}>
-          <Trophy className="w-12 h-12 mx-auto mb-3" />
+        <div className={`rosco-duel-result ${won ? 'rosco-duel-result--won' : 'rosco-duel-result--lost'} max-w-md w-full p-8 rounded-3xl text-center text-white shadow-2xl bg-gradient-to-br ${won ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'}`}>
+          <span className="rosco-duel-result-glow" aria-hidden="true" />
+          <span className="rosco-duel-trophy">
+            <Trophy className="w-12 h-12 mx-auto" />
+          </span>
           <h2 className="text-3xl font-black mb-2">{won ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</h2>
           <p className="text-sm opacity-90 mb-6">La partida ha terminado.</p>
           <button

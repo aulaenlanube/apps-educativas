@@ -31,6 +31,10 @@ const InstructionsModal = ({ isOpen, onClose, title, children }) => {
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Capas decorativas: banda de aurora superior + orbes de luz */}
+            <span className="instr-modal-aurora" aria-hidden="true" />
+            <span className="instr-modal-orb instr-modal-orb--a" aria-hidden="true" />
+            <span className="instr-modal-orb instr-modal-orb--b" aria-hidden="true" />
             <button
               className="instr-modal-close"
               onClick={onClose}
@@ -38,10 +42,17 @@ const InstructionsModal = ({ isOpen, onClose, title, children }) => {
             >
               <X size={18} />
             </button>
-            <h2 className="instr-modal-title">
-              <HelpCircle size={22} />
+            <motion.h2
+              className="instr-modal-title"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.08, duration: 0.35 }}
+            >
+              <span className="instr-modal-title-icon">
+                <HelpCircle size={22} />
+              </span>
               {title}
-            </h2>
+            </motion.h2>
             <div className="instr-modal-body">{children}</div>
           </motion.div>
         </motion.div>
@@ -61,6 +72,7 @@ export const InstructionsButton = ({ onClick, className = '' }) => (
     aria-label="Ver instrucciones"
     type="button"
   >
+    <span className="instr-open-btn-halo" aria-hidden="true" />
     <HelpCircle size={18} />
   </button>
 );

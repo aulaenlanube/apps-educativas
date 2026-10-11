@@ -1,10 +1,20 @@
-/* Modal de instrucciones compartido para las apps nuevas */
+/* Modal de instrucciones compartido para las apps nuevas
+   ------------------------------------------------------------------
+   Acabado "premium": cristal con blur, borde de luz interior, sombras en
+   capas, banda de aurora superior y orbes de luz difusos. Las apps con
+   tema propio (robótica, etc.) lo sobrescriben con selectores con más
+   especificidad (.mr-shell .instr-modal-*), así que aquí no se usa
+   !important en nada. */
 
 .instr-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(6px);
+  background:
+    radial-gradient(60% 50% at 20% 10%, rgba(139, 92, 246, 0.28), transparent 70%),
+    radial-gradient(50% 45% at 85% 90%, rgba(236, 72, 153, 0.22), transparent 70%),
+    rgba(15, 23, 42, 0.62);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,18 +23,67 @@
 }
 
 .instr-modal-content {
-  background: white;
-  border-radius: 22px;
-  padding: 1.75rem 1.75rem 1.5rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(250, 247, 255, 0.95) 100%);
+  border-radius: 26px;
+  padding: 1.9rem 1.75rem 1.5rem;
   max-width: 580px;
   width: 100%;
   max-height: 86vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow:
-    0 25px 80px -20px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(168, 85, 247, 0.15);
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 0 0 1px rgba(168, 85, 247, 0.16),
+    0 2px 6px -2px rgba(76, 29, 149, 0.12),
+    0 30px 80px -24px rgba(49, 46, 129, 0.55),
+    0 0 90px -30px rgba(236, 72, 153, 0.45);
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Las apps suelen centrar todo su contenedor: el modal lee mejor alineado a la izquierda */
+  text-align: left;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.35) transparent;
+}
+
+/* Banda de aurora en el borde superior (pegada al top del contenido) */
+.instr-modal-aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #8b5cf6, #6366f1);
+  background-size: 300% 100%;
+  animation: instr-aurora-pan 7s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Orbes de luz difusos detrás del texto */
+.instr-modal-orb {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.55;
+}
+.instr-modal-orb--a {
+  top: -120px;
+  right: -90px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.32), transparent 68%);
+  animation: instr-orb-drift 14s ease-in-out infinite alternate;
+}
+.instr-modal-orb--b {
+  bottom: -140px;
+  left: -110px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.22), transparent 68%);
+  animation: instr-orb-drift 18s ease-in-out infinite alternate-reverse;
 }
 
 .instr-modal-content::-webkit-scrollbar {
@@ -40,36 +99,74 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.05);
-  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(168, 85, 247, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #4b5563;
-  transition: all 0.2s;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 12px -4px rgba(76, 29, 149, 0.25);
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), background 0.2s, color 0.2s, box-shadow 0.2s;
   z-index: 2;
 }
 
 .instr-modal-close:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: #111827;
-  transform: rotate(90deg);
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  transform: rotate(90deg) scale(1.06);
+  box-shadow: 0 8px 20px -6px rgba(236, 72, 153, 0.55);
+}
+
+.instr-modal-close:active { transform: rotate(90deg) scale(0.94); }
+
+.instr-modal-close:focus-visible {
+  outline: 3px solid rgba(167, 139, 250, 0.75);
+  outline-offset: 2px;
 }
 
 .instr-modal-title {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 1.45rem;
+  gap: 0.65rem;
+  font-size: 1.5rem;
   font-weight: 900;
   color: #1e1b4b;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.1rem 0;
   padding-right: 2.5rem;
   letter-spacing: -0.01em;
+}
+
+/* Icono del título con halo luminoso */
+.instr-modal-title-icon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.16), rgba(236, 72, 153, 0.14));
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 8px 22px -8px rgba(168, 85, 247, 0.6);
+  animation: instr-icon-in 0.6s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.instr-modal-title-icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 18px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.35), transparent 70%);
+  z-index: -1;
+  animation: instr-halo 3.2s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .instr-modal-title svg {
@@ -79,20 +176,33 @@
 
 .instr-modal-body {
   color: #374151;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
+
+/* Entrada escalonada de los bloques del cuerpo */
+.instr-modal-body > * {
+  animation: instr-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.instr-modal-body > *:nth-child(1) { animation-delay: 0.10s; }
+.instr-modal-body > *:nth-child(2) { animation-delay: 0.14s; }
+.instr-modal-body > *:nth-child(3) { animation-delay: 0.18s; }
+.instr-modal-body > *:nth-child(4) { animation-delay: 0.22s; }
+.instr-modal-body > *:nth-child(5) { animation-delay: 0.26s; }
+.instr-modal-body > *:nth-child(6) { animation-delay: 0.30s; }
+.instr-modal-body > *:nth-child(n+7) { animation-delay: 0.34s; }
 
 .instr-modal-body h3 {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 1rem;
+  gap: 0.45rem;
+  font-size: 1.02rem;
   font-weight: 800;
   color: #4c1d95;
-  margin: 1.1rem 0 0.5rem 0;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+  margin: 1.2rem 0 0.55rem 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, rgba(168, 85, 247, 0.45), rgba(236, 72, 153, 0.25), transparent) 1;
 }
 
 .instr-modal-body h3:first-child {
@@ -121,6 +231,7 @@
   left: -1rem;
   color: #a855f7;
   font-weight: 800;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
 }
 
 .instr-modal-body strong {
@@ -131,63 +242,83 @@
 .instr-modal-body kbd {
   display: inline-block;
   padding: 0.1rem 0.45rem;
-  background: linear-gradient(180deg, #f9fafb, #e5e7eb);
+  background: linear-gradient(180deg, #ffffff, #e5e7eb);
   border: 1px solid #cbd5e1;
-  border-bottom-width: 2px;
-  border-radius: 4px;
+  border-bottom-width: 3px;
+  border-radius: 6px;
   font-family: ui-monospace, monospace;
   font-size: 0.8rem;
   font-weight: 700;
   color: #1f2937;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 2px 4px rgba(15, 23, 42, 0.08);
 }
 
 .instr-modal-body .instr-modes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin: 0.65rem 0 0.85rem 0;
 }
 
 .instr-modal-body .instr-mode {
-  padding: 0.6rem 0.4rem;
-  border-radius: 10px;
-  border: 2px solid;
+  position: relative;
+  padding: 0.7rem 0.5rem;
+  border-radius: 14px;
+  border: 1.5px solid;
   text-align: center;
   font-size: 0.78rem;
   line-height: 1.3;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease;
 }
+
+.instr-modal-body .instr-mode:hover { transform: translateY(-3px); }
 
 .instr-modal-body .instr-mode strong {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   margin-bottom: 0.15rem;
 }
 
 .instr-modal-body .instr-mode.easy {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.35);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.14), rgba(16, 185, 129, 0.05));
+  border-color: rgba(16, 185, 129, 0.4);
   color: #065f46;
 }
+.instr-modal-body .instr-mode.easy:hover { box-shadow: 0 12px 24px -12px rgba(16, 185, 129, 0.7); }
 
 .instr-modal-body .instr-mode.medium {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.35);
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.18), rgba(251, 191, 36, 0.06));
+  border-color: rgba(245, 158, 11, 0.4);
   color: #92400e;
 }
+.instr-modal-body .instr-mode.medium:hover { box-shadow: 0 12px 24px -12px rgba(251, 191, 36, 0.75); }
 
 .instr-modal-body .instr-mode.exam {
-  background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.35);
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.14), rgba(239, 68, 68, 0.05));
+  border-color: rgba(239, 68, 68, 0.4);
   color: #991b1b;
 }
+.instr-modal-body .instr-mode.exam:hover { box-shadow: 0 12px 24px -12px rgba(239, 68, 68, 0.7); }
 
 .instr-modal-body .instr-tips {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.06));
+  position: relative;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.07) 60%, rgba(245, 158, 11, 0.07));
   border: 1px solid rgba(168, 85, 247, 0.25);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  padding: 0.8rem 1rem 0.8rem 1.15rem;
   margin: 0.75rem 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset;
+  overflow: hidden;
+}
+.instr-modal-body .instr-tips::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #8b5cf6, #ec4899, #f59e0b);
 }
 
 .instr-modal-body .instr-tips strong {
@@ -195,6 +326,12 @@
 }
 
 /* ============ Botón para abrir el modal ============ */
+/* position con especificidad 0 para que las apps que lo posicionan en
+   absoluto (cz3d-help-btn, fislab-help-btn…) sigan mandando */
+:where(.instr-open-btn) {
+  position: relative;
+}
+
 .instr-open-btn {
   display: inline-flex;
   align-items: center;
@@ -202,29 +339,131 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(168, 85, 247, 0.1);
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(243, 232, 255, 0.7));
+  border: 1px solid rgba(168, 85, 247, 0.3);
   color: #6d28d9;
   cursor: pointer;
-  transition: all 0.2s;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 12px -4px rgba(168, 85, 247, 0.45);
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), background 0.2s, color 0.2s, box-shadow 0.25s;
   padding: 0;
   flex-shrink: 0;
+  isolation: isolate;
+}
+
+/* Halo que respira detrás del botón */
+.instr-open-btn-halo {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.35), transparent 70%);
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
 }
 
 .instr-open-btn:hover {
   background: linear-gradient(135deg, #a855f7, #ec4899);
   color: white;
   border-color: transparent;
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px -2px rgba(168, 85, 247, 0.45);
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 8px 20px -4px rgba(168, 85, 247, 0.55);
+}
+.instr-open-btn:hover .instr-open-btn-halo { opacity: 1; transform: scale(1.35); }
+.instr-open-btn:active { transform: scale(0.94); }
+.instr-open-btn:focus-visible {
+  outline: 3px solid rgba(167, 139, 250, 0.75);
+  outline-offset: 2px;
+}
+
+/* ============ Modo oscuro ============ */
+:where(html.dark) .instr-modal-content {
+  background: linear-gradient(180deg, rgba(30, 27, 58, 0.97) 0%, rgba(24, 20, 48, 0.96) 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+    0 0 0 1px rgba(168, 85, 247, 0.25),
+    0 30px 80px -24px rgba(0, 0, 0, 0.8),
+    0 0 90px -30px rgba(168, 85, 247, 0.5);
+}
+:where(html.dark) .instr-modal-title { color: #f5f3ff; }
+:where(html.dark) .instr-modal-title svg { color: #c4b5fd; }
+:where(html.dark) .instr-modal-title-icon {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(236, 72, 153, 0.2));
+  border-color: rgba(196, 181, 253, 0.3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 8px 22px -8px rgba(168, 85, 247, 0.7);
+}
+:where(html.dark) .instr-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+:where(html.dark) .instr-modal-body { color: #cbd5e1; }
+:where(html.dark) .instr-modal-body h3 { color: #c4b5fd; }
+:where(html.dark) .instr-modal-body strong { color: #f5f3ff; }
+:where(html.dark) .instr-modal-body li::before { color: #c084fc; }
+:where(html.dark) .instr-modal-body kbd {
+  background: linear-gradient(180deg, #3f3a5c, #2a2640);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  box-shadow: none;
+}
+:where(html.dark) .instr-modal-body .instr-mode { box-shadow: none; }
+:where(html.dark) .instr-modal-body .instr-mode.easy { color: #6ee7b7; }
+:where(html.dark) .instr-modal-body .instr-mode.medium { color: #fcd34d; }
+:where(html.dark) .instr-modal-body .instr-mode.exam { color: #fca5a5; }
+:where(html.dark) .instr-modal-body .instr-tips { box-shadow: none; }
+:where(html.dark) .instr-modal-body .instr-tips strong { color: #d8b4fe; }
+:where(html.dark) .instr-open-btn {
+  background: rgba(168, 85, 247, 0.16);
+  border-color: rgba(196, 181, 253, 0.3);
+  color: #d8b4fe;
+}
+
+/* ============ Animaciones ============ */
+@keyframes instr-aurora-pan { to { background-position: 300% 0; } }
+@keyframes instr-orb-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-30px, 24px, 0) scale(1.15); }
+}
+@keyframes instr-halo {
+  0%, 100% { opacity: 0.45; transform: scale(0.95); }
+  50%      { opacity: 1; transform: scale(1.12); }
+}
+@keyframes instr-icon-in {
+  0%   { opacity: 0; transform: scale(0.4) rotate(-25deg); }
+  70%  { opacity: 1; transform: scale(1.12) rotate(6deg); }
+  100% { transform: none; }
+}
+@keyframes instr-rise {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instr-modal-aurora,
+  .instr-modal-orb,
+  .instr-modal-title-icon::after { animation: none; }
+  .instr-modal-title-icon,
+  .instr-modal-body > * { animation-duration: 0.01ms; }
 }
 
 @media (max-width: 600px) {
   .instr-modal-content {
-    padding: 1.25rem 1.1rem 1.1rem;
+    padding: 1.4rem 1.1rem 1.1rem;
+    border-radius: 22px;
   }
   .instr-modal-title {
     font-size: 1.2rem;
+  }
+  .instr-modal-title-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
   }
   .instr-modal-body {
     font-size: 0.87rem;

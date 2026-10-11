@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaCheck, FaForward, FaTimes, FaVideo, FaVideoSlash, FaMicrophone, FaHeadset, FaBook } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaVideo, FaVideoSlash, FaMicrophone, FaHeadset, FaBook } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
 import RoscoAvatar, { AVATAR_IDS } from '@/components/RoscoAvatars';
 
@@ -162,6 +162,7 @@ const RoscoUI = ({
             }, 200);
             return () => clearTimeout(timer);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [autoRecord, voiceSupported, isListening, hasAutoRecorded, gameState, animState, feedback, showExitConfirm]);
 
 
@@ -171,6 +172,7 @@ const RoscoUI = ({
             inputRef.current.focus();
             if (!isListening && !inputValue) setInputValue('');
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentQuestion, feedback, gameState, activePlayerIndex, animState, showExitConfirm, isListening]);
 
     // Webcam
@@ -225,10 +227,11 @@ const RoscoUI = ({
         const handlePlayerChange = (key, field, value) => setConfig(prev => ({ ...prev, [key]: { ...prev[key], [field]: value } }));
 
         return (
-            <div className="rosco-container pt-4">
-                <h1 className="text-5xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
-                <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
-                    <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
+            <div className="rosco-container rosco-screen pt-4">
+                <span className="rosco-bg-fx" aria-hidden="true" />
+                <h1 className="rosco-hero-title text-5xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
+                <div className="rosco-glass-panel bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
+                    <div className="rosco-segmented mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
                         <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
                         <button onClick={() => handleConfigChange('numPlayers', 2)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 2 ? 'bg-white shadow-md text-orange-500' : 'text-gray-400'}`}>2 Jugadores</button>
                     </div>
@@ -272,11 +275,11 @@ const RoscoUI = ({
                         </div>
                     </div>
 
-                    <button onClick={handleOpenStudyMaterial} className="w-full mb-3 flex items-center justify-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 text-lg font-bold py-2 px-6 rounded-2xl transition-all border-2 border-orange-200">
+                    <button onClick={handleOpenStudyMaterial} className="rosco-study-btn w-full mb-3 flex items-center justify-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 text-lg font-bold py-2 px-6 rounded-2xl transition-all border-2 border-orange-200">
                         <FaBook /> Ver Material de Estudio
                     </button>
 
-                    <button onClick={() => startGame(config)} className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
+                    <button onClick={() => startGame(config)} className="rosco-cta w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
                         ¡Empezar Partida!
                     </button>
 
@@ -288,7 +291,7 @@ const RoscoUI = ({
 
                     {showStudyMaterial && materialData && (
                         <div className="study-material-overlay">
-                            <div className="study-material-box">
+                            <div className="study-material-box rosco-study-box">
                                 <div className="flex justify-between items-start mb-4">
                                     <h2 className="text-2xl font-bold text-blue-600">{materialData.titulo}</h2>
                                     <button onClick={() => setShowStudyMaterial(false)} className="text-gray-400 hover:text-red-500 text-2xl"><FaTimes /></button>
@@ -314,7 +317,7 @@ const RoscoUI = ({
                                             <div key={idx} className="animate-fadeIn">
                                                 <div className="grid gap-4">
                                                     {sec.conceptos.map((con, cidx) => (
-                                                        <div key={cidx} className="bg-gray-50 p-5 rounded-2xl border-2 border-gray-100 hover:border-blue-100 transition-all shadow-sm">
+                                                        <div key={cidx} className="rosco-concept-card bg-gray-50 p-5 rounded-2xl border-2 border-gray-100 hover:border-blue-100 transition-all shadow-sm">
                                                             <div className="flex justify-between items-center mb-3">
                                                                 <h3 className="font-fredoka text-xl text-blue-800">{con.termino}</h3>
                                                                 <span className="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-1 rounded-full uppercase tracking-tighter">{con.pista}</span>
@@ -336,7 +339,7 @@ const RoscoUI = ({
                 {avatarModalPlayer && (
                     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
                         onClick={() => setAvatarModalPlayer(null)}>
-                        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
+                        <div className="rosco-avatar-modal bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
                             onClick={(e) => e.stopPropagation()}>
                             <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-center">
                                 <h3 className="text-lg font-bold text-white">Elige tu personaje</h3>
@@ -385,25 +388,35 @@ const RoscoUI = ({
         const isSinglePlayer = players.length === 1;
 
         return (
-            <div className="rosco-container pt-10">
-                <h1 className="text-5xl font-extrabold mb-8 text-blue-600 font-fredoka">
+            <div className="rosco-container rosco-screen pt-10">
+                <span className="rosco-bg-fx" aria-hidden="true" />
+                <h1 className="rosco-hero-title text-5xl font-extrabold mb-8 text-blue-600 font-fredoka">
                     {isSinglePlayer ? '¡Partida Completada!' : '¡Juego Terminado!'}
                 </h1>
-                <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
+                <div className="rosco-glass-panel rosco-summary-panel bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
                     {isSinglePlayer ? (
                         <div className="mb-8">
-                            <span className="block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
+                            <span className="rosco-winner-avatar block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
-                            <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
-                            <div className="mt-4 p-3 bg-blue-50 rounded-2xl border-2 border-blue-100">
-                                <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Nota Final</p>
-                                <div className="text-4xl font-black text-blue-600">
-                                    {((winner.score / config.questionCount) * 10).toFixed(1)}
-                                    <span className="text-xl text-blue-300 ml-1">/ 10</span>
-                                </div>
-                            </div>
+                            <div className="rosco-score-count text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
+                            {(() => {
+                                // Solo presentación: misma fórmula que el texto de la nota
+                                const notaVisual = Math.min(10, Math.max(0, (winner.score / config.questionCount) * 10));
+                                const ringColor = notaVisual >= 8 ? '#10b981' : notaVisual >= 5 ? '#3b82f6' : '#ef4444';
+                                return (
+                                    <div className="rosco-nota-box mt-4 p-3 bg-blue-50 rounded-2xl border-2 border-blue-100" style={{ '--rosco-grade': notaVisual, '--rosco-grade-color': ringColor }}>
+                                        <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Nota Final</p>
+                                        <div className="rosco-nota-ring">
+                                            <div className="rosco-nota-value text-4xl font-black text-blue-600">
+                                                {((winner.score / config.questionCount) * 10).toFixed(1)}
+                                                <span className="text-xl text-blue-300 ml-1">/ 10</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                             {/* Puntos paralelos */}
-                            <div className="mt-4 flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-300 rounded-xl px-4 py-2">
+                            <div className="rosco-points-chip mt-4 flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-300 rounded-xl px-4 py-2">
                                 <span className="text-lg">⭐</span>
                                 <span className="text-xl font-extrabold text-amber-700">{(winner.score * 100 + Math.max(0, Math.round(300 * ((winner.timeLeft || 0) / (config.timeLimit || 300))))).toLocaleString('es-ES')}</span>
                                 <span className="text-sm font-semibold text-amber-600">puntos</span>
@@ -413,7 +426,7 @@ const RoscoUI = ({
                     ) : (
                         isTie ? (<div className="text-4xl mb-6">🤝 ¡Empate!</div>) : (
                             <div className="mb-8">
-                                <span className="block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
+                                <span className="rosco-winner-avatar block mb-2"><RoscoAvatar id={winner.icon} size={64} /></span>
                                 <h2 className="text-2xl font-bold text-gray-700">¡Ha ganado {winner.name}!</h2>
                             </div>
                         )
@@ -431,7 +444,7 @@ const RoscoUI = ({
                             ))}
                         </div>
                     )}
-                    <button onClick={restartGame} className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">{restartLabel || 'Nueva Partida'}</button>
+                    <button onClick={restartGame} className="rosco-cta bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">{restartLabel || 'Nueva Partida'}</button>
                 </div>
             </div>
         );
@@ -450,7 +463,8 @@ const RoscoUI = ({
     const borderColorClass = activePlayerIndex === 0 ? 'border-blue-100' : 'border-orange-100';
 
     return (
-        <div className="rosco-container">
+        <div className="rosco-container rosco-playing">
+            <span className="rosco-bg-fx" aria-hidden="true" />
             {showExitConfirm && (
                 <div className="exit-modal-overlay">
                     <div className="exit-modal-box">
@@ -466,6 +480,7 @@ const RoscoUI = ({
 
             {feedback && (
                 <div className={`feedback-overlay feedback-${feedback.type}`}>
+                    <span className="rosco-fb-burst" aria-hidden="true" />
                     <div className="feedback-content">{feedback.text}</div>
                 </div>
             )}
@@ -506,6 +521,7 @@ const RoscoUI = ({
             )}
 
             <div className="rosco-circle">
+                <span className="rosco-circle-ring" aria-hidden="true" />
                 {isWebcamOn ? (
                     <div className="rosco-webcam-container">
                         <video ref={videoRef} autoPlay playsInline muted className="rosco-webcam-video" />
@@ -551,7 +567,7 @@ const RoscoUI = ({
                 })}
             </div>
 
-            <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
+            <div className={`rosco-center-box rosco-glass-card relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
 
                 {/* Toolbar superior: webcam/voz a la izquierda, salir a la derecha */}
                 <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-3 pt-3 z-20">
@@ -574,7 +590,7 @@ const RoscoUI = ({
 
                 {/* Letra + tipo de pista */}
                 <div className="mt-10 mb-3 flex items-center justify-center gap-3">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <div key={currentQuestion.letra} className="rosco-letter-badge w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                         <span className="text-3xl font-black text-white font-fredoka">{currentQuestion.letra}</span>
                     </div>
                     <div className="text-left">
@@ -589,7 +605,7 @@ const RoscoUI = ({
 
                 {/* Definición */}
                 <div className="px-4 mb-4 flex-1 flex items-center">
-                    <p className="text-base md:text-lg text-gray-800 leading-relaxed text-center font-medium">{currentQuestion.definicion}</p>
+                    <p key={currentQuestion.letra} className="rosco-def-text text-base md:text-lg text-gray-800 leading-relaxed text-center font-medium">{currentQuestion.definicion}</p>
                 </div>
 
                 {/* Input + controles */}
@@ -624,4 +640,4 @@ const RoscoUI = ({
     );
 };
 
-export default RoscoUI;
+export default RoscoUI;

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, BookOpen, GraduationCap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 
 
 import './NumerosRomanos.css';
+import './SharedPremium.css';
 
 // --- UTILIDADES ---
 
@@ -117,12 +118,6 @@ const validateRomanStructure = (tiles) => {
   }
 
   return true;
-};
-
-const isValidRoman = (romanStr) => {
-  // Wrapper para mantener compatibilidad si se llama con string
-  // Pero idealmente fromRoman debería pasar array
-  return true; // Deprecated for internal array check
 };
 
 const fromRoman = (romanArray) => {
@@ -391,16 +386,22 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
     const points = computeRomanScore(correct, finalTime);
 
     return (
-      <div className="roman-container">
+      <div className="roman-container sp-shell">
         <h1 className="text-4xl mb-2"><span className="gradient-text">¡Examen completado!</span></h1>
 
-        <div className={`roman-nota ${notaColor}`}>
-          <div className="roman-nota-big">{nota.toFixed(1)}<span className="roman-nota-small">/10</span></div>
-          <div className="roman-nota-msg">{notaMsg}</div>
+        <div className={`roman-nota sp-grade-card ${notaColor}`}>
+          {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
+          <div
+            className="sp-grade-ring"
+            style={{ '--sp-grade': nota, '--sp-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444' }}
+          >
+            <div className="roman-nota-big">{nota.toFixed(1)}<span className="roman-nota-small">/10</span></div>
+          </div>
+          <div className="roman-nota-msg sp-grade-msg">{notaMsg}</div>
         </div>
 
         <div className="roman-score-row">
-          <span className="roman-score-chip points"><strong>{points.toLocaleString('es-ES')}</strong> puntos</span>
+          <span className="roman-score-chip points sp-points"><strong>{points.toLocaleString('es-ES')}</strong> puntos</span>
           <span className="roman-score-chip">{correct}/{TOTAL_TEST_QUESTIONS} aciertos</span>
           <span className="roman-score-chip">⏱ {finalTime}s</span>
         </div>
@@ -441,7 +442,7 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
 
 
 
-        <div className="controles">
+        <div className="controles sp-controls">
           <button onClick={startTest}>Repetir examen</button>
           <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
         </div>
@@ -455,17 +456,23 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
 
 
   return (
-    <div className="roman-container">
+    <div className="roman-container sp-shell">
       {/* Título dentro del contenedor blanco */}
-      <h1 className="text-4xl mb-2">
-        <span role="img" aria-label="Romanos">🏛️</span> <span className="gradient-text">{title}</span>
+      <h1 className="sp-title text-4xl mb-2">
+        <span className="sp-title-emoji" role="img" aria-label="Romanos">🏛️</span> <span className="gradient-text">{title}</span>
       </h1>
       <p className="instrucciones">Arrastra las fichas para formar el número romano correcto.</p>
 
       {/* Selectores de Modo dentro del contenedor */}
       <div className="mode-selection">
-        <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>Práctica Libre</button>
-        <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Iniciar examen</button>
+        <button className={`btn-mode sp-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>
+          <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+          Práctica Libre
+        </button>
+        <button className={`btn-mode sp-mode sp-mode--exam ${isTestMode ? 'active' : ''}`} onClick={startTest}>
+          <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
+          Iniciar examen
+        </button>
       </div>
 
       {/* Switch de Ayuda */}
@@ -491,7 +498,7 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
 
       {isTestMode && (
         <div className="roman-test-header">
-          <span className="roman-test-chip counter">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span>
+          <span key={testStats.currentIndex} className="roman-test-chip counter">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span>
           <span className="roman-test-chip timer">⏱ {elapsedTime}s</span>
         </div>
       )}
@@ -634,7 +641,7 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
         </div>
 
 
-        <div className="controles">
+        <div className="controles sp-controls">
           {isTestMode ? (
             <button onClick={checkAnswer}>
               {testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
@@ -657,4 +664,4 @@ export const NumerosRomanos5 = (props) => <NumerosRomanosGame maxNumber={3999} t
 export const NumerosRomanos6 = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" {...props} />;
 export const NumerosRomanosESO = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (ESO)" {...props} />;
 
-export default NumerosRomanosGame;
+export default NumerosRomanosGame;

@@ -79,3 +79,84 @@
         transform: rotate(0deg);
     }
 }
+/* ==========================================================================
+   Capa "premium": orbes de luz, cristal con borde de luz y halo del icono
+   ========================================================================== */
+.app-orientation-warning {
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(60% 50% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%),
+        #0f172a;
+}
+.orientation-orb {
+    position: absolute;
+    width: 70vmax;
+    height: 70vmax;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    animation: orientation-orb 16s ease-in-out infinite alternate;
+}
+.orientation-orb--a {
+    top: -35vmax;
+    left: -30vmax;
+    background: radial-gradient(circle closest-side, rgba(139, 92, 246, 0.35), transparent);
+}
+.orientation-orb--b {
+    bottom: -35vmax;
+    right: -30vmax;
+    background: radial-gradient(circle closest-side, rgba(236, 72, 153, 0.25), transparent);
+    animation-direction: alternate-reverse;
+}
+.orientation-content {
+    position: relative;
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.1) inset,
+        0 0 0 1px rgba(139, 92, 246, 0.2),
+        0 30px 70px -20px rgba(0, 0, 0, 0.7),
+        0 0 90px -30px rgba(139, 92, 246, 0.6);
+    animation: orientation-rise 0.6s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.rotate-icon-wrap {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.28), transparent 70%);
+}
+.rotate-icon-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    border: 2px dashed rgba(96, 165, 250, 0.4);
+    animation: orientation-spin 14s linear infinite;
+}
+.rotate-icon-wrap .rotate-icon { margin-bottom: 0; }
+.orientation-content h2 {
+    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes orientation-orb {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(6vmax, 5vmax, 0) scale(1.1); }
+}
+@keyframes orientation-rise {
+    from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes orientation-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .orientation-orb,
+    .rotate-icon-wrap::after,
+    .rotate-icon { animation: none; }
+}

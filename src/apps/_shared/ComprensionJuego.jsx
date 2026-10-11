@@ -216,7 +216,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
 
 
     return (
-        <div className={`comprension-container font-${currentFontStyle}`}>
+        <div className={`comprension-container cmp-shell font-${currentFontStyle}`}>
             <div className="header-zone">
                 <button
                     className="btn-material-estudio"
@@ -350,14 +350,17 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
                                 ))}
                             </div>
 
-                            <div className="nota-display-simple">
-                                <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota.toFixed(1)}</span>
-                                <span className="nota-total">/ 10</span>
+                            {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
+                            <div className={`cmp-grade-ring cmp-grade--${notaColor}`} style={{ '--cmp-grade': nota }}>
+                                <div className="nota-display-simple">
+                                    <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota.toFixed(1)}</span>
+                                    <span className="nota-total">/ 10</span>
+                                </div>
                             </div>
 
                             <p className="mensaje-motivacional-simple">{notaMsg}</p>
 
-                            <div className="comprension-points-row">
+                            <div className="comprension-points-row cmp-points">
                                 <span className="comprension-points-icon">⭐</span>
                                 <span className="comprension-points-value">{totalPoints.toLocaleString('es-ES')}</span>
                                 <span className="comprension-points-label">puntos</span>
@@ -487,4 +490,4 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     );
 };
 
-export default ComprensionJuego;
+export default ComprensionJuego;

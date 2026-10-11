@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { getRoscoData } from '../../services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
 import RoscoUI from '../_shared/RoscoUI.jsx';
@@ -32,19 +32,6 @@ const shuffle = (arr) => {
 };
 
 /**
- * Selecciona 1 pregunta por letra de un pool, priorizando variedad.
- * Si hay múltiples preguntas por letra, elige una al azar.
- */
-const pickOnePerLetter = (questions) => {
-  const byLetter = {};
-  for (const q of questions) {
-    if (!byLetter[q.letra]) byLetter[q.letra] = [];
-    byLetter[q.letra].push(q);
-  }
-  return Object.values(byLetter).map(qs => qs[Math.floor(Math.random() * qs.length)]);
-};
-
-/**
  * Mezcla preguntas de diferentes fuentes según proporciones.
  * Devuelve un pool con 1 pregunta por letra, mezclando fuentes.
  * @param {Array} sources - [{questions: [...], weight: 0.5}, ...]
@@ -60,7 +47,7 @@ const mixQuestions = (sources) => {
   }
 
   const result = [];
-  for (const [letra, candidates] of Object.entries(allByLetter)) {
+  for (const [, candidates] of Object.entries(allByLetter)) {
     // Ponderar: crear un pool expandido según weights
     const weighted = [];
     for (const c of candidates) {
@@ -318,25 +305,27 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
   // Pantalla de selección de dificultad (solo ESO y Bach)
   if (showDifficultySelector && !selectedDifficulty && !loading) {
     return (
-      <div className="rosco-container pt-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-2 text-blue-600 font-fredoka text-center">El Rosco del Saber</h1>
-        <p className="text-gray-500 text-center mb-6">Elige tu nivel de dificultad</p>
+      <div className="rosco-container rosco-screen pt-4">
+        <span className="rosco-bg-fx" aria-hidden="true" />
+        <h1 className="rosco-hero-title text-4xl md:text-5xl font-extrabold mb-2 text-blue-600 font-fredoka text-center">El Rosco del Saber</h1>
+        <p className="rosco-subtitle text-gray-500 text-center mb-6">Elige tu nivel de dificultad</p>
 
         <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 px-4">
           {DIFFICULTY_LEVELS.map((diff, i) => (
             <motion.button
               key={diff.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: i * 0.09, type: 'spring', stiffness: 260, damping: 22 }}
               onClick={() => setSelectedDifficulty(diff.id)}
-              className={`relative bg-white rounded-2xl p-5 text-left shadow-lg hover:shadow-xl border-2 ${diff.border} transition-all hover:scale-[1.03] active:scale-[0.98] group overflow-hidden`}
+              className={`rosco-diff-card rosco-diff-card--${diff.id} relative bg-white rounded-2xl p-5 text-left shadow-lg hover:shadow-xl border-2 ${diff.border} transition-all hover:scale-[1.03] active:scale-[0.98] group overflow-hidden`}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${diff.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+              <span className="rosco-diff-shine" aria-hidden="true" />
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{diff.emoji}</span>
-                  <span className="text-lg font-bold text-gray-800">{diff.label}</span>
+                  <span className="rosco-diff-icon text-2xl">{diff.emoji}</span>
+                  <span className="rosco-diff-label text-lg font-bold text-gray-800">{diff.label}</span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">{diff.description}</p>
                 {diff.id === 'experto' && (
@@ -351,7 +340,7 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
 
         {/* Info panel */}
         <div className="max-w-2xl mx-auto mt-6 px-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4">
+          <div className="rosco-info-panel bg-blue-50 border border-blue-200 rounded-2xl p-4">
             <p className="text-sm text-blue-700 font-medium mb-2">¿Cómo funcionan los niveles?</p>
             <ul className="text-xs text-blue-600 space-y-1">
               <li><strong>🟢 Principiante:</strong> Preguntas fáciles de cursos anteriores y cultura general.</li>
@@ -365,7 +354,7 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
         <div className="text-center mt-4">
           <button
             onClick={() => setSelectedDifficulty('experto')}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            className="rosco-skip-link text-xs text-gray-400 hover:text-gray-600 transition-colors"
           >
             Saltar selección (modo experto)
           </button>
@@ -377,8 +366,8 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
   // Loading
   if (loading || !data) {
     return (
-      <div className="rosco-container pt-4 flex flex-col items-center justify-center min-h-[300px]">
-        <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4" />
+      <div className="rosco-container rosco-screen pt-4 flex flex-col items-center justify-center min-h-[300px]">
+        <div className="rosco-loader w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4" />
         <p className="text-gray-500 font-medium">Cargando el rosco...</p>
       </div>
     );

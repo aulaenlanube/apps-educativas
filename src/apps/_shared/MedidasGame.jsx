@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import InstructionsModal, { InstructionsButton } from './InstructionsModal';
+import { BookOpen, GraduationCap } from 'lucide-react';
 import './Medidas.css';
+import './SharedPremium.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
 const MAX_DIGITS_LIMIT = 99999;
@@ -487,30 +489,32 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                     : 'Necesitas repasar';
 
         return (
-            <div className={`medidas-container theme-${measureType}`}>
+            <div className={`medidas-container sp-shell theme-${measureType}`}>
                 <h1><span className="gradient-text">Resultados</span></h1>
 
                 <div className="med-result-hero">
-                    <div className="med-nota-block" style={{ borderColor: notaColor }}>
+                    <div className="med-nota-block sp-grade-card" style={{ borderColor: notaColor }}>
                         <div className="med-nota-label">Tu nota</div>
-                        <div className="med-nota-value" style={{ color: notaColor }}>
-                            {nota.toFixed(1)}<span className="med-nota-max">/10</span>
+                        <div className="sp-grade-ring" style={{ '--sp-grade': nota, '--sp-grade-color': notaColor }}>
+                            <div className="med-nota-value" style={{ color: notaColor }}>
+                                {nota.toFixed(1)}<span className="med-nota-max">/10</span>
+                            </div>
                         </div>
-                        <div className="med-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
+                        <div className="med-nota-msg sp-grade-msg" style={{ color: notaColor }}>{notaMsg}</div>
                     </div>
                     <div className="med-stats-block">
-                        <div className="med-stat">
+                        <div className="med-stat sp-points">
                             <span className="med-stat-label">Aciertos</span>
                             <span className="med-stat-value">{testStats.score} / {TOTAL_TEST_QUESTIONS}</span>
                         </div>
-                        <div className="med-stat">
+                        <div className="med-stat sp-points">
                             <span className="med-stat-label">Puntos</span>
                             <span className="med-stat-value">{testStats.points}</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
+                <div className="sp-results text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
                     {testStats.answers.map((ans, idx) => (
                         <div key={idx} className={`p-3 mb-2 rounded border ${ans.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
                             <div className="flex justify-between items-center text-lg">
@@ -522,7 +526,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                         </div>
                     ))}
                 </div>
-                <div className="controles">
+                <div className="controles sp-controls">
                     <button onClick={startTest}>Repetir Examen</button>
                     <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
                 </div>
@@ -533,7 +537,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
     // VISTAS DE CONFIGURACIÓN (solo si no vienen forzadas type+mode)
     if (phase === 'setup' && !(forcedType && forcedMode)) {
         return (
-            <div className={`medidas-container medidas-setup-screen theme-${measureType}`}>
+            <div className={`medidas-container medidas-setup-screen sp-shell theme-${measureType}`}>
                 <h1><span className="gradient-text">{title}</span></h1>
 
                 {!forcedType && (
@@ -556,13 +560,13 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                     <>
                         <p className="instrucciones">Pulsa para empezar.</p>
                         <div className="mode-options">
-                            <button className="btn-setup-mode" onClick={() => {
+                            <button className="btn-setup-mode sp-choice" onClick={() => {
                                 if (forcedMode === 'ordenar') {
                                     setOrderCount(orderCountForLevel(level));
                                 }
                                 setPhase('play');
                             }}>
-                                <div className="mode-icon">{forcedMode === 'comparar' ? '⚖️' : '🔢'}</div>
+                                <div className="mode-icon sp-choice-icon">{forcedMode === 'comparar' ? '⚖️' : '🔢'}</div>
                                 <div className="mode-name">{forcedMode === 'comparar' ? 'Comparar' : 'Ordenar'}</div>
                                 <div className="mode-desc">{forcedMode === 'comparar' ? '¿Mayor, Menor o Igual?' : 'De menor a mayor'}</div>
                             </button>
@@ -572,13 +576,13 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                     <>
                         <p className="instrucciones">¿Qué quieres practicar hoy?</p>
                         <div className="mode-options">
-                            <button className="btn-setup-mode" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
-                                <div className="mode-icon">⚖️</div>
+                            <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
+                                <div className="mode-icon sp-choice-icon">⚖️</div>
                                 <div className="mode-name">Comparar</div>
                                 <div className="mode-desc">¿Mayor, Menor o Igual?</div>
                             </button>
-                            <button className="btn-setup-mode" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
-                                <div className="mode-icon">🔢</div>
+                            <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
+                                <div className="mode-icon sp-choice-icon">🔢</div>
                                 <div className="mode-name">Ordenar</div>
                                 <div className="mode-desc">De menor a mayor</div>
                             </button>
@@ -591,12 +595,12 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
 
     if (phase === 'quantity') {
         return (
-            <div className={`medidas-container medidas-setup-screen theme-${measureType}`}>
+            <div className={`medidas-container medidas-setup-screen sp-shell theme-${measureType}`}>
                 <h1><span className="gradient-text">¿Cuántos valores?</span></h1>
                 <p className="instrucciones">Selecciona la cantidad de elementos para ordenar:</p>
                 <div className="quantity-options">
                     {[3, 4, 5].map(n => (
-                        <button key={n} className="btn-quantity" onClick={() => { setOrderCount(n); setPhase('play'); }}>
+                        <button key={n} className="btn-quantity sp-choice" onClick={() => { setOrderCount(n); setPhase('play'); }}>
                             {n}
                         </button>
                     ))}
@@ -607,7 +611,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
     }
 
     return (
-        <div className={`medidas-container theme-${measureType}`}>
+        <div className={`medidas-container sp-shell theme-${measureType}`}>
             <div className="medidas-game-header">
                 {!(forcedType && forcedMode) && (
                     <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
@@ -620,8 +624,14 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
 
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 px-4">
                 <div className="mode-selection test-toggle mb-0">
-                    <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>Práctica</button>
-                    <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Examen</button>
+                    <button className={`btn-mode sp-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>
+                        <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+                        Práctica
+                    </button>
+                    <button className={`btn-mode sp-mode sp-mode--exam ${isTestMode ? 'active' : ''}`} onClick={startTest}>
+                        <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
+                        Examen
+                    </button>
                 </div>
 
                 {!isTestMode && (
@@ -667,7 +677,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                 </div>
             )}
 
-            {isTestMode && <div className="text-right text-sm text-gray-500 font-bold mb-2">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>}
+            {isTestMode && <div className="text-right text-sm text-gray-500 font-bold mb-2"><span key={testStats.currentIndex} className="sp-q-chip">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span></div>}
 
             {/* ZONA DE JUEGO */}
             {gameMode === 'comparar' ? (
@@ -715,7 +725,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
             )}
 
             {!isTestMode && feedback.text && (
-                <div className={`feedback-message ${feedback.type}`}>{feedback.text}</div>
+                <div key={feedback.text} className={`feedback-message sp-fb ${feedback.type}`}>{feedback.text}</div>
             )}
 
             {gameMode === 'comparar' ? (
@@ -730,7 +740,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                 </div>
             )}
 
-            <div className="controles">
+            <div className="controles sp-controls">
                 {isTestMode ? (
                     <button onClick={checkAnswer}>
                         {testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
@@ -803,4 +813,4 @@ export const CapacidadComparar = (props) => <MedidasGame {...props} forcedType="
 export const CapacidadOrdenar = (props) => <MedidasGame {...props} forcedType="capacidad" forcedMode="ordenar" title="Capacidad: Ordenar" />;
 
 export { generateProblemData, generateOrderProblemManual };
-export default MedidasGame;
+export default MedidasGame;

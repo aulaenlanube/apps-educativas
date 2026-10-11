@@ -310,3 +310,83 @@ input[type="range"].font-slider::-moz-range-thumb {
     gap: 20px;
     margin-top: 30px;
 }
+/* ==========================================================================
+   Capa "premium" propia del Detective de Palabras (utilidades comunes sp-*
+   en SharedPremium.css). Tono "lupa": ámbar cálido + violeta.
+   ========================================================================== */
+
+.detective-container.sp-shell {
+    --sp-a1: #f59e0b;
+    --sp-a2: #8b5cf6;
+    --sp-a3: #ec4899;
+    --sp-a4: #fbbf24;
+}
+
+.detective-container .detective-frase-container {
+    background:
+        radial-gradient(140% 100% at 50% 0%, rgba(251, 191, 36, 0.16), transparent 60%),
+        #fffbeb;
+    border-color: rgba(245, 158, 11, 0.45);
+}
+
+/* Letras: pequeño realce al pasar (lupa) — solo transform, son pocas */
+.detective-letra {
+    transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1), color 0.2s, text-shadow 0.2s;
+}
+.detective-letra:hover {
+    transform: translateY(-3px) scale(1.12);
+    color: #7c3aed;
+    text-shadow: 0 6px 14px rgba(124, 58, 237, 0.35);
+}
+
+/* Separadores con brillo y entrada elástica */
+.detective-separador {
+    background: linear-gradient(180deg, #fb7185, #e11d48);
+    box-shadow: 0 0 10px rgba(225, 29, 72, 0.45);
+    animation: detective-sep-in 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.detective-separador.correcto {
+    background: linear-gradient(180deg, #4ade80, #16a34a);
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+}
+.detective-separador.incorrecto {
+    background: linear-gradient(180deg, #f87171, #dc2626);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+}
+
+.detective-feedback.correcto,
+.detective-feedback.incorrecto { border-radius: 999px; padding: 10px 20px; }
+.detective-container .detect-puntos { border-radius: 999px; }
+
+.detective-container .font-slider-container { border-radius: 16px; }
+.detective-container input[type="range"].font-slider {
+    background: linear-gradient(90deg, #fbbf24, #f472b6, #a78bfa);
+}
+
+/* Modo oscuro */
+html.dark .detective-container .detective-frase-container {
+    background: radial-gradient(140% 100% at 50% 0%, rgba(251, 191, 36, 0.14), transparent 60%), rgba(245, 158, 11, 0.06);
+    border-color: rgba(251, 191, 36, 0.35);
+}
+html.dark .detective-letra:hover { color: #c4b5fd; }
+html.dark .detective-container .instrucciones { color: var(--app-text-secondary); }
+html.dark .detective-container .font-slider-container {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+html.dark .detective-container .font-slider-labels { color: var(--app-text-secondary); }
+html.dark .detective-feedback.correcto { background-color: rgba(16, 185, 129, 0.16); color: #6ee7b7; }
+html.dark .detective-feedback.incorrecto { background-color: rgba(239, 68, 68, 0.16); color: #fca5a5; }
+html.dark .detect-nota.excellent { background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.08)); }
+html.dark .detect-nota.good { background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(59, 130, 246, 0.08)); }
+html.dark .detect-nota.fail { background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(239, 68, 68, 0.08)); }
+
+@keyframes detective-sep-in {
+    0%   { transform: scaleY(0); opacity: 0; }
+    70%  { transform: scaleY(1.15); opacity: 1; }
+    100% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .detective-separador { animation: none; }
+}

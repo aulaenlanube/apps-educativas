@@ -435,3 +435,122 @@ input[type="range"].font-slider::-moz-range-thumb {
     border: 3px solid white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+/* ==========================================================================
+   Capa "premium" propia de Ordena la Frase (las utilidades comunes sp-*
+   viven en SharedPremium.css). Prefijo/scope: .ordena-frase-container
+   ========================================================================== */
+
+.ordena-frase-container .zona-destino {
+    background:
+        radial-gradient(120% 100% at 0% 0%, rgba(16, 185, 129, 0.10), transparent 60%),
+        #ecfdf5;
+    border-color: rgba(16, 185, 129, 0.45);
+}
+.ordena-frase-container .zona-origen {
+    background:
+        radial-gradient(120% 100% at 100% 0%, rgba(245, 158, 11, 0.12), transparent 60%),
+        #fff7ed;
+    border-color: rgba(245, 158, 11, 0.45);
+}
+
+/* Fichas de palabra: relieve + brillo + entrada con rebote al cambiar de zona */
+.ordena-frase-container .palabra {
+    border-radius: 14px;
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%),
+        var(--app-bg);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 -3px 0 rgba(139, 92, 246, 0.08) inset,
+        0 6px 14px -8px rgba(49, 46, 129, 0.45);
+    transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, border-color 0.2s, opacity 0.2s;
+    animation: ordena-chip-in 0.4s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.ordena-frase-container .palabra:hover {
+    transform: translateY(-3px) scale(1.04);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 3px rgba(139, 92, 246, 0.12),
+        0 14px 24px -12px rgba(124, 58, 237, 0.6);
+}
+.ordena-frase-container .palabra:active { transform: scale(0.96); }
+.ordena-frase-container .zona-destino .palabra {
+    border-color: rgba(16, 185, 129, 0.35);
+}
+.ordena-frase-container .palabra.dragging { transform: scale(0.95); }
+
+.palabra-clone {
+    border-radius: 14px;
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18), 0 18px 34px -10px rgba(76, 29, 149, 0.55);
+}
+
+/* Slider de tipografía con pista de color */
+.ordena-frase-container .font-slider-container {
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(241, 245, 249, 0.7));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+}
+.ordena-frase-container input[type="range"].font-slider {
+    background: linear-gradient(90deg, #a78bfa, #f472b6, #fbbf24);
+}
+.ordena-frase-container input[type="range"].font-slider::-webkit-slider-thumb {
+    background: linear-gradient(160deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2), 0 4px 10px rgba(76, 29, 149, 0.4);
+    transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1);
+}
+.ordena-frase-container input[type="range"].font-slider:active::-webkit-slider-thumb { transform: scale(1.15); }
+
+#feedback.correcta,
+#feedback.incorrecta { border-radius: 999px; padding: 10px 20px; }
+
+.ordena-frase-container .caja-solucion {
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(99, 102, 241, 0.08));
+    border-color: rgba(14, 165, 233, 0.3);
+    color: var(--app-text);
+}
+
+/* Resultado: tarjeta de nota más luminosa */
+.ordena-frase-container .ordena-nota { padding: 1.5rem 1rem 1.25rem; }
+.ordena-frase-container .ordena-puntos,
+.ordena-frase-container .ordena-tiempo { border-radius: 999px; }
+
+/* Modo oscuro */
+html.dark .ordena-frase-container .zona-destino {
+    background: radial-gradient(120% 100% at 0% 0%, rgba(16, 185, 129, 0.16), transparent 60%), rgba(16, 185, 129, 0.06);
+    border-color: rgba(52, 211, 153, 0.35);
+}
+html.dark .ordena-frase-container .zona-origen {
+    background: radial-gradient(120% 100% at 100% 0%, rgba(245, 158, 11, 0.16), transparent 60%), rgba(245, 158, 11, 0.06);
+    border-color: rgba(251, 191, 36, 0.35);
+}
+html.dark .ordena-frase-container .palabra {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%), var(--app-bg-elevated);
+    border-color: rgba(167, 139, 250, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 6px 14px -8px rgba(0, 0, 0, 0.6);
+}
+html.dark .ordena-frase-container .instrucciones { color: var(--app-text-secondary); }
+html.dark .ordena-frase-container .font-slider-container {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+html.dark .ordena-frase-container .font-slider-labels { color: var(--app-text-secondary); }
+html.dark #feedback.correcta { background-color: rgba(16, 185, 129, 0.16); color: #6ee7b7; }
+html.dark #feedback.incorrecta { background-color: rgba(239, 68, 68, 0.16); color: #fca5a5; }
+html.dark .ordena-frase-container .ordena-nota.excellent { background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.08)); }
+html.dark .ordena-frase-container .ordena-nota.good { background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(59, 130, 246, 0.08)); }
+html.dark .ordena-frase-container .ordena-nota.fail { background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(239, 68, 68, 0.08)); }
+
+@keyframes ordena-chip-in {
+    0%   { opacity: 0; transform: scale(0.7) translateY(6px); }
+    70%  { opacity: 1; transform: scale(1.06); }
+    100% { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ordena-frase-container .palabra { animation: none; }
+}

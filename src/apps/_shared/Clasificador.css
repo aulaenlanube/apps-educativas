@@ -1,0 +1,269 @@
+/* ==========================================================================
+   Clasificador — capa visual "premium" (prefijo clf-*)
+   La app es Tailwind + framer-motion: muchos elementos tienen transform
+   inline de framer, así que aquí solo se añaden sombras, luz, bordes y
+   pseudo-elementos decorativos (nunca transform sobre elementos animados
+   por framer).
+   ========================================================================== */
+
+/* Paneles de cristal (selección de modo y resultados) */
+.clf-glass {
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 0 0 1px rgba(99, 102, 241, 0.1),
+    0 34px 80px -34px rgba(49, 46, 129, 0.6),
+    0 0 90px -40px rgba(236, 72, 153, 0.5) !important;
+}
+/* Banda de aurora superior */
+.clf-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #8b5cf6, #6366f1);
+  background-size: 300% 100%;
+  animation: clf-pan 8s linear infinite;
+  pointer-events: none;
+}
+/* Orbes de luz detrás del contenido */
+.clf-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(300px 220px at 0% 0%, rgba(139, 92, 246, 0.16), transparent 70%),
+    radial-gradient(280px 220px at 100% 100%, rgba(245, 158, 11, 0.14), transparent 70%);
+}
+
+/* Icono principal con halo que respira */
+.clf-icon-halo {
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 16px 30px -10px rgba(79, 70, 229, 0.75) !important;
+}
+.clf-icon-halo::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 22px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 70%);
+  z-index: -1;
+  animation: clf-halo 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Tarjetas de modo con identidad: práctica verde · examen rojo */
+.clf-mode {
+  --clf-mode: #10b981;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 18px 36px -22px var(--clf-mode) !important;
+}
+.clf-mode--exam { --clf-mode: #ef4444; }
+.clf-mode:disabled { --clf-mode: #94a3b8; }
+.clf-mode::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--clf-mode);
+  box-shadow: 0 0 14px var(--clf-mode);
+  pointer-events: none;
+}
+.clf-mode:hover:not(:disabled) {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 0 0 3px color-mix(in srgb, var(--clf-mode) 22%, transparent),
+    0 26px 48px -20px var(--clf-mode) !important;
+}
+.clf-mode:hover:not(:disabled)::before { background: rgba(255, 255, 255, 0.8); }
+.clf-mode:focus-visible { outline: 3px solid var(--clf-mode); outline-offset: 3px; }
+/* Barrido de luz al pasar el ratón */
+.clf-mode::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(0) rotate(12deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.clf-mode:hover:not(:disabled)::after {
+  opacity: 1;
+  transform: translateX(450%) rotate(12deg);
+  transition: transform 0.9s cubic-bezier(.22, 1, .36, 1), opacity 0.15s;
+}
+.clf-mode-icon {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--clf-mode) 14%, transparent), 0 10px 20px -10px var(--clf-mode);
+}
+
+/* HUD de partida */
+.clf-hud {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 14px 30px -20px rgba(49, 46, 129, 0.55) !important;
+}
+
+/* Barra de progreso con brillo que recorre */
+.clf-progress-fill {
+  position: relative;
+  overflow: hidden;
+}
+.clf-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+  background-size: 200% 100%;
+  animation: clf-bar-shine 2.2s linear infinite;
+}
+
+/* Tarjeta de la palabra: luz interior + glow de acierto/fallo */
+.clf-word-card {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(99, 102, 241, 0.08), transparent 60%),
+    #ffffff;
+}
+.clf-word-card--correct { animation: clf-glow-ok 0.9s ease-out; }
+.clf-word-card--incorrect { animation: clf-glow-ko 0.9s ease-out; }
+
+/* Botones de categoría: relieve 3D (el transform lo gestionan otros) */
+.clf-cat-btn {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 -4px 0 rgba(15, 23, 42, 0.08) inset,
+    0 12px 22px -14px rgba(15, 23, 42, 0.45) !important;
+}
+.clf-cat-btn:hover:not(:disabled) {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 -4px 0 rgba(0, 0, 0, 0.15) inset,
+    0 18px 30px -14px rgba(15, 23, 42, 0.55) !important;
+}
+.clf-cat-btn:focus-visible { outline: 3px solid rgba(99, 102, 241, 0.6); outline-offset: 3px; }
+
+/* Resultados */
+.clf-trophy { filter: drop-shadow(0 10px 24px rgba(250, 204, 21, 0.65)); }
+.clf-grade-card {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 18px 40px -26px rgba(15, 23, 42, 0.5);
+}
+.clf-grade-ring {
+  --clf-grade: 0;
+  --clf-grade-color: #3b82f6;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 168px;
+  height: 168px;
+  margin: 20px auto 14px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, #ffffff 80%, transparent 81% 100%),
+    conic-gradient(var(--clf-grade-color) calc(var(--clf-grade) * 36deg), rgba(148, 163, 184, 0.25) 0);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.6), 0 0 46px -6px var(--clf-grade-color);
+  animation: clf-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.2s backwards;
+}
+.clf-grade-ring::after {
+  content: '';
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+  border: 2px dashed var(--clf-grade-color);
+  opacity: 0.32;
+  animation: clf-spin 18s linear infinite;
+  pointer-events: none;
+}
+.clf-grade-ring .clf-grade-value {
+  font-size: 2.6rem;
+  white-space: nowrap;
+  text-shadow: 0 4px 18px color-mix(in srgb, var(--clf-grade-color) 40%, transparent);
+}
+.clf-grade-ring .clf-grade-value span { font-size: 1.1rem; }
+.clf-stat {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 12px 26px -18px rgba(79, 70, 229, 0.6);
+  animation: clf-pop 0.55s cubic-bezier(.34, 1.56, .64, 1) 0.5s backwards;
+}
+.clf-stat--points {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 12px 26px -18px rgba(16, 185, 129, 0.7);
+  animation-delay: 0.62s;
+}
+.clf-cta {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.18) inset,
+    0 18px 32px -14px rgba(79, 70, 229, 0.8) !important;
+}
+
+/* Modo oscuro (index.css ya oscurece bg-white y compañía) */
+html.dark .clf-word-card {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(99, 102, 241, 0.16), transparent 60%),
+    #1e1b37;
+}
+html.dark .clf-grade-ring {
+  background:
+    radial-gradient(closest-side, #1e1b37 80%, transparent 81% 100%),
+    conic-gradient(var(--clf-grade-color) calc(var(--clf-grade) * 36deg), rgba(148, 163, 184, 0.2) 0);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.04), 0 0 46px -6px var(--clf-grade-color);
+}
+html.dark .clf-glass,
+html.dark .clf-hud { box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.06) inset, 0 34px 80px -34px rgba(0, 0, 0, 0.8) !important; }
+
+@keyframes clf-pan { to { background-position: 300% 0; } }
+@keyframes clf-halo {
+  0%, 100% { opacity: 0.5; transform: scale(0.95); }
+  50%      { opacity: 1; transform: scale(1.12); }
+}
+@keyframes clf-bar-shine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+@keyframes clf-glow-ok {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 25px 50px -12px rgba(16, 185, 129, 0.35); }
+  100% { box-shadow: 0 0 0 26px rgba(16, 185, 129, 0), 0 25px 50px -12px rgba(16, 185, 129, 0.35); }
+}
+@keyframes clf-glow-ko {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55), 0 25px 50px -12px rgba(239, 68, 68, 0.3); }
+  100% { box-shadow: 0 0 0 22px rgba(239, 68, 68, 0), 0 25px 50px -12px rgba(239, 68, 68, 0.3); }
+}
+@keyframes clf-ring-in {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes clf-spin { to { transform: rotate(360deg); } }
+@keyframes clf-pop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  70%  { opacity: 1; transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 720px) {
+  .clf-grade-ring { width: 140px; height: 140px; }
+  .clf-grade-ring .clf-grade-value { font-size: 2.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clf-glass::before,
+  .clf-icon-halo::after,
+  .clf-progress-fill::after,
+  .clf-grade-ring::after,
+  .clf-word-card--correct,
+  .clf-word-card--incorrect { animation: none; }
+  .clf-grade-ring,
+  .clf-stat { animation-duration: 0.01ms; animation-delay: 0s; }
+}

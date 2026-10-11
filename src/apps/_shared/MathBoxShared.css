@@ -250,3 +250,589 @@
 
 /* Labels */
 #app-container label { color: var(--app-text-secondary); }
+
+/* ==========================================================================
+   Capa "premium" de las apps de operaciones (sumas, restas, multi, divis.)
+   Todo va acotado a #app-container (las clases .box/.btn-mode/.progress-bar
+   son genéricas y este CSS es global). Solo acabado visual: mismo layout,
+   mismos nombres de clase. Prefijo propio: math-*
+   ========================================================================== */
+
+#app-container {
+  isolation: isolate;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--app-border-light) 70%, transparent);
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.06), transparent 60%),
+    radial-gradient(100% 60% at 100% 100%, rgba(236, 72, 153, 0.05), transparent 60%),
+    var(--app-bg);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
+    0 0 0 1px rgba(139, 92, 246, 0.08),
+    0 30px 70px -32px rgba(49, 46, 129, 0.55),
+    0 10px 24px -14px rgba(15, 23, 42, 0.25);
+  animation: math-rise 0.6s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+html.dark #app-container {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 70px -30px rgba(0, 0, 0, 0.8),
+    0 0 80px -40px rgba(139, 92, 246, 0.6);
+}
+/* Banda de aurora superior */
+#app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #8b5cf6, #6366f1);
+  background-size: 300% 100%;
+  animation: math-pan 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Fondo decorativo: orbes difusos + rejilla sutil */
+.math-bg-fx {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+}
+.math-bg-fx::before,
+.math-bg-fx::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: math-orb 22s ease-in-out infinite alternate;
+}
+.math-bg-fx::before {
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle closest-side, rgba(139, 92, 246, 0.22), transparent);
+}
+.math-bg-fx::after {
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle closest-side, rgba(245, 158, 11, 0.18), transparent);
+  animation-duration: 28s;
+  animation-direction: alternate-reverse;
+}
+
+#app-container .math-header { animation: math-rise 0.6s cubic-bezier(.22, 1, .36, 1) 0.05s backwards; }
+#app-container .math-title-emoji {
+  display: inline-block;
+  animation: math-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(124, 58, 237, 0.25));
+}
+#app-container h1 .gradient-text {
+  filter: drop-shadow(0 4px 14px rgba(139, 92, 246, 0.25));
+}
+
+/* El modal de instrucciones vive dentro de #app-container: "#app-container h2"
+   (azul #005a9c) le ganaba al título del modal y en oscuro no se leía */
+#app-container .instr-modal-title { color: #1e1b4b; font-size: 1.5rem; }
+html.dark #app-container .instr-modal-title { color: #f5f3ff; }
+
+/* --- Selector de modo (Práctica = verde · Examen = rojo) --- */
+#app-container .mode-selection {
+  flex-wrap: wrap;
+  animation: math-rise 0.6s cubic-bezier(.22, 1, .36, 1) 0.1s backwards;
+}
+#app-container .math-mode-btn {
+  --math-mode: #10b981;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 11px 22px 11px 12px;
+  border: 1.5px solid color-mix(in srgb, var(--math-mode) 35%, var(--app-btn-border));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0)),
+    var(--app-bg-surface);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 8px 18px -12px color-mix(in srgb, var(--math-mode) 80%, transparent);
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+#app-container .math-mode-btn--exam { --math-mode: #ef4444; }
+#app-container .math-mode-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--math-mode) 75%, white), var(--math-mode));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--math-mode) 18%, transparent), 0 6px 14px -4px var(--math-mode);
+  transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+#app-container .math-mode-btn:hover,
+#app-container .math-mode-btn.active,
+#app-container .math-mode-btn.is-current {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--math-mode) 80%, white), var(--math-mode));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.12) inset,
+    0 14px 28px -12px var(--math-mode);
+}
+#app-container .math-mode-btn:hover { transform: translateY(-3px) scale(1.03); }
+#app-container .math-mode-btn:hover .math-mode-icon { transform: rotate(-10deg) scale(1.1); }
+#app-container .math-mode-btn:active { transform: translateY(1px) scale(0.97); }
+#app-container .math-mode-btn:hover .math-mode-icon,
+#app-container .math-mode-btn.active .math-mode-icon,
+#app-container .math-mode-btn.is-current .math-mode-icon {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+/* --- Interruptor de ayuda --- */
+#app-container .math-options {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+#app-container .math-toggle-label {
+  font-weight: 500;
+  color: var(--app-text-secondary);
+  font-size: 0.95em;
+}
+#app-container .math-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.18) inset;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+#app-container .math-toggle.is-on {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.2) inset, 0 0 16px -2px rgba(99, 102, 241, 0.7);
+}
+#app-container .math-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.3);
+  transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+#app-container .math-toggle.is-on .math-toggle-knob { transform: translateX(24px); }
+#app-container .math-toggle:focus-visible { outline: 3px solid rgba(167, 139, 250, 0.75); outline-offset: 3px; }
+
+/* --- Cajas de dígitos --- */
+#app-container .box:not(.carry-box) { border-radius: 10px; }
+#app-container .box {
+  box-shadow: 0 2px 5px -2px rgba(15, 23, 42, 0.15) inset;
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), border-color 0.2s, background-color 0.2s, box-shadow 0.25s;
+}
+#app-container .box:hover:not(.selected):not(.disabled) {
+  border-color: var(--app-box-selected-border);
+  transform: translateY(-2px);
+}
+#app-container .box.filled {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 6px 12px -8px rgba(15, 23, 42, 0.35);
+  animation: math-digit-in 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+#app-container .box.selected {
+  box-shadow:
+    0 0 0 4px rgba(59, 130, 246, 0.18),
+    0 0 22px -2px rgba(59, 130, 246, 0.55);
+  transform: scale(1.08);
+}
+#app-container .box.correct {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.18), 0 8px 18px -8px rgba(46, 204, 113, 0.8);
+  animation: math-pop 0.45s cubic-bezier(.34, 1.56, .64, 1);
+}
+#app-container .box.incorrect {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.18), 0 8px 18px -8px rgba(231, 76, 60, 0.8);
+  animation: math-shake 0.45s cubic-bezier(.36, .07, .19, .97);
+}
+html.dark #app-container .box.correct { background-color: rgba(16, 185, 129, 0.16); }
+html.dark #app-container .box.incorrect { background-color: rgba(239, 68, 68, 0.16); }
+
+/* Cajas de la división (mismo lenguaje) */
+#app-container .division-box {
+  border-radius: 10px;
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), border-color 0.2s, background-color 0.2s, box-shadow 0.25s;
+}
+#app-container .division-box.selected {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2), 0 0 22px -2px rgba(59, 130, 246, 0.55);
+}
+#app-container .division-box.correct {
+  box-shadow: 0 8px 18px -8px rgba(34, 197, 94, 0.8);
+  animation: math-pop 0.45s cubic-bezier(.34, 1.56, .64, 1);
+}
+#app-container .division-box.incorrect {
+  box-shadow: 0 8px 18px -8px rgba(239, 68, 68, 0.8);
+  animation: math-shake 0.45s cubic-bezier(.36, .07, .19, .97);
+}
+html.dark #app-container .division-box.correct { background-color: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+html.dark #app-container .division-box.incorrect { background-color: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+#app-container .multiplication-table-panel {
+  border-radius: 18px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 18px 36px -22px rgba(49, 46, 129, 0.6);
+}
+
+/* Operador y raya con un toque de luz */
+#app-container .operator { text-shadow: 0 4px 14px color-mix(in srgb, var(--app-operator) 45%, transparent); }
+
+/* --- Paleta numérica: fichas 3D --- */
+#app-container #number-palette {
+  border-radius: 20px;
+  border: 1px solid var(--app-border-light);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)),
+    var(--app-bg-elevated);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 14px 30px -22px rgba(15, 23, 42, 0.45);
+}
+#app-container .number-tile {
+  position: relative;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 50%),
+    linear-gradient(160deg, color-mix(in srgb, var(--app-tile-bg) 80%, white), var(--app-tile-bg));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 -4px 0 rgba(0, 0, 0, 0.18) inset,
+    0 8px 16px -8px color-mix(in srgb, var(--app-tile-bg) 85%, transparent);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, filter 0.2s;
+  animation: math-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+#app-container .number-tile:nth-child(1)  { animation-delay: 0.10s; }
+#app-container .number-tile:nth-child(2)  { animation-delay: 0.13s; }
+#app-container .number-tile:nth-child(3)  { animation-delay: 0.16s; }
+#app-container .number-tile:nth-child(4)  { animation-delay: 0.19s; }
+#app-container .number-tile:nth-child(5)  { animation-delay: 0.22s; }
+#app-container .number-tile:nth-child(6)  { animation-delay: 0.25s; }
+#app-container .number-tile:nth-child(7)  { animation-delay: 0.28s; }
+#app-container .number-tile:nth-child(8)  { animation-delay: 0.31s; }
+#app-container .number-tile:nth-child(9)  { animation-delay: 0.34s; }
+#app-container .number-tile:nth-child(10) { animation-delay: 0.37s; }
+#app-container .number-tile:hover {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 50%),
+    linear-gradient(160deg, color-mix(in srgb, var(--app-tile-hover) 75%, white), var(--app-tile-hover));
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 -4px 0 rgba(0, 0, 0, 0.18) inset,
+    0 14px 24px -10px color-mix(in srgb, var(--app-tile-bg) 95%, transparent);
+}
+#app-container .number-tile:active {
+  transform: translateY(1px) scale(0.95);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 -1px 0 rgba(0, 0, 0, 0.18) inset, 0 4px 8px -6px rgba(15, 23, 42, 0.5);
+}
+
+/* --- Botones de control --- */
+#app-container #controls button,
+#app-container .btn-test {
+  position: relative;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+    0 10px 20px -10px rgba(15, 23, 42, 0.5);
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, filter 0.2s;
+}
+#app-container #check-button {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--app-btn-check-bg) 75%, white), var(--app-btn-check-bg));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 -3px 0 rgba(0, 0, 0, 0.15) inset, 0 10px 22px -10px var(--app-btn-check-bg);
+}
+#app-container #new-problem-button {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--app-btn-new-bg) 75%, white), var(--app-btn-new-bg));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 -3px 0 rgba(0, 0, 0, 0.15) inset, 0 10px 22px -10px var(--app-btn-new-bg);
+}
+#app-container .btn-test {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--app-btn-test-bg) 75%, white), var(--app-btn-test-bg));
+}
+#app-container #controls button:hover,
+#app-container .btn-test:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.05);
+}
+#app-container #controls button:active,
+#app-container .btn-test:active { transform: translateY(1px) scale(0.97); }
+#app-container button:focus-visible,
+#app-container .number-tile:focus-visible {
+  outline: 3px solid rgba(167, 139, 250, 0.8);
+  outline-offset: 2px;
+}
+
+/* --- Feedback de práctica --- */
+#app-container #feedback-message.feedback-correct,
+#app-container #feedback-message.feedback-incorrect {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+#app-container #feedback-message.feedback-correct {
+  background: color-mix(in srgb, var(--app-correct) 14%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--app-correct) 35%, transparent), 0 10px 24px -12px var(--app-correct);
+  animation: math-pop 0.45s cubic-bezier(.34, 1.56, .64, 1), math-glow-ok 1.2s ease-out;
+}
+#app-container #feedback-message.feedback-incorrect {
+  background: color-mix(in srgb, var(--app-incorrect) 12%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--app-incorrect) 35%, transparent), 0 10px 24px -12px var(--app-incorrect);
+  animation: math-shake 0.45s cubic-bezier(.36, .07, .19, .97);
+}
+
+/* --- Examen: chip de pregunta y barra con brillo --- */
+#app-container .math-test-header { justify-content: center; }
+#app-container .math-q-chip {
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: #5b21b6;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 8px 18px -12px rgba(139, 92, 246, 0.8);
+  animation: math-pop 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+html.dark #app-container .math-q-chip { color: #ddd6fe; }
+#app-container .math-progress {
+  height: 12px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15) inset;
+}
+#app-container .math-progress .progress-bar {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.6);
+  transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+#app-container .math-progress .progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+  background-size: 200% 100%;
+  animation: math-bar-shine 2.2s linear infinite;
+}
+
+/* --- Resultados: nota héroe + puntos --- */
+#app-container .math-grade-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+#app-container .math-grade-label {
+  font-size: 0.85em;
+  color: var(--app-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  animation: math-rise 0.5s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+#app-container .math-grade-ring {
+  --math-grade: 0;
+  --math-grade-color: #2563eb;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, var(--app-bg) 80%, transparent 81% 100%),
+    conic-gradient(var(--math-grade-color) calc(var(--math-grade) * 36deg), color-mix(in srgb, var(--app-border) 45%, transparent) 0);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--math-grade-color) 10%, transparent),
+    0 0 50px -8px var(--math-grade-color);
+  animation: math-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.1s backwards;
+}
+#app-container .math-grade-ring::after {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 2px dashed var(--math-grade-color);
+  opacity: 0.3;
+  animation: math-spin 18s linear infinite;
+  pointer-events: none;
+}
+#app-container .math-grade-value {
+  font-family: 'Fredoka One', 'Fredoka', cursive;
+  font-size: 2.8em;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 4px 18px color-mix(in srgb, var(--math-grade-color) 40%, transparent);
+}
+#app-container .math-grade-max {
+  font-size: 0.42em;
+  color: var(--app-text-secondary);
+  margin-left: 2px;
+}
+#app-container .math-grade-msg {
+  font-weight: 700;
+  font-size: 1.15em;
+  animation: math-rise 0.5s cubic-bezier(.22, 1, .36, 1) 0.5s backwards;
+}
+#app-container .math-points-card {
+  max-width: 360px;
+  margin: 0 auto 16px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95em;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, #8b5cf6 22%, var(--app-border-light));
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.06) 60%, rgba(245, 158, 11, 0.07)),
+    var(--app-card-bg, #f8fafc);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 18px 36px -24px rgba(124, 58, 237, 0.7);
+  animation: math-rise 0.55s cubic-bezier(.22, 1, .36, 1) 0.6s backwards;
+}
+#app-container .math-points-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+#app-container .math-points-row > span,
+#app-container .math-points-row > strong:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+}
+#app-container .math-points-ico { flex-shrink: 0; color: #f59e0b; }
+#app-container .math-points-row.is-bonus { color: #16a34a; }
+#app-container .math-points-row.is-bonus .math-points-ico { color: #16a34a; }
+#app-container .math-points-row.is-muted { color: var(--app-text-secondary); }
+#app-container .math-points-total {
+  border-top: 1px solid var(--app-border, #e2e8f0);
+  padding-top: 8px;
+  font-size: 1.15em;
+}
+#app-container .math-points-total .math-points-ico { color: #7c3aed; }
+#app-container .math-points-total-value {
+  color: #7c3aed;
+  font-family: 'Fredoka One', 'Fredoka', cursive;
+  font-size: 1.2em;
+  animation: math-pop 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.9s backwards;
+}
+html.dark #app-container .math-points-total-value,
+html.dark #app-container .math-points-total .math-points-ico { color: #c4b5fd; }
+
+#app-container .math-results .result-item {
+  border-bottom: none;
+  border-left: 4px solid var(--app-border-light);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: color-mix(in srgb, var(--app-bg-surface) 70%, transparent);
+  animation: math-rise 0.4s cubic-bezier(.22, 1, .36, 1) 0.7s backwards;
+}
+#app-container .math-results .result-item.math-result-ok { border-left-color: #16a34a; }
+#app-container .math-results .result-item.math-result-ko { border-left-color: #dc2626; }
+
+/* Modo oscuro: sin brillos blancos sobre superficies oscuras */
+html.dark #app-container #number-palette {
+  background: var(--app-bg-elevated);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 14px 30px -22px rgba(0, 0, 0, 0.7);
+}
+html.dark #app-container .math-mode-btn:not(:hover):not(.active):not(.is-current) {
+  background: var(--app-bg-surface);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 18px -12px color-mix(in srgb, var(--math-mode) 80%, transparent);
+}
+html.dark #app-container .box.filled,
+html.dark #app-container .box.correct { background-image: none; }
+
+/* --- Keyframes propios --- */
+@keyframes math-rise {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes math-pan { to { background-position: 300% 0; } }
+@keyframes math-orb {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6%, 8%, 0) scale(1.08); }
+}
+@keyframes math-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-5px) rotate(-6deg); }
+}
+@keyframes math-pop {
+  0%   { transform: scale(0.85); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes math-digit-in {
+  0%   { transform: scale(0.6); }
+  70%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes math-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+@keyframes math-glow-ok {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(46, 204, 113, 0); }
+}
+@keyframes math-ring-in {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes math-spin { to { transform: rotate(360deg); } }
+@keyframes math-bar-shine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+@media (max-width: 720px) {
+  #app-container { border-radius: 20px; }
+  #app-container .math-grade-ring { width: 140px; height: 140px; }
+  #app-container .math-grade-value { font-size: 2.3em; }
+  #app-container .math-mode-btn { padding: 9px 16px 9px 10px; font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app-container::before,
+  .math-bg-fx::before,
+  .math-bg-fx::after,
+  #app-container .math-title-emoji,
+  #app-container .math-grade-ring::after,
+  #app-container .math-progress .progress-bar::after { animation: none; }
+  #app-container,
+  #app-container .number-tile,
+  #app-container .box.filled,
+  #app-container .box.correct,
+  #app-container .box.incorrect,
+  #app-container .division-box.correct,
+  #app-container .division-box.incorrect,
+  #app-container .math-results .result-item { animation-duration: 0.01ms; animation-delay: 0s; }
+}

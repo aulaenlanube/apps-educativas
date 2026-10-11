@@ -658,3 +658,107 @@ input:checked+.slider:before {
     .target-number { font-size: 4rem; }
     .roman-nota-big { font-size: 54px; }
 }
+
+/* ==========================================================================
+   Capa "premium" propia de Números Romanos (utilidades sp-* en
+   SharedPremium.css). Las fichas .roman-tile las mueve framer-motion
+   (transform inline), así que aquí no se toca su transform.
+   ========================================================================== */
+
+/* Conserva el degradado violeta-rosa-ámbar original bajo la capa sp-shell */
+.roman-container.sp-shell.sp-shell.sp-shell {
+    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
+    border-color: rgba(255, 255, 255, 0.85);
+}
+html.dark .roman-container.sp-shell.sp-shell.sp-shell {
+    background: linear-gradient(160deg, #1f1b3a 0%, #261a3d 55%, #2a1e24 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+}
+html.dark .roman-container .instrucciones { color: var(--app-text-secondary); }
+
+/* Número objetivo con halo */
+.roman-container .target-number {
+    filter: drop-shadow(0 8px 22px rgba(219, 39, 119, 0.35));
+}
+
+/* Zona de destino: cristal con brillo interior */
+.roman-container .drop-zone {
+    border-radius: 22px;
+    box-shadow:
+        inset 0 2px 10px rgba(139, 92, 246, 0.08),
+        0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.roman-container .drop-zone.active {
+    box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.14), 0 18px 34px -16px rgba(139, 92, 246, 0.6);
+}
+
+/* Fichas: relieve tipo tecla + brillo (sin tocar transform) */
+.roman-container .roman-tile {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 55%),
+        linear-gradient(160deg, #ffffff 0%, #f3e8ff 100%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        inset 0 -4px 0 rgba(124, 58, 237, 0.18),
+        0 8px 16px -8px rgba(124, 58, 237, 0.55);
+}
+.roman-container .roman-tile:hover {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        inset 0 -4px 0 rgba(124, 58, 237, 0.18),
+        0 0 0 3px rgba(139, 92, 246, 0.14),
+        0 14px 24px -10px rgba(124, 58, 237, 0.65);
+}
+.roman-container .palette {
+    border-radius: 22px;
+}
+
+/* Feedback con glow (la entrada la anima framer-motion) */
+.roman-container .feedback-message { border-radius: 999px; padding: 0.75rem 1.4rem; }
+.roman-container .feedback-message.feedback-correct {
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35), 0 12px 26px -12px rgba(16, 185, 129, 0.8);
+}
+.roman-container .feedback-message.feedback-incorrect {
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35), 0 12px 26px -12px rgba(239, 68, 68, 0.75);
+}
+
+/* Examen: chip contador con pop y barra con brillo */
+.roman-container .roman-test-chip.counter { animation: roman-pop 0.35s cubic-bezier(.34, 1.56, .64, 1); }
+.roman-container .roman-progress {
+    height: 10px;
+    box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.15);
+}
+.roman-container .roman-progress-bar {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
+    transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+.roman-container .roman-progress-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+    background-size: 200% 100%;
+    animation: roman-bar-shine 2.2s linear infinite;
+}
+
+/* Resultado */
+.roman-container .roman-nota { max-width: 360px; }
+.roman-container .roman-answer-card { border-radius: 14px; }
+
+html.dark .roman-container .drop-zone { background: rgba(139, 92, 246, 0.08); border-color: rgba(167, 139, 250, 0.35); }
+html.dark .roman-container .roman-tile {
+    background: linear-gradient(160deg, rgba(139, 92, 246, 0.28), rgba(139, 92, 246, 0.12));
+    color: #ede9fe;
+    border-color: #a78bfa;
+}
+
+@keyframes roman-bar-shine {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .roman-container .roman-progress-bar::after { animation: none; }
+}

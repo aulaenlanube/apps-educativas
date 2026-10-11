@@ -1,6 +1,11 @@
 // src/apps/_shared/OrdenaLaHistoriaUI.jsx
 import React, { useLayoutEffect, useRef, useEffect } from 'react';
+import { BookOpen, GraduationCap } from 'lucide-react';
 import './OrdenaLaHistoriaShared.css';
+import './SharedPremium.css';
+
+// Color del anillo de nota (>=8 verde, >=5 azul, <5 rojo) — solo presentación
+const gradeColor = (n) => (n >= 8 ? '#10b981' : n >= 5 ? '#3b82f6' : '#ef4444');
 
 const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.currentStoryIndex + 1) / game.TOTAL_TEST_STORIES) * 100;
@@ -31,7 +36,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
 
   const Header = ({ titulo, subtitulo }) => (
     <>
-      <h1 className="main-title text-5xl mb-2">
+      <h1 className="main-title sp-title text-5xl mb-2">
         <span role="img" aria-label="Icono">📚</span> <span className="gradient-text">{titulo}</span>
       </h1>
       {subtitulo && <p className="instrucciones">{subtitulo}</p>}
@@ -57,7 +62,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
   );
 
   const renderFrasesList = () => (
-    <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
+    <div className="zona-frases sp-zone" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
       {game.frasesDesordenadas.map((frase, index) => {
         const isFirst = index === 0;
         const isLast = index === game.frasesDesordenadas.length - 1;
@@ -139,7 +144,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
     </div>
   );
 
-  const cls = `ordena-historia-container font-${game.fontStyle}`;
+  const cls = `ordena-historia-container sp-shell font-${game.fontStyle}`;
 
   // Tracking
   const trackedRef = useRef(false);
@@ -161,6 +166,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
       });
     }
     if (!game.showResults) trackedRef.current = false;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.isTestMode, game.showResults, game.score, onGameComplete]);
 
   // Tracking práctica: solo registrar tiempo de juego
@@ -189,13 +195,15 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
         <div className={`${cls} test-results`}>
           <Header titulo="¡Test Completado!" />
 
-          <div className={`ordena-h-nota ${notaColor}`}>
-            <div className="ordena-h-nota-big">{nota.toFixed(1)}<span className="ordena-h-nota-small">/10</span></div>
-            <div className="ordena-h-nota-msg"><strong>{notaMsg}</strong></div>
+          <div className={`ordena-h-nota sp-grade-card ${notaColor}`}>
+            <div className="sp-grade-ring" style={{ '--sp-grade': nota, '--sp-grade-color': gradeColor(nota) }}>
+              <div className="ordena-h-nota-big">{nota.toFixed(1)}<span className="ordena-h-nota-small">/10</span></div>
+            </div>
+            <div className="ordena-h-nota-msg sp-grade-msg"><strong>{notaMsg}</strong></div>
             <div className="ordena-h-nota-detail">{correct} de {game.TOTAL_TEST_STORIES} historias correctas</div>
           </div>
 
-          <div className="ordena-h-puntos">
+          <div className="ordena-h-puntos sp-points">
             <span className="ordena-h-puntos-icon">⭐</span>
             <span className="ordena-h-puntos-value">{game.score.toLocaleString('es-ES')}</span>
             <span className="ordena-h-puntos-label">puntos</span>
@@ -203,15 +211,15 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
 
           {game.elapsedTime > 0 && <p className="ordena-h-time">⏱️ Tiempo total: {game.elapsedTime}s</p>}
 
-          <div className="results-summary">
+          <div className="results-summary sp-results">
             {game.testQuestions.map((story, i) => (
-              <div key={i} className="result-item">
+              <div key={i} className="result-item sp-result">
                 <p><strong>Historia {i + 1} (orden correcto):</strong></p>
                 <ol>{story.map(frase => <li key={frase.id}>{frase.texto}</li>)}</ol>
               </div>
             ))}
           </div>
-          <div className="test-controls">
+          <div className="test-controls sp-controls">
             <button onClick={game.startTest} className="btn-test">Volver a intentar</button>
             <button onClick={game.exitTestMode} className="btn-mode">Modo Práctica</button>
           </div>
@@ -228,16 +236,16 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
       >
         <Header titulo="Examen" />
         <div className="test-header">
-          <div>Historia {game.currentStoryIndex + 1} / {game.TOTAL_TEST_STORIES}</div>
+          <div key={game.currentStoryIndex} className="sp-q-chip">Historia {game.currentStoryIndex + 1} / {game.TOTAL_TEST_STORIES}</div>
           {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
         </div>
-        <div className="progress-bar-container">
+        <div className="progress-bar-container sp-progress">
           <div className="progress-bar" style={{ width: `${progressPct}%` }} />
         </div>
 
         {renderFrasesList()}
 
-        <div className="controles">
+        <div className="controles sp-controls">
           <button onClick={game.handleNextStory} className="btn-test">
             {game.currentStoryIndex === game.TOTAL_TEST_STORIES - 1 ? 'Finalizar' : 'Siguiente'}
           </button>
@@ -257,8 +265,14 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
       <Header titulo="Ordena la Historia" subtitulo="Arrastra las frases o usa las flechas para ordenarlas" />
 
       <div className="mode-selection">
-        <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">Examen</button>
+        <button className="btn-mode sp-mode active">
+          <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+          Práctica Libre
+        </button>
+        <button onClick={game.startTest} className="btn-mode sp-mode sp-mode--exam">
+          <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
+          Examen
+        </button>
       </div>
 
       {renderFrasesList()}
@@ -267,12 +281,12 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
       <p 
         id="feedback" 
         key={game.feedback.timestamp} 
-        className={game.feedback.clase}
+        className={`${game.feedback.clase || ''} sp-fb`}
       >
         {game.feedback.texto}
       </p>
 
-      <div className="controles">
+      <div className="controles sp-controls">
         <button onClick={game.checkStory}>Comprobar</button>
         <button onClick={game.cargarSiguienteHistoria} className="btn-saltar">Otra Historia</button>
         <button 
@@ -297,4 +311,4 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete }) => {
   );
 };
 
-export default OrdenaLaHistoriaUI;
+export default OrdenaLaHistoriaUI;
