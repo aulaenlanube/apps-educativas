@@ -87,6 +87,12 @@ const SolarSystemActivity = ({ onClose }) => {
 
     return (
         <div className="activity-modal-overlay">
+            {/* Campo de estrellas decorativo detrás del panel */}
+            <div className="ssa-starfield" aria-hidden="true">
+                {Array.from({ length: 18 }, (_, i) => (
+                    <span key={i} style={{ left: `${(i * 47) % 96 + 2}%`, top: `${(i * 29) % 92 + 4}%`, animationDelay: `${(i % 6) * -0.7}s` }} />
+                ))}
+            </div>
             <div className={`activity-modal-content ${isWrong ? 'shake' : ''}`}>
                 <div className="activity-header">
                     <div>
@@ -107,7 +113,7 @@ const SolarSystemActivity = ({ onClose }) => {
                         <div className="ordering-view">
                             <div className="ordering-grid">
                                 {orderedPlanets.map((planet, index) => (
-                                    <div key={planet.id} className="planet-item-card">
+                                    <div key={planet.id} className="planet-item-card" style={{ '--ssa-i': index }}>
                                         <span className="planet-order-badge">#{index + 1}</span>
                                         <div
                                             className="planet-preview-dot"
@@ -162,6 +168,13 @@ const SolarSystemActivity = ({ onClose }) => {
 
                     {phase === 3 && (
                         <div className="activity-success">
+                            <div className="ssa-trophy" aria-hidden="true">
+                                <span className="ssa-rays" />
+                                <span className="ssa-orbit" />
+                                <span className="ssa-sparks">
+                                    {Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--ssa-n': i }} />)}
+                                </span>
+                            </div>
                             <div className="success-icon">🏆</div>
                             <h3 className="success-title">¡Excelente Astrónomo!</h3>
                             <p className="success-desc">

@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
+import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut, Leaf, Zap, Flame } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import './CelulaAnimal.css';
@@ -664,7 +663,6 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
 
 // ===== MAIN COMPONENT =====
 const CelulaAnimal = () => {
-    const navigate = useNavigate();
     const [selectedOrganelle, setSelectedOrganelle] = useState(null);
     const [visitedIds, setVisitedIds] = useState(new Set());
 
@@ -866,6 +864,7 @@ const CelulaAnimal = () => {
                 return next;
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isQuizMode, isMatchMode, quizTarget]);
 
     const handleClose = useCallback(() => {
@@ -986,8 +985,19 @@ const CelulaAnimal = () => {
     const progressPercent = (visitedIds.size / organelleData.length) * 100;
 
     return (
-        <div className={`celula-app ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
+        <div className={`celula-app cfx-animal ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
             <AppOrientationWarning />
+            {/* Fondo decorativo: orbes de luz, rejilla de microscopio y partículas */}
+            <div className="cfx-backdrop" aria-hidden="true">
+                <span className="cfx-orb cfx-orb--a" />
+                <span className="cfx-orb cfx-orb--b" />
+                <span className="cfx-orb cfx-orb--c" />
+                <span className="cfx-grid" />
+                <span className="cfx-vignette" />
+                {Array.from({ length: 14 }, (_, i) => (
+                    <span key={i} className="cfx-mote" style={{ '--cfx-i': i, left: `${(i * 53) % 92 + 4}%`, top: `${(i * 37) % 84 + 8}%` }} />
+                ))}
+            </div>
             {/* HEADER */}
             <header className="celula-header">
                 <div className="celula-header-left">
@@ -1033,7 +1043,7 @@ const CelulaAnimal = () => {
                 )}
                 {mode === 'quiz' && (
                     <div className="quiz-hud">
-                        <div className="quiz-score">Puntos: {quizScore}</div>
+                        <div className="quiz-score cfx-score-pop" key={quizScore}>Puntos: {quizScore}</div>
                     </div>
                 )}
                 {mode === 'match' && matchDifficulty !== null && !testSubmitted && (
@@ -1109,6 +1119,11 @@ const CelulaAnimal = () => {
             {isQuizMode && quizFeedback && (
                 <div className="quiz-feedback-overlay">
                     <div className={`feedback-message ${quizFeedback.isCorrect ? 'correct' : 'incorrect'}`}>
+                        {quizFeedback.isCorrect && (
+                            <span className="cfx-burst" aria-hidden="true">
+                                {Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--cfx-n': i }} />)}
+                            </span>
+                        )}
                         {quizFeedback.isCorrect ? '¡CORRECTO!' : '¡INTÉNTALO DE NUEVO!'}
                     </div>
                 </div>
@@ -1212,18 +1227,21 @@ const CelulaAnimal = () => {
                                         ✕ Salir
                                     </button>
                                 </div>
-                                <div className="difficulty-picker">
+                                <div className="difficulty-picker cfx-diff-picker">
                                     <button className="difficulty-btn difficulty-easy" onClick={() => startMatchWithDifficulty(6)}>
+                                        <span className="cfx-diff-icon" aria-hidden="true"><Leaf size={22} /></span>
                                         <span className="difficulty-count">6</span>
                                         <span className="difficulty-label">Fácil</span>
                                         <span className="difficulty-desc">6 orgánulos</span>
                                     </button>
                                     <button className="difficulty-btn difficulty-medium" onClick={() => startMatchWithDifficulty(9)}>
+                                        <span className="cfx-diff-icon" aria-hidden="true"><Zap size={22} /></span>
                                         <span className="difficulty-count">9</span>
                                         <span className="difficulty-label">Normal</span>
                                         <span className="difficulty-desc">9 orgánulos</span>
                                     </button>
                                     <button className="difficulty-btn difficulty-hard" onClick={() => startMatchWithDifficulty(12)}>
+                                        <span className="cfx-diff-icon" aria-hidden="true"><Flame size={22} /></span>
                                         <span className="difficulty-count">12</span>
                                         <span className="difficulty-label">Difícil</span>
                                         <span className="difficulty-desc">12 orgánulos</span>
@@ -1338,7 +1356,12 @@ const CelulaAnimal = () => {
                                 {/* Results */}
                                 {testSubmitted && testGrade !== null && (
                                     <div className={`match-results ${testGrade >= 5 ? 'pass' : 'fail'}`}>
-                                        <div className="match-grade-display">
+                                        <div
+                                            className="match-grade-display cfx-grade"
+                                            style={{ '--cfx-grade': testGrade, '--cfx-grade-color': testGrade >= 8 ? '#10b981' : (testGrade >= 5 ? '#3b82f6' : '#ef4444') }}
+                                        >
+                                            <span className="cfx-grade-ring" aria-hidden="true" />
+                                            <span className="cfx-grade-halo" aria-hidden="true" />
                                             <span className="match-grade-emoji">{getGradeEmoji(testGrade)}</span>
                                             <span className="match-grade-number">{testGrade}</span>
                                             <span className="match-grade-max">/ 10</span>
