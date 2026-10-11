@@ -39,8 +39,9 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const PORT = 4183; // fuera del rango habitual de dev/preview
 
-const CONCURRENCY = 4;
-const NAV_TIMEOUT_MS = 30000;
+// Override por entorno para máquinas cargadas (p. ej. PRERENDER_TIMEOUT_MS=120000 PRERENDER_CONCURRENCY=2).
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY) || 4;
+const NAV_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 30000;
 const HELMET_SETTLE_MS = 250; // margen para que Helmet termine de aplicar <meta>
 
 // Sello en el <head> de cada página generada. Sirve para dos cosas: abortar si
