@@ -12,6 +12,7 @@ import AppIcon from '@/components/AppIcon';
 import { supabase } from '@/lib/supabase';
 import { tiltProps, accentFor, keyActivate } from './navTilt';
 import './NavPages.css';
+import Mascot from '@/components/Mascot';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
 const RandomAppSelector = ({ apps, onAppSelected }) => {
@@ -323,7 +324,8 @@ const AppListPage = () => {
                         </>
                     ) : (
                         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.5 }} className="np-panel mt-16 flex flex-col items-center justify-center text-center p-12">
-                            <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" loading="lazy" decoding="async" />
+                            {/* La mascota sustituye a la antigua imagen del cohete (borrada de /public) */}
+                            <div className="np-empty-robot"><Mascot /></div>
                             <h2 className="text-3xl font-bold text-white mb-4">¡Próximamente!</h2>
                             <p className="text-lg text-white/80 max-w-md">Estamos trabajando para añadir las mejores apps para esta asignatura. ¡Vuelve pronto!</p>
                         </motion.div>
@@ -336,4 +338,4 @@ const AppListPage = () => {
     );
 };
 
-export default AppListPage;
+export default AppListPage;

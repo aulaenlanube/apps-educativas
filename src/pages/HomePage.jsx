@@ -78,37 +78,42 @@ const containerVariants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
 };
 
+// Solo transform/opacity: animar `filter: blur()` en cada tarjeta que entra
+// obligaba a repintarla en cada frame de la entrada.
 const itemVariants = {
-  hidden: { y: 28, opacity: 0, filter: 'blur(6px)' },
-  visible: { y: 0, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { y: 28, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
-// Título del hero: letra a letra con flotación y degradado animado (identidad
-// original de la home), ahora con un brillo de entrada.
+// Título del hero: letra a letra con flotación (identidad original de la home).
+// Rendimiento: el degradado es FIJO (cada letra muestra su tramo, así el conjunto
+// se lee como un único degradado) y el perfil blanco va en la letra interior,
+// que no cambia: el navegador la rasteriza una vez y la flotación (span
+// exterior) solo mueve esa capa en la GPU. Antes el degradado se desplazaba en
+// cada letra y el filtro del perfil envolvía todo el <h1>, así que se
+// recalculaban 4 drop-shadows de todo el título en cada frame.
+const HERO_TEXT = '¡Aprende Jugando!';
+const HERO_CHARS = HERO_TEXT.replace(/ /g, '').length;
+
 function HeroTitle() {
-  const words = '¡Aprende Jugando!'.split(' ');
+  const words = HERO_TEXT.split(' ');
   let charIndex = 0;
   return (
-    <h1 className="home-hero__title font-bold gradient-title-stroke text-5xl sm:text-6xl xl:text-7xl" style={{ lineHeight: 1.25 }}>
+    <h1 className="home-hero__title font-bold text-5xl sm:text-6xl xl:text-7xl" style={{ lineHeight: 1.25 }}>
       {words.map((word, wi) => (
         <React.Fragment key={wi}>
-          {wi > 0 && <span>{' '}</span>}
+          {wi > 0 && <span>{' '}</span>}
           <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
             {word.split('').map((char) => {
               const i = charIndex++;
               return (
-                <span key={i} style={{ display: 'inline-block', animation: `hero-float 3s ease-in-out ${i * 0.12}s infinite` }}>
+                <span key={i} className="home-hero__char" style={{ '--i': i }}>
                   <span
+                    className="home-hero__glyph gradient-title-stroke"
                     style={{
-                      display: 'inline-block',
-                      padding: '0 0.04em',
-                      margin: '0 -0.04em',
-                      backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #F59E0B, #2563EB)',
-                      backgroundSize: '600% 100%',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      animation: `hero-enter 0.6s cubic-bezier(.34,1.56,.64,1) ${0.3 + i * 0.045}s both, hero-gradient 6s linear ${i * -0.35}s infinite`,
+                      backgroundSize: `${HERO_CHARS * 100}% 100%`,
+                      backgroundPosition: `${(i / (HERO_CHARS - 1)) * 100}% 0`,
+                      animationDelay: `${0.3 + i * 0.045}s`,
                     }}
                   >
                     {char}
@@ -123,63 +128,24 @@ function HeroTitle() {
   );
 }
 
-// Chips de asignaturas en órbita elíptica alrededor del robot. Posiciones en un
-// rAF escribiendo transform directamente (sin re-render); pausa fuera de pantalla.
-function OrbitChips() {
-  const wrapRef = useRef(null);
-  const chipRefs = useRef([]);
-  const reduceMotion = useReducedMotion();
+// Chips de asignaturas en órbita elíptica alrededor del robot.
+// 100 % CSS (keyframes .home-orbit en HomePage.css): el navegador la anima en
+// la GPU sin tocar el hilo principal. Cada chip existe dos veces: en la capa
+// de DETRÁS del robot (visible en la mitad trasera de la órbita) y en la de
+// DELANTE (mitad delantera), así no hace falta cambiar z-index en cada frame.
+// El desfase de cada chip es un retardo negativo.
+const ORBIT_PERIOD = 36;
 
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return undefined;
-    let raf = 0;
-    let visible = true;
-    let size = { w: wrap.offsetWidth, h: wrap.offsetHeight };
-    const n = ORBIT_CHIPS.length;
-
-    const place = (t) => {
-      const rx = size.w * 0.47;
-      const ry = size.h * 0.12;
-      const cy = size.h * 0.64;
-      for (let i = 0; i < n; i++) {
-        const el = chipRefs.current[i];
-        if (!el) continue;
-        const a = t * 0.00018 + (i * Math.PI * 2) / n;
-        const depth = Math.sin(a); // -1 detrás · 1 delante
-        const x = Math.cos(a) * rx;
-        const y = cy + depth * ry - size.h / 2;
-        const s = 0.72 + (depth + 1) * 0.17;
-        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${s.toFixed(3)})`;
-        el.style.opacity = (0.45 + (depth + 1) * 0.275).toFixed(2);
-        el.style.zIndex = depth > 0 ? '4' : '1';
-        el.style.filter = depth < -0.35 ? 'blur(1.2px) saturate(.8)' : 'none';
-      }
-    };
-
-    const loop = (t) => {
-      place(t);
-      raf = visible ? requestAnimationFrame(loop) : 0;
-    };
-
-    const ro = new ResizeObserver(() => { size = { w: wrap.offsetWidth, h: wrap.offsetHeight }; });
-    ro.observe(wrap);
-    const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (visible && !raf && !reduceMotion) raf = requestAnimationFrame(loop);
-    });
-    io.observe(wrap);
-
-    if (reduceMotion) place(4000);
-    else raf = requestAnimationFrame(loop);
-
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
-  }, [reduceMotion]);
-
+function OrbitLayer({ front }) {
+  const n = ORBIT_CHIPS.length;
   return (
-    <div ref={wrapRef} className="home-orbit" aria-hidden="true">
+    <div className={`home-orbit ${front ? 'home-orbit--front' : 'home-orbit--back'}`} aria-hidden="true">
       {ORBIT_CHIPS.map(({ icon: Icon, label, color }, i) => (
-        <div key={label} ref={(el) => { chipRefs.current[i] = el; }} className="home-orbit__chip" style={{ '--chip': color }}>
+        <div
+          key={label}
+          className="home-orbit__chip"
+          style={{ '--chip': color, animationDelay: `${-(i / n) * ORBIT_PERIOD}s`, animationDuration: `${ORBIT_PERIOD}s` }}
+        >
           <span className="home-orbit__icon"><Icon className="w-4 h-4" /></span>
           <span className="home-orbit__label">{label}</span>
         </div>
@@ -323,9 +289,23 @@ function GradeCard({ to, ariaLabel, color, glow, type, grade, number, label, cta
   );
 }
 
+// Pausa las animaciones en bucle del hero (aurora, estrellas, órbita, título)
+// mientras está fuera de pantalla: clase .is-off, sin re-render.
+function usePauseWhenOffscreen(ref) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return undefined;
+    const io = new IntersectionObserver(([e]) => el.classList.toggle('is-off', !e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref]);
+}
+
 const HomePage = () => {
   // Ahora obtenemos la función del modal desde el MainLayout
   const { setIsModalOpen } = useOutletContext();
+  const heroRef = useRef(null);
+  usePauseWhenOffscreen(heroRef);
 
   useSEO({
     title: 'Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato',
@@ -352,7 +332,7 @@ const HomePage = () => {
       </Header>
 
       {/* ===== HERO ===== */}
-      <section className="home-hero relative px-6 pt-10 md:pt-14 pb-10 overflow-hidden">
+      <section ref={heroRef} className="home-hero relative px-6 pt-10 md:pt-14 pb-10 overflow-hidden">
         <div className="home-hero__aurora" aria-hidden="true">
           <span /><span /><span />
         </div>
@@ -427,10 +407,11 @@ const HomePage = () => {
             transition={{ delay: 0.35, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="home-hero__robot"
           >
-            <OrbitChips />
+            <OrbitLayer />
             <div className="home-hero__robot-inner">
               <Mascot />
             </div>
+            <OrbitLayer front />
           </motion.div>
         </div>
 
@@ -502,7 +483,7 @@ const HomePage = () => {
       <div id="cursos" className="scroll-mt-24" />
 
       {/* ===== PRIMARIA ===== */}
-      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="home-lazy py-16 px-6">
         <div className="container mx-auto">
           <SectionHeading iconLeft={BookOpen} iconRight={Sparkles} leftClass="text-sky-300" rightClass="text-fuchsia-300" kicker="6 cursos" title="Educación Primaria">
             Apps diseñadas especialmente para los más pequeños, con contenido adaptado a cada nivel.
@@ -528,7 +509,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* ===== ESO ===== */}
-      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="home-lazy py-16 px-6">
         <div className="container mx-auto">
           <SectionHeading iconLeft={GraduationCap} iconRight={Trophy} leftClass="text-indigo-300" rightClass="text-purple-300" kicker="4 cursos" title="Educación Secundaria">
             Contenido avanzado y especializado para estudiantes de ESO.
@@ -553,7 +534,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* ===== BACHILLERATO ===== */}
-      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="home-lazy py-16 px-6">
         <div className="container mx-auto">
           <SectionHeading iconLeft={GraduationCap} iconRight={Star} leftClass="text-emerald-300" rightClass="text-teal-300" kicker="2 cursos" title="Bachillerato">
             Prepárate para la universidad con contenido de alto nivel adaptado a cada asignatura.
@@ -578,7 +559,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* ===== ATENCIÓN A LA DIVERSIDAD ===== */}
-      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="home-lazy py-16 px-6">
         <div className="container mx-auto">
           <SectionHeading iconLeft={HeartHandshake} iconRight={Brain} leftClass="text-rose-300" rightClass="text-teal-300" kicker="AL · PT · Cognición" title="Atención a la Diversidad">
             Apps especializadas para profesionales de Audición y Lenguaje, Pedagogía Terapéutica y apoyo al desarrollo cognitivo y comunicativo.
@@ -631,7 +612,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* ===== POR QUÉ ===== */}
-      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} className="py-20 px-6">
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} className="home-lazy py-20 px-6">
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-14">
             <span className="home-kicker">Ventajas</span>

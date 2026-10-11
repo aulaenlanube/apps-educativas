@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle,
 } from '@/components/ui/dialog';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 function formatDate(dateStr) {
   if (!dateStr) return null;
@@ -163,7 +164,7 @@ export default function AssignmentScoresDialog({ open, onOpenChange, assignment 
           {/* List */}
           {loading ? (
             <div className="flex justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+              <BrandLoader variant="inline" />
             </div>
           ) : sortedScores.length === 0 ? (
             <div className="text-center py-8 text-slate-400 text-sm">No hay alumnos en este grupo.</div>

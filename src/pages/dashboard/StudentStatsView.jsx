@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 function formatTime(seconds) {
   if (!seconds || seconds === 0) return '0m';
@@ -62,7 +63,7 @@ export default function StudentStatsView({ studentId, onBack }) {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600" />
+        <BrandLoader variant="inline" />
       </div>
     );
   }

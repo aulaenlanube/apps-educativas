@@ -5,6 +5,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ConfettiProvider } from '/src/apps/_shared/ConfettiProvider';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
+import { initUiFx } from '@/services/uiFx';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 // Sincroniza el tema con el usuario logueado
 function ThemeAuthSync() {
@@ -46,6 +48,8 @@ const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage.jsx'));
 const BlogCategoryPage = lazy(() => import('@/pages/BlogCategoryPage.jsx'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
 const CatalogoPage = lazy(() => import('@/pages/CatalogoPage.jsx'));
+// Galería de ilustraciones: solo en desarrollo (en producción esta rama se elimina en el build).
+const ArtGallery = import.meta.env.DEV ? lazy(() => import('@/dev/ArtGallery.jsx')) : null;
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -89,9 +93,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 // Reusable suspense loading fallback
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500" />
-  </div>
+  <BrandLoader variant="page" />
 );
 
 const SuspensePage = ({ children }) => (
@@ -197,10 +199,14 @@ const router = createBrowserRouter(
         { path: '/curso/:level/:grade/:subjectId/app/:appId', element: <SuspensePage><AppRunnerPage /></SuspensePage> },
       ],
     },
+    ...(ArtGallery ? [{ path: '/__art', element: <SuspensePage><ArtGallery /></SuspensePage> }] : []),
     { path: '*', element: <SuspensePage><NotFoundPage /></SuspensePage> },
   ],
   { future: { v7_startTransition: true, v7_relativeSplatPath: true } }
 );
+
+// Nivel de efectos visuales según el equipo (<html data-fx>), antes del primer render.
+initUiFx();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

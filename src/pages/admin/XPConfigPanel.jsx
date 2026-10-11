@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Zap, Trophy, Star, Target, Clock, Flame, Compass, BookOpen, ChevronDown, ChevronRight, GraduationCap, Crown } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import BadgeIcon from '@/components/ui/BadgeIcon';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 // Curva por tramos (mismo cálculo que xp_for_level / calculate_level en BD).
 function deltaXp(L) {
@@ -219,7 +220,7 @@ export default function XPConfigPanel() {
   const toggleCat = (cat) => setExpandedCats(prev => ({ ...prev, [cat]: !prev[cat] }));
 
   if (loading) {
-    return <div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" /></div>;
+    return <div className="flex items-center justify-center py-20"><BrandLoader variant="inline" /></div>;
   }
 
   return (

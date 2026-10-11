@@ -10,6 +10,7 @@ import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from 
 import SubjectIcon, { getSubjectAccent } from '@/components/SubjectIcon';
 import { tiltProps, accentFor, keyActivate } from './navTilt';
 import './NavPages.css';
+import Mascot from '@/components/Mascot';
 
 const SubjectList = ({ subjects, level, grade }) => {
   const navigate = useNavigate();
@@ -195,13 +196,8 @@ const SubjectPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="np-panel mt-16 flex flex-col items-center justify-center text-center p-12 rounded-[3rem]"
               >
-                <motion.img
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                  className="w-56 h-56 mb-8 drop-shadow-2xl"
-                  alt="Cohete"
-                  src="/images/portada.webp"
-                />
+                {/* La mascota sustituye a la antigua imagen del cohete (borrada de /public) */}
+                <div className="np-empty-robot"><Mascot /></div>
                 <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-tight">¡Próximamente!</h2>
                 <p className="text-lg text-white/80 max-w-md">Estamos preparando los mejores contenidos para este nivel. ¡Vuelve pronto!</p>
               </motion.div>
@@ -214,4 +210,4 @@ const SubjectPage = () => {
   );
 };
 
-export default SubjectPage;
+export default SubjectPage;

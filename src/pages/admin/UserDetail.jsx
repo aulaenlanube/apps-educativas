@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Gamepad2, Target, Clock, Trophy, Star, ChevronLeft, ChevronRight, RotateCcw, AlertTriangle, Zap, Plus, Minus } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const PAGE_SIZE = 20;
 
@@ -291,7 +292,7 @@ const UserDetail = ({ user }) => {
 
         {loading ? (
           <div className="flex justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <BrandLoader variant="inline" />
           </div>
         ) : sessions.length === 0 ? (
           <div className="text-center py-8 text-slate-400 text-sm">Sin partidas registradas</div>

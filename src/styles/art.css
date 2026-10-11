@@ -1,0 +1,113 @@
+/* ==========================================================================
+   ART — ilustraciones SVG de la plataforma (iconos de curso, asignatura, app…)
+   --------------------------------------------------------------------------
+   Contrato de rendimiento (ver src/components/art/README.md):
+   - Nada de filtros SVG (feGaussianBlur, feDropShadow…): las sombras y brillos
+     se dibujan con formas y degradados. Un filtro dentro de un SVG animado se
+     recalcula en CADA frame.
+   - Animación en reposo SOLO con las clases art-i-* (transform/opacity) y
+     solo en nivel de efectos alto (html[data-fx="high"]) y en pantalla
+     (ArtFrame añade .art-off fuera del viewport).
+   - Lo vistoso va al pasar el ratón (clases art-h-*): transiciones cortas que
+     solo cuestan mientras dura el gesto.
+   - La flotación del icono entero va en el contenedor HTML (.art-float), que
+     el navegador compone en GPU sin repintar el SVG.
+   ========================================================================== */
+
+.art { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Origen de transformación en el centro de cada pieza animada.
+   Una pieza puede fijar otro con style={{ transformOrigin: '…' }} (unidades
+   del viewBox con transform-box: view-box, o porcentajes de su caja). */
+.art [class*="art-i-"],
+.art [class*="art-h-"] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.art .art-o-bottom { transform-origin: 50% 100%; }
+.art .art-o-top { transform-origin: 50% 0%; }
+.art .art-o-left { transform-origin: 0% 50%; }
+
+/* ---------- Animación en reposo (solo nivel alto y en pantalla) ---------- */
+.art-i-twinkle { animation: art-twinkle var(--dur, 3.2s) ease-in-out var(--d, 0s) infinite; }
+.art-i-bob     { animation: art-bob var(--dur, 4s) ease-in-out var(--d, 0s) infinite; }
+.art-i-sway    { animation: art-sway var(--dur, 5s) ease-in-out var(--d, 0s) infinite; }
+.art-i-spin    { animation: art-spin var(--dur, 18s) linear var(--d, 0s) infinite; }
+.art-i-pulse   { animation: art-pulse var(--dur, 2.8s) ease-in-out var(--d, 0s) infinite; }
+.art-i-blink   { animation: art-blink var(--dur, 5s) ease-in-out var(--d, 0s) infinite; }
+.art-i-glow    { animation: art-glow var(--dur, 3s) ease-in-out var(--d, 0s) infinite; }
+.art-i-flicker { animation: art-flicker var(--dur, .9s) ease-in-out var(--d, 0s) infinite alternate; }
+
+/* contenedor HTML que flota (compositor, sin repintar el SVG) */
+.art-float { animation: art-float var(--float-dur, 5s) ease-in-out var(--float-d, 0s) infinite; }
+
+html:not([data-fx="high"]) .art [class*="art-i-"],
+html:not([data-fx="high"]) .art-float {
+  animation: none !important;
+}
+html[data-fx="medium"] .art-float.art-float--keep { animation: art-float var(--float-dur, 5s) ease-in-out infinite !important; }
+
+.art-off [class*="art-i-"],
+.art-off.art-float,
+.art-off .art-float {
+  animation-play-state: paused !important;
+}
+
+/* ---------- Coreografía al pasar el ratón ----------
+   Se activa con :hover en el propio ArtFrame, en un ancestro .group (Tailwind)
+   o en un ancestro .art-host (tarjetas que envuelven el icono).
+   .art-force-hover fija el estado hover (galería de desarrollo /__art). */
+.art [class*="art-h-"] {
+  transition:
+    transform .55s cubic-bezier(.34, 1.56, .64, 1),
+    opacity .35s ease;
+}
+.art .art-h-show,
+.art .art-h-burst { opacity: 0; } /* el destello solo existe durante el estallido */
+
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-lift   { transform: translateY(var(--lift, -4px)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-drop   { transform: translateY(var(--drop, 3px)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-tilt   { transform: rotate(var(--tilt, -8deg)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-tilt-r { transform: rotate(var(--tilt, 8deg)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-pop    { transform: scale(var(--pop, 1.15)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-shrink { transform: scale(var(--shrink, .9)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-spin   { transform: rotate(var(--spin, 180deg)); transition-duration: .9s; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-slide  { transform: translateX(var(--slide, 4px)); }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-show   { opacity: 1; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-hide   { opacity: 0; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-wiggle { animation: art-wiggle .6s ease-in-out both; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-jump   { animation: art-jump .7s cubic-bezier(.34, 1.56, .64, 1) both; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-ring   { animation: art-ring .8s ease-in-out both; }
+:is(.group:hover, .art-host:hover, .art-frame:hover, .art-force-hover) .art .art-h-burst  { animation: art-burst .9s ease-out both; animation-delay: var(--d, 0s); }
+
+/* Icono entero: pequeño realce al pasar el ratón (compositor) */
+.art-frame { position: relative; }
+.art-frame > .art-lift-wrap {
+  width: 100%;
+  height: 100%;
+  transition: transform .55s cubic-bezier(.34, 1.56, .64, 1);
+}
+:is(.group:hover, .art-host:hover, .art-force-hover) .art-frame > .art-lift-wrap,
+.art-frame:hover > .art-lift-wrap {
+  transform: translateY(var(--frame-lift, -4px)) scale(var(--frame-scale, 1.06));
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes art-float   { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -5px, 0); } }
+@keyframes art-twinkle { 0%, 100% { opacity: .15; transform: scale(.55) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+@keyframes art-bob     { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(var(--amp, -2px)); } }
+@keyframes art-sway    { 0%, 100% { transform: rotate(calc(var(--amp, 4deg) * -1)); } 50% { transform: rotate(var(--amp, 4deg)); } }
+@keyframes art-spin    { to { transform: rotate(360deg); } }
+@keyframes art-pulse   { 0%, 100% { transform: scale(1); opacity: .75; } 50% { transform: scale(var(--amp, 1.12)); opacity: 1; } }
+@keyframes art-blink   { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes art-glow    { 0%, 100% { opacity: var(--lo, .35); } 50% { opacity: var(--hi, 1); } }
+@keyframes art-flicker { from { transform: scaleY(.88); opacity: .8; } to { transform: scaleY(1.08); opacity: 1; } }
+@keyframes art-wiggle  { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg); } 50% { transform: rotate(7deg); } 75% { transform: rotate(-4deg); } }
+@keyframes art-jump    { 0% { transform: translateY(0); } 40% { transform: translateY(var(--jump, -7px)); } 70% { transform: translateY(1px); } 100% { transform: translateY(0); } }
+@keyframes art-ring    { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-12deg); } 45% { transform: rotate(9deg); } 60% { transform: rotate(-6deg); } 75% { transform: rotate(3deg); } }
+@keyframes art-burst   { 0% { opacity: 0; transform: scale(.3); } 35% { opacity: 1; } 100% { opacity: 0; transform: scale(1.5); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .art [class*="art-i-"], .art-float { animation: none !important; }
+  .art [class*="art-h-"] { transition-duration: .01ms !important; animation: none !important; }
+}

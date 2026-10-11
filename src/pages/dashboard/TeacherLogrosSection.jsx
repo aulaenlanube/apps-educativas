@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import BadgeModal from '@/components/ui/BadgeModal';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     badge: 'bg-slate-200 text-slate-700' },
@@ -173,7 +174,7 @@ export default function TeacherLogrosSection() {
       <div className="p-5 space-y-5">
         {loading ? (
           <div className="flex justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+            <BrandLoader variant="inline" />
           </div>
         ) : (
           <>

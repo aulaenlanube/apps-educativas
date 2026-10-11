@@ -51,9 +51,11 @@
     transform .6s var(--fx-ease-out, cubic-bezier(.22,1,.36,1)),
     box-shadow .35s ease,
     border-color .35s ease;
-  will-change: transform;
   -webkit-tap-highlight-color: transparent;
 }
+/* capa propia solo mientras se interactúa (con 100+ tarjetas en el catálogo,
+   una capa permanente por tarjeta dispara la memoria de GPU) */
+.np-card:hover { will-change: transform; }
 .np-card:hover {
   --np-lift: -6px;
   border-color: rgba(255,255,255,.9);
@@ -106,7 +108,7 @@
 .np-card:hover .np-card__ring,
 .np-card:focus-visible .np-card__ring {
   opacity: 1;
-  animation: fx-spin-angle 4s linear infinite;
+  animation: fx-spin-angle 4s steps(80) infinite;
 }
 
 /* Reflejo superior que sigue la inclinación */
@@ -350,7 +352,7 @@ html.dark .np-arrow { background: color-mix(in srgb, var(--np-accent) 22%, rgba(
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: fx-pan 8s linear infinite;
+  animation: fx-pan 8s steps(160) infinite;
 }
 
 .np-btn-dice:disabled { cursor: progress; filter: saturate(.6); opacity: .85; }
@@ -472,7 +474,7 @@ html.dark .np-search::placeholder { color: #a5a1cf; }
   height: 2px;
   background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, #ec4899, #f59e0b, transparent);
   background-size: 200% 100%;
-  animation: fx-pan 10s linear infinite;
+  animation: fx-pan 10s steps(100) infinite;
   opacity: .85;
 }
 .np-footer__grid {
@@ -545,12 +547,24 @@ html.dark .np-search::placeholder { color: #a5a1cf; }
   z-index: -1;
 }
 .np-404 {
-  font-size: clamp(8rem, 30vw, 20rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(7rem, 26vw, 17rem);
   line-height: .9;
   font-weight: 900;
   letter-spacing: -.04em;
-  filter: drop-shadow(0 0 40px rgba(139,92,246,.55));
 }
+/* El brillo va solo en las cifras: si envolviera también al robot (que se
+   anima por dentro) habría que recalcular el filtro en cada frame. */
+.np-404__digit { filter: drop-shadow(0 0 40px rgba(139,92,246,.55)); }
+.np-404__robot {
+  width: .78em;
+  margin: 0 -.02em;
+  font-size: inherit;
+  transform: translateY(.04em);
+}
+.np-404__robot .robo { max-width: none; }
 .np-btn-ghost {
   display: inline-flex;
   align-items: center;
@@ -663,3 +677,70 @@ html.dark .np-search::placeholder { color: #a5a1cf; }
   }
   .np-loader { animation-duration: 2.4s; }
 }
+
+/* Estado vacío ("¡Próximamente!"): la mascota en lugar de una imagen */
+.np-empty-robot {
+  width: min(240px, 62vw);
+  margin: -1rem auto 1.25rem;
+}
+
+/* Pantalla de error: robot despistado con un aviso a sus pies */
+.np-error-robot {
+  position: relative;
+  width: 150px;
+  margin: -4.5rem auto .5rem;
+}
+.np-alert-icon--badge {
+  position: absolute;
+  right: -6px;
+  bottom: 14px;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0;
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(120, 53, 15, .85), rgba(69, 26, 3, .9));
+}
+
+/* ---------- Nivel de efectos (html[data-fx], ver src/services/uiFx.js) ----------
+   Las tarjetas van sobre el fondo 3D en movimiento: con backdrop-filter, CADA
+   tarjeta visible se vuelve a desenfocar en cada frame del fondo. En alto se
+   mantiene (más ligero); en medio y bajo la tarjeta es casi opaca y no se nota
+   la diferencia porque el fondo ya va velado. */
+html[data-fx="high"] .np-card {
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+}
+html:not([data-fx="high"]) .np-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--np-accent) 14%, transparent), transparent 60%),
+    linear-gradient(155deg, rgba(255,255,255,.95), rgba(248,247,255,.9) 55%, rgba(243,241,255,.88));
+}
+html.dark:not([data-fx="high"]) .np-card {
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--np-accent) 24%, transparent), transparent 60%),
+    linear-gradient(155deg, rgba(30,27,75,.94), rgba(15,12,41,.9));
+}
+html:not([data-fx="high"]) :is(.np-kicker, .np-sub, .np-count, .np-chip, .np-glass-icon-btn) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+html:not([data-fx="high"]) .np-card:hover .np-card__ring,
+html:not([data-fx="high"]) .np-slot-text,
+html:not([data-fx="high"]) .np-star { animation: none; }
+html:not([data-fx="high"]) .np-footer::before,
+html:not([data-fx="high"]) .np-footer::after { animation: none; }
+
+/* Secciones del catálogo: solo se maquetan/pintan cerca de la pantalla
+   (content-visibility). El relleno lateral/inferior deja sitio a las sombras
+   y al realce de las tarjetas, porque la contención recorta lo que se sale. */
+.np-lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+  padding: 1.5rem 1.5rem 2.5rem;
+  margin: -1.5rem -1.5rem 1rem;
+}
+
+/* Selector de calidad gráfica en el footer */
+.np-footer-gfx { justify-content: center; font-size: .8rem; }

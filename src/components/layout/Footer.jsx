@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import MascotLogo from '../ui/MascotLogo';
 import OposicionesIAPromo from '../ads/OposicionesIAPromo';
 import '@/pages/NavPages.css';
+import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 
 // Redes sociales: cada una con su color de glow al hover (--np-social).
 const SOCIALS = [
@@ -84,6 +85,12 @@ const Footer = () => {
                             <Cookie className="w-3.5 h-3.5" /> Gestionar cookies
                         </button>
                     </nav>
+                    {/* Calidad gráfica de este dispositivo: también gobierna los efectos
+                        de la interfaz (fondo 3D, cristal, animaciones). Útil en equipos
+                        modestos para forzar "Bajo". */}
+                    <div className="flex justify-center">
+                        <GraphicsQualitySelector className="gfxsel-on-dark np-footer-gfx" />
+                    </div>
                     <p className="text-indigo-100/60">
                         Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.
                     </p>
@@ -93,4 +100,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default Footer;

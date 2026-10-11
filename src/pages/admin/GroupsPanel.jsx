@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import materiasData from '/public/data/materias.json';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const LEVEL_LABELS = {
   primaria: 'Primaria',
@@ -107,7 +108,7 @@ function GroupDetailModal({ groupId, onClose }) {
         <div className="flex-1 overflow-y-auto p-5 space-y-5">
           {loading ? (
             <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+              <BrandLoader variant="inline" />
             </div>
           ) : error ? (
             <div className="flex items-center gap-2 p-4 bg-red-50 text-red-700 rounded-xl text-sm">
@@ -382,7 +383,7 @@ const GroupsPanel = () => {
 
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <BrandLoader variant="inline" />
           </div>
         ) : groups.length === 0 ? (
           <div className="text-center py-12 text-slate-400">

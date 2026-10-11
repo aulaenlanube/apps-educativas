@@ -64,7 +64,17 @@ export function saveQualityPref(v) {
  * NO está usando la GPU y cualquier extra lo hunde. Equipos modestos o
  * móviles → Medio. Resto → Alto (el governor de FPS baja solo si se equivoca).
  */
+// Cacheada: cada sonda crea un contexto WebGL (caro y con tope por pestaña) y
+// se consulta en cada montaje de useGraphicsQuality / useFxTier.
+let _gpuTier = null;
+
 export function detectGPUTier() {
+  if (_gpuTier) return _gpuTier;
+  _gpuTier = probeGPUTier();
+  return _gpuTier;
+}
+
+function probeGPUTier() {
   let gl = null;
   try {
     const cv = document.createElement('canvas');

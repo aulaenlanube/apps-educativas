@@ -10,6 +10,7 @@ import { primariaApps } from '@/apps/config/primariaApps';
 import { esoApps } from '@/apps/config/esoApps';
 import { bachilleratoApps } from '@/apps/config/bachilleratoApps';
 import DataStatsTable from './DataStatsTable';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const LEVELS = [
   { id: 'primaria', label: 'Primaria', grades: [1, 2, 3, 4, 5, 6] },
@@ -371,7 +372,7 @@ const DataExplorer = () => {
         </div>
       )}
 
-      {loading && <div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" /></div>}
+      {loading && <div className="flex items-center justify-center py-20"><BrandLoader variant="inline" /></div>}
 
       {error && !loading && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">

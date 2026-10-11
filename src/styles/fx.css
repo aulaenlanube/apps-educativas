@@ -102,7 +102,8 @@ html.dark {
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: fx-spin-angle 6s linear infinite;
+  /* steps(): ~20 repintados/s en vez de 60; en un giro tan lento no se nota */
+  animation: fx-spin-angle 6s steps(120) infinite;
   pointer-events: none;
   z-index: 1;
 }
@@ -118,10 +119,11 @@ html.dark {
   inset: 8%;
   border-radius: inherit;
   background: var(--fx-aurora);
+  /* Estático a propósito: un cónico que gira bajo un blur obliga a repintar y
+     desenfocar la capa en cada frame. Quieto, el navegador lo rasteriza una vez. */
   filter: blur(28px);
   opacity: .55;
   z-index: -1;
-  animation: fx-spin-angle 8s linear infinite;
   pointer-events: none;
 }
 
@@ -189,10 +191,10 @@ html.dark {
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
   transform-style: preserve-3d;
   transition: transform .5s var(--fx-ease-out), box-shadow .35s ease;
-  will-change: transform;
 }
 .fx-tilt:hover {
   transition: transform .12s linear, box-shadow .35s ease;
+  will-change: transform;
 }
 .fx-tilt .fx-tilt__pop {
   transform: translateZ(40px);
@@ -207,7 +209,7 @@ html.dark {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: fx-pan 8s linear infinite;
+  animation: fx-pan 8s steps(160) infinite;
 }
 
 .fx-text-glow {
@@ -256,7 +258,6 @@ html.dark {
   position: relative;
   border-radius: 20px;
   transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease;
-  will-change: transform;
 }
 .fx-mode-card:hover { transform: translateY(-6px) scale(1.02); }
 .fx-mode-card--easy   { box-shadow: 0 18px 40px -18px rgba(16,185,129,.7); }
@@ -357,8 +358,8 @@ html.dark {
   100% { transform: translateX(420%) rotate(12deg); }
 }
 @keyframes fx-rise {
-  from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.985); filter: blur(4px); }
-  to   { opacity: 1; transform: none; filter: none; }
+  from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.985); }
+  to   { opacity: 1; transform: none; }
 }
 @keyframes fx-pop-in {
   0%   { opacity: 0; transform: scale(.6); }
@@ -418,6 +419,48 @@ html.dark {
   0%, 20%, 100% { transform: translate(0, 0); }
   30%, 45% { transform: translate(2.5px, .5px); }
   60%, 75% { transform: translate(-2.5px, .5px); }
+}
+
+/* ---------- Nivel de efectos (html[data-fx], ver src/services/uiFx.js) ----------
+   high   → todo.
+   medium → sin animaciones decorativas que repintan cada frame (bordes cónicos
+            girando, texto con degradado en movimiento, orbes de fondo) y con
+            desenfoques de fondo más ligeros.
+   low    → además sin backdrop-filter en ningún sitio y sin bucles decorativos.
+   Las apps (juego) no se tocan: solo utilidades fx-* y piezas de navegación. */
+
+html:not([data-fx="high"]) .fx-aurora-border::before,
+html:not([data-fx="high"]) .fx-text-grad,
+html:not([data-fx="high"]) .fx-shine--auto::after,
+html:not([data-fx="high"]) .fx-app-backdrop::before,
+html:not([data-fx="high"]) .fx-app-backdrop::after,
+html:not([data-fx="high"]) .mlogo-look {
+  animation: none !important;
+}
+
+html[data-fx="medium"] .fx-glass,
+html[data-fx="medium"] .fx-glass-dark {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+html[data-fx="medium"] [class*="backdrop-blur"] { --tw-backdrop-blur: blur(8px); }
+
+html[data-fx="low"] *,
+html[data-fx="low"] *::before,
+html[data-fx="low"] *::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html[data-fx="low"] .fx-glass { background: rgba(255, 255, 255, .93); }
+html.dark[data-fx="low"] .fx-glass { background: rgba(24, 20, 52, .95); }
+html[data-fx="low"] .fx-glass-dark { background-color: rgba(15, 12, 41, .9); }
+html[data-fx="low"] .fx-aurora-glow::after,
+html[data-fx="low"] .fx-grain::after { display: none; }
+html[data-fx="low"] .fx-float,
+html[data-fx="low"] .fx-float-slow,
+html[data-fx="low"] .fx-pulse-glow,
+html[data-fx="low"] .mlogo-eye {
+  animation: none !important;
 }
 
 /* ---------- Accesibilidad: movimiento reducido ---------- */

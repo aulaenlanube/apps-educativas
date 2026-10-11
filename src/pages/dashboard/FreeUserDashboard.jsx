@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import MyFeedbacksSection from '@/components/ui/MyFeedbacksSection';
 import TeacherLogrosSection from './TeacherLogrosSection';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const FreeUserDashboard = () => {
   const { user, freeUser, displayName } = useAuth();
@@ -92,7 +93,7 @@ const FreeUserDashboard = () => {
         {/* Stats Grid */}
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-pink-500" />
+            <BrandLoader variant="inline" />
           </div>
         ) : (
           <>

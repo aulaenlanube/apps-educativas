@@ -21,6 +21,7 @@ import DuelGradePanel from '@/components/duel/DuelGradePanel';
 import useIncomingDuels from '@/hooks/useIncomingDuels';
 import { getGradeWithDuelBonus } from '@/services/duelService';
 import UserAvatar from '@/components/ui/UserAvatar';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const SUBJECT_LABELS = {
   matematicas: 'Matematicas',
@@ -322,7 +323,7 @@ export default function StudentDashboard() {
       <div>
         <Header subtitle="Mi Panel" />
         <div className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600" />
+          <BrandLoader variant="inline" />
         </div>
       </div>
     );

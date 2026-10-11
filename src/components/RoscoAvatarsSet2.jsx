@@ -19,98 +19,73 @@ const injectRa2Styles = () => {
 if (typeof document !== 'undefined') injectRa2Styles();
 
 const avatars2 = {
+  // La mascota de EduApps (RobotMascot): cabeza-monitor índigo, visor oscuro,
+  // ojo derecho mayor, antena con orbe rosa, orejeras con LED cian.
   '🤖': () => (
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
       <defs>
-        <radialGradient id="ra2-bot-head" cx="0.4" cy="0.3" r="0.7">
-          <stop offset="0%" stopColor="#E2E8F0" />
-          <stop offset="60%" stopColor="#CBD5E1" />
-          <stop offset="100%" stopColor="#94A3B8" />
-        </radialGradient>
-        <radialGradient id="ra2-bot-eyeGlow" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor="#93C5FD" />
-          <stop offset="50%" stopColor="#60A5FA" />
-          <stop offset="100%" stopColor="#3B82F6" />
-        </radialGradient>
-        <radialGradient id="ra2-bot-eyeOuter" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor="#BFDBFE" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="ra2-bot-antenna" cx="0.35" cy="0.3" r="0.5">
-          <stop offset="0%" stopColor="#F87171" />
-          <stop offset="100%" stopColor="#DC2626" />
-        </radialGradient>
-        <linearGradient id="ra2-bot-panel" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#fff" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+        <linearGradient id="ra2-bot-head" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#a5b4fc" />
+          <stop offset="38%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#3730a3" />
         </linearGradient>
+        <linearGradient id="ra2-bot-visor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#1e1b4b" />
+          <stop offset="100%" stopColor="#0b0a24" />
+        </linearGradient>
+        <radialGradient id="ra2-bot-iris" cx="0.4" cy="0.35" r="0.65">
+          <stop offset="0%" stopColor="#67e8f9" />
+          <stop offset="50%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#1e1b4b" />
+        </radialGradient>
+        <radialGradient id="ra2-bot-orb" cx="0.35" cy="0.3" r="0.7">
+          <stop offset="0%" stopColor="#fdf4ff" />
+          <stop offset="45%" stopColor="#f0abfc" />
+          <stop offset="100%" stopColor="#a21caf" />
+        </radialGradient>
+        <radialGradient id="ra2-bot-orbglow" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stopColor="#f0abfc" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#f0abfc" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      {/* Antenna rod + sphere (animated bob) */}
-      <g style={{animation:'ra-bob 4s ease-in-out infinite',transformOrigin:'24px 9px'}}>
-        <rect x="23" y="2" width="2" height="7" rx="1" fill="#94A3B8" />
-        <rect x="23.2" y="2" width="0.8" height="7" rx="0.4" fill="#fff" opacity="0.2" />
-        <circle cx="24" cy="2.5" r="3" fill="url(#ra2-bot-antenna)" />
-        <circle cx="22.8" cy="1.5" r="1" fill="#fff" opacity="0.6" />
-        <circle cx="23.5" cy="2.8" r="0.4" fill="#fff" opacity="0.3" />
+      {/* Antena con orbe */}
+      <g style={{ animation: 'ra-bob 4s ease-in-out infinite', transformOrigin: '24px 9px' }}>
+        <path d="M24 11 L24 6 L22.5 3.6" stroke="#4f46e5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="22.5" cy="3.4" r="4.2" fill="url(#ra2-bot-orbglow)" />
+        <circle cx="22.5" cy="3.4" r="2.5" fill="url(#ra2-bot-orb)" />
+        <circle cx="21.7" cy="2.6" r="0.8" fill="#fff" opacity="0.8" />
       </g>
-      {/* Ear receivers */}
-      <rect x="3" y="18" width="4" height="10" rx="2" fill="#94A3B8" />
-      <rect x="3.3" y="18.3" width="1.5" height="9.4" rx="0.75" fill="#fff" opacity="0.12" />
-      <rect x="41" y="18" width="4" height="10" rx="2" fill="#94A3B8" />
-      <rect x="42.8" y="18.3" width="1.2" height="9.4" rx="0.6" fill="#fff" opacity="0.12" />
-      {/* Head shadow */}
-      <rect x="9" y="10" width="32" height="30" rx="8" fill="#64748B" opacity="0.15" transform="translate(0.8, 1)" />
-      {/* Head base */}
-      <rect x="8" y="9" width="32" height="30" rx="8" fill="url(#ra2-bot-head)" />
-      {/* Head highlight top-left */}
-      <rect x="8" y="9" width="32" height="15" rx="8" fill="url(#ra2-bot-panel)" />
-      {/* Forehead panel line */}
-      <line x1="14" y1="14" x2="34" y2="14" stroke="#94A3B8" strokeWidth="0.6" opacity="0.5" />
-      {/* Bolts - hexagonal style */}
-      <circle cx="6.5" cy="23" r="2.8" fill="#A1A1AA" />
-      <circle cx="6.5" cy="23" r="2" fill="#94A3B8" stroke="#71717A" strokeWidth="0.5" />
-      <line x1="5" y1="23" x2="8" y2="23" stroke="#71717A" strokeWidth="0.7" />
-      <line x1="5.7" y1="21.8" x2="7.3" y2="24.2" stroke="#71717A" strokeWidth="0.5" />
-      <line x1="7.3" y1="21.8" x2="5.7" y2="24.2" stroke="#71717A" strokeWidth="0.5" />
-      <circle cx="41.5" cy="23" r="2.8" fill="#A1A1AA" />
-      <circle cx="41.5" cy="23" r="2" fill="#94A3B8" stroke="#71717A" strokeWidth="0.5" />
-      <line x1="40" y1="23" x2="43" y2="23" stroke="#71717A" strokeWidth="0.7" />
-      <line x1="40.7" y1="21.8" x2="42.3" y2="24.2" stroke="#71717A" strokeWidth="0.5" />
-      <line x1="42.3" y1="21.8" x2="40.7" y2="24.2" stroke="#71717A" strokeWidth="0.5" />
-      {/* Eye glow outer left (animated flicker) */}
-      <g style={{animation:'ra-flicker 3s ease-in-out infinite'}}>
-        <circle cx="17" cy="22" r="7" fill="url(#ra2-bot-eyeOuter)" />
-        <circle cx="17" cy="22" r="5.2" fill="#1E3A5F" />
-        <circle cx="17" cy="22" r="4.5" fill="url(#ra2-bot-eyeGlow)" />
-        <circle cx="17" cy="22" r="2.5" fill="#93C5FD" opacity="0.4" />
-        <circle cx="15.3" cy="20.3" r="1.8" fill="#fff" opacity="0.7" />
-        <circle cx="18.2" cy="23.2" r="0.7" fill="#fff" opacity="0.3" />
+      {/* Orejeras */}
+      <rect x="3.2" y="18" width="5" height="11" rx="2.5" fill="#4338ca" />
+      <rect x="39.8" y="18" width="5" height="11" rx="2.5" fill="#3730a3" />
+      <circle cx="5.7" cy="23.5" r="1.1" fill="#67e8f9" style={{ animation: 'ra-glow 2.8s ease-in-out infinite' }} />
+      <circle cx="42.3" cy="23.5" r="1.1" fill="#67e8f9" style={{ animation: 'ra-glow 2.8s ease-in-out infinite' }} />
+      {/* Sombra y carcasa */}
+      <rect x="7" y="11.6" width="34" height="30" rx="10" fill="#1e1b4b" opacity="0.3" />
+      <rect x="7" y="10" width="34" height="30" rx="10" fill="url(#ra2-bot-head)" />
+      <rect x="7.4" y="10.4" width="33.2" height="29.2" rx="9.6" stroke="#fff" strokeOpacity="0.35" strokeWidth="0.8" />
+      <path d="M12 13.4 Q17 11.6 24 12" stroke="#fff" strokeOpacity="0.6" strokeWidth="1.8" strokeLinecap="round" />
+      {/* Visor */}
+      <rect x="10" y="15.2" width="28" height="16.6" rx="8" fill="url(#ra2-bot-visor)" />
+      <rect x="10" y="15.2" width="28" height="16.6" rx="8" stroke="#67e8f9" strokeOpacity="0.45" strokeWidth="0.6" />
+      {/* Ojos (el derecho, mayor) con parpadeo */}
+      <g style={{ animation: 'ra-blink 5s ease-in-out infinite', transformOrigin: '24px 23.5px' }}>
+        <circle cx="18.4" cy="23.8" r="3.9" fill="#fff" />
+        <circle cx="18.8" cy="24.1" r="2.2" fill="url(#ra2-bot-iris)" />
+        <circle cx="18.9" cy="24.2" r="1" fill="#0b0a24" />
+        <circle cx="17.8" cy="23.1" r="0.75" fill="#fff" />
+        <circle cx="29.4" cy="23.3" r="5" fill="#fff" />
+        <circle cx="29.8" cy="23.6" r="2.8" fill="url(#ra2-bot-iris)" />
+        <circle cx="29.9" cy="23.7" r="1.3" fill="#0b0a24" />
+        <circle cx="28.6" cy="22.4" r="0.95" fill="#fff" />
       </g>
-      {/* Eye glow outer right (animated flicker staggered) */}
-      <g style={{animation:'ra-flicker 3s ease-in-out 1.5s infinite'}}>
-        <circle cx="31" cy="22" r="7" fill="url(#ra2-bot-eyeOuter)" />
-        <circle cx="31" cy="22" r="5.2" fill="#1E3A5F" />
-        <circle cx="31" cy="22" r="4.5" fill="url(#ra2-bot-eyeGlow)" />
-        <circle cx="31" cy="22" r="2.5" fill="#93C5FD" opacity="0.4" />
-        <circle cx="29.3" cy="20.3" r="1.8" fill="#fff" opacity="0.7" />
-        <circle cx="32.2" cy="23.2" r="0.7" fill="#fff" opacity="0.3" />
-      </g>
-      {/* Mouth - LED segment smile */}
-      <rect x="15" y="31" width="18" height="5" rx="2.5" fill="#1E293B" />
-      <rect x="16" y="32" width="2.5" height="3" rx="0.8" fill="#4ADE80" opacity="0.9" />
-      <rect x="19.5" y="31.5" width="2.5" height="3" rx="0.8" fill="#4ADE80" opacity="0.9" transform="rotate(-8 20.75 33)" />
-      <rect x="23" y="31.3" width="2.5" height="3" rx="0.8" fill="#4ADE80" opacity="0.9" />
-      <rect x="26.5" y="31.5" width="2.5" height="3" rx="0.8" fill="#4ADE80" opacity="0.9" transform="rotate(8 27.75 33)" />
-      <rect x="30" y="32" width="2.5" height="3" rx="0.8" fill="#4ADE80" opacity="0.9" />
-      {/* Mouth glow */}
-      <rect x="15" y="31" width="18" height="5" rx="2.5" fill="#4ADE80" opacity="0.1" />
-      {/* Forehead indicator light */}
-      <circle cx="24" cy="17" r="1.8" fill="#3B82F6" opacity="0.3" />
-      <circle cx="24" cy="17" r="1.2" fill="#60A5FA" opacity="0.6" />
-      <circle cx="24" cy="17" r="0.5" fill="#fff" opacity="0.8" />
+      <path d="M13 17.6 Q20 16 30 16.8" stroke="#fff" strokeOpacity="0.12" strokeWidth="1.4" strokeLinecap="round" />
+      {/* Mejillas y boca luminosa */}
+      <ellipse cx="11.6" cy="34" rx="2.2" ry="1.2" fill="#f472b6" opacity="0.45" />
+      <ellipse cx="36.4" cy="34" rx="2.2" ry="1.2" fill="#f472b6" opacity="0.45" />
+      <path d="M20 34.4 Q24 37.2 28 34.4" stroke="#67e8f9" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   ),
-
   '👽': () => (
     <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
       <defs>

@@ -6,6 +6,7 @@ import {
   ChevronDown, ChevronUp, X, BarChart3,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const PAGE_SIZE = 20;
 
@@ -189,7 +190,7 @@ export default function FeedbackPanel() {
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <BrandLoader variant="inline" />
           </div>
         ) : feedbacks.length === 0 ? (
           <div className="text-center py-12 text-slate-400">

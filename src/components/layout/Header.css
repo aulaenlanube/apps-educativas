@@ -134,8 +134,9 @@
   filter: blur(14px) saturate(135%);
   opacity: 0.5;
   mix-blend-mode: plus-lighter;
-  animation: glass-hdr-aurora 26s ease-in-out infinite alternate;
-  will-change: background-position;
+  /* steps(): la aurora se mueve muy despacio; ~10 repintados/s bastan y el
+     desenfoque + mezcla de la capa no se recalculan 60 veces por segundo */
+  animation: glass-hdr-aurora 26s steps(260) infinite alternate;
 }
 .dark .glass-hdr__aurora {
   opacity: 0.7;
@@ -204,8 +205,7 @@
     transparent 94%
   );
   background-size: 220% 100%;
-  animation: glass-hdr-edge 18s linear infinite;
-  will-change: background-position;
+  animation: glass-hdr-edge 18s steps(180) infinite;
 }
 .dark .glass-hdr__edge {
   background: linear-gradient(
@@ -229,6 +229,13 @@
   .glass-hdr__sweep { display: none; }
   .glass-hdr__aurora { filter: blur(10px) saturate(130%); animation-duration: 32s; }
 }
+
+/* ---- Nivel de efectos (html[data-fx], src/services/uiFx.js): estático salvo en alto ---- */
+html:not([data-fx="high"]) .glass-hdr__aurora { animation: none; background-position: 30% 40%, 50% 90%, 80% 20%; }
+html:not([data-fx="high"]) .glass-hdr__edge { animation: none; background-position: 50% 0; }
+html:not([data-fx="high"]) .glass-hdr__sweep { animation-duration: 16s; }
+html[data-fx="low"] .glass-hdr__sweep { display: none; }
+html[data-fx="low"] .glass-hdr__aurora { filter: none; mix-blend-mode: normal; opacity: .35; }
 
 /* ---- Accesibilidad: sin movimiento si el usuario lo pide (cristal estático) ---- */
 @media (prefers-reduced-motion: reduce) {

@@ -27,6 +27,27 @@
 }
 .robo__jump { transform-origin: 50% 95%; }
 
+/* Flotación del robot entero: contenedor HTML → el navegador la compone en la
+   GPU sin repintar el SVG (antes era un <g> dentro del SVG). */
+.robo__float {
+  width: 100%;
+  height: 100%;
+  animation: robo-float 4.2s ease-in-out infinite;
+}
+.robo__shadow {
+  position: absolute;
+  left: 50%;
+  top: 93.6%;
+  width: 38%;
+  height: 4.8%;
+  margin-left: -19%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(15, 10, 50, .55), rgba(15, 10, 50, .18) 65%, transparent);
+  z-index: 1;
+  pointer-events: none;
+  animation: robo-shadow 4.2s ease-in-out infinite;
+}
+
 .robo svg * { transform-box: view-box; }
 
 /* ---------- Halo + pedestal holográfico ---------- */
@@ -40,10 +61,13 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, rgba(167, 139, 250, .55), transparent 58%),
-    conic-gradient(from 0deg, rgba(99,102,241,.0), rgba(236,72,153,.35), rgba(34,211,238,.35), rgba(245,158,11,.25), rgba(99,102,241,.0));
-  filter: blur(34px);
-  opacity: .75;
+    radial-gradient(circle at 50% 50%, rgba(167, 139, 250, .5), transparent 58%),
+    conic-gradient(from 0deg, rgba(99,102,241,.0), rgba(236,72,153,.32), rgba(34,211,238,.32), rgba(245,158,11,.22), rgba(99,102,241,.0));
+  /* Bordes difusos con una máscara radial FIJA en vez de filter: blur(34px):
+     la máscara se rasteriza una vez y el giro es solo transform (GPU). */
+  -webkit-mask: radial-gradient(closest-side, #000 25%, rgba(0,0,0,.55) 55%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 25%, rgba(0,0,0,.55) 55%, transparent 100%);
+  opacity: .8;
   z-index: 0;
   animation: robo-halo-spin 14s linear infinite;
   pointer-events: none;
@@ -99,6 +123,26 @@
 }
 .robo__mote:nth-child(even) { background: #f5d0fe; box-shadow: 0 0 8px #f0abfc; }
 
+/* ---------- Expresión "confundido" (404, estados vacíos) ---------- */
+.robo__puzzled {
+  position: absolute;
+  right: 12%;
+  top: 2%;
+  z-index: 4;
+  font: 900 clamp(1.6rem, 9cqw, 2.6rem)/1 Fredoka, system-ui, sans-serif;
+  color: #fde68a;
+  text-shadow: 0 0 14px rgba(251, 191, 36, .7), 0 3px 0 #b45309;
+  transform: rotate(14deg);
+  animation: robo-puzzled 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.robo { container-type: inline-size; }
+@keyframes robo-puzzled {
+  0%, 100% { transform: translateY(0) rotate(14deg); }
+  50% { transform: translateY(-6px) rotate(4deg); }
+}
+html[data-fx="low"] .robo__puzzled { animation: none; }
+
 /* ---------- Chispas del clic ---------- */
 .robo__sparks {
   position: absolute;
@@ -117,14 +161,7 @@
   clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
-/* ---------- Flotación ---------- */
-.robo-float {
-  animation: robo-float 4.2s ease-in-out infinite;
-}
-.robo-shadow {
-  transform-origin: 160px 326px;
-  animation: robo-shadow 4.2s ease-in-out infinite;
-}
+/* ---------- Propulsor ---------- */
 .robo-flame {
   transform-origin: 160px 290px;
   animation: robo-flame .18s ease-in-out infinite alternate;
@@ -316,6 +353,21 @@
   15% { opacity: 1; }
   100% { transform: translateY(-260%) translateY(-120px) scale(1); opacity: 0; }
 }
+
+/* ---------- Nivel de efectos (html[data-fx], ver src/services/uiFx.js) ----------
+   Cualquier animación DENTRO del SVG obliga a repintarlo entero en cada frame.
+   En alto se mantienen todas; en medio y bajo el robot queda quieto en reposo
+   y solo se mueve al reaccionar (mirada, parpadeo, saludo, hablar, salto),
+   que son gestos puntuales. En bajo tampoco flota. */
+html:not([data-fx="high"]) .robo:not(.robo--talking):not(.robo--hover) svg *,
+html:not([data-fx="high"]) .robo--hover:not(.robo--talking) svg *:not(.robo-arm--right),
+html:not([data-fx="high"]) .robo__ring,
+html:not([data-fx="high"]) .robo__halo {
+  animation: none !important;
+}
+html:not([data-fx="high"]) .robo__mote { display: none; }
+html[data-fx="low"] .robo__float,
+html[data-fx="low"] .robo__shadow { animation: none !important; }
 
 /* ---------- Movimiento reducido ---------- */
 .robo--still *,

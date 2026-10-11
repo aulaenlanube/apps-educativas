@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 import { AlertTriangle, RotateCcw, Home } from 'lucide-react';
+import RobotMascot from '@/components/RobotMascot';
 import './NavPages.css';
 
 // Pantalla de error del router (errorElement de la ruta raíz).
@@ -23,8 +24,9 @@ export default function ErrorPage() {
       <div className="fx-grid-bg" aria-hidden="true" />
       <div className="fx-app-backdrop" aria-hidden="true" />
       <div className="fx-glass-dark fx-enter relative max-w-lg w-full rounded-3xl p-8 text-center">
-        <div className="np-alert-icon">
-          <AlertTriangle className="w-9 h-9" />
+        <div className="np-error-robot" aria-hidden="true">
+          <RobotMascot expression="confused" />
+          <span className="np-alert-icon np-alert-icon--badge"><AlertTriangle className="w-5 h-5" /></span>
         </div>
 
         <h1 className="text-2xl font-black text-white mb-3">

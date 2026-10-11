@@ -10,13 +10,21 @@ const GradientTitle = ({ children, className = "", tag = "h1" }) => {
   );
 };
 
+// Título letra a letra con flotación y degradado.
+// Rendimiento (igual que el hero de la home): degradado FIJO repartido entre
+// las letras (cada una muestra su tramo) y perfil blanco en la letra interior,
+// que se rasteriza una vez; la flotación del span exterior es solo transform
+// (GPU) y solo en nivel de efectos alto (.agt-char en GradientTitle.css).
+// Antes cada letra desplazaba su degradado y el filtro del perfil envolvía
+// el título entero: 4 drop-shadows del título completo en cada frame.
 export const AnimatedGradientTitle = ({ children, className = "", tag = "h1" }) => {
   const Tag = tag;
   const text = typeof children === 'string' ? children : String(children);
   const words = text.split(' ');
+  const total = Math.max(2, text.replace(/ /g, '').length);
   let charIndex = 0;
   return (
-    <Tag className={`font-bold gradient-title-stroke ${className}`} style={{ lineHeight: 1.4 }}>
+    <Tag className={`font-bold ${className}`} style={{ lineHeight: 1.4 }}>
       {words.map((word, wi) => (
         <React.Fragment key={wi}>
           {wi > 0 && <span>{'\u00A0'}</span>}
@@ -24,24 +32,13 @@ export const AnimatedGradientTitle = ({ children, className = "", tag = "h1" }) 
             {word.split('').map((char) => {
               const i = charIndex++;
               return (
-                <span
-                  key={i}
-                  style={{
-                    display: 'inline-block',
-                    animation: `hero-float 3s ease-in-out ${i * 0.12}s infinite`,
-                  }}
-                >
+                <span key={i} className="agt-char" style={{ animationDelay: `${i * 0.12}s` }}>
                   <span
+                    className="agt-glyph gradient-title-stroke"
                     style={{
-                      display: 'inline-block',
-                      padding: '0 0.04em',
-                      margin: '0 -0.04em',
-                      backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #2563EB)',
-                      backgroundSize: '600% 100%',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      animation: `hero-enter 0.5s ease-out ${0.3 + i * 0.04}s both, hero-gradient 6s linear ${i * -0.35}s infinite`,
+                      backgroundSize: `${total * 100}% 100%`,
+                      backgroundPosition: `${(i / (total - 1)) * 100}% 0`,
+                      animationDelay: `${0.3 + i * 0.04}s`,
                     }}
                   >
                     {char}

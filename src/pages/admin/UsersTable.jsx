@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Search, GraduationCap, Users, Rocket, UserPlus, X, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const PAGE_SIZE_OPTIONS = [10, 20, 50];
 
@@ -415,7 +416,7 @@ const UsersTable = ({ onSelectUser }) => {
         {/* User list */}
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <BrandLoader variant="inline" />
           </div>
         ) : !data?.users || data.users.length === 0 ? (
           <div className="text-center py-12 text-slate-400">

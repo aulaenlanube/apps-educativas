@@ -4,6 +4,7 @@ import { Trophy, Lock, Star, Zap, Clock, Target, Flame, BookOpen, Compass, Filte
 import BadgeIcon from '../../components/ui/BadgeIcon';
 import BadgeModal from '../../components/ui/BadgeModal';
 import AnimatedNumber from '../../components/ui/AnimatedNumber';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const RARITY_CONFIG = {
   common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     text: 'text-slate-600',  badge: 'bg-slate-200 text-slate-700' },
@@ -90,7 +91,7 @@ export default function StudentLogrosTab({ gamification }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" />
+        <BrandLoader variant="inline" />
       </div>
     );
   }

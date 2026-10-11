@@ -38,57 +38,20 @@ describe('Performance: Context memoization', () => {
   });
 });
 
-describe('Performance: CSS keyframes are static', () => {
-  it('icon-animations.css should exist with all keyframes', () => {
-    const filePath = path.resolve(__dirname, '../styles/icon-animations.css');
-    expect(fs.existsSync(filePath)).toBe(true);
-
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    // All required keyframes should be present
-    const requiredKeyframes = [
-      'ai-float', 'ai-pulse', 'ai-glow', 'ai-spin', 'ai-swing',
-      'ai-bob', 'ai-shimmer', 'ai-draw', 'ai-bounce', 'ai-wiggle',
-      'ai-breathe', 'ai-blink', 'ai-flicker', 'ai-scan', 'ai-wave', 'ai-orbit',
-    ];
-
-    requiredKeyframes.forEach(name => {
-      expect(content).toContain(`@keyframes ${name}`);
+describe('Performance: iconos sin estilos inyectados en tiempo de ejecución', () => {
+  // Los iconos de app viven en src/components/icons/app/* (contrato completo en
+  // src/__tests__/art-performance.test.js). AppIcon solo los envuelve.
+  for (const rel of ['../components/AppIcon.jsx', '../components/SubjectIcon.jsx', '../components/GradeCardIcon.jsx']) {
+    it(`${rel.split('/').pop()} should NOT inject styles at runtime`, () => {
+      const content = fs.readFileSync(path.resolve(__dirname, rel), 'utf-8');
+      expect(content).not.toContain('document.createElement');
+      expect(content).not.toContain('document.head.appendChild');
     });
-  });
+  }
 
-  it('icon-animations.css should be imported in index.css', () => {
-    const filePath = path.resolve(__dirname, '../index.css');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    expect(content).toContain("icon-animations.css");
-  });
-
-  it('AppIcon.jsx should NOT inject styles at runtime', () => {
-    const filePath = path.resolve(__dirname, '../components/AppIcon.jsx');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    expect(content).not.toContain('document.createElement');
-    expect(content).not.toContain('document.head.appendChild');
-    expect(content).not.toContain('injectAiStyles');
-  });
-
-  it('AppIconSet2.jsx should NOT inject styles at runtime', () => {
-    const filePath = path.resolve(__dirname, '../components/AppIconSet2.jsx');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    expect(content).not.toContain('document.createElement');
-    expect(content).not.toContain('document.head.appendChild');
-    expect(content).not.toContain('injectAi2Styles');
-  });
-
-  it('AppIconSet3.jsx should NOT inject styles at runtime', () => {
-    const filePath = path.resolve(__dirname, '../components/AppIconSet3.jsx');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    expect(content).not.toContain('document.createElement');
-    expect(content).not.toContain('document.head.appendChild');
-    expect(content).not.toContain('injectAi3Styles');
+  it('art.css should be imported by ArtFrame', () => {
+    const content = fs.readFileSync(path.resolve(__dirname, '../components/art/ArtFrame.jsx'), 'utf-8');
+    expect(content).toContain("art.css");
   });
 });
 

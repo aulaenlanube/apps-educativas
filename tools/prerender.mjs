@@ -167,6 +167,11 @@ async function renderRoute(browser, route, shellTitle) {
 
     await new Promise((r) => setTimeout(r, HELMET_SETTLE_MS));
 
+    // El nivel de efectos (<html data-fx>, src/services/uiFx.js) depende del
+    // equipo de quien visita: el de este Chrome sin WebGL ("low") no debe quedar
+    // grabado en el HTML estático. Lo fija el navegador real al arrancar.
+    await page.evaluate(() => document.documentElement.removeAttribute('data-fx'));
+
     const html = await page.content();
     const title = await page.title();
     const rootChars = await page.evaluate(

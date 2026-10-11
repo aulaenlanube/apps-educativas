@@ -1,0 +1,31 @@
+/* Login: cabecera de la tarjeta con el degradado de la plataforma y la
+   mascota asomando por encima (mismo personaje que la home). */
+.login-robot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 112px;
+  margin-left: -56px;
+  z-index: 2;
+}
+.login-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(80% 120% at 10% 0%, rgba(165, 180, 252, .45), transparent 60%),
+    radial-gradient(70% 120% at 100% 100%, rgba(244, 114, 182, .45), transparent 60%),
+    linear-gradient(120deg, #4f46e5, #7c3aed 55%, #c026d3);
+}
+.login-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+.login-hero > * { position: relative; z-index: 1; }

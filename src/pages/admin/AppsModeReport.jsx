@@ -4,6 +4,7 @@ import { CheckCircle2, AlertTriangle, XCircle, Gamepad2, Search, RefreshCw, Exte
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { getAllAppsFlat } from '@/apps/appCatalog';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 function StatusBadge({ status }) {
   if (status === 'ok-test') {
@@ -210,7 +211,7 @@ export default function AppsModeReport() {
 
       {loading && !report ? (
         <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+          <BrandLoader variant="inline" />
         </div>
       ) : (
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">

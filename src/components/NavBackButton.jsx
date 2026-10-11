@@ -20,6 +20,9 @@ function injectStyles() {
       0%, 100% { transform: translateY(0); }
       50%      { transform: translateY(-1.5px); }
     }
+    /* Bucles decorativos (trazos y brillos dentro de SVG = repintado continuo):
+       solo con nivel de efectos alto (html[data-fx], src/services/uiFx.js). */
+    html:not([data-fx="high"]) .nb-anim { animation: none !important; }
     .nb-btn {
       cursor: pointer;
       border: none;
@@ -132,20 +135,20 @@ const NavBackButton = ({ variant = 'home', onClick }) => {
           {/* Outer glow ring */}
           <circle cx="22" cy="22" r="20" fill="none"
             stroke={v.glowColor} strokeWidth="3"
-            style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
+            className="nb-anim" style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
 
           {/* Animated dashed border */}
           <circle cx="22" cy="22" r="20" fill="none"
             stroke={`url(#${v.gradId})`} strokeWidth="2"
             strokeDasharray="8 5"
             strokeLinecap="round"
-            style={{ animation: 'nb-border-spin 6s linear infinite' }} />
+            className="nb-anim" style={{ animation: 'nb-border-spin 6s linear infinite' }} />
 
           {/* Background circle */}
           <circle cx="22" cy="22" r="17" fill="white" opacity="0.15" />
 
           {/* Flecha estilizada */}
-          <g className="nb-arrow" style={{ animation: 'nb-float 3s ease-in-out infinite' }}>
+          <g className="nb-arrow nb-anim" style={{ animation: 'nb-float 3s ease-in-out infinite' }}>
             <path d="M26 30 L17 22 L26 14"
               stroke={`url(#${v.gradId})`} strokeWidth="2.8"
               strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -200,13 +203,13 @@ export const NavArrowButton = ({ direction = 'left', onClick, colors = ['#6366F1
           </defs>
           <circle cx="22" cy="22" r="20" fill="none"
             stroke={glowColor} strokeWidth="3"
-            style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
+            className="nb-anim" style={{ animation: 'nb-glow 2.5s ease-in-out infinite' }} />
           <circle cx="22" cy="22" r="20" fill="none"
             stroke={borderColor || `url(#${gradId})`} strokeWidth="2"
             strokeDasharray="8 5" strokeLinecap="round"
-            style={{ animation: 'nb-border-spin 6s linear infinite' }} />
+            className="nb-anim" style={{ animation: 'nb-border-spin 6s linear infinite' }} />
           <circle cx="22" cy="22" r="17" fill="white" opacity="0.15" />
-          <g style={{ animation: 'nb-float 3s ease-in-out infinite' }}>
+          <g className="nb-anim" style={{ animation: 'nb-float 3s ease-in-out infinite' }}>
             {isLeft ? (
               <path d="M26 14 L17 22 L26 30" stroke={`url(#${gradId})`}
                 strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -275,25 +278,25 @@ export const AnimatedBorderButton = ({
         {isArrow ? (
           <path d={arrowPath} fill="none" stroke={glowColor} strokeWidth="2.5"
             strokeLinejoin="round"
-            style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
+            className="nb-anim" style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
         ) : (
           <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
             fill="none" stroke={glowColor} strokeWidth="2.5"
-            style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
+            className="nb-anim" style={{ animation: 'nb-rect-glow 2.5s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
         )}
         {/* Animated dashes */}
         {isArrow ? (
           <path d={arrowPath} fill="none" stroke={borderColor || `url(#${gradId})`} strokeWidth="1.8"
             strokeDasharray="10 6" strokeLinecap="round" strokeLinejoin="round"
-            style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
+            className="nb-anim" style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
         ) : (
           <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
             fill="none" stroke={borderColor || `url(#${gradId})`} strokeWidth="1.8"
             strokeDasharray="10 6" strokeLinecap="round"
-            style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
+            className="nb-anim" style={{ animation: 'nb-rect-dash 16s ease-in-out infinite' }}
             vectorEffect="non-scaling-stroke" />
         )}
       </svg>

@@ -11,6 +11,7 @@ import {
 import AssignTaskDialog from './AssignTaskDialog';
 import AssignmentScoresDialog from './AssignmentScoresDialog';
 import EditAssignmentDialog from './EditAssignmentDialog';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 function formatDate(dateStr) {
   if (!dateStr) return null;
@@ -83,7 +84,7 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
 
       {loading ? (
         <div className="flex justify-center py-6">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+          <BrandLoader variant="inline" />
         </div>
       ) : assignments.length === 0 ? (
         <div className="text-center py-8 text-slate-400">

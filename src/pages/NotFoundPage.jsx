@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import Header from '@/components/layout/Header';
+import RobotMascot from '@/components/RobotMascot';
 import './NavPages.css';
 
 const funFacts = [
@@ -47,8 +48,11 @@ const NotFoundPage = () => (
           transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 200 }}
           className="mb-2"
         >
-          <span className="np-404 fx-float-slow inline-block select-none">
-            <span className="fx-text-grad">404</span>
+          {/* El robot mascota hace de "0", con cara de despiste */}
+          <span className="np-404 fx-float-slow select-none" role="img" aria-label="404">
+            <span className="np-404__digit fx-text-grad" aria-hidden="true">4</span>
+            <span className="np-404__robot" aria-hidden="true"><RobotMascot expression="confused" /></span>
+            <span className="np-404__digit fx-text-grad" aria-hidden="true">4</span>
           </span>
         </motion.div>
 

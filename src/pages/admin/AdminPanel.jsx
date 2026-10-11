@@ -15,6 +15,7 @@ import AppsModeReport from './AppsModeReport';
 import GroupsPanel from './GroupsPanel';
 import AvatarsPanel from './AvatarsPanel';
 import PhrasesPanel from './PhrasesPanel';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ const AdminPanel = () => {
 
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" />
+              <BrandLoader variant="inline" />
             </div>
           ) : (
             <>

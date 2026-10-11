@@ -382,7 +382,7 @@ const CatalogoPage = () => {
                   const list = grouped[cat.id];
                   if (!list || list.length === 0) return null;
                   return (
-                    <section key={cat.id} className="mb-14">
+                    <section key={cat.id} className="np-lazy-section">
                       <div className="flex items-center gap-3 mb-7 np-enter">
                         <span className="np-section-emoji" aria-hidden="true">{cat.emoji}</span>
                         <h2 className="np-section-title text-2xl md:text-3xl font-black text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{cat.label}</h2>

@@ -11,6 +11,7 @@ import {
 import { DUELABLE_APPS, getDuelConfig } from '@/apps/config/duelableApps';
 import InstructionsModal from '@/apps/_shared/InstructionsModal';
 import UserAvatar from '@/components/ui/UserAvatar';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 // Instrucciones por app. Pueden extenderse libremente.
 const INSTRUCTIONS = {
@@ -192,7 +193,7 @@ export default function DuelLobby() {
   if (!state) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white" />
+        <BrandLoader variant="inline" className="brand-loader--on-dark" />
       </div>
     );
   }
@@ -319,7 +320,7 @@ export default function DuelLobby() {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="text-center py-6"
               >
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white mx-auto mb-3" />
+                <BrandLoader variant="inline" className="brand-loader--on-dark" />
                 <p className="text-sm text-white/70">Cargando partida…</p>
               </motion.div>
             )}

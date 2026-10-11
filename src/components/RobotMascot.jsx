@@ -13,13 +13,13 @@ import './RobotMascot.css';
 //   - Al pasar el ratón saluda; al hacer clic da un salto feliz con chispas.
 //   - Mientras habla: boca-ecualizador, ondas de sonido y núcleo más brillante.
 // Las animaciones en bucle son CSS (RobotMascot.css) para no cargar el hilo de React.
-// API: <RobotMascot isTalking onClick size />.
+// API: <RobotMascot isTalking onClick expression="default|confused" />.
 
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
 const SPARK_COLORS = ['#a78bfa', '#f472b6', '#fbbf24', '#22d3ee', '#818cf8'];
 
-const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
+const RobotMascot = ({ isTalking = false, onClick, expression = 'default', className = '', style }) => {
     const reduceMotion = useReducedMotion();
     const rootRef = useRef(null);
     const [blink, setBlink] = useState(false);
@@ -114,12 +114,16 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
     }, [onClick]);
 
     const happy = hover || (jumpKey > 0 && sparks.length > 0);
+    const confused = expression === 'confused' && !happy && !isTalking;
     const mood = isTalking ? 'talking' : happy ? 'happy' : 'idle';
+    const smileD = confused
+        ? 'M147 161 Q150.5 157 154 161 T161 161 T168 161 T173 160'
+        : mood === 'happy' ? 'M146 157 Q160 170 174 157' : 'M148 159 Q160 166 172 159';
 
     return (
         <div
             ref={rootRef}
-            className={`robo ${isTalking ? 'robo--talking' : ''} ${hover ? 'robo--hover' : ''} ${reduceMotion ? 'robo--still' : ''} ${className}`}
+            className={`robo ${confused ? 'robo--confused' : ''} ${isTalking ? 'robo--talking' : ''} ${hover ? 'robo--hover' : ''} ${reduceMotion ? 'robo--still' : ''} ${className}`}
             style={style}
             onClick={handleClick}
             onPointerEnter={() => setHover(true)}
@@ -141,6 +145,8 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                 ))}
             </div>
 
+            {confused && <span className="robo__puzzled" aria-hidden="true">?</span>}
+
             {/* Chispas del clic */}
             <div className="robo__sparks" aria-hidden="true">
                 <AnimatePresence>
@@ -158,6 +164,10 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                 </AnimatePresence>
             </div>
 
+            {/* Sombra en el suelo (HTML): se encoge cuando el robot sube. Va
+                sincronizada con .robo__float por duración; ambas en la GPU. */}
+            <div className="robo__shadow" aria-hidden="true" />
+
             <motion.div
                 key={jumpKey}
                 className="robo__jump"
@@ -165,6 +175,7 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                 animate={jumpKey && !reduceMotion ? { y: [0, -34, 0, -8, 0], scaleY: [1, 1.04, 0.94, 1.02, 1], scaleX: [1, 0.97, 1.05, 0.99, 1] } : {}}
                 transition={{ duration: 0.75, ease: 'easeOut' }}
             >
+                <div className="robo__float">
                 <svg className="robo__svg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="robo-head" x1="0" y1="0" x2="1" y2="1">
@@ -222,36 +233,44 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                             <stop offset="0%" stopColor="rgba(255,255,255,0.75)" />
                             <stop offset="100%" stopColor="rgba(255,255,255,0)" />
                         </linearGradient>
-                        <filter id="robo-glow" x="-80%" y="-80%" width="260%" height="260%">
-                            <feGaussianBlur stdDeviation="4" result="b" />
-                            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                        </filter>
-                        <filter id="robo-soft" x="-20%" y="-20%" width="140%" height="150%">
-                            <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#1e1b4b" floodOpacity="0.35" />
-                        </filter>
+                        {/* Sin <filter>: el robot se anima sin parar, y cada filtro (antes 12
+                            sombras feDropShadow + brillos feGaussianBlur) se recalculaba en
+                            cada frame. Los brillos son halos radiales y las sombras, formas. */}
+                        <radialGradient id="robo-halo-cyan" cx="0.5" cy="0.5" r="0.5">
+                            <stop offset="0%" stopColor="#67e8f9" stopOpacity="0.85" />
+                            <stop offset="45%" stopColor="#22d3ee" stopOpacity="0.3" />
+                            <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+                        </radialGradient>
+                        <radialGradient id="robo-halo-pink" cx="0.5" cy="0.5" r="0.5">
+                            <stop offset="0%" stopColor="#f0abfc" stopOpacity="0.8" />
+                            <stop offset="50%" stopColor="#e879f9" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#e879f9" stopOpacity="0" />
+                        </radialGradient>
+                        <radialGradient id="robo-floor" cx="0.5" cy="0.5" r="0.5">
+                            <stop offset="0%" stopColor="#0f0a32" stopOpacity="0.5" />
+                            <stop offset="100%" stopColor="#0f0a32" stopOpacity="0" />
+                        </radialGradient>
                         <clipPath id="robo-visor-clip">
                             <rect x="103" y="84" width="114" height="64" rx="30" />
                         </clipPath>
                     </defs>
 
-                    {/* Sombra en el suelo: se encoge cuando el robot sube */}
-                    <ellipse className="robo-shadow" cx="160" cy="326" rx="58" ry="8" fill="rgba(15,10,50,0.45)" />
-
-                    <g className="robo-float">
+                    <g>
                         {/* ===== PROPULSOR ===== */}
                         <g className="robo-thruster">
-                            <path className="robo-flame robo-flame--outer" d="M144 290 Q160 340 176 290 Z" fill="url(#robo-flame)" filter="url(#robo-glow)" />
+                            <ellipse cx="160" cy="304" rx="20" ry="22" fill="url(#robo-halo-cyan)" opacity="0.8" />
+                            <path className="robo-flame robo-flame--outer" d="M144 290 Q160 340 176 290 Z" fill="url(#robo-flame)" />
                             <path className="robo-flame robo-flame--inner" d="M151 290 Q160 322 169 290 Z" fill="#ecfeff" opacity="0.9" />
                         </g>
-                        <path d="M130 266 Q160 300 190 266 Z" fill="url(#robo-body)" filter="url(#robo-soft)" />
+                        <path d="M130 266 Q160 300 190 266 Z" fill="url(#robo-body)" />
                         <rect x="143" y="280" width="34" height="12" rx="6" fill="url(#robo-metal)" />
                         <rect x="147" y="288" width="26" height="5" rx="2.5" fill="#1e1b4b" />
 
                         <motion.g style={{ rotate: bodyRot, originX: '160px', originY: '270px' }}>
                             {/* ===== BRAZO IZQUIERDO ===== */}
                             <g className="robo-arm robo-arm--left">
-                                <circle cx="104" cy="202" r="12" fill="url(#robo-metal)" filter="url(#robo-soft)" />
-                                <rect x="90" y="204" width="20" height="38" rx="10" fill="url(#robo-limb)" filter="url(#robo-soft)" />
+                                <circle cx="104" cy="202" r="12" fill="url(#robo-metal)" />
+                                <rect x="90" y="204" width="20" height="38" rx="10" fill="url(#robo-limb)" />
                                 <rect x="93" y="207" width="6" height="28" rx="3" fill="rgba(255,255,255,0.25)" />
                                 <circle cx="100" cy="244" r="8" fill="url(#robo-metal)" />
                                 <g className="robo-hand">
@@ -262,8 +281,8 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                             </g>
                             {/* ===== BRAZO DERECHO (saluda) ===== */}
                             <g className="robo-arm robo-arm--right">
-                                <circle cx="216" cy="202" r="12" fill="url(#robo-metal)" filter="url(#robo-soft)" />
-                                <rect x="210" y="204" width="20" height="38" rx="10" fill="url(#robo-limb)" filter="url(#robo-soft)" />
+                                <circle cx="216" cy="202" r="12" fill="url(#robo-metal)" />
+                                <rect x="210" y="204" width="20" height="38" rx="10" fill="url(#robo-limb)" />
                                 <rect x="213" y="207" width="6" height="28" rx="3" fill="rgba(255,255,255,0.25)" />
                                 <circle cx="220" cy="244" r="8" fill="url(#robo-metal)" />
                                 <g className="robo-hand">
@@ -274,7 +293,8 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                             </g>
 
                             {/* ===== TORSO ===== */}
-                            <rect x="110" y="184" width="100" height="88" rx="36" fill="url(#robo-body)" filter="url(#robo-soft)" />
+                            <rect x="110" y="188" width="100" height="88" rx="36" fill="#1e1b4b" opacity="0.3" />
+                            <rect x="110" y="184" width="100" height="88" rx="36" fill="url(#robo-body)" />
                             <path d="M122 196 Q160 182 198 196" stroke="url(#robo-gloss)" strokeWidth="6" strokeLinecap="round" fill="none" opacity="0.6" />
                             <rect x="126" y="200" width="68" height="56" rx="24" fill="rgba(15,12,60,0.35)" stroke="rgba(199,210,254,0.35)" strokeWidth="1.2" />
                             {/* Núcleo IA */}
@@ -286,7 +306,8 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                             <g className="robo-core-ring robo-core-ring--rev">
                                 <circle cx="160" cy="226" r="9" fill="none" stroke="#ecfeff" strokeWidth="1.4" strokeDasharray="3 4" />
                             </g>
-                            <circle className="robo-core-heart" cx="160" cy="226" r="5" fill="#ecfeff" filter="url(#robo-glow)" />
+                            <circle cx="160" cy="226" r="10" fill="url(#robo-halo-cyan)" />
+                            <circle className="robo-core-heart" cx="160" cy="226" r="5" fill="#ecfeff" />
                             {/* LEDs del pecho */}
                             {[0, 1, 2].map((i) => (
                                 <rect key={i} className="robo-led" style={{ '--d': `${i * 0.25}s` }} x={145 + i * 11} y="248" width="8" height="3.5" rx="1.75" fill="#a5f3fc" />
@@ -309,8 +330,9 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                                         <path d="M160 64 L160 40 L154 28" stroke="#4f46e5" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                                         <path d="M161.5 62 L161.5 41 L156 30" stroke="rgba(255,255,255,0.35)" strokeWidth="1.6" strokeLinecap="round" fill="none" />
                                         <circle cx="160" cy="42" r="4" fill="url(#robo-metal)" />
+                                        <circle cx="154" cy="24" r="20" fill="url(#robo-halo-pink)" />
                                         <circle className="robo-orb-pulse" cx="154" cy="24" r="11" fill="none" stroke="#f0abfc" strokeWidth="2" />
-                                        <circle className="robo-orb" cx="154" cy="24" r="10" fill="url(#robo-orb)" filter="url(#robo-glow)" />
+                                        <circle className="robo-orb" cx="154" cy="24" r="10" fill="url(#robo-orb)" />
                                         <circle cx="150.5" cy="20.5" r="3.5" fill="rgba(255,255,255,0.75)" />
                                         <path className="robo-wifi robo-wifi--1" d="M170 14 q7 10 0 20" stroke="#c4b5fd" strokeWidth="2.4" strokeLinecap="round" fill="none" />
                                         <path className="robo-wifi robo-wifi--2" d="M176 8 q11 16 0 32" stroke="#c4b5fd" strokeWidth="2.4" strokeLinecap="round" fill="none" />
@@ -319,14 +341,15 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
 
                                     {/* Orejeras */}
                                     <g>
-                                        <rect x="76" y="100" width="20" height="44" rx="10" fill="url(#robo-limb)" filter="url(#robo-soft)" />
-                                        <rect x="224" y="100" width="20" height="44" rx="10" fill="url(#robo-limb)" filter="url(#robo-soft)" />
+                                        <rect x="76" y="100" width="20" height="44" rx="10" fill="url(#robo-limb)" />
+                                        <rect x="224" y="100" width="20" height="44" rx="10" fill="url(#robo-limb)" />
                                         <circle className="robo-ear-led" cx="86" cy="122" r="4" fill="#67e8f9" />
                                         <circle className="robo-ear-led" cx="234" cy="122" r="4" fill="#67e8f9" />
                                     </g>
 
                                     {/* Carcasa */}
-                                    <rect x="88" y="60" width="144" height="116" rx="42" fill="url(#robo-head)" filter="url(#robo-soft)" />
+                                    <rect x="88" y="64" width="144" height="116" rx="42" fill="#1e1b4b" opacity="0.32" />
+                                    <rect x="88" y="60" width="144" height="116" rx="42" fill="url(#robo-head)" />
                                     <rect x="88" y="60" width="144" height="116" rx="42" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
                                     {/* Brillo especular que se desplaza con la mirada */}
                                     <motion.path style={{ x: shineX }} d="M108 82 Q130 66 168 68" stroke="url(#robo-gloss)" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.7" />
@@ -377,7 +400,7 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                                     <motion.g style={{ x: faceX }}>
                                         <rect x="138" y="152" width="44" height="16" rx="8" fill="#0b0a24" stroke="rgba(103,232,249,0.35)" strokeWidth="1" />
                                         {isTalking ? (
-                                            <g filter="url(#robo-glow)">
+                                            <g>
                                                 {[0, 1, 2, 3, 4, 5].map((i) => (
                                                     <rect
                                                         key={i}
@@ -389,11 +412,19 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                                                 ))}
                                             </g>
                                         ) : (
-                                            <path
-                                                className="robo-smile"
-                                                d={mood === 'happy' ? 'M146 157 Q160 170 174 157' : 'M148 159 Q160 166 172 159'}
-                                                stroke="#67e8f9" strokeWidth="3" strokeLinecap="round" fill="none" filter="url(#robo-glow)"
-                                            />
+                                            <>
+                                                {/* brillo: trazo ancho y tenue debajo (sustituye al filtro) */}
+                                                <path
+                                                    className="robo-smile"
+                                                    d={smileD}
+                                                    stroke="#67e8f9" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.22"
+                                                />
+                                                <path
+                                                    className="robo-smile"
+                                                    d={smileD}
+                                                    stroke="#67e8f9" strokeWidth="3" strokeLinecap="round" fill="none"
+                                                />
+                                            </>
                                         )}
                                     </motion.g>
 
@@ -416,6 +447,7 @@ const RobotMascot = ({ isTalking = false, onClick, className = '', style }) => {
                         </g>
                     )}
                 </svg>
+                </div>
             </motion.div>
         </div>
     );

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Cookie, X } from 'lucide-react';
+import MascotLogo from '@/components/ui/MascotLogo';
+import './CookieBanner.css';
 
 const STORAGE_KEY = 'cookie-consent';
 
@@ -54,20 +56,24 @@ export default function CookieBanner() {
       aria-label="Aviso de cookies"
       className="fixed inset-x-0 bottom-0 z-[9999] p-3 sm:p-4 pointer-events-none"
     >
-      <div className="pointer-events-auto mx-auto max-w-3xl rounded-xl border border-slate-300 bg-white shadow-2xl px-4 py-3 sm:px-5 sm:py-4">
+      <div className="cookie-card pointer-events-auto mx-auto max-w-3xl px-4 py-3 sm:px-5 sm:py-4">
         <div className="flex items-start gap-3">
-          <Cookie className="w-5 h-5 shrink-0 text-amber-500 mt-0.5" />
-          <div className="text-sm text-slate-700 leading-snug flex-1">
-            <p className="font-bold text-slate-900">Cookies</p>
+          {/* La mascota con su galleta */}
+          <span className="cookie-card__mascot" aria-hidden="true">
+            <MascotLogo className="w-full h-full" />
+            <span className="cookie-card__cookie"><Cookie className="w-3.5 h-3.5" /></span>
+          </span>
+          <div className="text-sm leading-snug flex-1 cookie-card__text">
+            <p className="font-bold cookie-card__title">Cookies</p>
             <p className="mt-1">
               Usamos cookies propias técnicas (imprescindibles) y de terceros (Google Analytics)
               para entender cómo se usa la plataforma y mejorarla. Puedes aceptarlas, rechazarlas o
               leer más en la{' '}
-              <Link to="/politica-cookies" className="font-semibold text-indigo-600 hover:underline">
+              <Link to="/politica-cookies" className="cookie-card__link">
                 política de cookies
               </Link>{' '}
               y la{' '}
-              <Link to="/politica-privacidad" className="font-semibold text-indigo-600 hover:underline">
+              <Link to="/politica-privacidad" className="cookie-card__link">
                 política de privacidad
               </Link>.
             </p>
@@ -75,23 +81,17 @@ export default function CookieBanner() {
           <button
             onClick={reject}
             aria-label="Cerrar sin aceptar"
-            className="shrink-0 p-1 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"
+            className="cookie-card__close shrink-0 p-1 rounded-md transition-colors"
             title="Rechazar todas"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
         <div className="mt-3 flex flex-col sm:flex-row gap-2 sm:justify-end">
-          <button
-            onClick={reject}
-            className="px-4 py-2 rounded-lg text-sm font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors"
-          >
+          <button onClick={reject} className="cookie-card__btn cookie-card__btn--reject">
             Rechazar
           </button>
-          <button
-            onClick={accept}
-            className="px-4 py-2 rounded-lg text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow"
-          >
+          <button onClick={accept} className="cookie-card__btn cookie-card__btn--accept">
             Aceptar todas
           </button>
         </div>

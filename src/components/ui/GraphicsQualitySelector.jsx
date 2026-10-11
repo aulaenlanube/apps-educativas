@@ -1,5 +1,6 @@
 // src/components/ui/GraphicsQualitySelector.jsx
-// Selector del ajuste GLOBAL de calidad gráfica (compartido por las apps 3D).
+// Selector del ajuste GLOBAL de calidad gráfica (apps 3D + nivel de efectos de
+// la interfaz, ver src/services/uiFx.js).
 // variant 'row'  → fila compacta para pantallas de selección de modo o ajustes.
 // variant 'card' → bloque con título y descripción para páginas de perfil.
 // Añade la clase 'gfxsel-on-dark' cuando se muestre sobre fondo oscuro de app.
@@ -31,7 +32,8 @@ export default function GraphicsQualitySelector({ variant = 'row', className = '
         <div className="gfxsel-card-title"><Settings2 size={15} /> Calidad gráfica</div>
         {buttons}
         <p className="gfxsel-note">
-          Se aplica en este dispositivo a las apps con gráficos 3D (La Fortaleza, Laboratorio de Física…).
+          Se aplica en este dispositivo a los efectos visuales de la plataforma (fondo 3D, animaciones,
+          cristal) y a las apps con gráficos 3D (La Fortaleza, Laboratorio de Física…).
           Nivel activo: <strong>{QUALITY_LABELS[tier]}</strong>.
           {pref === 'auto' && ' En Auto se ajusta solo a la potencia del equipo.'}
         </p>

@@ -11,6 +11,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Header from '@/components/layout/Header';
 import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
 import { isLocked, getLockRemainingMs, registerFailedAttempt, clearAttempts, LOGIN_MAX_ATTEMPTS } from '@/lib/authThrottle';
+import RobotMascot from '@/components/RobotMascot';
+import './LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -32,12 +34,14 @@ const LoginPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md relative pt-24"
         >
+          {/* La mascota recibe al usuario asomando por encima de la tarjeta */}
+          <div className="login-robot" aria-hidden="true"><RobotMascot /></div>
           <div className="bg-white dark:bg-slate-800 dark:text-gray-200 rounded-2xl shadow-xl border border-purple-100 dark:border-slate-700 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-center">
+            <div className="login-hero p-6 pt-9 text-center">
               <h1 className="text-2xl font-bold text-white">Iniciar Sesion</h1>
-              <p className="text-blue-100 text-sm mt-1">Accede a tu cuenta de EduApps</p>
+              <p className="text-indigo-100 text-sm mt-1">Accede a tu cuenta de EduApps</p>
             </div>
 
             <Tabs defaultValue="teacher" className="p-6">

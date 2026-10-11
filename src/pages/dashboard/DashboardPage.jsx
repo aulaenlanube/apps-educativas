@@ -21,6 +21,7 @@ import TeacherDuelInbox from '@/components/duel/TeacherDuelInbox';
 import TeacherDuelCreateModal from '@/components/duel/TeacherDuelCreateModal';
 import QuizTemplatesPanel from '@/apps/quiz-battle/QuizTemplatesPanel';
 import OposicionesIAPromo from '@/components/ads/OposicionesIAPromo';
+import BrandLoader from '@/components/ui/BrandLoader';
 
 const VALID_TABS = ['grupos', 'logros', 'plantillas', 'comentarios', 'perfil'];
 
@@ -227,7 +228,7 @@ const DashboardPage = () => {
               <div className="bg-white rounded-2xl shadow-sm border border-purple-100 p-4">
                 {loadingGroups ? (
                   <div className="flex justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+                    <BrandLoader variant="inline" />
                   </div>
                 ) : (
                   <GroupsPanel
@@ -272,7 +273,7 @@ const DashboardPage = () => {
                 />
               ) : loadingStudents ? (
                 <div className="flex justify-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+                  <BrandLoader variant="inline" />
                 </div>
               ) : (
                 <StudentsPanel
