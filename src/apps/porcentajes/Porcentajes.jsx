@@ -1,5 +1,5 @@
 // src/apps/porcentajes/Porcentajes.jsx
-import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
@@ -512,6 +512,17 @@ const ProblemHelper = ({ problem }) => {
 
 // =============================================================
 
+// Fondo decorativo (solo visual): orbes + rejilla + símbolos % flotando
+const PPBackdrop = () => (
+  <div className="fx-app-backdrop pp-fx-backdrop" aria-hidden="true">
+    <div className="pp-fx-grid" />
+    <span className="pp-fx-glyph g1">%</span>
+    <span className="pp-fx-glyph g2">%</span>
+    <span className="pp-fx-glyph g3">÷</span>
+    <span className="pp-fx-spark s1" /><span className="pp-fx-spark s2" /><span className="pp-fx-spark s3" />
+  </div>
+);
+
 const Porcentajes = ({ onGameComplete }) => {
   const [phase, setPhase] = useState('setup'); // 'setup' | 'play' | 'finished'
   const [difficulty, setDifficulty] = useState('easy');
@@ -646,8 +657,9 @@ const Porcentajes = ({ onGameComplete }) => {
   if (phase === 'setup') {
     return (
       <div className="pp-root">
+        <PPBackdrop />
         <motion.div
-          className="pp-card"
+          className="pp-card fx-grain"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -666,15 +678,17 @@ const Porcentajes = ({ onGameComplete }) => {
           </p>
 
           <div className="pp-difficulty-grid">
-            {DIFFICULTIES.map((d) => (
+            {DIFFICULTIES.map((d, i) => (
               <motion.button
                 key={d.id}
-                className={`pp-difficulty-card pp-diff-${d.id}`}
-                whileHover={{ scale: 1.03, y: -4 }}
+                className={`pp-difficulty-card pp-diff-${d.id} fx-shine`}
+                initial={{ opacity: 0, y: 22, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.15 + i * 0.09, type: 'spring', stiffness: 260, damping: 22 } }}
+                whileHover={{ scale: 1.03, y: -6 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => startGame(d.id)}
               >
-                <div className="pp-diff-icon">{d.icon}</div>
+                <div className="pp-diff-icon"><span className="pp-diff-halo" aria-hidden="true" />{d.icon}</div>
                 <div className="pp-diff-label">{d.label}</div>
                 <div className="pp-diff-desc">{d.desc}</div>
                 <div className="pp-diff-helps">{d.helps}</div>
@@ -769,10 +783,12 @@ const Porcentajes = ({ onGameComplete }) => {
 
     return (
       <div className="pp-root">
+        <PPBackdrop />
         <motion.div
-          className="pp-card pp-result-card"
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="pp-card pp-result-card fx-grain"
+          initial={{ opacity: 0, scale: 0.94, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 22 }}
         >
           <div className="pp-header">
             <div className="pp-title">
@@ -782,20 +798,25 @@ const Porcentajes = ({ onGameComplete }) => {
           </div>
 
           <div className="pp-result-hero">
-            <div className="pp-nota-block" style={{ borderColor: notaColor }}>
+            <div className="pp-nota-block" style={{ borderColor: notaColor, '--pp-nota-color': notaColor }}>
               <div className="pp-nota-label">Tu nota</div>
-              <div className="pp-nota-value" style={{ color: notaColor }}>
-                {nota.toFixed(1)}<span className="pp-nota-max">/10</span>
+              <div
+                className="fx-grade-ring pp-nota-ring"
+                style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
+              >
+                <div className="pp-nota-value" style={{ color: notaColor }}>
+                  {nota.toFixed(1)}<span className="pp-nota-max">/10</span>
+                </div>
               </div>
               <div className="pp-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
             </div>
-            <div className="pp-stats-block">
+            <div className="pp-stats-block fx-stagger">
               <div className="pp-stat">
                 <span className="pp-stat-label">Aciertos</span>
                 <span className="pp-stat-value">{examCorrect} / {TOTAL_EXAM_QUESTIONS}</span>
               </div>
-              <div className="pp-stat">
-                <span className="pp-stat-label">Puntos</span>
+              <div className="pp-stat pp-stat--points">
+                <span className="pp-stat-label"><Sparkles size={12} aria-hidden="true" /> Puntos</span>
                 <span className="pp-stat-value">{examPoints}</span>
               </div>
               <div className="pp-stat">
@@ -805,7 +826,7 @@ const Porcentajes = ({ onGameComplete }) => {
             </div>
           </div>
 
-          <div className="pp-history">
+          <div className="pp-history fx-stagger">
             {examHistory.map((it, idx) => (
               <div key={idx} className={`pp-history-item ${it.isCorrect ? 'correct' : 'incorrect'}`}>
                 <div className="pp-history-head">
@@ -849,8 +870,9 @@ const Porcentajes = ({ onGameComplete }) => {
 
   return (
     <div className="pp-root">
+      <PPBackdrop />
       <motion.div
-        className="pp-card"
+        className="pp-card fx-grain"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -890,7 +912,7 @@ const Porcentajes = ({ onGameComplete }) => {
         {isExam && (
           <div className="pp-progress-bar">
             <div
-              className="pp-progress-fill"
+              className="pp-progress-fill pp-progress-shine"
               style={{ width: `${((examIndex) / TOTAL_EXAM_QUESTIONS) * 100}%` }}
             />
           </div>
@@ -898,10 +920,18 @@ const Porcentajes = ({ onGameComplete }) => {
 
         {problem && (
           <>
-            <div className="pp-problem-text">
-              <Calculator size={20} className="pp-problem-icon" />
+            <motion.div
+              key={`${examIndex}-${problem.text}`}
+              className="pp-problem-text"
+              initial={{ opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            >
+              <span className="pp-problem-icon-wrap" aria-hidden="true">
+                <Calculator size={20} className="pp-problem-icon" />
+              </span>
               <p>{problem.text}</p>
-            </div>
+            </motion.div>
 
             {showHelp && !isExam && (
               <ProblemHelper problem={problem} />
@@ -927,8 +957,9 @@ const Porcentajes = ({ onGameComplete }) => {
             {feedback && !isExam && (
               <motion.div
                 className={`pp-feedback ${feedback}`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -10, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 22 }}
               >
                 {feedback === 'correct' ? (
                   <>

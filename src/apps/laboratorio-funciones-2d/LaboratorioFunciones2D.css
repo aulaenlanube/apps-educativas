@@ -1,0 +1,167 @@
+/* src/apps/laboratorio-funciones-2d/LaboratorioFunciones2D.css
+   ==========================================================================
+   ACABADO PREMIUM 2026 — capa visual (no toca cálculo ni trazado).
+   Cristal índigo con luz interior, fórmula con borde de aurora, lienzo con
+   halo y botones con microinteracciones. Convive con las utilidades
+   Tailwind del JSX: estas reglas solo refinan superficie y profundidad.
+   ========================================================================== */
+
+.lf2d-root {
+    --fx-accent: #6366f1;
+    --fx-accent-2: #ec4899;
+    --lf-glass: rgba(255, 255, 255, 0.74);
+    --lf-edge: rgba(255, 255, 255, 0.8);
+    --lf-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+        0 -1px 0 0 rgba(15, 23, 42, 0.04) inset,
+        0 28px 60px -32px rgba(67, 56, 202, 0.45),
+        0 8px 20px -12px rgba(15, 23, 42, 0.15);
+    position: relative;
+    font-family: 'Fredoka', sans-serif;
+}
+html.dark .lf2d-root {
+    --lf-glass: rgba(24, 20, 52, 0.72);
+    --lf-edge: rgba(255, 255, 255, 0.1);
+    --lf-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+        0 28px 60px -30px rgba(0, 0, 0, 0.8),
+        0 8px 20px -12px rgba(0, 0, 0, 0.5);
+}
+.lf2d-root > :not(.fx-app-backdrop) { position: relative; z-index: 1; }
+.lf2d-backdrop { border-radius: 2rem; }
+.lf2d-backdrop::before { opacity: .22; }
+.lf2d-backdrop::after { opacity: .18; }
+.lf2d-backdrop .lf2d-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+}
+
+/* ---------- Paneles de cristal ---------- */
+.lf2d-root .lf2d-panel,
+html.dark .lf2d-root .lf2d-panel {
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.10), transparent 60%),
+        var(--lf-glass) !important;
+    border: 1px solid var(--lf-edge) !important;
+    box-shadow: var(--lf-shadow) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+}
+.lf2d-root aside .lf2d-panel { animation: fx-rise .55s var(--fx-ease-out) both; }
+.lf2d-root aside .lf2d-panel + .lf2d-panel { animation-delay: .08s; }
+.lf2d-topbar { animation: fx-rise .55s .05s var(--fx-ease-out) both; }
+html.dark .lf2d-root .lf2d-head-text { color: #e5e7eb; }
+.lf2d-head-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+    color: #6366f1;
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.10));
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18) inset, 0 6px 14px -8px rgba(99, 102, 241, 0.7);
+}
+html.dark .lf2d-head-icon { color: #c4b5fd; }
+
+/* ---------- Pestañas móviles ---------- */
+.lf2d-tab { transition: transform .25s var(--fx-ease-spring), background .2s ease, box-shadow .25s ease; }
+.lf2d-tab:active { transform: scale(.97); }
+.lf2d-root .lf2d-tab.is-active {
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 10px 20px -10px rgba(99, 102, 241, 0.85);
+}
+
+/* ---------- Lista de funciones y chips ---------- */
+.lf2d-fn-btn {
+    border: 1px solid transparent;
+    transition: transform .25s var(--fx-ease-spring), background .2s ease, box-shadow .25s ease, border-color .2s ease !important;
+}
+.lf2d-fn-btn:hover { transform: translateX(3px); border-color: rgba(99, 102, 241, 0.25); }
+.lf2d-fn-btn:active { transform: scale(.98); }
+.lf2d-fn-btn:focus-visible,
+.lf2d-chip:focus-visible,
+.lf2d-tab:focus-visible,
+.lf2d-tool:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: 2px; }
+.lf2d-root .lf2d-fn-btn.is-active {
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 14px 28px -12px rgba(99, 102, 241, 0.85);
+}
+.lf2d-chip { transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease; }
+.lf2d-chip:hover { transform: translateY(-2px); }
+.lf2d-root .lf2d-chip.is-active {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    box-shadow: 0 8px 18px -8px rgba(99, 102, 241, 0.85);
+}
+.lf2d-root .lf2d-value {
+    color: #4f46e5;
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.14), rgba(139, 92, 246, 0.08));
+    border-color: rgba(99, 102, 241, 0.25);
+}
+html.dark .lf2d-root .lf2d-value { color: #c4b5fd; }
+.lf2d-desc { animation: fx-bounce-in .45s var(--fx-ease-spring) both; }
+
+/* ---------- Fórmula con borde de aurora ---------- */
+.lf2d-root .lf2d-formula {
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(120% 120% at 0% 0%, rgba(99, 102, 241, 0.45), transparent 55%),
+        radial-gradient(120% 120% at 100% 100%, rgba(236, 72, 153, 0.30), transparent 55%),
+        #0f0c29;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 18px 36px -16px rgba(67, 56, 202, 0.75);
+}
+.lf2d-root .lf2d-formula::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: var(--fx-aurora);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: fx-spin-angle 6s linear infinite;
+    pointer-events: none;
+}
+.lf2d-root .lf2d-formula span { text-shadow: 0 0 18px rgba(165, 180, 252, 0.55); }
+
+.lf2d-tool { transition: transform .25s var(--fx-ease-spring), background .2s ease; }
+.lf2d-tool:hover { transform: translateY(-2px) scale(1.06); }
+.lf2d-tool:active { transform: scale(.94); }
+
+/* ---------- Lienzo ---------- */
+.lf2d-root .lf2d-stage {
+    background:
+        radial-gradient(70% 60% at 50% 50%, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8) 70%),
+        #f8fafc;
+    border: 1px solid var(--lf-edge);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 6px rgba(139, 92, 246, 0.06),
+        0 30px 70px -36px rgba(67, 56, 202, 0.55);
+    animation: fx-rise .6s .1s var(--fx-ease-out) both;
+}
+html.dark .lf2d-root .lf2d-stage {
+    background:
+        radial-gradient(70% 60% at 50% 50%, rgba(49, 46, 129, 0.35), transparent 70%),
+        #12102a !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 30px 70px -36px rgba(0, 0, 0, 0.9);
+}
+.lf2d-zoom-chip {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 22px -14px rgba(67, 56, 202, 0.6);
+    animation: fx-pop-in .4s var(--fx-ease-spring) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lf2d-root .lf2d-formula::before { animation: none !important; }
+}
+
+/* Bordes del fondo difuminados: sin "caja" visible sobre la escena del curso */
+.lf2d-backdrop {
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+}

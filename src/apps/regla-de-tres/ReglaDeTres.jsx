@@ -1,5 +1,5 @@
 // src/apps/regla-de-tres/ReglaDeTres.jsx
-import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
@@ -167,6 +167,17 @@ const FormulaHint = ({ problem }) => {
 
 // =============================================================
 
+// Fondo decorativo (solo visual): orbes + rejilla + símbolos flotando
+const R3Backdrop = () => (
+  <div className="fx-app-backdrop r3-fx-backdrop" aria-hidden="true">
+    <div className="r3-fx-grid" />
+    <span className="r3-fx-glyph g1">∝</span>
+    <span className="r3-fx-glyph g2">x</span>
+    <span className="r3-fx-glyph g3">÷</span>
+    <span className="r3-fx-spark s1" /><span className="r3-fx-spark s2" /><span className="r3-fx-spark s3" />
+  </div>
+);
+
 const ReglaDeTres = ({ onGameComplete }) => {
   // Params se mantienen por consistencia con otras apps; la app no depende del curso.
   useParams();
@@ -310,8 +321,9 @@ const ReglaDeTres = ({ onGameComplete }) => {
   if (phase === 'setup') {
     return (
       <div className="r3-root">
+        <R3Backdrop />
         <motion.div
-          className="r3-card"
+          className="r3-card fx-grain"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -329,15 +341,17 @@ const ReglaDeTres = ({ onGameComplete }) => {
           </p>
 
           <div className="r3-difficulty-grid">
-            {DIFFICULTIES.map((d) => (
+            {DIFFICULTIES.map((d, i) => (
               <motion.button
                 key={d.id}
-                className={`r3-difficulty-card r3-diff-${d.id}`}
-                whileHover={{ scale: 1.03, y: -4 }}
+                className={`r3-difficulty-card r3-diff-${d.id} fx-shine`}
+                initial={{ opacity: 0, y: 22, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.15 + i * 0.09, type: 'spring', stiffness: 260, damping: 22 } }}
+                whileHover={{ scale: 1.03, y: -6 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => startGame(d.id)}
               >
-                <div className="r3-diff-icon">{d.icon}</div>
+                <div className="r3-diff-icon"><span className="r3-diff-halo" aria-hidden="true" />{d.icon}</div>
                 <div className="r3-diff-label">{d.label}</div>
                 <div className="r3-diff-desc">{d.desc}</div>
                 <div className="r3-diff-helps">{d.helps}</div>
@@ -439,10 +453,12 @@ const ReglaDeTres = ({ onGameComplete }) => {
 
     return (
       <div className="r3-root">
+        <R3Backdrop />
         <motion.div
-          className="r3-card r3-result-card"
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="r3-card r3-result-card fx-grain"
+          initial={{ opacity: 0, scale: 0.94, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 22 }}
         >
           <div className="r3-header">
             <div className="r3-title">
@@ -452,20 +468,25 @@ const ReglaDeTres = ({ onGameComplete }) => {
           </div>
 
           <div className="r3-result-hero">
-            <div className="r3-nota-block" style={{ borderColor: notaColor }}>
+            <div className="r3-nota-block" style={{ borderColor: notaColor, '--r3-nota-color': notaColor }}>
               <div className="r3-nota-label">Tu nota</div>
-              <div className="r3-nota-value" style={{ color: notaColor }}>
-                {nota.toFixed(1)}<span className="r3-nota-max">/10</span>
+              <div
+                className="fx-grade-ring r3-nota-ring"
+                style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
+              >
+                <div className="r3-nota-value" style={{ color: notaColor }}>
+                  {nota.toFixed(1)}<span className="r3-nota-max">/10</span>
+                </div>
               </div>
               <div className="r3-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
             </div>
-            <div className="r3-stats-block">
+            <div className="r3-stats-block fx-stagger">
               <div className="r3-stat">
                 <span className="r3-stat-label">Aciertos</span>
                 <span className="r3-stat-value">{examCorrect} / {TOTAL_EXAM_QUESTIONS}</span>
               </div>
-              <div className="r3-stat">
-                <span className="r3-stat-label">Puntos</span>
+              <div className="r3-stat r3-stat--points">
+                <span className="r3-stat-label"><Sparkles size={12} aria-hidden="true" /> Puntos</span>
                 <span className="r3-stat-value">{examPoints}</span>
               </div>
               <div className="r3-stat">
@@ -475,7 +496,7 @@ const ReglaDeTres = ({ onGameComplete }) => {
             </div>
           </div>
 
-          <div className="r3-history">
+          <div className="r3-history fx-stagger">
             {examHistory.map((it, idx) => (
               <div key={idx} className={`r3-history-item ${it.isCorrect ? 'correct' : 'incorrect'}`}>
                 <div className="r3-history-head">
@@ -519,8 +540,9 @@ const ReglaDeTres = ({ onGameComplete }) => {
 
   return (
     <div className="r3-root">
+      <R3Backdrop />
       <motion.div
-        className="r3-card"
+        className="r3-card fx-grain"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -562,7 +584,7 @@ const ReglaDeTres = ({ onGameComplete }) => {
         {isExam && (
           <div className="r3-progress-bar">
             <div
-              className="r3-progress-fill"
+              className="r3-progress-fill r3-progress-shine"
               style={{ width: `${((examIndex) / TOTAL_EXAM_QUESTIONS) * 100}%` }}
             />
           </div>
@@ -570,10 +592,18 @@ const ReglaDeTres = ({ onGameComplete }) => {
 
         {problem && (
           <>
-            <div className="r3-problem-text">
-              <Calculator size={20} className="r3-problem-icon" />
+            <motion.div
+              key={`${examIndex}-${problem.text}`}
+              className="r3-problem-text"
+              initial={{ opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            >
+              <span className="r3-problem-icon-wrap" aria-hidden="true">
+                <Calculator size={20} className="r3-problem-icon" />
+              </span>
               <p>{problem.text}</p>
-            </div>
+            </motion.div>
 
             <ProportionDiagram problem={problem} showRelation={showHelp && !isExam} />
 
@@ -601,8 +631,9 @@ const ReglaDeTres = ({ onGameComplete }) => {
             {feedback && !isExam && (
               <motion.div
                 className={`r3-feedback ${feedback}`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -10, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 22 }}
               >
                 {feedback === 'correct' ? (
                   <>

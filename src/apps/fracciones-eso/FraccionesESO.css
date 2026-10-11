@@ -1289,3 +1289,477 @@
 .vibrate-once {
     animation: soft-shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
 }
+/* ==========================================================================
+   ACABADO PREMIUM 2026 — capa visual (no toca la lógica)
+   Cristal + luz interior + sombras en capas, orbes de fondo, feedback con
+   glow y nota héroe en anillo. Se apoya en src/styles/fx.css.
+   ========================================================================== */
+
+.fracciones-eso-container {
+    --fx-accent: #6366f1;
+    --fx-accent-2: #a855f7;
+    --feso-glass: rgba(255, 255, 255, 0.74);
+    --feso-glass-strong: rgba(255, 255, 255, 0.86);
+    --feso-edge: rgba(255, 255, 255, 0.75);
+    --feso-ink: #1e1b4b;
+    --feso-ink-soft: #64748b;
+    --feso-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
+        0 -1px 0 0 rgba(15, 23, 42, 0.04) inset,
+        0 30px 60px -30px rgba(67, 56, 202, 0.38),
+        0 10px 24px -12px rgba(15, 23, 42, 0.16);
+    position: relative;
+}
+
+html.dark .fracciones-eso-container {
+    --feso-glass: rgba(30, 27, 60, 0.66);
+    --feso-glass-strong: rgba(34, 30, 68, 0.86);
+    --feso-edge: rgba(255, 255, 255, 0.1);
+    --feso-ink: #eef2ff;
+    --feso-ink-soft: #a5b4fc;
+    --feso-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 30px 70px -30px rgba(0, 0, 0, 0.8),
+        0 10px 24px -12px rgba(0, 0, 0, 0.5);
+}
+
+.fracciones-eso-container > .app-header,
+.fracciones-eso-container > .exam-promo-banner,
+.fracciones-eso-container > .menu-grid,
+.fracciones-eso-container > .examen-dashboard,
+.fracciones-eso-container > .exercise-area {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Fondo ---------- */
+.feso-backdrop .feso-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+}
+html.dark .feso-backdrop .feso-grid {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+.feso-spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 12px 3px rgba(167, 139, 250, 0.7);
+    animation: fx-twinkle 3.2s ease-in-out infinite;
+}
+.feso-spark.s1 { top: 14%; left: 8%; }
+.feso-spark.s2 { top: 32%; right: 7%; animation-delay: .8s; }
+.feso-spark.s3 { bottom: 22%; left: 12%; animation-delay: 1.6s; }
+.feso-spark.s4 { bottom: 10%; right: 18%; animation-delay: 2.3s; }
+.feso-glyph {
+    position: absolute;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    color: rgba(99, 102, 241, 0.09);
+    animation: fx-float 9s ease-in-out infinite;
+    user-select: none;
+}
+html.dark .feso-glyph { color: rgba(196, 181, 253, 0.08); }
+.feso-glyph.g1 { top: 8%; right: 10%; }
+.feso-glyph.g2 { top: 48%; left: 3%; animation-delay: -3s; font-size: 4rem; }
+.feso-glyph.g3 { bottom: 6%; right: 4%; animation-delay: -6s; font-size: 6rem; }
+
+/* ---------- Título ---------- */
+.fracciones-eso-container .gradient-text {
+    background: linear-gradient(90deg, #4f46e5, #8b5cf6, #ec4899, #f59e0b, #4f46e5);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: fx-pan 10s linear infinite;
+    filter: drop-shadow(0 6px 18px rgba(139, 92, 246, 0.28));
+}
+.fracciones-eso-container .title-icon {
+    padding: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background: var(--feso-glass-strong);
+    border: 1px solid var(--feso-edge);
+    box-shadow: var(--feso-shadow);
+    animation: fx-float 6s ease-in-out infinite;
+}
+.fracciones-eso-container .title-icon:last-child { animation-delay: -3s; }
+
+/* ---------- Banner de examen ---------- */
+.fracciones-eso-container .exam-promo-banner,
+html.dark .fracciones-eso-container .exam-promo-banner {
+    background:
+        radial-gradient(120% 90% at 0% 0%, rgba(239, 68, 68, 0.12), transparent 55%),
+        radial-gradient(100% 80% at 100% 100%, rgba(139, 92, 246, 0.16), transparent 60%),
+        var(--feso-glass) !important;
+    border: 1px solid var(--feso-edge) !important;
+    box-shadow: var(--feso-shadow), 0 0 0 1px rgba(139, 92, 246, 0.18);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    overflow: hidden;
+}
+.fracciones-eso-container .exam-promo-header h2 { color: var(--feso-ink); }
+.fracciones-eso-container .exam-promo-banner p { color: var(--feso-ink-soft); margin: 0; }
+.feso-promo-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    color: #fff;
+    background: linear-gradient(135deg, #ef4444, #ec4899 60%, #8b5cf6);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 12px 28px -10px rgba(239, 68, 68, 0.7);
+    animation: fx-pulse-glow 2.6s ease-in-out infinite;
+}
+.fracciones-eso-container .btn-exam-start {
+    background: linear-gradient(135deg, #ef4444 0%, #ec4899 50%, #8b5cf6 100%);
+    background-size: 180% 180%;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.18) inset,
+        0 18px 36px -14px rgba(239, 68, 68, 0.7);
+    transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease, background-position .6s ease;
+}
+.fracciones-eso-container .btn-exam-start:hover {
+    background-position: 100% 50%;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.18) inset,
+        0 26px 44px -14px rgba(236, 72, 153, 0.7);
+}
+.fracciones-eso-container .btn-exam-start:active { transform: scale(.97); }
+
+/* ---------- Tarjetas de sección ---------- */
+.fracciones-eso-container .menu-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(120% 70% at 50% -10%, color-mix(in srgb, var(--card-color) 16%, transparent), transparent 60%),
+        var(--feso-glass);
+    border: 1px solid var(--feso-edge);
+    box-shadow: var(--feso-shadow);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    transition: box-shadow .35s ease, border-color .35s ease;
+}
+.fracciones-eso-container .menu-card::after {
+    content: '';
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 0;
+    height: 4px;
+    border-radius: 4px 4px 0 0;
+    background: var(--card-color);
+    opacity: .55;
+    transition: opacity .3s ease, left .35s ease, right .35s ease;
+}
+.fracciones-eso-container .menu-card:hover {
+    border-color: color-mix(in srgb, var(--card-color) 45%, transparent);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
+        0 34px 60px -28px color-mix(in srgb, var(--card-color) 70%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--card-color) 25%, transparent);
+}
+.fracciones-eso-container .menu-card:hover::after { opacity: 1; left: 8%; right: 8%; }
+.fracciones-eso-container .menu-card:focus-visible { outline: 3px solid var(--card-color); outline-offset: 3px; }
+.fracciones-eso-container .menu-card h3 { color: var(--feso-ink); }
+.fracciones-eso-container .menu-card p { color: var(--feso-ink-soft); }
+.fracciones-eso-container .card-icon {
+    position: relative;
+    isolation: isolate;
+    background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.35)),
+        color-mix(in srgb, var(--card-color) 14%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 16px 30px -14px color-mix(in srgb, var(--card-color) 80%, transparent);
+}
+html.dark .fracciones-eso-container .card-icon {
+    background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
+        color-mix(in srgb, var(--card-color) 22%, transparent);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+.feso-icon-halo {
+    position: absolute;
+    inset: -14px;
+    z-index: -1;
+    border-radius: 36px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--card-color) 40%, transparent), transparent 70%);
+    opacity: .45;
+    transition: opacity .35s ease, transform .45s var(--fx-ease-spring);
+}
+.fracciones-eso-container .menu-card:hover .card-icon { transform: rotate(-6deg) scale(1.08); }
+.fracciones-eso-container .menu-card:hover .feso-icon-halo { opacity: 1; transform: scale(1.15); }
+
+/* ---------- Partida ---------- */
+.fracciones-eso-container .btn-back {
+    background: var(--feso-glass-strong) !important;
+    border: 1px solid var(--feso-edge) !important;
+    color: var(--feso-ink) !important;
+    box-shadow: var(--feso-shadow);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+.fracciones-eso-container .btn-back:focus-visible { outline: 3px solid #a78bfa; outline-offset: 2px; }
+.fracciones-eso-container .section-badge {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 12px 26px -10px rgba(79, 70, 229, 0.55);
+    animation: fx-pop-in .5s var(--fx-ease-spring) both;
+}
+.fracciones-eso-container .exam-progress {
+    font-weight: 800;
+    color: var(--feso-ink);
+    min-width: 220px;
+}
+.fracciones-eso-container .progress-bar-bg {
+    height: 12px;
+    margin-top: .4rem;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(148, 163, 184, 0.25);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12) inset;
+}
+.fracciones-eso-container .progress-bar-fill {
+    position: relative;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+    box-shadow: 0 0 14px rgba(139, 92, 246, 0.6);
+    transition: width .6s var(--fx-ease-out);
+    overflow: hidden;
+}
+.feso-progress-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+    transform: translateX(-100%);
+    animation: feso-bar-sheen 2.2s ease-in-out infinite;
+}
+@keyframes feso-bar-sheen { to { transform: translateX(100%); } }
+
+.fracciones-eso-container .exercise-card,
+html.dark .fracciones-eso-container .exercise-card {
+    position: relative;
+    background:
+        radial-gradient(90% 60% at 50% 0%, rgba(139, 92, 246, 0.10), transparent 60%),
+        var(--feso-glass) !important;
+    border: 1px solid var(--feso-edge) !important;
+    box-shadow: var(--feso-shadow);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    animation: fx-rise .55s var(--fx-ease-out) both;
+}
+.fracciones-eso-container .exercise-card.feso-card-correct { animation: fx-correct-flash .8s ease-out both; }
+.fracciones-eso-container .exercise-card.feso-card-wrong { animation: fx-wrong-flash .8s ease-out both; }
+.fracciones-eso-container .exercise-card.vibrate-once { animation: soft-shake 0.4s cubic-bezier(.36, .07, .19, .97) both; }
+
+.fracciones-eso-container .exam-question-label {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.10));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #6d28d9;
+    animation: fx-bounce-in .5s var(--fx-ease-spring) both;
+}
+html.dark .fracciones-eso-container .exam-question-label { color: #c4b5fd; }
+
+.fracciones-eso-container .fraction-calc,
+.fracciones-eso-container .equal-sign,
+.fracciones-eso-container .numbers-display { color: var(--feso-ink); }
+.fracciones-eso-container .fraction .num { border-bottom-color: currentColor; }
+.fracciones-eso-container .numbers-display {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.7), rgba(241, 245, 249, 0.5));
+    border: 1px solid var(--feso-edge);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 24px -14px rgba(67, 56, 202, 0.4);
+}
+html.dark .fracciones-eso-container .numbers-display { background: rgba(255, 255, 255, 0.06); }
+
+.fracciones-eso-container .num-input,
+.fracciones-eso-container .den-input,
+.fracciones-eso-container .single-input {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.9));
+    border-color: rgba(148, 163, 184, 0.35);
+    box-shadow: 0 2px 0 rgba(255, 255, 255, 0.9) inset, 0 8px 18px -12px rgba(67, 56, 202, 0.45);
+    transition: border-color .2s ease, box-shadow .25s ease, transform .25s var(--fx-ease-spring);
+}
+.fracciones-eso-container .num-input:focus,
+.fracciones-eso-container .den-input:focus,
+.fracciones-eso-container .single-input:focus {
+    transform: translateY(-2px) scale(1.04);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.18), 0 14px 28px -12px rgba(99, 102, 241, 0.55);
+}
+html.dark .fracciones-eso-container .num-input,
+html.dark .fracciones-eso-container .den-input,
+html.dark .fracciones-eso-container .single-input {
+    background: rgba(15, 12, 41, 0.6);
+    color: #c7d2fe;
+    border-color: rgba(165, 180, 252, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.fracciones-eso-container .btn-check {
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899);
+    background-size: 180% 180%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -3px 0 rgba(0, 0, 0, 0.18) inset, 0 16px 30px -12px rgba(99, 102, 241, 0.7);
+}
+.fracciones-eso-container .btn-check:hover { transform: translateY(-3px) scale(1.03); background-position: 100% 50%; }
+.fracciones-eso-container .btn-refresh,
+.fracciones-eso-container .btn-help {
+    background: var(--feso-glass-strong);
+    border: 1px solid var(--feso-edge);
+    box-shadow: var(--feso-shadow);
+}
+.fracciones-eso-container .btn-refresh { color: var(--feso-ink-soft); }
+.fracciones-eso-container .btn-help { color: #7c3aed; }
+html.dark .fracciones-eso-container .btn-help { color: #c4b5fd; }
+.fracciones-eso-container .btn-refresh:hover,
+.fracciones-eso-container .btn-help:hover { transform: translateY(-3px); }
+.fracciones-eso-container .btn-check:active,
+.fracciones-eso-container .btn-refresh:active,
+.fracciones-eso-container .btn-help:active { transform: scale(.96); }
+.fracciones-eso-container .btn-check:focus-visible,
+.fracciones-eso-container .btn-refresh:focus-visible,
+.fracciones-eso-container .btn-help:focus-visible,
+.fracciones-eso-container .btn-toggle-hint:focus-visible { outline: 3px solid #a78bfa; outline-offset: 3px; }
+
+.fracciones-eso-container .btn-toggle-hint {
+    background: var(--feso-glass-strong);
+    border: 1px solid var(--feso-edge);
+}
+.fracciones-eso-container .btn-toggle-hint.active {
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+    color: #fff;
+}
+.fracciones-eso-container .dynamic-aid-inline {
+    background: var(--feso-glass);
+    border: 1px dashed rgba(139, 92, 246, 0.35);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.fracciones-eso-container .feedback {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.fracciones-eso-container .feedback.success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(34, 211, 238, 0.10));
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: #047857;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.08), 0 16px 34px -16px rgba(16, 185, 129, 0.7);
+}
+.fracciones-eso-container .feedback.error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(236, 72, 153, 0.08));
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    color: #b91c1c;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.08), 0 16px 34px -16px rgba(239, 68, 68, 0.7);
+    animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97) both;
+}
+html.dark .fracciones-eso-container .feedback.success { color: #6ee7b7; }
+html.dark .fracciones-eso-container .feedback.error { color: #fca5a5; }
+
+/* ---------- Resumen de examen ---------- */
+.fracciones-eso-container .stat-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--feso-glass-strong);
+    border: 1px solid var(--feso-edge);
+    box-shadow: var(--feso-shadow);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    animation: fx-pop-in .7s var(--fx-ease-spring) both;
+}
+.fracciones-eso-container .stat-card.score { animation-delay: .12s; }
+.fracciones-eso-container .stat-card.note {
+    border-bottom: 6px solid var(--feso-grade-color, #8b5cf6);
+    background:
+        radial-gradient(90% 120% at 0% 50%, color-mix(in srgb, var(--feso-grade-color, #8b5cf6) 18%, transparent), transparent 60%),
+        var(--feso-glass-strong);
+}
+.fracciones-eso-container .stat-label,
+.fracciones-eso-container .stat-value { color: var(--feso-ink) !important; }
+.fracciones-eso-container .stat-card.note .stat-value {
+    color: var(--feso-grade-color) !important;
+    font-size: 3.4rem;
+    line-height: 1;
+    text-shadow: 0 0 24px color-mix(in srgb, var(--feso-grade-color) 45%, transparent);
+}
+.feso-grade-ring {
+    flex-shrink: 0;
+    width: 104px;
+    height: 104px;
+    color: var(--fx-grade-color);
+}
+.feso-grade-award { filter: drop-shadow(0 0 10px currentColor); }
+.feso-grade-msg {
+    margin-top: .35rem;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--feso-grade-color);
+    animation: fx-rise .6s .35s var(--fx-ease-out) both;
+}
+.fracciones-eso-container .btn-finish-exam {
+    background: linear-gradient(135deg, #4c1d95, #7c3aed 60%, #db2777) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 18px 36px -14px rgba(124, 58, 237, 0.75);
+}
+.fracciones-eso-container .review-box,
+html.dark .fracciones-eso-container .review-box {
+    background: var(--feso-glass) !important;
+    border: 1px solid var(--feso-edge) !important;
+    box-shadow: var(--feso-shadow);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+.fracciones-eso-container .review-box.correct { border-top: 6px solid var(--accent-green) !important; }
+.fracciones-eso-container .review-box.incorrect { border-top: 6px solid var(--accent-red) !important; }
+.fracciones-eso-container .q-cat { background: rgba(139, 92, 246, 0.12); color: #6d28d9; }
+html.dark .fracciones-eso-container .q-cat { color: #c4b5fd; }
+
+/* ---------- Modal de ayuda ---------- */
+.fracciones-eso-container .fractions-modal-overlay {
+    background: radial-gradient(circle at 50% 30%, rgba(76, 29, 149, 0.55), rgba(15, 23, 42, 0.78));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.fracciones-eso-container .fractions-modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 40px 90px -30px rgba(76, 29, 149, 0.7);
+}
+.fracciones-eso-container .fractions-modal-icon {
+    color: #8b5cf6;
+    filter: drop-shadow(0 4px 10px rgba(139, 92, 246, 0.5));
+}
+.fracciones-eso-container .fractions-close-btn { transition: transform .25s var(--fx-ease-spring); }
+.fracciones-eso-container .fractions-close-btn:hover { transform: rotate(90deg) scale(1.08); }
+html.dark .fracciones-eso-container .fractions-close-btn { background: rgba(255, 255, 255, 0.08); color: #e5e7eb; }
+
+@media (max-width: 720px) {
+    .feso-glyph { display: none; }
+    .fracciones-eso-container .stat-card { min-width: 0; padding: 1.5rem; gap: 1.2rem; }
+    .feso-grade-ring { width: 84px; height: 84px; }
+    .fracciones-eso-container .stat-card.note .stat-value { font-size: 2.6rem; }
+    .fracciones-eso-container .title-icon { width: 42px; height: 42px; padding: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .feso-spark, .feso-glyph, .feso-promo-icon, .feso-progress-shine::after,
+    .fracciones-eso-container .gradient-text,
+    .fracciones-eso-container .title-icon {
+        animation: none !important;
+    }
+}
+
+/* Bordes del fondo difuminados: sin "caja" visible sobre la escena del curso */
+.feso-backdrop {
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+}

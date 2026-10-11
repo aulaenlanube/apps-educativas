@@ -4,6 +4,7 @@ import { OrbitControls, GizmoHelper, GizmoViewport, ContactShadows, Float } from
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Box, Rotate3D, Palette, Calculator, Ruler, ChevronDown, ChevronRight, Settings2, X, Menu } from 'lucide-react';
+import './VisualizadorFiguras3D.css';
 
 // --- CONFIGURACIÓN DE MATERIALES ---
 const PRESETS_MATERIAL = {
@@ -113,20 +114,21 @@ const DATOS_FIGURAS = {
 const SeccionDesplegable = ({ titulo, icon: Icon, children, defaultOpen = false }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
-        <div className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm mb-3">
+        <div className={`vf3d-section rounded-2xl overflow-hidden mb-3 ${isOpen ? 'is-open' : ''}`}>
             <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors"
+                className="vf3d-section-head w-full flex items-center justify-between p-4"
+                aria-expanded={isOpen}
             >
-                <div className="flex items-center gap-3 font-bold text-slate-700 text-base">
-                    {Icon && <Icon size={20} className="text-indigo-600"/>}
+                <div className="vf3d-section-title flex items-center gap-3 font-bold text-base">
+                    {Icon && <span className="vf3d-section-icon" aria-hidden="true"><Icon size={18}/></span>}
                     {titulo}
                 </div>
-                {isOpen ? <ChevronDown size={20} className="text-slate-400"/> : <ChevronRight size={20} className="text-slate-400"/>}
+                {isOpen ? <ChevronDown size={20} className="vf3d-chevron"/> : <ChevronRight size={20} className="vf3d-chevron"/>}
             </button>
             
             <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="p-4 border-t border-slate-100">
+                <div className="vf3d-section-body p-4">
                     {children}
                 </div>
             </div>
@@ -186,13 +188,13 @@ const VisualizadorFiguras3D = () => {
   };
 
   return (
-    <div className="flex w-full h-[calc(100vh-140px)] overflow-hidden bg-slate-100 relative rounded-xl border border-slate-300">
+    <div className="vf3d-root flex w-full h-[calc(100vh-140px)] overflow-hidden relative rounded-3xl">
       
       {/* 1. BARRA LATERAL (SIDEBAR) */}
       {/* NOTA: Cambiado breakpoint 'md' -> 'lg' para que TABLET se comporte como MÓVIL */}
       <div 
         className={`
-            bg-white shadow-2xl z-20 flex flex-col transition-all duration-500 ease-in-out border-r border-slate-200
+            vf3d-sidebar z-20 flex flex-col transition-all duration-500 ease-in-out
             ${sidebarOpen ? 'w-full lg:w-[420px] opacity-100' : 'w-0 opacity-0 lg:w-0'} 
             overflow-hidden
             absolute lg:relative h-full
@@ -200,7 +202,10 @@ const VisualizadorFiguras3D = () => {
       >
         <div className="p-4 overflow-y-auto h-full custom-scrollbar min-w-[320px]">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-slate-800">Laboratorio 3D</h2>
+                <h2 className="vf3d-title text-2xl font-bold">
+                    <span className="vf3d-title-icon" aria-hidden="true"><Box size={20} /></span>
+                    Laboratorio 3D
+                </h2>
                 <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)} className="lg:hidden">
                     <X size={24} />
                 </Button>
@@ -214,14 +219,14 @@ const VisualizadorFiguras3D = () => {
                         key={key}
                         variant={figuraActual === key ? "default" : "outline"}
                         onClick={() => setFiguraActual(key)}
-                        className="h-12 text-sm justify-start px-3 font-medium"
+                        className={`vf3d-fig-btn h-12 text-sm justify-start px-3 font-medium ${figuraActual === key ? 'is-active' : ''}`}
                     >
                         {DATOS_FIGURAS[key].nombre}
                     </Button>
                     ))}
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                    <p className="text-sm text-blue-800 italic leading-relaxed">
+                <div key={figuraActual} className="vf3d-info p-4 rounded-xl">
+                    <p className="text-sm italic leading-relaxed">
                         "{datos.info}"
                     </p>
                 </div>
@@ -234,44 +239,44 @@ const VisualizadorFiguras3D = () => {
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <Label className="text-base text-slate-700">Arista / Lado</Label>
-                                <span className="font-mono text-lg font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{dimensiones.tamano}m</span>
+                                <span className="vf3d-value font-mono text-lg font-bold px-2 py-1 rounded-lg">{dimensiones.tamano}m</span>
                             </div>
                             <input type="range" min="0.5" max="3" step="0.1" value={dimensiones.tamano} 
                                 onChange={(e) => updateDim('tamano', e.target.value)}
-                                className="w-full h-3 bg-slate-200 rounded-lg accent-indigo-600 cursor-pointer"/>
+                                className="vf3d-range w-full h-3 rounded-lg accent-indigo-600 cursor-pointer"/>
                         </div>
                     )}
                     {(datos.tipo.includes('radio')) && (
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <Label className="text-base text-slate-700">Radio (r)</Label>
-                                <span className="font-mono text-lg font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{dimensiones.radio}m</span>
+                                <span className="vf3d-value font-mono text-lg font-bold px-2 py-1 rounded-lg">{dimensiones.radio}m</span>
                             </div>
                             <input type="range" min="0.5" max="2" step="0.1" value={dimensiones.radio} 
                                 onChange={(e) => updateDim('radio', e.target.value)}
-                                className="w-full h-3 bg-slate-200 rounded-lg accent-indigo-600 cursor-pointer"/>
+                                className="vf3d-range w-full h-3 rounded-lg accent-indigo-600 cursor-pointer"/>
                         </div>
                     )}
                     {(datos.tipo.includes('altura')) && (
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <Label className="text-base text-slate-700">Altura (h)</Label>
-                                <span className="font-mono text-lg font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{dimensiones.altura}m</span>
+                                <span className="vf3d-value font-mono text-lg font-bold px-2 py-1 rounded-lg">{dimensiones.altura}m</span>
                             </div>
                             <input type="range" min="0.5" max="4" step="0.1" value={dimensiones.altura} 
                                 onChange={(e) => updateDim('altura', e.target.value)}
-                                className="w-full h-3 bg-slate-200 rounded-lg accent-indigo-600 cursor-pointer"/>
+                                className="vf3d-range w-full h-3 rounded-lg accent-indigo-600 cursor-pointer"/>
                         </div>
                     )}
                      {(datos.tipo.includes('tubo')) && (
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <Label className="text-base text-slate-700">Grosor Tubo</Label>
-                                <span className="font-mono text-lg font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{dimensiones.tubo}m</span>
+                                <span className="vf3d-value font-mono text-lg font-bold px-2 py-1 rounded-lg">{dimensiones.tubo}m</span>
                             </div>
                             <input type="range" min="0.1" max="1" step="0.05" value={dimensiones.tubo} 
                                 onChange={(e) => updateDim('tubo', e.target.value)}
-                                className="w-full h-3 bg-slate-200 rounded-lg accent-indigo-600 cursor-pointer"/>
+                                className="vf3d-range w-full h-3 rounded-lg accent-indigo-600 cursor-pointer"/>
                         </div>
                     )}
                 </div>
@@ -280,15 +285,15 @@ const VisualizadorFiguras3D = () => {
             {/* MATEMÁTICAS */}
             <SeccionDesplegable titulo="Fórmulas y Cálculo" icon={Calculator} defaultOpen={false}>
                 <div className="space-y-4">
-                    <div className="bg-slate-800 p-4 rounded-xl text-white">
-                        <div className="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Volumen</div>
+                    <div className="vf3d-metric vf3d-metric--vol p-4 rounded-2xl text-white">
+                        <div className="text-xs text-slate-300 uppercase tracking-widest font-bold mb-1">Volumen</div>
                         <div className="flex flex-col gap-1">
                             <span className="text-sm font-mono text-indigo-300 opacity-80">{datos.formulaVolumen}</span>
                             <span className="text-3xl font-bold font-mono text-white">{resultados.v.toFixed(2)} <span className="text-lg">m³</span></span>
                         </div>
                     </div>
-                    <div className="bg-slate-800 p-4 rounded-xl text-white">
-                        <div className="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Área Superficie</div>
+                    <div className="vf3d-metric vf3d-metric--area p-4 rounded-2xl text-white">
+                        <div className="text-xs text-slate-300 uppercase tracking-widest font-bold mb-1">Área Superficie</div>
                         <div className="flex flex-col gap-1">
                             <span className="text-sm font-mono text-emerald-300 opacity-80">{datos.formulaArea}</span>
                             <span className="text-3xl font-bold font-mono text-white">{resultados.a.toFixed(2)} <span className="text-lg">m²</span></span>
@@ -307,8 +312,8 @@ const VisualizadorFiguras3D = () => {
                                 <button
                                     key={matKey}
                                     onClick={() => setTipoMaterial(matKey)}
-                                    className={`px-3 py-3 text-sm rounded-lg border font-medium transition-all
-                                    ${tipoMaterial === matKey ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-slate-600 hover:bg-slate-50'}`}
+                                    className={`vf3d-chip px-3 py-3 text-sm rounded-xl border font-medium
+                                    ${tipoMaterial === matKey ? 'is-active' : ''}`}
                                 >
                                     {PRESETS_MATERIAL[matKey].nombre}
                                 </button>
@@ -319,14 +324,14 @@ const VisualizadorFiguras3D = () => {
                      <div className="flex gap-4">
                         <div className="flex-1">
                             <Label className="text-sm text-slate-500 mb-2 block">Color Figura</Label>
-                            <div className="h-10 w-full rounded-lg border border-slate-200 p-1 flex items-center bg-slate-50 cursor-pointer hover:bg-slate-100 relative overflow-hidden">
+                            <div className="vf3d-swatch h-10 w-full rounded-xl p-1 flex items-center cursor-pointer relative overflow-hidden">
                                 <input type="color" value={colorFigura} onChange={(e) => setColorFigura(e.target.value)} className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"/>
                                 <div className="w-full h-full rounded bg-current" style={{backgroundColor: colorFigura}}></div>
                             </div>
                         </div>
                         <div className="flex-1">
                              <Label className="text-sm text-slate-500 mb-2 block">Color Fondo</Label>
-                            <div className="h-10 w-full rounded-lg border border-slate-200 p-1 flex items-center bg-slate-50 cursor-pointer hover:bg-slate-100 relative overflow-hidden">
+                            <div className="vf3d-swatch h-10 w-full rounded-xl p-1 flex items-center cursor-pointer relative overflow-hidden">
                                 <input type="color" value={colorFondo} onChange={(e) => setColorFondo(e.target.value)} className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"/>
                                 <div className="w-full h-full rounded bg-current" style={{backgroundColor: colorFondo}}></div>
                             </div>
@@ -348,7 +353,14 @@ const VisualizadorFiguras3D = () => {
       </div>
 
       {/* 2. ESCENARIO 3D (CANVAS) */}
-      <div className="flex-1 h-full relative bg-slate-900 w-full">
+      <div className="vf3d-stage flex-1 h-full relative bg-slate-900 w-full">
+        {/* HUD decorativo (no intercepta el ratón): viñeta + ficha de la figura */}
+        <div className="vf3d-vignette" aria-hidden="true" />
+        <div key={figuraActual} className="vf3d-hud" aria-hidden="true">
+            <span className="vf3d-hud-dot" />
+            <span className="vf3d-hud-name">{datos.nombre}</span>
+            <span className="vf3d-hud-formula">{datos.formulaVolumen}</span>
+        </div>
         
         {/* BOTONES DE APERTURA: Lógica separada para Móvil/Tablet y Escritorio */}
         
@@ -356,7 +368,7 @@ const VisualizadorFiguras3D = () => {
         {!sidebarOpen && (
             <Button 
                 onClick={() => setSidebarOpen(true)}
-                className="hidden lg:flex absolute top-4 left-4 z-10 shadow-lg bg-white text-slate-900 hover:bg-slate-100 h-12 w-12 rounded-full"
+                className="vf3d-fab hidden lg:flex absolute top-4 left-4 z-10 h-12 w-12 rounded-full"
             >
                 <Settings2 size={24} />
             </Button>
@@ -366,7 +378,7 @@ const VisualizadorFiguras3D = () => {
         {!sidebarOpen && (
              <Button 
                 onClick={() => setSidebarOpen(true)} 
-                className="lg:hidden absolute top-4 left-4 z-10 shadow-lg h-12 w-12 rounded-full p-0 bg-white text-slate-900 border-none flex items-center justify-center"
+                className="vf3d-fab lg:hidden absolute top-4 left-4 z-10 h-12 w-12 rounded-full p-0 border-none flex items-center justify-center"
              >
                 <Menu size={24} />
              </Button>
@@ -405,4 +417,4 @@ const VisualizadorFiguras3D = () => {
   );
 };
 
-export default VisualizadorFiguras3D;
+export default VisualizadorFiguras3D;

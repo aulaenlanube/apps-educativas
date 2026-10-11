@@ -204,6 +204,13 @@ const EntrenadorTabla = ({ onGameComplete }) => {
 
     return (
         <div className="trainer-container">
+            {/* Fondo decorativo: orbes cian-violeta, rejilla y "átomos" flotando */}
+            <div className="fx-app-backdrop et-backdrop" aria-hidden="true">
+                <div className="et-grid fx-grid-bg" />
+                <span className="et-atom a1"><span className="et-orbit" /><span className="et-orbit o2" /></span>
+                <span className="et-atom a2"><span className="et-orbit" /><span className="et-orbit o2" /></span>
+                <span className="et-spark s1" /><span className="et-spark s2" /><span className="et-spark s3" />
+            </div>
             <AnimatePresence mode="wait">
                 {gameState === 'setup' && (
                     <motion.div
@@ -211,30 +218,30 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="setup-screen"
+                        className="setup-screen et-glass"
                     >
                         <h1 className="setup-title">ENTRENADOR TABLA PERIÓDICA</h1>
 
-                        <div className="setup-grid">
+                        <div className="setup-grid fx-stagger">
                             <div className="setup-card">
                                 <h3>🎮 MODO DE JUEGO</h3>
                                 <div className="mode-selector">
                                     <button
-                                        className={`option-btn ${config.gameMode === 'practice' ? 'active' : ''}`}
+                                        className={`option-btn et-mode et-mode--easy ${config.gameMode === 'practice' ? 'active' : ''}`}
                                         onClick={() => setConfig({ ...config, gameMode: 'practice' })}
                                     >
                                         <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🚀</span>
                                         Práctica Libre
                                     </button>
                                     <button
-                                        className={`option-btn ${config.gameMode === 'exam' ? 'active' : ''}`}
+                                        className={`option-btn et-mode et-mode--medium ${config.gameMode === 'exam' ? 'active' : ''}`}
                                         onClick={() => setConfig({ ...config, gameMode: 'exam' })}
                                     >
                                         <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>⏱️</span>
                                         Modo Examen (10 Q)
                                     </button>
                                     <button
-                                        className={`option-btn ${config.gameMode === 'exam-pro' ? 'active' : ''}`}
+                                        className={`option-btn et-mode et-mode--exam ${config.gameMode === 'exam-pro' ? 'active' : ''}`}
                                         onClick={() => setConfig({ ...config, gameMode: 'exam-pro' })}
                                     >
                                         <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🔥</span>
@@ -302,7 +309,7 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                             </div>
                         </div>
 
-                        <button className="start-btn" onClick={startSession}>
+                        <button className="start-btn fx-shine fx-shine--auto" onClick={startSession}>
                             ¡EMPEZAR ENTRENAMIENTO!
                         </button>
                     </motion.div>
@@ -323,25 +330,37 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                         exit={{ opacity: 0 }}
                         className="game-screen"
                     >
-                        <header className="game-header">
+                        <header className="game-header et-glass">
                             <div className="stat-item">
                                 <span className="stat-value">{session.currentIndex + 1} / {session.targets.length}</span>
                                 <span className="stat-label">Pregunta</span>
                             </div>
                             <div className="stat-item">
-                                <span className="stat-value" style={{ color: '#4ade80' }}>{session.score}</span>
+                                <motion.span key={`s-${session.score}`} className="stat-value et-pop" style={{ color: '#4ade80' }}>{session.score}</motion.span>
                                 <span className="stat-label">Aciertos</span>
                             </div>
                             <div className="stat-item">
-                                <span className="stat-value" style={{ color: '#fbbf24' }}>x{session.streak}</span>
+                                <motion.span key={`r-${session.streak}`} className={`stat-value et-pop ${session.streak >= 3 ? 'et-streak-hot' : ''}`} style={{ color: '#fbbf24' }}>x{session.streak}</motion.span>
                                 <span className="stat-label">Racha</span>
                             </div>
                             <button className="option-btn" onClick={() => setGameState('setup')} style={{ fontSize: '0.8rem' }}>SALIR</button>
                         </header>
 
-                        <div className="question-card">
+                        <div className="et-progress" aria-hidden="true">
+                            <div className="et-progress-fill" style={{ width: `${((session.currentIndex + (selectedAnswer ? 1 : 0)) / Math.max(1, session.targets.length)) * 100}%` }} />
+                        </div>
+
+                        <div className={`question-card et-question ${selectedAnswer ? (isCorrect ? 'et-q-correct' : 'et-q-wrong') : ''}`}>
                             <div className="question-hint">{getClueHint()}</div>
-                            {renderClue()}
+                            <motion.div
+                                key={`q-${session.currentIndex}`}
+                                className="et-clue"
+                                initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                            >
+                                {renderClue()}
+                            </motion.div>
 
                             {config.gameMode !== 'exam-pro' && (
                                 <div className="question-desc">
@@ -392,12 +411,28 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                 {gameState === 'result' && (
                     <div className="result-screen">
                         <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="result-card"
+                            initial={{ scale: 0.8, opacity: 0, y: 30 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            transition={{ type: 'spring', stiffness: 220, damping: 20 }}
+                            className="result-card et-glass fx-aurora-border"
                         >
-                            <div className="result-icon">🏆</div>
+                            <div className="result-icon fx-float">🏆</div>
                             <h2 className="setup-title">SESIÓN COMPLETADA</h2>
+                            {(() => {
+                                // Solo presentación: nota /10 en anillo (mismo cálculo que el tracker)
+                                const total = Math.max(1, session.targets.length);
+                                const nota = Math.round((session.score / total) * 100) / 10;
+                                const color = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+                                const msg = nota >= 9 ? 'Excelente' : nota >= 7 ? 'Muy bien' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
+                                return (
+                                    <div className="et-grade" style={{ '--et-grade-color': color }}>
+                                        <div className="fx-grade-ring et-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': color }}>
+                                            <span className="et-grade-value">{nota.toFixed(1)}<small>/10</small></span>
+                                        </div>
+                                        <span className="et-grade-msg">{msg}</span>
+                                    </div>
+                                );
+                            })()}
                             <div className="result-score">{session.score} / {session.targets.length}</div>
                             <p style={{ color: 'var(--text-dim)', marginBottom: '2rem' }}>
                                 Has identificado correctamente el {Math.round((session.score / session.targets.length) * 100)}% de los elementos.
