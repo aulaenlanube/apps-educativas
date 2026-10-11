@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Cpu, Trash2, Lightbulb, Play, RotateCcw, Check, ArrowRight, Clock, Trophy, Sparkles, Zap, ZoomIn, ZoomOut, Move, Maximize2, Volume2, VolumeX, Wrench, Save, FolderOpen, X, Plus } from 'lucide-react';
+import { Cpu, Trash2, Lightbulb, Play, RotateCcw, Check, ArrowRight, Clock, Trophy, Sparkles, Zap, ZoomIn, ZoomOut, Move, Maximize2, Volume2, VolumeX, Save, FolderOpen, X, Plus } from 'lucide-react';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import { COMPONENT_TEMPLATES, getExercises } from './roboticaData';
 import { listDesigns, saveDesign, deleteDesign } from './robotLabDesignsService';
@@ -514,6 +514,26 @@ const WireLayer = ({ wires, components, pendingStart, pendingWaypoints, mousePos
   );
 };
 
+// Fondo decorativo (orbes + rejilla de PCB + chispas). Solo visual.
+const RobBackdrop = () => (
+  <div className="rob-fx-bg" aria-hidden="true">
+    <span className="rob-fx-orb rob-fx-orb--a" />
+    <span className="rob-fx-orb rob-fx-orb--b" />
+    <span className="rob-fx-orb rob-fx-orb--c" />
+    <span className="rob-fx-grid" />
+    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`rob-fx-spark rob-fx-spark--${i}`} />)}
+  </div>
+);
+
+// Entrada escalonada de las tarjetas de modo.
+const MODE_CARD_ANIM = (i) => ({
+  initial: { opacity: 0, y: 22, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: { delay: 0.08 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 },
+  whileHover: { y: -6, scale: 1.025 },
+  whileTap: { scale: 0.97 },
+});
+
 // --- Main App --------------------------------------------------------------
 
 const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
@@ -530,7 +550,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
   const [pendingWaypoints, setPendingWaypoints] = useState([]);
   const [mousePos, setMousePos] = useState(null);
   const [feedback, setFeedback] = useState(null);
-  const [hintsUsed, setHintsUsed] = useState(0);
+  const [, setHintsUsed] = useState(0);
   const [showHintText, setShowHintText] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
 
@@ -539,6 +559,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
   const [examResults, setExamResults] = useState([]);
   const [examStartAt, setExamStartAt] = useState(null);
   const [elapsed, setElapsed] = useState(0);
+  const [summaryScore, setSummaryScore] = useState(0); // solo visual (puntos del resumen)
   const completedRef = useRef(false);
   const boardRef = useRef(null);
 
@@ -562,7 +583,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
   const [freeComponents, setFreeComponents] = useState([]);
   const [freeName, setFreeName] = useState('Mi diseño');
   const [freeDesignId, setFreeDesignId] = useState(null);
-  const [freeCounter, setFreeCounter] = useState(0);
+  const [, setFreeCounter] = useState(0);
   const [selectedCompId, setSelectedCompId] = useState(null);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [showDesignsList, setShowDesignsList] = useState(false);
@@ -610,7 +631,10 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
   // En modo libre, los componentes vienen del estado libre. En el resto, del
   // ejercicio. Las posiciones arrastradas se aplican igual sobre ambos.
-  const baseComponents = isLibre ? freeComponents : (exercise?.components || []);
+  const baseComponents = useMemo(
+    () => (isLibre ? freeComponents : (exercise?.components || [])),
+    [isLibre, freeComponents, exercise],
+  );
   const componentsPositioned = useMemo(() => {
     return baseComponents.map((c) => {
       const p = positions[c.id];
@@ -1126,6 +1150,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
     const perfectBonus = results.filter(r => r.perfect).length * 100;
     const score = Math.round(totalCorrect * 100 + timeBonus + perfectBonus);
 
+    setSummaryScore(score);
     setScreen('summary');
     if (!completedRef.current && typeof onGameComplete === 'function') {
       completedRef.current = true;
@@ -1177,7 +1202,8 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
   if (screen === 'intro') {
     return (
-      <div className="rob-shell">
+      <div className="rob-shell rob-shell--intro">
+        <RobBackdrop />
         <InstructionsModal
           isOpen={showInstructions}
           onClose={() => setShowInstructions(false)}
@@ -1201,8 +1227,8 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
         <div className="rob-hero">
           <div className="rob-hero-top">
-            <div className="rob-hero-title">
-              <div className="rob-hero-badge"><Cpu size={18} /> ESO {grade}º</div>
+            <div className="rob-hero-title fx-enter">
+              <div className="rob-hero-badge"><span className="rob-hero-badge-dot" aria-hidden="true" /><Cpu size={18} /> ESO {grade}º</div>
               <h1>Laboratorio de Robótica</h1>
               <p>Aprende los circuitos básicos, los componentes electrónicos y el control con Arduino conectando cables como en un laboratorio real.</p>
             </div>
@@ -1211,48 +1237,44 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
           <div className="rob-mode-grid">
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="rob-mode-card rob-mode-easy"
+              {...MODE_CARD_ANIM(0)}
+              className="rob-mode-card rob-mode-easy fx-shine"
               onClick={() => startPractice('easy')}
             >
-              <div className="rob-mode-icon">🌱</div>
+              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🌱</div>
               <h3>Modo Fácil</h3>
               <p>Práctica guiada con la solución sugerida en gris y pistas ilimitadas. Ideal para aprender.</p>
               <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="rob-mode-card rob-mode-medium"
+              {...MODE_CARD_ANIM(1)}
+              className="rob-mode-card rob-mode-medium fx-shine"
               onClick={() => startPractice('medium')}
             >
-              <div className="rob-mode-icon">⚡</div>
+              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />⚡</div>
               <h3>Modo Medio</h3>
               <p>Sin solución visible. Puedes pedir pistas, pero cada una cuenta. Practica con más autonomía.</p>
               <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="rob-mode-card rob-mode-exam"
+              {...MODE_CARD_ANIM(2)}
+              className="rob-mode-card rob-mode-exam fx-shine"
               onClick={startExam}
             >
-              <div className="rob-mode-icon">🎯</div>
+              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🎯</div>
               <h3>Modo Examen</h3>
               <p>Los 10 ejercicios del curso seguidos, sin ayudas. Obtén nota sobre 10 y entra al ranking.</p>
               <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="rob-mode-card rob-mode-libre"
+              {...MODE_CARD_ANIM(3)}
+              className="rob-mode-card rob-mode-libre fx-shine"
               onClick={startLibre}
             >
-              <div className="rob-mode-icon">🛠</div>
+              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🛠</div>
               <h3>Modo libre</h3>
               <p>Diseña tu propio circuito desde cero con todos los componentes. Guarda tus diseños y ábrelos cuando quieras.</p>
               <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
@@ -1261,7 +1283,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
           <div className="rob-exercises-grid">
             <h3>📋 Ejercicios de ESO {grade}º</h3>
-            <div className="rob-exercises-cards">
+            <div className="rob-exercises-cards fx-stagger">
               {exercises.map((ex, i) => (
                 <div key={ex.id} className="rob-mini-ex">
                   <div className="rob-mini-ex-num">{i + 1}</div>
@@ -1287,27 +1309,54 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
     const colorClass = nota >= 8 ? 'grade-high' : nota >= 5 ? 'grade-mid' : 'grade-low';
     const msg = nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
 
+    const gradeColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+
     return (
-      <div className="rob-shell">
-        <div className="rob-summary-card">
-          <h1><Trophy size={28} /> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
+      <div className="rob-shell rob-shell--summary">
+        <RobBackdrop />
+        <motion.div
+          className="rob-summary-card"
+          initial={{ opacity: 0, y: 26, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+        >
+          <h1><span className="rob-summary-trophy" aria-hidden="true"><Trophy size={26} /></span> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
 
           {isExam ? (
             <>
-              <div className={`rob-note ${colorClass}`}>
-                <span className="rob-note-value">{nota.toFixed(1)}</span>
-                <span className="rob-note-max">/10</span>
+              <div className="rob-grade-hero">
+                <span className="rob-grade-rays" aria-hidden="true" />
+                <motion.div
+                  className={`rob-grade-ring ${colorClass}`}
+                  style={{ '--rob-grade': nota, '--rob-grade-color': gradeColor }}
+                  initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
+                >
+                  <div className={`rob-note ${colorClass}`}>
+                    <span className="rob-note-value">{nota.toFixed(1)}</span>
+                    <span className="rob-note-max">/10</span>
+                  </div>
+                </motion.div>
               </div>
-              <p className="rob-note-msg">{msg}</p>
+              <p className={`rob-note-msg ${colorClass}`}>{msg}</p>
+              <motion.div
+                className="rob-points-pill"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <Sparkles size={16} /> <b>{summaryScore.toLocaleString('es-ES')}</b> puntos
+              </motion.div>
 
-              <div className="rob-summary-stats">
+              <div className="rob-summary-stats fx-stagger">
                 <div className="rob-stat"><span>✅ Ejercicios perfectos</span><b>{perfectCount} / {exercises.length}</b></div>
                 <div className="rob-stat"><span>🔌 Conexiones correctas</span><b>{totalCorrect} / {totalTargets}</b></div>
                 <div className="rob-stat"><span>⚠️ Cables de más</span><b>{totalExtra}</b></div>
                 <div className="rob-stat"><span>⏱️ Tiempo total</span><b>{Math.floor(elapsed / 60)}m {elapsed % 60}s</b></div>
               </div>
 
-              <div className="rob-summary-list">
+              <div className="rob-summary-list fx-stagger">
                 {examResults.map((r, i) => (
                   <div key={r.exerciseId} className={`rob-summary-row ${r.perfect ? 'ok' : 'ko'}`}>
                     <span className="rob-summary-idx">{i + 1}.</span>
@@ -1322,12 +1371,12 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
           )}
 
           <div className="rob-summary-actions">
-            <button className="rob-btn-primary" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
+            <button className="rob-btn-primary fx-shine" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
             {isExam && (
               <button className="rob-btn-secondary" onClick={startExam}><Play size={16} /> Repetir examen</button>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }
@@ -1338,7 +1387,8 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
   const isExam = mode === 'exam';
 
   return (
-    <div className={`rob-shell ${isLibre ? 'is-libre' : ''}`}>
+    <div className={`rob-shell rob-shell--play ${isLibre ? 'is-libre' : ''}`}>
+      <RobBackdrop />
       <InstructionsModal
         isOpen={showInstructions}
         onClose={() => setShowInstructions(false)}
@@ -1356,7 +1406,14 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
             {mode === 'exam' && '🎯 Examen'}
             {mode === 'libre' && '🛠 Libre'}
           </span>
-          {!isLibre && <span className="rob-progress">Ejercicio {progress}</span>}
+          {!isLibre && (
+            <span className="rob-progress">
+              Ejercicio {progress}
+              <span className="rob-progress-track" aria-hidden="true">
+                <span className="rob-progress-fill" style={{ transform: `scaleX(${(exerciseIndex + 1) / exercises.length})` }} />
+              </span>
+            </span>
+          )}
           {isLibre && (
             <input
               type="text"
@@ -1404,6 +1461,7 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
               className={`rob-exercise-pick ${i === exerciseIndex ? 'active' : ''}`}
               onClick={() => setExerciseIndex(i)}
               title={ex.title}
+              role="tab"
               aria-selected={i === exerciseIndex}
             >
               {i + 1}
@@ -1443,13 +1501,19 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
       )}
 
       {!isLibre && (
-        <div className="rob-exercise-card">
+        <motion.div
+          key={exercise.id}
+          className="rob-exercise-card"
+          initial={{ opacity: 0, x: 18 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+        >
           <div className="rob-exercise-title">
             <Zap size={18} />
             <h2>{exercise.title}</h2>
           </div>
           <p className="rob-exercise-desc">{exercise.description}</p>
-        </div>
+        </motion.div>
       )}
 
       <div
@@ -1521,10 +1585,14 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
         {feedback && (
           <motion.div
             key={feedback.text}
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: -6, scale: 0.96 }}
+            animate={feedback.type === 'error'
+              ? { opacity: 1, y: 0, scale: 1, x: [0, -8, 8, -5, 5, 0] }
+              : { opacity: 1, y: 0, scale: [0.96, 1.03, 1] }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 0.45 }}
             className={`rob-feedback rob-feedback-${feedback.type}`}
+            role="status"
           >
             {feedback.text}
           </motion.div>
