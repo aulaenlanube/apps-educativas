@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Zap, Timer, Flame, Star, RefreshCw, SkipForward, Eye,
-  Gamepad2, GraduationCap, Award, Trophy, Check, X, Send,
+  Timer, Flame, Star, RefreshCw, SkipForward, Eye,
+  Award, Trophy, Check, X, Send,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -337,6 +337,7 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   }, [submitAnswer]);
 
   // --- Derivados ---
+  // eslint-disable-next-line no-unused-vars
   const cfg = MODE_CONFIG[gameMode];
   const isExam = gameMode === 'exam';
   const isFinished = status === 'won' || status === 'lost';
@@ -364,6 +365,16 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   return (
     <div className="veloc-root">
       <motion.div className="veloc-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        {/* Fondo decorativo (orbes + rejilla + chispas) */}
+        <div className="veloc-fx" aria-hidden="true">
+          <span className="veloc-fx-orb a" />
+          <span className="veloc-fx-orb b" />
+          <span className="veloc-fx-grid" />
+          <span className="veloc-fx-spark s1" />
+          <span className="veloc-fx-spark s2" />
+          <span className="veloc-fx-spark s3" />
+        </div>
+
         {/* Header */}
         <div className="veloc-header">
           <div className="veloc-title">
@@ -393,7 +404,10 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
               </motion.div>
             )}
             <div className="veloc-stat score">
-              <Star size={14} /> <span>{score.toLocaleString('es-ES')}</span>
+              <Star size={14} />
+              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
+                {score.toLocaleString('es-ES')}
+              </motion.span>
             </div>
           </div>
         </div>
@@ -423,7 +437,9 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
               {isExam ? (
                 <>
                   <div className={`veloc-nota ${notaColor}`}>
-                    <div className="veloc-nota-big">{nota.toFixed(1)}<span className="veloc-nota-small">/10</span></div>
+                    <div className="veloc-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
+                      <div className="veloc-nota-big">{nota.toFixed(1)}<span className="veloc-nota-small">/10</span></div>
+                    </div>
                     <div className="veloc-nota-msg">{notaMsg}</div>
                   </div>
                   <div className="veloc-result-record">

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Dices, Users, Download, Wand2, ShieldCheck, Shuffle, AlertTriangle } from 'lucide-react';
 import { getAppContent } from '../../services/gameDataService';
 import './GeneradorPersonajes.css';
 
@@ -121,7 +123,8 @@ const GeneradorPersonajes = () => {
   const renderResultado = () => {
     if (error) {
       return (
-        <div className="gp-tarjeta">
+        <div className="gp-tarjeta gp-tarjeta--aviso fx-shake">
+          <AlertTriangle className="gp-tarjeta-icono" size={28} aria-hidden="true" />
           <div className="gp-titulo" style={{ color: 'var(--gp-warning)' }}>Error al cargar datos</div>
           <div className="gp-detalle">{error}</div>
         </div>
@@ -129,7 +132,8 @@ const GeneradorPersonajes = () => {
     }
     if (mensaje === 'sin') {
       return (
-        <div className="gp-tarjeta">
+        <div className="gp-tarjeta gp-tarjeta--aviso fx-shake">
+          <AlertTriangle className="gp-tarjeta-icono" size={28} aria-hidden="true" />
           <div className="gp-titulo" style={{ color: 'var(--gp-warning)' }}>Sin coincidencias</div>
           <div className="gp-detalle">Prueba a cambiar el sexo o la categoría</div>
         </div>
@@ -137,16 +141,30 @@ const GeneradorPersonajes = () => {
     }
     if (resultado) {
       return (
-        <div className="gp-tarjeta">
-          <div>
+        <motion.div
+          key={resultado.nombre}
+          className="gp-tarjeta gp-tarjeta--personaje"
+          initial={{ opacity: 0, scale: 0.85, rotateX: -18, y: 16 }}
+          animate={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+        >
+          <span className="gp-rayos" aria-hidden="true" />
+          <span className="gp-inicial" aria-hidden="true">
+            {(resultado.nombre || '?').trim().charAt(0).toUpperCase()}
+          </span>
+          <div className="gp-tarjeta-texto">
             <div className="gp-titulo">{resultado.nombre}</div>
-            <div className="gp-detalle">{resultado.sexo} · {resultado.categoria}</div>
+            <div className="gp-detalle">
+              <span className="gp-chip">{resultado.sexo}</span>
+              <span className="gp-chip gp-chip--cat">{resultado.categoria}</span>
+            </div>
           </div>
-        </div>
+        </motion.div>
       );
     }
     return (
-      <div className="gp-tarjeta">
+      <div className="gp-tarjeta gp-tarjeta--vacia">
+        <Dices className="gp-tarjeta-icono gp-tarjeta-icono--flota" size={34} aria-hidden="true" />
         <div className="gp-titulo">Pulsa el botón para empezar</div>
         <div className="gp-detalle">Puedes usar «Aleatorio total» o filtrar por sexo y categoría</div>
       </div>
@@ -155,14 +173,19 @@ const GeneradorPersonajes = () => {
 
   return (
     <div className="gp-contenedor">
+      <div className="gp-fondo" aria-hidden="true">
+        <span className="gp-orbe gp-orbe-1" />
+        <span className="gp-orbe gp-orbe-2" />
+        <span className="gp-orbe gp-orbe-3" />
+      </div>
       <div className="gp-content">
-        <h1 className="text-5xl font-bold mb-4 text-center">
-          <span role="img" aria-label="Personas">✨</span> 
+        <h1 className="text-5xl font-bold mb-4 text-center gp-cabecera">
+          <span role="img" aria-label="Personas" className="gp-cabecera-emoji">✨</span> 
           <span className="gradient-text">Generador de personajes</span>
         </h1>
         
-        <section className="gp-controles">
-          <div className="gp-fila">
+        <section className="gp-controles gp-panel-cristal fx-stagger">
+          <div className="gp-fila gp-fila--switch">
             <input
               type="checkbox"
               id="gp-aleatorio-total"
@@ -202,7 +225,8 @@ const GeneradorPersonajes = () => {
               ))}
             </select>
           </div>
-          <button className="gp-boton-primario" onClick={handleObtener}>
+          <button className="gp-boton-primario gp-boton-hero" onClick={handleObtener}>
+            <Shuffle size={18} aria-hidden="true" />
             Obtener personaje
           </button>
         </section>
@@ -212,33 +236,35 @@ const GeneradorPersonajes = () => {
 
         <div className="w-full mt-8">
           <button 
-            className="gp-boton-primario w-full" 
+            className="gp-boton-primario gp-boton-secundario w-full" 
             onClick={() => setIsAssignerVisible(!isAssignerVisible)}
           >
+            <Users size={18} aria-hidden="true" />
             {isAssignerVisible ? 'Ocultar Asignador por Alumno' : 'Mostrar Asignador por Alumno'}
           </button>
         </div>
 
         {isAssignerVisible && (
-          <section className="gp-controles mt-8 w-full">
-            <h2 className="text-2xl font-bold mb-4 text-center col-span-full">Asignar Personajes a Alumnos</h2>
+          <section className="gp-controles gp-panel-cristal gp-asignador fx-enter mt-8 w-full">
+            <h2 className="text-2xl font-bold mb-4 text-center col-span-full gp-subtitulo">Asignar Personajes a Alumnos</h2>
             <div className="col-span-full">
-              <label htmlFor="student-list" className="block text-sm font-medium text-gray-700 mb-2">Lista de Alumnos (uno por línea)</label>
+              <label htmlFor="student-list" className="block text-sm font-medium text-gray-700 mb-2 gp-etiqueta">Lista de Alumnos (uno por línea)</label>
               <textarea
                 id="student-list"
-                className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="gp-textarea w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 rows="10"
                 value={studentList}
                 onChange={(e) => setStudentList(e.target.value)}
                 placeholder="Pega aquí la lista de alumnos, uno por cada línea..."
               />
-              <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mt-4" role="alert">
-                <p className="font-bold">Información de Privacidad</p>
+              <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mt-4 gp-privacidad" role="alert">
+                <p className="font-bold gp-privacidad-titulo"><ShieldCheck size={18} aria-hidden="true" /> Información de Privacidad</p>
                 <p>ℹ️ Puedes incluir los nombres reales de tus alumnos sin miedo a la protección de datos. La lista de alumnos NO se almacena en ningún servidor. El proceso se realiza localmente en tu navegador.</p>
               </div>
             </div>
             <div className="col-span-full flex justify-center gap-4">
               <button className="gp-boton-primario" onClick={handleAssignCharacters}>
+                <Wand2 size={18} aria-hidden="true" />
                 Asignar Personajes
               </button>
               <button 
@@ -246,18 +272,19 @@ const GeneradorPersonajes = () => {
                 onClick={handleExportToCSV} 
                 disabled={assignments.length === 0}
               >
+                <Download size={18} aria-hidden="true" />
                 Exportar a CSV
               </button>
             </div>
 
             {assignments.length > 0 && (
               <div className="col-span-full mt-6">
-                <h3 className="text-xl font-bold mb-4">Asignaciones</h3>
-                <ul className="divide-y divide-gray-200">
+                <h3 className="text-xl font-bold mb-4 gp-subtitulo">Asignaciones</h3>
+                <ul className="divide-y divide-gray-200 gp-lista">
                   {assignments.map((item, index) => (
-                    <li key={index} className="py-4 flex">
-                      <p className="font-medium text-gray-900">{item.student}</p>
-                      <p className="ml-auto text-gray-500">{item.character.nombre}</p>
+                    <li key={index} className="py-4 flex gp-lista-item" style={{ '--gp-i': Math.min(index, 20) }}>
+                      <p className="font-medium text-gray-900 gp-lista-alumno">{item.student}</p>
+                      <p className="ml-auto text-gray-500 gp-lista-personaje">{item.character.nombre}</p>
                     </li>
                   ))}
                 </ul>
@@ -270,4 +297,4 @@ const GeneradorPersonajes = () => {
   );
 };
 
-export default GeneradorPersonajes;
+export default GeneradorPersonajes;

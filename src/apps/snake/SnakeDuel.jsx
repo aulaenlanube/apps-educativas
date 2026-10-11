@@ -8,6 +8,7 @@ import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
+import './Snake.css';
 
 const GRID = 35;               // tablero grande
 const TICK_MS = 180;
@@ -445,7 +446,8 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
   const currentCat = categories.length > 0 ? formatName(categories[round.catIndex]) : '';
 
   return (
-    <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-4 gap-4">
+    <div className="snk-root flex flex-col items-center w-full max-w-6xl mx-auto p-4 gap-4 relative">
+      <div className="snk-backdrop" aria-hidden="true" />
       <style>{`
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px) rotate(-5deg)} 75%{transform:translateX(5px) rotate(5deg)} }
         @keyframes popGreen { 0%{transform:scale(1)} 50%{transform:scale(1.3); box-shadow:0 0 20px rgba(34,197,94,0.8)} 100%{transform:scale(1)} }
@@ -460,16 +462,18 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
       `}</style>
 
       {/* HEADER */}
-      <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-4">
+      <div className="snk-layer w-full flex flex-col lg:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-3">
-          <Swords className="w-5 h-5 text-violet-600" />
+          <span className="snk-hud-btn inline-grid place-items-center w-10 h-10" aria-hidden="true">
+            <Swords className="w-5 h-5 text-violet-600" />
+          </span>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
+            <h1 className="snk-title text-2xl sm:text-3xl font-black bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
               NEON DUELO
             </h1>
             {currentCat && (
               <p className="text-xs sm:text-sm text-slate-500">
-                Objetivo: <span className="text-yellow-600 font-bold uppercase tracking-wider">{currentCat}</span>
+                Objetivo: <span className="snk-target-chip text-amber-600 dark:text-amber-300 font-bold uppercase tracking-wider"><span className="snk-target-chip__dot" aria-hidden="true" />{currentCat}</span>
               </p>
             )}
           </div>
@@ -482,7 +486,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
             color="cyan" wins={myScore} target={TARGET_WINS}
             snakeScore={mySnake?.score || 0} alive={mySnake?.alive}
           />
-          <span className="text-slate-400 font-black">VS</span>
+          <span className="snk-vs text-slate-400 font-black">VS</span>
           <PlayerScore
             name={rival.hidden ? 'Oculto' : rival.name}
             emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
@@ -493,7 +497,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
             <Button
               variant="outline"
               onClick={() => setShowCheatSheet(true)}
-              className="h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
+              className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
               title="Guía de palabras"
             ><BookOpen className="h-5 w-5" /></Button>
           )}
@@ -501,9 +505,12 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
       </div>
 
       {/* TABLERO */}
-      <div className="relative w-full max-w-[900px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
+      <div className="snk-board relative w-full max-w-[900px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
+        {/* Capas decorativas */}
+        <div className="snk-board__sheen" aria-hidden="true" />
+        <div className="snk-board__scan" aria-hidden="true" />
         {/* Grid overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none"
+        <div className="snk-grid-lines absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
             backgroundSize: `${100 / GRID}% ${100 / GRID}%`
@@ -517,7 +524,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
               initial={{ scale: 1.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }}
               className="absolute inset-0 z-40 flex items-center justify-center"
             >
-              <div className="text-8xl font-black text-white drop-shadow-[0_0_30px_rgba(139,92,246,0.8)]">{countdown}</div>
+              <div className="snk-countdown text-8xl font-black text-white drop-shadow-[0_0_30px_rgba(139,92,246,0.8)]">{countdown}</div>
             </motion.div>
           )}
           {nextTopic && (
@@ -525,7 +532,8 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="absolute inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md"
             >
-              <div className="anim-popup flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+              <div className="snk-levelup-card anim-popup flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+                <div className="snk-rays" aria-hidden="true" />
                 <div className="relative mb-4 anim-float">
                   <Star className="w-20 h-20 text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" fill="currentColor" />
                 </div>
@@ -541,8 +549,8 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               className="absolute inset-0 z-40 flex items-center justify-center bg-black/60 backdrop-blur-sm"
             >
-              <div className="text-center text-white">
-                <p className="text-3xl font-black">
+              <div className="snk-result-card fx-enter-pop text-center text-white px-8 py-6">
+                <p className="snk-overlay-title text-3xl font-black">
                   {round.roundWinner === me.id ? '¡Ganas la ronda!' :
                    round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda empate'}
                 </p>
@@ -557,12 +565,12 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
                 winnerId === me.id ? 'bg-emerald-900/90' : 'bg-rose-900/90'
               }`}
             >
-              <div className="text-center text-white px-6">
-                <Trophy className="w-14 h-14 mx-auto mb-2" />
-                <p className="text-4xl font-black mb-5">{winnerId === me.id ? '¡HAS GANADO!' : 'HAS PERDIDO'}</p>
+              <div className="snk-result-card fx-enter-pop text-center text-white px-8 py-7 mx-4">
+                <Trophy className={`w-14 h-14 mx-auto mb-2 fx-float ${winnerId === me.id ? 'text-amber-300 drop-shadow-[0_0_18px_rgba(251,191,36,0.8)]' : 'text-rose-200'}`} />
+                <p className="snk-overlay-title text-4xl font-black mb-5">{winnerId === me.id ? '¡HAS GANADO!' : 'HAS PERDIDO'}</p>
                 <button
                   onClick={() => navigate('/mi-panel')}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
+                  className="snk-ghost inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
                 >
                   <LogOut className="w-4 h-4" /> Salir a mi panel
                 </button>
@@ -572,7 +580,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
           {showCheatSheet && (
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
+              className="snk-overlay absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
             >
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-black text-white flex items-center gap-2">
@@ -586,13 +594,13 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
               <div className="flex-1 overflow-y-auto pr-2">
                 <div className="grid gap-3">
                   {data && Object.entries(data).map(([cat, words]) => (
-                    <div key={cat} className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
+                    <div key={cat} className="snk-guide-card bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
                       <h3 className="text-blue-400 font-bold uppercase tracking-wider text-xs mb-2 border-l-4 border-blue-500 pl-2">
                         {cat.replace(/_/g, ' ')}
                       </h3>
                       <div className="flex flex-wrap gap-1.5">
                         {Array.isArray(words) && words.map((w, i) => (
-                          <span key={i} className="px-2 py-0.5 bg-slate-950/60 text-slate-300 rounded text-[11px] border border-white/5">{w}</span>
+                          <span key={i} className="snk-guide-chip px-2 py-0.5 bg-slate-950/60 text-slate-300 rounded text-[11px] border border-white/5">{w}</span>
                         ))}
                       </div>
                     </div>
@@ -627,13 +635,13 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
               return (
                 <div
                   key={`${s.owner}-${i}`}
-                  className={cn('rounded-sm transition-all duration-75', isHead ? `${headColor} z-20` : `${bodyColor} z-10`, !s.alive && 'opacity-50 grayscale')}
+                  className={cn('snk-seg rounded-sm transition-all duration-75', isHead ? `snk-head ${headColor} z-20` : `${bodyColor} z-10`, !s.alive && 'opacity-50 grayscale')}
                   style={{ gridColumnStart: seg.x + 1, gridRowStart: seg.y + 1 }}
                 >
                   {isHead && (
                     <div className="w-full h-full flex items-center justify-center gap-[1px]">
-                      <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60" />
-                      <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60" />
+                      <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60" />
+                      <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60" />
                     </div>
                   )}
                 </div>
@@ -655,13 +663,13 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
                 style={{ gridColumnStart: item.x + 1, gridRowStart: item.y + 1 }}
               >
                 {item.type === 'bonus' ? (
-                  <Star className="w-full h-full text-yellow-400 p-1" fill="currentColor" />
+                  <Star className="snk-star w-full h-full text-yellow-400 p-1" fill="currentColor" />
                 ) : (
-                  <div className={`w-3/4 h-3/4 rounded-full border-2 ${color.split(' ')[0]} ${color.split(' ')[1]}`} />
+                  <div className={`snk-orb w-3/4 h-3/4 rounded-full border-2 ${color.split(' ')[0]} ${color.split(' ')[1]}`} />
                 )}
                 {item.word && (
                   <span
-                    className={cn('absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 rounded font-bold border pointer-events-none z-30 shadow-md text-[10px]', color)}
+                    className={cn('snk-word absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 rounded font-bold border pointer-events-none z-30 shadow-md text-[10px]', color)}
                   >{item.word}</span>
                 )}
               </div>
@@ -671,13 +679,13 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
       </div>
 
       {/* Controles móvil */}
-      <div className="grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2">
+      <div className="snk-layer grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2">
         <div />
-        <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: -1 })}><ArrowUp /></Button>
+        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: -1 })}><ArrowUp /></Button>
         <div />
-        <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: -1, y: 0 })}><ArrowLeft /></Button>
-        <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: 1 })}><ArrowDown /></Button>
-        <Button variant="secondary" className="h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 1, y: 0 })}><ArrowRight /></Button>
+        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: -1, y: 0 })}><ArrowLeft /></Button>
+        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: 1 })}><ArrowDown /></Button>
+        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 1, y: 0 })}><ArrowRight /></Button>
       </div>
       <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
@@ -687,7 +695,7 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
 function PlayerScore({ name, emoji, avatarColor, avatarCode, color, wins, target, snakeScore, alive }) {
   const bg = color === 'cyan' ? 'bg-cyan-500' : 'bg-fuchsia-500';
   return (
-    <div className="flex items-center gap-2 bg-white rounded-xl p-2 shadow-sm border border-slate-100 min-w-[150px]">
+    <div className={`snk-player snk-player--${color} flex items-center gap-2 bg-white rounded-xl p-2 shadow-sm border border-slate-100 min-w-[150px]`}>
       <UserAvatar
         selectedAvatarCode={avatarCode}
         avatarEmoji={emoji}
@@ -699,7 +707,7 @@ function PlayerScore({ name, emoji, avatarColor, avatarCode, color, wins, target
         <p className="text-xs text-slate-500">{snakeScore} pts · {alive ? 'viva' : '💀'}</p>
         <div className="flex gap-1 mt-0.5">
           {Array.from({ length: target }).map((_, i) => (
-            <span key={i} className={`h-1.5 flex-1 rounded ${i < wins ? bg : 'bg-slate-200'}`} />
+            <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors duration-500 ${i < wins ? `${bg}` : 'bg-slate-200 dark:bg-slate-700'}`} />
           ))}
         </div>
       </div>

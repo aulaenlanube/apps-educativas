@@ -889,3 +889,733 @@
     background: #3b82f6;
     color: white;
 }
+/* ==========================================================================
+   Capa "premium" del Rosco (cristal, luz, profundidad, microinteracciones)
+   Solo acabado visual: no cambia layout, lógica ni clases usadas por JS.
+   Prefijo propio: rosco-*
+   ========================================================================== */
+
+.rosco-container {
+    isolation: isolate;
+    --rosco-blue: #3b82f6;
+    --rosco-indigo: #6366f1;
+    --rosco-amber: #f59e0b;
+}
+
+/* Fondo decorativo: orbes difusos + rejilla sutil (detrás del contenido) */
+.rosco-bg-fx {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 32px;
+}
+.rosco-bg-fx::before,
+.rosco-bg-fx::after {
+    content: '';
+    position: absolute;
+    width: 65%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: rosco-orb 20s ease-in-out infinite alternate;
+}
+/* closest-side: el degradado llega a transparente antes del borde del orbe,
+   así no se ve ningún corte rectangular */
+.rosco-bg-fx::before {
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle closest-side, rgba(99, 102, 241, 0.4), transparent);
+}
+.rosco-bg-fx::after {
+    bottom: 0;
+    right: 0;
+    background: radial-gradient(circle closest-side, rgba(245, 158, 11, 0.28), transparent);
+    animation-duration: 26s;
+    animation-direction: alternate-reverse;
+}
+
+/* Título héroe: degradado azul-blanco-ámbar con glow (legible sobre fondo oscuro) */
+.rosco-hero-title {
+    background: linear-gradient(90deg, #60a5fa, #a5b4fc 30%, #ffffff 50%, #fcd34d 70%, #60a5fa);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 6px 22px rgba(59, 130, 246, 0.45));
+    animation: rosco-title-pan 9s linear infinite, rosco-rise 0.7s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.rosco-subtitle {
+    color: rgba(226, 232, 240, 0.85);
+    animation: rosco-rise 0.7s cubic-bezier(.22, 1, .36, 1) 0.1s backwards;
+}
+
+/* Panel de cristal (config y resumen) */
+.rosco-container .rosco-glass-panel {
+    position: relative;
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.08), transparent 60%),
+        radial-gradient(100% 60% at 100% 100%, rgba(245, 158, 11, 0.08), transparent 60%),
+        rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 1px rgba(99, 102, 241, 0.1),
+        0 30px 70px -28px rgba(15, 23, 42, 0.6),
+        0 0 80px -30px rgba(59, 130, 246, 0.55);
+    animation: rosco-rise 0.65s cubic-bezier(.22, 1, .36, 1) 0.08s backwards;
+}
+/* Fino borde de luz superior */
+.rosco-container .rosco-glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.7), rgba(245, 158, 11, 0.7), transparent);
+    pointer-events: none;
+}
+
+.rosco-container .rosco-segmented {
+    box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.12) inset;
+}
+.rosco-container .rosco-segmented > button {
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.rosco-container .rosco-segmented > button:active { transform: scale(0.97); }
+
+/* Botón principal: relieve + barrido de luz */
+.rosco-container .rosco-cta {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 55%, #8b5cf6 100%);
+    background-size: 180% 180%;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.18) inset,
+        0 16px 32px -14px rgba(59, 130, 246, 0.85);
+    transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, background-position 0.6s ease;
+}
+.rosco-container .rosco-cta:hover {
+    background-position: 100% 50%;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.18) inset,
+        0 22px 40px -14px rgba(99, 102, 241, 0.9);
+}
+.rosco-container .rosco-cta:active { transform: scale(0.97); }
+.rosco-container .rosco-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(0) rotate(12deg);
+    animation: rosco-shine 3.8s cubic-bezier(.22, 1, .36, 1) 1.2s infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+.rosco-container .rosco-cta:focus-visible,
+.rosco-container .rosco-study-btn:focus-visible {
+    outline: 3px solid rgba(147, 197, 253, 0.9);
+    outline-offset: 3px;
+}
+
+.rosco-container .rosco-study-btn {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 22px -14px rgba(234, 88, 12, 0.7);
+}
+.rosco-container .rosco-study-btn:hover { transform: translateY(-2px); }
+
+/* Tarjetas de dificultad (ESO/Bach) con identidad por nivel */
+.rosco-diff-card {
+    --rosco-diff: #10b981;
+    background:
+        radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--rosco-diff) 14%, transparent), transparent 60%),
+        rgba(255, 255, 255, 0.94) !important;
+    border-color: color-mix(in srgb, var(--rosco-diff) 55%, transparent) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 18px 40px -20px color-mix(in srgb, var(--rosco-diff) 75%, transparent),
+        0 6px 14px -8px rgba(15, 23, 42, 0.25) !important;
+    transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.3s ease !important;
+}
+.rosco-diff-card:hover {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 3px color-mix(in srgb, var(--rosco-diff) 25%, transparent),
+        0 26px 50px -20px color-mix(in srgb, var(--rosco-diff) 90%, transparent) !important;
+}
+.rosco-diff-card:focus-visible {
+    outline: 3px solid var(--rosco-diff);
+    outline-offset: 3px;
+}
+.rosco-diff-card--principiante { --rosco-diff: #10b981; }
+.rosco-diff-card--intermedio   { --rosco-diff: #fbbf24; }
+.rosco-diff-card--avanzado     { --rosco-diff: #f97316; }
+.rosco-diff-card--experto      { --rosco-diff: #ef4444; }
+
+/* Barra de identidad en el borde izquierdo */
+.rosco-diff-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    bottom: 14px;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: var(--rosco-diff);
+    box-shadow: 0 0 14px var(--rosco-diff);
+}
+.rosco-diff-shine {
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform: translateX(0) rotate(12deg);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+}
+.rosco-diff-card:hover .rosco-diff-shine {
+    opacity: 1;
+    transform: translateX(450%) rotate(12deg);
+    transition: transform 0.9s cubic-bezier(.22, 1, .36, 1), opacity 0.15s;
+}
+/* Icono con halo */
+.rosco-diff-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--rosco-diff) 16%, white);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 1px color-mix(in srgb, var(--rosco-diff) 30%, transparent),
+        0 8px 18px -8px var(--rosco-diff);
+    transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.rosco-diff-card:hover .rosco-diff-icon { transform: scale(1.12) rotate(-8deg); }
+
+.rosco-info-panel {
+    background: rgba(239, 246, 255, 0.9) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 16px 36px -22px rgba(15, 23, 42, 0.55);
+    animation: rosco-rise 0.6s cubic-bezier(.22, 1, .36, 1) 0.4s backwards;
+}
+.rosco-skip-link { color: rgba(203, 213, 225, 0.8) !important; }
+.rosco-skip-link:hover { color: #fff !important; }
+
+/* --- Círculo de letras --- */
+.rosco-circle-ring {
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(99, 102, 241, 0.32), rgba(30, 27, 75, 0.55) 55%, rgba(15, 23, 42, 0.0) 72%);
+    box-shadow:
+        0 0 0 2px rgba(147, 197, 253, 0.18),
+        0 0 60px -10px rgba(59, 130, 246, 0.55) inset;
+}
+/* Anillo de luz que gira detrás de las letras */
+.rosco-circle-ring::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 2px dashed rgba(147, 197, 253, 0.28);
+    animation: rosco-spin 40s linear infinite;
+}
+
+.rosco-letter {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 45%),
+        #e5e7eb;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7) inset,
+        0 -3px 6px rgba(15, 23, 42, 0.12) inset,
+        0 6px 12px -4px rgba(15, 23, 42, 0.45);
+    transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    z-index: 1;
+}
+.rosco-letter.pending {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 45%),
+        linear-gradient(160deg, #e2e8f0, #cbd5e1);
+}
+.rosco-letter.active {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 45%),
+        linear-gradient(160deg, #60a5fa, #2563eb);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.5) inset,
+        0 0 0 3px rgba(255, 255, 255, 0.9),
+        0 0 24px 4px rgba(59, 130, 246, 0.75);
+}
+/* La letra activa suele estar "pending": el gris de .pending (definido
+   después en el fichero original) dejaba el texto apagado sobre el azul */
+.rosco-letter.active,
+.rosco-letter.active.pending {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(30, 58, 138, 0.6);
+}
+/* Pulso de onda en la letra activa (pseudo, no toca el transform del círculo) */
+.rosco-letter.active::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid rgba(147, 197, 253, 0.9);
+    animation: rosco-ping 1.6s cubic-bezier(0, 0, .2, 1) infinite;
+    pointer-events: none;
+}
+.rosco-letter.correct {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 45%),
+        linear-gradient(160deg, #4ade80, #16a34a);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.45) inset,
+        0 6px 14px -4px rgba(22, 163, 74, 0.7),
+        0 0 16px -2px rgba(34, 197, 94, 0.6);
+    animation: rosco-letter-pop 0.55s cubic-bezier(.34, 1.56, .64, 1);
+}
+.rosco-letter.wrong {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 45%),
+        linear-gradient(160deg, #f87171, #dc2626);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 6px 14px -4px rgba(220, 38, 38, 0.7),
+        0 0 16px -2px rgba(239, 68, 68, 0.55);
+    animation: rosco-letter-shake 0.5s cubic-bezier(.36, .07, .19, .97);
+}
+
+/* --- Tarjeta central de la pregunta --- */
+.rosco-center-box.rosco-glass-card {
+    background:
+        radial-gradient(120% 70% at 0% 0%, rgba(99, 102, 241, 0.07), transparent 60%),
+        radial-gradient(100% 60% at 100% 100%, rgba(245, 158, 11, 0.07), transparent 60%),
+        rgba(255, 255, 255, 0.94);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
+        0 30px 70px -30px rgba(15, 23, 42, 0.65),
+        0 0 70px -30px rgba(59, 130, 246, 0.6);
+}
+
+.rosco-letter-badge {
+    position: relative;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+        0 12px 24px -10px rgba(59, 130, 246, 0.8) !important;
+    animation: rosco-badge-in 0.55s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.rosco-letter-badge::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 20px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.35), transparent 70%);
+    z-index: -1;
+    animation: rosco-halo 2.8s ease-in-out infinite;
+}
+.rosco-def-text {
+    animation: rosco-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+/* Input + botones con estados ricos */
+.rosco-input {
+    box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.12) inset;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.rosco-input:focus {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.16), 0 12px 26px -14px rgba(59, 130, 246, 0.7);
+}
+.btn-check-inline {
+    background: linear-gradient(160deg, #4ade80, #16a34a);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 6px 14px -6px rgba(22, 163, 74, 0.8);
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, background 0.2s;
+}
+.btn-check-inline:hover:not(:disabled) {
+    background: linear-gradient(160deg, #22c55e, #15803d);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18), 0 8px 18px -6px rgba(22, 163, 74, 0.9);
+}
+.btn-check-inline:active:not(:disabled) { transform: translateY(-50%) scale(0.92); }
+
+.btn-pasapalabra-text {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+        0 12px 24px -12px rgba(245, 158, 11, 0.9);
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, filter 0.2s;
+}
+.btn-pasapalabra-text:hover:not(:disabled) {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+    filter: brightness(1.06);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+        0 18px 30px -12px rgba(245, 158, 11, 1);
+}
+.btn-pasapalabra-text:active:not(:disabled) { transform: translateY(1px) scale(0.98); }
+.btn-pasapalabra-text:focus-visible,
+.btn-check-inline:focus-visible,
+.btn-exit-corner:focus-visible,
+.btn-webcam-toggle:focus-visible,
+.btn-auto-mic:focus-visible {
+    outline: 3px solid rgba(147, 197, 253, 0.9);
+    outline-offset: 2px;
+}
+
+/* --- Feedback a pantalla completa --- */
+.feedback-overlay {
+    background: rgba(15, 23, 42, 0.45);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    backdrop-filter: blur(8px) saturate(140%);
+}
+.feedback-success { background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.35), rgba(15, 23, 42, 0.5) 65%); }
+.feedback-error   { background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.35), rgba(15, 23, 42, 0.5) 65%); }
+.feedback-info    { background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.35), rgba(15, 23, 42, 0.5) 65%); }
+
+.feedback-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0.96);
+    font-family: 'Fredoka One', 'Fredoka', cursive;
+    letter-spacing: 0.01em;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 40px 90px -30px rgba(0, 0, 0, 0.6);
+    animation: rosco-fb-pop 0.45s cubic-bezier(.34, 1.56, .64, 1);
+}
+.feedback-success .feedback-content {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 8px rgba(34, 197, 94, 0.18),
+        0 0 80px 10px rgba(34, 197, 94, 0.55);
+}
+.feedback-error .feedback-content {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 8px rgba(239, 68, 68, 0.18),
+        0 0 80px 10px rgba(239, 68, 68, 0.5);
+    animation: rosco-fb-pop 0.45s cubic-bezier(.34, 1.56, .64, 1), rosco-letter-shake 0.5s 0.15s cubic-bezier(.36, .07, .19, .97);
+}
+.feedback-info .feedback-content {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 8px rgba(245, 158, 11, 0.18),
+        0 0 80px 10px rgba(245, 158, 11, 0.5);
+}
+
+/* Explosión de partículas CSS detrás del mensaje (solo acierto) */
+.rosco-fb-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+.feedback-success .rosco-fb-burst {
+    background: #fde047;
+    box-shadow:
+        -150px -90px 0 2px #22c55e, 140px -100px 0 1px #fbbf24, -170px 60px 0 0 #60a5fa,
+        160px 80px 0 2px #f472b6, 0 -160px 0 1px #a78bfa, -60px 150px 0 2px #34d399,
+        80px 140px 0 0 #fbbf24, -210px -10px 0 1px #f472b6, 220px 10px 0 2px #22c55e,
+        40px -190px 0 0 #60a5fa, -110px -170px 0 1px #fde047, 120px -170px 0 0 #34d399;
+    animation: rosco-burst 0.9s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+/* --- Modal de salida --- */
+.exit-modal-overlay {
+    background:
+        radial-gradient(60% 50% at 50% 40%, rgba(239, 68, 68, 0.18), transparent 70%),
+        rgba(15, 23, 42, 0.6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+.exit-modal-box {
+    position: relative;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 1px rgba(239, 68, 68, 0.12),
+        0 30px 80px -24px rgba(0, 0, 0, 0.55);
+    animation: popInModal 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.btn-confirm-exit,
+.btn-cancel-exit {
+    border-radius: 14px;
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, background 0.2s;
+}
+.btn-confirm-exit {
+    background: linear-gradient(135deg, #f87171, #dc2626);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 10px 22px -10px rgba(220, 38, 38, 0.8);
+}
+.btn-confirm-exit:hover { background: linear-gradient(135deg, #ef4444, #b91c1c); transform: translateY(-2px); }
+.btn-cancel-exit:hover { transform: translateY(-2px); }
+.btn-confirm-exit:focus-visible,
+.btn-cancel-exit:focus-visible { outline: 3px solid rgba(147, 197, 253, 0.9); outline-offset: 2px; }
+
+/* --- Material de estudio --- */
+.study-material-overlay {
+    background:
+        radial-gradient(60% 50% at 20% 10%, rgba(99, 102, 241, 0.3), transparent 70%),
+        rgba(15, 23, 42, 0.7);
+}
+.study-material-box.rosco-study-box {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 1px rgba(59, 130, 246, 0.12),
+        0 40px 100px -30px rgba(0, 0, 0, 0.6);
+}
+.study-letter-btn {
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.study-letter-btn.active {
+    background: linear-gradient(160deg, #60a5fa, #2563eb);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 8px 18px -6px rgba(37, 99, 235, 0.7);
+    transform: scale(1.06);
+}
+.rosco-concept-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+}
+.rosco-concept-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -18px rgba(37, 99, 235, 0.55);
+}
+
+/* --- Resumen: nota héroe en anillo --- */
+.rosco-summary-panel .rosco-winner-avatar {
+    display: inline-block;
+    animation: rosco-bounce-in 0.7s cubic-bezier(.34, 1.56, .64, 1) 0.2s backwards;
+    filter: drop-shadow(0 10px 18px rgba(59, 130, 246, 0.45));
+}
+.rosco-summary-panel .rosco-score-count {
+    animation: rosco-pop 0.6s cubic-bezier(.34, 1.56, .64, 1) 0.3s backwards;
+}
+.rosco-nota-box {
+    --rosco-grade: 0;
+    --rosco-grade-color: #3b82f6;
+    background: linear-gradient(180deg, rgba(239, 246, 255, 0.85), rgba(255, 255, 255, 0.6)) !important;
+    border-color: color-mix(in srgb, var(--rosco-grade-color) 35%, transparent) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 18px 40px -22px var(--rosco-grade-color);
+    animation: rosco-rise 0.6s cubic-bezier(.22, 1, .36, 1) 0.4s backwards;
+}
+.rosco-nota-ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 164px;
+    height: 164px;
+    margin: 18px auto 12px;
+    border-radius: 50%;
+    background:
+        radial-gradient(closest-side, #ffffff 80%, transparent 81% 100%),
+        conic-gradient(var(--rosco-grade-color) calc(var(--rosco-grade) * 36deg), rgba(148, 163, 184, 0.25) 0);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.6), 0 0 44px -6px var(--rosco-grade-color);
+    animation: rosco-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.5s backwards;
+}
+.rosco-nota-ring::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px dashed var(--rosco-grade-color);
+    opacity: 0.35;
+    animation: rosco-spin 18s linear infinite;
+    pointer-events: none;
+}
+.rosco-nota-ring .rosco-nota-value {
+    font-size: 2rem;
+    white-space: nowrap;
+    color: var(--rosco-grade-color) !important;
+    line-height: 1;
+    text-shadow: 0 4px 18px color-mix(in srgb, var(--rosco-grade-color) 40%, transparent);
+}
+.rosco-points-chip {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 12px 26px -16px rgba(217, 119, 6, 0.9);
+    animation: rosco-pop 0.55s cubic-bezier(.34, 1.56, .64, 1) 0.75s backwards;
+}
+
+/* --- Resultado del duelo --- */
+.rosco-duel-result {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 40px 90px -30px rgba(0, 0, 0, 0.6) !important;
+    animation: rosco-pop 0.7s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.rosco-duel-result--won { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 90px -10px rgba(16, 185, 129, 0.75) !important; }
+.rosco-duel-result--lost { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 90px -20px rgba(244, 63, 94, 0.7) !important; }
+.rosco-duel-result-glow {
+    position: absolute;
+    inset: -40% -20% auto;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+    animation: rosco-halo 3.4s ease-in-out infinite;
+}
+.rosco-duel-trophy {
+    display: block;
+    margin-bottom: 0.75rem;
+    filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.45));
+    animation: rosco-bounce-in 0.8s cubic-bezier(.34, 1.56, .64, 1) 0.2s backwards;
+}
+
+.rosco-loader { box-shadow: 0 0 30px -4px rgba(59, 130, 246, 0.7); }
+
+/* --- Modo oscuro --- */
+html.dark .rosco-container .rosco-glass-panel,
+html.dark .rosco-diff-card,
+html.dark .rosco-container .rosco-avatar-modal {
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.16), transparent 60%),
+        rgba(30, 27, 58, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+html.dark .rosco-diff-card { border-color: color-mix(in srgb, var(--rosco-diff) 55%, transparent) !important; }
+html.dark .rosco-diff-icon { background: color-mix(in srgb, var(--rosco-diff) 22%, #1e1b3a); }
+html.dark .rosco-diff-card .rosco-diff-label { color: #f1f5f9; }
+html.dark .rosco-diff-card p { color: #cbd5e1; }
+html.dark .rosco-diff-card--experto .bg-red-50 { background: rgba(239, 68, 68, 0.14); border-color: rgba(248, 113, 113, 0.35); }
+html.dark .rosco-diff-card--experto .text-red-600 { color: #fca5a5; }
+html.dark .rosco-info-panel .text-blue-600,
+html.dark .rosco-info-panel .text-blue-700 { color: #bfdbfe; }
+html.dark .rosco-info-panel { background: rgba(30, 41, 89, 0.7) !important; border-color: rgba(96, 165, 250, 0.3); }
+html.dark .rosco-center-box.rosco-glass-card {
+    background:
+        radial-gradient(120% 70% at 0% 0%, rgba(99, 102, 241, 0.16), transparent 60%),
+        rgba(30, 27, 58, 0.9);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.07) inset, 0 30px 70px -30px rgba(0, 0, 0, 0.8);
+}
+html.dark .rosco-center-box.rosco-glass-card .text-gray-800 { color: #e2e8f0; }
+html.dark .feedback-content { background: rgba(30, 27, 58, 0.96); }
+html.dark .exit-modal-box { background: #1e1b3a; border-color: rgba(255, 255, 255, 0.1); }
+html.dark .exit-modal-box h2 { color: #f1f5f9; }
+html.dark .rosco-nota-box { background: rgba(30, 41, 89, 0.5) !important; }
+html.dark .rosco-nota-ring {
+    background:
+        radial-gradient(closest-side, #1e1b3a 80%, transparent 81% 100%),
+        conic-gradient(var(--rosco-grade-color) calc(var(--rosco-grade) * 36deg), rgba(148, 163, 184, 0.2) 0);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05), 0 0 44px -6px var(--rosco-grade-color);
+}
+html.dark .rosco-summary-panel .text-gray-700 { color: #e2e8f0; }
+
+/* --- Keyframes propios --- */
+@keyframes rosco-orb {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(6%, 8%, 0) scale(1.08); }
+}
+@keyframes rosco-title-pan { to { background-position: 250% 0; } }
+@keyframes rosco-rise {
+    from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes rosco-pop {
+    0%   { opacity: 0; transform: scale(0.6); }
+    70%  { opacity: 1; transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes rosco-bounce-in {
+    0%   { opacity: 0; transform: translateY(-20px) scale(0.7); }
+    60%  { opacity: 1; transform: translateY(4px) scale(1.08); }
+    100% { transform: none; }
+}
+@keyframes rosco-ring-in {
+    0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes rosco-spin { to { transform: rotate(360deg); } }
+@keyframes rosco-shine {
+    0%   { transform: translateX(0) rotate(12deg); }
+    60%, 100% { transform: translateX(450%) rotate(12deg); }
+}
+@keyframes rosco-ping {
+    0%   { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes rosco-letter-pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+@keyframes rosco-letter-shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(3px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+    40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+@keyframes rosco-badge-in {
+    0%   { opacity: 0; transform: scale(0.4) rotate(-20deg); }
+    70%  { opacity: 1; transform: scale(1.1) rotate(4deg); }
+    100% { transform: none; }
+}
+@keyframes rosco-halo {
+    0%, 100% { opacity: 0.5; transform: scale(0.95); }
+    50%      { opacity: 1; transform: scale(1.1); }
+}
+@keyframes rosco-fb-pop {
+    0%   { opacity: 0; transform: scale(0.5) translateY(20px); }
+    65%  { opacity: 1; transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+@keyframes rosco-burst {
+    0%   { opacity: 1; transform: scale(0.1); }
+    70%  { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.15); }
+}
+
+@media (max-width: 720px) {
+    .rosco-nota-ring { width: 136px; height: 136px; }
+    .rosco-nota-ring .rosco-nota-value { font-size: 1.7rem; }
+    .rosco-nota-ring .rosco-nota-value span { font-size: 1rem; }
+    .rosco-bg-fx { border-radius: 20px; }
+    .feedback-success .rosco-fb-burst { transform: scale(0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rosco-bg-fx::before,
+    .rosco-bg-fx::after,
+    .rosco-hero-title,
+    .rosco-container .rosco-cta::after,
+    .rosco-circle-ring::after,
+    .rosco-letter.active::after,
+    .rosco-letter-badge::after,
+    .rosco-nota-ring::after,
+    .rosco-duel-result-glow { animation: none; }
+    .rosco-letter.correct,
+    .rosco-letter.wrong,
+    .rosco-fb-burst { animation: none !important; }
+}

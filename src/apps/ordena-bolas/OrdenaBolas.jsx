@@ -3,7 +3,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Matter from 'matter-js';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square } from 'lucide-react';
+import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square, XCircle } from 'lucide-react';
+import { drawBallGloss, drawBallLabel } from './ballFx';
+import './OrdenaBolas.css';
+
+// Bolas decorativas de la cabecera de configuración (solo estética)
+const DECO_BUBBLES = [
+    { size: 46, left: '6%', top: '18%', c: '#3b82f6', d: '0s' },
+    { size: 26, left: '18%', top: '62%', c: '#f59e0b', d: '-1.5s' },
+    { size: 34, left: '82%', top: '14%', c: '#10b981', d: '-3s' },
+    { size: 20, left: '90%', top: '64%', c: '#ef4444', d: '-2.2s' },
+    { size: 16, left: '72%', top: '70%', c: '#a78bfa', d: '-4s' },
+];
 
 const OrdenaBolas = ({ onGameComplete }) => {
     const { level, grade } = useParams();
@@ -92,6 +103,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
             }, 10);
         }
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState, key]); // <--- 'key' asegura que el timer se reinicie al pulsar reiniciar
 
     const formatTime = (ms) => {
@@ -252,7 +264,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
         const wallThickness = 40;
         const centerX = width / 2;
         const centerY = height / 2;
-        const wallStyle = { fillStyle: '#334155', strokeStyle: '#334155', lineWidth: 1 };
+        const wallStyle = { fillStyle: '#3730a3', strokeStyle: '#6366f1', lineWidth: 2 };
         const wallOptions = { isStatic: true, render: wallStyle, friction: 1, restitution: 0.2 };
 
         const offset = (boxSize - wallThickness) / 2;
@@ -375,14 +387,15 @@ const OrdenaBolas = ({ onGameComplete }) => {
             const context = render.context;
             if (!context) return;
 
-            context.font = 'bold 18px Arial';
+            context.font = 'bold 18px Fredoka, Arial, sans-serif';
             context.textAlign = 'center';
             context.textBaseline = 'middle';
 
             balls.forEach(ball => {
                 const { x, y } = ball.position;
-                context.fillStyle = 'white';
-                context.fillText(ball.plugin.text, x, y);
+                // Brillo esférico + halo en las ya marcadas (solo dibujo)
+                drawBallGloss(context, ball, { halo: ball.plugin.isCorrect ? '#fca5a5' : null });
+                drawBallLabel(context, ball.plugin.text, x, y, 'white');
             });
         });
 
@@ -402,6 +415,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
                 Engine.clear(engineRef.current);
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [key]);
 
     if (gameState === 'config') {
@@ -429,9 +443,15 @@ const OrdenaBolas = ({ onGameComplete }) => {
         };
 
         return (
-            <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 w-full border border-purple-100 dark:border-slate-700">
-                    <div className="text-center mb-6">
+            <div className="ob-root flex flex-col items-center justify-center p-4 sm:p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
+                <div className="ob-backdrop" aria-hidden="true" />
+                <div className="ob-card bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-5 sm:p-8 w-full border border-purple-100 dark:border-slate-700">
+                    <div className="ob-hero text-center mb-6">
+                        <div className="ob-bubbles" aria-hidden="true">
+                            {DECO_BUBBLES.map((b, i) => (
+                                <span key={i} className="ob-bubble" style={{ width: b.size, height: b.size, left: b.left, top: b.top, '--ob-c': b.c, animationDelay: b.d }} />
+                            ))}
+                        </div>
                         <h2 className="text-3xl font-bold text-purple-700 mb-2">Configuración</h2>
                         <p className="text-gray-500 font-medium">{getLevelTitle()}</p>
                         <p className="text-sm text-gray-400">Personaliza tu desafío matemático</p>
@@ -441,15 +461,15 @@ const OrdenaBolas = ({ onGameComplete }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
-                                <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({ ...config, ballCount: parseInt(e.target.value) })} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
+                                <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({ ...config, ballCount: parseInt(e.target.value) })} className="ob-range w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
                             </div>
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Velocidad giro: {config.rotationSpeed}</label>
-                                <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({ ...config, rotationSpeed: parseInt(e.target.value) })} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600" />
+                                <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({ ...config, rotationSpeed: parseInt(e.target.value) })} className="ob-range w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600" />
                             </div>
                         </div>
 
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="ob-section bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <h3 className="font-medium text-gray-700 mb-3">Tipos de Contenido</h3>
                             {visibleOperations.length > 0 ? (
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -457,7 +477,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
                                         <div
                                             key={op.id}
                                             onClick={() => toggleOp(op.id)}
-                                            className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
+                                            className={`ob-chip flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'ob-chip--on bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
                                         >
                                             {config.ops[op.id] ? <CheckSquare className="w-4 h-4 text-blue-600" /> : <Square className="w-4 h-4 text-gray-400" />}
                                             <span className={`text-sm ${config.ops[op.id] ? 'font-semibold text-blue-900' : 'text-gray-600'}`}>{op.label}</span>
@@ -469,17 +489,17 @@ const OrdenaBolas = ({ onGameComplete }) => {
                             )}
                         </div>
 
-                        <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({ ...config, randomSize: !config.randomSize })}>
+                        <div className="ob-section flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({ ...config, randomSize: !config.randomSize })}>
                             <div className="flex-1">
                                 <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
                                 <span className="text-xs text-gray-500">El tamaño no indica el valor</span>
                             </div>
-                            <div className={`w-12 h-6 rounded-full p-1 transition-colors ${config.randomSize ? 'bg-green-500' : 'bg-gray-300'}`}>
+                            <div className={`ob-switch w-12 h-6 rounded-full p-1 transition-colors ${config.randomSize ? 'ob-switch--on bg-green-500' : 'bg-gray-300'}`}>
                                 <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform ${config.randomSize ? 'translate-x-6' : ''}`} />
                             </div>
                         </div>
 
-                        <Button onClick={startGame} className="w-full h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
+                        <Button onClick={startGame} className="ob-cta w-full h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
                             <Play className="mr-2 h-5 w-5" /> ¡Jugar!
                         </Button>
                     </div>
@@ -489,9 +509,10 @@ const OrdenaBolas = ({ onGameComplete }) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50 dark:bg-transparent">
+        <div className="ob-root flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50 dark:bg-transparent">
+            <div className="ob-backdrop" aria-hidden="true" />
             {/* Control Bar PRO */}
-            <div className="w-full max-w-4xl flex items-center justify-between bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 dark:shadow-black/20 border border-white/50 dark:border-slate-700/50 gap-3 sm:gap-6">
+            <div className="ob-bar w-full max-w-4xl flex items-center justify-between bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 dark:shadow-black/20 border border-white/50 dark:border-slate-700/50 gap-3 sm:gap-6">
 
                 {/* Botón Ajustes */}
                 <Button
@@ -507,10 +528,10 @@ const OrdenaBolas = ({ onGameComplete }) => {
 
                 {/* Timer Display PRO */}
                 <div className="flex-1 flex justify-center">
-                    <div className="relative flex items-center bg-slate-900 px-4 sm:px-10 py-2.5 sm:py-3.5 rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
+                    <div className="ob-timer relative flex items-center bg-slate-900 px-4 sm:px-10 py-2.5 sm:py-3.5 rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-transparent pointer-events-none" />
                         <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 animate-pulse mr-2 sm:mr-3" />
-                        <span className="font-mono text-xl sm:text-3xl font-black text-white tracking-[0.1em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        <span className="ob-timer__digits font-mono text-xl sm:text-3xl font-black text-white tracking-[0.1em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                             {formatTime(timeElapsed)}
                         </span>
                     </div>
@@ -528,18 +549,25 @@ const OrdenaBolas = ({ onGameComplete }) => {
                 </Button>
             </div>
 
-            <div className="relative w-full max-w-4xl overflow-hidden">
+            <div className="ob-stage relative w-full max-w-4xl overflow-hidden">
                 <div ref={sceneRef} className="w-full h-[600px] cursor-pointer" />
 
                 {gameState === 'lost' && (
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-                        <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
-                            <h3 className="text-2xl font-bold text-red-500">¡Fallaste!</h3>
+                        <div className="ob-result ob-result--lose bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
+                            <div className="ob-grade" style={{ '--ob-grade': 0, '--ob-grade-color': '#ef4444' }}>
+                                <div className="text-center">
+                                    <div className="ob-grade__n">0</div>
+                                    <div className="ob-grade__of">/10</div>
+                                </div>
+                            </div>
+                            <span className="ob-grade__msg" style={{ '--ob-grade-color': '#ef4444' }}>Necesitas repasar</span>
+                            <h3 className="text-2xl font-bold text-red-500 flex items-center justify-center gap-2"><XCircle className="w-6 h-6" aria-hidden="true" /> ¡Fallaste!</h3>
                             <p className="font-medium text-gray-800">Debes marcar las bolas de menor a mayor valor.</p>
                             <div className="text-xl font-mono text-gray-600">Tiempo: {formatTime(timeElapsed)}</div>
                             <div className="flex space-x-2 mt-4">
-                                <Button onClick={backToConfig} variant="outline" className="flex-1">Menú</Button>
-                                <Button onClick={restartGame} className="flex-1">Reintentar</Button>
+                                <Button onClick={backToConfig} variant="outline" className="flex-1 rounded-xl">Menú</Button>
+                                <Button onClick={restartGame} className="ob-cta flex-1">Reintentar</Button>
                             </div>
                         </div>
                     </div>
@@ -547,16 +575,41 @@ const OrdenaBolas = ({ onGameComplete }) => {
 
                 {gameState === 'won' && (
                     <div className="absolute inset-0 bg-green-500/10 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl pointer-events-none">
-                        <div className="bg-white/95 p-8 rounded-xl shadow-2xl border-2 border-green-500 text-center space-y-4 animate-in zoom-in max-w-sm mx-4 pointer-events-auto">
-                            <Trophy className="w-16 h-16 text-yellow-500 mx-auto" />
-                            <h3 className="text-2xl font-bold text-green-700">¡Victoria!</h3>
-                            <p>¡Has ordenado todo correctamente!</p>
-                            <div className="text-2xl font-mono text-gray-800 font-bold py-2 bg-gray-50 rounded-lg">
-                                {formatTime(timeElapsed)}
-                            </div>
+                        <div className="ob-result ob-result--win bg-white/95 p-6 sm:p-8 rounded-xl shadow-2xl border-2 border-green-500 text-center space-y-4 animate-in zoom-in max-w-sm mx-4 pointer-events-auto">
+                            {(() => {
+                                // Solo presentación: mismos números que se envían en onGameComplete
+                                const secs = Math.max(1, Math.round(timeElapsed / 1000));
+                                const bonusVis = Math.max(0, Math.round((config.ballCount * 5 - secs) * 10));
+                                return (
+                                    <>
+                                        <div className="flex items-center justify-center gap-4">
+                                            <Trophy className="ob-trophy w-12 h-12 text-yellow-500" aria-hidden="true" />
+                                            <div className="ob-grade" style={{ '--ob-grade': 10, '--ob-grade-color': '#10b981' }}>
+                                                <div className="text-center">
+                                                    <div className="ob-grade__n">10</div>
+                                                    <div className="ob-grade__of">/10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span className="ob-grade__msg" style={{ '--ob-grade-color': '#10b981' }}>Excelente</span>
+                                        <h3 className="text-2xl font-bold text-green-700">¡Victoria!</h3>
+                                        <p>¡Has ordenado todo correctamente!</p>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div className="ob-stat">
+                                                <div className="ob-stat__n text-gray-800 font-mono">{formatTime(timeElapsed)}</div>
+                                                <div className="ob-stat__l">Tiempo</div>
+                                            </div>
+                                            <div className="ob-stat">
+                                                <div className="ob-stat__n text-amber-500">{config.ballCount * 100 + bonusVis}</div>
+                                                <div className="ob-stat__l">Puntos</div>
+                                            </div>
+                                        </div>
+                                    </>
+                                );
+                            })()}
                             <div className="flex space-x-2 mt-4">
-                                <Button onClick={backToConfig} variant="outline" className="flex-1">Menú</Button>
-                                <Button onClick={restartGame} className="flex-1 bg-green-600 hover:bg-green-700">Jugar otra vez</Button>
+                                <Button onClick={backToConfig} variant="outline" className="flex-1 rounded-xl">Menú</Button>
+                                <Button onClick={restartGame} className="ob-cta flex-1 bg-green-600 hover:bg-green-700">Jugar otra vez</Button>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,9 @@ export default function QBBackground() {
       <span className="qb-orb qb-orb-3" />
       <span className="qb-orb qb-orb-4" />
       <span className="qb-orb qb-orb-5" />
+      {/* Rejilla sutil + grano de película: textura premium sin tapar contenido */}
+      <span className="qb-bg-grid" />
+      <span className="qb-bg-grain" />
       <span className="qb-sparkles">
         {Array.from({ length: 14 }).map((_, i) => (
           <span key={i} className={`qb-sparkle qb-sparkle-${i % 5}`} style={{

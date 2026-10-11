@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { ChevronLeft, Save, Play, Trash2, Users, User, Check } from 'lucide-react';
+import { ChevronLeft, Save, Play, Trash2, Users, User, Check, AlertTriangle } from 'lucide-react';
 import { FloorTile, WallTile, WaterTile, HoleTile, EnergyItem, EnergyStack, CrateTile, TargetFlag, biomeForLevel, BIOME_INFO } from './PixelTiles';
 import Robot from './Robot';
 
@@ -40,6 +40,7 @@ export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canSh
   const [world, setWorld] = useState(() => normalizeWorld(editTarget?.world) || makeDefaultWorld(8, 8));
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState('');
+  const [pendingConfirm, setPendingConfirm] = useState(null); // { title, text, confirmLabel, onConfirm }
 
   const biome = useMemo(() => biomeForLevel(biomeIdx), [biomeIdx]);
   const cellPx = useMemo(() => {
@@ -51,7 +52,15 @@ export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canSh
 
   const changeSize = (n) => {
     if (n === world.cols && n === world.rows) return;
-    if (!confirm(`Cambiar el tamaño del tablero a ${n}×${n} borrará los elementos fuera del nuevo rango. ¿Continuar?`)) return;
+    setPendingConfirm({
+      title: `¿Cambiar el tablero a ${n}×${n}?`,
+      text: 'Se borrarán los elementos que queden fuera del nuevo rango.',
+      confirmLabel: 'Cambiar tamaño',
+      onConfirm: () => applySize(n),
+    });
+  };
+
+  const applySize = (n) => {
     setWorld((w) => {
       const inRange = (k) => { const [x, y] = k.split(':')[0].split(',').map(Number); return x < n && y < n; };
       const nextRobot = { ...w.robot, x: Math.min(w.robot.x, n - 1), y: Math.min(w.robot.y, n - 1) };
@@ -126,9 +135,15 @@ export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canSh
   };
 
   const clearAll = () => {
-    if (!confirm('¿Vaciar todo el diseño?')) return;
-    setWorld({ ...DEFAULT_WORLD });
-    setErr('');
+    setPendingConfirm({
+      title: '¿Vaciar todo el diseño?',
+      text: 'Se quitarán todos los elementos del tablero.',
+      confirmLabel: 'Vaciar',
+      onConfirm: () => {
+        setWorld(makeDefaultWorld(world.cols, world.rows));
+        setErr('');
+      },
+    });
   };
 
   const validate = () => {
@@ -329,6 +344,25 @@ export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canSh
           </div>
         </div>
       </div>
+      {pendingConfirm && (
+        <div className="pb-modal-backdrop" onClick={() => setPendingConfirm(null)}>
+          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-editor-confirm-title" onClick={(e) => e.stopPropagation()}>
+            <div className="pb-dialog-icon is-danger" aria-hidden="true"><AlertTriangle size={22} /></div>
+            <h3 id="pb-editor-confirm-title">{pendingConfirm.title}</h3>
+            <p>{pendingConfirm.text}</p>
+            <div className="pb-dialog-actions">
+              <button className="pb-btn pb-btn-ghost" onClick={() => setPendingConfirm(null)}>Cancelar</button>
+              <button
+                className="pb-btn pb-btn-danger"
+                onClick={() => { pendingConfirm.onConfirm(); setPendingConfirm(null); }}
+                autoFocus
+              >
+                {pendingConfirm.confirmLabel}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

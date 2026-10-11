@@ -1836,3 +1836,755 @@
         font-size: 0.75rem;
     }
 }
+/* ==========================================================================
+   CAPA PREMIUM (cfx-) — microscopio de luz: cristal, glow y hotspots vivos
+   --------------------------------------------------------------------------
+   Compartida (idéntica) entre Célula Animal y Célula Vegetal: ambas usan las
+   mismas clases base, así que si las dos hojas están cargadas no chocan.
+   El acento cambia con .cfx-animal / .cfx-vegetal en la raíz.
+   Solo se animan transform/opacity (los blur son estáticos).
+   ========================================================================== */
+
+.celula-app {
+    --cfx-accent: #22c55e;
+    --cfx-accent-2: #14b8a6;
+    --cfx-accent-3: #a78bfa;
+    --cfx-glass: rgba(10, 16, 30, 0.62);
+    --cfx-glass-border: rgba(255, 255, 255, 0.10);
+    --cfx-ease: cubic-bezier(.22, 1, .36, 1);
+    --cfx-spring: cubic-bezier(.34, 1.56, .64, 1);
+    isolation: isolate;
+}
+.celula-app.cfx-vegetal {
+    --cfx-accent: #22c55e;
+    --cfx-accent-2: #84cc16;
+    --cfx-accent-3: #34d399;
+}
+
+/* ---------- Fondo decorativo ---------- */
+.cfx-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.cfx-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: .28;
+    will-change: transform;
+    animation: cfx-orb 24s ease-in-out infinite alternate;
+}
+.cfx-orb--a {
+    width: 55vmax; height: 55vmax;
+    top: -28vmax; left: -18vmax;
+    background: radial-gradient(circle, var(--cfx-accent), transparent 65%);
+}
+.cfx-orb--b {
+    width: 50vmax; height: 50vmax;
+    bottom: -28vmax; right: -16vmax;
+    background: radial-gradient(circle, var(--cfx-accent-2), transparent 65%);
+    animation-duration: 30s;
+    animation-direction: alternate-reverse;
+}
+.cfx-orb--c {
+    width: 34vmax; height: 34vmax;
+    top: 30%; left: 55%;
+    background: radial-gradient(circle, var(--cfx-accent-3), transparent 65%);
+    opacity: .14;
+    animation-duration: 36s;
+}
+/* Rejilla de portaobjetos de microscopio */
+.cfx-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+}
+.cfx-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+/* Partículas en suspensión (como en el campo del microscopio) */
+.cfx-mote {
+    position: absolute;
+    /* left/top llegan en línea desde el JSX (posiciones pseudoaleatorias fijas) */
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--cfx-accent);
+    box-shadow: 0 0 8px var(--cfx-accent);
+    opacity: .35;
+    animation: cfx-drift calc(14s + var(--cfx-i) * 1.3s) ease-in-out infinite alternate;
+    animation-delay: calc(var(--cfx-i) * -1.7s);
+}
+.cfx-mote:nth-child(2n) { width: 3px; height: 3px; }
+.cfx-mote:nth-child(5n) { width: 6px; height: 6px; }
+.cfx-mote:nth-child(3n) { background: var(--cfx-accent-2); box-shadow: 0 0 8px var(--cfx-accent-2); }
+.cfx-mote:nth-child(4n) { background: var(--cfx-accent-3); box-shadow: 0 0 8px var(--cfx-accent-3); opacity: .25; }
+
+/* El diagrama lleva un halo vivo detrás */
+.celula-app .celula-svg-container svg {
+    filter: drop-shadow(0 0 50px color-mix(in srgb, var(--cfx-accent) 22%, transparent));
+}
+
+/* ---------- Cabecera, selector de modo y progreso ---------- */
+.celula-app .celula-header {
+    background: linear-gradient(to bottom, rgba(6, 10, 20, 0.85) 0%, rgba(6, 10, 20, 0) 100%);
+}
+.celula-app .mode-switcher {
+    background: rgba(6, 10, 20, 0.55);
+    border-color: rgba(255, 255, 255, 0.12);
+    padding: 4px;
+    gap: 3px;
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 12px 30px -14px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(34, 197, 94, 0.06);
+}
+.celula-app .mode-btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition: transform .25s var(--cfx-spring), background .2s, color .2s, box-shadow .25s;
+}
+.celula-app .mode-btn:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-1px);
+}
+.celula-app .mode-btn:active { transform: scale(.96); }
+.celula-app .mode-btn:focus-visible,
+.celula-app .dock-item:focus-visible,
+.celula-app .difficulty-btn:focus-visible,
+.celula-app .match-item:focus-visible,
+.celula-app .match-submit-btn:focus-visible,
+.celula-app .match-replay-btn:focus-visible,
+.celula-app .match-exit-btn-bottom:focus-visible,
+.celula-app .match-exit-btn:focus-visible,
+.celula-app .floating-close-btn:focus-visible {
+    outline: 2px solid rgba(134, 239, 172, 0.9);
+    outline-offset: 2px;
+}
+.celula-app .mode-btn.active {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.32), rgba(20, 184, 166, 0.22));
+    color: #bbf7d0;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.18) inset,
+        0 0 18px -2px rgba(34, 197, 94, 0.55);
+}
+.celula-app .mode-btn.active.quiz-mode-active {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.32), rgba(245, 158, 11, 0.2));
+    color: #fde68a;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.18) inset,
+        0 0 18px -2px rgba(251, 191, 36, 0.55);
+}
+
+.celula-app .quiz-score {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    box-shadow: 0 0 20px -6px rgba(251, 191, 36, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.celula-app .cfx-score-pop { animation: cfx-count-pop .45s var(--cfx-spring); }
+
+.celula-app .progress-bar-track {
+    width: 110px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+}
+.celula-app .progress-bar-fill {
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--cfx-accent), var(--cfx-accent-2));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--cfx-accent) 70%, transparent);
+}
+.celula-app .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    transform: translateX(-100%);
+    animation: cfx-bar-shine 2.4s ease-in-out infinite;
+}
+.celula-app .progress-text { color: rgba(255, 255, 255, 0.55); font-weight: 500; }
+
+/* ---------- Hotspots sobre el diagrama ---------- */
+.celula-app .organelle-dot {
+    background: radial-gradient(circle at 35% 30%, #bbf7d0, var(--cfx-accent) 55%, #15803d);
+    border-color: rgba(255, 255, 255, 0.85);
+}
+.celula-app .organelle-dot::before {
+    /* segundo anillo, desfasado respecto al ::after original: onda doble */
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--cfx-accent) 70%, transparent);
+    opacity: 0;
+    animation: cfx-ripple 2.4s ease-out 1.2s infinite;
+    pointer-events: none;
+}
+.celula-app .organelle-dot.visited {
+    background: radial-gradient(circle at 35% 30%, #99f6e4, #14b8a6 55%, #0f766e);
+}
+.celula-app .organelle-dot.visited::before { animation: none; }
+.celula-app .organelle-dot.active {
+    background: radial-gradient(circle at 35% 30%, #fef9c3, #fbbf24 55%, #d97706);
+}
+.celula-app .organelle-dot.active::before {
+    /* retícula giratoria de "objetivo enfocado" */
+    inset: -9px;
+    border: 2px dashed rgba(253, 224, 71, 0.85);
+    opacity: 1;
+    animation: cfx-spin 6s linear infinite;
+}
+
+.celula-app .organelle-name-tag {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)), rgba(6, 10, 20, 0.82);
+    border-color: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 4px 12px 4px 11px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 8px 20px -10px rgba(0, 0, 0, 0.9);
+    transition: transform .25s var(--cfx-spring), background .2s, border-color .2s, color .2s, box-shadow .25s;
+}
+.celula-app .organelle-name-tag:hover {
+    transform: translateY(-50%) translateX(2px) scale(1.05);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(20, 184, 166, 0.22));
+    border-color: rgba(134, 239, 172, 0.55);
+    box-shadow: 0 0 18px -4px rgba(34, 197, 94, 0.7);
+}
+.celula-app .active-marker .organelle-name-tag {
+    color: #fef3c7;
+    border-color: rgba(251, 191, 36, 0.55);
+    box-shadow: 0 0 18px -4px rgba(251, 191, 36, 0.75);
+}
+
+/* ---------- Panel de información (cristal) ---------- */
+.celula-app .celula-info-card {
+    background:
+        radial-gradient(120% 60% at 0% 0%, color-mix(in srgb, var(--cfx-accent) 16%, transparent), transparent 60%),
+        radial-gradient(100% 50% at 100% 100%, color-mix(in srgb, var(--cfx-accent-3) 12%, transparent), transparent 60%),
+        rgba(6, 12, 24, 0.78);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 0 0 1px rgba(34, 197, 94, 0.08),
+        0 30px 70px -24px rgba(0, 0, 0, 0.85),
+        0 0 50px -20px color-mix(in srgb, var(--cfx-accent) 60%, transparent);
+}
+.celula-app .celula-info-card::before {
+    /* filo de luz superior */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--cfx-accent) 90%, white), transparent);
+    opacity: .85;
+    pointer-events: none;
+}
+.celula-app .floating-close-btn {
+    background: rgba(20, 26, 42, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 20px -6px rgba(0, 0, 0, 0.7);
+}
+.celula-app .floating-close-btn:hover { box-shadow: 0 0 20px -2px rgba(239, 68, 68, 0.8); }
+
+.celula-app .organelle-detail > * { animation: cfx-rise .5s var(--cfx-ease) both; }
+.celula-app .detail-body > * { animation: cfx-rise .5s var(--cfx-ease) both; }
+.celula-app .detail-body > *:nth-child(1) { animation-delay: .08s; }
+.celula-app .detail-body > *:nth-child(2) { animation-delay: .16s; }
+.celula-app .detail-body > *:nth-child(3) { animation-delay: .24s; }
+
+.celula-app .detail-icon-wrapper {
+    position: relative;
+    isolation: isolate;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 10px 24px -10px color-mix(in srgb, var(--cfx-accent) 80%, transparent);
+    animation: cfx-icon-in .6s var(--cfx-spring) both;
+}
+.celula-app .detail-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cfx-accent) 45%, transparent), transparent 70%);
+    z-index: -1;
+    animation: cfx-halo 3s ease-in-out infinite;
+}
+.celula-app .detail-title {
+    text-shadow: 0 0 22px color-mix(in srgb, var(--cfx-accent) 40%, transparent);
+}
+.celula-app .detail-description-card,
+.celula-app .detail-section {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    transition: border-color .25s ease, transform .3s var(--cfx-spring);
+}
+.celula-app .detail-section:hover,
+.celula-app .detail-description-card:hover {
+    border-color: color-mix(in srgb, var(--cfx-accent) 35%, transparent);
+}
+.celula-app .fun-fact-card {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px -12px rgba(251, 191, 36, 0.55), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+.celula-app .fun-fact-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 35%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    animation: cfx-sweep 4.5s var(--cfx-ease) 1s infinite;
+    pointer-events: none;
+}
+.celula-app .fun-fact-icon { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8)); }
+
+/* ---------- Pista de exploración ---------- */
+.celula-app .panel-empty-state {
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)), rgba(6, 10, 20, 0.7);
+    border-color: rgba(134, 239, 172, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 16px 40px -18px rgba(0, 0, 0, 0.9), 0 0 30px -14px rgba(34, 197, 94, 0.6);
+}
+.celula-app .panel-empty-state::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    animation: cfx-sweep 5s var(--cfx-ease) 1.5s infinite;
+    pointer-events: none;
+}
+.celula-app .panel-empty-hint { color: rgba(255, 255, 255, 0.7); }
+/* En escritorio la pista quedaba tapada por el dock (ambos a bottom: 24px) */
+@media (min-width: 801px) {
+    .celula-app .panel-empty-state { bottom: 100px; }
+}
+
+/* ---------- Modo "encuentra" (quiz) ---------- */
+.celula-app .quiz-target-box {
+    isolation: isolate;
+    background:
+        radial-gradient(120% 100% at 50% 0%, rgba(251, 191, 36, 0.16), transparent 60%),
+        rgba(8, 12, 24, 0.82);
+    border-color: rgba(251, 191, 36, 0.35);
+    border-radius: 22px;
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.12) inset,
+        0 20px 50px -20px rgba(0, 0, 0, 0.9),
+        0 0 40px -12px rgba(251, 191, 36, 0.55);
+}
+.celula-app .quiz-target-box::before {
+    /* borde cónico giratorio en ámbar (usa la @property de fx.css; sin ella queda estático) */
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--fx-angle, 0deg), transparent 0 60%, #fbbf24 75%, #fef3c7 80%, transparent 90%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: fx-spin-angle 4s linear infinite;
+    pointer-events: none;
+}
+.celula-app .quiz-target-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.28), rgba(251, 191, 36, 0.05) 70%);
+    box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.35) inset, 0 0 22px -4px rgba(251, 191, 36, 0.7);
+}
+.celula-app .quiz-target-name {
+    text-shadow: 0 0 18px rgba(251, 191, 36, 0.55);
+    animation: cfx-count-pop .5s var(--cfx-spring);
+}
+
+.celula-app .feedback-message {
+    position: relative;
+    isolation: isolate;
+    border-radius: 26px;
+    background: rgba(6, 10, 20, 0.72);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    letter-spacing: .02em;
+}
+.celula-app .feedback-message.correct {
+    border-color: rgba(34, 197, 94, 0.8);
+    color: #4ade80;
+    text-shadow: 0 0 24px rgba(34, 197, 94, 0.75);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12), 0 0 60px -6px rgba(34, 197, 94, 0.7);
+}
+.celula-app .feedback-message.incorrect {
+    border-color: rgba(239, 68, 68, 0.85);
+    color: #f87171;
+    text-shadow: 0 0 24px rgba(239, 68, 68, 0.7);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.12), 0 0 60px -8px rgba(239, 68, 68, 0.65);
+    animation: feedbackPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), cfx-shake .45s cubic-bezier(.36, .07, .19, .97) .45s;
+}
+.celula-app .cfx-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+.celula-app .cfx-burst i {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin: -5px;
+    border-radius: 50%;
+    background: var(--cfx-accent);
+    box-shadow: 0 0 12px var(--cfx-accent);
+    opacity: 0;
+    animation: cfx-burst .9s var(--cfx-ease) .1s both;
+}
+.celula-app .cfx-burst i:nth-child(odd) { background: #fde047; box-shadow: 0 0 12px #fde047; width: 7px; height: 7px; }
+
+/* ---------- Reto de parejas ---------- */
+.celula-app .match-game-overlay {
+    background:
+        radial-gradient(80% 60% at 50% 30%, color-mix(in srgb, var(--cfx-accent) 12%, transparent), transparent 70%),
+        rgba(4, 8, 18, 0.72);
+}
+.celula-app .match-game-panel {
+    position: relative;
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(251, 191, 36, 0.10), transparent 55%),
+        radial-gradient(100% 60% at 100% 100%, color-mix(in srgb, var(--cfx-accent) 12%, transparent), transparent 60%),
+        rgba(12, 18, 32, 0.86);
+    border-color: rgba(255, 255, 255, 0.10);
+    border-radius: 26px;
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    backdrop-filter: blur(24px) saturate(150%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 40px 90px -30px rgba(0, 0, 0, 0.9),
+        0 0 60px -30px rgba(251, 191, 36, 0.5);
+    animation: cfx-panel-in .55s var(--cfx-spring) both;
+}
+.celula-app .match-title { text-shadow: 0 0 20px rgba(251, 191, 36, 0.45); }
+
+.celula-app .cfx-diff-picker > * { animation: cfx-rise .55s var(--cfx-ease) backwards; }
+.celula-app .cfx-diff-picker > *:nth-child(1) { animation-delay: .08s; }
+.celula-app .cfx-diff-picker > *:nth-child(2) { animation-delay: .16s; }
+.celula-app .cfx-diff-picker > *:nth-child(3) { animation-delay: .24s; }
+
+.celula-app .difficulty-btn {
+    --cfx-mode: #10b981;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 20px;
+    padding: 24px 16px 22px;
+    background:
+        radial-gradient(120% 80% at 50% 0%, color-mix(in srgb, var(--cfx-mode) 18%, transparent), transparent 65%),
+        rgba(255, 255, 255, 0.03);
+    border-color: color-mix(in srgb, var(--cfx-mode) 30%, transparent);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 16px 34px -20px color-mix(in srgb, var(--cfx-mode) 80%, transparent);
+    transition: transform .3s var(--cfx-spring), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+}
+.celula-app .difficulty-medium { --cfx-mode: #fbbf24; }
+.celula-app .difficulty-hard { --cfx-mode: #ef4444; }
+.celula-app .difficulty-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    pointer-events: none;
+}
+.celula-app .difficulty-btn:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: color-mix(in srgb, var(--cfx-mode) 65%, transparent);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.12) inset,
+        0 26px 44px -18px color-mix(in srgb, var(--cfx-mode) 90%, transparent);
+}
+.celula-app .difficulty-btn:hover::after { animation: cfx-sweep 1.1s var(--cfx-ease) forwards; }
+.celula-app .difficulty-btn:active { transform: translateY(-1px) scale(.98); }
+.celula-app .difficulty-count { text-shadow: 0 0 20px color-mix(in srgb, var(--cfx-mode) 60%, transparent); }
+
+.celula-app .cfx-diff-icon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 4px;
+    border-radius: 50%;
+    color: var(--cfx-mode);
+    background: radial-gradient(circle, color-mix(in srgb, var(--cfx-mode) 30%, transparent), color-mix(in srgb, var(--cfx-mode) 6%, transparent) 70%);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--cfx-mode) 40%, transparent) inset;
+    transition: transform .35s var(--cfx-spring);
+}
+.celula-app .cfx-diff-icon::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cfx-mode) 40%, transparent), transparent 70%);
+    z-index: -1;
+    animation: cfx-halo 2.8s ease-in-out infinite;
+}
+.celula-app .difficulty-btn:hover .cfx-diff-icon { transform: scale(1.15) rotate(-8deg); }
+
+.celula-app .match-item {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+.celula-app .match-item:hover:not(:disabled) {
+    box-shadow: 0 10px 22px -14px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+.celula-app .match-submit-btn.ready {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, #3b82f6, #6366f1 50%, #10b981);
+    background-size: 180% 180%;
+    border-color: rgba(147, 197, 253, 0.6);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 14px 30px -12px rgba(59, 130, 246, 0.8);
+    transition: transform .25s var(--cfx-spring), box-shadow .25s ease, background-position .6s ease;
+}
+.celula-app .match-submit-btn.ready::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    animation: cfx-sweep 2.8s var(--cfx-ease) .6s infinite;
+    pointer-events: none;
+}
+.celula-app .match-submit-btn.ready:hover {
+    background-position: 100% 50%;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 20px 40px -12px rgba(16, 185, 129, 0.7);
+}
+
+/* Resultado: la nota /10 como héroe dentro de un anillo */
+.celula-app .match-results {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    animation: cfx-panel-in .6s var(--cfx-spring) both;
+}
+.celula-app .cfx-grade {
+    position: relative;
+    isolation: isolate;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 10.5rem;
+    height: 10.5rem;
+    margin: 4px auto 14px;
+    animation: cfx-icon-in .8s var(--cfx-spring) both;
+}
+.celula-app .cfx-grade-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(closest-side, rgba(10, 16, 30, 0.96) 80%, transparent 81% 100%),
+        conic-gradient(var(--cfx-grade-color) calc(var(--cfx-grade, 0) * 36deg), rgba(148, 163, 184, 0.18) 0);
+    box-shadow: 0 0 44px -6px var(--cfx-grade-color);
+    z-index: -1;
+}
+.celula-app .cfx-grade-halo {
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--cfx-grade-color), transparent 65%);
+    opacity: .25;
+    z-index: -2;
+    animation: cfx-halo 3s ease-in-out infinite;
+}
+.celula-app .cfx-grade .match-grade-emoji { font-size: 1.4rem; line-height: 1; }
+.celula-app .cfx-grade .match-grade-number {
+    font-size: 3.1rem;
+    color: var(--cfx-grade-color) !important;
+    text-shadow: 0 0 22px var(--cfx-grade-color);
+}
+.celula-app .cfx-grade .match-grade-max { font-size: .95rem; }
+.celula-app .match-grade-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    animation: cfx-rise .5s .35s var(--cfx-ease) both;
+}
+.celula-app .match-replay-btn,
+.celula-app .match-exit-btn-bottom {
+    transition: transform .25s var(--cfx-spring), background .25s ease, box-shadow .25s ease, color .2s;
+}
+.celula-app .match-replay-btn:hover,
+.celula-app .match-exit-btn-bottom:hover { transform: translateY(-2px); }
+
+/* ---------- Dock inferior ---------- */
+.celula-app .dock-container {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)), rgba(6, 10, 20, 0.72);
+    border-color: rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 7px 10px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.12) inset,
+        0 20px 50px -20px rgba(0, 0, 0, 0.9),
+        0 0 40px -22px color-mix(in srgb, var(--cfx-accent) 80%, transparent);
+}
+.celula-app .dock-item { transition: transform .3s var(--cfx-spring), background .2s ease, box-shadow .25s ease; }
+.celula-app .dock-icon { transition: transform .3s var(--cfx-spring); }
+.celula-app .dock-item:hover .dock-icon { transform: scale(1.12); }
+.celula-app .dock-item.active {
+    background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--cfx-accent) 32%, transparent), color-mix(in srgb, var(--cfx-accent) 8%, transparent) 70%);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--cfx-accent) 45%, transparent) inset, 0 0 22px -4px color-mix(in srgb, var(--cfx-accent) 80%, transparent);
+}
+.celula-app .dock-tooltip {
+    background: rgba(12, 18, 32, 0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-color: color-mix(in srgb, var(--cfx-accent) 45%, transparent);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 18px -8px var(--cfx-accent);
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes cfx-orb {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(5vmax, 3vmax, 0) scale(1.1); }
+    100% { transform: translate3d(-3vmax, 6vmax, 0) scale(.95); }
+}
+@keyframes cfx-drift {
+    0%   { transform: translate3d(0, 0, 0); opacity: .15; }
+    50%  { opacity: .45; }
+    100% { transform: translate3d(28px, -46px, 0); opacity: .2; }
+}
+@keyframes cfx-ripple {
+    0%   { transform: scale(1); opacity: .7; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+@keyframes cfx-spin { to { transform: rotate(360deg); } }
+@keyframes cfx-bar-shine {
+    0%        { transform: translateX(-100%); }
+    60%, 100% { transform: translateX(100%); }
+}
+@keyframes cfx-sweep {
+    from { transform: translateX(-120%) rotate(12deg); }
+    to   { transform: translateX(420%) rotate(12deg); }
+}
+@keyframes cfx-rise {
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes cfx-icon-in {
+    0%   { opacity: 0; transform: scale(.5) rotate(-12deg); }
+    70%  { opacity: 1; transform: scale(1.08) rotate(3deg); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes cfx-halo {
+    0%, 100% { opacity: .3; transform: scale(.92); }
+    50%      { opacity: .6; transform: scale(1.08); }
+}
+@keyframes cfx-count-pop {
+    0%   { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+@keyframes cfx-shake {
+    10%, 90%      { transform: translate3d(-1px, 0, 0); }
+    20%, 80%      { transform: translate3d(3px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-7px, 0, 0); }
+    40%, 60%      { transform: translate3d(7px, 0, 0); }
+}
+@keyframes cfx-burst {
+    0%   { opacity: 0; transform: rotate(calc(var(--cfx-n) * 36deg)) translateY(0) scale(.4); }
+    25%  { opacity: 1; }
+    100% { opacity: 0; transform: rotate(calc(var(--cfx-n) * 36deg)) translateY(-130px) scale(1); }
+}
+@keyframes cfx-panel-in {
+    0%   { opacity: 0; transform: translateY(18px) scale(.96); }
+    100% { opacity: 1; transform: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+    .cfx-orb { filter: blur(50px); }
+    .cfx-mote:nth-child(n+12) { display: none; }
+    .celula-app .cfx-grade { width: 8.5rem; height: 8.5rem; }
+    .celula-app .cfx-grade .match-grade-number { font-size: 2.4rem; }
+    .celula-app .difficulty-picker { gap: 10px; }
+    .celula-app .difficulty-btn { padding: 16px 8px; }
+    .celula-app .cfx-diff-icon { width: 34px; height: 34px; }
+    .celula-app .feedback-message { font-size: 1.8rem; padding: 16px 24px; }
+    .celula-app .progress-bar-track { width: 80px; }
+    .celula-app .dock-container { border-radius: 0; }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .cfx-orb, .cfx-mote,
+    .celula-app .organelle-dot::before,
+    .celula-app .progress-bar-fill::after,
+    .celula-app .detail-icon-wrapper::after,
+    .celula-app .fun-fact-card::after,
+    .celula-app .panel-empty-state::after,
+    .celula-app .quiz-target-box::before,
+    .celula-app .cfx-diff-icon::after,
+    .celula-app .match-submit-btn.ready::after,
+    .celula-app .cfx-grade-halo {
+        animation: none !important;
+    }
+    .celula-app .organelle-detail > *,
+    .celula-app .detail-body > *,
+    .celula-app .detail-icon-wrapper,
+    .celula-app .cfx-diff-picker > *,
+    .celula-app .cfx-burst i,
+    .celula-app .cfx-grade,
+    .celula-app .match-results,
+    .celula-app .match-game-panel,
+    .celula-app .match-grade-label,
+    .celula-app .cfx-score-pop,
+    .celula-app .feedback-message.incorrect {
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+    }
+}

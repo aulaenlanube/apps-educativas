@@ -1,0 +1,414 @@
+/* ==========================================================================
+   SharedPremium.css — capa visual "premium" para los juegos compartidos de
+   _shared/ (Ordena la Frase, Ordena la Historia, Detective, Comprensión,
+   Mayor/Menor, Medidas, Números Romanos, Clasificador, Memoria…).
+
+   Utilidades con prefijo sp-* que cada UI añade como className extra. NO
+   cambia layout ni lógica: solo superficies de cristal, luz, profundidad y
+   microinteracciones.
+
+   Especificidad: los CSS de cada app se pueden inyectar DESPUÉS que este
+   (chunks lazy de Vite), así que los selectores van con la clase doblada
+   (.sp-shell.sp-shell) para ganar siempre a los ".xxx-container .algo".
+   ========================================================================== */
+
+/* ---------- Contenedor ---------- */
+.sp-shell.sp-shell {
+  position: relative;
+  isolation: isolate;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--app-border-light, #eee) 75%, transparent);
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.06), transparent 60%),
+    radial-gradient(100% 60% at 100% 100%, rgba(236, 72, 153, 0.05), transparent 60%),
+    var(--app-bg, #fff);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
+    0 0 0 1px rgba(139, 92, 246, 0.08),
+    0 30px 70px -32px rgba(49, 46, 129, 0.55),
+    0 10px 24px -14px rgba(15, 23, 42, 0.25);
+  animation: sp-rise 0.6s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+html.dark .sp-shell.sp-shell {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 70px -30px rgba(0, 0, 0, 0.8),
+    0 0 80px -40px rgba(139, 92, 246, 0.6);
+}
+
+/* Banda de aurora superior */
+.sp-shell.sp-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, var(--sp-a1, #6366f1), var(--sp-a2, #8b5cf6), var(--sp-a3, #ec4899), var(--sp-a4, #f59e0b), var(--sp-a2, #8b5cf6), var(--sp-a1, #6366f1));
+  background-size: 300% 100%;
+  animation: sp-pan 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Orbes difusos + rejilla sutil detrás del contenido (z-index -1 dentro
+   del contexto aislado del contenedor: por encima de su fondo, por debajo
+   del contenido) */
+.sp-shell.sp-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(380px 280px at 0% 0%, color-mix(in srgb, var(--sp-a2, #8b5cf6) 16%, transparent), transparent 70%),
+    radial-gradient(360px 260px at 100% 100%, color-mix(in srgb, var(--sp-a4, #f59e0b) 14%, transparent), transparent 70%),
+    linear-gradient(rgba(99, 102, 241, 0.045) 1px, transparent 1px) 0 0 / 30px 30px,
+    linear-gradient(90deg, rgba(99, 102, 241, 0.045) 1px, transparent 1px) 0 0 / 30px 30px;
+  -webkit-mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.35));
+  mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.35));
+}
+
+/* Título con glow suave */
+.sp-shell.sp-shell .sp-title {
+  filter: drop-shadow(0 4px 14px rgba(139, 92, 246, 0.25));
+}
+.sp-shell.sp-shell .sp-title-emoji {
+  display: inline-block;
+  animation: sp-float 5s ease-in-out infinite;
+}
+
+/* ---------- Selector de modo: Práctica (verde) · Examen (rojo) ---------- */
+.sp-shell.sp-shell .sp-mode {
+  --sp-mode: #10b981;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px !important;
+  padding: 10px 22px 10px 12px !important;
+  border: 1.5px solid color-mix(in srgb, var(--sp-mode) 35%, var(--app-btn-border, #dcdfe6)) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0)),
+    var(--app-bg-surface, #f0f4f8) !important;
+  color: var(--app-btn-text, #4a5568) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 8px 18px -12px color-mix(in srgb, var(--sp-mode) 80%, transparent) !important;
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, background 0.2s, color 0.2s !important;
+}
+.sp-shell.sp-shell .sp-mode--exam { --sp-mode: #ef4444; }
+.sp-shell.sp-shell .sp-mode--medium { --sp-mode: #fbbf24; }
+.sp-shell.sp-shell .sp-mode-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--sp-mode) 75%, white), var(--sp-mode));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sp-mode) 18%, transparent), 0 6px 14px -4px var(--sp-mode);
+  transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.sp-shell.sp-shell .sp-mode:hover,
+.sp-shell.sp-shell .sp-mode.active {
+  color: #fff !important;
+  border-color: transparent !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sp-mode) 80%, white), var(--sp-mode)) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.12) inset,
+    0 14px 28px -12px var(--sp-mode) !important;
+}
+.sp-shell.sp-shell .sp-mode:hover { transform: translateY(-3px) scale(1.03); }
+.sp-shell.sp-shell .sp-mode:active { transform: translateY(1px) scale(0.97); }
+.sp-shell.sp-shell .sp-mode:hover .sp-mode-icon,
+.sp-shell.sp-shell .sp-mode.active .sp-mode-icon {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+.sp-shell.sp-shell .sp-mode:hover .sp-mode-icon { transform: rotate(-10deg) scale(1.1); }
+html.dark .sp-shell.sp-shell .sp-mode:not(:hover):not(.active) {
+  background: var(--app-bg-surface) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 18px -12px color-mix(in srgb, var(--sp-mode) 80%, transparent) !important;
+}
+
+/* ---------- Tarjetas de elección (pantallas de configuración) ---------- */
+.sp-shell.sp-shell .sp-choice {
+  --sp-choice: #8b5cf6;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 18px 38px -22px color-mix(in srgb, var(--sp-choice) 85%, transparent),
+    0 6px 14px -10px rgba(15, 23, 42, 0.3);
+  transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.3s ease, border-color 0.2s;
+  animation: sp-rise 0.55s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.sp-shell.sp-shell .sp-choice:nth-child(1) { animation-delay: 0.08s; }
+.sp-shell.sp-shell .sp-choice:nth-child(2) { animation-delay: 0.16s; }
+.sp-shell.sp-shell .sp-choice:nth-child(3) { animation-delay: 0.24s; }
+.sp-shell.sp-shell .sp-choice:nth-child(4) { animation-delay: 0.32s; }
+.sp-shell.sp-shell .sp-choice:nth-child(n+5) { animation-delay: 0.40s; }
+.sp-shell.sp-shell .sp-choice:nth-child(3n+2) { --sp-choice: #ec4899; }
+.sp-shell.sp-shell .sp-choice:nth-child(3n+3) { --sp-choice: #f59e0b; }
+.sp-shell.sp-shell .sp-choice::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: translateX(0) rotate(12deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.sp-shell.sp-shell .sp-choice:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 0 0 3px color-mix(in srgb, var(--sp-choice) 22%, transparent),
+    0 26px 48px -20px color-mix(in srgb, var(--sp-choice) 90%, transparent);
+}
+.sp-shell.sp-shell .sp-choice:hover::after {
+  opacity: 1;
+  transform: translateX(450%) rotate(12deg);
+  transition: transform 0.9s cubic-bezier(.22, 1, .36, 1), opacity 0.15s;
+}
+.sp-shell.sp-shell .sp-choice:active { transform: translateY(-1px) scale(0.98); }
+.sp-shell.sp-shell .sp-choice:focus-visible { outline: 3px solid var(--sp-choice); outline-offset: 3px; }
+/* Icono con halo dentro de la tarjeta */
+.sp-shell.sp-shell .sp-choice-icon {
+  display: inline-block;
+  filter: drop-shadow(0 8px 14px color-mix(in srgb, var(--sp-choice) 55%, transparent));
+  transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.sp-shell.sp-shell .sp-choice:hover .sp-choice-icon { transform: scale(1.15) rotate(-8deg); }
+
+/* ---------- Botones de control (solo relieve y movimiento) ---------- */
+.sp-shell.sp-shell .sp-controls button {
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+    0 10px 20px -10px rgba(15, 23, 42, 0.5);
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, filter 0.2s, background-color 0.2s;
+}
+.sp-shell.sp-shell .sp-controls button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.05);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+    0 16px 26px -12px rgba(15, 23, 42, 0.55);
+}
+.sp-shell.sp-shell .sp-controls button:active:not(:disabled) { transform: translateY(1px) scale(0.97); }
+.sp-shell.sp-shell button:focus-visible {
+  outline: 3px solid rgba(167, 139, 250, 0.8);
+  outline-offset: 2px;
+}
+
+/* ---------- Zonas de juego (arrastre, tableros) ---------- */
+.sp-shell.sp-shell .sp-zone {
+  border-radius: 18px;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+/* ---------- Feedback ---------- */
+.sp-shell.sp-shell .sp-fb:is(.correcta, .correcto, .correct, .success, .feedback-correct) {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35), 0 12px 26px -12px rgba(16, 185, 129, 0.8);
+  animation: sp-pop 0.45s cubic-bezier(.34, 1.56, .64, 1), sp-glow-ok 1.2s ease-out;
+}
+.sp-shell.sp-shell .sp-fb:is(.incorrecta, .incorrecto, .incorrect, .error, .feedback-incorrect) {
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35), 0 12px 26px -12px rgba(239, 68, 68, 0.75);
+  animation: sp-shake 0.45s cubic-bezier(.36, .07, .19, .97), sp-glow-ko 1s ease-out;
+}
+
+/* ---------- Examen: cabecera y barra de progreso ---------- */
+.sp-shell.sp-shell .sp-q-chip {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  color: #5b21b6;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 8px 18px -12px rgba(139, 92, 246, 0.8);
+  animation: sp-pop 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+html.dark .sp-shell.sp-shell .sp-q-chip { color: #ddd6fe; }
+.sp-shell.sp-shell .sp-progress {
+  height: 12px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15) inset;
+}
+.sp-shell.sp-shell .sp-progress .progress-bar {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.6);
+  transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+.sp-shell.sp-shell .sp-progress .progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+  background-size: 200% 100%;
+  animation: sp-bar-shine 2.2s linear infinite;
+}
+
+html.dark .sp-shell.sp-shell .sp-progress { background: rgba(255, 255, 255, 0.08); }
+
+/* ---------- Resumen: nota héroe ---------- */
+.sp-shell.sp-shell .sp-grade-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 24px 50px -28px rgba(15, 23, 42, 0.55);
+  animation: sp-pop-big 0.8s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.sp-shell.sp-shell .sp-grade-ring {
+  --sp-grade: 0;
+  --sp-grade-color: #3b82f6;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 164px;
+  height: 164px;
+  margin: 18px auto 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, var(--app-bg, #fff) 80%, transparent 81% 100%),
+    conic-gradient(var(--sp-grade-color) calc(var(--sp-grade) * 36deg), color-mix(in srgb, var(--app-border, #ccc) 45%, transparent) 0);
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.45),
+    0 0 46px -6px var(--sp-grade-color);
+  animation: sp-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.15s backwards;
+}
+.sp-shell.sp-shell .sp-grade-ring::after {
+  content: '';
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+  border: 2px dashed var(--sp-grade-color);
+  opacity: 0.32;
+  animation: sp-spin 18s linear infinite;
+  pointer-events: none;
+}
+/* El número debe caber en el hueco del anillo incluso con "10.0/10" */
+.sp-shell.sp-shell .sp-grade-ring > * {
+  font-size: 2.6rem;
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1;
+  text-shadow: 0 4px 18px color-mix(in srgb, var(--sp-grade-color) 40%, transparent);
+}
+html.dark .sp-shell.sp-shell .sp-grade-card {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 50px -28px rgba(0, 0, 0, 0.8);
+}
+.sp-shell.sp-shell .sp-grade-ring > * > span { font-size: 0.42em; margin-left: 2px; }
+html.dark .sp-shell.sp-shell .sp-grade-ring { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.04), 0 0 46px -6px var(--sp-grade-color); }
+.sp-shell.sp-shell .sp-grade-msg { animation: sp-rise 0.5s cubic-bezier(.22, 1, .36, 1) 0.45s backwards; }
+
+/* Puntos paralelos como chip luminoso */
+.sp-shell.sp-shell .sp-points {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 12px 26px -14px rgba(217, 119, 6, 0.85);
+  animation: sp-pop 0.55s cubic-bezier(.34, 1.56, .64, 1) 0.6s backwards;
+}
+.sp-shell.sp-shell .sp-points-card {
+  border-radius: 18px !important;
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.06) 60%, rgba(245, 158, 11, 0.07)),
+    var(--app-card-bg, #f8fafc) !important;
+  border: 1px solid color-mix(in srgb, #8b5cf6 22%, var(--app-border-light, #eee)) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 18px 36px -24px rgba(124, 58, 237, 0.7);
+  animation: sp-rise 0.55s cubic-bezier(.22, 1, .36, 1) 0.6s backwards;
+}
+
+/* Lista de resultados */
+.sp-shell.sp-shell .sp-results > * {
+  animation: sp-rise 0.4s cubic-bezier(.22, 1, .36, 1) 0.7s backwards;
+}
+.sp-shell.sp-shell .sp-result {
+  border-radius: 12px;
+  border-left: 4px solid var(--app-border-light, #eee);
+  margin-bottom: 8px;
+  background: color-mix(in srgb, var(--app-bg-surface, #f0f4f8) 70%, transparent);
+}
+.sp-shell.sp-shell .sp-result.is-ok { border-left-color: #10b981; }
+.sp-shell.sp-shell .sp-result.is-ko { border-left-color: #ef4444; }
+
+/* ---------- Keyframes ---------- */
+@keyframes sp-rise {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes sp-pan { to { background-position: 300% 0; } }
+@keyframes sp-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-5px) rotate(-6deg); }
+}
+@keyframes sp-pop {
+  0%   { transform: scale(0.85); opacity: 0.4; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes sp-pop-big {
+  0%   { opacity: 0; transform: scale(0.75) translateY(18px); }
+  65%  { opacity: 1; transform: scale(1.04) translateY(-2px); }
+  100% { transform: none; }
+}
+@keyframes sp-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+@keyframes sp-glow-ok {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
+}
+@keyframes sp-glow-ko {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+  100% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+}
+@keyframes sp-ring-in {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sp-spin { to { transform: rotate(360deg); } }
+@keyframes sp-bar-shine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+@media (max-width: 720px) {
+  .sp-shell.sp-shell { border-radius: 20px; }
+  .sp-shell.sp-shell .sp-grade-ring { width: 136px; height: 136px; }
+  .sp-shell.sp-shell .sp-grade-ring > * { font-size: 2.15rem; }
+  .sp-shell.sp-shell .sp-mode { padding: 9px 16px 9px 10px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-shell.sp-shell::before,
+  .sp-shell.sp-shell .sp-title-emoji,
+  .sp-shell.sp-shell .sp-grade-ring::after,
+  .sp-shell.sp-shell .sp-progress .progress-bar::after { animation: none; }
+  .sp-shell.sp-shell,
+  .sp-shell.sp-shell .sp-choice,
+  .sp-shell.sp-shell .sp-grade-card,
+  .sp-shell.sp-shell .sp-grade-ring,
+  .sp-shell.sp-shell .sp-points,
+  .sp-shell.sp-shell .sp-points-card,
+  .sp-shell.sp-shell .sp-results > *,
+  .sp-shell.sp-shell .sp-fb { animation-duration: 0.01ms !important; animation-delay: 0s !important; }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Play, RotateCcw, Trash2, ChevronLeft, ChevronRight, Check, X, Code2, Copy, Grid3x3, EyeOff, ArrowRight, Bot, HelpCircle, Pencil, Users, User } from 'lucide-react';
-import { BLOCKS, blocksForGrade, getBlock, newNode, cloneNode, SENSORS, CATEGORY_LABELS, CATEGORY_ORDER, CATEGORY_COLORS, gradeIdFromParams, GRADE_LABELS } from './pbBlocks';
+import { Play, RotateCcw, Trash2, ChevronLeft, ChevronRight, Check, X, Code2, Copy, Grid3x3, EyeOff, ArrowRight, Bot, Pencil, Users, User, AlertTriangle } from 'lucide-react';
+import { blocksForGrade, getBlock, newNode, cloneNode, SENSORS, CATEGORY_LABELS, CATEGORY_ORDER, gradeIdFromParams, GRADE_LABELS } from './pbBlocks';
 import { simulate, transpile } from './pbEngine';
 import { getLevels, getRetos, checkLevel } from './pbLevels';
 import Robot from './Robot';
@@ -12,6 +12,17 @@ import { useAuth } from '../../contexts/AuthContext';
 import './ProgramacionBloques.css';
 
 const dragRef = { current: null };
+
+// Fondo decorativo del marco (orbes + rejilla + estrellas). Solo visual.
+const PbBackdrop = () => (
+  <div className="pb-fx-bg" aria-hidden="true">
+    <span className="pb-fx-orb pb-fx-orb--a" />
+    <span className="pb-fx-orb pb-fx-orb--b" />
+    <span className="pb-fx-orb pb-fx-orb--c" />
+    <span className="pb-fx-grid" />
+    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`pb-fx-star pb-fx-star--${i}`} />)}
+  </div>
+);
 const stop = (e) => e.stopPropagation();
 const toSet = (v) => (v instanceof Set ? v : new Set(v || []));
 
@@ -338,6 +349,9 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   const [panelLang, setPanelLang] = useState('python');
   const [moving, setMoving] = useState(false);
   const [showGrid, setShowGrid] = useState(true);
+  // Diálogos propios (el proyecto prohíbe window.confirm/alert)
+  const [pendingDelete, setPendingDelete] = useState(null); // id del nivel a borrar
+  const [notice, setNotice] = useState(null); // mensaje de aviso
 
   const reportedRef = useRef(new Set());
   const playTimerRef = useRef(null);
@@ -449,6 +463,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
       setDst((prev) => insertPath(prev, destPath, destIndex, cloned));
       setStatus(null);
     });
+    // Los helpers puros de abajo son estables en la práctica: no se añaden.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setterFor]);
 
   // Helpers puros para extraer/insertar/mover en un árbol de bloques --------
@@ -621,7 +637,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   const openShared = () => { refreshShared(); setPhase('shared'); };
 
   const saveEditor = useCallback(async ({ title: t, description: d, world, shared }) => {
-    if (!creator) { alert('Debes iniciar sesión para guardar niveles.'); return false; }
+    if (!creator) { setNotice('Debes iniciar sesión para guardar niveles.'); return false; }
     try {
       if (editTarget?.id) {
         await updateRobotLevel({
@@ -640,55 +656,93 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
       refreshMine();
       return true;
     } catch (e) {
-      console.error(e); alert('No se pudo guardar: ' + (e.message || e));
+      console.error(e); setNotice('No se pudo guardar: ' + (e.message || e));
       return false;
     }
   }, [creator, editTarget, level, grade, refreshMine]);
 
-  const removeLevel = async (id) => {
+  // Borrar nivel: primero se pide confirmación en un modal propio.
+  const removeLevel = (id) => {
     if (!creator) return;
-    if (!confirm('¿Borrar este nivel? Esta acción no se puede deshacer.')) return;
+    setPendingDelete(id);
+  };
+  const confirmRemoveLevel = async () => {
+    const id = pendingDelete;
+    setPendingDelete(null);
+    if (!creator || id == null) return;
     try {
       await deleteRobotLevel({ id, creatorType: creator.type, creatorId: creator.id });
       refreshMine();
-    } catch (e) { alert('No se pudo borrar: ' + (e.message || e)); }
+    } catch (e) { setNotice('No se pudo borrar: ' + (e.message || e)); }
   };
+
+  // Modales propios de confirmación / aviso (se montan en todas las fases).
+  const dialogs = (
+    <>
+      {pendingDelete != null && (
+        <div className="pb-modal-backdrop" onClick={() => setPendingDelete(null)}>
+          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-dialog-del-title" onClick={(e) => e.stopPropagation()}>
+            <div className="pb-dialog-icon is-danger" aria-hidden="true"><Trash2 size={22} /></div>
+            <h3 id="pb-dialog-del-title">¿Borrar este nivel?</h3>
+            <p>Esta acción no se puede deshacer.</p>
+            <div className="pb-dialog-actions">
+              <button className="pb-btn pb-btn-ghost" onClick={() => setPendingDelete(null)}>Cancelar</button>
+              <button className="pb-btn pb-btn-danger" onClick={confirmRemoveLevel} autoFocus><Trash2 size={14} /> Borrar</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {notice && (
+        <div className="pb-modal-backdrop" onClick={() => setNotice(null)}>
+          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-dialog-notice-title" onClick={(e) => e.stopPropagation()}>
+            <div className="pb-dialog-icon" aria-hidden="true"><AlertTriangle size={22} /></div>
+            <h3 id="pb-dialog-notice-title">Aviso</h3>
+            <p>{notice}</p>
+            <div className="pb-dialog-actions">
+              <button className="pb-btn pb-btn-primary" onClick={() => setNotice(null)} autoFocus>Entendido</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 
   /* -------------------- MENU -------------------- */
   if (phase === 'menu') {
     return (
       <div className="pb-root">
-        <div className="pb-frame pb-frame-menu">
+        <div className="pb-frame pb-frame-menu pb-has-fx">
+          <PbBackdrop />
           <div className="pb-hero">
             <div className="pb-hero-top">
-              <div className="pb-hero-title">
-                <div className="pb-hero-badge"><Bot size={16} /> {GRADE_LABELS[gradeId]}</div>
+              <div className="pb-hero-title fx-enter">
+                <div className="pb-hero-badge"><span className="pb-hero-badge-dot" aria-hidden="true" /><Bot size={16} /> {GRADE_LABELS[gradeId]}</div>
                 <h1>Programa al Robot</h1>
                 <p>Arrastra bloques visuales para que tu robot cruce 10 misiones por tierras cada vez más complejas: pradera, bosque, montaña, ciudad y centro de datos.</p>
               </div>
             </div>
 
-            <div className="pb-mode-grid">
-              <button className="pb-mode-card pb-mode-easy" onClick={() => startMission(0, 'easy')}>
-                <div className="pb-mode-icon">🌱</div>
+            <div className="pb-mode-grid pb-stagger">
+              <button className="pb-mode-card pb-mode-easy fx-shine" onClick={() => startMission(0, 'easy')}>
+                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />🌱</div>
                 <h3>Modo Fácil</h3>
                 <p>Rejilla siempre visible y pistas claras. Perfecto para empezar.</p>
                 <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
               </button>
-              <button className="pb-mode-card pb-mode-normal" onClick={() => startMission(0, 'normal')}>
-                <div className="pb-mode-icon">⚡</div>
+              <button className="pb-mode-card pb-mode-normal fx-shine" onClick={() => startMission(0, 'normal')}>
+                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />⚡</div>
                 <h3>Modo Normal</h3>
                 <p>Desafío estándar: 10 misiones progresivas con todos los bloques del curso.</p>
                 <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
               </button>
-              <button className="pb-mode-card pb-mode-exam" onClick={() => startMission(0, 'examen')}>
-                <div className="pb-mode-icon">📝</div>
+              <button className="pb-mode-card pb-mode-exam fx-shine" onClick={() => startMission(0, 'examen')}>
+                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />📝</div>
                 <h3>Modo Examen</h3>
                 <p>Completa las 10 misiones sin ayudas. Tu nota se calcula sobre 10.</p>
                 <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
               </button>
-              <button className="pb-mode-card pb-mode-reto" onClick={() => startMission(0, 'reto')}>
-                <div className="pb-mode-icon">🔥</div>
+              <button className="pb-mode-card pb-mode-reto fx-shine" onClick={() => startMission(0, 'reto')}>
+                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />🔥</div>
                 <h3>Modo Reto</h3>
                 <p>{retosList.length} retos muy difíciles creados para tu curso. Solo para expertos.</p>
                 <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
@@ -697,7 +751,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
 
             <div className="pb-missions-grid">
               <h3>📋 Misiones del curso</h3>
-              <div className="pb-missions-cards">
+              <div className="pb-missions-cards pb-stagger">
                 {normalLevels.map((m, i) => {
                   const b = biomeForLevel(i);
                   return (
@@ -753,17 +807,20 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   /* -------------------- EDITOR -------------------- */
   if (phase === 'edit') {
     return (
-      <LevelEditor
-        gradeId={gradeId}
-        level={level}
-        grade={grade}
-        biomeIdx={0}
-        canShare={creator?.type === 'student' ? !!creator?.groupId : creator?.type === 'teacher'}
-        onBack={goMenu}
-        onPlay={playCustom}
-        onSaved={saveEditor}
-        editTarget={editTarget}
-      />
+      <>
+        <LevelEditor
+          gradeId={gradeId}
+          level={level}
+          grade={grade}
+          biomeIdx={0}
+          canShare={creator?.type === 'student' ? !!creator?.groupId : creator?.type === 'teacher'}
+          onBack={goMenu}
+          onPlay={playCustom}
+          onSaved={saveEditor}
+          editTarget={editTarget}
+        />
+        {dialogs}
+      </>
     );
   }
 
@@ -771,7 +828,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   if (phase === 'mine') {
     return (
       <div className="pb-root">
-        <div className="pb-frame pb-frame-menu">
+        <div className="pb-frame pb-frame-menu pb-has-fx">
+          <PbBackdrop />
           <div className="pb-play-header">
             <button className="pb-icon-btn" onClick={goMenu}><ChevronLeft size={16} /> Menú</button>
             <div className="pb-play-title">
@@ -785,7 +843,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
           {!loadingLists && myLevels.length === 0 && (
             <p className="pb-empty">Aún no has creado ningún nivel. Pulsa "Crear nuevo" para empezar.</p>
           )}
-          <div className="pb-user-levels">
+          <div className="pb-user-levels pb-stagger">
             {myLevels.map((row) => (
               <div key={row.id} className="pb-user-level">
                 <div className="pb-user-level-info">
@@ -799,12 +857,13 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
                 <div className="pb-user-level-actions">
                   <button className="pb-btn pb-btn-primary" onClick={() => playCustom(row)}><Play size={12} /> Jugar</button>
                   <button className="pb-btn pb-btn-ghost" onClick={() => openEdit(row)}><Pencil size={12} /> Editar</button>
-                  <button className="pb-btn pb-btn-ghost" onClick={() => removeLevel(row.id)}><Trash2 size={12} /></button>
+                  <button className="pb-btn pb-btn-ghost" onClick={() => removeLevel(row.id)} title="Borrar nivel" aria-label="Borrar nivel"><Trash2 size={12} /></button>
                 </div>
               </div>
             ))}
           </div>
         </div>
+        {dialogs}
       </div>
     );
   }
@@ -813,7 +872,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   if (phase === 'shared') {
     return (
       <div className="pb-root">
-        <div className="pb-frame pb-frame-menu">
+        <div className="pb-frame pb-frame-menu pb-has-fx">
+          <PbBackdrop />
           <div className="pb-play-header">
             <button className="pb-icon-btn" onClick={goMenu}><ChevronLeft size={16} /> Menú</button>
             <div className="pb-play-title">
@@ -825,7 +885,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
           {!loadingLists && sharedLevels.length === 0 && (
             <p className="pb-empty">Aún no hay niveles compartidos en tu clase. ¡Sé el primero en compartir uno!</p>
           )}
-          <div className="pb-user-levels">
+          <div className="pb-user-levels pb-stagger">
             {sharedLevels.map((row) => (
               <div key={row.id} className="pb-user-level">
                 <div className="pb-user-level-info">
@@ -851,7 +911,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
 
   return (
     <div className="pb-root">
-      <div className="pb-frame pb-frame-play">
+      <div className="pb-frame pb-frame-play pb-has-fx">
+        <PbBackdrop />
         <div className="pb-play-header">
           <button className="pb-icon-btn" onClick={goMenu} title="Volver al menú"><ChevronLeft size={16} /></button>
           <div className="pb-play-title">
@@ -863,11 +924,14 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
           <div className="pb-progress">
             <button onClick={prev} disabled={currentIdx === 0}><ChevronLeft size={16} /></button>
             <span>Nivel {currentIdx + 1}/{levels.length}</span>
+            <span className="pb-progress-track" aria-hidden="true">
+              <span className="pb-progress-fill" style={{ transform: `scaleX(${(currentIdx + 1) / Math.max(1, levels.length)})` }} />
+            </span>
             <button onClick={next} disabled={currentIdx === levels.length - 1}><ChevronRight size={16} /></button>
           </div>
         </div>
 
-        <div className="pb-mission">
+        <div className="pb-mission" key={currentLevel.id}>
           <div className="pb-mission-title">🎯 {currentLevel.title}</div>
           <div className="pb-mission-goal">{currentLevel.goal}</div>
         </div>
@@ -915,8 +979,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
               <Dropzone path={['body']} items={program} onAdd={onAdd} onField={onField} onMove={onMove} onRemove={onRemove} disabled={status === 'running'} />
             </div>
 
-            {status === 'ok' && <div className="pb-feedback pb-feedback-ok"><Check size={14} /> ¡Nivel superado!</div>}
-            {status === 'wrong' && <div className="pb-feedback pb-feedback-ko"><X size={14} /> Intenta otra vez</div>}
+            {status === 'ok' && <div className="pb-feedback pb-feedback-ok" role="status"><Check size={14} /> ¡Nivel superado!</div>}
+            {status === 'wrong' && <div className="pb-feedback pb-feedback-ko" role="status"><X size={14} /> Intenta otra vez</div>}
             {error && <div className="pb-error">⚠ {error}</div>}
           </div>
 

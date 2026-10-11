@@ -13,6 +13,17 @@ import materiasData from '../../../public/data/materias.json';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './SopaDeLetras.css';
 
+// Fondo decorativo: orbes turquesa, rejilla y letras sueltas flotando.
+const SopaDecor = () => (
+  <div className="sopa-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="sopa-decor-grid fx-grid-bg" />
+    {['S', 'O', 'P', 'A', 'Ñ'].map((l, i) => (
+      <span key={l} className={`sopa-ghost-letter l${i}`}>{l}</span>
+    ))}
+  </div>
+);
+
 // Configuración de tamaños
 const SIZE_CONFIG = {
   small: {
@@ -155,6 +166,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
     setHintCells([]);
     trackedRef.current = false;
     setGenerating(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- gameMode regenera la sopa al cambiar de modo (intencionado)
   }, [allWords, size, gameMode]);
 
   useEffect(() => {
@@ -237,6 +249,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
           map.set(`${r},${c}`, color);
         }
       }
+      // eslint-disable-next-line no-unused-vars -- contador preexistente, se deja intacto
       colorIdx += 1;
     }
     return map;
@@ -370,6 +383,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
 
   return (
     <div className="sopa-root">
+      <SopaDecor />
       <motion.div
         className="sopa-card"
         initial={{ opacity: 0, y: 20 }}
@@ -390,7 +404,14 @@ const SopaDeLetras = ({ onGameComplete }) => {
             </div>
             <div className="sopa-stat words" title="Encontradas">
               <Puzzle size={16} />
-              <span>{foundCount}/{puzzle?.placed?.length || 0}</span>
+              <motion.span
+                key={foundCount}
+                initial={{ scale: 1.5, opacity: 0.4 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+              >
+                {foundCount}/{puzzle?.placed?.length || 0}
+              </motion.span>
             </div>
           </div>
         </div>
@@ -402,13 +423,13 @@ const SopaDeLetras = ({ onGameComplete }) => {
         {/* Tabs modo de juego */}
         <div className="sopa-gamemode-tabs">
           <button
-            className={`sopa-gamemode-tab ${!isExam ? 'active' : ''}`}
+            className={`sopa-gamemode-tab is-practice ${!isExam ? 'active' : ''}`}
             onClick={() => setGameMode('practice')}
           >
             <Gamepad2 size={16} /> Práctica
           </button>
           <button
-            className={`sopa-gamemode-tab ${isExam ? 'active' : ''}`}
+            className={`sopa-gamemode-tab is-exam ${isExam ? 'active' : ''}`}
             onClick={() => setGameMode('exam')}
           >
             <GraduationCap size={16} /> Examen
@@ -420,7 +441,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
           {Object.entries(SIZE_CONFIG).map(([key, cfg]) => (
             <button
               key={key}
-              className={`sopa-size-btn ${size === key ? 'active' : ''}`}
+              className={`sopa-size-btn fx-shine size-${key} ${size === key ? 'active' : ''}`}
               onClick={() => setSize(key)}
               disabled={examInProgress}
               title={examInProgress ? 'Bloqueado durante el examen' : undefined}
@@ -558,9 +579,11 @@ const SopaDeLetras = ({ onGameComplete }) => {
           {completed && (
             <motion.div
               className="sopa-completed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
             >
+              <span className="sopa-completed-rays" aria-hidden="true" />
               <div className="sopa-completed-icon">
                 <Award size={48} />
               </div>
@@ -573,12 +596,17 @@ const SopaDeLetras = ({ onGameComplete }) => {
               {isExam ? (
                 <>
                   <div className={`sopa-nota ${notaClass}`} style={{ borderColor: notaColor }}>
-                    <div className="sopa-nota-big" style={{ color: notaColor }}>
-                      {nota.toFixed(1)}<span className="sopa-nota-small">/10</span>
+                    <div
+                      className="sopa-nota-ring fx-grade-ring"
+                      style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
+                    >
+                      <div className="sopa-nota-big" style={{ color: notaColor }}>
+                        {nota.toFixed(1)}<span className="sopa-nota-small">/10</span>
+                      </div>
                     </div>
                     <div className="sopa-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
                   </div>
-                  <div className="sopa-completed-record">
+                  <div className="sopa-completed-record fx-shine fx-shine--auto">
                     <Trophy size={14} />
                     <span className="sopa-completed-record-value">
                       {finalScore.toLocaleString('es-ES')}
@@ -605,7 +633,7 @@ const SopaDeLetras = ({ onGameComplete }) => {
                   </div>
                 )}
               </div>
-              <button className="sopa-btn primary" onClick={regenerate}>
+              <button className="sopa-btn primary fx-shine" onClick={regenerate}>
                 <RefreshCw size={16} /> Otra sopa
               </button>
             </motion.div>

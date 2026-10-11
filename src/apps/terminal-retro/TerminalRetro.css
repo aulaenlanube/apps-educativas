@@ -1,0 +1,297 @@
+/* ==========================================================================
+   TERMINAL RETRO — capa visual premium (solo presentación). Prefijo `tr-`.
+   Estética CRT de fósforo verde: viñeta curva, scanlines, brillo de fósforo
+   y paneles de cristal oscuro. Siempre oscuro (es un monitor), así que se ve
+   igual en tema claro y oscuro.
+   ========================================================================== */
+
+.tr-root {
+  --tr-green: #22c55e;
+  --tr-green-hi: #4ade80;
+  --tr-green-lo: #14532d;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(34, 197, 94, .10), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, rgba(16, 185, 129, .08), transparent 60%),
+    #020604 !important;
+  border: 1px solid rgba(74, 222, 128, .35) !important;
+  border-radius: 24px !important;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.9),
+    0 0 0 8px #0b0f0c,
+    0 0 0 9px rgba(74, 222, 128, .18),
+    0 0 60px -10px rgba(34, 197, 94, .35),
+    0 40px 80px -40px rgba(0, 0, 0, .9) !important;
+  text-shadow: 0 0 6px rgba(74, 222, 128, .35);
+}
+
+/* Grano propio (sustituye a la textura remota) */
+.tr-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  border-radius: inherit;
+}
+/* Scanlines finas estáticas + barra de refresco que baja */
+.tr-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  border-radius: inherit;
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
+  opacity: .45;
+}
+.tr-refresh {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 18%;
+  pointer-events: none;
+  z-index: 21;
+  background: linear-gradient(180deg, transparent, rgba(74, 222, 128, .05), transparent);
+  animation: tr-refresh 6s linear infinite;
+}
+/* Viñeta curva de tubo CRT */
+.tr-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 22;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, .55) 100%);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, .7);
+}
+
+/* ---------- Paneles ---------- */
+.tr-panel {
+  border: 1px solid rgba(74, 222, 128, .28) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(180deg, rgba(74, 222, 128, .06), rgba(74, 222, 128, 0) 30%),
+    rgba(6, 14, 9, .82) !important;
+  box-shadow:
+    0 1px 0 rgba(187, 247, 208, .08) inset,
+    0 0 0 1px rgba(0,0,0,.6),
+    0 0 30px -12px rgba(34, 197, 94, .45),
+    0 20px 40px -24px rgba(0, 0, 0, .9) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: tr-boot .6s cubic-bezier(.22, 1, .36, 1) both;
+}
+.tr-panel--right { animation: tr-boot .6s cubic-bezier(.22, 1, .36, 1) .1s both; }
+
+.tr-title {
+  background: linear-gradient(180deg, #dcfce7, #4ade80 60%, #16a34a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(74, 222, 128, .6));
+}
+.tr-status-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--tr-green-hi);
+  box-shadow: 0 0 8px 2px rgba(74, 222, 128, .8);
+  vertical-align: middle;
+  animation: tr-blink 1.4s steps(2, jump-none) infinite;
+}
+
+.tr-btn {
+  border-radius: 12px !important;
+  border: 1px solid rgba(74, 222, 128, .45) !important;
+  background: linear-gradient(180deg, rgba(74, 222, 128, .14), rgba(74, 222, 128, .04)) !important;
+  box-shadow: 0 1px 0 rgba(187, 247, 208, .12) inset, 0 8px 20px -12px rgba(34, 197, 94, .6) !important;
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), background .2s ease, color .2s ease, box-shadow .2s ease !important;
+}
+.tr-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #4ade80, #16a34a) !important;
+  color: #022c22 !important;
+  text-shadow: none;
+  box-shadow: 0 0 22px -2px rgba(74, 222, 128, .7) !important;
+}
+.tr-btn:active { transform: scale(.97); }
+.tr-btn:focus-visible,
+.tr-cmd:focus-visible,
+.tr-run:focus-visible { outline: 2px solid #86efac; outline-offset: 2px; }
+
+.tr-level-badge {
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, rgba(74, 222, 128, .25), rgba(16, 185, 129, .15)) !important;
+  border-color: rgba(74, 222, 128, .5) !important;
+  box-shadow: 0 0 14px -4px rgba(74, 222, 128, .7);
+}
+
+.tr-box {
+  border-radius: 14px !important;
+  border-color: rgba(74, 222, 128, .3) !important;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, .7), 0 0 0 1px rgba(0,0,0,.5);
+}
+.tr-chip-ro { border-bottom-left-radius: 8px; border-top-right-radius: 12px; }
+
+.tr-input {
+  border-radius: 12px !important;
+  border-color: rgba(74, 222, 128, .5) !important;
+  transition: box-shadow .2s ease, border-color .2s ease;
+  caret-color: #4ade80;
+}
+.tr-input:focus { border-color: #4ade80 !important; box-shadow: 0 0 0 3px rgba(74, 222, 128, .2), 0 0 18px -4px rgba(74, 222, 128, .7); }
+
+.tr-check {
+  border-radius: 12px !important;
+  background: linear-gradient(180deg, #4ade80, #15803d) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 -2px 0 rgba(0,0,0,.25) inset, 0 8px 20px -8px rgba(74, 222, 128, .7);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), filter .2s ease;
+  text-shadow: none;
+}
+.tr-check:hover { transform: translateY(-1px); filter: brightness(1.1); }
+.tr-check:active { transform: scale(.96); }
+
+/* Teclas de comando */
+.tr-cmd {
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, #0d1a12, #07100b) !important;
+  border-color: rgba(74, 222, 128, .3) !important;
+  box-shadow: 0 1px 0 rgba(187, 247, 208, .1) inset, 0 -2px 0 rgba(0,0,0,.6) inset, 0 4px 10px -6px rgba(0,0,0,.9);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease, border-color .2s ease, background .2s ease !important;
+}
+.tr-cmd:hover {
+  border-color: #4ade80 !important;
+  box-shadow: 0 0 14px -2px rgba(74, 222, 128, .65), 0 1px 0 rgba(187, 247, 208, .2) inset;
+}
+.tr-cmd:active { transform: translateY(1px) scale(.96) !important; }
+
+/* Editor / consola */
+.tr-screen {
+  border-radius: 18px !important;
+  border-color: rgba(74, 222, 128, .35) !important;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(34, 197, 94, .08), transparent 60%),
+    #010402 !important;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(0,0,0,.6), 0 0 26px -10px rgba(34, 197, 94, .5) !important;
+}
+.tr-screen-tag {
+  border-bottom-left-radius: 10px !important;
+  border-top-right-radius: 16px;
+  background: linear-gradient(90deg, #22c55e, #4ade80) !important;
+  text-shadow: none;
+}
+.tr-screen textarea { caret-color: #4ade80; text-shadow: 0 0 6px rgba(74, 222, 128, .45); }
+.tr-console-head { border-top-left-radius: 16px; border-top-right-radius: 16px; }
+.tr-line { animation: tr-type .25s steps(6, end) both; }
+
+.tr-feedback {
+  border-radius: 0 12px 12px 0;
+  animation: tr-pop .45s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.tr-feedback--ok { box-shadow: 0 0 24px -6px rgba(74, 222, 128, .8); }
+.tr-feedback--ko {
+  text-shadow: 0 0 8px rgba(239, 68, 68, .6);
+  animation: tr-shake .45s cubic-bezier(.36, .07, .19, .97) both;
+  box-shadow: 0 0 24px -6px rgba(239, 68, 68, .8);
+}
+
+.tr-next {
+  border-radius: 14px !important;
+  background: linear-gradient(90deg, #22c55e, #4ade80, #22c55e) !important;
+  background-size: 200% 100% !important;
+  animation: tr-pan 2.4s linear infinite, tr-glow 1.6s ease-in-out infinite !important;
+  text-shadow: none;
+}
+
+.tr-run {
+  border-radius: 16px !important;
+  background: linear-gradient(180deg, #4ade80, #16a34a 70%, #15803d) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 -3px 0 rgba(0,0,0,.3) inset, 0 0 28px -6px rgba(74, 222, 128, .7) !important;
+  text-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+.tr-run::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 40%; height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  pointer-events: none;
+}
+.tr-run:hover:not(:disabled)::after { animation: tr-sweep 1s cubic-bezier(.22, 1, .36, 1) forwards; }
+.tr-run--busy { animation: tr-glow 1s ease-in-out infinite; }
+.tr-clear {
+  border-radius: 16px !important;
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background .2s ease, color .2s ease !important;
+}
+.tr-clear:hover { transform: translateY(-1px); }
+
+/* Tooltip y modales */
+.tr-tooltip {
+  border-radius: 14px !important;
+  background: rgba(2, 10, 5, .92) !important;
+  border-color: rgba(74, 222, 128, .6) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: tr-pop .18s ease-out both;
+}
+.tr-modal-bg {
+  background: radial-gradient(circle at 50% 30%, rgba(5, 46, 22, .7), rgba(0, 0, 0, .92)) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.tr-modal {
+  border-radius: 24px !important;
+  border: 1px solid rgba(74, 222, 128, .55) !important;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(34, 197, 94, .12), transparent 60%),
+    rgba(6, 14, 9, .96) !important;
+  box-shadow: 0 1px 0 rgba(187, 247, 208, .1) inset, 0 0 60px -12px rgba(34, 197, 94, .55), 0 40px 80px -30px #000 !important;
+}
+.tr-modal-close {
+  padding: .3rem .7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(74, 222, 128, .4);
+  transition: background .2s ease, color .2s ease;
+}
+.tr-modal-close:hover { background: rgba(74, 222, 128, .15); }
+.tr-doc {
+  border-radius: 14px !important;
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), border-color .2s ease, box-shadow .2s ease;
+}
+.tr-doc:hover { transform: translateY(-2px); border-color: rgba(74, 222, 128, .6) !important; box-shadow: 0 0 20px -8px rgba(74, 222, 128, .7); }
+.tr-diff-easy   { text-shadow: 0 0 10px rgba(16, 185, 129, .7); }
+.tr-diff-medium { text-shadow: 0 0 10px rgba(251, 191, 36, .7); }
+.tr-diff-exam   { text-shadow: 0 0 10px rgba(239, 68, 68, .7); }
+
+/* ---------- Keyframes ---------- */
+@keyframes tr-refresh { from { transform: translateY(-100%); } to { transform: translateY(560%); } }
+@keyframes tr-blink { 50% { opacity: .2; } }
+@keyframes tr-boot {
+  0% { opacity: 0; transform: scaleY(.02) scaleX(.6); filter: brightness(3); }
+  60% { opacity: 1; transform: scaleY(1.02) scaleX(1); filter: brightness(1.4); }
+  100% { transform: none; filter: none; }
+}
+@keyframes tr-type { from { opacity: 0; transform: translateX(-4px); } to { opacity: .9; transform: none; } }
+@keyframes tr-pop { 0% { opacity: 0; transform: scale(.92); } 70% { opacity: 1; transform: scale(1.02); } 100% { transform: none; } }
+@keyframes tr-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+@keyframes tr-pan { to { background-position: 200% 0; } }
+@keyframes tr-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.18); } }
+@keyframes tr-sweep { to { transform: translateX(420%) rotate(12deg); } }
+
+@media (max-width: 720px) {
+  .tr-root { border-radius: 18px !important; box-shadow: 0 0 0 4px #0b0f0c, 0 0 40px -10px rgba(34, 197, 94, .35) !important; }
+  .tr-panel { border-radius: 16px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-refresh, .tr-status-dot, .tr-next, .tr-run--busy { animation: none !important; }
+  .tr-panel, .tr-panel--right, .tr-line, .tr-feedback, .tr-tooltip { animation-duration: .01ms !important; }
+}

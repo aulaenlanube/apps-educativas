@@ -254,6 +254,7 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
     const idx = categories.indexOf(targetCat);
     setTargetCat(categories[(idx + 1) % categories.length]);
   };
+  // eslint-disable-next-line no-unused-vars
   const randomCategory = () => {
     if (!categories.length) return;
     setTargetCat(categories[Math.floor(Math.random() * categories.length)]);
@@ -485,6 +486,7 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
 
   return (
     <div className="np-root">
+      <div className="np-nebula" aria-hidden="true" />
       <div className={`np-head ${phase === 'playing' ? 'np-head-playing' : ''}`}>
         {phase !== 'playing' && (
           <div className="np-badge"><Rocket className="w-4 h-4" /> Nave Palabras</div>
@@ -492,8 +494,8 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
         {phase === 'playing' && (
           <>
             <div className="np-hud">⏱ <span className={secondsLeft <= 10 ? 'np-time-low' : ''}>{secondsLeft}s</span></div>
-            <div className="np-hud">🎯 {hits}</div>
-            <div className="np-hud">★ {score}</div>
+            <div className="np-hud">🎯 <span key={`h-${hits}`} className="np-hud-pop">{hits}</span></div>
+            <div className="np-hud">★ <span key={`s-${score}`} className="np-hud-pop">{score}</span></div>
             <div className="np-hud-target">
               <Target className="w-3.5 h-3.5" />
               <span>{formatName(targetCat) || '—'}</span>
@@ -563,9 +565,9 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
                   <button key={m.id}
                     type="button"
                     onClick={() => setMode(m.id)}
-                    className={`np-mode-card ${mode === m.id ? 'np-mode-card-active' : ''}`}
+                    className={`np-mode-card np-mode-card--${m.id} ${mode === m.id ? 'np-mode-card-active' : ''}`}
                     style={{ borderColor: mode === m.id ? m.color : undefined }}>
-                    <span className="np-mode-icon">{m.icon}</span>
+                    <span className="np-mode-icon" aria-hidden="true">{m.icon}</span>
                     <span className="np-mode-label" style={{ color: mode === m.id ? m.color : undefined }}>
                       {m.label}
                     </span>
@@ -675,16 +677,18 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
               <Trophy className="np-trophy" />
               <h2 className="np-title">¡Fin de partida!</h2>
 
-              <div className="np-nota-block" style={{ color: notaColor, borderColor: notaColor }}>
-                <div className="np-nota-big">{notaNum.toFixed(1)}</div>
-                <div className="np-nota-over">/ 10</div>
+              <div className="np-nota-ring" style={{ '--np-grade': notaNum, '--np-grade-color': notaColor }}>
+                <div>
+                  <div className="np-nota-big">{notaNum.toFixed(1)}</div>
+                  <div className="np-nota-over">/ 10</div>
+                </div>
                 <div className="np-nota-msg">{notaMsg}</div>
               </div>
 
               <div className="np-stats-row">
                 <div><div className="np-stat-n">{hits}</div><div className="np-stat-l">Aciertos</div></div>
                 <div><div className="np-stat-n">{misses}</div><div className="np-stat-l">Fallos</div></div>
-                <div><div className="np-stat-n">{score}</div><div className="np-stat-l">Puntos</div></div>
+                <div><div className="np-stat-n np-stat-points">{score}</div><div className="np-stat-l">Puntos</div></div>
               </div>
               <p className="np-nota-hint">
                 La nota es sobre 10. Los puntos son complementarios — dos alumnos pueden tener 10 y distinto ranking.

@@ -1853,3 +1853,488 @@
     letter-spacing: 0.3px;
     margin-left: 6px;
 }
+/* ==========================================================================
+   ACABADO PREMIUM (2026) — laboratorio holográfico.
+   Solo UI HTML: el render 3D (MoleculeBuilder3D) no se toca.
+   Se animan transform/opacity/background-position.
+   ========================================================================== */
+
+/* Capa decorativa encima del canvas (sin eventos) */
+.mc-fx-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+.mc-fx-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(2, 6, 23, 0.55) 100%),
+        radial-gradient(60% 40% at 15% 0%, rgba(129, 140, 248, 0.12), transparent 70%),
+        radial-gradient(50% 40% at 85% 100%, rgba(52, 211, 153, 0.08), transparent 70%);
+}
+.mc-fx-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(129, 140, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129, 140, 248, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse at 40% 50%, transparent 25%, #000 60%, transparent 95%);
+    mask-image: radial-gradient(ellipse at 40% 50%, transparent 25%, #000 60%, transparent 95%);
+}
+/* Línea de escaneo muy tenue que baja lentamente */
+.mc-fx-scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 30%;
+    background: linear-gradient(180deg, transparent, rgba(129, 140, 248, 0.05) 80%, rgba(165, 180, 252, 0.09) 100%);
+    transform: translateY(-100%);
+    animation: mc-scan 9s linear infinite;
+}
+@keyframes mc-scan {
+    to { transform: translateY(400%); }
+}
+
+/* ── Paneles flotantes: cristal oscuro con borde de luz ───────────── */
+.mc-panel,
+.mc-actions-glass,
+.mc-atom-status-hud,
+.mc-top-help-container {
+    background:
+        radial-gradient(120% 70% at 0% 0%, rgba(129, 140, 248, 0.14), transparent 55%),
+        radial-gradient(100% 60% at 100% 100%, rgba(52, 211, 153, 0.07), transparent 60%),
+        rgba(8, 10, 28, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 0 0 1px rgba(129, 140, 248, 0.04),
+        0 24px 60px -24px rgba(0, 0, 0, 0.75),
+        0 0 40px -20px rgba(129, 140, 248, 0.35);
+}
+/* Solo el panel de misión (en móvil el de elementos va en absolute) */
+.mc-panel-mission { position: relative; }
+.mc-panel-mission::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(165, 180, 252, 0.7), transparent);
+    pointer-events: none;
+}
+.mc-panel:hover {
+    border-color: rgba(165, 180, 252, 0.2);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 28px 70px -24px rgba(0, 0, 0, 0.8),
+        0 0 50px -18px rgba(129, 140, 248, 0.5);
+}
+
+.mc-mission-tag { text-shadow: 0 0 12px rgba(129, 140, 248, 0.55); }
+.mc-mission-name-v2 {
+    background: linear-gradient(90deg, #fff, #c7d2fe, #a7f3d0, #fff);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fx-pan 10s linear infinite;
+    filter: drop-shadow(0 0 14px rgba(129, 140, 248, 0.35));
+}
+
+/* Botones de acción del panel */
+.mc-action-btn {
+    transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.mc-action-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -12px rgba(129, 140, 248, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.mc-action-btn:active:not(:disabled) { transform: scale(0.96); }
+.mc-action-btn:focus-visible,
+.mc-glass-btn:focus-visible,
+.mc-main-craft-btn:focus-visible,
+.mc-next-btn:focus-visible,
+.btn-alchemy:focus-visible,
+.btn-close:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 3px;
+}
+
+.mc-next-btn.highlight-btn {
+    box-shadow: 0 10px 26px -12px rgba(52, 211, 153, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── Inventario de elementos ──────────────────────────────────────── */
+/* Ligero: solo transform en hover; nada de sombras animadas en la rejilla. */
+.mc-element-card {
+    background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.mc-element-card:hover {
+    transform: translateY(-2px) scale(1.08);
+    background:
+        radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--accent-color) 22%, transparent), transparent 70%),
+        rgba(255, 255, 255, 0.06);
+}
+.mc-element-card:active { transform: scale(0.92); }
+.mc-element-card.is-active {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.55), transparent 50%),
+        var(--accent-color);
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.85),
+        0 0 18px 2px color-mix(in srgb, var(--accent-color) 70%, transparent);
+    animation: mc-el-select 0.35s var(--fx-ease-spring, ease) both;
+}
+@keyframes mc-el-select {
+    0%   { transform: scale(0.8); }
+    60%  { transform: scale(1.08); }
+    100% { transform: scale(0.95); }
+}
+.mc-el-symbol { text-shadow: 0 0 10px color-mix(in srgb, var(--accent-color) 55%, transparent); }
+.mc-element-card.is-active .mc-el-symbol { text-shadow: none; }
+
+/* ── Barra inferior ───────────────────────────────────────────────── */
+.mc-actions-glass { border-radius: 26px; }
+.mc-glass-btn {
+    transition: transform 0.2s var(--fx-ease-spring, ease), background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mc-glass-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: rgba(129, 140, 248, 0.1);
+    border-color: rgba(165, 180, 252, 0.25);
+}
+.mc-glass-btn:active:not(:disabled) { transform: scale(0.95); }
+
+/* Botón CRAFTEAR: gradiente vivo + borde de aurora + brillo */
+.mc-main-craft-btn {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
+    background-size: 180% 180%;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+        0 14px 34px -10px rgba(139, 92, 246, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.mc-main-craft-btn:not(:disabled) { animation: mc-craft-breathe 3.2s ease-in-out infinite; }
+.mc-main-craft-btn:hover:not(:disabled) {
+    background-position: 100% 50%;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+        0 20px 44px -10px rgba(236, 72, 153, 0.7);
+}
+.mc-main-craft-btn:active:not(:disabled) { transform: translateY(1px) scale(0.97); }
+.mc-main-craft-btn::after {
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+    background-size: 250% 100%;
+    background-position: 150% 0;
+    opacity: 1;
+    transition: background-position 0.9s var(--fx-ease-out, ease);
+}
+.mc-main-craft-btn:hover:not(:disabled)::after { background-position: -50% 0; }
+.mc-main-craft-btn:disabled::after { display: none; }
+@keyframes mc-craft-breathe {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+.mc-craft-icon { display: inline-block; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)); }
+.mc-main-craft-btn.is-fusing .mc-craft-icon { animation: mc-zap 0.5s ease-in-out infinite alternate; }
+@keyframes mc-zap {
+    from { transform: scale(1) rotate(-8deg); }
+    to   { transform: scale(1.25) rotate(8deg); }
+}
+
+/* HUD composición */
+.mc-hud-item { transition: transform 0.2s ease, background 0.2s ease; }
+.mc-hud-item:hover { transform: translateX(3px); }
+
+/* Exam progress en panel */
+.mc-exam-progress {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(15, 23, 42, 0.6));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.mc-exam-badge {
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 14px -6px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Modales ──────────────────────────────────────────────────────── */
+.modal-overlay,
+.result-overlay {
+    background:
+        radial-gradient(60% 50% at 50% 40%, rgba(99, 102, 241, 0.18), transparent 70%),
+        rgba(2, 6, 23, 0.82);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    backdrop-filter: blur(10px) saturate(130%);
+    animation: mc-fade-in 0.3s ease both;
+}
+@keyframes mc-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.recipe-book-modal,
+.molecule-reveal-card {
+    background:
+        radial-gradient(120% 70% at 0% 0%, rgba(129, 140, 248, 0.16), transparent 55%),
+        radial-gradient(100% 60% at 100% 100%, rgba(236, 72, 153, 0.1), transparent 60%),
+        rgba(13, 17, 38, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 40px 100px -30px rgba(0, 0, 0, 0.85),
+        0 0 80px -20px rgba(99, 102, 241, 0.45);
+}
+
+.molecule-reveal-card > * { position: relative; z-index: 1; }
+.molecule-reveal-card::before { z-index: 2; }
+
+/* Éxito: rayos de luz giratorios detrás del contenido */
+.mc-reveal-rays {
+    position: absolute !important;
+    z-index: 0 !important;
+    top: 50%;
+    left: 50%;
+    width: 160%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: repeating-conic-gradient(from 0deg, rgba(52, 211, 153, 0.08) 0deg 8deg, transparent 8deg 22deg);
+    -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 65%);
+    mask-image: radial-gradient(circle, #000 0%, transparent 65%);
+    animation: mc-rays 30s linear infinite;
+    pointer-events: none;
+}
+@keyframes mc-rays {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.mc-reveal-success { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 40px 100px -30px rgba(0, 0, 0, 0.85), 0 0 90px -16px rgba(52, 211, 153, 0.45); }
+.mc-reveal-success .molecule-title {
+    text-shadow: 0 0 24px rgba(52, 211, 153, 0.6);
+    animation: fx-pop-in 0.6s var(--fx-ease-spring, ease) 0.1s both;
+}
+.mc-reveal-success .result-main-icon {
+    filter: drop-shadow(0 0 30px rgba(52, 211, 153, 0.55));
+}
+
+/* Error: destello rojo + temblor */
+.molecule-reveal-card.error-card {
+    animation: fx-shake 0.5s cubic-bezier(.36, .07, .19, .97) 0.15s both;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 40px 100px -30px rgba(0, 0, 0, 0.85), 0 0 80px -16px rgba(239, 68, 68, 0.55);
+}
+.mc-error-flash {
+    position: absolute !important;
+    inset: 0;
+    z-index: 0 !important;
+    background: radial-gradient(circle at 50% 35%, rgba(239, 68, 68, 0.35), transparent 60%);
+    animation: mc-error-flash 1.2s ease-out both;
+    pointer-events: none;
+}
+@keyframes mc-error-flash {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    100% { opacity: 0.25; }
+}
+.error-card .molecule-title { text-shadow: 0 0 22px rgba(248, 113, 113, 0.6); }
+
+.fun-fact-box {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.14), rgba(52, 211, 153, 0.04));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Botón principal de modales */
+.btn-alchemy {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6 55%, #a855f7);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+        0 12px 30px -12px rgba(139, 92, 246, 0.75);
+    transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease, filter 0.25s ease;
+}
+.btn-alchemy:hover {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6 55%, #ec4899);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+        0 18px 38px -12px rgba(236, 72, 153, 0.6);
+}
+.btn-alchemy:active { transform: translateY(1px) scale(0.98); }
+.btn-alchemy::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    pointer-events: none;
+}
+.btn-alchemy:hover::after { animation: fx-shine-sweep 1s var(--fx-ease-out, ease) forwards; }
+
+/* ── Selector de dificultad: tarjetas por modo ────────────────────── */
+.difficulty-options .btn-alchemy {
+    height: auto;
+    min-height: 140px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    /* backwards (no both): así el hover puede seguir usando transform */
+    animation: fx-rise 0.55s var(--fx-ease-out, ease) backwards;
+}
+.difficulty-options .btn-alchemy:nth-child(1) { animation-delay: 0.08s; }
+.difficulty-options .btn-alchemy:nth-child(2) { animation-delay: 0.16s; }
+.difficulty-options .btn-alchemy:nth-child(3) { animation-delay: 0.24s; }
+
+.diff-easy {
+    background:
+        radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.3), transparent 55%),
+        linear-gradient(160deg, #10b981 0%, #059669 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.18), 0 16px 34px -14px rgba(16, 185, 129, 0.8);
+}
+.diff-med {
+    background:
+        radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
+        linear-gradient(160deg, #fbbf24 0%, #d97706 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.18), 0 16px 34px -14px rgba(251, 191, 36, 0.8);
+}
+.diff-hard {
+    background:
+        radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.3), transparent 55%),
+        linear-gradient(160deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.18), 0 16px 34px -14px rgba(239, 68, 68, 0.8);
+}
+.difficulty-options .btn-alchemy.diff-easy:hover { background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.4), transparent 55%), linear-gradient(160deg, #10b981 0%, #059669 100%); }
+.difficulty-options .btn-alchemy.diff-med:hover  { background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.45), transparent 55%), linear-gradient(160deg, #fbbf24 0%, #d97706 100%); }
+.difficulty-options .btn-alchemy.diff-hard:hover { background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.4), transparent 55%), linear-gradient(160deg, #ef4444 0%, #b91c1c 100%); }
+.difficulty-options .btn-alchemy:hover {
+    transform: translateY(-6px) scale(1.03);
+    filter: brightness(1.08);
+}
+.diff-med .diff-name,
+.diff-med .diff-count,
+.diff-med .diff-note { color: #422006; }
+.diff-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08), 0 0 20px rgba(255, 255, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s var(--fx-ease-spring, ease);
+}
+.difficulty-options .btn-alchemy:hover .diff-icon { transform: scale(1.12) rotate(-8deg); }
+
+/* ── Resultados del examen: anillo de nota héroe ──────────────────── */
+.exam-results-card .molecule-title {
+    background: linear-gradient(90deg, #a5b4fc, #f0abfc, #a7f3d0, #a5b4fc);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fx-pan 8s linear infinite;
+}
+
+.exam-final-score-lg {
+    --mc-ring: #60a5fa;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: 0;
+    background:
+        radial-gradient(closest-side, rgba(13, 17, 38, 0.96) 80%, transparent 81% 100%),
+        conic-gradient(var(--mc-ring) calc(var(--mc-grade-pct, 0) * 360deg), rgba(148, 163, 184, 0.18) 0);
+    box-shadow: 0 0 50px -6px var(--mc-ring), inset 0 0 30px rgba(0, 0, 0, 0.4);
+    animation: fx-pop-in 0.8s var(--fx-ease-spring, ease) 0.15s both;
+}
+.exam-final-score-lg.excellent { --mc-ring: #22c55e; border: 0; box-shadow: 0 0 50px -6px #22c55e; }
+.exam-final-score-lg.good      { --mc-ring: #60a5fa; border: 0; box-shadow: 0 0 50px -6px #60a5fa; }
+.exam-final-score-lg.fail      { --mc-ring: #ef4444; border: 0; box-shadow: 0 0 50px -6px #ef4444; }
+.exam-final-score-lg .score-val-lg { font-size: 3.3rem; color: #fff; position: relative; }
+.exam-final-score-lg .score-total-lg { position: relative; }
+
+/* Halo orbital alrededor del anillo */
+.mc-grade-orbit {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed color-mix(in srgb, var(--mc-ring) 55%, transparent);
+    animation: mc-orbit 14s linear infinite;
+    pointer-events: none;
+}
+.mc-grade-orbit::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    border-radius: 50%;
+    background: var(--mc-ring);
+    box-shadow: 0 0 12px 2px var(--mc-ring);
+}
+@keyframes mc-orbit { to { transform: rotate(360deg); } }
+
+.exam-nota-msg {
+    font-size: 1.25rem;
+    animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.4s both;
+}
+.exam-score-chips { animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.5s both; }
+.exam-chip { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+.exam-chip.points {
+    font-size: 1rem;
+    padding: 8px 18px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 24px -6px rgba(236, 72, 153, 0.6);
+}
+.exam-chip.points strong {
+    background: linear-gradient(90deg, #fde68a, #f0abfc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.exam-result-item { animation: fx-rise 0.45s var(--fx-ease-out, ease) both; }
+.exam-result-item:nth-child(1) { animation-delay: 0.55s; }
+.exam-result-item:nth-child(2) { animation-delay: 0.6s; }
+.exam-result-item:nth-child(3) { animation-delay: 0.65s; }
+.exam-result-item:nth-child(4) { animation-delay: 0.7s; }
+.exam-result-item:nth-child(5) { animation-delay: 0.75s; }
+.exam-result-item:nth-child(n+6) { animation-delay: 0.8s; }
+
+/* Recetario */
+.recipe-card-modern {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.recipe-card-modern:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 34px -18px rgba(129, 140, 248, 0.6);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+    .mc-fx-grid, .mc-fx-scan { display: none; }
+    .difficulty-options { gap: 0.6rem; }
+    .difficulty-options .btn-alchemy { min-height: 120px; padding: 0.75rem 0.4rem; }
+    .diff-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+    .exam-final-score-lg { width: 128px; height: 128px; }
+    .exam-final-score-lg .score-val-lg { font-size: 2.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mc-fx-scan, .mc-mission-name-v2, .mc-main-craft-btn:not(:disabled),
+    .mc-reveal-rays, .mc-grade-orbit, .exam-results-card .molecule-title,
+    .mc-main-craft-btn.is-fusing .mc-craft-icon {
+        animation: none !important;
+    }
+}

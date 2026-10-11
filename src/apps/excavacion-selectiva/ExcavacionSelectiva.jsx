@@ -145,24 +145,33 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
 
       {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
       {!controlMode && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
-          <h1 className="text-2xl md:text-3xl text-yellow-400 mb-8 text-center animate-pulse">
+        <div className="exs-menu absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
+          {/* Decoración: cielo con orbes, rejilla de vóxeles y bloques flotantes */}
+          <div className="exs-menu-bg" aria-hidden="true">
+            <span className="exs-orb exs-orb--a" />
+            <span className="exs-orb exs-orb--b" />
+            <span className="exs-grid" />
+            {['🟫', '🟩', '💎', '🟨', '🧱', '⭐'].map((b, i) => (
+              <span key={i} className={`exs-float-block exs-float-block--${i}`}>{b}</span>
+            ))}
+          </div>
+          <h1 className="exs-menu-title text-2xl md:text-3xl text-yellow-400 mb-8 text-center">
             SELECCIONA TU MODO
           </h1>
-          <div className="flex flex-col md:flex-row gap-6">
+          <div className="exs-menu-cards flex flex-col md:flex-row gap-6">
             <Button
               onClick={() => setControlMode('mobile')}
-              className="flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-green-500 transition-all"
+              className="exs-device-card exs-device-card--touch flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-green-500 transition-all"
             >
-              <Tablet size={48} className="text-green-400" />
+              <span className="exs-device-icon" aria-hidden="true"><Tablet size={48} className="text-green-400" /></span>
               <span>TÁCTIL</span>
             </Button>
 
             <Button
               onClick={() => setControlMode('pc')}
-              className="flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-blue-500 transition-all"
+              className="exs-device-card exs-device-card--pc flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-blue-500 transition-all"
             >
-              <MousePointer2 size={48} className="text-blue-400" />
+              <span className="exs-device-icon" aria-hidden="true"><MousePointer2 size={48} className="text-blue-400" /></span>
               <span>ORDENADOR</span>
             </Button>
           </div>
@@ -170,7 +179,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
           <Button
             variant="ghost"
             onClick={() => setShowCheatSheet(true)}
-            className="mt-8 flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-white/5 border border-cyan-400/30 rounded-lg px-6 py-2 transition-all transition-colors font-bold tracking-wider"
+            className="exs-guide-btn mt-8 flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-white/5 border border-cyan-400/30 rounded-lg px-6 py-2 transition-all transition-colors font-bold tracking-wider"
           >
             <BookOpen size={20} />
             GUÍA DE PALABRAS
@@ -198,7 +207,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
       )}
 
       {/* === HUD SUPERIOR === */}
-      <div className="absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
+      <div className="exs-hud absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
         <div>
           {/* Si es muerte súbita, cambiamos el color a rojo */}
           <h2 className={`text-sm md:text-base mb-1 tracking-widest uppercase shadow-black drop-shadow-md ${isSuddenDeath ? 'text-red-500 animate-pulse' : 'text-yellow-400'}`}>
@@ -212,13 +221,29 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
         <div className="flex items-center gap-6 text-sm md:text-lg font-bold">
           {/* COMBO INDICATOR */}
           {combo > 1 && (
-            <div className="flex flex-col items-center">
+            <div className="exs-combo flex flex-col items-center">
               <span className="text-yellow-400 text-xs md:text-sm animate-bounce">COMBO</span>
-              <span className="text-orange-500 text-xl">x{combo}</span>
+              <motion.span
+                key={combo}
+                className="exs-combo-value text-orange-500 text-xl"
+                initial={{ scale: 1.8, opacity: 0.3 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 14 }}
+              >
+                x{combo}
+              </motion.span>
             </div>
           )}
 
-          <span className="text-green-400 drop-shadow-sm">XP: {score}</span>
+          <motion.span
+            key={score}
+            className="exs-xp text-green-400 drop-shadow-sm"
+            initial={{ scale: 1.25 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 520, damping: 16 }}
+          >
+            XP: {score}
+          </motion.span>
 
           {/* TEMPORIZADOR DINÁMICO */}
           <div className={`flex items-center drop-shadow-sm transition-all duration-200 
@@ -285,36 +310,53 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
 
       {/* === PANTALLA FINAL === */}
       {gameState !== 'playing' && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/90 text-white pixel-text text-center p-4 backdrop-blur-sm">
+        <div
+          className="exs-end absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/90 text-white pixel-text text-center p-4 backdrop-blur-sm overflow-y-auto"
+          style={{
+            // Solo visual: misma fórmula que la nota mostrada, para pintar el anillo
+            '--exs-grade': Math.min((score / 2000) * 10, 10),
+            '--exs-grade-color': Math.min((score / 2000) * 10, 10) >= 8 ? '#10b981' : (Math.min((score / 2000) * 10, 10) >= 5 ? '#3b82f6' : '#ef4444'),
+          }}
+        >
+          <div className="exs-end-rays" aria-hidden="true" />
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="flex flex-col items-center"
+            transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+            className="relative flex flex-col items-center"
           >
-            <h1 className="text-3xl md:text-5xl text-yellow-500 mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] animate-bounce uppercase">
+            <h1 className="exs-end-title text-3xl md:text-5xl text-yellow-500 mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] animate-bounce uppercase">
               ¡Misión Finalizada!
             </h1>
 
-            <div className="bg-slate-800/80 p-8 rounded-3xl border-4 border-slate-600 mb-8 max-w-sm w-full shadow-2xl">
-              <div className="mb-6">
-                <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-2">Puntuación XP</p>
-                <div className="text-5xl text-green-400 font-bold drop-shadow-sm">
-                  {score}
+            <div className="exs-end-card bg-slate-800/80 p-8 rounded-3xl border-4 border-slate-600 mb-8 max-w-sm w-full shadow-2xl">
+              <div className="exs-end-grade pb-6 mb-6 border-b-4 border-slate-700/50">
+                <p className="text-xs text-gray-300 uppercase tracking-[0.2em] mb-4">Nota Final</p>
+                <div className="exs-grade-ring">
+                  <span className="exs-grade-ring-halo" aria-hidden="true" />
+                  <div className="exs-grade-value font-black flex items-baseline justify-center gap-1">
+                    {Math.min((score / 2000) * 10, 10).toFixed(1)}
+                    <span className="exs-grade-max">/10</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t-4 border-slate-700/50">
-                <p className="text-xs text-cyan-400 uppercase tracking-[0.2em] mb-3">Nota Final</p>
-                <div className="text-6xl font-black text-cyan-500 flex items-baseline justify-center gap-1">
-                  {Math.min((score / 2000) * 10, 10).toFixed(1)}
-                  <span className="text-xl text-cyan-800">/10</span>
-                </div>
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-2">Puntuación XP</p>
+                <motion.div
+                  className="exs-end-xp text-4xl text-green-400 font-bold drop-shadow-sm"
+                  initial={{ y: 12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.45, type: 'spring', stiffness: 260, damping: 18 }}
+                >
+                  ⭐ {score}
+                </motion.div>
               </div>
             </div>
 
             <Button
               onClick={() => window.location.reload()}
-              className="bg-yellow-600 hover:bg-yellow-500 border-b-8 border-yellow-800 text-white font-bold py-8 px-12 rounded-xl text-xl hover:scale-105 active:border-b-0 active:mt-2 transition-all pointer-events-auto"
+              className="exs-replay-btn bg-yellow-600 hover:bg-yellow-500 border-b-8 border-yellow-800 text-white font-bold py-8 px-12 rounded-xl text-xl hover:scale-105 active:border-b-0 active:mt-2 transition-all pointer-events-auto"
             >
               NUEVA PARTIDA
             </Button>
@@ -392,7 +434,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden select-none"
+            className="exs-guide absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden select-none"
           >
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-black text-white flex items-center gap-2 pixel-text">
@@ -416,7 +458,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
                       key={category}
-                      className="bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
+                      className="exs-guide-card bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
                     >
                       <h3 className="text-yellow-400 font-bold uppercase tracking-wider text-xs mb-3 px-2 border-l-4 border-yellow-500">
                         {category.replace(/_/g, ' ')}

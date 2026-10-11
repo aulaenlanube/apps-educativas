@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Layers, RefreshCw, Timer, Award, Trophy, Star, Flame,
-  Gamepad2, GraduationCap, Check, X, Lightbulb, SkipForward, Zap,
+  Layers, RefreshCw, Timer, Trophy, Star, Flame,
+  Check, X, Lightbulb, SkipForward,
 } from 'lucide-react';
 import { getRunnerData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -157,6 +157,7 @@ const TorrePalabras = ({ onGameComplete }) => {
 
   useEffect(() => {
     if (!loading && Object.keys(allCategories).length >= 2) startGame();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, gameMode, startGame]);
 
   // --- Timer por bloque (examen) ---
@@ -276,6 +277,16 @@ const TorrePalabras = ({ onGameComplete }) => {
   return (
     <div className="torre-root">
       <motion.div className="torre-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        {/* Fondo decorativo (orbes + rejilla + chispas) */}
+        <div className="torre-fx" aria-hidden="true">
+          <span className="torre-fx-orb a" />
+          <span className="torre-fx-orb b" />
+          <span className="torre-fx-grid" />
+          <span className="torre-fx-spark s1" />
+          <span className="torre-fx-spark s2" />
+          <span className="torre-fx-spark s3" />
+        </div>
+
         {/* Header */}
         <div className="torre-header">
           <div className="torre-title">
@@ -299,7 +310,12 @@ const TorrePalabras = ({ onGameComplete }) => {
                 <Flame size={14} /> <span>{streak}</span>
               </motion.div>
             )}
-            <div className="torre-stat score"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span></div>
+            <div className="torre-stat score">
+              <Star size={14} />
+              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
+                {score.toLocaleString('es-ES')}
+              </motion.span>
+            </div>
           </div>
         </div>
 
@@ -326,7 +342,9 @@ const TorrePalabras = ({ onGameComplete }) => {
               {isExam ? (
                 <>
                   <div className={`torre-nota ${notaColor}`}>
-                    <div className="torre-nota-big">{nota.toFixed(1)}<span className="torre-nota-small">/10</span></div>
+                    <div className="torre-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
+                      <div className="torre-nota-big">{nota.toFixed(1)}<span className="torre-nota-small">/10</span></div>
+                    </div>
                     <div className="torre-nota-msg">{notaMsg}</div>
                   </div>
                   <div className="torre-result-record"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span> <span className="torre-result-record-label">puntos · ¡supérate!</span></div>

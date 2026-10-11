@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Rocket, Swords, Trophy, X, LogOut, Target, Skull } from 'lucide-react';
+import { Rocket, Swords, Trophy, X, LogOut, Skull } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
@@ -77,6 +77,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
   // Input refs
   const keysRef = useRef({ left: false, right: false, fire: false });
   const stateRef = useRef(null); stateRef.current = state;
+  // eslint-disable-next-line no-unused-vars
   const lastBroadcastTickRef = useRef(0);
   const lastGuestInputRef = useRef({ x: null, firedAt: 0 });
 
@@ -100,6 +101,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
   // Host inicializa estado cuando hay datos y canal
   useEffect(() => {
     if (!me?.isHost || !channel?.isConnected || !gameData || !targetCat || state) return;
+    // eslint-disable-next-line no-unused-vars
     const now = performance.now();
     const ini = {
       seq: 0,
@@ -539,6 +541,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
       setFinished(true);
       channel.broadcast('game_end', { winner_id: me.id });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [me?.isHost, channel?.isConnected, me?.id]);
 
   if (duel.err) return <Err text={duel.err} />;
@@ -561,6 +564,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
 
   return (
     <div className="np-root">
+      <div className="np-nebula" aria-hidden="true" />
       <div className={`np-head ${state?.startedAt ? 'np-head-playing' : ''}`}>
         {!state?.startedAt && (
           <div className="np-badge"><Swords className="w-4 h-4" /> Nave Palabras · Duelo</div>
@@ -706,7 +710,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
                 animate={{ scale: 1.1, opacity: 1 }}
                 exit={{ scale: 1.4, opacity: 0 }}
                 className="np-overlay" style={{ background: 'rgba(10,12,50,0.6)' }}>
-                <div style={{ fontSize: 90, fontWeight: 900, color: '#22d3ee', textShadow: '0 0 30px #22d3ee' }}>
+                <div className="np-countdown" style={{ fontSize: 90, fontWeight: 900, color: '#22d3ee', textShadow: '0 0 30px #22d3ee' }}>
                   {countdown}
                 </div>
               </motion.div>
@@ -719,7 +723,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="np-panel np-panel-end"
                 style={{ borderColor: winnerId === me.id ? '#10b981' : '#ef4444' }}>
-                <Trophy className="np-trophy" />
+                <Trophy className="np-trophy" style={{ color: winnerId === me.id ? '#fbbf24' : '#94a3b8' }} />
                 <h2 className="np-title">
                   {winnerId === me.id ? '¡HAS GANADO!' : 'Has perdido'}
                 </h2>

@@ -1,10 +1,15 @@
 // src/apps/_shared/OrdenaLaFraseUI.jsx
 import React, { useEffect, useState, useRef } from 'react';
+import { BookOpen, GraduationCap } from 'lucide-react';
 import './OrdenaLaFraseShared.css';
+import './SharedPremium.css';
+
+// Color del anillo de nota (>=8 verde, >=5 azul, <5 rojo) — solo presentación
+const gradeColor = (n) => (n >= 8 ? '#10b981' : n >= 5 ? '#3b82f6' : '#ef4444');
 
 const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
-  const cls = `ordena-frase-container font-${game.fontStyle}`;
+  const cls = `ordena-frase-container sp-shell font-${game.fontStyle}`;
   
   // Detectar si es dispositivo táctil para adaptar el mensaje
   const [isTouch, setIsTouch] = useState(false);
@@ -18,7 +23,7 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
 
   const Header = ({ titulo, subtitulo }) => (
     <>
-      <h1 className="ordena-frase-main-title text-5xl mb-4">
+      <h1 className="ordena-frase-main-title sp-title text-5xl mb-4">
         <span role="img" aria-label="Icono de libreta">📝</span> <span className="gradient-text">{titulo}</span>
       </h1>
       {subtitulo && <p className="instrucciones">{subtitulo}</p>}
@@ -126,14 +131,16 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
       <div className={`${cls} test-results`}>
         <Header titulo="Examen Completado!" />
 
-        <div className={`ordena-nota ${notaColor}`}>
-          <div className="ordena-nota-big">{nota.toFixed(1)}<span className="ordena-nota-small">/10</span></div>
-          <div className="ordena-nota-msg"><strong>{notaMsg}</strong></div>
+        <div className={`ordena-nota sp-grade-card ${notaColor}`}>
+          <div className="sp-grade-ring" style={{ '--sp-grade': nota, '--sp-grade-color': gradeColor(nota) }}>
+            <div className="ordena-nota-big">{nota.toFixed(1)}<span className="ordena-nota-small">/10</span></div>
+          </div>
+          <div className="ordena-nota-msg sp-grade-msg"><strong>{notaMsg}</strong></div>
           <div className="ordena-nota-detail">{correct} de {game.TOTAL_TEST_QUESTIONS} frases correctas</div>
         </div>
 
         <div className="ordena-puntos-row">
-          <div className="ordena-puntos">
+          <div className="ordena-puntos sp-points">
             <span className="ordena-puntos-icon">⭐</span>
             <span className="ordena-puntos-value">{game.score.toLocaleString('es-ES')}</span>
             <span className="ordena-puntos-label">puntos</span>
@@ -146,9 +153,9 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
           )}
         </div>
 
-        <div className="results-summary">
+        <div className="results-summary sp-results">
           {game.testQuestions.map((q, i) => (
-            <div key={i} className="result-item">
+            <div key={i} className={`result-item sp-result ${q.solucion === game.userAnswers[i] ? 'is-ok' : 'is-ko'}`}>
               <p><strong>Frase {i + 1}:</strong></p>
               <p className={q.solucion === game.userAnswers[i] ? 'correcta' : 'incorrecta'}>
                 Tu respuesta: {game.userAnswers[i] || 'No contestada'}
@@ -160,7 +167,7 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
           ))}
         </div>
 
-        <div className="test-controls">
+        <div className="test-controls sp-controls">
           <button onClick={game.startTest} className="btn-test">Volver a intentar</button>
           <button onClick={game.exitTestMode} className="btn-mode">Modo Práctica</button>
         </div>
@@ -174,22 +181,22 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
       <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd} onTouchCancel={game.handleTouchCancel}>
         <Header titulo="Examen" />
         <div className="test-header">
-          <div>Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
+          <div key={game.currentQuestionIndex} className="sp-q-chip">Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
           {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
         </div>
-        <div className="progress-bar-container">
+        <div className="progress-bar-container sp-progress">
           <div className="progress-bar" style={{ width: `${progressPct}%` }} />
         </div>
 
-        <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
+        <div className="zona-destino sp-zone" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
           {renderPalabras(game.palabrasDestino, true)}
         </div>
 
-        <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
+        <div className="zona-origen sp-zone" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
           {renderPalabras(game.palabrasOrigen, false)}
         </div>
 
-        <div className="controles">
+        <div className="controles sp-controls">
           <button onClick={game.handleNextQuestion} className="btn-test">
             {game.currentQuestionIndex === game.TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
           </button>
@@ -207,27 +214,33 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
       />
 
       <div className="mode-selection">
-        <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">Examen</button>
+        <button className="btn-mode sp-mode active">
+          <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+          Práctica Libre
+        </button>
+        <button onClick={game.startTest} className="btn-mode sp-mode sp-mode--exam">
+          <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
+          Examen
+        </button>
       </div>
 
-      <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
+      <div className="zona-destino sp-zone" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
         {renderPalabras(game.palabrasDestino, true)}
       </div>
 
       <p 
         id="feedback" 
         key={game.feedback.id || 'initial'} 
-        className={game.feedback.clase}
+        className={`${game.feedback.clase || ''} sp-fb`}
       >
         {game.feedback.texto}
       </p>
 
-      <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
+      <div className="zona-origen sp-zone" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
         {renderPalabras(game.palabrasOrigen, false)}
       </div>
 
-      <div className="controles">
+      <div className="controles sp-controls">
         <button onClick={game.checkPracticeAnswer}>Comprobar</button>
         <button onClick={game.startPracticeMission} className="btn-saltar">Otra Frase</button>
         <button 
@@ -247,4 +260,4 @@ const OrdenaLaFraseUI = ({ game, onGameComplete }) => {
   );
 };
 
-export default OrdenaLaFraseUI;
+export default OrdenaLaFraseUI;

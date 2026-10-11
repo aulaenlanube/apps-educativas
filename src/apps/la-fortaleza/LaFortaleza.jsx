@@ -332,6 +332,8 @@ const LaFortaleza = ({ onGameComplete }) => {
 
   return (
     <div className="fort-root">
+      {/* Cielo decorativo (orbes) tras la selección y el resumen */}
+      {screen !== 'playing' && <div className="fort-sky" aria-hidden="true" />}
       {/* ============ SELECCIÓN DE MODO ============ */}
       {screen === 'select' && (
         <motion.div className="fort-card" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
@@ -398,7 +400,9 @@ const LaFortaleza = ({ onGameComplete }) => {
 
           {mode === 'exam' ? (
             <div className={`fort-nota ${notaColor}`}>
-              <div className="fort-nota-big">{nota.toFixed(1)}<span className="fort-nota-small">/10</span></div>
+              <div className="fort-nota-ring" style={{ '--fort-grade': nota }}>
+                <div className="fort-nota-big">{nota.toFixed(1)}<span className="fort-nota-small">/10</span></div>
+              </div>
               <div className="fort-nota-msg">{notaMsg}</div>
             </div>
           ) : (

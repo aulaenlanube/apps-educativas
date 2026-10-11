@@ -1,0 +1,439 @@
+/* ==========================================================================
+   FX — capa visual "premium" compartida de EduApps
+   --------------------------------------------------------------------------
+   Utilidades CSS puras (sin JS) para que la home, las páginas de curso y
+   TODAS las apps compartan el mismo lenguaje visual: cristal con brillo,
+   bordes de aurora animados, barrido de luz, glow, grano sutil y entradas
+   escalonadas. Paleta base del proyecto: violeta · rosa · ámbar · índigo.
+
+   Reglas:
+   - Solo se animan transform/opacity/background-position (GPU friendly).
+   - Todo respeta `prefers-reduced-motion` (bloque final).
+   - Las variables --fx-* se pueden sobrescribir por app:
+       .mi-app { --fx-accent: #10b981; --fx-accent-2: #06b6d4; }
+   ========================================================================== */
+
+:root {
+  --fx-accent: #8b5cf6;          /* violeta */
+  --fx-accent-2: #ec4899;        /* rosa */
+  --fx-accent-3: #f59e0b;        /* ámbar */
+  --fx-accent-4: #6366f1;        /* índigo */
+  --fx-cyan: #22d3ee;
+  --fx-easy: #10b981;
+  --fx-medium: #fbbf24;
+  --fx-exam: #ef4444;
+
+  --fx-aurora: conic-gradient(from var(--fx-angle, 0deg),
+      #6366f1, #8b5cf6, #ec4899, #f59e0b, #22d3ee, #6366f1);
+  --fx-grad: linear-gradient(135deg, #6366f1 0%, #8b5cf6 35%, #ec4899 70%, #f59e0b 100%);
+  --fx-grad-soft: linear-gradient(135deg, rgba(99,102,241,.16), rgba(236,72,153,.12) 55%, rgba(245,158,11,.12));
+
+  --fx-glass-bg: rgba(255, 255, 255, 0.72);
+  --fx-glass-border: rgba(255, 255, 255, 0.65);
+  --fx-glass-text: #1e1b4b;
+  --fx-glass-shadow:
+    0 1px 0 0 rgba(255,255,255,.65) inset,
+    0 -1px 0 0 rgba(15,23,42,.04) inset,
+    0 24px 60px -24px rgba(49, 46, 129, .45),
+    0 8px 20px -10px rgba(15, 23, 42, .18);
+
+  --fx-glass-dark-bg: rgba(15, 12, 41, 0.62);
+  --fx-glass-dark-border: rgba(255, 255, 255, 0.12);
+
+  --fx-radius: 24px;
+  --fx-ease-out: cubic-bezier(.22, 1, .36, 1);
+  --fx-ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+html.dark {
+  --fx-glass-bg: rgba(24, 20, 52, 0.70);
+  --fx-glass-border: rgba(255, 255, 255, 0.10);
+  --fx-glass-text: #e9e7ff;
+  --fx-glass-shadow:
+    0 1px 0 0 rgba(255,255,255,.08) inset,
+    0 24px 60px -24px rgba(0, 0, 0, .7),
+    0 8px 20px -10px rgba(0, 0, 0, .5);
+}
+
+/* Ángulo animable para los bordes cónicos (Chrome/Edge/Safari 16.4+/FF 128+).
+   Donde no exista @property el borde se queda estático: degradación limpia. */
+@property --fx-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ---------- Superficies ---------- */
+
+.fx-glass {
+  background: var(--fx-glass-bg);
+  border: 1px solid var(--fx-glass-border);
+  box-shadow: var(--fx-glass-shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  color: var(--fx-glass-text);
+}
+
+.fx-glass-dark {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(139,92,246,.22), transparent 55%),
+    radial-gradient(100% 70% at 100% 100%, rgba(236,72,153,.16), transparent 60%),
+    var(--fx-glass-dark-bg);
+  border: 1px solid var(--fx-glass-dark-border);
+  box-shadow: 0 1px 0 0 rgba(255,255,255,.08) inset, 0 30px 80px -30px rgba(0,0,0,.75);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  color: #eef2ff;
+}
+
+/* Borde de aurora giratorio. El elemento necesita position: relative
+   (lo pone la clase) y su propio fondo. */
+.fx-aurora-border {
+  position: relative;
+  isolation: isolate;
+}
+.fx-aurora-border::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--fx-aurora);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: fx-spin-angle 6s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Halo difuso de aurora detrás del elemento */
+.fx-aurora-glow {
+  position: relative;
+  isolation: isolate;
+}
+.fx-aurora-glow::after {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: inherit;
+  background: var(--fx-aurora);
+  filter: blur(28px);
+  opacity: .55;
+  z-index: -1;
+  animation: fx-spin-angle 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Barrido de luz diagonal (al hover, o permanente con .fx-shine--auto) */
+.fx-shine {
+  position: relative;
+  overflow: hidden;
+}
+.fx-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.0) 20%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 80%, transparent 100%);
+  transform: translateX(-120%) rotate(12deg);
+  pointer-events: none;
+  z-index: 2;
+}
+.fx-shine:hover::after,
+.fx-shine--auto::after {
+  animation: fx-shine-sweep 1.15s var(--fx-ease-out) forwards;
+}
+.fx-shine--auto::after {
+  animation: fx-shine-sweep 3.6s var(--fx-ease-out) 1.2s infinite;
+}
+
+/* Foco de luz que sigue al cursor (necesita --mx/--my en px, que pone
+   el hook useSpotlight o un onPointerMove). */
+.fx-spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.fx-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,.28), transparent 45%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.fx-spotlight:hover::before { opacity: 1; }
+
+/* Grano de película muy sutil (da textura "premium" a degradados planos) */
+.fx-grain {
+  position: relative;
+}
+.fx-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: .08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Inclinación 3D (componente TiltCard: escribe --rx/--ry/--mx/--my) */
+.fx-tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform .5s var(--fx-ease-out), box-shadow .35s ease;
+  will-change: transform;
+}
+.fx-tilt:hover {
+  transition: transform .12s linear, box-shadow .35s ease;
+}
+.fx-tilt .fx-tilt__pop {
+  transform: translateZ(40px);
+}
+
+/* ---------- Texto ---------- */
+
+.fx-text-grad {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #6366f1);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: fx-pan 8s linear infinite;
+}
+
+.fx-text-glow {
+  text-shadow: 0 0 18px rgba(167,139,250,.55), 0 0 2px rgba(255,255,255,.6);
+}
+
+/* ---------- Botones ---------- */
+
+.fx-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .85rem 1.6rem;
+  border: 0;
+  border-radius: 16px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: #fff;
+  cursor: pointer;
+  background: var(--fx-grad);
+  background-size: 180% 180%;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.35) inset,
+    0 -3px 0 rgba(0,0,0,.18) inset,
+    0 14px 30px -12px rgba(139,92,246,.65);
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background-position .6s ease;
+  overflow: hidden;
+  isolation: isolate;
+}
+.fx-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  background-position: 100% 50%;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.35) inset,
+    0 -3px 0 rgba(0,0,0,.18) inset,
+    0 20px 40px -12px rgba(236,72,153,.6);
+}
+.fx-btn:active { transform: translateY(1px) scale(.98); }
+.fx-btn:focus-visible { outline: 3px solid rgba(167,139,250,.75); outline-offset: 3px; }
+
+/* ---------- Tarjetas de selección de modo (Fácil · Medio · Examen) ---------- */
+
+.fx-mode-card {
+  position: relative;
+  border-radius: 20px;
+  transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease;
+  will-change: transform;
+}
+.fx-mode-card:hover { transform: translateY(-6px) scale(1.02); }
+.fx-mode-card--easy   { box-shadow: 0 18px 40px -18px rgba(16,185,129,.7); }
+.fx-mode-card--medium { box-shadow: 0 18px 40px -18px rgba(251,191,36,.7); }
+.fx-mode-card--exam   { box-shadow: 0 18px 40px -18px rgba(239,68,68,.7); }
+
+/* ---------- Nota /10 ---------- */
+
+.fx-grade-ring {
+  --fx-grade-color: #3b82f6;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(closest-side, var(--fx-glass-bg) 78%, transparent 79% 100%),
+    conic-gradient(var(--fx-grade-color) calc(var(--fx-grade, 0) * 36deg), rgba(148,163,184,.25) 0);
+  box-shadow: 0 0 40px -6px var(--fx-grade-color);
+  animation: fx-pop-in .7s var(--fx-ease-spring) both;
+}
+
+/* ---------- Entradas ---------- */
+
+.fx-enter      { animation: fx-rise .7s var(--fx-ease-out) both; }
+.fx-enter-pop  { animation: fx-pop-in .6s var(--fx-ease-spring) both; }
+.fx-stagger > * { animation: fx-rise .6s var(--fx-ease-out) both; }
+.fx-stagger > *:nth-child(1)  { animation-delay: .04s; }
+.fx-stagger > *:nth-child(2)  { animation-delay: .10s; }
+.fx-stagger > *:nth-child(3)  { animation-delay: .16s; }
+.fx-stagger > *:nth-child(4)  { animation-delay: .22s; }
+.fx-stagger > *:nth-child(5)  { animation-delay: .28s; }
+.fx-stagger > *:nth-child(6)  { animation-delay: .34s; }
+.fx-stagger > *:nth-child(7)  { animation-delay: .40s; }
+.fx-stagger > *:nth-child(8)  { animation-delay: .46s; }
+.fx-stagger > *:nth-child(n+9) { animation-delay: .52s; }
+
+.fx-float       { animation: fx-float 6s ease-in-out infinite; }
+.fx-float-slow  { animation: fx-float 9s ease-in-out infinite; }
+.fx-pulse-glow  { animation: fx-pulse-glow 2.4s ease-in-out infinite; }
+.fx-shake       { animation: fx-shake .45s cubic-bezier(.36,.07,.19,.97) both; }
+.fx-bounce-in   { animation: fx-bounce-in .55s var(--fx-ease-spring) both; }
+
+/* Feedback de respuesta (añadir/quitar la clase en el elemento) */
+.fx-correct {
+  animation: fx-correct-flash .7s ease-out both;
+}
+.fx-wrong {
+  animation: fx-shake .45s cubic-bezier(.36,.07,.19,.97) both, fx-wrong-flash .7s ease-out both;
+}
+
+/* ---------- Fondo decorativo de app: orbes + rejilla ---------- */
+
+.fx-app-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+.fx-app-backdrop::before,
+.fx-app-backdrop::after {
+  content: '';
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .35;
+  animation: fx-orb 22s ease-in-out infinite alternate;
+}
+.fx-app-backdrop::before {
+  top: -25vmax; left: -15vmax;
+  background: radial-gradient(circle, var(--fx-accent), transparent 65%);
+}
+.fx-app-backdrop::after {
+  bottom: -28vmax; right: -18vmax;
+  background: radial-gradient(circle, var(--fx-accent-2), transparent 65%);
+  animation-duration: 28s;
+  animation-direction: alternate-reverse;
+}
+
+.fx-grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes fx-spin-angle { to { --fx-angle: 360deg; } }
+@keyframes fx-pan { to { background-position: 300% 0; } }
+@keyframes fx-shine-sweep {
+  0%   { transform: translateX(-120%) rotate(12deg); }
+  100% { transform: translateX(420%) rotate(12deg); }
+}
+@keyframes fx-rise {
+  from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.985); filter: blur(4px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes fx-pop-in {
+  0%   { opacity: 0; transform: scale(.6); }
+  70%  { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fx-bounce-in {
+  0%   { opacity: 0; transform: translateY(-14px) scale(.9); }
+  60%  { opacity: 1; transform: translateY(3px) scale(1.03); }
+  100% { transform: none; }
+}
+@keyframes fx-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+@keyframes fx-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,.45); }
+  50%      { box-shadow: 0 0 0 12px rgba(139,92,246,0); }
+}
+@keyframes fx-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+@keyframes fx-correct-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,.0); }
+  30%  { box-shadow: 0 0 0 6px rgba(16,185,129,.55), 0 0 30px 6px rgba(16,185,129,.45); }
+  100% { box-shadow: 0 0 0 14px rgba(16,185,129,0), 0 0 0 0 rgba(16,185,129,0); }
+}
+@keyframes fx-wrong-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  30%  { box-shadow: 0 0 0 6px rgba(239,68,68,.5), 0 0 26px 4px rgba(239,68,68,.4); }
+  100% { box-shadow: 0 0 0 12px rgba(239,68,68,0); }
+}
+@keyframes fx-orb {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(6vmax, 4vmax, 0) scale(1.12); }
+  100% { transform: translate3d(-4vmax, 8vmax, 0) scale(.95); }
+}
+@keyframes fx-twinkle {
+  0%, 100% { opacity: .15; transform: scale(.7); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Logo mascota (cabecera) ---------- */
+
+.mlogo { overflow: visible; }
+.mlogo * { transform-box: view-box; }
+.mlogo-eye { animation: mlogo-blink 6s ease-in-out infinite; }
+.mlogo-look { animation: mlogo-look 7s ease-in-out infinite; }
+@keyframes mlogo-blink {
+  0%, 46%, 50%, 100% { transform: scaleY(1); }
+  48% { transform: scaleY(.08); }
+}
+@keyframes mlogo-look {
+  0%, 20%, 100% { transform: translate(0, 0); }
+  30%, 45% { transform: translate(2.5px, .5px); }
+  60%, 75% { transform: translate(-2.5px, .5px); }
+}
+
+/* ---------- Accesibilidad: movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-aurora-border::before,
+  .fx-aurora-glow::after,
+  .fx-shine::after,
+  .fx-text-grad,
+  .fx-float, .fx-float-slow, .fx-pulse-glow,
+  .fx-app-backdrop::before, .fx-app-backdrop::after,
+  .mlogo-eye, .mlogo-look {
+    animation: none !important;
+  }
+  .fx-tilt { transform: none !important; }
+  .fx-enter, .fx-enter-pop, .fx-stagger > *, .fx-bounce-in {
+    animation-duration: .01ms !important;
+  }
+}

@@ -551,3 +551,630 @@
 .intruso-cell.shaking {
   animation: shake-intensity 0.5s ease-in-out both !important;
 }
+/* =====================================================================
+   PREMIUM 2026 — capa visual (solo presentación, no toca la lógica)
+   Fondo con luz, HUD de cristal, casillas con relieve y feedback con glow,
+   nota /10 en anillo. Todo acotado a .intruso-wrapper (hay clases
+   genéricas como .results-card o .category-badge compartidas con otras apps).
+   ===================================================================== */
+
+.intruso-wrapper {
+  isolation: isolate;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(139, 92, 246, 0.16), transparent 55%),
+    radial-gradient(100% 70% at 100% 100%, rgba(236, 72, 153, 0.12), transparent 60%),
+    linear-gradient(135deg, #eef2ff 0%, #f5f3ff 55%, #fdf2f8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 40px 90px -40px rgba(49, 46, 129, 0.75),
+    0 14px 30px -18px rgba(15, 23, 42, 0.4);
+}
+
+/* Orbes + rejilla */
+.intruso-aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.intruso-orb {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.4;
+  animation: fx-orb 24s ease-in-out infinite alternate;
+}
+
+.intruso-orb.a { top: -200px; left: -140px; background: radial-gradient(circle, #8b5cf6, transparent 65%); }
+.intruso-orb.b { bottom: -220px; right: -160px; background: radial-gradient(circle, #ec4899, transparent 65%); animation-duration: 30s; animation-direction: alternate-reverse; }
+.intruso-orb.c { top: 35%; left: 55%; width: 280px; height: 280px; background: radial-gradient(circle, #f59e0b, transparent 65%); opacity: 0.18; animation-duration: 36s; }
+
+.intruso-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+}
+
+html.dark .intruso-orb { opacity: 0.32; }
+html.dark .intruso-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* El contenido por encima de la capa de luz y las partículas */
+.intruso-wrapper .intruso-container { position: relative; }
+
+/* Partículas: burbujas de cristal (sin backdrop-filter, más ligeras) */
+.intruso-wrapper .intruso-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.intruso-wrapper .intruso-particles span {
+  backdrop-filter: none;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7), rgba(167, 139, 250, 0.22) 45%, rgba(236, 72, 153, 0.08) 70%, transparent 72%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+/* HUD de cristal */
+.intruso-wrapper .intruso-hud {
+  position: relative;
+  border-radius: 22px;
+  padding: 1rem 1.15rem;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 -1px 0 rgba(99, 102, 241, 0.06) inset,
+    0 20px 44px -26px rgba(79, 70, 229, 0.6);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) backwards;
+}
+
+html.dark .intruso-wrapper .intruso-hud {
+  background: rgba(30, 27, 62, 0.72) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 20px 44px -26px rgba(0, 0, 0, 0.8);
+}
+
+.intruso-wrapper .intruso-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6, #ec4899, #f59e0b, #4f46e5);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fx-pan 10s linear infinite;
+  filter: drop-shadow(0 2px 10px rgba(139, 92, 246, 0.3));
+}
+
+.intruso-wrapper .intruso-hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.intruso-title-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 13px;
+  font-size: 1.2rem;
+  -webkit-text-fill-color: initial;
+  background: radial-gradient(circle at 30% 25%, #fff, rgba(255, 255, 255, 0.55) 60%), #ede9fe;
+  box-shadow: 0 1px 0 #fff inset, 0 8px 18px -8px rgba(124, 58, 237, 0.7);
+  animation: fx-float 5s ease-in-out infinite;
+}
+
+html.dark .intruso-title-icon { background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.2), transparent 60%), #312e81; box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.9); }
+
+.intruso-wrapper .category-badge {
+  display: inline-block;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(236, 72, 153, 0.12));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #4f46e5;
+  box-shadow: 0 6px 14px -10px rgba(79, 70, 229, 0.8);
+  animation: fx-bounce-in 0.5s var(--fx-ease-spring, ease) both;
+}
+
+html.dark .intruso-wrapper .category-badge { color: #c7d2fe; background: rgba(99, 102, 241, 0.2); border-color: rgba(129, 140, 248, 0.35); }
+
+/* Progreso del examen */
+.intruso-progress-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.25rem 0 0.35rem;
+  padding: 0.3rem 0.9rem 0.45rem;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b91c1c;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(245, 158, 11, 0.1));
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+html.dark .intruso-progress-pill { color: #fecaca; background: rgba(239, 68, 68, 0.16); }
+
+.intruso-progress-track {
+  position: relative;
+  display: block;
+  width: 150px;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.intruso-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+  transition: width 0.5s var(--fx-ease-out, ease);
+}
+
+.intruso-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+  background-size: 220% 100%;
+  animation: intrusoSheen 2s linear infinite;
+}
+
+@keyframes intrusoSheen {
+  from { background-position: 160% 0; }
+  to   { background-position: -60% 0; }
+}
+
+/* Botones del HUD con identidad de modo */
+.intruso-wrapper .intruso-btn {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 14px;
+  border: 1.5px solid rgba(99, 102, 241, 0.18);
+  background: linear-gradient(180deg, #ffffff, #f5f3ff);
+  color: #4338ca;
+  box-shadow: 0 1px 0 #fff inset, 0 -2px 0 rgba(99, 102, 241, 0.08) inset, 0 8px 18px -12px rgba(79, 70, 229, 0.7);
+  transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease, background 0.25s ease, color 0.2s ease;
+}
+
+.intruso-wrapper .intruso-btn:hover { transform: translateY(-3px); color: #312e81; box-shadow: 0 1px 0 #fff inset, 0 0 0 3px rgba(99, 102, 241, 0.12), 0 14px 26px -12px rgba(79, 70, 229, 0.8); }
+.intruso-wrapper .intruso-btn:active { transform: translateY(1px) scale(0.97); }
+.intruso-wrapper .intruso-btn:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: 2px; }
+
+.intruso-wrapper .intruso-btn--practice { border-color: rgba(16, 185, 129, 0.35); color: #047857; }
+.intruso-wrapper .intruso-btn--practice:hover { color: #065f46; box-shadow: 0 1px 0 #fff inset, 0 0 0 3px rgba(16, 185, 129, 0.15), 0 14px 26px -12px rgba(16, 185, 129, 0.8); }
+.intruso-wrapper .intruso-btn--practice.active {
+  color: #fff;
+  border-color: transparent;
+  background: radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.3), transparent 55%), linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 -3px 0 rgba(0, 0, 0, 0.14) inset, 0 12px 24px -10px rgba(16, 185, 129, 0.85);
+}
+
+.intruso-wrapper .intruso-btn--exam {
+  color: #fff;
+  border-color: transparent;
+  background: radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.3), transparent 55%), linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 -3px 0 rgba(0, 0, 0, 0.16) inset, 0 12px 24px -10px rgba(239, 68, 68, 0.85);
+}
+
+.intruso-wrapper .intruso-btn--exam:hover { color: #fff; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 0 0 3px rgba(239, 68, 68, 0.2), 0 16px 30px -10px rgba(239, 68, 68, 0.95); }
+
+/* Barrido de luz en los botones de modo */
+.intruso-wrapper .intruso-btn--practice.active::after,
+.intruso-wrapper .intruso-btn--exam::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  animation: fx-shine-sweep 3.6s var(--fx-ease-out, ease) 1s infinite;
+  pointer-events: none;
+}
+
+html.dark .intruso-wrapper .intruso-btn {
+  background: rgba(50, 45, 90, 0.85) !important;
+  color: #e0e7ff !important;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 8px 18px -12px rgba(0, 0, 0, 0.8);
+}
+
+html.dark .intruso-wrapper .intruso-btn--practice.active { background: linear-gradient(135deg, #10b981, #059669) !important; color: #fff !important; }
+html.dark .intruso-wrapper .intruso-btn--exam { background: linear-gradient(135deg, #ef4444, #dc2626) !important; color: #fff !important; }
+
+/* Pastillas de estadística */
+.intruso-wrapper .stat-pill {
+  font-family: 'Fredoka', sans-serif;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  border: 1px solid rgba(99, 102, 241, 0.14);
+  box-shadow: 0 1px 0 #fff inset, 0 8px 18px -12px rgba(79, 70, 229, 0.6);
+}
+
+.intruso-wrapper .stat-pill .value { display: inline-block; font-weight: 600; }
+
+html.dark .intruso-wrapper .stat-pill { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.1); color: #cbd5e1; box-shadow: none; }
+html.dark .intruso-wrapper .stat-pill .value { color: #a5b4fc; }
+
+/* Mensaje de ronda */
+.intruso-wrapper .message-banner {
+  align-self: center;
+  min-height: 46px;
+  padding: 0.3rem 1.2rem;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #6366f1;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 24px -18px rgba(79, 70, 229, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.intruso-wrapper .message-banner.ok {
+  color: #047857;
+  background: rgba(209, 250, 229, 0.8);
+  border-color: rgba(16, 185, 129, 0.45);
+  animation: fx-correct-flash 0.7s ease-out both;
+}
+
+.intruso-wrapper .message-banner.ko {
+  color: #b91c1c;
+  background: rgba(254, 226, 226, 0.85);
+  border-color: rgba(239, 68, 68, 0.45);
+  animation: fx-wrong-flash 0.7s ease-out both;
+}
+
+html.dark .intruso-wrapper .message-banner { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.1); color: #c7d2fe; }
+html.dark .intruso-wrapper .message-banner.ok { background: rgba(6, 78, 59, 0.6); color: #a7f3d0; }
+html.dark .intruso-wrapper .message-banner.ko { background: rgba(127, 29, 29, 0.55); color: #fecaca; }
+
+.intruso-wrapper .combo-counter {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fbbf24, #f97316 60%, #ef4444);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 8px 18px -8px rgba(249, 115, 22, 0.9);
+  animation: intrusoCombo 0.5s var(--fx-ease-spring, ease) both;
+}
+
+@keyframes intrusoCombo {
+  0%   { opacity: 0; transform: rotate(-5deg) scale(0.4); }
+  60%  { opacity: 1; transform: rotate(-8deg) scale(1.15); }
+  100% { opacity: 1; transform: rotate(-5deg) scale(1); }
+}
+
+/* Casillas: relieve de cristal (ligeras: sin backdrop-filter, 32 celdas) */
+.intruso-wrapper .intruso-cell {
+  border-radius: 22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 -3px 0 rgba(99, 102, 241, 0.07) inset,
+    0 10px 20px -14px rgba(79, 70, 229, 0.55);
+  transition: transform 0.22s var(--fx-ease-spring, ease), box-shadow 0.22s ease, border-color 0.2s ease;
+}
+
+/* Brillo especular superior */
+.intruso-wrapper .intruso-cell::before {
+  content: '';
+  position: absolute;
+  inset: 3px 12% auto;
+  height: 30%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.intruso-wrapper .intruso-cell:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 0 0 3px rgba(139, 92, 246, 0.14),
+    0 18px 30px -14px rgba(124, 58, 237, 0.7);
+}
+
+.intruso-wrapper .intruso-cell:active { transform: translateY(2px) scale(0.97); }
+
+.intruso-wrapper .intruso-cell .cell-content { position: relative; z-index: 1; }
+
+.intruso-wrapper .intruso-cell.ok {
+  background: linear-gradient(180deg, #ecfdf5, #a7f3d0);
+  border-color: #10b981;
+  z-index: 3;
+  animation: intrusoCellOk 0.7s var(--fx-ease-spring, ease) both, fx-correct-flash 0.8s ease-out both;
+}
+
+.intruso-wrapper .intruso-cell.ko {
+  background: linear-gradient(180deg, #fff1f2, #fecaca);
+  border-color: #ef4444;
+  animation: fx-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both, fx-wrong-flash 0.7s ease-out both;
+}
+
+@keyframes intrusoCellOk {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.14) rotate(-3deg); }
+  65%  { transform: scale(0.97) rotate(1deg); }
+  100% { transform: scale(1.04); }
+}
+
+/* Anillo de onda verde al acertar */
+.intruso-wrapper .intruso-cell.ok::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 3px solid rgba(16, 185, 129, 0.8);
+  animation: intrusoRipple 0.8s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes intrusoRipple {
+  from { opacity: 1; transform: scale(0.9); }
+  to   { opacity: 0; transform: scale(1.35); }
+}
+
+.intruso-wrapper .sparkle-effect,
+.intruso-wrapper .cross-effect { z-index: 2; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2)); }
+
+html.dark .intruso-wrapper .intruso-cell {
+  background: linear-gradient(180deg, rgba(49, 44, 92, 0.92), rgba(30, 27, 62, 0.92)) !important;
+  border-color: rgba(167, 139, 250, 0.18) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 10px 20px -14px rgba(0, 0, 0, 0.8);
+}
+
+html.dark .intruso-wrapper .intruso-cell::before { display: none; }
+html.dark .intruso-wrapper .intruso-cell.text-mode { color: #e5e7eb; }
+html.dark .intruso-wrapper .intruso-cell:hover { border-color: rgba(167, 139, 250, 0.7) !important; }
+html.dark .intruso-wrapper .intruso-cell.ok { background: linear-gradient(180deg, rgba(6, 95, 70, 0.95), rgba(4, 120, 87, 0.9)) !important; border-color: #10b981 !important; color: #ecfdf5 !important; }
+html.dark .intruso-wrapper .intruso-cell.ko { background: linear-gradient(180deg, rgba(127, 29, 29, 0.95), rgba(153, 27, 27, 0.9)) !important; border-color: #ef4444 !important; color: #fef2f2 !important; }
+
+/* Resultado */
+.intruso-wrapper .intruso-results {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 28px;
+  padding: 2rem 1.75rem 1.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 0 0 1px rgba(139, 92, 246, 0.12),
+    0 40px 80px -36px rgba(79, 70, 229, 0.8);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  animation: intrusoResultIn 0.7s var(--fx-ease-spring, ease) both;
+}
+
+.intruso-wrapper .intruso-results::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 80%;
+  background: radial-gradient(closest-side, rgba(167, 139, 250, 0.35), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.intruso-wrapper .intruso-results h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.1s both;
+}
+
+html.dark .intruso-wrapper .intruso-results {
+  background: rgba(24, 20, 52, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 40px 80px -36px rgba(0, 0, 0, 0.9);
+}
+
+html.dark .intruso-wrapper .intruso-results h2 { background: linear-gradient(90deg, #a5b4fc, #c4b5fd, #f9a8d4); -webkit-background-clip: text; background-clip: text; }
+
+.intruso-nota {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.5rem 0 1rem;
+  padding: 1.4rem 1rem 1.1rem;
+  border-radius: 22px;
+  background: var(--intruso-nota-bg);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 16px 34px -22px rgba(15, 23, 42, 0.6);
+}
+
+html.dark .intruso-nota { background: rgba(255, 255, 255, 0.05); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset; }
+
+@property --intruso-fill {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.intruso-nota-ring.fx-grade-ring {
+  --intruso-fill: var(--fx-grade, 0);
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0.35rem;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.92) 79%, transparent 80% 100%),
+    conic-gradient(var(--fx-grade-color) calc(var(--intruso-fill) * 36deg), rgba(148, 163, 184, 0.25) 0);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.5), 0 0 44px -8px var(--fx-grade-color);
+  animation: fx-pop-in 0.7s var(--fx-ease-spring, ease) 0.2s both, intrusoFill 1.3s var(--fx-ease-out, ease) 0.35s both;
+}
+
+html.dark .intruso-nota-ring.fx-grade-ring {
+  background:
+    radial-gradient(closest-side, rgba(15, 12, 41, 0.92) 79%, transparent 80% 100%),
+    conic-gradient(var(--fx-grade-color) calc(var(--intruso-fill) * 36deg), rgba(255, 255, 255, 0.12) 0);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05), 0 0 44px -8px var(--fx-grade-color);
+}
+
+@keyframes intrusoFill { from { --intruso-fill: 0; } }
+
+.intruso-nota-num {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+html.dark .intruso-nota-num { filter: brightness(1.5); }
+
+.intruso-nota-den { font-size: 1.3rem; font-weight: 600; opacity: 0.6; margin-left: 0.1rem; }
+.intruso-nota-msg { font-family: 'Fredoka', sans-serif; font-size: 1.15rem; animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.55s both; }
+.intruso-nota-sub { font-size: 0.85rem; color: #6b7280; }
+html.dark .intruso-nota-sub { color: #94a3b8; }
+
+/* Puntos paralelos */
+.intruso-points {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.25rem 0 1.25rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #fbbf24;
+  box-shadow: 0 1px 0 #fff inset, 0 12px 24px -12px rgba(245, 158, 11, 0.9);
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.7s both;
+}
+
+.intruso-points::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  animation: fx-shine-sweep 3.4s var(--fx-ease-out, ease) 1.4s infinite;
+  pointer-events: none;
+}
+
+.intruso-points-star { font-size: 1.15rem; }
+.intruso-points-val { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; font-weight: 700; color: #92400e; }
+.intruso-points-label { font-size: 0.85rem; font-weight: 600; color: #b45309; }
+
+html.dark .intruso-points { background: rgba(245, 158, 11, 0.16); border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 12px 24px -14px rgba(245, 158, 11, 0.8); }
+html.dark .intruso-points-val { color: #fde68a; }
+html.dark .intruso-points-label { color: #fcd34d; }
+
+.intruso-wrapper .intruso-results .stats-row > * { animation: fx-rise 0.55s var(--fx-ease-out, ease) both; }
+.intruso-wrapper .intruso-results .stats-row > *:nth-child(1) { animation-delay: 0.85s; }
+.intruso-wrapper .intruso-results .stats-row > *:nth-child(2) { animation-delay: 0.95s; }
+
+.intruso-wrapper .intruso-results .stat-box {
+  min-width: 110px;
+  padding: 0.6rem 1rem;
+  border-radius: 16px;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+html.dark .intruso-wrapper .intruso-results .stat-box { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.08); }
+
+.intruso-wrapper .primary-action,
+.intruso-wrapper .secondary-action {
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease;
+}
+
+.intruso-wrapper .primary-action {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.3), transparent 55%), linear-gradient(135deg, #6366f1, #8b5cf6 55%, #ec4899);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 -3px 0 rgba(0, 0, 0, 0.16) inset, 0 16px 32px -14px rgba(139, 92, 246, 0.9);
+}
+
+.intruso-wrapper .primary-action:hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 -3px 0 rgba(0, 0, 0, 0.16) inset, 0 22px 40px -14px rgba(236, 72, 153, 0.85); }
+.intruso-wrapper .primary-action:active { transform: translateY(2px) scale(0.98); box-shadow: 0 6px 14px -8px rgba(139, 92, 246, 0.8); }
+
+.intruso-wrapper .secondary-action {
+  background: rgba(255, 255, 255, 0.7);
+  color: #4338ca;
+  border: 1.5px solid rgba(99, 102, 241, 0.22);
+  box-shadow: 0 1px 0 #fff inset, 0 8px 18px -14px rgba(79, 70, 229, 0.7);
+}
+
+.intruso-wrapper .secondary-action:hover { transform: translateY(-2px); }
+html.dark .intruso-wrapper .secondary-action { background: rgba(255, 255, 255, 0.06); color: #c7d2fe; border-color: rgba(255, 255, 255, 0.14); box-shadow: none; }
+
+.intruso-wrapper .primary-action:focus-visible,
+.intruso-wrapper .secondary-action:focus-visible,
+.intruso-wrapper .intruso-cell:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.65); outline-offset: 3px; }
+
+@keyframes intrusoResultIn {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.92); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.01); }
+  100% { opacity: 1; transform: none; }
+}
+
+@media (max-width: 720px) {
+  .intruso-wrapper { border-radius: 22px; }
+  .intruso-wrapper .intruso-hud-left { flex-wrap: wrap; justify-content: center; }
+  .intruso-wrapper .intruso-btn { white-space: nowrap; }
+  .intruso-wrapper .intruso-title { font-size: 1.45rem; }
+  .intruso-title-icon { width: 2rem; height: 2rem; font-size: 1.1rem; }
+  .intruso-wrapper .intruso-cell { border-radius: 16px; }
+  .intruso-wrapper .intruso-grid { gap: 8px; padding: 4px; }
+  .intruso-orb { width: 280px; height: 280px; }
+  .intruso-nota-ring.fx-grade-ring { width: 128px; height: 128px; }
+  .intruso-nota-num { font-size: 2.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intruso-orb, .intruso-wrapper .intruso-title, .intruso-title-icon,
+  .intruso-progress-fill::after, .intruso-points::after,
+  .intruso-wrapper .intruso-btn--practice.active::after,
+  .intruso-wrapper .intruso-btn--exam::after,
+  .intruso-wrapper .intruso-particles span { animation: none !important; }
+  .intruso-wrapper .intruso-particles { display: none; }
+  .intruso-wrapper .intruso-results, .intruso-wrapper .intruso-results *,
+  .intruso-wrapper .intruso-cell { animation-duration: 0.01ms !important; animation-delay: 0s !important; }
+}

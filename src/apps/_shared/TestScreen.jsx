@@ -35,6 +35,7 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
             });
         }
         if (!game.showResults) trackedRef.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game.showResults, game.score, onGameComplete]);
 
     if (game.showResults) {
@@ -51,10 +52,19 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
             <div id="supermercado-app-container" className="test-results">
                 <h1 className="supermercado-title">¡Test Completado!</h1>
                 <div className={`nota-final ${notaColor}`}>
-                    <div className="nota-big">{nota.toFixed(1)}<span className="nota-small">/10</span></div>
+                    {/* Anillo de progreso de la nota (decorativo, el valor está en .nota-big) */}
+                    <div
+                        className="sup-grade-ring"
+                        style={{
+                            '--sup-grade': nota,
+                            '--sup-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                        }}
+                    >
+                        <div className="nota-big">{nota.toFixed(1)}<span className="nota-small">/10</span></div>
+                    </div>
                     <div className="nota-msg">{notaMsg}</div>
                 </div>
-                <div className="score">Puntos: <span>{game.score.toLocaleString('es-ES')}</span></div>
+                <div className="score"><span className="sup-score-label">⭐ Puntos:</span> <span>{game.score.toLocaleString('es-ES')}</span></div>
                 <p>Has acertado {correctAnswers} de {game.TOTAL_TEST_QUESTIONS} preguntas.</p>
                 {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos.</p>}
                 
@@ -78,7 +88,7 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
     }
 
     return (
-        <div id="supermercado-app-container">
+        <div id="supermercado-app-container" className="sup-test-running">
             <h1 className="supermercado-title gradient-text text-4xl font-bold mb-4">🛒 Test Matemático</h1>
             
             <div id="panel-productos">
@@ -99,7 +109,7 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
                 <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
             </div>
             
-            <div className="mision">
+            <div className="mision" key={game.currentQuestionIndex}>
                 <h2>¡Pregunta {game.currentQuestionIndex + 1}!</h2>
                 <p id="textoMision">{game.mision.texto}</p>
             </div>
@@ -120,4 +130,4 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
     );
 };
 
-export default TestScreen;
+export default TestScreen;

@@ -545,3 +545,750 @@
   .veloc-input { font-size: 1rem; }
   .veloc-nota-big { font-size: 2.5rem; }
 }
+
+/* =====================================================================
+   PREMIUM 2026 — capa visual (solo presentación, no toca la lógica)
+   Cristal con luz interior, fondo vivo, pestañas de modo con identidad,
+   feedback con glow y nota /10 en anillo. Usa la capa compartida fx.css.
+   ===================================================================== */
+
+.veloc-root {
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ---------- Tarjeta principal: cristal + profundidad ---------- */
+.veloc-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.76) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 -1px 0 rgba(15, 23, 42, 0.05) inset,
+    0 0 0 1px color-mix(in srgb, var(--veloc-a) 12%, transparent),
+    0 34px 80px -30px color-mix(in srgb, var(--veloc-a) 65%, transparent),
+    0 14px 30px -16px rgba(15, 23, 42, 0.28);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  backdrop-filter: blur(22px) saturate(165%);
+}
+
+html.dark .veloc-card {
+  background: linear-gradient(180deg, rgba(32, 28, 66, 0.86) 0%, rgba(18, 15, 42, 0.82) 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 0 0 1px color-mix(in srgb, var(--veloc-a) 22%, transparent),
+    0 34px 80px -30px rgba(0, 0, 0, 0.85),
+    0 0 60px -20px color-mix(in srgb, var(--veloc-a) 45%, transparent);
+}
+
+/* Fondo decorativo de la tarjeta: orbes + rejilla + chispas */
+.veloc-fx {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.veloc-fx-orb {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.32;
+  animation: fx-orb 22s ease-in-out infinite alternate;
+}
+
+.veloc-fx-orb.a { top: -170px; left: -120px; background: radial-gradient(circle, var(--veloc-a), transparent 65%); }
+.veloc-fx-orb.b { bottom: -190px; right: -140px; background: radial-gradient(circle, var(--veloc-c), transparent 65%); animation-duration: 28s; animation-direction: alternate-reverse; }
+
+html.dark .veloc-fx-orb { opacity: 0.4; }
+
+.veloc-fx-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--veloc-a) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--veloc-a) 9%, transparent) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 75%);
+}
+
+.veloc-fx-spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px 2px color-mix(in srgb, var(--veloc-b) 70%, transparent);
+  animation: fx-twinkle 3.2s ease-in-out infinite;
+  opacity: 0.2;
+}
+
+.veloc-fx-spark.s1 { top: 14%; right: 9%; }
+.veloc-fx-spark.s2 { top: 46%; left: 4%; animation-delay: 1.1s; width: 4px; height: 4px; }
+.veloc-fx-spark.s3 { bottom: 12%; right: 22%; animation-delay: 2.1s; }
+
+/* ---------- Cabecera ---------- */
+.veloc-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  background-size: 220% 100%;
+  animation: fx-pan 10s linear infinite;
+  filter: drop-shadow(0 2px 10px color-mix(in srgb, var(--veloc-a) 25%, transparent));
+}
+
+.veloc-emoji {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5) 60%),
+    color-mix(in srgb, var(--veloc-a) 18%, white);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 8px 20px -8px color-mix(in srgb, var(--veloc-a) 70%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--veloc-a) 20%, transparent);
+  font-size: 1.55rem;
+}
+
+html.dark .veloc-emoji {
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04) 60%),
+    color-mix(in srgb, var(--veloc-a) 30%, #120f2a);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 22px -8px color-mix(in srgb, var(--veloc-a) 80%, transparent);
+}
+
+.veloc-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--veloc-a) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--veloc-a) 16%, transparent);
+  color: color-mix(in srgb, var(--veloc-a) 55%, #475569);
+  font-weight: 600;
+}
+
+html.dark .veloc-subtitle { color: #c7d2fe; background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); }
+
+/* Pastillas de estado: relieve + brillo interior */
+.veloc-stat {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.38rem 0.8rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.08) inset,
+    0 8px 18px -10px rgba(15, 23, 42, 0.45);
+}
+
+.veloc-stat > span { display: inline-block; }
+
+.veloc-stat.score { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 -2px 0 rgba(146, 64, 14, 0.18) inset, 0 8px 20px -8px rgba(245, 158, 11, 0.7); }
+.veloc-stat.streak { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 8px 20px -8px rgba(239, 68, 68, 0.7); }
+.veloc-stat.lives { background: rgba(239, 68, 68, 0.1); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
+html.dark .veloc-stat.lives { background: rgba(239, 68, 68, 0.16); border-color: rgba(239, 68, 68, 0.35); }
+
+/* ---------- Pestañas de modo con identidad (verde / ámbar / rojo) ---------- */
+.veloc-gamemode-tabs {
+  gap: 0.55rem;
+  padding: 0.45rem;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--veloc-a) 6%, rgba(255, 255, 255, 0.4));
+  border: 1px solid color-mix(in srgb, var(--veloc-a) 14%, transparent);
+  box-shadow: inset 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+html.dark .veloc-gamemode-tabs { background: rgba(0, 0, 0, 0.22); border-color: rgba(255, 255, 255, 0.08); box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.35); }
+
+.veloc-gamemode-tab {
+  --mode: #10b981;
+  --mode-2: #059669;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 15px;
+  padding: 0.7rem 0.4rem 0.65rem;
+  font-family: 'Fredoka', sans-serif;
+  transition: transform 0.3s var(--fx-ease-spring, ease), box-shadow 0.3s ease, background 0.3s ease, color 0.25s ease;
+}
+
+.veloc-gamemode-tab.easy   { --mode: #10b981; --mode-2: #059669; }
+.veloc-gamemode-tab.medium { --mode: #fbbf24; --mode-2: #f59e0b; }
+.veloc-gamemode-tab.exam   { --mode: #ef4444; --mode-2: #dc2626; }
+
+/* Entrada escalonada (fill backwards: no bloquea el transform del hover) */
+.veloc-gamemode-tab { animation: fx-rise 0.6s var(--fx-ease-out, ease) backwards; }
+.veloc-gamemode-tab:nth-child(2) { animation-delay: 0.08s; }
+.veloc-gamemode-tab:nth-child(3) { animation-delay: 0.16s; }
+
+/* Icono del modo con halo */
+.veloc-gamemode-tab > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.15rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  background: radial-gradient(circle, color-mix(in srgb, var(--mode) 32%, transparent) 0%, transparent 70%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--mode) 22%, transparent);
+  transition: transform 0.35s var(--fx-ease-spring, ease), box-shadow 0.3s ease;
+}
+
+.veloc-gamemode-tab:hover:not(.active) {
+  transform: translateY(-3px);
+  color: var(--app-text);
+  background: color-mix(in srgb, var(--mode) 11%, transparent);
+  box-shadow: 0 12px 24px -14px var(--mode), 0 0 0 1px color-mix(in srgb, var(--mode) 30%, transparent) inset;
+}
+
+.veloc-gamemode-tab:hover > span:first-child { transform: scale(1.12) rotate(-6deg); }
+
+.veloc-gamemode-tab.active.easy,
+.veloc-gamemode-tab.active.medium,
+.veloc-gamemode-tab.active.exam {
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, 0.32), transparent 55%),
+    linear-gradient(135deg, var(--mode), var(--mode-2));
+  color: #fff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.14) inset,
+    0 14px 28px -12px var(--mode);
+  transform: translateY(-1px);
+}
+
+/* Ámbar: texto oscuro para mantener contraste */
+.veloc-gamemode-tab.active.medium { color: #78350f; }
+
+.veloc-gamemode-tab.active > span:first-child {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.12) 70%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 18px rgba(255, 255, 255, 0.55);
+}
+
+/* Barrido de luz sobre la pestaña activa */
+.veloc-gamemode-tab.active::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  animation: fx-shine-sweep 3.8s var(--fx-ease-out, ease) 0.6s infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.veloc-gamemode-tab:focus-visible { outline: 3px solid color-mix(in srgb, var(--mode) 70%, white); outline-offset: 2px; }
+
+html.dark .veloc-gamemode-tab:hover:not(.active) { color: #f1f5f9; }
+
+/* ---------- Comodines ---------- */
+.veloc-lifeline {
+  border-radius: 13px;
+  padding: 0.55rem 0.95rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #4c1d95, #7c3aed);
+  border: 1.5px solid rgba(251, 191, 36, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 10px 22px -12px rgba(76, 29, 149, 0.8);
+  transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease, filter 0.2s ease;
+}
+
+.veloc-lifeline:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 16px 28px -12px rgba(124, 58, 237, 0.85),
+    0 0 0 3px rgba(251, 191, 36, 0.18);
+}
+
+.veloc-lifeline:active:not(:disabled) { transform: translateY(1px) scale(0.97); }
+.veloc-lifeline:focus-visible { outline: 3px solid rgba(251, 191, 36, 0.7); outline-offset: 2px; }
+
+.veloc-lifeline.ghost {
+  background: rgba(255, 255, 255, 0.55);
+  color: color-mix(in srgb, var(--veloc-a) 75%, #1e1b4b);
+  border-color: color-mix(in srgb, var(--veloc-a) 28%, transparent);
+  box-shadow: 0 1px 0 #fff inset, 0 8px 18px -12px color-mix(in srgb, var(--veloc-a) 60%, transparent);
+}
+
+html.dark .veloc-lifeline.ghost { background: rgba(255, 255, 255, 0.06); color: #e0e7ff; border-color: rgba(255, 255, 255, 0.14); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset; }
+
+.veloc-lifeline-count {
+  box-shadow: 0 4px 10px -2px rgba(239, 68, 68, 0.7);
+  animation: fx-pop-in 0.5s var(--fx-ease-spring, ease) both;
+}
+
+/* ---------- Resultado ---------- */
+.veloc-result {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 26px;
+  padding: 2.25rem 1.5rem 1.75rem;
+  animation: velocResultIn 0.7s var(--fx-ease-spring, ease) both;
+}
+
+.veloc-result.won,
+.veloc-result.lost {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 30px 70px -26px color-mix(in srgb, var(--veloc-a) 80%, transparent),
+    0 0 0 1px rgba(251, 191, 36, 0.45);
+}
+
+.veloc-result.lost {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(148, 163, 184, 0.22), transparent 60%),
+    linear-gradient(135deg, #111827, #1f2937 55%, #334155);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 30px 70px -26px rgba(0, 0, 0, 0.7);
+}
+
+/* Destellos de fondo del resultado */
+.veloc-result::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1100px;
+  height: 1100px;
+  margin: -550px 0 0 -550px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.26), transparent 30%),
+    conic-gradient(from 0deg at 50% 50%, transparent 0 10%, rgba(255, 255, 255, 0.08) 12% 16%, transparent 18% 35%, rgba(255, 255, 255, 0.08) 37% 41%, transparent 43% 60%, rgba(255, 255, 255, 0.08) 62% 66%, transparent 68% 85%, rgba(255, 255, 255, 0.08) 87% 91%, transparent 93%);
+  animation: velocRays 26s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.veloc-result::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.veloc-result-icon {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  background:
+    radial-gradient(circle at 32% 28%, #fff7d6, transparent 45%),
+    linear-gradient(135deg, #fde68a, #f59e0b 60%, #d97706);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 -4px 0 rgba(146, 64, 14, 0.25) inset,
+    0 0 0 6px rgba(251, 191, 36, 0.18),
+    0 18px 40px -10px rgba(245, 158, 11, 0.8);
+  animation: fx-pop-in 0.7s var(--fx-ease-spring, ease) 0.1s both, fx-float 5s ease-in-out 0.9s infinite;
+}
+
+.veloc-result-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.15s both;
+}
+
+.veloc-result-score {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3.6rem;
+  animation: fx-pop-in 0.7s var(--fx-ease-spring, ease) 0.25s both;
+}
+
+/* Nota /10 como elemento héroe: anillo de progreso */
+@property --veloc-fill {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.veloc-nota {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.4rem auto 0.9rem;
+  padding: 0;
+}
+
+.veloc-nota.excellent,
+.veloc-nota.good,
+.veloc-nota.fail { background: none; border: 0; }
+
+.veloc-nota-ring.fx-grade-ring {
+  --veloc-fill: var(--fx-grade, 0);
+  width: 168px;
+  height: 168px;
+  background:
+    radial-gradient(closest-side, rgba(15, 12, 41, 0.78) 79%, transparent 80% 100%),
+    conic-gradient(var(--fx-grade-color) calc(var(--veloc-fill) * 36deg), rgba(255, 255, 255, 0.16) 0);
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.06),
+    0 0 50px -6px var(--fx-grade-color),
+    0 20px 40px -18px rgba(0, 0, 0, 0.6);
+  animation: fx-pop-in 0.7s var(--fx-ease-spring, ease) 0.2s both, velocFill 1.3s var(--fx-ease-out, ease) 0.35s both;
+}
+
+.veloc-nota.excellent .fx-grade-ring { --fx-grade-color: #10b981; }
+.veloc-nota.good .fx-grade-ring      { --fx-grade-color: #3b82f6; }
+.veloc-nota.fail .fx-grade-ring      { --fx-grade-color: #ef4444; }
+
+.veloc-nota-big {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 22px var(--fx-grade-color), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.veloc-nota-small { color: rgba(255, 255, 255, 0.7); }
+
+.veloc-nota-msg {
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.6s both;
+}
+
+.veloc-nota.excellent .veloc-nota-msg { background: rgba(16, 185, 129, 0.25); border-color: rgba(52, 211, 153, 0.55); }
+.veloc-nota.good .veloc-nota-msg      { background: rgba(59, 130, 246, 0.25); border-color: rgba(96, 165, 250, 0.55); }
+.veloc-nota.fail .veloc-nota-msg      { background: rgba(239, 68, 68, 0.22); border-color: rgba(248, 113, 113, 0.55); }
+
+/* Puntos paralelos (sin tope) */
+.veloc-result-record {
+  position: relative;
+  overflow: hidden;
+  padding: 0.55rem 1.1rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(253, 224, 71, 0.24), rgba(245, 158, 11, 0.18));
+  border-color: rgba(253, 224, 71, 0.55);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 10px 24px -12px rgba(245, 158, 11, 0.9);
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 0.75s both;
+}
+
+.veloc-result-record::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  animation: fx-shine-sweep 3.4s var(--fx-ease-out, ease) 1.4s infinite;
+  pointer-events: none;
+}
+
+.veloc-result-stats > * { animation: fx-rise 0.55s var(--fx-ease-out, ease) both; }
+.veloc-result-stats > *:nth-child(1) { animation-delay: 0.85s; }
+.veloc-result-stats > *:nth-child(2) { animation-delay: 0.95s; }
+.veloc-result-stats > *:nth-child(3) { animation-delay: 1.05s; }
+.veloc-result-stats > *:nth-child(4) { animation-delay: 1.15s; }
+
+.veloc-result-stat {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.veloc-btn.primary {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  padding: 0.8rem 1.6rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(135deg, #fde68a, #fbbf24 45%, #f59e0b);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 -3px 0 rgba(146, 64, 14, 0.22) inset,
+    0 14px 30px -12px rgba(245, 158, 11, 0.9);
+  transition: transform 0.25s var(--fx-ease-spring, ease), box-shadow 0.25s ease;
+  animation: fx-rise 0.6s var(--fx-ease-out, ease) 1.1s backwards;
+}
+
+.veloc-btn.primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 -3px 0 rgba(146, 64, 14, 0.22) inset, 0 20px 36px -12px rgba(245, 158, 11, 1); }
+.veloc-btn.primary:active { transform: translateY(1px) scale(0.98); }
+.veloc-btn.primary:focus-visible { outline: 3px solid rgba(253, 224, 71, 0.8); outline-offset: 3px; }
+
+@keyframes velocResultIn {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.94); }
+  60%  { opacity: 1; transform: translateY(-3px) scale(1.01); }
+  100% { opacity: 1; transform: none; }
+}
+
+@keyframes velocRays { to { transform: rotate(360deg); } }
+@keyframes velocFill { from { --veloc-fill: 0; } }
+
+@keyframes velocPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.28); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .veloc-fx-orb, .veloc-fx-spark, .veloc-title, .veloc-emoji,
+  .veloc-gamemode-tab, .veloc-gamemode-tab.active::after, .veloc-result::before,
+  .veloc-result-record::after, .veloc-result-icon {
+    animation: none !important;
+  }
+  .veloc-result, .veloc-result *, .veloc-nota-ring.fx-grade-ring {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ---------- Velocidad: identidad arcade rojo/ámbar ---------- */
+.veloc-root { --veloc-a: #ef4444; --veloc-b: #f59e0b; --veloc-c: #fbbf24; }
+
+/* Barra de progreso con brillo animado */
+.veloc-progress-label { font-family: 'Fredoka', sans-serif; font-weight: 600; }
+
+.veloc-progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.12);
+}
+
+html.dark .veloc-progress-bar { background: rgba(255, 255, 255, 0.08); }
+
+.veloc-progress-fill {
+  position: relative;
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.55);
+  background-size: 200% 100%;
+}
+
+.veloc-progress-fill::after,
+.veloc-timer-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.55) 50%, transparent 80%);
+  background-size: 220% 100%;
+  animation: velocSheen 2.2s linear infinite;
+}
+
+@keyframes velocSheen {
+  from { background-position: 160% 0; }
+  to   { background-position: -60% 0; }
+}
+
+/* Barra de tiempo: cápsula de cristal oscuro con LED */
+.veloc-timer-bar-wrap {
+  height: 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #0f172a, #1f2937);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 3px 10px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 22px -14px rgba(239, 68, 68, 0.6);
+}
+
+.veloc-timer-bar {
+  position: relative;
+  border-radius: 999px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset;
+}
+
+.veloc-timer-bar.green  { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 0 16px rgba(16, 185, 129, 0.75); }
+.veloc-timer-bar.yellow { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 0 16px rgba(251, 191, 36, 0.75); }
+.veloc-timer-bar.red    { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 0 20px rgba(239, 68, 68, 0.9); }
+
+.veloc-timer-label {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  right: 12px;
+  z-index: 1;
+}
+
+/* Pregunta: panel de cristal oscuro con borde ámbar luminoso */
+.veloc-question {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 20px;
+  padding: 1.6rem 1.5rem 1.35rem;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(251, 191, 36, 0.22), transparent 55%),
+    linear-gradient(160deg, #111827 0%, #1f2937 55%, #312e81 130%);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 0 0 4px rgba(251, 191, 36, 0.08),
+    0 22px 44px -22px rgba(15, 23, 42, 0.8);
+}
+
+.veloc-question::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
+  mask-image: linear-gradient(180deg, #000, transparent 85%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.veloc-question-text {
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.veloc-question-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  background: rgba(251, 191, 36, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  box-shadow: 0 0 14px -4px rgba(251, 191, 36, 0.6);
+}
+
+/* Campo de respuesta */
+.veloc-input-wrap {
+  border-radius: 18px;
+  border: 2px solid rgba(168, 85, 247, 0.28);
+  background: linear-gradient(180deg, #ffffff, #faf7ff);
+  box-shadow: 0 1px 0 #fff inset, 0 12px 26px -18px rgba(124, 58, 237, 0.7);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.veloc-input-wrap:focus-within {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 5px rgba(168, 85, 247, 0.16), 0 16px 30px -16px rgba(124, 58, 237, 0.8);
+}
+
+.veloc-input-wrap.correct {
+  animation: fx-correct-flash 0.7s ease-out both, velocPop 0.45s var(--fx-ease-spring, ease) both;
+}
+
+.veloc-input-wrap.wrong {
+  animation: fx-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both, fx-wrong-flash 0.7s ease-out both;
+}
+
+html.dark .veloc-input-wrap { background: rgba(15, 12, 41, 0.6); border-color: rgba(167, 139, 250, 0.3); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset; }
+html.dark .veloc-input-wrap.correct { background: rgba(6, 78, 59, 0.55); }
+html.dark .veloc-input-wrap.wrong { background: rgba(127, 29, 29, 0.5); }
+
+.veloc-input { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.2rem; letter-spacing: 0.06em; }
+
+.veloc-send-btn {
+  position: relative;
+  padding: 0 1.35rem;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.3), transparent 55%),
+    linear-gradient(135deg, #a855f7, #ec4899);
+  transition: filter 0.2s ease, transform 0.2s var(--fx-ease-spring, ease);
+}
+
+.veloc-send-btn:hover:not(:disabled) { filter: brightness(1.08) saturate(1.1); }
+.veloc-send-btn:active:not(:disabled) { transform: scale(0.94); }
+.veloc-send-btn:focus-visible { outline: 3px solid rgba(236, 72, 153, 0.6); outline-offset: -3px; }
+
+/* Feedback */
+.veloc-feedback {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.veloc-feedback.correct { box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.2) inset, 0 10px 26px -14px rgba(16, 185, 129, 0.8); }
+.veloc-feedback.wrong   { box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.2) inset, 0 10px 26px -14px rgba(239, 68, 68, 0.8); }
+
+html.dark .veloc-feedback.correct { color: #a7f3d0; }
+html.dark .veloc-feedback.wrong { color: #fecaca; }
+
+.veloc-gain {
+  font-family: 'Fredoka', sans-serif;
+  animation: velocGain 0.8s var(--fx-ease-spring, ease) both;
+}
+
+@keyframes velocGain {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.6); }
+  50%  { opacity: 1; transform: translateY(-4px) scale(1.15); }
+  100% { opacity: 1; transform: none; }
+}
+
+@keyframes velocPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+
+/* Resultado: fuego arcade */
+.veloc-result.won {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(253, 224, 71, 0.35), transparent 60%),
+    linear-gradient(135deg, #450a0a, #9a3412 40%, #ea580c 75%, #f59e0b);
+}
+
+@media (max-width: 720px) {
+  .veloc-card { border-radius: 22px; }
+  .veloc-nota-ring.fx-grade-ring { width: 140px; height: 140px; }
+  .veloc-nota-big { font-size: 2.6rem; }
+  .veloc-question { padding: 1.2rem 1rem 1.05rem; }
+  .veloc-fx-orb { width: 240px; height: 240px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veloc-progress-fill::after, .veloc-timer-bar::after, .veloc-timer-bar.red { animation: none; }
+  .veloc-input-wrap.correct, .veloc-input-wrap.wrong, .veloc-gain { animation-duration: 0.01ms; }
+}

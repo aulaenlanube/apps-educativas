@@ -488,3 +488,389 @@
     }
     .test-results .nota-big { font-size: 54px; }
 }
+
+/* ==========================================================================
+   Capa "premium" (cristal, luz, profundidad y microinteracciones)
+   Solo añade acabado: no cambia layout ni nombres de clases usados por JS.
+   ========================================================================== */
+
+#supermercado-app-container {
+    isolation: isolate;
+    font-family: 'Fredoka', 'Lexend', 'Roboto', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
+        0 0 0 1px rgba(139, 92, 246, 0.1),
+        0 30px 70px -30px rgba(124, 58, 237, 0.5),
+        0 10px 24px -12px rgba(236, 72, 153, 0.22);
+    animation: sup-rise 0.6s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+/* Banda superior animada (aurora) */
+#supermercado-app-container::before {
+    height: 5px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b, #ec4899, #8b5cf6);
+    background-size: 300% 100%;
+    animation: sup-pan 8s linear infinite;
+    z-index: 2;
+}
+
+/* Orbes de luz difusos + rejilla sutil detrás del contenido */
+#supermercado-app-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(420px 300px at 0% 0%, rgba(139, 92, 246, 0.16), transparent 70%),
+        radial-gradient(380px 280px at 100% 100%, rgba(245, 158, 11, 0.16), transparent 70%),
+        radial-gradient(300px 220px at 100% 0%, rgba(236, 72, 153, 0.1), transparent 70%),
+        linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px) 0 0 / 28px 28px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 100%);
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+#supermercado-app-container .supermercado-title {
+    background-size: 200% 100%;
+    animation: sup-pan 10s linear infinite;
+    filter: drop-shadow(0 4px 14px rgba(219, 39, 119, 0.22));
+}
+
+/* Productos: entrada escalonada + tarjeta de cristal con brillo */
+#supermercado-app-container .producto {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 245, 255, 0.85) 100%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        inset 0 -3px 0 rgba(139, 92, 246, 0.07),
+        0 8px 18px -10px rgba(139, 92, 246, 0.35);
+    transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+    animation: sup-rise 0.5s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+#supermercado-app-container .producto:nth-child(1)  { animation-delay: 0.05s; }
+#supermercado-app-container .producto:nth-child(2)  { animation-delay: 0.09s; }
+#supermercado-app-container .producto:nth-child(3)  { animation-delay: 0.13s; }
+#supermercado-app-container .producto:nth-child(4)  { animation-delay: 0.17s; }
+#supermercado-app-container .producto:nth-child(5)  { animation-delay: 0.21s; }
+#supermercado-app-container .producto:nth-child(6)  { animation-delay: 0.25s; }
+#supermercado-app-container .producto:nth-child(7)  { animation-delay: 0.29s; }
+#supermercado-app-container .producto:nth-child(8)  { animation-delay: 0.33s; }
+#supermercado-app-container .producto:nth-child(n+9) { animation-delay: 0.37s; }
+
+/* Barrido de luz al pasar el ratón */
+#supermercado-app-container .producto::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -70%;
+    width: 45%;
+    height: 180%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    transform: translateX(0) rotate(14deg);
+    opacity: 0;
+    pointer-events: none;
+}
+#supermercado-app-container .producto:hover::after {
+    opacity: 1;
+    transform: translateX(420%) rotate(14deg);
+    transition: transform 0.8s cubic-bezier(.22, 1, .36, 1), opacity 0.2s ease;
+}
+#supermercado-app-container .producto:hover {
+    transform: translateY(-5px) rotate(-1deg) scale(1.03);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 18px 30px -14px rgba(139, 92, 246, 0.55),
+        0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+#supermercado-app-container .producto-precio {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 6px 14px -6px rgba(219, 39, 119, 0.6);
+}
+
+/* Selector de modo con estados ricos */
+#supermercado-app-container .btn-mode {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 4px 10px -6px rgba(15, 23, 42, 0.2);
+}
+#supermercado-app-container .btn-mode:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(139, 92, 246, 0.6);
+}
+#supermercado-app-container .btn-mode.active {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.12) inset,
+        0 10px 24px -8px rgba(139, 92, 246, 0.6);
+}
+
+/* Tarjeta de misión: cristal ámbar con entrada */
+#supermercado-app-container .mision {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(260px 120px at 100% 0%, rgba(245, 158, 11, 0.16), transparent 70%),
+        linear-gradient(135deg, rgba(255, 247, 237, 0.95) 0%, rgba(255, 251, 235, 0.92) 100%);
+    border: 1.5px solid rgba(251, 191, 36, 0.55);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 14px 30px -18px rgba(217, 119, 6, 0.55);
+    animation: sup-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+/* Botones: relieve 3D + brillo */
+#supermercado-app-container button {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.3) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.15) inset,
+        0 8px 18px -8px rgba(124, 58, 237, 0.55);
+    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s ease, filter 0.2s ease;
+}
+#supermercado-app-container button:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+#supermercado-app-container button:active {
+    transform: translateY(1px) scale(0.98);
+}
+#supermercado-app-container button:focus-visible,
+#supermercado-app-container input:focus-visible {
+    outline: 3px solid rgba(167, 139, 250, 0.7);
+    outline-offset: 2px;
+}
+
+#supermercado-app-container input[type="number"],
+#supermercado-app-container input[type="text"] {
+    box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.12) inset;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+#supermercado-app-container input[type="number"]:focus,
+#supermercado-app-container input[type="text"]:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18), 0 10px 20px -12px rgba(139, 92, 246, 0.6);
+}
+
+/* Feedback con glow (acierto) y shake + glow rojo (fallo) */
+#supermercado-app-container #feedback.correcta {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 12px 26px -12px rgba(16, 185, 129, 0.7);
+    animation: sup-pop 0.4s cubic-bezier(.34, 1.56, .64, 1), sup-glow-ok 1.2s ease-out;
+}
+#supermercado-app-container #feedback.incorrecta {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), 0 12px 26px -12px rgba(239, 68, 68, 0.65);
+    animation: sup-shake 0.4s ease, sup-glow-ko 1s ease-out;
+}
+
+/* Examen: cabecera con chips de cristal y barra con brillo */
+#supermercado-app-container .test-header .question-counter,
+#supermercado-app-container .test-header .timer {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 6px 14px -8px rgba(91, 33, 182, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+#supermercado-app-container .progress-bar-container {
+    height: 12px;
+    background: rgba(226, 232, 240, 0.8);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12) inset;
+}
+#supermercado-app-container .progress-bar {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 14px rgba(236, 72, 153, 0.5);
+    transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+#supermercado-app-container .progress-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+    background-size: 200% 100%;
+    animation: sup-bar-shine 2.2s linear infinite;
+}
+
+/* ---- Resumen: nota héroe con anillo ---- */
+.test-results .nota-final {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-width: 1.5px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 24px 50px -22px currentColor;
+    animation: sup-pop-big 0.8s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.test-results .sup-grade-ring {
+    --sup-grade: 0;
+    --sup-grade-color: #3b82f6;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 168px;
+    height: 168px;
+    margin: 14px auto 12px;
+    border-radius: 50%;
+    background:
+        radial-gradient(closest-side, rgba(255, 255, 255, 0.96) 80%, transparent 81% 100%),
+        conic-gradient(var(--sup-grade-color) calc(var(--sup-grade) * 36deg), rgba(148, 163, 184, 0.22) 0);
+    box-shadow:
+        0 0 0 6px rgba(255, 255, 255, 0.55),
+        0 0 46px -6px var(--sup-grade-color);
+    animation: sup-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.15s backwards;
+}
+.test-results .sup-grade-ring::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 2px dashed var(--sup-grade-color);
+    opacity: 0.35;
+    animation: sup-spin 18s linear infinite;
+    pointer-events: none;
+}
+.test-results .sup-grade-ring .nota-big {
+    font-size: 44px;
+    white-space: nowrap;
+    color: var(--sup-grade-color);
+    text-shadow: 0 4px 18px color-mix(in srgb, var(--sup-grade-color) 45%, transparent);
+}
+.test-results .sup-grade-ring .nota-small { font-size: 20px; }
+.test-results .nota-msg { animation: sup-rise 0.5s cubic-bezier(.22, 1, .36, 1) 0.45s backwards; }
+
+/* Puntos paralelos como chip luminoso */
+.test-results .score {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 24px -14px rgba(139, 92, 246, 0.7);
+    animation: sup-pop 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.55s backwards;
+}
+.test-results .score .sup-score-label {
+    font-family: inherit;
+    font-size: 16px;
+    margin-left: 0;
+}
+
+.test-results .result-item {
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 6px 14px -10px rgba(91, 33, 182, 0.35);
+    animation: sup-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
+    transition: transform 0.2s ease;
+}
+.test-results .result-item:hover { transform: translateX(3px); }
+.test-results .result-item:nth-child(1) { animation-delay: 0.6s; }
+.test-results .result-item:nth-child(2) { animation-delay: 0.66s; }
+.test-results .result-item:nth-child(3) { animation-delay: 0.72s; }
+.test-results .result-item:nth-child(4) { animation-delay: 0.78s; }
+.test-results .result-item:nth-child(n+5) { animation-delay: 0.84s; }
+
+/* ---- Modo oscuro ---- */
+html.dark #supermercado-app-container {
+    background: linear-gradient(160deg, #1f1b3a 0%, #261a3d 55%, #2a1e24 100%);
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+        0 30px 70px -30px rgba(0, 0, 0, 0.8),
+        0 0 80px -40px rgba(168, 85, 247, 0.6);
+}
+html.dark #supermercado-app-container .producto {
+    background: linear-gradient(165deg, rgba(49, 42, 84, 0.9), rgba(37, 31, 64, 0.9));
+    border-color: rgba(167, 139, 250, 0.22);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 10px 20px -12px rgba(0, 0, 0, 0.6);
+}
+html.dark #supermercado-app-container .producto-nombre,
+html.dark #supermercado-app-container label { color: #cbd5e1; }
+html.dark #supermercado-app-container .producto::after {
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+}
+html.dark #supermercado-app-container .btn-mode:not(.active) {
+    background: rgba(255, 255, 255, 0.06);
+    color: #cbd5e1;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+html.dark #supermercado-app-container .mision {
+    background:
+        radial-gradient(260px 120px at 100% 0%, rgba(245, 158, 11, 0.18), transparent 70%),
+        linear-gradient(135deg, rgba(69, 46, 20, 0.6), rgba(56, 40, 20, 0.55));
+    border-color: rgba(251, 191, 36, 0.4);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 14px 30px -18px rgba(0, 0, 0, 0.6);
+}
+html.dark #supermercado-app-container .mision h2 { color: #fbbf24; }
+html.dark #supermercado-app-container .mision p { color: #f1f5f9; }
+html.dark #supermercado-app-container input[type="number"],
+html.dark #supermercado-app-container input[type="text"] {
+    background: rgba(15, 12, 41, 0.6);
+    border-color: rgba(167, 139, 250, 0.3);
+    color: #f8fafc;
+}
+html.dark #supermercado-app-container .progress-bar-container { background: rgba(255, 255, 255, 0.08); }
+html.dark .test-results .sup-grade-ring {
+    background:
+        radial-gradient(closest-side, #1f1b3a 80%, transparent 81% 100%),
+        conic-gradient(var(--sup-grade-color) calc(var(--sup-grade) * 36deg), rgba(148, 163, 184, 0.2) 0);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05), 0 0 46px -6px var(--sup-grade-color);
+}
+html.dark .test-results .score { color: #c4b5fd; }
+html.dark .test-results .result-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(167, 139, 250, 0.18);
+    box-shadow: none;
+}
+html.dark .test-results .result-item p:first-child { color: #e2e8f0; }
+
+/* ---- Keyframes propios ---- */
+@keyframes sup-rise {
+    from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes sup-pan { to { background-position: 300% 0; } }
+@keyframes sup-bar-shine {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+@keyframes sup-pop-big {
+    0%   { opacity: 0; transform: scale(0.7) translateY(20px); }
+    65%  { opacity: 1; transform: scale(1.05) translateY(-2px); }
+    100% { transform: none; }
+}
+@keyframes sup-ring-in {
+    0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes sup-spin { to { transform: rotate(360deg); } }
+@keyframes sup-glow-ok {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    100% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
+}
+@keyframes sup-glow-ko {
+    0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+    100% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+}
+
+@media (max-width: 720px) {
+    .test-results .sup-grade-ring { width: 140px; height: 140px; }
+    .test-results .sup-grade-ring .nota-big { font-size: 36px; }
+    .test-results .sup-grade-ring .nota-small { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #supermercado-app-container::before,
+    #supermercado-app-container .supermercado-title,
+    #supermercado-app-container .progress-bar::after,
+    .test-results .sup-grade-ring::after { animation: none; }
+    #supermercado-app-container,
+    #supermercado-app-container .producto,
+    #supermercado-app-container .mision,
+    .test-results .nota-final,
+    .test-results .sup-grade-ring,
+    .test-results .result-item,
+    .test-results .score,
+    .test-results .nota-msg { animation-duration: 0.01ms; animation-delay: 0s; }
+}
+
+/* Título del resumen con más presencia (el h1 no lleva tamaño de Tailwind) */
+.test-results .supermercado-title { font-size: 2.2rem; line-height: 1.15; }
+@media (max-width: 720px) {
+    .test-results .supermercado-title { font-size: 1.7rem; }
+}

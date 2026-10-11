@@ -307,6 +307,15 @@ const RotacionesGrid = ({ onGameComplete }) => {
         return <div className="mini-grid" style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)` }}>{grid}</div>;
     };
 
+    // Fondo decorativo (solo visual): orbes, rejilla y piezas girando
+    const backdrop = (
+        <div className="fx-app-backdrop rot-backdrop" aria-hidden="true">
+            <div className="rot-grid-bg fx-grid-bg" />
+            <span className="rot-piece p1" /><span className="rot-piece p2" /><span className="rot-piece p3" />
+            <span className="rot-spark s1" /><span className="rot-spark s2" /><span className="rot-spark s3" />
+        </div>
+    );
+
     if (examFinished) {
         const nota = Math.round((examScore / TOTAL_EXAM_STEPS) * 100) / 10;
         const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
@@ -317,24 +326,30 @@ const RotacionesGrid = ({ onGameComplete }) => {
 
         return (
             <div className="rotaciones-container">
-                <div className="grid-card wide">
+                {backdrop}
+                <div className="grid-card wide rot-result-card fx-enter">
                     <div className="rotaciones-header"><h1>¡Examen Finalizado!</h1></div>
 
                     <div className="rot-result-hero">
-                        <div className="rot-nota-block" style={{ borderColor: notaColor }}>
+                        <div className="rot-nota-block" style={{ borderColor: notaColor, '--rot-nota-color': notaColor }}>
                             <div className="rot-nota-label">Tu nota</div>
-                            <div className="rot-nota-value" style={{ color: notaColor }}>
-                                {nota.toFixed(1)}<span className="rot-nota-max">/10</span>
+                            <div
+                                className="fx-grade-ring rot-nota-ring"
+                                style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
+                            >
+                                <div className="rot-nota-value" style={{ color: notaColor }}>
+                                    {nota.toFixed(1)}<span className="rot-nota-max">/10</span>
+                                </div>
                             </div>
                             <div className="rot-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
                         </div>
-                        <div className="rot-stats-block">
+                        <div className="rot-stats-block fx-stagger">
                             <div className="rot-stat">
                                 <span className="rot-stat-label">Aciertos</span>
                                 <span className="rot-stat-value">{examScore} / {TOTAL_EXAM_STEPS}</span>
                             </div>
-                            <div className="rot-stat">
-                                <span className="rot-stat-label">Puntos</span>
+                            <div className="rot-stat rot-stat--points">
+                                <span className="rot-stat-label">✨ Puntos</span>
                                 <span className="rot-stat-value">{examPoints}</span>
                             </div>
                             <div className="rot-stat">
@@ -344,7 +359,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
                         </div>
                     </div>
 
-                    <div className="exam-history-summary">
+                    <div className="exam-history-summary fx-stagger">
                         {examHistory.map((item, idx) => (
                             <div key={idx} className={`summary-card ${item.isCorrect ? 'correct' : 'incorrect'}`}>
                                 <div className="summary-header">
@@ -385,6 +400,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
 
     return (
         <div className="rotaciones-container">
+            {backdrop}
             <div className="rotaciones-header">
                 <h1>Giros y Rotaciones</h1>
             </div>
@@ -417,14 +433,14 @@ const RotacionesGrid = ({ onGameComplete }) => {
                         <InstructionsButton onClick={() => setShowInstructions(true)} />
                         <button className="btn-secondary" onClick={() => { setShowHelp(true); setHelpAngle(0); }}>💡 Entrenar</button>
                         <button className="btn-secondary" onClick={() => setShowIndex(true)}>📚 Catálogo</button>
-                        <button className="btn-accent" onClick={startExam}>🏆 Examen</button>
+                        <button className="btn-accent fx-shine" onClick={startExam}>🏆 Examen</button>
                     </div>
                 )}
             </div>
 
             <div className="instruction-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <p className="instruction-text" style={{ flex: 1, textAlign: 'center', fontSize: '1.4rem' }}>
-                    Gira la figura <span className="angle-badge">{targetRotation}º</span> hacia la <strong>{isClockwise ? 'derecha ➡️' : 'izquierda ⬅️'}</strong>.
+                    Gira la figura <span key={`${targetRotation}-${isClockwise}`} className="angle-badge rot-angle-pop">{targetRotation}º</span> hacia la <strong>{isClockwise ? 'derecha ➡️' : 'izquierda ⬅️'}</strong>.
                 </p>
                 <div className="switch-container has-tooltip">
                     <span>Colores</span>
@@ -441,21 +457,26 @@ const RotacionesGrid = ({ onGameComplete }) => {
             {mode === 'exam' && (
                 <div className="exam-stats">
                     <span>Pregunta: {examStep + 1} / {TOTAL_EXAM_STEPS}</span>
-                    <span>Puntos: {examPoints}</span>
+                    <span key={`pts-${examPoints}`} className="rot-pts-pop">Puntos: {examPoints}</span>
                     <span>Nivel: {DIFFICULTY_NAMES[difficulty]} ×{DIFFICULTY_MULT[difficulty]}</span>
                 </div>
             )}
+            {mode === 'exam' && (
+                <div className="rot-progress" aria-hidden="true">
+                    <div className="rot-progress-fill" style={{ width: `${(examStep / TOTAL_EXAM_STEPS) * 100}%` }} />
+                </div>
+            )}
 
-            <div className="rotaciones-game-area">
+            <div className={`rotaciones-game-area ${feedback?.type === 'success' ? 'rot-fb-success' : feedback?.type === 'error' ? 'rot-fb-error' : ''}`}>
                 <div className="grid-card"><h3 className="grid-title">Original</h3>{renderGrid(currentFigure)}</div>
                 <div className="grid-card"><h3 className="grid-title">Tu Dibujo</h3>{renderGrid(userCells, true)}</div>
             </div>
 
-            {feedback && <p className={`feedback-msg ${feedback.type}`}>{feedback.text}</p>}
+            {feedback && <p key={`${feedback.type}-${examStep}-${feedback.text}`} className={`feedback-msg ${feedback.type}`}>{feedback.text}</p>}
 
             <div className="controls-panel">
                 <div className="button-group">
-                    <button className="btn-primary btn-large" onClick={checkAnswer}>✅ Validar</button>
+                    <button className="btn-primary btn-large fx-shine" onClick={checkAnswer}>✅ Validar</button>
                 </div>
                 <div className="button-group">
                     {mode === 'practice' ? (

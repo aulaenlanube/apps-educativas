@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Matter from 'matter-js';
@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import useDuel from '@/hooks/useDuel';
 import UserAvatar from '@/components/ui/UserAvatar';
 import DuelChatBar from '@/components/duel/DuelChatBar';
+import { drawBallGloss, drawBallLabel } from './ballFx';
+import './OrdenaBolas.css';
 
 // El duelo es una experiencia rápida y predecible: cantidad fija de bolas, solo
 // con números, rotación moderada del recipiente y "siguiente valor" siempre
@@ -267,6 +269,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     });
     // Pedir estado al entrar
     channel.broadcast('request_state', { from: me?.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel?.isConnected, me?.isHost, me?.id]);
 
   // ============ Host reporta resultado ============
@@ -332,7 +335,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     const wallThickness = 40;
     const centerX = width / 2;
     const centerY = height / 2;
-    const wallStyle = { fillStyle: '#334155', strokeStyle: '#334155', lineWidth: 1 };
+    const wallStyle = { fillStyle: '#3730a3', strokeStyle: '#6366f1', lineWidth: 2 };
     const wallOptions = { isStatic: true, render: wallStyle, friction: 1, restitution: 0.2 };
 
     const offset = (boxSize - wallThickness) / 2;
@@ -403,7 +406,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     Events.on(render, 'afterRender', () => {
       const ctx = render.context; if (!ctx) return;
       ctx.globalAlpha = 1;
-      ctx.font = 'bold 22px Arial';
+      ctx.font = 'bold 22px Fredoka, Arial, sans-serif';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const marks = stateRef.current?.marks || {};
       balls.forEach(ball => {
@@ -413,8 +416,9 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
           ball.render.strokeStyle = '#0f172a';
         }
         const { x, y } = ball.position;
-        ctx.fillStyle = mk ? '#e2e8f0' : 'white';
-        ctx.fillText(ball.plugin.text, x, y);
+        // Brillo esférico (solo dibujo) + etiqueta con sombra suave
+        drawBallGloss(ctx, ball);
+        drawBallLabel(ctx, ball.plugin.text, x, y, mk ? '#e2e8f0' : 'white');
       });
     });
 
@@ -444,9 +448,10 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
   const nextTarget = state?.remaining?.[0];
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center p-4 gap-4">
+    <div className="ob-root min-h-[80vh] flex flex-col items-center p-4 gap-4">
+      <div className="ob-backdrop" aria-hidden="true" />
       {/* Header con avatares enfrentados (sustituye a la barra plana de antes) */}
-      <div className="w-full max-w-4xl rounded-2xl shadow-lg overflow-hidden border border-indigo-200">
+      <div className="ob-duel-head w-full max-w-4xl rounded-2xl shadow-lg overflow-hidden border border-indigo-200">
         <div className="flex items-stretch bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white">
           <PlayerHeader
             side="left"
@@ -545,13 +550,17 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
         <div className="relative w-full max-w-4xl">
           {phase === 'playing' && nextTarget != null && difficulty?.showNext && (
             <div className="text-center mb-2">
+              <div className="ob-next">
               <span className="text-xs uppercase text-slate-500 tracking-widest">Siguiente valor</span>
               <div className="text-2xl font-black text-indigo-700">
                 {ballsData?.find(b => b.value === nextTarget)?.label} <span className="text-slate-400 text-base font-bold">(= {nextTarget})</span>
               </div>
+              </div>
             </div>
           )}
-          <div ref={sceneRef} className="w-full h-[700px] cursor-pointer rounded-xl overflow-hidden bg-slate-50/30" />
+          <div className="ob-stage relative overflow-hidden">
+            <div ref={sceneRef} className="w-full h-[700px] cursor-pointer rounded-xl overflow-hidden bg-slate-50/30" />
+          </div>
 
           <AnimatePresence>
             {countdown != null && countdown > 0 && (
@@ -561,7 +570,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
                 exit={{ scale: 1.4, opacity: 0 }}
                 className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 style={{ background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)' }}>
-                <div style={{ fontSize: 140, fontWeight: 900, color: '#fbbf24', textShadow: '0 0 40px #f59e0b' }}>
+                <div className="ob-countdown" style={{ fontSize: 140, fontWeight: 900, color: '#fbbf24', textShadow: '0 0 40px #f59e0b' }}>
                   {countdown}
                 </div>
               </motion.div>
@@ -571,16 +580,16 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
           {phase === 'ended' && (
             <div className="absolute inset-0 bg-black/55 backdrop-blur-sm flex items-center justify-center rounded-xl">
               <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                className={`bg-white rounded-2xl shadow-2xl p-8 text-center max-w-md mx-4 border-2 ${winnerId === me.id ? 'border-emerald-500' : 'border-rose-500'}`}>
-                <Trophy className={`w-14 h-14 mx-auto mb-2 ${winnerId === me.id ? 'text-emerald-500' : 'text-rose-400'}`} />
+                className={`ob-result ${winnerId === me.id ? 'ob-result--win' : 'ob-result--lose'} bg-white rounded-2xl shadow-2xl p-8 text-center max-w-md mx-4 border-2 ${winnerId === me.id ? 'border-emerald-500' : 'border-rose-500'}`}>
+                <Trophy className={`ob-trophy w-14 h-14 mx-auto mb-2 ${winnerId === me.id ? 'text-emerald-500' : 'text-rose-400'}`} />
                 <h3 className={`text-2xl font-black ${winnerId === me.id ? 'text-emerald-600' : 'text-rose-600'}`}>
                   {winnerId === me.id ? '¡Has ganado!' : 'Has perdido'}
                 </h3>
                 <div className="grid grid-cols-2 gap-4 my-4">
-                  <div><div className="text-3xl font-black text-emerald-600">{myScore}</div><div className="text-xs text-slate-400 uppercase">Tú</div></div>
-                  <div><div className="text-3xl font-black text-rose-500">{rivalScore}</div><div className="text-xs text-slate-400 uppercase">Rival</div></div>
+                  <div className="ob-stat"><div className="text-3xl font-black text-emerald-600">{myScore}</div><div className="text-xs text-slate-400 uppercase">Tú</div></div>
+                  <div className="ob-stat"><div className="text-3xl font-black text-rose-500">{rivalScore}</div><div className="text-xs text-slate-400 uppercase">Rival</div></div>
                 </div>
-                <Button onClick={() => navigate('/mi-panel')} className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                <Button onClick={() => navigate('/mi-panel')} className="ob-cta bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
                   <LogOut className="w-4 h-4 mr-2" /> Salir a mi panel
                 </Button>
               </motion.div>
@@ -589,7 +598,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
         </div>
       )}
 
-      <div className="max-w-3xl text-center text-xs text-slate-500">
+      <div className="ob-layer max-w-3xl text-center text-xs text-slate-500 dark:text-slate-400">
         <span className="inline-flex items-center gap-1 mr-3"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> acierto → punto para quien marca</span>
         <span className="inline-flex items-center gap-1"><XCircle className="w-3 h-3 text-rose-500" /> fallo → punto para el rival</span>
       </div>
@@ -615,7 +624,7 @@ function PlayerHeader({ side, avatarCode, avatarEmoji, avatarColor, name, sub, s
         <p className="text-[10px] uppercase font-bold tracking-widest opacity-80">{name}</p>
         {sub && <p className="text-sm font-bold truncate">{sub}</p>}
       </div>
-      <span className={`shrink-0 px-2.5 py-1 rounded-lg font-black text-sm shadow ${scoreColor}`}>{score}</span>
+      <span key={score} className={`ob-score-pop shrink-0 px-2.5 py-1 rounded-lg font-black text-sm shadow ${scoreColor}`}>{score}</span>
     </div>
   );
 }

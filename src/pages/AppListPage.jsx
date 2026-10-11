@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dices, Zap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Dices, Zap, ArrowRight, Sparkles } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
@@ -11,6 +10,8 @@ import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps,
 import StarRating from '@/components/ui/StarRating';
 import AppIcon from '@/components/AppIcon';
 import { supabase } from '@/lib/supabase';
+import { tiltProps, accentFor, keyActivate } from './navTilt';
+import './NavPages.css';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
 const RandomAppSelector = ({ apps, onAppSelected }) => {
@@ -82,15 +83,16 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
             animate={{ opacity: 1, scale: 1 }}
             className="w-full max-w-xl mx-auto mb-12"
         >
-            <div className="bg-white/35 backdrop-blur-lg border border-white/30 rounded-3xl p-1 shadow-xl overflow-hidden relative">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" />
+            <div className="np-panel fx-aurora-border overflow-hidden">
                 <div className="p-6 md:p-8 text-center flex flex-col items-center">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-6 flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-purple-500 fill-current" />
+                    <h3 className="text-base md:text-lg font-bold text-white/90 mb-5 flex items-center gap-2">
+                        <Zap className="w-5 h-5 text-amber-300 fill-current drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                         ¡Deja que el azar elija por ti!
                     </h3>
 
-                    <div className="w-full h-24 mb-6 bg-white/25 backdrop-blur-sm rounded-2xl border border-white/30 flex items-center justify-center relative overflow-hidden shadow-inner">
+                    <div className={`np-slot w-full h-24 mb-6 flex items-center justify-center ${isSpinning ? 'np-slot--spinning' : ''}`}>
+                        <span className="np-slot__marker np-slot__marker--l" aria-hidden="true" />
+                        <span className="np-slot__marker np-slot__marker--r" aria-hidden="true" />
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentAppIndex}
@@ -98,13 +100,13 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -20, opacity: 0 }}
                                 transition={{ duration: isSpinning ? 0.03 : 0.5 }}
-                                className="absolute inset-0 flex items-center justify-center px-4"
+                                className="absolute inset-0 flex items-center justify-center px-8"
                             >
                                 <div className="text-2xl md:text-3xl font-bold text-center flex justify-center items-center flex-wrap">
                                     {emoji && (
-                                        <span className="text-gray-800 mr-1 filter drop-shadow-sm">{emoji}</span>
+                                        <span className="mr-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]">{emoji}</span>
                                     )}
-                                    <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isSpinning ? 'from-gray-400 to-gray-600' : 'from-indigo-600 to-purple-600'}`}>
+                                    <span className={isSpinning ? 'text-white/55' : 'np-slot-text'}>
                                         {text}
                                     </span>
                                 </div>
@@ -112,25 +114,22 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                         </AnimatePresence>
                     </div>
 
-                    <Button
+                    <button
+                        type="button"
                         onClick={handleSpin}
                         disabled={isSpinning}
-                        size="lg"
-                        className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${isSpinning
-                            ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none'
-                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
-                            }`}
+                        className="fx-btn np-btn-dice w-full md:w-auto min-w-[220px] text-lg"
                     >
                         {isSpinning ? (
                             <span className="flex items-center gap-2">
-                                <Dices className="animate-spin w-5 h-5" /> Elegiendo...
+                                <Dices className="animate-spin w-5 h-5" /> Eligiendo...
                             </span>
                         ) : (
                             <span className="flex items-center gap-2">
-                                <Dices className="w-5 h-5 " /> ¡Elegir App Aleatoria!
+                                <Dices className="w-5 h-5" /> ¡Elegir App Aleatoria!
                             </span>
                         )}
-                    </Button>
+                    </button>
                 </div>
             </div>
         </motion.div>
@@ -156,63 +155,56 @@ const AppList = ({ apps, level, grade, subjectId }) => {
         if (level && grade && subjectId) loadRatings();
     }, [level, grade, subjectId]);
 
-    // Mismas animaciones que las tarjetas de asignatura (SubjectPage): entrada en
-    // cascada con escalado y, al pasar el ratón, el contenedor entero se escala.
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0, scale: 0.95 },
-        show: { y: 0, opacity: 1, scale: 1 }
-    };
+    // Mismo lenguaje que las tarjetas de asignatura (SubjectPage): entrada
+    // escalonada en CSS sobre un wrapper (.np-enter) y tilt 3D + foco de luz en
+    // la tarjeta interior (variables CSS, sin re-render por frame).
+    const open = (app) => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`);
 
     return (
-        <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-            {apps.map((app) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {apps.map((app, i) => {
                 const r = ratings[app.id];
+                const name = app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '');
                 return (
-                    <motion.div
-                        key={app.id}
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-                        whileTap={{ scale: 0.98 }}
-                        className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white/55"
-                        onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="relative z-10">
-                            <div className="flex items-start gap-4 mb-3">
-                                <div>
-                                    <AppIcon appId={app.id} size={64} />
+                    <div key={app.id} className="np-enter" style={{ '--i': i }}>
+                        <div
+                            role="link"
+                            tabIndex={0}
+                            aria-label={name}
+                            className="np-card fx-spotlight fx-shine group"
+                            style={{ '--np-accent': accentFor(i) }}
+                            onClick={() => open(app)}
+                            onKeyDown={keyActivate(() => open(app))}
+                            {...tiltProps}
+                        >
+                            <span className="np-card__glare" aria-hidden="true" />
+                            <span className="np-card__ring" aria-hidden="true" />
+                            <div className="np-card__body">
+                                <div className="flex items-start gap-4">
+                                    <span className="np-icon">
+                                        <span className="np-icon__frame">
+                                            <AppIcon appId={app.id} size={64} />
+                                        </span>
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="np-title text-xl">{name}</h3>
+                                        <p className="np-desc text-sm mt-1 line-clamp-2">{app.description}</p>
+                                    </div>
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="text-xl font-bold text-gray-800">{app.name.replace(/^\p{Emoji_Presentation}\s?|\p{Extended_Pictographic}\s?/u, '')}</h3>
-                                    <p className="text-sm text-gray-700 mt-1 line-clamp-2">{app.description}</p>
+                                <div className="flex items-center justify-between gap-3 mt-auto pt-1">
+                                    {r && r.total_ratings > 0 ? (
+                                        <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />
+                                    ) : <span />}
+                                    <span className="np-cta" aria-hidden="true">
+                                        Jugar <ArrowRight className="w-4 h-4" />
+                                    </span>
                                 </div>
                             </div>
-                            {r && r.total_ratings > 0 && (
-                                <div className="mt-3 flex items-center gap-1">
-                                    <StarRating value={Math.round(r.avg_rating)} readOnly size="sm" count={r.total_ratings} />
-                                </div>
-                            )}
                         </div>
-                    </motion.div>
+                    </div>
                 );
             })}
-        </motion.div>
+        </div>
     );
 };
 
@@ -248,7 +240,6 @@ const AppListPage = () => {
     const levelDisplayMap = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', ad: 'Atención a la Diversidad' };
     const levelDisplay = levelDisplayMap[level] || 'Primaria';
     const isSpecialLevel = level === 'ad';
-    const fullTitle = isSpecialLevel ? `${subjectName} - ${levelDisplay}` : `${subjectName} - ${grade}º ${levelDisplay}`;
     const headerSubtitle = isSpecialLevel ? levelDisplay : `${grade}º ${levelDisplay}`;
 
     const handleRandomSelection = (app) => {
@@ -301,9 +292,19 @@ const AppListPage = () => {
                   >
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
                         <div className="mb-4">
+                            <span className="np-kicker">
+                                <span className="np-kicker__dot" aria-hidden="true" />
+                                {headerSubtitle}
+                                {appsForSubject.length > 0 && <span className="np-count">{appsForSubject.length} apps</span>}
+                            </span>
+                        </div>
+                        <div className="mb-4">
                             <AnimatedGradientTitle className="text-5xl md:text-6xl">{subjectName}</AnimatedGradientTitle>
                         </div>
-                        <p className="text-xl text-white/90 mt-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
+                        <div className="np-sub mt-2">
+                            <Sparkles className="w-5 h-5 text-amber-300 shrink-0" aria-hidden="true" />
+                            <p className="text-lg md:text-xl">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
+                        </div>
                     </motion.div>
 
                     {appsForSubject.length > 0 ? (
@@ -321,7 +322,7 @@ const AppListPage = () => {
                             />
                         </>
                     ) : (
-                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.5 }} className="mt-16 flex flex-col items-center justify-center text-center bg-slate-900/35 backdrop-blur-md border border-white/20 p-12 rounded-3xl shadow-xl">
+                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.5 }} className="np-panel mt-16 flex flex-col items-center justify-center text-center p-12">
                             <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" loading="lazy" decoding="async" />
                             <h2 className="text-3xl font-bold text-white mb-4">¡Próximamente!</h2>
                             <p className="text-lg text-white/80 max-w-md">Estamos trabajando para añadir las mejores apps para esta asignatura. ¡Vuelve pronto!</p>
@@ -335,4 +336,4 @@ const AppListPage = () => {
     );
 };
 
-export default AppListPage;
+export default AppListPage;

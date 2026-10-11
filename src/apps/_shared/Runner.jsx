@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star, BookOpen, X } from 'lucide-react';
+import { RotateCcw, Shuffle, User, ListChecks, Eye, EyeOff, Star, BookOpen, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
 import './Runner.css';
@@ -40,7 +40,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   const [isInvincible, setIsInvincible] = useState(false);
 
   // Tick para forzar renderizado en React
-  const [tick, setTick] = useState(0);
+  const [, setTick] = useState(0);
 
   // Refs para el bucle de juego
   const isPlayingRef = useRef(false);
@@ -86,6 +86,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
         console.error("Error cargando runner data:", err);
         setLoadingError(true);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [level, grade, subjectId]);
 
   const randomizeMission = useCallback((data = gameData) => {
@@ -477,7 +478,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       {gameState === 'gameover' && <ConfettiProvider />}
 
       <Card
-        className="w-full max-w-4xl h-[450px] relative overflow-hidden bg-indigo-950 border-[8px] border-black shadow-2xl rounded-none cursor-pointer"
+        className="runner-screen w-full max-w-4xl h-[450px] relative overflow-hidden bg-indigo-950 border-[8px] border-black shadow-2xl rounded-none cursor-pointer"
         ref={gameContainerRef}
         onMouseDown={(e) => {
           if (gameState === 'playing') {
@@ -494,7 +495,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       >
 
         {/* HUD */}
-        <div className="absolute top-4 right-4 z-30 bg-black/60 text-white px-4 py-2 font-bold text-xl border-2 border-white backdrop-blur-sm">
+        <div className="runner-hud absolute top-4 right-4 z-30 bg-black/60 text-white px-4 py-2 font-bold text-xl border-2 border-white backdrop-blur-sm">
           SCORE: {score.toString().padStart(3, '0')}
         </div>
         {targetType && gameState === 'playing' && (
@@ -517,7 +518,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
         {/* MENU INICIO */}
         {gameState === 'start' && (
-          <div className="absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto no-scrollbar cursor-default"
+          <div className="runner-menu absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto no-scrollbar cursor-default"
             onMouseDown={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
           >
@@ -605,7 +606,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
               </div>
             )}
 
-            <Button disabled={!gameData} onClick={startGame} className="mt-4 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-2xl py-6 rounded-none border-b-[6px] border-r-[6px] border-yellow-800 active:border-0 active:translate-y-1 active:translate-x-1 font-black tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(234,179,8,0.4)] disabled:opacity-50">
+            <Button disabled={!gameData} onClick={startGame} className="runner-start-btn mt-4 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-2xl py-6 rounded-none border-b-[6px] border-r-[6px] border-yellow-800 active:border-0 active:translate-y-1 active:translate-x-1 font-black tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(234,179,8,0.4)] disabled:opacity-50">
               JUGAR
             </Button>
           </div>
@@ -678,7 +679,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
         {/* GAME OVER */}
         {gameState === 'gameover' && (
-          <div className="absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white animate-in zoom-in duration-300 p-4 cursor-default"
+          <div className="runner-gameover absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white animate-in zoom-in duration-300 p-4 cursor-default"
             onMouseDown={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
           >
@@ -800,4 +801,4 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   );
 };
 
-export default Runner;
+export default Runner;

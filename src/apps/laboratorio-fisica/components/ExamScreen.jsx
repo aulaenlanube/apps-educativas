@@ -110,7 +110,12 @@ export default function ExamScreen({ questions, tier, prefAuto, onAutoDowngrade,
   return (
     <div className="fislab-exam">
       <div className="fislab-exam-header">
-        <span className="fislab-exam-progress">Pregunta {qIndex + 1} / {questions.length}</span>
+        <span className="fislab-exam-progress">
+          Pregunta {qIndex + 1} / {questions.length}
+          <span className="fislab-exam-bar" aria-hidden="true">
+            <span className="fislab-exam-bar-fill" style={{ transform: `scaleX(${(qIndex + 1) / questions.length})` }} />
+          </span>
+        </span>
         <span className="fislab-exam-sim">{q.simIcono} {q.simNombre}</span>
         {streak >= 2 && <span className="fislab-exam-streak">🔥 racha ×{streak}</span>}
       </div>

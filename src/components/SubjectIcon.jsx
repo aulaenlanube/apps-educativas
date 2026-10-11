@@ -1721,4 +1721,12 @@ const SubjectIcon = ({ subjectId, className = '' }) => {
   );
 };
 
+// Color de acento sólido de la asignatura (el mismo tono que su glow, sin
+// transparencia). Lo usan las tarjetas de SubjectPage para el halo/borde.
+export const getSubjectAccent = (subjectId) => {
+  const glow = iconMap[subjectId]?.glow;
+  const m = glow && glow.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  return m ? `rgb(${m[1]}, ${m[2]}, ${m[3]})` : null;
+};
+
 export default SubjectIcon;

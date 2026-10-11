@@ -565,6 +565,26 @@ const Palette = ({ allowed, onPalettePointerDown }) => {
 // Componente principal
 // -----------------------------------------------------------------------------
 
+// Fondo decorativo del marco (orbes + rejilla + estrellas). Solo visual.
+const MrBackdrop = () => (
+  <div className="mr-fx-bg" aria-hidden="true">
+    <span className="mr-fx-orb mr-fx-orb--a" />
+    <span className="mr-fx-orb mr-fx-orb--b" />
+    <span className="mr-fx-orb mr-fx-orb--c" />
+    <span className="mr-fx-grid" />
+    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`mr-fx-star mr-fx-star--${i}`} />)}
+  </div>
+);
+
+// Entrada escalonada + hover de las tarjetas de modo.
+const MR_CARD_ANIM = (i) => ({
+  initial: { opacity: 0, y: 22, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: { delay: 0.08 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 },
+  whileHover: { y: -6, scale: 1.025 },
+  whileTap: { scale: 0.97 },
+});
+
 const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
   const { grade: gradeParam } = useParams();
   const grade = useMemo(() => String(gradeParam || '1'), [gradeParam]);
@@ -606,6 +626,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
   const [examResults, setExamResults] = useState([]);
   const [examStartAt, setExamStartAt] = useState(null);
   const [elapsed, setElapsed] = useState(0);
+  const [summaryScore, setSummaryScore] = useState(0); // solo visual (puntos del resumen)
   const completedRef = useRef(false);
 
   // ---- Drag & drop state ---------------------------------------------------
@@ -944,6 +965,8 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
     } else if (collected < needItems) {
       setFeedback({ type: 'error', text: `Te faltan ítems por recoger: ${collected}/${needItems}.` });
     }
+    // Dependencias originales: el resto de valores se leen en el momento de ejecutar.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [program, world, mission, running, isExam, examStep, examResults, missions.length]);
 
   // Nota basada en la optimización de bloques de cada misión.
@@ -970,6 +993,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
     const timeBonus = Math.max(0, 900 - totalSecs) * 2;
     const score = Math.round(avg * total * 120 + perfectCount * 40 + timeBonus);
 
+    setSummaryScore(score);
     setScreen('summary');
     if (!completedRef.current && typeof onGameComplete === 'function') {
       completedRef.current = true;
@@ -1092,10 +1116,11 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
         </InstructionsModal>
 
         <div className="mr-frame mr-frame-intro">
+         <MrBackdrop />
          <div className="mr-hero">
           <div className="mr-hero-top">
-            <div className="mr-hero-title">
-              <div className="mr-hero-badge"><Bot size={18} /> ESO {grade}º</div>
+            <div className="mr-hero-title fx-enter">
+              <div className="mr-hero-badge"><span className="mr-hero-badge-dot" aria-hidden="true" /><Bot size={18} /> ESO {grade}º</div>
               <h1>Programa al Robot</h1>
               <p>Programa a tu robot con bloques visuales tipo puzzle y resuelve 10 misiones crecientes: bucles, condicionales y sensores aplicados a programación.</p>
             </div>
@@ -1103,26 +1128,26 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
           </div>
 
           <div className="mr-mode-grid">
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mr-mode-card mr-mode-easy" onClick={() => startPractice('easy')}>
-              <div className="mr-mode-icon">🌱</div>
+            <motion.button {...MR_CARD_ANIM(0)} className="mr-mode-card mr-mode-easy fx-shine" onClick={() => startPractice('easy')}>
+              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🌱</div>
               <h3>Modo Fácil</h3>
               <p>Pista siempre visible y feedback al ejecutar. Perfecto para empezar.</p>
               <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mr-mode-card mr-mode-medium" onClick={() => startPractice('medium')}>
-              <div className="mr-mode-icon">⚡</div>
+            <motion.button {...MR_CARD_ANIM(1)} className="mr-mode-card mr-mode-medium fx-shine" onClick={() => startPractice('medium')}>
+              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />⚡</div>
               <h3>Modo Medio</h3>
               <p>Sin pista visible. Puedes pedirla, pero cada una cuenta. Más autonomía.</p>
               <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mr-mode-card mr-mode-exam" onClick={() => setShowExamIntro(true)}>
-              <div className="mr-mode-icon">🎯</div>
+            <motion.button {...MR_CARD_ANIM(2)} className="mr-mode-card mr-mode-exam fx-shine" onClick={() => setShowExamIntro(true)}>
+              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🎯</div>
               <h3>Modo Examen</h3>
               <p>Las 10 misiones del curso seguidas, sin ayudas. La nota depende de lo optimizado que sea tu código.</p>
               <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
             </motion.button>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mr-mode-card mr-mode-reto" onClick={() => setShowRetoIntro(true)}>
-              <div className="mr-mode-icon">🔥</div>
+            <motion.button {...MR_CARD_ANIM(3)} className="mr-mode-card mr-mode-reto fx-shine" onClick={() => setShowRetoIntro(true)}>
+              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🔥</div>
               <h3>Modo Reto</h3>
               <p>Un nivel aleatorio mucho más difícil. Resuélvelo con la menor cantidad de bloques posible.</p>
               <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
@@ -1131,7 +1156,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
 
           <div className="mr-missions-grid">
             <h3>📋 Misiones de ESO {grade}º</h3>
-            <div className="mr-missions-cards">
+            <div className="mr-missions-cards fx-stagger">
               {missions.map((m, i) => (
                 <div key={m.id} className="mr-mini-mission">
                   <div className="mr-mini-mission-num">{i + 1}</div>
@@ -1244,23 +1269,50 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
     const colorClass = nota >= 8 ? 'grade-high' : nota >= 5 ? 'grade-mid' : 'grade-low';
     const msg = nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
 
+    const gradeColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+
     return (
       <div className="mr-shell">
        <div className="mr-frame mr-frame-summary">
-        <div className="mr-summary-card">
-          <h1><Trophy size={28} /> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
+        <MrBackdrop />
+        <motion.div
+          className="mr-summary-card"
+          initial={{ opacity: 0, y: 26, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+        >
+          <h1><span className="mr-summary-trophy" aria-hidden="true"><Trophy size={24} /></span> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
           {isExam ? (
             <>
-              <div className={`mr-note ${colorClass}`}>
-                <span className="mr-note-value">{nota.toFixed(1)}</span>
-                <span className="mr-note-max">/10</span>
+              <div className="mr-grade-hero">
+                <span className="mr-grade-rays" aria-hidden="true" />
+                <motion.div
+                  className={`mr-grade-ring ${colorClass}`}
+                  style={{ '--mr-grade': nota, '--mr-grade-color': gradeColor }}
+                  initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
+                >
+                  <div className={`mr-note ${colorClass}`}>
+                    <span className="mr-note-value">{nota.toFixed(1)}</span>
+                    <span className="mr-note-max">/10</span>
+                  </div>
+                </motion.div>
               </div>
-              <p className="mr-note-msg">{msg}</p>
-              <div className="mr-summary-stats">
+              <p className={`mr-note-msg ${colorClass}`}>{msg}</p>
+              <motion.div
+                className="mr-points-pill"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <Sparkles size={16} /> <b>{summaryScore.toLocaleString('es-ES')}</b> puntos
+              </motion.div>
+              <div className="mr-summary-stats fx-stagger">
                 <div className="mr-stat"><span>🏆 Misiones completadas</span><b>{solved} / {total}</b></div>
                 <div className="mr-stat"><span>⏱️ Tiempo total</span><b>{Math.floor(elapsed / 60)}m {elapsed % 60}s</b></div>
               </div>
-              <div className="mr-summary-list">
+              <div className="mr-summary-list fx-stagger">
                 {examResults.map((r, i) => {
                   const ratio = missionScoreRatio(r);
                   const pts = Math.round(ratio * 100) / 100;
@@ -1281,10 +1333,10 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
             <p className="mr-summary-text">Has completado las {total} misiones de ESO {grade}º. ¡Gran trabajo programando!</p>
           )}
           <div className="mr-summary-actions">
-            <button className="mr-btn-primary" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
+            <button className="mr-btn-primary fx-shine" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
             {isExam && (<button className="mr-btn-secondary" onClick={startExam}><Play size={16} /> Repetir examen</button>)}
           </div>
-        </div>
+        </motion.div>
        </div>
       </div>
     );
@@ -1309,6 +1361,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
       </InstructionsModal>
 
       <div className="mr-frame">
+        <MrBackdrop />
         <div className="mr-playhead">
           <div className="mr-playhead-left">
             <span className={`mr-mode-chip mode-${mode}`}>
@@ -1317,7 +1370,14 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
               {mode === 'exam' && '🎯 Examen'}
               {mode === 'reto' && '🔥 Reto'}
             </span>
-            <span className="mr-progress">{isReto ? mission.title : `Misión ${progress}`}</span>
+            <span className="mr-progress">
+              {isReto ? mission.title : `Misión ${progress}`}
+              {!isReto && (
+                <span className="mr-progress-track" aria-hidden="true">
+                  <span className="mr-progress-fill" style={{ transform: `scaleX(${(missionIndex + 1) / missions.length})` }} />
+                </span>
+              )}
+            </span>
             <div className="mr-hud-item"><Target size={14} /> <span>Objetivo</span> <b>{needItems ? `${collectedCount}/${needItems} 💎` : 'Meta 🎯'}</b></div>
             <div className="mr-hud-item"><Gauge size={14} /> <span>Bloques</span> <b>{countAllBlocks(program)}{mission.suggestedBlocks ? ` (≈${mission.suggestedBlocks})` : ''}</b></div>
             {isExam && (<span className="mr-timer"><Clock size={14} /> {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}</span>)}
@@ -1337,6 +1397,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
                 className={`mr-mission-pick ${i === missionIndex ? 'active' : ''}`}
                 onClick={() => setMissionIndex(i)}
                 title={m.title}
+                role="tab"
                 aria-selected={i === missionIndex}
               >
                 {i + 1}
@@ -1352,7 +1413,13 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
           </div>
 
           <div className="mr-right">
-            <div className="mr-mission-card">
+            <motion.div
+              key={mission.id}
+              className="mr-mission-card"
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+            >
               <div className="mr-mission-title">
                 <Sparkles size={18} />
                 <h2>{mission.title}</h2>
@@ -1361,7 +1428,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
               {(mode === 'easy' || (mode === 'medium' && showHint)) && (
                 <div className="mr-hint-box"><Lightbulb size={14} /> {mission.hint}</div>
               )}
-            </div>
+            </motion.div>
 
             <div className="mr-controls">
               <div className="mr-run-toolbar">
@@ -1382,10 +1449,14 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
                 {feedback && (
                   <motion.div
                     key={feedback.text}
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                    animate={feedback.type === 'error'
+                      ? { opacity: 1, y: 0, scale: 1, x: [0, -8, 8, -5, 5, 0] }
+                      : { opacity: 1, y: 0, scale: [0.96, 1.03, 1] }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ duration: 0.45 }}
                     className={`mr-feedback mr-feedback-${feedback.type}`}
+                    role="status"
                   >
                     {feedback.text}
                     {feedback.type === 'success' && !isExam && !isReto && (
@@ -1399,9 +1470,10 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
                   <motion.div
                     key="reto-result"
                     className={`mr-reto-result ${retoResult.success ? 'ok' : 'ko'}`}
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ type: 'spring', stiffness: 240, damping: 20 }}
                   >
                     <div className="mr-reto-result-head">
                       <Trophy size={20} /> {retoResult.success ? 'Reto superado' : 'Reto fallido'}

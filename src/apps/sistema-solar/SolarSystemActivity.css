@@ -344,3 +344,268 @@
         height: 95vh;
     }
 }
+/* ==========================================================================
+   CAPA PREMIUM (ssa-) — desafío del Sistema Solar
+   ========================================================================== */
+
+.activity-modal-overlay {
+    --ssa-ease: cubic-bezier(.22, 1, .36, 1);
+    --ssa-spring: cubic-bezier(.34, 1.56, .64, 1);
+    isolation: isolate;
+    background:
+        radial-gradient(70% 60% at 30% 20%, rgba(99, 102, 241, 0.22), transparent 70%),
+        radial-gradient(60% 50% at 80% 90%, rgba(236, 72, 153, 0.14), transparent 70%),
+        rgba(2, 2, 8, 0.9);
+    animation: ssa-fade .35s ease-out both;
+}
+.ssa-starfield {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+.ssa-starfield span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 6px #fff;
+    animation: ssa-twinkle 3.6s ease-in-out infinite;
+}
+.ssa-starfield span:nth-child(3n) { width: 2px; height: 2px; background: #fde68a; box-shadow: 0 0 6px #fde68a; }
+.ssa-starfield span:nth-child(4n) { background: #c7d2fe; box-shadow: 0 0 8px #a5b4fc; }
+
+.activity-modal-content {
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.18), transparent 55%),
+        radial-gradient(100% 60% at 100% 100%, rgba(236, 72, 153, 0.10), transparent 60%),
+        rgba(16, 16, 32, 0.82);
+    -webkit-backdrop-filter: blur(26px) saturate(160%);
+    backdrop-filter: blur(26px) saturate(160%);
+    border-color: rgba(165, 180, 252, 0.22);
+    border-radius: 28px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 40px 100px -30px rgba(0, 0, 0, 0.95),
+        0 0 70px -30px rgba(99, 102, 241, 0.7);
+}
+/* La entrada va en las secciones internas (no en el panel) para no
+   reiniciarla cuando se quita la clase .shake tras un fallo. */
+.activity-header, .activity-body, .activity-footer { animation: ssa-rise .5s var(--ssa-ease) backwards; }
+.activity-body { animation-delay: .08s; }
+.activity-footer { animation-delay: .14s; }
+.activity-modal-content.shake {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 0 0 4px rgba(239, 68, 68, 0.2),
+        0 0 60px -10px rgba(239, 68, 68, 0.7);
+}
+.activity-modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(165, 180, 252, 0.9), transparent);
+    pointer-events: none;
+    z-index: 2;
+}
+.activity-header { background: rgba(255, 255, 255, 0.03); }
+.activity-header h2 { filter: drop-shadow(0 0 14px rgba(165, 180, 252, 0.35)); }
+.btn-close-activity { transition: transform .25s var(--ssa-spring), background .2s, border-color .2s; font-size: 1.3rem; }
+.btn-close-activity:hover { transform: rotate(90deg) scale(1.08); }
+.btn-close-activity:focus-visible,
+.btn-activity-primary:focus-visible,
+.btn-activity-secondary:focus-visible { outline: 2px solid rgba(165, 180, 252, 0.9); outline-offset: 3px; }
+
+/* Pasos: barras con brillo */
+.step-dot { height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); }
+.step-dot.completed::after { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 10px rgba(16, 185, 129, 0.7); }
+.step-dot.active::after {
+    background: linear-gradient(90deg, #6366f1, #a855f7, #6366f1);
+    background-size: 200% 100%;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.9);
+    animation: ssa-pan 2s linear infinite;
+}
+
+/* Fase 1: tarjetas de planeta */
+.planet-item-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+    border-color: rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 14px 30px -20px rgba(0, 0, 0, 0.9);
+    animation: ssa-rise .5s var(--ssa-ease) backwards;
+    animation-delay: calc(var(--ssa-i, 0) * 45ms);
+}
+.planet-item-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(165, 180, 252, 0.45);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 20px 40px -18px rgba(99, 102, 241, 0.7);
+}
+.planet-preview-dot {
+    position: relative;
+    background-image: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.65), transparent 45%), radial-gradient(circle at 70% 75%, rgba(0, 0, 0, 0.45), transparent 60%);
+    transition: transform .4s var(--ssa-spring);
+}
+.planet-item-card:hover .planet-preview-dot { transform: scale(1.12) rotate(-8deg); }
+.planet-order-badge { font-weight: 700; color: #c7d2fe; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(165, 180, 252, 0.25); border-radius: 999px; padding: 2px 8px; }
+
+/* Fase 2: emparejar */
+.matching-column h3 { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: #a5b4fc; }
+.matching-item {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    border-radius: 16px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    transition: transform .25s var(--ssa-spring), background .2s, border-color .2s, box-shadow .25s;
+}
+.matching-item:hover:not(.matched) { transform: translateY(-2px); box-shadow: 0 12px 26px -16px rgba(99, 102, 241, 0.8); }
+.matching-item.selected {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(168, 85, 247, 0.14));
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18), 0 0 24px -4px rgba(99, 102, 241, 0.6);
+    animation: ssa-select .35s var(--ssa-spring);
+}
+.matching-item.matched { animation: ssa-match .6s ease-out; }
+
+/* Botones */
+.btn-activity-primary {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    background-size: 180% 180%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -3px 0 rgba(0, 0, 0, 0.2) inset, 0 14px 30px -12px rgba(139, 92, 246, 0.8);
+    transition: transform .25s var(--ssa-spring), box-shadow .25s ease, background-position .6s ease;
+}
+.btn-activity-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    pointer-events: none;
+}
+.btn-activity-primary:hover:not(:disabled) { background-position: 100% 50%; transform: translateY(-2px) scale(1.03); }
+.btn-activity-primary:hover:not(:disabled)::after { animation: ssa-sweep 1.1s var(--ssa-ease) forwards; }
+.btn-activity-primary:active:not(:disabled) { transform: translateY(1px) scale(.98); }
+
+/* Éxito: trofeo con rayos, órbita y chispas */
+.activity-success { position: relative; }
+.ssa-trophy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+.ssa-rays {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: -210px;
+    top: -330px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, rgba(251, 191, 36, 0.12) 0deg 10deg, transparent 10deg 24deg);
+    -webkit-mask-image: radial-gradient(circle, #000 10%, transparent 68%);
+    mask-image: radial-gradient(circle, #000 10%, transparent 68%);
+    animation: ssa-spin 30s linear infinite;
+}
+.ssa-orbit {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: -85px;
+    top: -205px;
+    border-radius: 50%;
+    border: 1px dashed rgba(251, 191, 36, 0.45);
+    animation: ssa-spin 10s linear infinite;
+}
+.ssa-orbit::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: #fde68a;
+    box-shadow: 0 0 12px #fbbf24;
+}
+.ssa-sparks { position: absolute; left: 0; top: -120px; }
+.ssa-sparks i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin: -4px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 10px #fbbf24;
+    opacity: 0;
+    animation: ssa-spark 1.1s var(--ssa-ease) .2s both;
+}
+.ssa-sparks i:nth-child(even) { background: #34d399; box-shadow: 0 0 10px #34d399; }
+.success-icon {
+    position: relative;
+    filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.6));
+}
+.success-title { filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.45)); animation: ssa-rise .6s .2s var(--ssa-ease) both; }
+.success-desc { animation: ssa-rise .6s .32s var(--ssa-ease) both; }
+
+/* Keyframes */
+@keyframes ssa-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ssa-rise {
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes ssa-twinkle {
+    0%, 100% { opacity: .15; transform: scale(.7); }
+    50%      { opacity: 1; transform: scale(1); }
+}
+@keyframes ssa-pan { to { background-position: 200% 0; } }
+@keyframes ssa-sweep {
+    from { transform: translateX(-120%) rotate(12deg); }
+    to   { transform: translateX(420%) rotate(12deg); }
+}
+@keyframes ssa-select {
+    0%   { transform: scale(.97); }
+    60%  { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+@keyframes ssa-match {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    30%  { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.45), 0 0 26px 4px rgba(16, 185, 129, 0.4); }
+    100% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+}
+@keyframes ssa-spin { to { transform: rotate(360deg); } }
+@keyframes ssa-spark {
+    0%   { opacity: 0; transform: rotate(calc(var(--ssa-n) * 36deg)) translateY(0) scale(.4); }
+    30%  { opacity: 1; }
+    100% { opacity: 0; transform: rotate(calc(var(--ssa-n) * 36deg)) translateY(-110px) scale(1); }
+}
+
+@media (max-width: 720px) {
+    .activity-header { padding: 16px 18px; }
+    .activity-header h2 { font-size: 1.15rem; }
+    .activity-body { padding: 18px; }
+    .activity-footer { padding: 14px 18px; }
+    .step-dot { width: 64px; }
+    .ssa-rays { width: 300px; height: 300px; left: -150px; top: -260px; }
+    .success-title { font-size: 1.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ssa-starfield span, .step-dot.active::after, .ssa-rays, .ssa-orbit, .success-icon {
+        animation: none !important;
+    }
+    .activity-modal-overlay, .activity-header, .activity-body, .activity-footer, .planet-item-card, .ssa-sparks i,
+    .success-title, .success-desc, .matching-item.selected, .matching-item.matched {
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+    }
+}

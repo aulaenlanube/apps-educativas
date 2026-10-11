@@ -31,6 +31,15 @@ const notaColor = (nota) => (nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#e
 const notaMensaje = (nota) => (nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar');
 const EXAM_MAX_SCORE = 2200; // 10 preguntas × máximo de 220 puntos
 
+// Entrada escalonada + hover de las tarjetas de modo (solo visual).
+const MODE_ANIM = (i) => ({
+  initial: { opacity: 0, y: 22, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: { delay: 0.1 + i * 0.08, type: 'spring', stiffness: 260, damping: 22 },
+  whileHover: { y: -6, scale: 1.03 },
+  whileTap: { scale: 0.97 },
+});
+
 function RetosList({ sim, done, pistas, onTogglePista }) {
   return (
     <div className="fislab-retos">
@@ -365,7 +374,11 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
       {screen === 'select' && (
         <motion.div className="fislab-select" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
           <div className="fislab-hero">
-            <span className="fislab-hero-icon">🧲</span>
+            <span className="fislab-hero-icon">
+              <span className="fislab-hero-icon-halo" aria-hidden="true" />
+              <span className="fislab-hero-icon-orbit" aria-hidden="true" />
+              🧲
+            </span>
             <h1>Laboratorio de Física 3D</h1>
             <p className="fislab-hero-sub">
               {catalogo.length} simulaciones de fuerzas y fluidos para <strong>{cursoActual}</strong>
@@ -374,18 +387,18 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
           </div>
 
           <div className="fislab-modes">
-            <motion.button className="fislab-mode explora" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startMode('explora')}>
-              <span className="fislab-mode-icon"><Compass size={30} /></span>
+            <motion.button className="fislab-mode explora fx-shine" {...MODE_ANIM(0)} onClick={() => startMode('explora')}>
+              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><Compass size={30} /></span>
               <span className="fislab-mode-name">🟢 Explora</span>
               <span className="fislab-mode-desc">Laboratorio libre · toca todos los parámetros · vectores, gráficas y fórmulas a la vista</span>
             </motion.button>
-            <motion.button className="fislab-mode retos" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startMode('retos')}>
-              <span className="fislab-mode-icon"><Target size={30} /></span>
+            <motion.button className="fislab-mode retos fx-shine" {...MODE_ANIM(1)} onClick={() => startMode('retos')}>
+              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><Target size={30} /></span>
               <span className="fislab-mode-name">🟡 Retos</span>
               <span className="fislab-mode-desc">Misiones guiadas en cada simulación · pistas opcionales · suma puntos</span>
             </motion.button>
-            <motion.button className="fislab-mode examen" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startMode('examen')}>
-              <span className="fislab-mode-icon"><GraduationCap size={30} /></span>
+            <motion.button className="fislab-mode examen fx-shine" {...MODE_ANIM(2)} onClick={() => startMode('examen')}>
+              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><GraduationCap size={30} /></span>
               <span className="fislab-mode-name">🔴 Examen</span>
               <span className="fislab-mode-desc">10 preguntas Predice → Observa → Explica · sin ayudas · nota /10</span>
             </motion.button>
@@ -408,18 +421,21 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
             {mode === 'retos' && <span className="fislab-points-badge">⭐ {retosPoints} pts</span>}
           </div>
           <div className="fislab-grid">
-            {catalogo.map(({ sim, esNueva, comoAmpliacion }) => {
+            {catalogo.map(({ sim, esNueva, comoAmpliacion }, idx) => {
               const done = retosDone[sim.id]?.length || 0;
               return (
                 <motion.button
                   key={sim.id}
                   type="button"
                   className="fislab-card"
-                  whileHover={{ scale: 1.025, y: -3 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(idx, 12) * 0.035, type: 'spring', stiffness: 280, damping: 26 }}
+                  whileHover={{ scale: 1.025, y: -4 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => abrirSim(sim)}
                 >
-                  <span className="fislab-card-icon">{sim.icono}</span>
+                  <span className="fislab-card-icon"><span className="fislab-card-icon-glow" aria-hidden="true" />{sim.icono}</span>
                   <span className="fislab-card-name">{sim.nombre}</span>
                   <span className="fislab-card-desc">{sim.descripcion}</span>
                   <span className="fislab-card-badges">
@@ -617,14 +633,31 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
       {screen === 'summary' && summary && (
         <motion.div className="fislab-summary" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
           <h2>Resultado del examen</h2>
-          <div className="fislab-nota" style={{ color: notaColor(summary.nota), borderColor: notaColor(summary.nota) }}>
-            {summary.nota.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+          <div className="fislab-nota-hero">
+            <span className="fislab-nota-rays" aria-hidden="true" />
+            <motion.div
+              className="fislab-nota"
+              style={{
+                color: notaColor(summary.nota),
+                borderColor: notaColor(summary.nota),
+                '--fislab-grade': summary.nota,
+                '--fislab-grade-color': notaColor(summary.nota),
+              }}
+              initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
+            >
+              <span className="fislab-nota-value">
+                {summary.nota.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+              </span>
+              <span className="fislab-nota-max">/10</span>
+            </motion.div>
           </div>
           <p className="fislab-nota-msg" style={{ color: notaColor(summary.nota) }}>{notaMensaje(summary.nota)}</p>
           <div className="fislab-summary-stats">
             <div><strong>{summary.predCorrect}/{summary.total}</strong><span>predicciones</span></div>
             <div><strong>{summary.explCorrect}/{summary.total}</strong><span>explicaciones</span></div>
-            <div><strong>⭐ {summary.points}</strong><span>puntos</span></div>
+            <div className="fislab-summary-points"><strong>⭐ {summary.points}</strong><span>puntos</span></div>
           </div>
           <div className="fislab-summary-list">
             {summary.results.filter(Boolean).map((r) => (

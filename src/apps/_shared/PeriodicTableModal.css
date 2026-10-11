@@ -362,3 +362,90 @@
         font-size: 0.5rem;
     }
 }
+/* ==========================================================================
+   Capa "premium" de la Tabla Periódica (scope .periodic-table-modal y
+   .element-detail-card: .modal-overlay/.btn-close son clases globales que
+   comparten otras apps, así que aquí no se tocan sin acotar).
+   Rejilla de ~126 celdas: solo brillo estático y efectos al hover.
+   ========================================================================== */
+
+.periodic-table-modal {
+    isolation: isolate;
+    background:
+        radial-gradient(60% 40% at 0% 0%, rgba(99, 102, 241, 0.22), transparent 70%),
+        radial-gradient(50% 40% at 100% 100%, rgba(236, 72, 153, 0.16), transparent 70%),
+        #0f172a;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 0 0 1px rgba(139, 92, 246, 0.18),
+        0 40px 100px -20px rgba(0, 0, 0, 0.9),
+        0 0 120px -40px rgba(139, 92, 246, 0.6);
+}
+/* Banda de aurora superior */
+.periodic-table-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 32px;
+    right: 32px;
+    height: 4px;
+    border-radius: 0 0 6px 6px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #22d3ee, #6366f1);
+    background-size: 300% 100%;
+    animation: ptm-pan 8s linear infinite;
+    z-index: 5;
+    pointer-events: none;
+}
+.periodic-table-modal .modal-header h2 {
+    background: linear-gradient(90deg, #a5b4fc, #f0abfc, #fcd34d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 16px rgba(167, 139, 250, 0.45));
+}
+.periodic-table-modal .btn-close,
+.element-detail-card .btn-close {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+.periodic-table-modal .btn-close:hover,
+.element-detail-card .btn-close:hover {
+    background: #ef4444;
+    color: #fff;
+    transform: rotate(90deg) scale(1.08);
+    box-shadow: 0 8px 20px -6px rgba(239, 68, 68, 0.7);
+}
+
+/* Celdas: brillo de cristal estático encima del color de familia */
+.periodic-table-modal .table-cell-full.active {
+    background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 55%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 4px 10px -6px rgba(0, 0, 0, 0.6);
+}
+.periodic-table-modal .table-cell-full.active:hover {
+    box-shadow:
+        0 0 0 2px #fff,
+        0 0 26px 2px rgba(255, 255, 255, 0.35),
+        0 20px 25px -5px rgba(0, 0, 0, 0.45);
+}
+.periodic-table-modal .extra-rows-label {
+    letter-spacing: 0.12em;
+    color: #a5b4fc;
+}
+
+/* Ficha de detalle del elemento con halo de su familia */
+.element-detail-card .element-scientific-box {
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--element-color, #8b8b8b) 40%, transparent),
+        0 0 60px -14px var(--element-color, #8b8b8b);
+}
+
+@keyframes ptm-pan { to { background-position: 300% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .periodic-table-modal::before { animation: none; }
+}

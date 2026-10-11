@@ -5,6 +5,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
+import './LluviaDePalabras.css';
 
 const SPAWN_RATE_START = 2000;
 const INITIAL_SPEED = 0.15;
@@ -41,8 +42,10 @@ const gridStyles = `
 `;
 
 const LluviaDePalabras = ({ onGameComplete } = {}) => {
+    // eslint-disable-next-line no-unused-vars
     const { toast } = useToast();
     const { level, grade, subjectId } = useParams();
+    // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate();
 
     // --- ESTADOS ---
@@ -303,6 +306,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
             return nextWords;
         });
         requestRef.current = requestAnimationFrame(updateGame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gamePhase, availableWords, categories]);
 
     useEffect(() => {
@@ -347,20 +351,30 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     // 1. MENÚ (UI REDISEÑADA Y MODERNA)
     if (gamePhase === 'menu') {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[85vh] text-center px-4 max-w-4xl mx-auto py-10">
+            <div className="lluvia-menu relative flex flex-col items-center justify-center min-h-[85vh] text-center px-4 max-w-4xl mx-auto py-10">
+                {/* Fondo decorativo: orbes + gotas de lluvia */}
+                <div className="lluvia-fx" aria-hidden="true">
+                    <span className="lluvia-fx-orb a" />
+                    <span className="lluvia-fx-orb b" />
+                    <span className="lluvia-fx-rain" />
+                </div>
+
                 {/* ICONO FLOTANTE */}
                 <motion.div
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="mb-6 p-6 bg-white rounded-[2rem] shadow-2xl shadow-blue-100 rotate-3"
+                    className="lluvia-hero-icon mb-6 p-6 rounded-[2rem] rotate-3"
                 >
                     <CloudRain className="w-16 h-16 text-blue-500 fill-blue-50" />
+                    <span className="lluvia-hero-drop d1" aria-hidden="true" />
+                    <span className="lluvia-hero-drop d2" aria-hidden="true" />
+                    <span className="lluvia-hero-drop d3" aria-hidden="true" />
                 </motion.div>
 
                 {/* TÍTULO CON DEGRADADO */}
                 <div className="mb-10 md:mb-14 relative z-10">
-                    <h2 className="text-5xl md:text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-600 to-pink-500 bg-clip-text text-transparent drop-shadow-sm pb-2 font-fredoka">
+                    <h2 className="lluvia-title text-5xl md:text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-600 to-pink-500 bg-clip-text text-transparent drop-shadow-sm pb-2 font-fredoka">
                         {configData.title || "Lluvia de Palabras"}
                     </h2>
                     <p className="text-xl text-white/85 drop-shadow-md max-w-lg mx-auto leading-relaxed font-fredoka">
@@ -381,7 +395,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                         >
                             {[
                                 { id: 'easy', emoji: '🌱', label: 'Fácil', sub: '2 Cajas', accent: 'bg-green-500', shadow: 'shadow-green-200' },
-                                { id: 'medium', emoji: '🚀', label: 'Medio', sub: '3 Cajas + Ayuda', accent: 'bg-blue-500', shadow: 'shadow-blue-200' },
+                                { id: 'medium', emoji: '🚀', label: 'Medio', sub: '3 Cajas + Ayuda', accent: 'bg-amber-400', shadow: 'shadow-amber-200' },
                                 { id: 'hard', emoji: '🔥', label: 'EXAMEN', sub: '3 Cajas sin Ayudas', accent: 'bg-red-500', shadow: 'shadow-red-200' }
                             ].map((mode) => (
                                 <motion.button
@@ -390,8 +404,8 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => mode.id === 'hard' ? setShowExamMenu(true) : startGame(mode.id)}
                                     className={`
-                                        group relative w-full h-48 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-50
-                                        ${mode.shadow}
+                                        lluvia-mode lluvia-mode--${mode.id}
+                                        group relative w-full h-48 rounded-3xl transition-all duration-300 overflow-hidden
                                     `}
                                 >
                                     {/* Fondo acento suave */}
@@ -399,7 +413,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity ${mode.accent}`} />
 
                                     <div className="flex flex-col items-center justify-center h-full gap-3 p-4">
-                                        <span className="text-5xl filter drop-shadow-md mb-2">{mode.emoji}</span>
+                                        <span className="lluvia-mode-icon text-5xl filter drop-shadow-md mb-2">{mode.emoji}</span>
                                         <h3 className="text-2xl font-black text-slate-800 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-slate-600 transition-colors font-fredoka">
                                             {mode.label}
                                         </h3>
@@ -440,15 +454,15 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => startGame('hard', subMode.speed, subMode.spawn, subMode.id)}
                                         className={`
-                                            group relative w-full h-56 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-50
-                                            ${subMode.shadow}
+                                            lluvia-mode lluvia-mode--exam lluvia-mode--${subMode.id}
+                                            group relative w-full h-56 rounded-3xl transition-all duration-300 overflow-hidden
                                         `}
                                     >
                                         <div className={`absolute top-0 w-full h-2 ${subMode.accent}`} />
                                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity ${subMode.accent}`} />
 
                                         <div className="flex flex-col items-center justify-center h-full gap-2 p-4">
-                                            <span className="text-5xl filter drop-shadow-md mb-1">{subMode.emoji}</span>
+                                            <span className="lluvia-mode-icon text-5xl filter drop-shadow-md mb-1">{subMode.emoji}</span>
                                             <h3 className="text-lg font-black text-slate-800 tracking-tight font-fredoka">
                                                 {subMode.label}
                                             </h3>
@@ -488,7 +502,11 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
         const subModeLabel = examSubMode === 'slow' ? 'Lento' : examSubMode === 'fast' ? 'Rápido' : examSubMode === 'normal' ? 'Normal' : null;
 
         return (
-            <div className="flex flex-col items-center justify-center min-h-[85vh] gap-8 text-center px-4 max-w-4xl mx-auto py-10">
+            <div className="lluvia-over relative flex flex-col items-center justify-center min-h-[85vh] gap-8 text-center px-4 max-w-4xl mx-auto py-10">
+                <div className="lluvia-fx" aria-hidden="true">
+                    <span className="lluvia-fx-orb a" />
+                    <span className="lluvia-fx-orb b" />
+                </div>
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -500,21 +518,29 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
                         {/* CARD PUNTUACIÓN */}
-                        <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200/60 border border-slate-50 flex flex-col items-center justify-center">
+                        <div className="lluvia-result-card p-8 rounded-[2.5rem] flex flex-col items-center justify-center">
                             <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Palabras Correctas</p>
                             <div className="flex items-baseline gap-2">
-                                <span className="text-7xl font-black text-slate-800 font-fredoka">{correctWords}</span>
+                                <span className="lluvia-big-num text-7xl font-black font-fredoka">{correctWords}</span>
                                 {isExam && <span className="text-2xl text-slate-300 font-bold">/ 30</span>}
                             </div>
                         </div>
 
                         {/* CARD NOTA (Solo en examen o siempre para feedback) */}
-                        <div className={`p-8 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center border ${isExam ? 'bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-blue-200' : 'bg-white border-slate-50 shadow-slate-200/60'}`}>
+                        <div className={`lluvia-result-card lluvia-nota-card p-8 rounded-[2.5rem] flex flex-col items-center justify-center ${isExam ? 'is-exam' : ''}`}>
                             <p className={`text-xs font-black uppercase tracking-[0.2em] mb-4 ${isExam ? 'text-blue-100' : 'text-slate-400'}`}>Nota Final</p>
-                            <div className="flex items-baseline gap-1">
-                                <span className={`text-7xl font-black font-fredoka ${!isExam && 'text-slate-800'}`}>{examGrade}</span>
-                                <span className={`text-2xl font-bold ${isExam ? 'text-blue-300' : 'text-slate-300'}`}>/ 10</span>
+                            <div
+                                className={`lluvia-nota-ring fx-grade-ring ${finalNotaNum >= 8 ? 'is-high' : finalNotaNum >= 5 ? 'is-mid' : 'is-low'}`}
+                                style={{ '--fx-grade': Math.min(10, finalNotaNum) }}
+                            >
+                                <div className="flex items-baseline gap-1">
+                                    <span className="lluvia-nota-num text-6xl font-black font-fredoka">{examGrade}</span>
+                                    <span className="lluvia-nota-den text-xl font-bold">/ 10</span>
+                                </div>
                             </div>
+                            <span className={`lluvia-nota-msg ${finalNotaNum >= 8 ? 'is-high' : finalNotaNum >= 5 ? 'is-mid' : 'is-low'}`}>
+                                {finalNotaNum >= 9 ? '¡Excelente! 🌟' : finalNotaNum >= 7 ? '¡Muy bien! 👏' : finalNotaNum >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖'}
+                            </span>
 
                             {isExam && modifier !== 0 && (
                                 <div className="mt-4 w-full text-center text-xs font-semibold text-blue-100 space-y-1">
@@ -552,7 +578,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                         <Button variant="ghost" size="lg" onClick={returnToMenu} className="gap-2 rounded-2xl h-14 text-slate-500 hover:text-slate-800 font-bold px-8">
                             <Menu className="w-5 h-5" /> Menú Principal
                         </Button>
-                        <Button size="lg" onClick={() => startGame(difficulty)} className="gap-4 rounded-2xl h-14 bg-slate-900 hover:bg-slate-800 text-white font-black px-10 shadow-xl transition-all hover:scale-105 active:scale-95">
+                        <Button size="lg" onClick={() => startGame(difficulty)} className="lluvia-retry gap-4 rounded-2xl h-14 bg-slate-900 hover:bg-slate-800 text-white font-black px-10 shadow-xl transition-all hover:scale-105 active:scale-95">
                             <RotateCcw className="w-5 h-5" /> REINTENTAR
                         </Button>
                     </div>
@@ -566,8 +592,13 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
     const colWidthPercent = 100 / numCols;
 
     return (
-        <div className="relative w-full max-w-2xl mx-auto h-[80vh] bg-slate-900 overflow-hidden rounded-xl border-4 border-slate-800 shadow-2xl select-none touch-none">
+        <div className="lluvia-stage relative w-full max-w-2xl mx-auto h-[80vh] bg-slate-900 overflow-hidden rounded-xl border-4 border-slate-800 shadow-2xl select-none touch-none">
             <style>{gridStyles}</style>
+
+            {/* Cielo nocturno con lluvia ligera (decorativo) */}
+            <div className="lluvia-stage-sky" aria-hidden="true">
+                <span className="lluvia-fx-rain" />
+            </div>
 
             {/* FONDO GRID ANIMADO */}
             <div className="absolute inset-0 scrolling-grid pointer-events-none opacity-40"></div>
@@ -609,8 +640,16 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                 </div>
 
                 <div className="flex flex-col items-end gap-2">
-                    <div className="bg-white px-4 py-1.5 rounded-full font-black text-slate-900 shadow-lg border-2 border-slate-200 text-lg min-w-[80px] text-center">
-                        {score}
+                    <div className="lluvia-score bg-white px-4 py-1.5 rounded-full font-black text-slate-900 shadow-lg border-2 border-slate-200 text-lg min-w-[80px] text-center">
+                        <motion.span
+                            key={score}
+                            className="inline-block"
+                            initial={{ scale: 1.45 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 520, damping: 16 }}
+                        >
+                            {score}
+                        </motion.span>
                     </div>
                     <div className="flex gap-1">
                         {[...Array(3)].map((_, i) => (
@@ -725,7 +764,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                 initial={{ opacity: 0, scale: 0.5, x: "-50%" }}
                                 animate={{ opacity: 1, scale: 1, x: "-50%" }}
                                 exit={{ opacity: 0, scale: 0, x: "-50%" }}
-                                className={`absolute px-4 py-2 rounded-xl shadow-xl border-2 font-bold text-base md:text-lg whitespace-nowrap z-10 ${bgClass} ${textClass}`}
+                                className={`lluvia-word absolute px-4 py-2 rounded-xl shadow-xl border-2 font-bold text-base md:text-lg whitespace-nowrap z-10 ${bgClass} ${textClass}`}
                                 style={{
                                     left: `${(word.colIndex * colWidthPercent) + (colWidthPercent / 2)}%`,
                                     top: `${word.y}%`
@@ -740,7 +779,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
 
             {/* ZONA INFERIOR (CAJAS) */}
             <div
-                className="absolute bottom-0 w-full h-[16%] bg-slate-900 border-t border-slate-700 grid items-start z-20 pt-0"
+                className="lluvia-floor absolute bottom-0 w-full h-[16%] bg-slate-900 border-t border-slate-700 grid items-start z-20 pt-0"
                 style={{ gridTemplateColumns: `repeat(${numCols}, 1fr)` }}
             >
                 <AnimatePresence mode='popLayout'>
@@ -751,7 +790,7 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
                                 layoutId={cat.id}
                                 animate={getBoxAnimation(index)}
                                 className={`
-                                    relative h-full w-[92%] max-w-[300px]
+                                    lluvia-box relative h-full w-[92%] max-w-[300px]
                                     ${cat.color} 
                                     rounded-b-[2rem] rounded-t-none
                                     shadow-2xl flex items-center justify-center 

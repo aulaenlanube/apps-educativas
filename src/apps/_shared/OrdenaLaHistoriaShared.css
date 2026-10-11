@@ -381,3 +381,113 @@ input[type="range"].font-slider::-moz-range-thumb {
     border: 3px solid white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+/* ==========================================================================
+   Capa "premium" propia de Ordena la Historia (utilidades comunes sp-* en
+   SharedPremium.css). OJO: las .frase usan animación FLIP con transform
+   inline, así que aquí NO se anima ni se cambia transform en .frase.
+   ========================================================================== */
+
+.ordena-historia-container .zona-frases {
+    background:
+        radial-gradient(120% 90% at 0% 0%, rgba(20, 184, 166, 0.10), transparent 60%),
+        #f0fdfa;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.ordena-historia-container .frase {
+    position: relative;
+    border-radius: 16px;
+    border-color: rgba(99, 102, 241, 0.16);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 70%),
+        var(--app-bg);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 8px 18px -12px rgba(49, 46, 129, 0.45);
+    transition: background-color 0.2s, box-shadow 0.25s, border-color 0.2s;
+}
+/* Barra de color a la izquierda (decorativa) */
+.ordena-historia-container .frase::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(180deg, #8b5cf6, #ec4899);
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+.ordena-historia-container .frase:hover {
+    border-color: rgba(139, 92, 246, 0.45);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 0 3px rgba(139, 92, 246, 0.1),
+        0 16px 28px -14px rgba(124, 58, 237, 0.55);
+}
+.ordena-historia-container .frase:hover::before { opacity: 1; }
+.ordena-historia-container .frase.dragging::before { opacity: 0; }
+
+.ordena-historia-container .frase-controls {
+    background: linear-gradient(180deg, #f8fafc, #eef2ff);
+    border-left-color: rgba(99, 102, 241, 0.15);
+}
+.ordena-historia-container button.btn-move:hover:not(:disabled) {
+    background-color: rgba(139, 92, 246, 0.14);
+    color: #6d28d9;
+}
+.ordena-historia-container button.btn-move:active:not(:disabled) {
+    background-color: rgba(139, 92, 246, 0.24);
+}
+
+.ordena-historia-container #feedback.correcta,
+.ordena-historia-container #feedback.incorrecta { border-radius: 999px; padding: 10px 20px; }
+
+.caja-solucion-historia {
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(99, 102, 241, 0.08));
+    border-color: rgba(14, 165, 233, 0.3);
+    color: var(--app-text);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 14px 30px -22px rgba(14, 165, 233, 0.8);
+}
+
+.ordena-historia-container .font-slider-container { border-radius: 16px; }
+.ordena-historia-container input[type="range"].font-slider {
+    background: linear-gradient(90deg, #a78bfa, #f472b6, #fbbf24);
+}
+.ordena-historia-container .ordena-h-puntos { border-radius: 999px; }
+
+.frase-clone {
+    border-radius: 16px;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18), 0 18px 34px -10px rgba(76, 29, 149, 0.55);
+}
+
+/* Modo oscuro */
+html.dark .ordena-historia-container .zona-frases {
+    background: radial-gradient(120% 90% at 0% 0%, rgba(20, 184, 166, 0.16), transparent 60%), rgba(20, 184, 166, 0.05);
+    border-color: rgba(45, 212, 191, 0.3);
+}
+html.dark .ordena-historia-container .frase {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 70%), var(--app-bg-elevated);
+    border-color: rgba(167, 139, 250, 0.22);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 18px -12px rgba(0, 0, 0, 0.6);
+}
+html.dark .ordena-historia-container .frase-controls {
+    background: rgba(255, 255, 255, 0.04);
+    border-left-color: rgba(255, 255, 255, 0.08);
+}
+html.dark .ordena-historia-container button.btn-move:first-child { border-bottom-color: rgba(255, 255, 255, 0.08); }
+html.dark .ordena-historia-container button.btn-move:hover:not(:disabled) { color: #ddd6fe; }
+html.dark .ordena-historia-container .instrucciones { color: var(--app-text-secondary); }
+html.dark .ordena-historia-container .font-slider-container {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+html.dark .ordena-historia-container .font-slider-labels { color: var(--app-text-secondary); }
+html.dark .ordena-historia-container #feedback.correcta { background-color: rgba(16, 185, 129, 0.16); color: #6ee7b7; }
+html.dark .ordena-historia-container #feedback.incorrecta { background-color: rgba(239, 68, 68, 0.16); color: #fca5a5; }
+html.dark .ordena-h-nota.excellent { background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.08)); }
+html.dark .ordena-h-nota.good { background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(59, 130, 246, 0.08)); }
+html.dark .ordena-h-nota.fail { background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(239, 68, 68, 0.08)); }

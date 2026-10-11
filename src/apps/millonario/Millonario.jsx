@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Trophy, Users, RefreshCw, GraduationCap, Gamepad2, Timer, Award,
+  Trophy, Users, RefreshCw, Timer,
   Check, X, Crown, Zap, Shuffle, Sparkles,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
@@ -52,6 +52,19 @@ const MODE_CONFIG = {
 };
 
 const OPTION_LETTERS = ['A', 'B', 'C', 'D'];
+
+// Fondo decorativo de plató: orbes dorado/índigo, focos y destellos.
+const MillDecor = () => (
+  <div className="mill-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="mill-decor-grid fx-grid-bg" />
+    <span className="mill-spot left" />
+    <span className="mill-spot right" />
+    {Array.from({ length: 7 }).map((_, i) => (
+      <span key={i} className={`mill-star s${i}`} />
+    ))}
+  </div>
+);
 
 const shuffle = (arr) => {
   const a = [...arr];
@@ -453,6 +466,7 @@ const Millonario = ({ onGameComplete }) => {
 
   return (
     <div className="mill-root">
+      <MillDecor />
       <motion.div
         className="mill-card"
         initial={{ opacity: 0, y: 20 }}
@@ -480,7 +494,14 @@ const Millonario = ({ onGameComplete }) => {
             )}
             <div className="mill-stat prize">
               <Crown size={16} />
-              <span>{formatMoney(reachedPrize)}</span>
+              <motion.span
+                key={reachedPrize}
+                initial={{ scale: 1.5, opacity: 0.4 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+              >
+                {formatMoney(reachedPrize)}
+              </motion.span>
             </div>
           </div>
         </div>
@@ -494,7 +515,7 @@ const Millonario = ({ onGameComplete }) => {
           {Object.entries(MODE_CONFIG).map(([key, c]) => (
             <button
               key={key}
-              className={`mill-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`}
+              className={`mill-gamemode-tab fx-shine ${gameMode === key ? 'active' : ''} ${key}`}
               onClick={() => setGameMode(key)}
             >
               <span className="mill-tab-icon">{c.icon}</span>
@@ -509,9 +530,11 @@ const Millonario = ({ onGameComplete }) => {
           {isFinished && (
             <motion.div
               className={`mill-result ${status}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
             >
+              <span className="mill-result-rays" aria-hidden="true" />
               <div className="mill-result-icon">
                 {status === 'won' ? <Crown size={48} /> : <Trophy size={48} />}
               </div>
@@ -523,14 +546,22 @@ const Millonario = ({ onGameComplete }) => {
                 <>
                   {/* Nota principal sobre 10 */}
                   <div className={`mill-nota ${notaColor}`}>
-                    <div className="mill-nota-big">
-                      {nota.toFixed(1)}
-                      <span className="mill-nota-small">/10</span>
+                    <div
+                      className="mill-nota-ring fx-grade-ring"
+                      style={{
+                        '--fx-grade': nota,
+                        '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                      }}
+                    >
+                      <div className="mill-nota-big">
+                        {nota.toFixed(1)}
+                        <span className="mill-nota-small">/10</span>
+                      </div>
                     </div>
                     <div className="mill-nota-msg">{notaMsg}</div>
                   </div>
                   {/* Dinero como récord superable */}
-                  <div className="mill-result-record">
+                  <div className="mill-result-record fx-shine fx-shine--auto">
                     <Crown size={16} />
                     <span className="mill-result-record-value">
                       {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
@@ -554,7 +585,7 @@ const Millonario = ({ onGameComplete }) => {
                   </div>
                 )}
               </div>
-              <button className="mill-btn primary" onClick={startGame}>
+              <button className="mill-btn primary fx-shine" onClick={startGame}>
                 <RefreshCw size={16} /> Jugar otra vez
               </button>
             </motion.div>
@@ -616,6 +647,7 @@ const Millonario = ({ onGameComplete }) => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
+                  <span className="mill-question-beam" aria-hidden="true" />
                   <div className="mill-question-text">{currentQ.question}</div>
                 </motion.div>
               </AnimatePresence>

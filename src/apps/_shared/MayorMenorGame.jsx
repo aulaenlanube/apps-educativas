@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { BookOpen, GraduationCap } from 'lucide-react';
 import './MayorMenor.css';
+import './SharedPremium.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
 const BASE_POINTS_PER_HIT = 200;
@@ -41,7 +43,6 @@ const generateOrderProblem = (level, count = 3) => {
     for (let i = 0; i < count; i++) {
         let val;
         let text;
-        const allowDecimals = level >= 5;
 
         // Generar un valor base y luego convertirlo en expresión si el nivel lo permite
         if (level === 1) {
@@ -478,8 +479,24 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
     // Renderizado de Resultados
     if (isTestMode && testStats.finished) {
         return (
-            <div className="mayor-menor-container">
-                <h1><span className="gradient-text">Resultados</span></h1>
+            <div className="mayor-menor-container sp-shell">
+                <h1 className="sp-title"><span className="gradient-text">Resultados</span></h1>
+                {/* Nota /10 como elemento héroe (misma fórmula estándar: aciertos/total·10) */}
+                {(() => {
+                    const notaMM = Math.round((testStats.score / TOTAL_TEST_QUESTIONS) * 100) / 10;
+                    const colorMM = notaMM >= 8 ? '#10b981' : notaMM >= 5 ? '#3b82f6' : '#ef4444';
+                    const msgMM = notaMM >= 9 ? '¡Excelente! 🌟' : notaMM >= 7 ? '¡Muy bien! 👏' : notaMM >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+                    return (
+                        <div className="mm-grade-hero">
+                            <div className="sp-grade-ring" style={{ '--sp-grade': notaMM, '--sp-grade-color': colorMM }}>
+                                <div className="mm-grade-value" style={{ color: colorMM }}>
+                                    {notaMM.toFixed(1)}<span className="mm-grade-max">/10</span>
+                                </div>
+                            </div>
+                            <div className="sp-grade-msg mm-grade-msg" style={{ color: colorMM }}>{msgMM}</div>
+                        </div>
+                    );
+                })()}
                 <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
 
                 {testStats.score >= 5 ?
@@ -487,7 +504,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
                     <p className="text-orange-500 font-bold mb-2">¡Sigue practicando! 💪</p>
                 }
 
-                <div className="mb-4 p-3 rounded border bg-slate-50 text-left text-sm" style={{ maxWidth: 360, margin: '0 auto 16px' }}>
+                <div className="sp-points-card mb-4 p-3 rounded border bg-slate-50 text-left text-sm" style={{ maxWidth: 360, margin: '0 auto 16px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Aciertos ({testStats.score}/{TOTAL_TEST_QUESTIONS} × {BASE_POINTS_PER_HIT})</span>
                         <strong>+{basePoints}</strong>
@@ -503,7 +520,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
                     </div>
                 </div>
 
-                <div className="text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
+                <div className="sp-results text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
                     {testStats.answers.map((ans, idx) => (
                         <div key={idx} className={`p-3 mb-2 rounded border ${ans.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
                             <div className="flex justify-between items-center text-lg">
@@ -513,7 +530,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
                         </div>
                     ))}
                 </div>
-                <div className="controles">
+                <div className="controles sp-controls">
                     <button onClick={startTest}>Repetir Examen</button>
                     <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
                 </div>
@@ -524,17 +541,17 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
     // VISTAS DE CONFIGURACIÓN
     if (phase === 'setup' && !fixedMode) {
         return (
-            <div className="mayor-menor-container mm-setup-screen">
+            <div className="mayor-menor-container mm-setup-screen sp-shell">
                 <h1><span className="gradient-text">{title}</span></h1>
                 <p className="instrucciones">¿Qué quieres practicar hoy?</p>
                 <div className="mode-options">
-                    <button className="btn-setup-mode" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
-                        <div className="mode-icon">⚖️</div>
+                    <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
+                        <div className="mode-icon sp-choice-icon">⚖️</div>
                         <div className="mode-name">Comparar</div>
                         <div className="mode-desc">¿Mayor, Menor o Igual?</div>
                     </button>
-                    <button className="btn-setup-mode" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
-                        <div className="mode-icon">🔢</div>
+                    <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
+                        <div className="mode-icon sp-choice-icon">🔢</div>
                         <div className="mode-name">Ordenar</div>
                         <div className="mode-desc">De menor a mayor</div>
                     </button>
@@ -545,12 +562,12 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
 
     if (phase === 'quantity') {
         return (
-            <div className="mayor-menor-container mm-setup-screen">
+            <div className="mayor-menor-container mm-setup-screen sp-shell">
                 <h1><span className="gradient-text">¿Cuántos valores?</span></h1>
                 <p className="instrucciones">Selecciona la cantidad de elementos para ordenar:</p>
                 <div className="quantity-options">
                     {[3, 4, 5].map(n => (
-                        <button key={n} className="btn-quantity" onClick={() => { setOrderCount(n); setPhase('play'); }}>
+                        <button key={n} className="btn-quantity sp-choice" onClick={() => { setOrderCount(n); setPhase('play'); }}>
                             {n}
                         </button>
                     ))}
@@ -563,7 +580,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
     }
 
     return (
-        <div className="mayor-menor-container">
+        <div className="mayor-menor-container sp-shell">
             <div className="mm-game-header">
                 {fixedMode === 'ordenar' ? (
                     <button className="btn-change-mode" onClick={() => { setPhase('quantity'); setIsTestMode(false); }}>
@@ -574,15 +591,21 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
                         🏠 Cambiar Modo
                     </button>
                 ) : null}
-                <h1><span className="gradient-text">{title}</span></h1>
+                <h1 className="sp-title"><span className="gradient-text">{title}</span></h1>
             </div>
 
             <div className="mode-selection test-toggle">
-                <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>Práctica</button>
-                <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Examen</button>
+                <button className={`btn-mode sp-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>
+                    <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+                    Práctica
+                </button>
+                <button className={`btn-mode sp-mode sp-mode--exam ${isTestMode ? 'active' : ''}`} onClick={startTest}>
+                    <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
+                    Examen
+                </button>
             </div>
 
-            {isTestMode && <div className="text-right text-sm text-gray-500 font-bold">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>}
+            {isTestMode && <div className="text-right text-sm text-gray-500 font-bold"><span key={testStats.currentIndex} className="sp-q-chip">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span></div>}
 
             {/* ZONA DE JUEGO */}
             {gameMode === 'comparar' ? (
@@ -630,7 +653,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
 
             {/* FEEDBACK */}
             {!isTestMode && feedback.text && (
-                <div className={`feedback-message ${feedback.type}`}>{feedback.text}</div>
+                <div key={feedback.text} className={`feedback-message sp-fb ${feedback.type}`}>{feedback.text}</div>
             )}
 
             {/* BOTONES DE RESPUESTA SOLO PARA COMPARAR */}
@@ -647,7 +670,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
             )}
 
             {/* CONTROLES */}
-            <div className="controles">
+            <div className="controles sp-controls">
                 {isTestMode ? (
                     <button onClick={checkAnswer}>
                         {testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
@@ -681,4 +704,4 @@ export const OrdenaNumeros4 = (props) => <MayorMenorGame {...props} level={4} ti
 export const OrdenaNumeros5 = (props) => <MayorMenorGame {...props} level={5} title="Ordena Decimales (5º)" fixedMode="ordenar" />;
 export const OrdenaNumeros6 = (props) => <MayorMenorGame {...props} level={6} title="Reto de Ordenación (6º)" fixedMode="ordenar" />;
 
-export default MayorMenorGame;
+export default MayorMenorGame;

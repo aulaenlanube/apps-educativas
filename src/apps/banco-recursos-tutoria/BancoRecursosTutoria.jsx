@@ -41,7 +41,9 @@ const BancoRecursosTutoria = () => {
         return (
             <div className="tutoria-app loading-screen">
                 <div className="loader-container">
-                    <div className="loader"></div>
+                    <div className="loader-halo" aria-hidden="true">
+                        <div className="loader"></div>
+                    </div>
                     <p>Cargando recursos...</p>
                 </div>
             </div>
@@ -61,6 +63,13 @@ const BancoRecursosTutoria = () => {
 
     return (
         <div className="tutoria-app">
+            {/* Fondo decorativo: orbes difusos + rejilla sutil */}
+            <div className="tutoria-backdrop" aria-hidden="true">
+                <span className="tutoria-orb tutoria-orb-1" />
+                <span className="tutoria-orb tutoria-orb-2" />
+                <span className="tutoria-orb tutoria-orb-3" />
+                <span className="tutoria-grid" />
+            </div>
             <header className="tutoria-app-header">
                 <div className="tutoria-app-title-group">
                     <motion.h1
@@ -98,8 +107,10 @@ const BancoRecursosTutoria = () => {
                     exit={{ opacity: 0, y: -30 }}
                     transition={{ duration: 0.4, ease: "circOut" }}
                     className="tutoria-main-content"
+                    style={{ '--block-color': currentBlock.color }}
                 >
                     <section className="block-intro-card">
+                        <span className="block-intro-glow" aria-hidden="true" />
                         <div className="block-intro-content">
                             <h2 style={{ color: currentBlock.color }}>{currentBlock.title}</h2>
                             <p>{currentBlock.desc}</p>

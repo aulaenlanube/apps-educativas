@@ -204,7 +204,8 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
         <div className="infografias-header">
           <div>
             <h1 className="infografias-title">
-              <FileSearch size={28} /> Infografías interactivas
+              <span className="ifx-title-icon" aria-hidden="true"><FileSearch size={26} /></span>
+              <span className="ifx-title-text">Infografías interactivas</span>
             </h1>
             <p className="infografias-subtitle">
               Estudia la imagen y demuestra lo que has aprendido
@@ -215,22 +216,26 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
 
         {available.length === 0 ? (
           <div className="infografias-empty">
-            <Sparkles size={40} />
+            <span className="ifx-empty-icon" aria-hidden="true"><Sparkles size={40} /></span>
             <p>Todavía no hay infografías disponibles para este curso y asignatura.</p>
             <p className="hint">¡Pronto añadiremos más!</p>
           </div>
         ) : (
           <div className="infografias-grid">
-            {available.map((info) => (
+            {available.map((info, idx) => (
               <motion.button
                 key={info.id}
                 className="info-card"
-                whileHover={{ y: -4, scale: 1.02 }}
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(idx, 8) * 0.06, type: 'spring', stiffness: 260, damping: 24 }}
+                whileHover={{ y: -6, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => startInfografia(info)}
               >
                 <div className="info-card-img">
                   <img src={info.image} alt={info.title} loading="lazy" />
+                  <span className="ifx-card-sheen" aria-hidden="true" />
                   <div className="info-card-icon">{info.icon}</div>
                 </div>
                 <div className="info-card-body">
@@ -238,6 +243,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
                   <p>{info.subtitle}</p>
                   <div className="info-card-meta">
                     <span><BookOpen size={14} /> {info.questions.length} preguntas</span>
+                    <span className="ifx-card-go" aria-hidden="true"><ArrowRight size={16} /></span>
                   </div>
                 </div>
               </motion.button>
@@ -271,7 +277,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
         </div>
 
         <div className="study-banner">
-          <Eye size={20} />
+          <span className="ifx-banner-icon" aria-hidden="true"><Eye size={20} /></span>
           <span>
             Observa la infografía todo el tiempo que necesites. Después tendrás que responder a <strong>{selectedInfo.questions.length} preguntas</strong>.
           </span>
@@ -351,6 +357,9 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
   // ─────────────────────────────────────────────────────────────────
   if (phase === PHASE.QUIZ) {
     const allAnswered = selectedInfo.questions.every((_, i) => quizAnswers[i] !== undefined);
+    // Solo visual: barra de progreso de preguntas respondidas
+    const answeredCount = Object.keys(quizAnswers).length;
+    const answeredPct = Math.round((answeredCount / selectedInfo.questions.length) * 100);
     return (
       <div className="infografias-app">
         <div className="phase-header">
@@ -359,9 +368,24 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
           <p>Responde a las {selectedInfo.questions.length} preguntas basándote en lo que has estudiado.</p>
         </div>
 
+        <div className="ifx-progress" aria-hidden="true">
+          <div className="ifx-progress-track">
+            <div className="ifx-progress-fill" style={{ width: `${answeredPct}%` }} />
+          </div>
+          <motion.span
+            key={answeredCount}
+            className="ifx-progress-count"
+            initial={{ scale: 1.35, opacity: 0.4 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 16 }}
+          >
+            {answeredCount}/{selectedInfo.questions.length}
+          </motion.span>
+        </div>
+
         <div className="quiz-list">
           {selectedInfo.questions.map((q, i) => (
-            <div key={i} className="quiz-item">
+            <div key={i} className={`quiz-item ${quizAnswers[i] !== undefined ? 'ifx-answered' : ''}`} style={{ '--ifx-i': i }}>
               <div className="quiz-q">
                 <span className="quiz-num">{i + 1}</span>
                 <p>{q.q}</p>
@@ -372,6 +396,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
                     key={k}
                     type="button"
                     className={`quiz-opt ${quizAnswers[i] === k ? 'selected' : ''}`}
+                    aria-pressed={quizAnswers[i] === k}
                     onClick={() => setQuizAnswers((prev) => ({ ...prev, [i]: k }))}
                   >
                     <span className="quiz-opt-letter">{String.fromCharCode(65 + k)}</span>
@@ -420,7 +445,14 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 18 }}
         >
-          <div className="nota-circle" style={{ borderColor: notaColor, color: notaColor }}>
+          <div
+            className="nota-circle ifx-nota-ring"
+            style={{ borderColor: notaColor, color: notaColor, '--ifx-grade': results.nota, '--ifx-grade-color': notaColor }}
+          >
+            <span className="ifx-nota-halo" aria-hidden="true" />
+            <span className="ifx-nota-sparks" aria-hidden="true">
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((n) => <i key={n} style={{ '--ifx-n': n }} />)}
+            </span>
             <span className="nota-number">{results.nota.toFixed(1)}</span>
             <span className="nota-of">/10</span>
           </div>
@@ -428,11 +460,11 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
         </motion.div>
 
         <div className="summary-stats">
-          <div className="stat-card">
+          <div className="stat-card ifx-stat ifx-stat--ok">
             <div className="stat-label">Aciertos</div>
             <div className="stat-value">{results.correct} / {results.total}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card ifx-stat ifx-stat--time">
             <div className="stat-label">Tiempo</div>
             <div className="stat-value"><Clock size={16} /> {formatTime(results.durationSeconds)}</div>
           </div>
@@ -443,7 +475,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
             <h3><BookOpen size={20} /> Preguntas</h3>
             <ul className="result-list">
               {results.quizResults.map((r, i) => (
-                <li key={i} className={r.isCorrect ? 'ok' : 'wrong'}>
+                <li key={i} className={r.isCorrect ? 'ok' : 'wrong'} style={{ '--ifx-i': i }}>
                   <span className="r-icon">
                     {r.isCorrect ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
                   </span>

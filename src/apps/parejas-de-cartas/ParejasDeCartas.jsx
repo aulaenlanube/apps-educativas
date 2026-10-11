@@ -228,6 +228,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
         resetearTurno();
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eleccionUno, eleccionDos]);
 
   const trackedRef = useRef(false);
@@ -327,13 +328,30 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
   };
   const calcularNota = () => calcularNotaNum().toFixed(1);
 
+  // Solo presentación: detecta si las dos cartas levantadas no son pareja (para el feedback visual)
+  const cartaSel1 = eleccionUno ? cartas.find(c => c.uniqueId === eleccionUno) : null;
+  const cartaSel2 = eleccionDos ? cartas.find(c => c.uniqueId === eleccionDos) : null;
+  const parejaFallida = !!(cartaSel1 && cartaSel2 && cartaSel1.pairId !== cartaSel2.pairId);
+  const MODOS_ENTRENO = ['easy', 'medium', 'hard'];
+  const ICONOS_ENTRENO = ['🌱', '⚡', '🔥'];
+
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-white/80 drop-shadow">Cargando... 🃏</div>;
 
   return (
     <div className="contenedor-parejas">
+      {/* Fondo decorativo: orbes de luz + rejilla */}
+      <div className="parejas-fx" aria-hidden="true">
+        <span className="parejas-fx-orb a" />
+        <span className="parejas-fx-orb b" />
+        <span className="parejas-fx-orb c" />
+        <span className="parejas-fx-grid" />
+      </div>
       {fase === 'menu' && (
         <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center w-full max-w-5xl">
-          <h1 className="text-4xl md:text-6xl font-black mb-10 text-indigo-100 drop-shadow-lg tracking-tight">PAREJAS DE CARTAS</h1>
+          <h1 className="parejas-title text-4xl md:text-6xl font-black mb-10 text-indigo-100 drop-shadow-lg tracking-tight">
+            <span className="parejas-title-cards" aria-hidden="true">🃏</span>
+            PAREJAS DE CARTAS
+          </h1>
 
           <div className="w-full space-y-12">
             {/* SECCIÓN ENTRENAMIENTO */}
@@ -347,9 +365,11 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                 {opcionesEntrenamiento.map((op, idx) => (
                   <button
                     key={idx}
-                    className="btn-dificultad"
+                    className={`btn-dificultad parejas-mode parejas-mode--${MODOS_ENTRENO[idx] || 'easy'}`}
+                    style={{ animationDelay: `${0.08 + idx * 0.08}s` }}
                     onClick={() => iniciarJuego(op)}
                   >
+                    <span className="parejas-mode-icon" aria-hidden="true">{ICONOS_ENTRENO[idx]}</span>
                     <div className="text-2xl font-bold mb-1">{op.nombre}</div>
                     <div className="text-sm opacity-80 font-medium">
                       {op.filas}x{op.columnas} • {op.parejas} parejas
@@ -370,18 +390,19 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                 {opcionesExamen.map((op, idx) => (
                   <button
                     key={idx}
-                    className="btn-dificultad btn-examen"
+                    className="btn-dificultad btn-examen parejas-mode parejas-mode--exam"
+                    style={{ animationDelay: `${0.32 + idx * 0.08}s` }}
                     onClick={() => iniciarJuego(op)}
                   >
+                    <span className="parejas-mode-icon" aria-hidden="true">{op.icono}</span>
                     <div className="text-2xl font-bold mb-1 flex items-center gap-2">
-                      <span>{op.icono}</span>
                       {op.nombre}
                     </div>
                     <div className="text-sm opacity-90 font-medium">
                       {op.filas}x{op.columnas} • {op.parejas} parejas
                     </div>
                     {op.notaModifier !== 0 && (
-                      <div className={`text-xs font-bold mt-1 ${op.notaModifier > 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+                      <div className={`parejas-mod-chip ${op.notaModifier > 0 ? 'is-plus' : 'is-minus'} text-xs font-bold mt-1 ${op.notaModifier > 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
                         {op.notaModifier > 0 ? `+${op.notaModifier} a la nota` : `${op.notaModifier} a la nota`}
                       </div>
                     )}
@@ -395,7 +416,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
 
       {(fase === 'juego' || fase === 'resumen') && (
         <div className="juego-area relative w-full flex flex-col justify-center items-center animate-fade-in gap-4">
-          <h1 className="text-3xl md:text-5xl font-black text-indigo-100 drop-shadow-lg tracking-tight mb-2 uppercase">PAREJAS DE CARTAS</h1>
+          <h1 className="parejas-title parejas-title--small text-3xl md:text-5xl font-black text-indigo-100 drop-shadow-lg tracking-tight mb-2 uppercase">PAREJAS DE CARTAS</h1>
 
           {/* --- BARRA DE CONTROLES SUPERIOR --- */}
           <div className="w-full max-w-[1000px] flex flex-wrap justify-center items-center px-2 z-20 gap-4 md:gap-6 mb-2">
@@ -409,9 +430,9 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
 
             {/* Si es examen mostramos VIDAS, si no, botón de ayudas */}
             {config.isExam ? (
-              <div className="px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg shadow-md border-2 bg-red-100 border-red-300 text-red-600 flex items-center gap-2">
+              <div className="parejas-vidas px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg shadow-md border-2 bg-red-100 border-red-300 text-red-600 flex items-center gap-2">
                 Vidas: {Array(3).fill(0).map((_, i) => (
-                  <span key={i} className={i < vidas ? 'opacity-100' : 'opacity-30 grayscale'}>❤️</span>
+                  <span key={i} className={`parejas-vida ${i < vidas ? 'opacity-100' : 'opacity-30 grayscale is-lost'}`}>❤️</span>
                 ))}
               </div>
             ) : (
@@ -471,7 +492,9 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
               const esImagen = typeof carta.contenido === 'string' && (carta.contenido.includes('.png') || carta.contenido.includes('.webp') || carta.contenido.includes('.jpg'));
               const esTexto = typeof carta.contenido === 'string' && contieneLetras(carta.contenido);
 
+              // eslint-disable-next-line no-unused-vars
               const baseSizeRem = config.columnas >= 6 ? 4.5 : config.columnas >= 5 ? 5.5 : 7;
+              // eslint-disable-next-line no-unused-vars
               const vwFactor = 25 / config.columnas;
 
               let estiloContenido = {};
@@ -526,6 +549,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
               const claseFlip = estaGirada ? 'flipped' : '';
               const claseMatch = carta.matched ? 'matched' : '';
               const claseShake = restarting ? 'shaking' : '';
+              const claseFallo = parejaFallida && estaSeleccionada ? 'fallo' : '';
 
               const estiloAnimacion = restarting
                 ? { animationDelay: `${getRandomDelay(carta.uniqueId)}s` }
@@ -534,7 +558,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
               return (
                 <div
                   key={carta.uniqueId}
-                  className={`carta ${claseFlip} ${claseMatch} ${clasePeek} ${claseShake}`}
+                  className={`carta ${claseFlip} ${claseMatch} ${clasePeek} ${claseShake} ${claseFallo}`}
                   style={estiloAnimacion}
                   onClick={() => !bloqueado && !restarting && !revealing && !carta.matched && carta.uniqueId !== eleccionUno && handleEleccion(carta)}
                 >
@@ -548,6 +572,7 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                     )}
                   </div>
                   <div className="carta-cara carta-dorso">
+                    <span className="carta-dorso-gema" aria-hidden="true" />
                     <span className="opacity-50 select-none">?</span>
                   </div>
                 </div>
@@ -557,18 +582,29 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
 
           {fase === 'resumen' && !restarting && !revealing && (
             <div className="overlay-resumen">
-              <div className="resumen-parejas">
+              <div className="resumen-parejas parejas-resumen">
                 {config.isExam ? (
                   // RESUMEN MODO EXAMEN
                   <>
                     <h2 className="text-4xl font-bold mb-2 text-indigo-900">
                       {vidas > 0 ? '¡Examen Aprobado! 🎓' : 'Examen Finalizado 🔔'}
                     </h2>
-                    <div className="my-6 py-4 bg-slate-50 rounded-xl border-2 border-indigo-100">
+                    <div className="parejas-nota my-6 py-4 bg-slate-50 rounded-xl border-2 border-indigo-100">
                       <p className="text-lg text-gray-600 mb-1">Tu nota es</p>
-                      <span className={`text-6xl font-black ${vidas > 0 ? 'text-emerald-500' : 'text-red-500'}`}>
-                        {calcularNota()}
-                      </span>
+                      {(() => {
+                        const notaNum = calcularNotaNum();
+                        const tono = notaNum >= 8 ? 'is-high' : notaNum >= 5 ? 'is-mid' : 'is-low';
+                        const notaMsg = notaNum >= 9 ? '¡Excelente! 🌟' : notaNum >= 7 ? '¡Muy bien! 👏' : notaNum >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+                        return (
+                          <>
+                            <div className={`parejas-nota-ring fx-grade-ring ${tono}`} style={{ '--fx-grade': notaNum }}>
+                              <span className="parejas-nota-num">{calcularNota()}<small>/10</small></span>
+                            </div>
+                            <div className={`parejas-nota-msg ${tono}`}>{notaMsg}</div>
+                          </>
+                        );
+                      })()}
+                      <p className="parejas-nota-turnos">{cartas.filter(c => c.matched).length / 2} de {config.parejas} parejas · {turnos} turnos</p>
                       {config.notaModifier !== 0 && (
                         <p className={`text-sm mt-2 font-bold ${config.notaModifier > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                           {config.notaModifier > 0
@@ -582,14 +618,15 @@ const ParejasDeCartas = ({ tema, onGameComplete }) => {
                 ) : (
                   // RESUMEN MODO NORMAL
                   <>
+                    <div className="parejas-trofeo" aria-hidden="true">🏆</div>
                     <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
                     <p className="text-lg text-gray-700 mb-6">Completado en <span className="font-bold text-indigo-600 text-2xl">{turnos}</span> turnos.</p>
                   </>
                 )}
 
                 <div className="flex flex-col gap-3">
-                  <button onClick={reiniciarNivel} className="px-8 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 shadow-lg">Intentar de nuevo</button>
-                  <button onClick={volverAlMenu} className="px-8 py-3 bg-transparent border-2 border-indigo-600 text-indigo-600 rounded-full font-bold hover:bg-indigo-50">Cambiar dificultad</button>
+                  <button onClick={reiniciarNivel} className="parejas-btn-primary px-8 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 shadow-lg">Intentar de nuevo</button>
+                  <button onClick={volverAlMenu} className="parejas-btn-ghost px-8 py-3 bg-transparent border-2 border-indigo-600 text-indigo-600 rounded-full font-bold hover:bg-indigo-50">Cambiar dificultad</button>
                 </div>
               </div>
             </div>

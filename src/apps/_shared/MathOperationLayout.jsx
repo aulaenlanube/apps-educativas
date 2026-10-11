@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '/src/apps/_shared/MathBoxShared.css';
+import { BookOpen, GraduationCap, Trophy, Zap, Star } from 'lucide-react';
 import InstructionsModal, { InstructionsButton } from './InstructionsModal';
 
 /**
@@ -161,11 +162,14 @@ const MathOperationLayout = ({
   const showingTestResults = hasTestMode && isTestMode && showResults;
 
   return (
-    <div id="app-container">
+    <div id="app-container" className="math-shell">
+      {/* Capa decorativa: orbes de luz + rejilla sutil */}
+      <span className="math-bg-fx" aria-hidden="true" />
+
       {/* Header */}
-      <div className="flex items-center justify-center gap-3 mb-4">
+      <div className="math-header flex items-center justify-center gap-3 mb-4">
         <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight">
-          <span role="img" aria-label={title}>{emoji}</span>{' '}
+          <span className="math-title-emoji" role="img" aria-label={title}>{emoji}</span>{' '}
           <span className="gradient-text">{title}</span>
         </h1>
         <InstructionsButton onClick={() => setShowHelp(true)} />
@@ -175,33 +179,31 @@ const MathOperationLayout = ({
       {hasTestMode && (
         <div className="mode-selection">
           <button
-            className={`btn-mode ${!isTestMode ? 'active' : ''}`}
+            className={`btn-mode math-mode-btn math-mode-btn--practice ${!isTestMode ? 'active' : ''}`}
             onClick={() => { setTestMode(false); actions.startPractice(); }}
           >
+            <span className="math-mode-icon" aria-hidden="true"><BookOpen size={18} /></span>
             Practica Libre
           </button>
-          <button className="btn-mode" onClick={actions.startTest}>Iniciar Examen</button>
+          <button className={`btn-mode math-mode-btn math-mode-btn--exam ${isTestMode ? 'is-current' : ''}`} onClick={actions.startTest}>
+            <span className="math-mode-icon" aria-hidden="true"><GraduationCap size={18} /></span>
+            Iniciar Examen
+          </button>
         </div>
       )}
 
       {/* Toggle (opcional) */}
       {toggleLabel && onToggleChange && (
-        <div id="options-area" style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', marginBottom: 16 }}>
-          <span style={{ fontWeight: 500, color: 'var(--app-text-secondary)', fontSize: '0.95em' }}>{toggleLabel}</span>
+        <div id="options-area" className="math-options">
+          <span className="math-toggle-label">{toggleLabel}</span>
           <div
+            className={`math-toggle ${toggleValue ? 'is-on' : ''}`}
             onClick={() => onToggleChange(!toggleValue)}
-            style={{
-              width: 52, height: 28, borderRadius: 14, cursor: 'pointer',
-              background: toggleValue ? '#2563eb' : '#cbd5e1',
-              position: 'relative', transition: 'background 0.2s',
-            }}
+            role="switch"
+            aria-checked={!!toggleValue}
+            aria-label={toggleLabel}
           >
-            <div style={{
-              width: 22, height: 22, borderRadius: '50%', background: 'white',
-              position: 'absolute', top: 3,
-              left: toggleValue ? 27 : 3,
-              transition: 'left 0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-            }} />
+            <div className="math-toggle-knob" />
           </div>
         </div>
       )}
@@ -209,10 +211,10 @@ const MathOperationLayout = ({
       {/* Cabecera del Test (Progreso) */}
       {hasTestMode && isTestMode && !showResults && (
         <>
-          <div className="test-header">
-            <div>Pregunta {currentQuestionIndex + 1} / {totalQuestions}</div>
+          <div className="test-header math-test-header">
+            <div key={currentQuestionIndex} className="math-q-chip">Pregunta {currentQuestionIndex + 1} / {totalQuestions}</div>
           </div>
-          <div className="progress-bar-container">
+          <div className="progress-bar-container math-progress">
             <div className="progress-bar" style={{ width: `${progressPct}%` }} />
           </div>
         </>
@@ -220,7 +222,7 @@ const MathOperationLayout = ({
 
       {/* AREA PRINCIPAL: Resultados del Test O el Tablero */}
       {showingTestResults ? (
-        <div className="test-results" style={{ marginTop: 20 }}>
+        <div className="test-results math-results" style={{ marginTop: 20 }}>
           {/* Nota /10 — prominente, coloreada */}
           {(() => {
             const notaColor = testNota >= 8 ? '#16a34a' : testNota >= 5 ? '#2563eb' : '#dc2626';
@@ -229,42 +231,37 @@ const MathOperationLayout = ({
               : testNota >= 5 ? 'Aprobado 💪'
               : 'Necesitas repasar 📖';
             return (
-              <div style={{ textAlign: 'center', marginBottom: 16 }}>
-                <div style={{ fontSize: '0.85em', color: 'var(--app-text-secondary)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700 }}>
+              <div className="math-grade-hero">
+                <div className="math-grade-label">
                   Nota final
                 </div>
-                <div style={{ fontSize: '4em', fontWeight: 900, color: notaColor, lineHeight: 1.1 }}>
-                  {testNota.toFixed(1)}<span style={{ fontSize: '0.5em', color: 'var(--app-text-secondary)' }}>/10</span>
+                {/* Anillo con la nota (color >=8 verde, >=5 azul, <5 rojo) */}
+                <div
+                  className="math-grade-ring"
+                  style={{ '--math-grade': testNota, '--math-grade-color': notaColor }}
+                >
+                  <div className="math-grade-value" style={{ color: notaColor }}>
+                    {testNota.toFixed(1)}<span className="math-grade-max">/10</span>
+                  </div>
                 </div>
-                <div style={{ color: notaColor, fontWeight: 600 }}>{msg}</div>
+                <div className="math-grade-msg" style={{ color: notaColor }}>{msg}</div>
               </div>
             );
           })()}
 
           {/* Puntuacion + desglose de velocidad */}
-          <div style={{
-            background: 'var(--app-card-bg, #f8fafc)',
-            border: '1px solid var(--app-border, #e2e8f0)',
-            borderRadius: 16,
-            padding: 14,
-            maxWidth: 340,
-            margin: '0 auto 16px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            fontSize: '0.95em',
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span>Aciertos ({testHits}/{testTotal} × {BASE_POINTS_PER_HIT})</span>
+          <div className="math-points-card">
+            <div className="math-points-row">
+              <span><Star size={14} className="math-points-ico" aria-hidden="true" /> Aciertos ({testHits}/{testTotal} × {BASE_POINTS_PER_HIT})</span>
               <strong>{basePoints} pts</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: timeBonus > 0 ? '#16a34a' : 'var(--app-text-secondary)' }}>
-              <span>Bonus velocidad ({formatElapsed(finalElapsed)})</span>
+            <div className={`math-points-row ${timeBonus > 0 ? 'is-bonus' : 'is-muted'}`}>
+              <span><Zap size={14} className="math-points-ico" aria-hidden="true" /> Bonus velocidad ({formatElapsed(finalElapsed)})</span>
               <strong>+{timeBonus} pts</strong>
             </div>
-            <div style={{ borderTop: '1px solid var(--app-border, #e2e8f0)', paddingTop: 6, display: 'flex', justifyContent: 'space-between', fontSize: '1.15em' }}>
-              <strong>Puntuación total</strong>
-              <strong style={{ color: '#7c3aed' }}>{testScore.toLocaleString('es-ES')}</strong>
+            <div className="math-points-row math-points-total">
+              <strong><Trophy size={16} className="math-points-ico" aria-hidden="true" /> Puntuación total</strong>
+              <strong className="math-points-total-value">{testScore.toLocaleString('es-ES')}</strong>
             </div>
           </div>
 
@@ -274,7 +271,7 @@ const MathOperationLayout = ({
               const expected = calcExpected(q);
               const ok = userAnswer === expected;
               return (
-                <div key={i} className="result-item">
+                <div key={i} className={`result-item ${ok ? 'math-result-ok' : 'math-result-ko'}`}>
                   <p><strong>Pregunta {i + 1}</strong></p>
                   <p>
                     Tu respuesta: <strong>{userAnswer}</strong>{' '}
@@ -308,7 +305,7 @@ const MathOperationLayout = ({
           {/* Controles Practica */}
           {(!hasTestMode || !isTestMode) && (
             <>
-              <div id="feedback-message" className={feedback.cls}>
+              <div id="feedback-message" key={feedback.text} className={feedback.cls}>
                 {feedback.text}
               </div>
               <div id="controls">

@@ -2,10 +2,11 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import {
-  Loader2, CheckCircle2, XCircle, Flame, Star, Trophy, RefreshCcw, ArrowRight, BookOpen, Clock, Lightbulb, SkipForward, Sparkles, LogOut, X, Home
+  Loader2, CheckCircle2, XCircle, Flame, Trophy, RefreshCcw, ArrowRight, BookOpen, Clock, Lightbulb, SkipForward, Sparkles, LogOut, X, Home
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
+import './Clasificador.css';
 
 // Constantes de configuración
 const TEST_QUESTION_COUNT = 10;
@@ -320,9 +321,9 @@ const Clasificador = ({ onGameComplete }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-col items-center justify-center p-8 bg-white/60 backdrop-blur-xl rounded-[2rem] shadow-2xl max-w-lg mx-auto mt-8 border border-white/50"
+          className="clf-glass flex flex-col items-center justify-center p-8 bg-white/60 backdrop-blur-xl rounded-[2rem] shadow-2xl max-w-lg mx-auto mt-8 border border-white/50"
         >
-          <div className="bg-indigo-600 p-4 rounded-2xl mb-6 shadow-lg rotate-3">
+          <div className="clf-icon-halo bg-indigo-600 p-4 rounded-2xl mb-6 shadow-lg rotate-3">
             <Sparkles className="h-8 w-8 text-white" />
           </div>
           <h2 className="text-3xl font-black text-slate-800 mb-2 text-center tracking-tight">¡A JUGAR!</h2>
@@ -344,10 +345,10 @@ const Clasificador = ({ onGameComplete }) => {
               whileHover={{ scale: 1.03, translateY: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={startPractice}
-              className="relative group overflow-hidden bg-white hover:bg-gradient-to-br hover:from-emerald-400 hover:to-teal-500 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-emerald-100 text-left"
+              className="clf-mode clf-mode--easy relative group overflow-hidden bg-white hover:bg-gradient-to-br hover:from-emerald-400 hover:to-teal-500 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-emerald-100 text-left"
             >
               <div className="flex items-center gap-4">
-                <div className="bg-emerald-100 group-hover:bg-white/20 p-3 rounded-xl transition-colors">
+                <div className="clf-mode-icon bg-emerald-100 group-hover:bg-white/20 p-3 rounded-xl transition-colors">
                   <BookOpen className="h-8 w-8 text-emerald-600 group-hover:text-white" />
                 </div>
                 <div>
@@ -362,19 +363,19 @@ const Clasificador = ({ onGameComplete }) => {
               whileTap={{ scale: isTestPossible ? 0.98 : 1 }}
               onClick={startTest}
               disabled={!isTestPossible}
-              className={`relative group overflow-hidden p-6 rounded-2xl shadow-md transition-all duration-300 border-2 text-left
+              className={`clf-mode clf-mode--exam relative group overflow-hidden p-6 rounded-2xl shadow-md transition-all duration-300 border-2 text-left
                         ${isTestPossible
-                  ? 'bg-white hover:bg-gradient-to-br hover:from-indigo-500 hover:to-purple-600 border-indigo-100 hover:shadow-xl cursor-pointer'
+                  ? 'bg-white hover:bg-gradient-to-br hover:from-rose-500 hover:to-red-600 border-rose-100 hover:shadow-xl cursor-pointer'
                   : 'bg-slate-100 border-slate-200 opacity-60 cursor-not-allowed'}
                     `}
             >
               <div className="flex items-center gap-4">
-                <div className={`p-3 rounded-xl transition-colors ${isTestPossible ? 'bg-indigo-100 group-hover:bg-white/20' : 'bg-slate-200'}`}>
-                  <Clock className={`h-8 w-8 ${isTestPossible ? 'text-indigo-600 group-hover:text-white' : 'text-slate-400'}`} />
+                <div className={`clf-mode-icon p-3 rounded-xl transition-colors ${isTestPossible ? 'bg-rose-100 group-hover:bg-white/20' : 'bg-slate-200'}`}>
+                  <Clock className={`h-8 w-8 ${isTestPossible ? 'text-rose-600 group-hover:text-white' : 'text-slate-400'}`} />
                 </div>
                 <div>
                   <h3 className={`text-xl font-bold ${isTestPossible ? 'text-slate-800 group-hover:text-white' : 'text-slate-400'}`}>Modo Examen</h3>
-                  <p className={`text-sm ${isTestPossible ? 'text-slate-500 group-hover:text-indigo-50' : 'text-slate-400'}`}>
+                  <p className={`text-sm ${isTestPossible ? 'text-slate-500 group-hover:text-rose-50' : 'text-slate-400'}`}>
                     {isTestPossible ? `${TEST_QUESTION_COUNT} preguntas aleatorias.` : `Necesitas ${TEST_QUESTION_COUNT} preguntas.`}
                   </p>
                 </div>
@@ -400,7 +401,7 @@ const Clasificador = ({ onGameComplete }) => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center justify-center p-8 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl max-w-md mx-auto mt-8 border border-white/60 relative overflow-hidden"
+            className="clf-glass flex flex-col items-center justify-center p-8 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl max-w-md mx-auto mt-8 border border-white/60 relative overflow-hidden"
           >
             {((isTestFinish && nota >= 9) || (!isTestFinish && score / (totalQuestions * 10) >= 0.9)) && <ConfettiEffect />}
 
@@ -410,7 +411,7 @@ const Clasificador = ({ onGameComplete }) => {
                 animate={{ rotate: 0, scale: 1 }}
                 transition={{ type: "spring", duration: 1.5 }}
               >
-                <Trophy className="h-24 w-24 text-yellow-400 drop-shadow-lg" fill="currentColor" />
+                <Trophy className="clf-trophy h-24 w-24 text-yellow-400 drop-shadow-lg" fill="currentColor" />
               </motion.div>
             </div>
 
@@ -419,21 +420,27 @@ const Clasificador = ({ onGameComplete }) => {
             </h2>
 
             {isTestFinish && (
-              <div className={`w-full mb-6 p-5 rounded-2xl border-2 ${notaBg} flex flex-col items-center`}>
+              <div className={`clf-grade-card w-full mb-6 p-5 rounded-2xl border-2 ${notaBg} flex flex-col items-center`}>
                 <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tu nota</span>
-                <div className={`text-6xl font-black leading-none mt-1 ${notaColor}`}>
-                  {nota.toFixed(1)}<span className="text-2xl opacity-60">/10</span>
+                {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
+                <div
+                  className="clf-grade-ring"
+                  style={{ '--clf-grade': nota, '--clf-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444' }}
+                >
+                  <div className={`clf-grade-value text-6xl font-black leading-none ${notaColor}`}>
+                    {nota.toFixed(1)}<span className="text-2xl opacity-60">/10</span>
+                  </div>
                 </div>
                 <span className={`mt-2 font-bold ${notaColor}`}>{notaMsg}</span>
               </div>
             )}
 
             <div className="grid grid-cols-2 gap-4 w-full mb-6">
-              <div className="bg-indigo-50 p-4 rounded-2xl flex flex-col items-center border border-indigo-100">
+              <div className="clf-stat bg-indigo-50 p-4 rounded-2xl flex flex-col items-center border border-indigo-100">
                 <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Aciertos</span>
                 <span className="text-3xl font-black text-indigo-700">{correctAnswersCount}<span className="text-lg text-indigo-300">/{totalQuestions}</span></span>
               </div>
-              <div className="bg-emerald-50 p-4 rounded-2xl flex flex-col items-center border border-emerald-100">
+              <div className="clf-stat clf-stat--points bg-emerald-50 p-4 rounded-2xl flex flex-col items-center border border-emerald-100">
                 <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Puntos</span>
                 <span className="text-3xl font-black text-emerald-700">{isTestFinish ? examResult.total : score}</span>
               </div>
@@ -458,7 +465,7 @@ const Clasificador = ({ onGameComplete }) => {
             )}
 
             <div className="flex flex-col gap-3 w-full">
-              <Button onClick={restart} className="w-full h-14 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl rounded-xl gap-2 transition-all">
+              <Button onClick={restart} className="clf-cta w-full h-14 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl rounded-xl gap-2 transition-all">
                 <RefreshCcw className="h-5 w-5" /> Jugar de nuevo
               </Button>
               <Button onClick={() => setGameMode('selection')} variant="outline" className="w-full h-12 text-slate-600 border-slate-200 rounded-xl gap-2">
@@ -474,7 +481,7 @@ const Clasificador = ({ onGameComplete }) => {
       --------------------------------------------------------- */}
       {(!finished && gameMode !== 'selection') && (
         <div className="w-full flex flex-col gap-6">
-          <div className="flex justify-between items-center bg-white/70 backdrop-blur-md px-4 py-3 rounded-2xl shadow-sm border border-white/50">
+          <div className="clf-hud flex justify-between items-center bg-white/70 backdrop-blur-md px-4 py-3 rounded-2xl shadow-sm border border-white/50">
             <div className="flex items-center gap-2">
               <Button
                 onClick={() => setGameMode('selection')}
@@ -574,7 +581,7 @@ const Clasificador = ({ onGameComplete }) => {
           {!isPractice && (
             <div className="h-3 w-full bg-white/30 rounded-full overflow-hidden shadow-inner backdrop-blur-sm -mt-2">
               <motion.div
-                className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+                className="clf-progress-fill h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: "circOut" }}
@@ -594,6 +601,7 @@ const Clasificador = ({ onGameComplete }) => {
                 exit={{ opacity: 0, rotateX: -90 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 className={`
+                  clf-word-card ${feedback ? `clf-word-card--${feedback}` : ''}
                   relative w-full flex flex-col items-center justify-center 
                   h-72 sm:h-80 rounded-[3rem] shadow-2xl border-[6px] 
                   transition-colors duration-500 z-10 bg-white
@@ -660,7 +668,7 @@ const Clasificador = ({ onGameComplete }) => {
                     onClick={() => handleAnswer(cat)}
                     disabled={feedback !== null}
                     className={`
-                    w-full h-20 sm:h-24 text-lg sm:text-2xl capitalize font-bold tracking-tight
+                    clf-cat-btn w-full h-20 sm:h-24 text-lg sm:text-2xl capitalize font-bold tracking-tight
                     rounded-2xl border-2 shadow-sm transition-all duration-200 group relative overflow-hidden
                     ${feedback === null
                         ? `${theme.bg} ${theme.color} ${theme.border} ${theme.hover} ${theme.active}`
@@ -760,4 +768,4 @@ const Clasificador = ({ onGameComplete }) => {
   );
 };
 
-export default Clasificador;
+export default Clasificador;

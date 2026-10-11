@@ -713,3 +713,397 @@
   .cruci-size-switch { grid-template-columns: 1fr; }
   .cruci-completed-title { font-size: 1.3rem; }
 }
+
+/* ==========================================================================
+   PREMIUM 2026 — cristal, luz y profundidad (paleta azul-índigo-violeta).
+   Solo visual. La rejilla puede tener 400 celdas: efectos ligeros ahí.
+   ========================================================================== */
+
+.cruci-root {
+  position: relative;
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fx-accent: #6366f1;
+  --fx-accent-2: #a855f7;
+}
+
+/* ---------- Fondo ---------- */
+.cruci-decor {
+  position: absolute;
+  inset: -1rem 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 32px;
+}
+.cruci-decor .fx-app-backdrop::before,
+.cruci-decor .fx-app-backdrop::after { opacity: .28; }
+.cruci-decor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(67, 56, 202, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67, 56, 202, .07) 1px, transparent 1px);
+}
+html.dark .cruci-decor-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+}
+.cruci-ghost-cell {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .85);
+  border: 2px solid rgba(99, 102, 241, .5);
+  color: #4338ca;
+  font-weight: 700;
+  font-size: 1.2rem;
+  opacity: .25;
+  box-shadow: 0 10px 22px -10px rgba(67, 56, 202, .6);
+  animation: cruciGhost 11s ease-in-out infinite;
+}
+.cruci-ghost-cell.q0 { top: 8%; left: 3%; }
+.cruci-ghost-cell.q1 { top: 14%; right: 4%; animation-delay: -3s; border-color: rgba(168, 85, 247, .5); color: #7c3aed; }
+.cruci-ghost-cell.q2 { bottom: 12%; left: 4%; animation-delay: -6s; border-color: rgba(251, 191, 36, .7); color: #b45309; }
+.cruci-ghost-cell.q3 { bottom: 20%; right: 3%; animation-delay: -8s; }
+@keyframes cruciGhost {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50%      { transform: translate3d(0, -16px, 0) rotate(6deg); }
+}
+html.dark .cruci-ghost-cell { background: rgba(30, 27, 75, .7); color: #c7d2fe; }
+@media (max-width: 1180px) {
+  .cruci-ghost-cell { display: none; }
+}
+
+/* ---------- Tarjeta ---------- */
+.cruci-card {
+  position: relative;
+  z-index: 1;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(99, 102, 241, .10), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgba(168, 85, 247, .08), transparent 60%),
+    var(--app-card-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .7);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .9) inset,
+    0 -1px 0 0 rgba(30, 27, 75, .06) inset,
+    0 40px 80px -40px rgba(67, 56, 202, .5),
+    0 18px 36px -18px rgba(168, 85, 247, .22),
+    0 4px 10px -4px rgba(15, 23, 42, .08);
+}
+.cruci-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .55), transparent);
+  opacity: .5;
+  pointer-events: none;
+  z-index: -1;
+}
+html.dark .cruci-card {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .08) inset,
+    0 40px 80px -40px rgba(0, 0, 0, .8),
+    0 18px 36px -18px rgba(99, 102, 241, .3);
+}
+html.dark .cruci-card::before { background: linear-gradient(180deg, rgba(255, 255, 255, .06), transparent); }
+
+/* ---------- Cabecera ---------- */
+.cruci-title {
+  font-weight: 700;
+  background: linear-gradient(90deg, #3b82f6, #6366f1, #a855f7, #ec4899, #3b82f6);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-pan 12s linear infinite;
+}
+.cruci-emoji { filter: drop-shadow(0 6px 10px rgba(99, 102, 241, .45)); }
+.cruci-stat {
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 8px 18px -8px rgba(30, 27, 75, .5);
+}
+.cruci-stat span { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* ---------- Tabs práctica / examen ---------- */
+.cruci-gamemode-tabs {
+  border-bottom: 0;
+  padding: .3rem;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 16px;
+  background: rgba(99, 102, 241, .07);
+  box-shadow: 0 1px 2px rgba(30, 27, 75, .1) inset;
+}
+.cruci-gamemode-tab {
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-radius: 12px;
+  transition: color .2s ease, background .25s ease, transform .25s var(--fx-ease-spring), box-shadow .25s ease;
+}
+.cruci-gamemode-tab:hover { transform: translateY(-1px); }
+.cruci-gamemode-tab.active { color: #fff; }
+.cruci-gamemode-tab.active.is-practice {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 10px 22px -10px rgba(99, 102, 241, .8);
+}
+.cruci-gamemode-tab.active.is-exam {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 10px 22px -10px rgba(239, 68, 68, .8);
+}
+html.dark .cruci-gamemode-tabs { background: rgba(255, 255, 255, .05); }
+
+/* ---------- Selector de tamaño con identidad por dificultad ---------- */
+.cruci-size-switch {
+  gap: .6rem;
+  padding: .45rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(30, 27, 75, .1) inset;
+}
+.cruci-size-btn {
+  --mode: #10b981;
+  --mode-soft: rgba(16, 185, 129, .14);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: .75rem .4rem;
+  transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease, background .25s ease, color .2s ease, border-color .2s ease;
+}
+.cruci-size-btn.size-small  { --mode: #10b981; --mode-soft: rgba(16, 185, 129, .16); }
+.cruci-size-btn.size-medium { --mode: #fbbf24; --mode-soft: rgba(251, 191, 36, .2); }
+.cruci-size-btn.size-large  { --mode: #ef4444; --mode-soft: rgba(239, 68, 68, .14); }
+.cruci-size-btn:hover:not(.active) {
+  transform: translateY(-3px);
+  background: var(--mode-soft);
+  border-color: var(--mode);
+}
+.cruci-size-btn.active {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, .35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 0 0 3px var(--mode-soft), 0 14px 26px -12px var(--mode);
+}
+.cruci-size-btn.size-small.active  { background: linear-gradient(135deg, #10b981, #059669); }
+.cruci-size-btn.size-medium.active { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
+.cruci-size-btn.size-large.active  { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.cruci-size-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+  box-shadow: 0 0 0 4px var(--mode-soft);
+  transition: transform .4s var(--fx-ease-spring);
+}
+.cruci-size-btn:hover .cruci-size-icon { transform: scale(1.12) rotate(-8deg); }
+.cruci-size-btn:focus-visible,
+.cruci-gamemode-tab:focus-visible,
+.cruci-btn:focus-visible { outline: 3px solid rgba(129, 140, 248, .85); outline-offset: 2px; }
+html.dark .cruci-size-btn:not(.active) { color: #cbd5e1; }
+html.dark .cruci-size-icon { background: rgba(255, 255, 255, .1); }
+
+.cruci-exam-banner {
+  border-radius: 16px;
+  border-color: rgba(239, 68, 68, .3);
+  background: linear-gradient(135deg, rgba(239, 68, 68, .1), rgba(168, 85, 247, .08));
+  box-shadow: 0 12px 26px -18px rgba(239, 68, 68, .8);
+}
+html.dark .cruci-exam-banner { color: #fca5a5; }
+
+/* ---------- Pista activa ---------- */
+.cruci-clue-current {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background:
+    radial-gradient(70% 120% at 0% 0%, rgba(236, 72, 153, .35), transparent 60%),
+    radial-gradient(60% 100% at 100% 100%, rgba(59, 130, 246, .3), transparent 60%),
+    linear-gradient(135deg, #1e1b4b, #4c1d95);
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .15) inset, 0 20px 40px -22px rgba(76, 29, 149, .85);
+}
+.cruci-clue-current::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .18), transparent);
+  transform: translateX(-120%) rotate(12deg);
+  animation: fx-shine-sweep 1.2s var(--fx-ease-out) .15s;
+  pointer-events: none;
+}
+.cruci-clue-num {
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, .25), 0 6px 14px -4px rgba(245, 158, 11, .8);
+  animation: fx-pop-in .45s var(--fx-ease-spring);
+}
+
+/* ---------- Rejilla ---------- */
+.cruci-grid-wrap {
+  border-radius: 22px;
+  background:
+    radial-gradient(70% 100% at 50% 0%, rgba(255, 255, 255, .7), transparent 70%),
+    linear-gradient(160deg, rgba(59, 130, 246, .07), rgba(168, 85, 247, .06));
+  box-shadow: 0 -14px 28px -20px rgba(67, 56, 202, .35) inset;
+}
+.cruci-grid {
+  border-radius: 14px;
+  background: linear-gradient(160deg, #1e1b4b, #312e81);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .15) inset,
+    0 24px 48px -24px rgba(30, 27, 75, .75),
+    0 0 0 1px rgba(99, 102, 241, .3);
+}
+.cruci-cell {
+  border-radius: 4px;
+  transition: background-color .15s ease, box-shadow .15s ease;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .5), transparent 60%);
+}
+.cruci-cell.black { background-image: none; }
+.cruci-cell.highlight { background-color: #dbeafe; }
+.cruci-cell.selected {
+  background-color: #fbbf24;
+  box-shadow: 0 0 0 2px #f59e0b, 0 0 16px 2px rgba(251, 191, 36, .65);
+}
+.cruci-cell.wrong { box-shadow: 0 0 0 2px rgba(239, 68, 68, .7) inset; }
+.cruci-cell-letter { font-family: 'Fredoka', system-ui, sans-serif; font-weight: 700; }
+.cruci-cell-letter:not(:empty) { animation: fx-pop-in .3s var(--fx-ease-spring); }
+html.dark .cruci-cell:not(.black) {
+  background-color: #2a2650;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 60%);
+}
+html.dark .cruci-cell:not(.black):hover { background-color: #36316a; }
+html.dark .cruci-cell.highlight { background-color: #3b3a8a; }
+html.dark .cruci-cell.selected { background-color: #fbbf24; }
+html.dark .cruci-cell.wrong { background-color: #7f1d1d; }
+html.dark .cruci-cell-letter { color: #eef2ff; }
+html.dark .cruci-cell.selected .cruci-cell-letter { color: #1e1b4b; }
+html.dark .cruci-cell-num { color: #a5b4fc; }
+html.dark .cruci-cell.selected .cruci-cell-num { color: #78350f; }
+
+/* ---------- Pistas ---------- */
+.cruci-clues-col {
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(99, 102, 241, .07), rgba(168, 85, 247, .04));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 14px 28px -22px rgba(67, 56, 202, .6);
+}
+.cruci-clue-item {
+  transition: background .2s ease, transform .25s var(--fx-ease-spring), border-color .2s ease;
+}
+.cruci-clue-item:hover { transform: translateX(3px); }
+.cruci-clue-item.active { box-shadow: 0 8px 18px -12px rgba(168, 85, 247, .8); }
+html.dark .cruci-clue-item.active { color: #f5f3ff !important; }
+
+/* ---------- Botones ---------- */
+.cruci-actions { border-top-style: solid; border-top-color: rgba(99, 102, 241, .12); }
+.cruci-btn {
+  border-radius: 14px;
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background-position .6s ease, background .2s ease;
+}
+.cruci-btn.primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1 50%, #a855f7);
+  background-size: 180% 180%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 -3px 0 rgba(0, 0, 0, .15) inset, 0 14px 28px -12px rgba(99, 102, 241, .8);
+}
+.cruci-btn.primary:hover { transform: translateY(-2px) scale(1.03); background-position: 100% 50%; }
+.cruci-btn.hint {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .45) inset, 0 -2px 0 rgba(0, 0, 0, .12) inset, 0 10px 20px -10px rgba(245, 158, 11, .8);
+}
+.cruci-btn.hint:hover { transform: translateY(-2px); }
+.cruci-btn:active { transform: translateY(1px) scale(.98); }
+html.dark .cruci-btn.ghost { color: #c7d2fe; background: rgba(99, 102, 241, .14); border-color: rgba(129, 140, 248, .3); }
+
+/* ---------- Completado ---------- */
+.cruci-completed {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border-width: 1px;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .6), transparent 70%),
+    linear-gradient(135deg, rgba(16, 185, 129, .14), rgba(99, 102, 241, .1));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 0 0 3px rgba(16, 185, 129, .15), 0 30px 60px -30px rgba(16, 185, 129, .8);
+}
+html.dark .cruci-completed {
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .08), transparent 70%),
+    linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(99, 102, 241, .14));
+}
+.cruci-completed > * { position: relative; z-index: 1; }
+.cruci-completed-rays {
+  position: absolute !important;
+  z-index: 0 !important;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  margin: -450px 0 0 -450px;
+  background: repeating-conic-gradient(from 0deg, rgba(16, 185, 129, .08) 0deg 8deg, transparent 8deg 22deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 60%);
+  mask-image: radial-gradient(circle, #000 0%, transparent 60%);
+  animation: cruciRays 40s linear infinite;
+  pointer-events: none;
+}
+@keyframes cruciRays { to { transform: rotate(360deg); } }
+.cruci-completed-icon { box-shadow: 0 0 0 8px rgba(251, 191, 36, .2), 0 0 46px -4px rgba(251, 191, 36, .85); }
+.cruci-completed-title { font-weight: 700; font-size: 1.8rem; }
+.cruci-nota {
+  border-width: 1px;
+  border-radius: 24px;
+  padding: 1.25rem 2rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 20px 40px -26px rgba(15, 23, 42, .5);
+}
+.cruci-nota-ring { width: 156px; height: 156px; }
+.cruci-nota-ring .cruci-nota-big {
+  font-weight: 700;
+  animation: fx-pop-in .7s var(--fx-ease-spring) .25s both;
+}
+html.dark .cruci-nota-big,
+html.dark .cruci-nota-msg { color: #6ee7b7; }
+.cruci-nota-msg { font-size: 1.15rem; }
+.cruci-completed-record,
+.cruci-completed-score {
+  padding: .6rem 1.3rem;
+  font-size: 1rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 12px 26px -12px rgba(245, 158, 11, .9);
+  animation: fx-bounce-in .6s var(--fx-ease-spring) .45s both;
+}
+.cruci-completed-stat {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 8px 18px -12px rgba(15, 23, 42, .4);
+}
+html.dark .cruci-completed-stat:not(.exam) { color: #e2e8f0; }
+
+@media (max-width: 720px) {
+  .cruci-gamemode-tabs { width: 100%; }
+  .cruci-gamemode-tab { flex: 1; justify-content: center; }
+  .cruci-nota-ring { width: 132px; height: 132px; }
+  .cruci-completed-rays { width: 600px; height: 600px; margin: -300px 0 0 -300px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cruci-ghost-cell,
+  .cruci-title,
+  .cruci-completed-rays,
+  .cruci-cell-letter:not(:empty) {
+    animation: none !important;
+  }
+}
+
+/* Fundido de bordes del fondo decorativo (sin cortes rectos) */
+.cruci-decor {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  mask-composite: intersect;
+}

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     LineChart,
     Settings,
-    HelpCircle,
     Info,
     Maximize2,
     RotateCcw,
@@ -18,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
+import './LaboratorioFunciones2D.css';
 
 const COMPOSER_BASES = {
     'x': { name: 'Lineal (x)', func: (x) => x, latex: (val) => val },
@@ -147,7 +147,7 @@ const LaboratorioFunciones2D = () => {
     const [selectedType, setSelectedType] = useState('LINEAR');
     const [composerBase, setComposerBase] = useState('x2');
     const [params, setParams] = useState({ a: 1, b: 0, c: 0, d: 0 });
-    const [showGrid, setShowGrid] = useState(true);
+    const [showGrid] = useState(true);
     const [functionsOpen, setFunctionsOpen] = useState(true);
     const [paramsOpen, setParamsOpen] = useState(true);
     const [zoom, setZoom] = useState(40); // Pixels per unit
@@ -165,6 +165,7 @@ const LaboratorioFunciones2D = () => {
         if (currentFunc.isComposer && !COMPOSER_BASES[composerBase]) {
             setComposerBase('x2'); // Default composer base if current one is invalid
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedType, currentFunc]);
 
     const handleParamChange = (id, val) => {
@@ -255,6 +256,7 @@ const LaboratorioFunciones2D = () => {
             }
         }
         return path;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentFunc, params, zoom, composerBase, selectedType]);
 
     // Generate grid lines
@@ -290,13 +292,17 @@ const LaboratorioFunciones2D = () => {
     const [activeTab, setActiveTab] = useState('graph'); // 'config' | 'graph'
 
     return (
-        <div className="flex flex-col h-[82vh] w-full p-2 box-border gap-4">
+        <div className="lf2d-root flex flex-col h-[82vh] w-full p-2 box-border gap-4">
+            {/* Fondo decorativo: orbes índigo-rosa + rejilla */}
+            <div className="fx-app-backdrop lf2d-backdrop" aria-hidden="true">
+                <div className="lf2d-grid fx-grid-bg" />
+            </div>
 
             {/* Mobile Tabs Navigation */}
-            <div className="lg:hidden flex bg-white/80 backdrop-blur-md p-1 rounded-2xl shadow-sm border border-slate-100 shrink-0">
+            <div className="lf2d-tabs lf2d-panel lg:hidden flex bg-white/80 backdrop-blur-md p-1 rounded-2xl shadow-sm border border-slate-100 shrink-0">
                 <button
                     onClick={() => setActiveTab('graph')}
-                    className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'graph' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
+                    className={`lf2d-tab flex-1 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'graph' ? 'is-active bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
                 >
                     <div className="flex items-center justify-center gap-2">
                         <LineChart className="w-4 h-4" />
@@ -305,7 +311,7 @@ const LaboratorioFunciones2D = () => {
                 </button>
                 <button
                     onClick={() => setActiveTab('config')}
-                    className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'config' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
+                    className={`lf2d-tab flex-1 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'config' ? 'is-active bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
                 >
                     <div className="flex items-center justify-center gap-2">
                         <Settings className="w-4 h-4" />
@@ -323,13 +329,13 @@ const LaboratorioFunciones2D = () => {
                 `}>
 
                     {/* Selector de Tipo */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
+                    <div className="lf2d-panel bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
                         <div
                             className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 transition-colors"
                             onClick={() => setFunctionsOpen(!functionsOpen)}
                         >
                             <div className="flex items-center gap-2 text-indigo-600">
-                                <LineChart className="w-5 h-5" />
+                                <span className="lf2d-head-icon" aria-hidden="true"><LineChart className="w-5 h-5" /></span>
                                 <h2 className="font-bold text-lg uppercase tracking-wider">Funciones</h2>
                             </div>
                             {functionsOpen ? <ChevronDown className="w-5 h-5 text-indigo-400" /> : <ChevronRight className="w-5 h-5 text-indigo-400" />}
@@ -352,8 +358,8 @@ const LaboratorioFunciones2D = () => {
                                                     e.stopPropagation();
                                                     setSelectedType(type);
                                                 }}
-                                                className={`flex items-center justify-between p-3 rounded-2xl transition-all shrink-0 ${selectedType === type
-                                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
+                                                className={`lf2d-fn-btn flex items-center justify-between p-3 rounded-2xl transition-all shrink-0 ${selectedType === type
+                                                    ? 'is-active bg-indigo-600 text-white shadow-lg shadow-indigo-200'
                                                     : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
                                                     }`}
                                             >
@@ -373,13 +379,13 @@ const LaboratorioFunciones2D = () => {
                     </div>
 
                     {/* Parámetros */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
+                    <div className="lf2d-panel bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
                         <div
                             className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 transition-colors"
                             onClick={() => setParamsOpen(!paramsOpen)}
                         >
-                            <div className="flex items-center gap-2 text-slate-700">
-                                <Settings className="w-5 h-5" />
+                            <div className="lf2d-head-text flex items-center gap-2 text-slate-700">
+                                <span className="lf2d-head-icon" aria-hidden="true"><Settings className="w-5 h-5" /></span>
                                 <h2 className="font-bold text-sm uppercase tracking-widest">
                                     {currentFunc.isComposer ? 'Constructor' : `Ajustes: ${currentFunc.name}`}
                                 </h2>
@@ -409,8 +415,8 @@ const LaboratorioFunciones2D = () => {
                                                                 e.stopPropagation();
                                                                 setComposerBase(baseKey);
                                                             }}
-                                                            className={`text-xs p-2 rounded-lg font-bold transition-all ${composerBase === baseKey
-                                                                ? 'bg-indigo-500 text-white shadow-md'
+                                                            className={`lf2d-chip text-xs p-2 rounded-lg font-bold transition-all ${composerBase === baseKey
+                                                                ? 'is-active bg-indigo-500 text-white shadow-md'
                                                                 : 'bg-white text-slate-500 hover:bg-white/80'
                                                                 }`}
                                                         >
@@ -426,7 +432,7 @@ const LaboratorioFunciones2D = () => {
                                                 <div key={p.id} className="space-y-2">
                                                     <div className="flex justify-between items-center px-1">
                                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{p.label}</label>
-                                                        <span className="bg-slate-100 text-slate-700 w-12 text-center py-1 rounded-md text-xs font-mono font-bold border border-slate-200">
+                                                        <span className="lf2d-value bg-slate-100 text-slate-700 w-12 text-center py-1 rounded-md text-xs font-mono font-bold border border-slate-200">
                                                             {params[p.id]?.toFixed(2)}
                                                         </span>
                                                     </div>
@@ -443,7 +449,7 @@ const LaboratorioFunciones2D = () => {
                                         </div>
 
                                         <div className="mt-8 pt-6 border-t border-slate-100">
-                                            <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-start gap-3">
+                                            <div key={selectedType} className="lf2d-desc bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-start gap-3">
                                                 <Info className="w-5 h-5 text-slate-400 mt-0.5" />
                                                 <p className="text-xs text-slate-600 leading-relaxed font-medium">
                                                     {currentFunc.desc}
@@ -461,9 +467,9 @@ const LaboratorioFunciones2D = () => {
                 <main className="flex-1 h-full flex flex-col gap-4 overflow-hidden w-full absolute lg:relative z-0">
 
                     {/* Panel Superior Datos */}
-                    <div className="bg-white/90 backdrop-blur-xl p-4 sm:px-8 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-white flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+                    <div className="lf2d-panel lf2d-topbar bg-white/90 backdrop-blur-xl p-4 sm:px-8 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-white flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
                         <div className="flex items-center gap-4 w-full sm:w-auto">
-                            <div className="p-4 bg-slate-900 rounded-2xl text-white shadow-xl flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start overflow-hidden">
+                            <div className="lf2d-formula p-4 bg-slate-900 rounded-2xl text-white shadow-xl flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start overflow-hidden">
                                 <Variable className="w-5 h-5 text-indigo-400 flex-shrink-0" />
                                 <span className="font-mono text-lg sm:text-xl font-bold tracking-wider truncate max-w-[250px] sm:max-w-md">
                                     {getFormulaDisplay()}
@@ -475,7 +481,7 @@ const LaboratorioFunciones2D = () => {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="rounded-xl hover:bg-slate-100"
+                                className="lf2d-tool rounded-xl hover:bg-slate-100"
                                 onClick={() => setZoom(prev => Math.min(prev + 10, 150))}
                                 title="Acercar Zoom"
                             >
@@ -484,7 +490,7 @@ const LaboratorioFunciones2D = () => {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="rounded-xl hover:bg-slate-100"
+                                className="lf2d-tool rounded-xl hover:bg-slate-100"
                                 onClick={() => setZoom(prev => Math.max(prev - 10, 10))}
                                 title="Alejar Zoom"
                             >
@@ -493,7 +499,7 @@ const LaboratorioFunciones2D = () => {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="rounded-xl hover:bg-slate-100"
+                                className="lf2d-tool rounded-xl hover:bg-slate-100"
                                 onClick={() => {
                                     const def = {};
                                     currentFunc.params.forEach(p => def[p.id] = p.default);
@@ -508,7 +514,7 @@ const LaboratorioFunciones2D = () => {
                     </div>
 
                     {/* Canvas del Gráfico */}
-                    <div className="relative flex-1 bg-slate-50 rounded-[2.5rem] border border-white shadow-inner overflow-hidden min-h-0">
+                    <div className="lf2d-stage relative flex-1 bg-slate-50 rounded-[2.5rem] border border-white shadow-inner overflow-hidden min-h-0">
 
                         {/* SVG Principal */}
                         <svg
@@ -518,15 +524,37 @@ const LaboratorioFunciones2D = () => {
                             onMouseMove={(e) => {
                                 const rect = e.currentTarget.getBoundingClientRect();
                                 const x = (e.clientX - rect.left) * (800 / rect.width);
-                                const y = (e.clientY - rect.top) * (600 / rect.height);
                                 const mathX = (x - 400) / zoom;
                                 const mathY = calculateY(mathX);
                                 setHoveredPoint({ x: mathX, y: mathY });
                             }}
                             onMouseLeave={() => setHoveredPoint(null)}
                         >
+                            {/* Degradado del trazo (en coordenadas del lienzo: válido también para rectas horizontales) */}
+                            <defs>
+                                <linearGradient id="lf2d-stroke" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="0">
+                                    <stop offset="0%" stopColor="#6366f1" />
+                                    <stop offset="55%" stopColor="#8b5cf6" />
+                                    <stop offset="100%" stopColor="#ec4899" />
+                                </linearGradient>
+                            </defs>
+
                             {/* Grid */}
                             {showGrid && gridLines}
+
+                            {/* Halo suave bajo la curva (solo decorativo) */}
+                            <motion.path
+                                initial={false}
+                                animate={{ d: pathData }}
+                                transition={{ type: "tween", duration: 0.2 }}
+                                fill="none"
+                                stroke="#a5b4fc"
+                                strokeOpacity="0.35"
+                                strokeWidth="10"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                            />
 
                             {/* Path de la Función */}
                             <motion.path
@@ -534,7 +562,7 @@ const LaboratorioFunciones2D = () => {
                                 animate={{ d: pathData }}
                                 transition={{ type: "tween", duration: 0.2 }}
                                 fill="none"
-                                stroke="#6366f1"
+                                stroke="url(#lf2d-stroke)"
                                 strokeWidth="3"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -544,6 +572,14 @@ const LaboratorioFunciones2D = () => {
                             {/* Hover Indicator */}
                             {hoveredPoint && !isNaN(hoveredPoint.y) && Math.abs(hoveredPoint.y) < 100 && (
                                 <g>
+                                    <circle
+                                        cx={400 + hoveredPoint.x * zoom}
+                                        cy={300 - hoveredPoint.y * zoom}
+                                        r="14"
+                                        fill="rgba(244, 63, 94, 0.18)"
+                                        stroke="rgba(244, 63, 94, 0.45)"
+                                        strokeWidth="1.5"
+                                    />
                                     <circle
                                         cx={400 + hoveredPoint.x * zoom}
                                         cy={300 - hoveredPoint.y * zoom}
@@ -585,7 +621,7 @@ const LaboratorioFunciones2D = () => {
 
                         {/* Floating Info */}
                         <div className="absolute top-6 right-6 flex flex-col gap-2 pointer-events-none">
-                            <div className="bg-white/70 backdrop-blur-sm p-3 rounded-2xl border border-white/50 text-[10px] font-bold text-slate-500 uppercase tracking-tighter flex items-center gap-2">
+                            <div key={zoom} className="lf2d-zoom-chip bg-white/70 backdrop-blur-sm p-3 rounded-2xl border border-white/50 text-[10px] font-bold text-slate-500 uppercase tracking-tighter flex items-center gap-2">
                                 <Activity className="w-3 h-3 text-emerald-500" />
                                 Zoom: {zoom}px/unidad
                             </div>

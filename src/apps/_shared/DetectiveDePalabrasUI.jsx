@@ -1,18 +1,23 @@
 // src/apps/_shared/DetectiveDePalabrasUI.jsx
 import React, { useEffect, useRef } from 'react';
 import { DETECTIVE_MAX_SCORE } from '../../hooks/useDetectiveDePalabras';
+import { BookOpen, GraduationCap } from 'lucide-react';
 import './DetectiveDePalabrasShared.css';
+import './SharedPremium.css';
+
+// Color del anillo de nota (>=8 verde, >=5 azul, <5 rojo) — solo presentación
+const gradeColor = (n) => (n >= 8 ? '#10b981' : n >= 5 ? '#3b82f6' : '#ef4444');
 
 const TOTAL_TEST_QUESTIONS = 5;
 
 const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
   const progressPct = ((game.indiceFraseActual + 1) / TOTAL_TEST_QUESTIONS) * 100;
-  const cls = `detective-container font-${game.fontStyle}`;
+  const cls = `detective-container sp-shell font-${game.fontStyle}`;
 
   // Cabecera común con slider
   const Header = ({ titulo, subtitulo }) => (
     <>
-      <h1 className="detective-title text-5xl mb-4">
+      <h1 className="detective-title sp-title text-5xl mb-4">
         <span role="img" aria-label="Detective">🕵️‍♂️</span> <span className="gradient-text">{titulo}</span>
       </h1>
       {subtitulo && <p className="instrucciones">{subtitulo}</p>}
@@ -57,6 +62,7 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
       });
     }
     if (!game.showResults) trackedRef.current = false;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.isTestMode, game.showResults, game.score, onGameComplete]);
 
   // Tracking práctica
@@ -82,13 +88,15 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
         <div className={`${cls} test-results`}>
           <Header titulo="Examen Completado!" />
 
-          <div className={`detect-nota ${notaColor}`}>
-            <div className="detect-nota-big">{nota.toFixed(1)}<span className="detect-nota-small">/10</span></div>
-            <div className="detect-nota-msg"><strong>{notaMsg}</strong></div>
+          <div className={`detect-nota sp-grade-card ${notaColor}`}>
+            <div className="sp-grade-ring" style={{ '--sp-grade': nota, '--sp-grade-color': gradeColor(nota) }}>
+              <div className="detect-nota-big">{nota.toFixed(1)}<span className="detect-nota-small">/10</span></div>
+            </div>
+            <div className="detect-nota-msg sp-grade-msg"><strong>{notaMsg}</strong></div>
             <div className="detect-nota-detail">{correct} de {TOTAL_TEST_QUESTIONS} frases correctas</div>
           </div>
 
-          <div className="detect-puntos">
+          <div className="detect-puntos sp-points">
             <span className="detect-puntos-icon">⭐</span>
             <span className="detect-puntos-value">{game.score.toLocaleString('es-ES')}</span>
             <span className="detect-puntos-label">puntos</span>
@@ -96,9 +104,9 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
 
           {game.elapsedTime > 0 && <p className="detect-time">⏱️ Tiempo total: {game.elapsedTime}s</p>}
 
-          <div className="results-summary">
+          <div className="results-summary sp-results">
             {game.testQuestions.map((q, i) => (
-              <div key={i} className="result-item">
+              <div key={i} className={`result-item sp-result ${transformed(q.solucion) === game.userAnswers[i] ? 'is-ok' : 'is-ko'}`}>
                 <p><strong>Frase {i + 1}:</strong></p>
                 <p className={transformed(q.solucion) === game.userAnswers[i] ? 'correcto' : 'incorrecto'}>
                   Tu respuesta: {game.userAnswers[i] || 'No contestada'}
@@ -110,7 +118,7 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
             ))}
           </div>
 
-          <div className="test-controls">
+          <div className="test-controls sp-controls">
             <button onClick={game.startTest} className="btn-siguiente">Volver a intentar</button>
             <button onClick={game.exitTestMode} className="btn-mode">Modo Práctica</button>
           </div>
@@ -124,14 +132,14 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
         <Header titulo="Examen" />
 
         <div className="test-header">
-          <div>Frase {game.indiceFraseActual + 1} / {TOTAL_TEST_QUESTIONS}</div>
+          <div key={game.indiceFraseActual} className="sp-q-chip">Frase {game.indiceFraseActual + 1} / {TOTAL_TEST_QUESTIONS}</div>
           {game.withTimer && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
         </div>
-        <div className="progress-bar-container">
+        <div className="progress-bar-container sp-progress">
           <div className="progress-bar" style={{ width: `${progressPct}%` }} />
         </div>
 
-        <div className="detective-frase-container">
+        <div className="detective-frase-container sp-zone">
           {game.letras.map((letra, index) => (
             <React.Fragment key={index}>
               <span className="detective-letra" onClick={() => game.toggleSeparador(index)}>
@@ -144,7 +152,7 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
           ))}
         </div>
 
-        <div className="controles">
+        <div className="controles sp-controls">
           <button onClick={game.handleNextQuestion} className="btn-siguiente">
             {game.indiceFraseActual === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
           </button>
@@ -159,14 +167,18 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
       <Header titulo="Detective de Palabras" subtitulo="Haz clic entre las letras para separar las palabras y forma la frase" />
 
       <div className="mode-selection">
-        <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">
+        <button className="btn-mode sp-mode active">
+          <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
+          Práctica Libre
+        </button>
+        <button onClick={game.startTest} className="btn-mode sp-mode sp-mode--exam">
+          <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
           Examen
         </button>
       </div>
 
       {/* AQUÍ SE HA AÑADIDO ref={game.containerRef} */}
-      <div className="detective-frase-container" ref={game.containerRef}>
+      <div className="detective-frase-container sp-zone" ref={game.containerRef}>
         {game.letras.map((letra, index) => (
           <React.Fragment key={index}>
             <span className="detective-letra" onClick={() => game.toggleSeparador(index)}>
@@ -181,12 +193,12 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
 
       <p 
         key={game.feedbackKey} 
-        className={`detective-feedback ${game.feedback.clase}`}
+        className={`detective-feedback sp-fb ${game.feedback.clase}`}
       >
         {game.feedback.texto}
       </p>
 
-      <div className="controles">
+      <div className="controles sp-controls">
         {!game.fraseResuelta ? (
           <>
             <button onClick={game.comprobarFrase}>¡Comprobar!</button>
@@ -200,4 +212,4 @@ const DetectiveDePalabrasUI = ({ game, onGameComplete }) => {
   );
 };
 
-export default DetectiveDePalabrasUI;
+export default DetectiveDePalabrasUI;

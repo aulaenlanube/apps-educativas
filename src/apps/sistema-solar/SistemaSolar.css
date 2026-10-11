@@ -2023,3 +2023,333 @@
     color: rgba(255, 255, 255, 0.35);
     letter-spacing: 0.5px;
 }
+/* ==========================================================================
+   CAPA PREMIUM (ssx) — HUD de nave espacial: cristal, luz dorada y hotspots
+   --------------------------------------------------------------------------
+   Solo UI HTML que rodea el canvas 3D (no toca render, cámara ni física).
+   Acotado bajo .sistema-solar-container. Se anima transform/opacity.
+   ========================================================================== */
+
+.sistema-solar-container {
+    --ssx-gold: #ffd700;
+    --ssx-amber: #f59e0b;
+    --ssx-indigo: #6366f1;
+    --ssx-ease: cubic-bezier(.22, 1, .36, 1);
+    --ssx-spring: cubic-bezier(.34, 1.56, .64, 1);
+    --ssx-glass:
+        radial-gradient(120% 70% at 0% 0%, rgba(99, 102, 241, 0.16), transparent 55%),
+        radial-gradient(100% 60% at 100% 100%, rgba(255, 215, 0, 0.08), transparent 60%),
+        rgba(8, 8, 22, 0.78);
+}
+
+/* ---------- Centro de control ---------- */
+.sistema-solar-container .config-panel-v2 {
+    background: var(--ssx-glass);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    backdrop-filter: blur(28px) saturate(160%);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 30px 70px -20px rgba(0, 0, 0, 0.95),
+        0 0 50px -28px rgba(255, 215, 0, 0.55);
+}
+.sistema-solar-container .config-panel-v2::before {
+    /* filo de luz dorado superior */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.85), transparent);
+    pointer-events: none;
+    z-index: 3;
+}
+.sistema-solar-container .config-header:hover { background: rgba(255, 255, 255, 0.04); }
+.sistema-solar-container .config-icon-wrapper {
+    position: relative;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 6px 16px -6px rgba(0, 0, 0, 0.8);
+}
+.sistema-solar-container .config-main-title { text-shadow: 0 0 16px rgba(255, 215, 0, 0.45); }
+
+.sistema-solar-container .circle { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.75)); }
+.sistema-solar-container .radial-progress-container::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 215, 0, 0.25);
+    animation: ssx-spin 14s linear infinite;
+    pointer-events: none;
+}
+.sistema-solar-container .hud-value { text-shadow: 0 0 12px rgba(255, 255, 255, 0.35); }
+.sistema-solar-container .hud-status-bar { height: 4px; gap: 3px; }
+.sistema-solar-container .status-dot { height: 4px; border-radius: 999px; }
+
+.sistema-solar-container .btn-launch-activity {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
+    background-size: 180% 180%;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.2) inset,
+        0 14px 30px -12px rgba(139, 92, 246, 0.8);
+    transition: transform .25s var(--ssx-spring), box-shadow .25s ease, background-position .6s ease;
+}
+.sistema-solar-container .btn-launch-activity::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    animation: ssx-sweep 3.6s var(--ssx-ease) 1.5s infinite;
+    pointer-events: none;
+}
+.sistema-solar-container .btn-launch-activity:hover {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
+    background-size: 180% 180%;
+    background-position: 100% 50%;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -3px 0 rgba(0, 0, 0, 0.2) inset,
+        0 20px 40px -12px rgba(236, 72, 153, 0.7);
+}
+.sistema-solar-container .btn-launch-activity:active { transform: translateY(1px) scale(.98); }
+
+.sistema-solar-container .config-slider-v2 {
+    height: 5px;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.55), rgba(99, 102, 241, 0.35));
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) inset;
+}
+.sistema-solar-container .config-slider-v2::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.18), 0 0 14px rgba(255, 215, 0, 0.7);
+}
+.sistema-solar-container .config-slider-v2::-moz-range-thumb {
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.18), 0 0 14px rgba(255, 215, 0, 0.7);
+}
+.sistema-solar-container .config-slider-v2:focus-visible { outline: 2px solid rgba(255, 215, 0, 0.7); outline-offset: 6px; }
+
+.sistema-solar-container .btn-reset-v2 { transition: transform .25s var(--ssx-spring), background .25s, box-shadow .25s, border-color .25s; }
+.sistema-solar-container .btn-reset-v2:hover { transform: translateY(-1px); box-shadow: 0 0 22px -6px rgba(239, 68, 68, 0.7); }
+
+/* ---------- Panel de planeta ---------- */
+.sistema-solar-container .info-panel-overlay {
+    background: var(--ssx-glass);
+    -webkit-backdrop-filter: blur(26px) saturate(160%);
+    backdrop-filter: blur(26px) saturate(160%);
+    border-radius: 22px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 30px 70px -20px rgba(0, 0, 0, 0.9),
+        0 0 60px -30px rgba(255, 215, 0, 0.5);
+}
+.sistema-solar-container .info-panel-glow-border { border-radius: 23px; }
+.sistema-solar-container .panel-header h2 { text-shadow: 0 0 20px rgba(255, 255, 255, 0.25); }
+.sistema-solar-container .planet-color-indicator { position: relative; }
+.sistema-solar-container .planet-color-indicator::after {
+    /* anillo orbital alrededor del indicador del planeta */
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: ssx-spin 5s linear infinite;
+    pointer-events: none;
+}
+.sistema-solar-container .planet-details > * { animation: ssx-rise .5s var(--ssx-ease) both; }
+.sistema-solar-container .planet-details > *:nth-child(2) { animation-delay: .07s; }
+.sistema-solar-container .planet-details > *:nth-child(3) { animation-delay: .14s; }
+.sistema-solar-container .planet-details > *:nth-child(n+4) { animation-delay: .2s; }
+
+.sistema-solar-container .tech-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+.sistema-solar-container .tech-stat-cell {
+    transition: background .2s, transform .25s var(--ssx-spring), box-shadow .25s;
+}
+.sistema-solar-container .tech-stat-cell:hover {
+    background: rgba(255, 215, 0, 0.06);
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.18) inset;
+    transform: translateY(-1px);
+}
+.sistema-solar-container .tech-icon { filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35)); }
+.sistema-solar-container .comparison-track { height: 7px; border-radius: 999px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) inset; }
+.sistema-solar-container .comparison-fill { position: relative; overflow: hidden; border-radius: 999px; }
+.sistema-solar-container .comparison-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: translateX(-100%);
+    animation: ssx-bar-shine 2.6s ease-in-out infinite;
+}
+.sistema-solar-container .btn-advanced-toggle { transition: transform .25s var(--ssx-spring), background .25s, box-shadow .25s, border-color .25s; }
+.sistema-solar-container .btn-advanced-toggle:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -14px rgba(99, 102, 241, 0.9); }
+.sistema-solar-container .btn-exit-planet { transition: transform .25s var(--ssx-spring), background .25s, box-shadow .25s; }
+.sistema-solar-container .btn-exit-planet:hover { transform: scale(1.06); }
+
+/* ---------- Barra de planetas ---------- */
+.sistema-solar-container .planet-nav-bar {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)), rgba(8, 8, 22, 0.66);
+    border-color: rgba(255, 255, 255, 0.10);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.12) inset,
+        0 20px 50px -18px rgba(0, 0, 0, 0.95),
+        0 0 40px -24px rgba(255, 215, 0, 0.6);
+}
+.sistema-solar-container .planet-nav-item { transition: transform .3s var(--ssx-spring), background .25s ease; }
+.sistema-solar-container .planet-nav-item:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.07); }
+.sistema-solar-container .planet-nav-item:focus-visible { outline: 2px solid rgba(255, 215, 0, 0.75); outline-offset: 2px; }
+.sistema-solar-container .planet-nav-item.active {
+    background: radial-gradient(circle at 50% 30%, rgba(255, 215, 0, 0.16), rgba(255, 255, 255, 0.04) 70%);
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.22) inset;
+}
+.sistema-solar-container .planet-nav-dot { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 8px rgba(255, 255, 255, 0.25); }
+.sistema-solar-container .planet-nav-item.active .planet-nav-dot { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6), 0 0 14px rgba(255, 215, 0, 0.7); }
+
+/* ---------- Hotspots ---------- */
+.sistema-solar-container .hotspot-dot {
+    background: radial-gradient(circle at 35% 30%, #fff, #fde68a 60%, #f59e0b);
+    border-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.65);
+}
+.sistema-solar-container .hotspot-dot::before {
+    /* segundo anillo de onda, desfasado */
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 215, 0, 0.7);
+    opacity: 0;
+    animation: ssx-ripple 2.4s ease-out 1s infinite;
+    pointer-events: none;
+}
+.sistema-solar-container .hotspot-container.visited .hotspot-dot {
+    background: radial-gradient(circle at 35% 30%, #d1fae5, #10b981 60%, #047857);
+}
+.sistema-solar-container .hotspot-container.visited .hotspot-dot::before { animation: none; }
+.sistema-solar-container .hotspot-container.active .hotspot-dot::before {
+    inset: -8px;
+    border: 1.5px dashed rgba(255, 215, 0, 0.9);
+    opacity: 1;
+    animation: ssx-spin 6s linear infinite;
+}
+.sistema-solar-container .hotspot-pulse { background: rgba(255, 215, 0, 0.8); }
+.sistema-solar-container .hotspot-popup {
+    background:
+        radial-gradient(120% 80% at 0% 0%, rgba(255, 215, 0, 0.10), transparent 60%),
+        rgba(10, 12, 30, 0.86);
+    border-color: rgba(255, 215, 0, 0.22);
+    border-radius: 14px;
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 16px 40px -14px rgba(0, 0, 0, 0.9),
+        0 0 30px -14px rgba(255, 215, 0, 0.7);
+}
+.sistema-solar-container .hotspot-popup::before {
+    background: rgba(14, 15, 32, 0.95);
+    border-color: rgba(255, 215, 0, 0.22);
+}
+.sistema-solar-container .hotspot-popup h4 { text-shadow: 0 0 12px rgba(255, 215, 0, 0.45); }
+
+/* ---------- Modal de reinicio ---------- */
+.sistema-solar-container .modal-content {
+    background:
+        radial-gradient(120% 80% at 50% 0%, rgba(239, 68, 68, 0.14), transparent 60%),
+        rgba(12, 12, 28, 0.9);
+    border-color: rgba(255, 255, 255, 0.10);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    backdrop-filter: blur(24px) saturate(150%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 40px 90px -30px rgba(0, 0, 0, 0.95),
+        0 0 50px -24px rgba(239, 68, 68, 0.6);
+}
+.sistema-solar-container .modal-icon { display: inline-block; filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.7)); }
+.sistema-solar-container .btn-modal-confirm,
+.sistema-solar-container .btn-modal-cancel { transition: transform .25s var(--ssx-spring), background .25s, box-shadow .25s; }
+.sistema-solar-container .btn-modal-confirm:hover,
+.sistema-solar-container .btn-modal-cancel:hover { transform: translateY(-2px); }
+.sistema-solar-container .btn-modal-confirm:hover { box-shadow: 0 14px 30px -12px rgba(239, 68, 68, 0.8); }
+
+/* ---------- Keyframes ---------- */
+@keyframes ssx-spin { to { transform: rotate(360deg); } }
+@keyframes ssx-sweep {
+    from { transform: translateX(-120%) rotate(12deg); }
+    to   { transform: translateX(420%) rotate(12deg); }
+}
+@keyframes ssx-bar-shine {
+    0%        { transform: translateX(-100%); }
+    60%, 100% { transform: translateX(100%); }
+}
+@keyframes ssx-ripple {
+    0%   { transform: scale(1); opacity: .8; }
+    100% { transform: scale(2.8); opacity: 0; }
+}
+@keyframes ssx-rise {
+    from { opacity: 0; transform: translate3d(0, 12px, 0); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Responsive (no había reglas móviles) ---------- */
+@media (max-width: 720px) {
+    .sistema-solar-container .config-panel-v2 {
+        top: .75rem;
+        right: .75rem;
+        width: min(340px, calc(100% - 1.5rem));
+    }
+    .sistema-solar-container .info-panel-overlay,
+    .sistema-solar-container .info-panel-overlay.expanded {
+        left: .75rem;
+        right: .75rem;
+        bottom: 5.5rem;
+        width: auto;
+        max-height: 55vh;
+    }
+    .sistema-solar-container .info-panel-card { max-height: 55vh; }
+    .sistema-solar-container .planet-nav-bar {
+        bottom: .75rem;
+        max-width: calc(100% - 1.5rem);
+        overflow-x: auto;
+        padding: 6px 10px;
+        scrollbar-width: none;
+    }
+    .sistema-solar-container .planet-nav-bar::-webkit-scrollbar { display: none; }
+    .sistema-solar-container .modal-content { margin: 0 1rem; }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .sistema-solar-container .radial-progress-container::after,
+    .sistema-solar-container .btn-launch-activity::after,
+    .sistema-solar-container .planet-color-indicator::after,
+    .sistema-solar-container .comparison-fill::after,
+    .sistema-solar-container .hotspot-dot::before,
+    .sistema-solar-container .hud-scanner-line,
+    .sistema-solar-container .hotspot-pulse,
+    .sistema-solar-container .info-panel-glow-border {
+        animation: none !important;
+    }
+    .sistema-solar-container .planet-details > * {
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+    }
+}

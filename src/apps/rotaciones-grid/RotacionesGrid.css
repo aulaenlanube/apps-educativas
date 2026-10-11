@@ -960,3 +960,359 @@ input:checked+.slider:before {
     font-size: 1.4rem;
     color: #4f46e5;
 }
+/* ==========================================================================
+   ACABADO PREMIUM 2026 — capa visual (no toca la lógica)
+   Cristal con luz interior, piezas tipo tetris girando al fondo, feedback
+   con glow sobre el tablero y nota héroe en anillo. Rejillas de 81 celdas:
+   aquí NO se animan sombras por celda (rendimiento).
+   ========================================================================== */
+
+.rotaciones-container {
+    --fx-accent: #6366f1;
+    --fx-accent-2: #db2777;
+    --rot-glass: rgba(255, 255, 255, 0.72);
+    --rot-glass-strong: rgba(255, 255, 255, 0.88);
+    --rot-edge: rgba(255, 255, 255, 0.75);
+    --rot-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.85) inset,
+        0 -1px 0 0 rgba(15, 23, 42, 0.04) inset,
+        0 30px 60px -30px rgba(76, 29, 149, 0.4),
+        0 10px 24px -14px rgba(15, 23, 42, 0.18);
+}
+html.dark .rotaciones-container {
+    --rot-glass: rgba(30, 27, 60, 0.66);
+    --rot-glass-strong: rgba(36, 32, 70, 0.86);
+    --rot-edge: rgba(255, 255, 255, 0.1);
+    --rot-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 30px 70px -30px rgba(0, 0, 0, 0.8),
+        0 10px 24px -14px rgba(0, 0, 0, 0.5);
+}
+/* Son flex items: z-index funciona sin tocar position (header 10 e
+   instruction-box 5 ya lo tienen; el tooltip de colores queda por encima) */
+.rotaciones-container > .top-actions-panel,
+.rotaciones-container > .exam-stats,
+.rotaciones-container > .rot-progress,
+.rotaciones-container > .rotaciones-game-area,
+.rotaciones-container > .feedback-msg,
+.rotaciones-container > .controls-panel,
+.rotaciones-container > .grid-card {
+    z-index: 1;
+}
+
+/* ---------- Fondo ---------- */
+.rot-backdrop::before { opacity: .26; }
+.rot-backdrop::after { opacity: .22; }
+.rot-backdrop .rot-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(118, 75, 162, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(118, 75, 162, 0.08) 1px, transparent 1px);
+}
+html.dark .rot-backdrop .rot-grid-bg {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+/* Pieza en "L" hecha con un cuadrado + sombras: gira lentamente */
+.rot-piece {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: rgba(99, 102, 241, 0.22);
+    box-shadow: 0 30px 0 rgba(99, 102, 241, 0.22), 0 60px 0 rgba(99, 102, 241, 0.22), 30px 60px 0 rgba(99, 102, 241, 0.22);
+    animation: rot-turn 14s linear infinite;
+    transform-origin: 13px 43px;
+}
+.rot-piece.p1 { top: 12%; left: 5%; }
+.rot-piece.p2 {
+    top: 46%; right: 5%;
+    background: rgba(236, 72, 153, 0.2);
+    box-shadow: 30px 0 0 rgba(236, 72, 153, 0.2), 60px 0 0 rgba(236, 72, 153, 0.2), 30px 30px 0 rgba(236, 72, 153, 0.2);
+    transform-origin: 43px 13px;
+    animation-duration: 18s;
+    animation-direction: reverse;
+}
+.rot-piece.p3 {
+    bottom: 8%; left: 14%;
+    background: rgba(245, 158, 11, 0.22);
+    box-shadow: 30px 0 0 rgba(245, 158, 11, 0.22), 0 30px 0 rgba(245, 158, 11, 0.22), 30px 30px 0 rgba(245, 158, 11, 0.22);
+    transform-origin: 28px 28px;
+    animation-duration: 22s;
+}
+@keyframes rot-turn {
+    0%, 20% { transform: rotate(0deg); }
+    25%, 45% { transform: rotate(90deg); }
+    50%, 70% { transform: rotate(180deg); }
+    75%, 95% { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+}
+.rot-spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 12px 3px rgba(167, 139, 250, 0.7);
+    animation: fx-twinkle 3.2s ease-in-out infinite;
+}
+.rot-spark.s1 { top: 8%; right: 18%; }
+.rot-spark.s2 { top: 62%; left: 8%; animation-delay: 1.2s; }
+.rot-spark.s3 { bottom: 14%; right: 12%; animation-delay: 2.2s; }
+
+/* ---------- Título ---------- */
+.rotaciones-container .rotaciones-header h1 {
+    background: linear-gradient(90deg, #4f46e5, #9333ea, #db2777, #f59e0b, #4f46e5);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 8px 20px rgba(147, 51, 234, 0.28));
+    animation: titleFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1), fx-pan 10s linear 1s infinite;
+}
+
+/* ---------- Superficies ---------- */
+.rotaciones-container .grid-card,
+html.dark .rotaciones-container .grid-card {
+    background:
+        radial-gradient(100% 60% at 50% 0%, rgba(139, 92, 246, 0.10), transparent 60%),
+        var(--rot-glass) !important;
+    border: 1px solid var(--rot-edge) !important;
+    box-shadow: var(--rot-shadow);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    border-radius: 28px;
+    transition: transform .4s var(--fx-ease-spring), box-shadow .4s ease;
+}
+.rotaciones-container .rotaciones-game-area > .grid-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 40px 70px -30px rgba(99, 102, 241, 0.55);
+}
+.rotaciones-container .rotaciones-game-area > .grid-card { animation: fx-rise .6s var(--fx-ease-out) both; }
+.rotaciones-container .rotaciones-game-area > .grid-card:nth-child(2) { animation-delay: .1s; }
+.rotaciones-container .grid-title {
+    display: inline-flex;
+    padding: .3rem 1rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(219, 39, 119, 0.10));
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    font-weight: 700;
+}
+.rotaciones-container .rotation-grid {
+    border: 3px solid transparent;
+    border-radius: 14px;
+    background:
+        linear-gradient(#f8f9fa, #f8f9fa) padding-box,
+        linear-gradient(135deg, #6366f1, #9333ea, #db2777) border-box;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.10), 0 16px 34px -16px rgba(118, 75, 162, 0.6);
+}
+html.dark .rotaciones-container .rotation-grid {
+    background:
+        linear-gradient(#1e1b2e, #1e1b2e) padding-box,
+        linear-gradient(135deg, #6366f1, #9333ea, #db2777) border-box;
+}
+.rotaciones-container .grid-cell { transition: background-color .15s ease; }
+.rotaciones-container .grid-cell:hover { background-color: rgba(139, 92, 246, 0.12); }
+.rotaciones-container .grid-cell .dot {
+    background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 55%);
+    animation: rot-dot-in .3s var(--fx-ease-spring) both;
+}
+@keyframes rot-dot-in {
+    from { transform: scale(.3); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.rotaciones-container .grid-cell.correct { background-color: #10b981 !important; }
+
+/* Feedback sobre el área de juego */
+.rotaciones-container .rotaciones-game-area.rot-fb-success > .grid-card:nth-child(2) {
+    animation: fx-correct-flash .9s ease-out both;
+    border-color: rgba(16, 185, 129, 0.6) !important;
+}
+.rotaciones-container .rotaciones-game-area.rot-fb-error > .grid-card:nth-child(2) {
+    animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97) both, fx-wrong-flash .8s ease-out both;
+    border-color: rgba(239, 68, 68, 0.6) !important;
+}
+.rotaciones-container .feedback-msg {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    animation: slideInUp .4s var(--fx-ease-spring) both;
+}
+.rotaciones-container .feedback-msg.success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(34, 211, 238, 0.08));
+    border-color: rgba(16, 185, 129, 0.45);
+    color: #047857;
+    box-shadow: 0 14px 30px -16px rgba(16, 185, 129, 0.7);
+}
+.rotaciones-container .feedback-msg.error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.14), rgba(236, 72, 153, 0.07));
+    border-color: rgba(239, 68, 68, 0.45);
+    color: #b91c1c;
+    box-shadow: 0 14px 30px -16px rgba(239, 68, 68, 0.7);
+}
+html.dark .rotaciones-container .feedback-msg.success { color: #6ee7b7; }
+html.dark .rotaciones-container .feedback-msg.error { color: #fca5a5; }
+
+.rotaciones-container .instruction-box,
+.rotaciones-container .difficulty-selector,
+.rotaciones-container .exam-stats {
+    background: var(--rot-glass) !important;
+    border: 1px solid var(--rot-edge);
+    box-shadow: var(--rot-shadow);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+}
+html.dark .rotaciones-container .instruction-text { color: #e5e7eb; }
+html.dark .rotaciones-container .exam-stats { color: #c4b5fd; }
+.rotaciones-container .angle-badge {
+    box-shadow: 0 8px 18px -8px rgba(118, 75, 162, 0.7);
+}
+.rot-angle-pop { display: inline-block; animation: fx-pop-in .5s var(--fx-ease-spring) both; }
+.rot-pts-pop { display: inline-block; animation: fx-pop-in .45s var(--fx-ease-spring) both; }
+
+.rot-progress {
+    width: 100%;
+    max-width: 800px;
+    height: 10px;
+    margin: 0 0 1rem;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(148, 163, 184, 0.22);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12) inset;
+}
+.rot-progress-fill {
+    position: relative;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6366f1, #9333ea, #db2777);
+    box-shadow: 0 0 12px rgba(147, 51, 234, 0.6);
+    transition: width .6s var(--fx-ease-out);
+    overflow: hidden;
+}
+.rot-progress-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+    transform: translateX(-100%);
+    animation: rot-sheen 2.2s ease-in-out infinite;
+}
+@keyframes rot-sheen { to { transform: translateX(100%); } }
+
+/* ---------- Botones ---------- */
+.rotaciones-container .btn-primary,
+.rotaciones-container .btn-secondary,
+.rotaciones-container .btn-accent {
+    transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, border-color .2s ease, background-position .6s ease;
+}
+.rotaciones-container .btn-primary:active,
+.rotaciones-container .btn-secondary:active,
+.rotaciones-container .btn-accent:active { transform: scale(.96); }
+.rotaciones-container .btn-primary:focus-visible,
+.rotaciones-container .btn-secondary:focus-visible,
+.rotaciones-container .btn-accent:focus-visible { outline: 3px solid #a78bfa; outline-offset: 3px; }
+.rotaciones-container .btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #9333ea 55%, #db2777);
+    background-size: 180% 180%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -3px 0 rgba(0, 0, 0, 0.18) inset, 0 16px 30px -12px rgba(99, 102, 241, 0.7);
+}
+.rotaciones-container .btn-primary:hover { background-position: 100% 50%; }
+.rotaciones-container .btn-secondary {
+    background: var(--rot-glass-strong);
+    border: 1px solid var(--rot-edge);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 8px 18px -12px rgba(76, 29, 149, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+html.dark .rotaciones-container .btn-secondary { color: #c7d2fe; }
+html.dark .rotaciones-container .btn-secondary:hover { background: rgba(50, 45, 90, 0.9); }
+html.dark .rotaciones-container .btn-secondary.danger:hover { background: rgba(239, 68, 68, 0.15); }
+/* El examen se identifica en rojo-ámbar */
+.rotaciones-container .btn-accent {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -3px 0 rgba(0, 0, 0, 0.15) inset, 0 14px 28px -10px rgba(239, 68, 68, 0.7);
+}
+
+/* ---------- Modales ---------- */
+.rotaciones-container .modal-overlay {
+    background: radial-gradient(circle at 50% 30%, rgba(76, 29, 149, 0.5), rgba(15, 23, 42, 0.78));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.rotaciones-container .modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 40px 90px -30px rgba(76, 29, 149, 0.7);
+}
+.rotaciones-container .close-modal { transition: transform .25s var(--fx-ease-spring); }
+.rotaciones-container .close-modal:hover { transform: rotate(90deg) scale(1.08); }
+.rotaciones-container .figure-index-item { transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease; }
+
+/* ---------- Resumen ---------- */
+.rotaciones-container .rot-result-card { width: 100%; }
+.rotaciones-container .rot-nota-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    border-width: 2px;
+    border-radius: 28px;
+    background:
+        radial-gradient(100% 80% at 50% 0%, color-mix(in srgb, var(--rot-nota-color, #3b82f6) 20%, transparent), transparent 65%),
+        var(--rot-glass-strong);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 0 0 6px color-mix(in srgb, var(--rot-nota-color, #3b82f6) 10%, transparent),
+        0 30px 60px -28px var(--rot-nota-color, #3b82f6);
+    animation: fx-pop-in .7s var(--fx-ease-spring) both;
+}
+.rot-nota-ring {
+    width: 160px;
+    height: 160px;
+    animation-delay: .15s;
+}
+.rotaciones-container .rot-nota-ring .rot-nota-value {
+    font-size: 2.8rem;
+    margin: 0;
+    text-shadow: 0 0 22px color-mix(in srgb, var(--rot-nota-color, #3b82f6) 45%, transparent);
+}
+.rotaciones-container .rot-nota-ring .rot-nota-max { font-size: 1.1rem; }
+.rotaciones-container .rot-nota-msg { animation: fx-rise .6s .45s var(--fx-ease-out) both; }
+.rotaciones-container .rot-stat {
+    background: var(--rot-glass-strong);
+    border: 1px solid var(--rot-edge);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 12px 26px -18px rgba(76, 29, 149, 0.5);
+}
+.rotaciones-container .rot-stat--points {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(219, 39, 119, 0.12)), var(--rot-glass-strong);
+    border-color: rgba(245, 158, 11, 0.45);
+}
+.rotaciones-container .rot-stat--points .rot-stat-value {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #f59e0b, #db2777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+html.dark .rotaciones-container .rot-stat-value { color: #c4b5fd; }
+
+@media (max-width: 720px) {
+    .rot-piece { display: none; }
+    .rot-nota-ring { width: 128px; height: 128px; }
+    .rotaciones-container .rot-nota-ring .rot-nota-value { font-size: 2.2rem; }
+    .rotaciones-container .rot-nota-block { min-width: 0; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rot-piece, .rot-spark, .rot-progress-fill::after,
+    .rotaciones-container .rotaciones-header h1 {
+        animation: none !important;
+    }
+}
+
+/* Bordes del fondo difuminados: sin "caja" visible sobre la escena del curso */
+.rot-backdrop {
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+}

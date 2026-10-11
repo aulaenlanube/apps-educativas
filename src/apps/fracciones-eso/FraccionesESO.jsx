@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, X, Check, HelpCircle, ArrowLeft, RefreshCw, Award, Calculator, BookOpen, Layers, ClipboardCheck, AlertCircle } from 'lucide-react';
+import { Plus, Minus, X, Check, HelpCircle, ArrowLeft, RefreshCw, Award, Calculator, BookOpen, Layers, ClipboardCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import './FraccionesESO.css';
 
@@ -30,7 +30,7 @@ const FraccionesESO = ({ onGameComplete }) => {
     const [examQuestions, setExamQuestions] = useState([]);
     const [examAnswers, setExamAnswers] = useState([]);
     const [showResults, setShowResults] = useState(false);
-    const [score, setScore] = useState(0);
+    const [, setScore] = useState(0);
     const [isVibrating, setIsVibrating] = useState(false);
     const examStartRef = React.useRef(0);
 
@@ -470,8 +470,20 @@ const FraccionesESO = ({ onGameComplete }) => {
         }
     };
 
+    // Solo presentación: nota del examen para el anillo del resumen
+    const examCorrectCount = examAnswers.filter(a => a.isCorrect).length;
+    const examGrade = (examCorrectCount / 12) * 10;
+    const examGradeColor = examGrade >= 8 ? '#10b981' : examGrade >= 5 ? '#3b82f6' : '#ef4444';
+    const examGradeMsg = examGrade >= 9 ? 'Excelente' : examGrade >= 7 ? 'Muy bien' : examGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
+
     return (
         <div className="fracciones-eso-container">
+            {/* Fondo decorativo: orbes + rejilla + chispas */}
+            <div className="fx-app-backdrop feso-backdrop" aria-hidden="true">
+                <div className="feso-grid fx-grid-bg" />
+                <span className="feso-spark s1" /><span className="feso-spark s2" /><span className="feso-spark s3" /><span className="feso-spark s4" />
+                <span className="feso-glyph g1">½</span><span className="feso-glyph g2">¾</span><span className="feso-glyph g3">⅓</span>
+            </div>
             <header className={`app-header ${!section ? 'main-view' : ''} ${showResults ? 'results-view' : ''}`}>
                 <motion.h1
                     initial={{ y: -20, opacity: 0 }}
@@ -487,25 +499,27 @@ const FraccionesESO = ({ onGameComplete }) => {
             {!section ? (
                 <>
                     <motion.div
-                        className="exam-promo-banner"
+                        className="exam-promo-banner fx-grain"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                     >
                         <div className="exam-promo-header">
-                            <ClipboardCheck size={32} className="text-purple-600" />
+                            <span className="feso-promo-icon" aria-hidden="true"><ClipboardCheck size={32} /></span>
                             <h2>¿Estás listo para el reto final?</h2>
                         </div>
                         <p>Realiza un examen aleatorio de 12 preguntas para evaluar tus conocimientos.</p>
-                        <button className="btn-exam-start" onClick={startExam}>
+                        <button className="btn-exam-start fx-shine" onClick={startExam}>
                             <ClipboardCheck size={20} /> Iniciar Modo EXAMEN
                         </button>
                     </motion.div>
 
                     <div className="menu-grid">
-                        {SECTIONS.map((s) => (
+                        {SECTIONS.map((s, i) => (
                             <motion.div
                                 key={s.id}
-                                className="menu-card"
+                                className="menu-card fx-spotlight"
+                                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                                animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.12 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 } }}
                                 whileHover={{ y: -10, scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => {
@@ -514,7 +528,7 @@ const FraccionesESO = ({ onGameComplete }) => {
                                 }}
                                 style={{ '--card-color': s.color }}
                             >
-                                <div className="card-icon">{s.icon}</div>
+                                <div className="card-icon"><span className="feso-icon-halo" aria-hidden="true" />{s.icon}</div>
                                 <h3>{s.name}</h3>
                                 <p>{s.description}</p>
                             </motion.div>
@@ -528,13 +542,19 @@ const FraccionesESO = ({ onGameComplete }) => {
                     animate={{ opacity: 1 }}
                 >
                     <div className="dashboard-header">
-                        <div className="stat-card note">
-                            <Award size={48} />
+                        <div className="stat-card note" style={{ '--feso-grade-color': examGradeColor }}>
+                            <div
+                                className="fx-grade-ring feso-grade-ring"
+                                style={{ '--fx-grade': examGrade, '--fx-grade-color': examGradeColor }}
+                            >
+                                <Award size={30} className="feso-grade-award" aria-hidden="true" />
+                            </div>
                             <div className="stat-content">
                                 <span className="stat-label">Nota Final</span>
-                                <span className={`stat-value ${((examAnswers.filter(a => a.isCorrect).length / 12) * 10) >= 5 ? 'pass' : 'fail'}`}>
-                                    {((examAnswers.filter(a => a.isCorrect).length / 12) * 10).toFixed(1)}
+                                <span className={`stat-value ${examGrade >= 5 ? 'pass' : 'fail'}`}>
+                                    {examGrade.toFixed(1)}
                                 </span>
+                                <span className="feso-grade-msg">{examGradeMsg}</span>
                             </div>
                         </div>
                         <div className="stat-card score">
@@ -542,12 +562,12 @@ const FraccionesESO = ({ onGameComplete }) => {
                             <div className="stat-content">
                                 <span className="stat-label">Aciertos</span>
                                 <span className="stat-value">
-                                    {examAnswers.filter(a => a.isCorrect).length} de 12
+                                    {examCorrectCount} de 12
                                 </span>
                             </div>
                         </div>
                         <div className="dashboard-actions">
-                            <button className="btn-finish-exam" onClick={() => {
+                            <button className="btn-finish-exam fx-shine" onClick={() => {
                                 setIsExamMode(false);
                                 setShowResults(false);
                                 setSection(null);
@@ -621,7 +641,7 @@ const FraccionesESO = ({ onGameComplete }) => {
                             <div className="exam-progress">
                                 Pregunta {examStep + 1} de 12
                                 <div className="progress-bar-bg">
-                                    <div className="progress-bar-fill" style={{ width: `${((examStep + 1) / 12) * 100}%` }}></div>
+                                    <div className="progress-bar-fill feso-progress-shine" style={{ width: `${((examStep + 1) / 12) * 100}%` }}></div>
                                 </div>
                             </div>
                         ) : (
@@ -631,7 +651,7 @@ const FraccionesESO = ({ onGameComplete }) => {
                         )}
                     </div>
 
-                    <div className={`exercise-card ${isVibrating ? 'vibrate-once' : ''}`}>
+                    <div className={`exercise-card ${isVibrating ? 'vibrate-once' : ''} ${feedback?.type === 'success' ? 'feso-card-correct' : feedback?.type === 'error' ? 'feso-card-wrong' : ''}`}>
                         <div className="exercise-content" style={{ width: '100%' }}>
                             {isExamMode && (
                                 <div className="exam-question-label">
@@ -829,7 +849,7 @@ const FraccionesESO = ({ onGameComplete }) => {
                                     <HelpCircle size={20} /> Ayuda
                                 </button>
                             )}
-                            <button className="btn-check" onClick={checkAnswer}>
+                            <button className="btn-check fx-shine" onClick={checkAnswer}>
                                 <Check size={20} /> {isExamMode ? (examStep === 11 ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
                             </button>
                             {!isExamMode && (
@@ -845,8 +865,9 @@ const FraccionesESO = ({ onGameComplete }) => {
                         {feedback && (
                             <motion.div
                                 className={`feedback ${feedback.type}`}
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
+                                initial={{ scale: 0.8, opacity: 0, y: 10 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                transition={{ type: 'spring', stiffness: 380, damping: 20 }}
                             >
                                 {feedback.text}
                             </motion.div>
@@ -866,9 +887,10 @@ const FraccionesESO = ({ onGameComplete }) => {
                     >
                         <motion.div
                             className="fractions-modal-content"
-                            initial={{ y: 50, scale: 0.9 }}
-                            animate={{ y: 0, scale: 1 }}
-                            exit={{ y: 50, scale: 0.9 }}
+                            initial={{ y: 50, scale: 0.9, opacity: 0 }}
+                            animate={{ y: 0, scale: 1, opacity: 1 }}
+                            exit={{ y: 50, scale: 0.9, opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="fractions-modal-header">

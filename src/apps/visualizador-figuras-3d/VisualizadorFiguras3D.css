@@ -1,0 +1,288 @@
+/* src/apps/visualizador-figuras-3d/VisualizadorFiguras3D.css
+   ==========================================================================
+   ACABADO PREMIUM 2026 — solo la UI HTML que rodea el lienzo 3D.
+   El render three/r3f (luces, materiales, geometría) NO se toca.
+   Cristal índigo-violeta, secciones con luz interior, HUD flotante.
+   ========================================================================== */
+
+.vf3d-root {
+    --vf-glass: rgba(255, 255, 255, 0.78);
+    --vf-glass-strong: rgba(255, 255, 255, 0.92);
+    --vf-edge: rgba(255, 255, 255, 0.8);
+    --vf-ink: #1e1b4b;
+    --vf-ink-soft: #64748b;
+    --vf-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+        0 18px 36px -24px rgba(67, 56, 202, 0.45),
+        0 4px 12px -6px rgba(15, 23, 42, 0.12);
+    background:
+        radial-gradient(60% 50% at 0% 0%, rgba(139, 92, 246, 0.22), transparent 60%),
+        radial-gradient(60% 50% at 100% 100%, rgba(236, 72, 153, 0.18), transparent 60%),
+        #eef2ff;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.8) inset,
+        0 40px 80px -40px rgba(67, 56, 202, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.4);
+    font-family: 'Fredoka', sans-serif;
+}
+html.dark .vf3d-root {
+    --vf-glass: rgba(24, 20, 52, 0.82);
+    --vf-glass-strong: rgba(34, 30, 68, 0.92);
+    --vf-edge: rgba(255, 255, 255, 0.1);
+    --vf-ink: #eef2ff;
+    --vf-ink-soft: #a5b4fc;
+    --vf-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+        0 18px 36px -24px rgba(0, 0, 0, 0.8);
+    background:
+        radial-gradient(60% 50% at 0% 0%, rgba(139, 92, 246, 0.25), transparent 60%),
+        radial-gradient(60% 50% at 100% 100%, rgba(236, 72, 153, 0.16), transparent 60%),
+        #0f0c29;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Barra lateral ---------- */
+.vf3d-sidebar {
+    background:
+        radial-gradient(120% 40% at 0% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+        var(--vf-glass);
+    border-right: 1px solid var(--vf-edge);
+    box-shadow: 20px 0 50px -30px rgba(67, 56, 202, 0.45);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    color: var(--vf-ink);
+}
+.vf3d-sidebar label { color: var(--vf-ink); }
+.vf3d-title {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    background: linear-gradient(90deg, #4f46e5, #8b5cf6, #ec4899, #4f46e5);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fx-pan 10s linear infinite;
+}
+.vf3d-title-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 10px 22px -8px rgba(99, 102, 241, 0.8);
+}
+
+/* ---------- Secciones (acordeón) ---------- */
+.vf3d-section {
+    background: var(--vf-glass-strong);
+    border: 1px solid var(--vf-edge);
+    box-shadow: var(--vf-shadow);
+    transition: box-shadow .3s ease, border-color .3s ease;
+    animation: fx-rise .5s var(--fx-ease-out) both;
+}
+.vf3d-section.is-open { border-color: rgba(139, 92, 246, 0.3); }
+.vf3d-section-head {
+    background: transparent;
+    color: var(--vf-ink);
+    transition: background .2s ease;
+}
+.vf3d-section-head:hover { background: rgba(139, 92, 246, 0.07); }
+.vf3d-section-head:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: -3px; }
+.vf3d-section-title { color: var(--vf-ink); }
+.vf3d-section-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    color: #6366f1;
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.10));
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18) inset, 0 6px 14px -8px rgba(99, 102, 241, 0.7);
+}
+html.dark .vf3d-section-icon { color: #c4b5fd; }
+.vf3d-chevron { color: var(--vf-ink-soft); transition: transform .25s var(--fx-ease-spring); }
+.vf3d-section-head:hover .vf3d-chevron { transform: translateX(2px); }
+.vf3d-section-body { border-top: 1px solid rgba(139, 92, 246, 0.12); }
+
+/* ---------- Botones de figura y chips ---------- */
+.vf3d-fig-btn {
+    border-radius: 14px !important;
+    transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background .2s ease !important;
+}
+.vf3d-fig-btn:hover { transform: translateY(-2px); }
+.vf3d-fig-btn:active { transform: scale(.97); }
+.vf3d-fig-btn.is-active {
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 10px 22px -10px rgba(99, 102, 241, 0.85);
+}
+.vf3d-chip {
+    background: var(--vf-glass-strong);
+    color: var(--vf-ink-soft);
+    border-color: var(--vf-edge);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background .2s ease;
+}
+.vf3d-chip:hover { transform: translateY(-2px); color: var(--vf-ink); }
+.vf3d-chip:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: 2px; }
+.vf3d-chip.is-active {
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+    box-shadow: 0 10px 22px -10px rgba(99, 102, 241, 0.85);
+}
+
+.vf3d-info {
+    color: #3730a3;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.10), rgba(236, 72, 153, 0.08));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    animation: fx-bounce-in .45s var(--fx-ease-spring) both;
+}
+html.dark .vf3d-info { color: #c7d2fe; }
+
+.vf3d-value {
+    color: #4f46e5;
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.14), rgba(139, 92, 246, 0.08));
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2) inset;
+}
+html.dark .vf3d-value { color: #c4b5fd; }
+
+/* Slider con pista de gradiente y pulgar luminoso */
+.vf3d-range {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.35), rgba(236, 72, 153, 0.35));
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.15) inset;
+}
+.vf3d-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, #a5b4fc 45%, #6366f1);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2), 0 4px 10px rgba(67, 56, 202, 0.5);
+    transition: transform .2s var(--fx-ease-spring);
+}
+.vf3d-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.vf3d-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, #a5b4fc 45%, #6366f1);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2), 0 4px 10px rgba(67, 56, 202, 0.5);
+}
+.vf3d-range:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: 4px; }
+
+/* ---------- Tarjetas de resultados ---------- */
+.vf3d-metric {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 18px 36px -20px rgba(15, 12, 41, 0.9);
+}
+.vf3d-metric--vol {
+    background:
+        radial-gradient(100% 120% at 100% 0%, rgba(129, 140, 248, 0.45), transparent 55%),
+        linear-gradient(135deg, #1e1b4b, #312e81);
+}
+.vf3d-metric--area {
+    background:
+        radial-gradient(100% 120% at 100% 0%, rgba(52, 211, 153, 0.35), transparent 55%),
+        linear-gradient(135deg, #022c22, #064e3b);
+}
+.vf3d-metric::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: translateX(-120%) rotate(12deg);
+    animation: fx-shine-sweep 5s var(--fx-ease-out) 1.5s infinite;
+    pointer-events: none;
+}
+
+.vf3d-swatch {
+    background: var(--vf-glass-strong);
+    border: 1px solid var(--vf-edge);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 6px 14px -10px rgba(15, 23, 42, 0.4);
+    transition: transform .2s var(--fx-ease-spring);
+}
+.vf3d-swatch:hover { transform: translateY(-1px); }
+
+/* ---------- Escenario + HUD ---------- */
+.vf3d-stage { isolation: isolate; }
+.vf3d-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background:
+        radial-gradient(120% 90% at 50% 50%, transparent 60%, rgba(2, 6, 23, 0.45) 100%),
+        linear-gradient(180deg, rgba(139, 92, 246, 0.10), transparent 25%);
+}
+.vf3d-hud {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 6;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem 1rem;
+    border-radius: 999px;
+    color: #eef2ff;
+    background: rgba(15, 12, 41, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 14px 30px -14px rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    animation: fx-bounce-in .5s var(--fx-ease-spring) both;
+}
+.vf3d-hud-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a5b4fc;
+    box-shadow: 0 0 10px #818cf8;
+    animation: fx-twinkle 2.4s ease-in-out infinite;
+}
+.vf3d-hud-name { font-weight: 700; }
+.vf3d-hud-formula {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .85rem;
+    color: #c7d2fe;
+    padding-left: .6rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.vf3d-fab {
+    color: #1e1b4b !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 1px 0 #fff inset, 0 14px 30px -12px rgba(99, 102, 241, 0.8) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition: transform .25s var(--fx-ease-spring) !important;
+    animation: fx-pop-in .4s var(--fx-ease-spring) both;
+}
+.vf3d-fab:hover { transform: rotate(45deg) scale(1.06); }
+html.dark .vf3d-fab { color: #eef2ff !important; background: rgba(36, 32, 70, 0.85) !important; border-color: rgba(255, 255, 255, 0.14) !important; }
+
+@media (max-width: 720px) {
+    .vf3d-hud { top: auto; bottom: 1rem; left: 1rem; right: auto; padding: .45rem .8rem; font-size: .85rem; }
+    .vf3d-hud-formula { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vf3d-title, .vf3d-metric::after, .vf3d-hud-dot { animation: none !important; }
+}

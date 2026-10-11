@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut } from 'lucide-react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut, Leaf, Zap, Flame } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import './CelulaVegetal.css';
@@ -699,7 +698,6 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
 
 // ===== MAIN COMPONENT =====
 const CelulaVegetal = () => {
-    const navigate = useNavigate();
     const [selectedOrganelle, setSelectedOrganelle] = useState(null);
     const [visitedIds, setVisitedIds] = useState(new Set());
 
@@ -718,7 +716,7 @@ const CelulaVegetal = () => {
     const [matchAnswers, setMatchAnswers] = useState({});
     const [testSubmitted, setTestSubmitted] = useState(false);
     const [testGrade, setTestGrade] = useState(null);
-    const [lastAssignedPair, setLastAssignedPair] = useState(null);
+    const [, setLastAssignedPair] = useState(null);
 
     const [zoom, setZoom] = useState(1);
     const [viewOrigin, setViewOrigin] = useState({ x: 0, y: 0 });
@@ -1000,8 +998,19 @@ const CelulaVegetal = () => {
     const progressPercent = (visitedIds.size / organelleData.length) * 100;
 
     return (
-        <div className={`celula-app ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
+        <div className={`celula-app cfx-vegetal ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
             <AppOrientationWarning />
+            {/* Fondo decorativo: orbes de luz, rejilla de microscopio y partículas */}
+            <div className="cfx-backdrop" aria-hidden="true">
+                <span className="cfx-orb cfx-orb--a" />
+                <span className="cfx-orb cfx-orb--b" />
+                <span className="cfx-orb cfx-orb--c" />
+                <span className="cfx-grid" />
+                <span className="cfx-vignette" />
+                {Array.from({ length: 14 }, (_, i) => (
+                    <span key={i} className="cfx-mote" style={{ '--cfx-i': i, left: `${(i * 53) % 92 + 4}%`, top: `${(i * 37) % 84 + 8}%` }} />
+                ))}
+            </div>
             <header className="celula-header">
                 <div className="celula-header-left"></div>
                 <div className="mode-switcher">
@@ -1021,7 +1030,7 @@ const CelulaVegetal = () => {
                     </div>
                 )}
                 {mode === 'quiz' && (
-                    <div className="quiz-hud"><div className="quiz-score">Puntos: {quizScore}</div></div>
+                    <div className="quiz-hud"><div className="quiz-score cfx-score-pop" key={quizScore}>Puntos: {quizScore}</div></div>
                 )}
                 {mode === 'match' && matchDifficulty !== null && !testSubmitted && (
                     <div className="quiz-hud">
@@ -1126,6 +1135,11 @@ const CelulaVegetal = () => {
             {isQuizMode && quizFeedback && (
                 <div className="quiz-feedback-overlay">
                     <div className={`feedback-message ${quizFeedback.isCorrect ? 'correct' : 'incorrect'}`}>
+                        {quizFeedback.isCorrect && (
+                            <span className="cfx-burst" aria-hidden="true">
+                                {Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--cfx-n': i }} />)}
+                            </span>
+                        )}
                         {quizFeedback.isCorrect ? '¡CORRECTO!' : '¡INTÉNTALO DE NUEVO!'}
                     </div>
                 </div>
@@ -1141,10 +1155,10 @@ const CelulaVegetal = () => {
                                     <div><h3 className="match-title">🎯 Reto: Relaciona orgánulo y función</h3><p className="match-instruction">Elige la dificultad del reto.</p></div>
                                     <button className="match-exit-btn" onClick={() => switchMode('explore')}>✕ Salir</button>
                                 </div>
-                                <div className="difficulty-picker">
-                                    <button className="difficulty-btn difficulty-easy" onClick={() => startMatchWithDifficulty(6)}><span className="difficulty-count">6</span><span className="difficulty-label">Fácil</span></button>
-                                    <button className="difficulty-btn difficulty-medium" onClick={() => startMatchWithDifficulty(9)}><span className="difficulty-count">9</span><span className="difficulty-label">Normal</span></button>
-                                    <button className="difficulty-btn difficulty-hard" onClick={() => startMatchWithDifficulty(12)}><span className="difficulty-count">12</span><span className="difficulty-label">Difícil</span></button>
+                                <div className="difficulty-picker cfx-diff-picker">
+                                    <button className="difficulty-btn difficulty-easy" onClick={() => startMatchWithDifficulty(6)}><span className="cfx-diff-icon" aria-hidden="true"><Leaf size={22} /></span><span className="difficulty-count">6</span><span className="difficulty-label">Fácil</span></button>
+                                    <button className="difficulty-btn difficulty-medium" onClick={() => startMatchWithDifficulty(9)}><span className="cfx-diff-icon" aria-hidden="true"><Zap size={22} /></span><span className="difficulty-count">9</span><span className="difficulty-label">Normal</span></button>
+                                    <button className="difficulty-btn difficulty-hard" onClick={() => startMatchWithDifficulty(12)}><span className="cfx-diff-icon" aria-hidden="true"><Flame size={22} /></span><span className="difficulty-count">12</span><span className="difficulty-label">Difícil</span></button>
                                 </div>
                             </>
                         ) : (
@@ -1194,7 +1208,12 @@ const CelulaVegetal = () => {
                                 {!testSubmitted && <div className="match-actions"><button className={`match-submit-btn ${Object.keys(matchAnswers).length >= matchPairs.length ? 'ready' : ''}`} onClick={submitTest} disabled={Object.keys(matchAnswers).length < matchPairs.length}>Corregir</button></div>}
                                 {testSubmitted && (
                                     <div className={`match-results ${testGrade >= 5 ? 'pass' : 'fail'}`}>
-                                        <div className="match-grade-display">
+                                        <div
+                                            className="match-grade-display cfx-grade"
+                                            style={{ '--cfx-grade': testGrade, '--cfx-grade-color': testGrade >= 8 ? '#10b981' : (testGrade >= 5 ? '#3b82f6' : '#ef4444') }}
+                                        >
+                                            <span className="cfx-grade-ring" aria-hidden="true" />
+                                            <span className="cfx-grade-halo" aria-hidden="true" />
                                             <span className="match-grade-emoji">{getGradeEmoji(testGrade)}</span>
                                             <span className="match-grade-number">{testGrade.toFixed(1)}</span>
                                             <span className="match-grade-max">/10</span>

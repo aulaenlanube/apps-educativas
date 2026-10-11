@@ -213,6 +213,7 @@ const DictadoInteractivo = ({ onGameComplete }) => {
 
   useEffect(() => {
     if (!loading && (palabras.length > 0 || frases.length > 0)) startGame();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, gameMode, startGame]);
 
   // Reproducir el dictado automaticamente al presentar cada pregunta y reiniciar
@@ -344,6 +345,16 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   return (
     <div className="dictado-root">
       <motion.div className="dictado-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        {/* Fondo decorativo (orbes + rejilla + margen de cuaderno) */}
+        <div className="dictado-fx" aria-hidden="true">
+          <span className="dictado-fx-orb a" />
+          <span className="dictado-fx-orb b" />
+          <span className="dictado-fx-grid" />
+          <span className="dictado-fx-spark s1" />
+          <span className="dictado-fx-spark s2" />
+          <span className="dictado-fx-spark s3" />
+        </div>
+
         {/* Header */}
         <div className="dictado-header">
           <div className="dictado-title">
@@ -367,7 +378,12 @@ const DictadoInteractivo = ({ onGameComplete }) => {
                 <Flame size={14} /> <span>{streak}</span>
               </motion.div>
             )}
-            <div className="dictado-stat score"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span></div>
+            <div className="dictado-stat score">
+              <Star size={14} />
+              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
+                {score.toLocaleString('es-ES')}
+              </motion.span>
+            </div>
           </div>
         </div>
 
@@ -394,7 +410,9 @@ const DictadoInteractivo = ({ onGameComplete }) => {
               {isExam ? (
                 <>
                   <div className={`dictado-nota ${notaColor}`}>
-                    <div className="dictado-nota-big">{nota.toFixed(1)}<span className="dictado-nota-small">/10</span></div>
+                    <div className="dictado-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
+                      <div className="dictado-nota-big">{nota.toFixed(1)}<span className="dictado-nota-small">/10</span></div>
+                    </div>
                     <div className="dictado-nota-msg">{notaMsg}</div>
                   </div>
                   <div className="dictado-result-record"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span> <span className="dictado-result-record-label">puntos · ¡supérate!</span></div>
@@ -443,8 +461,8 @@ const DictadoInteractivo = ({ onGameComplete }) => {
                     >
                       <Volume2 size={30} />
                     </button>
-                    <div style={{ fontSize: 13, color: '#64748b', textAlign: 'left', lineHeight: 1.35 }}>
-                      <div style={{ fontWeight: 700, color: '#334155', marginBottom: 2 }}>
+                    <div style={{ fontSize: 13, color: 'var(--app-text-secondary)', textAlign: 'left', lineHeight: 1.35 }}>
+                      <div style={{ fontWeight: 700, color: 'var(--app-text)', marginBottom: 2 }}>
                         🎧 Escucha con atención
                       </div>
                       {replaysLeft === Infinity ? (
