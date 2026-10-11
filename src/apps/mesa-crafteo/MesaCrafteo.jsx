@@ -58,7 +58,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
     const [placedAtoms, setPlacedAtoms] = useState([]);
     const [builtBonds, setBuiltBonds] = useState([]);
     const [selectedElement, setSelectedElement] = useState(null);
-    const [discoveries, setDiscoveries] = useState(new Set());
+    const [, setDiscoveries] = useState(new Set());
     const [result, setResult] = useState(null);
     const [isFusing, setIsFusing] = useState(false);
     const [showFormula, setShowFormula] = useState(false);
@@ -353,6 +353,13 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                 />
             </section>
 
+            {/* Capa decorativa sobre el 3D: viñeta + rejilla de laboratorio (no captura eventos) */}
+            <div className="mc-fx-layer" aria-hidden="true">
+                <span className="mc-fx-vignette" />
+                <span className="mc-fx-grid" />
+                <span className="mc-fx-scan" />
+            </div>
+
             {/* ===== UI FLOTANTE ===== */}
             <div className="mc-ui-overlay">
                 {/* Botón de Ayuda Superior */}
@@ -590,7 +597,13 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
             <AnimatePresence>
                 {result && (
                     <div className="result-overlay">
-                        <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="molecule-reveal-card">
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0, y: 24 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                            className="molecule-reveal-card mc-reveal-success"
+                        >
+                            <span className="mc-reveal-rays" aria-hidden="true" />
                             {result.isExamFeedback ? (
                                 <>
                                     <h2 className="molecule-title" style={{ color: '#4ade80' }}>¡CORRECTO!</h2>
@@ -620,7 +633,13 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
             <AnimatePresence>
                 {errorModal && (
                     <div className="result-overlay">
-                        <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="molecule-reveal-card error-card">
+                        <motion.div
+                            initial={{ scale: 0.85, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                            className="molecule-reveal-card error-card"
+                        >
+                            <span className="mc-error-flash" aria-hidden="true" />
                             <h2 className="molecule-title" style={{ color: '#ff0000' }}>FALLO DE FUSIÓN</h2>
                             <div className="result-main-icon">💥</div>
                             <p className="molecule-description">{errorModal}</p>
@@ -635,22 +654,30 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
             <AnimatePresence>
                 {showDifficultySelector && (
                     <div className="result-overlay">
-                        <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="molecule-reveal-card difficulty-card">
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+                            className="molecule-reveal-card difficulty-card"
+                        >
                             <h2 className="molecule-title">CONFIGURAR EXAMEN</h2>
                             <p className="molecule-description">Elige el nivel: la nota base está en <strong>Medio</strong>.</p>
 
                             <div className="difficulty-options">
                                 <button className="btn-alchemy diff-easy" onClick={() => startExam('easy')}>
+                                    <span className="diff-icon" aria-hidden="true">🧪</span>
                                     <span className="diff-name">FÁCIL</span>
                                     <span className="diff-count">{EXAM_DIFFICULTY.easy.questions} preguntas</span>
                                     <span className="diff-note">{EXAM_DIFFICULTY.easy.note}</span>
                                 </button>
                                 <button className="btn-alchemy diff-med" onClick={() => startExam('medium')}>
+                                    <span className="diff-icon" aria-hidden="true">⚗️</span>
                                     <span className="diff-name">MEDIO</span>
                                     <span className="diff-count">{EXAM_DIFFICULTY.medium.questions} preguntas</span>
                                     <span className="diff-note">{EXAM_DIFFICULTY.medium.note}</span>
                                 </button>
                                 <button className="btn-alchemy diff-hard" onClick={() => startExam('hard')}>
+                                    <span className="diff-icon" aria-hidden="true">☢️</span>
                                     <span className="diff-name">DIFÍCIL</span>
                                     <span className="diff-count">{EXAM_DIFFICULTY.hard.questions} preguntas</span>
                                     <span className="diff-note">{EXAM_DIFFICULTY.hard.note}</span>
@@ -681,10 +708,19 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                     const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
                     return (
                     <div className="result-overlay">
-                        <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="molecule-reveal-card exam-results-card">
+                        <motion.div
+                            initial={{ scale: 0.88, opacity: 0, y: 30 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+                            className="molecule-reveal-card exam-results-card"
+                        >
                             <h2 className="molecule-title">RESULTADOS FINALES</h2>
 
-                            <div className={`exam-final-score-lg ${notaClass}`}>
+                            <div
+                                className={`exam-final-score-lg ${notaClass}`}
+                                style={{ '--mc-grade-pct': Math.max(0, Math.min(1, nota / diffConfig.gradeMax)) }}
+                            >
+                                <span className="mc-grade-orbit" aria-hidden="true" />
                                 <span className="score-val-lg">{nota.toFixed(1)}</span>
                                 <span className="score-total-lg">/ {diffConfig.gradeMax}</span>
                             </div>

@@ -17,7 +17,7 @@ const FloatingParticles = () => {
     })), []);
 
   return (
-    <div className="calma-particles">
+    <div className="calma-particles" aria-hidden="true">
       {particles.map(p => (
         <span
           key={p.id}
@@ -38,7 +38,7 @@ const FloatingParticles = () => {
 
 /* ── Olas suaves de fondo ────────────────────────────────────── */
 const WavesBackground = () => (
-  <div className="calma-waves-bg">
+  <div className="calma-waves-bg" aria-hidden="true">
     <svg viewBox="0 0 1440 180" preserveAspectRatio="none" className="calma-wave calma-wave-1">
       <path d="M0,80 C360,150 1080,10 1440,80 L1440,180 L0,180 Z" fill="rgba(255,255,255,0.04)" />
     </svg>
@@ -51,6 +51,43 @@ const WavesBackground = () => (
   </div>
 );
 
+/* ── Cielo nocturno: auroras lentas, estrellas y luna ───────────── */
+const CalmSky = () => {
+  const stars = useMemo(() =>
+    Array.from({ length: 26 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 55}%`,
+      size: 1 + Math.random() * 2,
+      delay: Math.random() * 8,
+      duration: 5 + Math.random() * 6,
+    })), []);
+
+  return (
+    <div className="calma-sky" aria-hidden="true">
+      <div className="calma-aurora calma-aurora-1" />
+      <div className="calma-aurora calma-aurora-2" />
+      <div className="calma-aurora calma-aurora-3" />
+      <div className="calma-moon" />
+      {stars.map(s => (
+        <span
+          key={s.id}
+          className="calma-star"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            animationDelay: `${s.delay}s`,
+            animationDuration: `${s.duration}s`,
+          }}
+        />
+      ))}
+      <div className="calma-grain" />
+    </div>
+  );
+};
+
 /* ── Círculo de respiración ──────────────────────────────────── */
 const BreathCircle = ({ scale, phase }) => {
   const phaseColors = {
@@ -62,7 +99,16 @@ const BreathCircle = ({ scale, phase }) => {
   };
 
   return (
-    <div className="calma-breath-wrapper">
+    <div className={`calma-breath-wrapper ${phaseColors[phase]}`}>
+      {/* Halo difuso y mandala de pétalos que acompañan la respiración */}
+      <div className="calma-breath-halo" aria-hidden="true"
+        style={{ transform: `scale(${0.85 + scale * 0.45})` }} />
+      <div className="calma-breath-petals" aria-hidden="true"
+        style={{ transform: `scale(${0.75 + scale * 0.4})` }}>
+        {Array.from({ length: 8 }, (_, i) => (
+          <span key={i} className="calma-petal" style={{ '--i': i }} />
+        ))}
+      </div>
       {/* Anillos pulsantes */}
       <div className={`calma-breath-ring calma-ring-3 ${phaseColors[phase]}`}
         style={{ transform: `scale(${0.7 + scale * 0.5})` }} />
@@ -73,6 +119,7 @@ const BreathCircle = ({ scale, phase }) => {
       {/* Círculo central */}
       <div className={`calma-breath-core ${phaseColors[phase]}`}
         style={{ transform: `scale(${scale})` }}>
+        <span className="calma-breath-core-shine" aria-hidden="true" />
         <Wind size={32} strokeWidth={1.5} className="calma-breath-icon" />
       </div>
     </div>
@@ -152,6 +199,7 @@ const IslaDeLaCalma = () => {
 
   return (
     <div className="calma-app">
+      <CalmSky />
       <FloatingParticles />
       <WavesBackground />
 
@@ -200,7 +248,7 @@ const IslaDeLaCalma = () => {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleEmpezar}
-                className="calma-start-btn"
+                className="calma-start-btn calma-start-btn--main"
               >
                 <Play size={20} />
                 <span>Comenzar</span>
@@ -275,7 +323,10 @@ const IslaDeLaCalma = () => {
                 transition={{ delay: 0.3, type: 'spring', stiffness: 120 }}
                 className="calma-final-icon"
               >
-                <span>🌊</span>
+                <span className="calma-final-ripple" aria-hidden="true" />
+                <span className="calma-final-ripple calma-final-ripple-2" aria-hidden="true" />
+                <span className="calma-final-ripple calma-final-ripple-3" aria-hidden="true" />
+                <span className="calma-final-emoji">🌊</span>
               </motion.div>
 
               <h1 className="calma-title">Muy bien hecho</h1>
