@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Lock, Unlock, RefreshCw, Lightbulb, Eye, Timer, Award, Trophy,
-  Gamepad2, GraduationCap, Star, BarChart3, Eraser, Check, X,
+  Lock, Unlock, RefreshCw, Lightbulb, Eye, Timer,
+  Star, BarChart3, Eraser, Check,
 } from 'lucide-react';
 import { getRoscoData, getOrdenaFrasesData } from '../../services/gameDataService';
-import { generateCipherMap, encryptText, getUniqueLetters, SPANISH_FREQ } from './cipherGenerator';
+import { generateCipherMap, encryptText, SPANISH_FREQ } from './cipherGenerator';
 import materiasData from '../../../public/data/materias.json';
 import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
 import './Criptograma.css';
@@ -38,6 +38,17 @@ const MODE_CONFIG = {
 };
 
 const EXAM_REF_TIME_SEC = 300;
+
+// Fondo decorativo: orbes esmeralda/oro, rejilla y dígitos cifrados flotando.
+const CriptoDecor = () => (
+  <div className="cripto-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="cripto-decor-grid fx-grid-bg" />
+    {['17', '04', '23', '9', '12', '31'].map((n, i) => (
+      <span key={i} className={`cripto-ghost-code c${i}`}>{n}</span>
+    ))}
+  </div>
+);
 const EXAM_POINTS_PER_LETTER = 100;
 
 const VOWELS = new Set(['A', 'E', 'I', 'O', 'U']);
@@ -63,6 +74,7 @@ const Criptograma = ({ onGameComplete }) => {
   // Puzzle
   const [cipherMap, setCipherMap] = useState(null);
   const [encrypted, setEncrypted] = useState([]);
+  // eslint-disable-next-line no-unused-vars -- estado preexistente, se deja intacto
   const [originalText, setOriginalText] = useState('');
   const [hint, setHint] = useState('');
   const [guesses, setGuesses] = useState({}); // code → guessedLetter
@@ -167,6 +179,7 @@ const Criptograma = ({ onGameComplete }) => {
 
   useEffect(() => {
     if (!loading && (palabras.length > 0 || frases.length > 0)) generatePuzzle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- deps originales
   }, [loading, gameMode, generatePuzzle]);
 
   // --- Timer (examen) ---
@@ -355,6 +368,7 @@ const Criptograma = ({ onGameComplete }) => {
 
   return (
     <div className="cripto-root">
+      <CriptoDecor />
       <motion.div className="cripto-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         {/* Header */}
         <div className="cripto-header">
@@ -376,18 +390,33 @@ const Criptograma = ({ onGameComplete }) => {
             )}
             <div className="cripto-stat progress">
               <Unlock size={14} />
-              <span>{correctCount}/{totalLetters}</span>
+              <motion.span
+                key={correctCount}
+                initial={{ scale: 1.5, opacity: 0.4 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+              >
+                {correctCount}/{totalLetters}
+              </motion.span>
             </div>
           </div>
         </div>
 
         <div className="cripto-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
 
+        {/* Barra de progreso decorativa (letras descifradas) */}
+        <div className="cripto-progressbar" aria-hidden="true">
+          <span
+            className="cripto-progressbar-fill"
+            style={{ transform: `scaleX(${totalLetters > 0 ? correctCount / totalLetters : 0})` }}
+          />
+        </div>
+
         {/* Tabs modo */}
         <div className="cripto-gamemode-tabs">
           {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`cripto-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span>{c.icon}</span>
+            <button key={key} className={`cripto-gamemode-tab fx-shine ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
+              <span className="cripto-tab-icon">{c.icon}</span>
               <span className="cripto-tab-label">{c.label}</span>
               <span className="cripto-tab-sub">{c.source === 'word' ? 'Palabra' : 'Frase'}</span>
             </button>
@@ -402,7 +431,7 @@ const Criptograma = ({ onGameComplete }) => {
         )}
 
         {/* Texto cifrado */}
-        <div className="cripto-text-wrap">
+        <div className={`cripto-text-wrap ${completed ? (isAllCorrect ? 'is-won' : 'is-lost') : ''}`}>
           <div className="cripto-text">
             {encrypted.map((ch, i) => {
               if (!ch.isLetter) {
@@ -517,9 +546,11 @@ const Criptograma = ({ onGameComplete }) => {
           {completed && (
             <motion.div
               className={`cripto-result ${isAllCorrect ? 'won' : 'lost'}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
             >
+              <span className="cripto-result-rays" aria-hidden="true" />
               <div className="cripto-result-icon">
                 {isAllCorrect ? <Unlock size={48} /> : <Lock size={48} />}
               </div>
@@ -530,10 +561,18 @@ const Criptograma = ({ onGameComplete }) => {
               {isExam && (
                 <>
                   <div className={`cripto-nota ${notaColor}`}>
-                    <div className="cripto-nota-big">{nota.toFixed(1)}<span className="cripto-nota-small">/10</span></div>
+                    <div
+                      className="cripto-nota-ring fx-grade-ring"
+                      style={{
+                        '--fx-grade': nota,
+                        '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                      }}
+                    >
+                      <div className="cripto-nota-big">{nota.toFixed(1)}<span className="cripto-nota-small">/10</span></div>
+                    </div>
                     <div className="cripto-nota-msg">{notaMsg}</div>
                   </div>
-                  <div className="cripto-result-record">
+                  <div className="cripto-result-record fx-shine fx-shine--auto">
                     <Star size={14} />
                     <span>{finalScore.toLocaleString('es-ES')}</span>
                     <span className="cripto-result-record-label">puntos · ¡supérate!</span>
@@ -552,7 +591,7 @@ const Criptograma = ({ onGameComplete }) => {
                 <div className="cripto-result-stat"><Timer size={14} /> {formatTime(timer)}</div>
                 {hintsUsed > 0 && <div className="cripto-result-stat"><Lightbulb size={14} /> {hintsUsed} ayudas</div>}
               </div>
-              <button className="cripto-btn primary" onClick={generatePuzzle}>
+              <button className="cripto-btn primary fx-shine" onClick={generatePuzzle}>
                 <RefreshCw size={16} /> Otro criptograma
               </button>
             </motion.div>

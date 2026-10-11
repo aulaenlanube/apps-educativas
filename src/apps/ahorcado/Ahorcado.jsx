@@ -34,6 +34,17 @@ const getSubjectInfo = (level, grade, subjectId) => {
   return { nombre: found.nombre || '', icon: found.icon || '📚' };
 };
 
+// Fondo decorativo (orbes + rejilla + chispas). Puramente visual.
+const AhorcadoDecor = () => (
+  <div className="ahorcado-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="ahorcado-decor-grid fx-grid-bg" />
+    {Array.from({ length: 6 }).map((_, i) => (
+      <span key={i} className={`ahorcado-spark s${i}`} />
+    ))}
+  </div>
+);
+
 const Ahorcado = ({ onGameComplete }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const grade = useMemo(() => parseInt(gradeParam, 10), [gradeParam]);
@@ -362,6 +373,7 @@ const Ahorcado = ({ onGameComplete }) => {
     if (examResults.length < EXAM_QUESTIONS) return;
     examTrackedRef.current = true;
     const correct = examResults.filter((r) => r.won).length;
+    // eslint-disable-next-line no-unused-vars -- variable preexistente, se deja intacta
     const elapsed = examStartRef.current ? Math.round((Date.now() - examStartRef.current) / 1000) : 0;
     onGameComplete?.({
       mode: 'test',
@@ -379,6 +391,7 @@ const Ahorcado = ({ onGameComplete }) => {
         colors: ['#a855f7', '#ec4899', '#fbbf24', '#10b981', '#3b82f6'],
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- deps originales (no tocar tracking)
   }, [examFinished, examResults, examScore, onGameComplete]);
 
   // --- Pulsar una letra ---
@@ -505,6 +518,7 @@ const Ahorcado = ({ onGameComplete }) => {
   if (loading) {
     return (
       <div className="ahorcado-root">
+        <AhorcadoDecor />
         <div className="ahorcado-card">
           <div className="ahorcado-loading">Cargando juego...</div>
         </div>
@@ -519,6 +533,7 @@ const Ahorcado = ({ onGameComplete }) => {
       (gameMode === 'exam' && examPoolEmpty)) {
     return (
       <div className="ahorcado-root">
+        <AhorcadoDecor />
         <div className="ahorcado-card">
           <div className="ahorcado-title">
             <span>🎯</span> Ahorcado
@@ -552,11 +567,12 @@ const Ahorcado = ({ onGameComplete }) => {
 
     return (
       <div className="ahorcado-root">
+        <AhorcadoDecor />
         <motion.div
           className="ahorcado-card ahorcado-exam-summary"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 30, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 160, damping: 18 }}
         >
           <div className="ahorcado-summary-header">
             <Award size={36} className="ahorcado-summary-icon" />
@@ -567,9 +583,17 @@ const Ahorcado = ({ onGameComplete }) => {
           </div>
 
           <div className={`ahorcado-nota ${notaColor}`}>
-            <div className="ahorcado-nota-big">
-              {examScore.toFixed(1)}
-              <span className="ahorcado-nota-small">/10</span>
+            <div
+              className="ahorcado-nota-ring fx-grade-ring"
+              style={{
+                '--fx-grade': examScore,
+                '--fx-grade-color': examScore >= 8 ? '#10b981' : examScore >= 5 ? '#3b82f6' : '#ef4444',
+              }}
+            >
+              <div className="ahorcado-nota-big">
+                {examScore.toFixed(1)}
+                <span className="ahorcado-nota-small">/10</span>
+              </div>
             </div>
             <div className="ahorcado-nota-msg">
               <strong>{mensaje}</strong>
@@ -577,7 +601,7 @@ const Ahorcado = ({ onGameComplete }) => {
             </div>
           </div>
 
-          <div className="ahorcado-puntos">
+          <div className="ahorcado-puntos fx-shine fx-shine--auto">
             <Trophy size={16} className="ahorcado-puntos-icon" />
             <span className="ahorcado-puntos-value">{examPoints.toLocaleString('es-ES')}</span>
             <span className="ahorcado-puntos-label">puntos</span>
@@ -647,6 +671,7 @@ const Ahorcado = ({ onGameComplete }) => {
 
   return (
     <div className="ahorcado-root">
+      <AhorcadoDecor />
       <motion.div
         className="ahorcado-card"
         initial={{ opacity: 0, y: 20 }}
@@ -738,7 +763,13 @@ const Ahorcado = ({ onGameComplete }) => {
         {/* Cuerpo principal */}
         <div className="ahorcado-main">
           <div className="ahorcado-left">
-            <div className="ahorcado-hangman-wrap">{renderHangman()}</div>
+            <motion.div
+              className={`ahorcado-hangman-wrap is-${status}`}
+              animate={{ x: fails === 0 ? 0 : fails % 2 ? [0, -7, 7, -4, 4, 0] : [0, 7, -7, 4, -4, 0] }}
+              transition={{ duration: 0.45 }}
+            >
+              {renderHangman()}
+            </motion.div>
             <div className="ahorcado-vidas">
               {Array.from({ length: MAX_FAILS }).map((_, i) => (
                 <Heart
@@ -775,7 +806,7 @@ const Ahorcado = ({ onGameComplete }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="ahorcado-texto-wrap"
+                className={`ahorcado-texto-wrap is-${status}`}
               >
                 {renderHidden()}
               </motion.div>
@@ -829,10 +860,12 @@ const Ahorcado = ({ onGameComplete }) => {
           {status !== 'playing' && !examFinished && (
             <motion.div
               className={`ahorcado-result ${status}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 24, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
+              <span className="ahorcado-result-glow" aria-hidden="true" />
               <div className="ahorcado-result-text">
                 {status === 'won' ? (
                   <>
@@ -846,7 +879,7 @@ const Ahorcado = ({ onGameComplete }) => {
                   </>
                 )}
               </div>
-              <button className="ahorcado-btn primary" onClick={continuar}>
+              <button className="ahorcado-btn primary fx-shine" onClick={continuar}>
                 {isExam && examIndex + 1 < EXAM_QUESTIONS ? (
                   <>
                     <ArrowRight size={16} /> Siguiente pregunta

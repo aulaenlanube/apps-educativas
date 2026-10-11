@@ -5,7 +5,7 @@ import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Shuffle, Lightbulb, Zap, RefreshCw, Timer,
-  Award, Gamepad2, GraduationCap, Flame, Trophy, Sparkles, Check, X, Star, BookOpen,
+  GraduationCap, Flame, Trophy, Sparkles, Check, X, Star, BookOpen,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -64,6 +64,7 @@ const normalize = (s) =>
     .replace(/Ñ/g, '\u0001')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+    // eslint-disable-next-line no-control-regex -- marcador temporal intencionado
     .replace(/\u0001/g, 'Ñ')
     .replace(/[^A-ZÑ]/g, '');
 
@@ -100,6 +101,17 @@ const getSubjectInfo = (level, grade, subjectId) => {
   if (!found) return { nombre: '', icon: '📚' };
   return { nombre: found.nombre || '', icon: found.icon || '📚' };
 };
+
+// Fondo decorativo: orbes de aurora, rejilla y fichas fantasma flotando.
+const AnagDecor = () => (
+  <div className="anag-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="anag-decor-grid fx-grid-bg" />
+    {['A', 'Z', 'R', 'M', 'E'].map((l, i) => (
+      <span key={l} className={`anag-ghost-tile g${i}`}>{l}</span>
+    ))}
+  </div>
+);
 
 const Anagramas = ({ onGameComplete }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -480,12 +492,14 @@ const Anagramas = ({ onGameComplete }) => {
       totalQuestions: questions.length || 1,
       durationSeconds: cfg.timer ? (cfg.timer * questions.length - timeLeft) : 0,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- deps originales (no tocar tracking)
   }, [status, score, correctCount, questions.length, gameMode, onGameComplete]);
 
   // --- Render ---
   if (loading) {
     return (
       <div className="anag-root">
+        <AnagDecor />
         <div className="anag-card">
           <div className="anag-loading">Cargando anagramas...</div>
         </div>
@@ -496,6 +510,7 @@ const Anagramas = ({ onGameComplete }) => {
   if (allWords.length < 3) {
     return (
       <div className="anag-root">
+        <AnagDecor />
         <div className="anag-card">
           <div className="anag-title">
             <span>🔀</span> Anagramas
@@ -524,6 +539,7 @@ const Anagramas = ({ onGameComplete }) => {
 
   return (
     <div className="anag-root">
+      <AnagDecor />
       <motion.div
         className="anag-card"
         initial={{ opacity: 0, y: 20 }}
@@ -576,13 +592,27 @@ const Anagramas = ({ onGameComplete }) => {
                   <span>{timeLeft}s</span>
                 </div>
               )}
-              <div className="anag-stat streak">
+              <div className={`anag-stat streak ${streak >= 2 ? 'hot' : ''}`}>
                 <Flame size={14} />
-                <span>{streak}</span>
+                <motion.span
+                  key={streak}
+                  initial={{ scale: 1.6, opacity: 0.4 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+                >
+                  {streak}
+                </motion.span>
               </div>
               <div className="anag-stat score">
                 <Star size={14} />
-                <span>{score}</span>
+                <motion.span
+                  key={score}
+                  initial={{ scale: 1.5, opacity: 0.4 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+                >
+                  {score}
+                </motion.span>
               </div>
             </div>
           </div>
@@ -608,9 +638,10 @@ const Anagramas = ({ onGameComplete }) => {
               {Object.entries(MODE_CONFIG).map(([key, c]) => (
                 <button
                   key={key}
-                  className={`anag-select-card ${key} ${gameMode === key ? 'active' : ''}`}
+                  className={`anag-select-card fx-mode-card fx-mode-card--${key} ${key} ${gameMode === key ? 'active' : ''}`}
                   onClick={() => setGameMode(key)}
                 >
+                  <span className="anag-select-shine" aria-hidden="true" />
                   <span className="anag-select-icon">{c.icon}</span>
                   <span className="anag-select-label">{c.label}</span>
                   <ul className="anag-select-helps">
@@ -622,7 +653,7 @@ const Anagramas = ({ onGameComplete }) => {
               ))}
             </div>
             <button
-              className="anag-btn primary anag-select-start"
+              className="anag-btn primary anag-select-start fx-shine"
               onClick={() => setPhase('playing')}
               disabled={loading || allWords.length < 3}
             >
@@ -636,9 +667,11 @@ const Anagramas = ({ onGameComplete }) => {
           {phase === 'playing' && isFinished && (
             <motion.div
               className={`anag-result ${status}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
             >
+              <span className="anag-result-rays" aria-hidden="true" />
               <div className="anag-result-icon">
                 <Trophy size={48} />
               </div>
@@ -646,14 +679,22 @@ const Anagramas = ({ onGameComplete }) => {
 
               {/* Nota principal sobre 10 */}
               <div className={`anag-nota ${notaColor}`}>
-                <div className="anag-nota-big">
-                  {nota.toFixed(1)}
-                  <span className="anag-nota-small">/10</span>
+                <div
+                  className="anag-nota-ring fx-grade-ring"
+                  style={{
+                    '--fx-grade': nota,
+                    '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                  }}
+                >
+                  <div className="anag-nota-big">
+                    {nota.toFixed(1)}
+                    <span className="anag-nota-small">/10</span>
+                  </div>
                 </div>
                 <div className="anag-nota-msg">{notaMsg}</div>
               </div>
               {/* Puntos: dependen de la velocidad */}
-              <div className="anag-result-record">
+              <div className="anag-result-record fx-shine fx-shine--auto">
                 <Star size={16} />
                 <span className="anag-result-record-value">{score.toLocaleString('es-ES')}</span>
                 <span className="anag-result-record-label">puntos · ¡supérate!</span>
@@ -735,7 +776,7 @@ const Anagramas = ({ onGameComplete }) => {
 
             <LayoutGroup>
               {/* Slots (la palabra a completar) */}
-              <div className="anag-slots-wrap">
+              <div className={`anag-slots-wrap is-${status}`}>
                 <div className={`anag-slots ${status === 'wrong' ? 'shake' : ''}`}>
                   {slots.map((tile, idx) => (
                     <div key={`slot-${idx}`} className="anag-slot">

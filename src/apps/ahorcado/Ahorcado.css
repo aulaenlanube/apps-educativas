@@ -903,3 +903,568 @@
     font-size: 1.4rem;
   }
 }
+
+/* ==========================================================================
+   PREMIUM 2026 — capa de acabado (cristal, luz, profundidad, microinteracciones)
+   Solo visual: no cambia ninguna clase que use la lógica.
+   ========================================================================== */
+
+.ahorcado-root {
+  position: relative;
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fx-accent: #a855f7;
+  --fx-accent-2: #ec4899;
+}
+
+/* ---------- Fondo decorativo ---------- */
+.ahorcado-decor {
+  position: absolute;
+  inset: -1rem 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 32px;
+}
+.ahorcado-decor .fx-app-backdrop::before,
+.ahorcado-decor .fx-app-backdrop::after { opacity: .28; }
+.ahorcado-decor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, .07) 1px, transparent 1px);
+}
+html.dark .ahorcado-decor-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+}
+.ahorcado-spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #f0abfc 40%, transparent 70%);
+  box-shadow: 0 0 10px 2px rgba(236, 72, 153, .45);
+  animation: fx-twinkle 3.2s ease-in-out infinite;
+}
+.ahorcado-spark.s0 { top: 8%;  left: 6%;  animation-delay: 0s; }
+.ahorcado-spark.s1 { top: 18%; right: 9%; animation-delay: .7s; background: radial-gradient(circle, #fff 0%, #fde68a 40%, transparent 70%); box-shadow: 0 0 10px 2px rgba(251,191,36,.5); }
+.ahorcado-spark.s2 { bottom: 14%; left: 4%; animation-delay: 1.4s; }
+.ahorcado-spark.s3 { bottom: 26%; right: 5%; animation-delay: 2.1s; background: radial-gradient(circle, #fff 0%, #c4b5fd 40%, transparent 70%); }
+.ahorcado-spark.s4 { top: 46%; left: 2%; animation-delay: 2.6s; width: 4px; height: 4px; }
+.ahorcado-spark.s5 { top: 4%;  left: 52%; animation-delay: 1.1s; width: 4px; height: 4px; }
+
+/* ---------- Tarjeta principal: cristal con luz interior ---------- */
+.ahorcado-card {
+  position: relative;
+  z-index: 1;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(168, 85, 247, .10), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgba(236, 72, 153, .08), transparent 60%),
+    var(--app-card-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .7);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .9) inset,
+    0 -1px 0 0 rgba(76, 29, 149, .06) inset,
+    0 40px 80px -40px rgba(124, 58, 237, .45),
+    0 18px 36px -18px rgba(236, 72, 153, .25),
+    0 4px 10px -4px rgba(15, 23, 42, .08);
+}
+.ahorcado-card::before {
+  /* Reflejo superior tipo vidrio */
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .55), transparent);
+  opacity: .5;
+  pointer-events: none;
+}
+.ahorcado-card > * { position: relative; }
+html.dark .ahorcado-card {
+  border-color: rgba(255, 255, 255, .1);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .08) inset,
+    0 40px 80px -40px rgba(0, 0, 0, .8),
+    0 18px 36px -18px rgba(168, 85, 247, .3);
+}
+html.dark .ahorcado-card::before { background: linear-gradient(180deg, rgba(255, 255, 255, .06), transparent); }
+
+/* ---------- Cabecera ---------- */
+.ahorcado-title {
+  background: linear-gradient(90deg, #a855f7, #ec4899, #f59e0b, #a855f7);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-pan 10s linear infinite;
+  font-weight: 700;
+}
+.ahorcado-emoji {
+  filter: drop-shadow(0 6px 10px rgba(236, 72, 153, .35));
+}
+.ahorcado-stat {
+  border: 1px solid rgba(255, 255, 255, .35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 8px 18px -8px rgba(15, 23, 42, .35);
+  transition: transform .25s var(--fx-ease-spring);
+}
+.ahorcado-stat span {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  animation: fx-pop-in .45s var(--fx-ease-spring);
+}
+.ahorcado-stat:hover { transform: translateY(-2px) scale(1.04); }
+
+/* ---------- Tabs práctica/examen: píldora de cristal ---------- */
+.ahorcado-gamemode-tabs {
+  border-bottom: 0;
+  padding: .3rem;
+  border-radius: 16px;
+  background: rgba(168, 85, 247, .07);
+  box-shadow: 0 1px 2px rgba(76, 29, 149, .08) inset;
+  width: fit-content;
+  max-width: 100%;
+}
+.ahorcado-gamemode-tab {
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-radius: 12px;
+  transition: color .2s ease, background .25s ease, transform .25s var(--fx-ease-spring), box-shadow .25s ease;
+}
+.ahorcado-gamemode-tab:hover { transform: translateY(-1px); }
+.ahorcado-gamemode-tab.active {
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 10px 20px -10px rgba(236, 72, 153, .7);
+}
+.ahorcado-gamemode-tab:focus-visible,
+.ahorcado-mode-btn:focus-visible,
+.ahorcado-key:focus-visible,
+.ahorcado-btn:focus-visible,
+.ahorcado-pista-btn:focus-visible {
+  outline: 3px solid rgba(167, 139, 250, .8);
+  outline-offset: 2px;
+}
+
+.ahorcado-mode-switch {
+  border-radius: 16px;
+  background: rgba(168, 85, 247, .07);
+  box-shadow: 0 1px 2px rgba(76, 29, 149, .08) inset;
+}
+.ahorcado-mode-btn { transition: color .2s ease, background .25s ease, transform .25s var(--fx-ease-spring); }
+.ahorcado-mode-btn.active {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 10px 22px -10px rgba(168, 85, 247, .75);
+}
+html.dark .ahorcado-gamemode-tabs,
+html.dark .ahorcado-mode-switch { background: rgba(255, 255, 255, .05); }
+
+/* ---------- Progreso del examen ---------- */
+.ahorcado-exam-progress {
+  position: relative;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, .07), rgba(236, 72, 153, .05));
+}
+.ahorcado-progress-dot {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 4px 10px -4px rgba(15, 23, 42, .2);
+  transition: transform .35s var(--fx-ease-spring), background .3s ease, box-shadow .3s ease;
+}
+.ahorcado-progress-dot.current {
+  animation: ahorcadoDotPulse 1.8s ease-in-out infinite;
+}
+.ahorcado-progress-dot.ok,
+.ahorcado-progress-dot.ko { animation: fx-pop-in .45s var(--fx-ease-spring); }
+.ahorcado-progress-dot.ok { box-shadow: 0 0 16px -2px rgba(16, 185, 129, .7); }
+.ahorcado-progress-dot.ko { box-shadow: 0 0 16px -2px rgba(239, 68, 68, .65); }
+@keyframes ahorcadoDotPulse {
+  0%, 100% { transform: scale(1.1); box-shadow: 0 0 0 4px rgba(168, 85, 247, .22); }
+  50%      { transform: scale(1.16); box-shadow: 0 0 0 8px rgba(168, 85, 247, .08); }
+}
+
+/* ---------- Horca ---------- */
+.ahorcado-hangman-wrap {
+  position: relative;
+  border-radius: 22px;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .7), transparent 70%),
+    linear-gradient(160deg, rgba(168, 85, 247, .12), rgba(236, 72, 153, .10));
+  border: 1px solid rgba(255, 255, 255, .7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .9) inset,
+    0 -10px 24px -14px rgba(124, 58, 237, .35) inset,
+    0 18px 34px -18px rgba(124, 58, 237, .5);
+  transition: box-shadow .4s ease, background .4s ease;
+}
+html.dark .ahorcado-hangman-wrap {
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .07), transparent 70%),
+    linear-gradient(160deg, rgba(168, 85, 247, .18), rgba(236, 72, 153, .10));
+  border-color: rgba(255, 255, 255, .1);
+}
+html.dark .ahorcado-svg { color: #c4b5fd; filter: drop-shadow(0 0 6px rgba(196, 181, 253, .35)); }
+.ahorcado-hangman-wrap.is-lost {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, .55), 0 0 34px -4px rgba(239, 68, 68, .6);
+}
+.ahorcado-hangman-wrap.is-lost .ahorcado-svg { color: #ef4444; }
+.ahorcado-hangman-wrap.is-won {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, .55), 0 0 34px -4px rgba(16, 185, 129, .6);
+}
+.ahorcado-hangman-wrap.is-won .ahorcado-svg { color: #059669; }
+.ahorcado-vidas .vida { transition: transform .35s var(--fx-ease-spring), color .3s ease; }
+.ahorcado-vidas .vida.on { animation: ahorcadoHeartBeat 2.4s ease-in-out infinite; }
+.ahorcado-vidas .vida.off { transform: scale(.82); opacity: .6; }
+@keyframes ahorcadoHeartBeat {
+  0%, 70%, 100% { transform: scale(1); }
+  78% { transform: scale(1.18); }
+  86% { transform: scale(.96); }
+}
+html.dark .ahorcado-vidas .vida.off { color: #475569; }
+
+/* ---------- Pizarra con la palabra oculta ---------- */
+.ahorcado-texto-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    radial-gradient(70% 90% at 15% 0%, rgba(236, 72, 153, .35), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgba(245, 158, 11, .18), transparent 60%),
+    linear-gradient(135deg, #1e1b4b, #4c1d95);
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .18) inset,
+    0 -16px 30px -18px rgba(0, 0, 0, .55) inset,
+    0 22px 40px -20px rgba(76, 29, 149, .7);
+  transition: box-shadow .4s ease;
+}
+.ahorcado-texto-wrap::before {
+  /* Rejilla de pizarra muy sutil */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.ahorcado-texto-wrap > * { position: relative; }
+.ahorcado-texto-wrap.is-won {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, .7), 0 0 40px -6px rgba(16, 185, 129, .75), 0 22px 40px -20px rgba(76, 29, 149, .7);
+}
+.ahorcado-texto-wrap.is-won .ahorcado-letra { color: #6ee7b7; text-shadow: 0 0 14px rgba(110, 231, 183, .7); }
+.ahorcado-texto-wrap.is-lost {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, .65), 0 0 36px -6px rgba(239, 68, 68, .7), 0 22px 40px -20px rgba(76, 29, 149, .7);
+}
+.ahorcado-letra {
+  font-family: 'Fredoka', 'Courier New', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(251, 191, 36, .55), 0 2px 4px rgba(0, 0, 0, .35);
+}
+.ahorcado-letra.revealed { animation: ahorcadoRevealPop .5s var(--fx-ease-spring); }
+@keyframes ahorcadoRevealPop {
+  0%   { transform: translateY(8px) rotateX(80deg) scale(.6); opacity: 0; }
+  60%  { transform: translateY(-3px) scale(1.15); opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+.ahorcado-underline {
+  height: 4px;
+  background: linear-gradient(90deg, #c084fc, #f472b6, #fbbf24);
+  box-shadow: 0 0 8px rgba(244, 114, 182, .6);
+}
+
+/* ---------- Pista ---------- */
+.ahorcado-pista-btn {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .45) inset, 0 -2px 0 rgba(0, 0, 0, .12) inset, 0 10px 22px -10px rgba(245, 158, 11, .8);
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease;
+}
+.ahorcado-pista-btn:hover { transform: translateY(-2px) scale(1.03); }
+.ahorcado-pista-btn:active { transform: translateY(1px) scale(.98); }
+.ahorcado-pista {
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(254, 243, 199, .85), rgba(253, 230, 138, .55));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 10px 24px -14px rgba(245, 158, 11, .7);
+}
+html.dark .ahorcado-pista { background: rgba(251, 191, 36, .14); color: #fde68a; }
+
+/* ---------- Teclado: teclas con relieve ---------- */
+.ahorcado-key {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid rgba(168, 85, 247, .22);
+  background: linear-gradient(180deg, #ffffff, #f5f3ff);
+  color: #4c1d95;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 -3px 0 rgba(124, 58, 237, .14) inset,
+    0 6px 12px -8px rgba(124, 58, 237, .5);
+  transition: transform .2s var(--fx-ease-spring), box-shadow .2s ease, border-color .2s ease, background .25s ease, color .2s ease;
+}
+.ahorcado-key:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: #c084fc;
+  background: linear-gradient(180deg, #ffffff, #fae8ff);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 -3px 0 rgba(236, 72, 153, .2) inset,
+    0 12px 20px -10px rgba(236, 72, 153, .6);
+}
+.ahorcado-key:active:not(:disabled) {
+  box-shadow: 0 2px 4px rgba(124, 58, 237, .25) inset;
+}
+.ahorcado-key.correct {
+  background: linear-gradient(180deg, #34d399, #059669);
+  border-color: rgba(255, 255, 255, .35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .45) inset, 0 0 18px -2px rgba(16, 185, 129, .75);
+  animation: ahorcadoKeyOk .55s var(--fx-ease-spring);
+}
+.ahorcado-key.wrong {
+  background: linear-gradient(180deg, #94a3b8, #64748b);
+  border-color: transparent;
+  animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97), ahorcadoKeyKo .7s ease-out;
+}
+@keyframes ahorcadoKeyOk {
+  0%   { transform: scale(.8); }
+  55%  { transform: scale(1.15); }
+  100% { transform: scale(.95); }
+}
+@keyframes ahorcadoKeyKo {
+  0%   { background: linear-gradient(180deg, #f87171, #dc2626); }
+  100% { background: linear-gradient(180deg, #94a3b8, #64748b); }
+}
+html.dark .ahorcado-key:not(.correct):not(.wrong) {
+  background: linear-gradient(180deg, #2e2a4a, #221f3a);
+  color: #e9d5ff;
+  border-color: rgba(167, 139, 250, .22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .08) inset, 0 -3px 0 rgba(0, 0, 0, .3) inset, 0 6px 12px -8px rgba(0, 0, 0, .7);
+}
+html.dark .ahorcado-key:hover:not(:disabled):not(.correct):not(.wrong) {
+  background: linear-gradient(180deg, #3b3560, #2a2547);
+  border-color: #c084fc;
+}
+
+/* ---------- Resultado de ronda ---------- */
+.ahorcado-result {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border-width: 1px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.ahorcado-result > * { position: relative; z-index: 1; }
+.ahorcado-result-glow {
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 60%;
+  height: 180%;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: .55;
+  pointer-events: none;
+  z-index: 0 !important;
+}
+.ahorcado-result.won { box-shadow: 0 0 0 1px rgba(16, 185, 129, .25), 0 22px 44px -22px rgba(16, 185, 129, .8); }
+.ahorcado-result.won .ahorcado-result-glow { background: radial-gradient(circle, rgba(52, 211, 153, .7), transparent 65%); }
+.ahorcado-result.lost { box-shadow: 0 0 0 1px rgba(239, 68, 68, .2), 0 22px 44px -22px rgba(239, 68, 68, .75); }
+.ahorcado-result.lost .ahorcado-result-glow { background: radial-gradient(circle, rgba(248, 113, 113, .6), transparent 65%); }
+.ahorcado-result-text span { font-weight: 700; }
+html.dark .ahorcado-result.won .ahorcado-result-text span { color: #6ee7b7; }
+html.dark .ahorcado-result.lost .ahorcado-result-text span { color: #fca5a5; }
+
+/* ---------- Botones ---------- */
+.ahorcado-btn {
+  border-radius: 14px;
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background-position .6s ease, background .2s ease;
+}
+.ahorcado-btn.primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899 60%, #f59e0b);
+  background-size: 180% 180%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 -3px 0 rgba(0, 0, 0, .15) inset, 0 14px 28px -12px rgba(168, 85, 247, .75);
+}
+.ahorcado-btn.primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  background-position: 100% 50%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 -3px 0 rgba(0, 0, 0, .15) inset, 0 20px 36px -12px rgba(236, 72, 153, .7);
+}
+.ahorcado-btn:active { transform: translateY(1px) scale(.98); }
+.ahorcado-btn.ghost:hover { transform: translateY(-1px); }
+html.dark .ahorcado-btn.ghost { color: #d8b4fe; background: rgba(168, 85, 247, .12); border-color: rgba(168, 85, 247, .3); }
+
+/* ---------- Resumen del examen ---------- */
+.ahorcado-exam-summary { overflow: hidden; }
+.ahorcado-exam-summary::after {
+  /* Halo de celebración detrás de la nota */
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  width: 420px;
+  height: 260px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 72, 153, .22), rgba(168, 85, 247, .12) 45%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ahorcado-summary-icon { animation: fx-float 4s ease-in-out infinite; }
+.ahorcado-nota {
+  position: relative;
+  z-index: 1;
+  border-width: 1px;
+  border-radius: 24px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 24px 48px -26px rgba(15, 23, 42, .4);
+}
+.ahorcado-nota-ring {
+  flex-shrink: 0;
+  width: 156px;
+  height: 156px;
+}
+.ahorcado-nota-ring .ahorcado-nota-big {
+  font-size: 2.9rem;
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 700;
+  animation: fx-pop-in .7s var(--fx-ease-spring) .25s both;
+}
+.ahorcado-nota.excellent .ahorcado-nota-ring { --fx-grade-color: #10b981; }
+.ahorcado-nota.good .ahorcado-nota-ring { --fx-grade-color: #3b82f6; }
+.ahorcado-nota.fail .ahorcado-nota-ring { --fx-grade-color: #ef4444; }
+html.dark .ahorcado-nota.excellent .ahorcado-nota-big { color: #6ee7b7; }
+html.dark .ahorcado-nota.good .ahorcado-nota-big { color: #93c5fd; }
+html.dark .ahorcado-nota.fail .ahorcado-nota-big { color: #fca5a5; }
+.ahorcado-nota-msg strong { font-size: 1.35rem; }
+.ahorcado-puntos {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .6rem 1.4rem;
+  border-radius: 999px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset, 0 12px 26px -14px rgba(245, 158, 11, .9);
+  animation: fx-bounce-in .6s var(--fx-ease-spring) .45s both;
+}
+.ahorcado-puntos-value { font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+html.dark .ahorcado-puntos { background: linear-gradient(135deg, rgba(251, 191, 36, .22), rgba(245, 158, 11, .12)); border-color: rgba(251, 191, 36, .45); }
+html.dark .ahorcado-puntos-value { color: #fde68a; }
+html.dark .ahorcado-puntos-label { color: #fcd34d; }
+.ahorcado-feedback-item {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 8px 18px -14px rgba(15, 23, 42, .4);
+  transition: transform .25s var(--fx-ease-spring);
+}
+.ahorcado-feedback-item:hover { transform: translateX(3px); }
+.ahorcado-feedback-num { box-shadow: 0 6px 14px -6px rgba(236, 72, 153, .7); }
+html.dark .ahorcado-feedback-title,
+html.dark .ahorcado-feedback-text strong { color: #d8b4fe; }
+html.dark .ahorcado-feedback-state.ok { color: #6ee7b7; }
+html.dark .ahorcado-feedback-state.ko { color: #fca5a5; }
+
+@media (max-width: 720px) {
+  .ahorcado-nota-ring { width: 132px; height: 132px; }
+  .ahorcado-nota-ring .ahorcado-nota-big { font-size: 2.4rem; }
+  .ahorcado-exam-summary::after { width: 280px; }
+  .ahorcado-gamemode-tabs { width: 100%; }
+  .ahorcado-gamemode-tab { flex: 1; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ahorcado-spark,
+  .ahorcado-title,
+  .ahorcado-vidas .vida.on,
+  .ahorcado-progress-dot.current,
+  .ahorcado-summary-icon {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   Ahorcado Duelo (Tailwind + acabado premium). Sin cambios de lógica.
+   ========================================================================== */
+.ahd-root { position: relative; }
+.ahd-card {
+  position: relative;
+  z-index: 1;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(139, 92, 246, .10), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgba(245, 158, 11, .08), transparent 60%),
+    rgba(255, 255, 255, .82);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .9) inset,
+    0 40px 80px -40px rgba(124, 58, 237, .45),
+    0 14px 30px -16px rgba(245, 158, 11, .25);
+}
+html.dark .ahd-card {
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(139, 92, 246, .18), transparent 55%),
+    rgba(30, 27, 55, .85);
+  border-color: rgba(255, 255, 255, .1);
+  color: #e5e7eb;
+}
+.ahd-swords {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 8px 18px -8px rgba(236, 72, 153, .8);
+}
+.ahd-title {
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ahd-player {
+  transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease, border-color .3s ease;
+}
+.ahd-player--turn {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, .18), 0 16px 30px -16px rgba(139, 92, 246, .8) !important;
+}
+.ahd-slot {
+  box-shadow: 0 6px 12px -10px rgba(76, 29, 149, .6);
+}
+.ahd-slot--on { animation: fx-pop-in .45s var(--fx-ease-spring); }
+.ahd-turn { transition: background .3s ease, color .3s ease; }
+.ahd-turn--me { animation: fx-pulse-glow 2.2s ease-in-out infinite; }
+.ahd-key {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 4px 8px -6px rgba(76, 29, 149, .55);
+  transition: transform .2s var(--fx-ease-spring), background-color .2s ease, box-shadow .2s ease;
+}
+.ahd-key:hover:not(:disabled) { transform: translateY(-2px); }
+.ahd-key:active:not(:disabled) { transform: translateY(1px) scale(.95); }
+.ahd-key:focus-visible { outline: 3px solid rgba(167, 139, 250, .8); outline-offset: 2px; }
+.ahd-key--ok { animation: ahorcadoKeyOk .5s var(--fx-ease-spring); box-shadow: 0 0 14px -3px rgba(16, 185, 129, .8); }
+.ahd-key--ko { animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97); }
+.ahd-solve { box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 10px 20px -10px rgba(124, 58, 237, .8); }
+.ahd-final { box-shadow: 0 24px 48px -22px rgba(15, 23, 42, .6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ahd-turn--me { animation: none !important; }
+}
+
+/* Fundido de bordes del fondo decorativo (sin cortes rectos) */
+.ahorcado-decor {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  mask-composite: intersect;
+}

@@ -622,3 +622,429 @@
   .cripto-char-top { font-size: 0.6rem; }
   .cripto-nota-big { font-size: 2.5rem; }
 }
+
+/* ==========================================================================
+   PREMIUM 2026 — bóveda esmeralda y oro: cristal, luz y microinteracciones.
+   Solo visual; las clases que usa la lógica no cambian.
+   ========================================================================== */
+
+.cripto-root {
+  position: relative;
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fx-accent: #10b981;
+  --fx-accent-2: #fbbf24;
+}
+
+/* ---------- Fondo ---------- */
+.cripto-decor {
+  position: absolute;
+  inset: -1rem 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 32px;
+}
+.cripto-decor .fx-app-backdrop::before,
+.cripto-decor .fx-app-backdrop::after { opacity: .28; }
+.cripto-decor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(6, 95, 70, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 95, 70, .08) 1px, transparent 1px);
+}
+html.dark .cripto-decor-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+}
+.cripto-ghost-code {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #10b981;
+  opacity: .16;
+  text-shadow: 0 0 12px rgba(16, 185, 129, .6);
+  animation: criptoGhost 10s ease-in-out infinite;
+}
+.cripto-ghost-code.c0 { top: 7%; left: 4%; }
+.cripto-ghost-code.c1 { top: 16%; right: 5%; color: #f59e0b; animation-delay: -2s; }
+.cripto-ghost-code.c2 { bottom: 12%; left: 3%; animation-delay: -4s; }
+.cripto-ghost-code.c3 { bottom: 22%; right: 4%; color: #f59e0b; animation-delay: -6s; }
+.cripto-ghost-code.c4 { top: 50%; left: 1.5%; animation-delay: -8s; font-size: 1.2rem; }
+.cripto-ghost-code.c5 { top: 3%; left: 48%; animation-delay: -3s; font-size: 1.1rem; }
+@keyframes criptoGhost {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .1; }
+  50%      { transform: translate3d(0, -14px, 0); opacity: .24; }
+}
+@media (max-width: 720px) {
+  .cripto-ghost-code { display: none; }
+}
+
+/* ---------- Tarjeta ---------- */
+.cripto-card {
+  position: relative;
+  z-index: 1;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(16, 185, 129, .10), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgba(251, 191, 36, .09), transparent 60%),
+    var(--app-card-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .7);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .9) inset,
+    0 -1px 0 0 rgba(6, 78, 59, .06) inset,
+    0 40px 80px -40px rgba(6, 95, 70, .5),
+    0 18px 36px -18px rgba(245, 158, 11, .22),
+    0 4px 10px -4px rgba(15, 23, 42, .08);
+}
+.cripto-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .55), transparent);
+  opacity: .5;
+  pointer-events: none;
+  z-index: -1;
+}
+html.dark .cripto-card {
+  border-color: rgba(255, 255, 255, .1);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, .08) inset,
+    0 40px 80px -40px rgba(0, 0, 0, .8),
+    0 18px 36px -18px rgba(16, 185, 129, .25);
+}
+html.dark .cripto-card::before { background: linear-gradient(180deg, rgba(255, 255, 255, .06), transparent); }
+
+/* ---------- Cabecera ---------- */
+.cripto-title {
+  font-weight: 700;
+  background: linear-gradient(90deg, #065f46, #10b981, #fbbf24, #10b981, #065f46);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-pan 12s linear infinite;
+}
+html.dark .cripto-title {
+  background-image: linear-gradient(90deg, #34d399, #6ee7b7, #fbbf24, #6ee7b7, #34d399);
+}
+.cripto-emoji { filter: drop-shadow(0 6px 10px rgba(245, 158, 11, .45)); }
+.cripto-stat {
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 8px 18px -8px rgba(6, 78, 59, .5) !important;
+}
+.cripto-stat span { display: inline-block; }
+.cripto-stat.timer.danger { box-shadow: 0 0 0 3px rgba(239, 68, 68, .25), 0 0 20px -2px rgba(239, 68, 68, .8) !important; }
+
+/* ---------- Barra de progreso con brillo ---------- */
+.cripto-progressbar {
+  position: relative;
+  height: 8px;
+  margin: -.35rem 0 1rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, .12);
+  box-shadow: 0 1px 2px rgba(6, 78, 59, .15) inset;
+  overflow: hidden;
+}
+.cripto-progressbar-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #059669, #10b981, #fbbf24);
+  box-shadow: 0 0 12px rgba(16, 185, 129, .6);
+  transition: transform .6s var(--fx-ease-out);
+}
+.cripto-progressbar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .65) 50%, transparent 100%);
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: criptoBarShine 2.4s ease-in-out infinite;
+}
+@keyframes criptoBarShine {
+  from { background-position: -60% 0; }
+  to   { background-position: 160% 0; }
+}
+html.dark .cripto-progressbar { background: rgba(255, 255, 255, .07); }
+
+/* ---------- Tabs de modo con identidad ---------- */
+.cripto-gamemode-tabs {
+  gap: .6rem;
+  padding: .45rem;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, .06);
+  box-shadow: 0 1px 2px rgba(6, 78, 59, .1) inset;
+}
+.cripto-gamemode-tab {
+  --mode: #10b981;
+  --mode-soft: rgba(16, 185, 129, .14);
+  border-radius: 14px;
+  padding: .7rem .4rem;
+  border: 1px solid transparent;
+  transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease, background .25s ease, color .2s ease, border-color .2s ease;
+}
+.cripto-gamemode-tab.easy   { --mode: #10b981; --mode-soft: rgba(16, 185, 129, .16); }
+.cripto-gamemode-tab.medium { --mode: #fbbf24; --mode-soft: rgba(251, 191, 36, .2); }
+.cripto-gamemode-tab.exam   { --mode: #ef4444; --mode-soft: rgba(239, 68, 68, .14); }
+.cripto-gamemode-tab:hover:not(.active) {
+  transform: translateY(-3px);
+  background: var(--mode-soft);
+  border-color: var(--mode);
+  color: var(--app-text);
+}
+.cripto-gamemode-tab.active { transform: translateY(-2px); border-color: rgba(255, 255, 255, .35); }
+.cripto-gamemode-tab.active.easy,
+.cripto-gamemode-tab.active.medium,
+.cripto-gamemode-tab.active.exam {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 0 0 3px var(--mode-soft), 0 14px 26px -12px var(--mode);
+}
+.cripto-gamemode-tab.active.medium { color: #78350f; }
+.cripto-tab-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+  box-shadow: 0 0 0 4px var(--mode-soft);
+  transition: transform .4s var(--fx-ease-spring);
+}
+.cripto-gamemode-tab:hover .cripto-tab-icon { transform: scale(1.12) rotate(-8deg); }
+.cripto-gamemode-tab:focus-visible { outline: 3px solid var(--mode); outline-offset: 2px; }
+html.dark .cripto-gamemode-tabs { background: rgba(255, 255, 255, .05); }
+html.dark .cripto-tab-icon { background: rgba(255, 255, 255, .1); }
+
+/* ---------- Pista ---------- */
+.cripto-hint {
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 12px 26px -16px rgba(245, 158, 11, .8);
+  animation: fx-bounce-in .5s var(--fx-ease-spring);
+}
+html.dark .cripto-hint { color: #fde68a; }
+
+/* ---------- Texto cifrado: bóveda ---------- */
+.cripto-text-wrap {
+  position: relative;
+  border-radius: 22px;
+  background:
+    radial-gradient(70% 90% at 10% 0%, rgba(52, 211, 153, .3), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgba(251, 191, 36, .2), transparent 60%),
+    linear-gradient(135deg, #022c22, #064e3b 55%, #065f46);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .15) inset,
+    0 -18px 30px -18px rgba(0, 0, 0, .6) inset,
+    0 24px 44px -22px rgba(6, 78, 59, .8);
+  transition: box-shadow .4s ease;
+}
+.cripto-text-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.cripto-text { position: relative; }
+.cripto-text-wrap.is-won {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, .75), 0 0 46px -6px rgba(16, 185, 129, .8), 0 24px 44px -22px rgba(6, 78, 59, .8);
+}
+.cripto-text-wrap.is-lost {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, .6), 0 0 40px -8px rgba(239, 68, 68, .7);
+}
+.cripto-char.letter { transition: transform .25s var(--fx-ease-spring); }
+.cripto-char.letter:hover:not(.locked) { transform: translateY(-3px); }
+.cripto-char-bottom {
+  font-family: 'Fredoka', 'Courier New', monospace;
+  font-weight: 700;
+  border-radius: 6px 6px 0 0;
+}
+.cripto-char.filled .cripto-char-bottom { animation: fx-pop-in .35s var(--fx-ease-spring); text-shadow: 0 0 10px rgba(209, 250, 229, .6); }
+.cripto-char.selected .cripto-char-bottom {
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, .6), 0 0 18px rgba(251, 191, 36, .55);
+  animation: criptoSelGlow 1.6s ease-in-out infinite;
+}
+@keyframes criptoSelGlow {
+  0%, 100% { background-color: rgba(251, 191, 36, .2); }
+  50%      { background-color: rgba(251, 191, 36, .34); }
+}
+.cripto-char.correct .cripto-char-bottom { text-shadow: 0 0 12px rgba(16, 185, 129, .8); }
+.cripto-char.wrong .cripto-char-bottom {
+  text-shadow: 0 0 12px rgba(239, 68, 68, .8);
+  animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97);
+}
+
+/* ---------- Teclado ---------- */
+.cripto-key {
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, .25);
+  background: linear-gradient(180deg, #ffffff, #ecfdf5);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 -3px 0 rgba(6, 95, 70, .14) inset,
+    0 6px 12px -8px rgba(6, 95, 70, .5);
+  transition: transform .2s var(--fx-ease-spring), box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+.cripto-key:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: #10b981;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset, 0 -3px 0 rgba(245, 158, 11, .25) inset, 0 12px 20px -10px rgba(16, 185, 129, .6);
+}
+.cripto-key:active:not(:disabled) { box-shadow: 0 2px 4px rgba(6, 95, 70, .25) inset; }
+.cripto-key:focus-visible,
+.cripto-lifeline:focus-visible,
+.cripto-btn:focus-visible { outline: 3px solid rgba(251, 191, 36, .85); outline-offset: 2px; }
+.cripto-key.used { background: linear-gradient(180deg, #d1fae5, #a7f3d0); opacity: .7; }
+.cripto-key.erase {
+  background: linear-gradient(180deg, #f87171, #dc2626);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 -3px 0 rgba(0, 0, 0, .15) inset, 0 8px 16px -8px rgba(239, 68, 68, .8);
+}
+html.dark .cripto-key:not(.erase) {
+  background: linear-gradient(180deg, #1f3a35, #15302b);
+  color: #a7f3d0;
+  border-color: rgba(52, 211, 153, .22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .07) inset, 0 -3px 0 rgba(0, 0, 0, .3) inset, 0 6px 12px -8px rgba(0, 0, 0, .7);
+}
+html.dark .cripto-key.used { background: rgba(16, 185, 129, .18); }
+
+/* ---------- Ayudas ---------- */
+.cripto-lifeline {
+  border-radius: 14px;
+  border-width: 1px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 -2px 0 rgba(0, 0, 0, .15) inset, 0 10px 20px -10px rgba(6, 78, 59, .7);
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease;
+}
+.cripto-lifeline:hover:not(:disabled) { transform: translateY(-3px); }
+.cripto-lifeline:active:not(:disabled) { transform: translateY(1px) scale(.97); }
+.cripto-lifeline-count { animation: fx-pop-in .4s var(--fx-ease-spring); }
+html.dark .cripto-lifeline.ghost { color: #a7f3d0; }
+
+/* ---------- Frecuencias ---------- */
+.cripto-freq {
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(16, 185, 129, .08), rgba(251, 191, 36, .06));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset;
+}
+.cripto-freq-bar { box-shadow: 0 0 8px rgba(245, 158, 11, .5); }
+html.dark .cripto-freq-title { color: #6ee7b7; }
+
+/* ---------- Resultado ---------- */
+.cripto-result {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+}
+.cripto-result > * { position: relative; z-index: 1; }
+.cripto-result.won {
+  border: 1px solid rgba(255, 255, 255, .25);
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .2), transparent 70%),
+    linear-gradient(135deg, #022c22, #059669 55%, #10b981);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 0 0 3px rgba(251, 191, 36, .55), 0 40px 80px -30px rgba(6, 78, 59, .85);
+}
+.cripto-result.lost {
+  border: 1px solid rgba(255, 255, 255, .15);
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .1), transparent 70%),
+    linear-gradient(135deg, #111827, #1f2937 55%, #374151);
+  box-shadow: 0 30px 70px -30px rgba(15, 23, 42, .8);
+}
+.cripto-result-rays {
+  position: absolute !important;
+  z-index: 0 !important;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  margin: -450px 0 0 -450px;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .08) 0deg 8deg, transparent 8deg 22deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 60%);
+  mask-image: radial-gradient(circle, #000 0%, transparent 60%);
+  animation: criptoRays 40s linear infinite;
+  pointer-events: none;
+}
+.cripto-result.lost .cripto-result-rays { opacity: .4; }
+@keyframes criptoRays { to { transform: rotate(360deg); } }
+.cripto-result-icon {
+  box-shadow: 0 0 0 8px rgba(251, 191, 36, .2), 0 0 50px -4px rgba(251, 191, 36, .85);
+  animation: fx-pop-in .7s var(--fx-ease-spring) .1s both;
+}
+.cripto-result-title { font-weight: 700; font-size: 1.75rem; text-shadow: 0 4px 18px rgba(0, 0, 0, .25); }
+.cripto-nota {
+  border-width: 1px;
+  border-radius: 24px;
+  padding: 1.25rem 2rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 20px 40px -24px rgba(0, 0, 0, .55);
+}
+.cripto-nota-ring {
+  --fx-glass-bg: rgba(2, 44, 34, .85);
+  width: 156px;
+  height: 156px;
+}
+.cripto-nota-ring .cripto-nota-big {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 20px var(--fx-grade-color);
+  animation: fx-pop-in .7s var(--fx-ease-spring) .25s both;
+}
+.cripto-nota-msg { font-size: 1.15rem; }
+.cripto-result-record,
+.cripto-result-score {
+  padding: .6rem 1.3rem;
+  font-size: 1rem;
+  box-shadow: 0 0 24px -6px rgba(253, 224, 71, .7);
+  animation: fx-bounce-in .6s var(--fx-ease-spring) .45s both;
+}
+.cripto-result-stat { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cripto-btn {
+  border-radius: 14px;
+  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background-position .6s ease;
+}
+.cripto-btn.primary {
+  background: linear-gradient(135deg, #fde047, #fbbf24 40%, #f59e0b);
+  background-size: 180% 180%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 -3px 0 rgba(146, 64, 14, .18) inset, 0 14px 28px -12px rgba(245, 158, 11, .8);
+}
+.cripto-btn.primary:hover { transform: translateY(-2px) scale(1.03); background-position: 100% 50%; }
+.cripto-btn:active { transform: translateY(1px) scale(.98); }
+
+@media (max-width: 720px) {
+  .cripto-nota-ring { width: 132px; height: 132px; }
+  .cripto-result-rays { width: 600px; height: 600px; margin: -300px 0 0 -300px; }
+  .cripto-tab-icon { width: 1.7rem; height: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cripto-ghost-code,
+  .cripto-title,
+  .cripto-progressbar-fill::after,
+  .cripto-char.selected .cripto-char-bottom,
+  .cripto-result-rays {
+    animation: none !important;
+  }
+}
+
+/* Fundido de bordes del fondo decorativo (sin cortes rectos) */
+.cripto-decor {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  mask-composite: intersect;
+}

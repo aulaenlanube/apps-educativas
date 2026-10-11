@@ -23,6 +23,17 @@ const normalize = (s) =>
 // borrar del teclado virtual siempre tenga algo que eliminar y dispare un evento.
 const HIDDEN_SENTINEL = ' ';
 
+// Fondo decorativo: orbes azul-violeta, rejilla de crucigrama y casillas flotando.
+const CruciDecor = () => (
+  <div className="cruci-decor" aria-hidden="true">
+    <div className="fx-app-backdrop" />
+    <div className="cruci-decor-grid fx-grid-bg" />
+    {['C', 'R', 'U', 'Z'].map((l, i) => (
+      <span key={l} className={`cruci-ghost-cell q${i}`}>{l}</span>
+    ))}
+  </div>
+);
+
 const SIZE_CONFIG = {
   small:  { label: 'Pequeño',  words: 6,  maxSize: 13, icon: '🟢' },
   medium: { label: 'Mediano',  words: 10, maxSize: 16, icon: '🟡' },
@@ -504,6 +515,7 @@ const Crucigrama = ({ onGameComplete }) => {
 
   return (
     <div className="cruci-root">
+      <CruciDecor />
       <motion.div
         className="cruci-card"
         initial={{ opacity: 0, y: 20 }}
@@ -524,7 +536,14 @@ const Crucigrama = ({ onGameComplete }) => {
             </div>
             <div className="cruci-stat words" title="Palabras">
               <Puzzle size={16} />
-              <span>{crossword?.placed?.length || 0}</span>
+              <motion.span
+                key={crossword?.placed?.length || 0}
+                initial={{ scale: 1.5, opacity: 0.4 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+              >
+                {crossword?.placed?.length || 0}
+              </motion.span>
             </div>
             {!isExam && hintsUsed > 0 && (
               <div className="cruci-stat hints" title="Ayudas usadas">
@@ -543,13 +562,13 @@ const Crucigrama = ({ onGameComplete }) => {
         {/* Tabs práctica / examen */}
         <div className="cruci-gamemode-tabs">
           <button
-            className={`cruci-gamemode-tab ${!isExam ? 'active' : ''}`}
+            className={`cruci-gamemode-tab is-practice ${!isExam ? 'active' : ''}`}
             onClick={() => setGameMode('practice')}
           >
             <Gamepad2 size={16} /> Práctica
           </button>
           <button
-            className={`cruci-gamemode-tab ${isExam ? 'active' : ''}`}
+            className={`cruci-gamemode-tab is-exam ${isExam ? 'active' : ''}`}
             onClick={() => setGameMode('exam')}
           >
             <GraduationCap size={16} /> Examen
@@ -562,7 +581,7 @@ const Crucigrama = ({ onGameComplete }) => {
             {Object.entries(SIZE_CONFIG).map(([key, cfg]) => (
               <button
                 key={key}
-                className={`cruci-size-btn ${size === key ? 'active' : ''}`}
+                className={`cruci-size-btn fx-shine size-${key} ${size === key ? 'active' : ''}`}
                 onClick={() => setSize(key)}
               >
                 <span className="cruci-size-icon">{cfg.icon}</span>
@@ -661,7 +680,7 @@ const Crucigrama = ({ onGameComplete }) => {
                         onClick={() => handleCellClick(r, c)}
                       >
                         {num > 0 && <span className="cruci-cell-num">{num}</span>}
-                        <span className="cruci-cell-letter">{userLetter}</span>
+                        <span key={userLetter || 'empty'} className="cruci-cell-letter">{userLetter}</span>
                       </div>
                     );
                   })
@@ -764,9 +783,11 @@ const Crucigrama = ({ onGameComplete }) => {
             return (
               <motion.div
                 className="cruci-completed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 24, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 170, damping: 18 }}
               >
+                <span className="cruci-completed-rays" aria-hidden="true" />
                 <div className="cruci-completed-icon">
                   <Award size={48} />
                 </div>
@@ -775,12 +796,20 @@ const Crucigrama = ({ onGameComplete }) => {
                 {isExam ? (
                   <>
                     <div className={`cruci-nota ${notaColor}`}>
-                      <div className="cruci-nota-big">
-                        {nota.toFixed(1)}<span className="cruci-nota-small">/10</span>
+                      <div
+                        className="cruci-nota-ring fx-grade-ring"
+                        style={{
+                          '--fx-grade': nota,
+                          '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                        }}
+                      >
+                        <div className="cruci-nota-big">
+                          {nota.toFixed(1)}<span className="cruci-nota-small">/10</span>
+                        </div>
                       </div>
                       <div className="cruci-nota-msg">¡Excelente! 🌟</div>
                     </div>
-                    <div className="cruci-completed-record">
+                    <div className="cruci-completed-record fx-shine fx-shine--auto">
                       <Trophy size={14} />
                       <span className="cruci-completed-record-value">
                         {finalScore.toLocaleString('es-ES')}
@@ -812,7 +841,7 @@ const Crucigrama = ({ onGameComplete }) => {
                     </div>
                   )}
                 </div>
-                <button className="cruci-btn primary" onClick={regenerate}>
+                <button className="cruci-btn primary fx-shine" onClick={regenerate}>
                   <RefreshCw size={16} /> Otro crucigrama
                 </button>
               </motion.div>

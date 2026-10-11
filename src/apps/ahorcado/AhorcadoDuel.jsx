@@ -6,6 +6,7 @@ import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
+import './Ahorcado.css';
 
 const LIVES = 6;
 const TARGET_WINS = 3;
@@ -369,11 +370,20 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const myTurn = round.turn === (me.isHost ? 'host' : 'guest');
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center p-4">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg border border-violet-200 p-5">
+    <div className="ahd-root min-h-[80vh] flex flex-col items-center p-4">
+      <div className="ahorcado-decor" aria-hidden="true">
+        <div className="fx-app-backdrop" />
+        <div className="ahorcado-decor-grid fx-grid-bg" />
+      </div>
+      <motion.div
+        className="ahd-card w-full max-w-3xl p-5"
+        initial={{ opacity: 0, y: 18, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 20 }}
+      >
         <div className="flex items-center gap-3 mb-4">
-          <Swords className="w-5 h-5 text-violet-600" />
-          <h2 className="text-lg font-bold">Ahorcado Duelo · Al mejor de {TARGET_WINS * 2 - 1}</h2>
+          <span className="ahd-swords"><Swords className="w-5 h-5" /></span>
+          <h2 className="ahd-title text-lg font-bold">Ahorcado Duelo · Al mejor de {TARGET_WINS * 2 - 1}</h2>
           <span className="ml-auto text-xs text-slate-500">
             Turnos alternos
           </span>
@@ -402,10 +412,10 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           {round.answer.split('').map((ch, i) => (
             <span
               key={i}
-              className={`w-9 h-11 rounded border-b-2 flex items-center justify-center font-bold text-xl ${
+              className={`ahd-slot w-9 h-11 rounded border-b-2 flex items-center justify-center font-bold text-xl ${
                 /[A-ZÑ]/.test(ch)
                   ? round.revealed[i]
-                    ? 'border-violet-500 bg-violet-50 text-violet-700'
+                    ? 'ahd-slot--on border-violet-500 bg-violet-50 text-violet-700'
                     : 'border-slate-400 bg-slate-50 text-transparent'
                   : 'border-transparent text-slate-500'
               }`}
@@ -443,7 +453,9 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
         </div>
 
         {/* Indicador de turno */}
-        <div className={`text-center py-2 mb-3 rounded-lg text-sm font-bold ${
+        <div className={`ahd-turn text-center py-2 mb-3 rounded-lg text-sm font-bold ${
+          round.roundWinner === undefined && myTurn ? 'ahd-turn--me ' : ''
+        }${
           round.roundWinner !== undefined
             ? 'bg-slate-100 text-slate-500'
             : myTurn
@@ -468,7 +480,11 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
                 key={L}
                 disabled={disabled}
                 onClick={() => sendAction({ type: 'letter', letter: L })}
-                className={`w-8 h-9 rounded text-sm font-bold border transition-colors ${
+                className={`ahd-key w-8 h-9 rounded text-sm font-bold border transition-colors ${
+                  used
+                    ? inWord ? 'ahd-key--ok ' : 'ahd-key--ko '
+                    : ''
+                }${
                   used
                     ? inWord
                       ? 'bg-emerald-500 text-white border-emerald-600'
@@ -497,7 +513,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           <button
             type="submit"
             disabled={!guess.trim() || round.roundWinner !== undefined || finished}
-            className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold disabled:opacity-40"
+            className="ahd-solve fx-shine px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold disabled:opacity-40"
           >Resolver</button>
         </form>
 
@@ -516,8 +532,9 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
           )}
           {finished && (
             <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className={`mt-4 p-4 rounded-xl text-center text-white bg-gradient-to-r ${
+              initial={{ opacity: 0, scale: 0.9, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 220, damping: 16 }}
+              className={`ahd-final fx-shine fx-shine--auto mt-4 p-4 rounded-xl text-center text-white bg-gradient-to-r ${
                 winnerId === me.id ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'
               }`}
             >
@@ -532,7 +549,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
       <DuelChatBar channel={channel} me={me} rival={rival} />
     </div>
   );
@@ -540,7 +557,7 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
 
 function PlayerPanel({ label, name, emoji, avatarColor, avatarCode, lives, fails, points, target, color, isTurn }) {
   return (
-    <div className={`p-3 rounded-xl border-2 transition-colors ${
+    <div className={`ahd-player p-3 rounded-xl border-2 transition-colors ${isTurn ? 'ahd-player--turn ' : ''}${
       isTurn ? 'border-violet-400 bg-violet-50 shadow-sm' : 'border-slate-200 bg-white'
     }`}>
       <div className="flex items-center gap-2 mb-2">
