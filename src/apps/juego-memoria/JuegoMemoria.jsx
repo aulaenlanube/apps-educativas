@@ -1,5 +1,5 @@
 // src/apps/juego-memoria/JuegoMemoria.jsx
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
@@ -8,6 +8,7 @@ import './JuegoMemoria.css';
 const GAME_TIME = 60; // 1 minute
 const MEMORIZE_TIME = 5; // 5 seconds
 const GRID_SIZE = 9;
+// eslint-disable-next-line no-unused-vars
 const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential order for "Fixed" mode (LEGACY - NOT USED)
 
 
@@ -141,6 +142,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
     // Initial Load
     useEffect(() => {
         fetchWords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [grade, subjectId]);
 
     const handleNewGame = async () => {
@@ -285,6 +287,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState, revealedIndex, correctIndices, targetOrder, currentIndex, gridSize]);
 
 
@@ -293,7 +296,18 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
 
     return (
         <div className="memory-game-container full-screen">
+            {/* Fondo decorativo: orbes de luz + destellos */}
+            <div className="memoria-fx" aria-hidden="true">
+                <span className="memoria-fx-orb a" />
+                <span className="memoria-fx-orb b" />
+                <span className="memoria-fx-star s1" />
+                <span className="memoria-fx-star s2" />
+                <span className="memoria-fx-star s3" />
+                <span className="memoria-fx-star s4" />
+            </div>
+
             <h1 className="game-title">
+                <span className="memoria-title-icon" aria-hidden="true">🧠</span>
                 Juego de Memoria
             </h1>
 
@@ -316,7 +330,15 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
                     ) : (
                         <>
                             <span className="target-label">ENCUENTRA:</span>
-                            <span className="target-word">{targetWord}</span>
+                            <motion.span
+                                key={targetWord}
+                                className="target-word"
+                                initial={{ opacity: 0, y: 10, scale: 0.92 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ type: 'spring', stiffness: 420, damping: 22 }}
+                            >
+                                {targetWord}
+                            </motion.span>
                         </>
                     )}
                 </div>
@@ -366,7 +388,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
                 <div className="status-group-top">
                     <div className="timer-box">
                         <span className="timer-icon">⏱️</span>
-                        <span className="timer-val">{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
+                        <span className={`timer-val ${gameState === 'playing' && timeLeft <= 10 ? 'is-danger' : ''} ${gameState === 'memorize' ? 'is-memorize' : ''}`}>{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
                     </div>
                     <div className="phase-indicator">
                         {/* Status messages handled in top container now */}
@@ -413,19 +435,21 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
                                 const pts = correctIndices.size * 100 + (won ? Math.max(0, Math.round(300 * (timeLeft / GAME_TIME))) : 0);
                                 return (
                                     <div className="result-msg" style={{ textAlign: 'center' }}>
-                                        <div className="text-6xl mb-4">{won ? '🎉' : '⏳'}</div>
+                                        <div className={`memoria-result-badge ${won ? 'is-won' : 'is-lost'}`}>{won ? '🎉' : '⏳'}</div>
                                         <h1>{won ? '¡ENHORABUENA!' : '¡TIEMPO AGOTADO!'}</h1>
                                         <p>{won ? '¡Has encontrado todas las palabras!' : 'Se acabó el tiempo.'}</p>
-                                        <div style={{ margin: '1.2rem 0 0.8rem', padding: '1.2rem', borderRadius: '16px', background: notaBg }}>
-                                            <div style={{ fontSize: '3rem', fontWeight: 900, lineHeight: 1, color: notaColor }}>
-                                                {nota.toFixed(1)}<span style={{ fontSize: '1.3rem', fontWeight: 700, opacity: 0.6 }}>/10</span>
+                                        <div className="memoria-nota" style={{ '--memoria-nota-bg': notaBg }}>
+                                            <div className="memoria-nota-ring fx-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}>
+                                                <div className="memoria-nota-num">
+                                                    {nota.toFixed(1)}<span className="memoria-nota-den">/10</span>
+                                                </div>
                                             </div>
-                                            <div style={{ marginTop: '0.4rem', fontSize: '1rem' }}><strong>{notaMsg}</strong></div>
+                                            <div className="memoria-nota-msg"><strong>{notaMsg}</strong></div>
                                         </div>
-                                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 1rem', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '10px', border: '1px solid #fbbf24' }}>
-                                            <span>⭐</span>
-                                            <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#92400e' }}>{pts.toLocaleString('es-ES')}</span>
-                                            <span style={{ fontSize: '0.8rem', color: '#b45309', fontWeight: 600 }}>puntos</span>
+                                        <div className="memoria-points">
+                                            <span aria-hidden="true">⭐</span>
+                                            <span className="memoria-points-val">{pts.toLocaleString('es-ES')}</span>
+                                            <span className="memoria-points-label">puntos</span>
                                         </div>
                                     </div>
                                 );

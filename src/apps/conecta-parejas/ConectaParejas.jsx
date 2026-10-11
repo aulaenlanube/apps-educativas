@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Link2, RefreshCw, Eye, CheckCircle2, Timer, Award, Trophy,
-  Gamepad2, GraduationCap, Star, Heart, Check, X, Flame,
+  Star, Heart, Check, X, Flame,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
@@ -239,6 +239,7 @@ const ConectaParejas = ({ onGameComplete }) => {
       setSelected(null);
       setTimeout(() => setWrongFlash(null), 600);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, matched, completed, streak, timer, timeLeft, gameMode]);
 
   // --- Victoria / derrota ---
@@ -295,6 +296,7 @@ const ConectaParejas = ({ onGameComplete }) => {
   const cfg = MODE_CONFIG[gameMode];
   const isExam = gameMode === 'exam';
   const isWon = completed && correctCount >= totalPairs;
+  // eslint-disable-next-line no-unused-vars
   const isLost = completed && !isWon;
   const nota = totalPairs > 0 ? Math.round((correctCount / totalPairs) * 100) / 10 : 0;
   const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
@@ -318,6 +320,16 @@ const ConectaParejas = ({ onGameComplete }) => {
   return (
     <div className="cparejas-root">
       <motion.div className="cparejas-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        {/* Fondo decorativo (orbes + rejilla + chispas) */}
+        <div className="cparejas-fx" aria-hidden="true">
+          <span className="cparejas-fx-orb a" />
+          <span className="cparejas-fx-orb b" />
+          <span className="cparejas-fx-grid" />
+          <span className="cparejas-fx-spark s1" />
+          <span className="cparejas-fx-spark s2" />
+          <span className="cparejas-fx-spark s3" />
+        </div>
+
         {/* Header */}
         <div className="cparejas-header">
           <div className="cparejas-title">
@@ -339,10 +351,16 @@ const ConectaParejas = ({ onGameComplete }) => {
               </div>
             )}
             <div className="cparejas-stat matched">
-              <Link2 size={14} /> <span>{correctCount}/{totalPairs}</span>
+              <Link2 size={14} />
+              <motion.span key={correctCount} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
+                {correctCount}/{totalPairs}
+              </motion.span>
             </div>
             <div className="cparejas-stat score">
-              <Star size={14} /> <span>{score.toLocaleString('es-ES')}</span>
+              <Star size={14} />
+              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
+                {score.toLocaleString('es-ES')}
+              </motion.span>
             </div>
           </div>
         </div>
@@ -370,7 +388,9 @@ const ConectaParejas = ({ onGameComplete }) => {
               {isExam ? (
                 <>
                   <div className={`cparejas-nota ${notaColor}`}>
-                    <div className="cparejas-nota-big">{nota.toFixed(1)}<span className="cparejas-nota-small">/10</span></div>
+                    <div className="cparejas-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
+                      <div className="cparejas-nota-big">{nota.toFixed(1)}<span className="cparejas-nota-small">/10</span></div>
+                    </div>
                     <div className="cparejas-nota-msg">{notaMsg}</div>
                   </div>
                   <div className="cparejas-result-record">
@@ -413,7 +433,8 @@ const ConectaParejas = ({ onGameComplete }) => {
                       strokeWidth="3"
                       fill="none"
                       strokeLinecap="round"
-                      opacity="0.7"
+                      pathLength="1"
+                      opacity="0.9"
                     />
                   );
                 })}

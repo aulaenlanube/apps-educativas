@@ -5,6 +5,7 @@ import { getIntrusoData } from '../../services/gameDataService';
 import './BuscaElIntruso.css';
 
 import { FaBook, FaTimes } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 /**
  * BuscaElIntruso - Edición "Spectacular UI"
@@ -304,6 +305,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     }, 1200);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const precision = estado.rondasTotales > 0 ? Math.round((estado.aciertos / estado.rondasTotales) * 100) : 0;
 
   if (!datosJuego) return <div className="loading-screen">Cargando Examen...</div>;
@@ -312,7 +314,15 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   return (
     <div className="intruso-wrapper">
       {/* Fondo Animado con partículas generadas dinámicamente */}
-      <div className="intruso-particles">
+      {/* Capa de luz: orbes difusos + rejilla (decorativo) */}
+      <div className="intruso-aurora" aria-hidden="true">
+        <span className="intruso-orb a" />
+        <span className="intruso-orb b" />
+        <span className="intruso-orb c" />
+        <span className="intruso-grid-bg" />
+      </div>
+
+      <div className="intruso-particles" aria-hidden="true">
         {particles.map((p) => (
           <span key={p.id} style={{
             width: `${p.size}px`,
@@ -342,8 +352,8 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
               </>
             ) : (
               <>
-                <button className={`intruso-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>OTRO INTRUSO</button>
-                <button className={`intruso-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
+                <button className={`intruso-btn intruso-btn--practice ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>OTRO INTRUSO</button>
+                <button className={`intruso-btn intruso-btn--exam ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
               </>
             )}
 
@@ -374,21 +384,15 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
           </div>
 
           <div className="intruso-hud-center">
-            <h1 className="intruso-title">BUSCA EL INTRUSO</h1>
+            <h1 className="intruso-title"><span className="intruso-title-icon" aria-hidden="true">🔎</span>BUSCA EL INTRUSO</h1>
 
             {/* INDICADOR DE PROGRESO DEL EXAMEN */}
             {estado.modo === 'test' && (
-              <div style={{
-                background: 'rgba(255, 255, 255, 0.2)',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                fontSize: '0.9rem',
-                fontWeight: 'bold',
-                color: '#fff',
-                marginBottom: '4px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}>
+              <div className="intruso-progress-pill">
                 Pregunta {estado.ronda} de {estado.rondasTotales}
+                <span className="intruso-progress-track" aria-hidden="true">
+                  <span className="intruso-progress-fill" style={{ width: `${(Math.max(0, estado.ronda - 1) / estado.rondasTotales) * 100}%` }} />
+                </span>
               </div>
             )}
 
@@ -398,7 +402,9 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
           <div className="intruso-hud-right">
             <div className="stat-pill">
               <span className="icon">🏆</span>
-              <span className="value">{estado.aciertos}</span>
+              <motion.span className="value" key={estado.aciertos} initial={{ scale: 1.4 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 16 }}>
+                {estado.aciertos}
+              </motion.span>
             </div>
             {estado.modo === 'test' && (
               <div className="stat-pill">
@@ -452,7 +458,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
             </>
           ) : (
             // PANTALLA DE RESULTADOS
-            <div className="results-card">
+            <div className="results-card intruso-results">
               <h2>EXAMEN COMPLETADO!</h2>
 
               {(() => {
@@ -465,18 +471,20 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
 
                 return (
                   <>
-                    <div style={{ textAlign: 'center', margin: '1.5rem 0 1rem', padding: '1.5rem', borderRadius: '16px', background: notaBg }}>
-                      <div style={{ fontSize: '3.5rem', fontWeight: 900, lineHeight: 1, color: notaColor }}>
-                        {nota.toFixed(1)}<span style={{ fontSize: '1.5rem', fontWeight: 700, opacity: 0.6 }}>/10</span>
+                    <div className="intruso-nota" style={{ '--intruso-nota-bg': notaBg }}>
+                      <div className="intruso-nota-ring fx-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}>
+                        <div className="intruso-nota-num" style={{ color: notaColor }}>
+                          {nota.toFixed(1)}<span className="intruso-nota-den">/10</span>
+                        </div>
                       </div>
-                      <div style={{ marginTop: '0.5rem', fontSize: '1.1rem' }}><strong>{notaMsg}</strong></div>
-                      <div style={{ marginTop: '0.3rem', fontSize: '0.85rem', color: '#6b7280' }}>{estado.aciertos} de {estado.rondasTotales} correctas</div>
+                      <div className="intruso-nota-msg"><strong>{notaMsg}</strong></div>
+                      <div className="intruso-nota-sub">{estado.aciertos} de {estado.rondasTotales} correctas</div>
                     </div>
 
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', margin: '0.75rem 0 1rem', padding: '0.5rem 1.2rem', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '12px', border: '1px solid #fbbf24' }}>
-                      <span style={{ fontSize: '1.1rem' }}>⭐</span>
-                      <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#92400e' }}>{totalPoints.toLocaleString('es-ES')}</span>
-                      <span style={{ fontSize: '0.85rem', color: '#b45309', fontWeight: 600 }}>puntos</span>
+                    <div className="intruso-points">
+                      <span className="intruso-points-star" aria-hidden="true">⭐</span>
+                      <span className="intruso-points-val">{totalPoints.toLocaleString('es-ES')}</span>
+                      <span className="intruso-points-label">puntos</span>
                     </div>
                   </>
                 );
