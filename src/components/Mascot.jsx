@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation } from 'react-router-dom';
 import { getOrdenaFrasesData, getJokes } from '../services/gameDataService';
-import MascotOriginal from './MascotOriginal';
+import RobotMascot from './RobotMascot';
 
-const Mascot = () => {
+const Mascot = ({ className = '' }) => {
     const { level, grade, subjectId } = useParams();
     const location = useLocation();
     const [messages, setMessages] = useState([]);
@@ -77,40 +77,24 @@ const Mascot = () => {
     };
 
     return (
-        <div className="mascot-wrapper" style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '0.5rem 0', zIndex: 30 }}>
+        <div className={`mascot-wrapper ${className}`} style={{ position: 'relative', display: 'flex', justifyContent: 'center', zIndex: 30 }}>
             <AnimatePresence>
                 {currentMessage && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0, rotate: -20, y: 30 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
-                        exit={{ opacity: 0, scale: 0, rotate: 20 }}
-                        transition={{ duration: 0.3 }}
-                        style={{
-                            position: 'absolute',
-                            top: '-70px',
-                            background: 'white',
-                            padding: '1.2rem',
-                            borderRadius: '24px',
-                            boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
-                            border: '2px solid #6366f1',
-                            zIndex: 25,
-                            minWidth: '200px',
-                            maxWidth: '280px',
-                            textAlign: 'center',
-                            fontSize: '1rem',
-                            fontWeight: '600',
-                            color: '#1e1b4b',
-                            pointerEvents: 'none'
-                        }}
+                        key={currentMessage}
+                        className="mascot-bubble"
+                        initial={{ opacity: 0, scale: 0.4, y: 24, rotate: -6 }}
+                        animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                        exit={{ opacity: 0, scale: 0.6, y: -10, rotate: 4 }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 22 }}
                     >
-                        {currentMessage}
-                        <div style={{ position: 'absolute', bottom: '-12px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '12px solid transparent', borderRight: '12px solid transparent', borderTop: '12px solid #6366f1' }} />
-                        <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '10px solid transparent', borderRight: '10px solid transparent', borderTop: '10px solid white' }} />
+                        <span className="mascot-bubble__text">{currentMessage}</span>
+                        <span className="mascot-bubble__tail" aria-hidden="true" />
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            <MascotOriginal isTalking={isTalking} onClick={handleMascotClick} />
+            <RobotMascot isTalking={isTalking} onClick={handleMascotClick} />
         </div>
     );
 };

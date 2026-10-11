@@ -22,6 +22,7 @@ import RankingModal from '@/components/ui/RankingModal';
 import MatrixBackground from '@/components/ui/MatrixBackground';
 import AvatarUnlockModal from '@/components/avatar/AvatarUnlockModal';
 import { invalidateAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import './NavPages.css';
 
 // Fondo 3D ambiental del CURSO. Lo monta de forma PERSISTENTE
 // PersistentCourseBackground (en App), detrás de todo, para que no se reinicie
@@ -373,7 +374,7 @@ const AppRunnerPage = () => {
                 {/* El fondo 3D de curso lo monta PersistentCourseBackground (en App),
                     detrás de todo; aquí el contenedor solo se vuelve transparente. */}
 
-                <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} flex items-center gap-3`}>
+                <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} np-runner-bar flex items-center gap-3`}>
 
                     {preset.useAnimatedBack ? (
                         <AnimatedBorderButton
@@ -426,7 +427,10 @@ const AppRunnerPage = () => {
                             </div>
                             <button
                                 onClick={() => setMobileSidebarOpen(true)}
-                                className="flex md:hidden items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-md active:scale-95 transition-all"
+                                aria-label="Abrir menú"
+                                className={chrome.glassChrome
+                                    ? 'np-glass-icon-btn md:hidden'
+                                    : 'flex md:hidden items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-md active:scale-95 transition-all'}
                             >
                                 <Menu className="w-4.5 h-4.5" />
                             </button>
@@ -437,8 +441,9 @@ const AppRunnerPage = () => {
 
                 <div className={`${preset.containerClass} relative`}>
                     <Suspense fallback={
-                        <div className="flex items-center justify-center py-32">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500" />
+                        <div className="flex flex-col items-center justify-center gap-4 py-32" role="status" aria-live="polite">
+                            <div className="np-loader" />
+                            <span className={`np-loader-label ${chrome.glassChrome ? '!text-white/80' : ''}`}>Cargando…</span>
                         </div>
                     }>
                         <AppToRender
@@ -475,17 +480,21 @@ const AppRunnerPage = () => {
                 {showDuelExitModal && (
                     <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+                        className="fixed inset-0 z-[60] bg-slate-950/65 backdrop-blur-md flex items-center justify-center p-4"
                         onClick={() => !duelExitBusy && setShowDuelExitModal(false)}
                     >
                         <motion.div
                             initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95 }}
                             onClick={e => e.stopPropagation()}
-                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+                            className="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-md overflow-hidden ring-1 ring-white/50 dark:ring-white/10 shadow-[0_40px_100px_-30px_rgba(225,29,72,0.65),0_10px_30px_-10px_rgba(0,0,0,0.5)]"
                         >
-                            <div className="p-5 bg-gradient-to-r from-rose-500 to-rose-600 text-white">
-                                <h3 className="text-lg font-bold flex items-center gap-2">
-                                    <Swords className="w-5 h-5" /> Abandonar el duelo
+                            <div className="relative overflow-hidden p-5 bg-gradient-to-br from-rose-500 via-rose-600 to-fuchsia-700 text-white">
+                                <div className="absolute -top-10 -right-8 w-36 h-36 rounded-full bg-white/15 blur-2xl pointer-events-none" aria-hidden="true" />
+                                <h3 className="relative text-lg font-bold flex items-center gap-3">
+                                    <span className="grid place-items-center w-9 h-9 rounded-xl bg-white/20 ring-1 ring-white/30 shadow-[0_0_18px_rgba(255,255,255,0.35)]">
+                                        <Swords className="w-5 h-5" />
+                                    </span>
+                                    Abandonar el duelo
                                 </h3>
                             </div>
                             <div className="p-5 text-slate-700 dark:text-slate-200 space-y-2">
@@ -503,12 +512,12 @@ const AppRunnerPage = () => {
                                 <button
                                     onClick={() => setShowDuelExitModal(false)}
                                     disabled={duelExitBusy}
-                                    className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-white dark:hover:bg-slate-700 disabled:opacity-50"
+                                    className="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-white dark:hover:bg-slate-700 hover:-translate-y-0.5 transition-all disabled:opacity-50"
                                 >Seguir jugando</button>
                                 <button
                                     onClick={confirmDuelExit}
                                     disabled={duelExitBusy}
-                                    className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold inline-flex items-center gap-2 disabled:opacity-60"
+                                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white text-sm font-bold inline-flex items-center gap-2 shadow-[0_10px_24px_-10px_rgba(225,29,72,0.9)] hover:-translate-y-0.5 transition-all disabled:opacity-60"
                                 >
                                     {duelExitBusy ? (
                                         <>
@@ -536,4 +545,4 @@ const AppRunnerPage = () => {
     );
 };
 
-export default AppRunnerPage;
+export default AppRunnerPage;

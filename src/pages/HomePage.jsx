@@ -1,16 +1,329 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award, UserCog, SlidersHorizontal } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import {
+  BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award,
+  UserCog, SlidersHorizontal, ArrowRight, Calculator, Atom, Globe2, Music, Puzzle, FlaskConical, Languages, Palette,
+} from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
-import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
 import Mascot from '@/components/Mascot';
 import GradeCardIcon from '@/components/GradeCardIcon';
+import TiltCard from '@/components/ui/TiltCard';
+import AnimatedNumber from '@/components/ui/AnimatedNumber';
 import useSEO from '@/hooks/useSEO';
+import './HomePage.css';
+
+const primaryGrades = [
+  { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500', glow: '#f472b6' },
+  { grade: '2', title: '2º Primaria', color: 'from-orange-400 to-red-500', glow: '#fb923c' },
+  { grade: '3', title: '3º Primaria', color: 'from-yellow-400 to-orange-500', glow: '#fbbf24' },
+  { grade: '4', title: '4º Primaria', color: 'from-green-400 to-yellow-500', glow: '#a3e635' },
+  { grade: '5', title: '5º Primaria', color: 'from-blue-400 to-green-500', glow: '#34d399' },
+  { grade: '6', title: '6º Primaria', color: 'from-purple-400 to-blue-500', glow: '#818cf8' },
+];
+
+const esoGrades = [
+  { grade: '1', title: '1º ESO', color: 'from-indigo-500 to-purple-600', glow: '#8b5cf6' },
+  { grade: '2', title: '2º ESO', color: 'from-purple-500 to-pink-600', glow: '#d946ef' },
+  { grade: '3', title: '3º ESO', color: 'from-pink-500 to-red-600', glow: '#f43f5e' },
+  { grade: '4', title: '4º ESO', color: 'from-red-500 to-orange-600', glow: '#f97316' },
+];
+
+const bachilleratoGrades = [
+  { grade: '1', title: '1º Bachillerato', color: 'from-emerald-600 to-teal-700', glow: '#10b981' },
+  { grade: '2', title: '2º Bachillerato', color: 'from-teal-600 to-cyan-700', glow: '#06b6d4' },
+];
+
+// Asignaturas que orbitan alrededor del robot en el hero
+const ORBIT_CHIPS = [
+  { icon: Calculator, label: 'Mates', color: '#f59e0b' },
+  { icon: BookOpen, label: 'Lengua', color: '#ec4899' },
+  { icon: Atom, label: 'Ciencias', color: '#22d3ee' },
+  { icon: Languages, label: 'Inglés', color: '#8b5cf6' },
+  { icon: Globe2, label: 'Geografía', color: '#10b981' },
+  { icon: Music, label: 'Música', color: '#f472b6' },
+  { icon: FlaskConical, label: 'Química', color: '#a3e635' },
+  { icon: Puzzle, label: 'Lógica', color: '#6366f1' },
+  { icon: Palette, label: 'Arte', color: '#fb923c' },
+];
+
+const STATS = [
+  { value: 50, suffix: '+', label: 'apps educativas' },
+  { value: 13, suffix: '', label: 'cursos y etapas' },
+  { value: 128, suffix: '', label: 'insignias' },
+  { value: 70, suffix: '', label: 'avatares' },
+  { value: 101, suffix: '', label: 'niveles de XP' },
+];
+
+const FEATURES = [
+  { icon: BookOpen, title: 'Contenido de calidad', desc: 'Apps verificadas y organizadas por niveles educativos, desde 1º de Primaria hasta 2º de Bachillerato.', color: 'from-blue-500 to-purple-600', glow: '#6366f1' },
+  { icon: Star, title: 'Aprendizaje Divertido', desc: 'Plataforma de educación basada en el juego para mantener la motivación alta.', color: 'from-purple-500 to-pink-600', glow: '#d946ef' },
+  { icon: SlidersHorizontal, title: 'Niveles de dificultad', desc: 'Cada app tiene modo fácil, medio y examen. Practica a tu ritmo y demuestra lo que sabes en el modo examen con nota sobre 10.', color: 'from-green-500 to-blue-600', glow: '#10b981' },
+  { icon: Gamepad2, title: 'Experiencia y niveles', desc: 'Gana puntos de experiencia (XP) jugando a las apps. Sube de nivel y compite en el ranking global con alumnos de todos los cursos.', color: 'from-amber-500 to-orange-600', glow: '#f59e0b' },
+  { icon: Award, title: 'Insignias coleccionables', desc: 'Desbloquea insignias por tus logros: desde comunes hasta legendarias. Juega cada día, supera récords y completa retos para conseguirlas todas.', color: 'from-rose-500 to-red-600', glow: '#f43f5e' },
+  { icon: UserCog, title: 'Gestión docente sencilla', desc: 'Los docentes pueden crear grupos, añadir alumnos y gestionar todo sin necesidad de correo electrónico. El docente tiene el control total.', color: 'from-teal-500 to-emerald-600', glow: '#14b8a6' },
+];
+
+const TERMINAL_LINES = [
+  { p: '$', t: 'claude "crea una app de fracciones para 1º ESO"' },
+  { p: '›', t: 'Diseñando pantallas: fácil · medio · examen…' },
+  { p: '›', t: 'Generando ilustraciones y animaciones…' },
+  { p: '✓', t: 'App lista. 0 líneas escritas a mano.' },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
+};
+
+const itemVariants = {
+  hidden: { y: 28, opacity: 0, filter: 'blur(6px)' },
+  visible: { y: 0, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+
+// Título del hero: letra a letra con flotación y degradado animado (identidad
+// original de la home), ahora con un brillo de entrada.
+function HeroTitle() {
+  const words = '¡Aprende Jugando!'.split(' ');
+  let charIndex = 0;
+  return (
+    <h1 className="home-hero__title font-bold gradient-title-stroke text-5xl sm:text-6xl xl:text-7xl" style={{ lineHeight: 1.25 }}>
+      {words.map((word, wi) => (
+        <React.Fragment key={wi}>
+          {wi > 0 && <span>{' '}</span>}
+          <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+            {word.split('').map((char) => {
+              const i = charIndex++;
+              return (
+                <span key={i} style={{ display: 'inline-block', animation: `hero-float 3s ease-in-out ${i * 0.12}s infinite` }}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '0 0.04em',
+                      margin: '0 -0.04em',
+                      backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #F59E0B, #2563EB)',
+                      backgroundSize: '600% 100%',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      animation: `hero-enter 0.6s cubic-bezier(.34,1.56,.64,1) ${0.3 + i * 0.045}s both, hero-gradient 6s linear ${i * -0.35}s infinite`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                </span>
+              );
+            })}
+          </span>
+        </React.Fragment>
+      ))}
+    </h1>
+  );
+}
+
+// Chips de asignaturas en órbita elíptica alrededor del robot. Posiciones en un
+// rAF escribiendo transform directamente (sin re-render); pausa fuera de pantalla.
+function OrbitChips() {
+  const wrapRef = useRef(null);
+  const chipRefs = useRef([]);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return undefined;
+    let raf = 0;
+    let visible = true;
+    let size = { w: wrap.offsetWidth, h: wrap.offsetHeight };
+    const n = ORBIT_CHIPS.length;
+
+    const place = (t) => {
+      const rx = size.w * 0.47;
+      const ry = size.h * 0.12;
+      const cy = size.h * 0.64;
+      for (let i = 0; i < n; i++) {
+        const el = chipRefs.current[i];
+        if (!el) continue;
+        const a = t * 0.00018 + (i * Math.PI * 2) / n;
+        const depth = Math.sin(a); // -1 detrás · 1 delante
+        const x = Math.cos(a) * rx;
+        const y = cy + depth * ry - size.h / 2;
+        const s = 0.72 + (depth + 1) * 0.17;
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${s.toFixed(3)})`;
+        el.style.opacity = (0.45 + (depth + 1) * 0.275).toFixed(2);
+        el.style.zIndex = depth > 0 ? '4' : '1';
+        el.style.filter = depth < -0.35 ? 'blur(1.2px) saturate(.8)' : 'none';
+      }
+    };
+
+    const loop = (t) => {
+      place(t);
+      raf = visible ? requestAnimationFrame(loop) : 0;
+    };
+
+    const ro = new ResizeObserver(() => { size = { w: wrap.offsetWidth, h: wrap.offsetHeight }; });
+    ro.observe(wrap);
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !raf && !reduceMotion) raf = requestAnimationFrame(loop);
+    });
+    io.observe(wrap);
+
+    if (reduceMotion) place(4000);
+    else raf = requestAnimationFrame(loop);
+
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
+  }, [reduceMotion]);
+
+  return (
+    <div ref={wrapRef} className="home-orbit" aria-hidden="true">
+      {ORBIT_CHIPS.map(({ icon: Icon, label, color }, i) => (
+        <div key={label} ref={(el) => { chipRefs.current[i] = el; }} className="home-orbit__chip" style={{ '--chip': color }}>
+          <span className="home-orbit__icon"><Icon className="w-4 h-4" /></span>
+          <span className="home-orbit__label">{label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Terminal que "escribe" las líneas cuando entra en pantalla.
+function AITerminal() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const reduceMotion = useReducedMotion();
+  const [typed, setTyped] = useState({ line: 0, char: 0 });
+
+  useEffect(() => {
+    if (!inView) return undefined;
+    if (reduceMotion) {
+      setTyped({ line: TERMINAL_LINES.length, char: 0 });
+      return undefined;
+    }
+    let { line, char } = { line: 0, char: 0 };
+    let timer;
+    const tick = () => {
+      const current = TERMINAL_LINES[line];
+      if (!current) return;
+      if (char < current.t.length) {
+        char += 1;
+        setTyped({ line, char });
+        timer = setTimeout(tick, line === 0 ? 34 : 18);
+      } else {
+        line += 1;
+        char = 0;
+        setTyped({ line, char });
+        timer = setTimeout(tick, 420);
+      }
+    };
+    timer = setTimeout(tick, 400);
+    return () => clearTimeout(timer);
+  }, [inView, reduceMotion]);
+
+  return (
+    <div ref={ref} className="home-term" aria-hidden="true">
+      <div className="home-term__bar">
+        <span style={{ background: '#f87171' }} />
+        <span style={{ background: '#fbbf24' }} />
+        <span style={{ background: '#34d399' }} />
+        <em>eduapps — ia</em>
+      </div>
+      <div className="home-term__body">
+        {TERMINAL_LINES.map((l, i) => {
+          if (i > typed.line) return null;
+          const text = i < typed.line ? l.t : l.t.slice(0, typed.char);
+          const done = l.p === '✓';
+          return (
+            <div key={i} className={`home-term__line ${done ? 'is-done' : ''}`}>
+              <span className="home-term__prompt">{l.p}</span>
+              <span>{text}</span>
+              {i === typed.line && <span className="home-term__caret" />}
+            </div>
+          );
+        })}
+        {typed.line >= TERMINAL_LINES.length && (
+          <div className="home-term__line"><span className="home-term__prompt">$</span><span className="home-term__caret" /></div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StatsStrip() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="home-stats fx-glass-dark"
+    >
+      {STATS.map((s) => (
+        <div key={s.label} className="home-stats__item">
+          <span className="home-stats__value fx-text-grad">
+            <AnimatedNumber value={inView ? s.value : 0} duration={1400} />{s.suffix}
+          </span>
+          <span className="home-stats__label">{s.label}</span>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
+// Encabezado de sección (mantiene GradientTitle, la identidad de la home)
+function SectionHeading({ iconLeft: L, iconRight: R, leftClass, rightClass, kicker, title, children }) {
+  return (
+    <motion.div variants={itemVariants} className="text-center mb-14">
+      {kicker && <span className="home-kicker">{kicker}</span>}
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <span className="home-heading-icon"><L className={`w-7 h-7 ${leftClass}`} /></span>
+        <GradientTitle tag="h2" className="text-4xl md:text-5xl gradient-title-stroke">{title}</GradientTitle>
+        <span className="home-heading-icon"><R className={`w-7 h-7 ${rightClass}`} /></span>
+      </div>
+      <p className="text-lg md:text-xl text-white/85 drop-shadow max-w-2xl mx-auto">{children}</p>
+    </motion.div>
+  );
+}
+
+function GradeCard({ to, ariaLabel, color, glow, type, grade, number, label, cta, size = 'md' }) {
+  return (
+    <motion.div variants={itemVariants} whileTap={{ scale: 0.97 }} className="group home-grade-wrap">
+      <TiltCard
+        as={Link}
+        to={to}
+        aria-label={ariaLabel}
+        max={7}
+        className={`home-grade home-grade--${size} bg-gradient-to-br ${color} no-underline`}
+        style={{ '--glow': glow }}
+      >
+        <span className="home-grade__gloss" aria-hidden="true" />
+        <span className="home-grade__orbs" aria-hidden="true">
+          <i /><i /><i />
+        </span>
+        <span className="home-grade__sheen" aria-hidden="true" />
+        <div className="relative z-10 flex flex-col items-center fx-tilt__pop">
+          <div className="home-grade__icon">
+            <GradeCardIcon type={type} grade={grade} />
+          </div>
+          <div className="flex items-baseline gap-1 mb-4">
+            <span className="home-grade__num">{number}</span>
+            <span className="home-grade__label">{label}</span>
+          </div>
+          <div className="home-grade__cta">
+            <span>{cta}</span>
+            <ArrowRight className="w-4 h-4" />
+          </div>
+        </div>
+      </TiltCard>
+    </motion.div>
+  );
+}
 
 const HomePage = () => {
-  const navigate = useNavigate();
   // Ahora obtenemos la función del modal desde el MainLayout
   const { setIsModalOpen } = useOutletContext();
 
@@ -20,39 +333,13 @@ const HomePage = () => {
     canonical: 'https://apps-educativas.com/',
   });
 
-  const primaryGrades = [
-    { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500' },
-    { grade: '2', title: '2º Primaria', color: 'from-orange-400 to-red-500' },
-    { grade: '3', title: '3º Primaria', color: 'from-yellow-400 to-orange-500' },
-    { grade: '4', title: '4º Primaria', color: 'from-green-400 to-yellow-500' },
-    { grade: '5', title: '5º Primaria', color: 'from-blue-400 to-green-500' },
-    { grade: '6', title: '6º Primaria', color: 'from-purple-400 to-blue-500' }
-  ];
-
-  const esoGrades = [
-    { grade: '1', title: '1º ESO', color: 'from-indigo-500 to-purple-600' },
-    { grade: '2', title: '2º ESO', color: 'from-purple-500 to-pink-600' },
-    { grade: '3', title: '3º ESO', color: 'from-pink-500 to-red-600' },
-    { grade: '4', title: '4º ESO', color: 'from-red-500 to-orange-600' }
-  ];
-
-  const bachilleratoGrades = [
-    { grade: '1', title: '1º Bachillerato', color: 'from-emerald-600 to-teal-700' },
-    { grade: '2', title: '2º Bachillerato', color: 'from-teal-600 to-cyan-700' }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  const scrollToCourses = (e) => {
+    e.preventDefault();
+    document.getElementById('cursos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <div>
+    <div className="home">
       <Header>
         <AnimatedBorderButton
           onClick={() => setIsModalOpen(true)}
@@ -64,465 +351,306 @@ const HomePage = () => {
         </AnimatedBorderButton>
       </Header>
 
-      <motion.section
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative pt-10 pb-72 px-6 text-center overflow-hidden"
-      >
-        <div className="relative z-10 container mx-auto">
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mb-8"
-          >
-            <h1
-              className="font-bold gradient-title-stroke text-5xl md:text-7xl mb-8"
-              style={{ lineHeight: 1.4 }}
-            >
-              {(() => {
-                const words = '¡Aprende Jugando!'.split(' ');
-                let charIndex = 0;
-                return words.map((word, wi) => (
-                  <React.Fragment key={wi}>
-                    {wi > 0 && <span>{'\u00A0'}</span>}
-                    <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
-                      {word.split('').map((char) => {
-                        const i = charIndex++;
-                        return (
-                          <span
-                            key={i}
-                            style={{
-                              display: 'inline-block',
-                              animation: `hero-float 3s ease-in-out ${i * 0.12}s infinite`,
-                            }}
-                          >
-                            <span
-                              style={{
-                                display: 'inline-block',
-                                padding: '0 0.04em',
-                                margin: '0 -0.04em',
-                                backgroundImage: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899, #2563EB)',
-                                backgroundSize: '600% 100%',
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                animation: `hero-enter 0.5s ease-out ${0.3 + i * 0.04}s both, hero-gradient 6s linear ${i * -0.35}s infinite`,
-                              }}
-                            >
-                              {char}
-                            </span>
-                          </span>
-                        );
-                      })}
-                    </span>
-                  </React.Fragment>
-                ));
-              })()}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 drop-shadow-md max-w-3xl mx-auto leading-relaxed">
-              Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block" />
-              Desde 1º de Primaria hasta 2º de Bachillerato, ¡el aprendizaje nunca fue tan divertido!
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            {[
-              { icon: Users, text: "Apps por niveles", color: "text-blue-500" },
-              { icon: Star, text: "100% gratis", color: "text-yellow-500" },
-              { icon: Trophy, text: "Sin publicidad", color: "text-purple-500" }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center space-x-2 bg-white/60 backdrop-blur-md px-5 py-3 rounded-full shadow-sm border border-white/50">
-                <item.icon className={`w-5 h-5 ${item.color}`} />
-                <span className="text-gray-700 font-medium">{item.text}</span>
-              </div>
-            ))}
-          </motion.div>
-
+      {/* ===== HERO ===== */}
+      <section className="home-hero relative px-6 pt-10 md:pt-14 pb-10 overflow-hidden">
+        <div className="home-hero__aurora" aria-hidden="true">
+          <span /><span /><span />
         </div>
-      </motion.section>
+        <div className="home-hero__stars" aria-hidden="true">
+          {[...Array(18)].map((_, i) => <i key={i} style={{ '--i': i, left: `${(i * 53) % 96 + 2}%`, top: `${(i * 37) % 72 + 4}%` }} />)}
+        </div>
 
-      {/* Sección IA + Mascota */}
-      <div className="px-6 relative -mt-72">
-        {/* Mascota — z-10 para quedar DETRÁS de la caja (z-20).
-            Empieza oculta (y:120 = debajo de la caja) y sube DESPUÉS de que la caja ya esté visible.
-            delay:1.8s > hero(~0.8s) + badges(~0.5s) + caja(~0.6s) para ser lo último en aparecer.
-            ease custom para efecto "spring suave" de salida. */}
-        <motion.div
-          initial={{ y: 120, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-xl mx-auto mb-[-90px] relative z-10"
-        >
-          <Mascot />
-        </motion.div>
-        {/* Caja "Programada 100% con IA" — z-20 para tapar la parte inferior del robot */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.7, ease: "easeOut" }}
-          className="container mx-auto max-w-4xl relative z-20"
-        >
-          <div
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-violet-950 pt-20 pb-10 px-10 md:pt-20 md:pb-14 md:px-14 shadow-2xl border border-white/10"
-          >
-            {/* Decoración de fondo */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-500/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl" />
-              <div className="absolute top-6 right-8 text-indigo-400/15 font-mono text-xs leading-relaxed select-none hidden md:block">
-                {'<App />\n{ code: 0 }\nai.build()\n// 100% IA'}
-              </div>
-            </div>
+        <div className="relative z-10 container mx-auto grid lg:grid-cols-[1.08fr_1fr] gap-6 lg:gap-4 items-center">
+          <div className="text-center lg:text-left">
+            <motion.span
+              initial={{ opacity: 0, y: -12, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+              className="home-pill"
+            >
+              <Sparkles className="w-4 h-4" />
+              Primaria · ESO · Bachillerato · Diversidad
+            </motion.span>
 
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
-                Programada 100% con{' '}
-                <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-                  Inteligencia Artificial
-                </span>
-              </h2>
+            <HeroTitle />
 
-              <p className="text-lg md:text-xl text-indigo-200/80 max-w-2xl mx-auto mb-4 leading-relaxed">
-                Esta plataforma ha sido creada completamente desde cero con IA, sin escribir una sola
-                 línea de código de forma manual. Cada app, cada pantalla, cada interacción ha sido
-                 generada con inteligencia artificial.
-              </p>
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="text-lg md:text-2xl text-white/90 drop-shadow-md max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8"
+            >
+              Descubre las mejores apps educativas organizadas por cursos.{' '}
+              Desde 1º de Primaria hasta 2º de Bachillerato, ¡el aprendizaje nunca fue tan divertido!
+            </motion.p>
 
-              <p className="text-base text-indigo-300/60 max-w-xl mx-auto mb-8">
-                El futuro de la educación ya esta aquí: herramientas creadas con IA para que alumnos
-                y docentes aprendan de la forma más efectiva y divertida posible.
-              </p>
-
-              <a
-                href="https://www.youtube.com/playlist?list=PLMhQ6qm8uYWCnvsJLZRIDv1mqtKVGmXXI"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white font-bold text-lg rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
-              >
-                <Play className="w-5 h-5 fill-current" />
-                Te lo explico todo aquí
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8"
+            >
+              <a href="#cursos" onClick={scrollToCourses} className="fx-btn fx-shine fx-shine--auto home-cta no-underline">
+                <GraduationCap className="w-5 h-5" />
+                Elige tu curso
+                <ArrowRight className="w-5 h-5 home-cta__arrow" />
               </a>
+              <Link to="/catalogo" className="home-cta-ghost no-underline">
+                <Gamepad2 className="w-5 h-5" />
+                Ver todas las apps
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.9 } } }}
+              className="flex flex-wrap justify-center lg:justify-start gap-3"
+            >
+              {[
+                { icon: Users, text: 'Apps por niveles', color: 'text-sky-300' },
+                { icon: Star, text: '100% gratis', color: 'text-amber-300' },
+                { icon: Trophy, text: 'Sin publicidad', color: 'text-fuchsia-300' },
+              ].map((item) => (
+                <motion.div key={item.text} variants={itemVariants} className="home-badge">
+                  <item.icon className={`w-4 h-4 ${item.color}`} />
+                  <span>{item.text}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Robot + órbita */}
+          <motion.div
+            initial={{ y: 60, opacity: 0, scale: 0.92 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{ delay: 0.35, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="home-hero__robot"
+          >
+            <OrbitChips />
+            <div className="home-hero__robot-inner">
+              <Mascot />
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.a
+          href="#cursos"
+          onClick={scrollToCourses}
+          className="home-scroll-hint no-underline"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
+          aria-label="Ir a los cursos"
+        >
+          <span />
+        </motion.a>
+      </section>
+
+      {/* ===== CIFRAS ===== */}
+      <div className="px-6 relative z-10">
+        <div className="container mx-auto max-w-5xl">
+          <StatsStrip />
+        </div>
+      </div>
+
+      {/* ===== IA ===== */}
+      <section className="px-6 pt-16 relative">
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="container mx-auto max-w-5xl"
+        >
+          <div className="home-ai fx-aurora-border fx-aurora-glow">
+            <div className="home-ai__inner fx-grain">
+              <div className="home-ai__grid fx-grid-bg" aria-hidden="true" />
+              <div className="relative z-10 grid md:grid-cols-[1.25fr_1fr] gap-8 items-center">
+                <div className="text-center md:text-left">
+                  <span className="home-kicker home-kicker--dark"><Brain className="w-4 h-4" /> Hecha con IA</span>
+                  <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+                    Programada 100% con{' '}
+                    <span className="fx-text-grad">Inteligencia Artificial</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-indigo-100/85 mb-3 leading-relaxed">
+                    Esta plataforma ha sido creada completamente desde cero con IA, sin escribir una sola
+                    línea de código de forma manual. Cada app, cada pantalla, cada interacción ha sido
+                    generada con inteligencia artificial.
+                  </p>
+                  <p className="text-sm md:text-base text-indigo-200/65 mb-7">
+                    El futuro de la educación ya esta aquí: herramientas creadas con IA para que alumnos
+                    y docentes aprendan de la forma más efectiva y divertida posible.
+                  </p>
+                  <a
+                    href="https://www.youtube.com/playlist?list=PLMhQ6qm8uYWCnvsJLZRIDv1mqtKVGmXXI"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="fx-btn fx-shine no-underline text-lg"
+                  >
+                    <Play className="w-5 h-5 fill-current" />
+                    Te lo explico todo aquí
+                  </a>
+                </div>
+                <AITerminal />
+              </div>
             </div>
           </div>
         </motion.div>
-      </div>
+      </section>
 
-      {/* Sección Primaria */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6"
-      >
+      <div id="cursos" className="scroll-mt-24" />
+
+      {/* ===== PRIMARIA ===== */}
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
         <div className="container mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <BookOpen className="w-8 h-8 text-blue-500" />
-              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Educación Primaria</GradientTitle>
-              <Sparkles className="w-8 h-8 text-purple-500" />
-            </div>
-            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
-              Apps diseñadas especialmente para los más pequeños, con contenido adaptado a cada nivel.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {primaryGrades.map((grade) => (
-              <motion.div
-                key={grade.grade}
-                variants={itemVariants}
-                whileHover={{ scale: 1.04, y: -4 }}
-                whileTap={{ scale: 0.97 }}
-                className="group"
-              >
-                <Link
-                  to={`/curso/primaria/${grade.grade}`}
-                  aria-label={`Apps educativas para ${grade.title}`}
-                  className={`block bg-gradient-to-br ${grade.color} pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
-                >
-                  {/* Ambient decorative shapes */}
-                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
-                  </div>
-
-                  <div className="relative z-10 flex flex-col items-center">
-                    {/* SVG icon - hero element */}
-                    <div className="mb-4 transition-transform duration-500 group-hover:scale-110">
-                      <GradeCardIcon type="primaria" grade={grade.grade} />
-                    </div>
-                    {/* Grade info */}
-                    <div className="flex items-baseline gap-1 mb-4">
-                      <span className="text-5xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
-                      <span className="text-lg font-semibold text-white/80">Primaria</span>
-                    </div>
-                    {/* Button */}
-                    <div className="bg-white/20 backdrop-blur-md rounded-full px-8 py-2.5 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-10">
-                      <span className="text-sm font-bold text-white">Explorar</span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+          <SectionHeading iconLeft={BookOpen} iconRight={Sparkles} leftClass="text-sky-300" rightClass="text-fuchsia-300" kicker="6 cursos" title="Educación Primaria">
+            Apps diseñadas especialmente para los más pequeños, con contenido adaptado a cada nivel.
+          </SectionHeading>
+          <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+            {primaryGrades.map((g) => (
+              <GradeCard
+                key={g.grade}
+                to={`/curso/primaria/${g.grade}`}
+                ariaLabel={`Apps educativas para ${g.title}`}
+                color={g.color}
+                glow={g.glow}
+                type="primaria"
+                grade={g.grade}
+                number={`${g.grade}º`}
+                label="Primaria"
+                cta="Explorar"
+                size="lg"
+              />
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Sección Secundaria */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6"
-      >
+      {/* ===== ESO ===== */}
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
         <div className="container mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <GraduationCap className="w-8 h-8 text-indigo-500" />
-              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Educación Secundaria</GradientTitle>
-              <Trophy className="w-8 h-8 text-purple-500" />
-            </div>
-            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
-              Contenido avanzado y especializado para estudiantes de ESO.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {esoGrades.map((grade) => (
-              <motion.div
-                key={grade.grade}
-                variants={itemVariants}
-                whileHover={{ scale: 1.04, y: -4 }}
-                whileTap={{ scale: 0.97 }}
-                className="group"
-              >
-                <Link
-                  to={`/curso/eso/${grade.grade}`}
-                  aria-label={`Apps educativas para ${grade.title}`}
-                  className={`block bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
-                >
-                  {/* Ambient decorative shapes */}
-                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
-                  </div>
-
-                  <div className="relative z-10 flex flex-col items-center">
-                    {/* SVG icon - hero element */}
-                    <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-                      <GradeCardIcon type="eso" grade={grade.grade} />
-                    </div>
-                    {/* Grade info */}
-                    <div className="flex items-baseline gap-1 mb-3">
-                      <span className="text-4xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
-                      <span className="text-base font-semibold text-white/80">ESO</span>
-                    </div>
-                    {/* Button */}
-                    <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
-                      <span className="text-sm font-bold text-white">Ver Asignaturas</span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+          <SectionHeading iconLeft={GraduationCap} iconRight={Trophy} leftClass="text-indigo-300" rightClass="text-purple-300" kicker="4 cursos" title="Educación Secundaria">
+            Contenido avanzado y especializado para estudiantes de ESO.
+          </SectionHeading>
+          <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+            {esoGrades.map((g) => (
+              <GradeCard
+                key={g.grade}
+                to={`/curso/eso/${g.grade}`}
+                ariaLabel={`Apps educativas para ${g.title}`}
+                color={g.color}
+                glow={g.glow}
+                type="eso"
+                grade={g.grade}
+                number={`${g.grade}º`}
+                label="ESO"
+                cta="Ver Asignaturas"
+              />
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Sección Bachillerato */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6"
-      >
+      {/* ===== BACHILLERATO ===== */}
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
         <div className="container mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <GraduationCap className="w-8 h-8 text-emerald-600" />
-              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Bachillerato</GradientTitle>
-              <Star className="w-8 h-8 text-teal-500" />
-            </div>
-            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
-              Prepárate para la universidad con contenido de alto nivel adaptado a cada asignatura.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
-          >
-            {bachilleratoGrades.map((grade) => (
-              <motion.div
-                key={grade.grade}
-                variants={itemVariants}
-                whileHover={{ scale: 1.04, y: -4 }}
-                whileTap={{ scale: 0.97 }}
-                className="group"
-              >
-                <Link
-                  to={`/curso/bachillerato/${grade.grade}`}
-                  aria-label={`Apps educativas para ${grade.title}`}
-                  className={`block bg-gradient-to-br ${grade.color} pt-8 pb-5 px-5 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline`}
-                >
-                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.07] rounded-full -translate-y-18 translate-x-18 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute bottom-0 left-0 w-28 h-28 bg-white/[0.07] rounded-full translate-y-14 -translate-x-14 transition-transform duration-500 group-hover:scale-125"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
-                  </div>
-
-                  <div className="relative z-10 flex flex-col items-center">
-                    <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-                      <GradeCardIcon type="bachillerato" grade={grade.grade} />
-                    </div>
-                    <div className="flex items-baseline gap-1 mb-3">
-                      <span className="text-4xl font-black text-white drop-shadow-sm">{grade.grade}º</span>
-                      <span className="text-base font-semibold text-white/80">Bach.</span>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-2 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-8">
-                      <span className="text-sm font-bold text-white">Ver Asignaturas</span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+          <SectionHeading iconLeft={GraduationCap} iconRight={Star} leftClass="text-emerald-300" rightClass="text-teal-300" kicker="2 cursos" title="Bachillerato">
+            Prepárate para la universidad con contenido de alto nivel adaptado a cada asignatura.
+          </SectionHeading>
+          <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-7 max-w-2xl mx-auto">
+            {bachilleratoGrades.map((g) => (
+              <GradeCard
+                key={g.grade}
+                to={`/curso/bachillerato/${g.grade}`}
+                ariaLabel={`Apps educativas para ${g.title}`}
+                color={g.color}
+                glow={g.glow}
+                type="bachillerato"
+                grade={g.grade}
+                number={`${g.grade}º`}
+                label="Bach."
+                cta="Ver Asignaturas"
+              />
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Sección Atención a la Diversidad */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-16 px-6"
-      >
+      {/* ===== ATENCIÓN A LA DIVERSIDAD ===== */}
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-16 px-6">
         <div className="container mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <HeartHandshake className="w-8 h-8 text-rose-500" />
-              <GradientTitle tag="h2" className="text-4xl gradient-title-stroke">Atención a la Diversidad</GradientTitle>
-              <Brain className="w-8 h-8 text-teal-500" />
-            </div>
-            <p className="text-xl text-white/85 drop-shadow max-w-2xl mx-auto">
-              Apps especializadas para profesionales de Audición y Lenguaje, Pedagogía Terapéutica y apoyo al desarrollo cognitivo y comunicativo.
-            </p>
-          </motion.div>
+          <SectionHeading iconLeft={HeartHandshake} iconRight={Brain} leftClass="text-rose-300" rightClass="text-teal-300" kicker="AL · PT · Cognición" title="Atención a la Diversidad">
+            Apps especializadas para profesionales de Audición y Lenguaje, Pedagogía Terapéutica y apoyo al desarrollo cognitivo y comunicativo.
+          </SectionHeading>
 
-          <motion.div
-            variants={containerVariants}
-            className="flex justify-center max-w-xl mx-auto"
-          >
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.04, y: -4 }}
-              whileTap={{ scale: 0.97 }}
-              className="group w-full"
-            >
-              <Link
+          <motion.div variants={containerVariants} className="flex justify-center max-w-xl mx-auto">
+            <motion.div variants={itemVariants} whileTap={{ scale: 0.97 }} className="group w-full home-grade-wrap">
+              <TiltCard
+                as={Link}
                 to="/curso/ad/1"
                 aria-label="Apps educativas para Atención a la Diversidad"
-                className="block bg-gradient-to-br from-teal-500 via-cyan-600 to-indigo-600 pt-10 pb-6 px-6 rounded-3xl shadow-lg cursor-pointer relative overflow-visible transition-all duration-300 hover:shadow-2xl no-underline"
+                max={5}
+                className="home-grade home-grade--lg bg-gradient-to-br from-teal-500 via-cyan-600 to-indigo-600 no-underline"
+                style={{ '--glow': '#22d3ee' }}
               >
-                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                  <div className="absolute top-0 right-0 w-44 h-44 bg-white/[0.07] rounded-full -translate-y-20 translate-x-20 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute bottom-0 left-0 w-36 h-36 bg-white/[0.07] rounded-full translate-y-16 -translate-x-16 transition-transform duration-500 group-hover:scale-125"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.04] rounded-full transition-transform duration-700 group-hover:scale-110"></div>
-                </div>
-
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className="mb-4 transition-transform duration-500 group-hover:scale-110">
+                <span className="home-grade__gloss" aria-hidden="true" />
+                <span className="home-grade__orbs" aria-hidden="true"><i /><i /><i /></span>
+                <span className="home-grade__sheen" aria-hidden="true" />
+                <div className="relative z-10 flex flex-col items-center fx-tilt__pop">
+                  <div className="home-grade__icon">
                     <GradeCardIcon type="ad" grade="1" />
                   </div>
                   <div className="text-center mb-3">
                     <span className="text-3xl font-black text-white drop-shadow-sm block">Atención a la</span>
                     <span className="text-3xl font-black text-white drop-shadow-sm block">Diversidad</span>
                   </div>
-                  <p className="text-white/80 text-sm text-center mb-5 px-4 max-w-md leading-relaxed">
+                  <p className="text-white/85 text-sm text-center mb-5 px-4 max-w-md leading-relaxed">
                     Apps especializadas de Audición y Lenguaje, Pedagogía Terapéutica y desarrollo cognitivo. Articulación, vocabulario, pragmática, atención, memoria, funciones ejecutivas, habilidades sociales y mucho más.
                   </p>
-                  <div className="bg-white/20 backdrop-blur-md rounded-full px-8 py-2.5 border border-white/30 group-hover:bg-white/30 transition-all duration-300 group-hover:px-10">
-                    <span className="text-sm font-bold text-white">Explorar</span>
+                  <div className="home-grade__cta">
+                    <span>Explorar</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
-              </Link>
+              </TiltCard>
             </motion.div>
           </motion.div>
 
           {/* Acceso al catálogo completo: cierra el recorrido por cursos
               (Primaria → ESO → Bachillerato → Diversidad) ofreciendo la vista
               transversal de TODAS las apps. */}
-          <motion.div variants={itemVariants} className="flex justify-center mt-12">
-            <Link
-              to="/catalogo"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/90 hover:bg-white text-indigo-700 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 no-underline"
-            >
-              <Gamepad2 className="w-5 h-5" />
+          <motion.div variants={itemVariants} className="flex justify-center mt-14">
+            <Link to="/catalogo" className="home-catalog fx-aurora-border fx-shine no-underline">
+              <span className="home-catalog__icon"><Gamepad2 className="w-5 h-5" /></span>
               Explora el catálogo de apps
+              <ArrowRight className="w-5 h-5 home-cta__arrow" />
             </Link>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Footer Promocional */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="py-20 px-6"
-      >
+      {/* ===== POR QUÉ ===== */}
+      <motion.section variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} className="py-20 px-6">
         <div className="container mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <GradientTitle tag="h2" className="text-4xl mb-4 gradient-title-stroke">¿Por qué elegir EduApps?</GradientTitle>
-            <p className="text-xl text-white/85 drop-shadow max-w-3xl mx-auto">
+          <motion.div variants={itemVariants} className="text-center mb-14">
+            <span className="home-kicker">Ventajas</span>
+            <GradientTitle tag="h2" className="text-4xl md:text-5xl mb-4 gradient-title-stroke">¿Por qué elegir EduApps?</GradientTitle>
+            <p className="text-lg md:text-xl text-white/85 drop-shadow max-w-3xl mx-auto">
               Una plataforma diseñada para hacer el aprendizaje más efectivo y divertido.
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {[
-              { icon: BookOpen, title: "Contenido de calidad", desc: "Apps verificadas y organizadas por niveles educativos, desde 1º de Primaria hasta 2º de Bachillerato.", color: "from-blue-500 to-purple-600" },
-              { icon: Star, title: "Aprendizaje Divertido", desc: "Plataforma de educación basada en el juego para mantener la motivación alta.", color: "from-purple-500 to-pink-600" },
-              { icon: SlidersHorizontal, title: "Niveles de dificultad", desc: "Cada app tiene modo fácil, medio y examen. Practica a tu ritmo y demuestra lo que sabes en el modo examen con nota sobre 10.", color: "from-green-500 to-blue-600" },
-              { icon: Gamepad2, title: "Experiencia y niveles", desc: "Gana puntos de experiencia (XP) jugando a las apps. Sube de nivel y compite en el ranking global con alumnos de todos los cursos.", color: "from-amber-500 to-orange-600" },
-              { icon: Award, title: "Insignias coleccionables", desc: "Desbloquea insignias por tus logros: desde comunes hasta legendarias. Juega cada día, supera récords y completa retos para conseguirlas todas.", color: "from-rose-500 to-red-600" },
-              { icon: UserCog, title: "Gestión docente sencilla", desc: "Los docentes pueden crear grupos, añadir alumnos y gestionar todo sin necesidad de correo electrónico. El docente tiene el control total.", color: "from-teal-500 to-emerald-600" },
-            ].map((feature, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 hover:shadow-xl transition-shadow"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md transform -rotate-3 hover:rotate-0 transition-transform duration-300`}>
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.desc}
-                </p>
+          <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {FEATURES.map((feature) => (
+              <motion.div key={feature.title} variants={itemVariants}>
+                <TiltCard max={4} className="home-feature fx-glass h-full" style={{ '--glow': feature.glow }}>
+                  <div className={`home-feature__icon bg-gradient-to-br ${feature.color}`}>
+                    <feature.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 home-feature__title">{feature.title}</h3>
+                  <p className="leading-relaxed home-feature__desc">{feature.desc}</p>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>

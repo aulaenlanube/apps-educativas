@@ -2,13 +2,14 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import NavBackButton, { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
+import { ChevronRight, Sparkles } from 'lucide-react';
+import { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from '@/apps/appList';
-import SubjectIcon from '@/components/SubjectIcon';
+import SubjectIcon, { getSubjectAccent } from '@/components/SubjectIcon';
+import { tiltProps, accentFor, keyActivate } from './navTilt';
+import './NavPages.css';
 
 const SubjectList = ({ subjects, level, grade }) => {
   const navigate = useNavigate();
@@ -17,46 +18,37 @@ const SubjectList = ({ subjects, level, grade }) => {
     navigate(`/curso/${level}/${grade}/${subjectId}`);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0, scale: 0.95 },
-    show: { y: 0, opacity: 1, scale: 1 }
-  };
-
+  // Entrada escalonada en CSS (.np-enter, wrapper) y tilt 3D en la tarjeta
+  // interior: así la animación de entrada no pisa el transform del tilt.
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
-    >
-      {subjects.map((subject) => (
-        <motion.div
-          key={subject.id}
-          variants={itemVariants}
-          whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-white/35 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 flex items-center space-x-4 cursor-pointer relative overflow-hidden group transition-colors hover:bg-white/55"
-          onClick={() => handleSubjectClick(subject.id)}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          <SubjectIcon subjectId={subject.id} />
-          <div className="relative z-10">
-            <h3 className="text-xl font-bold text-gray-800">{subject.nombre}</h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mt-12">
+      {subjects.map((subject, i) => (
+        <div key={subject.id} className="np-enter" style={{ '--i': i }}>
+          <div
+            role="link"
+            tabIndex={0}
+            aria-label={subject.nombre}
+            className="np-card np-card--row fx-spotlight fx-shine group"
+            style={{ '--np-accent': getSubjectAccent(subject.id) || accentFor(i) }}
+            onClick={() => handleSubjectClick(subject.id)}
+            onKeyDown={keyActivate(() => handleSubjectClick(subject.id))}
+            {...tiltProps}
+          >
+            <span className="np-card__glare" aria-hidden="true" />
+            <span className="np-card__ring" aria-hidden="true" />
+            <div className="np-card__body">
+              <span className="np-icon">
+                <SubjectIcon subjectId={subject.id} />
+              </span>
+              <h3 className="np-title text-lg md:text-xl">{subject.nombre}</h3>
+              <span className="np-arrow" aria-hidden="true">
+                <ChevronRight className="w-5 h-5" />
+              </span>
+            </div>
           </div>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
@@ -169,6 +161,13 @@ const SubjectPage = () => {
             className="w-full"
           >
             <div className="text-center">
+              <div className="np-enter mb-5" style={{ '--i': 0 }}>
+                <span className="np-kicker">
+                  <span className="np-kicker__dot" aria-hidden="true" />
+                  {isSpecialLevel ? 'Bloques de trabajo' : 'Elige tu asignatura'}
+                  {subjectsForCourse.length > 0 && <span className="np-count">{subjectsForCourse.length}</span>}
+                </span>
+              </div>
               <div className="flex items-center justify-center space-x-3 md:space-x-8 mb-4">
                 {prevStep && (
                   <NavArrowButton direction="left" colors={['#ffffff', '#ffffff']} borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
@@ -181,8 +180,9 @@ const SubjectPage = () => {
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">
-                <div className="bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl px-8 py-4">
-                  <p className="text-xl text-white/85 font-medium">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
+                <div className="np-sub">
+                  <Sparkles className="w-5 h-5 text-amber-300 shrink-0" aria-hidden="true" />
+                  <p className="text-lg md:text-xl">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@ const SubjectPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-16 flex flex-col items-center justify-center text-center bg-slate-900/35 backdrop-blur-md p-12 rounded-[3rem] shadow-xl border border-white/20"
+                className="np-panel mt-16 flex flex-col items-center justify-center text-center p-12 rounded-[3rem]"
               >
                 <motion.img
                   animate={{ y: [0, -15, 0] }}
@@ -214,4 +214,4 @@ const SubjectPage = () => {
   );
 };
 
-export default SubjectPage;
+export default SubjectPage;

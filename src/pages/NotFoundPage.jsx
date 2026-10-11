@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import Header from '@/components/layout/Header';
+import './NavPages.css';
 
 const funFacts = [
   { title: 'Parece que esta pagina se ha ido de excursion...', sub: 'y no ha dejado nota al tutor.' },
@@ -15,36 +16,51 @@ const funFacts = [
 
 const pick = funFacts[Math.floor(Math.random() * funFacts.length)];
 
+// Estrellas decorativas (posiciones fijas: nada de Math.random en render)
+const STARS = [
+  [8, 14, 0], [18, 72, 1.2], [27, 30, .6], [36, 85, 2], [44, 10, 1.6], [58, 64, .3],
+  [66, 22, 2.4], [74, 90, .9], [83, 40, 1.8], [91, 12, .4], [12, 48, 2.8], [52, 92, 1.1],
+  [88, 76, 2.2], [4, 88, .7], [62, 44, 3],
+];
+
 const NotFoundPage = () => (
   <div>
     <Header />
-    <div className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-6">
+    <div className="np-lost min-h-[calc(100vh-80px)] flex items-center justify-center p-6">
+      {/* Fondo: rejilla + orbes + estrellas (decorativo) */}
+      <div className="fx-grid-bg" aria-hidden="true" />
+      <div className="fx-app-backdrop" aria-hidden="true" />
+      {STARS.map(([x, y, d], i) => (
+        <span key={i} className="np-star" aria-hidden="true" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${d}s` }} />
+      ))}
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="text-center max-w-lg"
+        className="relative text-center max-w-xl"
       >
         {/* 404 grande */}
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 200 }}
-          className="mb-4"
+          className="mb-2"
         >
-          <span className="text-[16rem] md:text-[22rem] leading-none font-black bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent select-none">
-            404
+          <span className="np-404 fx-float-slow inline-block select-none">
+            <span className="fx-text-grad">404</span>
           </span>
         </motion.div>
 
         {/* Mensaje divertido */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          className="fx-glass-dark rounded-3xl px-6 py-7 md:px-10 md:py-8 mb-8"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-3">{pick.title}</h1>
-          <p className="text-slate-500 text-xl md:text-2xl mb-10">{pick.sub}</p>
+          <h1 className="text-2xl md:text-4xl font-black text-white mb-3 leading-tight">{pick.title}</h1>
+          <p className="text-indigo-100/75 text-lg md:text-xl">{pick.sub}</p>
         </motion.div>
 
         {/* Botones */}
@@ -54,17 +70,11 @@ const NotFoundPage = () => (
           transition={{ delay: 0.7 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
-          >
+          <Link to="/" className="fx-btn fx-shine">
             <Home className="w-5 h-5" />
             Volver al inicio
           </Link>
-          <button
-            onClick={() => window.history.back()}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 font-semibold rounded-xl shadow border border-slate-200 hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all"
-          >
+          <button type="button" onClick={() => window.history.back()} className="np-btn-ghost">
             <ArrowLeft className="w-5 h-5" />
             Pagina anterior
           </button>
@@ -75,7 +85,7 @@ const NotFoundPage = () => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-10 text-xs text-slate-400"
+          className="mt-10 text-xs text-indigo-100/50"
         >
           Si crees que esto es un error, contacta con tu profesor o administrador.
         </motion.p>

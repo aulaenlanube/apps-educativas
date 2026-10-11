@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen } from 'lucide-react';
+import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen, ArrowRight } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
@@ -13,6 +13,8 @@ import {
 import {
   CATALOG_CATEGORIES, CONCEPT_CATEGORY, APP_ID_TO_CONCEPT, APP_VARIANT_SCOPE, APP_CONCEPTS,
 } from '@/data/appsCatalog';
+import { tiltProps, accentFor } from './navTilt';
+import './NavPages.css';
 
 const LEVEL_FILTERS = [
   { id: 'all', label: 'Todos' },
@@ -91,7 +93,7 @@ const LaunchPicker = ({ item }) => {
   const selectCls = 'w-full appearance-none bg-white text-gray-800 text-sm font-medium rounded-xl border border-gray-200 pl-3 pr-9 py-2.5 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400';
 
   return (
-    <div className="rounded-2xl bg-indigo-50 border border-indigo-100 p-4">
+    <div className="rounded-2xl p-4 border border-indigo-100 bg-gradient-to-br from-indigo-50 via-violet-50 to-fuchsia-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
       <p className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
         <GraduationCap className="w-4 h-4 text-indigo-600" /> Elige dónde quieres jugar
       </p>
@@ -125,7 +127,7 @@ const LaunchPicker = ({ item }) => {
       <button
         type="button"
         onClick={play}
-        className="mt-4 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white font-bold rounded-xl shadow-lg hover:shadow-violet-500/40 hover:scale-[1.02] active:scale-95 transition-all"
+        className="fx-btn fx-shine mt-4 w-full"
       >
         <Play className="w-5 h-5 fill-current" /> Probar esta app
       </button>
@@ -152,18 +154,18 @@ const AppModal = ({ item, onClose }) => {
       className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
     >
-      <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-md" onClick={onClose} />
       <motion.div
         role="dialog" aria-modal="true"
-        className="relative w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[88vh] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[88vh] bg-white rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col ring-1 ring-white/60 shadow-[0_40px_100px_-30px_rgba(76,29,149,0.75),0_0_0_1px_rgba(139,92,246,0.15)]"
         initial={{ y: 40, scale: 0.98, opacity: 0 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
         exit={{ y: 40, scale: 0.98, opacity: 0 }}
         transition={{ type: 'spring', damping: 26, stiffness: 280 }}
       >
         {/* Cabecera */}
-        <div className="flex items-start gap-4 p-5 sm:p-6 border-b border-gray-100">
-          <div className="shrink-0">
+        <div className="np-modal-head flex items-start gap-4 p-5 sm:p-6">
+          <div className="shrink-0 np-icon" style={{ '--np-accent': '#8b5cf6' }}>
             {showIcon
               ? <AppIcon appId={item.id} size={56} />
               : <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-3xl">{item.emoji || '🎮'}</div>}
@@ -175,7 +177,7 @@ const AppModal = ({ item, onClose }) => {
               {levels.map((l) => <span key={l} className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">{l}</span>)}
             </div>
           </div>
-          <button type="button" onClick={onClose} aria-label="Cerrar" className="shrink-0 p-2 rounded-full hover:bg-gray-100 text-gray-500">
+          <button type="button" onClick={onClose} aria-label="Cerrar" className="shrink-0 p-2 rounded-full bg-white/70 hover:bg-white text-gray-500 hover:text-gray-800 shadow-sm hover:rotate-90 transition-all duration-300">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -231,31 +233,37 @@ const AppModal = ({ item, onClose }) => {
   );
 };
 
-const AppCard = ({ item, onOpen }) => {
+// Tarjeta del catálogo: mismo lenguaje que las de AppListPage (tilt 3D con
+// variables CSS + foco de luz + borde de aurora al hover).
+const AppCard = ({ item, onOpen, index = 0 }) => {
   const showIcon = hasAppIcon(item.id);
   return (
-    <motion.button
+    <button
       type="button"
       onClick={() => onOpen(item)}
-      whileHover={{ y: -4, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="text-left bg-white/30 backdrop-blur-lg rounded-2xl border border-white/30 shadow-lg p-5 flex flex-col gap-4 hover:bg-white/45 transition-colors group"
+      className="np-card fx-spotlight fx-shine group"
+      style={{ '--np-accent': accentFor(index) }}
+      {...tiltProps}
     >
-      <div className="flex items-center gap-4">
-        <div className="shrink-0">
-          {showIcon
-            ? <AppIcon appId={item.id} size={52} />
-            : <div className="w-13 h-13 rounded-2xl bg-white/60 flex items-center justify-center text-3xl">{item.emoji || '🎮'}</div>}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-gray-900 leading-tight">{item.name}</h3>
-          {item.scope ? <p className="text-xs font-medium text-indigo-700/90 mt-0.5 line-clamp-1">{item.scope}</p> : null}
-        </div>
-      </div>
-      <span className="inline-flex items-center justify-center gap-1.5 w-full px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold shadow-md group-hover:bg-indigo-700 transition-colors">
-        Ver detalles y jugar
+      <span className="np-card__glare" aria-hidden="true" />
+      <span className="np-card__ring" aria-hidden="true" />
+      <span className="np-card__body">
+        <span className="flex items-center gap-4">
+          <span className="np-icon">
+            {showIcon
+              ? <span className="np-icon__frame"><AppIcon appId={item.id} size={52} /></span>
+              : <span className="np-icon__frame w-[52px] h-[52px] rounded-2xl bg-white/70 flex items-center justify-center text-3xl leading-none">{item.emoji || '🎮'}</span>}
+          </span>
+          <span className="flex-1 min-w-0">
+            <span className="np-title block text-base">{item.name}</span>
+            {item.scope ? <span className="block text-xs font-semibold text-indigo-700/90 dark:text-indigo-200/90 mt-0.5 line-clamp-1">{item.scope}</span> : null}
+          </span>
+        </span>
+        <span className="np-cta np-cta--block">
+          Ver detalles y jugar <ArrowRight className="w-4 h-4" />
+        </span>
       </span>
-    </motion.button>
+    </button>
   );
 };
 
@@ -320,22 +328,29 @@ const CatalogoPage = () => {
 
           <main className="container mx-auto px-6 py-12">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-center mb-10">
+              <div className="mb-4">
+                <span className="np-kicker">
+                  <span className="np-kicker__dot" aria-hidden="true" />
+                  Todas las apps
+                  <span className="np-count">{totalApps}</span>
+                </span>
+              </div>
               <AnimatedGradientTitle className="text-4xl md:text-6xl">Catálogo de Apps</AnimatedGradientTitle>
-              <p className="text-lg md:text-xl text-white/90 mt-4 max-w-3xl mx-auto drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+              <p className="np-sub text-base md:text-lg mt-4 max-w-3xl mx-auto leading-relaxed" style={{ display: 'block' }}>
                 Explora todas las apps y juegos de la plataforma. Pulsa en cualquiera para ver <strong>qué es</strong>, <strong>por qué es útil</strong> y <strong>cómo se juega</strong>, y entra a probarla en cualquier curso o asignatura. Gratis y sin registro.
               </p>
             </motion.div>
 
             {/* Buscador + filtros */}
-            <div className="max-w-3xl mx-auto mb-10">
+            <div className="max-w-3xl mx-auto mb-12 np-enter" style={{ '--i': 2 }}>
               <div className="relative mb-4">
-                <Search className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                <Search className="w-5 h-5 text-violet-500 dark:text-violet-300 absolute left-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none" />
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar una app (rosco, fracciones, sopa de letras…)"
-                  className="w-full bg-white/85 backdrop-blur rounded-2xl border border-white/60 pl-12 pr-4 py-3.5 text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="np-search"
                 />
               </div>
               <div className="flex flex-wrap justify-center gap-2">
@@ -344,11 +359,8 @@ const CatalogoPage = () => {
                     key={f.id}
                     type="button"
                     onClick={() => setLevelFilter(f.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border ${
-                      levelFilter === f.id
-                        ? 'bg-white text-indigo-700 border-white shadow-md'
-                        : 'bg-white/20 text-white border-white/30 hover:bg-white/30'
-                    }`}
+                    aria-pressed={levelFilter === f.id}
+                    className={`np-chip ${levelFilter === f.id ? 'np-chip--active' : ''}`}
                   >
                     {f.label}
                   </button>
@@ -360,9 +372,10 @@ const CatalogoPage = () => {
                 del fondo 3D (mismo truco que AppListPage / SubjectPage). */}
             <div style={{ filter: 'blur(0px)' }}>
               {filtered.length === 0 ? (
-                <div className="text-center text-white/85 py-20">
+                <div className="np-panel max-w-md mx-auto text-center py-12 px-8">
+                  <Search className="w-10 h-10 mx-auto mb-4 text-violet-300" aria-hidden="true" />
                   <p className="text-2xl font-bold mb-2">Sin resultados</p>
-                  <p>Prueba con otra búsqueda o cambia el filtro de etapa.</p>
+                  <p className="text-white/75">Prueba con otra búsqueda o cambia el filtro de etapa.</p>
                 </div>
               ) : (
                 CATALOG_CATEGORIES.map((cat) => {
@@ -370,13 +383,17 @@ const CatalogoPage = () => {
                   if (!list || list.length === 0) return null;
                   return (
                     <section key={cat.id} className="mb-14">
-                      <div className="flex items-center gap-3 mb-6">
-                        <span className="text-3xl">{cat.emoji}</span>
-                        <h2 className="text-2xl md:text-3xl font-black text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{cat.label}</h2>
-                        <span className="text-sm font-semibold text-white/70 bg-white/15 px-2.5 py-0.5 rounded-full">{list.length}</span>
+                      <div className="flex items-center gap-3 mb-7 np-enter">
+                        <span className="np-section-emoji" aria-hidden="true">{cat.emoji}</span>
+                        <h2 className="np-section-title text-2xl md:text-3xl font-black text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{cat.label}</h2>
+                        <span className="np-count">{list.length}</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
-                        {list.map((it) => <AppCard key={it.id} item={it} onOpen={setSelected} />)}
+                        {list.map((it, i) => (
+                          <div key={it.id} className="np-enter" style={{ '--i': i }}>
+                            <AppCard item={it} onOpen={setSelected} index={i} />
+                          </div>
+                        ))}
                       </div>
                     </section>
                   );
