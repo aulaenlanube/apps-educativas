@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAppContent } from '../../services/gameDataService';
+import './TerminalRetro.css';
 
 const TerminalRetro = () => {
     const { grade } = useParams(); // Get the grade (1, 2, 3, 4) from URL
@@ -224,6 +225,7 @@ const TerminalRetro = () => {
                     let condition = false;
                     if (op === '>') condition = val1 > val2;
                     else if (op === '<') condition = val1 < val2;
+                    // eslint-disable-next-line eqeqeq
                     else if (op === '==') condition = val1 == val2;
 
                     if (!condition) {
@@ -316,17 +318,26 @@ const TerminalRetro = () => {
         if (currentLevelIndex < levelData.length - 1) setCurrentLevelIndex(prev => prev + 1);
     };
 
-    if (!currentLevel) return <div className="bg-black text-green-500 h-screen p-10 font-mono">LOADING SYSTEM...</div>;
+    if (!currentLevel) return (
+        <div className="tr-root bg-black text-green-500 h-screen p-10 font-mono relative overflow-hidden">
+            <div className="tr-scanlines" aria-hidden="true" />
+            <div className="tr-vignette" aria-hidden="true" />
+            <span className="tr-status-dot" aria-hidden="true" />LOADING SYSTEM...<span className="animate-pulse">_</span>
+        </div>
+    );
 
     return (
-        <div className="h-[85vh] bg-black text-green-500 font-mono p-4 flex flex-col md:flex-row gap-4 overflow-hidden relative border-2 border-green-900 rounded-lg shadow-[0_0_50px_rgba(0,255,0,0.1)]">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20 pointer-events-none"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-900/5 to-transparent pointer-events-none bg-[length:100%_3px] animate-[scanline_4s_linear_infinite]"></div>
+        <div className="tr-root min-h-[85vh] md:h-[85vh] bg-black text-green-500 font-mono p-3 sm:p-4 flex flex-col md:flex-row gap-4 overflow-hidden relative border-2 border-green-900 rounded-lg shadow-[0_0_50px_rgba(0,255,0,0.1)]">
+            {/* Capas CRT decorativas: grano, scanlines, barra de refresco y viñeta */}
+            <div className="tr-noise" aria-hidden="true"></div>
+            <div className="tr-scanlines" aria-hidden="true"></div>
+            <div className="tr-refresh" aria-hidden="true"></div>
+            <div className="tr-vignette" aria-hidden="true"></div>
 
             {/* FIXED TOOLTIP */}
             {hoveredCmd && (
                 <div
-                    className="fixed z-50 bg-black border border-green-500 text-green-400 text-xs p-3 rounded shadow-[0_0_20px_rgba(0,255,0,0.4)] pointer-events-none max-w-xs whitespace-pre-wrap"
+                    className="tr-tooltip fixed z-50 bg-black border border-green-500 text-green-400 text-xs p-3 rounded shadow-[0_0_20px_rgba(0,255,0,0.4)] pointer-events-none max-w-xs whitespace-pre-wrap"
                     style={{
                         left: Math.min(hoveredCmd.x, window.innerWidth - 300),
                         top: hoveredCmd.y
@@ -339,18 +350,18 @@ const TerminalRetro = () => {
 
             {/* HELP MODAL */}
             {showHelp && (
-                <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-2xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar">
+                <div className="tr-modal-bg fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-2xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar tr-modal fx-enter-pop">
                         <button
                             onClick={() => setShowHelp(false)}
-                            className="absolute top-4 right-4 text-green-500 hover:text-white font-bold"
+                            className="tr-modal-close absolute top-4 right-4 text-green-500 hover:text-white font-bold"
                         >
                             [X] CERRAR
                         </button>
                         <h2 className="text-2xl font-bold mb-6 text-green-400 border-b border-green-800 pb-2">MANUAL DE COMANDOS v1.0</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {Object.entries(HELP_DOCS).map(([cmd, doc]) => (
-                                <div key={cmd} className="bg-black/50 p-3 rounded border border-green-900">
+                                <div key={cmd} className="tr-doc bg-black/50 p-3 rounded border border-green-900">
                                     <h3 className="text-green-300 font-bold mb-1">{cmd}</h3>
                                     <pre className="text-xs text-green-600 whitespace-pre-wrap font-mono">{doc}</pre>
                                 </div>
@@ -362,11 +373,11 @@ const TerminalRetro = () => {
 
             {/* EXAMPLES MODAL */}
             {showExamples && (
-                <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-4xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar">
+                <div className="tr-modal-bg fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-4xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar tr-modal fx-enter-pop">
                         <button
                             onClick={() => setShowExamples(false)}
-                            className="absolute top-4 right-4 text-green-500 hover:text-white font-bold"
+                            className="tr-modal-close absolute top-4 right-4 text-green-500 hover:text-white font-bold"
                         >
                             [X] CERRAR
                         </button>
@@ -374,9 +385,9 @@ const TerminalRetro = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {Object.entries(EXAMPLES).map(([difficulty, programs]) => (
                                 <div key={difficulty} className="flex flex-col gap-4">
-                                    <h3 className={`text-xl font-bold border-b pb-1 ${difficulty === 'FACIL' ? 'text-green-300 border-green-300' : difficulty === 'MEDIO' ? 'text-yellow-300 border-yellow-300' : 'text-red-400 border-red-400'}`}>{difficulty}</h3>
+                                    <h3 className={`text-xl font-bold border-b pb-1 ${difficulty === 'FACIL' ? 'tr-diff-easy text-green-300 border-green-300' : difficulty === 'MEDIO' ? 'tr-diff-medium text-yellow-300 border-yellow-300' : 'tr-diff-exam text-red-400 border-red-400'}`}>{difficulty}</h3>
                                     {programs.map((prog, idx) => (
-                                        <div key={idx} className="bg-black border border-green-900 p-3 rounded hover:border-green-500 transition-colors cursor-default group">
+                                        <div key={idx} className="tr-doc bg-black border border-green-900 p-3 rounded hover:border-green-500 transition-colors cursor-default group">
                                             <h4 className="text-green-100 font-bold mb-1 group-hover:text-green-400">{prog.title}</h4>
                                             <p className="text-xs text-green-600 mb-2 italic border-b border-green-900/50 pb-2">{prog.description}</p>
                                             <pre className="text-xs text-gray-400 whitespace-pre-wrap font-mono bg-gray-900/50 p-2 rounded">{prog.code}</pre>
@@ -390,23 +401,23 @@ const TerminalRetro = () => {
             )}
 
             {/* LEFT PANEL */}
-            <div className="w-full md:w-1/3 bg-gray-900 border-2 border-green-800 p-6 rounded shadow-[0_0_15px_rgba(0,255,0,0.1)] flex flex-col z-10 gap-4">
+            <div className="tr-panel w-full md:w-1/3 bg-gray-900 border-2 border-green-800 p-4 sm:p-6 rounded shadow-[0_0_15px_rgba(0,255,0,0.1)] flex flex-col z-10 gap-4">
                 <div className="border-b border-green-800 pb-4 text-center">
-                    <h1 className="text-3xl font-bold mb-1 tracking-widest text-green-400 drop-shadow-[0_0_5px_rgba(0,255,0,0.5)]">TERMINAL v.2</h1>
-                    <div className="text-[10px] text-green-700 uppercase tracking-[0.3em]">System Ready</div>
+                    <h1 className="tr-title text-3xl font-bold mb-1 tracking-widest text-green-400 drop-shadow-[0_0_5px_rgba(0,255,0,0.5)]">TERMINAL v.2</h1>
+                    <div className="text-[10px] text-green-700 uppercase tracking-[0.3em]"><span className="tr-status-dot" aria-hidden="true" />System Ready</div>
                 </div>
 
                 {/* HELP & EXAMPLES BUTTONS */}
                 <div className="flex flex-col gap-2 mx-8">
                     <button
                         onClick={() => setShowHelp(true)}
-                        className="text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
+                        className="tr-btn text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
                     >
                         [?] Manual de Ayuda
                     </button>
                     <button
                         onClick={() => setShowExamples(true)}
-                        className="text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
+                        className="tr-btn text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
                     >
                         [#] Ejemplos de código
                     </button>
@@ -415,18 +426,18 @@ const TerminalRetro = () => {
                 <div className="flex-1 flex flex-col mt-2">
                     <div className="flex items-center justify-between mb-2">
                         <h2 className="text-xl text-green-400 font-bold">NIVEL {currentLevel.id}</h2>
-                        <span className="text-xs bg-green-900 text-green-200 px-2 py-1 rounded border border-green-700">{currentLevel.type === 'trace' ? 'ANÁLISIS' : 'CODIFICACIÓN'}</span>
+                        <span className="tr-level-badge text-xs bg-green-900 text-green-200 px-2 py-1 rounded border border-green-700">{currentLevel.type === 'trace' ? 'ANÁLISIS' : 'CODIFICACIÓN'}</span>
                     </div>
                     <p className="text-green-300 font-bold mb-1">{currentLevel.title}</p>
                     <p className="text-green-600 text-sm mb-4 leading-relaxed">{currentLevel.description}</p>
 
                     {currentLevel.type === 'trace' ? (
-                        <div className="bg-black border border-green-700 p-4 mb-4 rounded relative flex-1 overflow-y-auto custom-scrollbar">
-                            <span className="absolute top-0 right-0 bg-green-900 text-[10px] px-2 text-green-200">READ-ONLY</span>
+                        <div className="tr-box bg-black border border-green-700 p-4 mb-4 rounded relative flex-1 overflow-y-auto custom-scrollbar">
+                            <span className="tr-chip-ro absolute top-0 right-0 bg-green-900 text-[10px] px-2 text-green-200">READ-ONLY</span>
                             <pre className="whitespace-pre-wrap text-sm leading-relaxed opacity-90 font-mono text-green-400">{currentLevel.code}</pre>
                         </div>
                     ) : (
-                        <div className="bg-green-900/10 p-3 rounded border border-green-800 text-sm mb-4">
+                        <div className="tr-box bg-green-900/10 p-3 rounded border border-green-800 text-sm mb-4">
                             <strong className="text-green-400 block mb-1">OBJETIVO:</strong>
                             <span className="text-green-600">{currentLevel.goal}</span>
                         </div>
@@ -438,8 +449,8 @@ const TerminalRetro = () => {
                     <div className="mt-auto pt-4 border-t border-green-900">
                         <label className="block text-xs mb-2 uppercase tracking-wider text-green-500">Introduce el resultado:</label>
                         <div className="flex gap-2">
-                            <input type="text" value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} className="bg-black border border-green-600 p-2 flex-1 min-w-0 outline-none text-green-400 font-bold placeholder-green-900" placeholder=">_" />
-                            <button onClick={runInterpreter} className="bg-green-700 text-black font-bold px-4 hover:bg-green-600 border border-green-500 flex-shrink-0">CHECK</button>
+                            <input type="text" value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} className="tr-input bg-black border border-green-600 p-2 flex-1 min-w-0 outline-none text-green-400 font-bold placeholder-green-900" placeholder=">_" />
+                            <button onClick={runInterpreter} className="tr-check bg-green-700 text-black font-bold px-4 hover:bg-green-600 border border-green-500 flex-shrink-0">CHECK</button>
                         </div>
                     </div>
 
@@ -453,7 +464,7 @@ const TerminalRetro = () => {
                                     onClick={() => addToCode(cmd)}
                                     onMouseEnter={(e) => handleCmdMouseEnter(cmd, e)}
                                     onMouseLeave={handleCmdMouseLeave}
-                                    className="w-full bg-gray-900 border border-green-800 hover:border-green-400 text-xs py-1 px-1 rounded hover:bg-green-900 text-green-400 font-bold transition-all transform hover:scale-105"
+                                    className="tr-cmd w-full bg-gray-900 border border-green-800 hover:border-green-400 text-xs py-1 px-1 rounded hover:bg-green-900 text-green-400 font-bold transition-all transform hover:scale-105"
                                 >
                                     {cmd}
                                 </button>
@@ -464,32 +475,32 @@ const TerminalRetro = () => {
             </div>
 
             {/* RIGHT PANEL: TERMINAL */}
-            <div className="flex-1 flex flex-col gap-4 z-10">
+            <div className="tr-panel--right flex-1 flex flex-col gap-4 z-10">
                 {currentLevel.type === 'coding' && (
-                    <div className="flex-1 bg-black border-2 border-green-800 rounded p-4 relative output-glow flex flex-col">
-                        <div className="absolute top-0 right-0 bg-green-800 text-black text-xs px-2 font-bold uppercase rounded-bl">EDITOR DE CÓDIGO</div>
+                    <div className="tr-screen flex-1 min-h-[180px] bg-black border-2 border-green-800 rounded p-4 relative output-glow flex flex-col">
+                        <div className="tr-screen-tag absolute top-0 right-0 bg-green-800 text-black text-xs px-2 font-bold uppercase rounded-bl">EDITOR DE CÓDIGO</div>
                         <textarea ref={codeAreaRef} value={code} onChange={(e) => setCode(e.target.value)} className="w-full flex-1 bg-transparent border-none outline-none resize-none font-mono text-green-500 placeholder-green-900 leading-relaxed mt-4 custom-scrollbar" placeholder="// Escribe tu código aquí..." />
                     </div>
                 )}
-                <div className={`flex-1 bg-black border-2 border-green-800 rounded p-4 overflow-y-auto font-mono text-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] custom-scrollbar ${currentLevel.type === 'trace' ? 'h-full' : 'h-1/2'}`}>
-                    <div className="absolute top-0 left-0 bg-green-900/30 text-green-600 text-[10px] px-2 w-full border-b border-green-900 uppercase tracking-widest flex justify-between items-center">
+                <div className={`tr-screen flex-1 min-h-[160px] bg-black border-2 border-green-800 rounded p-4 overflow-y-auto font-mono text-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] custom-scrollbar ${currentLevel.type === 'trace' ? 'h-full' : 'h-1/2'}`}>
+                    <div className="tr-console-head absolute top-0 left-0 bg-green-900/30 text-green-600 text-[10px] px-2 w-full border-b border-green-900 uppercase tracking-widest flex justify-between items-center">
                         <span>System Output</span>
                         <span className="text-[9px] animate-pulse">● LIVE</span>
                     </div>
                     <div className="mt-6 flex flex-col gap-1">
-                        {inputs.map((line, i) => <div key={i} className="opacity-90 border-l-2 border-green-900 pl-2">{line}</div>)}
+                        {inputs.map((line, i) => <div key={i} className="tr-line opacity-90 border-l-2 border-green-900 pl-2">{line}</div>)}
                         {isRunning && <span className="animate-pulse pl-2">_</span>}
-                        {feedback && <div className={`mt-4 p-2 border-l-4 ${isSuccess ? 'border-green-500 text-green-400 bg-green-900/20' : 'border-red-500 text-red-500 bg-red-900/20'}`}>{feedback}</div>}
-                        {isSuccess && <button onClick={nextLevel} className="mt-4 bg-green-600 text-black font-bold py-3 w-full hover:bg-green-500 animate-bounce shadow-[0_0_15px_rgba(0,255,0,0.6)] uppercase tracking-widest">{'>'}{'>'} SIGUIENTE NIVEL {'>'}{'>'}</button>}
+                        {feedback && <div key={feedback} role="status" className={`tr-feedback ${isSuccess ? 'tr-feedback--ok' : 'tr-feedback--ko'} mt-4 p-2 border-l-4 ${isSuccess ? 'border-green-500 text-green-400 bg-green-900/20' : 'border-red-500 text-red-500 bg-red-900/20'}`}>{feedback}</div>}
+                        {isSuccess && <button onClick={nextLevel} className="tr-next mt-4 bg-green-600 text-black font-bold py-3 w-full hover:bg-green-500 animate-bounce shadow-[0_0_15px_rgba(0,255,0,0.6)] uppercase tracking-widest">{'>'}{'>'} SIGUIENTE NIVEL {'>'}{'>'}</button>}
                     </div>
                     <div ref={bottomRef}></div>
                 </div>
                 {currentLevel.type === 'coding' && (
                     <div className="flex gap-2">
-                        <button onClick={runInterpreter} disabled={isRunning} className="flex-1 bg-green-700 text-black font-bold py-3 rounded hover:bg-green-600 disabled:opacity-50 tracking-widest text-lg shadow-[0_0_15px_rgba(0,255,0,0.3)] border border-green-500 transition-all hover:scale-[1.01] active:scale-[0.99]">
+                        <button onClick={runInterpreter} disabled={isRunning} className={`tr-run ${isRunning ? 'tr-run--busy' : ''} flex-1 bg-green-700 text-black font-bold py-3 rounded hover:bg-green-600 disabled:opacity-50 tracking-widest text-lg shadow-[0_0_15px_rgba(0,255,0,0.3)] border border-green-500 transition-all hover:scale-[1.01] active:scale-[0.99]`}>
                             {isRunning ? 'E J E C U T A N D O . . .' : '▶ E J E C U T A R'}
                         </button>
-                        <button onClick={() => setCode('')} className="bg-red-900/20 text-red-500 border border-red-900 px-6 rounded hover:bg-red-900/40 hover:text-red-400 transition-colors uppercase font-bold text-xs tracking-wider">
+                        <button onClick={() => setCode('')} className="tr-clear bg-red-900/20 text-red-500 border border-red-900 px-6 rounded hover:bg-red-900/40 hover:text-red-400 transition-colors uppercase font-bold text-xs tracking-wider">
                             LIMPIAR
                         </button>
                     </div>

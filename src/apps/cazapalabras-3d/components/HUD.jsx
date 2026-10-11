@@ -72,9 +72,9 @@ export default function HUD({
           <span className="cz3d-time-val">⏱ {fmtTime(timeLeft)}</span>
           <span className="cz3d-time-bar"><i style={{ width: `${timePct}%` }} /></span>
         </div>
-        <div className="cz3d-score">⭐ {score.toLocaleString('es-ES')}</div>
+        <div className="cz3d-score">⭐ <span key={score} className="cz3d-score-n">{score.toLocaleString('es-ES')}</span></div>
         <div className="cz3d-sub">
-          {combo >= 2 && <span className="cz3d-combo">🔥 Combo ×{combo}</span>}
+          {combo >= 2 && <span key={`c-${combo}`} className="cz3d-combo">🔥 Combo ×{combo}</span>}
           {examInfo && <span className="cz3d-examinfo">📖 {examInfo}</span>}
         </div>
       </div>

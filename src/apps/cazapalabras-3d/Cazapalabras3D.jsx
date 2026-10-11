@@ -413,7 +413,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
       {screen === 'select' && !loading && pool && (
         <motion.div className="cz3d-select" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
           <div className="cz3d-hero">
-            <span className="cz3d-hero-icon">🎯</span>
+            <span className="cz3d-hero-icon" aria-hidden="true">🎯</span>
             <h1>Cazapalabras 3D</h1>
             <p className="cz3d-hero-sub">
               Dispara a las palabras del entorno y aprende vocabulario y definiciones de <strong>{asignatura}</strong> · {cursoLabel}
@@ -533,7 +533,7 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
           {summary.isExam ? (
             <>
               <h2>Resultado del examen</h2>
-              <div className="cz3d-nota" style={{ color: notaColor(summary.nota), borderColor: notaColor(summary.nota) }}>
+              <div className="cz3d-nota" style={{ color: notaColor(summary.nota), borderColor: notaColor(summary.nota), '--cz3d-grade': Math.max(0, Math.min(10, Number(summary.nota) || 0)) }}>
                 {Number(summary.nota).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
               </div>
               <p className="cz3d-nota-msg" style={{ color: notaColor(summary.nota) }}>{notaMensaje(summary.nota)}</p>

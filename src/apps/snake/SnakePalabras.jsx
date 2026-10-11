@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   RefreshCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
-  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Zap, Sparkles, BookOpen, X
+  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Sparkles, BookOpen, X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from "@/lib/utils";
 import { getRunnerData } from '../../services/gameDataService';
+import './Snake.css';
 
 // Configuración del tablero y tiempos
 const GRID_SIZE = 25;
@@ -162,6 +163,7 @@ const SnakeDePalabras = (props) => {
 
   // Trigger ref updates
   useEffect(() => {
+    // eslint-disable-next-line no-self-assign
     savedCallback.current = savedCallback.current;
   }, [gameState, isPaused, direction, food, difficulty, currentCatIndex, pendingGrowth, combo, starCombo]);
 
@@ -240,6 +242,7 @@ const SnakeDePalabras = (props) => {
       const newItem = generateFoodItem(snake, food, currentCatIndex);
       if (newItem) setFood(prev => [...prev, newItem]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [food.length, gameState, isPaused, data, snake, currentCatIndex, generateFoodItem]);
 
   const triggerAnim = (type) => {
@@ -272,6 +275,7 @@ const SnakeDePalabras = (props) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, isPaused, direction]);
 
   const changeDir = (x, y) => {
@@ -389,7 +393,8 @@ const SnakeDePalabras = (props) => {
   const currentCategoryName = categories.length > 0 ? formatName(categories[currentCatIndex]) : '';
 
   return (
-    <div className="flex flex-col items-center w-full max-w-5xl mx-auto p-4 gap-6 relative">
+    <div className="snk-root flex flex-col items-center w-full max-w-5xl mx-auto p-4 gap-6 relative">
+      <div className="snk-backdrop" aria-hidden="true" />
 
       {/* Estilos Animaciones y Cola */}
       <style>{`
@@ -430,15 +435,16 @@ const SnakeDePalabras = (props) => {
       `}</style>
 
       {/* HEADER CENTRADO */}
-      <div className="w-full max-w-[600px] flex flex-col sm:flex-row justify-between items-end sm:items-end gap-4">
+      <div className="snk-layer w-full max-w-[600px] flex flex-col sm:flex-row justify-between items-end sm:items-end gap-4">
         <div className="text-center sm:text-left w-full sm:w-auto">
-          <h1 className="text-4xl md:text-5xl font-black gradient-text pb-2">
+          <h1 className="snk-title text-4xl md:text-5xl font-black pb-2">
             NEON SNAKE
           </h1>
           {gameState === 'playing' && (
             <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
               <span className="text-slate-400 text-sm font-bold">Objetivo:</span>
-              <span className="text-yellow-600 font-bold text-lg uppercase tracking-wider animate-pulse">
+              <span className="snk-target-chip text-amber-600 dark:text-amber-300 font-bold text-base uppercase tracking-wider">
+                <span className="snk-target-chip__dot" aria-hidden="true" />
                 {currentCategoryName}
               </span>
             </div>
@@ -446,16 +452,16 @@ const SnakeDePalabras = (props) => {
         </div>
 
         <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
-          <div className="flex flex-col items-end mr-2 relative">
+          <div className="snk-score flex flex-col items-end mr-2 relative">
             {/* Indicador de Combo */}
             {combo > 1 && (
-              <div className="absolute -top-6 right-0 text-yellow-500 font-bold text-sm animate-bounce">
+              <div className="snk-combo absolute -top-6 right-0 font-bold text-sm animate-bounce">
                 x{combo} Racha!
               </div>
             )}
 
             <div className="text-slate-400 text-xs uppercase tracking-widest mb-0 font-bold">Puntuación</div>
-            <div className="text-4xl font-black text-green-600 drop-shadow-sm leading-none">
+            <div key={score} className="snk-score__value snk-score__value--pop text-4xl font-black leading-none">
               {score.toString().padStart(4, '0')}
             </div>
           </div>
@@ -465,9 +471,9 @@ const SnakeDePalabras = (props) => {
               variant="outline"
               size="icon"
               className={cn(
-                "h-12 w-12 rounded-full border-2 transition-all shadow-sm",
+                "snk-hud-btn h-12 w-12 rounded-full border-2 transition-all shadow-sm",
                 showHelp
-                  ? "bg-white border-yellow-400 text-yellow-500 hover:bg-yellow-50"
+                  ? "snk-hud-btn--on bg-white border-yellow-400 text-yellow-500 hover:bg-yellow-50"
                   : "bg-slate-100 border-slate-300 text-slate-400 hover:bg-slate-200"
               )}
               onClick={toggleHelp}
@@ -481,7 +487,7 @@ const SnakeDePalabras = (props) => {
             <div className="flex gap-2">
               <Button
                 variant="outline"
-                className="h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
+                className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
                 onClick={() => {
                   setIsPaused(true);
                   setShowCheatSheet(true);
@@ -492,7 +498,7 @@ const SnakeDePalabras = (props) => {
               </Button>
               <Button
                 variant="outline"
-                className="h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
+                className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
                 onClick={togglePause}
               >
                 {isPaused ? <Play className="fill-current h-5 w-5" /> : <Pause className="fill-current h-5 w-5" />}
@@ -503,9 +509,13 @@ const SnakeDePalabras = (props) => {
       </div>
 
       {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative w-full max-w-[600px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
+      <div className="snk-board relative w-full max-w-[600px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
 
-        <div className="absolute inset-0 opacity-10 pointer-events-none"
+        {/* Capas decorativas: reflejo, viñeta y línea de escaneo */}
+        <div className="snk-board__sheen" aria-hidden="true" />
+        <div className="snk-board__scan" aria-hidden="true" />
+
+        <div className="snk-grid-lines absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
             backgroundSize: `${100 / GRID_SIZE}% ${100 / GRID_SIZE}%`
@@ -515,7 +525,8 @@ const SnakeDePalabras = (props) => {
         {/* POPUP DE NIVEL (NUEVO) */}
         {gameState === 'levelup' && (
           <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="animate-popup-in flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+            <div className="snk-levelup-card animate-popup-in flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+              <div className="snk-rays" aria-hidden="true" />
               <div className="relative mb-4 animate-float">
                 <Star className="w-24 h-24 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" />
                 <Sparkles className="absolute -top-2 -right-4 w-10 h-10 text-yellow-200 animate-pulse" />
@@ -540,16 +551,17 @@ const SnakeDePalabras = (props) => {
 
         {/* MENÚ */}
         {gameState === 'menu' && (
-          <div className="absolute inset-0 z-40 bg-slate-900/95 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
-            <h2 className="text-4xl font-black text-white mb-6 tracking-wide">Elige Dificultad</h2>
+          <div className="snk-overlay absolute inset-0 z-40 bg-slate-900/95 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
+            <p className="text-cyan-300/80 text-xs font-bold uppercase tracking-[0.3em] mb-2">Neon Snake</p>
+            <h2 className="snk-overlay-title text-4xl font-black text-white mb-6 tracking-wide">Elige Dificultad</h2>
 
             {/* Selector Dificultad */}
-            <div className="grid gap-4 w-full max-w-xs mb-8">
+            <div className="snk-stagger grid gap-4 w-full max-w-xs mb-8">
               <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
             </div>
 
             {/* Slider Texto */}
-            <div className="w-full max-w-xs bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+            <div className="snk-panel w-full max-w-xs bg-slate-800/50 p-4 rounded-xl border border-slate-700">
               <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
                 <span>Tamaño Texto</span>
                 <span>{textSize}px</span>
@@ -561,7 +573,7 @@ const SnakeDePalabras = (props) => {
                 step="1"
                 value={textSize}
                 onChange={(e) => setTextSize(parseInt(e.target.value))}
-                className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+                className="snk-range w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
               />
             </div>
           </div>
@@ -569,17 +581,17 @@ const SnakeDePalabras = (props) => {
 
         {/* PAUSA */}
         {isPaused && !showConfirmRestart && gameState === 'playing' && (
-          <div className="absolute inset-0 z-40 bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-200">
-            <h2 className="text-4xl font-black text-white mb-6 tracking-wide">PAUSA</h2>
+          <div className="snk-overlay absolute inset-0 z-40 bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-200">
+            <h2 className="snk-overlay-title text-4xl font-black text-white mb-6 tracking-wide">PAUSA</h2>
 
-            <Button onClick={togglePause} className="w-full max-w-xs h-14 text-xl bg-blue-600 hover:bg-blue-500 mb-6 font-bold shadow-lg shadow-blue-900/50 rounded-xl">
+            <Button onClick={togglePause} className="snk-cta w-full max-w-xs h-14 text-xl bg-blue-600 hover:bg-blue-500 mb-6 font-bold shadow-lg shadow-blue-900/50 rounded-xl">
               <Play className="mr-2 h-6 w-6 fill-current" /> CONTINUAR
             </Button>
 
             <div className="w-full max-w-xs border-t border-slate-700 pt-6 space-y-6">
 
               {/* Slider Texto */}
-              <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+              <div className="snk-panel bg-slate-800/50 p-4 rounded-xl border border-slate-700">
                 <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
                   <span>Tamaño Texto</span>
                   <span>{textSize}px</span>
@@ -591,13 +603,13 @@ const SnakeDePalabras = (props) => {
                   step="1"
                   value={textSize}
                   onChange={(e) => setTextSize(parseInt(e.target.value))}
-                  className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+                  className="snk-range w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
                 />
               </div>
 
               <div>
                 <p className="text-slate-400 text-sm mb-4 font-bold uppercase tracking-wider">Cambiar Dificultad</p>
-                <div className="grid gap-3">
+                <div className="snk-stagger grid gap-3">
                   <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
                 </div>
               </div>
@@ -608,17 +620,17 @@ const SnakeDePalabras = (props) => {
         {/* CONFIRMACIÓN REINICIO */}
         {showConfirmRestart && (
           <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-in zoom-in-95 duration-200">
-            <div className="bg-slate-800 border-2 border-yellow-600 p-6 rounded-2xl max-w-sm w-full shadow-2xl">
-              <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+            <div className="snk-result-card fx-enter-pop bg-slate-800 border-2 border-yellow-600 p-6 rounded-2xl max-w-sm w-full shadow-2xl">
+              <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4 drop-shadow-[0_0_14px_rgba(234,179,8,0.7)]" />
               <h3 className="text-2xl font-black text-white mb-2">¿Reiniciar?</h3>
               <p className="text-slate-300 mb-6 font-medium">
                 Perderás tu progreso actual.
               </p>
               <div className="flex gap-3 justify-center">
-                <Button variant="outline" onClick={cancelRestart} className="border-slate-600 text-slate-300 hover:bg-slate-700 font-bold">
+                <Button variant="outline" onClick={cancelRestart} className="snk-ghost border-slate-600 text-slate-300 hover:bg-slate-700 font-bold">
                   Cancelar
                 </Button>
-                <Button onClick={confirmRestart} className="bg-yellow-600 hover:bg-yellow-500 text-white font-bold">
+                <Button onClick={confirmRestart} className="snk-mode snk-mode--medium bg-yellow-600 hover:bg-yellow-500 text-white font-bold">
                   Sí, Reiniciar
                 </Button>
               </div>
@@ -631,34 +643,41 @@ const SnakeDePalabras = (props) => {
 
         {/* GAME OVER */}
         {gameState === 'gameover' && (
-          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/95 backdrop-blur-sm text-white animate-in zoom-in duration-300">
-            <h2 className="text-6xl font-black mb-2 tracking-tighter drop-shadow-xl text-red-100">GAME OVER</h2>
-            <div className="bg-black/20 p-6 rounded-2xl mb-8 border border-white/10 w-64 text-center">
-              <p className="text-lg font-bold text-red-200 mb-1">Puntuación Final</p>
-              <p className="text-5xl font-black text-yellow-400">{score}</p>
-              {difficulty === 'hard' && (
-                <div className="mt-4 pt-4 border-t border-white/10 animate-in slide-in-from-bottom-2 fade-in duration-700">
-                  <p className="text-xs font-bold text-red-200 mb-1 uppercase tracking-widest">Nota Examen</p>
-                  <div className="text-4xl font-black text-white flex items-center justify-center gap-1">
-                    {/* Cálculo: 10,000 = 10. Máximo 10. 2 decimales. */}
-                    {Math.min(score / 1000, 10).toFixed(2)}
-                    <span className="text-lg text-white/50 font-bold mt-2">/10</span>
+          <div className="snk-gameover absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/95 backdrop-blur-sm text-white animate-in zoom-in duration-300 p-4 overflow-y-auto">
+            <h2 className="snk-gameover__title text-5xl sm:text-6xl font-black mb-4 tracking-tighter drop-shadow-xl text-red-100">GAME OVER</h2>
+            <div className="snk-result-card fx-enter-pop bg-black/20 p-6 rounded-2xl mb-6 sm:mb-8 border border-white/10 w-64 text-center">
+              {difficulty === 'hard' && (() => {
+                // Solo presentación: misma fórmula que ya se mostraba (10.000 pts = 10).
+                const notaVis = Math.min(score / 1000, 10);
+                const gradeColor = notaVis >= 8 ? '#10b981' : notaVis >= 5 ? '#3b82f6' : '#ef4444';
+                return (
+                  <div className="mb-4 pb-4 border-b border-white/10">
+                    <p className="text-xs font-bold text-red-200 mb-3 uppercase tracking-widest">Nota Examen</p>
+                    <div className="snk-grade" style={{ '--snk-grade': notaVis, '--snk-grade-color': gradeColor }}>
+                      <div className="text-center">
+                        {/* Cálculo: 10,000 = 10. Máximo 10. 2 decimales. */}
+                        <span className="snk-grade__value">{notaVis.toFixed(2)}</span>
+                        <span className="snk-grade__label">/10</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
+              <p className="text-sm font-bold text-red-200 mb-1 uppercase tracking-widest">Puntuación Final</p>
+              <p className="snk-points text-5xl font-black text-yellow-400">{score}</p>
             </div>
             <div className="flex gap-4">
               <Button
                 size="lg"
                 onClick={() => setGameState('menu')}
-                className="gap-2 px-6 py-6 text-lg bg-slate-800 text-white hover:bg-slate-700 border border-slate-600 rounded-xl font-bold"
+                className="snk-ghost gap-2 px-6 py-6 text-lg bg-slate-800 text-white hover:bg-slate-700 border border-slate-600 rounded-xl font-bold"
               >
                 Menú
               </Button>
               <Button
                 size="lg"
                 onClick={() => startGame()}
-                className="gap-2 px-6 py-6 text-lg bg-white text-red-900 hover:bg-red-50 font-black shadow-xl rounded-xl"
+                className="snk-cta gap-2 px-6 py-6 text-lg bg-white text-red-900 hover:bg-red-50 font-black shadow-xl rounded-xl"
               >
                 <RefreshCcw className="w-6 h-6 mr-2" /> Reintentar
               </Button>
@@ -681,7 +700,7 @@ const SnakeDePalabras = (props) => {
             {showCheatSheet && (
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
+                className="snk-overlay absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
               >
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-black text-white flex items-center gap-2">
@@ -705,7 +724,7 @@ const SnakeDePalabras = (props) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.05 }}
                           key={category}
-                          className="bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
+                          className="snk-guide-card bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
                         >
                           <h3 className="text-blue-400 font-bold uppercase tracking-wider text-xs mb-3 px-2 border-l-4 border-blue-500">
                             {category.replace(/_/g, ' ')}
@@ -714,7 +733,7 @@ const SnakeDePalabras = (props) => {
                             {Array.isArray(words) && words.map((word, wIdx) => (
                               <span
                                 key={wIdx}
-                                className="px-2.5 py-1 bg-slate-950/60 text-slate-300 rounded-lg text-[11px] border border-white/5 font-medium"
+                                className="snk-guide-chip px-2.5 py-1 bg-slate-950/60 text-slate-300 rounded-lg text-[11px] border border-white/5 font-medium"
                               >
                                 {word}
                               </span>
@@ -732,7 +751,7 @@ const SnakeDePalabras = (props) => {
                       setShowCheatSheet(false);
                       // NO reanudamos automáticamente para que el usuario pueda prepararse
                     }}
-                    className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95"
+                    className="snk-cta w-full h-14 text-lg bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95"
                   >
                     ¡Lo tengo!
                   </Button>
@@ -766,7 +785,8 @@ const SnakeDePalabras = (props) => {
               <div
                 key={i}
                 className={cn(
-                  "relative transition-all duration-75",
+                  "snk-seg relative transition-all duration-75",
+                  isHead && "snk-head",
                   !isTail && "rounded-sm", // La cola no es redondeada
                   isHead ? headClasses : (isTail ? `bg-cyan-600/80 z-10 ${tailClass}` : "bg-cyan-600/80 z-10")
                 )}
@@ -775,8 +795,8 @@ const SnakeDePalabras = (props) => {
                 {isHead && (
                   // Cabeza Original (Puntos)
                   <div className="w-full h-full flex items-center justify-center gap-[1px]">
-                    <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
-                    <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
+                    <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
+                    <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
                   </div>
                 )}
               </div>
@@ -806,15 +826,15 @@ const SnakeDePalabras = (props) => {
                 style={{ gridColumnStart: item.x + 1, gridRowStart: item.y + 1 }}
               >
                 {item.type === 'bonus' ? (
-                  <Star className="w-full h-full text-yellow-400 animate-spin-slow p-1" fill="currentColor" />
+                  <Star className="snk-star w-full h-full text-yellow-400 animate-spin-slow p-1" fill="currentColor" />
                 ) : (
-                  <div className={`w-3/4 h-3/4 rounded-full border-2 ${colorClass.split(" ")[0]} ${colorClass.split(" ")[1]}`}></div>
+                  <div className={`snk-orb w-3/4 h-3/4 rounded-full border-2 ${colorClass.split(" ")[0]} ${colorClass.split(" ")[1]}`}></div>
                 )}
 
                 {item.word && (
                   <span
                     className={cn(
-                      "absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded font-bold border pointer-events-none z-30 transition-colors duration-300 shadow-md",
+                      "snk-word absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded font-bold border pointer-events-none z-30 transition-colors duration-300 shadow-md",
                       colorClass
                     )}
                     style={{ fontSize: `${textSize}px` }}
@@ -829,13 +849,13 @@ const SnakeDePalabras = (props) => {
       </div>
 
       {/* Controles Móvil/Tablet (visible hasta 2xl) */}
-      <div className="grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2">
+      <div className="snk-layer grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2" aria-label="Controles de dirección">
         <div />
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, -1)}><ArrowUp /></Button>
+        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, -1)}><ArrowUp /></Button>
         <div />
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(-1, 0)}><ArrowLeft /></Button>
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, 1)}><ArrowDown /></Button>
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(1, 0)}><ArrowRight /></Button>
+        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(-1, 0)}><ArrowLeft /></Button>
+        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, 1)}><ArrowDown /></Button>
+        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(1, 0)}><ArrowRight /></Button>
       </div>
     </div>
   );
@@ -846,29 +866,32 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
     <Button
       onClick={() => onSelect('easy')}
       className={cn(
-        "h-14 text-xl font-bold bg-green-600 hover:bg-green-500 border-b-4 border-green-800 hover:border-green-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
-        currentDifficulty === 'easy' && "ring-4 ring-white"
+        "snk-mode snk-mode--easy h-14 text-xl font-bold bg-green-600 hover:bg-green-500 border-b-4 border-green-800 hover:border-green-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
+        currentDifficulty === 'easy' && "snk-mode--current ring-4 ring-white"
       )}
     >
-      <span className="mr-3 text-2xl">🌱</span> FÁCIL
+      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">🌱</span> FÁCIL
+      <span className="snk-mode__hint">Atraviesa muros</span>
     </Button>
     <Button
       onClick={() => onSelect('medium')}
       className={cn(
-        "h-14 text-xl font-bold bg-yellow-600 hover:bg-yellow-500 border-b-4 border-yellow-800 hover:border-yellow-700 active:border-b-0 active:mt-1 transition-all text-white rounded-xl",
-        currentDifficulty === 'medium' && "ring-4 ring-white"
+        "snk-mode snk-mode--medium h-14 text-xl font-bold bg-yellow-600 hover:bg-yellow-500 border-b-4 border-yellow-800 hover:border-yellow-700 active:border-b-0 active:mt-1 transition-all text-white rounded-xl",
+        currentDifficulty === 'medium' && "snk-mode--current ring-4 ring-white"
       )}
     >
-      <span className="mr-3 text-2xl">🤖</span> MEDIO
+      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">🤖</span> MEDIO
+      <span className="snk-mode__hint">Con ayuda</span>
     </Button>
     <Button
       onClick={() => onSelect('hard')}
       className={cn(
-        "h-14 text-xl font-bold bg-red-600 hover:bg-red-500 border-b-4 border-red-800 hover:border-red-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
-        currentDifficulty === 'hard' && "ring-4 ring-white"
+        "snk-mode snk-mode--exam h-14 text-xl font-bold bg-red-600 hover:bg-red-500 border-b-4 border-red-800 hover:border-red-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
+        currentDifficulty === 'hard' && "snk-mode--current ring-4 ring-white"
       )}
     >
-      <span className="mr-3 text-2xl">💀</span> EXAMEN
+      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">💀</span> EXAMEN
+      <span className="snk-mode__hint">Sin ayudas</span>
     </Button>
   </>
 );
