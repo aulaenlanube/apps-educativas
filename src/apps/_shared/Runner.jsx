@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ConfettiProvider } from "./ConfettiProvider";
 import {
   RefreshCw, Shuffle, ListChecks, Star, Target, Clock, LayoutGrid,
@@ -43,6 +43,9 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
   // Estado visual para la invencibilidad
   const [isInvincible, setIsInvincible] = useState(false);
+
+  // Resultado de la última partida tal y como se registró (el resumen pinta esto).
+  const [runResult, setRunResult] = useState(null);
 
   // Tick para forzar renderizado en React
   const [, setTick] = useState(0);
@@ -273,6 +276,8 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   };
 
   const gameOver = () => {
+    // Una sola vez por partida: dos choques en el mismo frame llamarían dos veces.
+    if (!isPlayingRef.current) return;
     isPlayingRef.current = false;
     setGameState('gameover');
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
@@ -291,7 +296,11 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     const timeBonus = isExam && elapsedSec > 0 && wordsCollected >= EXAM_TARGET
       ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
       : 0;
-    const finalScore = score + timeBonus;
+    // Puntuación viva: gameOver vive en el cierre de gameLoop capturado al llamar
+    // a startGame, así que `score` (estado) sería el de la partida ANTERIOR. Las
+    // palabras recogidas (ref) son exactamente la puntuación (setScore +1 a la vez).
+    const finalScore = wordsCollected + timeBonus;
+    setRunResult({ words: wordsCollected, elapsedSec, timeBonus, finalScore });
     onGameComplete?.({
       mode: isExam ? 'test' : 'practice',
       score: finalScore,
@@ -464,12 +473,6 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   // --- PRESENTACIÓN (rediseño 2026 con el kit, estética arcade retro) ---
   const [showInstructions, setShowInstructions] = useState(false);
 
-  // Segundos de la partida (solo para el resumen; misma fórmula que el tracking)
-  const elapsedAtEnd = useMemo(() => {
-    if (gameState !== 'gameover' || !gameStartRef.current) return 0;
-    return Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000));
-  }, [gameState]);
-
   const renderCharacter = (charIndex, isPreview = false) => (
     <div
       className={`rn-char rn-char--${charIndex} ${isInvincible && !isPreview ? 'is-invincible' : ''}`}
@@ -612,17 +615,18 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
   // --- EXAMEN TERMINADO: resumen con la nota ---
   if (gameState === 'gameover' && isExam) {
-    const words = collectedWordsRef.current?.length || 0;
+    // Mismos números que se enviaron en onGameComplete (gameOver).
+    const words = runResult?.words ?? (collectedWordsRef.current?.length || 0);
+    const elapsedAtEnd = runResult?.elapsedSec ?? 0;
     const EXAM_TARGET = 10;
     const nota = Math.min(10, Math.round((words / EXAM_TARGET) * 100) / 10);
-    const timeBonus = words >= EXAM_TARGET ? Math.max(0, Math.round((EXAM_TARGET * 5 - elapsedAtEnd) * 5)) : 0;
     return (
       <GameShell {...shellProps}>
         <ConfettiProvider />
         <ResultsScreen
           title="¡Carrera terminada!"
           nota={nota}
-          points={score + timeBonus}
+          points={runResult?.finalScore ?? words}
           stats={[
             { icon: ListChecks, tone: 'good', label: 'Palabras', value: `${words}/${EXAM_TARGET}` },
             { icon: Clock, tone: 'time', label: 'Tiempo', value: `${elapsedAtEnd}s` },

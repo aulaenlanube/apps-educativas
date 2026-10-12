@@ -91,9 +91,7 @@ Opciones: `--tabs` (detecta `[role=tab]` o la barra de botones; o `--tabs=Resume
 
 ## Diferencias conocidas con producción
 
-- `student_get_dashboard` / `teacher_get_student_stats` reales **no devuelven** `stats.best_nota`, `stats.avg_test_nota`, `apps_detail[].best_nota` ni `recent_sessions[].nota`, aunque la UI los usa. El mock los incluye para poder diseñar esas tarjetas; en producción hoy se ve "—/10", la columna Nota del historial vacía y en "Tus apps más jugadas" la UI cae a `best_score` (puntos) como si fuera la nota.
-- Las barras de "Actividad (30 días)" del alumno y de "Mis logros" del docente salen casi planas también con datos: es CSS del componente (altura en % dentro de un hijo sin altura), no del mock.
-- `StudentStatsView` y "Tus apps más jugadas" usan `app_id` como `key`, pero la RPC agrupa por app + curso + asignatura: si un alumno juega la misma app en dos asignaturas (el mock lo hace, como pasa en real) React avisa de *keys* duplicadas.
+- (Resuelto el 12-oct-2026, migración `20261012_dashboard_nota_fields`) `student_get_dashboard` y `teacher_get_student_stats` ya devuelven `stats.best_nota`, `stats.avg_test_nota`, `apps_detail[].best_nota`/`best_test_nota` y `recent_sessions[].nota`; el informe del docente agrupa por app + curso + asignatura como el del alumno. `student_get_duel_state`/`teacher_get_duel_state` devuelven `is_task` (migración `20261012_duel_state_is_task`). Las gráficas planas y las *keys* duplicadas se arreglaron en el rediseño de los paneles.
 - `in_class_window` de los duelos-tarea es siempre `true`; la jugada de un duelo y la Batalla en directo (QuizBattleHost/Player) no se simulan.
 - `select('col1, col2')` no proyecta columnas (devuelve la fila entera); los filtros `or/not/filter` no se evalúan.
 - El "ruido" `Fetch error from :` de la consola viene del parche de fetch del plugin de Horizons en `vite.config.js` y aparece también con el mock apagado.

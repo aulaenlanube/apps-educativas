@@ -2,6 +2,25 @@ import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Text, Edges } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { configureTextBuilder } from 'troika-three-text';
+// Fuente LOCAL (la misma que usa el Laboratorio de Física: ver su Texto3D.jsx).
+import FUENTE_BLOQUES from '../laboratorio-fisica/assets/roboto-regular.ttf';
+
+// Texto de los bloques con la CSP de la plataforma: drei <Text> (troika) hace el
+// typesetting en un worker que carga sus módulos con importScripts('blob:…'),
+// y `script-src` no permite blob:; además, sin `font`, troika descarga la fuente
+// y los glifos que le falten de un CDN que `connect-src` bloquea. En ambos casos
+// la promesa de la fuente no resuelve nunca, <Text> se queda suspendido y el
+// <Suspense> de la escena oculta TODOS los bloques: la partida no se puede jugar
+// (en producción todas las partidas acababan con 0 XP). Solución sin tocar la
+// CSP, como en laboratorio-fisica: typesetting en el hilo principal, fuente
+// local y solo caracteres que esa fuente tiene (★ y ❄️ no están: esos bloques
+// ya se distinguen por su color).
+configureTextBuilder({ useWorker: false });
+
+// Rangos que cubre roboto-regular.ttf (latín, griego, cirílico y puntuación).
+const enFuente = (cp) => (cp >= 0x20 && cp <= 0x52f) || (cp >= 0x2000 && cp <= 0x206f) || (cp >= 0x20a0 && cp <= 0x20be);
+const textoSeguro = (text) => Array.from(String(text ?? '')).filter((ch) => enFuente(ch.codePointAt(0))).join('').trim();
 
 // Generador de texturas
 const generateMinecraftTexture = (r, g, b) => {
@@ -58,7 +77,7 @@ const BlockParticles = ({ position, texture }) => {
   );
 };
 
-export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget, isStar, isTNT, isFreeze, isGold }) {
+export function Bloque3D({ position, text, onMine, onDestructionComplete, onWrong, setHoverState, isTarget, isStar, isTNT, isFreeze, isGold }) {
   const meshRef = useRef();
   const isHoveredRef = useRef(false);
   const [isClose, setIsClose] = useState(false);
@@ -130,6 +149,7 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
       setIsDestroying(true);
       setTimeout(() => onDestructionComplete(), 400);
     } else {
+      onWrong?.(); // solo informa del fallo (estadística de la partida)
       setIsError(true);
       setHoverState('crosshair');
       setTimeout(() => setIsError(false), 500);
@@ -165,7 +185,10 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
     return 0.11;
   }, [text, isStarBlock]);
 
+  const label = useMemo(() => textoSeguro(text), [text]);
+
   const textProps = {
+    font: FUENTE_BLOQUES,
     fontSize: calculatedFontSize,
     color: isStarBlock ? "#FFFF00" : "white",
     outlineWidth: calculatedFontSize * 0.1,
@@ -194,13 +217,13 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
       <Edges scale={1} threshold={15} color={isError ? "#ff0000" : "#2a1a0a"} linewidth={isError ? 4 : 2} />
 
       {/* Renderizar texto en las caras (solo si no es bloque de oro) */}
-      {!isGold && (
+      {!isGold && label && (
         <>
-          <Text position={[0, 0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} {...textProps}>{text}</Text>
-          <Text position={[0, 0, 0.51]} {...textProps}>{text}</Text>
-          <Text position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} {...textProps}>{text}</Text>
-          <Text position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} {...textProps}>{text}</Text>
-          <Text position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} {...textProps}>{text}</Text>
+          <Text position={[0, 0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} {...textProps}>{label}</Text>
+          <Text position={[0, 0, 0.51]} {...textProps}>{label}</Text>
+          <Text position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} {...textProps}>{label}</Text>
+          <Text position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} {...textProps}>{label}</Text>
+          <Text position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} {...textProps}>{label}</Text>
         </>
       )}
     </mesh>

@@ -12,6 +12,7 @@ const SumasLayout = ({
   actions,           // { startPractice, startTest, checkPractice, nextQuestion, exitTest, onPaletteClick }
   options,           // { showCarries, setShowCarries }
   onGameComplete,
+  calculateExpected, // fn(pregunta) → solución (por defecto, la suma de los operandos)
   instructions,
   newLabel = 'Nueva suma',
   children
@@ -35,10 +36,12 @@ const SumasLayout = ({
       onNew={actions?.startPractice}
       newLabel={newLabel}
       onPaletteClick={actions?.onPaletteClick}
-      toggleLabel={options ? 'Ayuda con llevadas' : undefined}
+      // En examen no hay interruptor de ayuda: la app también apaga sus llevadas.
+      toggleLabel={options && !isTestMode ? 'Ayuda con llevadas' : undefined}
       toggleValue={options?.showCarries}
       onToggleChange={options?.setShowCarries}
       onGameComplete={onGameComplete}
+      calculateExpected={calculateExpected}
       instructions={instructions}
     >
       {children}

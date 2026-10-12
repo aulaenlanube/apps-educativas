@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Trophy, LogOut, ShieldX } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
@@ -293,6 +293,17 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
     };
   }, [me?.isHost, hostApi, remoteSnap, channel, navigate]);
 
+  // Tracking del duelo: RoscoUI envía mode 'test' (partida en solitario); en
+  // duelo forzamos mode 'duel' para que NO cuente como intento de examen en la
+  // tarea (CLAUDE.md, "Modo 'duel' en game_sessions"). Mismo payload que el resto
+  // de componentes de duelo; el resultado lo dicta el ledger. Una vez por duelo.
+  const duelTrackedRef = useRef(false);
+  const handleDuelGameComplete = useCallback(() => {
+    if (duelTrackedRef.current) return;
+    duelTrackedRef.current = true;
+    onGameComplete?.({ mode: 'duel', score: 0, maxScore: 0, correctAnswers: 0, totalQuestions: 0, durationSeconds: 0 });
+  }, [onGameComplete]);
+
   // Overlay final (unifica forfeit y fin natural para ambos jugadores).
   if (duelOverWinnerId != null && me?.id) {
     const won = duelOverWinnerId === me.id;
@@ -330,7 +341,7 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
 
   return (
     <>
-      <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton chip={{ label: 'Duelo 1 vs 1', tone: 'medium' }} />
+      <RoscoUI {...api} onGameComplete={handleDuelGameComplete} restartLabel="Salir a mi panel" hideExitButton chip={{ label: 'Duelo 1 vs 1', tone: 'medium' }} />
       <DuelChatBar channel={channel} me={me} rival={rival} />
     </>
   );

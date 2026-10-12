@@ -13,6 +13,7 @@ import {
     Turtle, Rabbit, Gauge, FileText,
 } from 'lucide-react';
 import { getComprensionData } from '../../services/gameDataService';
+import { calcularPuntosComprension } from '../comprension/comprensionScoring';
 import InstructionsModal from './InstructionsModal';
 import {
     GameShell, GameHeader, Hud, HudStat, Panel, GameButton, Segmented, AnswerOption,
@@ -143,7 +144,8 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     };
 
     const responder = (preguntaIndex, opcionIndex) => {
-        setRespuestas({ ...respuestas, [preguntaIndex]: opcionIndex });
+        // Actualización funcional: dos toques seguidos no se pisan la respuesta.
+        setRespuestas((prev) => ({ ...prev, [preguntaIndex]: opcionIndex }));
     };
 
     const finalizar = () => {
@@ -159,10 +161,10 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
         const totalTime = readingTime + respTime;
 
         // Puntos paralelos: base + bonus tiempo lectura + bonus tiempo respuesta
-        const basePoints = aciertos * 100;
-        const readBonus = Math.max(0, Math.round(150 * (1 - readingTime / 180)));
-        const answerBonus = Math.max(0, Math.round(150 * (1 - respTime / 120)));
-        const totalPoints = basePoints + readBonus + answerBonus;
+        // (misma función que el resumen: lo mostrado = lo registrado).
+        const puntos = calcularPuntosComprension({
+            aciertos, totalPreguntas: total, readingSeconds: readingTime, answerSeconds: respTime,
+        });
 
         const notaCalculada = Math.round((aciertos / total) * 100) / 10;
         if (notaCalculada >= 5) {
@@ -178,8 +180,8 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
             trackedRef.current = true;
             onGameComplete?.({
                 mode: 'test',
-                score: totalPoints,
-                maxScore: total * 100 + 300,
+                score: puntos.total,
+                maxScore: puntos.maxScore,
                 correctAnswers: aciertos,
                 totalQuestions: total,
                 durationSeconds: totalTime,
@@ -280,7 +282,9 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
 
     const totalPreguntas = ejercicioActual.preguntas.length;
     const nota = Math.round((score / totalPreguntas) * 100) / 10;
-    const totalPoints = score * 100 + Math.max(0, (180 - readingTime) * 2) + Math.max(0, (120 - answersTime) * 3);
+    const totalPoints = calcularPuntosComprension({
+        aciertos: score, totalPreguntas, readingSeconds: readingTime, answerSeconds: answersTime,
+    }).total;
     const formatTime = (s) => s >= 60 ? `${Math.floor(s/60)}m ${s%60}s` : `${s}s`;
     const answeredCount = Object.keys(respuestas).length;
     const allAnswered = answeredCount === ejercicioActual.preguntas.length;

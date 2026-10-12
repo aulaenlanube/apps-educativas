@@ -1924,7 +1924,7 @@ export const APP_CONCEPTS = {
       },
       {
         "nombre": "Examen Difícil",
-        "descripcion": "10 moléculas sin ayudas; permite subir la nota hasta 11 y otorga más puntuación."
+        "descripcion": "10 moléculas sin ayudas; la nota máxima es 10 y lo que te sobra se convierte en puntos extra."
       }
     ],
     "consejos": [

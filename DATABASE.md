@@ -325,8 +325,8 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 | `gamification_retroactive_calculate` / `gamification_retroactive_all` | Recálculo completo |
 | `process_ranking_badges` | Insignias de ranking (top 10 / top 3 / #1 global y clase) |
 | `student_get_gamification` / `teacher_get_gamification` | Inventario de insignias + XP + nivel |
-| `student_get_dashboard` | Stats agregadas del alumno (usado en el panel) |
-| `teacher_get_student_stats` | Versión docente |
+| `student_get_dashboard` | Stats agregadas del alumno (usado en el panel). Incluye `best_nota`, `avg_test_nota`, `apps_detail[].best_nota` (por app + curso + asignatura) y `recent_sessions[].nota` |
+| `teacher_get_student_stats` | Versión docente (mismos campos de nota; apps por app + curso + asignatura) |
 | `admin_reset_gamification` | — |
 
 ### Avatares

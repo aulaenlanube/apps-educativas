@@ -56,6 +56,14 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
   const temporizadorRef = useRef(null);
   const [mostrarResumen, setMostrarResumen] = useState(false);
+  // Resultado del examen tal y como se registra (el resumen pinta ESTOS números).
+  const [resultadoExamen, setResultadoExamen] = useState(null);
+  // Estado vivo para finalizarTest: se llama desde el setTimeout de gestionarClick,
+  // cuyo cierre es anterior a la última respuesta (aciertos/racha sin actualizar).
+  const estadoRef = useRef(estado);
+  useEffect(() => { estadoRef.current = estado; }, [estado]);
+  // Una sola llamada a onGameComplete por examen (CLAUDE.md §5).
+  const examRegistradoRef = useRef(false);
   const [restarting, setRestarting] = useState(false);
 
   const asignatura = tema || (typeof subjectId === 'string' && subjectId.trim() ? subjectId.trim() : 'general');
@@ -196,19 +204,29 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
 
   const finalizarTest = () => {
     detenerCronometro();
-    setMostrarResumen(true);
-    const elapsed = estado.tiempoInicio ? Math.round((performance.now() - estado.tiempoInicio) / 1000) : 0;
-    const basePoints = estado.aciertos * 100;
-    const refTime = estado.rondasTotales * 8;
+    if (examRegistradoRef.current) return;
+    examRegistradoRef.current = true;
+    const st = estadoRef.current; // incluye ya la última respuesta
+    const elapsed = st.tiempoInicio ? Math.round((performance.now() - st.tiempoInicio) / 1000) : 0;
+    const basePoints = st.aciertos * 100;
+    const refTime = st.rondasTotales * 8;
     const timeBonus = Math.max(0, Math.round(300 * (1 - elapsed / refTime)));
-    const comboBonus = Math.min(estado.combo * 15, 200);
+    const comboBonus = Math.min(st.combo * 15, 200);
     const totalPoints = basePoints + timeBonus + comboBonus;
+    setResultadoExamen({
+      aciertos: st.aciertos,
+      rondasTotales: st.rondasTotales,
+      combo: st.combo,
+      nota: Math.round((st.aciertos / st.rondasTotales) * 100) / 10,
+      points: totalPoints,
+    });
+    setMostrarResumen(true);
     onGameComplete?.({
       mode: 'test',
       score: totalPoints,
-      maxScore: estado.rondasTotales * 100 + 500,
-      correctAnswers: estado.aciertos,
-      totalQuestions: estado.rondasTotales,
+      maxScore: st.rondasTotales * 100 + 500,
+      correctAnswers: st.aciertos,
+      totalQuestions: st.rondasTotales,
       durationSeconds: elapsed,
     });
   };
@@ -240,6 +258,8 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     setTiempoTranscurrido(0);
     setMostrarResumen(false);
     setRegistroExamen([]);
+    setResultadoExamen(null);
+    examRegistradoRef.current = false;
     setEstado(prev => ({
       ...prev,
       modo: 'test',
@@ -418,10 +438,9 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const esExamen = estado.modo === 'test';
 
   // --- Resumen del examen ---
-  if (mostrarResumen) {
-    const nota = Math.round((estado.aciertos / estado.rondasTotales) * 100) / 10;
-    const elapsed = Math.round(tiempoTranscurrido);
-    const totalPoints = estado.aciertos * 100 + Math.max(0, (120 - elapsed) * 5) + estado.combo * 30;
+  if (mostrarResumen && resultadoExamen) {
+    // Mismos números que se envían en onGameComplete (calculados en finalizarTest).
+    const { nota, points: totalPoints, aciertos, rondasTotales, combo } = resultadoExamen;
     return (
       <GameShell {...shellProps}>
         <ResultsScreen
@@ -429,9 +448,9 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
           nota={nota}
           points={totalPoints}
           stats={[
-            { icon: Target, tone: 'good', label: 'Aciertos', value: `${estado.aciertos}/${estado.rondasTotales}` },
+            { icon: Target, tone: 'good', label: 'Aciertos', value: `${aciertos}/${rondasTotales}` },
             { icon: Clock, tone: 'time', label: 'Tiempo', value: `${tiempoTranscurrido.toFixed(1)}s` },
-            { icon: Flame, tone: 'streak', label: 'Racha final', value: estado.combo },
+            { icon: Flame, tone: 'streak', label: 'Racha final', value: combo },
           ]}
           actions={[
             { label: 'Repetir examen', onClick: iniciarTest, icon: RefreshCw },

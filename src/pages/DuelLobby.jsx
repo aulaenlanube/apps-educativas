@@ -220,8 +220,14 @@ export default function DuelLobby() {
   // se pinta igual que la espera.
   const view = phase === 'loading' ? 'waiting' : phase;
   const appTitle = cleanAppName(state.app_name) || app?.name || 'Duelo';
-  const friendly = Number(state.stake) === 0;
-  const stakeLabel = friendly ? 'Amistoso' : `${(+state.stake).toFixed(1).replace('.', ',')} pt`;
+  // Duelo-tarea (lo crea el docente): +0,10 fijo al ganador y sin penalización;
+  // el stake se ignora (CLAUDE.md, "Duelo-tarea").
+  const isTask = state.is_task === true;
+  const friendly = !isTask && Number(state.stake) === 0;
+  const stakeLabel = isTask ? '+0,10 si ganas'
+    : friendly ? 'Amistoso' : `${(+state.stake).toFixed(1).replace('.', ',')} pt`;
+  const stakeSub = isTask ? 'Tarea · sin penalización si pierdes'
+    : friendly ? 'No cambia la nota' : 'Nota en juego';
   const statusLabel = STATUS_LABEL[state.status] || state.status;
   const iWon = state.winner_id === actor?.id;
 
@@ -288,7 +294,7 @@ export default function DuelLobby() {
         </section>
 
         <section className="dl-info">
-          <InfoPill icon={Coins} tone="amber" label="Apuesta" value={stakeLabel} sub={friendly ? 'No cambia la nota' : 'Nota en juego'} />
+          <InfoPill icon={Coins} tone="amber" label={isTask ? 'Duelo-tarea' : 'Apuesta'} value={stakeLabel} sub={stakeSub} />
           <InfoPill icon={Repeat} tone="violet" label="Formato" value={state.best_of > 1 ? `Mejor de ${state.best_of}` : 'Una partida'} />
           <InfoPill icon={Activity} tone="cyan" label="Estado" value={statusLabel} />
         </section>

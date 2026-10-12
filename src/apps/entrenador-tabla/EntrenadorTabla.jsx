@@ -84,6 +84,8 @@ const EntrenadorTabla = ({ onGameComplete }) => {
     // Solo presentación: repaso de la sesión y puntos mostrados en el resumen.
     const [review, setReview] = useState([]);
     const [finalStats, setFinalStats] = useState(null);
+    // onGameComplete una sola vez por partida (se rearma al empezar otra)
+    const reportedRef = useRef(false);
 
     // Initial load
     useEffect(() => {
@@ -130,6 +132,7 @@ const EntrenadorTabla = ({ onGameComplete }) => {
         });
         setReview([]);
         setFinalStats(null);
+        reportedRef.current = false;
         setGameState('playing');
         setUserInput('');
         generateNewQuestion(targets[0], targets);
@@ -187,6 +190,8 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                 setSession(s => ({ ...s, currentIndex: nextIdx }));
                 generateNewQuestion(session.targets[nextIdx], session.targets);
             } else {
+                if (reportedRef.current) return;
+                reportedRef.current = true;
                 setGameState('result');
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
                 const finalScore = session.score + (correct ? 1 : 0);
@@ -197,12 +202,14 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                     : 0;
                 const TIME_BUDGET = total * 10;
                 const SPEED_COEF = 5;
-                const timeBonus = elapsedSec > 0
-                    ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+                // El bonus se gana en proporción a los aciertos: sin aciertos no hay bonus.
+                const timeBonus = elapsedSec > 0 && total > 0
+                    ? Math.round(Math.max(0, (TIME_BUDGET - elapsedSec) * SPEED_COEF) * (finalScore / total))
                     : 0;
                 setFinalStats({ points: finalScore * 100 + timeBonus, elapsedSec, timeBonus });
                 onGameComplete?.({
-                    mode: 'test',
+                    // La práctica no cuenta como intento de examen en las tareas
+                    mode: config.gameMode === 'practice' ? 'practice' : 'test',
                     score: finalScore * 100 + timeBonus,
                     maxScore: total * 100 + TIME_BUDGET * SPEED_COEF,
                     correctAnswers: finalScore,

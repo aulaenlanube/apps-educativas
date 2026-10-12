@@ -361,8 +361,9 @@ const FraccionesESO = ({ onGameComplete }) => {
             : 0;
         const TIME_BUDGET = 12 * 30;
         const SPEED_COEF = 5;
+        // El bonus se gana en proporción a los aciertos: sin aciertos no hay bonus.
         const timeBonus = elapsedSec > 0
-            ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
+            ? Math.round(Math.max(0, (TIME_BUDGET - elapsedSec) * SPEED_COEF) * (correctCount / 12))
             : 0;
         // Solo presentación: los mismos puntos que se envían, para el resumen
         setExamSummary({ points: correctCount * 100 + timeBonus, elapsed: elapsedSec });

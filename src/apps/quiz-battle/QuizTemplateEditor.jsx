@@ -510,14 +510,24 @@ export default function QuizTemplateEditor({ templateId, onBack, onSaved }) {
             <div className="qte-filters">
               <label className="qte-filter">
                 <span>Etapa</span>
-                <select value={browseLevel} onChange={(e) => setBrowseLevel(e.target.value)} className="qte-select">
+                <select
+                  value={browseLevel}
+                  onChange={(e) => {
+                    const next = e.target.value;
+                    setBrowseLevel(next);
+                    // Bachillerato solo tiene 1º y 2º: no dejes un curso que no existe.
+                    const grades = LEVELS.find((l) => l.id === next)?.grades || [1];
+                    if (!grades.includes(Number(browseGrade))) setBrowseGrade(String(grades[0]));
+                  }}
+                  className="qte-select"
+                >
                   {LEVELS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
                 </select>
               </label>
               <label className="qte-filter qte-filter--grade">
                 <span>Curso</span>
                 <select value={browseGrade} onChange={(e) => setBrowseGrade(e.target.value)} className="qte-select">
-                  {(browseLevel === 'primaria' ? [1,2,3,4,5,6] : [1,2,3,4]).map((g) => (
+                  {(LEVELS.find((l) => l.id === browseLevel)?.grades || [1]).map((g) => (
                     <option key={g} value={g}>{g}º</option>
                   ))}
                 </select>

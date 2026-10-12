@@ -11,8 +11,9 @@
 //     <Scene3DBackground />
 //     <div className="mi-contenido"> … </div>
 //   </div>
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import FrameLimiter, { nowSeconds } from '@/components/ui/bg3d/FrameLimiter';
 import LabEnvironment from '@/apps/laboratorio-fisica/components/LabEnvironment';
 import { ambienceById, pickCieloBackground } from '@/apps/laboratorio-fisica/engine/ambiences';
 import useFxTier from '@/hooks/useFxTier';
@@ -30,8 +31,8 @@ const BG_BUDGET = {
 };
 
 // Tiempo de la órbita en segundos de reloj real (no de frames): así la
-// velocidad no depende de los fps del limitador.
-const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now()) / 1000;
+// velocidad no depende de los fps del limitador (ver bg3d/FrameLimiter).
+const now = nowSeconds;
 
 // cámara que orbita despacio alrededor de la isla (vista 3/4 elevada)
 function OrbitCam({ radius = 44, height = 18, target = [0, 0.5, 0], speed = 0.03, frozen = false }) {
@@ -40,48 +41,6 @@ function OrbitCam({ radius = 44, height = 18, target = [0, 0.5, 0], speed = 0.03
     state.camera.position.set(Math.cos(t) * radius, height, Math.sin(t) * radius);
     state.camera.lookAt(target[0], target[1], target[2]);
   });
-  return null;
-}
-
-// Con frameloop="demand" r3f solo pinta cuando se invalida: aquí pedimos frames
-// al ritmo del presupuesto. fps=0 → unos pocos frames para que la escena se
-// asiente y después nada (r3f repinta solo al cambiar el tamaño).
-// Si aun así el equipo no llega (frames reales muy por debajo del objetivo
-// durante varios segundos) avisa con onSlow para congelar el fondo.
-function FrameLimiter({ fps, onSlow }) {
-  const invalidate = useThree((s) => s.invalidate);
-  useEffect(() => {
-    if (!fps) {
-      let n = 0;
-      const id = setInterval(() => { invalidate(); if (++n >= 4) clearInterval(id); }, 120);
-      return () => clearInterval(id);
-    }
-    const step = 1000 / fps;
-    let raf = 0;
-    let last = 0;
-    let winStart = 0;
-    let winFrames = 0;
-    let slowWindows = 0;
-    const loop = (t) => {
-      raf = requestAnimationFrame(loop);
-      if (t - last < step - 2) return;
-      // tras una pausa larga (pestaña oculta) no contamos esa ventana
-      if (t - last > 600) { winStart = t; winFrames = 0; }
-      last = t;
-      invalidate();
-      winFrames++;
-      if (!winStart) winStart = t;
-      if (t - winStart >= 3000) {
-        const real = (winFrames * 1000) / (t - winStart);
-        slowWindows = real < fps * 0.6 ? slowWindows + 1 : 0;
-        winStart = t;
-        winFrames = 0;
-        if (slowWindows >= 2) onSlow?.();
-      }
-    };
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, [fps, invalidate, onSlow]);
   return null;
 }
 

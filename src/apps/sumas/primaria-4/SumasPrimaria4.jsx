@@ -15,6 +15,9 @@ const SumasPrimaria4 = ({ onGameComplete } = {}) => {
   const [activeSlot, setActiveSlot] = useState(null);
 
   const [isTestMode, setIsTestMode] = useState(false);
+  // En examen no hay ayuda con llevadas (ni casillas ni llevada automática): si la
+  // llevada apareciera sola, el alumno sabría que la cifra era correcta.
+  const carriesHelp = showCarries && !isTestMode;
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [checkInfo, setCheckInfo] = useState({ show: false, expectedResult: [], expectedCarries: [], firstNonZeroIdx: -1 });
   
@@ -90,8 +93,8 @@ const SumasPrimaria4 = ({ onGameComplete } = {}) => {
       n[activeSlot.index] = strVal; 
       setResultSlots(n);
 
-      // --- AUTO-LLEVADA ---
-      if (showCarries) {
+      // --- AUTO-LLEVADA (solo en práctica) ---
+      if (carriesHelp) {
           const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
           
           if (strVal === expectedResult[activeSlot.index]) {
@@ -221,7 +224,7 @@ const SumasPrimaria4 = ({ onGameComplete } = {}) => {
       <UniversalSumBoard
         nums={currentOperands}
         minIntegerDigits={3}
-        showCarries={showCarries}
+        showCarries={carriesHelp}
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}

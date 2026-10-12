@@ -271,43 +271,10 @@ html[data-fx="high"] .ssa-starfield span { animation: ssa-twinkle 3.2s ease-in-o
 .ssa-concept.is-correct small { color: #065f46; }
 .ssa-concept.is-correct { cursor: default; }
 
-/* Fase 3: éxito */
-.ssa-success { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0; text-align: center; }
-.ssa-trophy { position: relative; display: grid; place-items: center; width: 180px; height: 180px; }
-.ssa-trophy__art { position: relative; width: 120px; height: 120px; animation: gk-pop .6s cubic-bezier(.34, 1.56, .64, 1) both; }
-.ssa-rays {
-  position: absolute;
-  inset: -40px;
-  background: repeating-conic-gradient(from 0deg, rgba(251, 191, 36, .16) 0 9deg, transparent 9deg 18deg);
-  -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
-  mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
-}
-html[data-fx="high"] .ssa-rays { animation: ssa-spin 26s linear infinite; }
-.ssa-orbit { position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(165, 180, 252, .35); }
-.ssa-sparks { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
-.ssa-sparks i {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  margin: -3.5px;
-  border-radius: 50%;
-  background: #fde68a;
-  box-shadow: 0 0 10px #fbbf24;
-  transform: rotate(calc(var(--ssa-n) * 36deg)) translateY(-80px);
-  animation: ssa-spark .9s cubic-bezier(.2, .8, .3, 1) both;
-  animation-delay: calc(var(--ssa-n) * 30ms);
-}
-.ssa-sparks i:nth-child(even) { background: #a5b4fc; box-shadow: 0 0 10px #818cf8; }
-.ssa-success__title { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; color: #10b981; }
-.ssa-success__desc { margin: 0; max-width: 52ch; font-family: 'Nunito', var(--gk-font); font-weight: 600; line-height: 1.55; color: var(--gk-ink-2); }
-.ssa-success__planets { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
-
 .ssa-foot { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
 .ssa-wrong { margin-right: auto; display: inline-flex; align-items: center; gap: 6px; font-weight: 800; color: #fda4af; }
 
 @keyframes ssa-twinkle { 0%, 100% { opacity: .2; transform: scale(.8); } 50% { opacity: .8; transform: scale(1.2); } }
-@keyframes ssa-spin { to { transform: rotate(360deg); } }
-@keyframes ssa-spark { 0% { transform: rotate(calc(var(--ssa-n) * 36deg)) translateY(-20px) scale(.3); opacity: 0; } 60% { opacity: 1; } 100% { transform: rotate(calc(var(--ssa-n) * 36deg)) translateY(-84px) scale(1); opacity: .85; } }
 
 @media (max-width: 980px) {
   .ssa-order__track { grid-template-columns: repeat(4, minmax(0, 1fr)); }

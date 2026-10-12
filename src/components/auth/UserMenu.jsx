@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3, Rocket, Trophy, Zap, Sun, Moon, CheckCircle2 } from 'lucide-react';
+import { LayoutDashboard, LogOut, Copy, GraduationCap, UserCircle, BarChart3, Rocket, Trophy, Sun, Moon, CheckCircle2, Building2, Trees } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
@@ -13,6 +13,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import useBackgroundScene from '@/hooks/useBackgroundScene';
+import { BG_SCENES } from '@/services/backgroundScene';
 
 export default function UserMenu() {
   const { displayName, role, teacher, freeUser, student, signOut } = useAuth();
@@ -20,6 +22,7 @@ export default function UserMenu() {
   const { toast } = useToast();
   const { level, totalXp, xpForCurrentLevel, xpForNextLevel, totalEarned } = useGamification();
   const { theme, toggleTheme } = useTheme();
+  const { scene, setScene, toggleScene } = useBackgroundScene();
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
@@ -236,6 +239,30 @@ export default function UserMenu() {
           <DropdownMenuItem onClick={(e) => { e.preventDefault(); toggleTheme(); }}>
             {theme === 'dark' ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
             {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+          </DropdownMenuItem>
+          {/* Entorno del fondo 3D: ciudad futurista (por defecto) o naturaleza.
+              Clic en la fila alterna; clic en una pastilla elige esa. El menú
+              se queda abierto para ver el cambio al momento. */}
+          <DropdownMenuItem onClick={(e) => { e.preventDefault(); toggleScene(); }} aria-label={`Fondo: ${scene === 'ciudad' ? 'Ciudad' : 'Naturaleza'} (cambiar)`}>
+            {scene === 'ciudad' ? <Building2 className="mr-2 h-4 w-4" /> : <Trees className="mr-2 h-4 w-4" />}
+            <span className="flex-1">Fondo</span>
+            <span className="ml-2 inline-flex rounded-full bg-slate-100 dark:bg-slate-700/70 p-0.5">
+              {BG_SCENES.map((s) => (
+                <span
+                  key={s.id}
+                  role="button"
+                  tabIndex={-1}
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setScene(s.id); }}
+                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors ${
+                    scene === s.id
+                      ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white shadow-sm'
+                      : 'text-slate-500 dark:text-slate-300'
+                  }`}
+                >
+                  {s.name}
+                </span>
+              ))}
+            </span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => { setDropdownOpen(false); setTimeout(() => setShowConfirm(true), 150); }} className="text-red-600 focus:text-red-600">

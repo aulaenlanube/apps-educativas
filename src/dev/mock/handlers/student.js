@@ -21,6 +21,7 @@ export function duelState(world, d, viewerStudentId = null) {
     id: d.id, status: d.status, app_id: d.app_id, app_name: d.app_name,
     level: d.level, grade: d.grade, subject_id: d.subject_id,
     stake: d.stake, best_of: d.best_of, is_hidden: d.is_hidden,
+    is_task: !!d.assignment_pair_id,
     winner_id: d.winner_id, winner_type: d.winner_type, void_reason: d.void_reason,
     challenger_id: d.challenger_id, challenger_type: d.challenger_type,
     opponent_id: d.opponent_id, opponent_type: d.opponent_type,

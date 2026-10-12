@@ -19,6 +19,11 @@ const DEMO_BALLS = [
     { n: '20', s: 82, x: 40, y: 78, t: 'idle' },
 ];
 
+// Ancho mínimo del mundo físico. El recipiente mide 450 px y gira: con un mundo
+// de 600 x 600 se ve entero igual que en escritorio. En pantallas más estrechas
+// el mundo NO encoge (misma física, mismos tamaños): se dibuja escalado.
+const MIN_WORLD_WIDTH = 600;
+
 const OrdenaBolas = ({ onGameComplete }) => {
     const { level, grade } = useParams();
 
@@ -247,8 +252,12 @@ const OrdenaBolas = ({ onGameComplete }) => {
         const container = sceneRef.current;
         if (!container) return;
 
-        const width = container.clientWidth;
+        const availableWidth = container.clientWidth;
+        const width = Math.max(availableWidth, MIN_WORLD_WIDTH);
         const height = 600;
+        // Escala solo de dibujo (1 en escritorio): el canvas se pinta al ancho
+        // disponible y los toques se pasan a coordenadas del mundo.
+        const viewScale = availableWidth > 0 ? availableWidth / width : 1;
 
         const render = Render.create({
             element: container,
@@ -263,6 +272,12 @@ const OrdenaBolas = ({ onGameComplete }) => {
                 pixelRatio: Math.min(2, window.devicePixelRatio || 1)
             }
         });
+
+        if (viewScale < 1) {
+            render.canvas.style.width = `${availableWidth}px`;
+            render.canvas.style.height = `${height * viewScale}px`;
+            container.style.height = `${height * viewScale}px`;
+        }
 
         // Caja
         const boxSize = 450;
@@ -350,8 +365,9 @@ const OrdenaBolas = ({ onGameComplete }) => {
             if (gameLogic.isGameOver || gameLogic.isVictory) return;
 
             const rect = render.canvas.getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-            const clickY = event.clientY - rect.top;
+            // Píxeles en pantalla → coordenadas del mundo (factor 1 si no hay escala)
+            const clickX = (event.clientX - rect.left) * (rect.width ? width / rect.width : 1);
+            const clickY = (event.clientY - rect.top) * (rect.height ? height / rect.height : 1);
 
             const bodiesUnderMouse = Query.point(balls, { x: clickX, y: clickY });
             const clickedBall = bodiesUnderMouse.find(b => b.label === 'ball');
@@ -406,6 +422,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
         Runner.run(runner, engine);
 
         return () => {
+            container.style.height = '';
             if (render.canvas) {
                 render.canvas.removeEventListener('pointerdown', handleCanvasClick);
                 render.canvas.remove();
@@ -575,7 +592,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
                 </div>
             </div>
 
-            <div className="ob-stage">
+            <div className={`ob-stage ${gameState === 'lost' || gameState === 'won' ? 'has-result' : ''}`}>
                 <div ref={sceneRef} className="ob-scene" />
 
                 {(gameState === 'lost' || gameState === 'won') && (

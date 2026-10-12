@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { PointerLockControls } from '@react-three/drei';
 import { Joystick } from 'react-joystick-component';
@@ -19,6 +19,7 @@ import {
   GameShell, GameHeader, Hud, HudStat, GameButton, GradeRing, notaMessage, notaTone, Chip,
 } from '../_shared/kit';
 import './ExcavacionSelectiva.css';
+import { XP_FOR_10, notaExcavacion, blockOutcome } from './excavacionScoring';
 
 // === MIRA (SVG inline, sin filtros: el contorno oscuro da el contraste) ===
 const CrosshairIcon = () => (
@@ -75,33 +76,66 @@ const generateGrassTexture = () => {
   return texture;
 };
 
-const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
-  const subjectPrefix = subjectId || (level === 'primaria' ? 'lengua' : 'general');
-
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
+// === PARTIDA ===
+// Se monta SOLO cuando el alumno ya ha elegido dispositivo: el hook de juego
+// arranca su cronómetro al montarse, así que montar la partida antes hacía que
+// el tiempo corriera (y la partida acabara con 0) mientras el alumno aún estaba
+// en la pantalla de "¿Con qué vas a jugar?". Cada partida nueva es un montaje
+// nuevo (key), con su propio cronómetro y su propio onGameComplete.
+const ExcavacionPartida = ({ data, controlMode, onGameComplete, onRestart }) => {
   // Extraemos la lógica del juego
   const {
     blocks, timeLeft, score, gameState, mission, mineBlock,
     isSuddenDeath, combo, isFrozen, lastEvent
   } = useExcavacionSelectiva(data);
 
-  // Tracking al terminar
-  const trackedRef = React.useRef(false);
-  useEffect(() => {
-    if (gameState === 'lost' && !trackedRef.current) {
-      trackedRef.current = true;
-      onGameComplete?.({
-        mode: 'practice',
-        score,
-        maxScore: Math.max(score, 2000),
-        correctAnswers: Math.floor(score / 100),
-        totalQuestions: Math.max(Math.floor(score / 100), 1),
-      });
+  // Inicio real de la partida (tras elegir dispositivo) → durationSeconds.
+  const startedAtRef = useRef(Date.now());
+
+  // Aciertos y fallos reales (para correctAnswers / totalQuestions): se cuentan
+  // al picar cada bloque (una vez por bloque, como el hook) y en cada intento de
+  // picar un distractor (Bloque3D lo rechaza sin llegar al hook).
+  const statsRef = useRef({ hits: 0, misses: 0 });
+  const countedIdsRef = useRef(new Set());
+  const countOutcome = (outcome) => {
+    if (outcome === 'hit') statsRef.current.hits += 1;
+    else if (outcome === 'miss') statsRef.current.misses += 1;
+  };
+  const handleMined = (block) => {
+    if (gameState === 'playing' && !countedIdsRef.current.has(block.id)) {
+      countedIdsRef.current.add(block.id);
+      countOutcome(blockOutcome(block));
     }
-    if (gameState === 'playing') trackedRef.current = false;
+    mineBlock(block.id);
+  };
+  const handleWrong = () => {
+    if (gameState === 'playing') countOutcome('miss');
+  };
+
+  // Nota /10: la misma que se muestra al final (2.000 XP = un 10).
+  const notaFinal = notaExcavacion(score);
+
+  // Tracking al terminar (una vez por partida)
+  const trackedRef = useRef(false);
+  useEffect(() => {
+    if (gameState !== 'lost' || trackedRef.current) return;
+    trackedRef.current = true;
+    const { hits, misses } = statsRef.current;
+    onGameComplete?.({
+      mode: 'practice',
+      score,
+      maxScore: Math.max(score, XP_FOR_10),
+      correctAnswers: hits,
+      totalQuestions: hits + misses,
+      durationSeconds: Math.max(1, Math.round((Date.now() - startedAtRef.current) / 1000)),
+      nota: notaExcavacion(score),
+    });
   }, [gameState, score, onGameComplete]);
+
+  // Al acabar, soltamos el ratón para poder pulsar "Nueva partida".
+  useEffect(() => {
+    if (gameState === 'lost' && document.pointerLockElement) document.exitPointerLock?.();
+  }, [gameState]);
 
   // Estados de control y visuales
   const [isLocked, setIsLocked] = useState(false);
@@ -109,11 +143,9 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   const [isSwinging, setIsSwinging] = useState(false);
   const [showSuddenDeathMsg, setShowSuddenDeathMsg] = useState(false);
 
-  // Estados para control Móvil vs PC
-  const [controlMode, setControlMode] = useState(null); // 'pc' | 'mobile' | null
+  // Joysticks (control táctil)
   const [joystickMove, setJoystickMove] = useState(null);
   const [joystickLook, setJoystickLook] = useState(null);
-  const [showCheatSheet, setShowCheatSheet] = useState(false);
 
   // Recursos memoizados
   const grassTexture = useMemo(() => generateGrassTexture(), []);
@@ -128,18 +160,6 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
     }
     return tempTrees;
   }, []);
-
-  // Carga de datos
-  useEffect(() => {
-    setData(null);
-    setError(null);
-    getRunnerData(level, grade, subjectPrefix)
-      .then(d => {
-        if (!d || Object.keys(d).length === 0) throw new Error("Datos no encontrados");
-        setData(d);
-      })
-      .catch(e => setError(e));
-  }, [level, grade, subjectPrefix]);
 
   // Efecto para mostrar el mensaje de Muerte Súbita
   useEffect(() => {
@@ -162,87 +182,14 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   const handleLookStart = (evt) => setJoystickLook(evt);
   const handleLookStop = () => setJoystickLook(null);
 
-
-  // --- PRESENTACIÓN (rediseño 2026: solo el "chrome" alrededor de la escena 3D) ---
-  const [showInstructions, setShowInstructions] = useState(false);
-  const shellProps = { theme: 'dark', wide: true, accent: '#f59e0b', accent2: '#84cc16', className: 'exs' };
-
-  if (error) {
-    return (
-      <GameShell {...shellProps}>
-        <GameHeader />
-        <div className="exs-msg">No encuentro el mapa de esta asignatura.</div>
-      </GameShell>
-    );
-  }
-  if (!data) {
-    return (
-      <GameShell {...shellProps}>
-        <div className="exs-msg"><span className="exs-msg__blocks" aria-hidden="true"><i /><i /><i /></span>Cargando el terreno…</div>
-      </GameShell>
-    );
-  }
-
-  // Solo visual: misma fórmula que la nota que ya se mostraba al final
-  const notaFinal = Math.min((score / 2000) * 10, 10);
   const timeVal = Math.max(0, timeLeft).toFixed(1);
   const timeState = isSuddenDeath ? 'is-danger' : isFrozen ? 'is-frozen' : timeLeft < 10 ? 'is-low' : '';
 
   return (
-    <GameShell {...shellProps}>
-      <GameHeader
-        compact
-        onHelp={() => setShowInstructions(true)}
-        onStudy={() => setShowCheatSheet(true)}
-        right={<Chip tone="accent" icon={Shovel}>Cada partida cuenta</Chip>}
-      />
-
-      {/* Agregamos la clase 'sudden-death-mode' si estamos en esa fase (necesita el CSS) */}
-      <div className={`exs-viewport
-          ${isSuddenDeath ? 'sudden-death-mode' : ''}
-          ${isFrozen ? 'time-frozen' : ''}
-          ${lastEvent?.type === 'tnt' ? 'shake-effect' : ''}`}>
-
-        {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
-        {!controlMode && (
-          <div className="exs-overlay exs-overlay--menu">
-            <div className="exs-device">
-              <span className="exs-device__kicker"><Shovel size={15} /> Antes de excavar</span>
-              <h2 className="exs-device__title">¿Con qué vas a jugar?</h2>
-              <div className="exs-device__cards">
-                <motion.button
-                  type="button"
-                  className="exs-device-card exs-device-card--touch"
-                  onClick={() => setControlMode('mobile')}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.08 }}
-                >
-                  <span className="exs-device-card__icon"><Tablet size={34} /></span>
-                  <strong>Táctil</strong>
-                  <small>Dos joysticks: uno para moverte y otro para mirar.</small>
-                </motion.button>
-                <motion.button
-                  type="button"
-                  className="exs-device-card exs-device-card--pc"
-                  onClick={() => setControlMode('pc')}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 }}
-                >
-                  <span className="exs-device-card__icon"><MousePointer2 size={34} /></span>
-                  <strong>Ordenador</strong>
-                  <small>Teclado WASD para moverte y ratón para mirar y picar.</small>
-                </motion.button>
-              </div>
-              <div className="exs-device__links">
-                <GameButton variant="soft" size="sm" icon={BookOpen} onClick={() => setShowCheatSheet(true)}>Guía de palabras</GameButton>
-                <GameButton variant="soft" size="sm" icon={HelpCircle} onClick={() => setShowInstructions(true)}>Cómo se juega</GameButton>
-              </div>
-            </div>
-          </div>
-        )}
-
+    <div className={`exs-viewport
+        ${isSuddenDeath ? 'sudden-death-mode' : ''}
+        ${isFrozen ? 'time-frozen' : ''}
+        ${lastEvent?.type === 'tnt' ? 'shake-effect' : ''}`}>
         {/* === INDICADOR DE CONGELACIÓN === */}
         {isFrozen && (
           <div className="exs-frozen" aria-live="polite">
@@ -276,7 +223,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
               <strong>{isSuddenDeath ? '¡Sobrevive!' : mission}</strong>
             </span>
             <span className="exs-mission__hint">
-              <Keyboard size={13} /> {controlMode === 'pc' ? 'WASD mover · SHIFT correr' : controlMode === 'mobile' ? 'Usa los joysticks' : 'Elige cómo jugar'}
+              <Keyboard size={13} /> {controlMode === 'pc' ? 'WASD mover · SHIFT correr' : 'Usa los joysticks'}
             </span>
           </div>
           <Hud className="exs-hud__stats">
@@ -363,7 +310,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
                   <span className="exs-end__xp"><Star size={16} /> {score} <small>XP</small></span>
                 </div>
               </div>
-              <GameButton size="lg" icon={RefreshCw} onClick={() => window.location.reload()}>Nueva partida</GameButton>
+              <GameButton size="lg" icon={RefreshCw} onClick={onRestart}>Nueva partida</GameButton>
             </motion.div>
           </div>
         )}
@@ -419,7 +366,8 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
                     isGold={block.isGold}
                     setHoverState={setCursorType}
                     onMine={() => triggerSwing()}
-                    onDestructionComplete={() => mineBlock(block.id)}
+                    onDestructionComplete={() => handleMined(block)}
+                    onWrong={handleWrong}
                   />
                 )
               ))}
@@ -430,7 +378,113 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
           </Suspense>
 
         </Canvas>
-      </div>
+    </div>
+  );
+};
+
+const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
+  const subjectPrefix = subjectId || (level === 'primaria' ? 'lengua' : 'general');
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  // Dispositivo elegido ('pc' | 'mobile' | null). Hasta elegirlo no hay partida
+  // (ni cronómetro): ver ExcavacionPartida.
+  const [controlMode, setControlMode] = useState(null);
+  // Número de partida: cambiarlo monta una partida nueva (sin recargar la página).
+  const [runId, setRunId] = useState(0);
+  const [showCheatSheet, setShowCheatSheet] = useState(false);
+
+  // Carga de datos
+  useEffect(() => {
+    setData(null);
+    setError(null);
+    getRunnerData(level, grade, subjectPrefix)
+      .then(d => {
+        if (!d || Object.keys(d).length === 0) throw new Error("Datos no encontrados");
+        setData(d);
+      })
+      .catch(e => setError(e));
+  }, [level, grade, subjectPrefix]);
+
+  // --- PRESENTACIÓN (rediseño 2026: solo el "chrome" alrededor de la escena 3D) ---
+  const [showInstructions, setShowInstructions] = useState(false);
+  const shellProps = { theme: 'dark', wide: true, accent: '#f59e0b', accent2: '#84cc16', className: 'exs' };
+
+  if (error) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader />
+        <div className="exs-msg">No encuentro el mapa de esta asignatura.</div>
+      </GameShell>
+    );
+  }
+  if (!data) {
+    return (
+      <GameShell {...shellProps}>
+        <div className="exs-msg"><span className="exs-msg__blocks" aria-hidden="true"><i /><i /><i /></span>Cargando el terreno…</div>
+      </GameShell>
+    );
+  }
+
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        compact
+        onHelp={() => setShowInstructions(true)}
+        onStudy={() => setShowCheatSheet(true)}
+        right={<Chip tone="accent" icon={Shovel}>Cada partida cuenta</Chip>}
+      />
+
+      {controlMode ? (
+        <ExcavacionPartida
+          key={runId}
+          data={data}
+          controlMode={controlMode}
+          onGameComplete={onGameComplete}
+          onRestart={() => setRunId((n) => n + 1)}
+        />
+      ) : (
+        <div className="exs-viewport">
+          {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
+          <div className="exs-overlay exs-overlay--menu">
+            <div className="exs-device">
+              <span className="exs-device__kicker"><Shovel size={15} /> Antes de excavar</span>
+              <h2 className="exs-device__title">¿Con qué vas a jugar?</h2>
+              <div className="exs-device__cards">
+                <motion.button
+                  type="button"
+                  className="exs-device-card exs-device-card--touch"
+                  onClick={() => setControlMode('mobile')}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 }}
+                >
+                  <span className="exs-device-card__icon"><Tablet size={34} /></span>
+                  <strong>Táctil</strong>
+                  <small>Dos joysticks: uno para moverte y otro para mirar.</small>
+                </motion.button>
+                <motion.button
+                  type="button"
+                  className="exs-device-card exs-device-card--pc"
+                  onClick={() => setControlMode('pc')}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                >
+                  <span className="exs-device-card__icon"><MousePointer2 size={34} /></span>
+                  <strong>Ordenador</strong>
+                  <small>Teclado WASD para moverte y ratón para mirar y picar.</small>
+                </motion.button>
+              </div>
+              <div className="exs-device__links">
+                <GameButton variant="soft" size="sm" icon={BookOpen} onClick={() => setShowCheatSheet(true)}>Guía de palabras</GameButton>
+                <GameButton variant="soft" size="sm" icon={HelpCircle} onClick={() => setShowInstructions(true)}>Cómo se juega</GameButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* === INSTRUCCIONES Y GUÍA DE PALABRAS === */}
       <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Excavación Selectiva">

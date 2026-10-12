@@ -151,7 +151,9 @@ const PercentGrid100 = ({ pct, tone = 'pink' }) => {
 };
 
 // --- Tarta en relieve con el sector destacado ---
-const PieChart = ({ pct, tone = 'violet' }) => {
+// label: texto del centro (por defecto, el %). Si el % es la incógnita, se pasa
+// otro texto para que la ayuda no revele la respuesta.
+const PieChart = ({ pct, tone = 'violet', label, ariaLabel }) => {
   const safe = clamp(pct, 0, 100);
   const angle = (safe / 100) * 360;
   const r = 50;
@@ -167,7 +169,7 @@ const PieChart = ({ pct, tone = 'violet' }) => {
       ? ''
       : `M ${cx} ${cy} L ${cx} ${cy - r} A ${r} ${r} 0 ${largeArc} 1 ${x} ${y} Z`;
   return (
-    <svg viewBox="0 0 120 124" className="pct-pie" role="img" aria-label={`${formatNumber(safe)} %`}>
+    <svg viewBox="0 0 120 124" className="pct-pie" role="img" aria-label={ariaLabel ?? `${formatNumber(safe)} %`}>
       <defs>
         <Material id={`pct-pie-${tone}`} tone={tone} />
         <radialGradient id="pct-pie-gloss" cx="0.32" cy="0.22" r="0.7">
@@ -182,7 +184,7 @@ const PieChart = ({ pct, tone = 'violet' }) => {
       <circle cx={cx} cy={cy} r={r} fill="url(#pct-pie-gloss)" />
       <circle cx={cx} cy={cy} r="25" className="pct-svg-hole" />
       <text x={cx} y={cy + 6} textAnchor="middle" className="pct-svg-big">
-        {formatNumber(safe)}%
+        {label ?? `${formatNumber(safe)}%`}
       </text>
     </svg>
   );
@@ -418,7 +420,8 @@ const ProblemHelper = ({ problem }) => {
       const pct = (X / V) * 100;
       return wrapper(
         <div className="pct-vis">
-          <PieChart pct={pct} tone="violet" />
+          {/* El % es la incógnita: la tarta guía (parte sobre total) sin decir el número */}
+          <PieChart pct={pct} tone="violet" label="?%" ariaLabel={`${formatNumber(X)} de ${V}`} />
           <p className="pct-vis__caption">{formatNumber(X)} es esa porción de {V}</p>
         </div>,
         <FormulaBox>

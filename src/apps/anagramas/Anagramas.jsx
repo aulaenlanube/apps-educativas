@@ -68,6 +68,10 @@ const MODE_CONFIG = {
   },
 };
 
+// Segundos reales desde el inicio de la partida (para durationSeconds).
+const playDurationSeconds = (startedAt) =>
+  (startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : undefined);
+
 const normalize = (s) =>
   String(s || '')
     .toUpperCase()
@@ -151,6 +155,8 @@ const Anagramas = ({ onGameComplete }) => {
   const timerRef = useRef(null);
   const trackedRef = useRef(false);
   const autoCheckRef = useRef(null);
+  // Inicio de la partida (para durationSeconds real, también si se abandona).
+  const playStartRef = useRef(0);
 
   // Instrucciones
   const [showHelp, setShowHelp] = useState(false);
@@ -253,6 +259,7 @@ const Anagramas = ({ onGameComplete }) => {
     setRevealedFirst(false);
     setLastGain(null);
     trackedRef.current = false;
+    playStartRef.current = Date.now();
     if (cfg.timer) setTimeLeft(cfg.timer);
   }, [allWords, gameMode, buildTiles]);
 
@@ -488,10 +495,44 @@ const Anagramas = ({ onGameComplete }) => {
       maxScore: questions.length * 450,
       correctAnswers: correctCount,
       totalQuestions: questions.length || 1,
-      durationSeconds: cfg.timer ? (cfg.timer * questions.length - timeLeft) : 0,
+      durationSeconds: playDurationSeconds(playStartRef.current),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps originales (no tocar tracking)
   }, [status, score, correctCount, questions.length, gameMode, onGameComplete]);
+
+  // --- Examen abandonado a medias (desmontaje: botón Volver, cambio de ruta) ---
+  // Si el alumno sale del examen con al menos una palabra resuelta o fallada, se
+  // registra UNA vez la nota parcial = aciertos / 10 · 10: totalQuestions es el
+  // total del examen, así que las palabras sin responder cuentan como fallo.
+  // Comparte el flag trackedRef con el final normal: nunca se envía dos veces.
+  const liveRef = useRef(null);
+  useEffect(() => {
+    liveRef.current = { gameMode, status, score, correctCount, currentIndex, total: questions.length };
+  });
+  const onGameCompleteRef = useRef(onGameComplete);
+  useEffect(() => { onGameCompleteRef.current = onGameComplete; }, [onGameComplete]);
+  useEffect(() => {
+    const tracked = trackedRef;
+    const live = liveRef;
+    const report = onGameCompleteRef;
+    const started = playStartRef;
+    return () => {
+      const g = live.current;
+      if (!g || tracked.current || g.gameMode !== 'exam') return;
+      if (g.status !== 'playing' && g.status !== 'correct' && g.status !== 'wrong') return;
+      const answered = g.currentIndex + (g.status === 'playing' ? 0 : 1);
+      if (answered < 1) return;
+      tracked.current = true;
+      report.current?.({
+        mode: 'test',
+        score: g.score,
+        maxScore: g.total * 450,
+        correctAnswers: g.correctCount,
+        totalQuestions: g.total || 1,
+        durationSeconds: playDurationSeconds(started.current),
+      });
+    };
+  }, []);
 
   // --- Resultado de cada palabra (solo presentación: puntos de progreso y repaso) ---
   const [roundResults, setRoundResults] = useState([]);

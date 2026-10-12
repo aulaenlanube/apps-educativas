@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { getCourseBackground } from '@/services/courseBackgrounds';
 import { isWebGLAvailable } from '@/services/graphicsQuality';
+import useBackgroundScene from '@/hooks/useBackgroundScene';
 import WebGLBoundary from '@/components/ui/WebGLBoundary';
 import Scene3DFallbackBackground from '@/components/ui/Scene3DFallbackBackground';
 
@@ -27,28 +28,47 @@ import Scene3DFallbackBackground from '@/components/ui/Scene3DFallbackBackground
 //
 // Props opcionales ambienceId/scrim: si se pasan, tienen prioridad sobre la
 // config del curso (override puntual, p. ej. por app).
+//
+// ENTORNO (preferencia del usuario, src/services/backgroundScene.js):
+//   'ciudad'     → CityBackground (metrópolis futurista) — por defecto
+//   'naturaleza' → Scene3DBackground (isla low-poly; ambienceId solo aplica aquí)
+// Se cambia en vivo desde el menú de usuario, la barra lateral móvil o el pie.
+// Cada entorno es su propio chunk lazy: quien usa uno no descarga el otro.
 const Scene3DBackground = React.lazy(() => import('@/components/ui/Scene3DBackground'));
+const CityBackground = React.lazy(() => import('@/components/ui/city/CityBackground'));
 
 export default function CourseBackground({ level, grade, ambienceId, scrim, className, style }) {
+  const { scene } = useBackgroundScene();
   const cfg = getCourseBackground(level, grade);
   if (!cfg || cfg.kind === 'none') return null;
 
   switch (cfg.kind) {
     case 'scene3d':
     default: {
+      const isCity = scene === 'ciudad';
+      const veil = scrim ?? (isCity ? cfg.cityScrim ?? cfg.scrim : cfg.scrim);
       const flat = (
-        <Scene3DFallbackBackground scrim={scrim ?? cfg.scrim} className={className} style={style} />
+        <Scene3DFallbackBackground
+          variant={isCity ? 'ciudad' : 'naturaleza'}
+          scrim={veil}
+          className={className}
+          style={style}
+        />
       );
       if (!isWebGLAvailable()) return flat;
       return (
-        <WebGLBoundary fallback={flat}>
-          <Suspense fallback={null}>
-            <Scene3DBackground
-              ambienceId={ambienceId ?? cfg.ambienceId}
-              scrim={scrim ?? cfg.scrim}
-              className={className}
-              style={style}
-            />
+        <WebGLBoundary key={scene} fallback={flat}>
+          <Suspense fallback={isCity ? flat : null}>
+            {isCity ? (
+              <CityBackground scrim={veil} className={className} style={style} />
+            ) : (
+              <Scene3DBackground
+                ambienceId={ambienceId ?? cfg.ambienceId}
+                scrim={veil}
+                className={className}
+                style={style}
+              />
+            )}
           </Suspense>
         </WebGLBoundary>
       );

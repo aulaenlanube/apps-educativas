@@ -1,0 +1,43 @@
+/* Variante 'ciudad' del fondo plano sin WebGL (Scene3DFallbackBackground.jsx).
+   Tema claro: atardecer futurista (índigo → violeta → rosa). Tema oscuro:
+   noche de neón. Solo colores: sin filtros, sin animación. */
+
+.cfb {
+  background: linear-gradient(180deg, #2b3db9 0%, #6a5ad8 34%, #c87fd6 52%, #ff9fbf 64%, #3c2c66 80%, #1d1636 100%);
+  --cfb-far: #8f78c9;
+  --cfb-mid: #4b3c8a;
+  --cfb-near: #221a45;
+  --cfb-win: rgba(255, 226, 190, 0.32);
+  --cfb-planet: rgba(250, 240, 255, 0.55);
+  --cfb-ring: rgba(255, 236, 248, 0.5);
+  --cfb-haze-a: rgba(255, 170, 205, 0);
+  --cfb-haze-b: rgba(255, 170, 205, 0.45);
+  --cfb-canal: #67e8f9;
+}
+html.dark .cfb {
+  background: linear-gradient(180deg, #02030c 0%, #0d0828 36%, #2a0f4d 52%, #6a1f7a 63%, #120a2c 78%, #05040f 100%);
+  --cfb-far: #2a1450;
+  --cfb-mid: #140c30;
+  --cfb-near: #07051a;
+  --cfb-win: rgba(255, 200, 130, 0.55);
+  --cfb-planet: rgba(124, 84, 236, 0.9);
+  --cfb-ring: rgba(240, 140, 220, 0.6);
+  --cfb-haze-a: rgba(160, 50, 170, 0);
+  --cfb-haze-b: rgba(160, 50, 170, 0.5);
+  --cfb-canal: #22d3ee;
+}
+
+.cfb-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cfb-planet-disc { fill: var(--cfb-planet); }
+.cfb-planet-ring { fill: none; stroke: var(--cfb-ring); stroke-width: 7; }
+.cfb-far { fill: var(--cfb-far); }
+.cfb-mid { fill: var(--cfb-mid); }
+.cfb-near { fill: var(--cfb-near); }
+.cfb-win { fill: var(--cfb-win); }
+.cfb-mid-win { opacity: 0.7; }
+.cfb-near-win { opacity: 0.45; }
+.cfb-haze-a { stop-color: var(--cfb-haze-a); }
+.cfb-haze-b { stop-color: var(--cfb-haze-b); }
+.cfb-canal { fill: var(--cfb-canal); opacity: 0.85; }
+.cfb-neon { opacity: 0.9; }
+html:not(.dark) .cfb-neon { opacity: 0.55; }

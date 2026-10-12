@@ -6,18 +6,22 @@ import {
   X, Bell, CheckCheck, MessageSquare, Zap, LogOut, Copy,
   LayoutDashboard, UserCircle, BarChart3, Rocket, Trophy,
   GraduationCap, Sun, Moon, Shield, ChevronRight, CheckCircle2, BookOpen,
+  Building2, Trees,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/lib/supabase';
+import useBackgroundScene from '@/hooks/useBackgroundScene';
+import { BG_SCENES } from '@/services/backgroundScene';
 
 export default function MobileSidebar({ open, onClose }) {
   const navigate = useNavigate();
   const { displayName, role, teacher, freeUser, student, signOut, isAdmin, user } = useAuth();
   const { level, totalXp, xpForCurrentLevel, xpForNextLevel, totalEarned } = useGamification();
   const { theme, toggleTheme } = useTheme();
+  const { scene, setScene } = useBackgroundScene();
   const { toast } = useToast();
 
   const [notifications, setNotifications] = useState([]);
@@ -224,6 +228,31 @@ export default function MobileSidebar({ open, onClose }) {
                   label={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
                   onClick={toggleTheme}
                 />
+
+                {/* Entorno del fondo 3D: ciudad futurista (por defecto) o naturaleza */}
+                <div className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">
+                  {scene === 'ciudad'
+                    ? <Building2 className="w-5 h-5 text-slate-500 dark:text-slate-400" />
+                    : <Trees className="w-5 h-5 text-slate-500 dark:text-slate-400" />}
+                  <span className="flex-1 text-left">Fondo</span>
+                  <div className="inline-flex rounded-full bg-slate-100 dark:bg-slate-800 p-0.5" role="group" aria-label="Fondo de la plataforma">
+                    {BG_SCENES.map((s) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        aria-pressed={scene === s.id}
+                        onClick={() => setScene(s.id)}
+                        className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${
+                          scene === s.id
+                            ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white shadow-sm'
+                            : 'text-slate-500 dark:text-slate-300'
+                        }`}
+                      >
+                        {s.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Notifications */}

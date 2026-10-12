@@ -464,6 +464,20 @@ const Hotspot = ({ position, title, desc, onClick, isVisited, isActive }) => {
 };
 
 // --- COMPONENTE ANILLOS MEJORADO ---
+// Material con textura del anillo: el hook useTexture vive en su propio
+// componente (antes se llamaba dentro de un condicional del JSX de PlanetRing).
+const RingTextureMaterial = ({ textureUrl }) => {
+    const texture = useTexture(textureUrl);
+    return (
+        <meshStandardMaterial
+            map={texture}
+            side={THREE.DoubleSide}
+            transparent
+            opacity={0.9}
+        />
+    );
+};
+
 const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
     const finalInner = innerRadius || size * 1.4;
     const finalOuter = outerRadius || size * 2.2;
@@ -492,12 +506,7 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
             {textureUrl ? (
                 <TextureErrorBoundary fallback={<meshStandardMaterial color="#C0C0C0" side={THREE.DoubleSide} transparent opacity={0.6} />}>
                     <React.Suspense fallback={<meshStandardMaterial color="#C0C0C0" side={THREE.DoubleSide} transparent opacity={0.6} />}>
-                        <meshStandardMaterial
-                            map={useTexture(textureUrl)}
-                            side={THREE.DoubleSide}
-                            transparent
-                            opacity={0.9}
-                        />
+                        <RingTextureMaterial textureUrl={textureUrl} />
                     </React.Suspense>
                 </TextureErrorBoundary>
             ) : (
@@ -514,8 +523,7 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
 
 // --- ORBIT GLOW RING ---
 const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, color = '#4f6bff' }) => {
-    if (distance <= 0 || !visible) return null;
-    const halfThickness = thickness / 2;
+    // Hooks antes de cualquier return (reglas de los hooks)
     const glowRef = useRef();
 
     useFrame(({ clock }) => {
@@ -523,6 +531,9 @@ const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, co
             glowRef.current.material.opacity = opacity * (0.7 + Math.sin(clock.getElapsedTime() * 0.3 + distance) * 0.3);
         }
     });
+
+    if (distance <= 0 || !visible) return null;
+    const halfThickness = thickness / 2;
 
     return (
         <group>
@@ -615,9 +626,17 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                         ))}
                     </div>
                     <span className={`ss-hud__msg ${remaining > 0 ? '' : 'is-done'}`}>
-                        {remaining > 0 ? `${remaining} puntos de interés por descubrir` : '¡Base de datos completa!'}
+                        {remaining > 0 ? `${remaining} puntos de interés por descubrir` : '¡Base de datos completa! Ponte a prueba'}
                     </span>
                 </div>
+            </div>
+
+            {/* Desafío: la actividad con nota (cuenta para las tareas) */}
+            <div className="ss-challenge">
+                <GameButton variant="warning" icon={Puzzle} onClick={onLaunchActivity} className="ss-challenge__cta">
+                    Desafío de planetas
+                </GameButton>
+                <span className="ss-challenge__note">Nota /10 · cuenta para tus tareas</span>
             </div>
 
             {isOpen && (
@@ -625,9 +644,6 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
                     <div className="ss-sec">
                         <h4 className="ss-sec__title"><Compass size={14} /> Navegación</h4>
                         <p className="ss-sec__text">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
-                        <GameButton variant="warning" icon={Puzzle} onClick={onLaunchActivity} className="ss-sec__cta">
-                            Desafío de planetas
-                        </GameButton>
                     </div>
 
                     <div className="ss-sec">
@@ -1032,10 +1048,6 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
     const vec3_2 = useRef(new THREE.Vector3());
     const vec3_3 = useRef(new THREE.Vector3());
 
-    const rotationTimer = useRef(0);
-    const lastInteractionTime = useRef(0);
-    const lastDist = useRef(null);
-
     const isUserInteractingRef = useRef(false);
     const interactionTimeoutRef = useRef(null);
     const eventsInit = useRef(false);
@@ -1279,13 +1291,15 @@ const PlanetNavBar = ({ planets, selectedPlanet, onSelect }) => {
 };
 
 // --- COMPONENTE PRINCIPAL ---
-const SistemaSolar = ({ level, grade }) => {
+const SistemaSolar = ({ level, grade, onGameComplete }) => {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [activeHotspots, setActiveHotspots] = useState({});
     const [lastClickedHotspot, setLastClickedHotspot] = useState(null);
     const [introVisible, setIntroVisible] = useState(true);
     const [activeVideo, setActiveVideo] = useState(null);
     const [showActivity, setShowActivity] = useState(false);
+    // Cada desafío es un montaje nuevo de SolarSystemActivity (key) → un registro nuevo
+    const [activityRun, setActivityRun] = useState(0);
     const [showHelp, setShowHelp] = useState(false);
 
     const [visitedHotspots, setVisitedHotspots] = useState(() => {
@@ -1338,6 +1352,11 @@ const SistemaSolar = ({ level, grade }) => {
         orbitOpacity: 0.15,
         orbitThickness: 0.05
     });
+
+    // Desafío terminado → registro de la partida (single_mode: cuenta para la tarea)
+    const handleDesafioComplete = useCallback((payload) => {
+        onGameComplete?.(payload);
+    }, [onGameComplete]);
 
     const handleVideoClick = useCallback((videoData) => {
         setActiveVideo(videoData);
@@ -1438,7 +1457,14 @@ const SistemaSolar = ({ level, grade }) => {
                 onHelp={() => setShowHelp(true)}
             />
 
-            {showActivity && <SolarSystemActivity onClose={() => setShowActivity(false)} />}
+            {showActivity && (
+                <SolarSystemActivity
+                    key={activityRun}
+                    onClose={() => setShowActivity(false)}
+                    onComplete={handleDesafioComplete}
+                    onRestart={() => setActivityRun((n) => n + 1)}
+                />
+            )}
 
             {/* Escena 3D en su propio contexto de apilado: las etiquetas <Html> de drei
                 no pueden pintarse por encima de los paneles de la interfaz */}
@@ -1549,8 +1575,13 @@ const SistemaSolar = ({ level, grade }) => {
                 </ul>
                 <h3>🧭 Centro de control</h3>
                 <p>
-                    Arriba a la derecha verás cuánto has explorado. Despliégalo para ajustar la simulación o lanzar el
-                    <strong> Desafío de planetas</strong>: ordénalos por distancia al Sol y relaciona cada uno con su característica.
+                    Arriba a la derecha verás cuánto has explorado. Despliégalo para ajustar la simulación.
+                </p>
+                <h3>🏆 Desafío de planetas</h3>
+                <p>
+                    Cuando hayas explorado, pulsa <strong>Desafío de planetas</strong>: ordena los planetas por distancia al Sol
+                    y relaciona cada uno con su característica. Tu <strong>nota sobre 10</strong> sale de lo que aciertes
+                    a la primera, y cada desafío terminado cuenta para tus tareas (además de puntos por rapidez).
                 </p>
             </InstructionsModal>
 

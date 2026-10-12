@@ -47,7 +47,8 @@ variables `--gk-ink`, `--gk-ink-2`, `--gk-ink-3`, `--gk-line`, `--gk-surface`, `
    de teclado (`if (!gameMode) return;`). Los valores de modo y lo que se envía a
    `onGameComplete` no cambian. En examen no ofrezcas "cambiar de modo" a mitad.
    Apps sin modos (CLAUDE.md: Isla de la Calma, Banco de Recursos, Generador de
-   Personajes, Laboratorio de Robótica; `single_mode`) no llevan ModeSelect.
+   Personajes; `single_mode`) no llevan ModeSelect. Las `single_mode` llaman a
+   `onGameComplete` con `nota` al terminar la actividad.
 3. **Usa el kit** para el armazón (escenario, cabecera, marcador, modos, avisos,
    resultados, botones, teclas, opciones) y **rediseña a fondo lo propio de cada
    juego** (tableros, fichas, cartas, ilustraciones, animaciones de acierto/fallo):

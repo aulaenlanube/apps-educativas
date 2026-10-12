@@ -1,9 +1,12 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ListOrdered, Link2, Trophy, Check, Sun, CheckCheck } from 'lucide-react';
-import { GameButton } from '../_shared/kit';
+import { X, ChevronLeft, ChevronRight, ListOrdered, Link2, Trophy, Check, Sun, CheckCheck, Clock, RefreshCw, Orbit } from 'lucide-react';
+import { GameButton, ResultsScreen, FeedbackItem } from '../_shared/kit';
 import { solarSystemData } from './model/solarSystemData';
+import { aciertosOrden, resultadoDesafio } from './desafioScoring';
 import './SolarSystemActivity.css';
+
+const fmtTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
 // Planeta dibujado con CSS (esfera con luz, bandas o anillos según el cuerpo).
 // Lo comparten el desafío y la interfaz del simulador (barra inferior, ficha).
@@ -19,13 +22,24 @@ const PHASES = [
     { n: 3, label: '¡Misión!', Icon: Trophy },
 ];
 
-const SolarSystemActivity = ({ onClose }) => {
+// Fin de la actividad = las dos fases resueltas. Se registra UNA vez por desafío
+// (onComplete → onGameComplete; single_mode: cuenta para la tarea) con la nota de
+// lo acertado a la primera (ver desafioScoring.js). "Repetir desafío" vuelve a
+// montar el componente (key en SistemaSolar): desafío nuevo = registro nuevo.
+const SolarSystemActivity = ({ onClose, onComplete, onRestart }) => {
     const [phase, setPhase] = useState(1); // 1: Ordering, 2: Matching, 3: Success
     const [orderedPlanets, setOrderedPlanets] = useState([]);
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [selectedConcept, setSelectedConcept] = useState(null);
     const [matches, setMatches] = useState({});
     const [isWrong, setIsWrong] = useState(false);
+    const [summary, setSummary] = useState(null);
+
+    // Puntuación: lo que se hace a la primera
+    const startedAtRef = useRef(Date.now());
+    const firstOrderRef = useRef(null);         // ids en la 1ª comprobación del orden
+    const failedMatchRef = useRef(new Set());   // planetas con algún emparejamiento fallido
+    const completedRef = useRef(false);
 
     // Filter planets (exclude sun for ordering if needed, but user said "order planets", usually 8)
     const planetsOnly = useMemo(() => solarSystemData.filter(p => p.type === 'planet'), []);
@@ -69,6 +83,7 @@ const SolarSystemActivity = ({ onClose }) => {
     const checkOrder = () => {
         const currentIds = orderedPlanets.map(p => p.id);
         const isCorrect = JSON.stringify(currentIds) === JSON.stringify(correctOrderIds);
+        if (firstOrderRef.current === null) firstOrderRef.current = currentIds;
 
         if (isCorrect) {
             setPhase(2);
@@ -86,6 +101,7 @@ const SolarSystemActivity = ({ onClose }) => {
                 setSelectedPlanet(null);
                 setSelectedConcept(null);
             } else {
+                failedMatchRef.current.add(selectedPlanet);
                 setIsWrong(true);
                 setTimeout(() => {
                     setIsWrong(false);
@@ -99,8 +115,32 @@ const SolarSystemActivity = ({ onClose }) => {
     useEffect(() => {
         if (Object.keys(matches).length === planetsOnly.length && planetsOnly.length > 0) {
             setPhase(3);
+            if (completedRef.current) return;
+            completedRef.current = true;
+            const durationSeconds = Math.max(1, Math.round((Date.now() - startedAtRef.current) / 1000));
+            const firstOrder = firstOrderRef.current || [];
+            const orderHits = aciertosOrden(firstOrder, correctOrderIds);
+            const matchHits = planetsOnly.filter(p => !failedMatchRef.current.has(p.id)).length;
+            const r = resultadoDesafio({ orderHits, matchHits, planets: planetsOnly.length, durationSeconds });
+            setSummary({
+                ...r,
+                orderHits,
+                matchHits,
+                durationSeconds,
+                orderOk: new Set(correctOrderIds.filter((id, i) => firstOrder[i] === id)),
+                matchFailed: new Set(failedMatchRef.current),
+            });
+            onComplete?.({
+                mode: 'practice',
+                score: r.points,
+                maxScore: r.maxScore,
+                correctAnswers: r.correct,
+                totalQuestions: r.total,
+                durationSeconds,
+                nota: r.nota,
+            });
         }
-    }, [matches, planetsOnly]);
+    }, [matches, planetsOnly, correctOrderIds, onComplete]);
 
     return (
         <div className="ssa-overlay">
@@ -180,7 +220,7 @@ const SolarSystemActivity = ({ onClose }) => {
                                         key={planet.id}
                                         className={`ssa-planet ${selectedPlanet === planet.id ? 'is-selected' : ''} ${matches[planet.id] ? 'is-matched' : ''}`}
                                         style={{ '--pc': planet.color }}
-                                        onClick={() => !matches[planet.id] && setSelectedPlanet(planet.id)}
+                                        onClick={() => !isWrong && !matches[planet.id] && setSelectedPlanet(planet.id)}
                                     >
                                         <PlanetOrb id={planet.id} color={planet.color} size={30} />
                                         <span>{planet.name}</span>
@@ -195,7 +235,7 @@ const SolarSystemActivity = ({ onClose }) => {
                                         type="button"
                                         key={concept.id}
                                         className={`gk-answer ssa-concept ${selectedConcept === concept.id ? 'is-selected' : ''} ${matches[concept.id] ? 'is-correct' : ''}`}
-                                        onClick={() => !matches[concept.id] && setSelectedConcept(concept.id)}
+                                        onClick={() => !isWrong && !matches[concept.id] && setSelectedConcept(concept.id)}
                                     >
                                         <span className="gk-answer__text">
                                             <strong>{concept.title}</strong>
@@ -208,80 +248,60 @@ const SolarSystemActivity = ({ onClose }) => {
                         </div>
                     )}
 
-                    {phase === 3 && (
-                        <div className="ssa-success">
-                            <div className="ssa-trophy" aria-hidden="true">
-                                <span className="ssa-rays" />
-                                <span className="ssa-orbit" />
-                                <span className="ssa-sparks">
-                                    {Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--ssa-n': i }} />)}
-                                </span>
-                                <TrophyArt />
-                            </div>
-                            <h3 className="ssa-success__title">¡Excelente astrónomo!</h3>
-                            <p className="ssa-success__desc">
-                                Has demostrado un conocimiento profundo del Sistema Solar.
-                                Todos los planetas están en su lugar y sus secretos han sido revelados.
-                            </p>
-                            <div className="ssa-success__planets">
-                                {planetsOnly.map((p) => <PlanetOrb key={p.id} id={p.id} color={p.color} size={26} />)}
-                            </div>
-                        </div>
+                    {phase === 3 && summary && (
+                        <ResultsScreen
+                            title="¡Desafío completado!"
+                            subtitle="Cuenta lo que aciertas a la primera"
+                            nota={summary.nota}
+                            points={summary.points}
+                            stats={[
+                                { icon: ListOrdered, tone: 'good', label: 'Orden a la primera', value: `${summary.orderHits}/${planetsOnly.length}` },
+                                { icon: Link2, tone: 'good', label: 'Parejas a la primera', value: `${summary.matchHits}/${planetsOnly.length}` },
+                                { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(summary.durationSeconds) },
+                            ]}
+                            actions={[
+                                { label: 'Repetir desafío', onClick: onRestart, icon: RefreshCw },
+                                { label: 'Volver al simulador', onClick: onClose, icon: Orbit, variant: 'soft' },
+                            ]}
+                        >
+                            {planetsOnly.map((planet, i) => {
+                                const orderOk = summary.orderOk.has(planet.id);
+                                const matchOk = !summary.matchFailed.has(planet.id);
+                                const concept = concepts.find(c => c.id === planet.id);
+                                return (
+                                    <FeedbackItem key={planet.id} index={i + 1} ok={orderOk && matchOk} title={planet.name}>
+                                        Orden: {orderOk ? 'en su sitio' : `iba en la posición ${i + 1}`} · Característica:{' '}
+                                        <strong>{concept?.title}</strong> {matchOk ? '(a la primera)' : '(tras fallar)'}
+                                    </FeedbackItem>
+                                );
+                            })}
+                        </ResultsScreen>
                     )}
                 </div>
 
-                <div className="ssa-foot">
-                    <AnimatePresence>
-                        {isWrong && (
-                            <motion.span
-                                className="ssa-wrong"
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <X size={15} strokeWidth={3} /> {phase === 1 ? 'Aún no es el orden correcto' : 'Esa pareja no coincide'}
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                    {phase < 3 && (
+                {phase < 3 && (
+                    <div className="ssa-foot">
+                        <AnimatePresence>
+                            {isWrong && (
+                                <motion.span
+                                    className="ssa-wrong"
+                                    initial={{ opacity: 0, y: 6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                    <X size={15} strokeWidth={3} /> {phase === 1 ? 'Aún no es el orden correcto' : 'Esa pareja no coincide'}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
                         <GameButton variant="soft" onClick={onClose}>Cancelar</GameButton>
-                    )}
-                    {phase === 1 && (
-                        <GameButton variant="primary" icon={CheckCheck} onClick={checkOrder}>Verificar orden</GameButton>
-                    )}
-                    {phase === 3 && (
-                        <GameButton variant="success" size="lg" onClick={onClose}>Volver al simulador</GameButton>
-                    )}
-                </div>
+                        {phase === 1 && (
+                            <GameButton variant="primary" icon={CheckCheck} onClick={checkOrder}>Verificar orden</GameButton>
+                        )}
+                    </div>
+                )}
             </motion.div>
         </div>
     );
 };
-
-// Trofeo con volumen (sin filtros SVG)
-const TrophyArt = () => (
-    <svg className="ssa-trophy__art" viewBox="0 0 100 100" aria-hidden="true">
-        <defs>
-            <linearGradient id="ssa-gold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#fef3c7" />
-                <stop offset=".45" stopColor="#fbbf24" />
-                <stop offset="1" stopColor="#b45309" />
-            </linearGradient>
-            <linearGradient id="ssa-base" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#6366f1" />
-                <stop offset="1" stopColor="#312e81" />
-            </linearGradient>
-        </defs>
-        <ellipse cx="50" cy="92" rx="26" ry="4" fill="#020617" opacity=".45" />
-        <path d="M30 18 h40 v14 c0 14 -9 24 -20 24 s-20 -10 -20 -24 z" fill="url(#ssa-gold)" />
-        <path d="M30 24 h-8 c0 10 5 16 12 18 M70 24 h8 c0 10 -5 16 -12 18" fill="none" stroke="#f59e0b" strokeWidth="4" strokeLinecap="round" />
-        <rect x="45" y="55" width="10" height="14" rx="3" fill="#d97706" />
-        <rect x="34" y="68" width="32" height="8" rx="4" fill="url(#ssa-gold)" />
-        <rect x="28" y="76" width="44" height="13" rx="4" fill="url(#ssa-base)" />
-        <rect x="31" y="78" width="38" height="3" rx="1.5" fill="#fff" opacity=".25" />
-        <path d="M36 22 v10 c0 6 3 11 7 14" fill="none" stroke="#fff" strokeOpacity=".6" strokeWidth="3" strokeLinecap="round" />
-        <path d="M50 28 l3 6 l6.5 1 l-4.7 4.6 l1.1 6.4 l-5.9 -3.1 l-5.9 3.1 l1.1 -6.4 l-4.7 -4.6 l6.5 -1 z" fill="#fff" opacity=".9" />
-    </svg>
-);
 
 export default SolarSystemActivity;

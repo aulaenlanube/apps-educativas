@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Eye, BookOpen, CheckCircle2, ArrowRight, ArrowLeft, Clock, FileSearch, RotateCcw, ZoomIn, ZoomOut,
-  Maximize2, Minimize2, Target, ListChecks, GraduationCap, Image as ImageIcon,
+  Maximize2, Minimize2, Target, ListChecks, GraduationCap, Image as ImageIcon, Zap, Sparkles,
 } from 'lucide-react';
 import InstructionsModal from '../_shared/InstructionsModal';
 import {
@@ -13,6 +13,7 @@ import {
   ResultsScreen, FeedbackItem, GameEmpty,
 } from '../_shared/kit';
 import { getInfografiasFor } from './data/infografiasData';
+import { calcularPuntosInfografia } from './infografiasScoring';
 import './InfografiasInteractivas.css';
 
 const SHELL = { accent: '#8b5cf6', accent2: '#f472b6' };
@@ -183,6 +184,8 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
     const durationSeconds = testStartedAt
       ? Math.max(1, Math.round((Date.now() - testStartedAt) / 1000))
       : 0;
+    // Puntos paralelos (CLAUDE.md §3.2): no cambian la nota.
+    const points = calcularPuntosInfografia({ correct, total, durationSeconds });
 
     setResults({
       questionsCorrect,
@@ -191,6 +194,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
       nota,
       quizResults,
       durationSeconds,
+      points,
     });
     setPhase(PHASE.SUMMARY);
 
@@ -203,8 +207,8 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
       }
       onGameComplete?.({
         mode: 'test',
-        score: correct,
-        maxScore: total,
+        score: points.total,
+        maxScore: points.maxScore,
         correctAnswers: correct,
         totalQuestions: total,
         durationSeconds,
@@ -220,7 +224,7 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
         <li><strong>Elige una infografía</strong> de tu asignatura.</li>
         <li><strong>Estudia la imagen</strong> todo el tiempo que necesites.</li>
         <li><strong>Responde a las preguntas</strong> sobre los datos de la infografía.</li>
-        <li><strong>Obtén tu nota /10</strong> según los aciertos.</li>
+        <li><strong>Obtén tu nota /10</strong> según los aciertos, y <strong>puntos</strong> extra por responder con soltura y hacer pleno (el tiempo de estudio no cuenta).</li>
       </ol>
       <p><em>Modo único: cada infografía completada cuenta como tarea.</em></p>
     </InstructionsModal>
@@ -469,9 +473,14 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
         <ResultsScreen
           subtitle={`${selectedInfo.icon} ${selectedInfo.title}`}
           nota={results.nota}
+          points={results.points.total}
           stats={[
             { icon: Target, tone: 'good', label: 'Aciertos', value: `${results.correct}/${results.total}` },
             { icon: Clock, tone: 'time', label: 'Tiempo', value: formatTime(results.durationSeconds) },
+            { icon: Zap, tone: 'streak', label: 'Bonus rapidez', value: `+${results.points.speedBonus}` },
+            ...(results.points.perfectBonus > 0
+              ? [{ icon: Sparkles, tone: 'score', label: 'Pleno', value: `+${results.points.perfectBonus}` }]
+              : []),
           ]}
           actions={[
             { label: 'Repetir esta infografía', onClick: () => startInfografia(selectedInfo), icon: RotateCcw },

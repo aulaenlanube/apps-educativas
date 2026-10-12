@@ -7,6 +7,7 @@ import MascotLogo from '../ui/MascotLogo';
 import OposicionesIAPromo from '../ads/OposicionesIAPromo';
 import '@/pages/NavPages.css';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
+import BackgroundSceneSelector from '@/components/ui/BackgroundSceneSelector';
 
 // Redes sociales: cada una con su color de glow al hover (--np-social).
 const SOCIALS = [
@@ -87,9 +88,12 @@ const Footer = () => {
                     </nav>
                     {/* Calidad gráfica de este dispositivo: también gobierna los efectos
                         de la interfaz (fondo 3D, cristal, animaciones). Útil en equipos
-                        modestos para forzar "Bajo". */}
-                    <div className="flex justify-center">
+                        modestos para forzar "Bajo". Al lado, el entorno del fondo 3D
+                        (ciudad futurista o naturaleza): así también lo puede cambiar
+                        quien no tiene cuenta (con sesión está además en el menú). */}
+                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
                         <GraphicsQualitySelector className="gfxsel-on-dark np-footer-gfx" />
+                        <BackgroundSceneSelector className="gfxsel-on-dark np-footer-gfx" />
                     </div>
                     <p className="text-indigo-100/60">
                         Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.

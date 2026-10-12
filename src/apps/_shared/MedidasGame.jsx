@@ -527,6 +527,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
     const [showHelper, setShowHelper] = useState(false);
     const [showInstructions, setShowInstructions] = useState(false);
     const questionStartRef = useRef(null);
+    const testStartRef = useRef(null); // inicio del examen (para durationSeconds)
     // Marcador de práctica (solo presentación).
     const [practiceHits, setPracticeHits] = useState(0);
     const [practiceStreak, setPracticeStreak] = useState(0);
@@ -595,6 +596,7 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
         setShowHelper(false);
         setFeedback({ text: '', type: '' });
         questionStartRef.current = Date.now();
+        testStartRef.current = Date.now();
     }, [generateProblem, gameMode, level, measureType, orderCount]);
 
     // --- Efecto Confetti al terminar Test con éxito ---
@@ -732,6 +734,9 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
             questionStartRef.current = Date.now();
         } else {
             nextStats.finished = true;
+            nextStats.durationSeconds = testStartRef.current
+                ? Math.max(1, Math.round((Date.now() - testStartRef.current) / 1000))
+                : undefined;
             setTestStats(nextStats);
         }
     };
@@ -749,10 +754,11 @@ const MedidasGame = ({ level: levelProp, title, onGameComplete, forcedType, forc
                 maxScore: maxPoints,
                 correctAnswers: testStats.score,
                 totalQuestions: TOTAL_TEST_QUESTIONS,
+                durationSeconds: testStats.durationSeconds,
             });
         }
         if (!testStats.finished) trackedRef.current = false;
-    }, [isTestMode, testStats.finished, testStats.score, testStats.points, onGameComplete]);
+    }, [isTestMode, testStats.finished, testStats.score, testStats.points, testStats.durationSeconds, onGameComplete]);
 
     // Teclado físico: «<», «=» y «>» eligen signo (solo presentación).
     const locked = !isTestMode && feedback.type === 'feedback-correct';

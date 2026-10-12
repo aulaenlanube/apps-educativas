@@ -155,6 +155,8 @@ const RestasPrimaria1 = ({ onGameComplete } = {}) => {
       title="Resta como en el cole (1º)"
       newLabel="Nueva resta"
       onGameComplete={onGameComplete}
+      // Solución del examen: la resta (por defecto el layout suma los operandos)
+      calculateExpected={(q) => (parseInt(q[0]) - parseInt(q[1])).toString()}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}

@@ -653,7 +653,7 @@ export default function StudentDashboard() {
     .sort((a, b) => (String(b.earned_at || '') > String(a.earned_at || '') ? 1 : -1))
     .slice(0, 6);
 
-  // La RPC real aún no devuelve best_nota / avg_test_nota (ver src/dev/mock/README.md): "—".
+  // Sin partidas con nota (best_nota / avg_test_nota nulos) se muestra "—".
   const bestNotaOk = isShowableNota(stats.best_nota);
   const avgNotaOk = isShowableNota(stats.avg_test_nota);
 

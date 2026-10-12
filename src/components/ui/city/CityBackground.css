@@ -1,0 +1,33 @@
+/* Fondo "ciudad futurista" (CityBackground.jsx).
+   El degradado del contenedor es el cielo que se ve mientras el canvas WebGL
+   arranca: el 3D entra con un fundido encima, sin destello del fondo claro
+   del body. El velo (scrim) asegura la legibilidad del texto blanco de las
+   páginas que van encima, en ambos temas. Sin backdrop-filter ni filtros. */
+
+.city-bg {
+  background: linear-gradient(180deg, #2b3db9 0%, #7563e2 40%, #f59ac0 60%, #4b3570 74%, #2a1f45 100%);
+}
+.city-bg--night {
+  background: linear-gradient(180deg, #03040e 0%, #110a31 42%, #571c6c 60%, #120a2a 74%, #06051a 100%);
+}
+
+.city-bg__canvas {
+  position: absolute !important;
+  inset: 0;
+  transition: opacity 0.9s ease;
+}
+
+.city-bg__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 7, 28, calc(var(--city-scrim, 0.3) + 0.16)) 0%,
+    rgba(8, 7, 28, var(--city-scrim, 0.3)) 38%,
+    rgba(8, 7, 28, calc(var(--city-scrim, 0.3) - 0.04)) 62%,
+    rgba(8, 7, 28, calc(var(--city-scrim, 0.3) + 0.18)) 100%
+  );
+  transition: opacity 0.9s ease;
+}
+.city-bg--night .city-bg__scrim { opacity: 0.86; }

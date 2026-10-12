@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass, Crosshair, Puzzle, HelpCircle, ZoomOut, X, Activity, Box, Lightbulb,
   Microscope, Target, Check, Leaf, Zap, Flame, RefreshCw, ArrowLeft, CheckCheck,
-  MousePointerClick, Undo2, Trophy,
+  MousePointerClick, Undo2, Trophy, Clock,
 } from 'lucide-react';
 import AppIcon, { hasAppIcon } from '@/components/AppIcon';
 import {
@@ -282,13 +282,15 @@ export function CelDock({ items, colors, selectedId, visitedIds, onSelect }) {
 
 /* ───────────────────────── Test: encuentra el orgánulo ───────────────────────── */
 
-export function CelQuest({ target, color }) {
+export function CelQuest({ target, color, index, total }) {
   if (!target) return null;
   return (
     <div className="cel-quest" style={{ '--org': color }}>
       <span className="cel-quest__radar" aria-hidden="true"><Crosshair size={22} /></span>
       <div className="cel-quest__text">
-        <span className="cel-quest__kicker">Encuentra en la célula</span>
+        <span className="cel-quest__kicker">
+          Encuentra en la célula{total ? ` · ${index} de ${total}` : ''}
+        </span>
         <AnimatePresence mode="wait">
           <motion.strong
             key={target.id}
@@ -336,18 +338,67 @@ export function CelToast({ feedback, clickedName }) {
   );
 }
 
+// Capa con panel centrado (Reto y resultados del Test).
+function CelOverlay({ children }) {
+  return (
+    <motion.div className="cel-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+      <motion.div
+        className="cel-panel"
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: 'spring', stiffness: 220, damping: 26 }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const fmtTime = (s) => `${Math.floor(s / 60)}:${String(Math.round(s) % 60).padStart(2, '0')}`;
+
+/* ───────────────────────── Test: resultados ───────────────────────── */
+
+// results: [{ id, name, icon, firstTry, misses }] en el orden en que se pidieron.
+export function CelQuizResults({ nota, points, results, seconds, onReplay, onExit }) {
+  const firstTry = results.filter((r) => r.firstTry).length;
+  return (
+    <CelOverlay>
+      <ResultsScreen
+        title="Test completado"
+        subtitle="Encuentra cada orgánulo en la célula"
+        nota={nota}
+        points={points}
+        stats={[
+          { icon: Target, tone: 'good', label: 'A la primera', value: `${firstTry}/${results.length}` },
+          { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(seconds) },
+        ]}
+        actions={[
+          { label: 'Repetir test', onClick: onReplay, icon: RefreshCw },
+          { label: 'Volver a explorar', onClick: onExit, icon: Compass, variant: 'soft' },
+        ]}
+      >
+        {results.map((r, i) => (
+          <FeedbackItem key={r.id} index={i + 1} ok={r.firstTry} title={`${r.icon} ${r.name}`}>
+            {r.firstTry ? 'Encontrado a la primera' : `Encontrado tras ${r.misses} ${r.misses === 1 ? 'fallo' : 'fallos'}`}
+          </FeedbackItem>
+        ))}
+      </ResultsScreen>
+    </CelOverlay>
+  );
+}
+
 /* ───────────────────────── Reto: relaciona orgánulo y función ───────────────────────── */
 
 const DIFFICULTIES = [
-  { id: '6', tone: 'easy', icon: Leaf, title: 'Fácil', desc: 'Seis orgánulos para relacionar con su función.', features: ['6 parejas', 'Nota sobre 10'] },
-  { id: '9', tone: 'medium', icon: Zap, title: 'Normal', desc: 'Nueve orgánulos: hay que afinar más.', features: ['9 parejas', 'Nota sobre 10'] },
-  { id: '12', tone: 'exam', icon: Flame, title: 'Difícil', desc: 'Todos los orgánulos de la célula.', features: ['12 parejas', 'Nota sobre 10'] },
+  { id: '6', tone: 'easy', icon: Leaf, title: 'Fácil', desc: 'Seis orgánulos para relacionar con su función.', features: ['6 parejas', 'Nota sobre 10', 'Puntos ×1'] },
+  { id: '9', tone: 'medium', icon: Zap, title: 'Normal', desc: 'Nueve orgánulos: hay que afinar más.', features: ['9 parejas', 'Nota sobre 10', 'Puntos ×1,25'] },
+  { id: '12', tone: 'exam', icon: Flame, title: 'Difícil', desc: 'Todos los orgánulos de la célula.', features: ['12 parejas', 'Nota sobre 10', 'Puntos ×1,5'] },
 ];
 const DIFF_LABEL = { 6: 'Fácil', 9: 'Normal', 12: 'Difícil' };
 
 export function CelMatch({
   difficulty, onPickDifficulty, pairs, functions, selected, answers, submitted, grade,
-  lastAssigned, canSubmit, onPickOrg, onPickFunc, onRemove, onSubmit, onReplay, onExit,
+  points, seconds, lastAssigned, canSubmit, onPickOrg, onPickFunc, onRemove, onSubmit, onReplay, onExit,
   colors, onHelp,
 }) {
   const assignedCount = Object.keys(answers).length;
@@ -372,9 +423,11 @@ export function CelMatch({
         title="Reto completado"
         subtitle={`Relaciona orgánulo y función · ${DIFF_LABEL[difficulty] || ''}`}
         nota={grade}
+        points={points}
         stats={[
           { icon: Target, tone: 'good', label: 'Aciertos', value: `${correct}/${pairs.length}` },
           { icon: Puzzle, tone: 'progress', label: 'Orgánulos', value: pairs.length },
+          ...(seconds != null ? [{ icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(seconds) }] : []),
         ]}
         actions={[
           { label: 'Repetir reto', onClick: onReplay, icon: RefreshCw },
@@ -483,18 +536,7 @@ export function CelMatch({
     );
   }
 
-  return (
-    <motion.div className="cel-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
-      <motion.div
-        className="cel-panel"
-        initial={{ opacity: 0, y: 24, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 220, damping: 26 }}
-      >
-        {content}
-      </motion.div>
-    </motion.div>
-  );
+  return <CelOverlay>{content}</CelOverlay>;
 }
 
 /* ───────────────────────── Instrucciones ───────────────────────── */
@@ -517,7 +559,8 @@ export function CelHelpContent({ kind = 'animal' }) {
         </div>
         <div className="instr-mode medium">
           <strong>Test</strong>
-          Te pedimos un orgánulo y tienes que encontrarlo en la célula. Sin etiquetas: ¡a ojo de científico!
+          Te pedimos los 12 orgánulos, uno a uno, y tienes que encontrarlos en la célula. Cada uno que
+          encuentres a la primera es un acierto: al final verás tu nota sobre 10.
         </div>
         <div className="instr-mode exam">
           <strong>Reto</strong>
@@ -525,8 +568,9 @@ export function CelHelpContent({ kind = 'animal' }) {
         </div>
       </div>
       <div className="instr-tips">
-        <strong>💡 Consejo:</strong> explora primero todas las fichas: el contador de arriba te dice
-        cuántos orgánulos llevas descubiertos.
+        <strong>💡 Consejo:</strong> explora primero todas las fichas (el contador de arriba te dice
+        cuántos llevas) y después ponte a prueba. Cada Test o Reto terminado cuenta para tus tareas y
+        suma puntos extra por rapidez y por encadenar aciertos.
       </div>
     </>
   );

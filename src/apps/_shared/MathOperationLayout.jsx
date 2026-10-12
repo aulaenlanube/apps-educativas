@@ -49,7 +49,8 @@ import '/src/apps/_shared/MathBoxShared.css';
  *
  * TRACKING:
  * - onGameComplete : fn
- * - calculateExpected : fn(pregunta) → string (por defecto, suma de operandos)
+ * - calculateExpected : fn(pregunta) → string (por defecto, suma de operandos, con decimales)
+ *   La respuesta se compara como número (coma o punto, ceros a la izquierda): sameNumber().
  *
  * PRESENTACIÓN (opcionales, nuevas en 2026):
  * - padLayout      : 'bottom' (por defecto: teclado en fila bajo el tablero) | 'side' (teclado tipo calculadora a la derecha)
@@ -82,6 +83,71 @@ const formatElapsed = (s) => {
 };
 
 const PAD_DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+/* ───────────── Corrección y puntuación del examen (funciones puras, con tests) ───────────── */
+
+// Puntuación del examen: 200 puntos por acierto + bonus de velocidad (5 puntos
+// por cada segundo ahorrado bajo un presupuesto de 30 s/pregunta). Así dos
+// exámenes con un 10 pueden tener puntuaciones distintas en el ranking.
+export const EXAM_POINTS_PER_HIT = 200;
+export const EXAM_TIME_BUDGET_PER_Q = 30;
+export const EXAM_SPEED_COEF = 5;
+
+// "145,75" | "145.75" | "0145,750" → 145.75 · texto vacío o no numérico → NaN
+const toNumber = (v) => {
+  const s = String(v ?? '').replace(/\s+/g, '').replace(',', '.');
+  return /^[-+]?(\d+\.?\d*|\.\d+)$/.test(s) ? Number(s) : NaN;
+};
+
+/**
+ * ¿La respuesta del alumno es la solución? Compara como NÚMEROS (coma o punto
+ * decimal, ceros a la izquierda o a la derecha de los decimales). Si alguna de
+ * las dos no es un número, compara el texto tal cual.
+ */
+export function sameNumber(answer, expected) {
+  const a = toNumber(answer);
+  const b = toNumber(expected);
+  if (Number.isNaN(a) || Number.isNaN(b)) return String(answer ?? '') === String(expected ?? '');
+  return Math.abs(a - b) < 1e-9;
+}
+
+/**
+ * Suma exacta de los operandos, con decimales (coma o punto) y con tantos
+ * decimales como el operando que más tenga: ['254,6', '727,65'] → '982,25'.
+ * Con enteros devuelve lo mismo que antes ('12' + '30' → '42').
+ */
+export function sumOperands(q) {
+  const nums = (Array.isArray(q) ? q : [q]).map((n) => String(n).trim().replace('.', ','));
+  const maxDec = Math.max(0, ...nums.map((n) => (n.split(',')[1] || '').length));
+  // Suma en enteros escalados (sin errores de coma flotante)
+  const total = nums.reduce((acc, n) => {
+    const [int, dec = ''] = n.split(',');
+    return acc + Number(`${int}${dec.padEnd(maxDec, '0')}`);
+  }, 0);
+  if (maxDec === 0) return String(total);
+  const digits = String(total).padStart(maxDec + 1, '0');
+  return `${digits.slice(0, -maxDec)},${digits.slice(-maxDec)}`;
+}
+
+/**
+ * Nota y puntos del examen. El bonus de velocidad se gana en proporción a los
+ * aciertos (sin aciertos no hay bonus: terminar rápido sin acertar no puntúa).
+ * score ≤ maxScore siempre.
+ */
+export function operationExamScore({ hits = 0, total = 0, elapsedSec = 0 }) {
+  const nota = total > 0 ? Math.min(10, Math.round((hits / total) * 100) / 10) : 0;
+  const timeBudget = EXAM_TIME_BUDGET_PER_Q * total;
+  const rawBonus = Math.max(0, (timeBudget - elapsedSec) * EXAM_SPEED_COEF);
+  const timeBonus = total > 0 ? Math.round(rawBonus * (hits / total)) : 0;
+  const basePoints = hits * EXAM_POINTS_PER_HIT;
+  return {
+    nota,
+    timeBonus,
+    basePoints,
+    score: basePoints + timeBonus,
+    maxScore: total * EXAM_POINTS_PER_HIT + timeBudget * EXAM_SPEED_COEF,
+  };
+}
 
 const MathOperationLayout = ({
   title,
@@ -150,14 +216,7 @@ const MathOperationLayout = ({
   const hasTestMode = isTestMode !== undefined && setTestMode !== undefined && testState;
   const { currentQuestionIndex, totalQuestions, showResults, testQuestions, userAnswers } = testState || {};
 
-  // --- Puntuacion con bonus de velocidad ---
-  // Base: 200 puntos por acierto. Bonus: 5 puntos por cada segundo ahorrado
-  // bajo un presupuesto de 30s/pregunta. Asi dos examenes con nota 10 pueden
-  // tener puntuaciones distintas en el ranking global segun la velocidad.
-  const BASE_POINTS_PER_HIT = 200;
-  const TIME_BUDGET_PER_Q = 30;
-  const SPEED_COEF = 5;
-
+  // --- Puntuacion con bonus de velocidad (ver operationExamScore) ---
   const startTimeRef = useRef(null);
   const [finalElapsed, setFinalElapsed] = useState(0);
 
@@ -172,21 +231,19 @@ const MathOperationLayout = ({
   // Captura del tiempo final al mostrar resultados
   useEffect(() => {
     if (hasTestMode && showResults && startTimeRef.current) {
-      setFinalElapsed(Math.max(0, Math.round((Date.now() - startTimeRef.current) / 1000)));
+      setFinalElapsed(Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000)));
     }
   }, [hasTestMode, showResults]);
 
-  const calcExpected = calculateExpected
-    || ((q) => q.reduce((a, b) => a + parseInt(b), 0).toString());
+  // Por defecto, suma de los operandos (con decimales si los hay).
+  const calcExpected = calculateExpected || sumOperands;
   const testHits = (testQuestions && userAnswers)
-    ? testQuestions.filter((q, i) => userAnswers[i] === calcExpected(q)).length
+    ? testQuestions.filter((q, i) => sameNumber(userAnswers[i], calcExpected(q))).length
     : 0;
   const testTotal = totalQuestions || 0;
-  const testNota = testTotal > 0 ? Math.min(10, Math.round((testHits / testTotal) * 100) / 10) : 0;
-  const timeBudget = TIME_BUDGET_PER_Q * testTotal;
-  const timeBonus = Math.max(0, Math.round((timeBudget - finalElapsed) * SPEED_COEF));
-  const basePoints = testHits * BASE_POINTS_PER_HIT;
-  const testScore = basePoints + timeBonus;
+  const {
+    nota: testNota, timeBonus, score: testScore, maxScore: testMaxScore,
+  } = operationExamScore({ hits: testHits, total: testTotal, elapsedSec: finalElapsed });
 
   // Tracking: reportar cuando se muestran resultados del test (con score que incluye bonus de velocidad)
   const trackedRef = useRef(false);
@@ -197,14 +254,14 @@ const MathOperationLayout = ({
       onGameComplete?.({
         mode: 'test',
         score: testScore,
-        maxScore: testTotal * BASE_POINTS_PER_HIT + timeBudget * SPEED_COEF,
+        maxScore: testMaxScore,
         correctAnswers: testHits,
         totalQuestions: testTotal,
         durationSeconds: finalElapsed,
       });
     }
     if (!showResults) trackedRef.current = false;
-  }, [hasTestMode, showResults, finalElapsed, testScore, testTotal, testHits, timeBudget, onGameComplete]);
+  }, [hasTestMode, showResults, finalElapsed, testScore, testMaxScore, testTotal, testHits, onGameComplete]);
 
   // Determinar si estamos viendo resultados del test
   const showingTestResults = hasTestMode && isTestMode && showResults;
@@ -346,7 +403,7 @@ const MathOperationLayout = ({
           {testQuestions.map((q, i) => {
             const userAnswer = userAnswers[i] || '—';
             const expected = calcExpected(q);
-            const ok = userAnswer === expected;
+            const ok = sameNumber(userAnswers[i], expected);
             return (
               <FeedbackItem key={i} index={i + 1} ok={ok} title={Array.isArray(q) ? q.join(` ${opSymbol} `) : String(q)}>
                 Tu respuesta: <strong className="mol-fb-num">{userAnswer}</strong>

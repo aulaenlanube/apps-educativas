@@ -30,6 +30,7 @@ import {
 } from '../_shared/kit';
 import { FlaskArt } from './CrafteoArt';
 import './MesaCrafteo.css';
+import { EXAM_DIFFICULTY, computeCrafteoNota, computeCrafteoScore, crafteoMaxScore } from './crafteoScoring';
 
 // --- Presentación (rediseño 2026) ---
 const SHELL = { accent: '#818cf8', accent2: '#22d3ee' };
@@ -40,30 +41,6 @@ const fmtMult = (m) => `×${String(m).replace('.', ',')} puntos`;
 const LEVEL_LABEL = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', ad: 'Diversidad' };
 
 const STORAGE_KEY = 'mesa_crafteo_discoveries';
-
-// Configuracion del examen por dificultad.
-// La nota del modo Medio es la base (/10). Facil resta 1 pt (max 9), Dificil
-// suma hasta 1 pt (max 11). Los puntos, ademas, escalan con la dificultad.
-const EXAM_DIFFICULTY = {
-    easy:   { questions: 4,  gradeMax: 9,  scoreMult: 0.85, label: 'FÁCIL',   note: 'Nota máx 9 (–1 pt)' },
-    medium: { questions: 6,  gradeMax: 10, scoreMult: 1.0,  label: 'MEDIO',   note: 'Nota sobre 10 (base)' },
-    hard:   { questions: 10, gradeMax: 11, scoreMult: 1.25, label: 'DIFÍCIL', note: 'Nota hasta 11 (+1 pt)' },
-};
-
-// Puntuacion del examen: base por aciertos + bonus decreciente por tiempo,
-// escalado por la proporcion de aciertos y por el multiplicador de dificultad.
-// Dos alumnos con la misma nota pueden obtener puntuaciones distintas segun
-// lo rapido que respondan y el nivel elegido.
-const computeCrafteoScore = (correct, total, timeSec, difficulty) => {
-    if (!correct || !total) return 0;
-    const basePoints = correct * 100;                                 // 0..total*100
-    const fastBonus  = Math.max(0, 400 - timeSec * 2);                // 0..400
-    const longBonus  = Math.max(0, 300 - Math.floor(timeSec / 3));    // 0..300
-    const perCorrect = correct / total;
-    const timeBonus  = Math.round((fastBonus + longBonus) * perCorrect);
-    const mult       = EXAM_DIFFICULTY[difficulty]?.scoreMult ?? 1.0;
-    return Math.round((basePoints + timeBonus) * mult);
-};
 
 function getElementCounts(atoms) {
     const counts = {};
@@ -351,13 +328,17 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
         examTrackedRef.current = true;
         const total = examQuestions.length;
         const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
+        // La misma nota que ve el alumno (capada a 10); sin ella el tracker
+        // calcularia aciertos/total·10 e ignoraria la dificultad.
+        const { nota } = computeCrafteoNota(examScore, total, examDifficulty);
         onGameComplete?.({
             mode: 'test',
             score: points,
-            maxScore: Math.round((total * 100 + 700) * (EXAM_DIFFICULTY[examDifficulty]?.scoreMult ?? 1.0)),
+            maxScore: crafteoMaxScore(total, examDifficulty),
             correctAnswers: examScore,
             totalQuestions: total,
             durationSeconds: examFinalTime || undefined,
+            nota,
         });
     }, [showExamResults, examScore, examQuestions.length, examFinalTime, examDifficulty, onGameComplete]);
 
@@ -608,7 +589,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                                 {
                                     id: 'exam', tone: 'exam', title: 'Examen',
                                     desc: 'Construye las moléculas que te pidan, sin ayudas.',
-                                    features: ['Nota sobre 10 (Fácil 9 · Difícil 11)', 'Puntos por rapidez'],
+                                    features: ['Nota sobre 10 (Fácil máx. 9 · Difícil ×1,1)', 'Puntos por rapidez'],
                                     cta: 'Elegir dificultad',
                                 },
                             ]}
@@ -746,8 +727,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                 {showExamResults && (() => {
                     const total = examQuestions.length || 1;
                     const diffConfig = EXAM_DIFFICULTY[examDifficulty] || EXAM_DIFFICULTY.medium;
-                    const ratio = examScore / total;
-                    const nota = Math.round(ratio * diffConfig.gradeMax * 10) / 10;
+                    const { nota, surplusPoints } = computeCrafteoNota(examScore, total, examDifficulty);
                     const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
                     return (
                         <motion.div className="mc-overlay" {...overlayAnim}>
@@ -760,6 +740,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                                         { icon: Target, tone: 'good', label: 'Aciertos', value: `${examScore}/${total}` },
                                         { icon: Clock, tone: 'time', label: 'Tiempo', value: `${examFinalTime}s` },
                                         { icon: Gauge, tone: 'progress', label: 'Dificultad', value: DIFF_NAME[examDifficulty] || '' },
+                                        ...(surplusPoints > 0 ? [{ icon: Sparkles, tone: 'streak', label: 'Extra de nota', value: `+${surplusPoints} pts` }] : []),
                                     ]}
                                     actions={[
                                         { label: 'Nuevo examen', onClick: () => { setShowExamResults(false); setShowDifficultySelector(true); }, icon: RefreshCw },

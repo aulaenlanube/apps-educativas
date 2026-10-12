@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { Puzzle } from 'lucide-react';
+import { Puzzle, Crosshair } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
 import InstructionsModal from '../_shared/InstructionsModal';
 import {
     CelShell, CelTopBar, CelMeter, CelScore, CelPin, CelHint, CelDrawer, CelDock,
-    CelQuest, CelToast, CelMatch, CelHelpContent, lensViewBox,
+    CelQuest, CelToast, CelMatch, CelQuizResults, CelHelpContent, lensViewBox,
 } from './CelulaUI';
+import { puntosTest, puntosReto, shuffle } from './celulaScoring';
 
 // ===== ORGANELLE DATA =====
 const organelleData = [
@@ -700,7 +701,7 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
 };
 
 // ===== MAIN COMPONENT =====
-const CelulaAnimal = () => {
+const CelulaAnimal = ({ onGameComplete }) => {
     const [selectedOrganelle, setSelectedOrganelle] = useState(null);
     const [visitedIds, setVisitedIds] = useState(new Set());
     const [showHelp, setShowHelp] = useState(false);
@@ -711,9 +712,20 @@ const CelulaAnimal = () => {
     const isQuizMode = mode === 'quiz';
     const isMatchMode = mode === 'match';
 
-    const [quizTarget, setQuizTarget] = useState(null);
-    const [quizScore, setQuizScore] = useState(0);
+    // Test: se piden los 12 orgánulos, uno a uno (acierto = encontrarlo a la primera)
+    const [quizQueue, setQuizQueue] = useState([]);
+    const [quizIndex, setQuizIndex] = useState(0);
+    const [quizResults, setQuizResults] = useState([]); // [{ id, name, icon, firstTry, misses, seconds }]
     const [quizFeedback, setQuizFeedback] = useState(null);
+    const [quizDone, setQuizDone] = useState(null); // { nota, points, seconds } al terminar
+    const quizTarget = quizDone ? null : (quizQueue[quizIndex] || null);
+    const quizResultsRef = useRef([]);
+    const quizBusyRef = useRef(false); // bloquea clics mientras se muestra el aviso
+    const quizMissesRef = useRef(0);   // fallos en el orgánulo actual
+    const quizStartRef = useRef(0);
+    const targetStartRef = useRef(0);
+    const quizTimerRef = useRef(null);
+    const quizTrackedRef = useRef(false);
 
     // Reto (match) mode state
     const [matchDifficulty, setMatchDifficulty] = useState(null); // 6 | 9 | 12, null = show picker
@@ -723,7 +735,15 @@ const CelulaAnimal = () => {
     const [matchAnswers, setMatchAnswers] = useState({}); // {orgId: funcId} — student's answers
     const [testSubmitted, setTestSubmitted] = useState(false);
     const [testGrade, setTestGrade] = useState(null); // 0-10
+    const [matchOutcome, setMatchOutcome] = useState(null); // { points, seconds } al corregir
     const [lastAssignedPair, setLastAssignedPair] = useState(null); // {orgId, funcId}
+    const matchStartRef = useRef(0);
+    const matchTrackedRef = useRef(false);
+
+    // onGameComplete siempre actual sin rehacer callbacks
+    const onGameCompleteRef = useRef(onGameComplete);
+    useEffect(() => { onGameCompleteRef.current = onGameComplete; }, [onGameComplete]);
+    useEffect(() => () => clearTimeout(quizTimerRef.current), []);
 
     // ViewBox-based Zoom & Pan
     const [zoom, setZoom] = useState(1);
@@ -890,6 +910,85 @@ const CelulaAnimal = () => {
     }, [viewOrigin, viewW, viewH]);
 
 
+    // ===== TEST: ENCUENTRA CADA ORGÁNULO =====
+    // Fin de la actividad = los 12 orgánulos encontrados. Se registra UNA vez
+    // (single_mode: cuenta para la tarea) con nota = aciertos a la primera / 12.
+    const completeQuiz = useCallback((results) => {
+        const seconds = Math.max(1, Math.round((Date.now() - quizStartRef.current) / 1000));
+        const total = results.length;
+        const { points, maxScore, firstTry, nota } = puntosTest(results, total);
+        if (!quizTrackedRef.current) {
+            quizTrackedRef.current = true;
+            onGameCompleteRef.current?.({
+                mode: 'practice',
+                score: points,
+                maxScore,
+                correctAnswers: firstTry,
+                totalQuestions: total,
+                durationSeconds: seconds,
+                nota,
+            });
+        }
+        quizTimerRef.current = setTimeout(() => {
+            setQuizDone({ nota, points, seconds });
+            setQuizFeedback(null);
+            if (nota >= 5) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#2563eb', '#f59e0b', '#10b981', '#ec4899'] });
+            }
+        }, 1200);
+    }, []);
+
+    const handleQuizInteraction = useCallback((clickedId) => {
+        if (!quizTarget || quizBusyRef.current) return;
+        quizBusyRef.current = true;
+        const isCorrect = clickedId === quizTarget.id;
+        setQuizFeedback({ isCorrect, id: clickedId });
+        if (!isCorrect) {
+            quizMissesRef.current += 1;
+            quizTimerRef.current = setTimeout(() => {
+                setQuizFeedback(null);
+                quizBusyRef.current = false;
+            }, 1000);
+            return;
+        }
+        const results = [...quizResultsRef.current, {
+            id: quizTarget.id,
+            name: quizTarget.name,
+            icon: quizTarget.icon,
+            firstTry: quizMissesRef.current === 0,
+            misses: quizMissesRef.current,
+            seconds: (Date.now() - targetStartRef.current) / 1000,
+        }];
+        quizResultsRef.current = results;
+        setQuizResults(results);
+        if (results.length >= quizQueue.length) {
+            completeQuiz(results);
+            return;
+        }
+        quizTimerRef.current = setTimeout(() => {
+            quizMissesRef.current = 0;
+            targetStartRef.current = Date.now();
+            setQuizIndex(i => i + 1);
+            setQuizFeedback(null);
+            quizBusyRef.current = false;
+        }, 1500);
+    }, [quizTarget, quizQueue.length, completeQuiz]);
+
+    const startQuiz = () => {
+        clearTimeout(quizTimerRef.current);
+        setQuizQueue(shuffle(organelleData));
+        setQuizIndex(0);
+        setQuizResults([]);
+        setQuizDone(null);
+        setQuizFeedback(null);
+        quizResultsRef.current = [];
+        quizBusyRef.current = false;
+        quizMissesRef.current = 0;
+        quizStartRef.current = Date.now();
+        targetStartRef.current = Date.now();
+        quizTrackedRef.current = false;
+    };
+
     const handleSelect = useCallback((id) => {
         // If we were dragging (panning), don't select
         if (didDrag.current) return;
@@ -903,8 +1002,7 @@ const CelulaAnimal = () => {
                 return next;
             });
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isQuizMode, isMatchMode, quizTarget]);
+    }, [isQuizMode, isMatchMode, handleQuizInteraction]);
 
     const handleClose = useCallback(() => {
         setSelectedOrganelle(null);
@@ -916,39 +1014,21 @@ const CelulaAnimal = () => {
 
     // ===== MODE SWITCHING =====
     const switchMode = (newMode) => {
+        clearTimeout(quizTimerRef.current);
         setMode(newMode);
         setSelectedOrganelle(null);
-        setQuizTarget(null);
+        setQuizQueue([]);
+        setQuizDone(null);
         setQuizFeedback(null);
+        quizBusyRef.current = false;
         setMatchSelected(null);
         setMatchAnswers({});
         setTestSubmitted(false);
         setTestGrade(null);
+        setMatchOutcome(null);
         setMatchDifficulty(null);
-        if (newMode === 'quiz') {
-            setQuizScore(0);
-            pickNextQuizTarget();
-        }
+        if (newMode === 'quiz') startQuiz();
         // match mode: don't auto-start, show difficulty picker (matchDifficulty === null)
-    };
-
-    // ===== QUIZ ("RETO") LOGIC =====
-    const pickNextQuizTarget = () => {
-        const random = organelleData[Math.floor(Math.random() * organelleData.length)];
-        setQuizTarget(random);
-        setQuizFeedback(null);
-    };
-
-    const handleQuizInteraction = (clickedId) => {
-        if (!quizTarget || quizFeedback) return;
-        const isCorrect = clickedId === quizTarget.id;
-        setQuizFeedback({ isCorrect, id: clickedId });
-        if (isCorrect) {
-            setQuizScore(prev => prev + 1);
-            setTimeout(() => pickNextQuizTarget(), 1500);
-        } else {
-            setTimeout(() => setQuizFeedback(null), 1000);
-        }
     };
 
     // ===== RETO (MATCH) LOGIC =====
@@ -971,6 +1051,9 @@ const CelulaAnimal = () => {
         setMatchAnswers({});
         setTestSubmitted(false);
         setTestGrade(null);
+        setMatchOutcome(null);
+        matchStartRef.current = Date.now();
+        matchTrackedRef.current = false;
     };
 
     const handleMatchOrganelleClick = (orgId) => {
@@ -996,14 +1079,32 @@ const CelulaAnimal = () => {
 
     const allAnswered = matchPairs.length > 0 && Object.keys(matchAnswers).length === matchPairs.length;
 
+    // Fin del Reto = corregir. Se registra UNA vez por reto (single_mode: cuenta
+    // para la tarea) con nota = parejas correctas / parejas · 10 y puntos paralelos.
     const submitTest = () => {
+        if (testSubmitted) return;
         let correct = 0;
         matchPairs.forEach(org => {
             if (matchAnswers[org.id] === org.id) correct++;
         });
-        const grade = Math.round((correct / matchPairs.length) * 10 * 10) / 10;
+        const total = matchPairs.length;
+        const seconds = Math.max(1, Math.round((Date.now() - matchStartRef.current) / 1000));
+        const { points, maxScore, nota: grade } = puntosReto({ correct, total, durationSeconds: seconds });
         setTestGrade(grade);
+        setMatchOutcome({ points, seconds });
         setTestSubmitted(true);
+        if (!matchTrackedRef.current) {
+            matchTrackedRef.current = true;
+            onGameCompleteRef.current?.({
+                mode: 'practice',
+                score: points,
+                maxScore,
+                correctAnswers: correct,
+                totalQuestions: total,
+                durationSeconds: seconds,
+                nota: grade,
+            });
+        }
         if (grade >= 5) {
             confetti({
                 particleCount: 150,
@@ -1030,7 +1131,10 @@ const CelulaAnimal = () => {
                     mode === 'explore' ? (
                         <CelMeter value={visitedIds.size} max={organelleData.length} label="Explorados" />
                     ) : mode === 'quiz' ? (
-                        <CelScore value={quizScore} />
+                        <>
+                            <CelMeter value={quizResults.length} max={quizQueue.length || organelleData.length} label="Encontrados" icon={Crosshair} tone="progress" />
+                            <CelScore value={puntosTest(quizResults, quizQueue.length).points} />
+                        </>
                     ) : matchDifficulty !== null && !testSubmitted ? (
                         <CelMeter value={Object.keys(matchAnswers).length} max={matchPairs.length} label="Asignadas" icon={Puzzle} tone="progress" />
                     ) : null
@@ -1079,12 +1183,24 @@ const CelulaAnimal = () => {
             </div>
 
             <CelHint show={mode === 'explore' && !selectedOrganelle}>
-                Toca un orgánulo de la célula o de la bandeja para abrir su ficha
+                {visitedIds.size >= organelleData.length
+                    ? '¡Has explorado todos los orgánulos! Ponte a prueba en Test o Reto para conseguir tu nota'
+                    : 'Toca un orgánulo de la célula o de la bandeja para abrir su ficha'}
             </CelHint>
 
             {/* TEST: orgánulo a encontrar + aviso de acierto/fallo */}
-            {isQuizMode && quizTarget && <CelQuest target={quizTarget} />}
+            {isQuizMode && quizTarget && <CelQuest target={quizTarget} index={quizIndex + 1} total={quizQueue.length} />}
             {isQuizMode && <CelToast feedback={quizFeedback} clickedName={clickedName} />}
+            {isQuizMode && quizDone && (
+                <CelQuizResults
+                    nota={quizDone.nota}
+                    points={quizDone.points}
+                    seconds={quizDone.seconds}
+                    results={quizResults}
+                    onReplay={startQuiz}
+                    onExit={() => switchMode('explore')}
+                />
+            )}
 
             {/* FICHA DEL ORGÁNULO (solo en Explorar) */}
             <CelDrawer
@@ -1114,6 +1230,8 @@ const CelulaAnimal = () => {
                     answers={matchAnswers}
                     submitted={testSubmitted}
                     grade={testGrade}
+                    points={matchOutcome?.points}
+                    seconds={matchOutcome?.seconds}
                     lastAssigned={lastAssignedPair}
                     canSubmit={allAnswered}
                     onPickOrg={handleMatchOrganelleClick}

@@ -16,6 +16,9 @@ const SumasPrimaria5 = ({ onGameComplete } = {}) => {
   const [activeSlot, setActiveSlot] = useState(null);
 
   const [isTestMode, setIsTestMode] = useState(false);
+  // En examen no hay ayuda con llevadas (ni casillas ni llevada automática): si la
+  // llevada apareciera sola, el alumno sabría que la cifra era correcta.
+  const carriesHelp = showCarries && !isTestMode;
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [checkInfo, setCheckInfo] = useState({ show: false, expectedResult: [], expectedCarries: [], firstNonZeroIdx: -1 });
   
@@ -120,8 +123,8 @@ const SumasPrimaria5 = ({ onGameComplete } = {}) => {
       n[activeSlot.index] = strVal; 
       setResultSlots(n);
 
-      // --- AUTO-LLEVADA ---
-      if (showCarries) {
+      // --- AUTO-LLEVADA (solo en práctica) ---
+      if (carriesHelp) {
           const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
           
           if (strVal === expectedResult[activeSlot.index]) {
@@ -203,14 +206,13 @@ const SumasPrimaria5 = ({ onGameComplete } = {}) => {
 
   const nextQuestion = () => {
     const plan = buildColumnPlan(currentOperands, 2);
-    const userDigits = resultSlots.join('');
-    
-    // Insertar coma en la posición correcta
-    let userFormatted = userDigits;
-    if (plan.maxDec > 0) {
-        const cut = userDigits.length - plan.maxDec;
-        userFormatted = userDigits.slice(0, cut) + ',' + userDigits.slice(cut);
-    }
+    // Respuesta con la coma en su sitio: las casillas de enteros son las de la
+    // izquierda y las de decimales las últimas plan.maxDec (una casilla vacía no
+    // desplaza la coma). Sin ceros a la izquierda: "0145,75" → "145,75".
+    const nInt = resultSlots.length - plan.maxDec;
+    const intPart = resultSlots.slice(0, nInt).join('').replace(/^0+(?=\d)/, '');
+    const decPart = resultSlots.slice(nInt).join('');
+    const userFormatted = plan.maxDec > 0 && decPart ? `${intPart || '0'},${decPart}` : intPart;
     
     const newAnswers = [...userAnswers, userFormatted];
     setUserAnswers(newAnswers);
@@ -236,6 +238,7 @@ const SumasPrimaria5 = ({ onGameComplete } = {}) => {
     <SumasLayout
       title="Suma con decimales (5º)"
       onGameComplete={onGameComplete}
+      calculateExpected={(q) => calculateSolution(q).solutionStr}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
@@ -256,7 +259,7 @@ const SumasPrimaria5 = ({ onGameComplete } = {}) => {
       <UniversalSumBoard
         nums={currentOperands}
         minIntegerDigits={2}
-        showCarries={showCarries}
+        showCarries={carriesHelp}
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}
