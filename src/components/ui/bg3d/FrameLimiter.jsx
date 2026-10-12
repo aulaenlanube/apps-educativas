@@ -1,6 +1,7 @@
 // Limitador de frames COMPARTIDO por los fondos 3D decorativos de la plataforma
-// (Scene3DBackground = isla, CityBackground = ciudad). Vive aparte para que cada
-// fondo se importe sin arrastrar la escena del otro.
+// (Scene3DBackground = isla, CityBackground = ciudad, SpaceBackground =
+// espacio). Vive aparte para que cada fondo se importe sin arrastrar la escena
+// de los otros.
 //
 // Con frameloop="demand" r3f solo pinta cuando se invalida: aquí pedimos frames
 // al ritmo del presupuesto. fps=0 → unos pocos frames para que la escena se

@@ -23,6 +23,11 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
+  // Ayuda efectiva: en examen nunca hay ayuda, pero sin tocar el interruptor de
+  // práctica, que al salir del examen vuelve tal y como lo dejó el alumno
+  // (mismo patrón que Sumas 2º-6º con carriesHelp).
+  const helpOn = showHelp && !isTestMode;
+
   const generateNewProblem = useCallback(() => {
     const digits = Math.floor(Math.random() * 2) + 2;
     const min = Math.pow(10, digits - 1);
@@ -76,7 +81,6 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
     setScore(0);
     setShowResults(false);
     setIsTestMode(true);
-    setShowHelp(false);
     prepareTestQuestion(qs[0]);
   };
 
@@ -121,7 +125,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
     const baseVal = parseInt(strNum2[index]);
     const rightCarryIndex = index + 1;
     const userHasCarryFromRight = rightCarryIndex < numDigits && carrySlots[rightCarryIndex] === '1';
-    if (!showHelp) return baseVal;
+    if (!helpOn) return baseVal;
     return userHasCarryFromRight ? (baseVal + 1) % 10 : baseVal;
   };
 
@@ -135,7 +139,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
       newResults[slot.index] = strVal;
       setResultSlots(newResults);
 
-      if (strVal === correctResult[slot.index] && showHelp) {
+      if (strVal === correctResult[slot.index] && helpOn) {
         const newCarries = [...carrySlots];
         newCarries[slot.index] = expectedCarries[slot.index] === 1 ? '1' : '0';
         setCarrySlots(newCarries);
@@ -165,7 +169,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
     let isCorrect = userNum === correctNum;
     let allCarriesCorrect = true;
 
-    if (showHelp) {
+    if (helpOn) {
       allCarriesCorrect = expectedCarries.every((val, i) => {
         if (i === 0) return true;
         const userVal = carrySlots[i] === '1' ? 1 : 0;
@@ -174,7 +178,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
     }
 
     if (isCorrect) {
-      if (!showHelp || allCarriesCorrect) {
+      if (!helpOn || allCarriesCorrect) {
         setFeedback({ text: '¡Perfecto! ¡Resta correcta! ✅', cls: 'feedback-correct' });
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         setActiveSlot(null);
@@ -197,7 +201,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
   const carryState = (i) => {
     const isCarryFilled = carrySlots[i] === '1';
     const isCarryCorrect = expectedCarries[i] === 1;
-    return (feedback.text && showHelp && i !== 0)
+    return (feedback.text && helpOn && i !== 0)
       ? (isCarryFilled === isCarryCorrect ? (isCarryFilled ? 'correct' : '') : 'incorrect')
       : '';
   };
@@ -255,7 +259,7 @@ const RestasPrimaria2 = ({ onGameComplete } = {}) => {
         activeSlot={activeSlot}
         onSelect={setActiveSlot}
         onDropDigit={applyDigit}
-        showHelp={showHelp}
+        showHelp={helpOn}
       />
     </MathOperationLayout>
   );

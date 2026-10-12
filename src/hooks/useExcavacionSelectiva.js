@@ -1,4 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import {
+  XP_PENALTY_WRONG, SUDDEN_DEATH_WRONG_SECONDS, XP_PENALTY_TNT, TNT_TIME_PENALTY, applyXpPenalty,
+} from '../apps/excavacion-selectiva/excavacionScoring';
 
 export const useExcavacionSelectiva = (initialData) => {
   const [blocks, setBlocks] = useState([]);
@@ -171,9 +174,9 @@ export const useExcavacionSelectiva = (initialData) => {
 
     if (block.isTNT) {
       triggerEvent('tnt');
-      setScore(s => Math.max(0, s - 20));
+      setScore(s => applyXpPenalty(s, XP_PENALTY_TNT));
       setCombo(0);
-      setTimeLeft(t => Math.max(0, t - 10));
+      setTimeLeft(t => Math.max(0, t - TNT_TIME_PENALTY));
       setBlocks(prev => prev.map(b => b.id === id ? createBlock('distractor', initialData) : b));
       return;
     }
@@ -232,9 +235,9 @@ export const useExcavacionSelectiva = (initialData) => {
       }
     } else {
       triggerEvent('error');
-      setScore(s => Math.max(0, s - 5));
+      setScore(s => applyXpPenalty(s, XP_PENALTY_WRONG));
       setCombo(0);
-      if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - 1.0));
+      if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - SUDDEN_DEATH_WRONG_SECONDS));
       // No eliminamos el bloque si es error (distractor), solo penalizamos
       processedIdsRef.current.delete(id); // Permitimos volver a intentarlo (aunque sea error)
     }

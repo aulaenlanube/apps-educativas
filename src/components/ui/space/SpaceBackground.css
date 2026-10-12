@@ -1,0 +1,35 @@
+/* Fondo "espacio" (SpaceBackground.jsx).
+   El degradado del contenedor es el cielo que se ve mientras el canvas WebGL
+   arranca: el 3D entra con un fundido encima, sin destello del fondo claro
+   del body. El velo (scrim) asegura la legibilidad del texto blanco de las
+   páginas que van encima, en ambos temas. Sin backdrop-filter ni filtros. */
+
+.space-bg {
+  background: radial-gradient(120% 90% at 80% 20%, #f2a0c4 0%, rgba(242, 160, 196, 0) 45%),
+    linear-gradient(180deg, #2a2f9e 0%, #5450c6 45%, #9a72cc 100%);
+}
+.space-bg--night {
+  background: radial-gradient(110% 80% at 80% 20%, #3a1240 0%, rgba(58, 18, 64, 0) 50%),
+    linear-gradient(180deg, #02020a 0%, #060418 55%, #0c0620 100%);
+}
+
+.space-bg__canvas {
+  position: absolute !important;
+  inset: 0;
+  transition: opacity 0.9s ease;
+}
+
+.space-bg__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 7, 30, calc(var(--space-scrim, 0.3) + 0.14)) 0%,
+    rgba(8, 7, 30, var(--space-scrim, 0.3)) 38%,
+    rgba(8, 7, 30, calc(var(--space-scrim, 0.3) - 0.04)) 62%,
+    rgba(8, 7, 30, calc(var(--space-scrim, 0.3) + 0.16)) 100%
+  );
+  transition: opacity 0.9s ease;
+}
+.space-bg--night .space-bg__scrim { opacity: 0.72; }

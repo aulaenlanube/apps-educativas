@@ -3,8 +3,9 @@
 // =============================================================================
 // Hoy TODOS los cursos comparten el mismo fondo 3D. El ENTORNO lo elige el
 // usuario (src/services/backgroundScene.js): por defecto la ciudad futurista
-// (src/components/ui/city/) y, como alternativa, la isla low-poly de
-// Scene3DBackground (el entorno del Laboratorio de Física). El objetivo de este
+// (src/components/ui/city/) y, como alternativas, la isla low-poly de
+// Scene3DBackground (el entorno del Laboratorio de Física) y el espacio
+// (src/components/ui/space/). El objetivo de este
 // módulo es dejar el sistema CABLEADO para que, en el futuro, dar a un curso su
 // propio fondo 3D sea trivial: basta con añadir una entrada a COURSE_BACKGROUNDS.
 // Ninguna página necesita cambios para eso.
@@ -15,6 +16,7 @@ export const DEFAULT_COURSE_BACKGROUND = {
   ambienceId: undefined,  // ambiente concreto ('dia'|'atardecer'|'niebla'|'lluvia'|'noche'); undefined → cielo al azar
   scrim: 0.3,             // velo oscuro para legibilidad del contenido (0..1) — isla
   cityScrim: 0.28,        // velo para la ciudad (más contraste propio: cielo y niebla ya oscurecen)
+  spaceScrim: 0.3,        // velo para el espacio (el cielo de día es luminoso: algo más que la ciudad)
 };
 
 // Overrides por curso. Clave admitida (de más específica a más general):

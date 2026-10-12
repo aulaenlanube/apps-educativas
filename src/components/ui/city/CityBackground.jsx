@@ -29,9 +29,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import FrameLimiter from '@/components/ui/bg3d/FrameLimiter';
+import { useMediaQuery, useHtmlDark } from '@/components/ui/bg3d/bgEnv';
 import useFxTier from '@/hooks/useFxTier';
 import { lowerTier } from '@/services/graphicsQuality';
-import CityScene, { readHtmlDark } from './CityScene';
+import CityScene from './CityScene';
 import './CityBackground.css';
 
 const CITY_BUDGET = {
@@ -39,35 +40,6 @@ const CITY_BUDGET = {
   medium: { fps: 30, dpr: 1, antialias: false },
   low: { fps: 0, dpr: 1, antialias: false },
 };
-
-function useMediaQuery(query) {
-  const get = () => {
-    try { return window.matchMedia(query).matches; } catch { return false; }
-  };
-  const [match, setMatch] = useState(get);
-  useEffect(() => {
-    let mq;
-    try { mq = window.matchMedia(query); } catch { return undefined; }
-    const on = () => setMatch(mq.matches);
-    on();
-    mq.addEventListener?.('change', on);
-    return () => mq.removeEventListener?.('change', on);
-  }, [query]);
-  return match;
-}
-
-// Clase `dark` de <html> (ThemeContext) observada con MutationObserver
-function useHtmlDark() {
-  const [dark, setDark] = useState(readHtmlDark);
-  useEffect(() => {
-    const el = document.documentElement;
-    const obs = new MutationObserver(() => setDark(el.classList.contains('dark')));
-    obs.observe(el, { attributes: true, attributeFilter: ['class'] });
-    setDark(el.classList.contains('dark'));
-    return () => obs.disconnect();
-  }, []);
-  return dark;
-}
 
 export default function CityBackground({ scrim = 0.3, className = '', style }) {
   const tier = useFxTier();

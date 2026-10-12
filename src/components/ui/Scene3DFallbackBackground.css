@@ -41,3 +41,45 @@ html.dark .cfb {
 .cfb-canal { fill: var(--cfb-canal); opacity: 0.85; }
 .cfb-neon { opacity: 0.9; }
 html:not(.dark) .cfb-neon { opacity: 0.55; }
+
+/* Variante 'espacio' (SpaceScape). Tema claro: "amanecer estelar" (índigo →
+   lavanda con nebulosas pastel). Tema oscuro: espacio profundo. */
+.sfb {
+  background: linear-gradient(180deg, #2c33a6 0%, #5552c8 45%, #8f6fd0 75%, #b27fcb 100%);
+  --sfb-neb-a: rgba(244, 160, 205, 0.55);
+  --sfb-neb-b: rgba(140, 190, 255, 0.45);
+  --sfb-star: #ffffff;
+  --sfb-hole: #160c2c;
+  --sfb-ring: rgba(255, 228, 214, 0.55);
+  --sfb-gate: #c4b5fd;
+  --sfb-arm: rgba(236, 240, 255, 0.55);
+  --sfb-home-1: #3a3f9a;
+  --sfb-home-0: #1b1a52;
+  --sfb-limb: rgba(200, 236, 255, 0.85);
+}
+html.dark .sfb {
+  background: linear-gradient(180deg, #02020a 0%, #070520 50%, #0d0726 100%);
+  --sfb-neb-a: rgba(150, 40, 150, 0.45);
+  --sfb-neb-b: rgba(30, 90, 170, 0.4);
+  --sfb-hole: #000000;
+  --sfb-ring: rgba(226, 190, 180, 0.5);
+  --sfb-gate: #8b5cf6;
+  --sfb-arm: rgba(165, 180, 252, 0.5);
+  --sfb-home-1: #10183f;
+  --sfb-home-0: #04050f;
+  --sfb-limb: rgba(90, 200, 255, 0.9);
+}
+.sfb-neb-a1 { stop-color: var(--sfb-neb-a); }
+.sfb-neb-a0 { stop-color: var(--sfb-neb-a); stop-opacity: 0; }
+.sfb-neb-b1 { stop-color: var(--sfb-neb-b); }
+.sfb-neb-b0 { stop-color: var(--sfb-neb-b); stop-opacity: 0; }
+.sfb-star { fill: var(--sfb-star, #fff); }
+html:not(.dark) .sfb-star { opacity: 0.55; }
+.sfb-star--big { opacity: 0.95; }
+.sfb-arm { fill: none; stroke: var(--sfb-arm); stroke-width: 9; stroke-linecap: round; }
+.sfb-hole { fill: var(--sfb-hole); }
+.sfb-ring { stroke: var(--sfb-ring); }
+.sfb-gate { stroke: var(--sfb-gate); }
+.sfb-home-1 { stop-color: var(--sfb-home-1); }
+.sfb-home-0 { stop-color: var(--sfb-home-0); }
+.sfb-limb { stroke: var(--sfb-limb); }

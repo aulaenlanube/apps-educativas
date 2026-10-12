@@ -149,7 +149,7 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, onWron
       setIsDestroying(true);
       setTimeout(() => onDestructionComplete(), 400);
     } else {
-      onWrong?.(); // solo informa del fallo (estadística de la partida)
+      onWrong?.(); // fallo: la partida lo cuenta y aplica la penalización del hook (el bloque no se rompe)
       setIsError(true);
       setHoverState('crosshair');
       setTimeout(() => setIsError(false), 500);

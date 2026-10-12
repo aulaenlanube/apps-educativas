@@ -89,7 +89,7 @@ const Footer = () => {
                     {/* Calidad gráfica de este dispositivo: también gobierna los efectos
                         de la interfaz (fondo 3D, cristal, animaciones). Útil en equipos
                         modestos para forzar "Bajo". Al lado, el entorno del fondo 3D
-                        (ciudad futurista o naturaleza): así también lo puede cambiar
+                        (ciudad futurista, naturaleza o espacio): así también lo puede cambiar
                         quien no tiene cuenta (con sesión está además en el menú). */}
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
                         <GraphicsQualitySelector className="gfxsel-on-dark np-footer-gfx" />

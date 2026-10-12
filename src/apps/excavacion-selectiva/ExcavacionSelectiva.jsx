@@ -19,7 +19,10 @@ import {
   GameShell, GameHeader, Hud, HudStat, GameButton, GradeRing, notaMessage, notaTone, Chip,
 } from '../_shared/kit';
 import './ExcavacionSelectiva.css';
-import { XP_FOR_10, notaExcavacion, blockOutcome } from './excavacionScoring';
+import {
+  XP_FOR_10, notaExcavacion, blockOutcome,
+  XP_PENALTY_WRONG, SUDDEN_DEATH_WRONG_SECONDS, XP_PENALTY_TNT, TNT_TIME_PENALTY,
+} from './excavacionScoring';
 
 // === MIRA (SVG inline, sin filtros: el contorno oscuro da el contraste) ===
 const CrosshairIcon = () => (
@@ -94,7 +97,7 @@ const ExcavacionPartida = ({ data, controlMode, onGameComplete, onRestart }) => 
 
   // Aciertos y fallos reales (para correctAnswers / totalQuestions): se cuentan
   // al picar cada bloque (una vez por bloque, como el hook) y en cada intento de
-  // picar un distractor (Bloque3D lo rechaza sin llegar al hook).
+  // picar un distractor (el bloque no se rompe y se puede volver a fallar).
   const statsRef = useRef({ hits: 0, misses: 0 });
   const countedIdsRef = useRef(new Set());
   const countOutcome = (outcome) => {
@@ -108,8 +111,13 @@ const ExcavacionPartida = ({ data, controlMode, onGameComplete, onRestart }) => 
     }
     mineBlock(block.id);
   };
-  const handleWrong = () => {
-    if (gameState === 'playing') countOutcome('miss');
+  // Picar un distractor: además del fallo, el golpe llega al hook, que aplica la
+  // penalización que explican las instrucciones (−XP sin bajar de 0, combo a 0
+  // y, en muerte súbita, también tiempo). El bloque no se destruye.
+  const handleWrong = (block) => {
+    if (gameState !== 'playing') return;
+    countOutcome('miss');
+    mineBlock(block.id);
   };
 
   // Nota /10: la misma que se muestra al final (2.000 XP = un 10).
@@ -367,7 +375,7 @@ const ExcavacionPartida = ({ data, controlMode, onGameComplete, onRestart }) => 
                     setHoverState={setCursorType}
                     onMine={() => triggerSwing()}
                     onDestructionComplete={() => handleMined(block)}
-                    onWrong={handleWrong}
+                    onWrong={() => handleWrong(block)}
                   />
                 )
               ))}
@@ -491,13 +499,15 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
         <h3>🎯 Objetivo</h3>
         <p>
           Recorre el terreno y <strong>pica solo los bloques de la misión</strong>. Cada bloque correcto da XP y
-          alarga tu racha; los incorrectos te penalizan. Cuando se acaba el tiempo llega la <strong>muerte súbita</strong>.
+          alarga tu racha; picar uno incorrecto <strong>te quita {XP_PENALTY_WRONG} XP</strong> y rompe el combo (tus XP
+          nunca bajan de 0). Cuando se acaba el tiempo llega la <strong>muerte súbita</strong>, y ahí cada fallo
+          te quita además {SUDDEN_DEATH_WRONG_SECONDS} s.
         </p>
         <h3>🕹️ Controles</h3>
         <ul>
           <li><strong>Ordenador:</strong> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> para moverte, <kbd>Shift</kbd> para correr, ratón para mirar y clic para picar.</li>
           <li><strong>Táctil:</strong> joystick izquierdo para moverte, derecho para mirar; toca un bloque para picarlo.</li>
-          <li>Hay bloques especiales: <strong>estrella</strong>, <strong>oro</strong>, <strong>TNT</strong> y <strong>hielo</strong> (congela el tiempo).</li>
+          <li>Hay bloques especiales: <strong>estrella</strong> y <strong>oro</strong> (dan más XP), <strong>hielo</strong> (congela el tiempo) y <strong>TNT</strong> (¡no la piques! Te quita {XP_PENALTY_TNT} XP y {TNT_TIME_PENALTY} s).</li>
         </ul>
         <div className="instr-tips"><strong>💡 Consejo:</strong> cada partida cuenta para tus tareas; tu nota sale de los XP conseguidos (2.000 XP = un 10).</div>
       </InstructionsModal>

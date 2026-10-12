@@ -11,6 +11,19 @@ export function notaExcavacion(score) {
   return Math.round(Math.min(10, (xp / XP_FOR_10) * 10) * 10) / 10;
 }
 
+// Penalizaciones al picar lo que no toca. Las aplica el hook de juego
+// (useExcavacionSelectiva) y las cuentan las instrucciones de la app con estas
+// mismas constantes, para que lo explicado y lo que pasa no se separen.
+export const XP_PENALTY_WRONG = 5;          // distractor: −5 XP y se rompe el combo
+export const SUDDEN_DEATH_WRONG_SECONDS = 1; // distractor en muerte súbita: además −1 s
+export const XP_PENALTY_TNT = 20;           // TNT: −20 XP, se rompe el combo…
+export const TNT_TIME_PENALTY = 10;         // …y −10 s
+
+// XP tras una penalización: nunca por debajo de 0.
+export function applyXpPenalty(score, penalty) {
+  return Math.max(0, (Number(score) || 0) - Math.max(0, Number(penalty) || 0));
+}
+
 // Acierto o fallo al picar un bloque (para correctAnswers / totalQuestions):
 // los bloques de la misión, el oro, la estrella y el hielo son aciertos; los
 // distractores y la TNT, fallos. Mismo criterio que el hook de juego.

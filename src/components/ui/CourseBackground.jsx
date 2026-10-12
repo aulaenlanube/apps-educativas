@@ -32,10 +32,12 @@ import Scene3DFallbackBackground from '@/components/ui/Scene3DFallbackBackground
 // ENTORNO (preferencia del usuario, src/services/backgroundScene.js):
 //   'ciudad'     → CityBackground (metrópolis futurista) — por defecto
 //   'naturaleza' → Scene3DBackground (isla low-poly; ambienceId solo aplica aquí)
+//   'espacio'    → SpaceBackground (viaje a las estrellas)
 // Se cambia en vivo desde el menú de usuario, la barra lateral móvil o el pie.
-// Cada entorno es su propio chunk lazy: quien usa uno no descarga el otro.
+// Cada entorno es su propio chunk lazy: quien usa uno no descarga los otros.
 const Scene3DBackground = React.lazy(() => import('@/components/ui/Scene3DBackground'));
 const CityBackground = React.lazy(() => import('@/components/ui/city/CityBackground'));
+const SpaceBackground = React.lazy(() => import('@/components/ui/space/SpaceBackground'));
 
 export default function CourseBackground({ level, grade, ambienceId, scrim, className, style }) {
   const { scene } = useBackgroundScene();
@@ -46,10 +48,11 @@ export default function CourseBackground({ level, grade, ambienceId, scrim, clas
     case 'scene3d':
     default: {
       const isCity = scene === 'ciudad';
-      const veil = scrim ?? (isCity ? cfg.cityScrim ?? cfg.scrim : cfg.scrim);
+      const isSpace = scene === 'espacio';
+      const veil = scrim ?? (isCity ? cfg.cityScrim ?? cfg.scrim : isSpace ? cfg.spaceScrim ?? cfg.scrim : cfg.scrim);
       const flat = (
         <Scene3DFallbackBackground
-          variant={isCity ? 'ciudad' : 'naturaleza'}
+          variant={isCity || isSpace ? scene : 'naturaleza'}
           scrim={veil}
           className={className}
           style={style}
@@ -58,9 +61,11 @@ export default function CourseBackground({ level, grade, ambienceId, scrim, clas
       if (!isWebGLAvailable()) return flat;
       return (
         <WebGLBoundary key={scene} fallback={flat}>
-          <Suspense fallback={isCity ? flat : null}>
+          <Suspense fallback={isCity || isSpace ? flat : null}>
             {isCity ? (
               <CityBackground scrim={veil} className={className} style={style} />
+            ) : isSpace ? (
+              <SpaceBackground scrim={veil} className={className} style={style} />
             ) : (
               <Scene3DBackground
                 ambienceId={ambienceId ?? cfg.ambienceId}

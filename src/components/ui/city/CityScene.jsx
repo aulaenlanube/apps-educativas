@@ -216,12 +216,6 @@ function buildDynamic(layout, M) {
   return { city, stars, geos, meshes: [boxes, cyls, spires, rings, holos] };
 }
 
-// ¿El tema oscuro está activo? Se observa la clase `dark` de <html> (la pone
-// ThemeContext) para no depender del árbol de contextos.
-export function readHtmlDark() {
-  try { return document.documentElement.classList.contains('dark'); } catch { return false; }
-}
-
 export default function CityScene({ density = 'medium', frozen = false, night = false }) {
   const { camera, gl, size, invalidate } = useThree();
   // objetos estables durante toda la vida del fondo (el primer frame ya sale con

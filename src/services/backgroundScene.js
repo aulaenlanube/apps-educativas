@@ -3,6 +3,8 @@
 // asignaturas y apps 'standard'). Es independiente de la calidad gráfica:
 //   'ciudad'     → metrópolis futurista (src/components/ui/city/) — POR DEFECTO
 //   'naturaleza' → isla low-poly del Laboratorio de Física (Scene3DBackground)
+//   'espacio'    → viaje a las estrellas: galaxia, agujero negro, enjambre de
+//                  Dyson, puerta estelar y convoy (src/components/ui/space/)
 //
 // Se guarda por dispositivo en localStorage y se aplica en vivo (sin recargar) a
 // todos los consumidores con un CustomEvent; otras pestañas se enteran por el
@@ -19,6 +21,7 @@ export const DEFAULT_BG_SCENE = 'ciudad';
 export const BG_SCENES = [
   { id: 'ciudad', name: 'Ciudad', emoji: '🌆' },
   { id: 'naturaleza', name: 'Naturaleza', emoji: '🏝️' },
+  { id: 'espacio', name: 'Espacio', emoji: '🪐' },
 ];
 
 const VALID = BG_SCENES.map((s) => s.id);
@@ -41,3 +44,9 @@ export function saveBgScene(v) {
 }
 
 export const bgSceneName = (id) => BG_SCENES.find((s) => s.id === id)?.name || BG_SCENES[0].name;
+
+// Siguiente entorno en la lista (para los controles que alternan con un clic)
+export function nextBgScene(id) {
+  const i = BG_SCENES.findIndex((s) => s.id === id);
+  return BG_SCENES[(i + 1) % BG_SCENES.length].id;
+}

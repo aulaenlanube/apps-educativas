@@ -1,5 +1,5 @@
 // src/components/ui/BackgroundSceneSelector.jsx
-// Selector del ENTORNO del fondo 3D (Ciudad / Naturaleza), con el mismo estilo
+// Selector del ENTORNO del fondo 3D (Ciudad / Naturaleza / Espacio), con el mismo estilo
 // que GraphicsQualitySelector (fila compacta). Lo usa el pie para quien no
 // tiene cuenta; con sesión también está en el menú de usuario y en la barra
 // lateral móvil. Ver src/services/backgroundScene.js.

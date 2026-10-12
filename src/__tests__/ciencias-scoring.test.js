@@ -6,7 +6,9 @@
 import { describe, it, expect } from 'vitest';
 import { computeCrafteoNota, computeCrafteoScore, crafteoMaxScore } from '@/apps/mesa-crafteo/crafteoScoring';
 import { calcularPuntosInfografia } from '@/apps/infografias-interactivas/infografiasScoring';
-import { notaExcavacion, blockOutcome, XP_FOR_10 } from '@/apps/excavacion-selectiva/excavacionScoring';
+import {
+  notaExcavacion, blockOutcome, XP_FOR_10, applyXpPenalty, XP_PENALTY_WRONG, XP_PENALTY_TNT,
+} from '@/apps/excavacion-selectiva/excavacionScoring';
 import { puntosTest, puntosReto, notaSobre10, shuffle } from '@/apps/celula-animal/celulaScoring';
 import { aciertosOrden, resultadoDesafio } from '@/apps/sistema-solar/desafioScoring';
 
@@ -80,6 +82,21 @@ describe('Excavación Selectiva: nota desde los XP', () => {
     expect(blockOutcome({ isTarget: false })).toBe('miss');
     expect(blockOutcome({ isTarget: false, isTNT: true })).toBe('miss');
     expect(blockOutcome(undefined)).toBe(null);
+  });
+
+  it('picar un distractor o la TNT resta XP sin bajar de 0', () => {
+    // Lo que cuentan las instrucciones: −5 XP por distractor y −20 XP por TNT.
+    expect(XP_PENALTY_WRONG).toBe(5);
+    expect(XP_PENALTY_TNT).toBe(20);
+    expect(applyXpPenalty(120, XP_PENALTY_WRONG)).toBe(115);
+    expect(applyXpPenalty(120, XP_PENALTY_TNT)).toBe(100);
+    expect(applyXpPenalty(3, XP_PENALTY_WRONG)).toBe(0);
+    expect(applyXpPenalty(0, XP_PENALTY_TNT)).toBe(0);
+    expect(applyXpPenalty(undefined, XP_PENALTY_WRONG)).toBe(0);
+    // Una penalización nunca suma.
+    expect(applyXpPenalty(50, -10)).toBe(50);
+    // Y la nota que se envía sale de esos XP ya penalizados.
+    expect(notaExcavacion(applyXpPenalty(1000, XP_PENALTY_TNT))).toBe(4.9);
   });
 });
 
