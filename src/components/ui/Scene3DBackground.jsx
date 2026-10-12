@@ -11,9 +11,10 @@
 //     <Scene3DBackground />
 //     <div className="mi-contenido"> … </div>
 //   </div>
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import FrameLimiter, { nowSeconds } from '@/components/ui/bg3d/FrameLimiter';
+import { PlaySnapshot, PlaySnapshotLayer, usePlaySnapshot } from '@/components/ui/bg3d/PlaySnapshot';
 import LabEnvironment from '@/apps/laboratorio-fisica/components/LabEnvironment';
 import { ambienceById, pickCieloBackground } from '@/apps/laboratorio-fisica/engine/ambiences';
 import useFxTier from '@/hooks/useFxTier';
@@ -34,10 +35,13 @@ const BG_BUDGET = {
 // velocidad no depende de los fps del limitador (ver bg3d/FrameLimiter).
 const now = nowSeconds;
 
-// cámara que orbita despacio alrededor de la isla (vista 3/4 elevada)
-function OrbitCam({ radius = 44, height = 18, target = [0, 0.5, 0], speed = 0.03, frozen = false }) {
+// cámara que orbita despacio alrededor de la isla (vista 3/4 elevada).
+// hold: se queda donde estaba (modo partida) en vez de saltar a la pose fija.
+function OrbitCam({ radius = 44, height = 18, target = [0, 0.5, 0], speed = 0.03, frozen = false, hold = false }) {
+  const last = useRef(null);
   useFrame((state) => {
-    const t = (frozen ? 4 : now()) * speed + 0.7;
+    const t = hold && last.current != null ? last.current : (frozen ? 4 : now()) * speed + 0.7;
+    last.current = t;
     state.camera.position.set(Math.cos(t) * radius, height, Math.sin(t) * radius);
     state.camera.lookAt(target[0], target[1], target[2]);
   });
@@ -47,6 +51,7 @@ function OrbitCam({ radius = 44, height = 18, target = [0, 0.5, 0], speed = 0.03
 export default function Scene3DBackground({
   ambienceId,        // id concreto ('dia','atardecer','noche'…); si no, uno al azar
   scrim = 0.3,       // velo oscuro sobre el 3D para legibilidad del contenido (0..1)
+  playing = false,   // dentro de una app: congelado y difuminado (bg3d/PlaySnapshot.jsx)
   className = '',
   style,
 }) {
@@ -56,8 +61,9 @@ export default function Scene3DBackground({
   // si el limitador detecta que ni así llega, congelamos el fondo en esta sesión
   const [frozen, setFrozen] = useState(false);
   const freeze = useCallback(() => setFrozen(true), []);
-  const fps = frozen ? 0 : B.fps;
+  const fps = frozen || playing ? 0 : B.fps;
   const dpr = Math.min((typeof window !== 'undefined' && window.devicePixelRatio) || 1, B.dpr);
+  const snap = usePlaySnapshot();
 
   // ambiente fijo indicado, o uno de cielo al azar PESADO hacia el día despejado /
   // soleado (pickCieloBackground): la plataforma es normalmente de día y con buen
@@ -84,6 +90,7 @@ export default function Scene3DBackground({
         gl={{ antialias: B.antialias, powerPreference: tier === 'high' ? 'high-performance' : 'default' }}
         camera={{ position: [40, 18, 28], fov: 55 }}
       >
+        <PlaySnapshot playing={playing} snap={snap} />
         <FrameLimiter fps={fps} onSlow={freeze} />
         <color attach="background" args={[amb.sky]} />
         <fog attach="fog" args={[amb.horizon, amb.fog[0], amb.fog[1]]} />
@@ -91,8 +98,9 @@ export default function Scene3DBackground({
         <hemisphereLight args={[amb.hemiSky || '#bfe3ff', amb.hemiGround || '#2c2354', amb.hemi ?? 0.55]} />
         <directionalLight position={amb.sunPos || [10, 16, 7]} color={amb.sun || '#ffffff'} intensity={amb.sunI ?? 1.2} />
         <LabEnvironment amb={amb} budget={budget} />
-        <OrbitCam frozen={fps === 0} />
+        <OrbitCam frozen={fps === 0 && !playing} hold={playing} />
       </Canvas>
+      <PlaySnapshotLayer snap={snap} playing={playing} />
       {scrim > 0 && (
         <div
           style={{

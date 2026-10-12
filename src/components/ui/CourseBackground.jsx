@@ -29,6 +29,8 @@ import Scene3DFallbackBackground from '@/components/ui/Scene3DFallbackBackground
 // Props opcionales ambienceId/scrim: si se pasan, tienen prioridad sobre la
 // config del curso (override puntual, p. ej. por app).
 //
+// playing: dentro de una app el fondo se congela y se difumina (bg3d/PlaySnapshot.jsx).
+//
 // ENTORNO (preferencia del usuario, src/services/backgroundScene.js):
 //   'ciudad'     → CityBackground (metrópolis futurista) — por defecto
 //   'naturaleza' → Scene3DBackground (isla low-poly; ambienceId solo aplica aquí)
@@ -39,7 +41,7 @@ const Scene3DBackground = React.lazy(() => import('@/components/ui/Scene3DBackgr
 const CityBackground = React.lazy(() => import('@/components/ui/city/CityBackground'));
 const SpaceBackground = React.lazy(() => import('@/components/ui/space/SpaceBackground'));
 
-export default function CourseBackground({ level, grade, ambienceId, scrim, className, style }) {
+export default function CourseBackground({ level, grade, ambienceId, scrim, playing = false, className, style }) {
   const { scene } = useBackgroundScene();
   const cfg = getCourseBackground(level, grade);
   if (!cfg || cfg.kind === 'none') return null;
@@ -63,13 +65,14 @@ export default function CourseBackground({ level, grade, ambienceId, scrim, clas
         <WebGLBoundary key={scene} fallback={flat}>
           <Suspense fallback={isCity || isSpace ? flat : null}>
             {isCity ? (
-              <CityBackground scrim={veil} className={className} style={style} />
+              <CityBackground scrim={veil} playing={playing} className={className} style={style} />
             ) : isSpace ? (
-              <SpaceBackground scrim={veil} className={className} style={style} />
+              <SpaceBackground scrim={veil} playing={playing} className={className} style={style} />
             ) : (
               <Scene3DBackground
                 ambienceId={ambienceId ?? cfg.ambienceId}
                 scrim={veil}
+                playing={playing}
                 className={className}
                 style={style}
               />

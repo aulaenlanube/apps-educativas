@@ -27,8 +27,10 @@ function resolveFromPath(pathname) {
   // asignaturas (len 3) y apps (len 4)
   if (parts.length === 3 || parts.length === 4) return { level, grade };
   // app individual: /curso/level/grade/subjectId/app/appId
+  // Dentro de la app el fondo pasa a "modo partida" (congelado y difuminado,
+  // ver bg3d/PlaySnapshot.jsx) para no quitarle recursos al juego.
   if (parts.length === 6 && parts[4] === 'app') {
-    return courseBackgroundEnabledForAppId(parts[5]) ? { level, grade } : null;
+    return courseBackgroundEnabledForAppId(parts[5]) ? { level, grade, playing: true } : null;
   }
   return null;
 }
@@ -37,5 +39,5 @@ export default function PersistentCourseBackground() {
   const { pathname } = useLocation();
   const target = resolveFromPath(pathname);
   if (!target) return null;
-  return <CourseBackground level={target.level} grade={target.grade} style={{ zIndex: -1 }} />;
+  return <CourseBackground level={target.level} grade={target.grade} playing={!!target.playing} style={{ zIndex: -1 }} />;
 }

@@ -24,6 +24,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import FrameLimiter from '@/components/ui/bg3d/FrameLimiter';
+import { PlaySnapshot, PlaySnapshotLayer, usePlaySnapshot } from '@/components/ui/bg3d/PlaySnapshot';
 import { useMediaQuery, useHtmlDark } from '@/components/ui/bg3d/bgEnv';
 import useFxTier from '@/hooks/useFxTier';
 import { lowerTier } from '@/services/graphicsQuality';
@@ -36,7 +37,7 @@ const SPACE_BUDGET = {
   low: { fps: 0, dpr: 1, antialias: false },
 };
 
-export default function SpaceBackground({ scrim = 0.3, className = '', style }) {
+export default function SpaceBackground({ scrim = 0.3, playing = false, className = '', style }) {
   const tier = useFxTier();
   const compact = useMediaQuery('(max-width: 719px)');
   const touch = useMediaQuery('(hover: none) and (pointer: coarse)');
@@ -50,7 +51,8 @@ export default function SpaceBackground({ scrim = 0.3, className = '', style }) 
   // tope por lentitud: 60 → 30 → congelado. Se reinicia si cambia el nivel.
   const [cap, setCap] = useState(Infinity);
   useEffect(() => { setCap(Infinity); }, [tier]);
-  const fps = reduced ? 0 : Math.min(B.fps, cap);
+  // en partida (playing) se congela y se cubre con su foto difuminada: bg3d/PlaySnapshot.jsx
+  const fps = reduced || playing ? 0 : Math.min(B.fps, cap);
   const fpsRef = useRef(fps);
   fpsRef.current = fps;
   const onSlow = useCallback(() => setCap(fpsRef.current > 30 ? 30 : 0), []);
@@ -58,6 +60,7 @@ export default function SpaceBackground({ scrim = 0.3, className = '', style }) 
   // el antialias no se puede cambiar en un contexto vivo: se decide al montar
   const [aa] = useState(B.antialias);
   const dpr = Math.min((typeof window !== 'undefined' && window.devicePixelRatio) || 1, B.dpr);
+  const snap = usePlaySnapshot();
 
   const [ready, setReady] = useState(false);
   const onCreated = useCallback(() => {
@@ -81,9 +84,11 @@ export default function SpaceBackground({ scrim = 0.3, className = '', style }) 
         camera={{ position: [0, 0, 0], fov: 50, near: 0.5, far: 7000 }}
         onCreated={onCreated}
       >
+        <PlaySnapshot playing={playing} snap={snap} />
         <FrameLimiter fps={fps} onSlow={onSlow} />
         <SpaceScene density={density} frozen={fps === 0} night={dark} />
       </Canvas>
+      <PlaySnapshotLayer snap={snap} playing={playing} />
       {/* en móvil el texto va centrado sobre toda la anchura: algo más de velo */}
       {scrim > 0 && <div className="space-bg__scrim" style={{ '--space-scrim': compact ? scrim + 0.08 : scrim }} />}
     </div>
