@@ -13,7 +13,7 @@ import {
     ChevronDown, ListChecks, Timer, Sparkles, Pencil,
 } from 'lucide-react';
 import AppIcon, { hasAppIcon } from '@/components/AppIcon';
-import RoscoAvatar, { AVATAR_IDS } from '@/components/RoscoAvatars';
+import RoscoAvatar, { AVATAR_IDS, AVATAR_META } from '@/components/RoscoAvatars';
 import InstructionsModal from './InstructionsModal';
 import {
     GameShell, GameHeader, Hud, HudStat, Panel, Chip, GameButton, Segmented,
@@ -22,6 +22,9 @@ import {
 import './RoscoShared.css';
 
 const ICONS = AVATAR_IDS;
+const NO_META = { name: 'Personaje', tagline: '', color: '#6366f1', tint: '#e0e7ff' };
+const avatarMeta = (id) => AVATAR_META[id] || NO_META;
+const avatarVars = (id) => ({ '--av': avatarMeta(id).color, '--av-tint': avatarMeta(id).tint });
 const cx = (...c) => c.filter(Boolean).join(' ');
 const fmtTime = (s) => `${Math.floor((s || 0) / 60)}:${String((s || 0) % 60).padStart(2, '0')}`;
 const LEVEL_LABEL = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', ad: 'Diversidad' };
@@ -596,30 +599,47 @@ const RoscoUI = ({
                                     <h2>Elige tu personaje</h2>
                                     <button type="button" className="rsc-close" onClick={() => setAvatarModalPlayer(null)} aria-label="Cerrar"><X size={18} /></button>
                                 </header>
-                                <div className="rsc-avatars__preview">
+                                <div className="rsc-avatars__preview" style={avatarVars(config[avatarModalPlayer].icon)}>
                                     <span className="rsc-avatars__spot" aria-hidden="true" />
                                     <motion.span
                                         key={config[avatarModalPlayer].icon}
                                         className="rsc-avatars__big"
-                                        initial={{ scale: 0.6, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
+                                        initial={{ scale: 0.6, opacity: 0, rotate: -6 }}
+                                        animate={{ scale: 1, opacity: 1, rotate: 0 }}
                                         transition={{ type: 'spring', stiffness: 380, damping: 18 }}
                                     >
                                         <RoscoAvatar id={config[avatarModalPlayer].icon} size="100%" />
                                     </motion.span>
+                                    <div className="rsc-avatars__info" aria-live="polite">
+                                        <motion.strong
+                                            key={config[avatarModalPlayer].icon}
+                                            initial={{ y: 8, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ duration: 0.25 }}
+                                        >
+                                            {avatarMeta(config[avatarModalPlayer].icon).name}
+                                        </motion.strong>
+                                        <span>{avatarMeta(config[avatarModalPlayer].icon).tagline}</span>
+                                    </div>
                                 </div>
                                 <div className="rsc-avatars__grid">
                                     {ICONS.map(i => {
                                         const isSelected = config[avatarModalPlayer].icon === i;
+                                        const m = avatarMeta(i);
                                         return (
                                             <button
                                                 key={i}
                                                 type="button"
                                                 onClick={() => handlePlayerChange(avatarModalPlayer, 'icon', i)}
                                                 className={cx('rsc-avatars__opt', isSelected && 'is-selected')}
+                                                style={avatarVars(i)}
                                                 aria-pressed={isSelected}
+                                                aria-label={m.name}
+                                                title={m.tagline}
                                             >
-                                                <RoscoAvatar id={i} size="100%" />
+                                                <span className="rsc-avatars__pic"><RoscoAvatar id={i} size="100%" /></span>
+                                                <span className="rsc-avatars__name">{m.name}</span>
+                                                {isSelected && <span className="rsc-avatars__check" aria-hidden="true"><Check size={12} strokeWidth={3.5} /></span>}
                                             </button>
                                         );
                                     })}
