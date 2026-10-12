@@ -415,7 +415,19 @@ void main() {
   vec4 mv = viewMatrix * vec4(aCenter.xyz, 1.0);
   vG = vec3(0.0, 0.0, -1.0);
   vC = mv.xyz;
-  mv.xy += position.xy * 2.0 * aCenter.w * aKind.w;
+  // Quad alineado con la pantalla a la profundidad del centro. Con anillos, fuera
+  // del eje la perspectiva estira su proyección por encima de aKind.w radios y el
+  // anillo se cortaría en seco: el semilado cubre la proyección de la esfera
+  // envolvente (radio E) vista con ángulo th respecto al eje de la cámara.
+  float halfQ = aCenter.w * aKind.w;
+  if (aAxis.w > 0.0) {
+    float D = length(mv.xyz);
+    float th = acos(clamp(-mv.z / D, 0.0, 1.0));
+    float al = asin(clamp(halfQ / D, 0.0, 0.9));
+    float edge = min(th + al, 1.45);
+    halfQ = max(halfQ, -mv.z * (tan(edge) - tan(th)) * 1.04);
+  }
+  mv.xy += position.xy * 2.0 * halfQ;
   vRay = mv.xyz;
   vKind = aKind;
   vec3 Lw = normalize(uSunPos - aCenter.xyz);

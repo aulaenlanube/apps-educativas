@@ -100,10 +100,50 @@ function lerpObj(a, b, k) {
 
 const at = (o) => dirYP(o.yaw, o.pitch).multiplyScalar(o.dist);
 
+// Radio exterior de los anillos del gigante, en radios del planeta (buildBodies).
+const GIANT_RING_O = 2.35;
+// Encuadre del gigante en apaisado: entra SIEMPRE entero en pantalla, con su
+// anillo, y un margen al borde derecho (FIT_MARGIN de la mitad del ancho). Si
+// la pantalla es menos ancha se acerca al centro hasta GIANT_MIN_YAW y, si aun
+// así no cabe, encoge (con su luna) en vez de salirse por el borde.
+const FIT_MARGIN = 0.93;
+const GIANT_MIN_YAW = 24;
+const GIANT_LIFT = 0.38;   // grados que sube por cada grado que se acerca al centro
+function fitGiant(C, aspect, weight) {
+  if (weight <= 0) return;
+  const g = C.giant;
+  const tanH = Math.tan((C.fov * D2R) / 2) * aspect;      // tan del semiángulo horizontal
+  const limit = Math.atan(FIT_MARGIN * tanH) / D2R;       // ángulo máximo del borde derecho
+  const alpha = (R) => Math.asin(Math.min(0.95, (R * GIANT_RING_O) / g.dist)) / D2R;
+  let R = g.R;
+  let yaw = Math.min(g.yaw, limit - alpha(R));
+  if (yaw < GIANT_MIN_YAW) {
+    yaw = Math.min(g.yaw, GIANT_MIN_YAW);
+    const aMax = Math.max(2, limit - yaw);
+    R = Math.min(R, (g.dist * Math.sin(aMax * D2R)) / GIANT_RING_O);
+  }
+  const dYaw = (yaw - g.yaw) * weight;
+  const s = 1 + (R / g.R - 1) * weight;
+  // al acercarse al centro sube un poco para no pisar la puerta estelar de debajo
+  const lift = -dYaw * GIANT_LIFT;
+  const moonDy = C.moon.yaw - g.yaw;
+  const moonDp = C.moon.pitch - g.pitch;
+  g.yaw += dYaw;
+  g.pitch += lift;
+  g.R *= s;
+  // la luna acompaña al gigante (misma separación, a escala)
+  C.moon.yaw = g.yaw + moonDy * s;
+  C.moon.pitch = g.pitch + moonDp * s;
+  C.moon.R *= s;
+}
+
 // aspect = ancho / alto de la pantalla
 export function composeSpace(aspect) {
   const k = THREE.MathUtils.clamp((1.3 - aspect) / (1.3 - 0.55), 0, 1); // 0 apaisado · 1 vertical
   const C = lerpObj(WIDE, TALL, k);
+  // apaisado (escritorio): el gigante anillado nunca se corta en el borde; en
+  // vertical se mantiene el encuadre cinematográfico de TALL
+  fitGiant(C, aspect, 1 - k);
   const sunPos = at(C.sun);
   const stationPos = at(C.station);
   const gatePos = at(C.gate);
