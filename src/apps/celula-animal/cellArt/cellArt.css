@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Ilustración de las células (Célula Animal / Vegetal) — prefijo cart-.
+   Solo se anima transform y opacity, y SOLO con html[data-fx="high"] y sin
+   "movimiento reducido": con efectos medios/bajos el dibujo queda estático
+   (y completo). Ajustes por variables en style: --dur, --d (retardo, suele
+   ser negativo para desincronizar), --dx/--dy (px = unidades del dibujo),
+   --s (escala), --a (grados), --lo/--hi (opacidad), --tx/--ty (viaje).
+   Un elemento animado NO lleva atributo transform (el CSS lo pisaría):
+   el giro/posición va en un <g> padre.
+   ========================================================================== */
+
+.cart-svg { overflow: visible; }
+
+.cart-drift,
+.cart-bob,
+.cart-breathe,
+.cart-spin,
+.cart-sway,
+.cart-ripple,
+.cart-spark,
+.cart-twinkle,
+.cart-tx,
+.cart-ty,
+.cart-life {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* en reposo (efectos medios/bajos) las ondas no se ven y los destellos quedan tenues */
+.cart-ripple { opacity: 0; }
+.cart-twinkle { opacity: .45; transform: scale(.7); }
+
+/* el viaje se mide en coordenadas del dibujo, no de la caja de la pieza */
+.cart-tx,
+.cart-ty { transform-box: view-box; transform-origin: 0 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-fx="high"] .cart-drift { animation: cart-drift var(--dur, 9s) ease-in-out var(--d, 0s) infinite alternate; }
+  html[data-fx="high"] .cart-bob { animation: cart-bob var(--dur, 4s) ease-in-out var(--d, 0s) infinite alternate; }
+  html[data-fx="high"] .cart-breathe { animation: cart-breathe var(--dur, 5s) ease-in-out var(--d, 0s) infinite alternate; }
+  html[data-fx="high"] .cart-spin { animation: cart-spin var(--dur, 30s) linear var(--d, 0s) infinite; }
+  html[data-fx="high"] .cart-sway { animation: cart-sway var(--dur, 6s) ease-in-out var(--d, 0s) infinite alternate; }
+  html[data-fx="high"] .cart-fade { animation: cart-fade var(--dur, 4s) ease-in-out var(--d, 0s) infinite alternate; }
+  html[data-fx="high"] .cart-ripple { animation: cart-ripple var(--dur, 6s) ease-out var(--d, 0s) infinite; }
+  html[data-fx="high"] .cart-spark { animation: cart-spark var(--dur, 3.2s) ease-out var(--d, 0s) infinite; }
+  html[data-fx="high"] .cart-twinkle { animation: cart-twinkle var(--dur, 5s) ease-in-out var(--d, 0s) infinite; }
+  /* viaje: X e Y con curvas de aceleración distintas = trayectoria curva */
+  html[data-fx="high"] .cart-tx { animation: cart-tx var(--dur, 8s) cubic-bezier(.45, .05, .55, .95) var(--d, 0s) infinite; }
+  html[data-fx="high"] .cart-ty { animation: cart-ty var(--dur, 8s) cubic-bezier(.2, .7, .4, 1) var(--d, 0s) infinite; }
+  html[data-fx="high"] .cart-life { animation: cart-life var(--dur, 8s) linear var(--d, 0s) infinite; }
+}
+
+@keyframes cart-drift { from { transform: translate(0, 0); } to { transform: translate(var(--dx, 4px), var(--dy, -3px)); } }
+@keyframes cart-bob { from { transform: translate(0, 0); } to { transform: translate(var(--dx, 0px), var(--dy, -1.5px)); } }
+@keyframes cart-breathe { from { transform: scale(1, 1); } to { transform: scale(var(--s, 1.03), var(--s2, .975)); } }
+@keyframes cart-spin { from { transform: rotate(0deg); } to { transform: rotate(var(--a, 360deg)); } }
+@keyframes cart-sway { from { transform: rotate(calc(var(--a, 4deg) * -1)); } to { transform: rotate(var(--a, 4deg)); } }
+@keyframes cart-fade { from { opacity: var(--lo, .25); } to { opacity: var(--hi, 1); } }
+@keyframes cart-ripple {
+  0% { transform: scale(.55); opacity: 0; }
+  18% { opacity: var(--hi, .5); }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+@keyframes cart-spark {
+  0% { transform: translate(0, 0) scale(.4); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate(var(--dx, 10px), var(--dy, -14px)) scale(1); opacity: 0; }
+}
+@keyframes cart-twinkle {
+  0%, 62%, 100% { transform: scale(.3); opacity: 0; }
+  76% { transform: scale(1); opacity: 1; }
+}
+@keyframes cart-tx { from { transform: translateX(0); } to { transform: translateX(var(--tx, 40px)); } }
+@keyframes cart-ty { from { transform: translateY(0); } to { transform: translateY(var(--ty, 0px)); } }
+@keyframes cart-life {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}

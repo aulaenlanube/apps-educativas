@@ -8,6 +8,7 @@ import {
     CelQuest, CelToast, CelMatch, CelQuizResults, CelHelpContent, lensViewBox,
 } from './CelulaUI';
 import { puntosTest, puntosReto, shuffle } from './celulaScoring';
+import AnimalCellDiagram from './cellArt/AnimalCellDiagram';
 
 // ===== ORGANELLE DATA =====
 const organelleData = [
@@ -16,7 +17,7 @@ const organelleData = [
         name: 'Membrana Plasmática',
         icon: '🛡️',
         subtitle: 'BARRERA SELECTIVA',
-        labelPos: { x: 92, y: 50 },
+        labelPos: { x: 93, y: 62 },
         description: 'La membrana plasmática es una fina bicapa de fosfolípidos que envuelve toda la célula. Actúa como una barrera selectiva que controla qué sustancias entran y salen de la célula.',
         functions: [
             'Proteger el interior de la célula',
@@ -32,7 +33,7 @@ const organelleData = [
         name: 'Núcleo',
         icon: '🧬',
         subtitle: 'CENTRO DE CONTROL',
-        labelPos: { x: 50, y: 42 },
+        labelPos: { x: 40, y: 48 },
         description: 'El núcleo es el orgánulo más grande de la célula y su centro de control. Contiene el ADN, que es el material genético con las instrucciones para fabricar todas las proteínas que la célula necesita.',
         functions: [
             'Almacenar y proteger el ADN (material genético)',
@@ -48,7 +49,7 @@ const organelleData = [
         name: 'Nucléolo',
         icon: '⚫',
         subtitle: 'FÁBRICA DE RIBOSOMAS',
-        labelPos: { x: 50, y: 36 },
+        labelPos: { x: 55, y: 39.2 },
         description: 'El nucléolo es una estructura densa y esférica situada dentro del núcleo. Su función principal es fabricar los componentes de los ribosomas, las "máquinas" que construyen las proteínas.',
         functions: [
             'Producir ARN ribosómico (ARNr)',
@@ -79,7 +80,7 @@ const organelleData = [
         name: 'Retículo Endoplasmático Liso',
         icon: '🧴',
         subtitle: 'FÁBRICA DE LÍPIDOS',
-        labelPos: { x: 28, y: 60 },
+        labelPos: { x: 30.3, y: 59.6 },
         description: 'El retículo endoplasmático liso (REL) es similar al rugoso pero sin ribosomas en su superficie. Se especializa en la síntesis de lípidos y en la detoxificación de sustancias.',
         functions: [
             'Sintetizar lípidos (grasas) y hormonas esteroideas',
@@ -111,7 +112,7 @@ const organelleData = [
         name: 'Aparato de Golgi',
         icon: '📦',
         subtitle: 'EMPAQUETADO Y DISTRIBUCIÓN',
-        labelPos: { x: 65, y: 30 },
+        labelPos: { x: 74.7, y: 33.6 },
         description: 'El aparato de Golgi es la "oficina de correos" de la célula. Recibe proteínas y lípidos, los modifica, empaqueta y envía a su destino correcto dentro o fuera de la célula.',
         functions: [
             'Modificar y madurar proteínas (glicosilación)',
@@ -127,7 +128,7 @@ const organelleData = [
         name: 'Lisosoma',
         icon: '🧹',
         subtitle: 'SISTEMA DIGESTIVO CELULAR',
-        labelPos: { x: 78, y: 38 },
+        labelPos: { x: 81.7, y: 49.4 },
         description: 'Los lisosomas son vesículas esféricas que contienen enzimas digestivas muy potentes. Son el "sistema digestivo" de la célula, capaces de descomponer todo tipo de moléculas.',
         functions: [
             'Digerir sustancias que la célula incorpora del exterior',
@@ -143,7 +144,7 @@ const organelleData = [
         name: 'Ribosomas',
         icon: '🔵',
         subtitle: 'CONSTRUCTORES DE PROTEÍNAS',
-        labelPos: { x: 40, y: 48 },
+        labelPos: { x: 45, y: 66 },
         description: 'Los ribosomas son pequeñas estructuras que leen las instrucciones del ARN mensajero para ensamblar aminoácidos y construir proteínas. Son las "impresoras 3D" de la célula.',
         functions: [
             'Traducir el ARN mensajero en proteínas',
@@ -158,7 +159,7 @@ const organelleData = [
         name: 'Centrosoma',
         icon: '✳️',
         subtitle: 'ORGANIZADOR DE DIVISIÓN',
-        labelPos: { x: 55, y: 55 },
+        labelPos: { x: 62, y: 63.6 },
         description: 'El centrosoma es una estructura formada por dos centriolos perpendiculares entre sí. Es esencial durante la división celular, ya que organiza el huso mitótico que separa los cromosomas.',
         functions: [
             'Organizar los microtúbulos del citoesqueleto',
@@ -173,7 +174,7 @@ const organelleData = [
         name: 'Citoesqueleto',
         icon: '🦴',
         subtitle: 'ESQUELETO INTERNO',
-        labelPos: { x: 18, y: 45 },
+        labelPos: { x: 18.3, y: 45.2 },
         description: 'El citoesqueleto es una red de filamentos proteicos que recorre todo el citoplasma. Le da forma a la célula, permite el movimiento y actúa como un sistema de "carreteras" internas.',
         functions: [
             'Mantener la forma de la célula',
@@ -189,7 +190,7 @@ const organelleData = [
         name: 'Citoplasma',
         icon: '💧',
         subtitle: 'MEDIO INTERNO',
-        labelPos: { x: 40, y: 72 },
+        labelPos: { x: 55, y: 87 },
         description: 'El citoplasma es todo el contenido celular que se encuentra entre la membrana plasmática y el núcleo. Es un medio acuoso y gelatinoso donde flotan todos los orgánulos y se realizan muchas reacciones químicas.',
         functions: [
             'Albergar y sostener todos los orgánulos',
@@ -220,485 +221,26 @@ const ORG_COLORS = {
 
 // Encuadre de la lente de la ficha (coordenadas del dibujo 600×500).
 const LENS = {
-    membrana: { x: 548, y: 250, size: 150 },
-    nucleo: { x: 310, y: 222, size: 230 },
-    nucleolo: { x: 305, y: 210, size: 90 },
-    'reticulo-rugoso': { x: 208, y: 168, size: 150 },
-    'reticulo-liso': { x: 160, y: 328, size: 160 },
-    mitocondria: { x: 430, y: 350, size: 140 },
-    golgi: { x: 440, y: 178, size: 140 },
-    lisosoma: { x: 492, y: 250, size: 100 },
-    ribosoma: { x: 352, y: 312, size: 90 },
-    centrosoma: { x: 352, y: 294, size: 80 },
-    citoesqueleto: { x: 170, y: 260, size: 190 },
-    citoplasma: { x: 260, y: 360, size: 220 },
+    membrana: { x: 560, y: 292, size: 120 },
+    nucleo: { x: 300, y: 215, size: 220 },
+    nucleolo: { x: 330, y: 196, size: 64 },
+    'reticulo-rugoso': { x: 200, y: 178, size: 140 },
+    'reticulo-liso': { x: 168, y: 336, size: 140 },
+    mitocondria: { x: 434, y: 352, size: 125 },
+    golgi: { x: 450, y: 168, size: 120 },
+    lisosoma: { x: 496, y: 262, size: 86 },
+    ribosoma: { x: 274, y: 334, size: 64 },
+    centrosoma: { x: 372, y: 316, size: 70 },
+    citoesqueleto: { x: 140, y: 245, size: 170 },
+    citoplasma: { x: 290, y: 400, size: 200 },
 };
 
 const noop = () => {};
 
-// ===== SVG CELL DIAGRAM COMPONENT =====
+// ===== SVG CELL DIAGRAM (ilustración en cellArt/AnimalCellDiagram.jsx) =====
 const SVG_W = 600;
 const SVG_H = 500;
-
-const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetId, feedbackState, viewBox }) => {
-    const getRegionClass = (id) => {
-        if (!isQuizMode) return selectedId === id ? 'active' : '';
-        if (feedbackState && feedbackState.id === id) {
-            return feedbackState.isCorrect ? 'correct' : 'incorrect';
-        }
-        return '';
-    };
-
-    return (
-        <svg viewBox={viewBox || `0 0 ${SVG_W} ${SVG_H}`} xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                {/* ===== ADVANCED GRADIENTS ===== */}
-                <radialGradient id="cytoplasmGrad" cx="45%" cy="40%">
-                    <stop offset="0%" stopColor="#1f4d38" />
-                    <stop offset="40%" stopColor="#163a28" />
-                    <stop offset="80%" stopColor="#0f2a1c" />
-                    <stop offset="100%" stopColor="#0a1f14" />
-                </radialGradient>
-                <radialGradient id="cytoHighlight" cx="30%" cy="25%">
-                    <stop offset="0%" stopColor="rgba(34,197,94,0.08)" />
-                    <stop offset="100%" stopColor="transparent" />
-                </radialGradient>
-
-                {/* Nucleus - deep purple sphere */}
-                <radialGradient id="nucleusGrad" cx="38%" cy="35%">
-                    <stop offset="0%" stopColor="#4c2a8c" />
-                    <stop offset="35%" stopColor="#351e6b" />
-                    <stop offset="70%" stopColor="#1f1248" />
-                    <stop offset="100%" stopColor="#120a30" />
-                </radialGradient>
-                <radialGradient id="nucleusHighlight" cx="30%" cy="25%">
-                    <stop offset="0%" stopColor="rgba(167,139,250,0.35)" />
-                    <stop offset="60%" stopColor="rgba(167,139,250,0.05)" />
-                    <stop offset="100%" stopColor="transparent" />
-                </radialGradient>
-
-                {/* Nucleolus - deeper purple */}
-                <radialGradient id="nucleolusGrad" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#6d3cc0" />
-                    <stop offset="40%" stopColor="#4a2080" />
-                    <stop offset="100%" stopColor="#2a1050" />
-                </radialGradient>
-                <radialGradient id="nucleolusHighlight" cx="30%" cy="25%">
-                    <stop offset="0%" stopColor="rgba(196,167,255,0.5)" />
-                    <stop offset="100%" stopColor="transparent" />
-                </radialGradient>
-
-                {/* Mitochondria - warm 3D */}
-                <radialGradient id="mitoGrad1" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#e68a1e" />
-                    <stop offset="40%" stopColor="#c76b10" />
-                    <stop offset="80%" stopColor="#92400e" />
-                    <stop offset="100%" stopColor="#6b2f0a" />
-                </radialGradient>
-                <radialGradient id="mitoHighlight1" cx="25%" cy="20%">
-                    <stop offset="0%" stopColor="rgba(252,211,77,0.4)" />
-                    <stop offset="100%" stopColor="transparent" />
-                </radialGradient>
-                <radialGradient id="mitoGrad2" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#d97c18" />
-                    <stop offset="50%" stopColor="#a85d0e" />
-                    <stop offset="100%" stopColor="#6b380a" />
-                </radialGradient>
-
-                {/* Golgi - teal stacks */}
-                <linearGradient id="golgiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#14b8a6" />
-                    <stop offset="50%" stopColor="#0e9384" />
-                    <stop offset="100%" stopColor="#0a7b6e" />
-                </linearGradient>
-                <radialGradient id="golgiVesicle" cx="40%" cy="35%">
-                    <stop offset="0%" stopColor="#2dd4bf" />
-                    <stop offset="100%" stopColor="#0d9488" />
-                </radialGradient>
-
-                {/* RER - rich blue */}
-                <linearGradient id="rerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3b82f6" />
-                    <stop offset="50%" stopColor="#2563eb" />
-                    <stop offset="100%" stopColor="#1d4fd8" />
-                </linearGradient>
-
-                {/* REL - smooth teal */}
-                <linearGradient id="relGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#14ceb5" />
-                    <stop offset="50%" stopColor="#0d9488" />
-                    <stop offset="100%" stopColor="#0a7f6e" />
-                </linearGradient>
-
-                {/* Lysosomes - hot red sphere */}
-                <radialGradient id="lysoGrad1" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#f87171" />
-                    <stop offset="40%" stopColor="#ef4444" />
-                    <stop offset="80%" stopColor="#b91c1c" />
-                    <stop offset="100%" stopColor="#7f1d1d" />
-                </radialGradient>
-                <radialGradient id="lysoGrad2" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#fca5a5" />
-                    <stop offset="40%" stopColor="#ef4444" />
-                    <stop offset="100%" stopColor="#991b1b" />
-                </radialGradient>
-
-                {/* Centrosome */}
-                <radialGradient id="centroGrad" cx="40%" cy="35%">
-                    <stop offset="0%" stopColor="#f0abfc" />
-                    <stop offset="50%" stopColor="#d946ef" />
-                    <stop offset="100%" stopColor="#a21caf" />
-                </radialGradient>
-
-                {/* Ribosomes */}
-                <radialGradient id="riboGrad" cx="35%" cy="30%">
-                    <stop offset="0%" stopColor="#93c5fd" />
-                    <stop offset="50%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                </radialGradient>
-
-                {/* Membrane gradient */}
-                <linearGradient id="membraneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#22c55e" />
-                    <stop offset="50%" stopColor="#16a34a" />
-                    <stop offset="100%" stopColor="#15803d" />
-                </linearGradient>
-
-                {/* ===== FILTERS ===== */}
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-                <filter id="softGlow">
-                    <feGaussianBlur stdDeviation="2" result="blur" />
-                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-                <filter id="innerShadow">
-                    <feOffset dx="0" dy="2" />
-                    <feGaussianBlur stdDeviation="3" result="offset-blur" />
-                    <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="shadow" />
-                    <feFlood floodColor="#000" floodOpacity="0.25" result="color" />
-                    <feComposite operator="in" in="color" in2="shadow" />
-                    <feComposite operator="over" in2="SourceGraphic" />
-                </filter>
-                <filter id="dropShadow">
-                    <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#000" floodOpacity="0.3" />
-                </filter>
-            </defs>
-
-            {/* === 1. CELL MEMBRANE – phospholipid bilayer === */}
-            <g className={`organelle-region ${getRegionClass('membrana')}`}
-                onClick={() => onSelect('membrana')} pointerEvents="visiblePainted">
-                {/* Outer glow */}
-                <ellipse cx="300" cy="250" rx="280" ry="223"
-                    fill="none" stroke="rgba(34,197,94,0.06)" strokeWidth="18" />
-                {/* Outer layer */}
-                <ellipse cx="300" cy="250" rx="275" ry="220"
-                    fill="none" stroke="url(#membraneGrad)" strokeWidth="3.5" opacity="0.7" />
-                {/* Bilayer detail */}
-                <ellipse cx="300" cy="250" rx="270" ry="215"
-                    fill="none" stroke="#22c55e" strokeWidth="1.5" opacity="0.3" strokeDasharray="2,6" />
-                {/* Inner layer */}
-                <ellipse cx="300" cy="250" rx="266" ry="211"
-                    fill="none" stroke="#15803d" strokeWidth="2.5" opacity="0.5" />
-                {/* Phospholipid dot markers */}
-                {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(deg => {
-                    const rad = (deg * Math.PI) / 180;
-                    const x = 300 + 272 * Math.cos(rad);
-                    const y = 250 + 218 * Math.sin(rad);
-                    return <circle key={deg} cx={x} cy={y} r="2.5" fill="#4ade80" opacity="0.4" />;
-                })}
-            </g>
-
-            {/* === 2. CYTOPLASM === */}
-            <g className={`organelle-region ${getRegionClass('citoplasma')}`}
-                onClick={() => onSelect('citoplasma')}>
-                <ellipse cx="300" cy="250" rx="264" ry="209" fill="url(#cytoplasmGrad)" />
-                {/* Light highlight top-left */}
-                <ellipse cx="300" cy="250" rx="264" ry="209" fill="url(#cytoHighlight)" />
-                {/* Subtle texture particles */}
-                {[[120, 180], [200, 400], [450, 180], [500, 300], [150, 320], [380, 420], [280, 120]].map(([x, y], i) => (
-                    <circle key={i} cx={x} cy={y} r="1" fill="rgba(134,239,172,0.1)" />
-                ))}
-            </g>
-
-            {/* === 3. CITOESQUELETO – filament network === */}
-            <g className={`organelle-region ${getRegionClass('citoesqueleto')}`}
-                onClick={() => onSelect('citoesqueleto')} opacity="0.3">
-                <line x1="80" y1="200" x2="200" y2="300" stroke="transparent" strokeWidth="15" />
-                {/* Microtubules */}
-                <line x1="80" y1="200" x2="200" y2="300" stroke="#86efac" strokeWidth="1.2" strokeDasharray="5,4" />
-                <line x1="100" y1="350" x2="250" y2="180" stroke="#86efac" strokeWidth="1.2" strokeDasharray="5,4" />
-                <line x1="400" y1="150" x2="500" y2="350" stroke="#86efac" strokeWidth="1.2" strokeDasharray="5,4" />
-                <line x1="150" y1="150" x2="450" y2="400" stroke="#86efac" strokeWidth="0.8" strokeDasharray="8,6" />
-                {/* Intermediate filaments */}
-                <line x1="200" y1="120" x2="350" y2="430" stroke="#6ee7b7" strokeWidth="0.6" strokeDasharray="3,8" />
-                <line x1="480" y1="200" x2="320" y2="420" stroke="#6ee7b7" strokeWidth="0.6" strokeDasharray="3,8" />
-                {/* Junction nodes */}
-                {[[200, 300], [250, 180], [400, 150], [350, 430]].map(([x, y], i) => (
-                    <circle key={i} cx={x} cy={y} r="2" fill="#86efac" opacity="0.4" />
-                ))}
-            </g>
-
-            {/* === 4. NUCLEUS – 3D sphere with pores === */}
-            <g className={`organelle-region ${getRegionClass('nucleo')}`}
-                onClick={() => onSelect('nucleo')} filter="url(#dropShadow)">
-                {/* Main body */}
-                <ellipse cx="310" cy="220" rx="95" ry="80"
-                    fill="url(#nucleusGrad)" stroke="#7c3aed" strokeWidth="3" />
-                {/* 3D specular highlight */}
-                <ellipse cx="310" cy="220" rx="95" ry="80" fill="url(#nucleusHighlight)" />
-                {/* Chromatin threads */}
-                <path d="M255,195 Q270,185 285,200 Q300,218 315,205 Q330,192 345,210 Q358,225 365,215"
-                    fill="none" stroke="#a78bfa" strokeWidth="1.8" opacity="0.25" strokeDasharray="4,3" />
-                <path d="M270,240 Q290,232 305,245 Q320,255 335,238 Q350,225 360,240"
-                    fill="none" stroke="#c4b5fd" strokeWidth="1.2" opacity="0.15" strokeDasharray="3,5" />
-                {/* Nuclear pores (dots on envelope) */}
-                {[20, 55, 100, 145, 200, 250, 290, 330].map(deg => {
-                    const rad = (deg * Math.PI) / 180;
-                    const x = 310 + 93 * Math.cos(rad);
-                    const y = 220 + 78 * Math.sin(rad);
-                    return <circle key={deg} cx={x} cy={y} r="2.5" fill="#8b5cf6" opacity="0.4" />;
-                })}
-                {/* Bottom rim shadow */}
-                <ellipse cx="310" cy="260" rx="70" ry="15" fill="rgba(0,0,0,0.15)" />
-            </g>
-
-            {/* === 5. NUCLEOLUS – dense sphere === */}
-            <g className={`organelle-region ${getRegionClass('nucleolo')}`}
-                onClick={() => onSelect('nucleolo')}>
-                {/* Shadow */}
-                <ellipse cx="306" cy="215" rx="20" ry="10" fill="rgba(0,0,0,0.2)" />
-                {/* Main body */}
-                <circle cx="305" cy="210" r="22" fill="url(#nucleolusGrad)" stroke="#8b5cf6" strokeWidth="1.5" />
-                {/* 3D highlight */}
-                <circle cx="305" cy="210" r="22" fill="url(#nucleolusHighlight)" />
-                {/* Dense granular texture */}
-                <circle cx="298" cy="204" r="5" fill="#9333ea" opacity="0.2" />
-                <circle cx="312" cy="215" r="4" fill="#7e22ce" opacity="0.15" />
-                <circle cx="303" cy="218" r="3" fill="#9333ea" opacity="0.1" />
-                {/* Top specular dot */}
-                <circle cx="298" cy="200" r="3.5" fill="rgba(255,255,255,0.15)" />
-            </g>
-
-            {/* === 6. RETÍCULO ENDOPLASMÁTICO LISO – smooth tubules === */}
-            <g className={`organelle-region ${getRegionClass('reticulo-liso')}`}
-                onClick={() => onSelect('reticulo-liso')}>
-                <path d="M100,310 Q120,290 140,310 Q160,330 180,310 Q200,290 220,310"
-                    fill="none" stroke="transparent" strokeWidth="22" />
-                {/* Shadow layer */}
-                <path d="M102,314 Q122,294 142,314 Q162,334 182,314 Q202,294 222,314"
-                    fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="7" strokeLinecap="round" />
-                {/* Main tubes */}
-                <path d="M100,310 Q120,290 140,310 Q160,330 180,310 Q200,290 220,310"
-                    fill="none" stroke="url(#relGrad)" strokeWidth="6" strokeLinecap="round" opacity="0.8" />
-                {/* Highlight */}
-                <path d="M100,308 Q120,288 140,308 Q160,328 180,308 Q200,288 220,308"
-                    fill="none" stroke="rgba(94,234,212,0.3)" strokeWidth="2" strokeLinecap="round" />
-                {/* Second row */}
-                <path d="M112,338 Q132,318 152,338 Q172,358 192,338"
-                    fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="6" strokeLinecap="round" />
-                <path d="M110,335 Q130,315 150,335 Q170,355 190,335"
-                    fill="none" stroke="url(#relGrad)" strokeWidth="5" strokeLinecap="round" opacity="0.65" />
-                <path d="M110,333 Q130,313 150,333 Q170,353 190,333"
-                    fill="none" stroke="rgba(94,234,212,0.25)" strokeWidth="1.5" strokeLinecap="round" />
-                {/* Third row */}
-                <path d="M125,358 Q145,340 165,358 Q175,370 185,355"
-                    fill="none" stroke="url(#relGrad)" strokeWidth="4" strokeLinecap="round" opacity="0.5" />
-            </g>
-
-            {/* === 7. RETÍCULO ENDOPLASMÁTICO RUGOSO – with ribosomes === */}
-            <g className={`organelle-region ${getRegionClass('reticulo-rugoso')}`}
-                onClick={() => onSelect('reticulo-rugoso')}>
-                <path d="M170,150 Q190,130 210,150 Q230,170 250,155"
-                    fill="none" stroke="transparent" strokeWidth="22" />
-                {/* Shadow */}
-                <path d="M172,154 Q192,134 212,154 Q232,174 252,159"
-                    fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="8" strokeLinecap="round" />
-                {/* First tube */}
-                <path d="M170,150 Q190,130 210,150 Q230,170 250,155"
-                    fill="none" stroke="url(#rerGrad)" strokeWidth="7" strokeLinecap="round" opacity="0.85" />
-                <path d="M170,148 Q190,128 210,148 Q230,168 250,153"
-                    fill="none" stroke="rgba(147,197,253,0.3)" strokeWidth="2" strokeLinecap="round" />
-                {/* Ribosomes on first tube */}
-                {[[175, 152], [188, 140], [202, 148], [218, 160], [235, 162], [248, 156]].map(([x, y], i) => (
-                    <circle key={`r1-${i}`} cx={x} cy={y + 7} r="2.5" fill="#60a5fa" opacity="0.7" />
-                ))}
-                {/* Shadow */}
-                <path d="M162,179 Q187,159 212,179 Q237,199 262,179"
-                    fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth="7" strokeLinecap="round" />
-                {/* Second tube */}
-                <path d="M160,175 Q185,155 210,175 Q235,195 260,175"
-                    fill="none" stroke="url(#rerGrad)" strokeWidth="6" strokeLinecap="round" opacity="0.7" />
-                <path d="M160,173 Q185,153 210,173 Q235,193 260,173"
-                    fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="1.5" strokeLinecap="round" />
-                {/* Ribosomes on second tube */}
-                {[[168, 178], [182, 166], [198, 174], [215, 185], [230, 188], [248, 178]].map(([x, y], i) => (
-                    <circle key={`r2-${i}`} cx={x} cy={y + 6} r="2.2" fill="#60a5fa" opacity="0.6" />
-                ))}
-                {/* Third tube */}
-                <path d="M155,198 Q180,180 205,198 Q225,212 245,200"
-                    fill="none" stroke="url(#rerGrad)" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
-            </g>
-
-            {/* === 8. APARATO DE GOLGI – stacked cisternae with vesicles === */}
-            <g className={`organelle-region ${getRegionClass('golgi')}`}
-                onClick={() => onSelect('golgi')} filter="url(#dropShadow)">
-                <path d="M395,145 Q420,135 445,145 Q465,155 480,148"
-                    fill="none" stroke="transparent" strokeWidth="60" />
-                {/* Cisternae with 3D thickness */}
-                {[0, 14, 28, 42, 56].map((offset, i) => (
-                    <g key={i}>
-                        {/* Shadow */}
-                        <path d={`M393,${149 + offset} Q418,${139 + offset} 443,${149 + offset} Q463,${159 + offset} 478,${152 + offset}`}
-                            fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth="8" strokeLinecap="round" />
-                        {/* Main cisterna */}
-                        <path d={`M395,${145 + offset} Q420,${135 + offset} 445,${145 + offset} Q465,${155 + offset} 480,${148 + offset}`}
-                            fill="none" stroke="url(#golgiGrad)" strokeWidth={7 - i * 0.6} strokeLinecap="round"
-                            opacity={0.9 - i * 0.1} />
-                        {/* Highlight on top */}
-                        <path d={`M397,${143 + offset} Q420,${133 + offset} 443,${143 + offset} Q463,${153 + offset} 478,${146 + offset}`}
-                            fill="none" stroke="rgba(94,234,212,0.2)" strokeWidth="2" strokeLinecap="round" />
-                    </g>
-                ))}
-                {/* Transport vesicles budding off */}
-                <circle cx="485" cy="160" r="6" fill="url(#golgiVesicle)" stroke="#14b8a6" strokeWidth="1" opacity="0.7" />
-                <circle cx="492" cy="180" r="5" fill="url(#golgiVesicle)" stroke="#14b8a6" strokeWidth="0.8" opacity="0.6" />
-                <circle cx="388" cy="210" r="5.5" fill="url(#golgiVesicle)" stroke="#14b8a6" strokeWidth="0.8" opacity="0.55" />
-                {/* Vesicle highlights */}
-                <circle cx="483" cy="158" r="2" fill="rgba(255,255,255,0.2)" />
-                <circle cx="490" cy="178" r="1.5" fill="rgba(255,255,255,0.15)" />
-            </g>
-
-            {/* === 9. MITOCONDRIAS – with cristae === */}
-            <g className={`organelle-region ${getRegionClass('mitocondria')}`}
-                onClick={() => onSelect('mitocondria')}>
-                {/* MITO 1 - large */}
-                <g transform="rotate(-20, 430, 350)">
-                    {/* Drop shadow */}
-                    <ellipse cx="432" cy="356" rx="50" ry="22" fill="rgba(0,0,0,0.2)" />
-                    {/* Outer membrane */}
-                    <ellipse cx="430" cy="350" rx="52" ry="24"
-                        fill="none" stroke="#d97706" strokeWidth="2" opacity="0.4" />
-                    {/* Main body */}
-                    <ellipse cx="430" cy="350" rx="48" ry="21"
-                        fill="url(#mitoGrad1)" stroke="#d97706" strokeWidth="2.5" />
-                    {/* 3D highlight */}
-                    <ellipse cx="430" cy="350" rx="48" ry="21" fill="url(#mitoHighlight1)" />
-                    {/* Inner membrane cristae */}
-                    <path d="M400,345 Q405,335 400,350 Q395,360 400,355" fill="none" stroke="#fbbf24" strokeWidth="1.5" opacity="0.3" />
-                    <path d="M415,342 Q418,332 415,347 Q412,357 415,352" fill="none" stroke="#fbbf24" strokeWidth="1.5" opacity="0.3" />
-                    <path d="M430,340 Q433,330 430,348 Q427,358 430,350" fill="none" stroke="#fbbf24" strokeWidth="1.5" opacity="0.3" />
-                    <path d="M445,342 Q448,333 445,349 Q442,358 445,352" fill="none" stroke="#fbbf24" strokeWidth="1.5" opacity="0.3" />
-                    <path d="M458,345 Q460,337 458,352 Q456,358 458,354" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
-                    {/* Matrix dots */}
-                    <circle cx="410" cy="348" r="1.5" fill="#fcd34d" opacity="0.2" />
-                    <circle cx="440" cy="353" r="1.2" fill="#fcd34d" opacity="0.15" />
-                    <circle cx="455" cy="347" r="1" fill="#fcd34d" opacity="0.2" />
-                    {/* Specular */}
-                    <ellipse cx="420" cy="342" rx="15" ry="5" fill="rgba(255,255,255,0.08)" />
-                </g>
-
-                {/* MITO 2 - smaller */}
-                <g transform="rotate(15, 180, 410)">
-                    <ellipse cx="181" cy="415" rx="35" ry="16" fill="rgba(0,0,0,0.15)" />
-                    <ellipse cx="180" cy="410" rx="38" ry="18"
-                        fill="none" stroke="#d97706" strokeWidth="1.5" opacity="0.35" />
-                    <ellipse cx="180" cy="410" rx="35" ry="16"
-                        fill="url(#mitoGrad2)" stroke="#d97706" strokeWidth="2" />
-                    {/* Cristae */}
-                    <path d="M160,407 Q163,399 160,412 Q158,418 160,414" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
-                    <path d="M172,405 Q175,397 172,410 Q170,417 172,412" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
-                    <path d="M184,404 Q187,396 184,411 Q182,418 184,413" fill="none" stroke="#fbbf24" strokeWidth="1.2" opacity="0.25" />
-                    <path d="M195,406 Q198,399 195,412 Q193,417 195,414" fill="none" stroke="#fbbf24" strokeWidth="1" opacity="0.2" />
-                    {/* Highlight */}
-                    <ellipse cx="172" cy="405" rx="12" ry="4" fill="rgba(255,255,255,0.06)" />
-                </g>
-            </g>
-
-            {/* === 10. LISOSOMAS – 3D spheres === */}
-            <g className={`organelle-region ${getRegionClass('lisosoma')}`}
-                onClick={() => onSelect('lisosoma')}>
-                {/* Lysosome 1 */}
-                <circle cx="475" cy="230" r="22" fill="transparent" />
-                <circle cx="476" cy="234" r="14" fill="rgba(0,0,0,0.15)" />
-                <circle cx="475" cy="230" r="15" fill="url(#lysoGrad1)" stroke="#ef4444" strokeWidth="1.5" />
-                <circle cx="470" cy="224" r="4" fill="rgba(255,255,255,0.2)" />
-                {/* Enzymes inside */}
-                <circle cx="478" cy="233" r="2" fill="#fca5a5" opacity="0.3" />
-                <circle cx="472" cy="228" r="1.5" fill="#fca5a5" opacity="0.2" />
-
-                {/* Lysosome 2 */}
-                <circle cx="510" cy="270" r="18" fill="transparent" />
-                <circle cx="511" cy="274" r="11" fill="rgba(0,0,0,0.12)" />
-                <circle cx="510" cy="270" r="11" fill="url(#lysoGrad2)" stroke="#ef4444" strokeWidth="1" />
-                <circle cx="507" cy="266" r="2.5" fill="rgba(255,255,255,0.18)" />
-            </g>
-
-            {/* === 11. CENTROSOMA – paired centrioles === */}
-            <g className={`organelle-region ${getRegionClass('centrosoma')}`}
-                onClick={() => onSelect('centrosoma')}>
-                <circle cx="352" cy="294" r="35" fill="transparent" />
-                {/* Radiating lines (aster) */}
-                {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => {
-                    const rad = (deg * Math.PI) / 180;
-                    const x1 = 352 + 12 * Math.cos(rad);
-                    const y1 = 294 + 12 * Math.sin(rad);
-                    const x2 = 352 + 28 * Math.cos(rad);
-                    const y2 = 294 + 28 * Math.sin(rad);
-                    return <line key={deg} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#d946ef" strokeWidth="0.6" opacity="0.25" />;
-                })}
-                {/* Centriole 1 (horizontal) */}
-                <rect x="338" y="289" width="24" height="10" rx="3"
-                    fill="url(#centroGrad)" stroke="#c026d3" strokeWidth="1.2" />
-                {/* Internal structure */}
-                {[342, 347, 352, 357].map(x => (
-                    <line key={x} x1={x} y1="290" x2={x} y2="298" stroke="#e9d5ff" strokeWidth="0.5" opacity="0.3" />
-                ))}
-                {/* Centriole 2 (vertical) */}
-                <rect x="347" y="279" width="10" height="24" rx="3"
-                    fill="url(#centroGrad)" stroke="#c026d3" strokeWidth="1.2" />
-                {[283, 288, 293, 298].map(y => (
-                    <line key={y} x1="348" y1={y} x2="356" y2={y} stroke="#e9d5ff" strokeWidth="0.5" opacity="0.3" />
-                ))}
-                {/* Center glow */}
-                <circle cx="352" cy="294" r="4" fill="#d946ef" opacity="0.2" filter="url(#softGlow)" />
-            </g>
-
-            {/* === 12. RIBOSOMAS – two-part structures === */}
-            <g className={`organelle-region ${getRegionClass('ribosoma')}`}
-                onClick={() => onSelect('ribosoma')}>
-                {[[140, 250], [160, 270], [350, 320], [370, 300], [320, 380], [290, 370], [250, 330], [130, 380], [450, 290], [380, 400], [330, 410], [500, 310]].map(([x, y], i) => (
-                    <g key={i}>
-                        <circle cx={x} cy={y} r="12" fill="transparent" />
-                        {/* Large subunit */}
-                        <ellipse cx={x} cy={y + 1} rx="3.5" ry="2.5" fill="url(#riboGrad)" opacity="0.8" />
-                        {/* Small subunit */}
-                        <ellipse cx={x} cy={y - 2} rx="2.5" ry="1.8" fill="#93c5fd" opacity="0.65" />
-                        {/* Highlight dot */}
-                        <circle cx={x - 1} cy={y - 2.5} r="0.8" fill="rgba(255,255,255,0.3)" />
-                    </g>
-                ))}
-            </g>
-
-            {/* ===== AMBIENT ANIMATIONS ===== */}
-            {/* Vesicle transport Golgi → membrane */}
-            <circle r="3.5" fill="url(#golgiVesicle)" opacity="0.45" pointerEvents="none">
-                <animateMotion dur="7s" repeatCount="indefinite"
-                    path="M485,160 Q500,130 520,200 Q540,250 530,280" />
-            </circle>
-            <circle r="2.5" fill="#22d3ee" opacity="0.35" pointerEvents="none">
-                <animateMotion dur="5s" repeatCount="indefinite" begin="1.5s"
-                    path="M400,175 Q420,200 475,230" />
-            </circle>
-            {/* ATP particle from mitochondria */}
-            <circle r="2" fill="#fbbf24" opacity="0.35" pointerEvents="none">
-                <animateMotion dur="8s" repeatCount="indefinite"
-                    path="M430,350 Q400,320 350,300 Q310,280 300,260" />
-            </circle>
-        </svg>
-    );
-};
+const CellDiagram = AnimalCellDiagram;
 
 // ===== MAIN COMPONENT =====
 const CelulaAnimal = ({ onGameComplete }) => {

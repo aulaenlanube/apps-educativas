@@ -206,16 +206,25 @@ html[data-fx="high"] .cel-mote { animation: cel-drift calc(9s + var(--i) * .7s) 
   transition: opacity .4s ease, filter .4s ease, transform .4s var(--cel-ease);
 }
 .cel-viewport .organelle-region:hover { filter: brightness(1.35) drop-shadow(0 0 10px color-mix(in srgb, var(--cel-glow) 60%, transparent)); }
-.cel-viewport.has-selection .organelle-region { opacity: .25; filter: brightness(.6) saturate(.4); }
+/* atenuar SOLO con opacidad: así el resto de orgánulos sigue vivo sin que un
+   filter tenga que repintarse en cada frame */
+.cel-viewport.has-selection .organelle-region { opacity: .2; }
 .cel-viewport.has-selection .organelle-region.active {
   opacity: 1;
   filter: brightness(1.45) saturate(1.25) drop-shadow(0 0 18px var(--cel-glow));
   transform: scale(1.06);
 }
 html[data-fx="high"] .cel-viewport.has-selection .organelle-region.active { animation: cel-region-pulse 2.2s ease-in-out infinite; }
-.cel-viewport.has-selection .organelle-region:not(.active):hover { opacity: .55; filter: brightness(.9) saturate(.7); }
-.cel-shell.is-quiz .cel-viewport .organelle-region { filter: grayscale(.55) brightness(.92); }
-.cel-shell.is-quiz .cel-viewport .organelle-region:hover { filter: grayscale(0) brightness(1.2) drop-shadow(0 0 12px rgba(251, 191, 36, .7)); }
+.cel-viewport.has-selection .organelle-region:not(.active):hover { opacity: .5; filter: none; }
+.cel-shell.is-quiz .cel-viewport .organelle-region { opacity: .8; }
+.cel-shell.is-quiz .cel-viewport .organelle-region:hover { opacity: 1; filter: brightness(1.2) drop-shadow(0 0 12px rgba(251, 191, 36, .7)); }
+/* mientras una región lleva filter (hover, seleccionada, acierto/fallo), sus
+   bucles internos se detienen: un filter sobre piezas que se mueven obliga a
+   repintar la región entera en cada frame */
+.cel-viewport .organelle-region:hover *,
+.cel-viewport .organelle-region.active *,
+.cel-viewport .organelle-region.correct *,
+.cel-viewport .organelle-region.incorrect * { animation-play-state: paused; }
 .cel-viewport .organelle-region.correct { filter: brightness(1.5) drop-shadow(0 0 24px #22c55e) !important; animation: cel-region-ok .6s var(--cel-ease); }
 .cel-viewport .organelle-region.incorrect { filter: brightness(1.2) drop-shadow(0 0 18px #ef4444) !important; animation: cel-region-ko .4s ease-in-out; }
 
