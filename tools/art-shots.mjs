@@ -9,6 +9,7 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import puppeteer from 'puppeteer';
+import { chromeLaunchOpts } from './chrome-shm.mjs';
 
 const args = Object.fromEntries(process.argv.slice(2).map((a) => {
   const [k, ...v] = a.replace(/^--/, '').split('=');
@@ -24,7 +25,7 @@ const scale = Number(args.scale) || 1;
 await fs.mkdir(out, { recursive: true });
 const browser = await puppeteer.launch({
   headless: true,
-  args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-3d-apis'],
+  ...chromeLaunchOpts(['--no-sandbox', '--disable-3d-apis']),
 });
 try {
   const page = await browser.newPage();

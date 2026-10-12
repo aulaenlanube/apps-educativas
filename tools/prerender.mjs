@@ -32,6 +32,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { preview } from 'vite';
 import puppeteer from 'puppeteer';
+import { chromeLaunchOpts } from './chrome-shm.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -224,7 +225,7 @@ async function main() {
     // WebGL y pinta su fondo plano. No perdemos nada: el contenido de un
     // <canvas> no se serializa en el HTML, así que el 3D nunca llegó al
     // prerenderizado — solo costaba CPU.
-    args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-3d-apis'],
+    ...chromeLaunchOpts(['--no-sandbox', '--disable-3d-apis']),
   });
 
   // Renderizamos TODO en memoria y escribimos al final, a propósito: el

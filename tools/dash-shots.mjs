@@ -35,6 +35,7 @@ import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { chromeLaunchOpts } from './chrome-shm.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(path.join(repoRoot, 'package.json'));
@@ -74,7 +75,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // ─── Navegador ───────────────────────────────────────────────────────────────
 const browser = await puppeteer.launch({
   headless: true,
-  args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-3d-apis'],
+  ...chromeLaunchOpts(['--no-sandbox', '--disable-3d-apis']),
 });
 const page = await browser.newPage();
 if (args.mobile) await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
