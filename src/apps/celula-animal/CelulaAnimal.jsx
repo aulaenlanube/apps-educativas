@@ -1,8 +1,12 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { X, Info, Lightbulb, Activity, Box, Target, CheckCircle2, XCircle, ZoomOut, Leaf, Zap, Flame } from 'lucide-react';
+import { Puzzle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
-import './CelulaAnimal.css';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    CelShell, CelTopBar, CelMeter, CelScore, CelPin, CelHint, CelDrawer, CelDock,
+    CelQuest, CelToast, CelMatch, CelHelpContent, lensViewBox,
+} from './CelulaUI';
 
 // ===== ORGANELLE DATA =====
 const organelleData = [
@@ -196,6 +200,40 @@ const organelleData = [
         funFact: 'El citoplasma representa más del 50% del volumen de la célula. Es como una "sopa" muy organizada donde todo sucede.',
     },
 ];
+
+// Color de cada orgánulo en la interfaz (marcadores, ficha, bandeja). Solo presentación.
+const ORG_COLORS = {
+    membrana: '#4ade80',
+    nucleo: '#8b5cf6',
+    nucleolo: '#c084fc',
+    'reticulo-rugoso': '#3b82f6',
+    'reticulo-liso': '#2dd4bf',
+    mitocondria: '#f59e0b',
+    golgi: '#14b8a6',
+    lisosoma: '#f43f5e',
+    ribosoma: '#60a5fa',
+    centrosoma: '#d946ef',
+    citoesqueleto: '#86efac',
+    citoplasma: '#34d399',
+};
+
+// Encuadre de la lente de la ficha (coordenadas del dibujo 600×500).
+const LENS = {
+    membrana: { x: 548, y: 250, size: 150 },
+    nucleo: { x: 310, y: 222, size: 230 },
+    nucleolo: { x: 305, y: 210, size: 90 },
+    'reticulo-rugoso': { x: 208, y: 168, size: 150 },
+    'reticulo-liso': { x: 160, y: 328, size: 160 },
+    mitocondria: { x: 430, y: 350, size: 140 },
+    golgi: { x: 440, y: 178, size: 140 },
+    lisosoma: { x: 492, y: 250, size: 100 },
+    ribosoma: { x: 352, y: 312, size: 90 },
+    centrosoma: { x: 352, y: 294, size: 80 },
+    citoesqueleto: { x: 170, y: 260, size: 190 },
+    citoplasma: { x: 260, y: 360, size: 220 },
+};
+
+const noop = () => {};
 
 // ===== SVG CELL DIAGRAM COMPONENT =====
 const SVG_W = 600;
@@ -665,6 +703,7 @@ const CellDiagram = ({ selectedId, visitedIds, onSelect, isQuizMode, quizTargetI
 const CelulaAnimal = () => {
     const [selectedOrganelle, setSelectedOrganelle] = useState(null);
     const [visitedIds, setVisitedIds] = useState(new Set());
+    const [showHelp, setShowHelp] = useState(false);
 
     // Quiz State
     // Mode: 'explore' | 'quiz' | 'match'
@@ -975,89 +1014,34 @@ const CelulaAnimal = () => {
         }
     };
 
-    const getGradeEmoji = (grade) => {
-        if (grade >= 9) return '🌟';
-        if (grade >= 7) return '😊';
-        if (grade >= 5) return '😐';
-        return '😕';
-    };
-
-    const progressPercent = (visitedIds.size / organelleData.length) * 100;
+    const clickedName = quizFeedback ? organelleData.find(o => o.id === quizFeedback.id)?.name : null;
 
     return (
-        <div className={`celula-app cfx-animal ${isQuizMode ? 'quiz-mode' : ''} ${isMatchMode ? 'match-mode' : ''}`}>
+        <CelShell variant="animal" mode={mode} drawerOpen={!!selectedData}>
             <AppOrientationWarning />
-            {/* Fondo decorativo: orbes de luz, rejilla de microscopio y partículas */}
-            <div className="cfx-backdrop" aria-hidden="true">
-                <span className="cfx-orb cfx-orb--a" />
-                <span className="cfx-orb cfx-orb--b" />
-                <span className="cfx-orb cfx-orb--c" />
-                <span className="cfx-grid" />
-                <span className="cfx-vignette" />
-                {Array.from({ length: 14 }, (_, i) => (
-                    <span key={i} className="cfx-mote" style={{ '--cfx-i': i, left: `${(i * 53) % 92 + 4}%`, top: `${(i * 37) % 84 + 8}%` }} />
-                ))}
-            </div>
-            {/* HEADER */}
-            <header className="celula-header">
-                <div className="celula-header-left">
-                    {/* Managed by AppRunnerPage */}
-                </div>
 
-                {/* Mode Switcher */}
-                <div className="mode-switcher">
-                    {zoom > 1.1 && (
-                        <button className="mode-btn reset-zoom-btn" onClick={resetView} title="Restaurar zoom">
-                            <ZoomOut size={14} /> <span>1:1</span>
-                        </button>
-                    )}
-                    <button
-                        className={`mode-btn ${mode === 'explore' ? 'active' : ''}`}
-                        onClick={() => switchMode('explore')}
-                    >
-                        Explorar
-                    </button>
-                    <button
-                        className={`mode-btn ${mode === 'quiz' ? 'active quiz-mode-active' : ''}`}
-                        onClick={() => switchMode('quiz')}
-                    >
-                        Test
-                    </button>
-                    <button
-                        className={`mode-btn ${mode === 'match' ? 'active match-mode-active' : ''}`}
-                        onClick={() => switchMode('match')}
-                    >
-                        Reto
-                    </button>
-                </div>
+            <CelTopBar
+                mode={mode}
+                onMode={switchMode}
+                onHelp={() => setShowHelp(true)}
+                zoomed={zoom > 1.1}
+                onResetZoom={resetView}
+                stat={
+                    mode === 'explore' ? (
+                        <CelMeter value={visitedIds.size} max={organelleData.length} label="Explorados" />
+                    ) : mode === 'quiz' ? (
+                        <CelScore value={quizScore} />
+                    ) : matchDifficulty !== null && !testSubmitted ? (
+                        <CelMeter value={Object.keys(matchAnswers).length} max={matchPairs.length} label="Asignadas" icon={Puzzle} tone="progress" />
+                    ) : null
+                }
+            />
 
-                {mode === 'explore' && (
-                    <div className="celula-progress">
-                        <span className="progress-text">
-                            {visitedIds.size}/{organelleData.length} explorados
-                        </span>
-                        <div className="progress-bar-track">
-                            <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
-                        </div>
-                    </div>
-                )}
-                {mode === 'quiz' && (
-                    <div className="quiz-hud">
-                        <div className="quiz-score cfx-score-pop" key={quizScore}>Puntos: {quizScore}</div>
-                    </div>
-                )}
-                {mode === 'match' && matchDifficulty !== null && !testSubmitted && (
-                    <div className="quiz-hud">
-                        <div className="quiz-score">{Object.keys(matchAnswers).length}/{matchPairs.length} asignados</div>
-                    </div>
-                )}
-            </header>
-
-            {/* FULL-SCREEN DIAGRAM */}
-            <div className="celula-fullscreen">
+            {/* VISOR DE LA CÉLULA (dibujo + marcadores) */}
+            <div className="cel-stage">
                 <div
                     ref={containerRef}
-                    className={`celula-svg-container ${selectedOrganelle ? 'has-selection' : ''}`}
+                    className={`cel-viewport ${selectedOrganelle ? 'has-selection' : ''}`}
                     style={{
                         cursor: zoom > 1 ? (isPanning ? 'grabbing' : 'grab') : 'default',
                     }}
@@ -1076,336 +1060,88 @@ const CelulaAnimal = () => {
                         viewBox={svgViewBox}
                     />
 
-                    {/* Overlay label markers – stay at native text size */}
+                    {/* Marcadores con nombre: mantienen su tamaño al hacer zoom */}
                     {organelleData.map(org => {
                         if (!isLabelVisible(org.labelPos)) return null;
-                        const pos = getLabelStyle(org.labelPos);
                         return (
-                            <div
+                            <CelPin
                                 key={org.id}
-                                className={`organelle-label-marker ${selectedOrganelle === org.id ? 'active-marker' : ''}`}
-                                style={pos}
-                            >
-                                <div
-                                    className={`organelle-dot ${visitedIds.has(org.id) ? 'visited' : ''} ${selectedOrganelle === org.id ? 'active' : ''}`}
-                                    onClick={() => handleSelect(org.id)}
-                                />
-                                <span
-                                    className="organelle-name-tag"
-                                    onClick={() => handleSelect(org.id)}
-                                >
-                                    {org.name}
-                                </span>
-                            </div>
+                                style={getLabelStyle(org.labelPos)}
+                                name={org.name}
+                                color={ORG_COLORS[org.id]}
+                                visited={visitedIds.has(org.id)}
+                                active={selectedOrganelle === org.id}
+                                onClick={() => handleSelect(org.id)}
+                            />
                         );
                     })}
-
                 </div>
             </div>
 
-            {/* QUIZ UI OVERLAYS */}
-            {isQuizMode && quizTarget && (
-                <div className="quiz-target-box">
-                    <div className="quiz-target-icon">
-                        <Target size={20} />
-                    </div>
-                    <div className="quiz-target-content">
-                        <span className="quiz-instruction">ENCUENTRA:</span>
-                        <span className="quiz-target-name">{quizTarget.name}</span>
-                    </div>
-                </div>
-            )}
+            <CelHint show={mode === 'explore' && !selectedOrganelle}>
+                Toca un orgánulo de la célula o de la bandeja para abrir su ficha
+            </CelHint>
 
-            {isQuizMode && quizFeedback && (
-                <div className="quiz-feedback-overlay">
-                    <div className={`feedback-message ${quizFeedback.isCorrect ? 'correct' : 'incorrect'}`}>
-                        {quizFeedback.isCorrect && (
-                            <span className="cfx-burst" aria-hidden="true">
-                                {Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--cfx-n': i }} />)}
-                            </span>
-                        )}
-                        {quizFeedback.isCorrect ? '¡CORRECTO!' : '¡INTÉNTALO DE NUEVO!'}
-                    </div>
-                </div>
-            )}
+            {/* TEST: orgánulo a encontrar + aviso de acierto/fallo */}
+            {isQuizMode && quizTarget && <CelQuest target={quizTarget} />}
+            {isQuizMode && <CelToast feedback={quizFeedback} clickedName={clickedName} />}
 
-            {/* EXPLORE MODE: EMPTY STATE HINT */}
-            {mode === 'explore' && !selectedOrganelle && (
-                <div className="panel-empty-state">
-                    <div className="pulse-dot"></div>
-                    <span className="panel-empty-hint">
-                        Selecciona un orgánulo para ver sus detalles
-                    </span>
-                </div>
-            )}
-
-            {/* INFO PANEL OVERLAY (Only in Explore Mode) */}
-            <div className={`celula-info-overlay ${selectedData ? 'open' : ''}`}>
-                {selectedData && (
-                    <div className="celula-info-card" key={selectedData.id}>
-                        <button className="floating-close-btn" onClick={handleClose} title="Cerrar panel">
-                            <X size={18} />
-                        </button>
-
-                        <div className="organelle-detail">
-                            <div className="detail-header">
-                                <div className="detail-header-top">
-                                    <div className="detail-title-group">
-                                        <div className="detail-icon-wrapper">
-                                            <span className="detail-icon">{selectedData.icon}</span>
-                                        </div>
-                                        <div className="detail-title-stack">
-                                            <h2 className="detail-title">{selectedData.name}</h2>
-                                            <div className="detail-subtitle">{selectedData.subtitle}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="detail-body">
-                                <div className="detail-description-card">
-                                    <Info className="description-icon" size={16} />
-                                    <p className="detail-description">{selectedData.description}</p>
-                                </div>
-
-                                <div className="detail-grid">
-                                    <div className="detail-section">
-                                        <h3 className="detail-section-title">
-                                            <Activity size={14} className="section-icon" />
-                                            <span>Funciones</span>
-                                        </h3>
-                                        <ul className="detail-list">
-                                            {selectedData.functions.map((f, i) => (
-                                                <li key={i}>{f}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="detail-section">
-                                        <h3 className="detail-section-title">
-                                            <Box size={14} className="section-icon" />
-                                            <span>Estructura</span>
-                                        </h3>
-                                        <p className="detail-text">{selectedData.structure}</p>
-                                    </div>
-                                </div>
-
-                                <div className="fun-fact-card">
-                                    <div className="fun-fact-header">
-                                        <Lightbulb size={16} className="fun-fact-icon" />
-                                        <h4>¿Sabías que...?</h4>
-                                    </div>
-                                    <p className="fun-fact-text">{selectedData.funFact}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            {/* FICHA DEL ORGÁNULO (solo en Explorar) */}
+            <CelDrawer
+                org={selectedData}
+                color={selectedData ? ORG_COLORS[selectedData.id] : undefined}
+                onClose={handleClose}
+                lens={selectedData && (
+                    <CellDiagram
+                        selectedId={null}
+                        visitedIds={visitedIds}
+                        onSelect={noop}
+                        isQuizMode={false}
+                        feedbackState={null}
+                        viewBox={lensViewBox(selectedData, LENS, SVG_W, SVG_H)}
+                    />
                 )}
-            </div>
+            />
 
-            {/* ===== RETO MODE UI ===== */}
+            {/* RETO: relaciona orgánulo y función */}
             {isMatchMode && (
-                <div className="match-game-overlay">
-                    <div className="match-game-panel">
-                        {/* Difficulty Picker */}
-                        {matchDifficulty === null ? (
-                            <>
-                                <div className="match-panel-header">
-                                    <div>
-                                        <h3 className="match-title">
-                                            🎯 Reto: Relaciona orgánulo y función
-                                        </h3>
-                                        <p className="match-instruction">
-                                            Elige la dificultad del reto. Cuantos más orgánulos, mayor dificultad.
-                                        </p>
-                                    </div>
-                                    <button
-                                        className="match-exit-btn"
-                                        onClick={() => switchMode('explore')}
-                                        title="Volver a explorar"
-                                    >
-                                        ✕ Salir
-                                    </button>
-                                </div>
-                                <div className="difficulty-picker cfx-diff-picker">
-                                    <button className="difficulty-btn difficulty-easy" onClick={() => startMatchWithDifficulty(6)}>
-                                        <span className="cfx-diff-icon" aria-hidden="true"><Leaf size={22} /></span>
-                                        <span className="difficulty-count">6</span>
-                                        <span className="difficulty-label">Fácil</span>
-                                        <span className="difficulty-desc">6 orgánulos</span>
-                                    </button>
-                                    <button className="difficulty-btn difficulty-medium" onClick={() => startMatchWithDifficulty(9)}>
-                                        <span className="cfx-diff-icon" aria-hidden="true"><Zap size={22} /></span>
-                                        <span className="difficulty-count">9</span>
-                                        <span className="difficulty-label">Normal</span>
-                                        <span className="difficulty-desc">9 orgánulos</span>
-                                    </button>
-                                    <button className="difficulty-btn difficulty-hard" onClick={() => startMatchWithDifficulty(12)}>
-                                        <span className="cfx-diff-icon" aria-hidden="true"><Flame size={22} /></span>
-                                        <span className="difficulty-count">12</span>
-                                        <span className="difficulty-label">Difícil</span>
-                                        <span className="difficulty-desc">12 orgánulos</span>
-                                    </button>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className="match-panel-header">
-                                    <div>
-                                        <h3 className="match-title">
-                                            🎯 Reto: Relaciona orgánulo y función
-                                        </h3>
-                                        <p className="match-instruction">
-                                            {!testSubmitted
-                                                ? 'Selecciona un orgánulo y asigna su función. Cuando hayas asignado todos, pulsa Corregir.'
-                                                : 'Revisa tus resultados abajo.'}
-                                        </p>
-                                    </div>
-                                    <button
-                                        className="match-exit-btn"
-                                        onClick={() => switchMode('explore')}
-                                        title="Volver a explorar"
-                                    >
-                                        ✕ Salir
-                                    </button>
-                                </div>
-
-                                <div className="match-columns">
-                                    {/* Left: Organelles */}
-                                    <div className="match-col match-col-left">
-                                        <div className="match-col-header">Orgánulo</div>
-                                        {matchPairs.map(org => {
-                                            const answered = matchAnswers[org.id] !== undefined;
-                                            const isCorrect = testSubmitted && matchAnswers[org.id] === org.id;
-                                            const isWrong = testSubmitted && answered && matchAnswers[org.id] !== org.id;
-                                            const justMatched = lastAssignedPair?.orgId === org.id && !testSubmitted;
-                                            // Use funcId in key to replay animation on reassign
-                                            const animKey = `${org.id}-${matchAnswers[org.id] || 'none'}`;
-                                            return (
-                                                <button
-                                                    key={animKey}
-                                                    className={`match-item match-organelle
-                                                ${matchSelected === org.id ? 'selected' : ''}
-                                                ${answered && !testSubmitted ? 'answered' : ''}
-                                                ${justMatched ? 'just-matched' : ''}
-                                                ${isCorrect ? 'result-correct' : ''}
-                                                ${isWrong ? 'result-wrong' : ''}
-                                            `}
-                                                    onClick={() => handleMatchOrganelleClick(org.id)}
-                                                    disabled={testSubmitted}
-                                                >
-                                                    <span className="match-item-icon">{org.icon}</span>
-                                                    <span className="match-item-name">{org.name}</span>
-                                                    {answered && !testSubmitted && <span className="match-remove-btn" onClick={(e) => { e.stopPropagation(); removeMatch(org.id); }} title="Descartar pareja"><X size={14} /></span>}
-                                                    {testSubmitted && isCorrect && <CheckCircle2 size={16} className="match-check" />}
-                                                    {testSubmitted && isWrong && <XCircle size={16} className="match-wrong-icon" />}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Right: Functions */}
-                                    <div className="match-col match-col-right">
-                                        <div className="match-col-header">Función</div>
-                                        {matchFunctions.map((func, idx) => {
-                                            // Check if this function has been assigned to any organelle
-                                            const assignedOrg = Object.entries(matchAnswers).find(([, fId]) => fId === func.id)?.[0];
-                                            const isAssigned = assignedOrg !== undefined;
-                                            const isCorrect = testSubmitted && assignedOrg === func.id;
-                                            const isWrong = testSubmitted && isAssigned && assignedOrg !== func.id;
-                                            const assignedOrgData = isAssigned ? matchPairs.find(o => o.id === assignedOrg) : null;
-                                            const justMatched = lastAssignedPair?.funcId === func.id && !testSubmitted;
-                                            const animKey = `${func.id}-${idx}-${assignedOrg || 'none'}`;
-                                            return (
-                                                <button
-                                                    key={animKey}
-                                                    className={`match-item match-function
-                                                ${isAssigned && !testSubmitted ? 'answered' : ''}
-                                                ${justMatched ? 'just-matched' : ''}
-                                                ${isCorrect ? 'result-correct' : ''}
-                                                ${isWrong ? 'result-wrong' : ''}
-                                            `}
-                                                    onClick={() => handleMatchFunctionClick(func)}
-                                                    disabled={testSubmitted}
-                                                >
-                                                    <span className="match-func-text">{func.label}</span>
-                                                    {isAssigned && !testSubmitted && (
-                                                        <span className="match-assigned-tag">{assignedOrgData?.icon}</span>
-                                                    )}
-                                                    {testSubmitted && isCorrect && <CheckCircle2 size={16} className="match-check" />}
-                                                    {testSubmitted && isWrong && <XCircle size={16} className="match-wrong-icon" />}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-
-                                {/* Action buttons */}
-                                {!testSubmitted && (
-                                    <div className="match-actions">
-                                        <button
-                                            className={`match-submit-btn ${allAnswered ? 'ready' : ''}`}
-                                            onClick={submitTest}
-                                            disabled={!allAnswered}
-                                        >
-                                            ✅ Corregir ({Object.keys(matchAnswers).length}/{matchPairs.length})
-                                        </button>
-                                    </div>
-                                )}
-
-                                {/* Results */}
-                                {testSubmitted && testGrade !== null && (
-                                    <div className={`match-results ${testGrade >= 5 ? 'pass' : 'fail'}`}>
-                                        <div
-                                            className="match-grade-display cfx-grade"
-                                            style={{ '--cfx-grade': testGrade, '--cfx-grade-color': testGrade >= 8 ? '#10b981' : (testGrade >= 5 ? '#3b82f6' : '#ef4444') }}
-                                        >
-                                            <span className="cfx-grade-ring" aria-hidden="true" />
-                                            <span className="cfx-grade-halo" aria-hidden="true" />
-                                            <span className="match-grade-emoji">{getGradeEmoji(testGrade)}</span>
-                                            <span className="match-grade-number">{testGrade}</span>
-                                            <span className="match-grade-max">/ 10</span>
-                                        </div>
-                                        <div className="match-grade-label">
-                                            {testGrade >= 9 ? '¡Sobresaliente!' :
-                                                testGrade >= 7 ? '¡Notable!' :
-                                                    testGrade >= 5 ? 'Aprobado' : 'Necesitas repasar'}
-                                        </div>
-                                        <div className="match-results-actions">
-                                            <button className="match-replay-btn" onClick={() => initMatchGame(matchDifficulty)}>
-                                                🔄 Repetir reto
-                                            </button>
-                                            <button className="match-exit-btn-bottom" onClick={() => switchMode('explore')}>
-                                                ← Volver a explorar
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-                            </>
-                        )}
-                    </div>
-                </div>
+                <CelMatch
+                    difficulty={matchDifficulty}
+                    onPickDifficulty={startMatchWithDifficulty}
+                    pairs={matchPairs}
+                    functions={matchFunctions}
+                    selected={matchSelected}
+                    answers={matchAnswers}
+                    submitted={testSubmitted}
+                    grade={testGrade}
+                    lastAssigned={lastAssignedPair}
+                    canSubmit={allAnswered}
+                    onPickOrg={handleMatchOrganelleClick}
+                    onPickFunc={handleMatchFunctionClick}
+                    onRemove={removeMatch}
+                    onSubmit={submitTest}
+                    onReplay={() => initMatchGame(matchDifficulty)}
+                    onExit={() => switchMode('explore')}
+                    colors={ORG_COLORS}
+                    onHelp={() => setShowHelp(true)}
+                />
             )}
 
-            {/* BOTTOM SELECTOR DOCK (Only in Explore Mode) */}
+            {/* BANDEJA DE ORGÁNULOS (solo en Explorar) */}
             {mode === 'explore' && (
-                <div className="organelle-selector-dock">
-                    <div className="dock-container">
-                        {organelleData.map(org => (
-                            <button
-                                key={org.id}
-                                className={`dock-item ${selectedOrganelle === org.id ? 'active' : ''} ${visitedIds.has(org.id) ? 'visited' : ''}`}
-                                onClick={() => handleSelect(org.id)}
-                            >
-                                <span className="dock-icon">{org.icon}</span>
-                                <div className="dock-tooltip">{org.name}</div>
-                                {visitedIds.has(org.id) && <div className="visited-indicator" />}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                <CelDock
+                    items={organelleData}
+                    colors={ORG_COLORS}
+                    selectedId={selectedOrganelle}
+                    visitedIds={visitedIds}
+                    onSelect={handleSelect}
+                />
             )}
-        </div>
+
+            <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo explorar la célula animal">
+                <CelHelpContent kind="animal" />
+            </InstructionsModal>
+        </CelShell>
     );
 };
 

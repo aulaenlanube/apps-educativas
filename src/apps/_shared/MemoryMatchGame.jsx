@@ -1,9 +1,11 @@
+// Juego de parejas genérico (data.pairs con contentA/contentB) — rediseño 2026
+// sobre el kit de interfaz (_shared/kit): escenario, marcador de turnos, cartas
+// con giro 3D y aviso de victoria. Sin tracking (no recibe onGameComplete).
 import React, { useState, useEffect } from 'react';
-import { useToast } from '@/components/ui/use-toast';
 import confetti from 'canvas-confetti';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { RefreshCw, CheckCircle2 } from 'lucide-react';
+import { RefreshCw, Repeat, Link2, Check } from 'lucide-react';
+import { GameShell, GameHeader, Hud, HudStat, GameButton, RoundBanner } from './kit';
+import './MemoryMatchGame.css';
 
 const MemoryMatchGame = ({ data }) => {
   const [cards, setCards] = useState([]);
@@ -12,22 +14,10 @@ const MemoryMatchGame = ({ data }) => {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [isWon, setIsWon] = useState(false);
-  const { toast } = useToast();
 
   // Mezclar cartas al inicio
   const shuffleCards = () => {
-    // Duplicamos la lógica: creamos dos cartas por cada par del JSON
-    // Una carta lleva el contenido A y la otra el contenido B, pero comparten el pairId
-    const shuffledCards = [...data.pairs, ...data.pairs]
-      .map((pair, index) => {
-        // Determinar si es la 'versión A' o la 'versión B' de la pareja
-        // La primera mitad del array mapeado serán las A, la segunda las B (antes del sort)
-        // Pero como estamos dentro del map que itera dos veces sobre data.pairs:
-        // Una estrategia mejor es construir el array manualmente antes.
-        return null; 
-      });
-    
-    // Construcción correcta del mazo
+    // Construcción del mazo: dos cartas por pareja (contenido A y B) con el mismo pairId
     let deck = [];
     data.pairs.forEach(pair => {
       deck.push({ ...pair, content: pair.contentA, type: pair.typeA, uniqueId: Math.random(), isFlipped: false, isMatched: false, pairId: pair.id });
@@ -50,6 +40,7 @@ const MemoryMatchGame = ({ data }) => {
 
   useEffect(() => {
     shuffleCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   // Manejar elección
@@ -86,11 +77,6 @@ const MemoryMatchGame = ({ data }) => {
         spread: 70,
         origin: { y: 0.6 }
       });
-      toast({
-        title: "¡Felicidades!",
-        description: `Has completado el juego en ${turns} turnos.`,
-        className: "bg-green-500 text-white border-none"
-      });
     }
   }, [cards, turns]);
 
@@ -102,44 +88,44 @@ const MemoryMatchGame = ({ data }) => {
     setDisabled(false);
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center p-4 w-full max-w-4xl mx-auto">
-      
-      {/* Cabecera */}
-      <div className="text-center mb-8 space-y-2">
-        <h1 className="text-3xl font-bold text-primary">{data.title}</h1>
-        <p className="text-muted-foreground">{data.description}</p>
-        <div className="flex items-center justify-center gap-4 mt-4">
-          <div className="bg-white/50 px-4 py-2 rounded-lg font-mono text-xl shadow-sm">
-            Turnos: {turns}
-          </div>
-          <Button onClick={shuffleCards} variant="outline" size="icon">
-            <RefreshCw className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+  const matchedPairs = cards.filter(c => c.isMatched).length / 2;
 
-      {/* Tablero */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 w-full">
+  return (
+    <GameShell accent="#8b5cf6" accent2="#ec4899">
+      <GameHeader
+        title={data.title}
+        subtitle={data.description}
+        right={(
+          <Hud>
+            <HudStat icon={Link2} tone="good" value={`${matchedPairs}/${data.pairs.length}`} label="Parejas" />
+            <HudStat icon={Repeat} tone="progress" value={turns} label="Turnos" />
+            <GameButton variant="soft" size="sm" icon={RefreshCw} onClick={shuffleCards} aria-label="Barajar de nuevo">Barajar</GameButton>
+          </Hud>
+        )}
+      />
+
+      <RoundBanner
+        show={isWon}
+        status="won"
+        title="¡Felicidades!"
+        subtitle={`Has completado el juego en ${turns} turnos.`}
+        action={shuffleCards}
+        actionLabel="Jugar otra vez"
+        actionIcon={RefreshCw}
+      />
+
+      <div className="mm-board">
         {cards.map(card => (
-          <SingleCard 
-            key={card.uniqueId} 
-            card={card} 
+          <SingleCard
+            key={card.uniqueId}
+            card={card}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.isMatched}
             disabled={disabled}
           />
         ))}
       </div>
-
-      {isWon && (
-        <div className="mt-8 animate-bounce">
-          <Button size="lg" onClick={shuffleCards} className="bg-green-600 hover:bg-green-700">
-            ¡Jugar otra vez! <CheckCircle2 className="ml-2 h-5 w-5"/>
-          </Button>
-        </div>
-      )}
-    </div>
+    </GameShell>
   );
 };
 
@@ -152,28 +138,29 @@ const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
   };
 
   return (
-    <div className="relative aspect-[3/4] cursor-pointer group perspective-1000" onClick={handleClick}>
-      <div className={`w-full h-full transition-all duration-500 transform-style-3d ${flipped ? 'rotate-y-180' : ''}`}>
-        
-        {/* Frente (Interrogación / Dorso) */}
-        <div className="absolute w-full h-full backface-hidden rounded-xl shadow-md bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center border-2 border-white/20">
-          <span className="text-4xl font-bold text-white opacity-50">?</span>
-        </div>
+    <button
+      type="button"
+      className={`mm-card ${flipped ? 'is-flipped' : ''} ${card.isMatched ? 'is-matched' : ''}`}
+      onClick={handleClick}
+      aria-label={flipped ? String(card.content) : 'Carta boca abajo'}
+    >
+      <span className="mm-card__inner">
+        {/* Dorso */}
+        <span className="mm-card__back" aria-hidden="true"><span className="mm-card__emblem" /></span>
 
-        {/* Reverso (Contenido) */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-xl shadow-md bg-white flex flex-col items-center justify-center p-2 border-2 border-primary/20 text-center">
+        {/* Cara (contenido) */}
+        <span className="mm-card__face">
           {card.type === 'image' ? (
-            <img src={card.content} alt="card" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+            <img src={card.content} alt="" className="mm-card__img" loading="lazy" decoding="async" />
           ) : (
-            <span className={`font-bold text-slate-700 select-none ${card.content.length > 5 ? 'text-lg' : 'text-4xl'}`}>
+            <span className={`mm-card__text ${String(card.content).length > 5 ? 'is-long' : ''}`}>
               {card.content}
             </span>
           )}
-          {card.isMatched && <CheckCircle2 className="absolute top-2 right-2 w-5 h-5 text-green-500" />}
-        </div>
-
-      </div>
-    </div>
+          {card.isMatched && <span className="mm-card__check" aria-hidden="true"><Check size={13} strokeWidth={3.5} /></span>}
+        </span>
+      </span>
+    </button>
   );
 };
 

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { Sprout, Flame, Target, Crown, LayoutGrid } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
-import RoscoUI from '../_shared/RoscoUI.jsx';
+import RoscoUI, { RoscoShell, RoscoInstructions, RoscoStudyModal } from '../_shared/RoscoUI.jsx';
+import { ModeSelect, GameLoading, GameEmpty, GameButton } from '../_shared/kit';
 import materiasData from '../../../public/data/materias.json';
 
 /**
@@ -61,42 +63,40 @@ const mixQuestions = (sources) => {
   return result;
 };
 
+// Niveles de dificultad (solo ESO y Bachillerato). tone/icon/features: presentación
+// de la pantalla previa (ModeSelect del kit); 'hard' es un tono propio (naranja).
 const DIFFICULTY_LEVELS = [
   {
     id: 'principiante',
     label: 'Principiante',
-    emoji: '🟢',
-    color: 'from-emerald-400 to-green-500',
-    border: 'border-emerald-300',
+    tone: 'easy',
+    icon: Sprout,
     description: 'Conceptos básicos de cursos anteriores y cultura general. Ideal para calentar.',
-    detail: 'Las preguntas provienen principalmente de cursos anteriores y de asignaturas de cultura general. La dificultad es baja.',
+    features: ['Preguntas de cursos anteriores', 'Cultura general', 'Dificultad baja'],
   },
   {
     id: 'intermedio',
     label: 'Intermedio',
-    emoji: '🟡',
-    color: 'from-amber-400 to-yellow-500',
-    border: 'border-amber-300',
+    tone: 'medium',
+    icon: Flame,
     description: 'Mezcla de tu asignatura actual con repasos de cursos anteriores.',
-    detail: 'Combina preguntas fáciles de tu asignatura y curso con algunas de cursos anteriores de la misma materia.',
+    features: ['Tu asignatura y curso', 'Repaso de cursos anteriores'],
   },
   {
     id: 'avanzado',
     label: 'Avanzado',
-    emoji: '🟠',
-    color: 'from-orange-400 to-red-500',
-    border: 'border-orange-300',
+    tone: 'hard',
+    icon: Target,
     description: 'Preguntas de tu asignatura y curso con dificultad media-alta.',
-    detail: 'Todas las preguntas son de tu asignatura y curso actual, con dificultad media y alta.',
+    features: ['Solo tu asignatura y curso', 'Dificultad media y alta'],
   },
   {
     id: 'experto',
     label: 'Experto',
-    emoji: '🔴',
-    color: 'from-red-500 to-rose-600',
-    border: 'border-red-400',
+    tone: 'exam',
+    icon: Crown,
     description: 'Solo conceptos de tu asignatura y nivel. Sin ayuda. El verdadero reto.',
-    detail: '⚠️ TODOS los conceptos del rosco están relacionados exclusivamente con tu asignatura y nivel actual. Incluye preguntas de máxima dificultad.',
+    features: ['Todo el temario de tu nivel', 'Incluye la máxima dificultad'],
   },
 ];
 
@@ -109,6 +109,9 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [studyMaterial, setStudyMaterial] = useState(null);
+  // Presentación: instrucciones y material de estudio en la pantalla de dificultad
+  const [showHelp, setShowHelp] = useState(false);
+  const [studyOpen, setStudyOpen] = useState(null); // material abierto (o null)
 
   const currentIndex = useMemo(() => getProgressionIndex(level, grade), [level, grade]);
 
@@ -302,78 +305,73 @@ const RoscoJuego = ({ onGameComplete } = {}) => {
 
   const game = useRoscoGame(data);
 
+  const openStudy = useCallback(async () => {
+    const material = await loadStudyMaterial();
+    if (material) setStudyOpen(material);
+  }, [loadStudyMaterial]);
+
   // Pantalla de selección de dificultad (solo ESO y Bach)
   if (showDifficultySelector && !selectedDifficulty && !loading) {
+    const modes = DIFFICULTY_LEVELS.map((d) => ({
+      id: d.id,
+      tone: d.tone,
+      icon: d.icon,
+      title: d.label,
+      desc: d.description,
+      features: d.features,
+      cta: 'Elegir',
+    }));
     return (
-      <div className="rosco-container rosco-screen pt-4">
-        <span className="rosco-bg-fx" aria-hidden="true" />
-        <h1 className="rosco-hero-title text-4xl md:text-5xl font-extrabold mb-2 text-blue-600 font-fredoka text-center">El Rosco del Saber</h1>
-        <p className="rosco-subtitle text-gray-500 text-center mb-6">Elige tu nivel de dificultad</p>
-
-        <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 px-4">
-          {DIFFICULTY_LEVELS.map((diff, i) => (
-            <motion.button
-              key={diff.id}
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: i * 0.09, type: 'spring', stiffness: 260, damping: 22 }}
-              onClick={() => setSelectedDifficulty(diff.id)}
-              className={`rosco-diff-card rosco-diff-card--${diff.id} relative bg-white rounded-2xl p-5 text-left shadow-lg hover:shadow-xl border-2 ${diff.border} transition-all hover:scale-[1.03] active:scale-[0.98] group overflow-hidden`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${diff.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
-              <span className="rosco-diff-shine" aria-hidden="true" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="rosco-diff-icon text-2xl">{diff.emoji}</span>
-                  <span className="rosco-diff-label text-lg font-bold text-gray-800">{diff.label}</span>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed">{diff.description}</p>
-                {diff.id === 'experto' && (
-                  <div className="mt-2 bg-red-50 border border-red-200 rounded-lg px-3 py-1.5">
-                    <p className="text-xs text-red-600 font-medium">{diff.detail}</p>
-                  </div>
-                )}
-              </div>
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Info panel */}
-        <div className="max-w-2xl mx-auto mt-6 px-4">
-          <div className="rosco-info-panel bg-blue-50 border border-blue-200 rounded-2xl p-4">
-            <p className="text-sm text-blue-700 font-medium mb-2">¿Cómo funcionan los niveles?</p>
-            <ul className="text-xs text-blue-600 space-y-1">
-              <li><strong>🟢 Principiante:</strong> Preguntas fáciles de cursos anteriores y cultura general.</li>
-              <li><strong>🟡 Intermedio:</strong> Mezcla de tu asignatura con repasos de cursos anteriores.</li>
-              <li><strong>🟠 Avanzado:</strong> Solo tu asignatura, dificultad media-alta.</li>
-              <li><strong>🔴 Experto:</strong> Todo del temario de tu asignatura y nivel. El máximo reto.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="text-center mt-4">
-          <button
-            onClick={() => setSelectedDifficulty('experto')}
-            className="rosco-skip-link text-xs text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            Saltar selección (modo experto)
-          </button>
-        </div>
-      </div>
+      <RoscoShell className="rsc-diffsel">
+        <ModeSelect
+          description="Elige tu nivel de dificultad: decide de dónde salen las preguntas del rosco."
+          modes={modes}
+          onSelect={(id) => setSelectedDifficulty(id)}
+          onHelp={() => setShowHelp(true)}
+          onStudy={openStudy}
+          footer={(
+            <button type="button" className="rsc-skip" onClick={() => setSelectedDifficulty('experto')}>
+              Saltar selección (modo experto)
+            </button>
+          )}
+        />
+        <AnimatePresence>
+          {studyOpen && <RoscoStudyModal key="study" material={studyOpen} onClose={() => setStudyOpen(null)} />}
+        </AnimatePresence>
+        <RoscoInstructions isOpen={showHelp} onClose={() => setShowHelp(false)} />
+      </RoscoShell>
     );
   }
 
   // Loading
   if (loading || !data) {
     return (
-      <div className="rosco-container rosco-screen pt-4 flex flex-col items-center justify-center min-h-[300px]">
-        <div className="rosco-loader w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4" />
-        <p className="text-gray-500 font-medium">Cargando el rosco...</p>
-      </div>
+      <RoscoShell>
+        <GameLoading label="Preparando el rosco…" />
+      </RoscoShell>
     );
   }
 
-  return <RoscoUI {...game} loadStudyMaterial={loadStudyMaterial} onGameComplete={onGameComplete} onBackToDifficulty={showDifficultySelector ? handleBackToDifficulty : null} />;
+  // Sin preguntas para este curso/asignatura (o dificultad)
+  if (Array.isArray(data) && data.length === 0) {
+    return (
+      <RoscoShell>
+        <GameEmpty
+          title="Aún no hay preguntas"
+          action={showDifficultySelector ? (
+            <GameButton variant="soft" icon={LayoutGrid} onClick={handleBackToDifficulty}>Cambiar dificultad</GameButton>
+          ) : null}
+        >
+          No hay definiciones disponibles para este rosco todavía.
+        </GameEmpty>
+      </RoscoShell>
+    );
+  }
+
+  const diff = showDifficultySelector ? DIFFICULTY_LEVELS.find((d) => d.id === selectedDifficulty) : null;
+  const chip = diff ? { id: diff.id, label: diff.label, tone: diff.tone } : null;
+
+  return <RoscoUI {...game} loadStudyMaterial={loadStudyMaterial} onGameComplete={onGameComplete} onBackToDifficulty={showDifficultySelector ? handleBackToDifficulty : null} chip={chip} />;
 };
 
 export default RoscoJuego;

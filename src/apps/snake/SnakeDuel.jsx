@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Star, Swords, Trophy, X, BookOpen, LogOut } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Swords, Trophy, LogOut, Skull, Target } from 'lucide-react';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
+import InstructionsModal from '../_shared/InstructionsModal';
+import { GameShell, GameHeader, Chip, KeyTile, GameButton, GameLoading, GameEmpty } from '../_shared/kit';
+import { SnakeStar, SnakeWordGuide } from './SnakeParts';
 import './Snake.css';
 
 const GRID = 35;               // tablero grande
@@ -16,6 +17,9 @@ const ITEM_LIFESPAN = 15000;
 const ITEM_BLINK_MS = 5000;
 const INITIAL_LEN = 3;
 const TARGET_WINS = 3;         // al mejor de 5
+
+// Grados de giro de la cabeza según la dirección (solo dibujo)
+const headAngle = (d) => (!d ? 0 : d.x === 1 ? 0 : d.x === -1 ? 180 : d.y === 1 ? 90 : d.y === -1 ? -90 : 0);
 
 function formatName(name) {
   return name?.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || '';
@@ -435,285 +439,224 @@ export default function SnakeDuel({ onGameComplete, registerDuelExit }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [sendDir]);
 
-  if (duel.err) return <ErrBox text={duel.err} />;
-  if (loadErr) return <ErrBox text="No hay datos disponibles para este curso." />;
-  if (duel.loading || loadingData || !me || !round || !score) return <Loader />;
+  const shellProps = { theme: 'dark', accent: '#84cc16', accent2: '#e879f9', className: 'snk' };
+
+  if (duel.err) return <ErrBox text={duel.err} shellProps={shellProps} />;
+  if (loadErr) return <ErrBox text="No hay datos disponibles para este curso." shellProps={shellProps} />;
+  if (duel.loading || loadingData || !me || !round || !score) return <Loader shellProps={shellProps} />;
 
   const mySnake = round.snakes[me.id];
   const rivalSnake = round.snakes[rival.id];
   const myScore = score[me.id] || 0;
   const rivalScore = score[rival.id] || 0;
   const currentCat = categories.length > 0 ? formatName(categories[round.catIndex]) : '';
+  const iWon = winnerId === me.id;
 
   return (
-    <div className="snk-root flex flex-col items-center w-full max-w-6xl mx-auto p-4 gap-4 relative">
-      <div className="snk-backdrop" aria-hidden="true" />
-      <style>{`
-        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px) rotate(-5deg)} 75%{transform:translateX(5px) rotate(5deg)} }
-        @keyframes popGreen { 0%{transform:scale(1)} 50%{transform:scale(1.3); box-shadow:0 0 20px rgba(34,197,94,0.8)} 100%{transform:scale(1)} }
-        @keyframes popGold { 0%{transform:scale(1) rotate(0)} 50%{transform:scale(1.4) rotate(180deg); box-shadow:0 0 30px rgba(250,204,21,0.9)} 100%{transform:scale(1) rotate(360deg)} }
-        @keyframes zoomInUp { 0%{opacity:0; transform:scale(0.5) translateY(50px)} 100%{opacity:1; transform:scale(1) translateY(0)} }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-        .anim-err { animation: shake .4s cubic-bezier(.36,.07,.19,.97) both; }
-        .anim-ok { animation: popGreen .4s ease-out both; }
-        .anim-bonus { animation: popGold .5s ease-out both; }
-        .anim-popup { animation: zoomInUp .6s cubic-bezier(0.16,1,0.3,1) both; }
-        .anim-float { animation: float 3s ease-in-out infinite; }
-      `}</style>
+    <GameShell {...shellProps}>
+      <GameHeader
+        compact
+        onStudy={data ? () => setShowCheatSheet(true) : undefined}
+        right={<Chip tone="accent" icon={Swords}>Duelo · al mejor de 5</Chip>}
+      />
 
-      {/* HEADER */}
-      <div className="snk-layer w-full flex flex-col lg:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-3">
-          <span className="snk-hud-btn inline-grid place-items-center w-10 h-10" aria-hidden="true">
-            <Swords className="w-5 h-5 text-violet-600" />
-          </span>
-          <div>
-            <h1 className="snk-title text-2xl sm:text-3xl font-black bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
-              NEON DUELO
-            </h1>
-            {currentCat && (
-              <p className="text-xs sm:text-sm text-slate-500">
-                Objetivo: <span className="snk-target-chip text-amber-600 dark:text-amber-300 font-bold uppercase tracking-wider"><span className="snk-target-chip__dot" aria-hidden="true" />{currentCat}</span>
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <PlayerScore
-            name={me.name}
-            emoji={me.emoji} avatarColor={me.color} avatarCode={me.selectedAvatarCode}
-            color="cyan" wins={myScore} target={TARGET_WINS}
-            snakeScore={mySnake?.score || 0} alive={mySnake?.alive}
-          />
-          <span className="snk-vs text-slate-400 font-black">VS</span>
-          <PlayerScore
-            name={rival.hidden ? 'Oculto' : rival.name}
-            emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
-            color="fuchsia" wins={rivalScore} target={TARGET_WINS}
-            snakeScore={rivalSnake?.score || 0} alive={rivalSnake?.alive}
-          />
-          {data && (
-            <Button
-              variant="outline"
-              onClick={() => setShowCheatSheet(true)}
-              className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
-              title="Guía de palabras"
-            ><BookOpen className="h-5 w-5" /></Button>
-          )}
-        </div>
+      <div className="snk-duel-head">
+        <PlayerScore
+          name={me.name}
+          emoji={me.emoji} avatarColor={me.color} avatarCode={me.selectedAvatarCode}
+          rivalSide={false} wins={myScore} target={TARGET_WINS}
+          snakeScore={mySnake?.score || 0} alive={mySnake?.alive}
+        />
+        <span className="snk-vs" aria-hidden="true">VS</span>
+        <PlayerScore
+          name={rival.hidden ? 'Oculto' : rival.name}
+          emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
+          rivalSide wins={rivalScore} target={TARGET_WINS}
+          snakeScore={rivalSnake?.score || 0} alive={rivalSnake?.alive}
+        />
       </div>
 
-      {/* TABLERO */}
-      <div className="snk-board relative w-full max-w-[900px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
-        {/* Capas decorativas */}
-        <div className="snk-board__sheen" aria-hidden="true" />
-        <div className="snk-board__scan" aria-hidden="true" />
-        {/* Grid overlay */}
-        <div className="snk-grid-lines absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
-            backgroundSize: `${100 / GRID}% ${100 / GRID}%`
-          }} />
+      {currentCat && (
+        <div className="snk-topbar">
+          <div className={`snk-target ${nextTopic ? 'is-changing' : ''}`}>
+            <span className="snk-target__icon"><Target size={18} /></span>
+            <span className="snk-target__text">
+              <small>Come solo</small>
+              <strong key={currentCat}>{currentCat}</strong>
+            </span>
+          </div>
+          <span className="snk-duel-tip"><i className="snk-legend__dot is-mine" /> Tú · <i className="snk-legend__dot is-rival" /> Rival</span>
+        </div>
+      )}
 
-        {/* Popups */}
-        <AnimatePresence>
-          {countdown > 0 && (
-            <motion.div
-              key={`cd-${countdown}`}
-              initial={{ scale: 1.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }}
-              className="absolute inset-0 z-40 flex items-center justify-center"
-            >
-              <div className="snk-countdown text-8xl font-black text-white drop-shadow-[0_0_30px_rgba(139,92,246,0.8)]">{countdown}</div>
-            </motion.div>
-          )}
-          {nextTopic && (
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md"
-            >
-              <div className="snk-levelup-card anim-popup flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
-                <div className="snk-rays" aria-hidden="true" />
-                <div className="relative mb-4 anim-float">
-                  <Star className="w-20 h-20 text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" fill="currentColor" />
-                </div>
-                <h2 className="text-2xl font-black text-white mb-2 uppercase">¡Nueva Temática!</h2>
-                <p className="text-4xl font-black bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-500 bg-clip-text text-transparent">
-                  {nextTopic}
-                </p>
-              </div>
-            </motion.div>
-          )}
-          {round.over && !finished && (
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="absolute inset-0 z-40 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-            >
-              <div className="snk-result-card fx-enter-pop text-center text-white px-8 py-6">
-                <p className="snk-overlay-title text-3xl font-black">
-                  {round.roundWinner === me.id ? '¡Ganas la ronda!' :
-                   round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda empate'}
-                </p>
-                <p className="text-sm opacity-80 mt-2">Preparando siguiente…</p>
-              </div>
-            </motion.div>
-          )}
-          {finished && (
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className={`absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm ${
-                winnerId === me.id ? 'bg-emerald-900/90' : 'bg-rose-900/90'
-              }`}
-            >
-              <div className="snk-result-card fx-enter-pop text-center text-white px-8 py-7 mx-4">
-                <Trophy className={`w-14 h-14 mx-auto mb-2 fx-float ${winnerId === me.id ? 'text-amber-300 drop-shadow-[0_0_18px_rgba(251,191,36,0.8)]' : 'text-rose-200'}`} />
-                <p className="snk-overlay-title text-4xl font-black mb-5">{winnerId === me.id ? '¡HAS GANADO!' : 'HAS PERDIDO'}</p>
-                <button
-                  onClick={() => navigate('/mi-panel')}
-                  className="snk-ghost inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
-                >
-                  <LogOut className="w-4 h-4" /> Salir a mi panel
-                </button>
-              </div>
-            </motion.div>
-          )}
-          {showCheatSheet && (
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="snk-overlay absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
-            >
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-black text-white flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-blue-400" /> Guía de Palabras
-                </h2>
-                <button onClick={() => setShowCheatSheet(false)}
-                  className="w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center justify-center border-2 border-slate-700">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex-1 overflow-y-auto pr-2">
-                <div className="grid gap-3">
-                  {data && Object.entries(data).map(([cat, words]) => (
-                    <div key={cat} className="snk-guide-card bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-                      <h3 className="text-blue-400 font-bold uppercase tracking-wider text-xs mb-2 border-l-4 border-blue-500 pl-2">
-                        {cat.replace(/_/g, ' ')}
-                      </h3>
-                      <div className="flex flex-wrap gap-1.5">
-                        {Array.isArray(words) && words.map((w, i) => (
-                          <span key={i} className="snk-guide-chip px-2 py-0.5 bg-slate-950/60 text-slate-300 rounded text-[11px] border border-white/5">{w}</span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* TABLERO */}
+      <div className="snk-board snk-board--duel">
+        <div className="snk-board__grid" style={{ backgroundSize: `${200 / GRID}% ${200 / GRID}%` }} aria-hidden="true" />
+        <div className="snk-board__glow" aria-hidden="true" />
 
         {/* CELDAS */}
-        <div className="w-full h-full relative" style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${GRID}, 1fr)`,
-          gridTemplateRows: `repeat(${GRID}, 1fr)`,
-        }}>
-          {/* Snakes */}
+        <div className="snk-cells" style={{ gridTemplateColumns: `repeat(${GRID}, 1fr)`, gridTemplateRows: `repeat(${GRID}, 1fr)` }}>
+          {/* Comida — en el duelo todas las palabras van sin color de ayuda. Solo
+              el bonus (estrella) se distingue porque no lleva texto. */}
+          {round.food.map(item => {
+            const expiring = item.expiresAt - Date.now() < ITEM_BLINK_MS;
+            return (
+              <div
+                key={item.id}
+                className={`snk-food ${item.type === 'bonus' ? 'is-bonus' : 'is-neutral'} ${expiring ? 'is-expiring' : ''}`}
+                style={{ gridColumnStart: item.x + 1, gridRowStart: item.y + 1 }}
+              >
+                {item.type === 'bonus' ? <SnakeStar /> : <span className="snk-food__orb" />}
+                {item.word && (
+                  <span className={`snk-word snk-word--sm ${item.y < 2 ? 'is-below' : ''} ${item.x < 4 ? 'is-left' : item.x > GRID - 5 ? 'is-right' : ''}`}>
+                    {item.word}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Serpientes */}
           {Object.values(round.snakes).map(s => {
             const isMine = s.owner === me.id;
-            const headColor = isMine
-              ? (s.headAnim === 'error' ? 'bg-red-500 anim-err'
-                : s.headAnim === 'success' ? 'bg-green-500 anim-ok'
-                : s.headAnim === 'bonus' ? 'bg-yellow-400 anim-bonus'
-                : 'bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)] scale-110')
-              : (s.headAnim === 'error' ? 'bg-red-500 anim-err'
-                : s.headAnim === 'success' ? 'bg-green-500 anim-ok'
-                : s.headAnim === 'bonus' ? 'bg-yellow-400 anim-bonus'
-                : 'bg-fuchsia-400 shadow-[0_0_15px_rgba(232,121,249,0.6)] scale-110');
-            const bodyColor = isMine ? 'bg-cyan-600/80' : 'bg-fuchsia-600/80';
+            const len = s.body.length;
             return s.body.map((seg, i) => {
               const isHead = i === 0;
+              const isTail = i === len - 1 && len > 1;
+              const t = len > 1 ? i / (len - 1) : 0;
               return (
                 <div
                   key={`${s.owner}-${i}`}
-                  className={cn('snk-seg rounded-sm transition-all duration-75', isHead ? `snk-head ${headColor} z-20` : `${bodyColor} z-10`, !s.alive && 'opacity-50 grayscale')}
-                  style={{ gridColumnStart: seg.x + 1, gridRowStart: seg.y + 1 }}
+                  className={`snk-seg ${isMine ? 'is-mine' : 'is-rival'} ${isHead ? 'snk-seg--head' : ''} ${isTail ? 'snk-seg--tail' : ''} ${i % 2 ? 'is-alt' : ''} ${!s.alive ? 'is-dead' : ''}`}
+                  style={{ gridColumnStart: seg.x + 1, gridRowStart: seg.y + 1, '--t': t }}
                 >
                   {isHead && (
-                    <div className="w-full h-full flex items-center justify-center gap-[1px]">
-                      <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60" />
-                      <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60" />
-                    </div>
+                    <span className={`snk-head ${s.headAnim ? `is-${s.headAnim}` : ''}`}>
+                      <span className="snk-head__face" style={{ transform: `rotate(${headAngle(s.dir)}deg)` }}>
+                        <i className="snk-eye snk-eye--a" />
+                        <i className="snk-eye snk-eye--b" />
+                      </span>
+                    </span>
                   )}
                 </div>
               );
             });
           })}
-
-          {/* Comida — modo examen: todas las palabras en gris. Solo el bonus
-              (estrella) se muestra amarillo porque no lleva texto. */}
-          {round.food.map(item => {
-            let color = 'bg-slate-700 border-slate-500 text-slate-200';
-            if (item.type === 'bonus') color = 'bg-yellow-500/20 border-yellow-400 text-yellow-200 animate-pulse';
-            const timeLeft = item.expiresAt - Date.now();
-            const expiring = timeLeft < ITEM_BLINK_MS;
-            return (
-              <div
-                key={item.id}
-                className={cn('flex items-center justify-center relative z-0 transition-opacity', expiring && 'animate-pulse')}
-                style={{ gridColumnStart: item.x + 1, gridRowStart: item.y + 1 }}
-              >
-                {item.type === 'bonus' ? (
-                  <Star className="snk-star w-full h-full text-yellow-400 p-1" fill="currentColor" />
-                ) : (
-                  <div className={`snk-orb w-3/4 h-3/4 rounded-full border-2 ${color.split(' ')[0]} ${color.split(' ')[1]}`} />
-                )}
-                {item.word && (
-                  <span
-                    className={cn('snk-word absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 rounded font-bold border pointer-events-none z-30 shadow-md text-[10px]', color)}
-                  >{item.word}</span>
-                )}
-              </div>
-            );
-          })}
         </div>
+
+        {/* Avisos */}
+        <AnimatePresence>
+          {countdown > 0 && (
+            <motion.div key="cd" className="snk-overlay snk-overlay--soft" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.span
+                key={`cd-${countdown}`}
+                className="snk-countdown"
+                initial={{ scale: 1.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+              >
+                {countdown}
+              </motion.span>
+            </motion.div>
+          )}
+          {nextTopic && (
+            <motion.div key="topic" className="snk-overlay snk-overlay--soft" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div
+                className="snk-card snk-card--gold"
+                initial={{ scale: 0.6, y: 30, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+              >
+                <span className="snk-card__rays" aria-hidden="true" />
+                <span className="snk-card__star"><SnakeStar /></span>
+                <span className="snk-card__kicker">¡Nueva temática!</span>
+                <strong className="snk-card__topic">{nextTopic}</strong>
+              </motion.div>
+            </motion.div>
+          )}
+          {round.over && !finished && (
+            <motion.div key="round" className="snk-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div
+                className={`snk-card ${round.roundWinner === me.id ? '' : round.roundWinner === rival.id ? 'snk-card--over' : 'snk-card--warn'}`}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+              >
+                <span className="snk-card__badge">
+                  {round.roundWinner === me.id ? <Trophy size={26} /> : round.roundWinner === rival.id ? <Skull size={26} /> : <Swords size={26} />}
+                </span>
+                <strong className="snk-card__title">
+                  {round.roundWinner === me.id ? '¡Ganas la ronda!' : round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda empatada'}
+                </strong>
+                <span className="snk-card__hint">Marcador {myScore} – {rivalScore} · preparando la siguiente…</span>
+              </motion.div>
+            </motion.div>
+          )}
+          {finished && (
+            <motion.div key="end" className={`snk-overlay ${iWon ? '' : 'snk-overlay--over'}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.div
+                className={`snk-card snk-duel-end ${iWon ? '' : 'is-lost'}`}
+                initial={{ scale: 0.7, y: 20, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 240, damping: 18 }}
+              >
+                <span className="snk-card__badge"><Trophy size={34} /></span>
+                <span className="snk-card__kicker">Fin del duelo</span>
+                <strong className="snk-card__title">{iWon ? '¡Has ganado!' : 'Has perdido'}</strong>
+                <span className="snk-card__score">{myScore} – {rivalScore}</span>
+                <GameButton size="lg" icon={LogOut} onClick={() => navigate('/mi-panel')} autoFocus>Salir a mi panel</GameButton>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Controles móvil */}
-      <div className="snk-layer grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2">
-        <div />
-        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: -1 })}><ArrowUp /></Button>
-        <div />
-        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: -1, y: 0 })}><ArrowLeft /></Button>
-        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 0, y: 1 })}><ArrowDown /></Button>
-        <Button variant="secondary" className="snk-pad h-14 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => sendDir({ x: 1, y: 0 })}><ArrowRight /></Button>
+      <div className="snk-pad" aria-label="Controles de dirección">
+        <span />
+        <KeyTile className="snk-pad__key" onPointerDown={() => sendDir({ x: 0, y: -1 })} aria-label="Arriba"><ArrowUp size={24} /></KeyTile>
+        <span />
+        <KeyTile className="snk-pad__key" onPointerDown={() => sendDir({ x: -1, y: 0 })} aria-label="Izquierda"><ArrowLeft size={24} /></KeyTile>
+        <KeyTile className="snk-pad__key" onPointerDown={() => sendDir({ x: 0, y: 1 })} aria-label="Abajo"><ArrowDown size={24} /></KeyTile>
+        <KeyTile className="snk-pad__key" onPointerDown={() => sendDir({ x: 1, y: 0 })} aria-label="Derecha"><ArrowRight size={24} /></KeyTile>
       </div>
+
+      <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de palabras">
+        <SnakeWordGuide data={data} current={categories[round.catIndex]} />
+      </InstructionsModal>
+
       <DuelChatBar channel={channel} me={me} rival={rival} />
-    </div>
+    </GameShell>
   );
 }
 
-function PlayerScore({ name, emoji, avatarColor, avatarCode, color, wins, target, snakeScore, alive }) {
-  const bg = color === 'cyan' ? 'bg-cyan-500' : 'bg-fuchsia-500';
+function PlayerScore({ name, emoji, avatarColor, avatarCode, rivalSide, wins, target, snakeScore, alive }) {
   return (
-    <div className={`snk-player snk-player--${color} flex items-center gap-2 bg-white rounded-xl p-2 shadow-sm border border-slate-100 min-w-[150px]`}>
+    <div className={`snk-player ${rivalSide ? 'snk-player--rival' : ''} ${alive === false ? 'is-dead' : ''}`}>
       <UserAvatar
         selectedAvatarCode={avatarCode}
         avatarEmoji={emoji}
         avatarColor={avatarColor}
         size="md"
       />
-      <div className="flex-1 min-w-0">
-        <p className="text-[11px] font-bold text-slate-700 truncate">{name}</p>
-        <p className="text-xs text-slate-500">{snakeScore} pts · {alive ? 'viva' : '💀'}</p>
-        <div className="flex gap-1 mt-0.5">
+      <div className="snk-player__info">
+        <span className="snk-player__name">{name}</span>
+        <span className="snk-player__meta">
+          <span className="snk-player__pts">{snakeScore} pts</span>
+          <span>{alive === false ? <><Skull size={12} /> fuera</> : 'en juego'}</span>
+        </span>
+        <span className="snk-player__wins" aria-label={`${wins} de ${target} rondas`}>
           {Array.from({ length: target }).map((_, i) => (
-            <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors duration-500 ${i < wins ? `${bg}` : 'bg-slate-200 dark:bg-slate-700'}`} />
+            <span key={i} className={`snk-player__win ${i < wins ? 'is-on' : ''}`} />
           ))}
-        </div>
+        </span>
       </div>
     </div>
   );
 }
 
-function Loader() { return <div className="min-h-[50vh] flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600" /></div>; }
-function ErrBox({ text }) { return <div className="p-8 text-center"><X className="w-10 h-10 mx-auto mb-2 text-rose-500" /><p className="font-bold">Error</p><p className="text-sm text-slate-500">{text}</p></div>; }
+function Loader({ shellProps }) {
+  return <GameShell {...shellProps}><GameLoading label="Conectando con tu rival…" /></GameShell>;
+}
+function ErrBox({ text, shellProps }) {
+  return <GameShell {...shellProps}><GameEmpty title="No se puede jugar el duelo">{text}</GameEmpty></GameShell>;
+}

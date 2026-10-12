@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil } from 'lucide-react';
+import { Pencil, Save } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
+  Dialog, DialogContent, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashButton } from '@/components/dashboard/kit';
+import { Step, WeightPicker, TermPicker } from './AssignTaskDialog';
+import './teacherPanels.css';
 
 export default function EditAssignmentDialog({ open, onOpenChange, assignment, onUpdated }) {
   const { toast } = useToast();
@@ -43,84 +45,46 @@ export default function EditAssignmentDialog({ open, onOpenChange, assignment, o
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Pencil className="w-5 h-5 text-purple-500" />
-            Editar tarea
-          </DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-4">
-          <div className="rounded-xl bg-slate-50 border border-slate-100 p-3">
-            <p className="text-sm font-semibold text-slate-800 truncate">
-              {assignment.title || assignment.app_name}
-            </p>
-            {assignment.title && (
-              <p className="text-xs text-slate-500 truncate">{assignment.app_name}</p>
-            )}
+      <DialogContent className="tp-root tp-dialog tp-dialog--sm">
+        <header className="tp-dhead">
+          <div className="tp-dhead__row">
+            <span className="tp-dhead__icon"><Pencil size={24} /></span>
+            <div className="tp-dhead__text">
+              <DialogTitle className="tp-dhead__title">Editar tarea</DialogTitle>
+              <DialogDescription className="tp-dhead__sub">Ajusta cuánto pesa y en qué evaluación cuenta</DialogDescription>
+            </div>
           </div>
+        </header>
 
-          <div className="space-y-2">
-            <Label>Peso en la nota final</Label>
-            <div className="flex gap-2">
-              {[
-                { v: 1, label: 'x1', hint: 'Normal' },
-                { v: 2, label: 'x2', hint: 'Cuenta doble' },
-                { v: 3, label: 'x3', hint: 'Cuenta triple' },
-              ].map(opt => (
-                <button
-                  key={opt.v}
-                  type="button"
-                  onClick={() => setWeight(opt.v)}
-                  className={`flex-1 flex flex-col items-center py-2 rounded-xl border transition-all ${
-                    weight === opt.v
-                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white border-transparent shadow-sm'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-purple-300'
-                  }`}
-                >
-                  <span className="text-lg font-bold leading-tight">{opt.label}</span>
-                  <span className={`text-[11px] ${weight === opt.v ? 'text-white/80' : 'text-slate-400'}`}>{opt.hint}</span>
-                </button>
-              ))}
+        <div className="tp-dbody">
+          <div className="tp-taskcard">
+            {hasAppIcon(assignment.app_id)
+              ? <AppIcon appId={assignment.app_id} size={48} />
+              : <span className="tp-apptile__fallback">🎮</span>}
+            <div style={{ minWidth: 0 }}>
+              <p className="tp-taskcard__name">{assignment.title || assignment.app_name}</p>
+              {assignment.title && <p className="tp-taskcard__app">{assignment.app_name}</p>}
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label>Evaluación</Label>
-            <div className="flex gap-2">
-              {[
-                { v: 1, label: '1ª Evaluación' },
-                { v: 2, label: '2ª Evaluación' },
-                { v: 3, label: '3ª Evaluación' },
-              ].map(opt => (
-                <button
-                  key={opt.v}
-                  type="button"
-                  onClick={() => setTerm(opt.v)}
-                  className={`flex-1 py-2 rounded-xl border text-sm font-medium transition-all ${
-                    term === opt.v
-                      ? 'bg-gradient-to-br from-pink-500 to-rose-600 text-white border-transparent shadow-sm'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-pink-300'
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
+          <div className="tp-steps" style={{ marginTop: 22 }}>
+            <Step n={1} title="Peso en la nota final">
+              <WeightPicker value={weight} onChange={setWeight} />
+            </Step>
+            <Step n={2} title="Evaluación">
+              <TermPicker value={term} onChange={setTerm} />
+            </Step>
           </div>
         </div>
 
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancelar</Button>
-          <Button
-            onClick={handleSave}
-            disabled={loading}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white"
-          >
-            {loading ? 'Guardando...' : 'Guardar'}
-          </Button>
-        </DialogFooter>
+        <footer className="tp-dfoot">
+          <div className="tp-dfoot__actions">
+            <DashButton variant="soft" onClick={() => onOpenChange(false)}>Cancelar</DashButton>
+            <DashButton onClick={handleSave} disabled={loading} icon={Save}>
+              {loading ? 'Guardando...' : 'Guardar'}
+            </DashButton>
+          </div>
+        </footer>
       </DialogContent>
     </Dialog>
   );

@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
 import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
 import { getOrdenaHistoriasData } from '../../services/gameDataService';
+import { GameShell, GameHeader, GameLoading, GameEmpty } from './kit';
+
+// Colores del icono de la app (amanecer → noche: la historia avanza)
+const SHELL = { accent: '#f97316', accent2: '#6366f1' };
 
 const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -31,12 +35,26 @@ const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
     return () => { vivo = false; };
   }, [level, grade, subjectId]);
 
-  if (isLoading) return <div className="text-center p-10 font-bold">Cargando juego...</div>;
-  if (!historias || historias.length === 0)
-    return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía</div>;
+  if (isLoading) {
+    return (
+      <GameShell {...SHELL}>
+        <GameLoading label="Preparando historias…" />
+      </GameShell>
+    );
+  }
+  if (!historias || historias.length === 0) {
+    return (
+      <GameShell {...SHELL}>
+        <GameHeader />
+        <GameEmpty title="Aún no hay historias">
+          No hay contenido disponible para este juego todavía.
+        </GameEmpty>
+      </GameShell>
+    );
+  }
 
   // Un único UI que muestra práctica o test según game.isTestMode
-  return <OrdenaLaHistoriaUI game={game} onGameComplete={onGameComplete} />;
+  return <OrdenaLaHistoriaUI game={game} onGameComplete={onGameComplete} total={historias.length} />;
 };
 
 export default OrdenaLaHistoriaJuego;

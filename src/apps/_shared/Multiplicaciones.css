@@ -1,85 +1,39 @@
-/* DARK-MIGRATED */
-@import './MathBoxShared.css';
-/* Multiplicaciones: solo estilos PROPIOS que no estan en MathBoxShared */
+/* Multiplicaciones en columna (3º-6º) — rediseño 2026.
+   Las piezas (cifras, casillas, llevadas, signo, raya, coma) están en
+   src/apps/multiplicaciones/OpTablero.css; aquí solo va lo propio de la
+   rejilla de multiplicar. El armazón es _shared/MathOperationLayout. */
 
-/* Simbolo x inline (propio de multiplicaciones) */
-.cross-inline {
-  position: absolute;
-  right: 100%;
-  margin-right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--app-operator);
-  line-height: 1;
-  pointer-events: none;
-}
+.op-grid.mx-grid { padding: 4px 6px 6px; }
 
-/* Override: operation-line en multi usa border diferente */
-.operation-line {
-  border: 2px solid var(--app-line);
-  border-top: none;
-  width: 100%;
-}
-
-/* Carry box (propio de multiplicaciones) */
-.carry-box {
-  width: 30px;
-  height: 30px;
-  font-size: .8em;
-  border-radius: 50%;
-  color: var(--app-operator);
-}
-.box.disabled { opacity: .4; pointer-events: none; }
-.carries-hidden .carry-box,
-.hidden-by-toggle { visibility: hidden; }
-
-/* Coma visual en operandos */
-.with-decimal { position: relative; }
-.decimal-mark {
-  position: absolute;
-  right: -6px;
-  bottom: 6px;
-  font-weight: bold;
-  font-size: 0.8em;
-  line-height: 1;
-  pointer-events: none;
-  color: var(--app-operator);
-}
-
-/* === Grid de resultado con ranuras de coma intercaladas === */
-.result-grid {
-  --box-w: 45px;
-  --slot-w: 16px;
-  display: grid;
-  justify-content: center;
-  align-items: end;
+/* 6º (decimales): una columna estrecha entre cada cifra para la coma.
+   Las ranuras hacen de separación, así que no hay hueco entre columnas. */
+.op-grid.mx-grid--dec {
+  --slot-k: .38;
+  --slot: calc(var(--cell) * var(--slot-k));
+  --units: calc(1.3 + var(--n, 6) * (1 + var(--slot-k)) + var(--slot-k));
   column-gap: 0;
-  row-gap: 6px;
-  margin-top: 4px;
 }
-.final-box {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-.result-grid .final-box { width: var(--box-w); }
+.mx-grid--dec .op-sign { margin-right: calc(var(--cell) * .12); }
 
-/* Ranuras de la coma en multiplicaciones */
-.result-grid .comma-slot {
-  width: var(--slot-w);
-  min-width: var(--slot-w);
-  height: 32px;
-  display: flex;
+/* Fila de un producto parcial por 0: no lleva cifras */
+.mx-zero {
+  justify-self: center;
+  align-self: center;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 2em;
-  color: var(--app-border);
-  cursor: pointer;
-  user-select: none;
-  border: none;
-  border-bottom: none;
-  padding: 0;
-  margin: 0;
-  transition: color 0.15s;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: max(.72rem, calc(var(--cell) * .3));
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--c) 75%, var(--gk-ink));
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  border: 1.5px dashed color-mix(in srgb, var(--c) 45%, transparent);
 }
-.result-grid .comma-slot:hover { color: var(--app-text-secondary); transform: none; }
-.result-grid .comma-slot.active { color: var(--app-operator); transform: none; }
+
+@media (max-width: 720px) {
+  .op-grid.mx-grid { padding: 2px 2px 4px; }
+  .op-grid.mx-grid--dec { --slot-k: .26; }
+}

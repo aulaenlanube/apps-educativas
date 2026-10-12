@@ -1,55 +1,63 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Play, RotateCcw, Trash2, ChevronLeft, ChevronRight, Check, X, Code2, Copy, Grid3x3, EyeOff, ArrowRight, Bot, Pencil, Users, User, AlertTriangle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Play, RotateCcw, Trash2, ChevronLeft, ChevronRight, Check, X, Code2, Copy, Grid3x3, EyeOff,
+  Pencil, Users, User, AlertTriangle, LayoutGrid, Flag, Flame, Gauge, GraduationCap, Map as MapIcon,
+  MapPin, Award, Target, Plus, Box, Puzzle, Gamepad2, ArrowRight,
+} from 'lucide-react';
 import { blocksForGrade, getBlock, newNode, cloneNode, SENSORS, CATEGORY_LABELS, CATEGORY_ORDER, gradeIdFromParams, GRADE_LABELS } from './pbBlocks';
 import { simulate, transpile } from './pbEngine';
 import { getLevels, getRetos, checkLevel } from './pbLevels';
 import Robot from './Robot';
 import { FloorTile, WallTile, WaterTile, HoleTile, EnergyItem, EnergyStack, CrateTile, LaserBlast, TargetFlag, biomeForLevel, BIOME_INFO } from './PixelTiles';
+import { BiomeScene, MiniMap, blockIcon } from './PbArt';
+import PbDialog from './PbDialog';
 import LevelEditor from './LevelEditor';
 import { createRobotLevel, updateRobotLevel, deleteRobotLevel, listMyRobotLevels, listSharedRobotLevels, incrementRobotLevelPlays } from './pbLevelsService';
 import { useAuth } from '../../contexts/AuthContext';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Panel, Chip, GameButton, ModeSelect, RoundBanner,
+  ResultsScreen, FeedbackItem, GameLoading, GameEmpty, Segmented,
+} from '../_shared/kit';
 import './ProgramacionBloques.css';
 
-const dragRef = { current: null };
+// Rediseño 2026 sobre el kit (_shared/kit). Solo presentación: el motor
+// (pbEngine), los niveles (pbLevels), la comprobación, la puntuación y el
+// onGameComplete son exactamente los de antes.
 
-// Fondo decorativo del marco (orbes + rejilla + estrellas). Solo visual.
-const PbBackdrop = () => (
-  <div className="pb-fx-bg" aria-hidden="true">
-    <span className="pb-fx-orb pb-fx-orb--a" />
-    <span className="pb-fx-orb pb-fx-orb--b" />
-    <span className="pb-fx-orb pb-fx-orb--c" />
-    <span className="pb-fx-grid" />
-    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`pb-fx-star pb-fx-star--${i}`} />)}
-  </div>
-);
+const dragRef = { current: null };
+const SHELL = { accent: '#f59e0b', accent2: '#ec4899' };
+
 const stop = (e) => e.stopPropagation();
 const toSet = (v) => (v instanceof Set ? v : new Set(v || []));
+
+// Posición de una pieza en el tablero: el tamaño de casilla (--c) lo decide el
+// CSS según el ancho disponible (container queries), así el tablero se adapta.
+const at = (x, y) => ({ '--x': x, '--y': y });
 
 /* -------------------- LEGEND -------------------- */
 function LegendEntry({ children, label }) {
   return (
-    <div className="pb-legend-entry">
-      <div className="pb-legend-ico">{children}</div>
-      <span>{label}</span>
-    </div>
+    <span className="pbx-legend__item">
+      <span className="pbx-legend__ico">{children}</span>
+      {label}
+    </span>
   );
 }
 function Legend({ biome, world }) {
   const has = (arr) => (arr || []).length > 0;
   const hasStacks = (world.items || []).some((s) => String(s).includes(':'));
   return (
-    <div className="pb-legend">
-      <div className="pb-legend-title">Leyenda</div>
-      <div className="pb-legend-grid">
-        <LegendEntry label="Suelo"><FloorTile x={0} y={0} biome={biome} /></LegendEntry>
-        {has(world.walls) && <LegendEntry label="Obstáculo"><WallTile x={0} y={0} biome={biome} /></LegendEntry>}
-        {has(world.water) && <LegendEntry label="Agua"><WaterTile x={0} y={0} biome={biome} /></LegendEntry>}
-        {has(world.holes) && <LegendEntry label="Hoyo"><HoleTile biome={biome} /></LegendEntry>}
-        {has(world.crates) && <LegendEntry label="Caja (láser)"><CrateTile biome={biome} /></LegendEntry>}
-        {has(world.items) && <LegendEntry label={hasStacks ? 'Energía (×N)' : 'Energía'}>{hasStacks ? <EnergyStack count={3} /> : <EnergyItem />}</LegendEntry>}
-        {world.target && <LegendEntry label="Meta"><TargetFlag /></LegendEntry>}
-      </div>
+    <div className="pbx-legend" aria-label="Leyenda">
+      <LegendEntry label="Suelo"><FloorTile x={0} y={0} biome={biome} /></LegendEntry>
+      {has(world.walls) && <LegendEntry label="Obstáculo"><WallTile x={0} y={0} biome={biome} /></LegendEntry>}
+      {has(world.water) && <LegendEntry label="Agua"><WaterTile x={0} y={0} biome={biome} /></LegendEntry>}
+      {has(world.holes) && <LegendEntry label="Hoyo"><HoleTile biome={biome} /></LegendEntry>}
+      {has(world.crates) && <LegendEntry label="Caja (láser)"><CrateTile biome={biome} /></LegendEntry>}
+      {has(world.items) && <LegendEntry label={hasStacks ? 'Energía (×N)' : 'Energía'}>{hasStacks ? <EnergyStack count={3} /> : <EnergyItem />}</LegendEntry>}
+      {world.target && <LegendEntry label="Meta"><TargetFlag /></LegendEntry>}
     </div>
   );
 }
@@ -68,7 +76,7 @@ function stacksToMap(input) {
   return m;
 }
 
-// Escala responsive por tamaño de tablero
+// Tamaño MÁXIMO de casilla por tamaño de tablero (el CSS lo reduce si no cabe).
 function computeCellPx(cols, rows) {
   const max = Math.max(cols || 8, rows || 8);
   if (max <= 8) return 52;
@@ -77,7 +85,7 @@ function computeCellPx(cols, rows) {
   return Math.max(28, Math.floor(432 / max));
 }
 
-function Board({ world, robot, itemsLeft, crates, laser, moving, showGrid, biome }) {
+function Board({ world, robot, itemsLeft, crates, laser, moving, showGrid, biome, status }) {
   const cols = world.cols, rows = world.rows;
   const walls = useMemo(() => toSet(world.walls), [world.walls]);
   const water = useMemo(() => toSet(world.water), [world.water]);
@@ -87,70 +95,44 @@ function Board({ world, robot, itemsLeft, crates, laser, moving, showGrid, biome
   const cellPx = computeCellPx(cols, rows);
 
   const floor = [];
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      floor.push(<div key={`f${x}-${y}`} className="pb-cell pb-cell-floor"
-        style={{ left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx }}>
-        <FloorTile x={x} y={y} biome={biome} />
-      </div>);
-    }
-  }
-
   const overlays = [];
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       const k = `${x},${y}`;
-      const style = { left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx };
-      if (walls.has(k)) overlays.push(<div key={`w${k}`} className="pb-cell" style={style}><WallTile x={x} y={y} biome={biome} /></div>);
-      else if (water.has(k)) overlays.push(<div key={`wa${k}`} className="pb-cell" style={style}><WaterTile x={x} y={y} biome={biome} /></div>);
-      else if (holes.has(k)) overlays.push(<div key={`h${k}`} className="pb-cell" style={style}><HoleTile biome={biome} /></div>);
-      else if (crateSet.has(k)) overlays.push(<div key={`cr${k}`} className="pb-cell pb-crate" style={style}><CrateTile biome={biome} /></div>);
+      floor.push(<div key={`f${k}`} className="pbx-cell" style={at(x, y)}><FloorTile x={x} y={y} biome={biome} /></div>);
+      if (walls.has(k)) overlays.push(<div key={`w${k}`} className="pbx-cell" style={at(x, y)}><WallTile x={x} y={y} biome={biome} /></div>);
+      else if (water.has(k)) overlays.push(<div key={`wa${k}`} className="pbx-cell" style={at(x, y)}><WaterTile x={x} y={y} biome={biome} /></div>);
+      else if (holes.has(k)) overlays.push(<div key={`h${k}`} className="pbx-cell" style={at(x, y)}><HoleTile biome={biome} /></div>);
+      else if (crateSet.has(k)) overlays.push(<div key={`cr${k}`} className="pbx-cell pbx-crate" style={at(x, y)}><CrateTile biome={biome} /></div>);
     }
   }
-
-  const target = world.target ? (
-    <div className="pb-cell" style={{
-      left: world.target.x * cellPx + cellPx * 0.18, top: world.target.y * cellPx + cellPx * 0.1,
-      width: cellPx * 0.64, height: cellPx * 0.8,
-    }}><TargetFlag /></div>
-  ) : null;
 
   const items = [...itemsMap.entries()].map(([k, count]) => {
     const [x, y] = k.split(',').map(Number);
     return (
-      <div key={k} className="pb-item" style={{
-        left: x * cellPx + cellPx * 0.12, top: y * cellPx + cellPx * 0.08,
-        width: cellPx * 0.76, height: cellPx * 0.84,
-      }}>
+      <div key={k} className="pbx-item" style={at(x, y)}>
         {count > 1 ? <EnergyStack count={count} /> : <EnergyItem />}
       </div>
     );
   });
 
-  // Láser: explosión centrada en la celda objetivo (un poco más grande que la celda)
-  let laserEl = null;
-  if (laser) {
-    const size = cellPx * 1.35;
-    const cx = laser.target.x * cellPx + cellPx / 2;
-    const cy = laser.target.y * cellPx + cellPx / 2;
-    laserEl = (
-      <div key={`laser-${laser.id}`} className="pb-blast-wrap" style={{ left: cx - size / 2, top: cy - size / 2, width: size, height: size }}>
-        <LaserBlast />
-      </div>
-    );
-  }
-
   return (
-    <div className={`pb-board pb-biome-${biome} ${showGrid ? 'pb-board-grid' : ''}`}
-      style={{ width: cols * cellPx, height: rows * cellPx, background: BIOME_INFO[biome]?.bg, '--pb-cell': `${cellPx}px` }}>
-      {floor}{overlays}{target}{items}
-      {showGrid && <div className="pb-grid-overlay" />}
-      {laserEl}
-      <div className="pb-robot" style={{
-        left: robot.x * cellPx + cellPx * -0.1,
-        top: robot.y * cellPx - cellPx * 0.3,
-        width: cellPx * 1.2, height: cellPx * 1.35,
-      }}>
+    <div
+      className={`pbx-board pbx-biome-${biome} ${showGrid ? 'has-grid' : ''} ${status ? `is-${status}` : ''}`}
+      style={{ '--cols': cols, '--rows': rows, '--cmax': `${cellPx}px`, background: BIOME_INFO[biome]?.bg }}
+    >
+      <div className="pbx-board__ground">
+        {floor}{overlays}
+        {world.target && <div className="pbx-target" style={at(world.target.x, world.target.y)}><TargetFlag /></div>}
+        {items}
+        {showGrid && <div className="pbx-grid-overlay" />}
+      </div>
+      {laser && (
+        <div key={`laser-${laser.id}`} className="pbx-blast" style={at(laser.target.x, laser.target.y)}>
+          <LaserBlast />
+        </div>
+      )}
+      <div className="pbx-robot" style={at(robot.x, robot.y)}>
         <Robot dir={robot.dir} moving={moving} />
       </div>
     </div>
@@ -160,26 +142,31 @@ function Board({ world, robot, itemsLeft, crates, laser, moving, showGrid, biome
 /* -------------------- FIELD EDITOR -------------------- */
 function FieldEditor({ field, value, onChange, disabled }) {
   if (field.type === 'op') return (
-    <select value={value || field.options[0]} onChange={(e) => onChange(e.target.value)} onClick={stop} disabled={disabled} className="pb-field">
+    <select value={value || field.options[0]} onChange={(e) => onChange(e.target.value)} onClick={stop} disabled={disabled} className="pbx-field pbx-field--select">
       {field.options.map((o) => <option key={o} value={o}>{o}</option>)}
     </select>
   );
   if (field.type === 'sensor') return (
-    <select value={value || SENSORS[0].value} onChange={(e) => onChange(e.target.value)} onClick={stop} disabled={disabled} className="pb-field" style={{ width: field.width }}>
+    <select value={value || SENSORS[0].value} onChange={(e) => onChange(e.target.value)} onClick={stop} disabled={disabled} className="pbx-field pbx-field--select pbx-field--sensor" style={{ width: field.width }}>
       {SENSORS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
     </select>
   );
   if (field.type === 'number') return (
     <input type="number" min={field.min ?? 0} max={field.max ?? 99} value={value ?? ''} onChange={(e) => onChange(e.target.value)}
-      onKeyDown={stop} onClick={stop} disabled={disabled} className="pb-field pb-field-num" style={{ width: field.width }} />
+      onKeyDown={stop} onClick={stop} disabled={disabled} className="pbx-field pbx-field--num" style={{ width: field.width }} />
   );
   return (
     <input type="text" value={value ?? ''} placeholder={field.placeholder} onChange={(e) => onChange(e.target.value)}
-      onKeyDown={stop} onClick={stop} disabled={disabled} className="pb-field" style={{ width: field.width }} />
+      onKeyDown={stop} onClick={stop} disabled={disabled} className="pbx-field" style={{ width: field.width }} />
   );
 }
 
 /* -------------------- BLOCK NODE -------------------- */
+function BlockIcon({ kind }) {
+  const Icon = blockIcon(kind);
+  return <span className="pbx-block__ico" aria-hidden="true"><Icon size={14} strokeWidth={2.6} /></span>;
+}
+
 function BlockNode({ node, path, onField, onAdd, onMove, onRemove, disabled }) {
   const def = getBlock(node.kind);
   if (!def) return null;
@@ -199,36 +186,47 @@ function BlockNode({ node, path, onField, onAdd, onMove, onRemove, disabled }) {
       if (!f) return null;
       return <FieldEditor key={i} field={f} value={node.fields[f.name]} onChange={(v) => onField(path, f.name, v)} disabled={disabled} />;
     }
-    return <span key={i} className="pb-block-txt">{seg}</span>;
+    return seg.trim() ? <span key={i} className="pbx-block__txt">{seg.trim()}</span> : null;
   });
+  const trash = !disabled && (
+    <button type="button" className="pbx-block__trash" onClick={(e) => { e.stopPropagation(); onRemove(path); }} title="Quitar bloque" aria-label="Quitar bloque">
+      <X size={12} strokeWidth={3} />
+    </button>
+  );
 
   if (!isContainer) {
     return (
-      <div className={`pb-block is-stack cat-${def.category}`} draggable={!disabled} onDragStart={onDragStart}>
-        {renderSegs()}
-        {!disabled && <button className="pb-block-trash" onClick={(e) => { e.stopPropagation(); onRemove(path); }}><Trash2 size={12} /></button>}
+      <div className={`pbx-block is-stack cat-${def.category}`} draggable={!disabled} onDragStart={onDragStart}>
+        <div className="pbx-block__row">
+          <BlockIcon kind={node.kind} />
+          {renderSegs()}
+          {trash}
+        </div>
       </div>
     );
   }
   return (
-    <div className={`pb-block is-container cat-${def.category}`} draggable={!disabled} onDragStart={onDragStart}>
-      <div className="pb-block-head">
+    <div className={`pbx-block is-container cat-${def.category}`} draggable={!disabled} onDragStart={onDragStart}>
+      <div className="pbx-block__row pbx-block__head">
+        <BlockIcon kind={node.kind} />
         {renderSegs()}
-        {!disabled && <button className="pb-block-trash" onClick={(e) => { e.stopPropagation(); onRemove(path); }}><Trash2 size={12} /></button>}
+        {trash}
       </div>
       {(def.slots || []).map((s) => (
-        <div key={s} className="pb-c-section">
-          {s === 'elseBody' && <div className="pb-c-label">si no</div>}
-          <Dropzone path={[...path, s]} items={node.slots?.[s] || []} onField={onField} onAdd={onAdd} onMove={onMove} onRemove={onRemove} disabled={disabled} indent />
+        <div key={s} className="pbx-block__section">
+          {s === 'elseBody' && <div className="pbx-block__label">si no</div>}
+          <div className="pbx-block__mouth">
+            <Dropzone path={[...path, s]} items={node.slots?.[s] || []} onField={onField} onAdd={onAdd} onMove={onMove} onRemove={onRemove} disabled={disabled} indent />
+          </div>
         </div>
       ))}
-      <div className="pb-c-foot" />
+      <div className="pbx-block__foot" />
     </div>
   );
 }
 
 /* -------------------- DROPZONE -------------------- */
-function Dropzone({ path, items, onField, onAdd, onMove, onRemove, disabled, indent }) {
+function Dropzone({ path, items, onField, onAdd, onMove, onRemove, disabled, indent, emptyLabel }) {
   const [over, setOver] = useState(false);
   const onDragOver = (e) => { if (disabled) return; e.preventDefault(); e.stopPropagation(); setOver(true); };
   const onDragLeave = (e) => { e.stopPropagation(); setOver(false); };
@@ -245,8 +243,12 @@ function Dropzone({ path, items, onField, onAdd, onMove, onRemove, disabled, ind
     }
   };
   return (
-    <div className={`pb-dropzone ${over ? 'is-over' : ''} ${indent ? 'is-indent' : ''}`} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
-      {items.length === 0 && <div className="pb-dropzone-empty">{indent ? '⇣ bloques aquí' : '→ arrastra bloques aquí'}</div>}
+    <div className={`pbx-drop ${over ? 'is-over' : ''} ${indent ? 'is-indent' : ''} ${items.length === 0 ? 'is-empty' : ''}`} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
+      {items.length === 0 && (
+        <div className="pbx-drop__empty">
+          {indent ? 'suelta bloques aquí' : <><Puzzle size={16} /> {emptyLabel || 'Arrastra bloques aquí (o haz clic en la paleta)'}</>}
+        </div>
+      )}
       {items.map((it, idx) => (
         <BlockNode key={it.id} node={it} path={[...path, idx]} onField={onField} onAdd={onAdd} onMove={onMove} onRemove={onRemove} disabled={disabled} />
       ))}
@@ -254,7 +256,7 @@ function Dropzone({ path, items, onField, onAdd, onMove, onRemove, disabled, ind
   );
 }
 
-/* -------------------- PALETTE (compacta, solo bloques del curso) -------------------- */
+/* -------------------- PALETTE (solo bloques del curso) -------------------- */
 function Palette({ gradeId, onAddToEnd, disabled }) {
   const byCat = useMemo(() => {
     const m = {};
@@ -268,26 +270,34 @@ function Palette({ gradeId, onAddToEnd, disabled }) {
     e.dataTransfer.effectAllowed = 'copy';
   };
   return (
-    <div className="pb-palette">
-      <div className="pb-palette-title">🧩 Paleta</div>
+    <Panel variant="surface" className="pbx-palette">
+      <div className="pbx-section-title"><Puzzle size={16} /> Bloques <small>arrastra o pulsa</small></div>
       {CATEGORY_ORDER.map((cat) => {
         if (!byCat[cat]?.length) return null;
         return (
-          <div key={cat} className="pb-pal-cat">
-            <div className={`pb-pal-cat-title cat-${cat}`}>{CATEGORY_LABELS[cat]}</div>
-            <div className="pb-pal-cat-items">
+          <div key={cat} className={`pbx-palette__cat cat-${cat}`}>
+            <div className="pbx-palette__cat-title"><span className="pbx-palette__dot" />{CATEGORY_LABELS[cat]}</div>
+            <div className="pbx-palette__items">
               {byCat[cat].map((b) => {
                 const isContainer = (b.slots || []).length > 0;
                 return (
-                  <div key={b.kind} className={`pb-block ${isContainer ? 'is-container' : 'is-stack'} cat-${b.category} pb-pal-item`}
-                       draggable={!disabled}
-                       onDragStart={(e) => onDragStart(e, b.kind)}
-                       onClick={() => !disabled && onAddToEnd?.(b.kind)}
-                       title={`${b.tpl}\n(arrastra o haz clic)`}>
-                    <div className="pb-block-head">
-                      <span className="pb-block-txt">{b.label}</span>
+                  <div
+                    key={b.kind}
+                    className={`pbx-block is-palette ${isContainer ? 'is-c' : ''} cat-${b.category}`}
+                    draggable={!disabled}
+                    onDragStart={(e) => onDragStart(e, b.kind)}
+                    onClick={() => !disabled && onAddToEnd?.(b.kind)}
+                    role="button"
+                    tabIndex={disabled ? -1 : 0}
+                    onKeyDown={(e) => { if (!disabled && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onAddToEnd?.(b.kind); } }}
+                    title={`${b.tpl}\n(arrastra o haz clic)`}
+                  >
+                    <div className="pbx-block__row">
+                      <BlockIcon kind={b.kind} />
+                      <span className="pbx-block__txt">{b.label}</span>
+                      <Plus size={13} className="pbx-palette__plus" aria-hidden="true" />
                     </div>
-                    {isContainer && <div className="pb-c-foot" />}
+                    {isContainer && <div className="pbx-block__foot" />}
                   </div>
                 );
               })}
@@ -295,7 +305,50 @@ function Palette({ gradeId, onAddToEnd, disabled }) {
           </div>
         );
       })}
-    </div>
+    </Panel>
+  );
+}
+
+/* -------------------- MAPA DE MISIONES -------------------- */
+const BIOME_ORDER = ['meadow', 'forest', 'mountain', 'city', 'datacenter'];
+
+function MissionMap({ levels, onStart }) {
+  const stations = BIOME_ORDER.map((b) => ({
+    biome: b,
+    missions: levels.map((m, i) => ({ m, i })).filter(({ i }) => biomeForLevel(i) === b),
+  })).filter((s) => s.missions.length > 0);
+  return (
+    <section className="pbx-map" aria-label="Mapa de misiones">
+      <header className="pbx-block-title">
+        <span className="pbx-block-title__ico"><MapIcon size={18} /></span>
+        <div>
+          <h3>Mapa de misiones</h3>
+          <p>Cinco tierras, dos misiones en cada una. Elige por dónde empezar.</p>
+        </div>
+      </header>
+      <div className="pbx-map__track">
+        {stations.map((s, si) => (
+          <div key={s.biome} className={`pbx-station pbx-biome-${s.biome}`} style={{ '--i': si }}>
+            <div className="pbx-station__scene">
+              <BiomeScene biome={s.biome} />
+              <span className="pbx-station__label"><MapPin size={12} /> {BIOME_INFO[s.biome].label}</span>
+            </div>
+            <div className="pbx-station__missions">
+              {s.missions.map(({ m, i }) => (
+                <button key={m.id} type="button" className="pbx-mission" onClick={() => onStart(i)}>
+                  <span className="pbx-mission__thumb"><MiniMap world={m.world} biome={s.biome} /></span>
+                  <span className="pbx-mission__text">
+                    <span className="pbx-mission__num">Misión {i + 1}</span>
+                    <span className="pbx-mission__title">{m.title}</span>
+                  </span>
+                  <ArrowRight size={15} className="pbx-mission__go" aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -352,6 +405,11 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
   // Diálogos propios (el proyecto prohíbe window.confirm/alert)
   const [pendingDelete, setPendingDelete] = useState(null); // id del nivel a borrar
   const [notice, setNotice] = useState(null); // mensaje de aviso
+  // Solo visual: instrucciones, resumen del examen y puntos mostrados en él.
+  const [showHelp, setShowHelp] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [examPoints, setExamPoints] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   const reportedRef = useRef(new Set());
   const playTimerRef = useRef(null);
@@ -551,6 +609,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
             totalQuestions: levels.length,
             durationSeconds: elapsedSec || undefined,
           });
+          // Solo visual: los puntos que se muestran en el resumen del examen.
+          if (isExam) setExamPoints(reportedRef.current.size * 50 + timeBonus);
         }
         return;
       }
@@ -571,7 +631,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
 
   const next = () => { if (currentIdx < levels.length - 1) setCurrentIdx(currentIdx + 1); };
   const prev = () => { if (currentIdx > 0) setCurrentIdx(currentIdx - 1); };
-  const goMenu = () => { setPhase('menu'); if (playTimerRef.current) clearInterval(playTimerRef.current); };
+  const goMenu = () => { setPhase('menu'); setShowResults(false); if (playTimerRef.current) clearInterval(playTimerRef.current); };
 
   const transpiled = useMemo(() => transpile([...definitions, ...program], panelLang), [definitions, program, panelLang]);
 
@@ -581,6 +641,8 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
     setShowGrid(selectedMode === 'easy');
     reportedRef.current = new Set();
     setCustomLevel(null);
+    setShowResults(false);
+    setExamPoints(0);
     setPhase('play');
   };
 
@@ -606,6 +668,7 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
     setCurrentIdx(0);
     setShowGrid(false);
     reportedRef.current = new Set();
+    setShowResults(false);
     if (row.id) incrementRobotLevelPlays(row.id).catch(() => {});
     setPhase('play');
   }, []);
@@ -676,131 +739,119 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
     } catch (e) { setNotice('No se pudo borrar: ' + (e.message || e)); }
   };
 
+  const copyCode = () => {
+    navigator.clipboard?.writeText(transpiled);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1400);
+  };
+
   // Modales propios de confirmación / aviso (se montan en todas las fases).
   const dialogs = (
     <>
-      {pendingDelete != null && (
-        <div className="pb-modal-backdrop" onClick={() => setPendingDelete(null)}>
-          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-dialog-del-title" onClick={(e) => e.stopPropagation()}>
-            <div className="pb-dialog-icon is-danger" aria-hidden="true"><Trash2 size={22} /></div>
-            <h3 id="pb-dialog-del-title">¿Borrar este nivel?</h3>
-            <p>Esta acción no se puede deshacer.</p>
-            <div className="pb-dialog-actions">
-              <button className="pb-btn pb-btn-ghost" onClick={() => setPendingDelete(null)}>Cancelar</button>
-              <button className="pb-btn pb-btn-danger" onClick={confirmRemoveLevel} autoFocus><Trash2 size={14} /> Borrar</button>
-            </div>
-          </div>
-        </div>
-      )}
-      {notice && (
-        <div className="pb-modal-backdrop" onClick={() => setNotice(null)}>
-          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-dialog-notice-title" onClick={(e) => e.stopPropagation()}>
-            <div className="pb-dialog-icon" aria-hidden="true"><AlertTriangle size={22} /></div>
-            <h3 id="pb-dialog-notice-title">Aviso</h3>
-            <p>{notice}</p>
-            <div className="pb-dialog-actions">
-              <button className="pb-btn pb-btn-primary" onClick={() => setNotice(null)} autoFocus>Entendido</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <PbDialog
+        open={pendingDelete != null}
+        tone="danger"
+        icon={Trash2}
+        title="¿Borrar este nivel?"
+        text="Esta acción no se puede deshacer."
+        onClose={() => setPendingDelete(null)}
+        actions={[
+          { label: 'Cancelar', variant: 'soft', onClick: () => setPendingDelete(null) },
+          { label: 'Borrar', variant: 'danger', icon: Trash2, onClick: confirmRemoveLevel, autoFocus: true },
+        ]}
+      />
+      <PbDialog
+        open={!!notice}
+        tone="info"
+        icon={AlertTriangle}
+        title="Aviso"
+        text={notice}
+        onClose={() => setNotice(null)}
+        actions={[{ label: 'Entendido', variant: 'primary', onClick: () => setNotice(null), autoFocus: true }]}
+      />
     </>
+  );
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo programar al robot">
+      <h3>🎯 Objetivo</h3>
+      <p>
+        Construye un <strong>programa con bloques</strong> para que el robot llegue a la <strong>meta</strong>,
+        recoja la <strong>energía</strong> y, si hace falta, destruya las <strong>cajas</strong> con el láser.
+      </p>
+      <h3>🧩 Cómo se juega</h3>
+      <ul>
+        <li><strong>Arrastra</strong> bloques de la paleta a «Mi programa», o haz <strong>clic</strong> en uno para añadirlo al final.</li>
+        <li>Los bloques de <strong>bucle</strong> y <strong>condición</strong> tienen un hueco: suelta otros bloques dentro.</li>
+        <li>Pulsa <strong>Ejecutar</strong> para ver al robot seguir tu programa paso a paso.</li>
+        <li><strong>Ver código</strong> te enseña tu programa traducido a Python, Java y C.</li>
+        <li>No entres en el agua ni en los hoyos, y no choques con los obstáculos.</li>
+      </ul>
+      <h3>🎓 Modos de juego</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>Fácil</strong>Rejilla siempre visible para contar casillas.</div>
+        <div className="instr-mode medium"><strong>Normal</strong>Las 10 misiones del curso con todos sus bloques.</div>
+        <div className="instr-mode exam"><strong>Examen</strong>Sin ayudas. Cada misión superada suma nota y puntos por rapidez.</div>
+      </div>
+      <div className="instr-tips">
+        <strong>💡 Consejo:</strong> si repites lo mismo varias veces, usa <kbd>repetir</kbd>: tu programa será más corto y elegante.
+      </div>
+    </InstructionsModal>
   );
 
   /* -------------------- MENU -------------------- */
   if (phase === 'menu') {
+    const modes = [
+      { id: 'easy', tone: 'easy', title: 'Fácil', desc: 'Rejilla siempre visible y pistas claras. Perfecto para empezar.', features: ['Rejilla para contar casillas', '10 misiones guiadas'] },
+      { id: 'normal', tone: 'medium', icon: Gauge, title: 'Normal', desc: 'El desafío estándar con todos los bloques de tu curso.', features: ['10 misiones progresivas', 'Rejilla opcional'] },
+      { id: 'examen', tone: 'exam', title: 'Examen', desc: 'Completa las misiones sin ayudas. Tu nota, sobre 10.', features: ['Nota sobre 10', 'Puntos por rapidez'] },
+      { id: 'reto', tone: 'reto', icon: Flame, title: 'Reto', desc: `${retosList.length} retos muy difíciles creados para tu curso.`, features: ['Solo para expertos', 'Tableros enormes'] },
+    ];
     return (
-      <div className="pb-root">
-        <div className="pb-frame pb-frame-menu pb-has-fx">
-          <PbBackdrop />
-          <div className="pb-hero">
-            <div className="pb-hero-top">
-              <div className="pb-hero-title fx-enter">
-                <div className="pb-hero-badge"><span className="pb-hero-badge-dot" aria-hidden="true" /><Bot size={16} /> {GRADE_LABELS[gradeId]}</div>
-                <h1>Programa al Robot</h1>
-                <p>Arrastra bloques visuales para que tu robot cruce 10 misiones por tierras cada vez más complejas: pradera, bosque, montaña, ciudad y centro de datos.</p>
-              </div>
-            </div>
+      <GameShell {...SHELL} wide className="pbx">
+        <ModeSelect
+          description="Arrastra bloques visuales para que tu robot cruce 10 misiones por tierras cada vez más complejas: pradera, bosque, montaña, ciudad y centro de datos."
+          modes={modes}
+          onSelect={(id) => startMission(0, id)}
+          onHelp={() => setShowHelp(true)}
+          extra={(
+            <div className="pbx-menu-extra">
+              <MissionMap levels={normalLevels} onStart={(i) => startMission(i, 'normal')} />
 
-            <div className="pb-mode-grid pb-stagger">
-              <button className="pb-mode-card pb-mode-easy fx-shine" onClick={() => startMission(0, 'easy')}>
-                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />🌱</div>
-                <h3>Modo Fácil</h3>
-                <p>Rejilla siempre visible y pistas claras. Perfecto para empezar.</p>
-                <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
-              </button>
-              <button className="pb-mode-card pb-mode-normal fx-shine" onClick={() => startMission(0, 'normal')}>
-                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />⚡</div>
-                <h3>Modo Normal</h3>
-                <p>Desafío estándar: 10 misiones progresivas con todos los bloques del curso.</p>
-                <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
-              </button>
-              <button className="pb-mode-card pb-mode-exam fx-shine" onClick={() => startMission(0, 'examen')}>
-                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />📝</div>
-                <h3>Modo Examen</h3>
-                <p>Completa las 10 misiones sin ayudas. Tu nota se calcula sobre 10.</p>
-                <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
-              </button>
-              <button className="pb-mode-card pb-mode-reto fx-shine" onClick={() => startMission(0, 'reto')}>
-                <div className="pb-mode-icon"><span className="pb-mode-icon-halo" aria-hidden="true" />🔥</div>
-                <h3>Modo Reto</h3>
-                <p>{retosList.length} retos muy difíciles creados para tu curso. Solo para expertos.</p>
-                <span className="pb-mode-cta">Empezar <ArrowRight size={14} /></span>
-              </button>
-            </div>
-
-            <div className="pb-missions-grid">
-              <h3>📋 Misiones del curso</h3>
-              <div className="pb-missions-cards pb-stagger">
-                {normalLevels.map((m, i) => {
-                  const b = biomeForLevel(i);
-                  return (
-                    <button key={m.id} className={`pb-mission-card pb-biome-${b}`} onClick={() => startMission(i, 'normal')}>
-                      <div className="pb-mission-num">{i + 1}</div>
-                      <div className="pb-mission-info">
-                        <div className="pb-mission-title">{m.title}</div>
-                        <div className="pb-mission-biome">{BIOME_INFO[b].label}</div>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Nueva sección: crear y explorar niveles personalizados */}
-            <div className="pb-custom-grid">
-              <h3>🎨 Crea tu propio nivel</h3>
-              <p className="pb-custom-hint">Diseña un mapa con tus obstáculos, compártelo con la clase y juega los de tus compañeros.</p>
-              <div className="pb-custom-actions">
-                <button className="pb-custom-card pb-custom-create" onClick={openCreate} disabled={!creator} title={!creator ? 'Inicia sesión para crear niveles' : ''}>
-                  <div className="pb-custom-icon">🎨</div>
-                  <div className="pb-custom-meta">
-                    <div className="pb-custom-title">Crear nivel</div>
-                    <div className="pb-custom-sub">Dibuja el tablero, pon obstáculos y meta</div>
+              <section className="pbx-create" aria-label="Crea tu propio nivel">
+                <header className="pbx-block-title">
+                  <span className="pbx-block-title__ico is-pink"><Pencil size={18} /></span>
+                  <div>
+                    <h3>Crea tu propio nivel</h3>
+                    <p>Diseña un mapa con tus obstáculos, compártelo con la clase y juega los de tus compañeros.</p>
                   </div>
-                </button>
-                <button className="pb-custom-card pb-custom-mine" onClick={openMine} disabled={!creator}>
-                  <div className="pb-custom-icon"><User size={22} /></div>
-                  <div className="pb-custom-meta">
-                    <div className="pb-custom-title">Mis niveles</div>
-                    <div className="pb-custom-sub">Juega y edita los que has creado</div>
-                  </div>
-                </button>
-                <button className="pb-custom-card pb-custom-shared" onClick={openShared} disabled={!creator}>
-                  <div className="pb-custom-icon"><Users size={22} /></div>
-                  <div className="pb-custom-meta">
-                    <div className="pb-custom-title">De mis compañeros</div>
-                    <div className="pb-custom-sub">Niveles compartidos por tu clase</div>
-                  </div>
-                </button>
-              </div>
-              {!creator && (
-                <div className="pb-custom-warn">⚠ Necesitas iniciar sesión para crear y compartir niveles.</div>
-              )}
+                </header>
+                <div className="pbx-create__grid">
+                  <button type="button" className="pbx-create__card is-create" onClick={openCreate} disabled={!creator} title={!creator ? 'Inicia sesión para crear niveles' : ''}>
+                    <span className="pbx-create__ico"><Pencil size={22} /></span>
+                    <span className="pbx-create__title">Crear nivel</span>
+                    <span className="pbx-create__sub">Dibuja el tablero, pon obstáculos y meta</span>
+                  </button>
+                  <button type="button" className="pbx-create__card is-mine" onClick={openMine} disabled={!creator}>
+                    <span className="pbx-create__ico"><User size={22} /></span>
+                    <span className="pbx-create__title">Mis niveles</span>
+                    <span className="pbx-create__sub">Juega y edita los que has creado</span>
+                  </button>
+                  <button type="button" className="pbx-create__card is-shared" onClick={openShared} disabled={!creator}>
+                    <span className="pbx-create__ico"><Users size={22} /></span>
+                    <span className="pbx-create__title">De mis compañeros</span>
+                    <span className="pbx-create__sub">Niveles compartidos por tu clase</span>
+                  </button>
+                </div>
+                {!creator && (
+                  <div className="pbx-warn"><AlertTriangle size={16} /> Necesitas iniciar sesión para crear y compartir niveles.</div>
+                )}
+              </section>
             </div>
-          </div>
-        </div>
-      </div>
+          )}
+        />
+        {instructions}
+      </GameShell>
     );
   }
 
@@ -824,195 +875,303 @@ export default function ProgramacionBloques({ onGameComplete } = {}) {
     );
   }
 
-  /* -------------------- MIS NIVELES -------------------- */
-  if (phase === 'mine') {
+  /* -------------------- MIS NIVELES / COMPARTIDOS -------------------- */
+  if (phase === 'mine' || phase === 'shared') {
+    const isMine = phase === 'mine';
+    const rows = isMine ? myLevels : sharedLevels;
     return (
-      <div className="pb-root">
-        <div className="pb-frame pb-frame-menu pb-has-fx">
-          <PbBackdrop />
-          <div className="pb-play-header">
-            <button className="pb-icon-btn" onClick={goMenu}><ChevronLeft size={16} /> Menú</button>
-            <div className="pb-play-title">
-              <span className="pb-play-emoji">👤</span>
-              <span className="pb-play-text">Mis niveles</span>
-            </div>
-            <div className="pb-spacer" />
-            <button className="pb-btn pb-btn-primary" onClick={openCreate}><Pencil size={14} /> Crear nuevo</button>
-          </div>
-          {loadingLists && <p>Cargando…</p>}
-          {!loadingLists && myLevels.length === 0 && (
-            <p className="pb-empty">Aún no has creado ningún nivel. Pulsa "Crear nuevo" para empezar.</p>
+      <GameShell {...SHELL} wide className="pbx">
+        <GameHeader
+          subtitle={isMine ? 'Mis niveles' : 'Niveles de mis compañeros'}
+          right={(
+            <>
+              <GameButton variant="soft" size="sm" icon={ChevronLeft} onClick={goMenu}>Menú</GameButton>
+              {isMine && <GameButton size="sm" icon={Pencil} onClick={openCreate}>Crear nuevo</GameButton>}
+            </>
           )}
-          <div className="pb-user-levels pb-stagger">
-            {myLevels.map((row) => (
-              <div key={row.id} className="pb-user-level">
-                <div className="pb-user-level-info">
-                  <div className="pb-user-level-title">{row.title}</div>
-                  {row.description && <div className="pb-user-level-desc">{row.description}</div>}
-                  <div className="pb-user-level-meta">
-                    {row.shared ? <span><Users size={12} /> Compartido</span> : <span><User size={12} /> Privado</span>}
-                    · 🎮 {row.plays} partidas
+        />
+        {loadingLists && <GameLoading label="Cargando niveles…" />}
+        {!loadingLists && rows.length === 0 && (
+          <GameEmpty title={isMine ? 'Aún no has creado ningún nivel' : 'Aún no hay niveles compartidos'}>
+            {isMine ? 'Pulsa «Crear nuevo» para diseñar tu primer tablero.' : 'Aún no hay niveles compartidos en tu clase. ¡Sé el primero en compartir uno!'}
+          </GameEmpty>
+        )}
+        {!loadingLists && rows.length > 0 && (
+          <div className="pbx-userlevels">
+            {rows.map((row, i) => (
+              <motion.article
+                key={row.id}
+                className="pbx-userlevel"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(i, 10) * 0.04 }}
+              >
+                <span className="pbx-userlevel__thumb"><MiniMap world={row.world} biome="meadow" /></span>
+                <div className="pbx-userlevel__info">
+                  <h4>{row.title}</h4>
+                  {row.description && <p>{row.description}</p>}
+                  <div className="pbx-userlevel__meta">
+                    {isMine
+                      ? (row.shared ? <Chip tone="accent" icon={Users}>Compartido</Chip> : <Chip icon={User}>Privado</Chip>)
+                      : <Chip icon={User}>{row.creator_name}</Chip>}
+                    <Chip icon={Gamepad2}>{row.plays} partidas</Chip>
                   </div>
                 </div>
-                <div className="pb-user-level-actions">
-                  <button className="pb-btn pb-btn-primary" onClick={() => playCustom(row)}><Play size={12} /> Jugar</button>
-                  <button className="pb-btn pb-btn-ghost" onClick={() => openEdit(row)}><Pencil size={12} /> Editar</button>
-                  <button className="pb-btn pb-btn-ghost" onClick={() => removeLevel(row.id)} title="Borrar nivel" aria-label="Borrar nivel"><Trash2 size={12} /></button>
+                <div className="pbx-userlevel__actions">
+                  <GameButton size="sm" icon={Play} onClick={() => playCustom(row)}>Jugar</GameButton>
+                  {isMine && <GameButton size="sm" variant="soft" icon={Pencil} onClick={() => openEdit(row)}>Editar</GameButton>}
+                  {isMine && (
+                    <button type="button" className="gk-iconbtn pbx-userlevel__del" onClick={() => removeLevel(row.id)} title="Borrar nivel" aria-label="Borrar nivel">
+                      <Trash2 size={16} />
+                    </button>
+                  )}
                 </div>
-              </div>
+              </motion.article>
             ))}
           </div>
-        </div>
+        )}
         {dialogs}
-      </div>
-    );
-  }
-
-  /* -------------------- NIVELES COMPARTIDOS -------------------- */
-  if (phase === 'shared') {
-    return (
-      <div className="pb-root">
-        <div className="pb-frame pb-frame-menu pb-has-fx">
-          <PbBackdrop />
-          <div className="pb-play-header">
-            <button className="pb-icon-btn" onClick={goMenu}><ChevronLeft size={16} /> Menú</button>
-            <div className="pb-play-title">
-              <span className="pb-play-emoji">🌍</span>
-              <span className="pb-play-text">Niveles de mis compañeros</span>
-            </div>
-          </div>
-          {loadingLists && <p>Cargando…</p>}
-          {!loadingLists && sharedLevels.length === 0 && (
-            <p className="pb-empty">Aún no hay niveles compartidos en tu clase. ¡Sé el primero en compartir uno!</p>
-          )}
-          <div className="pb-user-levels pb-stagger">
-            {sharedLevels.map((row) => (
-              <div key={row.id} className="pb-user-level">
-                <div className="pb-user-level-info">
-                  <div className="pb-user-level-title">{row.title}</div>
-                  {row.description && <div className="pb-user-level-desc">{row.description}</div>}
-                  <div className="pb-user-level-meta">
-                    <span><User size={12} /> {row.creator_name}</span> · 🎮 {row.plays} partidas
-                  </div>
-                </div>
-                <div className="pb-user-level-actions">
-                  <button className="pb-btn pb-btn-primary" onClick={() => playCustom(row)}><Play size={12} /> Jugar</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      </GameShell>
     );
   }
 
   /* -------------------- PLAY -------------------- */
-  if (!currentLevel || !robot) return <div className="pb-root"><div className="pb-frame">Cargando…</div></div>;
+  if (!currentLevel || !robot) {
+    return (
+      <GameShell {...SHELL} wide className="pbx">
+        <GameLoading label="Preparando el tablero…" />
+      </GameShell>
+    );
+  }
+
+  const isExamMode = mode === 'examen';
+  const passed = reportedRef.current.size;
+  const headerMode = mode === 'easy' ? 'easy' : isExamMode ? 'exam' : mode === 'custom' ? 'practice' : 'medium';
+  const headerLabel = { easy: 'Fácil', normal: 'Normal', examen: 'Examen', reto: 'Reto', custom: 'Nivel personalizado' }[mode];
+  const isLast = currentIdx >= levels.length - 1;
+  const allPassed = passed >= levels.length;
+
+  /* ---- Resumen del examen ---- */
+  if (isExamMode && showResults) {
+    const nota = Math.round((passed / Math.max(1, levels.length)) * 100) / 10;
+    return (
+      <GameShell {...SHELL} wide className="pbx">
+        <ResultsScreen
+          subtitle={`Programa al Robot · ${GRADE_LABELS[gradeId] || ''}`}
+          nota={nota}
+          points={examPoints}
+          stats={[
+            { icon: Target, tone: 'good', label: 'Superadas', value: `${passed}/${levels.length}` },
+            { icon: X, tone: 'bad', label: 'Pendientes', value: levels.length - passed },
+          ]}
+          actions={[
+            { label: 'Repetir examen', onClick: () => startMission(0, 'examen'), icon: RotateCcw },
+            ...(!allPassed ? [{ label: 'Seguir con el examen', onClick: () => setShowResults(false), icon: ArrowRight, variant: 'soft' }] : []),
+            { label: 'Cambiar de modo', onClick: goMenu, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {levels.map((l, i) => (
+            <FeedbackItem key={l.id} index={i + 1} ok={reportedRef.current.has(l.id)} title={l.title}>
+              {BIOME_INFO[biomeForLevel(i)]?.label} · {l.goal}
+            </FeedbackItem>
+          ))}
+        </ResultsScreen>
+      </GameShell>
+    );
+  }
+
+  const bannerStatus = status === 'ok' ? 'won' : 'lost';
+  let bannerAction;
+  let bannerLabel;
+  let bannerIcon = ArrowRight;
+  if (status === 'ok') {
+    if (isExamMode && allPassed) { bannerAction = () => setShowResults(true); bannerLabel = 'Ver resultado'; bannerIcon = Award; }
+    else if (!isLast) { bannerAction = next; bannerLabel = 'Siguiente nivel'; }
+    else if (isExamMode) { bannerAction = () => setShowResults(true); bannerLabel = 'Ver resultado'; bannerIcon = Award; }
+    else { bannerAction = goMenu; bannerLabel = 'Volver al menú'; bannerIcon = LayoutGrid; }
+  } else if (status === 'wrong') {
+    bannerAction = reset; bannerLabel = 'Reintentar'; bannerIcon = RotateCcw;
+  }
 
   return (
-    <div className="pb-root">
-      <div className="pb-frame pb-frame-play pb-has-fx">
-        <PbBackdrop />
-        <div className="pb-play-header">
-          <button className="pb-icon-btn" onClick={goMenu} title="Volver al menú"><ChevronLeft size={16} /></button>
-          <div className="pb-play-title">
-            <span className="pb-play-emoji">🤖</span>
-            <span className="pb-play-text">Programa al Robot</span>
-            <span className="pb-course-pill">{GRADE_LABELS[gradeId]}</span>
-          </div>
-          <div className="pb-spacer" />
-          <div className="pb-progress">
-            <button onClick={prev} disabled={currentIdx === 0}><ChevronLeft size={16} /></button>
-            <span>Nivel {currentIdx + 1}/{levels.length}</span>
-            <span className="pb-progress-track" aria-hidden="true">
-              <span className="pb-progress-fill" style={{ transform: `scaleX(${(currentIdx + 1) / Math.max(1, levels.length)})` }} />
-            </span>
-            <button onClick={next} disabled={currentIdx === levels.length - 1}><ChevronRight size={16} /></button>
-          </div>
-        </div>
+    <GameShell {...SHELL} wide className="pbx">
+      <GameHeader
+        mode={headerMode}
+        modeLabel={headerLabel}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            <HudStat icon={Flag} tone="progress" value={`${currentIdx + 1}/${levels.length}`} label="Nivel" />
+            {isExamMode && <HudStat icon={Check} tone="good" value={`${passed}/${levels.length}`} label="Superados" />}
+          </Hud>
+        )}
+      />
 
-        <div className="pb-mission" key={currentLevel.id}>
-          <div className="pb-mission-title">🎯 {currentLevel.title}</div>
-          <div className="pb-mission-goal">{currentLevel.goal}</div>
-        </div>
-
-        <div className="pb-body">
-          {/* Columna 1: tablero */}
-          <div className="pb-stage-col">
-            <div className="pb-stage-tools">
-              <span className="pb-biome-label">📍 {BIOME_INFO[biome].label}</span>
-              <button className="pb-icon-btn pb-small" onClick={() => setShowGrid((g) => !g)} title={showGrid ? 'Ocultar rejilla' : 'Mostrar rejilla'}>
-                {showGrid ? <Grid3x3 size={14} /> : <EyeOff size={14} />} {showGrid ? 'Rejilla ON' : 'Rejilla OFF'}
-              </button>
+      {/* Ruta de niveles */}
+      <div className="pbx-route">
+        <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={goMenu}>Menú</GameButton>
+        {levels.length > 1 && (
+          <div className="pbx-route__path" role="group" aria-label="Niveles">
+            <button type="button" className="pbx-route__arrow" onClick={prev} disabled={currentIdx === 0} aria-label="Nivel anterior"><ChevronLeft size={18} /></button>
+            <div className="pbx-route__nodes">
+              {levels.map((l, i) => {
+                const done = reportedRef.current.has(l.id);
+                return (
+                  <button
+                    key={l.id}
+                    type="button"
+                    className={`pbx-route__node pbx-biome-${biomeForLevel(i)} ${i === currentIdx ? 'is-current' : ''} ${done ? 'is-done' : ''}`}
+                    onClick={() => setCurrentIdx(i)}
+                    title={`${i + 1}. ${l.title}`}
+                    aria-label={`Nivel ${i + 1}: ${l.title}${done ? ' (superado)' : ''}`}
+                    aria-current={i === currentIdx ? 'step' : undefined}
+                  >
+                    {done ? <Check size={13} strokeWidth={3.2} /> : i + 1}
+                  </button>
+                );
+              })}
             </div>
-            <Board world={currentLevel.world} robot={robot} itemsLeft={itemsLeft} crates={cratesLeft} laser={laser} moving={moving} showGrid={showGrid} biome={biome} />
-            <Legend biome={biome} world={currentLevel.world} />
+            <button type="button" className="pbx-route__arrow" onClick={next} disabled={isLast} aria-label="Nivel siguiente"><ChevronRight size={18} /></button>
           </div>
+        )}
+        {isExamMode && (
+          <GameButton variant="warning" size="sm" icon={GraduationCap} onClick={() => setShowResults(true)} className="pbx-route__finish">
+            Terminar examen
+          </GameButton>
+        )}
+      </div>
 
-          {/* Columna 2: mi programa + controles */}
-          <div className="pb-workspace-col">
-            <div className="pb-workspace-header">
-              <button className="pb-btn pb-btn-primary" onClick={run} disabled={status === 'running'}><Play size={14} /> Ejecutar</button>
-              <button className="pb-btn pb-btn-ghost" onClick={reset}><RotateCcw size={14} /> Reiniciar</button>
-              <button className="pb-btn pb-btn-ghost" onClick={clearProgram}><Trash2 size={14} /> Vaciar</button>
-              {status === 'ok' && currentIdx < levels.length - 1 && (
-                <button className="pb-btn pb-btn-success" onClick={next}><Check size={14} /> Siguiente</button>
-              )}
-              <div className="pb-spacer" />
-              <button className="pb-btn pb-btn-ghost" onClick={() => setPanelOpen(true)} title="Ver código">
-                <Code2 size={14} /> Ver código
-              </button>
+      {/* Briefing de la misión */}
+      <AnimatePresence mode="wait">
+        <motion.section
+          key={currentLevel.id}
+          className={`pbx-brief pbx-biome-${biome}`}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28 }}
+        >
+          <span className="pbx-brief__scene" aria-hidden="true"><BiomeScene biome={biome} /></span>
+          <span className="pbx-brief__avatar" aria-hidden="true"><Robot dir="S" moving={false} /></span>
+          <div className="pbx-brief__bubble">
+            <span className="pbx-brief__eyebrow">
+              {mode === 'custom' ? 'Nivel personalizado' : `${mode === 'reto' ? 'Reto' : 'Misión'} ${currentIdx + 1}`} · {BIOME_INFO[biome].label}
+            </span>
+            <h2 className="pbx-brief__title">{currentLevel.title}</h2>
+            <p className="pbx-brief__goal">{currentLevel.goal}</p>
+          </div>
+        </motion.section>
+      </AnimatePresence>
+
+      <div className="pbx-play">
+        <div className="pbx-play__grid">
+          {/* Tablero */}
+          <section className="pbx-stage" aria-label="Tablero">
+            <div className="pbx-arena">
+              <div className="pbx-arena__bar">
+                <span className="pbx-arena__biome"><MapPin size={13} /> {BIOME_INFO[biome].label}</span>
+                <button type="button" className={`pbx-toggle ${showGrid ? 'is-on' : ''}`} onClick={() => setShowGrid((g) => !g)} aria-pressed={showGrid} title={showGrid ? 'Ocultar rejilla' : 'Mostrar rejilla'}>
+                  {showGrid ? <Grid3x3 size={14} /> : <EyeOff size={14} />} Rejilla
+                  <span className="pbx-toggle__track"><span className="pbx-toggle__knob" /></span>
+                </button>
+              </div>
+              <div className="pbx-arena__board">
+                <Board world={currentLevel.world} robot={robot} itemsLeft={itemsLeft} crates={cratesLeft} laser={laser} moving={moving} showGrid={showGrid} biome={biome} status={status} />
+              </div>
+              <Legend biome={biome} world={currentLevel.world} />
+            </div>
+          </section>
+
+          {/* Mi programa + controles */}
+          <section className="pbx-editor" aria-label="Mi programa">
+            <div className="pbx-toolbar">
+              <GameButton icon={Play} onClick={run} disabled={status === 'running'} className="pbx-run">
+                {status === 'running' ? 'Ejecutando…' : 'Ejecutar'}
+              </GameButton>
+              <GameButton variant="soft" size="sm" icon={RotateCcw} onClick={reset}>Reiniciar</GameButton>
+              <GameButton variant="soft" size="sm" icon={Trash2} onClick={clearProgram}>Vaciar</GameButton>
+              <span className="pbx-toolbar__spacer" />
+              <GameButton variant="ghost" size="sm" icon={Code2} onClick={() => setPanelOpen(true)}>Ver código</GameButton>
             </div>
 
             {hasFuncBlocks && (
-              <div className="pb-workspace pb-workspace-defs">
-                <div className="pb-workspace-title">
-                  📦 Definiciones
-                  <span className="pb-workspace-hint"> (funciones y procedimientos)</span>
-                </div>
-                <Dropzone path={['defs']} items={definitions} onAdd={onAdd} onField={onField} onMove={onMove} onRemove={onRemove} disabled={status === 'running'} />
+              <div className="pbx-canvas pbx-canvas--defs">
+                <div className="pbx-canvas__head"><Box size={15} /> Definiciones <small>funciones y procedimientos</small></div>
+                <Dropzone path={['defs']} items={definitions} onAdd={onAdd} onField={onField} onMove={onMove} onRemove={onRemove} disabled={status === 'running'} emptyLabel="Suelta aquí «definir procedimiento» y llénalo de bloques" />
               </div>
             )}
 
-            <div className="pb-workspace">
-              <div className="pb-workspace-title">🧠 Mi programa</div>
+            <div className={`pbx-canvas ${status === 'running' ? 'is-running' : ''}`}>
+              <div className="pbx-hat" aria-hidden="true">
+                <Play size={14} fill="currentColor" /> al pulsar <strong>Ejecutar</strong>
+              </div>
               <Dropzone path={['body']} items={program} onAdd={onAdd} onField={onField} onMove={onMove} onRemove={onRemove} disabled={status === 'running'} />
             </div>
 
-            {status === 'ok' && <div className="pb-feedback pb-feedback-ok" role="status"><Check size={14} /> ¡Nivel superado!</div>}
-            {status === 'wrong' && <div className="pb-feedback pb-feedback-ko" role="status"><X size={14} /> Intenta otra vez</div>}
-            {error && <div className="pb-error">⚠ {error}</div>}
-          </div>
+            <RoundBanner
+              show={status === 'ok' || status === 'wrong'}
+              status={bannerStatus}
+              title={status === 'ok' ? '¡Nivel superado!' : 'Intenta otra vez'}
+              subtitle={status === 'ok'
+                ? (isExamMode ? `Llevas ${passed} de ${levels.length} misiones superadas.` : 'Tu robot ha cumplido la misión.')
+                : (error || 'El robot no ha cumplido el objetivo. Revisa tu programa.')}
+              action={bannerAction}
+              actionLabel={bannerLabel}
+              actionIcon={bannerIcon}
+            />
+            {error && status !== 'wrong' && <div className="pbx-error"><AlertTriangle size={15} /> {error}</div>}
+          </section>
 
-          {/* Columna 3: paleta */}
-          <div className="pb-palette-col">
+          {/* Paleta */}
+          <div className="pbx-palette-col">
             <Palette gradeId={gradeId} onAddToEnd={addToEnd} disabled={status === 'running'} />
           </div>
         </div>
-
-        {/* Modal de código (3 pestañas) */}
-        {panelOpen && (
-          <div className="pb-modal-backdrop" onClick={() => setPanelOpen(false)}>
-            <div className="pb-code-modal" onClick={(e) => e.stopPropagation()}>
-              <div className="pb-code-head">
-                <span>💻 Código equivalente</span>
-                <div className="pb-code-head-actions">
-                  <button className="pb-icon-btn pb-small" onClick={() => navigator.clipboard?.writeText(transpiled)} title="Copiar"><Copy size={12} /> Copiar</button>
-                  <button className="pb-icon-btn pb-small" onClick={() => setPanelOpen(false)} title="Cerrar"><X size={14} /></button>
-                </div>
-              </div>
-              <div className="pb-lang-tabs">
-                {['python', 'java', 'c'].map((l) => (
-                  <button key={l} className={`pb-lang-tab ${panelLang === l ? 'active' : ''}`} onClick={() => setPanelLang(l)}>
-                    {l === 'python' ? '🐍 Python' : l === 'java' ? '☕ Java' : '⚙️ C'}
-                  </button>
-                ))}
-              </div>
-              <pre className="pb-code-pre"><code>{transpiled || '// arrastra bloques para ver el código'}</code></pre>
-            </div>
-          </div>
-        )}
       </div>
-    </div>
+
+      {/* Modal de código (3 pestañas) */}
+      <AnimatePresence>
+        {panelOpen && (
+          <motion.div className="pbx-overlay" onClick={() => setPanelOpen(false)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div
+              className="pbx-code"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Código equivalente"
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+            >
+              <div className="pbx-code__head">
+                <span className="pbx-code__dots" aria-hidden="true"><i /><i /><i /></span>
+                <span className="pbx-code__title"><Code2 size={16} /> Código equivalente</span>
+                <button type="button" className="pbx-code__close" onClick={() => setPanelOpen(false)} aria-label="Cerrar"><X size={16} /></button>
+              </div>
+              <div className="pbx-code__tools">
+                <Segmented
+                  size="sm"
+                  value={panelLang}
+                  onChange={setPanelLang}
+                  options={[{ value: 'python', label: 'Python' }, { value: 'java', label: 'Java' }, { value: 'c', label: 'C' }]}
+                />
+                <GameButton variant="soft" size="sm" icon={copied ? Check : Copy} onClick={copyCode}>{copied ? 'Copiado' : 'Copiar'}</GameButton>
+              </div>
+              <pre className="pbx-code__pre">
+                <code>
+                  {(transpiled || '// arrastra bloques para ver el código').split('\n').map((line, i) => (
+                    <span key={i} className="pbx-code__line"><span className="pbx-code__ln">{i + 1}</span>{line || ' '}</span>
+                  ))}
+                </code>
+              </pre>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {instructions}
+      <span className="pbx-sr" aria-live="polite">{status === 'ok' ? 'Nivel superado' : status === 'wrong' ? 'Intenta otra vez' : ''}</span>
+    </GameShell>
   );
 }

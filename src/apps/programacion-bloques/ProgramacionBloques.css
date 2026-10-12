@@ -1,1219 +1,1259 @@
-/* ====== Programa al Robot — tema oscuro con bloques Scratch ====== */
-
-.pb-root {
-  min-height: calc(100vh - 80px);
-  background: transparent;
-  padding: 16px;
-  font-family: 'Fredoka', system-ui, sans-serif;
-  color: #e2e8f0;
-}
-
-.pb-frame {
-  max-width: 1480px;
-  margin: 0 auto;
-  background: linear-gradient(180deg, #120c2b 0%, #1e1b4b 45%, #2a0f3a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
-.pb-frame-play {
-  max-width: 1440px;
-  width: 100%;
-  padding: 16px;
-}
-
-/* ============================================================ */
-/* ====== MENÚ (selección de modo + misiones) ================= */
-/* ============================================================ */
-.pb-hero-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 16px; margin-bottom: 18px;
-}
-.pb-hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 999px;
-  background: linear-gradient(90deg, #8b5cf6, #ec4899);
-  font-size: 0.82rem; font-weight: 600;
-}
-.pb-hero-title h1 {
-  margin: 6px 0 8px;
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-  background: linear-gradient(90deg, #f472b6, #fbbf24);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.pb-hero-title p { color: #c7d2fe; margin: 0; max-width: 700px; }
-
-.pb-mode-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px; margin-bottom: 22px;
-}
-.pb-mode-card {
-  padding: 16px; border-radius: 14px; cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04); color: #e2e8f0;
-  text-align: left; transition: transform 0.15s, background 0.2s;
-  font-family: inherit;
-}
-.pb-mode-card:hover { transform: translateY(-2px); }
-.pb-mode-card h3 { margin: 4px 0 6px; font-size: 1.1rem; }
-.pb-mode-card p { margin: 0 0 12px; color: #cbd5e1; font-size: 0.86rem; line-height: 1.35; }
-.pb-mode-card .pb-mode-icon { font-size: 1.6rem; }
-.pb-mode-card .pb-mode-cta {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-weight: 600; font-size: 0.85rem;
-}
-.pb-mode-easy   { border-color: rgba(16, 185, 129, 0.45); }
-.pb-mode-easy:hover   { background: rgba(16, 185, 129, 0.12); }
-.pb-mode-normal { border-color: rgba(96, 165, 250, 0.45); }
-.pb-mode-normal:hover { background: rgba(96, 165, 250, 0.12); }
-.pb-mode-exam   { border-color: rgba(251, 191, 36, 0.5); background: rgba(251, 191, 36, 0.06); }
-.pb-mode-exam:hover   { background: rgba(251, 191, 36, 0.18); }
-.pb-mode-reto   { border-color: rgba(244, 63, 94, 0.5); background: rgba(244, 63, 94, 0.08); }
-.pb-mode-reto:hover   { background: rgba(244, 63, 94, 0.18); }
-
-.pb-missions-grid {
-  margin-top: 8px; padding: 16px 18px; border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.pb-missions-grid h3 { margin: 0 0 12px; font-size: 1rem; color: #e2e8f0; }
-.pb-missions-cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-}
-.pb-mission-card {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px; border-radius: 10px;
-  background: rgba(15, 23, 42, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e2e8f0; cursor: pointer; text-align: left;
-  transition: transform 0.12s, background 0.2s;
-  font-family: inherit;
-}
-.pb-mission-card:hover { transform: translateX(2px); background: rgba(139, 92, 246, 0.15); }
-.pb-mission-num {
-  width: 30px; height: 30px; border-radius: 8px;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.95rem; flex-shrink: 0;
-}
-.pb-mission-info { min-width: 0; }
-.pb-mission-title { font-weight: 600; font-size: 0.86rem; line-height: 1.25; }
-.pb-mission-biome { font-size: 0.7rem; color: #94a3b8; margin-top: 2px; }
-
-/* ============================================================ */
-/* ====== PLAY (vista de juego) =============================== */
-/* ============================================================ */
-.pb-play-header {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
-}
-.pb-play-title {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 1.7rem; font-weight: 800;
-}
-.pb-play-title .pb-play-emoji { font-size: 1.8rem; }
-.pb-play-text {
-  background: linear-gradient(90deg, #f472b6, #fbbf24);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.pb-course-pill {
-  font-size: 0.72rem; font-weight: 700;
-  background: rgba(139, 92, 246, 0.35); border: 1px solid rgba(139, 92, 246, 0.5);
-  padding: 2px 8px; border-radius: 999px; color: #e9d5ff;
-}
-.pb-icon-btn {
-  background: transparent; color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px;
-  padding: 6px 10px; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 4px;
-  font-family: inherit; font-size: 0.82rem;
-}
-.pb-icon-btn:hover { background: rgba(255, 255, 255, 0.08); }
-.pb-icon-btn.pb-small { padding: 4px 8px; font-size: 0.78rem; }
-.pb-spacer { flex: 1; }
-.pb-progress {
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 4px 10px; border-radius: 999px;
-  font-size: 0.82rem; font-weight: 600;
-}
-.pb-progress button {
-  background: none; border: none; color: #c7d2fe; cursor: pointer;
-  padding: 2px; display: flex;
-}
-.pb-progress button:disabled { opacity: 0.3; cursor: not-allowed; }
-
-.pb-mission {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(236, 72, 153, 0.12));
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 12px; padding: 10px 14px; margin-bottom: 12px;
-}
-.pb-mission-title { font-weight: 700; font-size: 0.95rem; color: #f5f3ff; }
-.pb-mission-goal { color: #cbd5e1; font-size: 0.84rem; margin-top: 2px; }
-
-/* ---- layout del body: 3 columnas (tablero · programa · paleta) ---- */
-.pb-body {
-  display: grid;
-  grid-template-columns: 472px minmax(320px, 1fr) 260px;
-  gap: 12px; align-items: start;
-  min-width: 0;
-}
-
-.pb-stage-col {
-  display: flex; flex-direction: column; gap: 10px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px; padding: 12px;
-  min-width: 0;
-}
-.pb-workspace-col { min-width: 0; }
-.pb-palette-col { min-width: 0; }
-.pb-palette-col .pb-palette {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px; padding: 12px;
-  max-height: calc(100vh - 200px);
-  overflow-y: auto; overflow-x: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.pb-palette-col .pb-palette::-webkit-scrollbar { display: none; width: 0; height: 0; }
-.pb-palette-col .pb-pal-cat-items { flex-direction: column; align-items: stretch; gap: 4px; }
-.pb-palette-col .pb-pal-item { width: 100% !important; }
-.pb-stage-tools {
-  display: flex; justify-content: space-between; align-items: center; gap: 8px;
-}
-.pb-biome-label { font-size: 0.78rem; color: #c7d2fe; font-weight: 700; }
-
-/* ---- workspace ---- */
-.pb-workspace-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.pb-workspace-header {
-  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px; padding: 6px 8px;
-}
-.pb-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 6px 12px; border-radius: 8px; border: none;
-  font-weight: 700; font-size: 0.82rem; cursor: pointer;
-  font-family: inherit; color: white;
-}
-.pb-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pb-btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
-.pb-btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
-.pb-btn-success { background: linear-gradient(135deg, #10b981, #059669); }
-.pb-btn-ghost { background: rgba(255, 255, 255, 0.08); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.1); }
-.pb-btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, 0.14); }
-
-.pb-workspace {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 10px;
-  min-height: 360px; max-height: 60vh; overflow-y: auto;
-}
-.pb-workspace-title {
-  color: #f472b6; font-weight: 700; font-size: 0.8rem;
-  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px;
-}
-.pb-workspace-hint {
-  text-transform: none; letter-spacing: 0; font-weight: 500;
-  color: #a5b4fc; font-size: 0.76rem; margin-left: 6px;
-}
-.pb-workspace-defs {
-  background: rgba(168, 85, 247, 0.10);
-  border: 1px dashed rgba(168, 85, 247, 0.45);
-  min-height: 120px; max-height: 35vh;
-  margin-bottom: 10px;
-}
-.pb-workspace-defs .pb-workspace-title { color: #d8b4fe; }
-.pb-workspace-defs .pb-dropzone-empty::before { content: '📦 '; }
-
-/* ---- dropzones ---- */
-.pb-dropzone {
-  min-height: 36px;
-  border: 2px dashed transparent;
-  border-radius: 8px;
-  padding: 3px;
-  display: flex; flex-direction: column; gap: 0; /* los bloques se solapan por muesca */
-}
-.pb-dropzone.is-indent { min-height: 26px; margin-left: 14px; }
-.pb-dropzone.is-over { background: rgba(139, 92, 246, 0.15); border-color: rgba(167, 139, 250, 0.6); border-style: solid; }
-.pb-dropzone-empty {
-  color: #64748b; font-style: italic; font-size: 0.78rem;
-  text-align: center; padding: 8px; font-family: inherit;
-}
-
-.pb-feedback {
-  padding: 6px 12px; border-radius: 8px; font-weight: 700;
-  display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem;
-  align-self: flex-start;
-}
-.pb-feedback-ok { background: linear-gradient(135deg, #10b981, #059669); color: white; }
-.pb-feedback-ko { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; }
-.pb-error {
-  background: rgba(239, 68, 68, 0.12); color: #fecaca;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 6px 10px; border-radius: 8px; font-size: 0.82rem;
-}
-
-/* ====== BLOQUES (forma Scratch con clip-path) ============== */
-:root {
-  --pb-notch: 6px;
-  --pb-notch-inset: 14px;
-  --pb-notch-w: 22px;
-  --pb-notch-slope: 3px;
-  --pb-indent: 14px;
-}
-.pb-block.cat-move    { --pb-color: #4c97ff; --pb-color-d: #3a7ad4; }
-.pb-block.cat-action  { --pb-color: #4fbf3d; --pb-color-d: #3d9d2d; }
-.pb-block.cat-loop    { --pb-color: #ff9f1c; --pb-color-d: #d97e00; }
-.pb-block.cat-control { --pb-color: #d84cd8; --pb-color-d: #a83aa8; }
-.pb-block.cat-vars    { --pb-color: #ef4444; --pb-color-d: #b91c1c; }
-.pb-block.cat-func    { --pb-color: #a855f7; --pb-color-d: #7c3aed; }
-.pb-block.cat-ops     { --pb-color: #84cc16; --pb-color-d: #65a30d; }
-.pb-block.cat-misc    { --pb-color: #64748b; --pb-color-d: #475569; }
-
-.pb-block {
-  position: relative; color: #fff; font-weight: 600; font-size: 0.85rem;
-  cursor: grab; user-select: none; box-sizing: border-box;
-}
-.pb-block:active { cursor: grabbing; }
-
-/* Stack block: muesca arriba + pestaña abajo */
-.pb-block.is-stack {
-  width: 100%;
-  padding: calc(var(--pb-notch) + 6px) 10px calc(var(--pb-notch) + 6px);
-  margin: 0 0 -6px 0;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-  background: linear-gradient(180deg, var(--pb-color) 0%, var(--pb-color-d) 100%);
-  clip-path: polygon(
-    0 0,
-    var(--pb-notch-inset) 0,
-    calc(var(--pb-notch-inset) + var(--pb-notch-slope)) var(--pb-notch),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w) - var(--pb-notch-slope)) var(--pb-notch),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w)) 0,
-    100% 0,
-    100% calc(100% - var(--pb-notch)),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w)) calc(100% - var(--pb-notch)),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w) - var(--pb-notch-slope)) 100%,
-    calc(var(--pb-notch-inset) + var(--pb-notch-slope)) 100%,
-    var(--pb-notch-inset) calc(100% - var(--pb-notch)),
-    0 calc(100% - var(--pb-notch))
-  );
-}
-
-/* Container block (C-shape) */
-.pb-block.is-container {
-  width: 100%; margin: 0 0 -6px 0; padding: 0;
-  background: transparent;
-}
-.pb-block.is-container > .pb-block-head {
-  position: relative;
-  background: linear-gradient(180deg, var(--pb-color) 0%, var(--pb-color-d) 100%);
-  padding: calc(var(--pb-notch) + 6px) 10px 8px;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-  clip-path: polygon(
-    0 0,
-    var(--pb-notch-inset) 0,
-    calc(var(--pb-notch-inset) + var(--pb-notch-slope)) var(--pb-notch),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w) - var(--pb-notch-slope)) var(--pb-notch),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w)) 0,
-    100% 0,
-    100% 100%,
-    0 100%
-  );
-}
-.pb-block.is-container > .pb-c-section {
-  position: relative;
-  background: linear-gradient(180deg, var(--pb-color) 0%, var(--pb-color-d) 100%);
-  padding-left: var(--pb-indent);
-}
-.pb-c-label {
-  color: #fff; padding: 4px 10px 2px;
-  font-size: 0.78rem; opacity: 0.95;
-}
-.pb-c-section > .pb-dropzone {
-  position: relative;
-  background: rgba(15, 23, 42, 0.55);
-  margin: 0 var(--pb-indent) 0 0;
-  padding: 6px 8px;
-  border-radius: 0 0 0 4px;
-  min-height: 28px;
-  border: none !important;
-}
-.pb-c-section > .pb-dropzone.is-indent { margin-left: 0; }
-.pb-block.is-container > .pb-c-foot {
-  height: calc(var(--pb-notch) + 6px);
-  background: linear-gradient(180deg, var(--pb-color) 0%, var(--pb-color-d) 100%);
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--pb-notch)),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w)) calc(100% - var(--pb-notch)),
-    calc(var(--pb-notch-inset) + var(--pb-notch-w) - var(--pb-notch-slope)) 100%,
-    calc(var(--pb-notch-inset) + var(--pb-notch-slope)) 100%,
-    var(--pb-notch-inset) calc(100% - var(--pb-notch)),
-    0 calc(100% - var(--pb-notch))
-  );
-}
-
-.pb-block-txt { white-space: nowrap; line-height: 1.2; }
-.pb-block-trash {
-  margin-left: auto;
-  background: rgba(0, 0, 0, 0.3); border: none;
-  color: white; padding: 2px 5px; border-radius: 5px; cursor: pointer;
-  display: flex; align-items: center;
-}
-.pb-block-trash:hover { background: rgba(0, 0, 0, 0.55); }
-
-/* Campos dentro del bloque */
-.pb-field {
-  border: none; border-radius: 6px;
-  padding: 3px 6px; font-size: 0.78rem; font-weight: 600;
-  background: rgba(255, 255, 255, 0.95); color: #0f172a;
-  outline: none; font-family: inherit;
-  min-width: 40px;
-}
-.pb-field:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); }
-.pb-field-num { text-align: center; -moz-appearance: textfield; }
-.pb-field-num::-webkit-outer-spin-button, .pb-field-num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-
-/* ====== Paleta (compacta, debajo del board) ======= */
-.pb-palette {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px; padding: 10px;
-}
-.pb-palette-title {
-  font-size: 0.78rem; color: #c7d2fe; font-weight: 700;
-  margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
-}
-.pb-palette-hint { font-size: 0.7rem; color: #94a3b8; font-weight: 500; }
-.pb-pal-cat { margin-bottom: 8px; }
-.pb-pal-cat-title {
-  font-size: 0.66rem; font-weight: 800; letter-spacing: 0.6px;
-  text-transform: uppercase; margin-bottom: 4px;
-}
-.pb-pal-cat-title.cat-move { color: #93c5fd; }
-.pb-pal-cat-title.cat-action { color: #86efac; }
-.pb-pal-cat-title.cat-loop { color: #fdba74; }
-.pb-pal-cat-title.cat-control { color: #f0abfc; }
-.pb-pal-cat-title.cat-vars { color: #fca5a5; }
-.pb-pal-cat-title.cat-func { color: #d8b4fe; }
-.pb-pal-cat-items { display: flex; flex-wrap: wrap; gap: 6px; }
-.pb-pal-item { width: auto !important; margin: 0 !important; }
-.pb-pal-item.is-stack, .pb-pal-item.is-container > .pb-block-head { padding: 8px 10px !important; }
-.pb-pal-item .pb-block-txt { font-size: 0.8rem; }
-.pb-pal-item { cursor: pointer; }
-.pb-pal-item:hover { transform: translateY(-1px); filter: brightness(1.08); }
-.pb-pal-item:active { transform: translateY(0); filter: brightness(0.95); }
-
-/* ====== Tablero ====== */
-.pb-board {
-  position: relative;
-  border: none;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-  image-rendering: pixelated;
-  margin: 0 auto;
-}
-.pb-cell { position: absolute; display: flex; line-height: 0; }
-.pb-grid-overlay {
-  position: absolute; inset: 0; pointer-events: none;
-  z-index: 6;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
-  background-size: var(--pb-cell) var(--pb-cell);
-}
-.pb-biome-meadow .pb-grid-overlay,
-.pb-biome-mountain .pb-grid-overlay,
-.pb-biome-city .pb-grid-overlay {
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.35) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 1px, transparent 1px);
-}
-
-.pb-crate { z-index: 3; animation: pb-crate-idle 1.6s steps(1, end) infinite; }
-@keyframes pb-crate-idle { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-0.5px); } }
-
-/* ===== Explosión del láser ===== */
-.pb-blast-wrap {
-  position: absolute; pointer-events: none; z-index: 7;
-  filter: drop-shadow(0 0 10px rgba(248, 113, 113, 0.85));
-}
-.pb-tile-blast { width: 100%; height: 100%; display: block; }
-
-.pb-blast-wrap .pb-expl-flash {
-  transform-box: fill-box; transform-origin: center;
-  animation: pb-expl-flash 0.42s ease-out forwards;
-}
-.pb-blast-wrap .pb-expl-ring {
-  transform-box: fill-box; transform-origin: center;
-  animation: pb-expl-ring 0.42s ease-out forwards;
-}
-.pb-blast-wrap .pb-expl-rays {
-  transform-box: fill-box; transform-origin: center;
-  animation: pb-expl-rays 0.42s ease-out forwards;
-}
-.pb-blast-wrap .pb-expl-sparks {
-  transform-box: fill-box; transform-origin: center;
-  animation: pb-expl-sparks 0.42s ease-out forwards;
-}
-@keyframes pb-expl-flash {
-  0%   { opacity: 0; transform: scale(0.3); }
-  25%  { opacity: 1; transform: scale(1.1); }
-  100% { opacity: 0; transform: scale(1.6); }
-}
-@keyframes pb-expl-ring {
-  0%   { opacity: 0.95; transform: scale(0.25); }
-  100% { opacity: 0;    transform: scale(1.8); }
-}
-@keyframes pb-expl-rays {
-  0%   { opacity: 0;   transform: scale(0.4) rotate(-6deg); }
-  30%  { opacity: 1;   transform: scale(1.05) rotate(2deg); }
-  100% { opacity: 0;   transform: scale(1.4) rotate(10deg); }
-}
-@keyframes pb-expl-sparks {
-  0%   { opacity: 0;   transform: scale(0.4); }
-  40%  { opacity: 1;   transform: scale(1.1); }
-  100% { opacity: 0;   transform: scale(1.6); }
-}
-
-.pb-item { position: absolute; display: flex; pointer-events: none; animation: pb-item-bob 1.6s steps(1, end) infinite; }
-@keyframes pb-item-bob {
-  0%, 49% { transform: translateY(0); }
-  50%, 100% { transform: translateY(-2px); }
-}
-
-/* Robot (lo define Robot.css via keyframes ya en este archivo) */
-.pb-robot {
-  position: absolute;
-  display: flex; align-items: flex-end; justify-content: center;
-  transition: left 0.22s steps(6), top 0.22s steps(6);
-  z-index: 5; pointer-events: none;
-}
-.pb-robot-pixel {
-  display: block;
-  image-rendering: pixelated; image-rendering: crisp-edges;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
-}
-.pb-r-tilt-up   { transform: perspective(200px) rotateX(6deg); }
-.pb-r-tilt-down { transform: perspective(200px) rotateX(-6deg); }
-
-/* ===== Animaciones robot ===== */
-@keyframes pb-r-blink { 0%, 96%, 100% { transform: scaleY(1); } 97%, 99% { transform: scaleY(0); } }
-.pb-r-idle .pb-r-eyes { transform-box: fill-box; transform-origin: center; animation: pb-r-blink 3s steps(1, end) infinite; }
-@keyframes pb-r-antenna-blink { 0%, 49% { transform: translateY(0); opacity: 1; } 50%, 100% { transform: translateY(-0.5px); opacity: 0.65; } }
-.pb-r-antenna { transform-box: fill-box; animation: pb-r-antenna-blink 0.8s steps(1, end) infinite; }
-
-@keyframes pb-r-leg-ud-a { 0%, 49% { transform: translateY(-1px); } 50%, 100% { transform: translateY(0); } }
-@keyframes pb-r-leg-ud-b { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-1px); } }
-.pb-r-walk .pb-r-leg-left.pb-r-leg-fb { animation: pb-r-leg-ud-a 0.28s steps(1, end) infinite; }
-.pb-r-walk .pb-r-leg-right.pb-r-leg-fb { animation: pb-r-leg-ud-b 0.28s steps(1, end) infinite; }
-@keyframes pb-r-arm-ud-a { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-1px); } }
-@keyframes pb-r-arm-ud-b { 0%, 49% { transform: translateY(-1px); } 50%, 100% { transform: translateY(0); } }
-.pb-r-walk .pb-r-arm-left.pb-r-arm-fb { animation: pb-r-arm-ud-a 0.28s steps(1, end) infinite; }
-.pb-r-walk .pb-r-arm-right.pb-r-arm-fb { animation: pb-r-arm-ud-b 0.28s steps(1, end) infinite; }
-@keyframes pb-r-leg-side-fwd { 0%, 49% { transform: translateX(-1px); } 50%, 100% { transform: translateX(2px); } }
-@keyframes pb-r-leg-side-bwd { 0%, 49% { transform: translateX(2px); } 50%, 100% { transform: translateX(-1px); } }
-.pb-r-walk .pb-r-leg-side-front { animation: pb-r-leg-side-fwd 0.28s steps(1, end) infinite; }
-.pb-r-walk .pb-r-leg-side-back { animation: pb-r-leg-side-bwd 0.28s steps(1, end) infinite; }
-@keyframes pb-r-arm-side-swing { 0%, 49% { transform: translateX(1px) rotate(-4deg); } 50%, 100% { transform: translateX(-1px) rotate(4deg); } }
-.pb-r-walk .pb-r-arm-side { transform-box: fill-box; transform-origin: top center; animation: pb-r-arm-side-swing 0.28s steps(1, end) infinite; }
-@keyframes pb-r-bounce { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-0.8px); } }
-.pb-r-walk { animation: pb-r-bounce 0.28s steps(1, end) infinite; }
-.pb-r-walk .pb-r-antenna { animation: pb-r-antenna-blink 0.28s steps(1, end) infinite; }
-
-/* ===== Animaciones tiles ===== */
-@keyframes pb-coin-spin {
-  0%, 24% { transform: scaleX(1); }
-  25%, 49% { transform: scaleX(0.5); }
-  50%, 74% { transform: scaleX(0.15); }
-  75%, 100% { transform: scaleX(0.5); }
-}
-.pb-tile-coin-sprite { transform-box: fill-box; transform-origin: center; animation: pb-coin-spin 0.8s steps(1, end) infinite; }
-@keyframes pb-energy-fill {
-  0%, 49% { transform: scaleY(1); }
-  50%, 100% { transform: scaleY(0.7); }
-}
-.pb-tile-energy-fill { transform-box: fill-box; transform-origin: center bottom; animation: pb-energy-fill 1.2s steps(1, end) infinite; }
-@keyframes pb-flag-wave {
-  0%, 49% { transform: translateX(0); }
-  50%, 100% { transform: translateX(-0.5px); }
-}
-.pb-tile-flag-wave { transform-box: fill-box; transform-origin: left center; animation: pb-flag-wave 0.9s steps(1, end) infinite; }
-@keyframes pb-wave {
-  0%, 49% { transform: translateX(0); }
-  50%, 100% { transform: translateX(1px); }
-}
-.pb-tile-wave { transform-box: fill-box; animation: pb-wave 0.6s steps(1, end) infinite; }
-@keyframes pb-torch { 0%, 49% { transform: translateY(0) scaleY(1); } 50%, 100% { transform: translateY(-1px) scaleY(1.15); } }
-.pb-tile-torch { transform-box: fill-box; transform-origin: center bottom; animation: pb-torch 0.32s steps(1, end) infinite; }
-
-/* ===== Leyenda ===== */
-.pb-legend {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px; padding: 8px 10px;
-}
-.pb-legend-title {
-  font-size: 0.68rem; color: #a5b4fc; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px;
-}
-.pb-legend-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 10px;
-}
-.pb-legend-entry {
-  display: flex; align-items: center; gap: 6px;
-  font-size: 0.74rem; color: #e2e8f0;
-}
-.pb-legend-ico {
-  width: 20px; height: 20px; flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 3px; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  image-rendering: pixelated;
-}
-.pb-legend-ico svg { width: 100%; height: 100%; }
-
-/* ===== Modal de código (3 pestañas) ===== */
-.pb-modal-backdrop {
-  position: fixed; inset: 0; z-index: 9000;
-  background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(3px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px; animation: pb-modal-fade 0.18s ease;
-}
-@keyframes pb-modal-fade { from { opacity: 0; } to { opacity: 1; } }
-.pb-code-modal {
-  width: min(880px, 100%); max-height: 82vh;
-  background: linear-gradient(180deg, #120c2b 0%, #1e1b4b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px; padding: 16px;
-  display: flex; flex-direction: column; gap: 10px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
-  animation: pb-modal-pop 0.22s ease;
-}
-@keyframes pb-modal-pop { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.pb-code-head {
-  color: #e2e8f0; display: flex; justify-content: space-between; align-items: center;
-  font-weight: 700; font-size: 0.95rem;
-}
-.pb-code-head-actions { display: flex; gap: 6px; }
-.pb-lang-tabs {
-  display: flex; gap: 4px; background: rgba(255, 255, 255, 0.05);
-  padding: 4px; border-radius: 10px;
-}
-.pb-lang-tab {
-  flex: 1; background: none; border: none; padding: 8px 10px;
-  font-size: 0.85rem; color: #94a3b8; font-weight: 600; cursor: pointer;
-  border-radius: 7px; font-family: inherit;
-}
-.pb-lang-tab:hover { color: #e2e8f0; }
-.pb-lang-tab.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; }
-.pb-code-pre {
-  flex: 1; margin: 0; padding: 14px;
-  background: #020617; color: #e2e8f0;
-  border-radius: 10px; overflow: auto;
-  font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.82rem;
-  line-height: 1.55;
-}
-
-/* ============================================================ */
-/* ====== Sección CREAR TU PROPIO NIVEL (menú) ================ */
-/* ============================================================ */
-.pb-custom-grid {
-  margin-top: 14px; padding: 16px 18px; border-radius: 12px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.10), rgba(236, 72, 153, 0.08));
-  border: 1px solid rgba(168, 85, 247, 0.35);
-}
-.pb-custom-grid h3 { margin: 0 0 6px; font-size: 1rem; color: #f5f3ff; }
-.pb-custom-hint { margin: 0 0 12px; color: #c7d2fe; font-size: 0.86rem; }
-.pb-custom-actions {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px;
-}
-.pb-custom-card {
-  display: flex; align-items: center; gap: 12px; text-align: left;
-  padding: 12px 14px; border-radius: 10px; cursor: pointer;
-  background: rgba(15, 23, 42, 0.55); color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-family: inherit; transition: transform 0.15s, background 0.2s;
-}
-.pb-custom-card:hover:not(:disabled) { transform: translateY(-2px); background: rgba(168, 85, 247, 0.15); }
-.pb-custom-card:disabled { opacity: 0.45; cursor: not-allowed; }
-.pb-custom-icon {
-  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; color: white;
-}
-.pb-custom-meta { min-width: 0; }
-.pb-custom-title { font-weight: 700; font-size: 0.92rem; }
-.pb-custom-sub { font-size: 0.76rem; color: #cbd5e1; margin-top: 2px; }
-.pb-custom-warn {
-  margin-top: 10px; padding: 8px 12px; border-radius: 8px;
-  background: rgba(251, 191, 36, 0.12); color: #fde68a;
-  border: 1px solid rgba(251, 191, 36, 0.3); font-size: 0.85rem;
-}
-
-/* ============================================================ */
-/* ====== LISTADOS (Mis niveles / Compartidos) ================ */
-/* ============================================================ */
-.pb-empty { color: #94a3b8; padding: 16px; text-align: center; }
-.pb-user-levels { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-.pb-user-level {
-  display: flex; justify-content: space-between; gap: 12px;
-  padding: 12px 14px; border-radius: 10px;
-  background: rgba(15, 23, 42, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.pb-user-level-info { min-width: 0; flex: 1; }
-.pb-user-level-title { font-weight: 700; font-size: 1rem; color: #f5f3ff; }
-.pb-user-level-desc { color: #cbd5e1; font-size: 0.84rem; margin-top: 3px; }
-.pb-user-level-meta { color: #94a3b8; font-size: 0.76rem; margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
-.pb-user-level-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-
-/* ============================================================ */
-/* ====== EDITOR DE NIVELES =================================== */
-/* ============================================================ */
-.pb-ed-body {
-  display: grid; grid-template-columns: 1fr 320px;
-  gap: 14px; align-items: start; margin-top: 8px;
-}
-.pb-ed-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.pb-ed-tools {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px; padding: 10px;
-}
-.pb-ed-tools-row { display: flex; gap: 6px; flex-wrap: wrap; }
-.pb-ed-tool {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 6px 10px; border-radius: 8px; cursor: pointer;
-  background: rgba(255, 255, 255, 0.06); color: #e2e8f0;
-  border: 2px solid transparent; font-family: inherit;
-  min-width: 64px;
-}
-.pb-ed-tool:hover { background: rgba(255, 255, 255, 0.12); }
-.pb-ed-tool.active { border-color: #a78bfa; }
-.pb-ed-tool-icon { font-size: 1.2rem; }
-.pb-ed-tool-label { font-size: 0.72rem; font-weight: 600; }
-.pb-ed-dir, .pb-ed-size { display: flex; align-items: center; gap: 4px; margin-top: 8px; color: #c7d2fe; font-size: 0.82rem; flex-wrap: wrap; }
-.pb-ed-hint-sm { color: #94a3b8; font-size: 0.72rem; }
-.pb-ed-dir-btn {
-  width: 26px; height: 26px; border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08); color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  font-weight: 700; cursor: pointer;
-}
-.pb-ed-dir-btn.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; border-color: transparent; }
-.pb-ed-tools-hint { margin-top: 8px; color: #94a3b8; font-size: 0.76rem; }
-
-.pb-ed-grid {
-  cursor: crosshair;
-}
-.pb-ed-cell { position: absolute; display: flex; line-height: 0; cursor: pointer; }
-.pb-ed-cell:hover { outline: 2px solid rgba(167, 139, 250, 0.8); outline-offset: -2px; z-index: 7; }
-.pb-ed-floor, .pb-ed-overlay { position: absolute; inset: 0; display: flex; }
-.pb-ed-item { position: absolute; left: 22%; top: 10%; width: 56%; height: 80%; display: flex; pointer-events: none; }
-.pb-ed-target { position: absolute; left: 18%; top: 10%; width: 64%; height: 80%; display: flex; pointer-events: none; }
-.pb-ed-robot { position: absolute; left: -10%; top: -30%; width: 120%; height: 135%; display: flex; align-items: flex-end; justify-content: center; pointer-events: none; z-index: 5; }
-
-.pb-ed-actions-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
-.pb-ed-counter { color: #c7d2fe; font-size: 0.82rem; font-weight: 600; }
-
-.pb-ed-meta {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px; padding: 14px;
-  display: flex; flex-direction: column; gap: 8px;
-  position: sticky; top: 12px;
-}
-.pb-ed-label { color: #a5b4fc; font-size: 0.78rem; font-weight: 700; margin-bottom: 2px; }
-.pb-ed-input, .pb-ed-textarea {
-  width: 100%; box-sizing: border-box;
-  padding: 8px 10px; border-radius: 8px;
-  background: rgba(15, 23, 42, 0.8); color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.15); font-family: inherit;
-  font-size: 0.88rem;
-}
-.pb-ed-input:focus, .pb-ed-textarea:focus { outline: none; border-color: #a78bfa; }
-.pb-ed-textarea { resize: vertical; min-height: 80px; }
-.pb-ed-share {
-  display: flex; align-items: center; gap: 8px; cursor: pointer;
-  color: #e2e8f0; font-size: 0.86rem; padding: 6px 0;
-}
-.pb-ed-share span { display: inline-flex; align-items: center; gap: 4px; }
-.pb-ed-info {
-  margin-top: 6px; padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8; font-size: 0.78rem;
-}
-.pb-ed-info > div { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-
-/* ===== Responsive ===== */
-@media (max-width: 1300px) {
-  .pb-body { grid-template-columns: 1fr; }
-  .pb-ed-body { grid-template-columns: 1fr; }
-  .pb-ed-meta { position: relative; top: 0; }
-}
-
 /* ==========================================================================
-   Capa "premium" 2026 — profundidad, cristal y luz (solo visual)
-   --------------------------------------------------------------------------
-   El marco no crea stacking context (sin transform/filter/backdrop-filter)
-   para que el modal de código `position: fixed` siga cubriendo la pantalla.
+   Programa al Robot — rediseño 2026 sobre el kit de juego (_shared/kit).
+   Prefijo pbx-. Aquí solo va lo propio de la app: mapa de misiones, briefing,
+   tablero-diorama, robot, bloques tipo puzzle, paleta, editor de niveles y
+   modales. El armazón (escenario, cabecera, modos, avisos, resultados,
+   botones) es del kit. Tema oscuro con html.dark (las --gk-* cambian solas).
+   Rendimiento: solo se anima transform/opacity; los bucles decorativos del
+   tablero (agua, energía, bandera…) solo con html[data-fx="high"].
    ========================================================================== */
 
-.pb-frame.pb-has-fx {
-  position: relative;
-  border-radius: 28px;
-  background:
-    radial-gradient(1100px 520px at 8% -12%, rgba(139, 92, 246, 0.42), transparent 60%),
-    radial-gradient(900px 500px at 108% 112%, rgba(236, 72, 153, 0.3), transparent 60%),
-    radial-gradient(700px 380px at 92% -8%, rgba(251, 191, 36, 0.12), transparent 60%),
-    linear-gradient(180deg, #100a28 0%, #1e1b4b 46%, #2a0f3a 100%);
-  border: 1px solid rgba(196, 181, 253, 0.16);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 40px 90px -40px rgba(0, 0, 0, 0.8),
-    0 18px 50px -30px rgba(139, 92, 246, 0.55);
+.pbx {
+  /* colores de categoría de bloque (estilo Scratch, con canto 3D) */
+  --pb-move: #4c97ff;     --pb-move-d: #2f6fd6;
+  --pb-action: #3fbf6f;   --pb-action-d: #23914d;
+  --pb-loop: #ffab19;     --pb-loop-d: #d48500;
+  --pb-control: #d65cd6;  --pb-control-d: #a83aa8;
+  --pb-vars: #ff6680;     --pb-vars-d: #d6405b;
+  --pb-func: #9966ff;     --pb-func-d: #7448d8;
+  --pb-ops: #59c059;      --pb-ops-d: #3d9a3d;
+  /* biomas */
+  --bio-meadow: #22c55e; --bio-forest: #15803d; --bio-mountain: #6366f1; --bio-city: #ec4899; --bio-datacenter: #06b6d4;
 }
-/* Contenido por encima del fondo decorativo (sin z-index) */
-.pb-frame.pb-has-fx > :not(.pb-fx-bg):not(.pb-modal-backdrop) { position: relative; }
+.pbx-biome-meadow { --bio: var(--bio-meadow, #22c55e); --rim: #86efac; --side: #7c4a1e; }
+.pbx-biome-forest { --bio: var(--bio-forest, #15803d); --rim: #4ade80; --side: #5b3716; }
+.pbx-biome-mountain { --bio: var(--bio-mountain, #6366f1); --rim: #e2e8f0; --side: #475569; }
+.pbx-biome-city { --bio: var(--bio-city, #ec4899); --rim: #cbd5e1; --side: #334155; }
+.pbx-biome-datacenter { --bio: var(--bio-datacenter, #06b6d4); --rim: #64748b; --side: #1e293b; }
 
-.pb-fx-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-}
-.pb-fx-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.36;
-  will-change: transform;
-  animation: pb-orb-drift 26s ease-in-out infinite alternate;
-}
-.pb-fx-orb--a { width: 440px; height: 440px; top: -160px; left: -110px; background: radial-gradient(circle, #8b5cf6, transparent 68%); }
-.pb-fx-orb--b { width: 400px; height: 400px; bottom: -170px; right: -110px; background: radial-gradient(circle, #ec4899, transparent 68%); animation-duration: 32s; animation-direction: alternate-reverse; }
-.pb-fx-orb--c { width: 300px; height: 300px; top: 38%; left: 46%; background: radial-gradient(circle, #f59e0b, transparent 70%); opacity: 0.14; animation-duration: 38s; }
-.pb-fx-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(196, 181, 253, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(196, 181, 253, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
-}
-.pb-fx-star {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #fdf4ff;
-  box-shadow: 0 0 8px 2px rgba(244, 114, 182, 0.7);
-  animation: fx-twinkle 3.8s ease-in-out infinite;
-}
-.pb-fx-star--0 { top: 6%;  left: 22%; }
-.pb-fx-star--1 { top: 12%; left: 84%; animation-delay: .9s; background: #fef3c7; box-shadow: 0 0 8px 2px rgba(251, 191, 36, .7); }
-.pb-fx-star--2 { top: 52%; left: 3%;  animation-delay: 1.7s; }
-.pb-fx-star--3 { top: 86%; left: 96%; animation-delay: 2.3s; background: #ede9fe; box-shadow: 0 0 8px 2px rgba(139, 92, 246, .8); }
-.pb-fx-star--4 { top: 30%; left: 58%; animation-delay: 1.2s; }
-.pb-fx-star--5 { top: 94%; left: 28%; animation-delay: 2.9s; }
-@keyframes pb-orb-drift {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(40px, 30px, 0) scale(1.1); }
-  100% { transform: translate3d(-30px, 60px, 0) scale(.94); }
+.pbx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Pantalla de modos (4 modos: fácil, normal, examen, reto) ---------- */
+.pbx .gk-modes__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pbx .gk-tone-reto { --tone: #a855f7; --tone-2: #ec4899; --tone-ink: #581c87; }
+.pbx-menu-extra {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 6px;
+  text-align: left;
 }
 
-/* Entrada escalonada propia: fill backwards para no congelar el hover */
-.pb-stagger > * { animation: fx-rise .55s var(--fx-ease-out, ease-out) backwards; }
-.pb-stagger > *:nth-child(1) { animation-delay: .05s; }
-.pb-stagger > *:nth-child(2) { animation-delay: .11s; }
-.pb-stagger > *:nth-child(3) { animation-delay: .17s; }
-.pb-stagger > *:nth-child(4) { animation-delay: .23s; }
-.pb-stagger > *:nth-child(5) { animation-delay: .29s; }
-.pb-stagger > *:nth-child(6) { animation-delay: .35s; }
-.pb-stagger > *:nth-child(7) { animation-delay: .41s; }
-.pb-stagger > *:nth-child(8) { animation-delay: .47s; }
-.pb-stagger > *:nth-child(n+9) { animation-delay: .53s; }
-
-/* ---- Hero ---- */
-.pb-has-fx .pb-hero {
-  padding: 22px;
-  border-radius: 24px;
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015) 45%),
-    rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 30px 60px -36px rgba(0, 0, 0, 0.85);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-}
-.pb-hero-title h1 {
-  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
-  background: linear-gradient(90deg, #f472b6, #fbbf24, #a78bfa, #f472b6);
-  background-size: 260% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 6px 22px rgba(236, 72, 153, 0.35));
-  animation: fx-pan 10s linear infinite;
-}
-.pb-hero-badge {
+/* Cabecera de sección del menú */
+.pbx-block-title { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.pbx-block-title h3 { margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--gk-ink); }
+.pbx-block-title p { margin: 2px 0 0; font-family: 'Nunito', var(--gk-font); font-weight: 600; font-size: .92rem; color: var(--gk-ink-2); }
+.pbx-block-title__ico {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 8px 20px -8px rgba(236, 72, 153, 0.7);
+  background: linear-gradient(140deg, color-mix(in srgb, var(--gk-accent) 70%, white), var(--gk-accent));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 8px 16px -8px var(--gk-accent);
 }
-.pb-hero-badge-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25), 0 0 10px #4ade80;
-  animation: pb-led-breathe 2.2s ease-in-out infinite;
-}
-@keyframes pb-led-breathe {
-  0%, 100% { opacity: .55; transform: scale(.85); }
-  50%      { opacity: 1;   transform: scale(1.1); }
-}
+.pbx-block-title__ico.is-pink { background: linear-gradient(140deg, #f9a8d4, #ec4899); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 8px 16px -8px #ec4899; }
 
-/* ---- Tarjetas de modo ---- */
-.pb-mode-card {
-  --pb-mode: #8b5cf6;
+/* ---------- Mapa de misiones ---------- */
+.pbx-map__track {
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  padding: 20px 18px 18px;
-  border-radius: 22px;
-  border: 1px solid color-mix(in srgb, var(--pb-mode) 55%, transparent);
-  background:
-    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--pb-mode) 30%, transparent), transparent 60%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 22px 44px -26px color-mix(in srgb, var(--pb-mode) 85%, transparent),
-    0 10px 24px -18px rgba(0, 0, 0, 0.7);
-  transition: transform .3s var(--fx-ease-spring, ease), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
 }
-.pb-mode-card::before {
+/* camino punteado que une las cinco tierras */
+.pbx-map__track::before {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 46px;
+  height: 0;
+  border-top: 3px dashed color-mix(in srgb, var(--gk-accent) 55%, transparent);
+  z-index: 0;
+}
+.pbx-station {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--gk-surface-2);
+  box-shadow:
+    inset 0 0 0 1.5px color-mix(in srgb, var(--bio) 28%, transparent),
+    0 5px 0 color-mix(in srgb, var(--bio) 45%, #1e1b4b),
+    0 20px 34px -24px var(--bio);
+  animation: gk-pop .45s cubic-bezier(.34, 1.56, .64, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+.pbx-station__scene { position: relative; height: 92px; overflow: hidden; }
+.pbx-station__scene .pbx-scene { position: absolute; inset: 0; }
+.art.pbx-scene { overflow: hidden; }
+.pbx-station__label {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .76rem;
+  font-weight: 800;
+  color: #fff;
+  background: color-mix(in srgb, var(--bio) 85%, #1e1b4b);
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
+}
+.pbx-station__missions { display: flex; flex-direction: column; gap: 8px; padding: 10px; }
+.pbx-mission {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 10px 6px 6px;
+  border: 0;
+  border-radius: 14px;
+  text-align: left;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
+  cursor: pointer;
+  background: var(--gk-inset);
+  box-shadow: inset 0 0 0 1px var(--gk-line);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.pbx-mission:hover { transform: translateY(-2px); background: var(--gk-surface-2); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--bio) 60%, transparent), 0 10px 18px -12px var(--bio); }
+.pbx-mission:active { transform: translateY(1px); }
+.pbx-mission:focus-visible { outline: 3px solid color-mix(in srgb, var(--bio) 60%, transparent); outline-offset: 2px; }
+.pbx-mission__thumb {
+  display: block;
+  width: 46px;
+  height: 46px;
+  padding: 3px;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--bio) 50%, #1e1b4b), 0 6px 10px -6px rgba(0, 0, 0, .4);
+}
+.pbx-minimap { display: block; width: 100%; height: 100%; border-radius: 7px; }
+.pbx-mission__text { display: flex; flex-direction: column; min-width: 0; line-height: 1.15; }
+.pbx-mission__num { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: color-mix(in srgb, var(--bio) 80%, var(--gk-ink)); }
+.pbx-mission__title { font-size: .9rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.pbx-mission__go { color: var(--gk-ink-3); transition: transform .2s ease, color .2s ease; }
+.pbx-mission:hover .pbx-mission__go { transform: translateX(3px); color: var(--bio); }
+
+/* ---------- Crea tu propio nivel ---------- */
+.pbx-create__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.pbx-create__card {
+  --cc: #8b5cf6;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 20px;
+  text-align: left;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
+  cursor: pointer;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--cc) 25%, transparent), 0 4px 0 color-mix(in srgb, var(--cc) 45%, #1e1b4b), 0 16px 28px -22px var(--cc);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease;
+}
+.pbx-create__card.is-create { --cc: #ec4899; }
+.pbx-create__card.is-mine { --cc: #6366f1; }
+.pbx-create__card.is-shared { --cc: #10b981; }
+.pbx-create__card:hover:not(:disabled) { transform: translateY(-3px); box-shadow: inset 0 0 0 2px var(--cc), 0 7px 0 color-mix(in srgb, var(--cc) 45%, #1e1b4b), 0 20px 30px -20px var(--cc); }
+.pbx-create__card:active:not(:disabled) { transform: translateY(2px); }
+.pbx-create__card:disabled { cursor: not-allowed; opacity: .55; filter: grayscale(.5); }
+.pbx-create__ico {
+  grid-row: 1 / 3;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--cc) 60%, white), var(--cc));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 8px 14px -8px var(--cc);
+}
+.pbx-create__title { font-size: 1.05rem; font-weight: 800; }
+.pbx-create__sub { font-family: 'Nunito', var(--gk-font); font-size: .84rem; font-weight: 600; color: var(--gk-ink-2); }
+.pbx-warn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-family: 'Nunito', var(--gk-font);
+  font-weight: 700;
+  font-size: .9rem;
+  color: #78350f;
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+  box-shadow: inset 0 0 0 1.5px #fcd34d;
+}
+html.dark .pbx-warn { color: #fde68a; background: rgba(251, 191, 36, .1); box-shadow: inset 0 0 0 1.5px rgba(251, 191, 36, .35); }
+
+/* ---------- Ruta de niveles (partida) ---------- */
+.pbx-route { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pbx-route__path {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--gk-inset);
+  box-shadow: inset 0 1px 3px rgba(30, 20, 90, .14);
+}
+.pbx-route__arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: 0 2px 0 var(--gk-key-edge);
+  cursor: pointer;
+  transition: transform .15s ease, color .15s ease;
+}
+.pbx-route__arrow:hover:not(:disabled) { color: var(--gk-accent); transform: translateY(-1px); }
+.pbx-route__arrow:disabled { opacity: .35; cursor: not-allowed; }
+.pbx-route__nodes {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pbx-route__nodes::-webkit-scrollbar { display: none; }
+.pbx-route__nodes::before {
   content: '';
   position: absolute;
   left: 18px;
   right: 18px;
-  top: 0;
-  height: 2px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, var(--pb-mode), transparent);
-  box-shadow: 0 0 14px var(--pb-mode);
+  top: 50%;
+  border-top: 2px dashed var(--gk-line);
+  z-index: 0;
 }
-.pb-mode-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: var(--pb-mode);
-  background:
-    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--pb-mode) 42%, transparent), transparent 62%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.16) inset,
-    0 0 0 1px color-mix(in srgb, var(--pb-mode) 40%, transparent),
-    0 30px 60px -24px color-mix(in srgb, var(--pb-mode) 90%, transparent);
-}
-.pb-mode-card:active { transform: translateY(-2px) scale(.98); }
-.pb-mode-card:focus-visible { outline: 3px solid var(--pb-mode); outline-offset: 3px; }
-.pb-mode-easy   { --pb-mode: #10b981; }
-.pb-mode-normal { --pb-mode: #fbbf24; }
-.pb-mode-exam   { --pb-mode: #ef4444; }
-.pb-mode-reto   { --pb-mode: #f97316; }
-.pb-mode-card h3 { font-size: 1.25rem; color: #fff; }
-.pb-mode-card .pb-mode-icon {
+.pbx-route__node {
   position: relative;
-  width: 54px;
-  height: 54px;
+  z-index: 1;
   display: grid;
   place-items: center;
-  font-size: 1.7rem;
-  border-radius: 18px;
-  background: linear-gradient(160deg, color-mix(in srgb, var(--pb-mode) 55%, transparent), color-mix(in srgb, var(--pb-mode) 18%, transparent));
-  border: 1px solid color-mix(in srgb, var(--pb-mode) 65%, white 10%);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 10px 24px -10px var(--pb-mode);
-  transition: transform .35s var(--fx-ease-spring, ease);
-}
-.pb-mode-icon-halo {
-  position: absolute;
-  inset: -14px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--pb-mode) 60%, transparent), transparent 65%);
-  z-index: -1;
-  animation: pb-halo 3.2s ease-in-out infinite;
+  font-family: var(--gk-font);
+  font-size: .85rem;
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--bio) 45%, transparent), 0 3px 0 color-mix(in srgb, var(--bio) 55%, #1e1b4b);
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease;
 }
-@keyframes pb-halo {
-  0%, 100% { transform: scale(.85); opacity: .35; }
-  50%      { transform: scale(1.08); opacity: .75; }
+.pbx-route__node:hover { transform: translateY(-2px); }
+.pbx-route__node.is-done { color: #fff; background: linear-gradient(135deg, #34d399, #10b981); box-shadow: 0 3px 0 #047857; }
+.pbx-route__node.is-current {
+  color: #fff;
+  transform: scale(1.18);
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  box-shadow: 0 0 0 3px var(--gk-surface-2), 0 0 0 5px color-mix(in srgb, var(--gk-accent) 55%, transparent), 0 8px 16px -6px var(--gk-accent);
 }
-.pb-mode-card:hover .pb-mode-icon { transform: translateY(-3px) rotate(-6deg) scale(1.08); }
-.pb-mode-card .pb-mode-cta {
-  color: var(--pb-mode);
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--pb-mode) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--pb-mode) 45%, transparent);
-  transition: gap .25s ease, background .2s ease;
-}
-.pb-mode-card:hover .pb-mode-cta { gap: 8px; background: color-mix(in srgb, var(--pb-mode) 24%, transparent); }
+.pbx-route__node:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 60%, transparent); outline-offset: 2px; }
 
-/* Misiones y niveles propios */
-.pb-missions-grid,
-.pb-custom-grid {
-  border-radius: 20px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
-}
-.pb-mission-card {
-  border-radius: 14px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-  transition: transform .25s var(--fx-ease-spring, ease), background .2s ease, border-color .2s ease, box-shadow .25s ease;
-}
-.pb-mission-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(236, 72, 153, 0.5);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 14px 28px -14px rgba(236, 72, 153, 0.7);
-}
-.pb-mission-card:focus-visible,
-.pb-custom-card:focus-visible,
-.pb-icon-btn:focus-visible,
-.pb-progress button:focus-visible,
-.pb-lang-tab:focus-visible { outline: 2px solid #f472b6; outline-offset: 2px; }
-.pb-mission-num {
-  border-radius: 10px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 6px 14px -6px rgba(236, 72, 153, 0.8);
-}
-.pb-custom-card {
-  border-radius: 16px;
-  transition: transform .25s var(--fx-ease-spring, ease), background .2s ease, box-shadow .25s ease;
-}
-.pb-custom-card:hover:not(:disabled) { box-shadow: 0 14px 28px -14px rgba(168, 85, 247, 0.8); }
-.pb-user-level {
-  border-radius: 16px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 26px -20px rgba(0, 0, 0, 0.9);
-  transition: transform .2s ease, border-color .2s ease;
-}
-.pb-user-level:hover { transform: translateX(2px); border-color: rgba(167, 139, 250, 0.45); }
-
-/* ---- Cabecera de juego ---- */
-.pb-has-fx .pb-play-header {
-  padding: 8px 10px;
-  border-radius: 18px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-    rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(196, 181, 253, 0.18);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 16px 34px -24px rgba(0, 0, 0, 0.9);
-}
-.pb-play-title .pb-play-emoji { filter: drop-shadow(0 4px 10px rgba(96, 165, 250, 0.6)); }
-.pb-play-text {
-  background: linear-gradient(90deg, #f472b6, #fbbf24, #a78bfa, #f472b6);
-  background-size: 260% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: fx-pan 10s linear infinite;
-}
-.pb-icon-btn { border-radius: 12px; transition: background .2s ease, transform .2s var(--fx-ease-spring, ease), border-color .2s ease; }
-.pb-icon-btn:hover { transform: translateY(-1px); border-color: rgba(244, 114, 182, 0.5); }
-.pb-progress {
-  gap: 8px;
-  padding: 5px 12px;
-  background: rgba(15, 23, 42, 0.5);
-  border-color: rgba(196, 181, 253, 0.22);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
-  font-variant-numeric: tabular-nums;
-}
-.pb-progress button { border-radius: 8px; transition: background .15s ease, transform .2s ease; }
-.pb-progress button:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); transform: scale(1.1); }
-.pb-progress-track {
+/* ---------- Briefing de misión (el robot te habla) ---------- */
+.pbx-brief {
   position: relative;
-  width: 80px;
-  height: 7px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(148, 163, 184, 0.2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) inset;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
 }
-.pb-progress-fill {
+.pbx-brief__avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .55), transparent 55%),
+    radial-gradient(circle, color-mix(in srgb, var(--bio) 45%, #c7d2fe), color-mix(in srgb, var(--bio) 70%, #312e81));
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .15), 0 0 0 4px var(--gk-surface-2), 0 12px 22px -10px var(--bio);
+}
+.pbx-brief__avatar .pbx-rb { width: 66px; height: 75px; margin-top: 4px; }
+.pbx-brief__bubble {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 18px 14px 20px;
+  min-height: 84px;
+  border-radius: 22px;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--bio) 30%, transparent), 0 4px 0 var(--gk-key-edge), 0 18px 30px -24px rgba(30, 20, 90, .6);
+}
+/* cola del bocadillo hacia el robot */
+.pbx-brief__bubble::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  overflow: hidden;
-  transform-origin: left center;
-  background: linear-gradient(90deg, #8b5cf6, #ec4899, #fbbf24);
-  box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
-  transition: transform .6s var(--fx-ease-out, ease);
+  left: -7px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border-radius: 3px;
+  background: var(--gk-surface-2);
+  transform: rotate(45deg);
+  box-shadow: -1.5px 1.5px 0 color-mix(in srgb, var(--bio) 30%, transparent);
 }
-.pb-progress-fill::after {
+html.dark .pbx-brief__bubble, html.dark .pbx-brief__bubble::before { background: #26225a; }
+.pbx-brief__scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 38%;
+  border-radius: 0 22px 22px 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%);
+  mask-image: linear-gradient(90deg, transparent, #000 55%);
+  opacity: .9;
+  z-index: 1;
+  pointer-events: none;
+}
+.pbx-brief__scene .pbx-scene { width: 100%; height: 100%; }
+.pbx-brief__eyebrow,
+.pbx-brief__title,
+.pbx-brief__goal { position: relative; z-index: 2; max-width: 70%; }
+.pbx-brief__eyebrow { display: inline-block; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: color-mix(in srgb, var(--bio) 75%, var(--gk-ink)); }
+.pbx-brief__title { margin: 2px 0 2px; font-size: 1.3rem; font-weight: 800; line-height: 1.1; color: var(--gk-ink); }
+.pbx-brief__goal { margin: 0; font-family: 'Nunito', var(--gk-font); font-size: .98rem; font-weight: 700; color: var(--gk-ink-2); }
+
+/* ---------- Área de juego (tablero · programa · paleta) ---------- */
+.pbx-play { container-type: inline-size; container-name: pbplay; }
+.pbx-play__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'stage' 'editor' 'palette';
+  align-items: start;
+}
+.pbx-stage { grid-area: stage; min-width: 0; container-type: inline-size; container-name: pbstage; }
+.pbx-editor { grid-area: editor; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.pbx-palette-col { grid-area: palette; min-width: 0; }
+
+@container pbplay (min-width: 700px) {
+  .pbx-play__grid {
+    grid-template-columns: minmax(0, 1fr) 236px;
+    grid-template-areas: 'stage stage' 'editor palette';
+  }
+  .pbx-palette .pbx-block.is-palette { width: 100%; }
+  .pbx-palette-col { position: sticky; top: 12px; }
+  .pbx-palette { max-height: calc(100vh - 32px); overflow-y: auto; scrollbar-width: thin; }
+}
+@container pbplay (min-width: 1120px) {
+  .pbx-play__grid {
+    grid-template-columns: minmax(380px, 470px) minmax(0, 1fr) 236px;
+    grid-template-areas: 'stage editor palette';
+  }
+  .pbx-stage { position: sticky; top: 12px; }
+}
+
+/* ---------- Arena (marco oscuro del tablero) ---------- */
+.pbx-arena {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'bar' 'board' 'legend';
+  gap: 10px;
+  padding: 12px;
+  border-radius: 26px;
+  color: #eef2ff;
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--gk-accent-2) 32%, transparent), transparent 62%),
+    linear-gradient(180deg, #221c5c 0%, #140f3c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .14),
+    inset 0 -10px 30px rgba(0, 0, 0, .35),
+    0 0 0 1px rgba(255, 255, 255, .06),
+    0 24px 44px -26px color-mix(in srgb, var(--gk-accent-2) 70%, #000);
+}
+.pbx-arena::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
-  transform: translateX(-100%);
-  animation: pb-bar-shine 2.4s ease-in-out infinite;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
 }
-@keyframes pb-bar-shine {
-  0%   { transform: translateX(-100%); }
-  60%, 100% { transform: translateX(100%); }
+.pbx-arena > * { position: relative; }
+@container pbstage (min-width: 640px) {
+  .pbx-arena {
+    grid-template-columns: minmax(0, 500px) 200px;
+    grid-template-areas: 'bar bar' 'board legend';
+    justify-content: center;
+    column-gap: 28px;
+    align-items: center;
+  }
+  .pbx-arena .pbx-legend { flex-direction: column; align-items: stretch; }
+}
+.pbx-arena__bar { grid-area: bar; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pbx-arena__biome {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 800;
+  color: #fff;
+  background: color-mix(in srgb, var(--bio, #6366f1) 80%, #1e1b4b);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.pbx-arena__board {
+  grid-area: board;
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+  padding: 14px 6px 18px;
 }
 
-.pb-mission {
-  border-radius: 16px;
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.08), transparent 45%),
-    linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(236, 72, 153, 0.15));
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 16px 32px -24px rgba(139, 92, 246, 0.85);
-  animation: pb-slide-in .45s var(--fx-ease-out, ease-out) both;
+/* Interruptor de rejilla */
+.pbx-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 6px 5px 11px;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--gk-font);
+  font-size: .8rem;
+  font-weight: 800;
+  color: #c7d2fe;
+  background: rgba(255, 255, 255, .08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12);
+  cursor: pointer;
 }
-@keyframes pb-slide-in {
-  from { opacity: 0; transform: translate3d(16px, 0, 0); }
-  to   { opacity: 1; transform: none; }
+.pbx-toggle__track {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .18);
+  transition: background .2s ease;
 }
+.pbx-toggle__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
+}
+.pbx-toggle.is-on { color: #fff; }
+.pbx-toggle.is-on .pbx-toggle__track { background: linear-gradient(90deg, #34d399, #10b981); }
+.pbx-toggle.is-on .pbx-toggle__knob { transform: translateX(14px); }
+.pbx-toggle:focus-visible { outline: 2px solid #a5b4fc; outline-offset: 2px; }
 
-/* Paneles de trabajo (cristal oscuro) */
-.pb-stage-col,
-.pb-palette-col .pb-palette,
-.pb-workspace {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
-    rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(196, 181, 253, 0.16);
-  border-radius: 18px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 18px 36px -26px rgba(0, 0, 0, 0.9);
-}
-.pb-workspace-defs { background: rgba(168, 85, 247, 0.1); border: 1px dashed rgba(168, 85, 247, 0.45); }
-.pb-workspace-header {
-  border-radius: 14px;
-  background: rgba(15, 23, 42, 0.45);
-  border-color: rgba(196, 181, 253, 0.16);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-}
-.pb-dropzone.is-over { box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.18), inset 0 0 24px -8px rgba(167, 139, 250, 0.6); }
-.pb-board {
+/* ---------- Tablero-diorama ---------- */
+.pbx-board {
+  --c: min(var(--cmax, 52px), calc((100cqi - 16px) / var(--cols, 8)));
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--c) * var(--cols, 8));
+  height: calc(var(--c) * var(--rows, 8));
+  border-radius: 8px;
+  /* canto del "bloque de tierra": borde claro + lateral oscuro + sombra */
   box-shadow:
-    0 0 0 1px rgba(167, 139, 250, 0.35),
-    0 0 36px -12px rgba(139, 92, 246, 0.6),
-    0 20px 40px -24px rgba(0, 0, 0, 0.9);
+    0 0 0 4px var(--rim, #86efac),
+    0 8px 0 4px var(--side, #7c4a1e),
+    0 9px 0 4px rgba(0, 0, 0, .25),
+    0 28px 34px 0 rgba(0, 0, 0, .5);
+  image-rendering: pixelated;
+  transition: box-shadow .3s ease;
+}
+.pbx-board.is-ok { box-shadow: 0 0 0 4px #6ee7b7, 0 8px 0 4px #047857, 0 9px 0 4px rgba(0, 0, 0, .25), 0 0 0 10px rgba(52, 211, 153, .25), 0 28px 40px 0 rgba(16, 185, 129, .45); }
+.pbx-board.is-wrong { box-shadow: 0 0 0 4px #fda4af, 0 8px 0 4px #9f1239, 0 9px 0 4px rgba(0, 0, 0, .25), 0 0 0 10px rgba(244, 63, 94, .22), 0 28px 34px 0 rgba(0, 0, 0, .5); animation: gk-shake .45s cubic-bezier(.36, .07, .19, .97) both; }
+.pbx-biome-datacenter.pbx-board { box-shadow: 0 0 0 4px var(--rim), 0 8px 0 4px var(--side), 0 9px 0 4px rgba(0, 0, 0, .25), 0 0 26px 6px rgba(34, 211, 238, .25), 0 28px 34px 0 rgba(0, 0, 0, .5); }
+.pbx-board__ground { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
+.pbx-cell {
+  position: absolute;
+  left: calc(var(--x) * var(--c));
+  top: calc(var(--y) * var(--c));
+  width: var(--c);
+  height: var(--c);
+  display: flex;
+  line-height: 0;
+}
+.pbx-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, .5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, .5) 1px, transparent 1px);
+  background-size: var(--c) var(--c);
+}
+.pbx-biome-meadow .pbx-grid-overlay,
+.pbx-biome-mountain .pbx-grid-overlay,
+.pbx-biome-city .pbx-grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, .32) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, .32) 1px, transparent 1px);
+}
+.pbx-target {
+  position: absolute;
+  left: calc(var(--x) * var(--c) + var(--c) * .18);
+  top: calc(var(--y) * var(--c) + var(--c) * .1);
+  width: calc(var(--c) * .64);
+  height: calc(var(--c) * .8);
+  display: flex;
+  z-index: 2;
+}
+.pbx-item {
+  position: absolute;
+  left: calc(var(--x) * var(--c) + var(--c) * .12);
+  top: calc(var(--y) * var(--c) + var(--c) * .08);
+  width: calc(var(--c) * .76);
+  height: calc(var(--c) * .84);
+  display: flex;
+  pointer-events: none;
+  z-index: 3;
+}
+.pbx-crate { z-index: 3; }
+.pbx-blast {
+  position: absolute;
+  left: calc(var(--x) * var(--c) + var(--c) * .5 - var(--c) * .675);
+  top: calc(var(--y) * var(--c) + var(--c) * .5 - var(--c) * .675);
+  width: calc(var(--c) * 1.35);
+  height: calc(var(--c) * 1.35);
+  pointer-events: none;
+  z-index: 7;
+}
+.pbx-robot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--c) * 1.2);
+  height: calc(var(--c) * 1.37);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transform: translate(calc(var(--x) * var(--c) - var(--c) * .1), calc(var(--y) * var(--c) - var(--c) * .52));
+  transition: transform .22s linear;
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* Botones */
-.pb-btn {
+/* Explosión del láser (una vez, ligada al disparo) */
+.pbx-blast .pb-tile-blast { width: 100%; height: 100%; display: block; }
+.pbx-blast .pb-expl-flash,
+.pbx-blast .pb-expl-ring,
+.pbx-blast .pb-expl-rays,
+.pbx-blast .pb-expl-sparks { transform-box: fill-box; transform-origin: center; animation: .42s ease-out forwards; }
+.pbx-blast .pb-expl-flash { animation-name: pbx-expl-flash; }
+.pbx-blast .pb-expl-ring { animation-name: pbx-expl-ring; }
+.pbx-blast .pb-expl-rays { animation-name: pbx-expl-rays; }
+.pbx-blast .pb-expl-sparks { animation-name: pbx-expl-sparks; }
+@keyframes pbx-expl-flash { 0% { opacity: 0; transform: scale(.3); } 25% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1.6); } }
+@keyframes pbx-expl-ring { 0% { opacity: .95; transform: scale(.25); } 100% { opacity: 0; transform: scale(1.8); } }
+@keyframes pbx-expl-rays { 0% { opacity: 0; transform: scale(.4) rotate(-6deg); } 30% { opacity: 1; transform: scale(1.05) rotate(2deg); } 100% { opacity: 0; transform: scale(1.4) rotate(10deg); } }
+@keyframes pbx-expl-sparks { 0% { opacity: 0; transform: scale(.4); } 40% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1.6); } }
+
+/* Animaciones de las piezas del tablero: solo con nivel de efectos alto */
+html[data-fx="high"] .pbx .pb-tile-wave { transform-box: fill-box; animation: pbx-wave .6s steps(1, end) infinite; }
+html[data-fx="high"] .pbx .pb-tile-energy-fill { transform-box: fill-box; transform-origin: center bottom; animation: pbx-energy 1.2s steps(1, end) infinite; }
+html[data-fx="high"] .pbx .pb-tile-flag-wave { transform-box: fill-box; transform-origin: left center; animation: pbx-flag .9s steps(1, end) infinite; }
+html[data-fx="high"] .pbx .pb-tile-dc-pit { animation: pbx-pit 1.6s ease-in-out infinite; }
+html[data-fx="high"] .pbx .pbx-item { animation: pbx-bob 1.6s steps(1, end) infinite; }
+@keyframes pbx-wave { 0%, 49% { transform: translateX(0); } 50%, 100% { transform: translateX(1px); } }
+@keyframes pbx-energy { 0%, 49% { transform: scaleY(1); } 50%, 100% { transform: scaleY(.75); } }
+@keyframes pbx-flag { 0%, 49% { transform: skewY(0); } 50%, 100% { transform: skewY(-8deg); } }
+@keyframes pbx-pit { 0%, 100% { opacity: .2; } 50% { opacity: .55; } }
+@keyframes pbx-bob { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-2px); } }
+
+/* ---------- Robot (familia de la mascota) ---------- */
+.pbx-rb { display: block; width: 100%; height: 100%; }
+.pbx-rb-body { transform-box: view-box; transform-origin: 28px 56px; transition: transform .2s ease; }
+.pbx-rb-flame { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(.55); opacity: .8; transition: transform .2s ease, opacity .2s ease; }
+.pbx-rb.is-moving .pbx-rb-flame { opacity: 1; animation: pbx-flame .12s ease-in-out infinite alternate; }
+.pbx-rb--E.is-moving .pbx-rb-body,
+.pbx-rb--W.is-moving .pbx-rb-body { transform: rotate(6deg); }
+.pbx-rb--N.is-moving .pbx-rb-body,
+.pbx-rb--S.is-moving .pbx-rb-body { transform: translateY(-1.5px); }
+.pbx-rb-arm { transform-box: fill-box; transform-origin: 50% 8%; }
+.pbx-rb.is-moving .pbx-rb-arm { animation: pbx-arm .24s ease-in-out infinite alternate; }
+html[data-fx="high"] .pbx-rb.is-idle .pbx-rb-body { animation: pbx-hover 2.6s ease-in-out infinite; }
+@keyframes pbx-flame { from { transform: scaleY(.95); } to { transform: scaleY(1.3); } }
+@keyframes pbx-arm { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+@keyframes pbx-hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.6px); } }
+
+/* ---------- Leyenda ---------- */
+.pbx-legend { grid-area: legend; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.pbx-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px 4px 4px;
   border-radius: 12px;
-  padding: 7px 13px;
-  transition: transform .22s var(--fx-ease-spring, ease), box-shadow .22s ease, filter .2s ease, background .2s ease;
+  font-size: .8rem;
+  font-weight: 700;
+  color: inherit;
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
 }
-.pb-btn-primary {
-  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 55%, #ec4899 100%);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -2px 0 rgba(0, 0, 0, 0.18) inset, 0 8px 20px -10px rgba(217, 70, 239, 0.85);
-}
-.pb-btn-success {
-  background: linear-gradient(135deg, #34d399, #10b981 50%, #059669);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 -2px 0 rgba(0, 0, 0, 0.18) inset, 0 8px 20px -8px rgba(16, 185, 129, 0.9);
-  animation: pb-pop .5s var(--fx-ease-spring, ease) both, pb-glow-green 2s ease-in-out .5s infinite;
-}
-.pb-btn:hover:not(:disabled) { transform: translateY(-2px); }
-.pb-btn:active:not(:disabled) { transform: translateY(1px) scale(.97); }
-.pb-btn:focus-visible { outline: 3px solid rgba(244, 114, 182, 0.75); outline-offset: 2px; }
-@keyframes pb-glow-green {
-  0%, 100% { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 0 0 rgba(16, 185, 129, 0.5); }
-  50%      { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 0 8px rgba(16, 185, 129, 0); }
-}
+.pbx-legend__ico { display: flex; width: 22px; height: 22px; border-radius: 6px; overflow: hidden; flex-shrink: 0; background: rgba(0, 0, 0, .2); }
+.pbx-legend__ico svg { width: 100%; height: 100%; }
 
-/* Feedback de acierto / fallo */
-.pb-feedback { border-radius: 12px; padding: 8px 14px; }
-.pb-feedback-ok {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 30px -4px rgba(16, 185, 129, 0.75);
-  animation: pb-pop .55s var(--fx-ease-spring, ease) both, fx-correct-flash .9s ease-out .1s both;
-}
-.pb-feedback-ko {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 26px -6px rgba(239, 68, 68, 0.75);
-  animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97) both, fx-wrong-flash .8s ease-out both;
-}
-.pb-error { border-radius: 12px; animation: fx-rise .4s var(--fx-ease-out, ease-out) both; }
-@keyframes pb-pop {
-  0%   { opacity: 0; transform: scale(.7); }
-  70%  { opacity: 1; transform: scale(1.06); }
-  100% { opacity: 1; transform: scale(1); }
-}
+/* ---------- Programa (lienzo) ---------- */
+.pbx-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pbx-toolbar__spacer { flex: 1; }
+.pbx-run { min-width: 132px; }
 
-/* Modal de código */
-.pb-modal-backdrop {
-  background:
-    radial-gradient(circle at 30% 10%, rgba(139, 92, 246, 0.3), transparent 60%),
-    rgba(6, 4, 20, 0.72);
-}
-.pb-code-modal {
+.pbx-canvas {
+  position: relative;
+  min-height: 240px;
+  padding: 14px 14px 18px;
   border-radius: 22px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 40px 90px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(236, 72, 153, 0.2);
-}
-.pb-lang-tab { transition: color .15s ease, background .2s ease, transform .2s ease; }
-.pb-lang-tab.active { box-shadow: 0 6px 16px -6px rgba(236, 72, 153, 0.8); }
-
-/* Diálogos propios (confirmar borrado / avisos) */
-.pb-dialog {
-  width: 100%;
-  max-width: 400px;
-  padding: 26px 24px 20px;
-  border-radius: 24px;
-  text-align: center;
-  color: #e2e8f0;
   background:
-    radial-gradient(120% 70% at 0% 0%, rgba(139, 92, 246, 0.32), transparent 55%),
-    linear-gradient(180deg, #1e1b4b 0%, #2a0f3a 100%);
-  border: 1px solid rgba(196, 181, 253, 0.3);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 40px 90px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(236, 72, 153, 0.18);
-  animation: pb-pop .4s var(--fx-ease-spring, ease) both;
+    radial-gradient(circle, color-mix(in srgb, var(--gk-accent-2) 22%, transparent) 1px, transparent 1.4px) 0 0 / 20px 20px,
+    linear-gradient(180deg, #fbfbff, #f2f1ff);
+  box-shadow: inset 0 2px 6px rgba(30, 20, 90, .1), inset 0 0 0 1.5px var(--gk-line), 0 14px 30px -26px rgba(30, 20, 90, .5);
+  transition: box-shadow .3s ease;
 }
-.pb-dialog h3 { margin: 10px 0 6px; font-size: 1.25rem; color: #fff; }
-.pb-dialog p { margin: 0 0 18px; color: #cbd5e1; font-size: 0.95rem; line-height: 1.45; }
-.pb-dialog-icon {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto;
+html.dark .pbx-canvas {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .09) 1px, transparent 1.4px) 0 0 / 20px 20px,
+    linear-gradient(180deg, #1b1745, #120f33);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .4), inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.pbx-canvas.is-running { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gk-accent) 70%, transparent), 0 0 0 4px color-mix(in srgb, var(--gk-accent) 18%, transparent); }
+.pbx-canvas--defs { min-height: 0; background-color: transparent; }
+.pbx-canvas__head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: .82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: color-mix(in srgb, var(--pb-func) 75%, var(--gk-ink));
+}
+.pbx-canvas__head small { text-transform: none; letter-spacing: 0; font-weight: 700; color: var(--gk-ink-3); }
+
+/* Bloque "sombrero" de inicio del programa */
+.pbx-hat {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 12px 18px 10px 14px;
+  border-radius: 22px 22px 12px 12px / 18px 18px 12px 12px;
+  font-weight: 700;
+  font-size: .92rem;
+  color: #451a03;
+  background: linear-gradient(180deg, #ffe08a 0%, #ffbf1f 55%, #f59e0b 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -3px 0 #d97706;
+}
+.pbx-hat strong { font-weight: 800; }
+.pbx-hat::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  bottom: -6px;
+  width: 22px;
+  height: 7px;
+  border-radius: 0 0 7px 7px;
+  background: #f59e0b;
+  box-shadow: inset 0 -2px 0 #d97706;
+}
+
+/* Zonas de soltar */
+.pbx-drop { position: relative; display: flex; flex-direction: column; min-height: 44px; border-radius: 12px; transition: background .2s ease, box-shadow .2s ease; }
+.pbx-canvas > .pbx-drop { min-height: 160px; padding-bottom: 8px; }
+.pbx-canvas--defs > .pbx-drop { min-height: 64px; }
+.pbx-drop.is-indent { min-height: 30px; }
+.pbx-drop.is-over { background: color-mix(in srgb, var(--gk-accent) 14%, transparent); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gk-accent) 60%, transparent); }
+.pbx-drop__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  padding: 10px;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--gk-ink-3);
+}
+.pbx-canvas > .pbx-drop.is-empty .pbx-drop__empty {
+  margin-top: 8px;
+  border-radius: 16px;
+  border: 2px dashed color-mix(in srgb, var(--gk-accent-2) 30%, transparent);
+}
+.pbx-drop.is-indent .pbx-drop__empty { font-size: .74rem; padding: 6px; color: color-mix(in srgb, var(--b, #6366f1) 60%, #1e1b4b); font-weight: 800; opacity: .75; }
+html.dark .pbx-drop.is-indent .pbx-drop__empty { color: rgba(255, 255, 255, .7); }
+
+/* ---------- Bloques tipo puzzle (con canto, brillo y muescas) ---------- */
+.pbx-block { --b: var(--pb-move); --bd: var(--pb-move-d); position: relative; color: #fff; user-select: none; cursor: grab; }
+.pbx-block:active { cursor: grabbing; }
+.pbx-block.cat-move { --b: var(--pb-move); --bd: var(--pb-move-d); }
+.pbx-block.cat-action { --b: var(--pb-action); --bd: var(--pb-action-d); }
+.pbx-block.cat-loop { --b: var(--pb-loop); --bd: var(--pb-loop-d); }
+.pbx-block.cat-control { --b: var(--pb-control); --bd: var(--pb-control-d); }
+.pbx-block.cat-vars { --b: var(--pb-vars); --bd: var(--pb-vars-d); }
+.pbx-block.cat-func { --b: var(--pb-func); --bd: var(--pb-func-d); }
+.pbx-block.cat-ops { --b: var(--pb-ops); --bd: var(--pb-ops-d); }
+
+.pbx-block__row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 7px 8px 9px 8px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--b) 78%, white) 0%, var(--b) 38%, color-mix(in srgb, var(--b) 88%, var(--bd)) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -3px 0 var(--bd);
+}
+.pbx-block__ico {
   display: grid;
   place-items: center;
-  border-radius: 16px;
-  color: #451a03;
-  background: linear-gradient(145deg, #fde68a, #f59e0b);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 10px 24px -8px rgba(245, 158, 11, 0.8);
-}
-.pb-dialog-icon.is-danger {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
   color: #fff;
-  background: linear-gradient(145deg, #f87171, #dc2626);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 10px 24px -8px rgba(239, 68, 68, 0.85);
+  background: rgba(255, 255, 255, .22);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .12);
 }
-.pb-dialog-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.pb-btn-danger {
-  background: linear-gradient(135deg, #f87171, #ef4444 50%, #b91c1c);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 -2px 0 rgba(0, 0, 0, 0.18) inset, 0 8px 20px -8px rgba(239, 68, 68, 0.9);
+.pbx-block__txt { font-weight: 700; font-size: .9rem; line-height: 1.15; white-space: nowrap; text-shadow: 0 1px 0 rgba(0, 0, 0, .18); }
+.pbx-block__trash {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(0, 0, 0, .2);
+  cursor: pointer;
+  opacity: .7;
+  transition: opacity .15s ease, background .15s ease, transform .15s ease;
+}
+.pbx-block__trash:hover { opacity: 1; background: #e11d48; transform: scale(1.1); }
+
+/* muesca (hueco) arriba y pestaña abajo: encajan al apilar */
+.pbx-block.is-stack::before,
+.pbx-block.is-container::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 0;
+  width: 22px;
+  height: 6px;
+  border-radius: 0 0 7px 7px;
+  background: rgba(15, 10, 50, .28);
+  z-index: 1;
+  pointer-events: none;
+}
+.pbx-block.is-stack::after,
+.pbx-block.is-container::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  bottom: -6px;
+  width: 22px;
+  height: 7px;
+  border-radius: 0 0 7px 7px;
+  background: color-mix(in srgb, var(--b) 88%, var(--bd));
+  box-shadow: inset 0 -2px 0 var(--bd);
+  z-index: 2;
+  pointer-events: none;
+}
+/* los bloques miden lo que su contenido (como en Scratch), no todo el ancho */
+.pbx-drop > .pbx-block { align-self: flex-start; min-width: 190px; max-width: 100%; }
+.pbx-drop.is-indent > .pbx-block { min-width: 150px; }
+.pbx-hat + .pbx-drop > .pbx-block:first-child::before { opacity: 0; }
+
+/* bloque en C (bucles, condiciones, funciones) */
+.pbx-block.is-container > .pbx-block__head { border-radius: 10px 10px 10px 0; padding-bottom: 8px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45); }
+.pbx-block__head::after {
+  /* pestaña que encaja en el primer bloque de dentro */
+  content: '';
+  position: absolute;
+  left: 32px;
+  bottom: -6px;
+  width: 22px;
+  height: 7px;
+  border-radius: 0 0 7px 7px;
+  background: color-mix(in srgb, var(--b) 88%, var(--bd));
+  z-index: 3;
+}
+.pbx-block__section {
+  position: relative;
+  padding-left: 16px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--b) 88%, var(--bd)) 0 16px, transparent 16px);
+}
+.pbx-block__label {
+  margin-left: -16px;
+  padding: 4px 10px 6px;
+  font-size: .82rem;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--b) 88%, var(--bd));
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .18);
+}
+.pbx-block__mouth {
+  padding: 6px 0 6px 6px;
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--b) 12%, #f6f5ff);
+  box-shadow: inset 3px 0 0 rgba(0, 0, 0, .1), inset 0 2px 4px rgba(15, 10, 50, .08);
+}
+html.dark .pbx-block__mouth { background: rgba(5, 3, 25, .35); }
+.pbx-block__foot {
+  height: 16px;
+  border-radius: 0 10px 10px 10px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--b) 88%, var(--bd)), color-mix(in srgb, var(--b) 80%, var(--bd)));
+  box-shadow: inset 0 -3px 0 var(--bd);
 }
 
+/* Campos dentro del bloque: píldoras blancas / desplegables del color del bloque */
+.pbx-block .pbx-field {
+  min-width: 40px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--gk-font);
+  font-size: .86rem;
+  font-weight: 700;
+  color: #1e1b4b;
+  background: #fff;
+  box-shadow: inset 0 1px 3px rgba(15, 10, 50, .25);
+  outline: none;
+}
+.pbx-block .pbx-field:focus-visible { box-shadow: inset 0 1px 3px rgba(15, 10, 50, .25), 0 0 0 3px rgba(255, 255, 255, .6); }
+.pbx-block .pbx-field--num { text-align: center; -moz-appearance: textfield; }
+.pbx-field--num::-webkit-outer-spin-button,
+.pbx-field--num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pbx-block .pbx-field--select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 24px;
+  color: #fff;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 9px center,
+    color-mix(in srgb, var(--bd) 85%, #000);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
+  cursor: pointer;
+}
+.pbx-block .pbx-field--select option { color: #1e1b4b; background: #fff; }
+.pbx-block .pbx-field:disabled { opacity: .85; cursor: default; }
+
+/* ---------- Paleta ---------- */
+.pbx-palette { display: flex; flex-direction: column; gap: 12px; padding: 14px; }
+.pbx-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--gk-ink);
+}
+.pbx-section-title svg { align-self: center; color: var(--gk-accent); }
+.pbx-section-title small { margin-left: auto; font-size: .72rem; font-weight: 700; color: var(--gk-ink-3); }
+.pbx-palette__cat { display: flex; flex-direction: column; gap: 6px; }
+.pbx-palette__cat-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gk-ink-2);
+}
+.pbx-palette__dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .18); }
+.pbx-palette__cat.cat-move .pbx-palette__dot { background: var(--pb-move); }
+.pbx-palette__cat.cat-action .pbx-palette__dot { background: var(--pb-action); }
+.pbx-palette__cat.cat-loop .pbx-palette__dot { background: var(--pb-loop); }
+.pbx-palette__cat.cat-control .pbx-palette__dot { background: var(--pb-control); }
+.pbx-palette__cat.cat-vars .pbx-palette__dot { background: var(--pb-vars); }
+.pbx-palette__cat.cat-func .pbx-palette__dot { background: var(--pb-func); }
+.pbx-palette__cat.cat-ops .pbx-palette__dot { background: var(--pb-ops); }
+.pbx-palette__items { display: flex; flex-wrap: wrap; gap: 8px; }
+.pbx-block.is-palette { cursor: pointer; transition: transform .15s ease; }
+.pbx-block.is-palette > .pbx-block__row { flex-wrap: nowrap; min-height: 36px; padding: 5px 8px 7px; }
+.pbx-block.is-palette .pbx-block__txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.pbx-block.is-palette.is-c > .pbx-block__row { border-radius: 10px 10px 10px 0; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45); }
+.pbx-block.is-palette.is-c > .pbx-block__foot { width: 46px; height: 10px; }
+.pbx-block.is-palette .pbx-block__txt { font-size: .84rem; }
+.pbx-block.is-palette .pbx-block__ico { width: 22px; height: 22px; }
+.pbx-palette__plus { margin-left: auto; opacity: .55; transition: opacity .15s ease, transform .2s ease; }
+.pbx-block.is-palette:hover { transform: translateX(3px); }
+.pbx-block.is-palette:hover .pbx-palette__plus { opacity: 1; transform: rotate(90deg); }
+.pbx-block.is-palette:active { transform: translateX(3px) scale(.97); }
+.pbx-block.is-palette:focus-visible { outline: 3px solid color-mix(in srgb, var(--b) 60%, white); outline-offset: 2px; border-radius: 10px; }
+
+/* ---------- Errores ---------- */
+.pbx-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 14px;
+  font-family: 'Nunito', var(--gk-font);
+  font-weight: 700;
+  font-size: .9rem;
+  color: #9f1239;
+  background: linear-gradient(180deg, #fff1f2, #ffe4e6);
+  box-shadow: inset 0 0 0 1.5px #fda4af;
+}
+html.dark .pbx-error { color: #fecdd3; background: rgba(244, 63, 94, .12); box-shadow: inset 0 0 0 1.5px rgba(244, 63, 94, .4); }
+
+/* ---------- Modales ---------- */
+.pbx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(15, 10, 40, .58);
+}
+.pbx-dialog {
+  --dt: var(--gk-accent);
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 22px 20px;
+  border-radius: 26px;
+  text-align: center;
+  color: var(--gk-ink);
+  background: linear-gradient(180deg, var(--gk-bg-1, #fff), var(--gk-bg-2, #f5f3ff));
+  box-shadow: 0 0 0 1px var(--gk-line), 0 40px 80px -30px rgba(15, 10, 40, .7);
+}
+.pbx-dialog.is-danger { --dt: #f43f5e; }
+.pbx-dialog__icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 4px;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--dt) 60%, white), var(--dt));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 12px 20px -10px var(--dt);
+}
+.pbx-dialog__title { margin: 0; font-size: 1.3rem; font-weight: 800; }
+.pbx-dialog__text { margin: 0; font-family: 'Nunito', var(--gk-font); font-weight: 600; color: var(--gk-ink-2); }
+.pbx-dialog__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+
+/* Ventana de código */
+.pbx-code {
+  width: min(760px, 100%);
+  max-height: min(80vh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  color: #e2e8f0;
+  background: linear-gradient(180deg, #1b1745, #0f0c29);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 40px 90px -30px rgba(0, 0, 0, .8);
+}
+.pbx-code__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, .05);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.pbx-code__dots { display: inline-flex; gap: 6px; }
+.pbx-code__dots i { width: 11px; height: 11px; border-radius: 50%; background: #f43f5e; }
+.pbx-code__dots i:nth-child(2) { background: #fbbf24; }
+.pbx-code__dots i:nth-child(3) { background: #34d399; }
+.pbx-code__title { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; }
+.pbx-code__close {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, .08);
+  cursor: pointer;
+}
+.pbx-code__close:hover { color: #fff; background: rgba(255, 255, 255, .16); }
+.pbx-code__tools { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px 0; }
+.pbx-code .gk-seg { background: rgba(255, 255, 255, .08); box-shadow: none; }
+.pbx-code .gk-seg__opt { color: #cbd5e1; }
+.pbx-code__pre {
+  flex: 1;
+  margin: 12px 14px 14px;
+  padding: 12px 0;
+  overflow: auto;
+  border-radius: 14px;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: #e0e7ff;
+  background: rgba(0, 0, 0, .35);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.pbx-code__pre code { display: block; min-width: max-content; }
+.pbx-code__line { display: block; padding-right: 16px; white-space: pre; }
+.pbx-code__ln {
+  display: inline-block;
+  width: 3.2em;
+  margin-right: 12px;
+  padding-right: 10px;
+  text-align: right;
+  color: #6366f1;
+  border-right: 1px solid rgba(255, 255, 255, .08);
+  user-select: none;
+}
+
+/* ---------- Mis niveles / compartidos ---------- */
+.pbx-userlevels { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.pbx-userlevel {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-areas: 'thumb info' 'thumb actions';
+  gap: 8px 14px;
+  padding: 14px;
+  border-radius: 22px;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--gk-line), 0 4px 0 var(--gk-key-edge), 0 18px 30px -24px rgba(30, 20, 90, .5);
+}
+.pbx-userlevel__thumb {
+  grid-area: thumb;
+  align-self: start;
+  width: 76px;
+  height: 76px;
+  padding: 4px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 3px 0 #15803d, 0 8px 14px -8px rgba(0, 0, 0, .4);
+}
+.pbx-userlevel__info { grid-area: info; min-width: 0; }
+.pbx-userlevel__info h4 { margin: 0; font-size: 1.1rem; font-weight: 800; }
+.pbx-userlevel__info p { margin: 3px 0 0; font-family: 'Nunito', var(--gk-font); font-weight: 600; font-size: .88rem; color: var(--gk-ink-2); }
+.pbx-userlevel__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.pbx-userlevel__actions { grid-area: actions; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pbx-userlevel__del { width: 36px; height: 36px; }
+.pbx-userlevel__del:hover { color: #e11d48; }
+
+/* ---------- Editor de niveles ---------- */
+.pbx-ed { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.pbx-ed__main { display: grid; grid-template-columns: 268px minmax(0, 1fr); gap: 16px; align-items: start; min-width: 0; }
+.pbx-ed__tools { display: flex; flex-direction: column; gap: 12px; padding: 14px; }
+.pbx-ed__toolgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pbx-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 2px 6px;
+  border: 0;
+  border-radius: 14px;
+  font-family: var(--gk-font);
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px var(--gk-line), 0 3px 0 var(--gk-key-edge);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pbx-tool:hover { transform: translateY(-2px); }
+.pbx-tool.is-active {
+  color: var(--gk-ink);
+  background: color-mix(in srgb, var(--gk-accent) 14%, var(--gk-surface-2));
+  box-shadow: inset 0 0 0 2.5px var(--gk-accent), 0 3px 0 color-mix(in srgb, var(--gk-accent) 60%, #1e1b4b);
+}
+.pbx-tool__art {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  overflow: hidden;
+  color: #e11d48;
+  background: var(--gk-inset);
+}
+.pbx-tool__art > svg { width: 100%; height: 100%; }
+.pbx-tool.is-erase .pbx-tool__art > svg { width: 22px; height: 22px; }
+.pbx-tool.is-robot .pbx-tool__art > svg { width: 30px; height: 34px; }
+.pbx-tool.is-target .pbx-tool__art > svg,
+.pbx-tool.is-item .pbx-tool__art > svg { width: 26px; height: 30px; }
+.pbx-ed__opt { display: flex; flex-direction: column; gap: 6px; }
+.pbx-ed__opt-label { font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--gk-ink-3); }
+.pbx-ed__dirs { display: flex; flex-wrap: wrap; gap: 6px; }
+.pbx-ed__hint { font-family: 'Nunito', var(--gk-font); font-size: .8rem; font-weight: 600; color: var(--gk-ink-3); }
+.pbx-ed__tip {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: .84rem;
+  font-weight: 700;
+  color: #78350f;
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+  box-shadow: inset 0 0 0 1.5px #fcd34d;
+}
+.pbx-ed__tip svg { flex-shrink: 0; color: #d97706; margin-top: 1px; }
+html.dark .pbx-ed__tip { color: #fde68a; background: rgba(251, 191, 36, .1); box-shadow: inset 0 0 0 1.5px rgba(251, 191, 36, .35); }
+.pbx-chipbtn {
+  display: inline-grid;
+  place-items: center;
+  min-width: 38px;
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 12px;
+  font-family: var(--gk-font);
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px var(--gk-line), 0 3px 0 var(--gk-key-edge);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.pbx-chipbtn:hover { transform: translateY(-1px); color: var(--gk-accent); }
+.pbx-chipbtn.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b);
+}
+.pbx-arena--editor { grid-template-areas: 'board' 'legend'; }
+.pbx-arena--editor .pbx-arena__board { padding-top: 22px; }
+.pbx-ed-board { border-radius: 4px; }
+.pbx-ed-cell { cursor: pointer; }
+.pbx-ed-cell:hover { outline: 2px solid #fde68a; outline-offset: -2px; z-index: 8; }
+.pbx-ed-layer { position: absolute; inset: 0; display: flex; }
+.pbx-ed-item { position: absolute; left: 22%; top: 10%; width: 56%; height: 80%; display: flex; pointer-events: none; }
+.pbx-ed-target { position: absolute; left: 18%; top: 10%; width: 64%; height: 80%; display: flex; pointer-events: none; }
+.pbx-ed-robot { position: absolute; left: -10%; top: -52%; width: 120%; height: 137%; display: flex; pointer-events: none; z-index: 5; }
+.pbx-ed__counts { grid-area: legend; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.pbx-arena .pbx-ed__counts .gk-btn--ghost { color: #c7d2fe; }
+.pbx-ed__meta { display: flex; flex-direction: column; gap: 8px; padding: 16px; }
+.pbx-label { font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--gk-ink-3); margin-top: 4px; }
+.pbx-input {
+  width: 100%;
+  padding: 10px 13px;
+  border: 0;
+  border-radius: 14px;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--gk-ink);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px var(--gk-line), inset 0 2px 4px rgba(30, 20, 90, .06);
+  outline: none;
+  transition: box-shadow .2s ease;
+}
+.pbx-input:focus { box-shadow: inset 0 0 0 2px var(--gk-accent), 0 0 0 4px color-mix(in srgb, var(--gk-accent) 18%, transparent); }
+.pbx-input--area { resize: vertical; min-height: 96px; }
+.pbx-switch { display: flex; align-items: center; gap: 10px; margin-top: 6px; cursor: pointer; font-weight: 700; }
+.pbx-switch input { position: absolute; opacity: 0; pointer-events: none; }
+.pbx-switch__track {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--gk-inset);
+  box-shadow: inset 0 1px 3px rgba(30, 20, 90, .25);
+  transition: background .2s ease;
+}
+.pbx-switch__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
+}
+.pbx-switch input:checked + .pbx-switch__track { background: linear-gradient(90deg, #34d399, #10b981); }
+.pbx-switch input:checked + .pbx-switch__track .pbx-switch__knob { transform: translateX(18px); }
+.pbx-switch input:focus-visible + .pbx-switch__track { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 2px; }
+.pbx-switch__text { display: inline-flex; align-items: center; gap: 6px; color: var(--gk-ink); }
+.pbx-ed__info { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1180px) {
+  .pbx .gk-modes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pbx-map__track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pbx-map__track::before { display: none; }
+  .pbx-ed { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+  .pbx-ed__main { grid-template-columns: minmax(0, 1fr); }
+  .pbx-create__grid { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 720px) {
-  .pb-frame.pb-has-fx { border-radius: 20px; }
-  .pb-has-fx .pb-hero { padding: 16px; }
-  .pb-mode-card .pb-mode-icon { width: 46px; height: 46px; font-size: 1.45rem; }
-  .pb-progress-track { width: 48px; }
-  .pb-fx-orb { filter: blur(44px); }
-  .pb-fx-orb--c { display: none; }
+  .pbx .gk-modes__grid { grid-template-columns: minmax(0, 1fr); }
+  .pbx-map__track { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .pbx-station__scene { height: 70px; }
+  .pbx-station__missions { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .pbx-brief { gap: 10px; }
+  .pbx-brief__avatar { width: 62px; height: 62px; }
+  .pbx-brief__avatar .pbx-rb { width: 48px; height: 55px; }
+  .pbx-brief__scene { display: none; }
+  .pbx-brief__eyebrow, .pbx-brief__title, .pbx-brief__goal { max-width: none; }
+  .pbx-brief__title { font-size: 1.12rem; }
+  .pbx-brief__goal { font-size: .9rem; }
+  .pbx-route__finish { width: 100%; }
+  .pbx-arena { padding: 10px; border-radius: 22px; }
+  .pbx-toolbar .pbx-run { flex: 1; }
+  .pbx-userlevels { grid-template-columns: minmax(0, 1fr); }
+  .pbx-ed__toolgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pbx-code__pre { font-size: .8rem; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pb-fx-orb, .pb-fx-star, .pb-hero-badge-dot, .pb-mode-icon-halo, .pb-hero-title h1,
-  .pb-play-text, .pb-progress-fill::after, .pb-btn-success { animation: none !important; }
-  .pb-stagger > *, .pb-mission { animation-duration: .01ms !important; }
-}
+/* El tema oscuro global pinta todos los inputs de oscuro con !important: los
+   campos de los bloques mantienen su aspecto de píldora blanca / desplegable
+   del color del bloque. */
+html.dark .pbx .pbx-block input.pbx-field:not([type="checkbox"]):not([type="radio"]) { background-color: #fff !important; color: #1e1b4b !important; }
+html.dark .pbx .pbx-block select.pbx-field { background-color: color-mix(in srgb, var(--bd) 85%, #000) !important; color: #fff !important; }

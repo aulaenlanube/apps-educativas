@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, ChevronDown, ChevronUp, Send, X } from 'lucide-react';
+import { MessageSquare, ChevronDown, Send, X, ShieldCheck, CheckCircle2, CircleDot, Sparkles } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashCard, DashEmpty, Pill } from '@/components/dashboard/kit';
+import './MyFeedbacksSection.css';
+
+const levelLabel = (level) => (level === 'bachillerato' ? 'Bach.' : level === 'eso' ? 'ESO' : 'Primaria');
 
 /**
  * Reusable section that shows the current user's feedback threads with chat.
  * Can be embedded in any dashboard (teacher, student, free, admin).
+ * Rediseño 2026: hilos como tarjetas de conversación (icono de la app,
+ * estado, novedad) y la conversación en burbujas con su compositor.
  */
 export default function MyFeedbacksSection() {
   const { user, student, role, displayName } = useAuth();
@@ -97,168 +104,175 @@ export default function MyFeedbacksSection() {
 
   if (initialLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <MessageSquare className="w-5 h-5 text-purple-500" />
-          <h2 className="font-bold text-gray-800">Mis comentarios</h2>
+      <DashCard className="mfb" icon={MessageSquare} tone="violet" title="Mis comentarios">
+        <div className="mfb-loading">
+          <span className="mfb-spin" />
         </div>
-        <div className="flex justify-center py-8">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500" />
-        </div>
-      </div>
+      </DashCard>
     );
   }
 
+  const openCount = feedbacks.filter((f) => f.status === 'open').length;
+  const resolvedCount = feedbacks.length - openCount;
+  const newReplies = feedbacks.filter((f) => f.last_sender === 'admin').length;
+
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-      <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-purple-500" />
-          <h2 className="font-bold text-gray-800">Mis comentarios</h2>
-        </div>
-        <span className="text-xs text-slate-400">{feedbacks.length} enviado{feedbacks.length !== 1 ? 's' : ''}</span>
-      </div>
-
+    <DashCard
+      className="mfb"
+      icon={MessageSquare}
+      tone="violet"
+      title="Mis comentarios"
+      subtitle="Tus sugerencias sobre las apps y las respuestas del equipo"
+      actions={<Pill>{feedbacks.length} enviado{feedbacks.length !== 1 ? 's' : ''}</Pill>}
+    >
       {feedbacks.length === 0 ? (
-        <div className="py-10 text-center">
-          <MessageSquare className="w-10 h-10 text-slate-200 mx-auto mb-2" />
-          <p className="text-sm text-slate-400">No has enviado comentarios todavia.</p>
-          <p className="text-xs text-slate-300 mt-1">Puedes enviar sugerencias desde cualquier app.</p>
-        </div>
+        <DashEmpty title="No has enviado comentarios todavía.">
+          Puedes enviar sugerencias desde cualquier app.
+        </DashEmpty>
       ) : (
-        <div className="divide-y divide-slate-50">
-          {feedbacks.map((fb) => (
-            <div key={fb.id}>
-              <button
-                onClick={() => handleExpand(fb.id)}
-                className="w-full px-4 py-3 flex items-start gap-3 hover:bg-slate-50 transition-colors text-left"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <span className="text-sm font-semibold text-slate-800">{fb.app_name}</span>
-                    <span className="text-xs text-slate-400">
-                      {fb.grade}o {fb.level === 'bachillerato' ? 'Bach.' : fb.level === 'eso' ? 'ESO' : 'Primaria'}
-                    </span>
-                    <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${
-                      fb.status === 'open' ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'
-                    }`}>
-                      {fb.status === 'open' ? 'ABIERTO' : 'RESUELTO'}
-                    </span>
-                    {fb.last_sender === 'admin' && (
-                      <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-purple-50 text-purple-600 animate-pulse">
-                        NUEVA RESPUESTA
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-slate-500 truncate">{fb.last_message}</p>
-                  <p className="text-xs text-slate-300 mt-0.5">
-                    {new Date(fb.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
-                    {' · '}{fb.message_count} mensaje{fb.message_count !== 1 ? 's' : ''}
-                  </p>
-                </div>
-                {expandedId === fb.id
-                  ? <ChevronUp className="w-4 h-4 text-slate-400 mt-1 shrink-0" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400 mt-1 shrink-0" />
-                }
-              </button>
+        <>
+          <div className="mfb-stats">
+            <span className="mfb-stat is-open"><CircleDot size={14} /> {openCount} abierto{openCount !== 1 ? 's' : ''}</span>
+            <span className="mfb-stat is-done"><CheckCircle2 size={14} /> {resolvedCount} resuelto{resolvedCount !== 1 ? 's' : ''}</span>
+            {newReplies > 0 && (
+              <span className="mfb-stat is-new"><Sparkles size={14} /> {newReplies} con respuesta nueva</span>
+            )}
+          </div>
 
-              <AnimatePresence>
-                {expandedId === fb.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
+          <div className="mfb-list">
+            {feedbacks.map((fb) => {
+              const isOpen = expandedId === fb.id;
+              const hasNew = fb.last_sender === 'admin';
+              return (
+                <article key={fb.id} className={`mfb-thread${isOpen ? ' is-open' : ''}${hasNew ? ' has-new' : ''}`}>
+                  <button
+                    type="button"
+                    onClick={() => handleExpand(fb.id)}
+                    className="mfb-thread__head"
+                    aria-expanded={isOpen}
                   >
-                    <div className="bg-slate-50 border-t border-slate-100">
-                      {/* Close button */}
-                      <div className="flex items-center justify-between px-4 pt-2 pb-0">
-                        <span className="text-xs text-slate-400">{messages.length} mensaje{messages.length !== 1 ? 's' : ''}</span>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setExpandedId(null); setMessages([]); }}
-                          className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 transition-colors py-1 px-2 rounded-lg hover:bg-slate-200"
-                        >
-                          <X className="w-3.5 h-3.5" />
-                          Ocultar
-                        </button>
-                      </div>
-                      {/* Messages area */}
-                      <div className="px-4 py-2 space-y-2.5 max-h-80 overflow-y-auto">
-                        {messagesLoading ? (
-                          <div className="flex justify-center py-4">
-                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-500" />
-                          </div>
-                        ) : messages.length === 0 ? (
-                          <p className="text-sm text-slate-400 text-center py-4">No hay mensajes</p>
-                        ) : (
-                          messages.map(msg => (
-                            <motion.div
-                              key={msg.id}
-                              initial={{ opacity: 0, y: 8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className={`flex ${msg.sender_type === 'admin' ? 'justify-start' : 'justify-end'}`}
-                            >
-                              <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm ${
-                                msg.sender_type === 'admin'
-                                  ? 'bg-purple-100 text-purple-800 rounded-bl-sm'
-                                  : 'bg-white border border-slate-200 text-slate-700 rounded-br-sm shadow-sm'
-                              }`}>
-                                <p className={`text-[10px] font-bold mb-0.5 ${
-                                  msg.sender_type === 'admin' ? 'text-purple-500' : 'text-slate-400'
-                                }`}>
-                                  {msg.sender_type === 'admin' ? `Admin (${msg.sender_name})` : 'Tu'}
-                                </p>
-                                <p className="whitespace-pre-wrap">{msg.message}</p>
-                                <p className={`text-[10px] mt-1 ${
-                                  msg.sender_type === 'admin' ? 'text-purple-400' : 'text-slate-300'
-                                }`}>
-                                  {new Date(msg.created_at).toLocaleString('es-ES', {
-                                    day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-                                  })}
-                                </p>
-                              </div>
-                            </motion.div>
-                          ))
-                        )}
-                        <div ref={messagesEndRef} />
-                      </div>
+                    <span className="mfb-thread__icon">
+                      {fb.app_id && hasAppIcon(fb.app_id)
+                        ? <AppIcon appId={fb.app_id} size={46} />
+                        : <span className="mfb-thread__fallback"><MessageSquare size={20} /></span>}
+                    </span>
+                    <span className="mfb-thread__body">
+                      <span className="mfb-thread__top">
+                        <strong>{fb.app_name}</strong>
+                        <span className="mfb-thread__course">{fb.grade}º {levelLabel(fb.level)}</span>
+                        <span className={`mfb-status ${fb.status === 'open' ? 'is-open' : 'is-done'}`}>
+                          {fb.status === 'open' ? 'Abierto' : 'Resuelto'}
+                        </span>
+                        {hasNew && <span className="mfb-new">Nueva respuesta</span>}
+                      </span>
+                      <span className="mfb-thread__last">
+                        {fb.last_sender === 'admin' ? <b>Equipo: </b> : fb.last_sender ? <b>Tú: </b> : null}
+                        {fb.last_message}
+                      </span>
+                      <span className="mfb-thread__meta">
+                        {new Date(fb.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
+                        {' · '}{fb.message_count} mensaje{fb.message_count !== 1 ? 's' : ''}
+                      </span>
+                    </span>
+                    <ChevronDown size={18} className="mfb-thread__chev" />
+                  </button>
 
-                      {/* Reply input */}
-                      <div className="flex gap-2 px-4 py-3 border-t border-slate-100 bg-white">
-                        <input
-                          type="text"
-                          value={replyMsg}
-                          onChange={(e) => setReplyMsg(e.target.value)}
-                          placeholder="Escribe una respuesta..."
-                          className="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' && !e.shiftKey) {
-                              e.preventDefault();
-                              handleReply(fb.id);
-                            }
-                          }}
-                          disabled={replyLoading}
-                        />
-                        <button
-                          onClick={() => handleReply(fb.id)}
-                          disabled={replyLoading || !replyMsg.trim()}
-                          className="px-3 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 flex items-center gap-1.5"
-                        >
-                          {replyLoading ? (
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                          ) : (
-                            <Send className="w-4 h-4" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="mfb-conv-wrap"
+                      >
+                        <div className="mfb-conv">
+                          {/* Close button */}
+                          <div className="mfb-conv__bar">
+                            <span>{messages.length} mensaje{messages.length !== 1 ? 's' : ''}</span>
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); setExpandedId(null); setMessages([]); }}
+                              className="mfb-conv__hide"
+                            >
+                              <X size={14} />
+                              Ocultar
+                            </button>
+                          </div>
+                          {/* Messages area */}
+                          <div className="mfb-conv__msgs">
+                            {messagesLoading ? (
+                              <div className="mfb-loading mfb-loading--sm"><span className="mfb-spin" /></div>
+                            ) : messages.length === 0 ? (
+                              <p className="mfb-conv__empty">No hay mensajes</p>
+                            ) : (
+                              messages.map(msg => {
+                                const fromAdmin = msg.sender_type === 'admin';
+                                return (
+                                  <motion.div
+                                    key={msg.id}
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className={`mfb-msg ${fromAdmin ? 'is-admin' : 'is-mine'}`}
+                                  >
+                                    {fromAdmin && <span className="mfb-msg__avatar"><ShieldCheck size={16} /></span>}
+                                    <div className="mfb-msg__bubble">
+                                      <span className="mfb-msg__name">
+                                        {fromAdmin ? `Admin (${msg.sender_name})` : 'Tú'}
+                                      </span>
+                                      <p className="mfb-msg__text">{msg.message}</p>
+                                      <time className="mfb-msg__time">
+                                        {new Date(msg.created_at).toLocaleString('es-ES', {
+                                          day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+                                        })}
+                                      </time>
+                                    </div>
+                                  </motion.div>
+                                );
+                              })
+                            )}
+                            <div ref={messagesEndRef} />
+                          </div>
+
+                          {/* Reply input */}
+                          <div className="mfb-composer">
+                            <input
+                              type="text"
+                              value={replyMsg}
+                              onChange={(e) => setReplyMsg(e.target.value)}
+                              placeholder="Escribe una respuesta..."
+                              className="mfb-composer__input"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' && !e.shiftKey) {
+                                  e.preventDefault();
+                                  handleReply(fb.id);
+                                }
+                              }}
+                              disabled={replyLoading}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleReply(fb.id)}
+                              disabled={replyLoading || !replyMsg.trim()}
+                              className="mfb-composer__send"
+                              aria-label="Enviar respuesta"
+                            >
+                              {replyLoading ? (
+                                <span className="mfb-spin mfb-spin--light" />
+                              ) : (
+                                <Send size={17} />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </article>
+              );
+            })}
+          </div>
+        </>
       )}
-    </div>
+    </DashCard>
   );
 }

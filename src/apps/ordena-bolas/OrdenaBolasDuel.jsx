@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Matter from 'matter-js';
-import { Swords, Trophy, X, LogOut, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Swords, Trophy, LogOut, Target } from 'lucide-react';
 import useDuel from '@/hooks/useDuel';
 import UserAvatar from '@/components/ui/UserAvatar';
 import DuelChatBar from '@/components/duel/DuelChatBar';
-import { drawBallGloss, drawBallLabel } from './ballFx';
+import { GameShell, GameHeader, Chip, GameButton, GameLoading, GameEmpty } from '../_shared/kit';
+import { drawBall3D, drawBallLabel, drawWalls } from './ballFx';
 import './OrdenaBolas.css';
 
 // El duelo es una experiencia rápida y predecible: cantidad fija de bolas, solo
@@ -328,14 +328,15 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
 
     const render = Render.create({
       element: container, engine,
-      options: { width, height, wireframes: false, background: 'transparent', pixelRatio: 1, showSleeping: false },
+      // pixelRatio: nitidez en pantallas densas (solo dibujo; el mundo sigue en px CSS)
+      options: { width, height, wireframes: false, background: 'transparent', pixelRatio: Math.min(2, window.devicePixelRatio || 1), showSleeping: false },
     });
 
     const boxSize = Math.min(620, width - 40);
     const wallThickness = 40;
     const centerX = width / 2;
     const centerY = height / 2;
-    const wallStyle = { fillStyle: '#3730a3', strokeStyle: '#6366f1', lineWidth: 2 };
+    const wallStyle = { fillStyle: '#4f46e5', strokeStyle: '#c7d2fe', lineWidth: 1 };
     const wallOptions = { isStatic: true, render: wallStyle, friction: 1, restitution: 0.2 };
 
     const offset = (boxSize - wallThickness) / 2;
@@ -369,7 +370,7 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
           restitution: 0.9, friction: 0.01, frictionAir: 0.01, density: 0.04,
           label: 'ball',
           plugin: { id: data.id, value: data.value, text: data.label },
-          render: { fillStyle: '#3b82f6', strokeStyle: '#1d4ed8', lineWidth: 3 },
+          render: { fillStyle: '#3b82f6', strokeStyle: '#1d4ed8', lineWidth: 0 }, // contorno: drawBall3D
         }
       );
     });
@@ -402,23 +403,20 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
       if (rot > 0) Composite.rotate(boxComp, rot, { x: centerX, y: centerY });
     });
 
-    // Etiquetas + marcas visuales
+    // Etiquetas + marcas visuales (solo dibujo): recipiente con volumen y
+    // esferas coloreadas según quién las marcó (cian = tú, rosa = rival,
+    // gris = marcada por error).
     Events.on(render, 'afterRender', () => {
       const ctx = render.context; if (!ctx) return;
       ctx.globalAlpha = 1;
-      ctx.font = 'bold 22px Fredoka, Arial, sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const marks = stateRef.current?.marks || {};
+      drawWalls(ctx, [floor, ceiling, leftW, rightW]);
       balls.forEach(ball => {
         const mk = marks[ball.plugin.id];
-        if (mk) {
-          ball.render.fillStyle = '#334155';
-          ball.render.strokeStyle = '#0f172a';
-        }
+        const tone = !mk ? 'idle' : !mk.correct ? 'miss' : (mk.by === me?.id ? 'mine' : 'rival');
         const { x, y } = ball.position;
-        // Brillo esférico (solo dibujo) + etiqueta con sombra suave
-        drawBallGloss(ctx, ball);
-        drawBallLabel(ctx, ball.plugin.text, x, y, mk ? '#e2e8f0' : 'white');
+        drawBall3D(ctx, ball, { tone, pixelRatio: render.options.pixelRatio });
+        drawBallLabel(ctx, ball.plugin.text, x, y, mk ? '#f1f5f9' : 'white', ball.circleRadius * 1.7, 22);
       });
     });
 
@@ -440,47 +438,40 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
     };
   }, [ballsData, difficulty, phase, me?.id, me?.isHost]);
 
-  if (duel.err) return <Err text={duel.err} />;
-  if (duel.loading || !me || !rival) return <Loading />;
+  const shellProps = { accent: '#f43f5e', accent2: '#6366f1', className: 'ob' };
+
+  if (duel.err) return <Err text={duel.err} shellProps={shellProps} />;
+  if (duel.loading || !me || !rival) return <Loading shellProps={shellProps} />;
 
   const myScore    = state?.scores?.[me.id] ?? 0;
   const rivalScore = state?.scores?.[rival.id] ?? 0;
   const nextTarget = state?.remaining?.[0];
+  const iWon = winnerId === me.id;
 
   return (
-    <div className="ob-root min-h-[80vh] flex flex-col items-center p-4 gap-4">
-      <div className="ob-backdrop" aria-hidden="true" />
-      {/* Header con avatares enfrentados (sustituye a la barra plana de antes) */}
-      <div className="ob-duel-head w-full max-w-4xl rounded-2xl shadow-lg overflow-hidden border border-indigo-200">
-        <div className="flex items-stretch bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white">
-          <PlayerHeader
-            side="left"
-            avatarCode={me.selectedAvatarCode}
-            avatarEmoji={me.emoji}
-            avatarColor={me.color}
-            name="Tú"
-            sub={me.name}
-            score={myScore}
-            scoreColor="bg-emerald-400 text-emerald-900"
-          />
-          <div className="flex flex-col items-center justify-center px-3 py-2 bg-black/20">
-            <Swords className="w-5 h-5 mb-1 opacity-90" />
-            <span className="text-[10px] uppercase font-bold tracking-widest opacity-80">Ordena Bolas</span>
-            <span className="mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-indigo-400 to-fuchsia-400 text-white shadow">
-              {BALL_COUNT} bolas
-            </span>
-          </div>
-          <PlayerHeader
-            side="right"
-            avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
-            avatarEmoji={rival.emoji}
-            avatarColor={rival.hidden ? null : rival.color}
-            name={rival.hidden ? 'Rival' : rival.name}
-            sub={rival.hidden ? 'Oculto' : ' '}
-            score={rivalScore}
-            scoreColor="bg-rose-400 text-rose-900"
-          />
-        </div>
+    <GameShell {...shellProps}>
+      <GameHeader compact right={<Chip tone="accent" icon={Swords}>Duelo · {BALL_COUNT} bolas</Chip>} />
+
+      {/* Marcador con avatares enfrentados */}
+      <div className="ob-duel-head">
+        <PlayerHeader
+          avatarCode={me.selectedAvatarCode}
+          avatarEmoji={me.emoji}
+          avatarColor={me.color}
+          name="Tú"
+          sub={me.name}
+          score={myScore}
+        />
+        <span className="ob-vs" aria-hidden="true">VS</span>
+        <PlayerHeader
+          rivalSide
+          avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
+          avatarEmoji={rival.emoji}
+          avatarColor={rival.hidden ? null : rival.color}
+          name={rival.hidden ? 'Rival' : rival.name}
+          sub={rival.hidden ? 'Oculto' : 'Rival'}
+          score={rivalScore}
+        />
       </div>
 
       {phase === 'connecting' && (
@@ -488,131 +479,105 @@ export default function OrdenaBolasDuel({ onGameComplete, registerDuelExit }) {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-700 text-white"
+          className="ob-lobby"
         >
-          <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen"
-               style={{ background: 'radial-gradient(circle at 20% 0%, rgba(244,114,182,0.7), transparent 60%), radial-gradient(circle at 80% 100%, rgba(56,189,248,0.6), transparent 60%)' }} />
-
-          <div className="relative p-6">
-            <div className="grid grid-cols-3 items-center gap-3 mb-4">
-              <DuelistCard
-                avatarCode={me.selectedAvatarCode}
-                avatarEmoji={me.emoji}
-                avatarColor={me.color}
-                name={me.name}
-                tag="Tú"
-                tagClass="bg-emerald-400/90 text-emerald-950"
-                from="left"
-              />
-              <div className="flex flex-col items-center justify-center select-none">
-                <motion.div
-                  initial={{ scale: 0.6, rotate: -10, opacity: 0 }}
-                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.15 }}
-                  className="text-5xl sm:text-6xl font-black drop-shadow-lg"
-                  style={{ background: 'linear-gradient(180deg, #fde68a, #f59e0b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-                >
-                  VS
-                </motion.div>
-                <Sparkles className="w-4 h-4 text-amber-300 mt-1 animate-pulse" />
-              </div>
-              <DuelistCard
-                avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
-                avatarEmoji={rival.emoji}
-                avatarColor={rival.hidden ? null : rival.color}
-                name={rival.hidden ? 'Oculto' : rival.name}
-                tag="Rival"
-                tagClass="bg-rose-400/90 text-rose-950"
-                from="right"
-              />
-            </div>
-            <p className="text-sm text-center text-white/90">
-              {BALL_COUNT} bolas con números, de menor a mayor. El primero en marcar correctamente gana el punto; si falla, el rival se lleva el punto.
-            </p>
-            <div className="mt-3 flex items-center justify-center gap-2 text-white/80 text-xs">
-              <span className="animate-pulse">Preparando partida…</span>
-              <span className="inline-flex gap-1">
-                {[0, 1, 2].map(i => (
-                  <motion.span
-                    key={i}
-                    animate={{ opacity: [0.2, 1, 0.2] }}
-                    transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
-                    className="w-1.5 h-1.5 rounded-full bg-white"
-                  />
-                ))}
-              </span>
-            </div>
+          <div className="ob-lobby__row">
+            <DuelistCard
+              avatarCode={me.selectedAvatarCode}
+              avatarEmoji={me.emoji}
+              avatarColor={me.color}
+              name={me.name}
+              tag="Tú"
+              from="left"
+            />
+            <motion.span
+              initial={{ scale: 0.6, rotate: -10, opacity: 0 }}
+              animate={{ scale: 1, rotate: 0, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.15 }}
+              className="ob-lobby__vs"
+            >
+              VS
+            </motion.span>
+            <DuelistCard
+              avatarCode={rival.hidden ? null : rival.selectedAvatarCode}
+              avatarEmoji={rival.emoji}
+              avatarColor={rival.hidden ? null : rival.color}
+              name={rival.hidden ? 'Oculto' : rival.name}
+              tag="Rival"
+              rival
+              from="right"
+            />
           </div>
+          <p>
+            {BALL_COUNT} bolas con números, de menor a mayor. El primero en marcar correctamente gana el punto; si falla, el rival se lleva el punto.
+          </p>
+          <GameLoading label="Preparando partida…" />
         </motion.div>
       )}
 
       {(phase === 'countdown' || phase === 'playing' || phase === 'ended') && (
-        <div className="relative w-full max-w-4xl">
+        <>
           {phase === 'playing' && nextTarget != null && difficulty?.showNext && (
-            <div className="text-center mb-2">
-              <div className="ob-next">
-              <span className="text-xs uppercase text-slate-500 tracking-widest">Siguiente valor</span>
-              <div className="text-2xl font-black text-indigo-700">
-                {ballsData?.find(b => b.value === nextTarget)?.label} <span className="text-slate-400 text-base font-bold">(= {nextTarget})</span>
-              </div>
-              </div>
+            <div className="ob-next">
+              <small><Target size={13} /> Siguiente valor</small>
+              <span className="ob-next__ball">{ballsData?.find(b => b.value === nextTarget)?.label}</span>
+              <span className="ob-next__eq">= {nextTarget}</span>
             </div>
           )}
-          <div className="ob-stage relative overflow-hidden">
-            <div ref={sceneRef} className="w-full h-[700px] cursor-pointer rounded-xl overflow-hidden bg-slate-50/30" />
-          </div>
+          <div className="ob-stage">
+            <div ref={sceneRef} className="ob-scene ob-scene--duel" />
 
-          <AnimatePresence>
-            {countdown != null && countdown > 0 && (
-              <motion.div key={countdown}
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={{ scale: 1.1, opacity: 1 }}
-                exit={{ scale: 1.4, opacity: 0 }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                style={{ background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)' }}>
-                <div className="ob-countdown" style={{ fontSize: 140, fontWeight: 900, color: '#fbbf24', textShadow: '0 0 40px #f59e0b' }}>
-                  {countdown}
-                </div>
-              </motion.div>
+            <AnimatePresence>
+              {countdown != null && countdown > 0 && (
+                <motion.div key={countdown}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="ob-countdown">
+                  <motion.span initial={{ scale: 0.6 }} animate={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }}>
+                    {countdown}
+                  </motion.span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {phase === 'ended' && (
+              <div className="ob-result">
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className={`ob-duel-end ${iWon ? '' : 'is-lost'}`}
+                >
+                  <span className="ob-duel-end__badge"><Trophy size={36} /></span>
+                  <strong className="ob-duel-end__title">{iWon ? '¡Has ganado!' : 'Has perdido'}</strong>
+                  <div className="ob-duel-end__scores">
+                    <span className="ob-duel-end__score is-me"><b>{myScore}</b><small>Tú</small></span>
+                    <span className="ob-duel-end__score is-rival"><b>{rivalScore}</b><small>Rival</small></span>
+                  </div>
+                  <GameButton size="lg" icon={LogOut} onClick={() => navigate('/mi-panel')}>Salir a mi panel</GameButton>
+                </motion.div>
+              </div>
             )}
-          </AnimatePresence>
-
-          {phase === 'ended' && (
-            <div className="absolute inset-0 bg-black/55 backdrop-blur-sm flex items-center justify-center rounded-xl">
-              <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                className={`ob-result ${winnerId === me.id ? 'ob-result--win' : 'ob-result--lose'} bg-white rounded-2xl shadow-2xl p-8 text-center max-w-md mx-4 border-2 ${winnerId === me.id ? 'border-emerald-500' : 'border-rose-500'}`}>
-                <Trophy className={`ob-trophy w-14 h-14 mx-auto mb-2 ${winnerId === me.id ? 'text-emerald-500' : 'text-rose-400'}`} />
-                <h3 className={`text-2xl font-black ${winnerId === me.id ? 'text-emerald-600' : 'text-rose-600'}`}>
-                  {winnerId === me.id ? '¡Has ganado!' : 'Has perdido'}
-                </h3>
-                <div className="grid grid-cols-2 gap-4 my-4">
-                  <div className="ob-stat"><div className="text-3xl font-black text-emerald-600">{myScore}</div><div className="text-xs text-slate-400 uppercase">Tú</div></div>
-                  <div className="ob-stat"><div className="text-3xl font-black text-rose-500">{rivalScore}</div><div className="text-xs text-slate-400 uppercase">Rival</div></div>
-                </div>
-                <Button onClick={() => navigate('/mi-panel')} className="ob-cta bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-                  <LogOut className="w-4 h-4 mr-2" /> Salir a mi panel
-                </Button>
-              </motion.div>
-            </div>
-          )}
-        </div>
+          </div>
+        </>
       )}
 
-      <div className="ob-layer max-w-3xl text-center text-xs text-slate-500 dark:text-slate-400">
-        <span className="inline-flex items-center gap-1 mr-3"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> acierto → punto para quien marca</span>
-        <span className="inline-flex items-center gap-1"><XCircle className="w-3 h-3 text-rose-500" /> fallo → punto para el rival</span>
+      <div className="ob-legend">
+        <span><i style={{ '--d': '#06b6d4' }} /> Acierto tuyo: punto para ti</span>
+        <span><i style={{ '--d': '#ec4899' }} /> Acierto del rival</span>
+        <span><i style={{ '--d': '#64748b' }} /> Fallo: punto para el otro</span>
       </div>
 
       {/* Botón flotante de frases (chat predefinido) + bocadillo del rival.
           Se autoposiciona (fixed); no necesita wrapper. */}
       <DuelChatBar channel={channel} me={me} rival={rival} />
-    </div>
+    </GameShell>
   );
 }
 
-function PlayerHeader({ side, avatarCode, avatarEmoji, avatarColor, name, sub, score, scoreColor }) {
+function PlayerHeader({ avatarCode, avatarEmoji, avatarColor, name, sub, score, rivalSide = false }) {
   return (
-    <div className={`flex-1 flex items-center gap-3 px-4 py-3 ${side === 'right' ? 'flex-row-reverse text-right' : ''}`}>
+    <div className={`ob-player ${rivalSide ? 'ob-player--rival' : ''}`}>
       <UserAvatar
         selectedAvatarCode={avatarCode}
         avatarEmoji={avatarEmoji}
@@ -620,44 +585,40 @@ function PlayerHeader({ side, avatarCode, avatarEmoji, avatarColor, name, sub, s
         size="md"
         showRarityBorder={false}
       />
-      <div className="min-w-0 flex-1">
-        <p className="text-[10px] uppercase font-bold tracking-widest opacity-80">{name}</p>
-        {sub && <p className="text-sm font-bold truncate">{sub}</p>}
+      <div className="ob-player__info">
+        <span className="ob-player__tag">{name}</span>
+        {sub && <span className="ob-player__name">{sub}</span>}
       </div>
-      <span key={score} className={`ob-score-pop shrink-0 px-2.5 py-1 rounded-lg font-black text-sm shadow ${scoreColor}`}>{score}</span>
+      <span key={score} className="ob-player__score">{score}</span>
     </div>
   );
 }
 
-function DuelistCard({ avatarCode, avatarEmoji, avatarColor, name, tag, tagClass, from }) {
+function DuelistCard({ avatarCode, avatarEmoji, avatarColor, name, tag, rival = false, from }) {
   const initial = from === 'left' ? { x: -50, opacity: 0 } : { x: 50, opacity: 0 };
   return (
     <motion.div
       initial={initial}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-      className="flex flex-col items-center gap-2"
+      className="ob-duelist"
     >
-      <div className="relative">
-        <div className="absolute inset-0 rounded-full blur-2xl opacity-50"
-             style={{ background: from === 'left' ? '#22d3ee' : '#f472b6' }} />
-        <div className="relative">
-          <UserAvatar
-            selectedAvatarCode={avatarCode}
-            avatarEmoji={avatarEmoji}
-            avatarColor={avatarColor}
-            size="hero"
-            showRarityGlow
-          />
-        </div>
-      </div>
-      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest ${tagClass}`}>
-        {tag}
-      </span>
-      <p className="text-sm font-bold truncate max-w-[160px]">{name}</p>
+      <UserAvatar
+        selectedAvatarCode={avatarCode}
+        avatarEmoji={avatarEmoji}
+        avatarColor={avatarColor}
+        size="hero"
+        showRarityGlow
+      />
+      <span className={`ob-duelist__tag ${rival ? 'is-rival' : ''}`}>{tag}</span>
+      <span className="ob-duelist__name">{name}</span>
     </motion.div>
   );
 }
 
-function Loading() { return <div className="min-h-[50vh] flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" /></div>; }
-function Err({ text }) { return <div className="p-8 text-center"><X className="w-10 h-10 mx-auto mb-2 text-rose-500" /><p className="font-bold">Error</p><p className="text-sm text-slate-500">{text}</p></div>; }
+function Loading({ shellProps }) {
+  return <GameShell {...shellProps}><GameLoading label="Conectando con tu rival…" /></GameShell>;
+}
+function Err({ text, shellProps }) {
+  return <GameShell {...shellProps}><GameEmpty title="No se puede jugar el duelo">{text}</GameEmpty></GameShell>;
+}

@@ -31,6 +31,7 @@ import './NavPages.css';
 // por curso viven en services/courseBackgrounds.js. Override por app vía
 // `fondo3D` (true → forzar / false → desactivar) en su config (commonApps.js).
 import { courseBackgroundEnabledForApp, getHeaderPresetName } from '@/services/courseBackgrounds';
+import { AppMetaProvider } from '@/apps/_shared/kit/AppMetaContext';
 
 // ─── Header Presets ───────────────────────────────────────────────────
 // Cada preset define el estilo visual de la cabecera y el layout de la página.
@@ -446,14 +447,25 @@ const AppRunnerPage = () => {
                             <span className={`np-loader-label ${chrome.glassChrome ? '!text-white/80' : ''}`}>Cargando…</span>
                         </div>
                     }>
-                        <AppToRender
-                            isPaused={isDonationModalOpen}
-                            level={level}
-                            grade={grade}
-                            subjectId={activeSubjectId}
-                            onGameComplete={onGameComplete}
-                            registerDuelExit={duelId ? registerDuelExit : undefined}
-                        />
+                        {/* Datos de la app para el kit de interfaz de juego (_shared/kit) */}
+                        <AppMetaProvider value={{
+                            appId: app.id,
+                            name: app.name,
+                            description: app.description,
+                            level,
+                            grade,
+                            subjectId: activeSubjectId,
+                            isDuel: !!duelId,
+                        }}>
+                            <AppToRender
+                                isPaused={isDonationModalOpen}
+                                level={level}
+                                grade={grade}
+                                subjectId={activeSubjectId}
+                                onGameComplete={onGameComplete}
+                                registerDuelExit={duelId ? registerDuelExit : undefined}
+                            />
+                        </AppMetaProvider>
                     </Suspense>
                 </div>
             </div>
@@ -545,4 +557,4 @@ const AppRunnerPage = () => {
     );
 };
 
-export default AppRunnerPage;
+export default AppRunnerPage;

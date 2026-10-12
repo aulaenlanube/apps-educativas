@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, Copy, Play, SkipForward, Crown, Users, Clock, Zap, Trophy, StopCircle, FileText, Shuffle, Check, Layers } from 'lucide-react';
+import {
+  ArrowLeft, Play, SkipForward, Crown, Users, User, Clock, Zap, Trophy, StopCircle, FileText, Shuffle, Check,
+  Layers, Settings2, DoorOpen, BookOpen, Gamepad2, Ban, Circle, Sparkles, Palette, GraduationCap, ListOrdered,
+  BarChart3, Target, Loader2, Shield,
+} from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,17 +16,30 @@ import useBattlePhrases from './useBattlePhrases';
 import BattleRisingMessages from './BattleRisingMessages';
 import { buildQuizQuestions, difficultyLabel, GLOBAL_SUBJECT_ID } from './quizQuestionBuilder';
 import TeamSetupPanel from './TeamSetupPanel';
-import { useTheme } from '@/contexts/ThemeContext';
 import materiasData from '../../../public/data/materias.json';
 import QBBackground from './QBBackground';
 import QBStageAnimation from './QBStageAnimation';
-import UserAvatar from '@/components/ui/UserAvatar';
 import QBStageAnimationSimple from './QBStageAnimationSimple';
+import { GameShell, GameHeader, Hud, HudStat, ProgressBar, Panel, Chip, GameButton, Segmented } from '../_shared/kit';
+import { QBEmblem, QBShape, QBTrophy, QBVerdictArt } from './QBArt';
+import { QBAvatar, QBTimerRing, QBTile, QBLeaderboard, QBDistribution, QBPodium, QBQrCode, QBCodeTiles } from './QBParts';
 import './QuizBattle.css';
 
-const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
-const OPTION_SHAPES = ['⭐', '❤️', '🔵', '🟩']; // emojis por opcion
-const RANK_MEDALS = ['', '1', '2', '3', '4', '5'];
+// Solo presentación (rediseño 2026): letras de las opciones cuando el anti-copia
+// está activo y tono de color de la dificultad.
+const LETTERS = ['A', 'B', 'C', 'D'];
+const difficultyTone = (n) => (n <= 4 ? 'easy' : n <= 6 ? 'medium' : 'exam');
+const BG_ANIM_OPTIONS = [
+  { v: 'none', Icon: Ban, label: 'Sin animación', desc: 'Interfaz limpia' },
+  { v: 'simple', Icon: Circle, label: 'Simple', desc: 'Anillos minimalistas' },
+  { v: 'complex', Icon: Sparkles, label: 'Compleja', desc: 'Efectos espectaculares' },
+];
+const TERM_OPTIONS = [
+  { value: '1', label: '1ª ev.' },
+  { value: '2', label: '2ª ev.' },
+  { value: '3', label: '3ª ev.' },
+  { value: 'none', label: 'No cuenta' },
+];
 
 const getSubjects = (level, grade) => {
   if (!level || !grade) return [];
@@ -43,7 +60,6 @@ export default function QuizBattleHost() {
   const { teacher } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { theme } = useTheme();
 
   // ── Config state ──
   const [sourceMode, setSourceMode] = useState('random'); // 'random' | 'template'
@@ -692,8 +708,6 @@ export default function QuizBattleHost() {
 
   const answeredCount = Object.keys(answers).length;
   const currentQuestion = questions[currentQ];
-  const timerPct = timeLimit > 0 ? (timeLeft / timeLimit) * 100 : 0;
-  const timerColor = timerPct > 50 ? 'qb-timer-green' : timerPct > 25 ? 'qb-timer-yellow' : 'qb-timer-red';
 
   const joinUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/quiz-battle/join/${roomCode}`
@@ -731,686 +745,690 @@ export default function QuizBattleHost() {
   // ═══════════════ RENDER ═══════════════
   const isTimerCritical = phase === 'question' && timeLeft <= 5 && timeLeft > 0;
 
+  // Datos solo de presentación (no alteran el flujo de la batalla).
+  const selectedGroup = groups.find((g) => g.id === selectedGroupId);
+  const selectedTemplate = templates.find((t) => t.id === selectedTemplateId);
+  const diffInfo = difficultyLabel(battleDifficulty);
+  const joinPath = joinUrl.replace(/^https?:\/\//, '').replace(/\/[^/]*$/, '');
+  const answeredPlayers = gamePlayers.filter((p) => answers[p.id] !== undefined);
+  const needsTeams = roomType === 'group' && battleKind === 'team' && confirmedTeams.length < 2;
+  const createDisabled = loading
+    || (quota && quota.remaining <= 0)
+    || (sourceMode === 'random' && !subjectId)
+    || (sourceMode === 'template' && !selectedTemplateId)
+    || needsTeams;
+  const createLabel = loading ? 'Cargando preguntas...'
+    : quota && quota.remaining <= 0 ? 'Sin partidas disponibles'
+      : needsTeams ? 'Configura los equipos primero'
+        : 'Crear sala';
+  const pct = (v, min, max) => `${((v - min) / (max - min)) * 100}%`;
+  // Transiciones de fase cortas y solo de opacidad al salir: con AnimatePresence
+  // mode="wait" la fase siguiente no entra hasta que la anterior termina de salir.
+  const phaseExit = { opacity: 0, transition: { duration: 0.18 } };
+  const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }, exit: phaseExit };
+
   return (
-    <div className={`qb-container ${theme === 'dark' ? 'qb-dark' : ''}`}>
-      <QBBackground />
+    <div className="qb-container">
       <Header subtitle="Batalla" />
 
-      <AnimatePresence mode="wait">
-        {/* ── CONFIG ── */}
-        {phase === 'config' && (
-          <motion.div key="config" className="qb-config"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <div className="qb-config-card">
-              <div className="qb-config-title">Batalla</div>
-
-              {/* Room type selector */}
-              <div className="qb-field">
-                <label>Tipo de sala</label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <button type="button" onClick={() => setRoomType('open')}
-                    className={`qb-toggle-btn ${roomType === 'open' ? 'is-active' : ''}`}>
-                    <Users className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                    Abierta (max {MAX_PLAYERS})
-                  </button>
-                  <button type="button" onClick={() => setRoomType('group')}
-                    className={`qb-toggle-btn ${roomType === 'group' ? 'is-active' : ''}`}>
-                    <Crown className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                    Solo mi grupo
-                  </button>
-                </div>
-              </div>
-
-              {/* Group selector (only for group mode) */}
-              {roomType === 'group' && (
-                <div className="qb-field">
-                  <label>Grupo</label>
-                  <select value={selectedGroupId} onChange={(e) => setSelectedGroupId(e.target.value)}>
-                    <option value="">-- Selecciona un grupo --</option>
-                    {groups.map((g) => (
-                      <option key={g.id} value={g.id}>
-                        {g.name} ({g.student_count || 0} alumnos)
-                        {g.level && g.grade ? ` - ${g.level === 'bachillerato' ? 'Bach.' : g.level === 'primaria' ? 'Prim' : 'ESO'} ${g.grade}` : ''}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              {/* Modalidad: individual vs equipos (solo en modo grupo) */}
-              {roomType === 'group' && selectedGroupId && (
-                <div className="qb-field">
-                  <label>Modalidad</label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                    <button type="button" onClick={() => setBattleKind('individual')}
-                      className={`qb-toggle-btn ${battleKind === 'individual' ? 'is-active' : ''}`}>
-                      <Users className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                      Individual
-                    </button>
-                    <button type="button" onClick={() => setBattleKind('team')}
-                      className={`qb-toggle-btn ${battleKind === 'team' ? 'is-active' : ''}`}>
-                      <Layers className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                      Por equipos
-                    </button>
-                  </div>
-                  {battleKind === 'team' && (
-                    <p style={{ fontSize: '0.7rem', color: 'rgba(251,191,36,0.85)', marginTop: '0.4rem', lineHeight: 1.4 }}>
-                      Solo el representante de cada equipo se conecta al PC. Los demás miembros van presencialmente y reciben los beneficios igual.
-                    </p>
+      <main className="qb-main">
+        <GameShell
+          theme="dark"
+          wide
+          accent="#8b5cf6"
+          accent2="#ec4899"
+          className={`qb-shell qb-shell--host is-${phase}`}
+          scene={<QBBackground />}
+        >
+          <AnimatePresence mode="wait">
+            {/* ── CONFIG ── */}
+            {phase === 'config' && (
+              <motion.div key="config" className="qb-phase qb-config" {...fadeUp}>
+                <GameHeader
+                  title="Quiz Battle"
+                  subtitle="Batalla en directo"
+                  icon={<QBEmblem size={60} />}
+                  right={quota && (
+                    <Chip tone={quota.remaining > 0 ? 'good' : 'bad'} icon={Zap}>
+                      {quota.remaining > 0
+                        ? `${quota.remaining} partida${quota.remaining !== 1 ? 's' : ''} este mes`
+                        : 'Sin partidas este mes'}
+                    </Chip>
                   )}
-                  {battleKind === 'team' && (
-                    <button type="button"
-                      onClick={() => setShowTeamSetup(true)}
-                      className="qb-toggle-btn"
-                      style={{ width: '100%', marginTop: '0.5rem', fontWeight: 800, padding: '0.6rem' }}>
-                      {confirmedTeams.length > 0
-                        ? `✓ ${confirmedTeams.length} equipos configurados (cambiar)`
-                        : '⚙ Configurar equipos'}
-                    </button>
-                  )}
-                </div>
-              )}
+                />
 
-              {/* Source mode */}
-              <div className="qb-field">
-                <label>Origen de las preguntas</label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <button type="button" onClick={() => setSourceMode('random')}
-                    className={`qb-toggle-btn ${sourceMode === 'random' ? 'is-active' : ''}`}>
-                    <Shuffle className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                    Aleatorio
-                  </button>
-                  <button type="button" onClick={() => setSourceMode('template')}
-                    className={`qb-toggle-btn ${sourceMode === 'template' ? 'is-active' : ''}`}>
-                    <FileText className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                    Batalla
-                  </button>
-                </div>
-              </div>
+                <div className="qb-config__grid">
+                  <div className="qb-config__col">
+                    {/* Sala */}
+                    <Panel className="qb-card">
+                      <h2 className="qb-card__title"><DoorOpen size={18} /> Sala</h2>
 
-              {sourceMode === 'random' ? (
-                <>
-                  <div className="qb-field">
-                    <label>Nivel</label>
-                    <select value={level} onChange={(e) => { setLevel(e.target.value); setGrade('1'); }}>
-                      <option value="primaria">Primaria</option>
-                      <option value="eso">ESO</option>
-                      <option value="bachillerato">Bachillerato</option>
-                    </select>
-                  </div>
-
-                  <div className="qb-field">
-                    <label>Curso</label>
-                    <select value={grade} onChange={(e) => setGrade(e.target.value)}>
-                      {(level === 'primaria' ? [1,2,3,4,5,6] : level === 'eso' ? [1,2,3,4] : [1,2]).map((g) => (
-                        <option key={g} value={g}>{g}o {level === 'primaria' ? 'Primaria' : level === 'eso' ? 'ESO' : 'Bach.'}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Dificultad de la batalla — escala 1-10 */}
-                  <div className="qb-field">
-                    <label>
-                      Dificultad: {battleDifficulty}/10
-                      &nbsp;<span style={{ opacity: 0.7, fontWeight: 600 }}>
-                        {difficultyLabel(battleDifficulty).emoji} {difficultyLabel(battleDifficulty).label}
-                      </span>
-                    </label>
-                    <input type="range" min="1" max="10" step="1"
-                      value={typeof battleDifficulty === 'number' ? battleDifficulty : 7}
-                      onChange={(e) => setBattleDifficulty(parseInt(e.target.value, 10))} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6rem', opacity: 0.5, padding: '0 2px' }}>
-                      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                      <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-                    </div>
-                    <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.3rem', lineHeight: 1.3 }}>
-                      {difficultyLabel(battleDifficulty).desc}
-                    </p>
-                  </div>
-
-                  <div className="qb-field">
-                    <label>Asignatura</label>
-                    <select value={subjectId} onChange={(e) => setSubjectId(e.target.value)}>
-                      <option value={GLOBAL_SUBJECT_ID}>🌐 Global (todas las asignaturas)</option>
-                      {subjects.map((s) => (
-                        <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
-                      ))}
-                    </select>
-                    {subjectId === GLOBAL_SUBJECT_ID && (
-                      <p style={{ fontSize: '0.65rem', color: 'rgba(251,191,36,0.8)', marginTop: '0.3rem' }}>
-                        Las preguntas vendrán de TODAS las asignaturas del nivel y curso elegido.
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="qb-field">
-                    <label>Preguntas: {questionCount}</label>
-                    <input type="range" min="5" max="20" value={questionCount}
-                      onChange={(e) => setQuestionCount(parseInt(e.target.value, 10))} />
-                    <div className="qb-range-val">{questionCount}</div>
-                  </div>
-                </>
-              ) : (
-                <div className="qb-field">
-                  <label>Selecciona una batalla</label>
-                  {templates.length === 0 ? (
-                    <p className="qb-faint-text" style={{ fontSize: '0.8rem', padding: '0.5rem 0' }}>
-                      No tienes batallas creadas. Crealas desde el panel del profesor, pestana "Batallas".
-                    </p>
-                  ) : (
-                    <select value={selectedTemplateId} onChange={(e) => setSelectedTemplateId(e.target.value)}>
-                      <option value="">-- Elige batalla --</option>
-                      {templates.map((t) => (
-                        <option key={t.id} value={t.id}>
-                          {t.name} ({t.question_count} preguntas)
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                </div>
-              )}
-
-              <div className="qb-field">
-                <label>Tiempo por pregunta: {timeLimit}s</label>
-                <input type="range" min="10" max="30" step="5" value={timeLimit}
-                  onChange={(e) => setTimeLimit(parseInt(e.target.value, 10))} />
-                <div className="qb-range-val">{timeLimit}s</div>
-              </div>
-
-              {/* Animacion de fondo */}
-              <div className="qb-field">
-                <label>Animacion de fondo</label>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-                  {[
-                    { v: 'none',    icon: '🚫', label: 'Sin animacion',  desc: 'Interfaz limpia' },
-                    { v: 'simple',  icon: '◯',  label: 'Simple',         desc: 'Anillos minimalistas' },
-                    { v: 'complex', icon: '✨', label: 'Compleja',        desc: 'Efectos espectaculares' },
-                  ].map(opt => (
-                    <button key={opt.v} type="button"
-                      onClick={() => setBgAnimMode(opt.v)}
-                      className={`qb-toggle-btn ${bgAnimMode === opt.v ? 'is-active' : ''}`}
-                      style={{ padding: '0.7rem 0.5rem', textAlign: 'center' }}>
-                      <div style={{ fontSize: '1.4rem', marginBottom: 4 }}>{opt.icon}</div>
-                      <div style={{ fontWeight: 800, fontSize: '0.85rem' }}>{opt.label}</div>
-                      <div style={{ fontSize: '0.68rem', opacity: 0.7, marginTop: 2, fontWeight: 500 }}>{opt.desc}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Evaluación a la que suma la batalla (podio: 1º +0,25 · 2º +0,10 · 3º +0,05, cap +1 por evaluación) */}
-              <div className="qb-field">
-                <label>¿A qué evaluación cuenta?</label>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem' }}>
-                  {[
-                    { id: 1,    label: '1ª ev.' },
-                    { id: 2,    label: '2ª ev.' },
-                    { id: 3,    label: '3ª ev.' },
-                    { id: null, label: 'No cuenta' },
-                  ].map(opt => (
-                    <button key={String(opt.id)} type="button"
-                      onClick={() => setBattleTerm(opt.id)}
-                      className={`qb-toggle-btn ${battleTerm === opt.id ? 'is-active' : ''}`}
-                      style={{ fontSize: '0.8rem', padding: '0.4rem 0.3rem' }}>
-                      {opt.label}
-                    </button>
-                  ))}
-                </div>
-                <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.3rem', lineHeight: 1.3 }}>
-                  {battleTerm === null
-                    ? 'Esta batalla no afectará a la nota de los alumnos (solo XP e insignias).'
-                    : `El podio sumará extra a la ${battleTerm}ª evaluación. Máximo +1 por alumno y evaluación.`}
-                </p>
-              </div>
-
-              {/* Anti-copia: cada alumno ve colores distintos */}
-              <div className="qb-field">
-                <label>Anti-copia</label>
-                <button type="button"
-                  onClick={() => setShuffleColors(v => !v)}
-                  className={`qb-toggle-btn ${shuffleColors ? 'is-active' : ''}`}
-                  style={{ width: '100%', textAlign: 'left', padding: '0.8rem 1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ fontSize: '1.3rem' }}>{shuffleColors ? '🎨' : '🔓'}</span>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 800 }}>
-                        {shuffleColors ? 'Colores aleatorios por alumno' : 'Colores iguales para todos'}
+                      <div className="qb-field">
+                        <span className="qb-label">Tipo de sala</span>
+                        <div className="qb-seg-full">
+                          <Segmented
+                            value={roomType}
+                            onChange={setRoomType}
+                            options={[
+                              { value: 'open', label: `Abierta (máx. ${MAX_PLAYERS})`, icon: Users },
+                              { value: 'group', label: 'Solo mi grupo', icon: Crown },
+                            ]}
+                          />
+                        </div>
                       </div>
-                      <div style={{ fontSize: '0.72rem', opacity: 0.7, marginTop: 2, fontWeight: 500 }}>
-                        {shuffleColors
-                          ? 'Cada alumno ve las opciones en colores distintos. Evita copiar "la roja".'
-                          : 'Activa esta opción para que cada alumno vea las opciones con un orden de colores distinto.'}
-                      </div>
-                    </div>
-                  </div>
-                </button>
-              </div>
 
-              {/* Quota info */}
-              {quota && (
-                <div style={{
-                  padding: '0.75rem 1rem', borderRadius: 12, marginBottom: '0.5rem',
-                  background: quota.remaining > 0 ? 'rgba(16,185,129,0.15)' : 'rgba(220,38,38,0.15)',
-                  border: `1px solid ${quota.remaining > 0 ? 'rgba(16,185,129,0.3)' : 'rgba(220,38,38,0.3)'}`,
-                  color: quota.remaining > 0 ? '#6ee7b7' : '#fca5a5',
-                  fontSize: '0.8rem', fontWeight: 600, textAlign: 'center',
-                }}>
-                  {quota.remaining > 0
-                    ? `${quota.remaining} partida${quota.remaining !== 1 ? 's' : ''} disponible${quota.remaining !== 1 ? 's' : ''} este mes (${quota.used}/${quota.quota} usadas)`
-                    : `Limite alcanzado: ${quota.used}/${quota.quota} partidas este mes`}
-                </div>
-              )}
+                      {/* Group selector (only for group mode) */}
+                      {roomType === 'group' && (
+                        <div className="qb-field">
+                          <label className="qb-label" htmlFor="qb-group">Grupo</label>
+                          <select id="qb-group" className="qb-select" value={selectedGroupId} onChange={(e) => setSelectedGroupId(e.target.value)}>
+                            <option value="">-- Selecciona un grupo --</option>
+                            {groups.map((g) => (
+                              <option key={g.id} value={g.id}>
+                                {g.name} ({g.student_count || 0} alumnos)
+                                {g.level && g.grade ? ` - ${g.level === 'bachillerato' ? 'Bach.' : g.level === 'primaria' ? 'Prim' : 'ESO'} ${g.grade}` : ''}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
 
-              <button className="qb-btn-primary" onClick={handleCreateRoom}
-                disabled={
-                  loading
-                  || (quota && quota.remaining <= 0)
-                  || (sourceMode === 'random' && !subjectId)
-                  || (sourceMode === 'template' && !selectedTemplateId)
-                  || (roomType === 'group' && battleKind === 'team' && confirmedTeams.length < 2)
-                }>
-                {loading ? 'Cargando preguntas...'
-                  : quota && quota.remaining <= 0 ? 'Sin partidas disponibles'
-                  : (roomType === 'group' && battleKind === 'team' && confirmedTeams.length < 2)
-                    ? 'Configura los equipos primero'
-                    : 'Crear sala'}
-              </button>
-
-              <button className="qb-btn-back" onClick={() => navigate('/dashboard')}
-                style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
-                <ArrowLeft className="w-4 h-4" /> Volver al panel
-              </button>
-            </div>
-          </motion.div>
-        )}
-
-        {/* ── WAITING ── */}
-        {phase === 'waiting' && (
-          <motion.div key="waiting" className="qb-waiting"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-
-            {/* Mode badge */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4,
-                padding: '0.25rem 0.75rem', borderRadius: 999, fontSize: '0.75rem', fontWeight: 700,
-                background: roomType === 'group' ? 'rgba(139,92,246,0.3)' : 'rgba(16,185,129,0.3)',
-                color: roomType === 'group' ? '#c4b5fd' : '#6ee7b7',
-                border: `1px solid ${roomType === 'group' ? 'rgba(139,92,246,0.4)' : 'rgba(16,185,129,0.4)'}`,
-              }}>
-                {roomType === 'group' ? (
-                  <><Crown className="w-3 h-3" /> Solo grupo: {groups.find((g) => g.id === selectedGroupId)?.name}</>
-                ) : (
-                  <><Users className="w-3 h-3" /> Sala abierta (max {MAX_PLAYERS})</>
-                )}
-              </span>
-            </div>
-
-            <p className="qb-faint-text" style={{ marginBottom: '0.5rem', fontSize: '0.85rem' }}>
-              {roomType === 'group'
-                ? 'Tus alumnos han recibido una notificacion'
-                : 'Comparte este codigo con los jugadores'}
-            </p>
-
-            <div className="qb-room-code" onClick={handleCopyCode} title="Click para copiar">
-              {roomCode}
-            </div>
-            <p className="qb-join-url">{joinUrl}</p>
-
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-              <motion.span
-                className="qb-player-count-ring"
-                key={gamePlayers.length}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-              >
-                {isTeamBattle ? <Layers className="w-4 h-4" /> : <Users className="w-4 h-4" />}
-                {isTeamBattle
-                  ? `${gamePlayers.length}/${confirmedTeams.length} equipos conectados`
-                  : `${gamePlayers.length} jugador${gamePlayers.length !== 1 ? 'es' : ''} en directo`}
-              </motion.span>
-            </div>
-
-            {isTeamBattle ? (
-              <div className="qb-players-grid">
-                <AnimatePresence>
-                  {confirmedTeams.map((t) => {
-                    const connected = gamePlayers.find(p => p.id === t.rep_student_id);
-                    return (
-                      <motion.div key={t.rep_student_id} className="qb-player-card"
-                        initial={{ opacity: 0, scale: 0.7 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.7 }}
-                        style={connected ? {} : { opacity: 0.5, filter: 'grayscale(0.6)' }}>
-                        <div className="qb-player-emoji">
-                          {connected?.selected_avatar_code ? (
-                            <UserAvatar
-                              selectedAvatarCode={connected.selected_avatar_code}
-                              avatarEmoji={connected.emoji}
-                              avatarColor={connected.color}
-                              size="lg"
-                              shape="rounded"
-                              showRarityBorder
+                      {/* Modalidad: individual vs equipos (solo en modo grupo) */}
+                      {roomType === 'group' && selectedGroupId && (
+                        <div className="qb-field">
+                          <span className="qb-label">Modalidad</span>
+                          <div className="qb-seg-full">
+                            <Segmented
+                              value={battleKind}
+                              onChange={setBattleKind}
+                              options={[
+                                { value: 'individual', label: 'Individual', icon: User },
+                                { value: 'team', label: 'Por equipos', icon: Layers },
+                              ]}
                             />
-                          ) : (
-                            <span>{connected ? connected.emoji : '🛡️'}</span>
+                          </div>
+                          {battleKind === 'team' && (
+                            <>
+                              <p className="qb-help is-warn">
+                                Solo el representante de cada equipo se conecta al PC. Los demás miembros van presencialmente y reciben los beneficios igual.
+                              </p>
+                              <GameButton
+                                variant={confirmedTeams.length > 0 ? 'success' : 'warning'}
+                                icon={confirmedTeams.length > 0 ? Check : Settings2}
+                                onClick={() => setShowTeamSetup(true)}
+                                className="qb-wide-btn"
+                              >
+                                {confirmedTeams.length > 0
+                                  ? `${confirmedTeams.length} equipos configurados (cambiar)`
+                                  : 'Configurar equipos'}
+                              </GameButton>
+                            </>
                           )}
                         </div>
-                        <div className="qb-player-name" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                          <span>{t.name}</span>
-                          <span style={{ fontSize: '0.65rem', opacity: 0.7, fontWeight: 600 }}>
-                            {connected
-                              ? `${connected.name} ✓`
-                              : `Esperando rep (${t.member_ids.length} miembros)`}
-                          </span>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </div>
-            ) : (
-              <div className="qb-players-grid">
-                <AnimatePresence>
-                  {gamePlayers.map((p) => (
-                    <motion.div key={p.id} className="qb-player-card"
-                      initial={{ opacity: 0, scale: 0.7 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.7 }}>
-                      <div className="qb-player-emoji">
-                        {p.selected_avatar_code ? (
-                          <UserAvatar
-                            selectedAvatarCode={p.selected_avatar_code}
-                            avatarEmoji={p.emoji}
-                            avatarColor={p.color}
-                            size="lg"
-                            shape="rounded"
-                            showRarityBorder
+                      )}
+                    </Panel>
+
+                    {/* Preguntas */}
+                    <Panel className="qb-card">
+                      <h2 className="qb-card__title"><BookOpen size={18} /> Preguntas</h2>
+
+                      <div className="qb-field">
+                        <span className="qb-label">Origen de las preguntas</span>
+                        <div className="qb-seg-full">
+                          <Segmented
+                            value={sourceMode}
+                            onChange={setSourceMode}
+                            options={[
+                              { value: 'random', label: 'Aleatorio', icon: Shuffle },
+                              { value: 'template', label: 'Batalla', icon: FileText },
+                            ]}
                           />
-                        ) : (
-                          <span>{p.emoji}</span>
-                        )}
+                        </div>
                       </div>
-                      <div className="qb-player-name">{p.name}</div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
+
+                      {sourceMode === 'random' ? (
+                        <>
+                          <div className="qb-field-row">
+                            <div className="qb-field">
+                              <label className="qb-label" htmlFor="qb-level">Nivel</label>
+                              <select id="qb-level" className="qb-select" value={level} onChange={(e) => { setLevel(e.target.value); setGrade('1'); }}>
+                                <option value="primaria">Primaria</option>
+                                <option value="eso">ESO</option>
+                                <option value="bachillerato">Bachillerato</option>
+                              </select>
+                            </div>
+                            <div className="qb-field">
+                              <label className="qb-label" htmlFor="qb-grade">Curso</label>
+                              <select id="qb-grade" className="qb-select" value={grade} onChange={(e) => setGrade(e.target.value)}>
+                                {(level === 'primaria' ? [1, 2, 3, 4, 5, 6] : level === 'eso' ? [1, 2, 3, 4] : [1, 2]).map((g) => (
+                                  <option key={g} value={g}>{g}º {level === 'primaria' ? 'Primaria' : level === 'eso' ? 'ESO' : 'Bach.'}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+
+                          <div className="qb-field">
+                            <label className="qb-label" htmlFor="qb-subject">Asignatura</label>
+                            <select id="qb-subject" className="qb-select" value={subjectId} onChange={(e) => setSubjectId(e.target.value)}>
+                              <option value={GLOBAL_SUBJECT_ID}>🌐 Global (todas las asignaturas)</option>
+                              {subjects.map((s) => (
+                                <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
+                              ))}
+                            </select>
+                            {subjectId === GLOBAL_SUBJECT_ID && (
+                              <p className="qb-help is-warn">Las preguntas vendrán de TODAS las asignaturas del nivel y curso elegido.</p>
+                            )}
+                          </div>
+
+                          {/* Dificultad de la batalla — escala 1-10 */}
+                          <div className="qb-field">
+                            <div className="qb-field__head">
+                              <label className="qb-label" htmlFor="qb-diff">Dificultad</label>
+                              <span className="qb-field__value">
+                                {battleDifficulty}<small>/10</small>{' '}
+                                <Chip tone="mode" className={`gk-tone-${difficultyTone(battleDifficulty)}`}>{diffInfo.label}</Chip>
+                              </span>
+                            </div>
+                            <input
+                              id="qb-diff" className="qb-range" type="range" min="1" max="10" step="1"
+                              value={typeof battleDifficulty === 'number' ? battleDifficulty : 7}
+                              style={{ '--p': pct(typeof battleDifficulty === 'number' ? battleDifficulty : 7, 1, 10) }}
+                              onChange={(e) => setBattleDifficulty(parseInt(e.target.value, 10))}
+                            />
+                            <div className="qb-range-scale">
+                              {Array.from({ length: 10 }).map((_, i) => <span key={i}>{i + 1}</span>)}
+                            </div>
+                            <p className="qb-help">{diffInfo.desc}</p>
+                          </div>
+
+                          <div className="qb-field">
+                            <div className="qb-field__head">
+                              <label className="qb-label" htmlFor="qb-count">Número de preguntas</label>
+                              <span className="qb-field__value">{questionCount}</span>
+                            </div>
+                            <input
+                              id="qb-count" className="qb-range" type="range" min="5" max="20" value={questionCount}
+                              style={{ '--p': pct(questionCount, 5, 20) }}
+                              onChange={(e) => setQuestionCount(parseInt(e.target.value, 10))}
+                            />
+                          </div>
+                        </>
+                      ) : (
+                        <div className="qb-field">
+                          <label className="qb-label" htmlFor="qb-template">Selecciona una batalla</label>
+                          {templates.length === 0 ? (
+                            <p className="qb-help">
+                              No tienes batallas creadas. Créalas desde el panel del profesor, pestaña &quot;Batallas&quot;.
+                            </p>
+                          ) : (
+                            <select id="qb-template" className="qb-select" value={selectedTemplateId} onChange={(e) => setSelectedTemplateId(e.target.value)}>
+                              <option value="">-- Elige batalla --</option>
+                              {templates.map((t) => (
+                                <option key={t.id} value={t.id}>
+                                  {t.name} ({t.question_count} preguntas)
+                                </option>
+                              ))}
+                            </select>
+                          )}
+                        </div>
+                      )}
+                    </Panel>
+                  </div>
+
+                  <div className="qb-config__col">
+                    {/* Partida */}
+                    <Panel className="qb-card">
+                      <h2 className="qb-card__title"><Gamepad2 size={18} /> Partida</h2>
+
+                      <div className="qb-field">
+                        <div className="qb-field__head">
+                          <label className="qb-label" htmlFor="qb-time">Tiempo por pregunta</label>
+                          <span className="qb-field__value">{timeLimit}<small>s</small></span>
+                        </div>
+                        <input
+                          id="qb-time" className="qb-range" type="range" min="10" max="30" step="5" value={timeLimit}
+                          style={{ '--p': pct(timeLimit, 10, 30) }}
+                          onChange={(e) => setTimeLimit(parseInt(e.target.value, 10))}
+                        />
+                      </div>
+
+                      {/* Animación de fondo */}
+                      <div className="qb-field">
+                        <span className="qb-label">Animación de fondo</span>
+                        <div className="qb-choices">
+                          {BG_ANIM_OPTIONS.map((opt) => (
+                            <button
+                              key={opt.v}
+                              type="button"
+                              aria-pressed={bgAnimMode === opt.v}
+                              onClick={() => setBgAnimMode(opt.v)}
+                              className={`qb-choice ${bgAnimMode === opt.v ? 'is-active' : ''}`}
+                            >
+                              <span className="qb-choice__icon"><opt.Icon size={18} /></span>
+                              <strong>{opt.label}</strong>
+                              <small>{opt.desc}</small>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Evaluación a la que suma la batalla (podio: 1º +0,25 · 2º +0,10 · 3º +0,05, cap +1 por evaluación) */}
+                      <div className="qb-field">
+                        <span className="qb-label">¿A qué evaluación cuenta?</span>
+                        <div className="qb-seg-full">
+                          <Segmented
+                            size="sm"
+                            value={battleTerm === null ? 'none' : String(battleTerm)}
+                            onChange={(v) => setBattleTerm(v === 'none' ? null : Number(v))}
+                            options={TERM_OPTIONS}
+                          />
+                        </div>
+                        <p className="qb-help">
+                          {battleTerm === null
+                            ? 'Esta batalla no afectará a la nota de los alumnos (solo XP e insignias).'
+                            : `El podio sumará extra a la ${battleTerm}ª evaluación. Máximo +1 por alumno y evaluación.`}
+                        </p>
+                      </div>
+
+                      {/* Anti-copia: cada alumno ve colores distintos */}
+                      <div className="qb-field">
+                        <span className="qb-label">Anti-copia</span>
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={shuffleColors}
+                          onClick={() => setShuffleColors((v) => !v)}
+                          className={`qb-switch ${shuffleColors ? 'is-on' : ''}`}
+                        >
+                          <span className="qb-switch__icon"><Palette size={20} /></span>
+                          <span className="qb-switch__text">
+                            <strong>{shuffleColors ? 'Colores aleatorios por alumno' : 'Colores iguales para todos'}</strong>
+                            <small>
+                              {shuffleColors
+                                ? 'Cada alumno ve las opciones en colores distintos. Evita copiar "la roja".'
+                                : 'Activa esta opción para que cada alumno vea las opciones con un orden de colores distinto.'}
+                            </small>
+                          </span>
+                          <span className="qb-switch__track"><span className="qb-switch__knob" /></span>
+                        </button>
+                      </div>
+                    </Panel>
+
+                    {/* Resumen + crear sala */}
+                    <Panel variant="screen" className="qb-ticket">
+                      <span className="qb-kicker">Resumen de la batalla</span>
+                      <div className="qb-ticket__stats">
+                        <div className="qb-ticket__stat">
+                          <strong>{sourceMode === 'random' ? questionCount : (selectedTemplate?.question_count ?? '—')}</strong>
+                          <span>Preguntas</span>
+                        </div>
+                        <div className="qb-ticket__stat">
+                          <strong>{timeLimit}s</strong>
+                          <span>Por pregunta</span>
+                        </div>
+                        <div className="qb-ticket__stat">
+                          <strong>{sourceMode === 'random' ? `${battleDifficulty}/10` : <FileText size={26} />}</strong>
+                          <span>{sourceMode === 'random' ? 'Dificultad' : 'Plantilla'}</span>
+                        </div>
+                      </div>
+                      <div className="qb-ticket__tags">
+                        <Chip icon={roomType === 'group' ? Crown : Users}>
+                          {roomType === 'group' ? (selectedGroup?.name || 'Solo mi grupo') : 'Sala abierta'}
+                        </Chip>
+                        {roomType === 'group' && battleKind === 'team' && <Chip icon={Layers}>Por equipos</Chip>}
+                        <Chip icon={GraduationCap}>{battleTerm === null ? 'No cuenta para nota' : `${battleTerm}ª evaluación`}</Chip>
+                        {shuffleColors && <Chip icon={Palette}>Anti-copia</Chip>}
+                      </div>
+
+                      {/* Quota info */}
+                      {quota && (
+                        <div className={`qb-quota ${quota.remaining > 0 ? '' : 'is-out'}`}>
+                          <span>
+                            {quota.remaining > 0
+                              ? `${quota.remaining} partida${quota.remaining !== 1 ? 's' : ''} disponible${quota.remaining !== 1 ? 's' : ''} este mes (${quota.used}/${quota.quota} usadas)`
+                              : `Límite alcanzado: ${quota.used}/${quota.quota} partidas este mes`}
+                          </span>
+                          <ProgressBar value={quota.used} max={quota.quota || 1} tone={quota.remaining > 0 ? 'good' : 'bad'} />
+                        </div>
+                      )}
+
+                      <GameButton
+                        variant="primary"
+                        size="lg"
+                        icon={loading ? Loader2 : Zap}
+                        onClick={handleCreateRoom}
+                        disabled={createDisabled}
+                        className="qb-wide-btn"
+                      >
+                        {createLabel}
+                      </GameButton>
+                      <GameButton variant="ghost" icon={ArrowLeft} onClick={() => navigate('/dashboard')} className="qb-wide-btn">
+                        Volver al panel
+                      </GameButton>
+                    </Panel>
+                  </div>
+                </div>
+              </motion.div>
             )}
 
-            <button className="qb-btn-primary" onClick={handleStart}
-              disabled={gamePlayers.length < 1}
-              style={{ maxWidth: 320, margin: '0 auto' }}>
-              <Play className="w-5 h-5" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-              Empezar ({questions.length} preguntas)
-            </button>
-          </motion.div>
-        )}
+            {/* ── WAITING ── */}
+            {phase === 'waiting' && (
+              <motion.div key="waiting" className="qb-phase qb-lobby" {...fadeUp}>
+                <div className="qb-lobby__bar">
+                  <Chip tone={roomType === 'group' ? 'accent' : 'good'} icon={roomType === 'group' ? Crown : Users}>
+                    {roomType === 'group' ? `Solo grupo: ${selectedGroup?.name || ''}` : `Sala abierta (máx. ${MAX_PLAYERS})`}
+                  </Chip>
+                  {isTeamBattle && <Chip icon={Layers}>Por equipos</Chip>}
+                  <Chip icon={ListOrdered}>{questions.length} preguntas</Chip>
+                  <Chip icon={Clock}>{timeLimit} s por pregunta</Chip>
+                  <Chip icon={GraduationCap}>{battleTerm === null ? 'No cuenta para nota' : `${battleTerm}ª evaluación`}</Chip>
+                  {shuffleColors && <Chip icon={Palette}>Anti-copia</Chip>}
+                </div>
 
-        {/* ── QUESTION ── */}
-        {phase === 'countdown' && (
-          <motion.div key="countdown-host" className="qb-countdown"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
-            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity="normal" />}
-            <p className="qb-countdown-label">Preparate...</p>
-            <motion.div
-              key={`cd${countdownValue}`}
-              className="qb-countdown-num"
-              initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              exit={{ scale: 1.6, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 14 }}
-            >
-              {countdownValue}
-            </motion.div>
-          </motion.div>
-        )}
-
-        {phase === 'question' && currentQuestion && (
-          <motion.div key={`q${currentQ}`} className="qb-question-screen"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-
-            {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
-            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
-
-            <div className="qb-header">
-              <span className="qb-q-number">Pregunta {currentQ + 1}/{questions.length}</span>
-              <span className="qb-answer-count">
-                {answeredCount}/{gamePlayers.length} respuestas
-              </span>
-            </div>
-
-            <div className="qb-timer-bar">
-              <div className={`qb-timer-fill ${timerColor}`} style={{ width: `${timerPct}%` }} />
-            </div>
-
-            <div className={`qb-timer-big ${isTimerCritical ? 'is-critical' : ''}`}>{timeLeft}</div>
-
-            <motion.div
-              key={`qtext${currentQ}`}
-              className="qb-question-text"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
-            >
-              {currentQuestion.question}
-            </motion.div>
-
-            <div className="qb-options-grid">
-              {currentQuestion.options.map((opt, i) => (
-                <motion.div key={i} className={`qb-option qb-opt-${i}`} style={{ cursor: 'default' }}
-                  initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
-                >
-                  <span className="qb-opt-shape">{OPTION_SHAPES[i]}</span>
-                  <span>{opt}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            <button
-              className="qb-btn-primary"
-              onClick={handleCloseQuestion}
-              style={{ maxWidth: 360, margin: '1.5rem auto 0', background: 'linear-gradient(135deg, #dc2626, #7f1d1d)', boxShadow: '0 4px 20px rgba(220,38,38,0.4)' }}
-            >
-              <StopCircle className="w-5 h-5" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-              Cerrar pregunta ({answeredCount}/{gamePlayers.length})
-            </button>
-          </motion.div>
-        )}
-
-        {/* ── RESULTS ── */}
-        {phase === 'results' && currentQuestion && (
-          <motion.div key="results" className="qb-results"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-
-            <div className="qb-results-title">
-              Respuesta correcta: <strong style={{ color: '#10b981' }}>{currentQuestion.correct}</strong>
-            </div>
-
-            {/* Distribution chart — si shuffleColors, mostramos por texto (los colores
-                que vio cada alumno son distintos, así que el color deja de tener sentido
-                como identificador). */}
-            <div className="qb-chart">
-              {currentQuestion.options.map((opt, i) => {
-                const count = distribution[i];
-                const maxCount = Math.max(...distribution, 1);
-                const pct = (count / maxCount) * 100;
-                const isCorrect = i === currentQuestion.correctIndex;
-                const labelBg = shuffleColors
-                  ? (isCorrect ? '#10b981' : '#64748b')
-                  : OPTION_COLORS[i];
-                const barBg = shuffleColors
-                  ? (isCorrect ? '#10b981' : 'rgba(100,116,139,0.85)')
-                  : OPTION_COLORS[i];
-                const label = shuffleColors
-                  ? ['A', 'B', 'C', 'D'][i]
-                  : OPTION_SHAPES[i];
-                return (
-                  <div key={i} className="qb-chart-row">
-                    <div className="qb-chart-label" style={{ background: labelBg }}>
-                      {label}
-                    </div>
-                    <div className="qb-chart-bar-track">
-                      <motion.div
-                        className={`qb-chart-bar-fill ${isCorrect ? 'is-correct' : ''}`}
-                        style={{ background: barBg }}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${Math.max(pct, 8)}%` }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                      >
-                        {opt}
-                        {isCorrect && (
-                          <Check className="w-4 h-4" style={{ marginLeft: 'auto', marginRight: 6 }} />
-                        )}
-                      </motion.div>
-                    </div>
-                    <span className="qb-chart-count">{count}</span>
+                <Panel variant="screen" className="qb-joinboard">
+                  <div className="qb-joinboard__info">
+                    <span className="qb-kicker">
+                      {roomType === 'group'
+                        ? 'Tus alumnos han recibido una notificación'
+                        : 'Comparte este código con los jugadores'}
+                    </span>
+                    <p className="qb-joinboard__url">Entra en <strong>{joinPath}</strong> con el código</p>
+                    <QBCodeTiles code={roomCode} onCopy={handleCopyCode} />
+                    <p className="qb-joinboard__full">{joinUrl}</p>
                   </div>
-                );
-              })}
-            </div>
+                  <div className="qb-qrcard">
+                    <QBQrCode value={joinUrl} size={188} />
+                    <span>Escanea y juega</span>
+                  </div>
+                </Panel>
 
-            {/* Leaderboard top 5 */}
-            <div className="qb-leaderboard">
-              <div className="qb-lb-title">
-                <Trophy className="w-4 h-4" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                Clasificacion
-              </div>
-              {leaderboard.slice(0, 5).map((p, i) => (
-                <motion.div key={p.id} className="qb-lb-row"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}>
-                  <span className="qb-lb-rank">
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
-                  </span>
-                  <span className="qb-lb-emoji">
-                    {p.selected_avatar_code ? (
-                      <UserAvatar
-                        selectedAvatarCode={p.selected_avatar_code}
-                        avatarEmoji={p.emoji}
-                        avatarColor={p.color}
-                        size="md"
-                        shape="rounded"
-                        showRarityBorder
-                      />
-                    ) : (
-                      p.emoji
-                    )}
-                  </span>
-                  <span className="qb-lb-name">{p.name}</span>
-                  {p.lastDelta > 0 && (
-                    <span className="qb-lb-delta">+{p.lastDelta}</span>
-                  )}
-                  <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
-                </motion.div>
-              ))}
-            </div>
+                <Panel className="qb-roster">
+                  <div className="qb-roster__head">
+                    <motion.span
+                      className="qb-live"
+                      key={gamePlayers.length}
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                    >
+                      <i />
+                      {isTeamBattle
+                        ? `${gamePlayers.length}/${confirmedTeams.length} equipos conectados`
+                        : `${gamePlayers.length} jugador${gamePlayers.length !== 1 ? 'es' : ''} en directo`}
+                    </motion.span>
+                    <GameButton variant="success" size="lg" icon={Play} onClick={handleStart} disabled={gamePlayers.length < 1}>
+                      Empezar ({questions.length} preguntas)
+                    </GameButton>
+                  </div>
 
-            <button className="qb-btn-primary" onClick={handleNext}
-              style={{ maxWidth: 360, margin: '0 auto' }}>
-              <SkipForward className="w-5 h-5" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-              {currentQ + 1 < questions.length
-                ? `Siguiente (${currentQ + 2}/${questions.length})`
-                : 'Ver resultados finales'}
-            </button>
-          </motion.div>
-        )}
-
-        {/* ── FINAL ── */}
-        {phase === 'final' && (
-          <motion.div key="final" className="qb-final"
-            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-
-            <motion.div className="qb-final-title"
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 14 }}>
-              🏆 Resultado Final 🏆
-            </motion.div>
-
-            {/* Podium top 3 */}
-            <div className="qb-podium">
-              {leaderboard[0] && <span className="qb-podium-rays" />}
-              {[1, 0, 2].map((podiumIdx) => {
-                const p = leaderboard[podiumIdx];
-                if (!p) return null;
-                const delay = podiumIdx === 0 ? 0.7 : podiumIdx === 1 ? 0.3 : 1.0;
-                return (
-                  <motion.div key={p.id} className={`qb-podium-col qb-podium-${podiumIdx + 1}`}
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay, type: 'spring', stiffness: 120, damping: 18 }}>
-                    <div className="qb-podium-emoji">
-                      {p.selected_avatar_code ? (
-                        <UserAvatar
-                          selectedAvatarCode={p.selected_avatar_code}
-                          avatarEmoji={p.emoji}
-                          avatarColor={p.color}
-                          size="xl"
-                          shape="rounded"
-                          showRarityBorder
-                          showRarityGlow
-                        />
-                      ) : (
-                        p.emoji
-                      )}
+                  {isTeamBattle ? (
+                    <div className="qb-teams">
+                      <AnimatePresence>
+                        {confirmedTeams.map((t) => {
+                          const connected = gamePlayers.find((p) => p.id === t.rep_student_id);
+                          return (
+                            <motion.div
+                              key={t.rep_student_id}
+                              className={`qb-team ${connected ? 'is-ready' : 'is-waiting'}`}
+                              initial={{ opacity: 0, scale: 0.7 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.7 }}
+                            >
+                              {connected
+                                ? <QBAvatar p={connected} size="md" />
+                                : <span className="qb-team__shield"><Shield size={24} /></span>}
+                              <span className="qb-team__text">
+                                <strong>{t.name}</strong>
+                                <small className={connected ? 'is-ok' : ''}>
+                                  {connected ? `${connected.name} ✓` : `Esperando rep (${t.member_ids.length} miembros)`}
+                                </small>
+                              </span>
+                            </motion.div>
+                          );
+                        })}
+                      </AnimatePresence>
                     </div>
-                    <div className="qb-podium-name">{p.name}</div>
-                    <div className="qb-podium-score">{p.score.toLocaleString('es-ES')} pts</div>
-                    <motion.div className="qb-podium-bar"
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      style={{ transformOrigin: 'bottom' }}
-                      transition={{ delay: delay + 0.1, duration: 0.6, ease: 'easeOut' }}>
-                      {podiumIdx + 1}
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                  ) : gamePlayers.length === 0 ? (
+                    <div className="qb-roster__empty">
+                      <QBEmblem size={64} />
+                      <strong>Esperando jugadores<span className="qb-dots"><i /><i /><i /></span></strong>
+                      <span>Aparecerán aquí en cuanto se unan con el código.</span>
+                    </div>
+                  ) : (
+                    <div className="qb-chips">
+                      <AnimatePresence>
+                        {gamePlayers.map((p) => (
+                          <motion.span
+                            key={p.id}
+                            className="qb-pchip"
+                            initial={{ opacity: 0, scale: 0.4, y: 16 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.6 }}
+                            transition={{ type: 'spring', stiffness: 380, damping: 18 }}
+                          >
+                            <QBAvatar p={p} size="md" />
+                            <span>{p.name}</span>
+                          </motion.span>
+                        ))}
+                      </AnimatePresence>
+                    </div>
+                  )}
+                </Panel>
+              </motion.div>
+            )}
 
-            {/* Full ranking */}
-            <div className="qb-leaderboard">
-              <div className="qb-lb-title">Clasificacion completa</div>
-              {leaderboard.map((p, i) => (
-                <motion.div key={p.id} className="qb-lb-row"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.4 + i * 0.05, duration: 0.3 }}>
-                  <span className="qb-lb-rank">
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
-                  </span>
-                  <span className="qb-lb-emoji">
-                    {p.selected_avatar_code ? (
-                      <UserAvatar
-                        selectedAvatarCode={p.selected_avatar_code}
-                        avatarEmoji={p.emoji}
-                        avatarColor={p.color}
-                        size="md"
-                        shape="rounded"
-                        showRarityBorder
-                      />
-                    ) : (
-                      p.emoji
-                    )}
-                  </span>
-                  <span className="qb-lb-name">{p.name}</span>
-                  <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
+            {/* ── COUNTDOWN ── */}
+            {phase === 'countdown' && (
+              <motion.div key="countdown-host" className="qb-phase qb-countdown"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={phaseExit}>
+                {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
+                {bgAnimMode === 'simple' && <QBStageAnimationSimple intensity="normal" />}
+                <span className="qb-countdown__label">¡Prepárate!</span>
+                <div className="qb-countdown__ring">
+                  <span key={`burst${countdownValue}`} className="qb-countdown__burst" />
+                  <motion.span
+                    key={`cd${countdownValue}`}
+                    className="qb-countdown__num"
+                    initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 14 }}
+                  >
+                    {countdownValue}
+                  </motion.span>
+                </div>
+                <span className="qb-countdown__sub">{questions.length} preguntas · {timeLimit} s cada una</span>
+              </motion.div>
+            )}
+
+            {/* ── QUESTION ── */}
+            {phase === 'question' && currentQuestion && (
+              <motion.div key={`q${currentQ}`} className="qb-phase qb-play"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={phaseExit}>
+                <div className="qb-topbar">
+                  <Hud>
+                    <HudStat icon={ListOrdered} tone="progress" value={`${currentQ + 1}/${questions.length}`} label="Pregunta" />
+                    <HudStat icon={Users} tone="good" value={`${answeredCount}/${gamePlayers.length}`} label="Respuestas" />
+                  </Hud>
+                  <div className="qb-topbar__progress">
+                    <ProgressBar value={currentQ + 1} max={questions.length} label="Progreso de la batalla" />
+                  </div>
+                  <GameButton variant="danger" icon={StopCircle} onClick={handleCloseQuestion}>
+                    Cerrar pregunta ({answeredCount}/{gamePlayers.length})
+                  </GameButton>
+                </div>
+
+                <motion.div
+                  key={`qtext${currentQ}`}
+                  className="qb-question"
+                  initial={{ opacity: 0, y: -20, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                >
+                  <span className="qb-question__tag">Pregunta {currentQ + 1}</span>
+                  <p className="qb-question__text">{currentQuestion.question}</p>
                 </motion.div>
-              ))}
-            </div>
 
-            <button className="qb-btn-back" onClick={() => navigate('/dashboard')}>
-              <ArrowLeft className="w-4 h-4" /> Volver al panel
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <div className="qb-arena">
+                  <QBTimerRing timeLeft={timeLeft} timeLimit={timeLimit} />
+                  <div className="qb-arena__center">
+                    {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
+                    {bgAnimMode === 'simple' && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
+                    <div className="qb-tray">
+                      <span className="qb-tray__label">
+                        {answeredCount > 0 ? 'Ya han respondido' : <>Esperando respuestas<span className="qb-dots"><i /><i /><i /></span></>}
+                      </span>
+                      <div className={`qb-tray__faces ${answeredCount > 0 ? '' : 'is-empty'}`}>
+                        <AnimatePresence>
+                          {answeredPlayers.map((p) => (
+                            <motion.span
+                              key={p.id}
+                              className="qb-tray__face"
+                              title={decoratePlayer(p).name}
+                              initial={{ opacity: 0, scale: 0, y: 24 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+                            >
+                              <QBAvatar p={p} size="sm" />
+                            </motion.span>
+                          ))}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="qb-answered">
+                    <motion.span
+                      key={answeredCount}
+                      className="qb-answered__num"
+                      initial={{ scale: 1.5 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 14 }}
+                    >
+                      {answeredCount}
+                    </motion.span>
+                    <span className="qb-answered__of">de {gamePlayers.length}</span>
+                    <span className="qb-answered__label">respuestas</span>
+                  </div>
+                </div>
+
+                {/* Con anti-copia cada alumno ve otros colores: en el proyector se
+                    muestran neutras (A-D) para que el color no delate nada. */}
+                <div className="qb-tiles qb-tiles--host">
+                  {currentQuestion.options.map((opt, i) => (
+                    <QBTile
+                      key={i}
+                      colorIdx={i}
+                      neutral={shuffleColors}
+                      letter={LETTERS[i]}
+                      text={opt}
+                      delay={0.1 + i * 0.08}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── RESULTS ── */}
+            {phase === 'results' && currentQuestion && (
+              <motion.div key="results" className="qb-phase qb-reveal" {...fadeUp}>
+                <div className="qb-topbar">
+                  <Hud>
+                    <HudStat icon={ListOrdered} tone="progress" value={`${currentQ + 1}/${questions.length}`} label="Pregunta" />
+                    <HudStat icon={Target} tone="good" value={`${distribution[currentQuestion.correctIndex] || 0}/${gamePlayers.length}`} label="Aciertos" />
+                  </Hud>
+                  <GameButton variant="primary" size="lg" iconRight={SkipForward} onClick={handleNext}>
+                    {currentQ + 1 < questions.length
+                      ? `Siguiente (${currentQ + 2}/${questions.length})`
+                      : 'Ver resultados finales'}
+                  </GameButton>
+                </div>
+
+                <motion.div
+                  className="qb-answer-banner"
+                  initial={{ opacity: 0, scale: 0.94, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                >
+                  <span className="qb-answer-banner__icon"><QBVerdictArt kind="correct" size={58} /></span>
+                  <span className="qb-answer-banner__text">
+                    <span className="qb-kicker">Respuesta correcta</span>
+                    <strong>{currentQuestion.correct}</strong>
+                  </span>
+                  {!shuffleColors && (
+                    <span className={`qb-answer-banner__shape qb-tile--c${currentQuestion.correctIndex}`}>
+                      <QBShape kind={currentQuestion.correctIndex} size={32} />
+                    </span>
+                  )}
+                </motion.div>
+                <p className="qb-reveal__q">{currentQuestion.question}</p>
+
+                <div className="qb-reveal__grid">
+                  {/* Reparto — si shuffleColors, por letra (los colores que vio cada
+                      alumno son distintos y dejan de identificar la opción). */}
+                  <Panel className="qb-card">
+                    <h2 className="qb-card__title"><BarChart3 size={18} /> Respuestas de la clase</h2>
+                    <QBDistribution
+                      options={currentQuestion.options}
+                      distribution={distribution}
+                      correctIndex={currentQuestion.correctIndex}
+                      neutral={shuffleColors}
+                    />
+                  </Panel>
+
+                  {/* Leaderboard top 5 */}
+                  <Panel className="qb-card">
+                    <h2 className="qb-card__title"><Trophy size={18} /> Clasificación</h2>
+                    <QBLeaderboard entries={leaderboard.slice(0, 5)} startDelay={600} />
+                  </Panel>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── FINAL ── */}
+            {phase === 'final' && (
+              <motion.div key="final" className="qb-phase qb-final"
+                initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={phaseExit}>
+                <div className="qb-final__head">
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.4, rotate: -18 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+                  >
+                    <QBTrophy size={78} />
+                  </motion.span>
+                  <div>
+                    <h1 className="qb-final__title">¡Resultado final!</h1>
+                    <p className="qb-final__sub">
+                      {questions.length} preguntas · {leaderboard.length} {isTeamBattle ? 'equipos' : `jugador${leaderboard.length !== 1 ? 'es' : ''}`}
+                    </p>
+                  </div>
+                  {saving && <Chip icon={Loader2}>Guardando resultados…</Chip>}
+                </div>
+
+                {/* Podium top 3 */}
+                <QBPodium entries={leaderboard.slice(0, 3)} />
+
+                {/* Full ranking */}
+                <Panel className="qb-card qb-final__ranking">
+                  <h2 className="qb-card__title"><ListOrdered size={18} /> Clasificación completa</h2>
+                  <QBLeaderboard
+                    entries={leaderboard}
+                    animateRanks={false}
+                    showDelta={false}
+                    startDelay={1600}
+                    dense={leaderboard.length > 8}
+                  />
+                </Panel>
+
+                <div className="qb-cta">
+                  <GameButton variant="soft" size="lg" icon={ArrowLeft} onClick={() => navigate('/dashboard')}>
+                    Volver al panel
+                  </GameButton>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </GameShell>
+      </main>
 
       {/* Overlay global de mensajes ascendentes (frases que envían los
           jugadores). El host sólo los visualiza. */}

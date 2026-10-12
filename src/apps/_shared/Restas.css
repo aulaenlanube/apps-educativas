@@ -1,25 +1,11 @@
-/* DARK-MIGRATED */
-@import './MathBoxShared.css';
-/* Restas: solo estilos PROPIOS que no estan en MathBoxShared */
+/* Restas — piezas propias sobre MathBoxShared.css (tablero opb-*).
+   Selectores con un nivel más de especificidad para no depender del orden de carga. */
 
-#app-container { user-select: none; }
-
-/* Borrow helper circles (especifico de restas) */
-.borrow-helper-box.correct { border-color: var(--app-correct); }
-.borrow-helper-box.incorrect { border-color: var(--app-incorrect); }
-
-/* Subtrahend modified digit (cuando hay llevada) */
-.modified-digit {
-  color: #007bff;
-  position: relative;
-  font-weight: bold;
-}
-.modified-digit::after {
-  content: '*';
-  position: absolute;
-  top: 0px;
-  right: -5px;
-  font-size: 0.5em;
-  font-weight: bold;
-  color: #007bff;
+/* Burbuja de préstamo: pegada a la izquierda de la cifra del minuendo, un poco alta,
+   como el "1" que se escribe delante en el cuaderno. */
+.opb-grid--borrow .opb-slot.opb-borrow {
+  justify-self: end;
+  align-self: start;
+  margin-top: 2px;
+  margin-right: calc(var(--opb-cell) * -.16);
 }

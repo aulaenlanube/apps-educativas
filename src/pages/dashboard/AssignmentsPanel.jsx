@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardList, Plus, Trash2, Pencil, CheckCircle2, Clock, Users, User, AlertTriangle, Filter, GraduationCap } from 'lucide-react';
+import { ClipboardList, Plus, Trash2, Pencil, CheckCircle2, Clock, Users, User, AlertTriangle, Filter, GraduationCap, CalendarDays, Target } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashCard, DashButton, DashEmpty, ProgressRing } from '@/components/dashboard/kit';
 import {
   AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle,
   AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel,
@@ -18,7 +19,29 @@ function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-export default function AssignmentsPanel({ groupId, groupName, groupLevel, groupGrade, groupSubject, students }) {
+// Quita el emoji inicial del nombre de la app cuando ya se pinta su icono
+const cleanName = (appId, name) => (
+  appId && hasAppIcon(appId) ? String(name || '').replace(/^[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D\s]+/u, '') || name : name
+);
+
+// Texto relativo de la fecha límite ("Vence en 3 días", "Venció ayer"…)
+function dueLabel(dateStr) {
+  if (!dateStr) return null;
+  const due = new Date(dateStr);
+  const now = new Date();
+  const day = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const days = Math.round((day(due) - day(now)) / 86400000);
+  if (due < now) {
+    if (days >= 0) return 'Venció hoy';
+    if (days === -1) return 'Venció ayer';
+    return `Venció hace ${-days} días`;
+  }
+  if (days <= 0) return 'Vence hoy';
+  if (days === 1) return 'Vence mañana';
+  return `Vence en ${days} días`;
+}
+
+export default function AssignmentsPanel({ groupId, groupName, groupLevel, groupGrade, groupSubject, students, onSummary }) {
   const { toast } = useToast();
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,6 +51,8 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
   const [teacherFilter, setTeacherFilter] = useState('all');
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [editingAssignment, setEditingAssignment] = useState(null);
+  // Filtro local por estado (solo presentación)
+  const [statusFilter, setStatusFilter] = useState('all'); // 'all' | 'active' | 'overdue'
 
   const fetchAssignments = useCallback(async () => {
     if (!groupId) return;
@@ -47,6 +72,23 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
 
   useEffect(() => { fetchAssignments(); }, [fetchAssignments]);
 
+  // Resumen para los indicadores del grupo (derivado de lo ya cargado)
+  const summary = useMemo(() => {
+    const now = new Date();
+    let active = 0; let overdue = 0; let done = 0; let completedSum = 0; let targetSum = 0;
+    for (const a of assignments) {
+      if (a.due_date && new Date(a.due_date) < now) overdue += 1; else active += 1;
+      if (a.completed_count >= a.total_students) done += 1;
+      completedSum += Number(a.completed_count) || 0;
+      targetSum += Number(a.total_students) || 0;
+    }
+    return { total: assignments.length, active, overdue, done, completedSum, targetSum };
+  }, [assignments]);
+
+  useEffect(() => {
+    if (onSummary) onSummary(loading ? null : summary);
+  }, [summary, loading, onSummary]);
+
   const handleDelete = async () => {
     if (!deletingId) return;
 
@@ -65,187 +107,198 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
 
   if (!groupId) return null;
 
-  return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-bold text-slate-800 flex items-center gap-2">
-          <ClipboardList className="w-5 h-5 text-purple-500" />
-          Tareas de {groupName}
-        </h3>
-        <Button
-          size="sm"
-          onClick={() => setShowCreateDialog(true)}
-          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white"
-        >
-          <Plus className="w-4 h-4 mr-1" />
-          Asignar tarea
-        </Button>
-      </div>
+  const teacherIds = [...new Set(assignments.map(a => a.teacher_id).filter(Boolean))];
+  const teacherNames = {};
+  assignments.forEach(a => { if (a.teacher_id && a.teacher_name) teacherNames[a.teacher_id] = a.teacher_name; });
+  const now = new Date();
+  const visible = assignments
+    .filter(asg => teacherFilter === 'all' || asg.teacher_id === teacherFilter)
+    .filter((asg) => {
+      if (statusFilter === 'all') return true;
+      const overdue = asg.due_date && new Date(asg.due_date) < now;
+      return statusFilter === 'overdue' ? overdue : !overdue;
+    });
 
+  return (
+    <DashCard
+      icon={ClipboardList}
+      title={`Tareas de ${groupName}`}
+      subtitle={assignments.length > 0
+        ? `${summary.total} tarea${summary.total !== 1 ? 's' : ''} · ${summary.active} activa${summary.active !== 1 ? 's' : ''} · ${summary.done} completada${summary.done !== 1 ? 's' : ''} por todos`
+        : 'Asigna apps en modo examen con nota mínima, peso y evaluación'}
+      tone="amber"
+      actions={(
+        <DashButton size="sm" icon={Plus} onClick={() => setShowCreateDialog(true)}>
+          Asignar tarea
+        </DashButton>
+      )}
+    >
       {loading ? (
-        <div className="flex justify-center py-6">
+        <div className="tdb-loading">
           <BrandLoader variant="inline" />
         </div>
       ) : assignments.length === 0 ? (
-        <div className="text-center py-8 text-slate-400">
-          <ClipboardList className="w-10 h-10 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No hay tareas asignadas a este grupo</p>
-        </div>
+        <DashEmpty
+          title="No hay tareas asignadas a este grupo"
+          action={<DashButton variant="amber" icon={Plus} onClick={() => setShowCreateDialog(true)}>Asignar la primera</DashButton>}
+        >
+          Las tareas cuentan para la nota de la evaluación en curso del alumnado.
+        </DashEmpty>
       ) : (
-        <div className="space-y-3">
-          {/* Teacher filter - only show if there are assignments from multiple teachers */}
-          {(() => {
-            const teacherIds = [...new Set(assignments.map(a => a.teacher_id).filter(Boolean))];
-            if (teacherIds.length <= 1) return null;
-            const teacherNames = {};
-            assignments.forEach(a => { if (a.teacher_id && a.teacher_name) teacherNames[a.teacher_id] = a.teacher_name; });
-            return (
-              <div className="flex items-center gap-2 flex-wrap">
-                <Filter className="w-3.5 h-3.5 text-slate-400" />
-                <button
-                  onClick={() => setTeacherFilter('all')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                    teacherFilter === 'all' ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
+        <>
+          <div className="tdb-toolbar">
+            <div className="tdb-seg" role="group" aria-label="Filtrar por estado">
+              <button type="button" className={statusFilter === 'all' ? 'is-on' : ''} onClick={() => setStatusFilter('all')}>
+                Todas <span className="tdb-seg__n">{summary.total}</span>
+              </button>
+              <button type="button" className={statusFilter === 'active' ? 'is-on' : ''} onClick={() => setStatusFilter('active')}>
+                <Clock size={13} /> Activas <span className="tdb-seg__n">{summary.active}</span>
+              </button>
+              <button type="button" className={statusFilter === 'overdue' ? 'is-on' : ''} onClick={() => setStatusFilter('overdue')}>
+                <AlertTriangle size={13} /> Vencidas <span className="tdb-seg__n">{summary.overdue}</span>
+              </button>
+            </div>
+
+            {/* Filtro por docente: solo si hay tareas de varios profesores */}
+            {teacherIds.length > 1 && (
+              <div className="tdb-seg" role="group" aria-label="Filtrar por docente">
+                <span style={{ display: 'inline-grid', placeItems: 'center', padding: '0 4px', color: 'var(--dk-ink-3)' }}>
+                  <Filter size={14} />
+                </span>
+                <button type="button" className={teacherFilter === 'all' ? 'is-on' : ''} onClick={() => setTeacherFilter('all')}>
                   Todos
                 </button>
                 {teacherIds.map(tid => (
                   <button
                     key={tid}
+                    type="button"
                     onClick={() => setTeacherFilter(tid)}
-                    className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                      teacherFilter === tid ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className={teacherFilter === tid ? 'is-on' : ''}
                   >
-                    <GraduationCap className="w-3 h-3" />
+                    <GraduationCap size={13} />
                     {teacherNames[tid] || 'Profesor'}
                   </button>
                 ))}
               </div>
-            );
-          })()}
+            )}
+          </div>
 
-          <AnimatePresence>
-            {assignments
-              .filter(asg => teacherFilter === 'all' || asg.teacher_id === teacherFilter)
-              .map((asg, idx) => {
-              const isOverdue = asg.due_date && new Date(asg.due_date) < new Date();
-              const allCompleted = asg.completed_count >= asg.total_students;
-              const progress = asg.total_students > 0
-                ? Math.round((asg.completed_count / asg.total_students) * 100)
-                : 0;
+          {visible.length === 0 ? (
+            <p className="tdb-muted" style={{ textAlign: 'center', fontWeight: 700, padding: '18px 0' }}>
+              No hay tareas con este filtro.
+            </p>
+          ) : (
+            <div className="tdb-asg-grid">
+              <AnimatePresence>
+                {visible.map((asg, idx) => {
+                  const isOverdue = asg.due_date && new Date(asg.due_date) < new Date();
+                  const allCompleted = asg.completed_count >= asg.total_students;
+                  const progress = asg.total_students > 0
+                    ? Math.round((asg.completed_count / asg.total_students) * 100)
+                    : 0;
+                  const status = allCompleted ? 'is-done' : isOverdue ? 'is-overdue' : '';
 
-              return (
-                <motion.div
-                  key={asg.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: idx * 0.03 }}
-                  onClick={() => setSelectedAssignment(asg)}
-                  className={`bg-white rounded-xl p-4 border shadow-sm transition-all cursor-pointer hover:shadow-md hover:border-purple-200 ${
-                    allCompleted ? 'border-green-200' : isOverdue ? 'border-amber-200' : 'border-slate-100'
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="text-sm font-semibold text-slate-800 truncate">
-                          {asg.title || asg.app_name}
+                  return (
+                    <motion.div
+                      key={asg.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.97 }}
+                      transition={{ delay: Math.min(idx, 10) * 0.03 }}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setSelectedAssignment(asg)}
+                      onKeyDown={(e) => {
+                        if (e.target !== e.currentTarget) return;
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedAssignment(asg); }
+                      }}
+                      className={`tdb-asg group ${status}`}
+                      title="Ver notas de la tarea"
+                    >
+                      <div className="tdb-asg__top">
+                        <span className="tdb-asg__icon">
+                          {hasAppIcon(asg.app_id)
+                            ? <AppIcon appId={asg.app_id} size={52} />
+                            : <span className="tdb-asg__icon-fallback"><ClipboardList size={24} /></span>}
                         </span>
+                        <div className="tdb-asg__titles">
+                          <h3 className="tdb-asg__title">{asg.title || cleanName(asg.app_id, asg.app_name)}</h3>
+                          {asg.title && <span className="tdb-asg__app">{cleanName(asg.app_id, asg.app_name)}</span>}
+                        </div>
+                        <div className="tdb-asg__tools">
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); setEditingAssignment(asg); }}
+                            className="tdb-iconbtn tdb-iconbtn--sm"
+                            title="Editar"
+                          >
+                            <Pencil size={15} />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); setDeletingId(asg.id); setShowDeleteDialog(true); }}
+                            className="tdb-iconbtn tdb-iconbtn--sm tdb-iconbtn--danger"
+                            title="Eliminar"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="tdb-asg__chips">
                         {asg.student_id ? (
-                          <span className="flex items-center gap-1 text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
-                            <User className="w-3 h-3" />
-                            {asg.student_name}
-                          </span>
+                          <span className="tdb-chip tdb-chip--blue"><User size={12} /> {asg.student_name}</span>
                         ) : (
-                          <span className="flex items-center gap-1 text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full">
-                            <Users className="w-3 h-3" />
-                            Grupo
-                          </span>
+                          <span className="tdb-chip tdb-chip--violet"><Users size={12} /> Grupo</span>
                         )}
                         {asg.teacher_name && (
-                          <span className="flex items-center gap-1 text-xs bg-slate-50 text-slate-500 px-2 py-0.5 rounded-full">
-                            <GraduationCap className="w-3 h-3" />
-                            {asg.teacher_name}
-                          </span>
+                          <span className="tdb-chip"><GraduationCap size={12} /> {asg.teacher_name}</span>
                         )}
-                        {asg.weight > 1 && (
-                          <span className="text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm">
-                            x{asg.weight}
-                          </span>
-                        )}
-                        {asg.term && (
-                          <span className="text-xs font-semibold bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2 py-0.5 rounded-full shadow-sm">
-                            {asg.term}ª Eval
-                          </span>
-                        )}
-                      </div>
-
-                      {asg.title && (
-                        <p className="text-xs text-slate-500 mb-1">{asg.app_name}</p>
-                      )}
-
-                      <div className="flex items-center gap-3 text-xs text-slate-400">
-                        <span>Nota minima: <strong className="text-slate-600">{asg.min_score}/10</strong> en examen</span>
-                        {asg.due_date && (
-                          <span className={`flex items-center gap-1 ${isOverdue ? 'text-amber-600' : ''}`}>
-                            {isOverdue ? <AlertTriangle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
-                            {formatDate(asg.due_date)}
-                          </span>
-                        )}
-                      </div>
-
-                      {asg.description && (
-                        <p className="text-xs text-slate-400 mt-1 italic">{asg.description}</p>
-                      )}
-
-                      {/* Progress bar */}
-                      <div className="mt-2 flex items-center gap-2">
-                        <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all duration-500 ${
-                              allCompleted ? 'bg-green-500' : 'bg-blue-500'
-                            }`}
-                            style={{ width: `${progress}%` }}
-                          />
-                        </div>
-                        <span className="text-xs font-medium text-slate-500 whitespace-nowrap">
-                          {allCompleted ? (
-                            <span className="text-green-600 flex items-center gap-1">
-                              <CheckCircle2 className="w-3.5 h-3.5" />
-                              Completada
-                            </span>
-                          ) : (
-                            `${asg.completed_count}/${asg.total_students}`
-                          )}
+                        {asg.weight > 1 && <span className="tdb-chip tdb-chip--weight">×{asg.weight}</span>}
+                        {asg.term && <span className="tdb-chip tdb-chip--term">{asg.term}ª Eval</span>}
+                        <span className="tdb-chip" title="Nota mínima en modo examen">
+                          <Target size={12} /> Mín. {asg.min_score}/10
                         </span>
+                        {asg.due_date && (
+                          <span className={`tdb-chip ${isOverdue ? 'tdb-chip--warn' : ''}`} title={formatDate(asg.due_date)}>
+                            {isOverdue ? <AlertTriangle size={12} /> : <CalendarDays size={12} />}
+                            {dueLabel(asg.due_date)} · {formatDate(asg.due_date)}
+                          </span>
+                        )}
                       </div>
-                    </div>
 
-                    <div className="flex items-center gap-1 shrink-0">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setEditingAssignment(asg); }}
-                        className="p-1.5 rounded-lg hover:bg-purple-50 text-slate-300 hover:text-purple-600 transition-colors"
-                        title="Editar"
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setDeletingId(asg.id); setShowDeleteDialog(true); }}
-                        className="p-1.5 rounded-lg hover:bg-red-50 text-slate-300 hover:text-red-500 transition-colors"
-                        title="Eliminar"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+                      {asg.description && <p className="tdb-asg__desc">{asg.description}</p>}
+
+                      <div className="tdb-asg__foot">
+                        <div className="tdb-asg__bar">
+                          <div className="tdb-asg__barmeta">
+                            {allCompleted ? (
+                              <span className="tdb-asg__done"><CheckCircle2 size={14} /> Completada</span>
+                            ) : (
+                              <span>Superada por</span>
+                            )}
+                            <strong>{asg.completed_count}/{asg.total_students}</strong>
+                          </div>
+                          <span className="tdb-track"><i style={{ transform: `scaleX(${progress / 100})` }} /></span>
+                        </div>
+                        <ProgressRing
+                          value={progress}
+                          max={100}
+                          size={50}
+                          stroke={10}
+                          tone={allCompleted ? 'good' : isOverdue ? 'amber' : 'violet'}
+                          label={`${progress}% completada`}
+                        >
+                          <span className="tdb-asg__pct">{progress}%</span>
+                        </ProgressRing>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+          )}
+        </>
       )}
 
       <AssignTaskDialog
@@ -278,7 +331,7 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar tarea</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de que quieres eliminar esta tarea? Esta accion no se puede deshacer.
+              ¿Estás seguro de que quieres eliminar esta tarea? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -289,6 +342,6 @@ export default function AssignmentsPanel({ groupId, groupName, groupLevel, group
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </DashCard>
   );
 }

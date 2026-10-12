@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 import MultiplicacionTestBoard from '../../_shared/MultiplicacionTestBoard';
+import { OpBoard, OpNum, OpCell, OpCarry, OpSign, OpRule } from '../OpTablero';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -220,97 +221,125 @@ export default function MultiplicacionesPrimaria4({ onGameComplete } = {}) {
   };
 
   // --- UI ---
+  // Rejilla: columna 1 = signos (× y +); columnas 2..7 = cifras.
   const ancho = 6;
   const n1Str = multiplicando.toString().padStart(ancho, ' ');
   const n2Str = multiplicador.toString().padStart(ancho, ' ');
 
-  const getHighlightStyle = (section, c) => {
-    if (!ayudaLlevadas || !activeSlot) return {};
-    const style = { backgroundColor: '#e0f2fe', transition: 'background-color 0.2s', borderRadius: '4px' };
+  // Ayuda visual: cifras que intervienen en la casilla activa (mismas reglas de antes).
+  const isFocus = (section, c) => {
+    if (!ayudaLlevadas || !activeSlot) return false;
     if (activeSlot.type === 'fila1') {
-      if (section === 'n1' && c === activeSlot.index && n1Str[c] !== ' ') return style;
-      if (section === 'n2' && c === 5) return style;
+      if (section === 'n1' && c === activeSlot.index && n1Str[c] !== ' ') return true;
+      if (section === 'n2' && c === 5) return true;
     }
     if (activeSlot.type === 'fila2') {
-      if (section === 'n1' && c === activeSlot.index + 1 && n1Str[c] !== ' ') return style;
-      if (section === 'n2' && c === 4) return style;
+      if (section === 'n1' && c === activeSlot.index + 1 && n1Str[c] !== ' ') return true;
+      if (section === 'n2' && c === 4) return true;
     }
     if (activeSlot.type === 'filaSuma') {
       if ((section === 'fila1' || section === 'fila2') && c === activeSlot.index) {
-        if (section === 'fila1' && solucion.fila1[c] !== "") return style;
-        if (section === 'fila2' && solucion.fila2[c] !== "") return style;
+        if (section === 'fila1' && solucion.fila1[c] !== "") return true;
+        if (section === 'fila2' && solucion.fila2[c] !== "") return true;
       }
     }
-    return {};
+    return false;
   };
 
-  const colStyle = { display: 'grid', gridTemplateColumns: `repeat(${ancho}, 1fr)`, gap: '5px', maxWidth: '300px', margin: '0 auto' };
+  const at = (row, c) => ({ gridRow: row, gridColumn: c + 2 });
+  const cols = Array.from({ length: ancho }, (_, c) => c);
 
-  const renderCells = () => {
-    const cells = [];
-    for (let c = 0; c < ancho; c++) {
-      const idxArr = c - 2;
-      const visible = idxArr >= 0 && idxArr < 4;
-      cells.push(
-        <div key={`carryMul-${c}`} className={`box carry-box ${!visible ? 'invisible' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${activeSlot?.type === 'llevadaMul' && activeSlot?.index === idxArr ? 'selected' : ''}`}
-          onClick={() => visible && handleSlotClick('llevadaMul', idxArr)} style={{ gridRow: 1, gridColumn: c + 1 }}>
-          {visible ? entradas.llevadasMul[idxArr] : ''}
-        </div>
-      );
-    }
-    for (let c = 0; c < ancho; c++) {
-      cells.push(<div key={`n1-${c}`} className="digit-display" style={{ gridRow: 2, gridColumn: c + 1, ...getHighlightStyle('n1', c) }}>{n1Str[c]}</div>);
-    }
-    let xPuesto = false;
-    for (let c = 0; c < ancho; c++) {
-      let content = n2Str[c];
-      if (content !== ' ' && !xPuesto) { content = <><span className="cross-inline" style={{ position: 'absolute', left: '-15px' }}>×</span>{n2Str[c]}</>; xPuesto = true; }
-      cells.push(<div key={`n2-${c}`} className="digit-display" style={{ gridRow: 3, gridColumn: c + 1, position: 'relative', ...getHighlightStyle('n2', c) }}>{content}</div>);
-    }
-    cells.push(<hr key="hr1" className="operation-line" style={{ gridRow: 4, gridColumn: '1 / -1' }} />);
-    for (let c = 0; c < ancho; c++) {
-      const enabled = solucion.fila1[c] !== "";
-      cells.push(
-        <div key={`p1-${c}`} className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.fila1[c] || ''} ${activeSlot?.type === 'fila1' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => enabled && handleSlotClick('fila1', c)} style={{ gridRow: 5, gridColumn: c + 1, ...getHighlightStyle('fila1', c) }}>
-          {entradas.fila1[c]}
-        </div>
-      );
-    }
-    for (let c = 0; c < ancho; c++) {
-      const enabled = solucion.fila2[c] !== "";
-      cells.push(
-        <div key={`p2-${c}`} className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.fila2[c] || ''} ${activeSlot?.type === 'fila2' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => enabled && handleSlotClick('fila2', c)} style={{ gridRow: 6, gridColumn: c + 1, ...getHighlightStyle('fila2', c) }}>
-          {entradas.fila2[c]}
-        </div>
-      );
-    }
-    cells.push(<hr key="hr2" className="operation-line" style={{ gridRow: 7, gridColumn: '1 / -1' }} />);
-    for (let c = 0; c < ancho; c++) {
-      const visible = c < 5;
-      cells.push(
-        <div key={`carrySum-${c}`} className={`box carry-box ${!visible ? 'invisible' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${activeSlot?.type === 'llevadaSuma' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => visible && handleSlotClick('llevadaSuma', c)} style={{ gridRow: 8, gridColumn: c + 1 }}>
-          {entradas.llevadasSuma[c]}
-        </div>
-      );
-    }
-    for (let c = 0; c < ancho; c++) {
-      const enabled = solucion.suma[c] !== "";
-      cells.push(
-        <div key={`sum-${c}`} className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.filaSuma[c] || ''} ${activeSlot?.type === 'filaSuma' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => enabled && handleSlotClick('filaSuma', c)} style={{ gridRow: 9, gridColumn: c + 1 }}>
-          {entradas.filaSuma[c]}
-        </div>
-      );
-    }
-    return cells;
-  };
+  // Llevadas: solo se muestran (se escriben solas al acertar con la ayuda activada).
+  const renderCells = () => (
+    <>
+      {cols.map((c) => {
+        const idxArr = c - 2;
+        const visible = idxArr >= 0 && idxArr < 4;
+        return (
+          <OpCarry
+            key={`carryMul-${c}`}
+            at={at(1, c)}
+            ghost
+            off={!visible || !ayudaLlevadas}
+            value={visible ? entradas.llevadasMul[idxArr] : ''}
+          />
+        );
+      })}
+      {cols.map((c) => <OpNum key={`n1-${c}`} at={at(2, c)} focus={isFocus('n1', c)}>{n1Str[c].trim()}</OpNum>)}
+      <OpSign op="mul" at={{ gridRow: 3, gridColumn: 1 }} />
+      {cols.map((c) => (
+        <OpNum key={`n2-${c}`} at={at(3, c)} focus={isFocus('n2', c)} row={n2Str[c] !== ' ' ? String(ancho - c) : undefined}>
+          {n2Str[c].trim()}
+        </OpNum>
+      ))}
+      <OpRule at={{ gridRow: 4, gridColumn: '1 / -1' }} />
+      {cols.map((c) => {
+        const enabled = solucion.fila1[c] !== "";
+        return (
+          <OpCell
+            key={`p1-${c}`}
+            at={at(5, c)}
+            i={c}
+            row="1"
+            value={entradas.fila1[c]}
+            state={clases.fila1[c]}
+            off={!enabled}
+            focus={isFocus('fila1', c)}
+            active={activeSlot?.type === 'fila1' && activeSlot?.index === c}
+            onClick={() => enabled && handleSlotClick('fila1', c)}
+          />
+        );
+      })}
+      <OpSign op="add" at={{ gridRow: 6, gridColumn: 1 }} />
+      {cols.map((c) => {
+        const enabled = solucion.fila2[c] !== "";
+        return (
+          <OpCell
+            key={`p2-${c}`}
+            at={at(6, c)}
+            i={c}
+            row="2"
+            value={entradas.fila2[c]}
+            state={clases.fila2[c]}
+            off={!enabled}
+            focus={isFocus('fila2', c)}
+            active={activeSlot?.type === 'fila2' && activeSlot?.index === c}
+            onClick={() => enabled && handleSlotClick('fila2', c)}
+          />
+        );
+      })}
+      <OpRule at={{ gridRow: 7, gridColumn: '1 / -1' }} />
+      {cols.map((c) => (
+        <OpCarry
+          key={`carrySum-${c}`}
+          at={at(8, c)}
+          ghost
+          off={c >= 5 || !ayudaLlevadas}
+          value={entradas.llevadasSuma[c]}
+        />
+      ))}
+      {cols.map((c) => {
+        const enabled = solucion.suma[c] !== "";
+        return (
+          <OpCell
+            key={`sum-${c}`}
+            at={at(9, c)}
+            i={c}
+            stamp
+            value={entradas.filaSuma[c]}
+            state={clases.filaSuma[c]}
+            off={!enabled}
+            active={activeSlot?.type === 'filaSuma' && activeSlot?.index === c}
+            onClick={() => enabled && handleSlotClick('filaSuma', c)}
+          />
+        );
+      })}
+    </>
+  );
 
   return (
     <MathOperationLayout
-      title="Multiplicaciones de 2 cifras"
+      title="Multiplica por 2 cifras"
       emoji="✖️"
       feedback={feedback}
       onCheck={comprobarRespuesta}
@@ -320,7 +349,9 @@ export default function MultiplicacionesPrimaria4({ onGameComplete } = {}) {
       toggleValue={ayudaLlevadas}
       onToggleChange={setAyudaLlevadas}
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Toca los números 👇"
+      paletteLabel="Toca un número"
+      padLayout="side"
+      operator="×"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -342,12 +373,13 @@ export default function MultiplicacionesPrimaria4({ onGameComplete } = {}) {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Completa la multiplicacion colocando cada digito en su casilla correcta, incluyendo los resultados parciales y el resultado final.</p>
-          <h3>Como se juega</h3>
+          <p>Completa la multiplicación: los dos productos parciales y su suma, que es el resultado final.</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Coloca el digito correcto desde la paleta numerica.</li>
-            <li>Recuerda completar tambien las llevadas si estan visibles.</li>
+            <li>Toca una casilla para elegirla (se ilumina) y escribe la cifra con el teclado de la pantalla o con el del ordenador.</li>
+            <li>La primera fila (azul) es el multiplicando por las unidades; la segunda (rosa), por las decenas, corrida un lugar a la izquierda.</li>
+            <li>Con <strong>Ayuda con llevadas</strong> se iluminan las cifras que estás multiplicando y las llevadas aparecen solas en monedas doradas.</li>
+            <li>Pulsa <strong>Comprobar</strong>: cada casilla se pone en verde o en rojo.</li>
           </ul>
           <h3>🔴 Modo Examen</h3>
           <p>5 multiplicaciones de 3 × 2 cifras. Escribe directamente el resultado final.</p>
@@ -363,9 +395,14 @@ export default function MultiplicacionesPrimaria4({ onGameComplete } = {}) {
           onSlotClick={(i) => setTestActiveIdx(i)}
         />
       ) : (
-        <div id="problem-area" style={{ ...colStyle, gridTemplateRows: 'repeat(9, auto)' }}>
-          {renderCells()}
-        </div>
+        <OpBoard>
+          <div
+            className="op-grid mx-grid"
+            style={{ '--units': 1.6 + ancho * 1.14, gridTemplateColumns: `calc(var(--cell) * .8) repeat(${ancho}, var(--cell))` }}
+          >
+            {renderCells()}
+          </div>
+        </OpBoard>
       )}
     </MathOperationLayout>
   );

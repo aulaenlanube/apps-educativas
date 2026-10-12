@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+// Busca el Intruso — rediseño 2026 sobre el kit de interfaz (_shared/kit).
+// Juego de discriminación visual y semántica: tablero de fichas con volumen,
+// mira de búsqueda al pasar el ratón y sello de acierto/fallo. La lógica de
+// rondas, cronómetro, puntuación y tracking es la de siempre.
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  Trophy, Flame, Clock, Target, RefreshCw, LayoutGrid, GraduationCap,
+  Search, BookOpen, Sparkles, Eye, Crosshair,
+} from 'lucide-react';
 import { getIntrusoData } from '../../services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, Panel, GameButton,
+  ModeSelect, ResultsScreen, FeedbackItem, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './BuscaElIntruso.css';
 
-import { FaBook, FaTimes } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-
-/**
- * BuscaElIntruso - Edición "Spectacular UI"
- * Juego de discriminación visual y semántica con estética gamificada.
- */
 const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const nivel = level || 'primaria';
@@ -20,6 +27,12 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   const datosRef = useRef(null);
   const [modoLogico, setModoLogico] = useState('visual');
   const [showHelp, setShowHelp] = useState(false);
+  const [showStudy, setShowStudy] = useState(false);
+  // false = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [enJuego, setEnJuego] = useState(false);
+  // Solo presentación: registro de rondas del examen para los puntos de progreso
+  // y la retroalimentación del resumen. No interviene en la puntuación.
+  const [registroExamen, setRegistroExamen] = useState([]);
 
   const [estado, setEstado] = useState({
     modo: 'libre',
@@ -52,18 +65,6 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     if (!str) return false;
     return /[a-zA-ZáéíóúÁÉÍÓÚñÑçÇàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ]/.test(String(str));
   };
-
-  // Generar partículas de fondo una sola vez (Hooks must be at top level)
-  const particles = useMemo(() => {
-    return Array.from({ length: 30 }).map((_, i) => ({
-      id: i,
-      size: Math.random() * 40 + 10,
-      duration: Math.random() * 20 + 15,
-      delay: Math.random() * 20,
-      left: Math.random() * 100,
-      opacity: Math.random() * 0.3 + 0.1
-    }));
-  }, []);
 
   // --- Carga de Datos ---
   useEffect(() => {
@@ -238,6 +239,7 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     detenerCronometro();
     setTiempoTranscurrido(0);
     setMostrarResumen(false);
+    setRegistroExamen([]);
     setEstado(prev => ({
       ...prev,
       modo: 'test',
@@ -256,7 +258,8 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
   };
 
   useEffect(() => {
-    if (datosJuego && datosJuego.length > 0) {
+    // La partida no arranca hasta elegir modo en la pantalla previa.
+    if (enJuego && datosJuego && datosJuego.length > 0) {
       activarModoLibre();
     }
     return () => detenerCronometro();
@@ -268,6 +271,16 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     if (estado.bloqueoClicks) return;
     setEstado(prev => ({ ...prev, bloqueoClicks: true }));
     const esCorrecto = indice === estado.indiceIntruso;
+
+    if (estado.modo === 'test') {
+      // Solo presentación (puntos de progreso y retroalimentación del resumen)
+      setRegistroExamen(prev => [...prev, {
+        ok: esCorrecto,
+        categoria: estado.categoria,
+        intruso: estado.tablero[estado.indiceIntruso],
+        elegido: estado.tablero[indice],
+      }]);
+    }
 
     if (esCorrecto) {
       // Lógica de acierto
@@ -305,281 +318,281 @@ const BuscaElIntruso = ({ tema, onGameComplete }) => {
     }, 1200);
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const precision = estado.rondasTotales > 0 ? Math.round((estado.aciertos / estado.rondasTotales) * 100) : 0;
+  // --- Selección de modo (pantalla previa) ---
+  const elegirModo = (id) => {
+    setEnJuego(true);
+    if (id === 'test') iniciarTest();
+    else activarModoLibre();
+  };
 
-  if (!datosJuego) return <div className="loading-screen">Cargando Examen...</div>;
-  if (datosJuego.length === 0) return <div className="loading-screen">No hay datos del examen.</div>;
+  const volverAModos = () => {
+    detenerCronometro();
+    setEnJuego(false);
+  };
 
-  return (
-    <div className="intruso-wrapper">
-      {/* Fondo Animado con partículas generadas dinámicamente */}
-      {/* Capa de luz: orbes difusos + rejilla (decorativo) */}
-      <div className="intruso-aurora" aria-hidden="true">
-        <span className="intruso-orb a" />
-        <span className="intruso-orb b" />
-        <span className="intruso-orb c" />
-        <span className="intruso-grid-bg" />
+  const shellProps = { accent: '#f59e0b', accent2: '#ec4899', className: 'bi-shell' };
+
+  const instrucciones = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Busca el Intruso">
+      <h3>🎯 Objetivo</h3>
+      <p>
+        En el tablero todas las fichas comparten algo… menos una. Encuentra la ficha que
+        <strong> no encaja</strong> y tócala.
+      </p>
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Lee la <strong>categoría</strong> (si la hay) y repasa las fichas.</li>
+        <li>Toca la que no pertenece al grupo: si aciertas, sumas y la racha crece.</li>
+        <li>Si fallas, verás cuál era el intruso antes de pasar al siguiente tablero.</li>
+      </ul>
+      <h3>🎓 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>Práctica</strong>Tableros sin fin y sin reloj.</div>
+        <div className="instr-mode exam"><strong>Examen</strong>10 rondas cronometradas. Nota sobre 10 y puntos por rapidez y racha.</div>
       </div>
+    </InstructionsModal>
+  );
 
-      <div className="intruso-particles" aria-hidden="true">
-        {particles.map((p) => (
-          <span key={p.id} style={{
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            left: `${p.left}%`,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `-${p.delay}s`,
-            opacity: p.opacity
-          }}></span>
+  const materialDeEstudio = modoLogico === 'conceptual' && (
+    <InstructionsModal isOpen={showStudy} onClose={() => setShowStudy(false)} title="Material de estudio">
+      <div className="bi-study">
+        {datosJuego?.map((cat, idx) => (
+          <section key={idx} className="bi-study__card">
+            <h4 className="bi-study__title" title={cat.categoria}>{cat.categoria}</h4>
+            <div className="bi-study__group is-ok">
+              <span className="bi-study__label">Pertenecen</span>
+              <ul>{cat.correctos.map((item, i) => <li key={i}>{item}</li>)}</ul>
+            </div>
+            <div className="bi-study__group is-ko">
+              <span className="bi-study__label">Intrusos</span>
+              <ul>{cat.intrusos.map((item, i) => <li key={i}>{item}</li>)}</ul>
+            </div>
+          </section>
         ))}
       </div>
+    </InstructionsModal>
+  );
 
-      <div className="intruso-container">
+  if (!datosJuego) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Preparando el tablero…" />
+      </GameShell>
+    );
+  }
+  if (datosJuego.length === 0) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Aún no hay tableros">No hay datos de Busca el Intruso para esta asignatura todavía.</GameEmpty>
+        {instrucciones}
+      </GameShell>
+    );
+  }
 
-        {/* CABECERA / HUD */}
-        <div className="intruso-hud">
-          <div className="intruso-hud-left">
-            {/* LÓGICA DE BOTONES: Cambia según si es modo TEST o LIBRE */}
-            {estado.modo === 'test' ? (
-              <>
-                <button className="intruso-btn" onClick={iniciarTest} style={{ border: '1px solid rgba(255,255,255,0.3)' }}>
-                  ↻ Reiniciar Examen
-                </button>
-                <button className="intruso-btn" onClick={activarModoLibre} style={{ border: '1px solid rgba(255,255,255,0.3)' }}>
-                  ↩ Volver al Juego
-                </button>
-              </>
-            ) : (
-              <>
-                <button className={`intruso-btn intruso-btn--practice ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>OTRO INTRUSO</button>
-                <button className={`intruso-btn intruso-btn--exam ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
-              </>
-            )}
+  const onStudy = modoLogico === 'conceptual' ? () => setShowStudy(true) : undefined;
 
-            {modoLogico === 'conceptual' && (
-              <button
-                className="intruso-btn"
-                onClick={() => setShowHelp(true)}
-                title="Ver Material de Estudio"
-                style={{
-                  width: '100%',
-                  marginTop: '12px',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                  color: 'white',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  fontWeight: 'bold',
-                  boxShadow: '0 4px 12px rgba(79, 70, 229, 0.4)',
-                  animation: 'pulse-subtle 2s infinite'
-                }}
-              >
-                <FaBook size={18} />
-                <span style={{ fontSize: '0.9rem' }}>MATERIAL</span>
-              </button>
-            )}
-          </div>
+  // --- Pantalla previa: elegir modo ---
+  if (!enJuego) {
+    const modes = [
+      {
+        id: 'libre', tone: 'easy', title: 'Práctica',
+        desc: 'Tableros sin fin para entrenar el ojo, sin reloj ni presión.',
+        features: ['Sin tiempo', 'Racha de aciertos', modoLogico === 'conceptual' ? 'Material de estudio' : '32 fichas por tablero'],
+      },
+      {
+        id: 'test', tone: 'exam', title: 'Examen',
+        desc: `${estado.rondasTotales} rondas cronometradas. Cada tablero, una oportunidad.`,
+        features: ['Nota sobre 10', 'Puntos por rapidez y racha', `${estado.rondasTotales} rondas`],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect modes={modes} onSelect={elegirModo} onHelp={() => setShowHelp(true)} onStudy={onStudy} />
+        {instrucciones}
+        {materialDeEstudio}
+      </GameShell>
+    );
+  }
 
-          <div className="intruso-hud-center">
-            <h1 className="intruso-title"><span className="intruso-title-icon" aria-hidden="true">🔎</span>BUSCA EL INTRUSO</h1>
+  const esExamen = estado.modo === 'test';
 
-            {/* INDICADOR DE PROGRESO DEL EXAMEN */}
-            {estado.modo === 'test' && (
-              <div className="intruso-progress-pill">
-                Pregunta {estado.ronda} de {estado.rondasTotales}
-                <span className="intruso-progress-track" aria-hidden="true">
-                  <span className="intruso-progress-fill" style={{ width: `${(Math.max(0, estado.ronda - 1) / estado.rondasTotales) * 100}%` }} />
-                </span>
-              </div>
-            )}
+  // --- Resumen del examen ---
+  if (mostrarResumen) {
+    const nota = Math.round((estado.aciertos / estado.rondasTotales) * 100) / 10;
+    const elapsed = Math.round(tiempoTranscurrido);
+    const totalPoints = estado.aciertos * 100 + Math.max(0, (120 - elapsed) * 5) + estado.combo * 30;
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title="¡Examen completado!"
+          nota={nota}
+          points={totalPoints}
+          stats={[
+            { icon: Target, tone: 'good', label: 'Aciertos', value: `${estado.aciertos}/${estado.rondasTotales}` },
+            { icon: Clock, tone: 'time', label: 'Tiempo', value: `${tiempoTranscurrido.toFixed(1)}s` },
+            { icon: Flame, tone: 'streak', label: 'Racha final', value: estado.combo },
+          ]}
+          actions={[
+            { label: 'Repetir examen', onClick: iniciarTest, icon: RefreshCw },
+            { label: 'Practicar', onClick: activarModoLibre, icon: Eye, variant: 'soft' },
+            { label: 'Cambiar de modo', onClick: volverAModos, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {registroExamen.map((r, i) => (
+            <FeedbackItem key={i} index={i + 1} ok={r.ok} title={r.ok ? `Intruso: ${r.intruso}` : `Elegiste: ${r.elegido}`}>
+              {!r.ok && <>El intruso era <strong>{r.intruso}</strong>. </>}
+              {r.categoria && <>Categoría: {r.categoria}</>}
+            </FeedbackItem>
+          ))}
+        </ResultsScreen>
+        {instrucciones}
+        {materialDeEstudio}
+      </GameShell>
+    );
+  }
 
-            {estado.categoria && <div className="category-badge">{estado.categoria}</div>}
-          </div>
+  const feedback = estado.feedbackCellStatus;
+  const esVisual = modoLogico === 'visual';
 
-          <div className="intruso-hud-right">
-            <div className="stat-pill">
-              <span className="icon">🏆</span>
-              <motion.span className="value" key={estado.aciertos} initial={{ scale: 1.4 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 16 }}>
-                {estado.aciertos}
-              </motion.span>
-            </div>
-            {estado.modo === 'test' && (
-              <div className="stat-pill">
-                <span className="icon">⏱️</span>
-                <span className="value">{tiempoTranscurrido.toFixed(0)}s</span>
-              </div>
-            )}
-          </div>
-        </div>
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={esExamen ? 'exam' : 'easy'}
+        modeLabel={esExamen ? 'Examen' : 'Práctica'}
+        onHelp={() => setShowHelp(true)}
+        onStudy={onStudy}
+        right={(
+          <Hud>
+            <HudStat icon={Trophy} tone="good" value={estado.aciertos} label="Aciertos" />
+            {estado.combo > 1 && <HudStat icon={Flame} tone="streak" value={`x${estado.combo}`} label="Racha" />}
+            {esExamen && <HudStat icon={Clock} tone="time" value={`${tiempoTranscurrido.toFixed(0)}s`} label="Tiempo" />}
+          </Hud>
+        )}
+      />
 
-        {/* ÁREA DE JUEGO */}
-        <div className="intruso-board-area">
-          {!mostrarResumen ? (
-            <>
-              <div className={`message-banner ${estado.feedbackCellStatus}`}>
-                {estado.mensaje}
-                {estado.combo > 1 && <span className="combo-counter">x{estado.combo} COMBO!</span>}
-              </div>
+      {esExamen && (
+        <ProgressDots
+          total={estado.rondasTotales}
+          current={Math.max(0, estado.ronda - 1)}
+          results={registroExamen.map((r) => r.ok)}
+        />
+      )}
 
-              <div
-                className={`intruso-grid ${modoLogico}`}
-                style={{
-                  gridTemplateColumns: `repeat(${estado.cols}, minmax(0, 1fr))`
-                }}
-              >
-                {estado.tablero.map((item, idx) => {
-                  const esTexto = contieneLetras(item);
-                  const isFeedbackTarget = idx === estado.feedbackCellIndex;
-                  const status = isFeedbackTarget ? estado.feedbackCellStatus : '';
-
-                  // Retraso escalonado para la animación de entrada
-                  const delayStyle = { animationDelay: `${idx * 0.03}s` };
-
-                  return (
-                    <div
-                      key={`${estado.ronda}-${idx}`} // Key cambiante para forzar re-render y animación
-                      className={`intruso-cell ${esTexto ? 'text-mode' : 'icon-mode'} ${status} ${restarting ? 'shaking' : ''}`}
-                      style={delayStyle}
-                      onClick={() => gestionarClick(idx)}
-                    >
-                      <div className="cell-content">
-                        {item}
-                      </div>
-                      {/* Efecto visual de clic */}
-                      {status === 'ok' && <div className="sparkle-effect">✨</div>}
-                      {status === 'ko' && <div className="cross-effect">❌</div>}
-                    </div>
-                  );
-                })}
-              </div>
-            </>
+      <Panel variant="screen" className={`bi-brief ${feedback ? `is-${feedback}` : ''}`}>
+        <span className="bi-brief__scope" aria-hidden="true"><Crosshair size={26} /></span>
+        <div className="bi-brief__text">
+          {estado.categoria ? (
+            <span className="bi-brief__cat"><BookOpen size={14} /> {estado.categoria}</span>
           ) : (
-            // PANTALLA DE RESULTADOS
-            <div className="results-card intruso-results">
-              <h2>EXAMEN COMPLETADO!</h2>
-
-              {(() => {
-                const nota = Math.round((estado.aciertos / estado.rondasTotales) * 100) / 10;
-                const notaColor = nota >= 8 ? '#059669' : nota >= 5 ? '#2563eb' : '#dc2626';
-                const notaBg = nota >= 8 ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : nota >= 5 ? 'linear-gradient(135deg, #dbeafe, #bfdbfe)' : 'linear-gradient(135deg, #fee2e2, #fecaca)';
-                const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
-                const elapsed = Math.round(tiempoTranscurrido);
-                const totalPoints = estado.aciertos * 100 + Math.max(0, (120 - elapsed) * 5) + estado.combo * 30;
-
-                return (
-                  <>
-                    <div className="intruso-nota" style={{ '--intruso-nota-bg': notaBg }}>
-                      <div className="intruso-nota-ring fx-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}>
-                        <div className="intruso-nota-num" style={{ color: notaColor }}>
-                          {nota.toFixed(1)}<span className="intruso-nota-den">/10</span>
-                        </div>
-                      </div>
-                      <div className="intruso-nota-msg"><strong>{notaMsg}</strong></div>
-                      <div className="intruso-nota-sub">{estado.aciertos} de {estado.rondasTotales} correctas</div>
-                    </div>
-
-                    <div className="intruso-points">
-                      <span className="intruso-points-star" aria-hidden="true">⭐</span>
-                      <span className="intruso-points-val">{totalPoints.toLocaleString('es-ES')}</span>
-                      <span className="intruso-points-label">puntos</span>
-                    </div>
-                  </>
-                );
-              })()}
-
-              <div className="stats-row">
-                <div className="stat-box">
-                  <span className="label">Aciertos</span>
-                  <span className="val">{estado.aciertos}/{estado.rondasTotales}</span>
-                </div>
-                <div className="stat-box">
-                  <span className="label">Tiempo</span>
-                  <span className="val">{tiempoTranscurrido.toFixed(1)}s</span>
-                </div>
-              </div>
-
-              <div className="action-buttons">
-                <button className="primary-action" onClick={iniciarTest}>REPETIR EXAMEN</button>
-                <button className="secondary-action" onClick={activarModoLibre}>JUGAR: OTRO INTRUSO</button>
-              </div>
-            </div>
+            <span className="bi-brief__cat"><Search size={14} /> {esVisual ? 'Mira con atención' : 'Busca el intruso'}</span>
           )}
+          <motion.strong
+            key={estado.mensaje + feedback}
+            className="bi-brief__msg"
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+          >
+            {estado.mensaje}
+          </motion.strong>
         </div>
+        {estado.combo > 1 && (
+          <motion.span
+            key={estado.combo}
+            className="bi-combo"
+            initial={{ opacity: 0, scale: 0.5, rotate: -8 }}
+            animate={{ opacity: 1, scale: 1, rotate: -4 }}
+            transition={{ type: 'spring', stiffness: 460, damping: 16 }}
+          >
+            <Flame size={15} /> x{estado.combo} combo
+          </motion.span>
+        )}
+      </Panel>
+
+      <div className={`bi-board ${esVisual ? 'is-visual' : 'is-concept'} ${feedback ? 'is-locked' : ''}`}>
+        {estado.tablero.length === 0 ? (
+          <GameLoading label="Barajando fichas…" />
+        ) : (
+          <div
+            className="bi-grid"
+            style={{ gridTemplateColumns: `repeat(${estado.cols}, minmax(0, 1fr))` }}
+            role="group"
+            aria-label="Tablero"
+          >
+            {estado.tablero.map((item, idx) => {
+              const esTexto = contieneLetras(item);
+              const isFeedbackTarget = idx === estado.feedbackCellIndex;
+              const status = isFeedbackTarget ? feedback : '';
+              // Solo presentación: tras un fallo se señala dónde estaba el intruso
+              const reveal = feedback === 'ko' && idx === estado.indiceIntruso;
+              return (
+                <button
+                  type="button"
+                  key={`${estado.ronda}-${idx}-${item}`}
+                  className={[
+                    'bi-tile',
+                    esTexto ? 'is-text' : 'is-icon',
+                    status && `is-${status}`,
+                    reveal && 'is-reveal',
+                    feedback && !status && !reveal && 'is-dim',
+                    restarting && 'is-shaking',
+                  ].filter(Boolean).join(' ')}
+                  style={{ animationDelay: `${Math.min(idx * 0.025, 0.6)}s` }}
+                  onClick={() => gestionarClick(idx)}
+                  aria-label={String(item)}
+                >
+                  <span className="bi-tile__face">
+                    <span className="bi-tile__content">{item}</span>
+                  </span>
+                  <span className="bi-tile__reticle" aria-hidden="true" />
+                  {status === 'ok' && (
+                    <span className="bi-stamp is-ok" aria-hidden="true"><StarStamp /></span>
+                  )}
+                  {status === 'ko' && <span className="bi-stamp is-ko" aria-hidden="true">✕</span>}
+                  {reveal && <span className="bi-tile__tag" aria-hidden="true"><Sparkles size={12} /> Era este</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      {/* MODAL DE AYUDA / MATERIAL DE ESTUDIO */}
-      {showHelp && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
-          <div className="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl scale-100 animate-in zoom-in duration-300">
-            {/* Header */}
-            <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-gray-50 dark:bg-slate-900">
-              <h2 className="text-2xl font-bold text-indigo-600 flex items-center gap-3 font-fredoka">
-                <FaBook className="text-indigo-500" /> Material de Estudio
-              </h2>
-              <button
-                onClick={() => setShowHelp(false)}
-                className="p-2 hover:bg-red-100 rounded-full text-gray-400 hover:text-red-500 transition-colors"
-                title="Cerrar"
-              >
-                <FaTimes size={24} />
-              </button>
-            </div>
+      <div className="bi-footer">
+        {!esExamen ? (
+          <>
+            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={volverAModos}>Cambiar modo</GameButton>
+            <GameButton variant="ghost" size="sm" icon={RefreshCw} onClick={activarModoLibre}>Empezar de cero</GameButton>
+            <span className="bi-footer__info"><Target size={14} /> Fallos: {estado.errores}</span>
+          </>
+        ) : (
+          <span className="bi-footer__info">
+            <GraduationCap size={14} /> Modo examen · ronda {Math.max(1, estado.ronda)} de {estado.rondasTotales}
+          </span>
+        )}
+      </div>
 
-            {/* Content Scrollable */}
-            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50 dark:bg-slate-800/50">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {datosJuego?.map((cat, idx) => (
-                  <div key={idx} className="bg-white dark:bg-slate-700 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-600 hover:shadow-md transition-all hover:-translate-y-1">
-                    <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 border-b-2 border-indigo-50 dark:border-slate-600 pb-2 truncate" title={cat.categoria}>
-                      {cat.categoria}
-                    </h3>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                          <span className="text-xs font-bold uppercase text-green-700 bg-green-50 px-2 py-0.5 rounded-md border border-green-100">Correctos</span>
-                        </div>
-                        <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside pl-1 marker:text-green-300">
-                          {cat.correctos.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="w-2 h-2 rounded-full bg-red-500"></span>
-                          <span className="text-xs font-bold uppercase text-red-700 bg-red-50 px-2 py-0.5 rounded-md border border-red-100">Intrusos</span>
-                        </div>
-                        <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside pl-1 marker:text-red-300">
-                          {cat.intrusos.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="p-4 border-t border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 flex justify-end gap-3">
-              <button
-                onClick={() => setShowHelp(false)}
-                className="px-6 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-200"
-              >
-                ¡Entendido!
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+      {instrucciones}
+      {materialDeEstudio}
+    </GameShell>
   );
 };
+
+// Sello de acierto: estrella rosa con brillo (el "intruso" del icono de la app).
+const StarStamp = () => (
+  <svg viewBox="0 0 48 48" width="46" height="46">
+    <defs>
+      <linearGradient id="bi-star-g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#fbcfe8" />
+        <stop offset=".5" stopColor="#ec4899" />
+        <stop offset="1" stopColor="#9d174d" />
+      </linearGradient>
+    </defs>
+    <circle cx="24" cy="24" r="22" fill="#fff" opacity=".9" />
+    <path d="M24 7l4.9 10.2 11.1 1.5-8.1 7.7 2 11-9.9-5.4-9.9 5.4 2-11-8.1-7.7 11.1-1.5z" fill="url(#bi-star-g)" />
+    <path d="M18.5 19.5c1.4-3 3.2-5.3 5.5-6.6" stroke="#fff" strokeOpacity=".75" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+  </svg>
+);
 
 BuscaElIntruso.propTypes = {
   tema: PropTypes.string

@@ -13,12 +13,14 @@ const SumasLayout = ({
   options,           // { showCarries, setShowCarries }
   onGameComplete,
   instructions,
+  newLabel = 'Nueva suma',
   children
 }) => {
   return (
     <MathOperationLayout
       title={title}
       emoji="🧮"
+      padLayout="side"
       isTestMode={isTestMode}
       setTestMode={setTestMode}
       testState={testState}
@@ -31,7 +33,7 @@ const SumasLayout = ({
       feedback={practiceState?.feedback}
       onCheck={actions?.checkPractice}
       onNew={actions?.startPractice}
-      newLabel="Nueva Suma"
+      newLabel={newLabel}
       onPaletteClick={actions?.onPaletteClick}
       toggleLabel={options ? 'Ayuda con llevadas' : undefined}
       toggleValue={options?.showCarries}

@@ -1,876 +1,377 @@
-/* Supermercado Matematico — UI compartida para las 6 variantes de primaria.
-   Paleta violeta-rosa-ambar + detalles juguetones (chips, gradientes, shadows). */
+/* Supermercado matemático — rediseño 2026 sobre el kit (_shared/kit).
+   Tienda con toldo, estantería de madera con productos y etiquetas de precio,
+   ticket de la misión (cesta, cupón, billete), caja registradora con pantalla
+   LCD, teclado numérico y bandeja de monedas. Prefijo smk-. Lo usa
+   supermercado-matematico/SupermercadoTienda.jsx. Solo se anima transform/opacity. */
 
-#supermercado-app-container {
-    font-family: 'Lexend', 'Roboto', sans-serif;
-    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
-    width: 100%;
-    max-width: 780px;
-    padding: 34px 30px 30px;
-    border-radius: 24px;
-    box-shadow: 0 20px 45px -20px rgba(124, 58, 237, 0.35), 0 4px 12px rgba(236, 72, 153, 0.12);
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    color: #1f2937;
+.smk-progress { padding: 0 2px; }
+
+.smk-store {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(14px, 2.4vw, 26px);
+  align-items: start;
 }
 
-#supermercado-app-container::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 6px;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
-    border-radius: 24px 24px 0 0;
+/* ---------- Estantería ---------- */
+.smk-shelf {
+  position: relative;
+  overflow: hidden;
+  padding: 0 14px 6px;
+  border-radius: 24px;
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(255, 255, 255, .8), transparent 70%),
+    linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+  box-shadow: inset 0 0 0 1px rgba(234, 88, 12, .16), 0 18px 40px -28px rgba(124, 45, 18, .55);
+}
+html.dark .smk-shelf {
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(251, 146, 60, .14), transparent 70%),
+    linear-gradient(180deg, #2b2150 0%, #1e1940 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 18px 40px -28px rgba(0, 0, 0, .8);
 }
 
-#supermercado-app-container .supermercado-title {
-    font-family: 'Fredoka One', cursive;
-    background: linear-gradient(90deg, #7c3aed, #db2777, #f59e0b);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    letter-spacing: 0.5px;
-    margin: 0 0 6px;
+/* toldo a rayas con festón */
+.smk-awning {
+  position: relative;
+  height: 30px;
+  margin: 0 -14px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(0, 0, 0, .1)),
+    repeating-linear-gradient(90deg, #f97316 0 32px, #fff7ed 32px 64px);
+}
+.smk-awning::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 16px;
+  background:
+    radial-gradient(circle at 16px 0, #ea580c 15px, transparent 16px) 0 0 / 64px 16px repeat-x,
+    radial-gradient(circle at 48px 0, #fde6cf 15px, transparent 16px) 0 0 / 64px 16px repeat-x;
 }
 
-/* ---- Panel de productos (tarjetas tipo estanteria) ---- */
-#supermercado-app-container #panel-productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
-    gap: 12px;
-    margin: 22px 0;
-    padding-bottom: 22px;
-    border-bottom: 2px dashed rgba(139, 92, 246, 0.25);
+/* rejilla con baldas de madera (una por fila: --row + --gap) */
+.smk-shelf__grid {
+  --row: 150px;
+  --gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  grid-auto-rows: var(--row);
+  row-gap: var(--gap);
+  column-gap: 12px;
+  padding: 10px 4px 22px;
+  background: repeating-linear-gradient(180deg,
+      transparent 0 calc(var(--row) - 4px),
+      #f1cf9b calc(var(--row) - 4px) calc(var(--row) - 1px),
+      #c08a4c calc(var(--row) - 1px) calc(var(--row) + 10px),
+      #7c4a1e calc(var(--row) + 10px) calc(var(--row) + 15px),
+      transparent calc(var(--row) + 15px) calc(var(--row) + var(--gap)));
+  background-position: 0 10px;
+  background-repeat: repeat-y;
 }
 
-/* Equilibrado automatico: elige columnas segun el numero total de productos
-   para que las filas tengan la misma cantidad cuando es posible y,
-   al menos, para evitar que quede un solo producto huerfano en la ultima fila.
-   Cada tarjeta se estira al ancho disponible (1fr) dentro de su fila. */
-#supermercado-app-container #panel-productos:has(.producto:nth-child(4):last-child) { grid-template-columns: repeat(4, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(5):last-child) { grid-template-columns: repeat(5, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(6):last-child) { grid-template-columns: repeat(3, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(7):last-child) { grid-template-columns: repeat(4, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(8):last-child) { grid-template-columns: repeat(4, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(9):last-child) { grid-template-columns: repeat(3, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(10):last-child) { grid-template-columns: repeat(5, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(11):last-child) { grid-template-columns: repeat(4, 1fr); }
-#supermercado-app-container #panel-productos:has(.producto:nth-child(12):last-child) { grid-template-columns: repeat(4, 1fr); }
-
-#supermercado-app-container .producto {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    padding: 14px 8px 10px;
-    background: linear-gradient(160deg, #ffffff 0%, #faf5ff 100%);
-    border: 1.5px solid rgba(139, 92, 246, 0.18);
-    border-radius: 16px;
-    box-shadow: 0 4px 10px -4px rgba(139, 92, 246, 0.18), inset 0 -3px 0 rgba(139, 92, 246, 0.06);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-    text-align: center;
-    overflow: hidden;
+/* producto */
+.smk-prod {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 18px 8px 10px;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .96), #fff7ed);
+  box-shadow: inset 0 0 0 1.5px rgba(251, 146, 60, .22), inset 0 -10px 16px -10px rgba(194, 65, 12, .18), 0 10px 18px -12px rgba(124, 45, 18, .55);
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease;
+}
+html.dark .smk-prod {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .05));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 10px 18px -12px rgba(0, 0, 0, .7);
+}
+.smk-prod__emoji {
+  font-size: 2.7rem;
+  line-height: 1.1;
+  text-shadow: 0 8px 6px rgba(124, 45, 18, .22);
+}
+.smk-prod__name {
+  min-height: 2.3em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--gk-ink);
+}
+/* etiqueta de precio colgante */
+.smk-prod__tag {
+  position: absolute;
+  top: -12px;
+  right: -6px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  padding: 5px 10px 5px 18px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #713f12;
+  background: linear-gradient(180deg, #fef08a 0%, #facc15 100%);
+  clip-path: polygon(11px 0, 100% 0, 100% 100%, 11px 100%, 0 50%);
+  border-radius: 0 7px 7px 0;
+  box-shadow: inset 0 -3px 0 rgba(161, 98, 7, .35), inset 0 2px 0 rgba(255, 255, 255, .7);
+  transform: rotate(7deg);
+}
+.smk-prod__tag small { font-size: .72em; margin-left: 1px; }
+.smk-prod__hole {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: #fff7ed;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .35);
+}
+/* producto de la misión (solo en práctica) */
+.smk-prod.is-wanted {
+  transform: translateY(-5px);
+  box-shadow: inset 0 0 0 3px var(--gk-accent), 0 16px 26px -12px var(--gk-accent);
+}
+.smk-prod__qty {
+  position: absolute;
+  top: -10px;
+  left: -6px;
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b);
 }
 
-#supermercado-app-container .producto::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 38%;
-    background: radial-gradient(ellipse at top, rgba(245, 158, 11, 0.18) 0%, rgba(245, 158, 11, 0) 70%);
-    pointer-events: none;
-}
+/* ---------- Mostrador ---------- */
+.smk-counter { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 
-#supermercado-app-container .producto:hover {
-    transform: translateY(-3px) rotate(-1deg);
-    box-shadow: 0 12px 22px -8px rgba(139, 92, 246, 0.35), inset 0 -3px 0 rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.4);
+/* ticket de la misión (papel con borde dentado) */
+.smk-ticket {
+  position: relative;
+  padding: 14px 18px 26px;
+  color: #1e1b4b;
+  background:
+    linear-gradient(180deg, transparent 0 calc(100% - 12px), rgba(30, 27, 75, .04) calc(100% - 12px)),
+    #fffdf7;
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
+  border-radius: 16px 16px 0 0;
 }
-
-#supermercado-app-container .producto-emoji {
-    font-size: 2.6em;
-    line-height: 1;
-    filter: drop-shadow(0 3px 6px rgba(124, 58, 237, 0.18));
-    margin-bottom: 2px;
-    transition: transform 0.2s ease;
+.smk-ticket::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--gk-accent), var(--gk-accent-2));
 }
-
-#supermercado-app-container .producto:hover .producto-emoji {
-    transform: scale(1.12) rotate(4deg);
+.smk-ticket__head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed rgba(30, 27, 75, .14);
+  font-size: .8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #c2410c;
 }
-
-#supermercado-app-container .producto-nombre {
-    font-size: 12px;
-    font-weight: 600;
-    color: #4b5563;
-    line-height: 1.2;
-    min-height: 2.4em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* código de barras decorativo */
+.smk-ticket__head::after {
+  content: '';
+  margin-left: auto;
+  width: 58px;
+  height: 16px;
+  background: repeating-linear-gradient(90deg, #1e1b4b 0 2px, transparent 2px 3px, #1e1b4b 3px 4px, transparent 4px 7px);
+  opacity: .55;
 }
-
-#supermercado-app-container .producto-precio {
-    display: inline-block;
-    font-family: 'Lexend', 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: white;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
-    padding: 3px 12px;
-    border-radius: 999px;
-    letter-spacing: 0.2px;
-    box-shadow: 0 2px 6px rgba(219, 39, 119, 0.3);
-    margin-top: 4px;
+.smk-ticket__text {
+  margin: 0;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
+.smk-ticket__basket {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.smk-basket {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 14px;
+  background: #fff7ed;
+  box-shadow: inset 0 0 0 1.5px rgba(251, 146, 60, .35);
+}
+.smk-basket__icon { color: #ea580c; }
+.smk-basket__item { display: inline-flex; align-items: center; gap: 2px; font-size: 1.35rem; line-height: 1; }
+.smk-basket__item b { font-size: .85rem; font-weight: 800; color: #9a3412; }
+.smk-coupon {
+  display: inline-grid;
+  place-items: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .6), inset 0 0 0 4px #db2777, 0 4px 0 #9d174d;
+  transform: rotate(-4deg);
+}
+.smk-bill { width: 108px; height: auto; transform: rotate(3deg); }
 
+/* ---------- Caja registradora ---------- */
+.smk-till {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 16px 14px 14px;
+  border-radius: 26px 26px 20px 20px;
+  color: #fff;
+  background:
+    radial-gradient(100% 60% at 30% 0%, rgba(255, 255, 255, .14), transparent 60%),
+    linear-gradient(180deg, #3b3584 0%, #262063 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, .18),
+    inset 0 -8px 16px rgba(0, 0, 0, .3),
+    0 10px 0 #16134a,
+    0 28px 40px -18px rgba(22, 19, 74, .85);
+}
+.smk-tray {
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  width: 156px;
+  height: auto;
+  pointer-events: none;
+}
+.smk-till__head { display: flex; align-items: center; gap: 10px; padding-right: 140px; }
+.smk-till__brand {
+  flex-shrink: 0;
+  padding: 3px 9px;
+  border-radius: 8px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: #312e81;
+  background: linear-gradient(180deg, #fde68a, #f59e0b);
+  box-shadow: 0 2px 0 #b45309;
+}
+.smk-till__q { font-size: .95rem; font-weight: 800; line-height: 1.2; color: #e0e7ff; }
+
+.smk-lcd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #082a1c 0%, #0b3b26 100%);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, .65), inset 0 0 0 2px rgba(134, 239, 172, .14), 0 1px 0 rgba(255, 255, 255, .14);
+  cursor: text;
+  transition: box-shadow .2s ease;
+}
+.smk-lcd:focus-within { box-shadow: inset 0 3px 8px rgba(0, 0, 0, .65), inset 0 0 0 2px rgba(134, 239, 172, .5), 0 0 0 3px rgba(134, 239, 172, .25); }
+.smk-lcd input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: var(--gk-font);
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #86efac;
+  background: transparent;
+  text-shadow: 0 0 12px rgba(74, 222, 128, .55);
+}
+/* el tema oscuro global pinta todos los inputs (!important): la pantalla manda */
+html.dark .smk-till .smk-lcd .smk-lcd__input.smk-lcd__input {
+  color: #86efac !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+html.dark .smk-till.is-lost .smk-lcd .smk-lcd__input.smk-lcd__input { color: #fda4af !important; }
+html.dark .smk-till .smk-lcd .smk-lcd__input.smk-lcd__input::placeholder { color: rgba(134, 239, 172, .4) !important; }
+.smk-lcd input::placeholder { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: rgba(134, 239, 172, .4); text-shadow: none; }
+.smk-lcd__eur { font-size: 1.7rem; font-weight: 800; color: #86efac; opacity: .85; }
+.smk-till.is-won .smk-lcd { box-shadow: inset 0 3px 8px rgba(0, 0, 0, .65), inset 0 0 0 2px #34d399, 0 0 0 3px rgba(16, 185, 129, .45); }
+.smk-till.is-lost .smk-lcd input,
+.smk-till.is-lost .smk-lcd__eur { color: #fda4af; text-shadow: 0 0 12px rgba(244, 63, 94, .55); }
+
+.smk-keypad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.smk-keypad .smk-key { width: 100%; min-width: 0; height: 52px; }
+.smk-keypad .smk-key .gk-key__face { font-size: 1.35rem; }
+/* teclas de la caja: siempre claras sobre el cuerpo oscuro */
+.smk-keypad .smk-key { background: #b9b3ee; }
+.smk-keypad .smk-key .gk-key__face { color: #2e2775; background: linear-gradient(180deg, #ffffff 0%, #ece9ff 100%); }
+.smk-keypad .smk-key.is-fn { background: #d97706; }
+.smk-keypad .smk-key.is-fn .gk-key__face { color: #9a3412; background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 100%); }
+.smk-till__go { width: 100%; }
+
+/* ---------- Pie y resultados ---------- */
+.smk-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--gk-line);
+}
+.smk-footer__info { font-size: .85rem; font-weight: 700; color: var(--gk-ink-3); }
+.smk-fb-answer { color: var(--gk-ink-3); }
+.smk-fb-answer strong { color: var(--gk-ink); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .smk-store { grid-template-columns: minmax(0, 1fr); }
+  /* en móvil: ticket → estantería → caja */
+  .smk-counter { display: contents; }
+  .smk-ticket { order: 1; }
+  .smk-shelf { order: 2; }
+  .smk-till { order: 3; }
+}
 @media (max-width: 720px) {
-    /* En movil forzamos 2 columnas para evitar tarjetas muy estrechas;
-       cualquier :has() anterior queda anulado gracias a la mayor especificidad. */
-    #supermercado-app-container #panel-productos,
-    #supermercado-app-container #panel-productos:has(.producto:last-child) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    #supermercado-app-container .producto {
-        padding: 12px 6px 8px;
-    }
-    #supermercado-app-container .producto-emoji {
-        font-size: 2.3em;
-    }
-    #supermercado-app-container .producto-nombre {
-        font-size: 11px;
-    }
-    #supermercado-app-container .producto-precio {
-        font-size: 14px;
-        padding: 2px 10px;
-    }
-}
-
-/* ---- Selector de modo ---- */
-#supermercado-app-container .mode-selection {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 22px;
-    flex-wrap: wrap;
-}
-
-#supermercado-app-container .btn-mode {
-    background: #f3f4f6;
-    color: #4b5563;
-    border: 2px solid #e5e7eb;
-    padding: 10px 22px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-#supermercado-app-container .btn-mode:hover {
-    background: #ede9fe;
-    color: #5b21b6;
-    border-color: #c4b5fd;
-}
-
-#supermercado-app-container .btn-mode.active {
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.35);
-}
-
-/* ---- Tarjeta de mision ---- */
-#supermercado-app-container .mision {
-    background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
-    border: 2px solid #fde68a;
-    padding: 18px 20px;
-    border-radius: 16px;
-    margin: 22px 0;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-#supermercado-app-container .mision h2 {
-    font-family: 'Fredoka One', cursive;
-    color: #d97706;
-    margin: 0 0 8px;
-    font-size: 1.35em;
-}
-
-#supermercado-app-container .mision p {
-    margin: 0;
-    font-size: 1.05em;
-    line-height: 1.5;
-    color: #374151;
-}
-
-/* ---- Entrada + comprobar ---- */
-#supermercado-app-container .respuesta-usuario {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-}
-
-#supermercado-app-container label {
-    font-weight: 600;
-    color: #4b5563;
-}
-
-#supermercado-app-container input[type="number"],
-#supermercado-app-container input[type="text"] {
-    padding: 11px 14px;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    width: 140px;
-    text-align: center;
-    background: white;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-#supermercado-app-container input[type="number"]:focus,
-#supermercado-app-container input[type="text"]:focus {
-    outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
-}
-
-/* ---- Botones base ---- */
-#supermercado-app-container button {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    color: white;
-    border: none;
-    padding: 11px 22px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
-}
-
-#supermercado-app-container button:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
-    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.4);
-}
-
-#supermercado-app-container button:active {
-    transform: translateY(0);
-}
-
-#supermercado-app-container #btnNuevaMision {
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    margin-top: 14px;
-    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
-}
-
-#supermercado-app-container #btnNuevaMision:hover {
-    box-shadow: 0 8px 16px rgba(234, 88, 12, 0.4);
-}
-
-/* ---- Feedback ---- */
-#supermercado-app-container #feedback {
-    margin-top: 16px;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 0;
-    border-radius: 12px;
-    min-height: 0;
-    transition: all 0.2s ease;
-}
-
-#supermercado-app-container #feedback.correcta,
-#supermercado-app-container #feedback.incorrecta {
-    padding: 12px 16px;
-}
-
-#supermercado-app-container .correcta {
-    color: #065f46;
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    border: 2px solid #10b981;
-    animation: sup-pop 0.3s ease;
-}
-
-#supermercado-app-container .incorrecta {
-    color: #991b1b;
-    background: linear-gradient(135deg, #fee2e2, #fecaca);
-    border: 2px solid #ef4444;
-    animation: sup-shake 0.35s ease;
-}
-
-@keyframes sup-pop {
-    0% { transform: scale(0.92); opacity: 0; }
-    60% { transform: scale(1.04); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes sup-shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
-}
-
-/* ---- Modo examen / test ---- */
-.test-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-weight: 700;
-    color: #4b5563;
-}
-
-.test-header .question-counter {
-    background: #ede9fe;
-    color: #5b21b6;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 14px;
-}
-
-.test-header .timer {
-    background: #fef3c7;
-    color: #92400e;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 14px;
-}
-
-.progress-bar-container {
-    width: 100%;
-    background: #e5e7eb;
-    border-radius: 999px;
-    height: 10px;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
-    border-radius: 999px;
-    transition: width 0.3s ease-in-out;
-}
-
-.btn-test {
-    background: linear-gradient(135deg, #10b981, #059669) !important;
-    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3) !important;
-}
-
-.btn-test:hover {
-    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4) !important;
-}
-
-/* ---- Resultados ---- */
-.test-results .score {
-    font-size: 18px;
-    font-weight: 700;
-    color: #7c3aed;
-    margin: 6px 0 20px;
-}
-
-.test-results .score span {
-    font-family: 'Fredoka One', cursive;
-    font-size: 26px;
-    margin-left: 4px;
-}
-
-.test-results .nota-final {
-    margin: 24px auto 12px;
-    padding: 22px 20px;
-    border-radius: 20px;
-    max-width: 340px;
-    border: 3px solid transparent;
-    background: #f8fafc;
-    animation: sup-pop 0.4s ease;
-}
-
-.test-results .nota-final.excellent {
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    border-color: #10b981;
-    color: #065f46;
-    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
-}
-
-.test-results .nota-final.good {
-    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-    border-color: #3b82f6;
-    color: #1e3a8a;
-    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.35);
-}
-
-.test-results .nota-final.fail {
-    background: linear-gradient(135deg, #fee2e2, #fecaca);
-    border-color: #ef4444;
-    color: #7f1d1d;
-    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.35);
-}
-
-.test-results .nota-big {
-    font-family: 'Fredoka One', cursive;
-    font-size: 64px;
-    line-height: 1;
-    font-weight: bold;
-}
-
-.test-results .nota-small {
-    font-size: 26px;
-    opacity: 0.75;
-    margin-left: 4px;
-}
-
-.test-results .nota-msg {
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 8px;
-}
-
-.test-results .results-summary {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.test-results .result-item {
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.6);
-    margin-bottom: 8px;
-    border: 1px solid rgba(139, 92, 246, 0.12);
-}
-
-.test-results .result-item p:first-child {
-    margin: 0 0 6px;
-    color: #374151;
-}
-
-.test-results .result-item p { margin: 0; }
-
-.test-results .result-item .correcta,
-.test-results .result-item .incorrecta {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    border: none;
-    animation: none;
-}
-
-.test-results .test-controls {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 24px;
-    flex-wrap: wrap;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 720px) {
-    #supermercado-app-container {
-        padding: 28px 18px 22px;
-        border-radius: 20px;
-    }
-    #supermercado-app-container input[type="number"],
-    #supermercado-app-container input[type="text"] {
-        width: 100%;
-        max-width: 220px;
-    }
-    #supermercado-app-container .respuesta-usuario {
-        flex-direction: column;
-    }
-    .test-results .nota-big { font-size: 54px; }
-}
-
-/* ==========================================================================
-   Capa "premium" (cristal, luz, profundidad y microinteracciones)
-   Solo añade acabado: no cambia layout ni nombres de clases usados por JS.
-   ========================================================================== */
-
-#supermercado-app-container {
-    isolation: isolate;
-    font-family: 'Fredoka', 'Lexend', 'Roboto', sans-serif;
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    box-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
-        0 0 0 1px rgba(139, 92, 246, 0.1),
-        0 30px 70px -30px rgba(124, 58, 237, 0.5),
-        0 10px 24px -12px rgba(236, 72, 153, 0.22);
-    animation: sup-rise 0.6s cubic-bezier(.22, 1, .36, 1) backwards;
-}
-
-/* Banda superior animada (aurora) */
-#supermercado-app-container::before {
-    height: 5px;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b, #ec4899, #8b5cf6);
-    background-size: 300% 100%;
-    animation: sup-pan 8s linear infinite;
-    z-index: 2;
-}
-
-/* Orbes de luz difusos + rejilla sutil detrás del contenido */
-#supermercado-app-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-        radial-gradient(420px 300px at 0% 0%, rgba(139, 92, 246, 0.16), transparent 70%),
-        radial-gradient(380px 280px at 100% 100%, rgba(245, 158, 11, 0.16), transparent 70%),
-        radial-gradient(300px 220px at 100% 0%, rgba(236, 72, 153, 0.1), transparent 70%),
-        linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px) 0 0 / 28px 28px,
-        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px) 0 0 / 28px 28px;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 100%);
-    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 100%);
-}
-
-#supermercado-app-container .supermercado-title {
-    background-size: 200% 100%;
-    animation: sup-pan 10s linear infinite;
-    filter: drop-shadow(0 4px 14px rgba(219, 39, 119, 0.22));
-}
-
-/* Productos: entrada escalonada + tarjeta de cristal con brillo */
-#supermercado-app-container .producto {
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 245, 255, 0.85) 100%);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.95) inset,
-        inset 0 -3px 0 rgba(139, 92, 246, 0.07),
-        0 8px 18px -10px rgba(139, 92, 246, 0.35);
-    transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, border-color 0.2s ease;
-    animation: sup-rise 0.5s cubic-bezier(.22, 1, .36, 1) backwards;
-}
-#supermercado-app-container .producto:nth-child(1)  { animation-delay: 0.05s; }
-#supermercado-app-container .producto:nth-child(2)  { animation-delay: 0.09s; }
-#supermercado-app-container .producto:nth-child(3)  { animation-delay: 0.13s; }
-#supermercado-app-container .producto:nth-child(4)  { animation-delay: 0.17s; }
-#supermercado-app-container .producto:nth-child(5)  { animation-delay: 0.21s; }
-#supermercado-app-container .producto:nth-child(6)  { animation-delay: 0.25s; }
-#supermercado-app-container .producto:nth-child(7)  { animation-delay: 0.29s; }
-#supermercado-app-container .producto:nth-child(8)  { animation-delay: 0.33s; }
-#supermercado-app-container .producto:nth-child(n+9) { animation-delay: 0.37s; }
-
-/* Barrido de luz al pasar el ratón */
-#supermercado-app-container .producto::after {
-    content: "";
-    position: absolute;
-    top: -40%;
-    left: -70%;
-    width: 45%;
-    height: 180%;
-    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
-    transform: translateX(0) rotate(14deg);
-    opacity: 0;
-    pointer-events: none;
-}
-#supermercado-app-container .producto:hover::after {
-    opacity: 1;
-    transform: translateX(420%) rotate(14deg);
-    transition: transform 0.8s cubic-bezier(.22, 1, .36, 1), opacity 0.2s ease;
-}
-#supermercado-app-container .producto:hover {
-    transform: translateY(-5px) rotate(-1deg) scale(1.03);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.95) inset,
-        0 18px 30px -14px rgba(139, 92, 246, 0.55),
-        0 0 0 3px rgba(139, 92, 246, 0.1);
-}
-#supermercado-app-container .producto-precio {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 6px 14px -6px rgba(219, 39, 119, 0.6);
-}
-
-/* Selector de modo con estados ricos */
-#supermercado-app-container .btn-mode {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 4px 10px -6px rgba(15, 23, 42, 0.2);
-}
-#supermercado-app-container .btn-mode:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -10px rgba(139, 92, 246, 0.6);
-}
-#supermercado-app-container .btn-mode.active {
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.35) inset,
-        0 -3px 0 rgba(0, 0, 0, 0.12) inset,
-        0 10px 24px -8px rgba(139, 92, 246, 0.6);
-}
-
-/* Tarjeta de misión: cristal ámbar con entrada */
-#supermercado-app-container .mision {
-    position: relative;
-    overflow: hidden;
-    background:
-        radial-gradient(260px 120px at 100% 0%, rgba(245, 158, 11, 0.16), transparent 70%),
-        linear-gradient(135deg, rgba(255, 247, 237, 0.95) 0%, rgba(255, 251, 235, 0.92) 100%);
-    border: 1.5px solid rgba(251, 191, 36, 0.55);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        0 14px 30px -18px rgba(217, 119, 6, 0.55);
-    animation: sup-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
-}
-
-/* Botones: relieve 3D + brillo */
-#supermercado-app-container button {
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.3) inset,
-        0 -3px 0 rgba(0, 0, 0, 0.15) inset,
-        0 8px 18px -8px rgba(124, 58, 237, 0.55);
-    transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s ease, filter 0.2s ease;
-}
-#supermercado-app-container button:hover {
-    transform: translateY(-2px) scale(1.03);
-}
-#supermercado-app-container button:active {
-    transform: translateY(1px) scale(0.98);
-}
-#supermercado-app-container button:focus-visible,
-#supermercado-app-container input:focus-visible {
-    outline: 3px solid rgba(167, 139, 250, 0.7);
-    outline-offset: 2px;
-}
-
-#supermercado-app-container input[type="number"],
-#supermercado-app-container input[type="text"] {
-    box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.12) inset;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-#supermercado-app-container input[type="number"]:focus,
-#supermercado-app-container input[type="text"]:focus {
-    transform: translateY(-1px);
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18), 0 10px 20px -12px rgba(139, 92, 246, 0.6);
-}
-
-/* Feedback con glow (acierto) y shake + glow rojo (fallo) */
-#supermercado-app-container #feedback.correcta {
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 12px 26px -12px rgba(16, 185, 129, 0.7);
-    animation: sup-pop 0.4s cubic-bezier(.34, 1.56, .64, 1), sup-glow-ok 1.2s ease-out;
-}
-#supermercado-app-container #feedback.incorrecta {
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), 0 12px 26px -12px rgba(239, 68, 68, 0.65);
-    animation: sup-shake 0.4s ease, sup-glow-ko 1s ease-out;
-}
-
-/* Examen: cabecera con chips de cristal y barra con brillo */
-#supermercado-app-container .test-header .question-counter,
-#supermercado-app-container .test-header .timer {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 6px 14px -8px rgba(91, 33, 182, 0.4);
-    border: 1px solid rgba(139, 92, 246, 0.15);
-}
-#supermercado-app-container .progress-bar-container {
-    height: 12px;
-    background: rgba(226, 232, 240, 0.8);
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12) inset;
-}
-#supermercado-app-container .progress-bar {
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 14px rgba(236, 72, 153, 0.5);
-    transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
-}
-#supermercado-app-container .progress-bar::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
-    background-size: 200% 100%;
-    animation: sup-bar-shine 2.2s linear infinite;
-}
-
-/* ---- Resumen: nota héroe con anillo ---- */
-.test-results .nota-final {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    border-width: 1.5px;
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        0 24px 50px -22px currentColor;
-    animation: sup-pop-big 0.8s cubic-bezier(.34, 1.56, .64, 1) backwards;
-}
-.test-results .sup-grade-ring {
-    --sup-grade: 0;
-    --sup-grade-color: #3b82f6;
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 168px;
-    height: 168px;
-    margin: 14px auto 12px;
-    border-radius: 50%;
-    background:
-        radial-gradient(closest-side, rgba(255, 255, 255, 0.96) 80%, transparent 81% 100%),
-        conic-gradient(var(--sup-grade-color) calc(var(--sup-grade) * 36deg), rgba(148, 163, 184, 0.22) 0);
-    box-shadow:
-        0 0 0 6px rgba(255, 255, 255, 0.55),
-        0 0 46px -6px var(--sup-grade-color);
-    animation: sup-ring-in 0.9s cubic-bezier(.34, 1.56, .64, 1) 0.15s backwards;
-}
-.test-results .sup-grade-ring::after {
-    content: "";
-    position: absolute;
-    inset: -14px;
-    border-radius: 50%;
-    border: 2px dashed var(--sup-grade-color);
-    opacity: 0.35;
-    animation: sup-spin 18s linear infinite;
-    pointer-events: none;
-}
-.test-results .sup-grade-ring .nota-big {
-    font-size: 44px;
-    white-space: nowrap;
-    color: var(--sup-grade-color);
-    text-shadow: 0 4px 18px color-mix(in srgb, var(--sup-grade-color) 45%, transparent);
-}
-.test-results .sup-grade-ring .nota-small { font-size: 20px; }
-.test-results .nota-msg { animation: sup-rise 0.5s cubic-bezier(.22, 1, .36, 1) 0.45s backwards; }
-
-/* Puntos paralelos como chip luminoso */
-.test-results .score {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.1));
-    border: 1px solid rgba(139, 92, 246, 0.25);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 24px -14px rgba(139, 92, 246, 0.7);
-    animation: sup-pop 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.55s backwards;
-}
-.test-results .score .sup-score-label {
-    font-family: inherit;
-    font-size: 16px;
-    margin-left: 0;
-}
-
-.test-results .result-item {
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 6px 14px -10px rgba(91, 33, 182, 0.35);
-    animation: sup-rise 0.45s cubic-bezier(.22, 1, .36, 1) backwards;
-    transition: transform 0.2s ease;
-}
-.test-results .result-item:hover { transform: translateX(3px); }
-.test-results .result-item:nth-child(1) { animation-delay: 0.6s; }
-.test-results .result-item:nth-child(2) { animation-delay: 0.66s; }
-.test-results .result-item:nth-child(3) { animation-delay: 0.72s; }
-.test-results .result-item:nth-child(4) { animation-delay: 0.78s; }
-.test-results .result-item:nth-child(n+5) { animation-delay: 0.84s; }
-
-/* ---- Modo oscuro ---- */
-html.dark #supermercado-app-container {
-    background: linear-gradient(160deg, #1f1b3a 0%, #261a3d 55%, #2a1e24 100%);
-    color: #e2e8f0;
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
-        0 30px 70px -30px rgba(0, 0, 0, 0.8),
-        0 0 80px -40px rgba(168, 85, 247, 0.6);
-}
-html.dark #supermercado-app-container .producto {
-    background: linear-gradient(165deg, rgba(49, 42, 84, 0.9), rgba(37, 31, 64, 0.9));
-    border-color: rgba(167, 139, 250, 0.22);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 10px 20px -12px rgba(0, 0, 0, 0.6);
-}
-html.dark #supermercado-app-container .producto-nombre,
-html.dark #supermercado-app-container label { color: #cbd5e1; }
-html.dark #supermercado-app-container .producto::after {
-    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-}
-html.dark #supermercado-app-container .btn-mode:not(.active) {
-    background: rgba(255, 255, 255, 0.06);
-    color: #cbd5e1;
-    border-color: rgba(255, 255, 255, 0.12);
-}
-html.dark #supermercado-app-container .mision {
-    background:
-        radial-gradient(260px 120px at 100% 0%, rgba(245, 158, 11, 0.18), transparent 70%),
-        linear-gradient(135deg, rgba(69, 46, 20, 0.6), rgba(56, 40, 20, 0.55));
-    border-color: rgba(251, 191, 36, 0.4);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 14px 30px -18px rgba(0, 0, 0, 0.6);
-}
-html.dark #supermercado-app-container .mision h2 { color: #fbbf24; }
-html.dark #supermercado-app-container .mision p { color: #f1f5f9; }
-html.dark #supermercado-app-container input[type="number"],
-html.dark #supermercado-app-container input[type="text"] {
-    background: rgba(15, 12, 41, 0.6);
-    border-color: rgba(167, 139, 250, 0.3);
-    color: #f8fafc;
-}
-html.dark #supermercado-app-container .progress-bar-container { background: rgba(255, 255, 255, 0.08); }
-html.dark .test-results .sup-grade-ring {
-    background:
-        radial-gradient(closest-side, #1f1b3a 80%, transparent 81% 100%),
-        conic-gradient(var(--sup-grade-color) calc(var(--sup-grade) * 36deg), rgba(148, 163, 184, 0.2) 0);
-    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05), 0 0 46px -6px var(--sup-grade-color);
-}
-html.dark .test-results .score { color: #c4b5fd; }
-html.dark .test-results .result-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(167, 139, 250, 0.18);
-    box-shadow: none;
-}
-html.dark .test-results .result-item p:first-child { color: #e2e8f0; }
-
-/* ---- Keyframes propios ---- */
-@keyframes sup-rise {
-    from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.985); }
-    to   { opacity: 1; transform: none; }
-}
-@keyframes sup-pan { to { background-position: 300% 0; } }
-@keyframes sup-bar-shine {
-    from { background-position: 200% 0; }
-    to   { background-position: -200% 0; }
-}
-@keyframes sup-pop-big {
-    0%   { opacity: 0; transform: scale(0.7) translateY(20px); }
-    65%  { opacity: 1; transform: scale(1.05) translateY(-2px); }
-    100% { transform: none; }
-}
-@keyframes sup-ring-in {
-    0%   { opacity: 0; transform: scale(0.5) rotate(-90deg); }
-    100% { opacity: 1; transform: none; }
-}
-@keyframes sup-spin { to { transform: rotate(360deg); } }
-@keyframes sup-glow-ok {
-    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-    100% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
-}
-@keyframes sup-glow-ko {
-    0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
-    100% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
-}
-
-@media (max-width: 720px) {
-    .test-results .sup-grade-ring { width: 140px; height: 140px; }
-    .test-results .sup-grade-ring .nota-big { font-size: 36px; }
-    .test-results .sup-grade-ring .nota-small { font-size: 16px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    #supermercado-app-container::before,
-    #supermercado-app-container .supermercado-title,
-    #supermercado-app-container .progress-bar::after,
-    .test-results .sup-grade-ring::after { animation: none; }
-    #supermercado-app-container,
-    #supermercado-app-container .producto,
-    #supermercado-app-container .mision,
-    .test-results .nota-final,
-    .test-results .sup-grade-ring,
-    .test-results .result-item,
-    .test-results .score,
-    .test-results .nota-msg { animation-duration: 0.01ms; animation-delay: 0s; }
-}
-
-/* Título del resumen con más presencia (el h1 no lleva tamaño de Tailwind) */
-.test-results .supermercado-title { font-size: 2.2rem; line-height: 1.15; }
-@media (max-width: 720px) {
-    .test-results .supermercado-title { font-size: 1.7rem; }
+  .smk-shelf { padding: 0 10px 4px; }
+  .smk-awning { margin: 0 -10px 20px; height: 24px; }
+  .smk-shelf__grid { --row: 124px; --gap: 18px; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); column-gap: 8px; }
+  .smk-prod { padding: 14px 6px 8px; }
+  .smk-prod__emoji { font-size: 2.1rem; }
+  .smk-prod__name { font-size: .74rem; }
+  .smk-prod__tag { font-size: .9rem; padding: 4px 8px 4px 16px; }
+  .smk-ticket__text { font-size: 1.02rem; }
+  .smk-lcd input { font-size: 2rem; }
+  .smk-keypad .smk-key { height: 48px; }
+  .smk-tray { width: 100px; top: -26px; }
+  .smk-till__head { padding-right: 96px; }
 }

@@ -1,10 +1,12 @@
 import React from 'react';
-import '/src/apps/_shared/MathBoxShared.css';
+import { Target } from 'lucide-react';
+import { OpBoard, OpNum, OpCell, OpSign, OpRule, OpNote } from '../multiplicaciones/OpTablero';
+import './Multiplicaciones.css';
 
 /**
- * Tablero simplificado para el modo examen de las apps de multiplicaciones.
- * Muestra "N1 × N2 =" y una fila de casillas donde el alumno escribe el
- * resultado digito a digito usando la paleta numerica del layout.
+ * Tablero del modo examen de las apps de multiplicaciones (rediseño 2026).
+ * Muestra la multiplicación en columna y una fila de casillas donde el alumno
+ * escribe el resultado cifra a cifra con el teclado del layout.
  *
  * Props:
  *  - multiplicando (number|string)
@@ -23,68 +25,38 @@ export default function MultiplicacionTestBoard({
   const ancho = Math.max(resultSlots.length, String(multiplicando).length + 1);
   const n1Str = String(multiplicando).padStart(ancho, ' ');
   const n2Str = String(multiplicador).padStart(ancho, ' ');
+  const at = (row, c) => ({ gridRow: row, gridColumn: c + 2 });
+  const cols = Array.from({ length: ancho }, (_, c) => c);
 
   return (
-    <div id="problem-area" style={{ display: 'flex', justifyContent: 'center' }}>
+    <OpBoard>
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${ancho}, 45px)`,
-          justifyContent: 'center',
-          gap: 6,
-        }}
+        className="op-grid mx-grid"
+        style={{ '--units': 1.6 + ancho * 1.14, gridTemplateColumns: `calc(var(--cell) * .8) repeat(${ancho}, var(--cell))` }}
       >
-        {/* Multiplicando */}
-        {Array.from({ length: ancho }).map((_, c) => (
-          <div key={`n1-${c}`} className="digit-display" style={{ gridRow: 1, gridColumn: c + 1 }}>
-            {n1Str[c] === ' ' ? '' : n1Str[c]}
-          </div>
-        ))}
+        {cols.map((c) => <OpNum key={`n1-${c}`} at={at(1, c)}>{n1Str[c].trim()}</OpNum>)}
+        <OpSign op="mul" at={{ gridRow: 2, gridColumn: 1 }} />
+        {cols.map((c) => <OpNum key={`n2-${c}`} at={at(2, c)}>{n2Str[c].trim()}</OpNum>)}
+        <OpRule at={{ gridRow: 3, gridColumn: '1 / -1' }} />
 
-        {/* Multiplicador (con x delante del primer dígito visible) */}
-        {(() => {
-          let xPuesto = false;
-          return Array.from({ length: ancho }).map((_, c) => {
-            const ch = n2Str[c];
-            let content = ch === ' ' ? '' : ch;
-            if (ch !== ' ' && !xPuesto) {
-              content = (
-                <>
-                  <span className="cross-inline" style={{ marginRight: 4 }}>×</span>
-                  <span>{ch}</span>
-                </>
-              );
-              xPuesto = true;
-            }
-            return (
-              <div key={`n2-${c}`} className="digit-display" style={{ gridRow: 2, gridColumn: c + 1, position: 'relative' }}>
-                {content}
-              </div>
-            );
-          });
-        })()}
-
-        {/* Línea */}
-        <hr className="operation-line" style={{ gridRow: 3, gridColumn: '1 / -1' }} />
-
-        {/* Resultado: un slot por dígito de la solución, alineado a la derecha */}
-        {Array.from({ length: ancho }).map((_, c) => {
+        {/* Resultado: una casilla por cifra de la solución, alineada a la derecha */}
+        {cols.map((c) => {
           const idx = c - (ancho - resultSlots.length);
-          if (idx < 0) {
-            return <div key={`r-pad-${c}`} style={{ gridRow: 4, gridColumn: c + 1 }} />;
-          }
+          if (idx < 0) return <OpCell key={`r-pad-${c}`} at={at(4, c)} off />;
           return (
-            <div
+            <OpCell
               key={`r-${c}`}
-              className={`box result-box ${activeSlotIndex === idx ? 'selected' : ''}`}
+              at={at(4, c)}
+              i={c}
+              value={resultSlots[idx]}
+              active={activeSlotIndex === idx}
               onClick={() => onSlotClick(idx)}
-              style={{ gridRow: 4, gridColumn: c + 1 }}
-            >
-              {resultSlots[idx]}
-            </div>
+              label={`Cifra ${idx + 1} del resultado`}
+            />
           );
         })}
       </div>
-    </div>
+      <OpNote icon={Target}>Escribe el resultado final, empezando por las unidades</OpNote>
+    </OpBoard>
   );
 }

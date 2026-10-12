@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Shuffle, User, ListChecks, Eye, EyeOff, Star, BookOpen, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  RefreshCw, Shuffle, ListChecks, Star, Target, Clock, LayoutGrid,
+  SlidersHorizontal, Gamepad2, GraduationCap, ArrowUp, Gauge, ArrowDownToLine,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
+import InstructionsModal from './InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, GameButton, ModeSelect, ResultsScreen,
+  GameLoading, GameEmpty,
+} from './kit';
 import './Runner.css';
 
 // --- CONFIGURACIÓN BASE ---
@@ -14,11 +19,11 @@ const DEFAULT_JUMP_FORCE = 18;
 const CUBE_SIZE = 40;
 const BASE_SPAWN_DISTANCE = 600;
 
-// --- PERSONAJES ---
+// --- PERSONAJES --- (el aspecto de cada cubo está en Runner.css: rn-char--0/1/2)
 const CHARACTERS = [
-  { id: 0, name: "Clásico", mainColor: "bg-yellow-400", borderColor: "border-black", eyeColor: "bg-black", eyeBorder: "border-white", glow: "shadow-[0_0_20px_rgba(250,204,21,0.6)]" },
-  { id: 1, name: "Neon", mainColor: "bg-cyan-400", borderColor: "border-white", eyeColor: "bg-pink-500", eyeBorder: "border-white", glow: "shadow-[0_0_20px_rgba(34,211,238,0.9)]" },
-  { id: 2, name: "Dark", mainColor: "bg-purple-700", borderColor: "border-emerald-400", eyeColor: "bg-emerald-400", eyeBorder: "border-black", glow: "shadow-[0_0_20px_rgba(16,185,129,0.8)]" }
+  { id: 0, name: "Clásico" },
+  { id: 1, name: "Neón" },
+  { id: 2, name: "Sombra" }
 ];
 
 const Runner = ({ level, grade, subjectId, onGameComplete }) => {
@@ -118,8 +123,11 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   }, [gameState, gameData, randomizeMission]);
 
   // 2. INICIO DEL JUEGO
-  const startGame = () => {
+  // `hints` llega desde la pantalla de modos (Práctica = con pistas, Examen =
+  // sin pistas): es el mismo interruptor showHints de siempre.
+  const startGame = (hints = showHints) => {
     if (!targetType) return;
+    setShowHints(hints);
 
     targetTypeRef.current = targetType;
     setScore(0);
@@ -130,7 +138,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     speedRef.current = configSpeed[0];
     gravityRef.current = configGravity[0];
     jumpForceRef.current = DEFAULT_JUMP_FORCE;
-    showHintsRef.current = showHints;
+    showHintsRef.current = hints;
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     rotationRef.current = 0;
@@ -453,32 +461,215 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     return () => { isPlayingRef.current = false; cancelAnimationFrame(reqRef.current); };
   }, []);
 
-  const renderCharacter = (charIndex, isPreview = false) => {
-    const char = CHARACTERS[charIndex];
-    const invincibleGlow = (isInvincible && !isPreview) ? "drop-shadow-[0_0_15px_rgba(255,215,0,1)] border-yellow-200" : "";
+  // --- PRESENTACIÓN (rediseño 2026 con el kit, estética arcade retro) ---
+  const [showInstructions, setShowInstructions] = useState(false);
 
-    return (
-      <div
-        className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow} ${invincibleGlow}`}
-        style={!isPreview ? { transform: `rotate(${rotationRef.current}deg)`, transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' } : {}}
-      >
-        <div className={`absolute top-[15%] left-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
-        <div className={`absolute top-[15%] right-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
-        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[40%] h-[10%] bg-black/50 rounded-full"></div>
-      </div>
-    );
-  };
+  // Segundos de la partida (solo para el resumen; misma fórmula que el tracking)
+  const elapsedAtEnd = useMemo(() => {
+    if (gameState !== 'gameover' || !gameStartRef.current) return 0;
+    return Math.max(1, Math.round((Date.now() - gameStartRef.current) / 1000));
+  }, [gameState]);
+
+  const renderCharacter = (charIndex, isPreview = false) => (
+    <div
+      className={`rn-char rn-char--${charIndex} ${isInvincible && !isPreview ? 'is-invincible' : ''}`}
+      style={!isPreview ? { transform: `rotate(${rotationRef.current}deg)`, transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' } : {}}
+    >
+      <span className="rn-char__eye rn-char__eye--l" />
+      <span className="rn-char__eye rn-char__eye--r" />
+      <span className="rn-char__mouth" />
+    </div>
+  );
 
   // Cálculo del tiempo restante de invencibilidad para el HUD
   const now = Date.now();
   const timeLeft = isInvincible ? Math.max(0, Math.ceil((invincibleUntilRef.current - now) / 1000)) : 0;
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] bg-transparent p-4 select-none touch-none font-mono">
-      {gameState === 'gameover' && <ConfettiProvider />}
+  const shellProps = { theme: 'dark', accent: '#a855f7', accent2: '#fb923c', className: 'rn' };
+  const isExam = !showHints;
+  const missionName = formatMissionName(targetType);
 
-      <Card
-        className="runner-screen w-full max-w-4xl h-[450px] relative overflow-hidden bg-indigo-950 border-[8px] border-black shadow-2xl rounded-none cursor-pointer"
+  const modals = (
+    <>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Education Dash">
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Corre sin parar y <strong>atrapa solo las palabras de tu misión</strong>. Si chocas con un pincho
+          o tocas una palabra que no es de la misión, se acaba la partida.
+        </p>
+        <h3>🕹️ Controles</h3>
+        <ul>
+          <li><kbd>Espacio</kbd> o <kbd>↑</kbd> para saltar. También puedes hacer clic o tocar la pantalla.</li>
+          <li>Puedes aterrizar sobre las plataformas para llegar a las palabras altas.</li>
+          <li>La <strong>estrella</strong> te hace invencible 10 segundos: rompes pinchos y palabras incorrectas.</li>
+        </ul>
+        <h3>🎓 Modos de juego</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Práctica</strong> Las palabras de la misión se ven en verde y las demás en rojo.</div>
+          <div className="instr-mode exam"><strong>Examen</strong> Sin colores. 10 palabras = un 10, y bonus si eres rápido.</div>
+        </div>
+      </InstructionsModal>
+      <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de misiones">
+        <div className="rn-guide">
+          {gameData && Object.entries(gameData)
+            .filter(([key, words]) => key !== 'title' && key !== 'instructions' && Array.isArray(words))
+            .map(([category, words]) => (
+              <section key={category} className={`rn-guide__cat ${category === targetType ? 'is-current' : ''}`}>
+                <h4 className="rn-guide__title">
+                  {category.replace(/_/g, ' ')}
+                  {category === targetType && <span className="rn-guide__now"><Target size={12} /> Tu misión</span>}
+                </h4>
+                <div className="rn-guide__words">
+                  {words.map((word, wIdx) => <span key={wIdx} className="rn-guide__chip">{word}</span>)}
+                </div>
+              </section>
+            ))}
+        </div>
+      </InstructionsModal>
+    </>
+  );
+
+  if (loadingError) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader />
+        <GameEmpty title="Error de datos">No se encontraron palabras para {subjectId}.</GameEmpty>
+      </GameShell>
+    );
+  }
+  if (!gameData) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Calentando motores…" />
+      </GameShell>
+    );
+  }
+
+  // --- PANTALLA PREVIA: modos + misión + personaje ---
+  if (gameState === 'start') {
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={[
+            { id: 'practice', tone: 'easy', icon: Gamepad2, title: 'Práctica', desc: 'Las palabras de tu misión brillan en verde; las demás, en rojo.', features: ['Pistas de color', 'Para entrenar'] },
+            { id: 'exam', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Sin colores: lee cada palabra antes de saltar a por ella.', features: ['Nota sobre 10', 'Bonus por rapidez'] },
+          ]}
+          onSelect={(id) => startGame(id === 'practice')}
+          onHelp={() => setShowInstructions(true)}
+          onStudy={() => setShowCheatSheet(true)}
+          extra={(
+            <div className="rn-loadout">
+              <section className="rn-loadout__box rn-loadout__box--mission">
+                <span className="rn-loadout__label"><Target size={15} /> Tu misión</span>
+                <div className="rn-mission-pick">
+                  <span className="rn-mission-pick__name">{missionName || 'Cargando…'}</span>
+                  <GameButton variant="soft" size="sm" icon={Shuffle} onClick={changeMission} aria-label="Cambiar misión" title="Cambiar misión" />
+                </div>
+              </section>
+              <section className="rn-loadout__box">
+                <span className="rn-loadout__label"><Star size={15} /> Personaje · <b>{CHARACTERS[selectedChar].name}</b></span>
+                <div className="rn-chars" role="radiogroup" aria-label="Elige personaje">
+                  {CHARACTERS.map((char) => (
+                    <button
+                      key={char.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={selectedChar === char.id}
+                      onClick={() => setSelectedChar(char.id)}
+                      className={`rn-charpick ${selectedChar === char.id ? 'is-active' : ''}`}
+                      title={char.name}
+                    >
+                      {renderCharacter(char.id, true)}
+                    </button>
+                  ))}
+                </div>
+              </section>
+              <section className="rn-loadout__box rn-loadout__box--wide">
+                <button type="button" className={`rn-adv-toggle ${showSettings ? 'is-open' : ''}`} onClick={() => setShowSettings(!showSettings)} aria-expanded={showSettings}>
+                  <SlidersHorizontal size={15} /> Ajustes avanzados
+                </button>
+                {showSettings && (
+                  <div className="rn-adv">
+                    <label className="rn-range">
+                      <span><Gauge size={14} /> Velocidad <b>{configSpeed[0]}</b></span>
+                      <input type="range" min={2} max={16} step={1} value={configSpeed[0]} onChange={(e) => setConfigSpeed([Number(e.target.value)])} />
+                    </label>
+                    <label className="rn-range">
+                      <span><ArrowDownToLine size={14} /> Gravedad <b>{configGravity[0]}</b></span>
+                      <input type="range" min={0.5} max={2} step={0.1} value={configGravity[0]} onChange={(e) => setConfigGravity([Number(e.target.value)])} />
+                    </label>
+                  </div>
+                )}
+              </section>
+            </div>
+          )}
+          footer="Espacio, ↑, clic o toque para saltar"
+        />
+        {modals}
+      </GameShell>
+    );
+  }
+
+  // --- EXAMEN TERMINADO: resumen con la nota ---
+  if (gameState === 'gameover' && isExam) {
+    const words = collectedWordsRef.current?.length || 0;
+    const EXAM_TARGET = 10;
+    const nota = Math.min(10, Math.round((words / EXAM_TARGET) * 100) / 10);
+    const timeBonus = words >= EXAM_TARGET ? Math.max(0, Math.round((EXAM_TARGET * 5 - elapsedAtEnd) * 5)) : 0;
+    return (
+      <GameShell {...shellProps}>
+        <ConfettiProvider />
+        <ResultsScreen
+          title="¡Carrera terminada!"
+          nota={nota}
+          points={score + timeBonus}
+          stats={[
+            { icon: ListChecks, tone: 'good', label: 'Palabras', value: `${words}/${EXAM_TARGET}` },
+            { icon: Clock, tone: 'time', label: 'Tiempo', value: `${elapsedAtEnd}s` },
+            { icon: Target, tone: 'accent', label: 'Misión', value: missionName },
+          ]}
+          actions={[
+            { label: 'Otra carrera', onClick: () => startGame(false), icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: () => setGameState('start'), icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {words > 0 && (
+            <div className="rn-collected">
+              {collectedWordsRef.current.map((w, i) => <span key={i} className="rn-collected__chip">{w}</span>)}
+            </div>
+          )}
+        </ResultsScreen>
+        {modals}
+      </GameShell>
+    );
+  }
+
+  return (
+    <GameShell {...shellProps}>
+      {gameState === 'gameover' && <ConfettiProvider />}
+      <GameHeader
+        mode={isExam ? 'exam' : 'practice'}
+        compact
+        right={(
+          <Hud>
+            {isInvincible && <HudStat icon={Star} tone="streak" value={`${timeLeft}s`} label="Invencible" />}
+            <HudStat icon={ListChecks} tone="good" value={score.toString().padStart(3, '0')} label="Palabras" />
+          </Hud>
+        )}
+      />
+
+      <div className="rn-mission">
+        <span className="rn-mission__icon"><Target size={18} /></span>
+        <span className="rn-mission__text"><small>Misión</small><strong>{missionName}</strong></span>
+        {!isExam && (
+          <span className="rn-mission__legend">
+            <i className="is-good" /> Atrapa <i className="is-bad" /> Esquiva
+          </span>
+        )}
+      </div>
+
+      <div
+        className={`rn-screen ${isInvincible ? 'is-invincible' : ''}`}
         ref={gameContainerRef}
         onMouseDown={(e) => {
           if (gameState === 'playing') {
@@ -493,312 +684,135 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
           }
         }}
       >
-
-        {/* HUD */}
-        <div className="runner-hud absolute top-4 right-4 z-30 bg-black/60 text-white px-4 py-2 font-bold text-xl border-2 border-white backdrop-blur-sm">
-          SCORE: {score.toString().padStart(3, '0')}
+        {/* Decorado: cielo synthwave con sol y montañas (estático) */}
+        <div className="rn-sky" aria-hidden="true">
+          <span className="rn-sky__sun" />
+          <span className="rn-sky__hills" />
         </div>
-        {targetType && gameState === 'playing' && (
-          <div className="absolute top-4 left-4 z-30 flex flex-col gap-2 items-start">
-            <div className="bg-yellow-400 text-black px-4 py-2 font-black border-4 border-black animate-pulse uppercase tracking-wide shadow-[4px_4px_0_black]">
-              Misión: {formatMissionName(targetType)}
-            </div>
-            {isInvincible && (
-              <div className="flex flex-col items-center animate-pulse">
-                <span className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
-                  {timeLeft}s
-                </span>
-                <div className="bg-yellow-500 text-white px-2 py-1 font-bold border-2 border-white text-xs shadow-[0_0_10px_gold]">
-                  ★ INVENCIBLE ★
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="rn-grid" style={{ transform: `translateX(${bgOffsetRef.current}px)` }} aria-hidden="true" />
+        <div className="rn-ground" aria-hidden="true" />
 
-        {/* MENU INICIO */}
-        {gameState === 'start' && (
-          <div className="runner-menu absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto no-scrollbar cursor-default"
+        {/* JUGADOR */}
+        <div
+          ref={playerWrapperRef}
+          className="rn-player"
+          style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px` }}
+        >
+          {/* Partículas fuera del personaje para que no roten */}
+          <div className="skid-particles">
+            <div className="p1"></div>
+            <div className="p2"></div>
+            <div className="p3"></div>
+          </div>
+          {renderCharacter(selectedChar)}
+        </div>
+
+        {/* EXPLOSIONES */}
+        {explosionsRef.current.map(exp => (
+          <div key={exp.id} className="rn-boom" style={{ left: exp.x, bottom: 60 + exp.y }} />
+        ))}
+
+        {entitiesRef.current.map(ent => {
+          if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
+
+          if (ent.type === 'star') {
+            return (
+              <div key={ent.id} className="rn-star" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
+                <RunnerStar />
+              </div>
+            );
+          }
+          if (ent.type === 'spike') {
+            return <div key={ent.id} className="rn-spike" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
+          }
+          if (ent.type === 'platform') {
+            return <div key={ent.id} className="rn-platform" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
+          }
+          if (ent.type === 'item') {
+            const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current]
+              ? gameDataRef.current[targetTypeRef.current].includes(ent.text)
+              : false;
+            const tone = showHintsRef.current ? (isTarget ? 'is-good' : 'is-bad') : 'is-neutral';
+            // Ajuste dinámico de tamaño de fuente para evitar desbordamiento
+            const getFontSize = (text) => {
+              if (text.length > 25) return '8px';
+              if (text.length > 18) return '10px';
+              if (text.length > 12) return '12px';
+              return '14px';
+            };
+            return (
+              <div key={ent.id} className={`rn-item ${tone}`} style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
+                {ent.text}
+              </div>
+            );
+          }
+          return null;
+        })}
+
+        {/* GAME OVER (práctica) */}
+        {gameState === 'gameover' && (
+          <motion.div
+            className="rn-over"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             onMouseDown={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
           >
-            {/* BOTÓN GUÍA EN LA PARTE SUPERIOR (MÁS COMPACTO Y ELEGANTE) */}
-            <Button
-              onClick={() => setShowCheatSheet(true)}
-              className="mb-6 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs py-2 px-4 rounded-none border-b-4 border-r-4 border-slate-600 active:border-0 active:translate-y-1 active:translate-x-1 font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 h-auto"
-            >
-              <BookOpen className="w-4 h-4" />
-              GUÍA DE PALABRAS
-            </Button>
-
-            <div className="mb-2 text-center animate-in zoom-in duration-300 flex flex-col items-center">
-              <span className="text-gray-400 font-bold text-[10px] uppercase tracking-widest">Tu misión:</span>
-
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)] uppercase">
-                  {loadingError ? "Error de datos" : (formatMissionName(targetType) || "Cargando...")}
-                </h2>
-
-                <Button
-                  onClick={changeMission}
-                  className="bg-yellow-400/10 hover:bg-yellow-400/20 text-yellow-400 border border-yellow-400/50 p-1.5 h-auto rounded-full transition-all active:scale-95"
-                  title="Cambiar categoría"
-                >
-                  <Shuffle className="w-4 h-4" />
-                </Button>
-              </div>
-              {loadingError && <p className="text-red-500 text-xs mt-1">No se encontró {subjectId}-runner.json</p>}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl px-2">
-              {/* Selección Personaje */}
-              <div className="bg-slate-800 p-2 border-2 border-white shadow-[4px_4px_0_black]">
-                <div className="flex items-center gap-2 mb-2 text-cyan-400 font-bold border-b border-white/20 pb-1 text-[10px]">
-                  <User className="w-3 h-3" /> PERSONAJE: {CHARACTERS[selectedChar].name.toUpperCase()}
-                </div>
-                <div className="flex justify-around items-center h-16">
-                  {CHARACTERS.map((char) => (
-                    <div key={char.id} onClick={() => setSelectedChar(char.id)}
-                      className={`w-10 h-10 cursor-pointer transition-all hover:scale-110 ${selectedChar === char.id ? 'scale-110 ring-2 ring-white z-10' : 'opacity-60 grayscale-[0.5]'}`}
-                    >
-                      {renderCharacter(char.id, true)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Configuración */}
-              <div className="bg-slate-800 p-2 border-2 border-white shadow-[4px_4px_0_black]">
-                <div className="flex items-center gap-2 text-white font-bold text-[10px] mb-2">
-                  <input
-                    type="checkbox"
-                    id="advancedSettings"
-                    checked={showSettings}
-                    onChange={(e) => setShowSettings(e.target.checked)}
-                    className="w-3 h-3 cursor-pointer accent-yellow-400"
-                  />
-                  <label htmlFor="advancedSettings" className="cursor-pointer">AJUSTES AVANZADOS</label>
-                </div>
-
-                <Button onClick={() => setShowHints(!showHints)} className={`w-full flex justify-between items-center border rounded-none h-6 transition-all font-bold text-[10px] uppercase ${showHints ? "bg-emerald-600/50 border-emerald-400 text-white" : "bg-red-600/50 border-red-400 text-white"}`}>
-                  <span>{showHints ? "Examen: NO" : "Examen: SÍ"}</span>
-                  {showHints ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                </Button>
-              </div>
-            </div>
-
-            {showSettings && (
-              <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 px-2 animate-in slide-in-from-top-1 duration-200">
-                <div className="bg-black/40 p-2 border border-white/10">
-                  <div className="flex justify-between mb-1 font-bold text-[10px] text-cyan-400 uppercase">
-                    <span>Velocidad</span>
-                    <span>{configSpeed[0]}</span>
-                  </div>
-                  <Slider defaultValue={[8]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="h-2" />
-                </div>
-                <div className="bg-black/40 p-2 border border-white/10">
-                  <div className="flex justify-between mb-1 font-bold text-[10px] text-purple-400 uppercase">
-                    <span>Gravedad</span>
-                    <span>{configGravity[0]}</span>
-                  </div>
-                  <Slider defaultValue={[DEFAULT_GRAVITY]} max={2.0} min={0.5} step={0.1} value={configGravity} onValueChange={setConfigGravity} className="h-2" />
-                </div>
-              </div>
-            )}
-
-            <Button disabled={!gameData} onClick={startGame} className="runner-start-btn mt-4 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-2xl py-6 rounded-none border-b-[6px] border-r-[6px] border-yellow-800 active:border-0 active:translate-y-1 active:translate-x-1 font-black tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(234,179,8,0.4)] disabled:opacity-50">
-              JUGAR
-            </Button>
-          </div>
-        )}
-
-        {/* --- MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET) --- */}
-        <AnimatePresence>
-          {showCheatSheet && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-              className="absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden cursor-default"
+              className="rn-over__card"
+              initial={{ scale: 0.7, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 240, damping: 18 }}
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-black text-white flex items-center gap-2 uppercase tracking-tighter">
-                  <BookOpen className="w-6 h-6 text-blue-400" /> Guía de Misiones
-                </h2>
-                <button
-                  onClick={() => setShowCheatSheet(false)}
-                  className="w-10 h-10 rounded-none bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors border-2 border-slate-600"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                <div className="grid gap-6">
-                  {gameData && Object.entries(gameData)
-                    .filter(([key]) => key !== 'title' && key !== 'instructions')
-                    .map(([category, words], idx) => (
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        key={category}
-                        className="bg-slate-900 border-2 border-slate-800 p-4 shadow-[4px_4px_0_rgba(0,0,0,0.5)]"
-                      >
-                        <h3 className="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-3 px-2 border-l-4 border-cyan-500">
-                          {category.replace(/_/g, ' ')}
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {Array.isArray(words) && words.map((word, wIdx) => (
-                            <span
-                              key={wIdx}
-                              className="px-2 py-1 bg-black text-slate-300 text-xs border border-white/10 font-mono"
-                            >
-                              {word}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ))}
+              <span className="rn-over__kicker">Game over</span>
+              <strong className="rn-over__title">
+                {score > 0 ? <>¡{score} {score === 1 ? 'palabra' : 'palabras'}!</> : '¡Inténtalo de nuevo!'}
+              </strong>
+              {collectedWordsRef.current.length > 0 && (
+                <div className="rn-collected">
+                  {collectedWordsRef.current.map((w, i) => <span key={i} className="rn-collected__chip" style={{ animationDelay: `${i * 50}ms` }}>{w}</span>)}
                 </div>
-              </div>
-
-              <div className="mt-6">
-                <Button
-                  onClick={() => setShowCheatSheet(false)}
-                  className="w-full h-14 text-xl bg-blue-600 hover:bg-blue-500 text-white font-black rounded-none border-b-4 border-blue-900 shadow-lg transition-transform active:scale-95 uppercase tracking-widest"
-                >
-                  ¡ENTENDIDO!
-                </Button>
+              )}
+              <div className="rn-over__actions">
+                <GameButton size="lg" icon={RefreshCw} onClick={() => startGame(true)} autoFocus>Otra carrera</GameButton>
+                <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={() => setGameState('start')}>Menú</GameButton>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* GAME OVER */}
-        {gameState === 'gameover' && (
-          <div className="runner-gameover absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white animate-in zoom-in duration-300 p-4 cursor-default"
-            onMouseDown={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-          >
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white drop-shadow-[4px_4px_0_black] text-center uppercase leading-tight max-w-2xl">
-              {score > 0 ? `Has conseguido ${score} puntos` : "No has conseguido ninguna"}
-            </h2>
-            <div className="w-full max-w-lg bg-black/50 border-2 border-white/30 rounded-none p-4 mb-6 backdrop-blur-sm">
-              <h3 className="text-cyan-400 font-bold flex items-center gap-2 mb-3 border-b border-white/20 pb-2">
-                <ListChecks className="w-5 h-5" /> RECOGIDO:
-              </h3>
-              {collectedWordsRef.current.length > 0 ? (
-                <div className="flex flex-wrap gap-2 justify-center max-h-40 overflow-y-auto pr-2 custom-scrollbar">
-                  {collectedWordsRef.current.map((w, i) => (
-                    <span key={i} className="bg-green-600 text-white px-3 py-1 text-sm font-bold border-b-4 border-green-800 rounded-sm animate-in fade-in slide-in-from-bottom-2" style={{ animationDelay: `${i * 50}ms` }}>
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-center text-gray-400 italic">¡Inténtalo de nuevo!</p>
-              )}
-            </div>
-            <Button onClick={() => setGameState('start')} className="gap-2 text-2xl px-12 py-8 rounded-none bg-white text-black border-b-[8px] border-gray-400 active:border-b-0 active:translate-y-2 font-black hover:bg-gray-100">
-              <RotateCcw className="w-8 h-8" /> MENÚ
-            </Button>
-          </div>
+          </motion.div>
         )}
-
-        {/* JUEGO */}
-        {gameState !== 'start' && (
-          <>
-            <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)`, backgroundSize: '50px 50px', transform: `translateX(${bgOffsetRef.current}px)` }}></div>
-            <div className="absolute bottom-0 w-full h-[60px] bg-black border-t-[4px] border-cyan-400 z-10 shadow-[0_-5px_20px_rgba(34,211,238,0.4)]"></div>
-
-            {/* WRAPPER DEL JUGADOR: Aquí aplicamos el ref para detectar suelo y la partícula */}
-            <div
-              ref={playerWrapperRef}
-              className="absolute z-20 flex items-center justify-center"
-              style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transition: 'none' }}
-            >
-              {/* Partículas fuera del renderCharacter para no rotar. 3 DIVS para efecto más intenso */}
-              <div className="skid-particles">
-                <div className="p1"></div>
-                <div className="p2"></div>
-                <div className="p3"></div>
-              </div>
-              {renderCharacter(selectedChar)}
-            </div>
-
-            {/* EXPLOSIONES */}
-            {explosionsRef.current.map(exp => (
-              <div key={exp.id}
-                className="absolute z-50 flex items-center justify-center pointer-events-none animate-ping"
-                style={{ left: exp.x, bottom: 60 + exp.y, width: 60, height: 60 }}>
-                <div className="w-full h-full bg-orange-500 rounded-full opacity-75"></div>
-              </div>
-            ))}
-
-            {entitiesRef.current.map(ent => {
-              if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
-
-              if (ent.type === 'star') {
-                return (
-                  <div key={ent.id} className="absolute z-10 animate-bounce" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
-                    <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_gold]" />
-                  </div>
-                );
-              }
-
-              if (ent.type === 'spike') {
-                return <div key={ent.id} className="absolute z-10" style={{
-                  left: `${ent.x}px`,
-                  bottom: `${60 + ent.y}px`,
-                  width: 0,
-                  height: 0,
-                  borderLeft: `${ent.width / 2}px solid transparent`,
-                  borderRight: `${ent.width / 2}px solid transparent`,
-                  borderBottom: `${ent.height}px solid #ef4444`,
-                  filter: 'drop-shadow(0 0 5px red)'
-                }} />;
-              }
-              if (ent.type === 'platform') {
-                return <div key={ent.id} className="absolute z-10 bg-slate-800 border-2 border-cyan-500 shadow-[0_0_10px_cyan]" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
-              }
-              if (ent.type === 'item') {
-                const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current]
-                  ? gameDataRef.current[targetTypeRef.current].includes(ent.text)
-                  : false;
-
-                let wordStyle = "bg-indigo-600/80 border-indigo-400 shadow-[0_0_10px_indigo]";
-                if (showHintsRef.current) {
-                  wordStyle = isTarget ? 'bg-green-600 border-green-400 shadow-[0_0_15px_green]' : 'bg-red-900/50 border-red-800 opacity-80';
-                }
-
-                // Ajuste dinámico de tamaño de fuente para evitar desbordamiento
-                const getFontSize = (text) => {
-                  if (text.length > 25) return '8px';
-                  if (text.length > 18) return '10px';
-                  if (text.length > 12) return '12px';
-                  return '14px';
-                };
-
-                return (
-                  <div key={ent.id} className={`absolute z-10 flex items-center justify-center font-black text-white px-2 py-1 rounded border-2 uppercase tracking-wider text-center leading-tight ${wordStyle}`} style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
-                    {ent.text}
-                  </div>
-                );
-              }
-              return null;
-            })}
-          </>
-        )}
-      </Card>
-
-      <div className="mt-6 md:hidden w-full px-4">
-        <Button className="w-full h-32 text-5xl font-black rounded-none bg-yellow-400 text-black border-b-[12px] border-yellow-700 active:border-b-0 active:translate-y-4 tracking-widest" onTouchStart={(e) => { e.preventDefault(); jump(); }} onMouseDown={(e) => { e.preventDefault(); jump(); }}>SALTAR</Button>
       </div>
-    </div>
+
+      <div className="rn-jump">
+        <GameButton
+          variant="warning"
+          size="lg"
+          icon={ArrowUp}
+          className="rn-jump__btn"
+          onTouchStart={(e) => { e.preventDefault(); jump(); }}
+          onMouseDown={(e) => { e.preventDefault(); jump(); }}
+        >
+          Saltar
+        </GameButton>
+      </div>
+      {modals}
+    </GameShell>
   );
 };
 
-export default Runner;
+// Estrella de invencibilidad (SVG con degradado, sin filtros).
+const RunnerStar = () => (
+  <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+    <defs>
+      <radialGradient id="rn-star-g" cx=".38" cy=".3" r=".8">
+        <stop offset="0" stopColor="#fffbe0" />
+        <stop offset=".45" stopColor="#fde047" />
+        <stop offset="1" stopColor="#f59e0b" />
+      </radialGradient>
+    </defs>
+    <circle cx="20" cy="21" r="17" fill="#fde047" opacity=".22" />
+    <path d="M20 3.5l4.9 10 11 1.6-8 7.8 1.9 11L20 28.7l-9.8 5.2 1.9-11-8-7.8 11-1.6z" fill="url(#rn-star-g)" stroke="#b45309" strokeWidth="1.4" strokeLinejoin="round" />
+    <path d="M14 13.5c1.6-.6 3-.6 4.2.2" stroke="#fff" strokeOpacity=".85" strokeWidth="2" strokeLinecap="round" fill="none" />
+  </svg>
+);
+
+export default Runner;

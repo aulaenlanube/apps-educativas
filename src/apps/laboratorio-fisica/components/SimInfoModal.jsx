@@ -3,7 +3,9 @@
 // máximo partido. Se abre al entrar en la simulación (salvo que el alumno marque
 // "No volver a mostrar") y también desde el botón "Info" de la barra superior.
 import React from 'react';
+import { Check } from 'lucide-react';
 import InstructionsModal from '../../_shared/InstructionsModal';
+import { GameButton } from '../../_shared/kit';
 
 export default function SimInfoModal({ isOpen, onClose, sim, info, dontShow, onToggleDontShow }) {
   if (!sim) return null;
@@ -53,14 +55,13 @@ export default function SimInfoModal({ isOpen, onClose, sim, info, dontShow, onT
         <p>La información detallada de esta simulación estará disponible próximamente.</p>
       )}
 
+      {/* GameButton toma las variables del ámbito del kit de la raíz (.fislab-portal) */}
       <div className="fislab-info-footer">
         <label className="fislab-info-dontshow">
           <input type="checkbox" checked={!!dontShow} onChange={onToggleDontShow} />
           No volver a mostrar esto automáticamente
         </label>
-        <button type="button" className="fislab-btn-primary fislab-info-ok" onClick={onClose}>
-          Entendido
-        </button>
+        <GameButton variant="primary" icon={Check} onClick={onClose}>Entendido</GameButton>
       </div>
     </InstructionsModal>
   );

@@ -4,7 +4,9 @@ import { useParams, useLocation } from 'react-router-dom';
 import { getOrdenaFrasesData, getJokes } from '../services/gameDataService';
 import RobotMascot from './RobotMascot';
 
-const Mascot = ({ className = '' }) => {
+// context: 'home' | 'subjects' | 'apps' → repertorio de números que alterna el robot.
+// act / actKey / onActEnd: número forzado por la página (p. ej. la tragaperras).
+const Mascot = ({ className = '', context = null, act = null, actKey = 0, onActEnd }) => {
     const { level, grade, subjectId } = useParams();
     const location = useLocation();
     const [messages, setMessages] = useState([]);
@@ -94,7 +96,14 @@ const Mascot = ({ className = '' }) => {
                 )}
             </AnimatePresence>
 
-            <RobotMascot isTalking={isTalking} onClick={handleMascotClick} />
+            <RobotMascot
+                isTalking={isTalking}
+                onClick={handleMascotClick}
+                context={context}
+                act={act}
+                actKey={actKey}
+                onActEnd={onActEnd}
+            />
         </div>
     );
 };

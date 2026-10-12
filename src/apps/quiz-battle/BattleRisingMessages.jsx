@@ -15,7 +15,7 @@ const RISE_DURATION_S = 5;
 //   - messages: [{ id, text, emoji }]   — mantenido por useBattlePhrases
 export default function BattleRisingMessages({ messages }) {
   return (
-    <div className="fixed inset-0 z-30 pointer-events-none overflow-hidden">
+    <div className="qb-rise-layer">
       <AnimatePresence>
         {messages.map((m) => (
           <motion.div
@@ -37,12 +37,10 @@ export default function BattleRisingMessages({ messages }) {
               transform: 'translateX(-50%)',
               position: 'absolute',
             }}
-            className="px-4 py-2 rounded-2xl bg-white/95 backdrop-blur border-2 border-violet-300 shadow-2xl whitespace-nowrap max-w-[80vw]"
+            className="qb-rise"
           >
-            <p className="text-sm sm:text-base font-bold text-slate-800 leading-tight">
-              <span className="text-base mr-1.5 align-middle">{m.emoji}</span>
-              <span className="align-middle">{m.text}</span>
-            </p>
+            <span className="qb-rise__emoji">{m.emoji}</span>
+            <span className="qb-rise__text">{m.text}</span>
           </motion.div>
         ))}
       </AnimatePresence>

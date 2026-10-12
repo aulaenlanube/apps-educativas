@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Dices, Zap, ArrowRight, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { AnimatedBorderButton } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
@@ -13,130 +13,10 @@ import { supabase } from '@/lib/supabase';
 import { tiltProps, accentFor, keyActivate } from './navTilt';
 import './NavPages.css';
 import Mascot from '@/components/Mascot';
+import MascotSlotMachine from '@/components/mascot/MascotSlotMachine';
 
-// --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
-const RandomAppSelector = ({ apps, onAppSelected }) => {
-    const [isSpinning, setIsSpinning] = useState(false);
-    const [currentAppIndex, setCurrentAppIndex] = useState(0);
-    const spinIntervalRef = useRef(null);
-
-    const splitEmojiAndTitle = (title) => {
-        if (!title) return { emoji: '', text: '' };
-        const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u;
-        const match = title.match(emojiRegex);
-
-        if (match) {
-            const firstSpaceIndex = title.indexOf(' ');
-            if (firstSpaceIndex !== -1) {
-                return {
-                    emoji: title.substring(0, firstSpaceIndex),
-                    text: title.substring(firstSpaceIndex)
-                };
-            }
-        }
-        return { emoji: '', text: title };
-    };
-
-    useEffect(() => {
-        if (isSpinning) return;
-        const idleInterval = setInterval(() => {
-            setCurrentAppIndex((prev) => (prev + 1) % apps.length);
-        }, 1500);
-        return () => clearInterval(idleInterval);
-    }, [isSpinning, apps.length]);
-
-    useEffect(() => {
-        return () => {
-            if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
-        };
-    }, []);
-
-    const handleSpin = () => {
-        if (isSpinning || apps.length === 0) return;
-        setIsSpinning(true);
-        let spins = 0;
-        const maxSpins = 30;
-        const speed = 30;
-
-        spinIntervalRef.current = setInterval(() => {
-            setCurrentAppIndex((prev) => (prev + 1) % apps.length);
-            spins++;
-
-            if (spins >= maxSpins) {
-                clearInterval(spinIntervalRef.current);
-                const winnerIndex = Math.floor(Math.random() * apps.length);
-                setCurrentAppIndex(winnerIndex);
-
-                setTimeout(() => {
-                    setIsSpinning(false);
-                    onAppSelected(apps[winnerIndex]);
-                }, 1000);
-            }
-        }, speed);
-    };
-
-    if (apps.length < 2) return null;
-    const { emoji, text } = splitEmojiAndTitle(apps[currentAppIndex]?.name);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="w-full max-w-xl mx-auto mb-12"
-        >
-            <div className="np-panel fx-aurora-border overflow-hidden">
-                <div className="p-6 md:p-8 text-center flex flex-col items-center">
-                    <h3 className="text-base md:text-lg font-bold text-white/90 mb-5 flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-amber-300 fill-current drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                        ¡Deja que el azar elija por ti!
-                    </h3>
-
-                    <div className={`np-slot w-full h-24 mb-6 flex items-center justify-center ${isSpinning ? 'np-slot--spinning' : ''}`}>
-                        <span className="np-slot__marker np-slot__marker--l" aria-hidden="true" />
-                        <span className="np-slot__marker np-slot__marker--r" aria-hidden="true" />
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={currentAppIndex}
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -20, opacity: 0 }}
-                                transition={{ duration: isSpinning ? 0.03 : 0.5 }}
-                                className="absolute inset-0 flex items-center justify-center px-8"
-                            >
-                                <div className="text-2xl md:text-3xl font-bold text-center flex justify-center items-center flex-wrap">
-                                    {emoji && (
-                                        <span className="mr-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]">{emoji}</span>
-                                    )}
-                                    <span className={isSpinning ? 'text-white/55' : 'np-slot-text'}>
-                                        {text}
-                                    </span>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-
-                    <button
-                        type="button"
-                        onClick={handleSpin}
-                        disabled={isSpinning}
-                        className="fx-btn np-btn-dice w-full md:w-auto min-w-[220px] text-lg"
-                    >
-                        {isSpinning ? (
-                            <span className="flex items-center gap-2">
-                                <Dices className="animate-spin w-5 h-5" /> Eligiendo...
-                            </span>
-                        ) : (
-                            <span className="flex items-center gap-2">
-                                <Dices className="w-5 h-5" /> ¡Elegir App Aleatoria!
-                            </span>
-                        )}
-                    </button>
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-// --- FIN RANDOMAPPSELECTOR ---
+// La elección al azar es ahora la "máquina del azar" con la mascota
+// (src/components/mascot/MascotSlotMachine.jsx).
 
 const AppList = ({ apps, level, grade, subjectId }) => {
     const navigate = useNavigate();
@@ -310,7 +190,7 @@ const AppListPage = () => {
 
                     {appsForSubject.length > 0 ? (
                         <>
-                            <RandomAppSelector
+                            <MascotSlotMachine
                                 apps={appsForSubject}
                                 onAppSelected={handleRandomSelection}
                             />

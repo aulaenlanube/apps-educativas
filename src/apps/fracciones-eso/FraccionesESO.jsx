@@ -1,17 +1,33 @@
+// src/apps/fracciones-eso/FraccionesESO.jsx
+// Rediseño 2026 sobre el kit de interfaz de juego (_shared/kit). La lógica
+// (ejercicios, comprobación, examen de 12 preguntas, puntos y onGameComplete)
+// no cambia: solo la presentación.
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, X, Check, HelpCircle, ArrowLeft, RefreshCw, Award, Calculator, BookOpen, Layers, ClipboardCheck } from 'lucide-react';
+import {
+    Plus, Minus, X, Check, RefreshCw, Award, BookOpen, Layers, ClipboardCheck,
+    Scissors, ArrowRight, Lightbulb, LayoutGrid, GraduationCap, LogOut, Star, Target, Clock,
+} from 'lucide-react';
 import confetti from 'canvas-confetti';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, Panel, GameButton, ModeSelect, RoundBanner,
+    ResultsScreen, FeedbackItem,
+} from '../_shared/kit';
+import FractionMascot from './FractionMascot';
 import './FraccionesESO.css';
 
 const SECTIONS = [
-    { id: 'sumas', name: 'Sumas', icon: <Plus size={48} />, color: 'var(--accent-blue)', description: 'Suma fracciones con distinto denominador usando el m.c.m.', helpTitle: '¿Cómo sumar fracciones?' },
-    { id: 'restas', name: 'Restas', icon: <Minus size={48} />, color: 'var(--accent-red)', description: 'Resta fracciones paso a paso igualando sus denominadores.', helpTitle: '¿Cómo restar fracciones?' },
-    { id: 'multiplicaciones', name: 'Multiplicaciones', icon: <X size={48} />, color: 'var(--accent-purple)', description: 'Multiplica numeradores y denominadores en línea recta.', helpTitle: '¿Cómo multiplicar fracciones?' },
-    { id: 'simplificar', name: 'Simplificar', icon: <Calculator size={48} />, color: 'var(--accent-green)', description: 'Reduce fracciones dividiendo numerador y denominador.', helpTitle: '¿Cómo simplificar fracciones?' },
-    { id: 'mcm', name: 'Mínimo Común Múltiplo', icon: <Layers size={48} />, color: 'var(--accent-orange)', description: 'Halla el múltiplo común más pequeño de dos números.', helpTitle: '¿Cómo calcular el M.C.M.?' },
-    { id: 'mcd', name: 'Máximo Común Divisor', icon: <Award size={48} />, color: 'var(--accent-pink)', description: 'Encuentra el divisor más grande común a ambos números.', helpTitle: '¿Cómo calcular el M.C.D.?' }
+    { id: 'sumas', name: 'Sumas', Icon: Plus, description: 'Suma fracciones con distinto denominador usando el m.c.m.', features: ['Paso intermedio con el m.c.m.', 'Pista: tabla de múltiplos'], helpTitle: '¿Cómo sumar fracciones?' },
+    { id: 'restas', name: 'Restas', Icon: Minus, description: 'Resta fracciones paso a paso igualando sus denominadores.', features: ['Paso intermedio con el m.c.m.', 'Pista: tabla de múltiplos'], helpTitle: '¿Cómo restar fracciones?' },
+    { id: 'multiplicaciones', name: 'Multiplicaciones', Icon: X, description: 'Multiplica numeradores y denominadores en línea recta.', features: ['Numerador × numerador', 'Vale una fracción equivalente'], helpTitle: '¿Cómo multiplicar fracciones?' },
+    { id: 'simplificar', name: 'Simplificar', Icon: Scissors, description: 'Reduce fracciones dividiendo numerador y denominador.', features: ['Hasta la fracción irreducible', 'Pista: tabla de divisores'], helpTitle: '¿Cómo simplificar fracciones?' },
+    { id: 'mcm', name: 'Mínimo Común Múltiplo', Icon: Layers, description: 'Halla el múltiplo común más pequeño de dos números.', features: ['Dos números pares', 'Pista: tabla de múltiplos'], helpTitle: '¿Cómo calcular el M.C.M.?' },
+    { id: 'mcd', name: 'Máximo Común Divisor', Icon: Award, description: 'Encuentra el divisor más grande común a ambos números.', features: ['Dos números pares', 'Pista: tabla de divisores'], helpTitle: '¿Cómo calcular el M.C.D.?' }
 ];
+const sectionOf = (id) => SECTIONS.find(s => s.id === id);
+const OP_ICON = { sumas: Plus, restas: Minus, multiplicaciones: X };
+const OP_SIGN = { sumas: '+', restas: '−', multiplicaciones: '×' };
 
 // Helper functions
 const gcd = (a, b) => (!b ? a : gcd(b, a % b));
@@ -30,9 +46,13 @@ const FraccionesESO = ({ onGameComplete }) => {
     const [examQuestions, setExamQuestions] = useState([]);
     const [examAnswers, setExamAnswers] = useState([]);
     const [showResults, setShowResults] = useState(false);
-    const [, setScore] = useState(0);
+    const [score, setScore] = useState(0);
     const [isVibrating, setIsVibrating] = useState(false);
     const examStartRef = React.useRef(0);
+    // Solo presentación: puntos y tiempo del examen para el resumen, instrucciones y salida
+    const [examSummary, setExamSummary] = useState({ points: 0, elapsed: 0 });
+    const [showInstructions, setShowInstructions] = useState(false);
+    const [showExitModal, setShowExitModal] = useState(false);
 
     const renderDivisors = (num1, num2) => {
         const divs1 = [];
@@ -42,8 +62,8 @@ const FraccionesESO = ({ onGameComplete }) => {
         const maxRows = Math.max(divs1.length, divs2.length);
 
         return (
-            <div className="hint-table-wrapper">
-                <table className="hint-table">
+            <div className="fr-table-wrap">
+                <table className="fr-table">
                     <thead>
                         <tr>
                             <th>Nº</th>
@@ -54,9 +74,9 @@ const FraccionesESO = ({ onGameComplete }) => {
                     <tbody>
                         {Array.from({ length: maxRows }).map((_, i) => (
                             <tr key={i}>
-                                <td className="multiplier-cell">{i + 1}</td>
-                                <td>{divs1[i] ? <span className="hint-ball">{divs1[i]}</span> : '-'}</td>
-                                <td>{divs2[i] ? <span className="hint-ball">{divs2[i]}</span> : '-'}</td>
+                                <td className="fr-table__idx">{i + 1}</td>
+                                <td>{divs1[i] ? <span className="fr-ball">{divs1[i]}</span> : <span className="fr-table__dash">-</span>}</td>
+                                <td>{divs2[i] ? <span className="fr-ball fr-ball--alt">{divs2[i]}</span> : <span className="fr-table__dash">-</span>}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -72,8 +92,8 @@ const FraccionesESO = ({ onGameComplete }) => {
         const maxRows = Math.max(limit1, limit2);
 
         return (
-            <div className="hint-table-wrapper">
-                <table className="hint-table">
+            <div className="fr-table-wrap">
+                <table className="fr-table">
                     <thead>
                         <tr>
                             <th>×</th>
@@ -87,17 +107,17 @@ const FraccionesESO = ({ onGameComplete }) => {
                             const m2 = (i + 1) * num2;
                             return (
                                 <tr key={i}>
-                                    <td className="multiplier-cell">{i + 1}</td>
+                                    <td className="fr-table__idx">{i + 1}</td>
                                     <td>
                                         {i < limit1 && (
-                                            <span className="hint-ball">
+                                            <span className="fr-ball">
                                                 {m1}
                                             </span>
                                         )}
                                     </td>
                                     <td>
                                         {i < limit2 && (
-                                            <span className="hint-ball">
+                                            <span className="fr-ball fr-ball--alt">
                                                 {m2}
                                             </span>
                                         )}
@@ -170,7 +190,7 @@ const FraccionesESO = ({ onGameComplete }) => {
         setExamStep(0);
         setIsExamMode(true);
         setShowResults(false);
-        setSection({ id: 'examen', name: 'Examen de Fracciones', color: 'var(--text-main)' });
+        setSection({ id: 'examen', name: 'Examen de Fracciones' });
         setExercise(shuffled[0]);
         setUserAnswer({ num: '', den: '', single: '' });
         setIntermediate({ n1: '', n2: '', den: '' });
@@ -344,6 +364,8 @@ const FraccionesESO = ({ onGameComplete }) => {
         const timeBonus = elapsedSec > 0
             ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
             : 0;
+        // Solo presentación: los mismos puntos que se envían, para el resumen
+        setExamSummary({ points: correctCount * 100 + timeBonus, elapsed: elapsedSec });
         onGameComplete?.({
             mode: 'test',
             score: correctCount * 100 + timeBonus,
@@ -360,109 +382,95 @@ const FraccionesESO = ({ onGameComplete }) => {
             case 'sumas':
             case 'restas':
                 return (
-                    <div className="help-visual-content">
-                        <div className="help-steps-grid">
-                            <section className="help-step">
-                                <div className="step-number">1</div>
-                                <div className="step-desc">
+                    <div className="fr-help">
+                        <div className="fr-help__steps">
+                            <section className="fr-help__step">
+                                <span className="fr-help__num">1</span>
+                                <div>
                                     <strong>Igualar denominadores</strong> Calcula el <strong>m.c.m.</strong> de los denominadores.
-                                    <em className="db-text">Ej: Para 4 y 6, el m.c.m. es 12.</em>
+                                    <em>Ej: Para 4 y 6, el m.c.m. es 12.</em>
                                 </div>
                             </section>
-                            <section className="help-step">
-                                <div className="step-number">2</div>
-                                <div className="step-desc">
+                            <section className="fr-help__step">
+                                <span className="fr-help__num">2</span>
+                                <div>
                                     <strong>Ajustar numeradores</strong> Divide el m.c.m. entre el antiguo y multiplica por el numerador.
-                                    <div className="visual-formula">
-                                        (m.c.m. ÷ Denom) × Num
-                                    </div>
+                                    <span className="fr-help__formula">(m.c.m. ÷ Denom) × Num</span>
                                 </div>
                             </section>
-                            <section className="help-step">
-                                <div className="step-number">3</div>
-                                <div className="step-desc">
+                            <section className="fr-help__step">
+                                <span className="fr-help__num">3</span>
+                                <div>
                                     <strong>Operar</strong> Suma o resta los numeradores. El denominador <strong>NO cambia</strong>.
                                 </div>
                             </section>
                         </div>
-                        <div className="visual-example">
-                            <div className="frac-row">
-                                <Fraction n="1" d="4" /> <span className="op">{section.id === 'sumas' ? '+' : '-'}</span> <Fraction n="1" d="6" />
-                                <span className="arrow">➡️</span>
-                                <Fraction n="3" d="12" /> <span className="op">{section.id === 'sumas' ? '+' : '-'}</span> <Fraction n="2" d="12" />
-                                <span className="arrow">➡️</span>
-                                <Fraction n={section.id === 'sumas' ? '5' : '1'} d="12" />
-                            </div>
+                        <div className="fr-help__example">
+                            <Fraction n="1" d="4" /> <span className="fr-help__op">{section.id === 'sumas' ? '+' : '−'}</span> <Fraction n="1" d="6" />
+                            <ArrowRight className="fr-help__arrow" size={22} />
+                            <Fraction n="3" d="12" /> <span className="fr-help__op">{section.id === 'sumas' ? '+' : '−'}</span> <Fraction n="2" d="12" />
+                            <ArrowRight className="fr-help__arrow" size={22} />
+                            <Fraction n={section.id === 'sumas' ? '5' : '1'} d="12" />
                         </div>
                     </div>
                 );
             case 'multiplicaciones':
                 return (
-                    <div className="help-visual-content">
-                        <p className="intro-text">¡Es la operación más sencilla! Se hace en <strong>línea recta</strong>:</p>
-                        <div className="visual-diagram horizontal">
-                            <div className="diagram-box">
-                                <span className="label">Numeradores</span>
-                                <div className="flow-line">A × C</div>
-                            </div>
-                            <div className="diagram-separator">────────</div>
-                            <div className="diagram-box">
-                                <span className="label">Denominadores</span>
-                                <div className="flow-line">B × D</div>
-                            </div>
+                    <div className="fr-help">
+                        <p>¡Es la operación más sencilla! Se hace en <strong>línea recta</strong>:</p>
+                        <div className="fr-help__lines">
+                            <div className="fr-help__line"><span>Numeradores</span><strong>A × C</strong></div>
+                            <span className="fr-help__bar" />
+                            <div className="fr-help__line"><span>Denominadores</span><strong>B × D</strong></div>
                         </div>
-                        <div className="tip-box">
-                            💡 <strong>REGLA DE ORO:</strong> Numerador por Numerador y Denominador por Denominador.
+                        <div className="fr-help__tip">
+                            <Lightbulb size={18} /> <span><strong>REGLA DE ORO:</strong> Numerador por Numerador y Denominador por Denominador.</span>
                         </div>
                     </div>
                 );
             case 'simplificar':
                 return (
-                    <div className="help-visual-content">
+                    <div className="fr-help">
                         <p>Simplificar es "hacer la fracción más pequeña" sin que cambie su valor.</p>
-                        <div className="simplification-visual">
-                            <div className="node"><Fraction n="10" d="20" /></div>
-                            <div className="divide-arrow"><span>÷ 2</span></div>
-                            <div className="node"><Fraction n="5" d="10" /></div>
-                            <div className="divide-arrow"><span>÷ 5</span></div>
-                            <div className="node highlight"><Fraction n="1" d="2" /></div>
+                        <div className="fr-help__chain">
+                            <span className="fr-help__node"><Fraction n="10" d="20" /></span>
+                            <span className="fr-help__div">÷ 2</span>
+                            <span className="fr-help__node"><Fraction n="5" d="10" /></span>
+                            <span className="fr-help__div">÷ 5</span>
+                            <span className="fr-help__node is-goal"><Fraction n="1" d="2" /></span>
                         </div>
-                        <p className="note">Divide arriba y abajo siempre por el <strong>mismo número</strong>.</p>
+                        <p className="fr-help__note">Divide arriba y abajo siempre por el <strong>mismo número</strong>.</p>
                     </div>
                 );
             case 'mcm':
                 return (
-                    <div className="help-visual-content">
-                        <div className="theory-card">
-                            <h3>Mínimo Común Múltiplo</h3>
-                            <p>Es el número más pequeño que es múltiplo de ambos.</p>
-                            <div className="rule-box">
-                                <strong>Factores:</strong> Comunes y no comunes al <strong>mayor exponente</strong>.
-                            </div>
-                            <div className="help-example">
-                                mcm(4, 6):<br />
-                                4 = 2²<br />
-                                6 = 2 × 3<br />
-                                <strong>mcm = 2² × 3 = 12</strong>
-                            </div>
+                    <div className="fr-help fr-help__theory">
+                        <h3>Mínimo Común Múltiplo</h3>
+                        <p>Es el número más pequeño que es múltiplo de ambos.</p>
+                        <div className="fr-help__rule">
+                            <strong>Factores:</strong> Comunes y no comunes al <strong>mayor exponente</strong>.
+                        </div>
+                        <div className="fr-help__code">
+                            mcm(4, 6):<br />
+                            4 = 2²<br />
+                            6 = 2 × 3<br />
+                            <strong>mcm = 2² × 3 = 12</strong>
                         </div>
                     </div>
                 );
             case 'mcd':
                 return (
-                    <div className="help-visual-content">
-                        <div className="theory-card">
-                            <h3>Máximo Común Divisor</h3>
-                            <p>Es el número más grande que divide a ambos a la vez.</p>
-                            <div className="rule-box">
-                                <strong>Factores:</strong> Solo comunes al <strong>menor exponente</strong>.
-                            </div>
-                            <div className="help-example">
-                                MCD(12, 18):<br />
-                                12 = 2² × 3<br />
-                                18 = 2 × 3²<br />
-                                <strong>MCD = 2 × 3 = 6</strong>
-                            </div>
+                    <div className="fr-help fr-help__theory">
+                        <h3>Máximo Común Divisor</h3>
+                        <p>Es el número más grande que divide a ambos a la vez.</p>
+                        <div className="fr-help__rule">
+                            <strong>Factores:</strong> Solo comunes al <strong>menor exponente</strong>.
+                        </div>
+                        <div className="fr-help__code">
+                            MCD(12, 18):<br />
+                            12 = 2² × 3<br />
+                            18 = 2 × 3²<br />
+                            <strong>MCD = 2 × 3 = 6</strong>
                         </div>
                     </div>
                 );
@@ -470,491 +478,517 @@ const FraccionesESO = ({ onGameComplete }) => {
         }
     };
 
-    // Solo presentación: nota del examen para el anillo del resumen
+    // Solo presentación: nota del examen para el resumen
     const examCorrectCount = examAnswers.filter(a => a.isCorrect).length;
-    const examGrade = (examCorrectCount / 12) * 10;
-    const examGradeColor = examGrade >= 8 ? '#10b981' : examGrade >= 5 ? '#3b82f6' : '#ef4444';
-    const examGradeMsg = examGrade >= 9 ? 'Excelente' : examGrade >= 7 ? 'Muy bien' : examGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
+    const examGrade = Math.round((examCorrectCount / 12) * 100) / 10;
 
-    return (
-        <div className="fracciones-eso-container">
-            {/* Fondo decorativo: orbes + rejilla + chispas */}
-            <div className="fx-app-backdrop feso-backdrop" aria-hidden="true">
-                <div className="feso-grid fx-grid-bg" />
-                <span className="feso-spark s1" /><span className="feso-spark s2" /><span className="feso-spark s3" /><span className="feso-spark s4" />
-                <span className="feso-glyph g1">½</span><span className="feso-glyph g2">¾</span><span className="feso-glyph g3">⅓</span>
-            </div>
-            <header className={`app-header ${!section ? 'main-view' : ''} ${showResults ? 'results-view' : ''}`}>
-                <motion.h1
-                    initial={{ y: -20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="gradient-text centered main-title-with-icons"
-                >
-                    <BookOpen size={40} className="title-icon" color="var(--accent-blue)" />
-                    Fracciones PRO
-                    <Calculator size={40} className="title-icon" color="var(--accent-green)" />
-                </motion.h1>
-            </header>
+    const shellProps = { accent: '#ec4899', accent2: '#8b5cf6', className: 'fr', style: { maxWidth: 1120 } };
 
-            {!section ? (
-                <>
-                    <motion.div
-                        className="exam-promo-banner fx-grain"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                    >
-                        <div className="exam-promo-header">
-                            <span className="feso-promo-icon" aria-hidden="true"><ClipboardCheck size={32} /></span>
-                            <h2>¿Estás listo para el reto final?</h2>
-                        </div>
-                        <p>Realiza un examen aleatorio de 12 preguntas para evaluar tus conocimientos.</p>
-                        <button className="btn-exam-start fx-shine" onClick={startExam}>
-                            <ClipboardCheck size={20} /> Iniciar Modo EXAMEN
-                        </button>
-                    </motion.div>
+    const sectionHelp = (
+        <InstructionsModal
+            isOpen={showHelp}
+            onClose={() => setShowHelp(false)}
+            title={section?.helpTitle || 'Ayuda'}
+        >
+            {renderHelpContent()}
+        </InstructionsModal>
+    );
 
-                    <div className="menu-grid">
-                        {SECTIONS.map((s, i) => (
-                            <motion.div
-                                key={s.id}
-                                className="menu-card fx-spotlight"
-                                initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                                animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.12 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 } }}
-                                whileHover={{ y: -10, scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => {
-                                    setSection(s);
-                                    generateExercise(s.id);
-                                }}
-                                style={{ '--card-color': s.color }}
-                            >
-                                <div className="card-icon"><span className="feso-icon-halo" aria-hidden="true" />{s.icon}</div>
-                                <h3>{s.name}</h3>
-                                <p>{s.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </>
-            ) : showResults ? (
-                <motion.div
-                    className="examen-dashboard"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                >
-                    <div className="dashboard-header">
-                        <div className="stat-card note" style={{ '--feso-grade-color': examGradeColor }}>
-                            <div
-                                className="fx-grade-ring feso-grade-ring"
-                                style={{ '--fx-grade': examGrade, '--fx-grade-color': examGradeColor }}
-                            >
-                                <Award size={30} className="feso-grade-award" aria-hidden="true" />
-                            </div>
-                            <div className="stat-content">
-                                <span className="stat-label">Nota Final</span>
-                                <span className={`stat-value ${examGrade >= 5 ? 'pass' : 'fail'}`}>
-                                    {examGrade.toFixed(1)}
-                                </span>
-                                <span className="feso-grade-msg">{examGradeMsg}</span>
-                            </div>
-                        </div>
-                        <div className="stat-card score">
-                            <ClipboardCheck size={48} />
-                            <div className="stat-content">
-                                <span className="stat-label">Aciertos</span>
-                                <span className="stat-value">
-                                    {examCorrectCount} de 12
-                                </span>
-                            </div>
-                        </div>
-                        <div className="dashboard-actions">
-                            <button className="btn-finish-exam fx-shine" onClick={() => {
+    const instructions = (
+        <InstructionsModal
+            isOpen={showInstructions}
+            onClose={() => setShowInstructions(false)}
+            title="Cómo jugar a Fracciones PRO"
+        >
+            <h3>🎯 Objetivo</h3>
+            <p>
+                Practica las operaciones con fracciones y el cálculo del <strong>m.c.m.</strong> y
+                el <strong>M.C.D.</strong>. Cada ejercicio es nuevo.
+            </p>
+            <h3>🕹️ Cómo se juega</h3>
+            <ul>
+                <li>Elige un tema para practicar sin límite o lanza el <strong>examen</strong>.</li>
+                <li>Escribe el <strong>numerador</strong> arriba y el <strong>denominador</strong> abajo.</li>
+                <li>En sumas y restas, primero rellena el <strong>paso intermedio</strong> con el m.c.m. de los denominadores.</li>
+                <li>En práctica tienes <strong>Ayuda</strong> con la teoría y una tabla de <strong>múltiplos o divisores</strong>.</li>
+            </ul>
+            <h3>📊 Examen</h3>
+            <p>12 preguntas (dos de cada tema), sin ayudas.</p>
+            <p className="instr-formula"><strong>Nota</strong> = aciertos / 12 × 10</p>
+            <p className="instr-formula"><strong>Puntos</strong> = 100 por acierto + bonus por rapidez</p>
+        </InstructionsModal>
+    );
+
+    // ---------- Pantalla previa: temas y examen ----------
+    if (!section) {
+        const modes = [
+            ...SECTIONS.map(s => ({
+                id: s.id, tone: `fr-${s.id}`, icon: s.Icon, title: s.name,
+                desc: s.description, features: s.features, cta: 'Practicar',
+            })),
+            {
+                id: 'examen', tone: 'exam', icon: ClipboardCheck, title: 'Examen final',
+                desc: 'Un examen aleatorio de 12 preguntas para evaluar todo lo que sabes.',
+                features: ['Dos preguntas de cada tema', 'Nota /10 y puntos por rapidez'], cta: 'Empezar examen',
+            },
+        ];
+        const selectMode = (id) => {
+            if (id === 'examen') { startExam(); return; }
+            const s = sectionOf(id);
+            setSection(s);
+            generateExercise(s.id);
+        };
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect modes={modes} onSelect={selectMode} onHelp={() => setShowInstructions(true)} />
+                {instructions}
+            </GameShell>
+        );
+    }
+
+    // ---------- Resultados del examen ----------
+    if (showResults) {
+        return (
+            <GameShell {...shellProps}>
+                <ResultsScreen
+                    nota={examGrade}
+                    points={examSummary.points}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${examCorrectCount}/12` },
+                        { icon: Clock, tone: 'time', label: 'Tiempo', value: `${examSummary.elapsed}s` },
+                    ]}
+                    actions={[
+                        { label: 'Otro examen', onClick: startExam, icon: RefreshCw },
+                        {
+                            label: 'Volver al inicio', icon: LayoutGrid, variant: 'soft', onClick: () => {
                                 setIsExamMode(false);
                                 setShowResults(false);
                                 setSection(null);
-                            }}>
-                                <ArrowLeft size={20} /> Volver al Inicio
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="review-grid">
+                            },
+                        },
+                    ]}
+                >
+                    <div className="fr-review">
                         {examAnswers.map((ans, idx) => (
-                            <motion.div
+                            <FeedbackItem
                                 key={idx}
-                                className={`review-box ${ans.isCorrect ? 'correct' : 'incorrect'}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: idx * 0.05 }}
+                                index={idx + 1}
+                                ok={ans.isCorrect}
+                                title={sectionOf(ans.question.type)?.name}
                             >
-                                <div className="box-header">
-                                    <span className="q-idx">#{idx + 1}</span>
-                                    <span className="q-cat">{SECTIONS.find(s => s.id === ans.question.type)?.name}</span>
-                                    {ans.isCorrect ? <Check className="icon-c" /> : <X className="icon-i" />}
-                                </div>
-                                <div className="box-body">
-                                    <div className="op-side">
-                                        <span className="l">OPERACIÓN:</span>
-                                        <div className="o-disp">
-                                            {ans.question.type === 'mcm' || ans.question.type === 'mcd' ? (
-                                                <span className="t">{ans.question.type.toUpperCase()}({ans.question.a}, {ans.question.b})</span>
-                                            ) : (
-                                                <div className="f-g">
-                                                    {ans.question.type === 'simplificar' ? (
-                                                        <Fraction n={ans.question.n} d={ans.question.d} />
-                                                    ) : (
-                                                        <>
-                                                            <Fraction n={ans.question.n1} d={ans.question.d1} />
-                                                            <span className="s">{ans.question.type === 'sumas' ? '+' : ans.question.type === 'restas' ? '-' : '×'}</span>
-                                                            <Fraction n={ans.question.n2} d={ans.question.d2} />
-                                                        </>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className="ans-side">
-                                        <div className="val-row u">
-                                            <span className="l">Tu respuesta:</span>
-                                            <span className="v">{ans.userAnswer || 'Vacío'}</span>
-                                        </div>
-                                        <div className="val-row s">
-                                            <span className="l">Correcta:</span>
-                                            <span className="v">{ans.correctAnswer}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
+                                <span className="fr-review__row">
+                                    <span className="fr-review__op">
+                                        <QuestionExpr q={ans.question} />
+                                    </span>
+                                    <span className="fr-review__vals">
+                                        <span className={`fr-review__pill ${ans.isCorrect ? 'is-ok' : 'is-ko'}`}>Tu respuesta: {!ans.userAnswer || ans.userAnswer === 'Vacio' ? 'Vacío' : ans.userAnswer}</span>
+                                        <span className="fr-review__pill is-sol">Correcta: {ans.correctAnswer}</span>
+                                    </span>
+                                </span>
+                            </FeedbackItem>
                         ))}
                     </div>
-                </motion.div>
-            ) : (
-                <motion.div
-                    className="exercise-area"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                >
-                    <div className="exercise-header">
-                        <button className="btn-back" onClick={() => { setSection(null); setIsExamMode(false); }}>
-                            <ArrowLeft size={20} /> Volver
-                        </button>
+                </ResultsScreen>
+            </GameShell>
+        );
+    }
+
+    // ---------- Ejercicio (práctica o examen) ----------
+    const exSection = sectionOf(exercise?.type);
+    const boardLabel = isExamMode
+        ? (exercise?.type === 'simplificar' ? 'Simplifica la fracción' : exSection?.name)
+        : section.name;
+    const BoardIcon = exSection?.Icon || Star;
+    const mood = feedback?.type === 'success' ? 'happy' : feedback?.type === 'error' ? 'sad' : 'idle';
+    const hintLabel = exercise?.type === 'simplificar' || exercise?.type === 'mcd' ? 'divisores'
+        : exercise?.type === 'mcm' || exercise?.type === 'sumas' || exercise?.type === 'restas' ? 'múltiplos' : null;
+    const sumLike = exercise?.type === 'sumas' || exercise?.type === 'restas';
+    const OpIcon = OP_ICON[exercise?.type];
+
+    return (
+        <GameShell {...shellProps}>
+            <GameHeader
+                mode={isExamMode ? 'exam' : 'practice'}
+                modeLabel={isExamMode ? 'Examen' : section.name}
+                onHelp={!isExamMode ? () => setShowHelp(true) : undefined}
+                right={(
+                    <Hud>
                         {isExamMode ? (
-                            <div className="exam-progress">
-                                Pregunta {examStep + 1} de 12
-                                <div className="progress-bar-bg">
-                                    <div className="progress-bar-fill feso-progress-shine" style={{ width: `${((examStep + 1) / 12) * 100}%` }}></div>
-                                </div>
-                            </div>
+                            <HudStat icon={GraduationCap} tone="progress" value={`${examStep + 1}/12`} label="Pregunta" />
                         ) : (
-                            <div className="section-badge" style={{ background: section.color }}>
-                                {section.name}
-                            </div>
+                            <HudStat icon={Star} tone="score" value={score} label="Puntos" />
                         )}
-                    </div>
+                    </Hud>
+                )}
+            />
 
-                    <div className={`exercise-card ${isVibrating ? 'vibrate-once' : ''} ${feedback?.type === 'success' ? 'feso-card-correct' : feedback?.type === 'error' ? 'feso-card-wrong' : ''}`}>
-                        <div className="exercise-content" style={{ width: '100%' }}>
-                            {isExamMode && (
-                                <div className="exam-question-label">
-                                    {exercise?.type === 'simplificar' ? '✨ Simplifica la fracción' : SECTIONS.find(s => s.id === exercise?.type)?.name}
-                                </div>
-                            )}
-                            {exercise?.type === 'sumas' && (
-                                <div className="simple-calc-container">
-                                    <div className="fraction-calc complex">
-                                        <div className="op-group">
-                                            <Fraction n={exercise.n1} d={exercise.d1} />
-                                            <Plus size={24} className="op-icon" />
-                                            <Fraction n={exercise.n2} d={exercise.d2} />
-                                        </div>
-                                        <span className="equal-sign">=</span>
-                                        <div className="op-group">
-                                            <FractionInputSmall
-                                                value={{ num: intermediate.n1, den: intermediate.den }}
-                                                onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
-                                            />
-                                            <Plus size={24} className="op-icon" />
-                                            <FractionInputSmall
-                                                value={{ num: intermediate.n2, den: intermediate.den }}
-                                                onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
-                                            />
-                                        </div>
-                                        <span className="equal-sign">=</span>
-                                        <FractionInput
-                                            value={userAnswer}
-                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                        />
-                                    </div>
-                                    {!isExamMode && (
-                                        <button
-                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
-                                            onClick={() => setShowHint(!showHint)}
-                                        >
-                                            {showHint ? 'Ocultar Múltiplos' : '💡 Ver Múltiplos'}
-                                        </button>
-                                    )}
-                                    <AnimatePresence>
-                                        {showHint && !isExamMode && (
-                                            <motion.div
-                                                className="dynamic-aid-inline"
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                            >
-                                                {renderMultiples(exercise.d1, exercise.d2)}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-                            {exercise?.type === 'restas' && (
-                                <div className="simple-calc-container">
-                                    <div className="fraction-calc complex">
-                                        <div className="op-group">
-                                            <Fraction n={exercise.n1} d={exercise.d1} />
-                                            <Minus size={24} className="op-icon" />
-                                            <Fraction n={exercise.n2} d={exercise.d2} />
-                                        </div>
-                                        <span className="equal-sign">=</span>
-                                        <div className="op-group">
-                                            <FractionInputSmall
-                                                value={{ num: intermediate.n1, den: intermediate.den }}
-                                                onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
-                                            />
-                                            <Minus size={24} className="op-icon" />
-                                            <FractionInputSmall
-                                                value={{ num: intermediate.n2, den: intermediate.den }}
-                                                onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
-                                            />
-                                        </div>
-                                        <span className="equal-sign">=</span>
-                                        <FractionInput
-                                            value={userAnswer}
-                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                        />
-                                    </div>
-                                    {!isExamMode && (
-                                        <button
-                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
-                                            onClick={() => setShowHint(!showHint)}
-                                        >
-                                            {showHint ? 'Ocultar Múltiplos' : '💡 Ver Múltiplos'}
-                                        </button>
-                                    )}
-                                    <AnimatePresence>
-                                        {showHint && !isExamMode && (
-                                            <motion.div
-                                                className="dynamic-aid-inline"
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                            >
-                                                {renderMultiples(exercise.d1, exercise.d2)}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-                            {exercise?.type === 'multiplicaciones' && (
-                                <div className="fraction-calc">
-                                    <Fraction n={exercise.n1} d={exercise.d1} />
-                                    <X size={24} className="op-icon" />
-                                    <Fraction n={exercise.n2} d={exercise.d2} />
-                                    <span className="equal-sign">=</span>
-                                    <FractionInput
-                                        value={userAnswer}
-                                        onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                    />
-                                </div>
-                            )}
-                            {exercise?.type === 'simplificar' && (
-                                <div className="simple-calc-container">
-                                    <div className="fraction-calc">
-                                        <Fraction n={exercise.n} d={exercise.d} />
-                                        <span className="equal-sign">➡️</span>
-                                        <FractionInput
-                                            value={userAnswer}
-                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                        />
-                                    </div>
-                                    {!isExamMode && (
-                                        <button
-                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
-                                            onClick={() => setShowHint(!showHint)}
-                                        >
-                                            {showHint ? 'Ocultar Divisores' : '💡 Ver Divisores'}
-                                        </button>
-                                    )}
-                                    <AnimatePresence>
-                                        {showHint && !isExamMode && (
-                                            <motion.div
-                                                className="dynamic-aid-inline"
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                            >
-                                                {renderDivisors(exercise.n, exercise.d)}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-                            {(exercise?.type === 'mcm' || exercise?.type === 'mcd') && (
-                                <div className="simple-calc-container">
-                                    <div className="simple-calc">
-                                        <div className="numbers-display">
-                                            {exercise.type.toUpperCase()}({exercise.a}, {exercise.b})
-                                        </div>
-                                        <span className="equal-sign">=</span>
-                                        <input
-                                            type="number"
-                                            className="single-input"
-                                            value={userAnswer.single}
-                                            onChange={(e) => setUserAnswer({ ...userAnswer, single: e.target.value })}
-                                            placeholder="?"
-                                        />
-                                    </div>
-
-                                    {!isExamMode && (
-                                        <button
-                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
-                                            onClick={() => setShowHint(!showHint)}
-                                        >
-                                            {showHint ? 'Ocultar Pistas' : `💡 Ver ${exercise.type === 'mcm' ? 'múltiplos' : 'divisores'}`}
-                                        </button>
-                                    )}
-
-                                    <AnimatePresence>
-                                        {showHint && !isExamMode && (
-                                            <motion.div
-                                                className="dynamic-aid-inline"
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                            >
-                                                {exercise.type === 'mcm' ? (
-                                                    renderMultiples(exercise.a, exercise.b)
-                                                ) : (
-                                                    renderDivisors(exercise.a, exercise.b)
-                                                )}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="exercise-actions">
-                            {!isExamMode && (
-                                <button className="btn-help" onClick={() => setShowHelp(true)}>
-                                    <HelpCircle size={20} /> Ayuda
-                                </button>
-                            )}
-                            <button className="btn-check fx-shine" onClick={checkAnswer}>
-                                <Check size={20} /> {isExamMode ? (examStep === 11 ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
-                            </button>
-                            {!isExamMode && (
-                                <button
-                                    className={`btn-refresh ${isVibrating ? 'vibrate-once' : ''}`}
-                                    onClick={() => generateExercise(section.id)}
-                                >
-                                    <RefreshCw size={20} /> Nueva
-                                </button>
-                            )}
-                        </div>
-
-                        {feedback && (
-                            <motion.div
-                                className={`feedback ${feedback.type}`}
-                                initial={{ scale: 0.8, opacity: 0, y: 10 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                transition={{ type: 'spring', stiffness: 380, damping: 20 }}
-                            >
-                                {feedback.text}
-                            </motion.div>
-                        )}
-                    </div>
-                </motion.div>
+            {isExamMode && (
+                <div className="fr-steps" role="progressbar" aria-valuemin={0} aria-valuemax={12} aria-valuenow={examStep + 1}>
+                    {Array.from({ length: 12 }).map((_, i) => (
+                        <span key={i} className={`fr-steps__seg ${i < examStep ? 'is-done' : i === examStep ? 'is-current' : ''}`} />
+                    ))}
+                </div>
             )}
 
+            <div className="fr-stage">
+                <div className="fr-main">
+                    <Panel
+                        variant="screen"
+                        className={`fr-board fr-t-${exercise?.type || 'none'} ${isVibrating ? 'fr-anim-new' : ''} ${feedback?.type === 'success' ? 'is-success' : feedback?.type === 'error' ? 'is-error gk-anim-shake' : ''}`}
+                    >
+                        <div className="fr-board__head">
+                            <span className="fr-board__label"><BoardIcon size={14} /> {boardLabel}</span>
+                            {sumLike && <span className="fr-board__note">Paso 1: iguala denominadores · Paso 2: opera</span>}
+                        </div>
+
+                        {sumLike && (
+                            <div className="fr-eq">
+                                <div className="fr-eq__group">
+                                    <Fraction n={exercise.n1} d={exercise.d1} big />
+                                    <OpBadge Icon={OpIcon} />
+                                    <Fraction n={exercise.n2} d={exercise.d2} big />
+                                </div>
+                                <span className="fr-eq__equal">=</span>
+                                <div className="fr-eq__group fr-eq__group--step">
+                                    <FractionInputSmall
+                                        value={{ num: intermediate.n1, den: intermediate.den }}
+                                        onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
+                                    />
+                                    <OpBadge Icon={OpIcon} />
+                                    <FractionInputSmall
+                                        value={{ num: intermediate.n2, den: intermediate.den }}
+                                        onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
+                                    />
+                                </div>
+                                <span className="fr-eq__equal">=</span>
+                                <FractionInput
+                                    value={userAnswer}
+                                    onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
+                                />
+                            </div>
+                        )}
+                        {exercise?.type === 'multiplicaciones' && (
+                            <div className="fr-eq">
+                                <Fraction n={exercise.n1} d={exercise.d1} big />
+                                <OpBadge Icon={X} />
+                                <Fraction n={exercise.n2} d={exercise.d2} big />
+                                <span className="fr-eq__equal">=</span>
+                                <FractionInput
+                                    value={userAnswer}
+                                    onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
+                                />
+                            </div>
+                        )}
+                        {exercise?.type === 'simplificar' && (
+                            <div className="fr-eq">
+                                <Fraction n={exercise.n} d={exercise.d} big />
+                                <span className="fr-eq__arrow"><Scissors size={20} /><ArrowRight size={22} /></span>
+                                <FractionInput
+                                    value={userAnswer}
+                                    onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
+                                />
+                            </div>
+                        )}
+                        {(exercise?.type === 'mcm' || exercise?.type === 'mcd') && (
+                            <div className="fr-eq">
+                                <span className="fr-eq__fn">
+                                    {exercise.type === 'mcm' ? 'm.c.m.' : 'M.C.D.'}
+                                    <span className="fr-eq__args">(<b>{exercise.a}</b>, <b>{exercise.b}</b>)</span>
+                                </span>
+                                <span className="fr-eq__equal">=</span>
+                                <input
+                                    type="number"
+                                    className="fr-slot fr-slot--single"
+                                    value={userAnswer.single}
+                                    onChange={(e) => setUserAnswer({ ...userAnswer, single: e.target.value })}
+                                    placeholder="?"
+                                    aria-label="Resultado"
+                                />
+                            </div>
+                        )}
+
+                        {/* Ayuda visual de la práctica: las fracciones dibujadas */}
+                        {!isExamMode && exercise && (OP_ICON[exercise.type] || exercise.type === 'simplificar') && (
+                            <div className="fr-visual" aria-hidden="true">
+                                {exercise.type === 'simplificar' ? (
+                                    <FractionPies n={exercise.n} d={exercise.d} tone="pink" />
+                                ) : (
+                                    <>
+                                        <FractionPies n={exercise.n1} d={exercise.d1} tone="indigo" />
+                                        <span className="fr-visual__op">{OP_SIGN[exercise.type]}</span>
+                                        <FractionPies n={exercise.n2} d={exercise.d2} tone="amber" />
+                                    </>
+                                )}
+                            </div>
+                        )}
+                    </Panel>
+
+                    {!isExamMode && hintLabel && (
+                        <div className="fr-hint">
+                            <GameButton
+                                variant={showHint ? 'soft' : 'warning'}
+                                size="sm"
+                                icon={Lightbulb}
+                                onClick={() => setShowHint(!showHint)}
+                            >
+                                {showHint ? `Ocultar ${hintLabel}` : `Ver ${hintLabel}`}
+                            </GameButton>
+                            <AnimatePresence>
+                                {showHint && (
+                                    <motion.div
+                                        className="fr-hint__box"
+                                        initial={{ opacity: 0, y: -8 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -8 }}
+                                    >
+                                        {exercise.type === 'mcm' || sumLike ? (
+                                            renderMultiples(sumLike ? exercise.d1 : exercise.a, sumLike ? exercise.d2 : exercise.b)
+                                        ) : exercise.type === 'simplificar' ? (
+                                            renderDivisors(exercise.n, exercise.d)
+                                        ) : (
+                                            renderDivisors(exercise.a, exercise.b)
+                                        )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    )}
+
+                    <div className="fr-actions">
+                        {!isExamMode && (
+                            <GameButton variant="soft" icon={BookOpen} onClick={() => setShowHelp(true)}>
+                                Ayuda
+                            </GameButton>
+                        )}
+                        <GameButton
+                            size="lg"
+                            icon={isExamMode && examStep === 11 ? GraduationCap : Check}
+                            onClick={checkAnswer}
+                            disabled={!isExamMode && feedback?.type === 'success'}
+                        >
+                            {isExamMode ? (examStep === 11 ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
+                        </GameButton>
+                        {!isExamMode && (
+                            <GameButton
+                                variant="soft"
+                                icon={RefreshCw}
+                                className={isVibrating ? 'fr-anim-spin' : ''}
+                                onClick={() => generateExercise(section.id)}
+                            >
+                                Nueva
+                            </GameButton>
+                        )}
+                    </div>
+
+                    <RoundBanner
+                        show={!!feedback}
+                        status={feedback?.type === 'success' ? 'won' : 'lost'}
+                        title={feedback?.type === 'success' ? '¡Correcto!' : 'Revisa tu respuesta'}
+                        subtitle={feedback?.type === 'success' ? 'Respuesta correcta · siguiente ejercicio en un momento…' : feedback?.text}
+                    />
+                </div>
+
+                <aside className="fr-coach">
+                    <FractionMascot
+                        mood={isExamMode ? 'idle' : mood}
+                        hint={isExamMode ? '¡Concéntrate, tú puedes!' : null}
+                    />
+                </aside>
+            </div>
+
+            <div className="fr-footer">
+                {isExamMode ? (
+                    <>
+                        <span className="fr-footer__info"><GraduationCap size={14} /> Modo examen · sin ayudas</span>
+                        <GameButton variant="ghost" size="sm" icon={LogOut} className="fr-footer__exit" onClick={() => setShowExitModal(true)}>
+                            Abandonar examen
+                        </GameButton>
+                    </>
+                ) : (
+                    <>
+                        <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={() => { setSection(null); setIsExamMode(false); }}>
+                            Cambiar de tema
+                        </GameButton>
+                        <span className="fr-footer__info fr-footer__info--right"><Star size={14} /> +10 por acierto · −5 por fallo</span>
+                    </>
+                )}
+            </div>
+
+            {sectionHelp}
+
             <AnimatePresence>
-                {showHelp && (
+                {showExitModal && (
                     <motion.div
-                        className="fractions-modal-overlay"
+                        className="fr-modal"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={() => setShowHelp(false)}
+                        onClick={() => setShowExitModal(false)}
                     >
                         <motion.div
-                            className="fractions-modal-content"
-                            initial={{ y: 50, scale: 0.9, opacity: 0 }}
-                            animate={{ y: 0, scale: 1, opacity: 1 }}
-                            exit={{ y: 50, scale: 0.9, opacity: 0 }}
-                            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-                            onClick={e => e.stopPropagation()}
+                            className="fr-modal__card"
+                            role="dialog"
+                            aria-modal="true"
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="fractions-modal-header">
-                                <BookOpen className="fractions-modal-icon" />
-                                <h2>{section?.helpTitle}</h2>
-                                <button className="fractions-close-btn" onClick={() => setShowHelp(false)}><X /></button>
-                            </div>
-                            <div className="fractions-modal-body">
-                                {renderHelpContent()}
-                            </div>
-                            <div className="fractions-modal-footer">
-                                <button className="btn-primary" onClick={() => setShowHelp(false)}>¡Entendido!</button>
+                            <span className="fr-modal__icon"><LogOut size={28} /></span>
+                            <h3>¿Abandonar el examen?</h3>
+                            <p>Si sales ahora, este intento <strong>no se guardará</strong> y volverás al menú de temas.</p>
+                            <div className="fr-modal__actions">
+                                <GameButton variant="soft" onClick={() => setShowExitModal(false)}>Seguir con el examen</GameButton>
+                                <GameButton
+                                    variant="danger"
+                                    icon={LogOut}
+                                    onClick={() => { setShowExitModal(false); setSection(null); setIsExamMode(false); }}
+                                >
+                                    Abandonar
+                                </GameButton>
                             </div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </GameShell>
     );
 };
 
-const Fraction = ({ n, d }) => (
-    <div className="fraction">
-        <span className="num">{n}</span>
-        <span className="den">{d}</span>
-    </div>
+// Fracción "de tiza" (pantalla oscura) o de tinta (fondos claros).
+const Fraction = ({ n, d, big = false }) => (
+    <span className={`fr-frac ${big ? 'fr-frac--big' : ''}`}>
+        <span className="fr-frac__num">{n}</span>
+        <span className="fr-frac__bar" />
+        <span className="fr-frac__den">{d}</span>
+    </span>
 );
 
+const OpBadge = ({ Icon }) => (
+    <span className="fr-op" aria-hidden="true">{Icon ? <Icon size={20} strokeWidth={3} /> : null}</span>
+);
+
+// Operación de una pregunta (resumen del examen).
+const QuestionExpr = ({ q }) => {
+    if (q.type === 'mcm' || q.type === 'mcd') {
+        return <span className="fr-review__fn">{q.type === 'mcm' ? 'm.c.m.' : 'M.C.D.'}({q.a}, {q.b})</span>;
+    }
+    if (q.type === 'simplificar') return <Fraction n={q.n} d={q.d} />;
+    return (
+        <>
+            <Fraction n={q.n1} d={q.d1} />
+            <span className="fr-review__sign">{OP_SIGN[q.type]}</span>
+            <Fraction n={q.n2} d={q.d2} />
+        </>
+    );
+};
+
+// Tartas en relieve que dibujan n/d (varias si la fracción es impropia).
+const PIE_TONES = {
+    indigo: { light: '#c7d2fe', base: '#6366f1', dark: '#3730a3' },
+    amber: { light: '#fef3c7', base: '#fbbf24', dark: '#b45309' },
+    pink: { light: '#fbcfe8', base: '#ec4899', dark: '#9d174d' },
+};
+const MAX_PIES = 5;
+const FractionPies = ({ n, d, tone }) => {
+    const total = Math.max(1, Math.ceil(n / d));
+    const pies = Math.min(total, MAX_PIES);
+    const t = PIE_TONES[tone];
+    const gid = `fr-pie-${tone}`;
+    return (
+        <span className="fr-pies">
+            {Array.from({ length: pies }).map((_, i) => {
+                const filled = Math.max(0, Math.min(d, n - i * d));
+                return <PieSvg key={i} d={d} filled={filled} gid={gid} t={t} />;
+            })}
+            {total > MAX_PIES && <span className="fr-pies__more">+{total - MAX_PIES}</span>}
+            <svg width="0" height="0" className="fr-pies__defs" aria-hidden="true">
+                <defs>
+                    <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stopColor={t.light} />
+                        <stop offset=".5" stopColor={t.base} />
+                        <stop offset="1" stopColor={t.dark} />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </span>
+    );
+};
+
+const PieSvg = ({ d, filled, gid, t }) => {
+    const cx = 30;
+    const cy = 28;
+    const r = 25;
+    const pt = (k) => {
+        const a = (k / d) * Math.PI * 2 - Math.PI / 2;
+        return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    };
+    const sector = (k0, k1) => {
+        const [x0, y0] = pt(k0);
+        const [x1, y1] = pt(k1);
+        const large = (k1 - k0) / d > 0.5 ? 1 : 0;
+        return `M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1} Z`;
+    };
+    return (
+        <svg viewBox="0 0 60 62" className="fr-pie">
+            <ellipse cx="30" cy="57" rx="20" ry="3.5" className="fr-pie__shadow" />
+            <circle cx={cx} cy={cy + 2.5} r={r} fill={t.dark} opacity=".55" />
+            <circle cx={cx} cy={cy} r={r} className="fr-pie__plate" />
+            {filled >= d
+                ? <circle cx={cx} cy={cy} r={r} fill={`url(#${gid})`} />
+                : filled > 0 && <path d={sector(0, filled)} fill={`url(#${gid})`} />}
+            {d <= 24 && Array.from({ length: d }).map((_, k) => {
+                const [x, y] = pt(k);
+                return <line key={k} x1={cx} y1={cy} x2={x} y2={y} className="fr-pie__cut" />;
+            })}
+            <ellipse cx="22" cy="17" rx="11" ry="6" fill="#fff" opacity=".28" transform="rotate(-30 22 17)" />
+        </svg>
+    );
+};
+
 const FractionInputSmall = ({ value, onChange }) => (
-    <div className="fraction-input small">
+    <span className="fr-slots fr-slots--small">
         <input
             type="number"
-            className="num-input"
+            className="fr-slot"
             value={value.num}
             onChange={(e) => onChange({ num: e.target.value, den: value.den })}
             placeholder="n"
+            aria-label="Numerador del paso intermedio"
         />
+        <span className="fr-slots__bar" />
         <input
             type="number"
-            className="den-input"
+            className="fr-slot"
             value={value.den}
             onChange={(e) => onChange({ den: e.target.value, num: value.num })}
             placeholder="den"
+            aria-label="Denominador común"
         />
-    </div>
+    </span>
 );
 
 const FractionInput = ({ value, onChange }) => (
-    <div className="fraction-input">
+    <span className="fr-slots fr-slots--answer">
         <input
             type="number"
-            className="num-input"
+            className="fr-slot"
             value={value.num}
             onChange={(e) => onChange({ num: e.target.value })}
             placeholder="N"
+            aria-label="Numerador del resultado"
         />
+        <span className="fr-slots__bar" />
         <input
             type="number"
-            className="den-input"
+            className="fr-slot"
             value={value.den}
             onChange={(e) => onChange({ den: e.target.value })}
             placeholder="D"
+            aria-label="Denominador del resultado"
         />
-    </div>
+    </span>
 );
 
 export default FraccionesESO;

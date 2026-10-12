@@ -50,6 +50,9 @@ const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
 const CatalogoPage = lazy(() => import('@/pages/CatalogoPage.jsx'));
 // Galería de ilustraciones: solo en desarrollo (en producción esta rama se elimina en el build).
 const ArtGallery = import.meta.env.DEV ? lazy(() => import('@/dev/ArtGallery.jsx')) : null;
+const KitGallery = import.meta.env.DEV ? lazy(() => import('@/dev/KitGallery.jsx')) : null;
+const MascotLab = import.meta.env.DEV ? lazy(() => import('@/dev/MascotLab.jsx')) : null;
+const DashKitGallery = import.meta.env.DEV ? lazy(() => import('@/dev/DashKitGallery.jsx')) : null;
 
 import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -200,6 +203,9 @@ const router = createBrowserRouter(
       ],
     },
     ...(ArtGallery ? [{ path: '/__art', element: <SuspensePage><ArtGallery /></SuspensePage> }] : []),
+    ...(KitGallery ? [{ path: '/__kit', element: <SuspensePage><KitGallery /></SuspensePage> }] : []),
+    ...(MascotLab ? [{ path: '/__mascot', element: <SuspensePage><MascotLab /></SuspensePage> }] : []),
+    ...(DashKitGallery ? [{ path: '/__dash-kit', element: <SuspensePage><DashKitGallery /></SuspensePage> }] : []),
     { path: '*', element: <SuspensePage><NotFoundPage /></SuspensePage> },
   ],
   { future: { v7_startTransition: true, v7_relativeSplatPath: true } }
@@ -208,7 +214,7 @@ const router = createBrowserRouter(
 // Nivel de efectos visuales según el equipo (<html data-fx>), antes del primer render.
 initUiFx();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const renderApp = () => ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <ThemeProvider>
@@ -223,3 +229,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </HelmetProvider>
   </React.StrictMode>
 );
+
+// SOLO DESARROLLO — modo mock (?mock=student|teacher|free, ?mock=off para salir):
+// parchea el cliente de Supabase con fixtures ANTES del primer render para ver
+// los paneles sin credenciales. Ver src/dev/mock/README.md. En producción
+// import.meta.env.DEV es false: Vite elimina esta rama y el chunk no se genera.
+if (import.meta.env.DEV) {
+  import('@/dev/mock/index.js')
+    .then((m) => m.bootstrapDevMock())
+    .catch((err) => console.warn('[dev-mock] No se pudo iniciar el modo mock:', err))
+    .finally(renderApp);
+} else {
+  renderApp();
+}

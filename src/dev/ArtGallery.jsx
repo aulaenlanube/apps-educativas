@@ -13,6 +13,7 @@ import BADGE_OVERRIDES from '@/components/icons/badge';
 import badge1 from '@/components/icons/badge/set1';
 import badge2 from '@/components/icons/badge/set2';
 import badge3 from '@/components/icons/badge/set3';
+import badge4 from '@/components/icons/badge/set4';
 import SETS from './art-sets.json';
 import gradePrimaria from '@/components/icons/grade/primaria';
 import gradeSecundaria from '@/components/icons/grade/secundaria';
@@ -37,6 +38,7 @@ const MAPS = {
   'badge-set1': badge1,
   'badge-set2': badge2,
   'badge-set3': badge3,
+  'badge-set4': badge4,
 };
 
 const keyOf = (path) => {

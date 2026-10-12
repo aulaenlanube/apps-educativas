@@ -1,167 +1,298 @@
-/* src/apps/laboratorio-funciones-2d/LaboratorioFunciones2D.css
-   ==========================================================================
-   ACABADO PREMIUM 2026 — capa visual (no toca cálculo ni trazado).
-   Cristal índigo con luz interior, fórmula con borde de aurora, lienzo con
-   halo y botones con microinteracciones. Convive con las utilidades
-   Tailwind del JSX: estas reglas solo refinan superficie y profundidad.
-   ========================================================================== */
+/* Laboratorio de Funciones 2D — rediseño 2026 del "chrome" sobre el kit de
+   juego (_shared/kit). Aquí va lo propio de la app: panel de funciones con su
+   silueta, deslizadores, pantalla de fórmula, herramientas y el lienzo (solo
+   colores por tema; la geometría del trazado no se toca).
+   Prefijo lf2-. Tema oscuro con html.dark (las variables --gk-* ya cambian). */
 
-.lf2d-root {
-    --fx-accent: #6366f1;
-    --fx-accent-2: #ec4899;
-    --lf-glass: rgba(255, 255, 255, 0.74);
-    --lf-edge: rgba(255, 255, 255, 0.8);
-    --lf-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
-        0 -1px 0 0 rgba(15, 23, 42, 0.04) inset,
-        0 28px 60px -32px rgba(67, 56, 202, 0.45),
-        0 8px 20px -12px rgba(15, 23, 42, 0.15);
-    position: relative;
-    font-family: 'Fredoka', sans-serif;
-}
-html.dark .lf2d-root {
-    --lf-glass: rgba(24, 20, 52, 0.72);
-    --lf-edge: rgba(255, 255, 255, 0.1);
-    --lf-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
-        0 28px 60px -30px rgba(0, 0, 0, 0.8),
-        0 8px 20px -12px rgba(0, 0, 0, 0.5);
-}
-.lf2d-root > :not(.fx-app-backdrop) { position: relative; z-index: 1; }
-.lf2d-backdrop { border-radius: 2rem; }
-.lf2d-backdrop::before { opacity: .22; }
-.lf2d-backdrop::after { opacity: .18; }
-.lf2d-backdrop .lf2d-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+.lf2-tabs { display: none; justify-content: center; }
+
+.lf2-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
 }
 
-/* ---------- Paneles de cristal ---------- */
-.lf2d-root .lf2d-panel,
-html.dark .lf2d-root .lf2d-panel {
-    background:
-        radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.10), transparent 60%),
-        var(--lf-glass) !important;
-    border: 1px solid var(--lf-edge) !important;
-    box-shadow: var(--lf-shadow) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    backdrop-filter: blur(20px) saturate(160%);
+/* ---------- Panel lateral ---------- */
+.lf2-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.lf2-card.gk-panel { display: flex; flex-direction: column; gap: 12px; padding: 12px; border-radius: 24px; }
+.lf2-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 4px 4px 2px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
 }
-.lf2d-root aside .lf2d-panel { animation: fx-rise .55s var(--fx-ease-out) both; }
-.lf2d-root aside .lf2d-panel + .lf2d-panel { animation-delay: .08s; }
-.lf2d-topbar { animation: fx-rise .55s .05s var(--fx-ease-out) both; }
-html.dark .lf2d-root .lf2d-head-text { color: #e5e7eb; }
-.lf2d-head-icon {
-    display: inline-grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 11px;
-    color: #6366f1;
-    background: linear-gradient(160deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.10));
-    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18) inset, 0 6px 14px -8px rgba(99, 102, 241, 0.7);
+.lf2-card__head:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 2px; border-radius: 14px; }
+.lf2-card__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--gk-accent) 65%, white), var(--gk-accent) 55%, var(--gk-accent-2));
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .18), 0 8px 16px -8px var(--gk-accent);
 }
-html.dark .lf2d-head-icon { color: #c4b5fd; }
+.lf2-card__title { flex: 1; min-width: 0; font-size: .95rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+.lf2-card__chev { flex-shrink: 0; color: var(--gk-ink-3); transition: transform .25s ease; transform: rotate(-90deg); }
+.lf2-card__chev.is-open { transform: rotate(0); }
 
-/* ---------- Pestañas móviles ---------- */
-.lf2d-tab { transition: transform .25s var(--fx-ease-spring), background .2s ease, box-shadow .25s ease; }
-.lf2d-tab:active { transform: scale(.97); }
-.lf2d-root .lf2d-tab.is-active {
-    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 10px 20px -10px rgba(99, 102, 241, 0.85);
+/* Lista de familias */
+.lf2-fns { display: flex; flex-direction: column; gap: 8px; max-height: 38vh; overflow-y: auto; padding: 2px 4px 6px 2px; }
+.lf2-fn {
+  --fc: var(--gk-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px 8px 8px;
+  border: 0;
+  border-radius: 16px;
+  text-align: left;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
+  cursor: pointer;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--gk-line), 0 3px 0 var(--gk-key-edge);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.lf2-fn:hover { transform: translateX(3px); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--fc) 50%, transparent), 0 3px 0 var(--gk-key-edge); }
+.lf2-fn:active { transform: translateY(2px); box-shadow: inset 0 0 0 1.5px var(--fc), 0 1px 0 var(--gk-key-edge); }
+.lf2-fn:focus-visible { outline: 3px solid color-mix(in srgb, var(--fc) 55%, transparent); outline-offset: 2px; }
+.lf2-fn.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--fc) 80%, white) 0%, var(--fc) 55%, color-mix(in srgb, var(--fc) 70%, #1e1b4b) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 4px 0 color-mix(in srgb, var(--fc) 55%, #1e1b4b), 0 14px 24px -14px var(--fc);
+}
+.lf2-fn__badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 36px;
+  border-radius: 11px;
+  color: var(--fc);
+  background: color-mix(in srgb, var(--fc) 12%, var(--gk-surface-2));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fc) 25%, transparent);
+}
+.lf2-fn.is-active .lf2-fn__badge { color: #fff; background: rgba(255, 255, 255, .2); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); }
+.lf2-fn__text { display: flex; flex-direction: column; min-width: 0; }
+.lf2-fn__name { font-size: .92rem; font-weight: 800; line-height: 1.2; }
+.lf2-fn__formula { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .74rem; font-weight: 700; color: var(--gk-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lf2-fn.is-active .lf2-fn__formula { color: rgba(255, 255, 255, .85); }
+.lf2-glyph { width: 34px; height: 26px; display: block; }
+.lf2-glyph__axes { stroke: currentColor; stroke-opacity: .3; stroke-width: 1.2; fill: none; }
+.lf2-glyph__curve { stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+/* Parámetros */
+.lf2-params { display: flex; flex-direction: column; gap: 16px; padding: 4px 6px 6px; }
+.lf2-label { font-size: .74rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--gk-ink-2); }
+.lf2-bases { display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 18px; background: var(--gk-inset); }
+.lf2-bases__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.lf2-base {
+  padding: 8px 6px;
+  border: 0;
+  border-radius: 12px;
+  font-family: var(--gk-font);
+  font-size: .78rem;
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  cursor: pointer;
+  background: var(--gk-surface-2);
+  box-shadow: 0 2px 0 var(--gk-key-edge);
+  transition: transform .15s ease;
+}
+.lf2-base:hover { transform: translateY(-1px); color: var(--gk-accent); }
+.lf2-base:active { transform: translateY(2px); box-shadow: none; }
+.lf2-base:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 2px; }
+.lf2-base.is-active { color: #fff; background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2)); box-shadow: 0 2px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b); }
+
+.lf2-param { display: flex; flex-direction: column; gap: 6px; }
+.lf2-param__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lf2-param__value {
+  min-width: 58px;
+  padding: 3px 8px;
+  border-radius: 9px;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .82rem;
+  font-weight: 800;
+  color: #fde68a;
+  background: linear-gradient(180deg, #221c5c, #160f40);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+}
+.lf2-param__scale { display: flex; justify-content: space-between; font-size: .68rem; font-weight: 700; color: var(--gk-ink-3); }
+
+/* Deslizador */
+.lf2-range {
+  --p: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  margin: 6px 0 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background:
+    linear-gradient(90deg, var(--gk-accent), var(--gk-accent-2)) 0 0 / var(--p) 100% no-repeat,
+    var(--gk-inset);
+  box-shadow: inset 0 1px 3px rgba(30, 20, 90, .2);
+}
+.lf2-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--gk-accent) 45%, white), var(--gk-accent) 70%);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b), 0 6px 14px -4px var(--gk-accent);
+  transition: transform .15s ease;
+}
+.lf2-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--gk-accent) 45%, white), var(--gk-accent) 70%);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b);
+}
+.lf2-range:hover::-webkit-slider-thumb { transform: scale(1.12); }
+.lf2-range:active::-webkit-slider-thumb { transform: scale(.95); }
+.lf2-range:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 4px; }
+
+.lf2-desc {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 16px;
+  color: var(--gk-ink-2);
+  background: color-mix(in srgb, var(--gk-accent) 8%, var(--gk-surface-2));
+  box-shadow: inset 4px 0 0 var(--gk-accent);
+  animation: gk-pop .35s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.lf2-desc svg { flex-shrink: 0; color: var(--gk-accent); margin-top: 1px; }
+.lf2-desc p { margin: 0; font-family: 'Nunito', var(--gk-font); font-size: .86rem; font-weight: 700; line-height: 1.5; }
+
+/* ---------- Zona del gráfico ---------- */
+.lf2-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.lf2-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.lf2-formula.gk-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 22px;
+}
+.lf2-formula__tag {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .85rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  background: linear-gradient(180deg, #fde68a, #fbbf24);
+  box-shadow: inset 0 -2px 0 rgba(180, 83, 9, .35);
+}
+.lf2-formula__expr {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: #fff;
+  animation: gk-pop .35s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.lf2-tools { position: absolute; top: 12px; right: 12px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+
+.lf2-stage {
+  position: relative;
+  height: clamp(420px, 66vh, 720px);
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(80% 70% at 50% 45%, #ffffff, #f4f6ff 75%),
+    #f4f6ff;
+  box-shadow: inset 0 2px 8px rgba(30, 20, 90, .12), inset 0 0 0 1px var(--gk-line), 0 24px 50px -36px rgba(30, 20, 90, .6);
+}
+html.dark .lf2-stage {
+  background:
+    radial-gradient(80% 70% at 50% 45%, #1b1747, #110d33 75%),
+    #110d33;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255, 255, 255, .08), 0 24px 50px -36px rgba(0, 0, 0, .9);
+}
+.lf2-plot { display: block; width: 100%; height: 100%; cursor: crosshair; user-select: none; }
+
+/* Colores del lienzo por tema (geometría sin cambios) */
+.lf2-gridline { stroke: #e3e7f6; }
+.lf2-axis { stroke: #4f46e5; }
+.lf2-tick { fill: #8a91b4; font-family: var(--gk-font); font-weight: 700; }
+html.dark .lf2-gridline { stroke: rgba(255, 255, 255, .07); }
+html.dark .lf2-axis { stroke: #818cf8; }
+html.dark .lf2-tick { fill: #8f8bbd; }
+.lf2-curve-halo { stroke: #a5b4fc; stroke-opacity: .35; }
+html.dark .lf2-curve-halo { stroke: #8b5cf6; stroke-opacity: .3; }
+
+.lf2-probe__guide { stroke: #f43f5e; stroke-width: 1.2; stroke-dasharray: 4 4; opacity: .55; }
+.lf2-probe__halo { fill: rgba(244, 63, 94, .16); stroke: rgba(244, 63, 94, .45); stroke-width: 1.5; }
+.lf2-probe__dot { fill: #f43f5e; stroke: #fff; stroke-width: 2; }
+.lf2-probe__chip { fill: rgba(22, 15, 64, .92); }
+.lf2-probe__text { fill: #fff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 700; }
+
+.lf2-watermark {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  color: var(--gk-ink-3);
+  opacity: .55;
+  pointer-events: none;
+}
+.lf2-watermark span { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.lf2-watermark small { font-size: .66rem; font-style: italic; font-weight: 600; }
+.lf2-hint {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .76rem;
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--gk-line), 0 8px 18px -12px rgba(30, 20, 90, .5);
+  pointer-events: none;
 }
 
-/* ---------- Lista de funciones y chips ---------- */
-.lf2d-fn-btn {
-    border: 1px solid transparent;
-    transition: transform .25s var(--fx-ease-spring), background .2s ease, box-shadow .25s ease, border-color .2s ease !important;
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+  .lf2-tabs { display: flex; }
+  .lf2-layout { grid-template-columns: minmax(0, 1fr); }
+  .lf2-layout[data-tab="graph"] .lf2-side { display: none; }
+  .lf2-layout[data-tab="config"] .lf2-main { display: none; }
+  .lf2-fns { max-height: none; }
 }
-.lf2d-fn-btn:hover { transform: translateX(3px); border-color: rgba(99, 102, 241, 0.25); }
-.lf2d-fn-btn:active { transform: scale(.98); }
-.lf2d-fn-btn:focus-visible,
-.lf2d-chip:focus-visible,
-.lf2d-tab:focus-visible,
-.lf2d-tool:focus-visible { outline: 3px solid rgba(139, 92, 246, 0.6); outline-offset: 2px; }
-.lf2d-root .lf2d-fn-btn.is-active {
-    background: linear-gradient(135deg, #4f46e5, #8b5cf6 60%, #ec4899);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 14px 28px -12px rgba(99, 102, 241, 0.85);
-}
-.lf2d-chip { transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease; }
-.lf2d-chip:hover { transform: translateY(-2px); }
-.lf2d-root .lf2d-chip.is-active {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    box-shadow: 0 8px 18px -8px rgba(99, 102, 241, 0.85);
-}
-.lf2d-root .lf2d-value {
-    color: #4f46e5;
-    background: linear-gradient(160deg, rgba(99, 102, 241, 0.14), rgba(139, 92, 246, 0.08));
-    border-color: rgba(99, 102, 241, 0.25);
-}
-html.dark .lf2d-root .lf2d-value { color: #c4b5fd; }
-.lf2d-desc { animation: fx-bounce-in .45s var(--fx-ease-spring) both; }
-
-/* ---------- Fórmula con borde de aurora ---------- */
-.lf2d-root .lf2d-formula {
-    position: relative;
-    isolation: isolate;
-    background:
-        radial-gradient(120% 120% at 0% 0%, rgba(99, 102, 241, 0.45), transparent 55%),
-        radial-gradient(120% 120% at 100% 100%, rgba(236, 72, 153, 0.30), transparent 55%),
-        #0f0c29;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 18px 36px -16px rgba(67, 56, 202, 0.75);
-}
-.lf2d-root .lf2d-formula::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: var(--fx-aurora);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: fx-spin-angle 6s linear infinite;
-    pointer-events: none;
-}
-.lf2d-root .lf2d-formula span { text-shadow: 0 0 18px rgba(165, 180, 252, 0.55); }
-
-.lf2d-tool { transition: transform .25s var(--fx-ease-spring), background .2s ease; }
-.lf2d-tool:hover { transform: translateY(-2px) scale(1.06); }
-.lf2d-tool:active { transform: scale(.94); }
-
-/* ---------- Lienzo ---------- */
-.lf2d-root .lf2d-stage {
-    background:
-        radial-gradient(70% 60% at 50% 50%, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8) 70%),
-        #f8fafc;
-    border: 1px solid var(--lf-edge);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        0 0 0 6px rgba(139, 92, 246, 0.06),
-        0 30px 70px -36px rgba(67, 56, 202, 0.55);
-    animation: fx-rise .6s .1s var(--fx-ease-out) both;
-}
-html.dark .lf2d-root .lf2d-stage {
-    background:
-        radial-gradient(70% 60% at 50% 50%, rgba(49, 46, 129, 0.35), transparent 70%),
-        #12102a !important;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 30px 70px -36px rgba(0, 0, 0, 0.9);
-}
-.lf2d-zoom-chip {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 22px -14px rgba(67, 56, 202, 0.6);
-    animation: fx-pop-in .4s var(--fx-ease-spring) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .lf2d-root .lf2d-formula::before { animation: none !important; }
-}
-
-/* Bordes del fondo difuminados: sin "caja" visible sobre la escena del curso */
-.lf2d-backdrop {
-    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
-    mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 45%, transparent 100%);
+@media (max-width: 720px) {
+  .lf2-tools { top: auto; bottom: 10px; right: 10px; }
+  .lf2-formula.gk-panel { padding: 12px 14px; }
+  .lf2-stage { height: 58vh; min-height: 340px; border-radius: 22px; }
+  .lf2-hint, .lf2-watermark small { display: none; }
 }

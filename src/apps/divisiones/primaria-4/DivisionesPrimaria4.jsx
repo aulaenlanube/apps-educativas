@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
+import { ArrowDown } from 'lucide-react';
 import '/src/apps/_shared/Divisiones.css';
 import MathOperationLayout from '../../_shared/MathOperationLayout';
-import OperationTestBoard from '../../_shared/OperationTestBoard';
+import DivisionTestBoard from '../DivisionTestBoard';
+import { OpBoard, OpNum, OpCell } from '../../multiplicaciones/OpTablero';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -73,7 +75,7 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
     const len = coc.toString().length;
     setTestN1(parseInt(a)); setTestN2(parseInt(b));
     setTestResultSlots(new Array(len).fill(''));
-    setTestActiveIdx(len - 1);
+    setTestActiveIdx(0); // el cociente se escribe de izquierda a derecha, como se calcula
   };
 
   const startTest = () => {
@@ -113,8 +115,8 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
       const next = [...testResultSlots];
       next[testActiveIdx] = strVal;
       setTestResultSlots(next);
-      const nextIdx = testActiveIdx - 1;
-      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+      const nextIdx = testActiveIdx + 1;
+      setTestActiveIdx(nextIdx < next.length ? nextIdx : null);
       return;
     }
     if (!activeSlot) return;
@@ -148,29 +150,30 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
     }
   };
 
-  const getSlotClass = (type, row, col, expectedVal, isHighlighted) => {
+  // Estado de cada casilla (mismas reglas de antes): activa mientras no se ha
+  // comprobado; tras comprobar, correcta o incorrecta.
+  const getSlotProps = (type, row, col, expectedVal, isHighlighted) => {
     let currentVal = '';
     if (type === 'quotient') currentVal = quotientSlots[col];
     if (type === 'remainder') currentVal = remainderSlots[`${row}-${col}`];
-    const isFilled = currentVal !== '' && currentVal !== undefined;
-    const filledClass = isFilled ? ' filled' : '';
-    const highlightClass = isHighlighted ? ' operand-highlight' : '';
     if (feedback.text === '') {
       const isActive = activeSlot?.type === type && (type === 'quotient' ? activeSlot.index === col : (activeSlot.row === row && activeSlot.col === col));
-      return `division-box${filledClass}${highlightClass} ${isActive ? 'selected' : ''}`;
+      return { active: isActive, focus: isHighlighted, state: '' };
     } else {
       const isCorrect = parseInt(currentVal) === expectedVal;
-      return `division-box${filledClass}${highlightClass} ${isCorrect ? 'correct' : 'incorrect'}`;
+      return { active: false, focus: isHighlighted, state: isCorrect ? 'correct' : 'incorrect' };
     }
   };
 
   const dividendStr = operands.dividend.toString();
-  const gridTemplateCols = `repeat(${dividendStr.length}, 50px) 20px auto`;
+  const len = dividendStr.length;
   const currentStepIndex = activeSlot ? (activeSlot.type === 'quotient' ? activeSlot.index : activeSlot.row) : -1;
+  // Rejilla: fila 1 = etiquetas; fila 2 = dividendo y divisor; filas 3.. = cociente y restos.
+  const units = len * 1.14 + 0.6 + Math.max(String(operands.divisor).length * 0.62 + 0.6, steps.length * 1.14 + 0.5) + 0.6;
 
   return (
     <MathOperationLayout
-      title="Divisiones (4º)"
+      title="Divide entre 1 cifra"
       emoji="➗"
       feedback={feedback}
       onCheck={checkAnswer}
@@ -180,7 +183,9 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
       toggleValue={showHelp}
       onToggleChange={setShowHelp}
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Teclado"
+      paletteLabel="Toca un número"
+      padLayout="side"
+      operator="÷"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -193,13 +198,13 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Resuelve la division paso a paso: calcula el cociente y los restos parciales.</p>
-          <h3>Como se juega</h3>
+          <p>Resuelve la división paso a paso: cada cifra del cociente y el resto de cada paso.</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Coloca el digito correcto desde el teclado numerico.</li>
-            <li>Sigue el orden: primero el cociente, luego los restos.</li>
-            <li>Activa "Mostrar ayudas" para ver indicaciones paso a paso.</li>
+            <li>Toca una casilla para elegirla (se ilumina) y escribe la cifra con el teclado de la pantalla o con el del ordenador.</li>
+            <li>Sigue el orden: primero la cifra del <strong>cociente</strong> (azul) y después el <strong>resto</strong> (naranja). Al terminar un paso, baja la siguiente cifra del dividendo.</li>
+            <li>Con <strong>Mostrar ayudas</strong> se iluminan las cifras con las que trabajas y una flecha marca la cifra que se baja.</li>
+            <li>Pulsa <strong>Comprobar</strong>: cada casilla se pone en verde o en rojo.</li>
           </ul>
           <h3>🔴 Modo Examen</h3>
           <p>5 divisiones. Escribe solo el cociente (la parte entera del resultado).</p>
@@ -207,60 +212,95 @@ const DivisionesPrimaria4 = ({ onGameComplete } = {}) => {
       }
     >
       {isTestMode ? (
-        <OperationTestBoard
-          operator="÷"
-          n1={testN1}
-          n2={testN2}
+        <DivisionTestBoard
+          dividend={testN1}
+          divisor={testN2}
           resultSlots={testResultSlots}
           activeSlotIndex={testActiveIdx}
           onSlotClick={(i) => setTestActiveIdx(i)}
         />
       ) : (
-      <div className="division-grid" style={{ gridTemplateColumns: gridTemplateCols }}>
-        {dividendStr.split('').map((digit, i) => {
-          const isHighlighted = showHelp && currentStepIndex === 0 && steps.length > 0 && i <= steps[0].digitIndex;
-          return (
-            <div key={`div-${i}`} className={`digit-display ${isHighlighted ? 'operand-highlight' : ''}`} style={{ gridRow: 1, gridColumn: i + 1 }}>{digit}</div>
-          );
-        })}
-        <div style={{ gridRow: 1, gridColumn: dividendStr.length + 2 }} className={`divisor-container ${showHelp && currentStepIndex !== -1 ? 'operand-highlight' : ''}`}>
-          <span className="divisor-number">{operands.divisor}</span>
-        </div>
-        <div style={{ gridRow: 2, gridColumn: dividendStr.length + 2 }} className="quotient-area">
-          {steps.map((step, i) => {
-            const prevStepKey = i > 0 ? `${i - 1}-${steps[i - 1].digitIndex}` : null;
-            const isPrevStepFinished = i === 0 || (remainderSlots[prevStepKey] !== undefined && remainderSlots[prevStepKey] !== '');
-            if (!isPrevStepFinished) return null;
+      <OpBoard className="dv-board">
+        <div
+          className="op-grid dv-grid"
+          style={{ '--units': units, gridTemplateColumns: `repeat(${len}, var(--cell)) calc(var(--cell) * .45) auto` }}
+        >
+          <div className="dv-cap" style={{ gridRow: 1, gridColumn: `1 / ${len + 1}` }}><span>dividendo</span></div>
+          <div className="dv-cap" style={{ gridRow: 1, gridColumn: len + 2 }}><span>divisor</span></div>
+
+          {dividendStr.split('').map((digit, i) => {
+            const isHighlighted = showHelp && currentStepIndex === 0 && steps.length > 0 && i <= steps[0].digitIndex;
             return (
-              <div key={`q-${i}`} className={getSlotClass('quotient', 0, i, step.quotientDigit, false)}
-                onClick={() => setActiveSlot({ type: 'quotient', index: i })}>{quotientSlots[i]}</div>
+              <OpNum key={`div-${i}`} at={{ gridRow: 2, gridColumn: i + 1 }} focus={isHighlighted}>{digit}</OpNum>
+            );
+          })}
+          <div
+            className={`dv-divisor ${showHelp && currentStepIndex !== -1 ? 'is-focus' : ''}`}
+            style={{ gridRow: 2, gridColumn: len + 2 }}
+          >
+            <span className="dv-divisor__num">{operands.divisor}</span>
+          </div>
+
+          {/* Cociente */}
+          <div className="dv-quotient" style={{ gridRow: 3, gridColumn: len + 2 }}>
+            {steps.map((step, i) => {
+              const prevStepKey = i > 0 ? `${i - 1}-${steps[i - 1].digitIndex}` : null;
+              const isPrevStepFinished = i === 0 || (remainderSlots[prevStepKey] !== undefined && remainderSlots[prevStepKey] !== '');
+              if (!isPrevStepFinished) return null;
+              return (
+                <OpCell
+                  key={`q-${i}`}
+                  i={i}
+                  stamp
+                  {...getSlotProps('quotient', 0, i, step.quotientDigit, false)}
+                  value={quotientSlots[i]}
+                  onClick={() => setActiveSlot({ type: 'quotient', index: i })}
+                  label={`Cifra ${i + 1} del cociente`}
+                />
+              );
+            })}
+            <span className="dv-tag dv-tag--q">cociente</span>
+          </div>
+
+          {/* Restos y cifras que se bajan */}
+          {steps.map((step, i) => {
+            const gridRow = i + 3;
+            const gridCol = step.digitIndex + 1;
+            const isQuotientFilled = quotientSlots[i] !== '' && quotientSlots[i] !== undefined;
+            const isRemainderFilled = remainderSlots[`${i}-${step.digitIndex}`] !== undefined && remainderSlots[`${i}-${step.digitIndex}`] !== '';
+            const isNextStepActive = currentStepIndex === i + 1;
+            const isLastStep = i === steps.length - 1;
+            return (
+              <React.Fragment key={`step-${i}`}>
+                {isQuotientFilled && (
+                  <OpCell
+                    className="dv-rest"
+                    at={{ gridRow, gridColumn: gridCol }}
+                    i={i}
+                    stamp={isLastStep}
+                    {...getSlotProps('remainder', i, step.digitIndex, step.remainder, showHelp && isNextStepActive)}
+                    value={remainderSlots[`${i}-${step.digitIndex}`]}
+                    onClick={() => setActiveSlot({ type: 'remainder', row: i, col: step.digitIndex })}
+                    label={isLastStep ? 'Resto final' : `Resto del paso ${i + 1}`}
+                  >
+                    {isLastStep && <span className="dv-tag dv-tag--rest">resto</span>}
+                  </OpCell>
+                )}
+                {i < steps.length - 1 && isRemainderFilled && (
+                  <OpNum
+                    className="dv-down"
+                    at={{ gridRow, gridColumn: steps[i + 1].digitIndex + 1 }}
+                    focus={showHelp && isNextStepActive}
+                  >
+                    {dividendStr[steps[i + 1].digitIndex]}
+                    {showHelp && <span className="dv-down__arrow" aria-hidden="true"><ArrowDown size={12} strokeWidth={3} /></span>}
+                  </OpNum>
+                )}
+              </React.Fragment>
             );
           })}
         </div>
-        {steps.map((step, i) => {
-          const gridRow = i + 2;
-          const gridCol = step.digitIndex + 1;
-          const isQuotientFilled = quotientSlots[i] !== '' && quotientSlots[i] !== undefined;
-          const isRemainderFilled = remainderSlots[`${i}-${step.digitIndex}`] !== undefined && remainderSlots[`${i}-${step.digitIndex}`] !== '';
-          const isNextStepActive = currentStepIndex === i + 1;
-          return (
-            <React.Fragment key={`step-${i}`}>
-              {isQuotientFilled && (
-                <div style={{ gridRow, gridColumn: gridCol }}
-                  className={getSlotClass('remainder', i, step.digitIndex, step.remainder, showHelp && isNextStepActive)}
-                  onClick={() => setActiveSlot({ type: 'remainder', row: i, col: step.digitIndex })}>{remainderSlots[`${i}-${step.digitIndex}`]}</div>
-              )}
-              {i < steps.length - 1 && isRemainderFilled && (
-                <div className={`digit-display ${showHelp && isNextStepActive ? 'operand-highlight' : ''}`}
-                  style={{ gridRow, gridColumn: steps[i + 1].digitIndex + 1 }}>
-                  {dividendStr[steps[i + 1].digitIndex]}
-                  {showHelp && <span className="arrow-helper">↓</span>}
-                </div>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
+      </OpBoard>
       )}
     </MathOperationLayout>
   );

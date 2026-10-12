@@ -1,13 +1,22 @@
+// Números romanos (rediseño 2026 sobre _shared/kit).
+// Lo propio del juego: placa de bronce con el número, lápida de mármol donde
+// se «graban» las letras y sillares de piedra para elegir. Reglas, validación,
+// generación de números, puntuación y tracking: sin cambios.
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, GraduationCap } from 'lucide-react';
+import {
+  X, Check, Clock, Delete, Eraser, LayoutGrid, RefreshCw, SkipForward, Target, Trophy, Eye, Table2, Flame,
+} from 'lucide-react';
 import confetti from 'canvas-confetti';
-
-
+import useArtIds from '@/components/art/useArtIds';
+import InstructionsModal from './InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressBar, Panel, GameButton, ModeSelect, RoundBanner,
+  ResultsScreen, FeedbackItem, useAppMeta,
+} from './kit';
 
 import './NumerosRomanos.css';
-import './SharedPremium.css';
 
 // --- UTILIDADES ---
 
@@ -178,16 +187,98 @@ const computeRomanScore = (correctCount, timeSeconds) => {
 
 const ROMAN_MAX_SCORE = TOTAL_TEST_QUESTIONS * 100 + 500; // 1500 aprox.
 
-// --- COMPONENTE PRINCIPAL ---
 
+/* ───────────────────────── Presentación ───────────────────────── */
+
+// Separa una cadena romana en letras; la raya (U+0305) marca ×1000 y se
+// dibuja con CSS encima de la letra (la fuente no siempre la pinta bien).
+const splitRoman = (str) => {
+  const out = [];
+  for (const ch of String(str || '')) {
+    if (ch === BAR && out.length) out[out.length - 1].bar = true;
+    else out.push({ ch, bar: false });
+  }
+  return out;
+};
+
+const RomanText = ({ value, className = '' }) => (
+  <span className={`rmn-rtext ${className}`}>
+    {splitRoman(value).map((g, i) => (
+      <span key={i} className={g.bar ? 'rmn-bar' : undefined}>{g.ch}</span>
+    ))}
+  </span>
+);
+
+const fmt = (n) => Number(n).toLocaleString('es-ES');
+
+// Rama de laurel (decoración de la placa). Hojas calculadas una vez.
+const LAUREL_LEAVES = (() => {
+  const P0 = [30, 86];
+  const P1 = [6, 58];
+  const P2 = [20, 8];
+  const leaves = [];
+  for (let i = 0; i < 7; i += 1) {
+    const t = 0.1 + i * 0.13;
+    const u = 1 - t;
+    const x = u * u * P0[0] + 2 * t * u * P1[0] + t * t * P2[0];
+    const y = u * u * P0[1] + 2 * t * u * P1[1] + t * t * P2[1];
+    const dx = 2 * u * (P1[0] - P0[0]) + 2 * t * (P2[0] - P1[0]);
+    const dy = 2 * u * (P1[1] - P0[1]) + 2 * t * (P2[1] - P1[1]);
+    const ang = (Math.atan2(dy, dx) * 180) / Math.PI;
+    [-1, 1].forEach((side) => {
+      const a = ang + side * 40;
+      const rad = (a * Math.PI) / 180;
+      leaves.push({ x: x + Math.cos(rad) * 6.5, y: y + Math.sin(rad) * 6.5, r: a - 90 });
+    });
+  }
+  return leaves;
+})();
+
+const Laurel = ({ flip = false }) => {
+  const [id, url] = useArtIds();
+  return (
+    <svg viewBox="0 0 40 92" className={`rmn-laurel ${flip ? 'is-flip' : ''}`} aria-hidden="true">
+      <defs>
+        <linearGradient id={id('leaf')} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#ecfccb" />
+          <stop offset=".45" stopColor="#84cc16" />
+          <stop offset="1" stopColor="#3f6212" />
+        </linearGradient>
+      </defs>
+      <path d="M30 86 Q6 58 20 8" stroke="#3f6212" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      {LAUREL_LEAVES.map((l, i) => (
+        <ellipse key={i} cx={l.x} cy={l.y} rx="4.2" ry="8.6" transform={`rotate(${l.r} ${l.x} ${l.y})`} fill={url('leaf')} />
+      ))}
+      <ellipse cx="20" cy="5" rx="3.4" ry="7" fill={url('leaf')} />
+    </svg>
+  );
+};
+
+// Vetas del mármol (estático, sin filtros).
+const MarbleVeins = () => (
+  <svg className="rmn-veins" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-10 128 C70 108 120 136 190 98 S320 70 380 104 S520 140 610 92" stroke="#94a3b8" strokeOpacity=".35" strokeWidth="1.6" fill="none" />
+    <path d="M40 -6 C70 30 64 52 112 70 S170 120 158 168" stroke="#94a3b8" strokeOpacity=".22" strokeWidth="1.1" fill="none" />
+    <path d="M420 -8 C440 26 488 30 500 62 S560 92 612 84" stroke="#a8a29e" strokeOpacity=".3" strokeWidth="1.3" fill="none" />
+    <path d="M250 168 C270 140 300 132 318 112" stroke="#94a3b8" strokeOpacity=".25" strokeWidth="1" fill="none" />
+  </svg>
+);
 
 const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
+  const meta = useAppMeta();
+  // Pantalla previa de modos (CLAUDE.md §3): 'menu' → elegir; 'play' → partida.
+  const [screen, setScreen] = useState('menu');
   const [isTestMode, setIsTestMode] = useState(false);
   const [targetNumber, setTargetNumber] = useState(0);
   const [userTiles, setUserTiles] = useState([]);
   const [showHelper, setShowHelper] = useState(true);
   const [showTable, setShowTable] = useState(false);
   const [feedback, setFeedback] = useState({ text: '', type: '' });
+  const [showHelp, setShowHelp] = useState(false);
+  // Marcador de práctica (solo presentación).
+  const [practiceHits, setPracticeHits] = useState(0);
+  const [practiceStreak, setPracticeStreak] = useState(0);
+  const scoredTargetRef = useRef(null);
 
   const dropZoneRef = useRef(null);
 
@@ -302,7 +393,12 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
     } else {
 
       if (isCorrect) {
-        setFeedback({ text: '¡Correcto! 🎉', type: 'feedback-correct' });
+        setFeedback({ text: `${fmt(targetNumber)} se escribe así en números romanos.`, type: 'feedback-correct' });
+        if (scoredTargetRef.current !== targetNumber) {
+          scoredTargetRef.current = targetNumber;
+          setPracticeHits((h) => h + 1);
+          setPracticeStreak((s) => s + 1);
+        }
         if (dropZoneRef.current) {
           const rect = dropZoneRef.current.getBoundingClientRect();
           confetti({
@@ -315,12 +411,13 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
           });
         }
       } else {
+        setPracticeStreak(0);
         const tilesStr = userTiles.map(t => t.value);
         const userVal = fromRoman(tilesStr);
         if (userVal === null) {
-          setFeedback({ text: `⚠️ Estructura no válida. Revisa las reglas.`, type: 'feedback-incorrect' });
+          setFeedback({ text: `Estructura no válida. Revisa las reglas.`, type: 'feedback-incorrect' });
         } else {
-          setFeedback({ text: `Incorrecto. Eso es ${userVal}.`, type: 'feedback-incorrect' });
+          setFeedback({ text: `Eso es ${fmt(userVal)}.`, type: 'feedback-incorrect' });
         }
       }
     }
@@ -374,287 +471,327 @@ const NumerosRomanosGame = ({ maxNumber, title, onGameComplete }) => {
     if (!testStats.finished) trackedRef2.current = false;
   }, [isTestMode, testStats.finished, testStats.score, finalTime, onGameComplete]);
 
-  // Renderizado de Resultados (Mismo contenedor)
+  // --- Solo presentación: atajos y limpieza del aviso al cambiar las fichas ---
+  const availableTiles = getAvailableTiles(maxNumber);
+  const clearPracticeFeedback = () => {
+    if (!isTestMode && feedback.text) setFeedback({ text: '', type: '' });
+  };
+  const addTile = (tile) => { handleAddTile(tile); clearPracticeFeedback(); };
+  const removeTile = (id) => { handleRemoveTile(id); clearPracticeFeedback(); };
+  const removeLast = () => {
+    const last = userTiles[userTiles.length - 1];
+    if (last) removeTile(last.id);
+  };
+  const clearAll = () => { setUserTiles([]); clearPracticeFeedback(); };
+
+  // Teclado físico: I V X L C D M añaden la ficha (si existe en este curso) y
+  // Retroceso borra la última.
+  const keyActionsRef = useRef({});
+  keyActionsRef.current = { addTile, removeLast };
+  const playing = screen === 'play' && !(isTestMode && testStats.finished);
+  useEffect(() => {
+    if (!playing) return undefined;
+    const onKey = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      const k = String(e.key || '').toUpperCase();
+      if (k.length === 1 && getAvailableTiles(maxNumber).includes(k)) keyActionsRef.current.addTile(k);
+      else if (e.key === 'Backspace') { e.preventDefault(); keyActionsRef.current.removeLast(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [playing, maxNumber]);
+
+  const shellProps = { accent: '#d97706', accent2: '#be123c' };
+  const headerTitle = meta.name ? undefined : title;
+  const backToMenu = () => { setIsTestMode(false); setScreen('menu'); };
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo se escriben">
+      <h3>🎯 Objetivo</h3>
+      <p>Escribe en <strong>números romanos</strong> el número que aparece en la placa, grabando las letras en la lápida.</p>
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Toca una ficha de piedra (o arrástrala) para grabarla en la lápida. También puedes escribir I, V, X… con el teclado.</li>
+        <li>Toca una letra grabada para borrarla; <kbd>⌫</kbd> borra la última.</li>
+        <li>Activa la <strong>ayuda visual</strong> para ver cuánto vale lo que llevas escrito y la <strong>tabla de valores</strong> para repasar las reglas.</li>
+      </ul>
+      <h3>📜 Reglas</h3>
+      <ul>
+        <li><strong>Suma:</strong> una letra a la derecha de otra de igual o mayor valor suma (VI = 6, XV = 15).</li>
+        <li><strong>Resta:</strong> I, X y C a la izquierda de una mayor restan (IV = 4, IX = 9, XL = 40).</li>
+        <li><strong>Repetición:</strong> I, X, C y M se repiten hasta 3 veces; V, L y D nunca.</li>
+        <li><strong>Raya:</strong> una raya encima multiplica la letra por 1.000.</li>
+      </ul>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>Práctica</strong>Números sin fin, con ayudas y corrección al momento.</div>
+        <div className="instr-mode exam"><strong>Examen</strong>{TOTAL_TEST_QUESTIONS} números con cronómetro. Nota sobre 10 y puntos extra por rapidez.</div>
+      </div>
+    </InstructionsModal>
+  );
+
+  // Renderizado de Resultados
   if (isTestMode && testStats.finished) {
     const correct = testStats.score;
     const nota = Math.round((correct / TOTAL_TEST_QUESTIONS) * 100) / 10;
-    const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-    const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-      : nota >= 7 ? '¡Muy bien! 👏'
-      : nota >= 5 ? 'Aprobado 💪'
-      : 'Necesitas repasar 📖';
     const points = computeRomanScore(correct, finalTime);
 
     return (
-      <div className="roman-container sp-shell">
-        <h1 className="text-4xl mb-2"><span className="gradient-text">¡Examen completado!</span></h1>
-
-        <div className={`roman-nota sp-grade-card ${notaColor}`}>
-          {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
-          <div
-            className="sp-grade-ring"
-            style={{ '--sp-grade': nota, '--sp-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444' }}
-          >
-            <div className="roman-nota-big">{nota.toFixed(1)}<span className="roman-nota-small">/10</span></div>
-          </div>
-          <div className="roman-nota-msg sp-grade-msg">{notaMsg}</div>
-        </div>
-
-        <div className="roman-score-row">
-          <span className="roman-score-chip points sp-points"><strong>{points.toLocaleString('es-ES')}</strong> puntos</span>
-          <span className="roman-score-chip">{correct}/{TOTAL_TEST_QUESTIONS} aciertos</span>
-          <span className="roman-score-chip">⏱ {finalTime}s</span>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-left overflow-y-auto mb-6"
-          style={{ maxHeight: '300px', paddingRight: '10px' }}
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          nota={nota}
+          points={points}
+          stats={[
+            { icon: Target, tone: 'good', label: 'Aciertos', value: `${correct}/${TOTAL_TEST_QUESTIONS}` },
+            { icon: Clock, tone: 'time', label: 'Tiempo', value: `${finalTime}s` },
+          ]}
+          actions={[
+            { label: 'Repetir examen', onClick: startTest, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToMenu, icon: LayoutGrid, variant: 'soft' },
+          ]}
         >
-          <AnimatePresence>
-            {testStats.answers.map((ans, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ x: -30, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{
-                  delay: idx * 0.05,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                className={`roman-answer-card ${ans.isCorrect ? 'ok' : 'ko'}`}
-              >
-                <div className="roman-answer-row">
-                  <span className="roman-answer-q">Pregunta {idx + 1}: <strong>{ans.target}</strong></span>
-                  <span className="roman-answer-icon">{ans.isCorrect ? '✅' : '❌'}</span>
-                </div>
-                <div className="roman-answer-row small">
-                  <span>Tu respuesta: <strong>{ans.userRoman || '-'}</strong></span>
-                  {!ans.isCorrect && (
-                    <span className="roman-answer-sol">Solución: {ans.correctRoman}</span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+          {testStats.answers.map((ans, idx) => (
+            <FeedbackItem key={idx} index={idx + 1} ok={ans.isCorrect} title={fmt(ans.target)}>
+              <span className="rmn-fb">
+                <span>Tu respuesta: {ans.userRoman ? <RomanText value={ans.userRoman} className="rmn-fb__roman" /> : <em>sin responder</em>}</span>
+                {!ans.isCorrect && (
+                  <span>Solución: <RomanText value={ans.correctRoman} className="rmn-fb__roman is-ok" /></span>
+                )}
+              </span>
+            </FeedbackItem>
+          ))}
+        </ResultsScreen>
+      </GameShell>
+    );
+  }
 
-
-
-        <div className="controles sp-controls">
-          <button onClick={startTest}>Repetir examen</button>
-          <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
-        </div>
-      </div>
+  // Pantalla previa: elegir modo
+  if (screen === 'menu') {
+    const modes = [
+      {
+        id: 'practice', tone: 'easy', title: 'Práctica',
+        desc: 'Graba números en la lápida con ayudas y corrección al momento.',
+        features: ['Ayuda visual y tabla de valores', 'Números sin fin'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: `${TOTAL_TEST_QUESTIONS} números contra el reloj. Al final verás tu nota.`,
+        features: ['Nota sobre 10', 'Puntos extra por rapidez'],
+      },
+    ];
+    const selectMode = (id) => {
+      if (id === 'exam') {
+        startTest();
+      } else {
+        setIsTestMode(false);
+        startPractice();
+      }
+      setScreen('play');
+    };
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect title={headerTitle} modes={modes} onSelect={selectMode} onHelp={() => setShowHelp(true)} />
+        {instructions}
+      </GameShell>
     );
   }
 
   // Calcular valor actual para el helper visual
   const currentValue = fromRoman(userTiles.map(t => t.value));
   const isValid = currentValue !== null;
-
+  const isLast = testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1;
+  const tabletState = !isTestMode && feedback.type === 'feedback-correct' ? 'is-won'
+    : !isTestMode && feedback.type === 'feedback-incorrect' ? 'is-lost' : '';
 
   return (
-    <div className="roman-container sp-shell">
-      {/* Título dentro del contenedor blanco */}
-      <h1 className="sp-title text-4xl mb-2">
-        <span className="sp-title-emoji" role="img" aria-label="Romanos">🏛️</span> <span className="gradient-text">{title}</span>
-      </h1>
-      <p className="instrucciones">Arrastra las fichas para formar el número romano correcto.</p>
-
-      {/* Selectores de Modo dentro del contenedor */}
-      <div className="mode-selection">
-        <button className={`btn-mode sp-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>
-          <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
-          Práctica Libre
-        </button>
-        <button className={`btn-mode sp-mode sp-mode--exam ${isTestMode ? 'active' : ''}`} onClick={startTest}>
-          <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
-          Iniciar examen
-        </button>
-      </div>
-
-      {/* Switch de Ayuda */}
-      <div className="switch-container">
-        <div className="flex flex-wrap items-center justify-center gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-gray-600">Ayuda Visual</span>
-            <label className="switch">
-              <input type="checkbox" checked={showHelper} onChange={(e) => setShowHelper(e.target.checked)} />
-              <span className="slider round"></span>
-            </label>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-gray-600">Ayuda Valores</span>
-            <label className="switch">
-              <input type="checkbox" checked={showTable} onChange={(e) => setShowTable(e.target.checked)} />
-              <span className="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-
+    <GameShell {...shellProps}>
+      <GameHeader
+        title={headerTitle}
+        mode={isTestMode ? 'exam' : 'easy'}
+        modeLabel={isTestMode ? 'Examen' : 'Práctica'}
+        onHelp={() => setShowHelp(true)}
+        right={
+          <Hud>
+            {isTestMode ? (
+              <>
+                <HudStat icon={Target} tone="progress" value={`${testStats.currentIndex + 1}/${TOTAL_TEST_QUESTIONS}`} label="Número" />
+                <HudStat icon={Clock} tone="time" value={`${elapsedTime}s`} label="Tiempo" />
+              </>
+            ) : (
+              <>
+                <HudStat icon={Trophy} tone="good" value={practiceHits} label="Aciertos" />
+                <HudStat icon={Flame} tone="streak" value={practiceStreak} label="Racha" />
+              </>
+            )}
+          </Hud>
+        }
+      />
 
       {isTestMode && (
-        <div className="roman-test-header">
-          <span key={testStats.currentIndex} className="roman-test-chip counter">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span>
-          <span className="roman-test-chip timer">⏱ {elapsedTime}s</span>
-        </div>
-      )}
-      {isTestMode && (
-        <div className="roman-progress">
-          <div
-            className="roman-progress-bar"
-            style={{ width: `${((testStats.currentIndex) / TOTAL_TEST_QUESTIONS) * 100}%` }}
-          />
+        <div className="rmn-progress">
+          <ProgressBar value={testStats.currentIndex} max={TOTAL_TEST_QUESTIONS} label="Progreso del examen" />
         </div>
       )}
 
-      <div className="game-area">
-        <h2 className="text-xl text-gray-600">Forma el número:</h2>
-        <motion.div
-          key={targetNumber}
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="target-number"
-        >
-          {targetNumber}
-        </motion.div>
+      <Panel variant="inset" className="rmn-temple">
+        {/* placa con el número a escribir */}
+        <div className="rmn-plaque">
+          <Laurel />
+          <div className="rmn-plaque__body">
+            <span className="rmn-plaque__rivet is-tl" aria-hidden="true" />
+            <span className="rmn-plaque__rivet is-tr" aria-hidden="true" />
+            <span className="rmn-plaque__rivet is-bl" aria-hidden="true" />
+            <span className="rmn-plaque__rivet is-br" aria-hidden="true" />
+            <span className="rmn-plaque__label">Forma el número</span>
+            <motion.span
+              key={targetNumber}
+              className="rmn-plaque__num"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+            >
+              {fmt(targetNumber)}
+            </motion.span>
+          </div>
+          <Laurel flip />
+        </div>
 
-
+        {/* lápida de mármol (zona donde se sueltan las fichas) */}
         <div
           ref={dropZoneRef}
-          className={`drop-zone ${!isValid && userTiles.length > 0 ? 'border-red-300 bg-red-50' : ''}`}
-          onDragOver={handleDragOver} onDrop={handleDrop}
+          className={`rmn-tablet ${!isValid && userTiles.length > 0 ? 'is-invalid' : ''} ${tabletState}`}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
         >
-
-
-          <AnimatePresence mode="popLayout">
-            {userTiles.map((tile) => (
-              <motion.div
-                key={tile.id}
-                layout
-                initial={{ scale: 0.5, opacity: 0, y: 150, rotate: -10 }}
-                animate={{ scale: 1, opacity: 1, y: 0, rotate: 0 }}
-                exit={{
-                  scale: 0,
-                  opacity: 0,
-                  transition: { duration: 0.15 }
-                }}
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 30,
-                  layout: { duration: 0.2 }
-                }}
-                className="roman-tile"
-                onClick={() => handleRemoveTile(tile.id)}
-              >
-                {tile.value}
-                <div className="delete-btn">
-                  <X />
-                </div>
-              </motion.div>
-
-            ))}
-          </AnimatePresence>
+          <MarbleVeins />
+          <div className="rmn-tablet__inner">
+            {userTiles.length === 0 && (
+              <span className="rmn-tablet__empty">Toca o arrastra las fichas para grabar aquí el número</span>
+            )}
+            <AnimatePresence mode="popLayout">
+              {userTiles.map((tile) => (
+                <motion.button
+                  key={tile.id}
+                  type="button"
+                  layout
+                  initial={{ scale: 0.4, opacity: 0, y: 40 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0, opacity: 0, transition: { duration: 0.15 } }}
+                  transition={{ type: 'spring', stiffness: 420, damping: 28, layout: { duration: 0.2 } }}
+                  className="rmn-carved"
+                  onClick={() => removeTile(tile.id)}
+                  aria-label={`Quitar ${tile.value}`}
+                  title="Quitar"
+                >
+                  <RomanText value={tile.value} />
+                  <span className="rmn-carved__x" aria-hidden="true"><X size={11} strokeWidth={3.2} /></span>
+                </motion.button>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
 
-
-
-
-        <div className="helper-display">
+        {/* sello con el valor (ayuda visual) */}
+        <div className="rmn-helper" aria-live="polite">
           {showHelper && userTiles.length > 0 && (
-            <span className="fade-in">
-              {isValid ? <strong className="text-green-600 text-2xl">{currentValue}</strong> : <strong className="text-red-500">No válido</strong>}
+            <span key={isValid ? currentValue : 'bad'} className={`rmn-seal gk-anim-pop ${isValid ? '' : 'is-bad'}`}>
+              {isValid ? <>= {fmt(currentValue)}</> : 'No válido'}
             </span>
           )}
         </div>
 
-        <AnimatePresence>
-          {showTable && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="roman-reference-table">
-                <h3>Valores de las letras</h3>
-                <div className="reference-grid">
-                  {ROMAN_VALUES.map(item => (
-                    <div key={item.letter} className="reference-item">
-                      <div className="ref-tile">{item.letter}</div>
-                      <div className="ref-value">{item.value}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="roman-rules">
-                  <h4>Reglas de los Números Romanos</h4>
-                  <ul>
-                    <li><b>Suma:</b> Una letra a la derecha de otra de igual o mayor valor suma sus valores (ej: VI = 6, XV = 15).</li>
-                    <li><b>Resta:</b> Las letras <b>I, X, C</b> a la izquierda de una mayor restan su valor (ej: IV = 4, IX = 9, XL = 40).</li>
-                    <li><b>Repetición:</b> Las letras <b>I, X, C, M</b> solo pueden repetirse hasta 3 veces seguidas.</li>
-                    <li><b>No Repetición:</b> Las letras <b>V, L, D</b> nunca se repiten ni se ponen a la izquierda de una mayor para restar.</li>
-                    <li><b>Restas específicas:</b> <b>I</b> solo resta a V y X; <b>X</b> solo resta a L y C; <b>C</b> solo resta a D y M.</li>
-                    <li><b>Multiplicación:</b> Una raya horizontal sobre la letra multiplica su valor por 1.000.</li>
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-
-        <AnimatePresence mode="wait">
-          {!isTestMode && feedback.text && (
-            <motion.div
-              key={feedback.text}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className={`feedback-message ${feedback.type}`}
-            >
-              {feedback.text}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-
-        <div className="palette">
-          {getAvailableTiles(maxNumber).map(tile => (
-            <motion.div
+        {/* cantera: fichas de piedra disponibles */}
+        <div className="rmn-quarry" role="group" aria-label="Fichas de piedra">
+          {availableTiles.map((tile) => (
+            <button
               key={tile}
-              whileHover={{ scale: 1.1, translateY: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="roman-tile"
+              type="button"
+              className={`rmn-stone ${tile.length > 1 ? 'is-thousand' : ''}`}
               draggable="true"
               onDragStart={(e) => handleDragStart(e, tile)}
-              onClick={() => handleAddTile(tile)}
+              onClick={() => addTile(tile)}
+              aria-label={`Añadir ${tile}`}
             >
-              {tile}
-            </motion.div>
+              <span className="rmn-stone__face"><RomanText value={tile} /></span>
+            </button>
           ))}
         </div>
+      </Panel>
 
-
-        <div className="controles sp-controls">
-          {isTestMode ? (
-            <button onClick={checkAnswer}>
-              {testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
-            </button>
-          ) : (
-            <>
-              <button onClick={checkAnswer}>Comprobar</button>
-              <button onClick={startPractice} className="btn-saltar">Nuevo Número</button>
-            </>
-          )}
-        </div>
+      <div className="rmn-toggles">
+        <button type="button" role="switch" aria-checked={showHelper} className={`rmn-toggle ${showHelper ? 'is-on' : ''}`} onClick={() => setShowHelper(!showHelper)}>
+          <Eye size={16} /> Ayuda visual
+          <span className="rmn-toggle__track" aria-hidden="true"><span className="rmn-toggle__thumb" /></span>
+        </button>
+        <button type="button" role="switch" aria-checked={showTable} className={`rmn-toggle ${showTable ? 'is-on' : ''}`} onClick={() => setShowTable(!showTable)}>
+          <Table2 size={16} /> Tabla de valores
+          <span className="rmn-toggle__track" aria-hidden="true"><span className="rmn-toggle__thumb" /></span>
+        </button>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {showTable && (
+          <motion.div
+            className="rmn-legend"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="rmn-legend__grid">
+              {ROMAN_VALUES.map((item) => (
+                <div key={item.letter} className="rmn-legend__item">
+                  <span className="rmn-legend__tile">{item.letter}</span>
+                  <span className="rmn-legend__value">{fmt(item.value)}</span>
+                </div>
+              ))}
+            </div>
+            <ul className="rmn-legend__rules">
+              <li><b>Suma:</b> una letra a la derecha de otra de igual o mayor valor suma sus valores (VI = 6, XV = 15).</li>
+              <li><b>Resta:</b> las letras <b>I, X, C</b> a la izquierda de una mayor restan su valor (IV = 4, IX = 9, XL = 40).</li>
+              <li><b>Repetición:</b> las letras <b>I, X, C, M</b> solo pueden repetirse hasta 3 veces seguidas.</li>
+              <li><b>No repetición:</b> las letras <b>V, L, D</b> nunca se repiten ni se ponen a la izquierda de una mayor para restar.</li>
+              <li><b>Restas concretas:</b> <b>I</b> solo resta a V y X; <b>X</b> solo resta a L y C; <b>C</b> solo resta a D y M.</li>
+              <li><b>Multiplicación:</b> una raya horizontal sobre la letra multiplica su valor por 1.000.</li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <RoundBanner
+        show={!isTestMode && !!feedback.text}
+        status={feedback.type === 'feedback-correct' ? 'won' : 'lost'}
+        title={feedback.type === 'feedback-correct' ? '¡Correcto!' : 'Incorrecto'}
+        subtitle={feedback.text}
+      />
+
+      <div className="rmn-actions">
+        {isTestMode ? (
+          <GameButton size="lg" iconRight={SkipForward} onClick={checkAnswer}>
+            {isLast ? 'Finalizar' : 'Siguiente'}
+          </GameButton>
+        ) : (
+          <>
+            <GameButton size="lg" variant="success" icon={Check} onClick={checkAnswer}>Comprobar</GameButton>
+            <GameButton variant="soft" icon={SkipForward} onClick={startPractice}>Nuevo número</GameButton>
+          </>
+        )}
+        <GameButton variant="ghost" icon={Delete} onClick={removeLast} disabled={!userTiles.length} title="Borrar la última letra">Borrar</GameButton>
+        <GameButton variant="ghost" icon={Eraser} onClick={clearAll} disabled={!userTiles.length} title="Borrar todas las letras">Limpiar</GameButton>
+      </div>
+
+      <div className="rmn-footer">
+        {!isTestMode ? (
+          <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToMenu}>Cambiar modo</GameButton>
+        ) : (
+          <span className="rmn-footer__info">Modo examen · la nota se ve al final</span>
+        )}
+        <span className="rmn-footer__info rmn-footer__tip">Teclado: {availableTiles.filter((t) => t.length === 1).join(' ')} · ⌫ borra</span>
+      </div>
+
+      {instructions}
+    </GameShell>
   );
 };
 
@@ -664,4 +801,4 @@ export const NumerosRomanos5 = (props) => <NumerosRomanosGame maxNumber={3999} t
 export const NumerosRomanos6 = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" {...props} />;
 export const NumerosRomanosESO = (props) => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (ESO)" {...props} />;
 
-export default NumerosRomanosGame;
+export default NumerosRomanosGame;

@@ -1,196 +1,156 @@
-import React, { useState, useEffect } from 'react';
+// Mascota de Fracciones PRO: "Quesito", una tarta índigo a la que le falta su
+// porción ámbar (como en el icono de la app). Reacciona a los aciertos y fallos
+// de la práctica (mood) y cuenta un chiste si la pulsas. Solo presentación.
+// Animación: transform/opacity; el balanceo continuo solo con html[data-fx="high"].
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const JOKES = [
-    "¿Qué le dice el 0 al 8? \n¡Bonito cinturón!",
-    "¿Por qué estaba triste el libro de mates? \n¡Porque tenía muchos problemas!",
-    "¿Qué le dice una curva a una tangente? \n¡No me toques!",
-    "¿Cómo estornuda un matemático? \n¡Piiiii... piiiiiii!",
-    "¿Tienes frío? \n¡Ponte en la esquina, está a 90 grados!",
-    "¿Qué es un oso polar rectangular? \n¡Un oso cartesiano!",
-    "¡No seas irracional!",
-    "¡Me partís el corazón en fracciones!",
-    "¿Qué hace una abeja en el gimnasio? \n¡Zum-ba!"
+    '¿Qué le dice el 0 al 8?\n¡Bonito cinturón!',
+    '¿Por qué estaba triste el libro de mates?\n¡Porque tenía muchos problemas!',
+    '¿Qué le dice una curva a una tangente?\n¡No me toques!',
+    '¿Cómo estornuda un matemático?\n¡Piiiii... piiiiiii!',
+    '¿Tienes frío?\n¡Ponte en la esquina, está a 90 grados!',
+    '¿Qué es un oso polar rectangular?\n¡Un oso cartesiano!',
+    '¡No seas irracional!',
+    '¡Me partís el corazón en fracciones!',
+    '¿Qué hace una abeja en el gimnasio?\n¡Zum-ba!',
 ];
 
-const FractionMascot = () => {
+const REACTIONS = {
+    happy: ['¡Toma ya!', '¡Fracción perfecta!', '¡Eso es!', '¡Qué crack!'],
+    sad: ['¡Casi! Revisa el paso', 'Respira y vuelve a probar', '¡Tú puedes!', 'Mira la pista 💡'],
+};
+
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+const FractionMascot = ({ mood = 'idle', hint, className = '' }) => {
     const [joke, setJoke] = useState(null);
-    const [isTalking, setIsTalking] = useState(false);
+    const timerRef = useRef(null);
+    useEffect(() => () => clearTimeout(timerRef.current), []);
 
-    const handleMascotClick = () => {
-        if (isTalking) return;
+    // Una frase nueva cada vez que cambia el ánimo
+    const reaction = useMemo(() => (REACTIONS[mood] ? pick(REACTIONS[mood]) : null), [mood]);
 
-        const randomJoke = JOKES[Math.floor(Math.random() * JOKES.length)];
-        setJoke(randomJoke);
-        setIsTalking(true);
-
-        // Hide joke after 4 seconds
-        setTimeout(() => {
-            setJoke(null);
-            setIsTalking(false);
-        }, 4000);
+    const handleClick = () => {
+        if (joke) return;
+        setJoke(pick(JOKES));
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setJoke(null), 4000);
     };
 
+    const bubble = joke || reaction || hint;
+
     return (
-        <div className="mascot-wrapper" style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
-            {/* SPEECH BUBBLE */}
-            <AnimatePresence>
-                {joke && (
+        <div className={`fr-mascot is-${mood} ${className}`}>
+            <AnimatePresence mode="wait">
+                {bubble && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                        key={bubble}
+                        className={`fr-mascot__bubble ${joke ? 'is-joke' : ''}`}
+                        initial={{ opacity: 0, scale: 0.85, y: 8 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        style={{
-                            position: 'absolute',
-                            top: '-80px',
-                            background: 'white',
-                            padding: '1rem',
-                            borderRadius: '20px',
-                            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                            border: '2px solid #e2e8f0',
-                            zIndex: 20,
-                            maxWidth: '250px',
-                            textAlign: 'center',
-                            fontSize: '0.95rem',
-                            fontWeight: '600',
-                            color: '#475569',
-                            pointerEvents: 'none'
-                        }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ type: 'spring', stiffness: 420, damping: 26 }}
+                        role="status"
                     >
-                        {joke}
-                        {/* Bubble tail */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '-10px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: 0,
-                            height: 0,
-                            borderLeft: '10px solid transparent',
-                            borderRight: '10px solid transparent',
-                            borderTop: '10px solid white'
-                        }} />
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '-13px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: 0,
-                            height: 0,
-                            borderLeft: '11px solid transparent',
-                            borderRight: '11px solid transparent',
-                            borderTop: '11px solid #e2e8f0',
-                            zIndex: -1
-                        }} />
+                        {bubble}
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* MASCOT SVG */}
-            <div
-                className="mascot-container"
-                onClick={handleMascotClick}
-                style={{ height: '180px', cursor: 'pointer', userSelect: 'none' }}
+            <button
+                type="button"
+                className="fr-mascot__btn"
+                onClick={handleClick}
+                title="¡Púlsame para un chiste!"
+                aria-label="Mascota: pulsa para escuchar un chiste"
             >
-                <svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 160 150" className="fr-mascot__svg" aria-hidden="true">
                     <defs>
-                        <linearGradient id="body_gradient" x1="150" y1="50" x2="250" y2="150" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stopColor="#6366f1" />
-                            <stop offset="100%" stopColor="#8b5cf6" />
+                        <linearGradient id="fr-m-body" x1="0.15" y1="0.1" x2="0.85" y2="1">
+                            <stop offset="0" stopColor="#c7d2fe" />
+                            <stop offset=".45" stopColor="#6366f1" />
+                            <stop offset="1" stopColor="#3730a3" />
                         </linearGradient>
+                        <linearGradient id="fr-m-slice" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stopColor="#fef3c7" />
+                            <stop offset=".5" stopColor="#fbbf24" />
+                            <stop offset="1" stopColor="#d97706" />
+                        </linearGradient>
+                        <radialGradient id="fr-m-gloss" cx="0.3" cy="0.25" r="0.6">
+                            <stop offset="0" stopColor="#fff" stopOpacity=".6" />
+                            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+                        </radialGradient>
+                        <radialGradient id="fr-m-shadow" cx="0.5" cy="0.5" r="0.5">
+                            <stop offset="0" stopColor="#1e1b4b" stopOpacity=".35" />
+                            <stop offset="1" stopColor="#1e1b4b" stopOpacity="0" />
+                        </radialGradient>
                     </defs>
 
-                    {/* --- SNACKS ANIMATION --- */}
-                    <motion.text
-                        x="50" y="110" fill="#3b82f6" fontSize="24" fontWeight="bold"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: [0, 1, 1, 0], x: [0, 140, 150, 150], y: [0, 0, 10, 10], scale: [1, 1, 0, 0], rotate: [0, 90, 180, 180] }}
-                        transition={{ duration: 8, repeat: Infinity, times: [0, 0.4, 0.45, 1], ease: "easeInOut" }}
-                    >7</motion.text>
-                    <motion.text
-                        x="330" y="90" fill="#ef4444" fontSize="24" fontWeight="bold"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: [0, 1, 1, 0], x: [0, -120, -130, -130], y: [0, 20, 30, 30], scale: [1, 1, 0, 0], rotate: [0, -90, -180, -180] }}
-                        transition={{ duration: 8, repeat: Infinity, times: [0.5, 0.9, 0.95, 1], ease: "easeInOut" }}
-                    >x</motion.text>
+                    {/* sombra de contacto */}
+                    <ellipse cx="78" cy="139" rx="46" ry="8" fill="url(#fr-m-shadow)" />
 
-                    {/* --- MASCOT BODY --- */}
-                    <motion.g animate={{ y: [-5, 5, -5] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}>
-                        {/* Legs */}
-                        <path d="M185 150 L185 165 A 5 5 0 0 0 195 165 L195 150" fill="#8b5cf6" />
-                        <path d="M215 150 L215 165 A 5 5 0 0 0 225 165 L225 150" fill="#8b5cf6" />
+                    <g className="fr-mascot__body">
+                        {/* pies */}
+                        <rect x="52" y="118" width="16" height="18" rx="8" fill="#312e81" />
+                        <rect x="82" y="118" width="16" height="18" rx="8" fill="#312e81" />
+                        {/* brazos */}
+                        <path d="M33 92 q-12 4 -14 16" stroke="#4338ca" strokeWidth="7" strokeLinecap="round" fill="none" />
+                        <path className="fr-mascot__arm" d="M118 96 q14 2 18 -10" stroke="#4338ca" strokeWidth="7" strokeLinecap="round" fill="none" />
+                        {/* tarta sin su porción (cuarto superior derecho) */}
+                        <path d="M78 80 L78 32 A48 48 0 1 0 126 80 Z" fill="url(#fr-m-body)" />
+                        <path d="M78 80 L78 32 A48 48 0 1 0 126 80 Z" fill="url(#fr-m-gloss)" />
+                        <path d="M78 80 L78 40 M78 80 L118 80" stroke="#312e81" strokeOpacity=".45" strokeWidth="2.5" strokeLinecap="round" />
+                        {/* borde de luz */}
+                        <path d="M38 62 A44 44 0 0 1 70 37" stroke="#fff" strokeOpacity=".55" strokeWidth="3" strokeLinecap="round" fill="none" />
 
-                        {/* Squircle Body + Gulp Effect */}
-                        <motion.rect
-                            x="160" y="60" width="90" height="90" rx="35" fill="url(#body_gradient)"
-                            animate={{ scaleY: [1, 1, 0.9, 1, 1, 0.9, 1] }}
-                            transition={{ duration: 8, repeat: Infinity, times: [0, 0.43, 0.46, 0.5, 0.93, 0.96, 1] }}
-                        />
-                        <rect x="180" y="105" width="50" height="30" rx="12" fill="#ffffff" fillOpacity="0.2" />
-
-                        {/* Antennas */}
-                        <motion.g style={{ originX: "205px", originY: "60px" }} animate={{ rotate: [0, 3, -3, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}>
-                            <path d="M180 60 L175 45 L185 35" stroke="#6366f1" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="185" cy="35" r="5" fill="#a78bfa" />
-                            <path d="M230 60 L235 45 L225 35" stroke="#6366f1" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="225" cy="35" r="5" fill="#a78bfa" />
-                        </motion.g>
-
-                        {/* Eyes */}
-                        <g>
-                            <circle cx="185" cy="90" r="12" fill="white" />
-                            <motion.circle cx="185" cy="90" r="5" fill="#1e1b4b" animate={{ cx: [185, 187, 185] }} transition={{ repeat: Infinity, duration: 4 }} />
-                            <circle cx="225" cy="90" r="10" fill="white" />
-                            <motion.circle cx="225" cy="90" r="4" fill="#1e1b4b" animate={{ cx: [225, 227, 225] }} transition={{ repeat: Infinity, duration: 4 }} />
+                        {/* cara */}
+                        <g transform="translate(-3 5)">
+                        {mood === 'happy' ? (
+                            <g stroke="#1e1b4b" strokeWidth="3.4" strokeLinecap="round" fill="none">
+                                <path d="M50 88 q6 -7 12 0" />
+                                <path d="M74 88 q7 -8 14 0" />
+                            </g>
+                        ) : (
+                            <g>
+                                <circle cx="56" cy="88" r="8.5" fill="#fff" />
+                                <circle cx="81" cy="87" r="10" fill="#fff" />
+                                <circle cx={mood === 'sad' ? 55 : 58} cy={mood === 'sad' ? 91 : 89} r="4" fill="#1e1b4b" />
+                                <circle cx={mood === 'sad' ? 80 : 84} cy={mood === 'sad' ? 90 : 88} r="4.8" fill="#1e1b4b" />
+                                <circle cx="59.4" cy="87.4" r="1.4" fill="#fff" />
+                                <circle cx="85.6" cy="86.2" r="1.6" fill="#fff" />
+                            </g>
+                        )}
+                        {mood === 'sad' && (
+                            <g stroke="#1e1b4b" strokeWidth="2.6" strokeLinecap="round">
+                                <path d="M48 76 l12 4" />
+                                <path d="M90 75 l-12 4" />
+                            </g>
+                        )}
+                        <ellipse cx="46" cy="102" rx="6" ry="3.6" fill="#f472b6" opacity=".55" />
+                        <ellipse cx="96" cy="101" rx="6" ry="3.6" fill="#f472b6" opacity=".55" />
+                        {mood === 'happy' && (
+                            <path d="M58 100 q12 16 26 0 Z" fill="#1e1b4b" />
+                        )}
+                        {mood === 'happy' && <path d="M64 106 q7 5 14 0" fill="#fb7185" />}
+                        {mood === 'idle' && <path d="M60 103 q10 9 20 0" stroke="#1e1b4b" strokeWidth="3.2" strokeLinecap="round" fill="none" />}
+                        {mood === 'sad' && <path d="M61 108 q9 -8 18 0" stroke="#1e1b4b" strokeWidth="3.2" strokeLinecap="round" fill="none" />}
+                        {mood === 'sad' && <path d="M30 70 q5 7 0 10 q-5 -3 0 -10 Z" fill="#7dd3fc" />}
                         </g>
+                    </g>
 
-                        {/* NEW MOUTH: Zig-Zag Teeth based on sketch */}
-                        <motion.g
-                            initial={{ scaleY: 0.8 }}
-                            animate={{ scaleY: [0.8, 0.8, 1.2, 1.2, 0.8, 0.8, 1.2, 1.2] }} // Open wider when eating
-                            transition={{ duration: 8, repeat: Infinity, times: [0, 0.35, 0.4, 0.45, 0.5, 0.85, 0.9, 0.95] }}
-                            style={{ originX: "205px", originY: "120px" }}
-                        >
-                            {/* Mouth Outline */}
-                            <path d="M185 115 C 185 105, 225 105, 225 115 C 225 135, 185 135, 185 115 Z" fill="#1e1b4b" stroke="white" strokeWidth="2" />
-
-                            {/* ZigZag Teeth */}
-                            {/* Top Teeth */}
-                            <path d="M186 115 L190 122 L195 115 L200 122 L205 115 L210 122 L215 115 L220 122 L224 115" stroke="white" strokeWidth="2" fill="none" strokeLinejoin="round" />
-
-                            {/* Bottom Teeth */}
-                            <path d="M186 128 L190 120 L195 128 L200 120 L205 128 L210 120 L215 128 L220 120 L224 128" stroke="white" strokeWidth="2" fill="none" strokeLinejoin="round" />
-                        </motion.g>
-
-                        <motion.g style={{ willChange: 'transform' }}>
-                            {/* Left Arm: Styled like the legs, waves when talking */}
-                            <motion.path
-                                d="M170 105 L135 105 A 5 5 0 0 0 135 115 L170 115"
-                                animate={{
-                                    rotate: isTalking ? [-25, 25, -25] : [-2, 2, -2]
-                                }}
-                                transition={{
-                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                                }}
-                                fill="#6366f1"
-                                style={{ originX: "160px", originY: "110px" }}
-                            />
-                            {/* Right Arm: Styled like the legs, waves when talking */}
-                            <motion.path
-                                d="M240 105 L275 105 A 5 5 0 0 1 275 115 L240 115"
-                                animate={{
-                                    rotate: isTalking ? [25, -25, 25] : [2, -2, 2]
-                                }}
-                                transition={{
-                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                                }}
-                                fill="#8b5cf6"
-                                style={{ originX: "250px", originY: "110px" }}
-                            />
-                        </motion.g>
-                    </motion.g>
+                    {/* la porción que se ha escapado */}
+                    <g className="fr-mascot__slice">
+                        <path d="M88 70 L88 22 A48 48 0 0 1 136 70 Z" fill="#b45309" transform="translate(0 3)" />
+                        <path d="M88 70 L88 22 A48 48 0 0 1 136 70 Z" fill="url(#fr-m-slice)" />
+                        <path d="M94 28 A42 42 0 0 1 128 58" stroke="#fff" strokeOpacity=".6" strokeWidth="3" strokeLinecap="round" fill="none" />
+                        <circle cx="104" cy="52" r="2.6" fill="#78350f" />
+                        <circle cx="116" cy="52" r="2.6" fill="#78350f" />
+                        <path d="M105 59 q5 4 10 0" stroke="#78350f" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                    </g>
                 </svg>
-            </div>
+            </button>
         </div>
     );
 };

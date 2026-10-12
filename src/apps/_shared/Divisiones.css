@@ -1,220 +1,176 @@
-/* Divisiones — importa estilos compartidos de cajas de mates */
-/* DARK-MIGRATED */
-@import './MathBoxShared.css';
+/* Divisiones (4º-6º) — rediseño 2026.
+   La "galera" a la española: dividendo a la izquierda, divisor dentro de la
+   caja (raya vertical + raya horizontal) y el cociente debajo, en su bandeja.
+   Los restos (naranja) y las cifras que se bajan quedan bajo el dividendo.
+   Las piezas comunes (cifras, casillas, comas) están en
+   src/apps/multiplicaciones/OpTablero.css; el armazón es _shared/MathOperationLayout. */
 
-/* Grid de la división */
-.division-grid {
-  display: grid;
-  font-family: 'Lexend', sans-serif;
-  font-size: 2.5rem;
-  line-height: 1.5;
-  column-gap: 4px;
-  row-gap: 8px;
-  justify-content: center;
+.op-board.dv-board { padding-top: 26px; padding-bottom: 18px; }
+
+.op-grid.dv-grid {
+  --dv-bar: max(4px, calc(var(--cell) * .1));
   align-items: center;
-  user-select: none;
+  padding: 0 6px 20px; /* sitio para la etiqueta "cociente" bajo la bandeja */
 }
 
-/* Celdas y cajas de la división (override de .box) */
-.digit-display,
-.division-box,
-.brought-down-digit {
-  width: 100%;
-  min-width: 42px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  box-sizing: border-box;
+/* Etiquetas de cada zona (dividendo, divisor, cociente, resto) */
+.dv-cap {
   position: relative;
-  color: var(--app-text);
-}
-
-/* Caja del divisor */
-.divisor-container {
-  border-left: 3px solid var(--app-line);
-  border-bottom: 3px solid var(--app-line);
-  padding-left: 12px;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-}
-.divisor-number {
-  font-weight: bold;
-  color: #1e3a8a;
-}
-
-/* Área del cociente */
-.quotient-area {
-  padding-left: 12px;
-  margin-left: 5px;
-  display: flex;
-  gap: 2px;
-  align-items: center;
-}
-
-/* Cajas interactivas de la división */
-.division-box {
-  border: 2px dashed var(--app-box-border);
-  border-radius: 8px;
-  background-color: var(--app-box-bg);
-  cursor: pointer;
-  color: var(--app-text);
-  transition: all 0.2s ease;
-  min-width: 42px;
-}
-.division-box.filled {
-  border-style: solid;
-  border-color: var(--app-box-filled-border);
-}
-.division-box.selected {
-  border: 2px solid var(--app-box-selected-border);
-  background-color: var(--app-box-selected-bg);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-  transform: scale(1.05);
-  z-index: 10;
-}
-.division-box.correct {
-  background-color: #dcfce7;
-  border: 2px solid #22c55e;
-  color: #15803d;
-}
-.division-box.incorrect {
-  background-color: #fee2e2;
-  border: 2px solid #ef4444;
-  color: #b91c1c;
-}
-
-/* Flecha de ayuda */
-.arrow-helper {
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.5em;
-  color: #3b82f6;
-  font-weight: bold;
+  align-self: start;
+  justify-self: center;
+  height: 0;
   pointer-events: none;
 }
-
-/* Highlight azul */
-.operand-highlight {
-  background-color: #bae6fd !important;
-  border-radius: 6px;
-  color: #0c4a6e;
-  transition: background-color 0.3s ease;
+.dv-cap > span,
+.dv-tag {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-family: var(--gk-font);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--mol-deep, var(--gk-accent));
+  background: color-mix(in srgb, var(--gk-accent) 13%, var(--mol-paper, #fff));
 }
-.division-box.operand-highlight {
-  background-color: #e0f2fe !important;
-  border-color: #3b82f6 !important;
-}
+.dv-tag { bottom: auto; top: calc(100% + 5px); }
+.dv-tag--rest { color: #c2410c; background: color-mix(in srgb, #f97316 16%, var(--mol-paper, #fff)); }
+.dv-tag--q { top: calc(100% + 6px); left: 0; transform: none; }
 
-/* === COMA DEL DIVIDENDO === */
-.dividend-comma {
+/* Caja del divisor: raya vertical a la izquierda y horizontal debajo */
+.dv-divisor {
+  position: relative;
+  justify-self: stretch;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 10px;
-  font-family: 'Lexend', sans-serif;
-  font-size: 2rem;
-  color: var(--app-operator);
-  font-weight: bold;
-  min-width: 16px;
+  align-items: center;
+  min-height: var(--cell);
+  padding: 0 calc(var(--cell) * .25) 0 calc(var(--cell) * .32);
 }
-
-/* === RANURAS PARA LA COMA (COCIENTE) === */
-.comma-slot {
-  width: 28px;
-  min-width: 28px;
-  height: 50px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-family: 'Lexend', sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1;
-  color: var(--app-border);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
-  border-bottom: 2px dashed var(--app-border);
-  border-radius: 0;
-  padding-bottom: 4px;
-  margin: 0 1px;
+.dv-divisor::before,
+.dv-divisor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  border-radius: 99px;
+  pointer-events: none;
 }
-.comma-slot:hover { color: var(--app-text-secondary); transform: scale(1.1); }
-.comma-slot.active { color: var(--app-operator); transform: scale(1.1); border-color: var(--app-operator); }
-.comma-slot.correct { color: #22c55e; border-color: #22c55e; }
-.comma-slot.incorrect { color: #ef4444; border-color: #ef4444; }
-
-/* Layout de la division + tabla de multiplicar lateral.
-   Grid de 3 columnas (1fr | auto | 1fr): la division vive en la columna central
-   y queda siempre centrada, mientras la tabla ocupa la columna derecha en flujo
-   normal. Asi la tabla reserva espacio real y nunca solapa la division, aunque
-   la division crezca horizontalmente al tener decimales o muchas cifras. */
-.game-content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: start;
-  column-gap: 24px;
-  margin: 20px auto;
+.dv-divisor::before {
+  top: 4%;
+  bottom: calc(var(--dv-bar) * -.5);
+  width: var(--dv-bar);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gk-accent) 55%, transparent), var(--mol-deep, var(--gk-accent)));
 }
-.game-content .division-grid {
-  grid-column: 2;
-  justify-self: center;
+.dv-divisor::after {
+  right: 0;
+  bottom: calc(var(--dv-bar) * -.5);
+  height: var(--dv-bar);
+  background: linear-gradient(90deg, var(--mol-deep, var(--gk-accent)), var(--gk-accent) 45%, var(--gk-accent-2));
+  box-shadow: 0 3px 8px -3px color-mix(in srgb, var(--gk-accent) 70%, transparent);
 }
-.multiplication-table-panel {
-  grid-column: 3;
-  justify-self: start;
-  background-color: var(--app-bg-elevated);
-  border: 2px solid var(--app-border-light);
-  border-radius: 12px;
-  padding: 16px;
-  min-width: 160px;
-  box-shadow: 0 4px 6px -1px var(--app-shadow);
-  font-family: 'Lexend', sans-serif;
-  text-align: left;
-  animation: slideIn 0.3s ease-out;
-}
-/* En pantallas estrechas: una sola columna, tabla debajo de la division */
-@media (max-width: 900px) {
-  .game-content {
-    grid-template-columns: 1fr;
-  }
-  .game-content .division-grid,
-  .multiplication-table-panel {
-    grid-column: 1;
-    justify-self: center;
-  }
-  .multiplication-table-panel {
-    margin-top: 20px;
-  }
-}
-.multiplication-table-panel h3 {
-  font-size: 1.1rem;
+.dv-divisor__num {
+  font-size: calc(var(--cell) * .72);
   font-weight: 700;
-  color: var(--app-text);
-  margin-bottom: 12px;
-  text-align: center;
-  border-bottom: 2px solid var(--app-border);
-  padding-bottom: 8px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+  color: var(--mol-deep, var(--gk-accent));
+  padding: calc(var(--cell) * .08) calc(var(--cell) * .14);
+  border-radius: calc(var(--cell) * .26);
+  transition: background .25s ease, box-shadow .25s ease;
 }
-.table-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  font-size: 1rem;
-  color: var(--app-text-secondary);
-  border-bottom: 1px dashed var(--app-border-light);
+.dv-divisor.is-focus .dv-divisor__num {
+  background: color-mix(in srgb, var(--gk-accent) 15%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gk-accent) 50%, transparent), 0 6px 16px -8px var(--gk-accent);
 }
-.table-row:last-child { border-bottom: none; }
-.table-row strong { color: var(--app-text); }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
+/* Bandeja del cociente */
+.dv-quotient {
+  position: relative;
+  align-self: start;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  min-height: calc(var(--cell) + 12px);
+  margin-top: 6px;
+  padding: 6px calc(var(--cell) * .18) 6px calc(var(--cell) * .32);
+  border-radius: 0 0 calc(var(--cell) * .3) calc(var(--cell) * .3);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gk-accent) 11%, #fff), color-mix(in srgb, var(--gk-accent) 3%, #fff));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--gk-accent) 16%, transparent);
+}
+html.dark .dv-quotient {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gk-accent) 20%, transparent), color-mix(in srgb, var(--gk-accent) 6%, transparent));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--gk-accent) 28%, transparent);
+}
+.dv-quotient .op-comma { width: calc(var(--cell) * .42); flex-shrink: 0; }
+
+/* Restos: naranja, para distinguirlos del cociente */
+.dv-grid .op-cell.dv-rest { --c: #f97316; }
+
+/* Cifra que se baja */
+.op-num.dv-down { color: var(--mol-deep, var(--gk-accent)); }
+.dv-down__arrow {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gk-accent) 70%, white), var(--gk-accent));
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b), 0 4px 8px -3px var(--gk-accent);
+  animation: gk-pop .35s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+/* Ayuda: cifras con las que se trabaja en el paso actual (resto + cifra bajada) */
+.dv-grid .op-cell.is-focus:not(.is-active) {
+  outline: 3px solid color-mix(in srgb, var(--gk-accent) 45%, transparent);
+  outline-offset: 2px;
+}
+
+/* Tabla de multiplicar del divisor (5º y 6º) */
+.dv-extra { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; margin-top: 12px; }
+.dv-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 560px;
+  padding: 10px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--gk-accent) 7%, var(--mol-paper, #fff));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--gk-accent) 20%, transparent);
+  animation: dv-in .3s cubic-bezier(.22, 1, .36, 1) both;
+}
+.dv-table__row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--gk-font);
+  font-size: .9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: 0 2px 0 var(--gk-key-edge);
+}
+.dv-table__row strong { font-size: 1.02rem; font-weight: 800; color: var(--mol-deep, var(--gk-accent)); }
+
+@keyframes dv-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 720px) {
+  .op-board.dv-board { padding-top: 24px; }
+  .dv-cap > span, .dv-tag { font-size: .58rem; padding: 0 6px; }
+  .dv-table__row { font-size: .8rem; padding: 3px 8px; }
+  .dv-table__row strong { font-size: .9rem; }
 }

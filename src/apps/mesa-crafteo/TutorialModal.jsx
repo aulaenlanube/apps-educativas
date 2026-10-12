@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Atom, MousePointerClick, Link2, FlaskConical, X, Check } from 'lucide-react';
+import { GameButton } from '../_shared/kit';
+import { FlaskArt } from './CrafteoArt';
 import './MesaCrafteo.css'; // Reusing the main CSS for consistency
 
+const STEPS = [
+    { Icon: Atom, title: 'Selecciona elementos', text: 'Elige los átomos que necesitas en el panel de la derecha.' },
+    { Icon: MousePointerClick, title: 'Construye en 3D', text: 'Haz clic en el espacio para colocar el primer átomo. Arrastra para girar la cámara y usa la rueda para el zoom.' },
+    { Icon: Link2, title: 'Crea enlaces', text: 'Haz clic en los puertos verdes de un átomo para conectar ahí el elemento seleccionado.' },
+    { Icon: FlaskConical, title: 'Craftea', text: 'Cuando tengas la estructura correcta, pulsa Craftear (o Enviar respuesta en el examen).' },
+];
+
 const TutorialModal = ({ onClose }) => {
-    const [dontShowAgain, setDontShowAgain] = useState(false);
+    const [dontShowAgain] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -20,37 +30,36 @@ const TutorialModal = ({ onClose }) => {
     };
 
     return (
-        <div className={`mc-tutorial-overlay ${isVisible ? 'visible' : ''}`}>
-            <div className="mc-tutorial-card">
-                <div className="mc-tutorial-icon">🧪</div>
-                <h2>Bienvenido al Laboratorio</h2>
-                <p className="mc-tutorial-intro">
-                    Aquí podrás experimentar y crear moléculas reales conectando átomos en un entorno 3D.
-                </p>
-
-                <div className="mc-tutorial-steps">
-                    <div className="mc-step">
-                        <span className="mc-step-num">1</span>
-                        <p><strong>Selecciona Elementos:</strong> Elige los átomos que necesitas del panel derecho.</p>
-                    </div>
-                    <div className="mc-step">
-                        <span className="mc-step-num">2</span>
-                        <p><strong>Construye en 3D:</strong> Haz clic en el espacio para colocar átomos. Usa el click derecho para rotar la cámara.</p>
-                    </div>
-                    <div className="mc-step">
-                        <span className="mc-step-num">3</span>
-                        <p><strong>Crea Enlaces:</strong> Haz clic en los puertos verdes de los átomos para conectarlos entre sí.</p>
-                    </div>
-                    <div className="mc-step">
-                        <span className="mc-step-num">4</span>
-                        <p><strong>Craftea:</strong> Cuando tengas la estructura correcta, pulsa el botón de Craftear.</p>
+        <div className={`mc-tutorial ${isVisible ? 'is-visible' : ''}`} onClick={handleClose}>
+            <div className="mc-tutorial__card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Cómo se juega">
+                <button type="button" className="gk-iconbtn mc-tutorial__close" onClick={handleClose} aria-label="Cerrar">
+                    <X size={18} />
+                </button>
+                <div className="mc-tutorial__hero">
+                    <FlaskArt status="ok" className="mc-tutorial__art" />
+                    <div>
+                        <span className="mc-kicker">Laboratorio de química</span>
+                        <h2>Bienvenido al laboratorio</h2>
+                        <p>Experimenta y crea moléculas reales conectando átomos en un entorno 3D.</p>
                     </div>
                 </div>
 
-                <div className="mc-tutorial-footer" style={{ justifyContent: 'center' }}>
-                    <button className="mc-tutorial-btn" onClick={handleClose}>
+                <ol className="mc-tutorial__steps">
+                    {STEPS.map(({ Icon, title, text }, i) => (
+                        <li key={title} className="mc-tutorial__step" style={{ '--i': i }}>
+                            <span className="mc-tutorial__num"><Icon size={18} /><b>{i + 1}</b></span>
+                            <div>
+                                <strong>{title}</strong>
+                                <p>{text}</p>
+                            </div>
+                        </li>
+                    ))}
+                </ol>
+
+                <div className="mc-tutorial__foot">
+                    <GameButton variant="success" size="lg" icon={Check} onClick={handleClose}>
                         ¡Entendido, vamos allá!
-                    </button>
+                    </GameButton>
                 </div>
             </div>
         </div>

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Mail, KeyRound, GraduationCap, Check, Trophy, Calendar, Sparkles, Award, Shield, Globe, School, BookOpen } from 'lucide-react';
+import {
+  Save, Mail, KeyRound, GraduationCap, Check, Trophy, Calendar, Sparkles, Award, Shield, Globe, School,
+  BookOpen, Copy, Smile, User, Clock,
+} from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { sanitizePlainText } from '@/lib/sanitize';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
 import AvatarGallery from '@/components/avatar/AvatarGallery';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 import TeacherDuelPhrasesEditor from '@/components/duel/TeacherDuelPhrasesEditor';
+import { DashCard, DashButton, XPBar } from '@/components/dashboard/kit';
+import './teacherPanels.css';
 
 // Limites acordes con la BD (defensa en profundidad; la RPC debe truncar tambien).
 const MAX_DISPLAY_NAME = 80;
@@ -161,436 +163,311 @@ const TeacherProfileSection = () => {
   };
 
   const roleLabel = teacher?.role === 'admin' ? 'Administrador' : teacher?.role === 'free' ? 'Usuario libre' : 'Docente';
+  const saveDisabled = saving || (!hasProfileChanges && !hasAvatarChanges);
+  const heroBio = equippedAvatar ? (bio ? `"${bio}"` : equippedAvatar.description) : (bio ? `"${bio}"` : null);
 
   return (
-    <div className="space-y-6">
-      {/* HERO CARD: Avatar grande + datos principales */}
-      <motion.div
+    <div className="tp-root tp-prof">
+      {/* HERO: avatar grande + datos principales */}
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative bg-white rounded-3xl shadow-lg border border-purple-100 overflow-hidden"
+        className="tp-prof-hero"
       >
         {equippedAvatar ? (
-          // Layout con avatar especial: fondo técnico oscuro con glow de rareza (sin panel de color)
+          // Avatar especial: fondo técnico oscuro con el brillo de su rareza
           <div
-            className="relative px-5 sm:px-7 py-6 sm:py-7 overflow-hidden"
+            className="tp-prof-hero__bg"
             style={{
-              background: `radial-gradient(circle at 20% 30%, ${rMeta.glow}33 0%, transparent 55%), radial-gradient(circle at 80% 70%, ${rMeta.ring}22 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
+              background: `radial-gradient(circle at 18% 35%, ${rMeta.glow}44 0%, transparent 55%), radial-gradient(circle at 85% 75%, ${rMeta.ring}33 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0f172a 100%)`,
             }}
-          >
-            {/* Grid técnico */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-25"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
-                backgroundSize: '32px 32px',
-              }}
-            />
-            {/* Líneas diagonales sutiles */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-15"
-              style={{
-                backgroundImage:
-                  `repeating-linear-gradient(45deg, transparent 0 80px, ${rMeta.ring}33 80px 81px)`,
-              }}
-            />
-            {/* Highlight superior */}
-            <div
-              className="absolute inset-x-0 top-0 h-px"
-              style={{ background: `linear-gradient(90deg, transparent, ${rMeta.glow}, transparent)` }}
-            />
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/8 backdrop-blur-md rounded-full px-3 py-1 border border-white/15">
-              <Shield className="w-3.5 h-3.5 text-white/80" />
-              <span className="text-xs font-bold text-white/90">{roleLabel}</span>
-            </div>
+          />
+        ) : (
+          // Avatar clásico: el color elegido pinta todo el héroe
+          <div className={`tp-prof-hero__bg bg-gradient-to-br ${selectedColor}`} />
+        )}
+        <span className="tp-prof-hero__grid" aria-hidden="true" />
+        <span className="tp-prof-hero__ring" aria-hidden="true" />
+        <span className="tp-glasschip tp-prof-hero__role"><Shield size={14} /> {roleLabel}</span>
 
-            <div className="relative flex flex-col sm:flex-row gap-5 sm:gap-7 items-start sm:items-center">
-              <motion.div
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                className="flex-shrink-0"
-              >
+        <div className="tp-prof-hero__inner">
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+          >
+            {equippedAvatar ? (
+              <div className="tp-prof-hero__special">
                 <UserAvatar
                   selectedAvatarCode={teacher.selected_avatar_code}
-                  size="mega"
+                  size="hero"
                   shape="rounded"
                   showRarityBorder
                   showRarityGlow
-                  className="shadow-[0_0_60px_rgba(0,0,0,0.6)]"
                 />
-              </motion.div>
-
-              <div className="flex-1 min-w-0 space-y-3">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span
-                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-white"
-                    style={{ background: `linear-gradient(135deg, ${rMeta.ring}, ${rMeta.glow})` }}
-                  >
-                    {rMeta.label}
-                  </span>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/50">
-                    {equippedAvatar.title}
-                  </span>
-                </div>
-
-                <h1 className="text-2xl sm:text-3xl font-black text-white truncate">
-                  {displayName || teacher?.display_name || 'Sin nombre'}
-                </h1>
-
-                {(bio || equippedAvatar.description) && (
-                  <p className="text-sm text-white/70 italic leading-snug max-w-prose line-clamp-2">
-                    {bio ? `"${bio}"` : equippedAvatar.description}
-                  </p>
-                )}
-
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <button
-                    onClick={handleCopyCode}
-                    className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/15 text-purple-200 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-white/15 backdrop-blur"
-                  >
-                    <KeyRound className="w-3.5 h-3.5" />
-                    {teacher?.teacher_code}
-                  </button>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-indigo-200 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-emerald-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-slate-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Calendar className="w-3.5 h-3.5" /> Desde {formatDate(teacher?.created_at)}
-                  </span>
-                </div>
               </div>
-            </div>
-          </div>
-        ) : (
-          // Layout clásico: banner color + emoji
-          <>
-            <div
-              className={`h-40 sm:h-44 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}
-            >
-              <div className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
-                }}
-              />
-              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
-                <Shield className="w-3.5 h-3.5 text-white" />
-                <span className="text-xs font-bold text-white">{roleLabel}</span>
+            ) : (
+              <div className={`tp-prof-hero__emoji bg-gradient-to-br ${selectedColor}`}>
+                <span>{selectedEmoji}</span>
               </div>
-              <div className="absolute bottom-3 left-48 sm:left-52 right-4">
-                <h1 className="text-3xl sm:text-4xl font-black text-white truncate drop-shadow-lg">
-                  {displayName || teacher?.display_name || 'Sin nombre'}
-                </h1>
-                {bio && (
-                  <p className="text-sm text-white/80 mt-1 italic truncate drop-shadow">"{bio}"</p>
-                )}
-              </div>
-            </div>
+            )}
+          </motion.div>
 
-            <div className="px-6 pb-6 -mt-20 relative">
-              <div className="flex flex-col sm:flex-row gap-6 items-start">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                  className="flex-shrink-0"
+          <div className="tp-prof-hero__text">
+            {equippedAvatar && (
+              <div className="tp-prof-hero__tags">
+                <span
+                  className="tp-prof-hero__rarity"
+                  style={{ background: `linear-gradient(135deg, ${rMeta.ring}, ${rMeta.glow})` }}
                 >
-                  <div
-                    className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 opacity-20"
-                      style={{
-                        backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)',
-                      }}
-                    />
-                    <span className="text-8xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
-                  </div>
-                </motion.div>
+                  {rMeta.label}
+                </span>
+                <span className="tp-prof-hero__avtitle">{equippedAvatar.title}</span>
+              </div>
+            )}
+            <h1 className="tp-prof-hero__name">{displayName || teacher?.display_name || 'Sin nombre'}</h1>
+            {heroBio && <p className="tp-prof-hero__bio">{heroBio}</p>}
 
-                <div className="flex-1 min-w-0 pt-2 sm:pt-24">
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={handleCopyCode}
-                      className="inline-flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-full px-3 py-1.5 text-xs font-bold transition-colors border border-purple-200"
-                    >
-                      <KeyRound className="w-3.5 h-3.5" />
-                      {teacher?.teacher_code}
-                    </button>
-                    <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
-                      <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
-                      <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
-                      <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-slate-50 text-slate-600 rounded-full px-3 py-1.5 text-xs font-bold border border-slate-200">
-                      <Calendar className="w-3.5 h-3.5" /> Desde {formatDate(teacher?.created_at)}
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div className="tp-prof-hero__chips">
+              <button type="button" onClick={handleCopyCode} className="tp-glasschip tp-glasschip--gold" title="Copiar código">
+                <KeyRound size={14} /> {teacher?.teacher_code} <Copy size={13} />
+              </button>
+              <span className="tp-glasschip"><Trophy size={14} /> Nivel {level}</span>
+              <span className="tp-glasschip"><Sparkles size={14} /> {totalXp.toLocaleString()} XP</span>
+              <span className="tp-glasschip"><Award size={14} /> {totalEarned}/{totalAvailable} insignias</span>
+              <span className="tp-glasschip"><Calendar size={14} /> Desde {formatDate(teacher?.created_at)}</span>
             </div>
-          </>
-        )}
 
-        <div className="px-6 pb-6 pt-2 relative">
-          {/* Barra XP */}
-          <div className="mt-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-2xl p-4 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm font-black">
-                  {level}
-                </div>
-                <div>
-                  <p className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Nivel actual</p>
-                  <p className="text-sm font-bold">Nivel {level}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Progreso</p>
-                <p className="text-sm font-bold">{xpInLevel} / {xpNeeded} XP</p>
-              </div>
-            </div>
-            <div className="w-full h-2.5 bg-white/20 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${xpProgress}%` }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="h-full bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-full"
-              />
-            </div>
+            <XPBar value={xpInLevel} max={xpNeeded} level={level} label={`Nivel ${level} · ${xpProgress}% hacia el ${level + 1}`} />
           </div>
         </div>
-      </motion.div>
+      </motion.section>
 
       {/* Colección de avatares especiales */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
+      <DashCard
+        icon={Sparkles}
+        tone="violet"
+        title="Tu colección de avatares"
+        subtitle="Desbloquea avatares valorando apps, publicando comentarios, ganando insignias o subiendo de nivel. Si equipas uno, reemplazará al emoji clásico."
       >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Tu colección de avatares</h3>
-        <p className="text-xs text-slate-500 mb-5">
-          Desbloquea avatares especiales valorando apps, publicando comentarios, ganando insignias o subiendo de nivel.
-          Si quieres equipar uno, selecciónalo aquí; reemplazará al emoji clásico.
-        </p>
         <AvatarGallery mode="teacher" />
-      </motion.div>
+      </DashCard>
 
       {/* Personalización del avatar clásico (emoji) — sólo se usa si no hay
-          ningún avatar especial equipado, por eso va al final. */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6"
+          ningún avatar especial equipado, por eso va después de la colección. */}
+      <DashCard
+        icon={Smile}
+        tone="pink"
+        title="Avatar clásico (emoji)"
+        subtitle="Si no tienes ningún avatar especial equipado, se mostrará este emoji con su color de fondo."
       >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Avatar clásico (emoji)</h3>
-        <p className="text-xs text-slate-500 mb-5">Si no tienes ningún avatar especial equipado, se mostrará este emoji con su color de fondo.</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Selector emoji */}
-          <div>
-            <Label className="text-slate-500 text-xs font-semibold mb-2 block uppercase tracking-wide">Emoji</Label>
-            <div className="grid grid-cols-8 gap-2">
-              {AVATAR_EMOJIS.map(emoji => (
-                <button key={emoji} type="button" onClick={() => setSelectedEmoji(emoji)}
-                  className={`text-2xl p-2 rounded-xl transition-all ${
-                    selectedEmoji === emoji ? 'bg-purple-100 ring-2 ring-purple-400 scale-110' : 'hover:bg-slate-100'
-                  }`}
-                >{emoji}</button>
-              ))}
+        <div className="tp-classic">
+          <div className="tp-classic__preview">
+            <div className={`tp-classic__tile bg-gradient-to-br ${selectedColor}`}>
+              <span>{selectedEmoji}</span>
             </div>
+            <span className="tp-classic__cap">
+              {equippedAvatar ? 'En reserva: tienes un avatar especial equipado' : 'Así te verán'}
+            </span>
           </div>
 
-          {/* Selector color */}
-          <div>
-            <Label className="text-slate-500 text-xs font-semibold mb-2 block uppercase tracking-wide">Color del panel</Label>
-            <div className="grid grid-cols-6 gap-2">
-              {AVATAR_COLORS.map(color => (
-                <button key={color.id} type="button" onClick={() => setSelectedColor(color.id)}
-                  className={`relative h-12 rounded-xl transition-all ${
-                    selectedColor === color.id ? 'ring-2 ring-offset-2 ring-purple-400 scale-105' : 'hover:scale-105'
-                  }`}
-                  style={{ background: `linear-gradient(135deg, ${color.from}, ${color.to})` }}
-                  title={color.label}
+          <div className="tp-field">
+            <span className="tp-label">Emoji</span>
+            <div className="tp-emojis">
+              {AVATAR_EMOJIS.map(emoji => (
+                <button
+                  key={emoji}
+                  type="button"
+                  onClick={() => setSelectedEmoji(emoji)}
+                  className={`tp-emoji ${selectedEmoji === emoji ? 'is-on' : ''}`}
+                  aria-pressed={selectedEmoji === emoji}
                 >
-                  {selectedColor === color.id && <Check className="w-5 h-5 text-white absolute inset-0 m-auto drop-shadow" />}
+                  {emoji}
                 </button>
               ))}
             </div>
-            <p className="text-[11px] text-slate-400 mt-2">Color actual: <span className="font-semibold">{selectedColorObj.label}</span></p>
+          </div>
+
+          <div className="tp-field">
+            <span className="tp-label">Color del panel</span>
+            <div className="tp-swatches">
+              {AVATAR_COLORS.map(color => (
+                <button
+                  key={color.id}
+                  type="button"
+                  onClick={() => setSelectedColor(color.id)}
+                  className={`tp-swatch ${selectedColor === color.id ? 'is-on' : ''}`}
+                  style={{ background: `linear-gradient(135deg, ${color.from}, ${color.to})` }}
+                  title={color.label}
+                  aria-pressed={selectedColor === color.id}
+                >
+                  {selectedColor === color.id && <Check size={20} />}
+                </button>
+              ))}
+            </div>
+            <p className="tp-help">Color actual: <strong>{selectedColorObj.label}</strong></p>
           </div>
         </div>
-      </motion.div>
+      </DashCard>
 
       {/* Frases para duelos (al final del bloque de avatar/colección) */}
       <TeacherDuelPhrasesEditor />
 
       {/* Datos del perfil */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6 space-y-5"
-      >
-        <h3 className="text-base font-bold text-slate-800">Datos del perfil</h3>
+      <DashCard icon={User} tone="indigo" title="Datos del perfil" subtitle="Lo que ven tus alumnos y el resto de docentes">
+        <div className="tp-fields">
+          <div className="tp-field tp-field--full">
+            <label className="tp-label" htmlFor="profile-name"><User size={14} /> Nombre para mostrar</label>
+            <input
+              id="profile-name"
+              className="tp-input"
+              value={displayName}
+              onChange={e => setDisplayName(e.target.value)}
+              placeholder="Tu nombre completo"
+              maxLength={MAX_DISPLAY_NAME}
+            />
+          </div>
 
-        {/* Nombre */}
-        <div className="space-y-2">
-          <Label htmlFor="profile-name">Nombre para mostrar</Label>
-          <Input id="profile-name" value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="Tu nombre completo" maxLength={MAX_DISPLAY_NAME} />
-        </div>
+          <div className="tp-field tp-field--full">
+            <label className="tp-label" htmlFor="profile-bio"><Sparkles size={14} /> Sobre mí</label>
+            <textarea
+              id="profile-bio"
+              className="tp-textarea"
+              value={bio}
+              onChange={e => setBio(e.target.value)}
+              placeholder="Cuéntanos algo sobre ti, tu asignatura, tus aficiones..."
+              rows={3}
+              maxLength={MAX_BIO}
+            />
+            <span className="tp-count">{bio.length}/{MAX_BIO}</span>
+          </div>
 
-        {/* Bio */}
-        <div className="space-y-2">
-          <Label htmlFor="profile-bio">Sobre mi</Label>
-          <textarea id="profile-bio" value={bio} onChange={e => setBio(e.target.value)}
-            placeholder="Cuéntanos algo sobre ti, tu asignatura, tus aficiones..."
-            rows={3} maxLength={MAX_BIO}
-            className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
-          />
-          <p className="text-xs text-gray-400 text-right">{bio.length}/{MAX_BIO}</p>
-        </div>
-
-        {/* Web personal */}
-        <div className="space-y-2">
-          <Label htmlFor="profile-website" className="flex items-center gap-1.5">
-            <Globe className="w-3.5 h-3.5 text-blue-500" />
-            Web personal
-          </Label>
-          <Input
-            id="profile-website"
-            type="url"
-            value={website}
-            onChange={e => setWebsite(e.target.value)}
-            placeholder="https://mi-web.com"
-            maxLength={MAX_WEBSITE}
-          />
-        </div>
-
-        {/* Centro educativo + Especialidad */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="profile-center" className="flex items-center gap-1.5">
-              <School className="w-3.5 h-3.5 text-purple-500" />
-              Centro educativo
-            </Label>
-            <Input
+          <div className="tp-field">
+            <label className="tp-label" htmlFor="profile-center"><School size={14} /> Centro educativo</label>
+            <input
               id="profile-center"
+              className="tp-input"
               value={centerName}
               onChange={e => setCenterName(e.target.value)}
               placeholder="Nombre del centro"
               maxLength={MAX_SHORT}
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="profile-specialty" className="flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
-              Especialidad
-            </Label>
-            <Input
+
+          <div className="tp-field">
+            <label className="tp-label" htmlFor="profile-specialty"><BookOpen size={14} /> Especialidad</label>
+            <input
               id="profile-specialty"
+              className="tp-input"
               value={specialty}
               onChange={e => setSpecialty(e.target.value)}
               placeholder="Ej: Lengua, Matematicas, Musica..."
               maxLength={MAX_SHORT}
             />
           </div>
-        </div>
 
-        {/* Etapas educativas */}
-        <div className="space-y-2">
-          <Label className="flex items-center gap-1.5">
-            <GraduationCap className="w-3.5 h-3.5 text-amber-500" />
-            Etapas educativas
-          </Label>
-          <p className="text-xs text-slate-400">Selecciona las etapas en las que impartes clase</p>
-          <div className="flex flex-wrap gap-2 mt-1">
-            {EDUCATION_LEVELS.map(lvl => (
-              <button
-                key={lvl.id}
-                type="button"
-                onClick={() => toggleLevel(lvl.id)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border ${
-                  educationLevels.includes(lvl.id)
-                    ? 'bg-purple-100 text-purple-700 border-purple-300 ring-1 ring-purple-300'
-                    : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'
-                }`}
-              >
-                {educationLevels.includes(lvl.id) && <Check className="w-3 h-3 inline mr-1" />}
-                {lvl.label}
-              </button>
-            ))}
+          <div className="tp-field">
+            <label className="tp-label" htmlFor="profile-website"><Globe size={14} /> Web personal</label>
+            <input
+              id="profile-website"
+              className="tp-input"
+              type="url"
+              value={website}
+              onChange={e => setWebsite(e.target.value)}
+              placeholder="https://mi-web.com"
+              maxLength={MAX_WEBSITE}
+            />
           </div>
-        </div>
 
-        {/* Zona horaria (afecta al horario de clase de tus grupos) */}
-        <div className="space-y-2">
-          <Label htmlFor="profile-timezone" className="flex items-center gap-1.5">
-            <Globe className="w-3.5 h-3.5 text-blue-500" />
-            Zona horaria
-          </Label>
-          <p className="text-xs text-slate-400">
-            Se usa para aplicar las horas de clase que configures en tus grupos.
-          </p>
-          <select
-            id="profile-timezone"
-            value={timezone}
-            onChange={(e) => setTimezone(e.target.value)}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            {TIMEZONE_OPTIONS.map(tz => (
-              <option key={tz} value={tz}>{tz}</option>
-            ))}
-          </select>
+          {/* Zona horaria (afecta al horario de clase de tus grupos) */}
+          <div className="tp-field">
+            <label className="tp-label" htmlFor="profile-timezone"><Clock size={14} /> Zona horaria</label>
+            <select
+              id="profile-timezone"
+              className="tp-select"
+              value={timezone}
+              onChange={(e) => setTimezone(e.target.value)}
+            >
+              {TIMEZONE_OPTIONS.map(tz => (
+                <option key={tz} value={tz}>{tz}</option>
+              ))}
+            </select>
+            <p className="tp-help">Se usa para aplicar las horas de clase que configures en tus grupos.</p>
+          </div>
+
+          {/* Etapas educativas */}
+          <div className="tp-field tp-field--full">
+            <span className="tp-label"><GraduationCap size={14} /> Etapas educativas</span>
+            <p className="tp-help">Selecciona las etapas en las que impartes clase</p>
+            <div className="tp-toggles">
+              {EDUCATION_LEVELS.map(lvl => (
+                <button
+                  key={lvl.id}
+                  type="button"
+                  onClick={() => toggleLevel(lvl.id)}
+                  className={`tp-toggle ${educationLevels.includes(lvl.id) ? 'is-on' : ''}`}
+                  aria-pressed={educationLevels.includes(lvl.id)}
+                >
+                  {educationLevels.includes(lvl.id) && <Check size={14} />}
+                  {lvl.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Datos no editables */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100">
-          <div className="flex items-center gap-2 bg-slate-50 rounded-lg px-3 py-2.5 text-sm text-slate-600">
-            <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wide">Email</p>
-              <p className="truncate">{teacher?.email}</p>
+        <div className="tp-facts" style={{ marginTop: 18 }}>
+          <div className="tp-fact">
+            <span className="tp-fact__icon"><Mail size={16} /></span>
+            <div style={{ minWidth: 0 }}>
+              <p className="tp-fact__label">Email</p>
+              <p className="tp-fact__value">{teacher?.email}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 bg-slate-50 rounded-lg px-3 py-2.5 text-sm text-slate-600">
-            <Calendar className="w-4 h-4 text-slate-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wide">Miembro desde</p>
-              <p className="truncate">{formatDate(teacher?.created_at)}</p>
+          <div className="tp-fact">
+            <span className="tp-fact__icon"><Calendar size={16} /></span>
+            <div style={{ minWidth: 0 }}>
+              <p className="tp-fact__label">Miembro desde</p>
+              <p className="tp-fact__value">{formatDate(teacher?.created_at)}</p>
             </div>
           </div>
         </div>
 
         {/* Guardar */}
-        <Button onClick={handleSaveProfile} disabled={saving || (!hasProfileChanges && !hasAvatarChanges)}
-          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
-          {saving ? 'Guardando...' : <><Save className="w-4 h-4 mr-2" /> Guardar cambios</>}
-        </Button>
-      </motion.div>
+        <DashButton
+          size="lg"
+          icon={saving ? undefined : Save}
+          onClick={handleSaveProfile}
+          disabled={saveDisabled}
+          style={{ width: '100%', marginTop: 18 }}
+        >
+          {saving ? 'Guardando...' : 'Guardar cambios'}
+        </DashButton>
+      </DashCard>
 
       {/* Info codigo */}
-      <div className="bg-white/60 rounded-xl p-4 border border-purple-100">
-        <div className="flex items-start gap-3">
-          <GraduationCap className="w-5 h-5 text-purple-500 mt-0.5" />
-          <div className="text-sm text-gray-600">
-            <p className="font-medium text-gray-700">Tu código de profesor: <span className="text-purple-700 font-bold">{teacher?.teacher_code}</span></p>
-            <p className="mt-1">Comparte este código con tus alumnos para que puedan iniciar sesión en la plataforma.</p>
-          </div>
+      <DashCard icon={KeyRound} tone="amber" title="Tu código de profesor">
+        <div className="tp-codebox">
+          <span className="tp-codebox__code">{teacher?.teacher_code}</span>
+          <DashButton variant="soft" size="sm" icon={Copy} onClick={handleCopyCode}>Copiar</DashButton>
+          <p className="tp-codebox__text">Comparte este código con tus alumnos para que puedan iniciar sesión en la plataforma.</p>
         </div>
-      </div>
+      </DashCard>
+
+      {/* Barra flotante con cambios sin guardar */}
+      {(hasProfileChanges || hasAvatarChanges) && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="tp-savebar"
+        >
+          <span className="tp-savebar__text"><span className="tp-savebar__dot" /> Tienes cambios sin guardar</span>
+          <DashButton icon={saving ? undefined : Save} onClick={handleSaveProfile} disabled={saveDisabled}>
+            {saving ? 'Guardando...' : 'Guardar cambios'}
+          </DashButton>
+        </motion.div>
+      )}
     </div>
   );
 };

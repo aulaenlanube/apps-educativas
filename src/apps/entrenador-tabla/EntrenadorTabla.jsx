@@ -1,18 +1,63 @@
 // src/apps/entrenador-tabla/EntrenadorTabla.jsx
-import React, { useState, useEffect, useMemo } from 'react';
+// Entrenador de la tabla periódica (rediseño 2026 sobre _shared/kit).
+// Lo propio del juego: ficha de elemento estilo tabla periódica «premium» (la
+// casilla que se pregunta brilla con «?» y al responder se revela entera con el
+// color de su familia), opciones A-D o respuesta escrita (PRO) y repaso final
+// con las fichas. Carga de datos, sesiones, reglas, puntos y tracking: sin cambios.
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import {
+    Atom, BookOpen, Clock, FlaskConical, Flame, LayoutGrid, ListChecks, PenLine, RefreshCw, Send, Target, Trophy, Zap,
+} from 'lucide-react';
 import { getAppContent } from '../../services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, ProgressBar, AnswerOption, GameButton, Segmented, ModeSelect,
+    ResultsScreen, GameLoading, GameEmpty, Chip,
+} from '../_shared/kit';
 import './EntrenadorTabla.css';
 
 import { FAMILIES, normalizeString } from '../_shared/QuimicaHelpers';
 import PeriodicTableModal from '../_shared/PeriodicTableModal';
+
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+// Ficha de elemento. `ask`: casilla que se pregunta ('name' | 'symbol');
+// `revealed`: tras responder se ve entera con el color de su familia.
+const ElementTile = ({ el, ask, revealed, state = '', size = 'lg' }) => {
+    if (!el) return null;
+    const fam = FAMILIES[el.category];
+    const showSymbol = revealed || ask !== 'symbol';
+    const showName = revealed || ask !== 'name';
+    return (
+        <div
+            className={`etp-tile etp-tile--${size} ${revealed ? 'is-revealed' : 'is-hidden'} ${state ? `is-${state}` : ''}`}
+            style={{ '--fam': fam?.color || '#a855f7' }}
+        >
+            <span className="etp-tile__gloss" aria-hidden="true" />
+            <div className="etp-tile__top">
+                <span className="etp-tile__z">{revealed ? el.atomicNumber : '··'}</span>
+                {revealed && el.atomicMass && <span className="etp-tile__mass">{String(el.atomicMass).replace('.', ',')}</span>}
+            </div>
+            <div className="etp-tile__symbol">
+                {showSymbol ? <span className={el.symbol.length > 2 ? 'is-long' : ''}>{el.symbol}</span> : <span className="etp-q">?</span>}
+            </div>
+            <div className="etp-tile__name">
+                {showName ? <span className={el.name.length > 11 ? 'is-long' : ''}>{el.name}</span> : <span className="etp-q etp-q--sm">???</span>}
+            </div>
+            {revealed && fam && size === 'lg' && <div className="etp-tile__fam">{fam.label}</div>}
+        </div>
+    );
+};
 
 const EntrenadorTabla = ({ onGameComplete }) => {
     // Game State
     const [gameState, setGameState] = useState('setup'); // setup, playing, result
     const [elements, setElements] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showTable, setShowTable] = useState(false);
+    const [showHelp, setShowHelp] = useState(false);
 
     // Settings
     const [config, setConfig] = useState({
@@ -36,6 +81,9 @@ const EntrenadorTabla = ({ onGameComplete }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [userInput, setUserInput] = useState('');
     const [isCorrect, setIsCorrect] = useState(null);
+    // Solo presentación: repaso de la sesión y puntos mostrados en el resumen.
+    const [review, setReview] = useState([]);
+    const [finalStats, setFinalStats] = useState(null);
 
     // Initial load
     useEffect(() => {
@@ -63,12 +111,13 @@ const EntrenadorTabla = ({ onGameComplete }) => {
         return filtered;
     }, [elements, config.scope, config.selectedCategories, config.range]);
 
-    const startSession = () => {
+    // gameMode llega desde la pantalla de modos (antes se leía de config tras pulsarlo).
+    const startSession = (gameMode = config.gameMode) => {
         if (!pool.length) return;
 
         // Shuffle and pick session targets
         const shuffled = [...pool].sort(() => Math.random() - 0.5);
-        const count = config.gameMode === 'practice' ? 20 : 10;
+        const count = gameMode === 'practice' ? 20 : 10;
         const targets = shuffled.slice(0, Math.min(count, shuffled.length));
 
         setSession({
@@ -79,6 +128,8 @@ const EntrenadorTabla = ({ onGameComplete }) => {
             startTime: Date.now(),
             answers: []
         });
+        setReview([]);
+        setFinalStats(null);
         setGameState('playing');
         setUserInput('');
         generateNewQuestion(targets[0], targets);
@@ -119,6 +170,7 @@ const EntrenadorTabla = ({ onGameComplete }) => {
         const correct = answer.symbol === session.targets[session.currentIndex].symbol;
         setSelectedAnswer(answer);
         setIsCorrect(correct);
+        setReview((r) => [...r, { el: session.targets[session.currentIndex], ok: correct }]);
 
         if (correct) {
             setSession(s => ({ ...s, score: s.score + 1, streak: s.streak + 1 }));
@@ -148,6 +200,7 @@ const EntrenadorTabla = ({ onGameComplete }) => {
                 const timeBonus = elapsedSec > 0
                     ? Math.max(0, Math.round((TIME_BUDGET - elapsedSec) * SPEED_COEF))
                     : 0;
+                setFinalStats({ points: finalScore * 100 + timeBonus, elapsedSec, timeBonus });
                 onGameComplete?.({
                     mode: 'test',
                     score: finalScore * 100 + timeBonus,
@@ -169,22 +222,38 @@ const EntrenadorTabla = ({ onGameComplete }) => {
         }));
     };
 
-    if (loading) return <div className="trainer-loading">Preparando Laboratorio...</div>;
-
     const currentTarget = session.targets[session.currentIndex];
+    const isPro = config.gameMode === 'exam-pro';
 
-    // Helper for clue display
-    const renderClue = () => {
-        if (!currentTarget) return null;
-        switch (config.clueType) {
-            case 'symbolToName': return <div className="question-main">{currentTarget.symbol}</div>;
-            case 'nameToSymbol': return <div className="question-main" style={{ fontSize: '3rem' }}>{currentTarget.name}</div>;
-            case 'atomicToName': return <div className="question-main">{currentTarget.atomicNumber}</div>;
-            case 'protonsToName': return <div className="question-main">{currentTarget.atomicNumber} <span style={{ fontSize: '2rem' }}>Protones</span></div>;
-            case 'electronsToName': return <div className="question-main">{currentTarget.atomicNumber} <span style={{ fontSize: '2rem' }}>Electrones</span></div>;
-            default: return null;
-        }
-    };
+    // PRO: el campo se desactiva al responder y pierde el foco; al llegar la
+    // siguiente pregunta lo recuperamos para poder seguir escribiendo.
+    const proInputRef = useRef(null);
+    useEffect(() => {
+        if (gameState === 'playing' && isPro && !selectedAnswer) proInputRef.current?.focus({ preventScroll: true });
+    }, [gameState, isPro, selectedAnswer, session.currentIndex]);
+
+    // Teclado físico: A-D o 1-4 eligen opción (no en PRO, que se escribe).
+    useEffect(() => {
+        if (gameState !== 'playing' || isPro || selectedAnswer) return undefined;
+        const onKey = (e) => {
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+            const k = String(e.key || '').toUpperCase();
+            const idx = LETTERS.indexOf(k) >= 0 ? LETTERS.indexOf(k) : ['1', '2', '3', '4'].indexOf(k);
+            if (idx >= 0 && currentOptions[idx]) handleAnswer(currentOptions[idx]);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }); // sin deps: usa siempre el handleAnswer del render actual
+
+    // Familias con elementos en los datos (algunas claves de FAMILIES no se usan).
+    const familyCounts = useMemo(() => elements.reduce((acc, e) => {
+        acc[e.category] = (acc[e.category] || 0) + 1;
+        return acc;
+    }, {}), [elements]);
+
+    const shellProps = { accent: '#a855f7', accent2: '#0891b2' };
+    const modeTone = { practice: 'easy', exam: 'medium', 'exam-pro': 'exam' };
+    const modeLabel = { practice: 'Práctica', exam: 'Examen', 'exam-pro': 'Examen PRO' };
 
     const getClueHint = () => {
         switch (config.clueType) {
@@ -202,249 +271,299 @@ const EntrenadorTabla = ({ onGameComplete }) => {
         return opt.name;
     };
 
-    return (
-        <div className="trainer-container">
-            {/* Fondo decorativo: orbes cian-violeta, rejilla y "átomos" flotando */}
-            <div className="fx-app-backdrop et-backdrop" aria-hidden="true">
-                <div className="et-grid fx-grid-bg" />
-                <span className="et-atom a1"><span className="et-orbit" /><span className="et-orbit o2" /></span>
-                <span className="et-atom a2"><span className="et-orbit" /><span className="et-orbit o2" /></span>
-                <span className="et-spark s1" /><span className="et-spark s2" /><span className="et-spark s3" />
+    const instructions = (
+        <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo se entrena">
+            <h3>🎯 Objetivo</h3>
+            <p>Reconoce los elementos químicos: di su <strong>nombre</strong> a partir del símbolo o su <strong>símbolo</strong> a partir del nombre.</p>
+            <h3>🕹️ Cómo se juega</h3>
+            <ul>
+                <li>Elige antes el tipo de pregunta y si quieres toda la tabla o solo algunas familias.</li>
+                <li>La casilla con <strong>?</strong> de la ficha es lo que tienes que responder.</li>
+                <li>Pulsa una opción (o las teclas <kbd>A</kbd>–<kbd>D</kbd>). En el modo PRO escribe la respuesta (no importan las tildes).</li>
+                <li>Encadena aciertos para subir la racha.</li>
+            </ul>
+            <div className="instr-modes">
+                <div className="instr-mode easy"><strong>Práctica</strong>20 elementos con pista de descripción.</div>
+                <div className="instr-mode medium"><strong>Examen</strong>10 elementos con cuatro opciones.</div>
+                <div className="instr-mode exam"><strong>Examen PRO</strong>10 elementos sin opciones ni pistas: hay que escribir la respuesta.</div>
             </div>
-            <AnimatePresence mode="wait">
-                {gameState === 'setup' && (
-                    <motion.div
-                        key="setup"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="setup-screen et-glass"
-                    >
-                        <h1 className="setup-title">ENTRENADOR TABLA PERIÓDICA</h1>
+            <div className="instr-tips"><strong>💡 Consejo:</strong> abre la <strong>tabla periódica</strong> desde la pantalla de inicio para repasar antes de empezar.</div>
+        </InstructionsModal>
+    );
 
-                        <div className="setup-grid fx-stagger">
-                            <div className="setup-card">
-                                <h3>🎮 MODO DE JUEGO</h3>
-                                <div className="mode-selector">
-                                    <button
-                                        className={`option-btn et-mode et-mode--easy ${config.gameMode === 'practice' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, gameMode: 'practice' })}
-                                    >
-                                        <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🚀</span>
-                                        Práctica Libre
-                                    </button>
-                                    <button
-                                        className={`option-btn et-mode et-mode--medium ${config.gameMode === 'exam' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, gameMode: 'exam' })}
-                                    >
-                                        <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>⏱️</span>
-                                        Modo Examen (10 Q)
-                                    </button>
-                                    <button
-                                        className={`option-btn et-mode et-mode--exam ${config.gameMode === 'exam-pro' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, gameMode: 'exam-pro' })}
-                                    >
-                                        <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🔥</span>
-                                        Modo Examen PRO (10 Q)
-                                    </button>
-                                </div>
-                            </div>
+    if (loading) {
+        return (
+            <GameShell {...shellProps}>
+                <GameLoading label="Preparando el laboratorio…" />
+            </GameShell>
+        );
+    }
 
-                            <div className="setup-card">
-                                <h3>💡 TIPO DE PREGUNTA</h3>
-                                <div className="mode-selector">
-                                    <button
-                                        className={`option-btn ${config.clueType === 'symbolToName' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, clueType: 'symbolToName' })}
-                                    >
-                                        Símbolo ➔ Nombre
-                                    </button>
-                                    <button
-                                        className={`option-btn ${config.clueType === 'nameToSymbol' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, clueType: 'nameToSymbol' })}
-                                    >
-                                        Nombre ➔ Símbolo
-                                    </button>
-                                </div>
-                            </div>
+    if (!elements.length) {
+        return (
+            <GameShell {...shellProps}>
+                <GameHeader onHelp={() => setShowHelp(true)} />
+                <GameEmpty title="No se han podido cargar los elementos">Vuelve a intentarlo dentro de un momento.</GameEmpty>
+                {instructions}
+            </GameShell>
+        );
+    }
 
-                            <div className="setup-card setup-card-wide">
-                                <h3>🔬 RANGO DE ESTUDIO</h3>
-                                <div className="scope-grid">
-                                    <button
-                                        className={`option-btn ${config.scope === 'all' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, scope: 'all' })}
-                                    >
-                                        Toda la Tabla (1-118)
-                                    </button>
-                                    <button
-                                        className={`option-btn ${config.scope === 'category' ? 'active' : ''}`}
-                                        onClick={() => setConfig({ ...config, scope: 'category' })}
-                                    >
-                                        Por Familias
-                                    </button>
-                                    <button
-                                        className="option-btn"
-                                        style={{ marginLeft: 'auto', background: 'rgba(56, 189, 248, 0.1)', borderColor: 'var(--accent-blue)' }}
-                                        onClick={() => setGameState('study')}
-                                    >
-                                        📊 VER TABLA PERIÓDICA
-                                    </button>
-                                </div>
-
-                                {config.scope === 'category' && (
-                                    <div className="category-tags">
-                                        {Object.entries(FAMILIES).slice(0, 11).map(([key, data]) => (
-                                            <button
-                                                key={key}
-                                                className={`tag-btn ${config.selectedCategories.includes(key) ? 'active' : ''}`}
-                                                onClick={() => toggleCategory(key)}
-                                                style={{ borderLeftColor: data.color, borderLeftWidth: '4px' }}
-                                            >
-                                                {data.label}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        <button className="start-btn fx-shine fx-shine--auto" onClick={startSession}>
-                            ¡EMPEZAR ENTRENAMIENTO!
-                        </button>
-                    </motion.div>
-                )}
-
-                {gameState === 'study' && (
-                    <PeriodicTableModal
-                        elementsData={elements}
-                        onClose={() => setGameState('setup')}
+    // --- Pantalla previa: modo + ajustes ---
+    if (gameState === 'setup') {
+        const modes = [
+            {
+                id: 'practice', tone: 'easy', title: 'Práctica', icon: FlaskConical,
+                desc: '20 elementos con cuatro opciones y una pista con su descripción.',
+                features: ['Pista de descripción', 'Racha de aciertos'],
+            },
+            {
+                id: 'exam', tone: 'medium', title: 'Examen', icon: ListChecks,
+                desc: '10 elementos con cuatro opciones. Al final verás tu nota.',
+                features: ['Nota sobre 10', 'Puntos extra por rapidez'],
+            },
+            {
+                id: 'exam-pro', tone: 'exam', title: 'Examen PRO', icon: PenLine,
+                desc: '10 elementos sin opciones ni pistas: escribe tú la respuesta.',
+                features: ['Respuesta escrita', 'Sin pistas'],
+            },
+        ];
+        const selectMode = (id) => {
+            setConfig((c) => ({ ...c, gameMode: id }));
+            startSession(id);
+        };
+        const families = Object.entries(FAMILIES).slice(0, 11).filter(([key]) => familyCounts[key]);
+        const extra = (
+            <div className="etp-settings">
+                <div className="etp-setting">
+                    <span className="etp-setting__label">Pregunta</span>
+                    <Segmented
+                        value={config.clueType}
+                        onChange={(v) => setConfig({ ...config, clueType: v })}
+                        options={[
+                            { value: 'symbolToName', label: 'Símbolo → Nombre' },
+                            { value: 'nameToSymbol', label: 'Nombre → Símbolo' },
+                        ]}
                     />
-                )}
-
-                {gameState === 'playing' && (
-                    <motion.div
-                        key="game"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="game-screen"
-                    >
-                        <header className="game-header et-glass">
-                            <div className="stat-item">
-                                <span className="stat-value">{session.currentIndex + 1} / {session.targets.length}</span>
-                                <span className="stat-label">Pregunta</span>
-                            </div>
-                            <div className="stat-item">
-                                <motion.span key={`s-${session.score}`} className="stat-value et-pop" style={{ color: '#4ade80' }}>{session.score}</motion.span>
-                                <span className="stat-label">Aciertos</span>
-                            </div>
-                            <div className="stat-item">
-                                <motion.span key={`r-${session.streak}`} className={`stat-value et-pop ${session.streak >= 3 ? 'et-streak-hot' : ''}`} style={{ color: '#fbbf24' }}>x{session.streak}</motion.span>
-                                <span className="stat-label">Racha</span>
-                            </div>
-                            <button className="option-btn" onClick={() => setGameState('setup')} style={{ fontSize: '0.8rem' }}>SALIR</button>
-                        </header>
-
-                        <div className="et-progress" aria-hidden="true">
-                            <div className="et-progress-fill" style={{ width: `${((session.currentIndex + (selectedAnswer ? 1 : 0)) / Math.max(1, session.targets.length)) * 100}%` }} />
-                        </div>
-
-                        <div className={`question-card et-question ${selectedAnswer ? (isCorrect ? 'et-q-correct' : 'et-q-wrong') : ''}`}>
-                            <div className="question-hint">{getClueHint()}</div>
-                            <motion.div
-                                key={`q-${session.currentIndex}`}
-                                className="et-clue"
-                                initial={{ opacity: 0, scale: 0.85, y: 10 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                            >
-                                {renderClue()}
-                            </motion.div>
-
-                            {config.gameMode !== 'exam-pro' && (
-                                <div className="question-desc">
-                                    {currentTarget.description.slice(0, 100)}...
-                                </div>
-                            )}
-
-                            {config.gameMode === 'exam-pro' ? (
-                                <form onSubmit={handleTextSubmit} className="text-answer-container">
-                                    <input
-                                        type="text"
-                                        className={`pro-input ${selectedAnswer ? (isCorrect ? 'correct' : 'wrong') : ''}`}
-                                        value={userInput}
-                                        onChange={(e) => setUserInput(e.target.value)}
-                                        placeholder={config.clueType === 'symbolToName' ? "Nombre del elemento..." : "Símbolo..."}
-                                        autoFocus
-                                        disabled={!!selectedAnswer}
-                                    />
-                                    {!selectedAnswer && (
-                                        <button type="submit" className="pro-submit-btn">ENVIAR</button>
-                                    )}
-                                    {selectedAnswer && !isCorrect && (
-                                        <div className="correct-revealer">
-                                            La respuesta era: <strong>{config.clueType === 'symbolToName' ? currentTarget.name : currentTarget.symbol}</strong>
-                                        </div>
-                                    )}
-                                </form>
-                            ) : (
-                                <div className="answers-grid">
-                                    {currentOptions.map((opt, i) => (
-                                        <button
-                                            key={opt.symbol + i}
-                                            className={`answer-btn ${selectedAnswer === opt
-                                                ? (isCorrect ? 'correct' : 'wrong')
-                                                : (selectedAnswer && opt.symbol === currentTarget.symbol ? 'correct disabled' : selectedAnswer ? 'disabled' : '')
-                                                }`}
-                                            onClick={() => handleAnswer(opt)}
-                                        >
-                                            {getOptionLabel(opt)}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                </div>
+                <div className="etp-setting">
+                    <span className="etp-setting__label">Elementos</span>
+                    <Segmented
+                        value={config.scope}
+                        onChange={(v) => setConfig({ ...config, scope: v })}
+                        options={[
+                            { value: 'all', label: `Toda la tabla (${elements.length})` },
+                            { value: 'category', label: 'Por familias' },
+                        ]}
+                    />
+                </div>
+                {config.scope === 'category' && (
+                    <motion.div className="etp-families" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
+                        {families.map(([key, data]) => {
+                            const on = config.selectedCategories.includes(key);
+                            return (
+                                <button
+                                    key={key}
+                                    type="button"
+                                    className={`etp-fam ${on ? 'is-on' : ''}`}
+                                    style={{ '--fam': data.color }}
+                                    onClick={() => toggleCategory(key)}
+                                    aria-pressed={on}
+                                >
+                                    <span className="etp-fam__dot" aria-hidden="true" />
+                                    {data.label}
+                                    <small>{familyCounts[key]}</small>
+                                </button>
+                            );
+                        })}
+                        <span className="etp-families__hint">
+                            {config.selectedCategories.length === 0
+                                ? 'Sin familias marcadas se usa toda la tabla.'
+                                : `${pool.length} elementos seleccionados.`}
+                        </span>
                     </motion.div>
                 )}
+            </div>
+        );
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect
+                    modes={modes}
+                    onSelect={selectMode}
+                    onHelp={() => setShowHelp(true)}
+                    onStudy={() => setShowTable(true)}
+                    extra={extra}
+                />
+                <AnimatePresence>
+                    {showTable && (
+                        <PeriodicTableModal
+                            elementsData={elements}
+                            onClose={() => setShowTable(false)}
+                        />
+                    )}
+                </AnimatePresence>
+                {instructions}
+            </GameShell>
+        );
+    }
 
-                {gameState === 'result' && (
-                    <div className="result-screen">
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0, y: 30 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            transition={{ type: 'spring', stiffness: 220, damping: 20 }}
-                            className="result-card et-glass fx-aurora-border"
-                        >
-                            <div className="result-icon fx-float">🏆</div>
-                            <h2 className="setup-title">SESIÓN COMPLETADA</h2>
-                            {(() => {
-                                // Solo presentación: nota /10 en anillo (mismo cálculo que el tracker)
-                                const total = Math.max(1, session.targets.length);
-                                const nota = Math.round((session.score / total) * 100) / 10;
-                                const color = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
-                                const msg = nota >= 9 ? 'Excelente' : nota >= 7 ? 'Muy bien' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
+    // --- Resultado ---
+    if (gameState === 'result') {
+        // Solo presentación: nota /10 (mismo cálculo que el tracker)
+        const total = Math.max(1, session.targets.length);
+        const nota = Math.round((session.score / total) * 100) / 10;
+        return (
+            <GameShell {...shellProps}>
+                <ResultsScreen
+                    title={config.gameMode === 'practice' ? 'Entrenamiento completado' : 'Examen terminado'}
+                    subtitle={`${modeLabel[config.gameMode]} · ${config.clueType === 'symbolToName' ? 'Símbolo → Nombre' : 'Nombre → Símbolo'}`}
+                    nota={nota}
+                    points={finalStats?.points}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${session.score}/${session.targets.length}` },
+                        ...(finalStats ? [
+                            { icon: Clock, tone: 'time', label: 'Tiempo', value: `${finalStats.elapsedSec}s` },
+                            { icon: Zap, tone: 'streak', label: 'Bonus rapidez', value: `+${finalStats.timeBonus}` },
+                        ] : []),
+                    ]}
+                    actions={[
+                        { label: 'Volver a entrenar', onClick: () => startSession(), icon: RefreshCw },
+                        { label: 'Cambiar de modo', onClick: () => setGameState('setup'), icon: LayoutGrid, variant: 'soft' },
+                    ]}
+                >
+                    {review.length > 0 && (
+                        <div className="etp-review">
+                            <span className="etp-review__title"><Atom size={16} /> Tus elementos</span>
+                            <div className="etp-review__grid">
+                                {review.map((r, i) => (
+                                    <ElementTile key={`${r.el.symbol}-${i}`} el={r.el} revealed size="sm" state={r.ok ? 'ok' : 'ko'} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </ResultsScreen>
+            </GameShell>
+        );
+    }
+
+    // --- Partida ---
+    const answered = !!selectedAnswer;
+    const ask = config.clueType === 'nameToSymbol' ? 'symbol' : 'name';
+    const progressValue = session.currentIndex + (answered ? 1 : 0);
+
+    return (
+        <GameShell {...shellProps}>
+            <GameHeader
+                mode={modeTone[config.gameMode]}
+                modeLabel={modeLabel[config.gameMode]}
+                onHelp={() => setShowHelp(true)}
+                right={
+                    <Hud className="etp-hud">
+                        <HudStat icon={Target} tone="progress" value={`${session.currentIndex + 1}/${session.targets.length}`} label="Pregunta" />
+                        <HudStat icon={Trophy} tone="good" value={session.score} label="Aciertos" />
+                        <HudStat icon={Flame} tone="streak" value={`x${session.streak}`} label="Racha" />
+                    </Hud>
+                }
+            />
+
+            <div className="etp-progress">
+                <ProgressBar value={progressValue} max={Math.max(1, session.targets.length)} label="Progreso" />
+            </div>
+
+            <div className={`etp-stage ${answered ? (isCorrect ? 'is-ok' : 'is-ko') : ''}`}>
+                <div className="etp-card-col">
+                    <motion.div
+                        key={`q-${session.currentIndex}`}
+                        className="etp-card-wrap"
+                        initial={{ opacity: 0, scale: 0.85, y: 14, rotate: -3 }}
+                        animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                        <ElementTile el={currentTarget} ask={ask} revealed={answered} state={answered ? (isCorrect ? 'ok' : 'ko') : ''} />
+                    </motion.div>
+                    {session.streak >= 3 && (
+                        <span key={session.streak} className="etp-streak gk-anim-pop"><Flame size={15} /> ¡Racha de {session.streak}!</span>
+                    )}
+                </div>
+
+                <div className="etp-play">
+                    <p className="etp-hint">{getClueHint()}</p>
+
+                    {config.gameMode !== 'exam-pro' && currentTarget?.description && (
+                        <div className="etp-desc">
+                            <BookOpen size={16} />
+                            <span>{currentTarget.description.slice(0, 100)}...</span>
+                        </div>
+                    )}
+
+                    {isPro ? (
+                        <form onSubmit={handleTextSubmit} className="etp-pro">
+                            <div className={`etp-pro__field ${answered ? (isCorrect ? 'is-ok' : 'is-ko') : ''}`}>
+                                <PenLine size={20} className="etp-pro__icon" />
+                                <input
+                                    ref={proInputRef}
+                                    type="text"
+                                    className="etp-pro__input"
+                                    value={userInput}
+                                    onChange={(e) => setUserInput(e.target.value)}
+                                    placeholder={config.clueType === 'symbolToName' ? "Nombre del elemento..." : "Símbolo..."}
+                                    autoFocus
+                                    autoComplete="off"
+                                    spellCheck={false}
+                                    disabled={answered}
+                                    aria-label={getClueHint()}
+                                />
+                            </div>
+                            {!answered && (
+                                <GameButton type="submit" size="lg" iconRight={Send} disabled={!userInput.trim()}>Enviar</GameButton>
+                            )}
+                            {answered && !isCorrect && (
+                                <div className="etp-reveal gk-anim-pop">
+                                    La respuesta era: <strong>{config.clueType === 'symbolToName' ? currentTarget.name : currentTarget.symbol}</strong>
+                                </div>
+                            )}
+                            {answered && isCorrect && (
+                                <div className="etp-reveal is-ok gk-anim-pop">¡Correcto!</div>
+                            )}
+                        </form>
+                    ) : (
+                        <div className="etp-answers">
+                            {currentOptions.map((opt, i) => {
+                                const isTarget = opt.symbol === currentTarget.symbol;
+                                const state = selectedAnswer === opt
+                                    ? (isCorrect ? 'correct' : 'wrong')
+                                    : (answered && isTarget ? 'correct' : 'idle');
                                 return (
-                                    <div className="et-grade" style={{ '--et-grade-color': color }}>
-                                        <div className="fx-grade-ring et-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': color }}>
-                                            <span className="et-grade-value">{nota.toFixed(1)}<small>/10</small></span>
-                                        </div>
-                                        <span className="et-grade-msg">{msg}</span>
-                                    </div>
+                                    <AnswerOption
+                                        key={opt.symbol + i}
+                                        letter={LETTERS[i]}
+                                        state={state}
+                                        className={`etp-answer ${answered && state === 'idle' ? 'is-dim' : ''}`}
+                                        onClick={() => handleAnswer(opt)}
+                                        disabled={answered}
+                                    >
+                                        {getOptionLabel(opt)}
+                                    </AnswerOption>
                                 );
-                            })()}
-                            <div className="result-score">{session.score} / {session.targets.length}</div>
-                            <p style={{ color: 'var(--text-dim)', marginBottom: '2rem' }}>
-                                Has identificado correctamente el {Math.round((session.score / session.targets.length) * 100)}% de los elementos.
-                            </p>
-                            <button className="start-btn" onClick={() => setGameState('setup')}>
-                                VOLVER A ENTRENAR
-                            </button>
-                        </motion.div>
-                    </div>
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="etp-footer">
+                {config.gameMode === 'practice' ? (
+                    <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={() => setGameState('setup')}>Cambiar modo</GameButton>
+                ) : (
+                    <Chip icon={Atom}>{config.scope === 'category' && config.selectedCategories.length ? `${pool.length} elementos en juego` : 'Toda la tabla'}</Chip>
                 )}
-            </AnimatePresence>
-        </div >
+                <span className="etp-footer__info">
+                    {isPro ? 'Escribe y pulsa Intro · no importan las tildes' : 'Teclas A–D para responder'}
+                </span>
+            </div>
+
+            {instructions}
+        </GameShell>
     );
 };
 

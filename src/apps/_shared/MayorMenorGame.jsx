@@ -1,9 +1,21 @@
+// Mayor, menor o igual · Ordena los números (rediseño 2026 sobre _shared/kit).
+// Lo propio del juego: bloques numéricos con volumen, el cocodrilo comparador
+// (sus mandíbulas SON el signo: «<», «>» o «=») y la escalera de ordenar.
+// Reglas, generadores, puntuación y tracking: sin cambios.
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { BookOpen, GraduationCap } from 'lucide-react';
+import {
+    ArrowLeftRight, Check, Clock, LayoutGrid, RefreshCw, SkipForward, Target, Trophy, Flame, Zap, ListOrdered, Scale,
+} from 'lucide-react';
+import useArtIds from '@/components/art/useArtIds';
+import InstructionsModal from './InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, ProgressBar, Panel, KeyTile, GameButton, Segmented,
+    ModeSelect, RoundBanner, ResultsScreen, FeedbackItem, useAppMeta,
+} from './kit';
 import './MayorMenor.css';
-import './SharedPremium.css';
+
 
 const TOTAL_TEST_QUESTIONS = 10;
 const BASE_POINTS_PER_HIT = 200;
@@ -236,10 +248,151 @@ const generateLevelProblem = (level) => {
 };
 
 
+/* ───────────────────────── Presentación ───────────────────────── */
+
+// Solo para mostrar: «x» → «×» y «-» → «−» (el texto guardado no cambia).
+const pretty = (text) => String(text ?? '')
+    .replace(/ x /g, ' × ')
+    .replace(/ - /g, ' − ')
+    .replace(/\(-/g, '(−');
+
+// Las expresiones muy largas pueden partirse en dos líneas.
+const sizeClass = (text) => (String(text || '').length > 13 ? 'is-xlong' : '');
+
+// Ancho aproximado del texto en «em» (cifras anchas, espacios y comas
+// estrechos) para que la letra llene el bloque sin salirse (--em en el CSS).
+const CHAR_EM = { ' ': 0.2, ',': 0.2, '.': 0.2, '(': 0.28, ')': 0.28, '-': 0.3, '×': 0.46, '+': 0.46, '−': 0.46 };
+const textEm = (text) => {
+    const em = [...String(text || '')].reduce((acc, ch) => acc + (CHAR_EM[ch] ?? 0.5), 0) * 1.08;
+    return Math.max(1.4, String(text || '').length > 13 ? em / 1.8 : em);
+};
+
+const BLOCK_TONES = ['amber', 'sky', 'pink', 'mint', 'violet'];
+// Color estable por ficha (sigue a la ficha cuando se intercambia).
+const toneFor = (item) => BLOCK_TONES[Math.floor((item?.id || 0) * 1000) % BLOCK_TONES.length];
+
+// Bloque numérico con volumen: cara con luz arriba-izquierda, brillo y canto.
+const NumberBlock = ({ text, tone = 'amber', className = '' }) => {
+    const shown = pretty(text);
+    return (
+        <div
+            className={`mmz-block mmz-block--${tone} ${sizeClass(shown)} ${className}`}
+            style={{ '--em': textEm(shown).toFixed(2) }}
+        >
+            <span className="mmz-block__gloss" aria-hidden="true" />
+            <span className="mmz-block__text">{shown}</span>
+        </div>
+    );
+};
+
+const SIGN_STATE = { '<': 'lt', '>': 'gt', '=': 'eq' };
+const UPPER_TEETH = [22, 32, 42, 52, 62, 72, 82, 92];
+const LOWER_TEETH = [27, 37, 47, 57, 67, 77, 87];
+
+// El cocodrilo comparador: sus mandíbulas dibujan el signo elegido.
+// «>»: abre la boca hacia la izquierda (se come al número de la izquierda);
+// «<»: se da la vuelta y abre hacia la derecha; «=»: mandíbulas paralelas;
+// sin signo: boca cerrada y un «?». Solo transform/opacity en las transiciones.
+const Croc = ({ sign, mood = '', shake = false }) => {
+    const [id, url] = useArtIds();
+    const st = SIGN_STATE[sign] || 'idle';
+    return (
+        <div className={`mmz-croc is-${st} ${mood ? `is-${mood}` : ''}`}>
+            <div className={`mmz-croc__body ${shake ? 'gk-anim-shake' : ''}`}>
+                <svg viewBox="0 0 140 112" className="mmz-croc__svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id={id('up')} x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stopColor="#bbf7d0" />
+                            <stop offset=".35" stopColor="#4ade80" />
+                            <stop offset="1" stopColor="#16a34a" />
+                        </linearGradient>
+                        <linearGradient id={id('low')} x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stopColor="#22c55e" />
+                            <stop offset="1" stopColor="#15803d" />
+                        </linearGradient>
+                        <linearGradient id={id('head')} x1="0.1" y1="0" x2="0.9" y2="1">
+                            <stop offset="0" stopColor="#86efac" />
+                            <stop offset=".5" stopColor="#22c55e" />
+                            <stop offset="1" stopColor="#166534" />
+                        </linearGradient>
+                        <linearGradient id={id('belly')} x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stopColor="#fef9c3" />
+                            <stop offset="1" stopColor="#facc15" />
+                        </linearGradient>
+                        <linearGradient id={id('mouth')} x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0" stopColor="#fda4af" />
+                            <stop offset="1" stopColor="#be123c" />
+                        </linearGradient>
+                        <radialGradient id={id('floor')} cx=".5" cy=".5" r=".5">
+                            <stop offset="0" stopColor="#14532d" stopOpacity=".45" />
+                            <stop offset="1" stopColor="#14532d" stopOpacity="0" />
+                        </radialGradient>
+                    </defs>
+
+                    <ellipse cx="72" cy="103" rx="58" ry="7" fill={url('floor')} />
+
+                    <g className="mmz-croc__flip">
+                        {/* interior de la boca (solo se ve con la boca abierta) */}
+                        <g className="mmz-croc__mouth">
+                            <path d="M108 52 L24 26 Q17 56 24 86 L108 60 Z" fill={url('mouth')} />
+                            <ellipse cx="84" cy="56" rx="16" ry="5" fill="#9f1239" opacity=".55" />
+                        </g>
+
+                        {/* mandíbula inferior */}
+                        <g className="mmz-croc__jaw mmz-croc__jaw--low">
+                            {LOWER_TEETH.map((x) => <path key={x} d={`M${x} 62.5 l3.2 -7 l3.2 7 Z`} fill="#fff" />)}
+                            <path d="M110 62 L14 62 Q9 62 9 66.5 Q9.5 71 17 72 C42 75 80 78.5 110 80 Z" fill={url('low')} />
+                            <path d="M18 72 C42 75 80 78.5 110 80 L110 76 C82 75 44 71.5 20 68.6 Z" fill={url('belly')} />
+                            <path d="M14 63.6 H104" stroke="#fff" strokeOpacity=".35" strokeWidth="1.2" strokeLinecap="round" />
+                        </g>
+
+                        {/* mandíbula superior */}
+                        <g className="mmz-croc__jaw mmz-croc__jaw--up">
+                            {UPPER_TEETH.map((x) => <path key={x} d={`M${x} 49.5 l3.2 7 l3.2 -7 Z`} fill="#fff" />)}
+                            <path d="M110 31 C84 31 44 34.5 20 38.8 Q8.5 41 8.5 46 Q8.8 50 13.5 50 L110 50 Z" fill={url('up')} />
+                            <path d="M22 38.4 C46 34.4 82 31.6 104 31.6" stroke="#fff" strokeOpacity=".7" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+                            <ellipse cx="18.5" cy="41.4" rx="2.6" ry="1.7" fill="#14532d" />
+                            <ellipse cx="44" cy="40.5" rx="3.2" ry="1.6" fill="#15803d" opacity=".55" />
+                            <ellipse cx="60" cy="38.6" rx="3.2" ry="1.6" fill="#15803d" opacity=".55" />
+                            <ellipse cx="76" cy="37.2" rx="3.2" ry="1.6" fill="#15803d" opacity=".55" />
+                        </g>
+
+                        {/* cabeza con ojos */}
+                        <g>
+                            <path d="M100 30 Q100 21 111 21 H124 Q138 21 138 38 V73 Q138 89 122 89 H107 Q99 89 99 80 Z" fill={url('head')} />
+                            <path d="M104 26 Q106 23.5 112 23.4" stroke="#fff" strokeOpacity=".7" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+                            <ellipse cx="128" cy="78" rx="6" ry="3.4" fill="#fb7185" opacity=".45" />
+                            <path d="M120 40 L126 37 L131 40" stroke="#166534" strokeOpacity=".45" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+                            <path d="M118 50 L124 47 L130 50" stroke="#166534" strokeOpacity=".35" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+                            {[110, 126].map((cx) => (
+                                <g key={cx}>
+                                    <circle cx={cx} cy="21" r="9.4" fill={url('head')} />
+                                    <circle cx={cx} cy="20.4" r="6.6" fill="#fff" />
+                                    <g>
+                                        <circle cx={cx - 2.4} cy="21" r="3.6" fill="#1e1b4b" />
+                                        <circle cx={cx - 3.4} cy="19.6" r="1.2" fill="#fff" />
+                                    </g>
+                                </g>
+                            ))}
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <span key={st} className="mmz-croc__badge gk-anim-pop" aria-label={sign ? `Signo ${sign}` : 'Sin signo'}>{sign || '?'}</span>
+        </div>
+    );
+};
+
+const SIGN_KEYS = [
+    { sign: '<', cap: 'menor que' },
+    { sign: '=', cap: 'igual a' },
+    { sign: '>', cap: 'mayor que' },
+];
+
 const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
-    // Cuando fixedMode está presente saltamos la pantalla de seleccion de modo
-    const initialPhase = fixedMode === 'ordenar' ? 'quantity' : fixedMode === 'comparar' ? 'play' : 'setup';
-    const [phase, setPhase] = useState(initialPhase);
+    const meta = useAppMeta();
+    // Pantalla previa de modos (CLAUDE.md §3): 'menu' → elegir Práctica/Examen; 'play' → partida.
+    const [screen, setScreen] = useState('menu');
     const [gameMode, setGameMode] = useState(fixedMode || 'comparar'); // 'comparar' o 'ordenar'
     const [orderCount, setOrderCount] = useState(3);
     const [isTestMode, setIsTestMode] = useState(false);
@@ -248,6 +401,10 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
     const [orderItems, setOrderItems] = useState([]);
     const [selectedSign, setSelectedSign] = useState(null);
     const [feedback, setFeedback] = useState({ text: '', type: '' });
+    const [showHelp, setShowHelp] = useState(false);
+    // Marcador de práctica (solo presentación; no se registra en ningún sitio).
+    const [practiceHits, setPracticeHits] = useState(0);
+    const [practiceStreak, setPracticeStreak] = useState(0);
 
     const [shakeError, setShakeError] = useState(false);
 
@@ -309,13 +466,7 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
         setShakeError(false);
     }, [generateProblem, gameMode, level, orderCount]);
 
-    useEffect(() => {
-        if (phase === 'play') {
-            startPractice();
-        }
-    }, [phase, startPractice]);
-
-    // --- NUEVO: Efecto para lanzar confeti al terminar el test con buena nota ---
+    // --- Efecto para lanzar confeti al terminar el test con buena nota ---
     useEffect(() => {
         if (isTestMode && testStats.finished && testStats.score >= 5) {
             // Lanzar confeti duración media
@@ -372,13 +523,16 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
             } else {
                 if (isCorrect) {
                     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#10B981', '#34D399', '#6EE7B7'] });
-                    setFeedback({ text: '¡Correcto! 🎉', type: 'feedback-correct' });
+                    setFeedback({ text: 'Preparando el siguiente reto…', type: 'feedback-correct' });
+                    setPracticeHits((h) => h + 1);
+                    setPracticeStreak((s) => s + 1);
                     setTimeout(startPractice, 1500);
                 } else {
                     setShakeError(true);
                     setTimeout(() => setShakeError(false), 500);
+                    setPracticeStreak(0);
                     setFeedback({
-                        text: `Incorrecto. ${leftItem.value.toString().replace('.', ',')} es ${correct === '>' ? 'MAYOR' : correct === '<' ? 'MENOR' : 'IGUAL'} que ${rightItem.value.toString().replace('.', ',')}`,
+                        text: `${pretty(leftItem.value.toString().replace('.', ','))} es ${correct === '>' ? 'MAYOR' : correct === '<' ? 'MENOR' : 'IGUAL'} que ${pretty(rightItem.value.toString().replace('.', ','))}`,
                         type: 'feedback-incorrect'
                     });
                 }
@@ -398,11 +552,14 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
             } else {
                 if (isCorrect) {
                     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#10B981', '#34D399', '#6EE7B7'] });
-                    setFeedback({ text: '¡Excelente! El orden es correcto. 🎉', type: 'feedback-correct' });
+                    setFeedback({ text: 'El orden es correcto. Preparando el siguiente reto…', type: 'feedback-correct' });
+                    setPracticeHits((h) => h + 1);
+                    setPracticeStreak((s) => s + 1);
                     setTimeout(startPractice, 1500);
                 } else {
                     setShakeError(true);
                     setTimeout(() => setShakeError(false), 500);
+                    setPracticeStreak(0);
                     setFeedback({ text: 'Aún no están en orden. ¡Prueba de nuevo!', type: 'feedback-incorrect' });
                 }
             }
@@ -476,213 +633,319 @@ const MayorMenorGame = ({ level, title, onGameComplete, fixedMode }) => {
         if (!testStats.finished) trackedRef.current = false;
     }, [isTestMode, testStats.finished, testStats.score, finalElapsed, examPoints, examMaxScore, onGameComplete]);
 
+    // Teclado físico: «<», «=» y «>» eligen signo (solo presentación).
+    const locked = !isTestMode && feedback.type === 'feedback-correct';
+    const signSelectRef = useRef(handleSignSelect);
+    signSelectRef.current = handleSignSelect;
+    useEffect(() => {
+        if (screen !== 'play' || gameMode !== 'comparar' || locked) return undefined;
+        const onKey = (e) => {
+            if (e.key === '<' || e.key === '>' || e.key === '=') signSelectRef.current(e.key);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [screen, gameMode, locked]);
+
+    const isOrder = gameMode === 'ordenar';
+    const shellProps = isOrder
+        ? { accent: '#6366f1', accent2: '#ec4899' }
+        : { accent: '#0d9488', accent2: '#0ea5e9' };
+    const headerTitle = meta.name ? undefined : title;
+    const backToMenu = () => { setIsTestMode(false); setScreen('menu'); };
+
+    const instructions = (
+        <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title={isOrder ? 'Cómo se ordena' : 'Cómo se compara'}>
+            <h3>🎯 Objetivo</h3>
+            {isOrder ? (
+                <p>Coloca los números (o los resultados de las operaciones) <strong>de menor a mayor</strong>, de izquierda a derecha.</p>
+            ) : (
+                <p>Decide si el número de la izquierda es <strong>mayor (&gt;)</strong>, <strong>menor (&lt;)</strong> o <strong>igual (=)</strong> que el de la derecha.</p>
+            )}
+            <h3>🕹️ Cómo se juega</h3>
+            {isOrder ? (
+                <ul>
+                    <li>Pulsa el botón <strong>⇄</strong> que hay entre dos fichas para intercambiarlas.</li>
+                    <li>Si hay operaciones, calcula primero su resultado.</li>
+                    <li>Cuando creas que están en orden, pulsa <strong>Comprobar</strong>.</li>
+                </ul>
+            ) : (
+                <ul>
+                    <li>Pulsa <strong>&lt;</strong>, <strong>=</strong> o <strong>&gt;</strong> (o escríbelo con el teclado).</li>
+                    <li>El cocodrilo siempre abre la boca hacia el número <strong>más grande</strong>: ¡se lo quiere comer!</li>
+                    <li>Si hay operaciones, calcula primero su resultado.</li>
+                </ul>
+            )}
+            <div className="instr-modes">
+                <div className="instr-mode easy"><strong>Práctica</strong>Retos sin fin y corrección al momento.</div>
+                <div className="instr-mode exam"><strong>Examen</strong>{TOTAL_TEST_QUESTIONS} retos seguidos sin corrección. Nota sobre 10 y puntos extra por rapidez.</div>
+            </div>
+            <div className="instr-tips"><strong>💡 Truco:</strong> en los decimales, compara primero la parte entera y después las décimas y las centésimas.</div>
+        </InstructionsModal>
+    );
+
     // Renderizado de Resultados
     if (isTestMode && testStats.finished) {
+        const nota = Math.round((testStats.score / TOTAL_TEST_QUESTIONS) * 100) / 10;
         return (
-            <div className="mayor-menor-container sp-shell">
-                <h1 className="sp-title"><span className="gradient-text">Resultados</span></h1>
-                {/* Nota /10 como elemento héroe (misma fórmula estándar: aciertos/total·10) */}
-                {(() => {
-                    const notaMM = Math.round((testStats.score / TOTAL_TEST_QUESTIONS) * 100) / 10;
-                    const colorMM = notaMM >= 8 ? '#10b981' : notaMM >= 5 ? '#3b82f6' : '#ef4444';
-                    const msgMM = notaMM >= 9 ? '¡Excelente! 🌟' : notaMM >= 7 ? '¡Muy bien! 👏' : notaMM >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
-                    return (
-                        <div className="mm-grade-hero">
-                            <div className="sp-grade-ring" style={{ '--sp-grade': notaMM, '--sp-grade-color': colorMM }}>
-                                <div className="mm-grade-value" style={{ color: colorMM }}>
-                                    {notaMM.toFixed(1)}<span className="mm-grade-max">/10</span>
-                                </div>
-                            </div>
-                            <div className="sp-grade-msg mm-grade-msg" style={{ color: colorMM }}>{msgMM}</div>
-                        </div>
-                    );
-                })()}
-                <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
-
-                {testStats.score >= 5 ?
-                    <p className="text-green-600 font-bold animate-bounce mb-2">¡Buen trabajo! 🏆</p> :
-                    <p className="text-orange-500 font-bold mb-2">¡Sigue practicando! 💪</p>
-                }
-
-                <div className="sp-points-card mb-4 p-3 rounded border bg-slate-50 text-left text-sm" style={{ maxWidth: 360, margin: '0 auto 16px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>Aciertos ({testStats.score}/{TOTAL_TEST_QUESTIONS} × {BASE_POINTS_PER_HIT})</span>
-                        <strong>+{basePoints}</strong>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', color: timeBonus > 0 ? '#16a34a' : '#9ca3af' }}>
-                        <span>Bonus rapidez ({finalElapsed}s)</span>
-                        <strong>+{timeBonus}</strong>
-                    </div>
-                    <hr style={{ margin: '6px 0' }} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem' }}>
-                        <span>Puntuación total</span>
-                        <strong style={{ color: '#7c3aed' }}>{examPoints.toLocaleString('es-ES')}</strong>
-                    </div>
-                </div>
-
-                <div className="sp-results text-left overflow-y-auto mb-6" style={{ maxHeight: '300px' }}>
+            <GameShell {...shellProps}>
+                <ResultsScreen
+                    nota={nota}
+                    points={examPoints}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${testStats.score}/${TOTAL_TEST_QUESTIONS}` },
+                        { icon: Clock, tone: 'time', label: 'Tiempo', value: `${finalElapsed}s` },
+                        { icon: Zap, tone: 'streak', label: 'Bonus rapidez', value: `+${timeBonus}` },
+                    ]}
+                    actions={[
+                        { label: 'Repetir examen', onClick: startTest, icon: RefreshCw },
+                        { label: 'Cambiar de modo', onClick: backToMenu, icon: LayoutGrid, variant: 'soft' },
+                    ]}
+                >
                     {testStats.answers.map((ans, idx) => (
-                        <div key={idx} className={`p-3 mb-2 rounded border ${ans.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                            <div className="flex justify-between items-center text-lg">
-                                <span>{ans.left} {ans.right && <strong>{ans.user}</strong>} {ans.right}</span>
-                                {ans.isCorrect ? <span>✅</span> : <span className="text-red-600 font-bold text-sm">{gameMode === 'comparar' ? `Era ${ans.correct}` : 'Incorrecto'}</span>}
-                            </div>
-                        </div>
+                        <FeedbackItem
+                            key={idx}
+                            index={idx + 1}
+                            ok={ans.isCorrect}
+                            title={ans.right
+                                ? <span className="mmz-fb-eq">{pretty(ans.left)} <b>{ans.user || '?'}</b> {pretty(ans.right)}</span>
+                                : <span className="mmz-fb-eq">{pretty(ans.left).split(' | ').join('  ·  ')}</span>}
+                        >
+                            {gameMode === 'comparar'
+                                ? (ans.isCorrect ? 'Signo correcto.' : <>El signo correcto era <strong>{ans.correct}</strong>.</>)
+                                : (ans.isCorrect ? 'Orden correcto de menor a mayor.' : 'Ese orden no iba de menor a mayor.')}
+                        </FeedbackItem>
                     ))}
-                </div>
-                <div className="controles sp-controls">
-                    <button onClick={startTest}>Repetir Examen</button>
-                    <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
-                </div>
-            </div>
+                </ResultsScreen>
+            </GameShell>
         );
     }
 
-    // VISTAS DE CONFIGURACIÓN
-    if (phase === 'setup' && !fixedMode) {
-        return (
-            <div className="mayor-menor-container mm-setup-screen sp-shell">
-                <h1><span className="gradient-text">{title}</span></h1>
-                <p className="instrucciones">¿Qué quieres practicar hoy?</p>
-                <div className="mode-options">
-                    <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('comparar'); setPhase('play'); }}>
-                        <div className="mode-icon sp-choice-icon">⚖️</div>
-                        <div className="mode-name">Comparar</div>
-                        <div className="mode-desc">¿Mayor, Menor o Igual?</div>
-                    </button>
-                    <button className="btn-setup-mode sp-choice" onClick={() => { setGameMode('ordenar'); setPhase('quantity'); }}>
-                        <div className="mode-icon sp-choice-icon">🔢</div>
-                        <div className="mode-name">Ordenar</div>
-                        <div className="mode-desc">De menor a mayor</div>
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
-    if (phase === 'quantity') {
-        return (
-            <div className="mayor-menor-container mm-setup-screen sp-shell">
-                <h1><span className="gradient-text">¿Cuántos valores?</span></h1>
-                <p className="instrucciones">Selecciona la cantidad de elementos para ordenar:</p>
-                <div className="quantity-options">
-                    {[3, 4, 5].map(n => (
-                        <button key={n} className="btn-quantity sp-choice" onClick={() => { setOrderCount(n); setPhase('play'); }}>
-                            {n}
-                        </button>
-                    ))}
-                </div>
+    // Pantalla previa: elegir modo (y cantidad de números si se ordena)
+    if (screen === 'menu') {
+        const modes = [
+            {
+                id: 'practice', tone: 'easy', title: 'Práctica',
+                desc: isOrder ? 'Ordena sin prisa y comprueba cuando quieras.' : 'Elige el signo y el cocodrilo te dice al momento si aciertas.',
+                features: ['Corrección al instante', 'Retos sin fin'],
+            },
+            {
+                id: 'exam', tone: 'exam', title: 'Examen',
+                desc: `${TOTAL_TEST_QUESTIONS} retos seguidos, sin ayudas. Al final verás tu nota.`,
+                features: ['Nota sobre 10', 'Puntos extra por rapidez'],
+            },
+        ];
+        const selectMode = (id) => {
+            if (id === 'exam') {
+                startTest();
+            } else {
+                setIsTestMode(false);
+                startPractice();
+            }
+            setScreen('play');
+        };
+        const extra = (
+            <>
                 {!fixedMode && (
-                    <button className="btn-back" onClick={() => setPhase('setup')}>← Volver</button>
+                    <div className="mmz-setting">
+                        <span className="mmz-setting__label">Juego</span>
+                        <Segmented
+                            value={gameMode}
+                            onChange={setGameMode}
+                            options={[
+                                { value: 'comparar', label: 'Comparar', icon: Scale },
+                                { value: 'ordenar', label: 'Ordenar', icon: ListOrdered },
+                            ]}
+                        />
+                    </div>
                 )}
-            </div>
+                {isOrder && (
+                    <div className="mmz-setting">
+                        <span className="mmz-setting__label">Números por reto</span>
+                        <Segmented
+                            value={orderCount}
+                            onChange={setOrderCount}
+                            options={[3, 4, 5].map((n) => ({ value: n, label: String(n) }))}
+                        />
+                    </div>
+                )}
+            </>
+        );
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect
+                    title={headerTitle}
+                    modes={modes}
+                    onSelect={selectMode}
+                    onHelp={() => setShowHelp(true)}
+                    extra={(isOrder || !fixedMode) ? extra : null}
+                />
+                {instructions}
+            </GameShell>
         );
     }
+
+    const isLast = testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1;
+    const boardState = isTestMode ? 'playing'
+        : feedback.type === 'feedback-correct' ? 'won'
+            : feedback.type === 'feedback-incorrect' ? 'lost' : 'playing';
+    const qKey = isTestMode ? `t${testStats.currentIndex}` : `p${leftItem.text}|${rightItem.text}`;
 
     return (
-        <div className="mayor-menor-container sp-shell">
-            <div className="mm-game-header">
-                {fixedMode === 'ordenar' ? (
-                    <button className="btn-change-mode" onClick={() => { setPhase('quantity'); setIsTestMode(false); }}>
-                        🔢 Cambiar cantidad
-                    </button>
-                ) : !fixedMode ? (
-                    <button className="btn-change-mode" onClick={() => { setPhase('setup'); setIsTestMode(false); }}>
-                        🏠 Cambiar Modo
-                    </button>
-                ) : null}
-                <h1 className="sp-title"><span className="gradient-text">{title}</span></h1>
-            </div>
+        <GameShell {...shellProps}>
+            <GameHeader
+                title={headerTitle}
+                mode={isTestMode ? 'exam' : 'easy'}
+                modeLabel={isTestMode ? 'Examen' : 'Práctica'}
+                onHelp={() => setShowHelp(true)}
+                right={
+                    <Hud>
+                        {isTestMode ? (
+                            <HudStat icon={Target} tone="progress" value={`${testStats.currentIndex + 1}/${TOTAL_TEST_QUESTIONS}`} label="Reto" />
+                        ) : (
+                            <>
+                                <HudStat icon={Trophy} tone="good" value={practiceHits} label="Aciertos" />
+                                <HudStat icon={Flame} tone="streak" value={practiceStreak} label="Racha" />
+                            </>
+                        )}
+                    </Hud>
+                }
+            />
 
-            <div className="mode-selection test-toggle">
-                <button className={`btn-mode sp-mode ${!isTestMode ? 'active' : ''}`} onClick={() => { setIsTestMode(false); startPractice(); }}>
-                    <span className="sp-mode-icon" aria-hidden="true"><BookOpen size={16} /></span>
-                    Práctica
-                </button>
-                <button className={`btn-mode sp-mode sp-mode--exam ${isTestMode ? 'active' : ''}`} onClick={startTest}>
-                    <span className="sp-mode-icon" aria-hidden="true"><GraduationCap size={16} /></span>
-                    Examen
-                </button>
-            </div>
+            {isTestMode && (
+                <div className="mmz-progress">
+                    <ProgressBar value={testStats.currentIndex} max={TOTAL_TEST_QUESTIONS} label="Progreso del examen" />
+                </div>
+            )}
 
-            {isTestMode && <div className="text-right text-sm text-gray-500 font-bold"><span key={testStats.currentIndex} className="sp-q-chip">Pregunta {testStats.currentIndex + 1} / {TOTAL_TEST_QUESTIONS}</span></div>}
-
-            {/* ZONA DE JUEGO */}
             {gameMode === 'comparar' ? (
-                <>
-                    <p className="instrucciones">Selecciona el signo correcto.</p>
-                    <div className="comparison-area">
-                        <div className="number-card">{leftItem.text}</div>
-                        <div className={`sign-drop-zone ${selectedSign ? 'filled' : ''} ${shakeError ? 'shake-animation' : ''}`}>
-                            {selectedSign || '?'}
-                        </div>
-                        <div className="number-card">{rightItem.text}</div>
+                <Panel variant="inset" className={`mmz-arena is-${boardState}`}>
+                    <p className="mmz-prompt">¿Qué signo va en medio?</p>
+                    <div className="mmz-duel">
+                        <motion.div
+                            key={`L-${qKey}`}
+                            className="mmz-duel__side"
+                            initial={{ opacity: 0, x: -24, scale: 0.9 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                        >
+                            <NumberBlock text={leftItem.text} tone="amber" />
+                        </motion.div>
+                        <Croc sign={selectedSign} mood={boardState === 'playing' ? '' : boardState} shake={shakeError} />
+                        <motion.div
+                            key={`R-${qKey}`}
+                            className="mmz-duel__side"
+                            initial={{ opacity: 0, x: 24, scale: 0.9 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.05 }}
+                        >
+                            <NumberBlock text={rightItem.text} tone="sky" />
+                        </motion.div>
                     </div>
-                </>
+                </Panel>
             ) : (
-                <>
-                    <p className="instrucciones">Ordena de MENOR a MAYOR.</p>
-                    <div className={`order-area ${shakeError ? 'shake-animation' : ''}`}>
+                <Panel variant="inset" className={`mmz-arena is-${boardState}`}>
+                    <p className="mmz-prompt">Ordena de <strong>menor</strong> a <strong>mayor</strong></p>
+                    <div className={`mmz-stairs ${shakeError ? 'gk-anim-shake' : ''}`} style={{ '--n': orderItems.length }}>
+                        <span className="mmz-stairs__ramp" aria-hidden="true" />
                         {orderItems.map((item, idx) => (
-                            <motion.div
-                                key={item.id}
-                                className="order-item-wrapper"
-                                layout
-                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            >
-                                <div className="order-card">
-                                    <div className="order-value">{item.text}</div>
-                                </div>
+                            <React.Fragment key={item.id}>
+                                <motion.div
+                                    className="mmz-slot"
+                                    layout
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                    style={{ '--i': idx }}
+                                >
+                                    <span className="mmz-slot__pos" aria-hidden="true">{idx + 1}º</span>
+                                    <NumberBlock text={item.text} tone={toneFor(item)} />
+                                </motion.div>
                                 {idx < orderItems.length - 1 && (
-                                    <div className="order-separator">
-                                        <div className="less-than-sign">&lt;</div>
+                                    <div className="mmz-sep" style={{ '--i': idx }}>
+                                        <span className="mmz-sep__lt" aria-hidden="true">&lt;</span>
                                         <button
-                                            className="btn-swap-items"
+                                            type="button"
+                                            className="mmz-swap"
                                             onClick={() => swapItems(idx, idx + 1)}
                                             title="Intercambiar"
+                                            aria-label={`Intercambiar las fichas ${idx + 1} y ${idx + 2}`}
+                                            disabled={locked}
                                         >
-                                            ⇄
+                                            <ArrowLeftRight size={18} strokeWidth={2.6} />
                                         </button>
                                     </div>
                                 )}
-                            </motion.div>
+                            </React.Fragment>
                         ))}
                     </div>
-                </>
+                </Panel>
             )}
 
-            {/* FEEDBACK */}
-            {!isTestMode && feedback.text && (
-                <div key={feedback.text} className={`feedback-message sp-fb ${feedback.type}`}>{feedback.text}</div>
-            )}
-
-            {/* BOTONES DE RESPUESTA SOLO PARA COMPARAR */}
-            {gameMode === 'comparar' ? (
-                <div className="signs-palette">
-                    <button className="sign-btn" onClick={() => handleSignSelect('<')}>&lt;</button>
-                    <button className="sign-btn" onClick={() => handleSignSelect('=')}>=</button>
-                    <button className="sign-btn" onClick={() => handleSignSelect('>')}>&gt;</button>
+            {gameMode === 'comparar' && (
+                <div className="mmz-signs" role="group" aria-label="Elige el signo">
+                    {SIGN_KEYS.map((s) => (
+                        <KeyTile
+                            key={s.sign}
+                            className="mmz-sign"
+                            state={selectedSign === s.sign ? 'selected' : 'idle'}
+                            onClick={() => handleSignSelect(s.sign)}
+                            disabled={locked}
+                            aria-label={`Signo ${s.cap}`}
+                            aria-pressed={selectedSign === s.sign}
+                        >
+                            <span className="mmz-sign__glyph">{s.sign}</span>
+                            <span className="mmz-sign__cap">{s.cap}</span>
+                        </KeyTile>
+                    ))}
                 </div>
-            ) : (
-                <div style={{ marginTop: '20px', color: '#64748b', fontSize: '0.9rem' }}>
-                    Usa los botones ⇄ para intercambiar posiciones
-                </div>
             )}
 
-            {/* CONTROLES */}
-            <div className="controles sp-controls">
+            <RoundBanner
+                show={!isTestMode && !!feedback.text}
+                status={feedback.type === 'feedback-correct' ? 'won' : 'lost'}
+                title={feedback.type === 'feedback-correct' ? '¡Correcto!' : 'Incorrecto'}
+                subtitle={feedback.text}
+            />
+
+            <div className="mmz-actions">
                 {isTestMode ? (
-                    <button onClick={checkAnswer}>
-                        {testStats.currentIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
-                    </button>
+                    <GameButton
+                        size="lg"
+                        iconRight={SkipForward}
+                        onClick={checkAnswer}
+                        disabled={gameMode === 'comparar' && !selectedSign}
+                    >
+                        {isLast ? 'Finalizar' : 'Siguiente'}
+                    </GameButton>
                 ) : (
                     <>
-                        <button onClick={checkAnswer}>Comprobar</button>
-                        <button onClick={startPractice} className="btn-saltar">Siguiente</button>
+                        <GameButton
+                            size="lg"
+                            variant="success"
+                            icon={Check}
+                            onClick={checkAnswer}
+                            disabled={locked || (gameMode === 'comparar' && !selectedSign)}
+                        >
+                            Comprobar
+                        </GameButton>
+                        <GameButton variant="soft" icon={SkipForward} onClick={startPractice} disabled={locked}>
+                            Siguiente
+                        </GameButton>
                     </>
                 )}
             </div>
-        </div>
+
+            <div className="mmz-footer">
+                {!isTestMode ? (
+                    <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToMenu}>Cambiar modo</GameButton>
+                ) : (
+                    <span className="mmz-footer__info">Modo examen · sin corrección hasta el final</span>
+                )}
+                <span className="mmz-footer__info mmz-footer__tip">
+                    {gameMode === 'comparar' ? 'También puedes escribir < = >' : 'Usa ⇄ para intercambiar dos fichas vecinas'}
+                </span>
+            </div>
+
+            {instructions}
+        </GameShell>
     );
 };
 
@@ -704,4 +967,4 @@ export const OrdenaNumeros4 = (props) => <MayorMenorGame {...props} level={4} ti
 export const OrdenaNumeros5 = (props) => <MayorMenorGame {...props} level={5} title="Ordena Decimales (5º)" fixedMode="ordenar" />;
 export const OrdenaNumeros6 = (props) => <MayorMenorGame {...props} level={6} title="Reto de Ordenación (6º)" fixedMode="ordenar" />;
 
-export default MayorMenorGame;
+export default MayorMenorGame;

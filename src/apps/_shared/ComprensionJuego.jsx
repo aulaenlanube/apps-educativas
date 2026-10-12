@@ -1,7 +1,31 @@
+// src/apps/_shared/ComprensionJuego.jsx
+// Comprensión Escrita / Oral (solo examen, CLAUDE.md §3). Rediseño 2026 sobre el
+// kit de juego (_shared/kit): hoja de lectura con tipografía cuidada (o
+// reproductor para la oral), preguntas con AnswerOption y resumen con la nota.
+// SOLO presentación: carga de datos, tiempos, puntos, nota y onGameComplete son
+// los de siempre.
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import {
+    BookOpen, Headphones, ListChecks, Award, ArrowRight, RefreshCw, Play, Pause, RotateCcw,
+    Type, PenLine, CaseUpper, Ruler, Minus, Plus, Target, Timer, X, ChevronDown,
+    Turtle, Rabbit, Gauge, FileText,
+} from 'lucide-react';
 import { getComprensionData } from '../../services/gameDataService';
+import InstructionsModal from './InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, Panel, GameButton, Segmented, AnswerOption,
+    ResultsScreen, FeedbackItem, GameLoading, GameEmpty, ProgressBar,
+} from './kit';
 import './ComprensionShared.css';
+
+const cx = (...c) => c.filter(Boolean).join(' ');
+const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+const SHELL = {
+    escrita: { accent: '#4f46e5', accent2: '#06b6d4' },
+    oral: { accent: '#db2777', accent2: '#6366f1' },
+};
 
 const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", onGameComplete }) => {
     const [data, setData] = useState([]);
@@ -19,6 +43,9 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     // --- NUEVO ESTADO PARA MATERIAL DE ESTUDIO ---
     const [showMaterial, setShowMaterial] = useState(false);
     const [selectedMaterialIndex, setSelectedMaterialIndex] = useState(0);
+
+    // --- Instrucciones (presentación) ---
+    const [showHelp, setShowHelp] = useState(false);
 
     // --- Timers para puntuación ---
     const [readingStart, setReadingStart] = useState(null);
@@ -43,11 +70,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
     const [rulerY, setRulerY] = useState(0);
     const textRef = useRef(null);
 
-    const handleFontStyleChange = (e) => setFontStyleIndex(parseInt(e.target.value));
-    const handleFontSizeChange = (e) => setFontSizeIndex(parseInt(e.target.value));
-
-    const handleSpeedChange = (e) => {
-        const newRate = parseFloat(e.target.value);
+    const handleSpeedChange = (newRate) => {
         setSpeechRate(newRate);
         if (isSpeaking || isPaused) detenerAudio();
     };
@@ -191,9 +214,65 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
         }, 300);
     };
 
-    if (loading) return <div className="loading-spinner">Cargando historias... ⏳</div>;
-    if (error) return <div className="error-message">⚠️ Error al cargar historia.</div>;
-    if (!data.length) return <div>No hay historias disponibles.</div>;
+    // Escape cierra el material de estudio
+    useEffect(() => {
+        if (!showMaterial) return undefined;
+        const onKey = (e) => { if (e.key === 'Escape') setShowMaterial(false); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [showMaterial]);
+
+    const isOral = tipo === 'oral';
+    const shell = isOral ? SHELL.oral : SHELL.escrita;
+    const instructions = (
+        <InstructionsModal
+            isOpen={showHelp}
+            onClose={() => setShowHelp(false)}
+            title={isOral ? 'Cómo funciona la Comprensión Oral' : 'Cómo funciona la Comprensión Escrita'}
+        >
+            <h3>🎯 Objetivo</h3>
+            <p>
+                {isOral
+                    ? <>Escucha con atención una historia y demuestra que la has entendido respondiendo a sus preguntas.</>
+                    : <>Lee con calma un texto y demuestra que lo has entendido respondiendo a sus preguntas.</>}
+            </p>
+            <h3>🕹️ Paso a paso</h3>
+            <ol>
+                <li>{isOral ? <><strong>Escucha</strong> la historia (puedes pausarla y cambiar la velocidad).</> : <><strong>Lee</strong> el texto. Puedes ajustar la letra, el tamaño y activar la guía de lectura.</>}</li>
+                <li>Cuando estés listo, pulsa <strong>Ir a las preguntas</strong>. Ya no podrás volver {isOral ? 'a escucharla' : 'al texto'}.</li>
+                <li>Responde <strong>todas</strong> las preguntas y pulsa <strong>Corregir</strong>.</li>
+                <li>Verás tu nota y podrás revisar la corrección de cada pregunta.</li>
+            </ol>
+            <h3>🎓 Siempre es examen</h3>
+            <p>Cada historia que corriges cuenta como intento de examen.</p>
+            <p className="instr-formula"><strong>Nota</strong> = aciertos / preguntas × 10</p>
+            <p className="instr-formula"><strong>Puntos</strong> = 100 por acierto + bonus por {isOral ? 'escuchar' : 'leer'} y responder con agilidad</p>
+            <div className="instr-tips">
+                <strong>💡 Consejo:</strong> {isOral
+                    ? 'si te cuesta seguir la historia, ponla en velocidad lenta y escúchala dos veces antes de ir a las preguntas.'
+                    : 'lee primero el título y piensa de qué tratará. Si te pierdes, activa la guía de lectura.'}
+            </div>
+        </InstructionsModal>
+    );
+
+    if (loading) {
+        return (
+            <GameShell {...shell} className="cmp">
+                <GameLoading label={isOral ? 'Preparando la historia…' : 'Preparando la lectura…'} />
+            </GameShell>
+        );
+    }
+    if (error || !data.length) {
+        return (
+            <GameShell {...shell} className="cmp">
+                <GameHeader mode="exam" onHelp={() => setShowHelp(true)} />
+                <GameEmpty title={error ? 'No se pudo cargar la historia' : 'No hay historias disponibles'}>
+                    {error ? 'Ha habido un problema al cargar los textos. Inténtalo de nuevo más tarde.' : 'Todavía no hay textos para este curso y asignatura.'}
+                </GameEmpty>
+                {instructions}
+            </GameShell>
+        );
+    }
 
     const ejercicioActual = data[currentIndex];
     const currentFontStyle = fontStyles[fontStyleIndex];
@@ -201,293 +280,375 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita", 
 
     const totalPreguntas = ejercicioActual.preguntas.length;
     const nota = Math.round((score / totalPreguntas) * 100) / 10;
-    let estrellas = 0;
-    if (nota >= 9) estrellas = 3;
-    else if (nota >= 5) estrellas = 2;
-    else if (nota >= 3) estrellas = 1;
-    const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-    const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
     const totalPoints = score * 100 + Math.max(0, (180 - readingTime) * 2) + Math.max(0, (120 - answersTime) * 3);
     const formatTime = (s) => s >= 60 ? `${Math.floor(s/60)}m ${s%60}s` : `${s}s`;
+    const answeredCount = Object.keys(respuestas).length;
+    const allAnswered = answeredCount === ejercicioActual.preguntas.length;
 
-    const getButtonClass = () => isSpeaking ? (isPaused ? "btn-big-audio paused" : "btn-big-audio playing") : "btn-big-audio";
-    const getButtonText = () => isSpeaking ? (isPaused ? "▶️ Continuar" : "⏸️ Pausar") : "🔊 Escuchar Historia";
+    // Presentación: párrafos del texto y estimación de lectura
+    const parrafos = String(ejercicioActual.texto || '').split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+    const palabras = String(ejercicioActual.texto || '').trim().split(/\s+/).filter(Boolean).length;
+    const minutos = Math.max(1, Math.round(palabras / 130));
 
+    const step = mode === 'lectura' ? 0 : mode === 'preguntas' ? 1 : 2;
+    const steps = [
+        { icon: isOral ? Headphones : BookOpen, label: isOral ? 'Escucha' : 'Lee' },
+        { icon: ListChecks, label: 'Responde' },
+        { icon: Award, label: 'Tu nota' },
+    ];
 
+    const audioState = isSpeaking ? (isPaused ? 'paused' : 'playing') : 'idle';
 
     return (
-        <div className={`comprension-container cmp-shell font-${currentFontStyle}`}>
-            <div className="header-zone">
-                <button
-                    className="btn-material-estudio"
-                    onClick={() => setShowMaterial(true)}
-                >
-                    📚 Material de Estudio
-                </button>
-                <h1 className="main-title text-4xl mb-6 text-center">
-                    <span role="img" aria-label="icono" style={{ marginRight: '10px' }}>
-                        {tipo === "oral" ? "🎧" : "📖"}
-                    </span>
-                    <span className="gradient-text">
-                        {tipo === "oral" ? "Comprensión Oral" : "Comprensión Escrita"}
-                    </span>
-                </h1>
-
-                {mode === 'lectura' && (
-                    <div className="config-grid">
-                        {tipo === "escrita" && (
-                            <>
-                                <div className="config-item item-wide item-grouped">
-                                    <div className="group-left">
-                                        <label className="config-label">✍️ Letra</label>
-                                        <div className="slider-container">
-                                            <div className="slider-labels"><span>Imp.</span><span>Lig.</span><span>May.</span></div>
-                                            <input type="range" min="0" max="2" step="1" value={fontStyleIndex} onChange={handleFontStyleChange} className="custom-slider font-slider" />
-                                        </div>
-                                    </div>
-                                    <div className="group-divider"></div>
-                                    <div className="group-right">
-                                        <label className="config-label">📏 Guía</label>
-                                        <div className="toggle-container">
-                                            <label className="switch">
-                                                <input type="checkbox" checked={showRuler} onChange={(e) => setShowRuler(e.target.checked)} />
-                                                <span className="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="config-item item-wide">
-                                    <label className="config-label">🔍 Tamaño</label>
-                                    <div className="slider-container">
-                                        <div className="slider-labels">
-                                            <span style={{ fontSize: '0.8rem' }}>Aa</span>
-                                            <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Aa</span>
-                                        </div>
-                                        <input type="range" min="0" max="4" step="1" value={fontSizeIndex} onChange={handleFontSizeChange} className="custom-slider size-slider" />
-                                    </div>
-                                </div>
-                            </>
+        <GameShell {...shell} className={cx('cmp', `cmp--${tipo}`)}>
+            <GameHeader
+                mode="exam"
+                onHelp={() => setShowHelp(true)}
+                onStudy={() => setShowMaterial(true)}
+                right={
+                    <Hud>
+                        <HudStat icon={FileText} tone="progress" value={`${currentIndex + 1}/${data.length}`} label="Historia" />
+                        {mode === 'preguntas' && (
+                            <HudStat icon={ListChecks} tone="accent" value={`${answeredCount}/${totalPreguntas}`} label="Respondidas" />
                         )}
-                        {tipo === "oral" && (
-                            <div className="config-item item-full">
-                                <label className="config-label">🐢 Velocidad 🐇</label>
-                                <div className="slider-container">
-                                    <div className="slider-labels"><span>Lento</span><span>Normal</span><span>Rápido</span></div>
-                                    <input type="range" min="0.5" max="1.5" step="0.5" value={speechRate} onChange={handleSpeedChange} className="custom-slider speed-slider" />
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
+                    </Hud>
+                }
+            />
 
-            <div className={`game-content ${animacionFase}`}>
+            {/* Pasos: leer/escuchar → responder → nota */}
+            <ol className="cmp-steps" aria-label="Progreso">
+                {steps.map((s, i) => (
+                    <li key={s.label} className={cx('cmp-step', i === step && 'is-current', i < step && 'is-done')}>
+                        <span className="cmp-step__dot"><s.icon size={16} /></span>
+                        <span className="cmp-step__label">{s.label}</span>
+                    </li>
+                ))}
+            </ol>
+
+            <div className={cx('cmp-stage', `cmp-anim--${animacionFase}`, `cmp-font--${currentFontStyle}`)}>
+                {/* ───────── Lectura / escucha ───────── */}
                 {mode === 'lectura' && (
-                    <div className="card-principal">
-                        <div className="card-header">
-                            <h3 className="titulo-historia">{ejercicioActual.titulo}</h3>
-                        </div>
-                        <div className="card-body">
-                            {tipo === "escrita" && (
-                                <div className="text-container-relative" ref={textRef} onMouseMove={handleMouseMove} onMouseLeave={() => setRulerY(-1000)}>
-                                    {showRuler && <div className={`reading-ruler ${currentSizeClass}`} style={{ top: rulerY }} />}
-                                    <p className={`texto-lectura ${currentSizeClass}`}>
-                                        {ejercicioActual.texto}
-                                    </p>
+                    <>
+                        {!isOral && (
+                            <div className="cmp-tools" role="group" aria-label="Opciones de lectura">
+                                <div className="cmp-tool">
+                                    <span className="cmp-tool__label">Letra</span>
+                                    <Segmented
+                                        size="sm"
+                                        value={fontStyleIndex}
+                                        onChange={setFontStyleIndex}
+                                        options={[
+                                            { value: 0, label: 'Imprenta', icon: Type },
+                                            { value: 1, label: 'Ligada', icon: PenLine },
+                                            { value: 2, label: 'Mayúsculas', icon: CaseUpper },
+                                        ]}
+                                    />
                                 </div>
-                            )}
-                            {tipo === "oral" && (
-                                <div className="zona-audio-vibrante">
-                                    <p className="instruccion-oral">Escucha atentamente:</p>
-                                    <button onClick={toggleAudio} className={getButtonClass()}>{getButtonText()}</button>
-                                </div>
-                            )}
-                        </div>
-                        <div className="card-footer actions-group">
-                            <button onClick={siguienteEjercicio} className="btn-secondary-action">🔄 Otra</button>
-                            <button onClick={iniciarTest} className="btn-primary-action bounce-on-hover">Preguntas ➡️</button>
-                        </div>
-                    </div>
-                )}
-
-                {mode === 'preguntas' && (
-                    <div className="zona-preguntas">
-                        {ejercicioActual.preguntas.map((item, idx) => (
-                            <div key={idx} className="pregunta-card pop-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                                <div className="pregunta-badge">Pregunta {idx + 1}</div>
-                                <p className="enunciado">{item.pregunta}</p>
-                                <div className={`opciones-grid cols-${item.opciones.length}`}>
-                                    {item.opciones.map((opcion, optIdx) => (
-                                        <button key={optIdx} className={`btn-opcion ${respuestas[idx] === optIdx ? 'seleccionada' : ''}`} onClick={() => responder(idx, optIdx)}>
-                                            {opcion}
+                                <div className="cmp-tool">
+                                    <span className="cmp-tool__label">Tamaño</span>
+                                    <div className="cmp-size">
+                                        <button type="button" className="cmp-size__btn" onClick={() => setFontSizeIndex((i) => Math.max(0, i - 1))} disabled={fontSizeIndex === 0} aria-label="Letra más pequeña">
+                                            <Minus size={16} strokeWidth={3} />
                                         </button>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                        <div className="actions-center" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-                            {Object.keys(respuestas).length === ejercicioActual.preguntas.length ?
-                                <button onClick={finalizar} className="btn-finalizar pulse-animation">✅ Corregir</button> :
-                                <p className="aviso-responder" style={{ color: '#e11d48', fontWeight: 'bold' }}>Responde todo para terminar 👆</p>
-                            }
-                        </div>
-                    </div>
-                )}
-
-                {/* --- PANTALLA DE RESULTADOS --- */}
-                {mode === 'resultado' && (
-                    <div className="card-principal pop-in-bouncy results-container">
-                        <div className="card-header">
-                            <h3 className="titulo-historia">¡Completado!</h3>
-                        </div>
-
-                        <div className="card-body text-center">
-                            {/* Premios visuales inmediatos */}
-                            <div className="stars-container-integrated">
-                                {[...Array(3)].map((_, i) => (
-                                    <span key={i} className={`star ${i < estrellas ? 'filled' : 'empty'}`} style={{ animationDelay: `${i * 0.2}s` }}>★</span>
-                                ))}
-                            </div>
-
-                            {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
-                            <div className={`cmp-grade-ring cmp-grade--${notaColor}`} style={{ '--cmp-grade': nota }}>
-                                <div className="nota-display-simple">
-                                    <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota.toFixed(1)}</span>
-                                    <span className="nota-total">/ 10</span>
-                                </div>
-                            </div>
-
-                            <p className="mensaje-motivacional-simple">{notaMsg}</p>
-
-                            <div className="comprension-points-row cmp-points">
-                                <span className="comprension-points-icon">⭐</span>
-                                <span className="comprension-points-value">{totalPoints.toLocaleString('es-ES')}</span>
-                                <span className="comprension-points-label">puntos</span>
-                            </div>
-
-                            {(readingTime > 0 || answersTime > 0) && (
-                                <div className="comprension-time-stats">
-                                    {readingTime > 0 && <span>📖 Lectura: {formatTime(readingTime)}</span>}
-                                    {answersTime > 0 && <span>✏️ Respuestas: {formatTime(answersTime)}</span>}
-                                </div>
-                            )}
-
-                            {/* Botón para Desplegar Revisión */}
-                            <button
-                                className={`btn-toggle-review ${showReview ? 'active' : ''}`}
-                                onClick={() => setShowReview(!showReview)}
-                            >
-                                {showReview ? 'Ocultar Corrección 🔼' : 'Ver Corrección 🔽'}
-                            </button>
-
-                            {/* SECCIÓN DE REVISIÓN (Desplegable) */}
-                            {showReview && (
-                                <div className="review-section pop-in">
-                                    <h4 className="review-title">Revisión de Respuestas</h4>
-                                    <div className="review-list">
-                                        {ejercicioActual.preguntas.map((pregunta, idx) => {
-                                            const esCorrecta = respuestas[idx] === pregunta.correcta;
-                                            return (
-                                                <div key={idx} className={`review-item ${esCorrecta ? 'correct-item' : 'incorrect-item'}`}>
-                                                    <div className="review-question">
-                                                        <span className="review-icon">{esCorrecta ? '✅' : '❌'}</span>
-                                                        <span className="review-text-q">{pregunta.pregunta}</span>
-                                                    </div>
-
-                                                    {!esCorrecta && (
-                                                        <div className="correction-box">
-                                                            <div className="correction-row user-bad">
-                                                                <span className="correction-label">Tú:</span>
-                                                                <span>{pregunta.opciones[respuestas[idx]]}</span>
-                                                            </div>
-                                                            <div className="correction-row correct-good">
-                                                                <span className="correction-label">Correcta:</span>
-                                                                <span>{pregunta.opciones[pregunta.correcta]}</span>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                        <span className="cmp-size__dots" aria-label={`Tamaño ${fontSizeIndex + 1} de ${sizeClasses.length}`}>
+                                            {sizeClasses.map((c, i) => (
+                                                <button
+                                                    key={c}
+                                                    type="button"
+                                                    className={cx('cmp-size__dot', i <= fontSizeIndex && 'is-on')}
+                                                    style={{ '--h': `${8 + i * 4}px` }}
+                                                    onClick={() => setFontSizeIndex(i)}
+                                                    aria-label={`Tamaño ${i + 1}`}
+                                                />
+                                            ))}
+                                        </span>
+                                        <button type="button" className="cmp-size__btn" onClick={() => setFontSizeIndex((i) => Math.min(sizeClasses.length - 1, i + 1))} disabled={fontSizeIndex === sizeClasses.length - 1} aria-label="Letra más grande">
+                                            <Plus size={16} strokeWidth={3} />
+                                        </button>
                                     </div>
                                 </div>
-                            )}
-                        </div>
-
-                        <div className="card-footer actions-group">
-                            <button onClick={siguienteEjercicio} className="btn-primary-action bounce-on-hover">
-                                Siguiente Historia 🚀
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* --- MODAL MATERIAL DE ESTUDIO (REDISEÑO TOTAL) --- */}
-            {showMaterial && (
-                <div className="modal-overlay" onClick={() => setShowMaterial(false)}>
-                    <div className="material-modal-container" onClick={e => e.stopPropagation()}>
-                        <aside className="material-sidebar">
-                            <div className="sidebar-header">
-                                <h3>Menú de Historias</h3>
-                                <p>{data.length} ejercicios disponibles</p>
+                                <label className="cmp-tool cmp-switch">
+                                    <input type="checkbox" checked={showRuler} onChange={(e) => setShowRuler(e.target.checked)} />
+                                    <span className="cmp-switch__track" aria-hidden="true"><span className="cmp-switch__thumb" /></span>
+                                    <span className="cmp-switch__text"><Ruler size={15} /> Guía de lectura</span>
+                                </label>
                             </div>
-                            <nav className="sidebar-nav">
-                                {data.map((historia, index) => (
+                        )}
+
+                        {!isOral ? (
+                            <article className="cmp-paper">
+                                <span className="cmp-paper__ribbon" aria-hidden="true" />
+                                <div className="cmp-paper__inner">
+                                <header className="cmp-paper__head">
+                                    <span className="cmp-paper__kicker"><BookOpen size={14} /> Lectura · {palabras} palabras · ~{minutos} min</span>
+                                    <h2 className="cmp-paper__title">{ejercicioActual.titulo}</h2>
+                                </header>
+                                <div
+                                    className={cx('cmp-reading', showRuler && 'has-ruler')}
+                                    ref={textRef}
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={() => setRulerY(-1000)}
+                                >
+                                    {showRuler && (
+                                        <div
+                                            className={cx('cmp-ruler', `cmp-${currentSizeClass}`)}
+                                            style={{ transform: `translateY(${rulerY}px) translateY(-50%)` }}
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                    <div className={cx('cmp-reading__text', `cmp-${currentSizeClass}`)}>
+                                        {parrafos.map((p, i) => <p key={i}>{p}</p>)}
+                                    </div>
+                                </div>
+                                </div>
+                            </article>
+                        ) : (
+                            <Panel variant="screen" className={cx('cmp-player', `is-${audioState}`)}>
+                                <div className="cmp-player__top">
+                                    <span className="cmp-player__kicker"><Headphones size={14} /> Escucha atentamente</span>
+                                    <h2 className="cmp-player__title">{ejercicioActual.titulo}</h2>
+                                </div>
+
+                                <div className="cmp-player__deck">
+                                    <span className="cmp-player__wave cmp-player__wave--l" aria-hidden="true">
+                                        {Array.from({ length: 7 }).map((_, i) => <i key={i} style={{ '--i': i }} />)}
+                                    </span>
                                     <button
-                                        key={index}
-                                        className={`sidebar-link ${selectedMaterialIndex === index ? 'active' : ''}`}
-                                        onClick={() => setSelectedMaterialIndex(index)}
+                                        type="button"
+                                        onClick={toggleAudio}
+                                        className="cmp-player__play"
+                                        aria-label={audioState === 'playing' ? 'Pausar' : audioState === 'paused' ? 'Continuar' : 'Escuchar historia'}
                                     >
-                                        <span className="link-num">{index + 1}</span>
-                                        <span className="link-text">{historia.titulo}</span>
+                                        <span className="cmp-player__ring" aria-hidden="true" />
+                                        {audioState === 'playing' ? <Pause size={46} fill="currentColor" /> : <Play size={46} fill="currentColor" className="cmp-player__playicon" />}
                                     </button>
-                                ))}
-                            </nav>
-                        </aside>
-
-                        <main className="material-view">
-                            <header className="view-header">
-                                <div className="header-info">
-                                    <span className="badge">Material Didáctico</span>
-                                    <h2>{data[selectedMaterialIndex].titulo}</h2>
+                                    <span className="cmp-player__wave cmp-player__wave--r" aria-hidden="true">
+                                        {Array.from({ length: 7 }).map((_, i) => <i key={i} style={{ '--i': i }} />)}
+                                    </span>
                                 </div>
-                                <button className="close-material" onClick={() => setShowMaterial(false)}>✖</button>
-                            </header>
 
-                            <div className="view-body">
-                                <section className="material-text-section">
-                                    <div className="section-title">
-                                        <span className="icon">📖</span>
-                                        <h4>Texto Completo</h4>
-                                    </div>
-                                    <div className="text-content">
-                                        {data[selectedMaterialIndex].texto}
-                                    </div>
-                                </section>
+                                <p className="cmp-player__status" aria-live="polite">
+                                    {audioState === 'playing' ? 'Escuchando la historia…' : audioState === 'paused' ? 'En pausa · pulsa para continuar' : 'Pulsa para escuchar la historia'}
+                                </p>
 
-                                <section className="material-questions-section">
-                                    <div className="section-title">
-                                        <span className="icon">🎯</span>
-                                        <h4>Objetivos de Comprensión</h4>
+                                <div className="cmp-player__controls">
+                                    <div className="cmp-player__speed">
+                                        <span className="cmp-player__speedlabel"><Gauge size={15} /> Velocidad</span>
+                                        <Segmented
+                                            size="sm"
+                                            value={speechRate}
+                                            onChange={handleSpeedChange}
+                                            options={[
+                                                { value: 0.5, label: 'Lenta', icon: Turtle },
+                                                { value: 1, label: 'Normal' },
+                                                { value: 1.5, label: 'Rápida', icon: Rabbit },
+                                            ]}
+                                        />
                                     </div>
-                                    <div className="questions-grid">
-                                        {data[selectedMaterialIndex].preguntas.map((q, idx) => (
-                                            <div key={idx} className="material-q-item">
-                                                <span className="q-num">{idx + 1}</span>
-                                                <p>{q.pregunta}</p>
-                                            </div>
+                                    {isSpeaking && (
+                                        <GameButton variant="ghost" size="sm" icon={RotateCcw} onClick={leerTexto} className="cmp-player__restart">
+                                            Desde el principio
+                                        </GameButton>
+                                    )}
+                                </div>
+                            </Panel>
+                        )}
+
+                        <div className="cmp-actions">
+                            <GameButton variant="soft" icon={RefreshCw} onClick={siguienteEjercicio}>Otra historia</GameButton>
+                            <GameButton size="lg" iconRight={ArrowRight} onClick={iniciarTest}>Ir a las preguntas</GameButton>
+                        </div>
+                    </>
+                )}
+
+                {/* ───────── Preguntas ───────── */}
+                {mode === 'preguntas' && (
+                    <div className="cmp-questions">
+                        <div className="cmp-questions__intro">
+                            <span className="cmp-questions__story"><FileText size={15} /> {ejercicioActual.titulo}</span>
+                        </div>
+                        {ejercicioActual.preguntas.map((item, idx) => {
+                            const shortOpts = item.opciones.every((o) => String(o).length <= 38);
+                            return (
+                                <Panel
+                                    key={idx}
+                                    variant="surface"
+                                    className={cx('cmp-q', respuestas[idx] !== undefined && 'is-answered')}
+                                    style={{ animationDelay: `${idx * 0.07}s` }}
+                                >
+                                    <div className="cmp-q__head">
+                                        <span className="cmp-q__num">{idx + 1}</span>
+                                        <span className="cmp-q__count">Pregunta {idx + 1} de {totalPreguntas}</span>
+                                    </div>
+                                    <p className="cmp-q__text">{item.pregunta}</p>
+                                    <div className={cx('cmp-q__opts', shortOpts && item.opciones.length > 1 && 'is-grid')}>
+                                        {item.opciones.map((opcion, optIdx) => (
+                                            <AnswerOption
+                                                key={optIdx}
+                                                letter={LETTERS[optIdx]}
+                                                state={respuestas[idx] === optIdx ? 'selected' : 'idle'}
+                                                className="cmp-q__opt"
+                                                aria-pressed={respuestas[idx] === optIdx}
+                                                onClick={() => responder(idx, optIdx)}
+                                            >
+                                                {opcion}
+                                            </AnswerOption>
                                         ))}
                                     </div>
-                                </section>
+                                </Panel>
+                            );
+                        })}
+
+                        <div className="cmp-submit">
+                            <div className="cmp-submit__progress">
+                                <span className="cmp-submit__label">
+                                    {allAnswered ? '¡Todo respondido! Ya puedes corregir.' : `Respondidas ${answeredCount} de ${totalPreguntas}`}
+                                </span>
+                                <ProgressBar value={answeredCount} max={totalPreguntas} tone={allAnswered ? 'good' : 'accent'} />
                             </div>
-                        </main>
+                            <GameButton
+                                size="lg"
+                                variant={allAnswered ? 'success' : 'primary'}
+                                icon={Award}
+                                onClick={finalizar}
+                                disabled={!allAnswered}
+                                className={allAnswered ? 'gk-anim-pop' : ''}
+                            >
+                                Corregir
+                            </GameButton>
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+
+                {/* ───────── Resultado ───────── */}
+                {mode === 'resultado' && (
+                    <ResultsScreen
+                        title="¡Historia completada!"
+                        subtitle={ejercicioActual.titulo}
+                        nota={nota}
+                        points={totalPoints}
+                        stats={[
+                            { icon: Target, tone: 'good', label: 'Aciertos', value: `${score}/${totalPreguntas}` },
+                            readingTime > 0 && { icon: isOral ? Headphones : BookOpen, tone: 'time', label: isOral ? 'Escucha' : 'Lectura', value: formatTime(readingTime) },
+                            answersTime > 0 && { icon: Timer, tone: 'accent', label: 'Respuestas', value: formatTime(answersTime) },
+                        ].filter(Boolean)}
+                        actions={[{ label: 'Siguiente historia', onClick: siguienteEjercicio, icon: ArrowRight }]}
+                    >
+                        <button
+                            type="button"
+                            className={cx('cmp-review-toggle', showReview && 'is-open')}
+                            onClick={() => setShowReview(!showReview)}
+                            aria-expanded={showReview}
+                        >
+                            <ListChecks size={16} />
+                            {showReview ? 'Ocultar corrección' : 'Ver corrección'}
+                            <ChevronDown size={16} className="cmp-review-toggle__chev" />
+                        </button>
+                        {showReview && ejercicioActual.preguntas.map((pregunta, idx) => {
+                            const esCorrecta = respuestas[idx] === pregunta.correcta;
+                            return (
+                                <FeedbackItem key={idx} index={idx + 1} ok={esCorrecta} title={pregunta.pregunta}>
+                                    <span className="cmp-fb">
+                                        <span className={cx('cmp-fb__ans', esCorrecta ? 'is-ok' : 'is-ko')}>
+                                            <small>Tú</small> {pregunta.opciones[respuestas[idx]]}
+                                        </span>
+                                        {!esCorrecta && (
+                                            <span className="cmp-fb__ans is-right">
+                                                <small>Correcta</small> {pregunta.opciones[pregunta.correcta]}
+                                            </span>
+                                        )}
+                                    </span>
+                                </FeedbackItem>
+                            );
+                        })}
+                    </ResultsScreen>
+                )}
+            </div>
+
+            {/* ───────── Material de estudio ───────── */}
+            <AnimatePresence>
+                {showMaterial && (
+                    <motion.div
+                        key="material"
+                        className="cmp-overlay"
+                        onClick={() => setShowMaterial(false)}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <motion.div
+                            className="cmp-library"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label="Material de estudio"
+                            onClick={e => e.stopPropagation()}
+                            initial={{ opacity: 0, y: 26, scale: 0.97 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+                        >
+                            <aside className="cmp-library__side">
+                                <div className="cmp-library__sidehead">
+                                    <span className="cmp-library__icon"><BookOpen size={20} /></span>
+                                    <div>
+                                        <strong>Historias</strong>
+                                        <span>{data.length} ejercicios disponibles</span>
+                                    </div>
+                                </div>
+                                <nav className="cmp-library__nav">
+                                    {data.map((historia, index) => (
+                                        <button
+                                            key={index}
+                                            type="button"
+                                            className={cx('cmp-library__link', selectedMaterialIndex === index && 'is-active')}
+                                            onClick={() => setSelectedMaterialIndex(index)}
+                                        >
+                                            <span className="cmp-library__num">{index + 1}</span>
+                                            <span className="cmp-library__name">{historia.titulo}</span>
+                                        </button>
+                                    ))}
+                                </nav>
+                            </aside>
+
+                            <main className="cmp-library__view">
+                                <header className="cmp-library__head">
+                                    <div>
+                                        <span className="cmp-library__eyebrow">Material de estudio</span>
+                                        <h2>{data[selectedMaterialIndex].titulo}</h2>
+                                    </div>
+                                    <button type="button" className="cmp-close" onClick={() => setShowMaterial(false)} aria-label="Cerrar material de estudio">
+                                        <X size={18} />
+                                    </button>
+                                </header>
+
+                                <div className="cmp-library__body">
+                                    <section className="cmp-library__section">
+                                        <h3><BookOpen size={16} /> Texto completo</h3>
+                                        <div className="cmp-library__text">
+                                            {String(data[selectedMaterialIndex].texto || '').split(/\n\s*\n/).filter((p) => p.trim()).map((p, i) => <p key={i}>{p}</p>)}
+                                        </div>
+                                    </section>
+
+                                    <section className="cmp-library__section">
+                                        <h3><Target size={16} /> Objetivos de comprensión</h3>
+                                        <div className="cmp-library__qs">
+                                            {data[selectedMaterialIndex].preguntas.map((q, idx) => (
+                                                <div key={idx} className="cmp-library__q">
+                                                    <span className="cmp-library__qnum">{idx + 1}</span>
+                                                    <p>{q.pregunta}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
+                                </div>
+                            </main>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {instructions}
+        </GameShell>
     );
 };
 
-export default ComprensionJuego;
+export default ComprensionJuego;

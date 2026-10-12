@@ -3,13 +3,18 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  ArrowRight, Play, Pause, Square, RotateCcw, Trash2, X, Lightbulb, Trophy,
-  Target, Gauge, Clock, Sparkles, Bot,
+  Play, Pause, Square, RotateCcw, Trash2, X, Lightbulb, Trophy, Target, Gauge, Clock,
+  Sparkles, Flame, GraduationCap, LayoutGrid, Puzzle, Map as MapIcon,
 } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, Panel, Chip, GameButton, ModeSelect,
+  RoundBanner, ResultsScreen, FeedbackItem, GameLoading, GradeRing,
+} from '../_shared/kit';
 import { GRADE_BLOCKS, CONDITIONS, getMissions, prepareWorld } from './misionesData';
 import { fetchNormalMissions, pickRandomReto, recordRetoCompletion } from './robotMissionsService';
 import { useAuth } from '@/contexts/AuthContext';
+import { TopBot, Gem, TargetPad, MissionThumb, BlockGlyph } from './MrArt';
 import './MisionesRoboticas.css';
 
 // -----------------------------------------------------------------------------
@@ -311,24 +316,24 @@ const useResponsiveCell = () => {
   return px;
 };
 
-const Board = ({ world, robot, itemsRemaining }) => {
+// Tablero visto desde arriba: baldosas de laboratorio, muros en relieve,
+// agujeros, cristales y plataforma de meta. El robot se mueve con transform.
+const Board = ({ world, robot, itemsRemaining, running }) => {
   const cellPx = useResponsiveCell();
   const cells = [];
   for (let y = 0; y < world.rows; y++) {
     for (let x = 0; x < world.cols; x++) {
       const key = `${x},${y}`;
-      let cls = 'mr-cell';
-      if (world.walls.has(key)) cls += ' wall';
-      else if (world.holes.has(key)) cls += ' hole';
-      if (world.target && world.target.x === x && world.target.y === y) cls += ' target';
+      const isWall = world.walls.has(key);
+      const isHole = !isWall && world.holes.has(key);
+      const isTarget = world.target && world.target.x === x && world.target.y === y;
+      let cls = `mr-cell ${(x + y) % 2 ? 'is-alt' : ''}`;
+      if (isWall) cls += ' is-wall';
+      else if (isHole) cls += ' is-hole';
+      if (isTarget) cls += ' is-target';
       cells.push(
         <div key={key} className={cls} style={{ left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx }}>
-          {world.target && world.target.x === x && world.target.y === y && (
-            <span className="mr-target-ico">🎯</span>
-          )}
-          {world.holes.has(key) && !world.walls.has(key) && (
-            <span className="mr-hole-ico">🕳</span>
-          )}
+          {isTarget && <span className="mr-cell-art"><TargetPad /></span>}
         </div>
       );
     }
@@ -337,31 +342,26 @@ const Board = ({ world, robot, itemsRemaining }) => {
   const itemEls = [...itemsRemaining].map((key) => {
     const [x, y] = key.split(',').map(Number);
     return (
-      <motion.div
-        key={`item-${key}`}
-        className="mr-item"
-        style={{ left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx }}
-        animate={{ y: [0, -4, 0] }}
-        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        💎
-      </motion.div>
+      <div key={`item-${key}`} className="mr-item" style={{ left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx }}>
+        <span className="mr-item-float"><Gem /></span>
+      </div>
     );
   });
 
   const dirRot = { N: -90, E: 0, S: 90, W: 180 };
 
   return (
-    <div className="mr-board" style={{ width: world.cols * cellPx, height: world.rows * cellPx }}>
+    <div className={`mr-board ${running ? 'is-running' : ''}`} style={{ width: world.cols * cellPx, height: world.rows * cellPx }}>
       {cells}
       {itemEls}
       <motion.div
         className="mr-robot"
-        animate={{ left: robot.x * cellPx, top: robot.y * cellPx, rotate: dirRot[robot.dir] }}
+        initial={false}
+        animate={{ x: robot.x * cellPx, y: robot.y * cellPx, rotate: dirRot[robot.dir] }}
         transition={{ type: 'spring', stiffness: 300, damping: 26 }}
         style={{ width: cellPx, height: cellPx }}
       >
-        <span className="mr-robot-emoji">🤖</span>
+        <TopBot />
       </motion.div>
     </div>
   );
@@ -375,7 +375,7 @@ const BlockBody = ({ block, onChangeField }) => {
   const def = BLOCK_DEFS[block.type];
   return (
     <>
-      <span className="mr-block-ico" aria-hidden>{def.icon}</span>
+      <BlockGlyph type={block.type} />
       <span className="mr-block-label">{def.label}</span>
       {block.type === 'repeat' && (
         <>
@@ -424,10 +424,11 @@ const BlockNode = ({ block, onBlockPointerDown, onRemove, onChangeField, registe
           type="button"
           className="mr-block-remove"
           title="Eliminar bloque"
+          aria-label="Eliminar bloque"
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => { e.stopPropagation(); onRemove(block.id); }}
         >
-          <X size={11} />
+          <X size={12} strokeWidth={3} />
         </button>
       </div>
 
@@ -457,9 +458,9 @@ const BlockNode = ({ block, onBlockPointerDown, onRemove, onChangeField, registe
               ))
             )}
           </div>
-          <div className="mr-c-foot" />
         </div>
       ))}
+      {def.container && <div className="mr-c-foot" />}
     </div>
   );
 };
@@ -474,7 +475,7 @@ const BlockGhost = ({ block, depth }) => {
       style={{ '--depth': depth }}
     >
       <div className="mr-block-head">
-        <span className="mr-block-ico">{def.icon}</span>
+        <BlockGlyph type={block.type} />
         <span className="mr-block-label">{def.label}</span>
         {block.type === 'repeat' && <span className="mr-block-suffix">{block.count} veces</span>}
         {(block.type === 'while' || block.type === 'if' || block.type === 'ifelse') && (
@@ -495,9 +496,9 @@ const BlockGhost = ({ block, depth }) => {
               ))
             )}
           </div>
-          <div className="mr-c-foot" />
         </div>
       ))}
+      {def.container && <div className="mr-c-foot" />}
     </div>
   );
 };
@@ -515,49 +516,34 @@ const Palette = ({ allowed, onPalettePointerDown }) => {
     groups[def.cat].push(type);
   });
   return (
-    <div className="mr-palette">
-      <div className="mr-palette-head">
-        <span className="mr-palette-title">🧩 Paleta</span>
-        <span className="mr-palette-hint">arrastra los bloques al programa →</span>
-      </div>
-      {Object.entries(groups).map(([cat, types]) => (
-        <div key={cat} className={`mr-palette-group cat-${cat}`}>
-          <div className="mr-palette-group-title">{CAT_LABEL[cat]}</div>
-          <div className="mr-palette-group-items">
-            {types.map((t) => {
-              const def = BLOCK_DEFS[t];
-              return (
-                <div
-                  key={t}
-                  className={`mr-block mr-block-${def.cat} palette ${def.container ? 'is-container' : 'is-stack'}`}
-                  onPointerDown={(e) => onPalettePointerDown(e, t)}
-                >
-                  <div className="mr-block-head">
-                    <span className="mr-block-ico">{def.icon}</span>
-                    <span className="mr-block-label">{def.label}</span>
+    <Panel variant="surface" className="mr-palette">
+      <div className="mr-section-title"><Puzzle size={16} /> Bloques <small>arrastra al programa</small></div>
+      <div className="mr-palette-groups">
+        {Object.entries(groups).map(([cat, types]) => (
+          <div key={cat} className={`mr-palette-group cat-${cat}`}>
+            <div className="mr-palette-group-title"><span className="mr-palette-dot" />{CAT_LABEL[cat]}</div>
+            <div className="mr-palette-group-items">
+              {types.map((t) => {
+                const def = BLOCK_DEFS[t];
+                return (
+                  <div
+                    key={t}
+                    className={`mr-block mr-block-${def.cat} palette ${def.container ? 'is-container' : 'is-stack'}`}
+                    onPointerDown={(e) => onPalettePointerDown(e, t)}
+                  >
+                    <div className="mr-block-head">
+                      <BlockGlyph type={t} />
+                      <span className="mr-block-label">{def.label}</span>
+                    </div>
+                    {def.container && <div className="mr-c-foot mini" />}
                   </div>
-                  {def.container && (
-                    <>
-                      <div className="mr-c-section is-then">
-                        <div className="mr-c-mouth mini"><div className="mr-empty-slot">…</div></div>
-                        <div className="mr-c-foot" />
-                      </div>
-                      {t === 'ifelse' && (
-                        <div className="mr-c-section is-else">
-                          <div className="mr-c-label">si no:</div>
-                          <div className="mr-c-mouth mini"><div className="mr-empty-slot">…</div></div>
-                          <div className="mr-c-foot" />
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </Panel>
   );
 };
 
@@ -565,25 +551,7 @@ const Palette = ({ allowed, onPalettePointerDown }) => {
 // Componente principal
 // -----------------------------------------------------------------------------
 
-// Fondo decorativo del marco (orbes + rejilla + estrellas). Solo visual.
-const MrBackdrop = () => (
-  <div className="mr-fx-bg" aria-hidden="true">
-    <span className="mr-fx-orb mr-fx-orb--a" />
-    <span className="mr-fx-orb mr-fx-orb--b" />
-    <span className="mr-fx-orb mr-fx-orb--c" />
-    <span className="mr-fx-grid" />
-    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`mr-fx-star mr-fx-star--${i}`} />)}
-  </div>
-);
-
-// Entrada escalonada + hover de las tarjetas de modo.
-const MR_CARD_ANIM = (i) => ({
-  initial: { opacity: 0, y: 22, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { delay: 0.08 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 },
-  whileHover: { y: -6, scale: 1.025 },
-  whileTap: { scale: 0.97 },
-});
+const SHELL = { accent: '#14b8a6', accent2: '#6366f1' };
 
 const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
   const { grade: gradeParam } = useParams();
@@ -1082,319 +1050,216 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
   };
 
   // ---------------------------------------------------------------- Pantallas
-  if (screen === 'intro') {
-    return (
-      <div className="mr-shell">
-        <InstructionsModal
-          isOpen={showInstructions}
-          onClose={() => setShowInstructions(false)}
-          title="Cómo jugar a Programa al Robot"
-        >
-          <h3>🎯 Objetivo</h3>
-          <p>Programa al robot con bloques para que cumpla cada misión: llegar a la meta 🎯, recoger ítems 💎 y evitar agujeros 🕳.</p>
-          <h3>🧩 Cómo programar</h3>
-          <ul>
-            <li><b>Arrastra</b> un bloque desde la paleta hasta el programa.</li>
-            <li>Los bloques tienen pestañas y muescas: se encajan unos con otros como piezas de puzzle.</li>
-            <li>Los bloques 🔁 🔄 ❓ 🔀 tienen huecos donde puedes <b>anidar</b> otros bloques.</li>
-            <li>Arrastra un bloque ya colocado para moverlo (se lleva consigo todos los bloques que tenga debajo).</li>
-            <li>Pulsa ✕ para eliminar un bloque.</li>
-          </ul>
-          <h3>🧠 Conceptos que aprendes</h3>
-          <ul>
-            <li>Secuencias de instrucciones.</li>
-            <li>Bucles (Repetir N, Mientras).</li>
-            <li>Condicionales con sensores (obstáculo, ítem, meta…).</li>
-            <li>Pensamiento algorítmico aplicado a robótica real.</li>
-          </ul>
-          <h3>🎮 Modos</h3>
-          <ul>
-            <li><b>Fácil</b>: pista siempre visible y feedback claro.</li>
-            <li><b>Medio</b>: pista opcional (cuenta las que pides).</li>
-            <li><b>Examen</b>: las 5 misiones del curso seguidas, sin ayudas. Nota sobre 10.</li>
-          </ul>
-        </InstructionsModal>
+  const fmtTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
-        <div className="mr-frame mr-frame-intro">
-         <MrBackdrop />
-         <div className="mr-hero">
-          <div className="mr-hero-top">
-            <div className="mr-hero-title fx-enter">
-              <div className="mr-hero-badge"><span className="mr-hero-badge-dot" aria-hidden="true" /><Bot size={18} /> ESO {grade}º</div>
-              <h1>Programa al Robot</h1>
-              <p>Programa a tu robot con bloques visuales tipo puzzle y resuelve 10 misiones crecientes: bucles, condicionales y sensores aplicados a programación.</p>
-            </div>
-            <InstructionsButton onClick={() => setShowInstructions(true)} />
-          </div>
-
-          <div className="mr-mode-grid">
-            <motion.button {...MR_CARD_ANIM(0)} className="mr-mode-card mr-mode-easy fx-shine" onClick={() => startPractice('easy')}>
-              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🌱</div>
-              <h3>Modo Fácil</h3>
-              <p>Pista siempre visible y feedback al ejecutar. Perfecto para empezar.</p>
-              <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-            <motion.button {...MR_CARD_ANIM(1)} className="mr-mode-card mr-mode-medium fx-shine" onClick={() => startPractice('medium')}>
-              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />⚡</div>
-              <h3>Modo Medio</h3>
-              <p>Sin pista visible. Puedes pedirla, pero cada una cuenta. Más autonomía.</p>
-              <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-            <motion.button {...MR_CARD_ANIM(2)} className="mr-mode-card mr-mode-exam fx-shine" onClick={() => setShowExamIntro(true)}>
-              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🎯</div>
-              <h3>Modo Examen</h3>
-              <p>Las 10 misiones del curso seguidas, sin ayudas. La nota depende de lo optimizado que sea tu código.</p>
-              <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-            <motion.button {...MR_CARD_ANIM(3)} className="mr-mode-card mr-mode-reto fx-shine" onClick={() => setShowRetoIntro(true)}>
-              <div className="mr-mode-icon"><span className="mr-mode-icon-halo" aria-hidden="true" />🔥</div>
-              <h3>Modo Reto</h3>
-              <p>Un nivel aleatorio mucho más difícil. Resuélvelo con la menor cantidad de bloques posible.</p>
-              <span className="mr-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-          </div>
-
-          <div className="mr-missions-grid">
-            <h3>📋 Misiones de ESO {grade}º</h3>
-            <div className="mr-missions-cards fx-stagger">
-              {missions.map((m, i) => (
-                <div key={m.id} className="mr-mini-mission">
-                  <div className="mr-mini-mission-num">{i + 1}</div>
-                  <div className="mr-mini-mission-title">{m.title.replace(/^\d+\.\s*/, '')}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-         </div>
-        </div>
-
-        <AnimatePresence>
-          {showExamIntro && (
-            <motion.div
-              className="mr-exam-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowExamIntro(false)}
-            >
-              <motion.div
-                className="mr-exam-modal"
-                initial={{ scale: 0.88, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.88, opacity: 0, y: 20 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h2>🎯 Modo Examen</h2>
-                <p className="mr-exam-lead">
-                  Tienes que completar las <b>10 misiones</b> del curso seguidas, sin saltarte ninguna y sin ayudas.
-                </p>
-                <div className="mr-exam-rules">
-                  <h3>📏 Cómo se calcula la nota</h3>
-                  <ul>
-                    <li>La nota depende de <b>lo optimizado que sea tu código</b>.</li>
-                    <li>Cuantos <b>menos bloques</b> uses para resolver cada misión, <b>más nota</b>.</li>
-                    <li>Cada misión se compara con el número óptimo de bloques:
-                      <ul>
-                        <li>Usas los bloques óptimos o menos → <b>1 punto</b>.</li>
-                        <li>Usas más bloques → menos puntos (proporcional).</li>
-                        <li>No la completas → <b>0 puntos</b> en esa misión.</li>
-                      </ul>
-                    </li>
-                    <li>La <b>nota final /10</b> es la media de puntos de las 10 misiones × 10.</li>
-                  </ul>
-                </div>
-                <div className="mr-exam-actions">
-                  <button className="mr-btn-secondary" onClick={() => setShowExamIntro(false)}>Cancelar</button>
-                  <button className="mr-btn-primary" onClick={() => { setShowExamIntro(false); startExam(); }}>
-                    <Play size={16} /> Empezar examen
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-          {showRetoIntro && (
-            <motion.div
-              className="mr-exam-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowRetoIntro(false)}
-            >
-              <motion.div
-                className="mr-exam-modal mr-reto-modal"
-                initial={{ scale: 0.88, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.88, opacity: 0, y: 20 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h2>🔥 Modo Reto</h2>
-                <p className="mr-exam-lead">
-                  Te tocará un <b>nivel aleatorio</b> mucho más difícil que los normales.
-                </p>
-                <div className="mr-exam-rules">
-                  <h3>🧠 Cómo funciona</h3>
-                  <ul>
-                    <li>Se elige <b>al azar</b> entre un conjunto de niveles de alta dificultad.</li>
-                    <li>Cada reto es más exigente que las misiones normales del curso.</li>
-                    <li>Sin pistas ni selector: enfrentas el reto de primera.</li>
-                    <li>La <b>nota depende de la optimización</b> de tu código:
-                      <ul>
-                        <li>Bloques óptimos o menos → <b>10/10</b>.</li>
-                        <li>Más bloques → menos nota (proporcional).</li>
-                        <li>Si no lo completas → <b>0/10</b>.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mr-exam-actions">
-                  <button className="mr-btn-secondary" onClick={() => setShowRetoIntro(false)}>Cancelar</button>
-                  <button className="mr-btn-primary" onClick={() => { setShowRetoIntro(false); startReto(); }}>
-                    <Play size={16} /> Afrontar reto
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+  const instructions = (
+    <InstructionsModal
+      isOpen={showInstructions}
+      onClose={() => setShowInstructions(false)}
+      title={screen === 'play' ? 'Ayuda rápida' : 'Cómo jugar a Programa al Robot'}
+    >
+      <h3>🎯 Objetivo</h3>
+      <p>Programa al robot con bloques para que cumpla cada misión: llegar a la <b>meta</b>, recoger los <b>cristales</b> y evitar los <b>agujeros</b>.</p>
+      <h3>🧩 Cómo programar</h3>
+      <ul>
+        <li><b>Arrastra</b> un bloque desde la paleta hasta el programa.</li>
+        <li>Los bloques tienen pestañas y muescas: se encajan unos con otros como piezas de puzzle.</li>
+        <li>Los bloques <b>Repetir</b>, <b>Mientras</b>, <b>Si</b> y <b>Si…/Si no</b> tienen huecos donde puedes <b>anidar</b> otros bloques.</li>
+        <li>Arrastra un bloque ya colocado para moverlo (se lleva consigo todos los bloques que tenga debajo).</li>
+        <li>Pulsa ✕ para eliminar un bloque.</li>
+      </ul>
+      <h3>🧠 Conceptos que aprendes</h3>
+      <ul>
+        <li>Secuencias de instrucciones.</li>
+        <li>Bucles (Repetir N, Mientras).</li>
+        <li>Condicionales con sensores (obstáculo, ítem, meta…).</li>
+        <li>Pensamiento algorítmico aplicado a robótica real.</li>
+      </ul>
+      <h3>🎮 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>Fácil</strong>Pista siempre visible y feedback claro.</div>
+        <div className="instr-mode medium"><strong>Medio</strong>Pista opcional (cuenta las que pides).</div>
+        <div className="instr-mode exam"><strong>Examen</strong>Las misiones del curso seguidas, sin ayudas. Nota sobre 10.</div>
       </div>
+    </InstructionsModal>
+  );
+
+  if (screen === 'intro') {
+    const modes = [
+      { id: 'easy', tone: 'easy', title: 'Fácil', desc: 'Pista siempre visible y feedback al ejecutar. Perfecto para empezar.', features: ['Pista siempre visible', 'Elige cualquier misión'] },
+      { id: 'medium', tone: 'medium', icon: Gauge, title: 'Medio', desc: 'Sin pista visible. Puedes pedirla, pero cada una cuenta.', features: ['Pistas bajo demanda', 'Más autonomía'] },
+      { id: 'exam', tone: 'exam', title: 'Examen', desc: `Las ${missions.length} misiones seguidas, sin ayudas. La nota depende de lo optimizado que sea tu código.`, features: ['Nota sobre 10', 'Menos bloques, más nota'] },
+      { id: 'reto', tone: 'reto', icon: Flame, title: 'Reto', desc: 'Un nivel aleatorio mucho más difícil. Resuélvelo con la menor cantidad de bloques posible.', features: ['Nivel sorpresa', 'Insignias de reto'] },
+    ];
+    const selectMode = (id) => {
+      if (id === 'exam') { setShowExamIntro(true); return; }
+      if (id === 'reto') { setShowRetoIntro(true); return; }
+      startPractice(id);
+    };
+    return (
+      <GameShell {...SHELL} wide className="mr-shell">
+        <ModeSelect
+          description="Programa a tu robot con bloques visuales tipo puzzle y resuelve misiones crecientes: bucles, condicionales y sensores aplicados a la programación."
+          modes={modes}
+          onSelect={selectMode}
+          onHelp={() => setShowInstructions(true)}
+          extra={(
+            <section className="mr-missions" aria-label={`Misiones de ESO ${grade}º`}>
+              <header className="mr-sec-head">
+                <span className="mr-sec-head__ico"><MapIcon size={18} /></span>
+                <div>
+                  <h3>Misiones de ESO {grade}º</h3>
+                  <p>Llega a la meta, recoge los cristales y esquiva los agujeros.</p>
+                </div>
+              </header>
+              <div className="mr-missions-grid">
+                {missions.map((m, i) => (
+                  <div key={m.id} className="mr-mission-tile" style={{ '--i': i }}>
+                    <span className="mr-mission-tile__thumb"><MissionThumb grid={m.grid} /></span>
+                    <span className="mr-mission-tile__num">{i + 1}</span>
+                    <span className="mr-mission-tile__title">{m.title.replace(/^\d+\.\s*/, '')}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        />
+        {instructions}
+
+        <MrDialog
+          open={showExamIntro}
+          tone="exam"
+          icon={GraduationCap}
+          title="Modo Examen"
+          lead={<>Tienes que completar las <b>{missions.length} misiones</b> del curso seguidas, sin saltarte ninguna y sin ayudas.</>}
+          onClose={() => setShowExamIntro(false)}
+          actions={[
+            { label: 'Cancelar', variant: 'soft', onClick: () => setShowExamIntro(false) },
+            { label: 'Empezar examen', variant: 'danger', icon: Play, onClick: () => { setShowExamIntro(false); startExam(); }, autoFocus: true },
+          ]}
+        >
+          <h4><Gauge size={16} /> Cómo se calcula la nota</h4>
+          <ul>
+            <li>La nota depende de <b>lo optimizado que sea tu código</b>: cuantos <b>menos bloques</b> uses, <b>más nota</b>.</li>
+            <li>Bloques óptimos o menos → <b>1 punto</b> en esa misión.</li>
+            <li>Más bloques → menos puntos (proporcional).</li>
+            <li>No la completas → <b>0 puntos</b> en esa misión.</li>
+            <li>La <b>nota final /10</b> es la media de puntos de todas las misiones × 10.</li>
+          </ul>
+        </MrDialog>
+
+        <MrDialog
+          open={showRetoIntro}
+          tone="reto"
+          icon={Flame}
+          title="Modo Reto"
+          lead={<>Te tocará un <b>nivel aleatorio</b> mucho más difícil que los normales.</>}
+          onClose={() => setShowRetoIntro(false)}
+          actions={[
+            { label: 'Cancelar', variant: 'soft', onClick: () => setShowRetoIntro(false) },
+            { label: 'Afrontar reto', icon: Play, onClick: () => { setShowRetoIntro(false); startReto(); }, autoFocus: true },
+          ]}
+        >
+          <h4><Sparkles size={16} /> Cómo funciona</h4>
+          <ul>
+            <li>Se elige <b>al azar</b> entre un conjunto de niveles de alta dificultad.</li>
+            <li>Sin pistas ni selector: enfrentas el reto de primera.</li>
+            <li>Bloques óptimos o menos → <b>10/10</b>; más bloques → menos nota; sin completar → <b>0/10</b>.</li>
+          </ul>
+        </MrDialog>
+      </GameShell>
     );
   }
 
   if (screen === 'summary') {
     const solved = examResults.filter((r) => r.success).length;
     const total = missions.length;
-    const nota = Math.round((solved / total) * 100) / 10;
-    const colorClass = nota >= 8 ? 'grade-high' : nota >= 5 ? 'grade-mid' : 'grade-low';
-    const msg = nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
-
-    const gradeColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
+    // Misma fórmula que finishExam (la nota que se registra): media de puntos × 10.
+    const avg = examResults.map(missionScoreRatio).reduce((a, b) => a + b, 0) / total;
+    const nota = Math.round(avg * 100) / 10;
+    const optimal = examResults.filter((r) => r.success && r.blocksUsed <= (r.suggested || 0)).length;
 
     return (
-      <div className="mr-shell">
-       <div className="mr-frame mr-frame-summary">
-        <MrBackdrop />
-        <motion.div
-          className="mr-summary-card"
-          initial={{ opacity: 0, y: 26, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-        >
-          <h1><span className="mr-summary-trophy" aria-hidden="true"><Trophy size={24} /></span> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
-          {isExam ? (
-            <>
-              <div className="mr-grade-hero">
-                <span className="mr-grade-rays" aria-hidden="true" />
-                <motion.div
-                  className={`mr-grade-ring ${colorClass}`}
-                  style={{ '--mr-grade': nota, '--mr-grade-color': gradeColor }}
-                  initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
-                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                  transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
-                >
-                  <div className={`mr-note ${colorClass}`}>
-                    <span className="mr-note-value">{nota.toFixed(1)}</span>
-                    <span className="mr-note-max">/10</span>
-                  </div>
-                </motion.div>
-              </div>
-              <p className={`mr-note-msg ${colorClass}`}>{msg}</p>
-              <motion.div
-                className="mr-points-pill"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45 }}
-              >
-                <Sparkles size={16} /> <b>{summaryScore.toLocaleString('es-ES')}</b> puntos
-              </motion.div>
-              <div className="mr-summary-stats fx-stagger">
-                <div className="mr-stat"><span>🏆 Misiones completadas</span><b>{solved} / {total}</b></div>
-                <div className="mr-stat"><span>⏱️ Tiempo total</span><b>{Math.floor(elapsed / 60)}m {elapsed % 60}s</b></div>
-              </div>
-              <div className="mr-summary-list fx-stagger">
-                {examResults.map((r, i) => {
-                  const ratio = missionScoreRatio(r);
-                  const pts = Math.round(ratio * 100) / 100;
-                  return (
-                    <div key={r.id} className={`mr-summary-row ${r.success ? 'ok' : 'ko'}`}>
-                      <span className="mr-summary-idx">{i + 1}.</span>
-                      <span className="mr-summary-title">{r.title}</span>
-                      <span className="mr-summary-score">
-                        {r.success ? '✓' : '✗'} · {r.blocksUsed}{r.suggested ? `/${r.suggested}` : ''} bloques
-                        <b className="mr-summary-pts">{pts.toFixed(2)} pt</b>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
-          ) : (
-            <p className="mr-summary-text">Has completado las {total} misiones de ESO {grade}º. ¡Gran trabajo programando!</p>
-          )}
-          <div className="mr-summary-actions">
-            <button className="mr-btn-primary fx-shine" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
-            {isExam && (<button className="mr-btn-secondary" onClick={startExam}><Play size={16} /> Repetir examen</button>)}
-          </div>
-        </motion.div>
-       </div>
-      </div>
+      <GameShell {...SHELL} wide className="mr-shell">
+        {isExam ? (
+          <ResultsScreen
+            subtitle={`Programa al Robot · ESO ${grade}º`}
+            nota={nota}
+            points={summaryScore}
+            stats={[
+              { icon: Target, tone: 'good', label: 'Completadas', value: `${solved}/${total}` },
+              { icon: Gauge, tone: 'score', label: 'Óptimas', value: optimal },
+              { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(elapsed) },
+            ]}
+            actions={[
+              { label: 'Repetir examen', onClick: startExam, icon: RotateCcw },
+              { label: 'Volver al menú', onClick: restart, icon: LayoutGrid, variant: 'soft' },
+            ]}
+          >
+            {examResults.map((r, i) => {
+              const pts = Math.round(missionScoreRatio(r) * 100) / 100;
+              return (
+                <FeedbackItem key={r.id} index={i + 1} ok={r.success} title={String(r.title).replace(/^\d+\.\s*/, '')}>
+                  {r.blocksUsed}{r.suggested ? `/${r.suggested}` : ''} bloques · <b>{pts.toFixed(2)} pt</b>
+                  {r.errored ? ` · ${r.errored}` : ''}
+                </FeedbackItem>
+              );
+            })}
+          </ResultsScreen>
+        ) : (
+          <motion.div
+            className="mr-done"
+            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+          >
+            <span className="mr-done__art" aria-hidden="true"><span className="mr-done__ring" /><TopBot /></span>
+            <h2>Práctica terminada</h2>
+            <p>Has completado las {total} misiones de ESO {grade}º. ¡Gran trabajo programando!</p>
+            <GameButton size="lg" icon={LayoutGrid} onClick={restart}>Volver al menú</GameButton>
+          </motion.div>
+        )}
+      </GameShell>
     );
   }
 
   // --- Pantalla de juego ---
-  if (!world || !robot) return null;
-  const progress = `${missionIndex + 1} / ${missions.length}`;
+  if (!world || !robot) {
+    return (
+      <GameShell {...SHELL} wide className="mr-shell">
+        <GameLoading label="Preparando la misión…" />
+      </GameShell>
+    );
+  }
   const collectedCount = world.initialItems - itemsRemaining.size;
   const needItems = mission.objectives?.collectItems || 0;
+  const headerMode = mode === 'exam' ? 'exam' : mode === 'easy' ? 'easy' : 'medium';
+  const headerLabel = { easy: 'Fácil', medium: 'Medio', exam: 'Examen', reto: 'Reto' }[mode];
 
   return (
-    <div className="mr-shell mr-playing">
-      <InstructionsModal
-        isOpen={showInstructions}
-        onClose={() => setShowInstructions(false)}
-        title="Ayuda rápida"
-      >
-        <p><b>Arrastra</b> bloques desde la paleta al programa. Los bloques encajan entre sí como piezas de puzzle.</p>
-        <p>Los bloques 🔁 🔄 ❓ 🔀 tienen un hueco donde puedes soltar otros bloques dentro.</p>
-        <p>Para moverlo: arrástralo; para eliminarlo: pulsa ✕ en su esquina.</p>
-      </InstructionsModal>
+    <GameShell {...SHELL} wide className="mr-shell mr-playing">
+      <GameHeader
+        mode={headerMode}
+        modeLabel={headerLabel}
+        onHelp={() => setShowInstructions(true)}
+        right={(
+          <Hud>
+            <HudStat icon={Target} tone="good" value={needItems ? `${collectedCount}/${needItems}` : 'Meta'} label={needItems ? 'Cristales' : 'Objetivo'} />
+            <HudStat icon={Gauge} tone="score" value={`${countAllBlocks(program)}${mission.suggestedBlocks ? ` · ≈${mission.suggestedBlocks}` : ''}`} label="Bloques" />
+            {isExam && <HudStat icon={Clock} tone="time" value={fmtTime(elapsed)} label="Tiempo" />}
+          </Hud>
+        )}
+      />
 
-      <div className="mr-frame">
-        <MrBackdrop />
-        <div className="mr-playhead">
-          <div className="mr-playhead-left">
-            <span className={`mr-mode-chip mode-${mode}`}>
-              {mode === 'easy' && '🌱 Fácil'}
-              {mode === 'medium' && '⚡ Medio'}
-              {mode === 'exam' && '🎯 Examen'}
-              {mode === 'reto' && '🔥 Reto'}
-            </span>
-            <span className="mr-progress">
-              {isReto ? mission.title : `Misión ${progress}`}
-              {!isReto && (
-                <span className="mr-progress-track" aria-hidden="true">
-                  <span className="mr-progress-fill" style={{ transform: `scaleX(${(missionIndex + 1) / missions.length})` }} />
-                </span>
-              )}
-            </span>
-            <div className="mr-hud-item"><Target size={14} /> <span>Objetivo</span> <b>{needItems ? `${collectedCount}/${needItems} 💎` : 'Meta 🎯'}</b></div>
-            <div className="mr-hud-item"><Gauge size={14} /> <span>Bloques</span> <b>{countAllBlocks(program)}{mission.suggestedBlocks ? ` (≈${mission.suggestedBlocks})` : ''}</b></div>
-            {isExam && (<span className="mr-timer"><Clock size={14} /> {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}</span>)}
-          </div>
-          <div className="mr-playhead-right">
-            <InstructionsButton onClick={() => setShowInstructions(true)} />
-            <button className="mr-icon-btn" onClick={restart} title="Salir al menú"><RotateCcw size={16} /></button>
-          </div>
-        </div>
-
+      <div className="mr-route">
+        <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={restart}>Menú</GameButton>
         {!isExam && !isReto && (
-          <div className="mr-mission-picker" role="tablist" aria-label="Selector de misión">
+          <div className="mr-route__nodes" role="tablist" aria-label="Selector de misión">
             {missions.map((m, i) => (
               <button
                 key={m.id}
                 type="button"
-                className={`mr-mission-pick ${i === missionIndex ? 'active' : ''}`}
+                className={`mr-route__node ${i === missionIndex ? 'is-current' : ''}`}
                 onClick={() => setMissionIndex(i)}
                 title={m.title}
                 role="tab"
@@ -1405,116 +1270,120 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
             ))}
           </div>
         )}
+        {isExam && (
+          <div className="mr-route__dots">
+            <ProgressDots total={missions.length} current={examStep} results={examResults.map((r) => r.success)} />
+          </div>
+        )}
+        {isReto && <Chip tone="accent" icon={Flame}>{mission.title}</Chip>}
+      </div>
 
-        <div className="mr-layout">
+      <AnimatePresence mode="wait">
+        <motion.section
+          key={mission.id}
+          className="mr-brief"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28 }}
+        >
+          <span className="mr-brief__avatar" aria-hidden="true"><TopBot /></span>
+          <div className="mr-brief__bubble">
+            <span className="mr-brief__eyebrow">{isReto ? 'Reto' : `Misión ${missionIndex + 1} de ${missions.length}`}</span>
+            <h2 className="mr-brief__title">{String(mission.title).replace(/^\d+\.\s*/, '')}</h2>
+            <p className="mr-brief__desc">{mission.description}</p>
+            {(mode === 'easy' || (mode === 'medium' && showHint)) && (
+              <div className="mr-hint"><Lightbulb size={16} /> {mission.hint}</div>
+            )}
+          </div>
+        </motion.section>
+      </AnimatePresence>
+
+      <div className="mr-play">
+        <div className="mr-play__grid">
           <div className="mr-left">
-            <Board world={world} robot={robot} itemsRemaining={itemsRemaining} />
+            <div className="mr-arena">
+              <div className="mr-arena__board">
+                <Board world={world} robot={robot} itemsRemaining={itemsRemaining} running={running} />
+              </div>
+              <div className="mr-legend" aria-label="Leyenda">
+                <span className="mr-legend__item"><span className="mr-legend__ico is-bot"><TopBot /></span>Robot</span>
+                <span className="mr-legend__item"><span className="mr-legend__ico"><TargetPad /></span>Meta</span>
+                <span className="mr-legend__item"><span className="mr-legend__ico"><Gem /></span>Cristal</span>
+                <span className="mr-legend__item"><span className="mr-legend__ico is-wall" />Muro</span>
+                <span className="mr-legend__item"><span className="mr-legend__ico is-hole" />Agujero</span>
+              </div>
+            </div>
             <Palette allowed={allowedTypes} onPalettePointerDown={handlePalettePointerDown} />
           </div>
 
           <div className="mr-right">
-            <motion.div
-              key={mission.id}
-              className="mr-mission-card"
-              initial={{ opacity: 0, x: 18 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-            >
-              <div className="mr-mission-title">
-                <Sparkles size={18} />
-                <h2>{mission.title}</h2>
-              </div>
-              <p className="mr-mission-desc">{mission.description}</p>
-              {(mode === 'easy' || (mode === 'medium' && showHint)) && (
-                <div className="mr-hint-box"><Lightbulb size={14} /> {mission.hint}</div>
+            <div className="mr-run-toolbar">
+              <GameButton icon={running ? Pause : Play} onClick={handleRun} disabled={running || program.length === 0} className="mr-btn-run">
+                {running ? 'Ejecutando…' : 'Ejecutar'}
+              </GameButton>
+              <GameButton variant="soft" size="sm" icon={Square} onClick={handleStop} disabled={running}>Reiniciar</GameButton>
+              {mode === 'medium' && !showHint && (
+                <GameButton variant="warning" size="sm" icon={Lightbulb} onClick={useHint}>
+                  Pista {hintsUsed > 0 ? `(${hintsUsed})` : ''}
+                </GameButton>
               )}
-            </motion.div>
-
-            <div className="mr-controls">
-              <div className="mr-run-toolbar">
-                <button className="mr-btn-run" onClick={handleRun} disabled={running || program.length === 0}>
-                  {running ? (<><Pause size={16} /> Ejecutando…</>) : (<><Play size={16} /> Ejecutar</>)}
-                </button>
-                <button className="mr-btn-ghost" onClick={handleStop} disabled={running}>
-                  <Square size={16} /> Reiniciar
-                </button>
-                {mode === 'medium' && !showHint && (
-                  <button className="mr-btn-hint" onClick={useHint}>
-                    <Lightbulb size={16} /> Pista {hintsUsed > 0 ? `(${hintsUsed})` : ''}
-                  </button>
-                )}
-              </div>
-
-              <AnimatePresence>
-                {feedback && (
-                  <motion.div
-                    key={feedback.text}
-                    initial={{ opacity: 0, y: -6, scale: 0.96 }}
-                    animate={feedback.type === 'error'
-                      ? { opacity: 1, y: 0, scale: 1, x: [0, -8, 8, -5, 5, 0] }
-                      : { opacity: 1, y: 0, scale: [0.96, 1.03, 1] }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.45 }}
-                    className={`mr-feedback mr-feedback-${feedback.type}`}
-                    role="status"
-                  >
-                    {feedback.text}
-                    {feedback.type === 'success' && !isExam && !isReto && (
-                      <button className="mr-btn-primary mr-feedback-next" onClick={nextMission}>
-                        {missionIndex < missions.length - 1 ? 'Siguiente misión' : 'Terminar'} <ArrowRight size={16} />
-                      </button>
-                    )}
-                  </motion.div>
-                )}
-                {isReto && retoResult && (
-                  <motion.div
-                    key="reto-result"
-                    className={`mr-reto-result ${retoResult.success ? 'ok' : 'ko'}`}
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'spring', stiffness: 240, damping: 20 }}
-                  >
-                    <div className="mr-reto-result-head">
-                      <Trophy size={20} /> {retoResult.success ? 'Reto superado' : 'Reto fallido'}
-                    </div>
-                    <div className="mr-reto-result-body">
-                      <div className="mr-reto-note">{retoResult.nota.toFixed(1)}<span>/10</span></div>
-                      <div className="mr-reto-stats">
-                        <div><span>Bloques usados</span><b>{retoResult.blocksUsed}{retoResult.suggested ? ` / ${retoResult.suggested}` : ''}</b></div>
-                        <div><span>Ítems</span><b>{retoResult.collected}/{retoResult.neededItems}</b></div>
-                        {retoResult.progress != null && (
-                          <div><span>Retos del curso</span><b>{retoResult.progress}/5 🔥</b></div>
-                        )}
-                      </div>
-                    </div>
-                    {retoResult.newBadge && (
-                      <div className="mr-badge-unlock">
-                        <span className="mr-badge-ico">{retoResult.newBadge.icon}</span>
-                        <div>
-                          <div className="mr-badge-title">¡Nueva insignia!</div>
-                          <div className="mr-badge-name">{retoResult.newBadge.name_es}</div>
-                          <div className="mr-badge-desc">{retoResult.newBadge.description_es} · <b>+{retoResult.newBadge.xp_reward} XP</b></div>
-                        </div>
-                      </div>
-                    )}
-                    <div className="mr-reto-actions">
-                      <button className="mr-btn-secondary" onClick={restart}>Volver al menú</button>
-                      <button className="mr-btn-primary" onClick={newReto}>
-                        <RotateCcw size={16} /> Otro reto
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
+
+            <RoundBanner
+              show={!!feedback}
+              status={feedback?.type === 'success' ? 'won' : 'lost'}
+              title={feedback?.type === 'success' ? '¡Misión completada!' : 'Intenta otra vez'}
+              subtitle={feedback?.type === 'success' ? 'Buen trabajo.' : feedback?.text}
+              action={feedback?.type === 'success' && !isExam && !isReto ? nextMission : undefined}
+              actionLabel={missionIndex < missions.length - 1 ? 'Siguiente misión' : 'Terminar'}
+            />
+
+            <AnimatePresence>
+              {isReto && retoResult && (
+                <motion.div
+                  key="reto-result"
+                  className={`mr-reto ${retoResult.success ? 'is-ok' : 'is-ko'}`}
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 240, damping: 20 }}
+                >
+                  <div className="mr-reto__head"><Trophy size={20} /> {retoResult.success ? 'Reto superado' : 'Reto fallido'}</div>
+                  <div className="mr-reto__body">
+                    <GradeRing nota={retoResult.nota} size={128} />
+                    <div className="mr-reto__stats">
+                      <div><span>Bloques usados</span><b>{retoResult.blocksUsed}{retoResult.suggested ? ` / ${retoResult.suggested}` : ''}</b></div>
+                      <div><span>Ítems</span><b>{retoResult.collected}/{retoResult.neededItems}</b></div>
+                      {retoResult.progress != null && (
+                        <div><span>Retos del curso</span><b>{retoResult.progress}/5</b></div>
+                      )}
+                    </div>
+                  </div>
+                  {retoResult.newBadge && (
+                    <div className="mr-badge">
+                      <span className="mr-badge__ico">{retoResult.newBadge.icon}</span>
+                      <div>
+                        <div className="mr-badge__title">¡Nueva insignia!</div>
+                        <div className="mr-badge__name">{retoResult.newBadge.name_es}</div>
+                        <div className="mr-badge__desc">{retoResult.newBadge.description_es} · <b>+{retoResult.newBadge.xp_reward} XP</b></div>
+                      </div>
+                    </div>
+                  )}
+                  <div className="mr-reto__actions">
+                    <GameButton variant="soft" icon={LayoutGrid} onClick={restart}>Volver al menú</GameButton>
+                    <GameButton icon={RotateCcw} onClick={newReto}>Otro reto</GameButton>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <div className="mr-program">
               <div className="mr-program-head">
-                <span>🧠 Mi programa</span>
-                <button className="mr-mini-btn danger" onClick={handleClearProgram} disabled={program.length === 0} title="Borrar todo el programa">
-                  <Trash2 size={12} /> Vaciar
-                </button>
+                <span className="mr-hat"><Play size={13} fill="currentColor" /> al pulsar <b>Ejecutar</b></span>
+                <GameButton variant="ghost" size="sm" icon={Trash2} onClick={handleClearProgram} disabled={program.length === 0} title="Borrar todo el programa">
+                  Vaciar
+                </GameButton>
               </div>
               <div
                 className={`mr-program-root ${drag?.hover?.bodyId === 'root' ? 'over' : ''}`}
@@ -1523,7 +1392,7 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
               >
                 {program.length === 0 && (
                   <div className="mr-program-empty">
-                    Arrastra bloques desde la paleta y encájalos aquí.
+                    <Puzzle size={18} /> Arrastra bloques desde la paleta y encájalos aquí.
                   </div>
                 )}
                 {program.map((b) => (
@@ -1542,6 +1411,8 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
           </div>
         </div>
       </div>
+
+      {instructions}
 
       {/* Drop marker global */}
       {drag?.hover && (
@@ -1571,8 +1442,48 @@ const MisionesRoboticas = ({ onGameComplete, isPaused }) => {
           ))}
         </div>
       )}
-    </div>
+    </GameShell>
   );
 };
+
+// Diálogo propio (sin window.confirm): reglas del examen / del reto.
+function MrDialog({ open, tone = 'exam', icon: Icon, title, lead, children, actions = [], onClose }) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') onClose?.(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div className="mr-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+          <motion.div
+            className={`mr-dialog gk-tone-${tone}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label={title}
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.94, opacity: 0, y: 14 }}
+            transition={{ type: 'spring', stiffness: 360, damping: 28 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mr-dialog__band" aria-hidden="true" />
+            <span className="mr-dialog__medal" aria-hidden="true">{Icon && <Icon size={28} />}</span>
+            <h2 className="mr-dialog__title">{title}</h2>
+            {lead && <p className="mr-dialog__lead">{lead}</p>}
+            <div className="mr-dialog__rules">{children}</div>
+            <div className="mr-dialog__actions">
+              {actions.map((a) => (
+                <GameButton key={a.label} variant={a.variant || 'primary'} icon={a.icon} onClick={a.onClick} autoFocus={a.autoFocus}>{a.label}</GameButton>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 
 export default MisionesRoboticas;

@@ -1,15 +1,23 @@
 // src/apps/millonario/Millonario.jsx
+// Rediseño 2026 sobre el kit de interfaz (_shared/kit): plató de concurso
+// nocturno con focos, pregunta y respuestas en rombos alargados unidos por el
+// raíl del plató, comodines como medallones esmaltados y escalera de premios
+// con el peldaño actual iluminado. La lógica de juego y el tracking no cambian.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Trophy, Users, RefreshCw, Timer,
-  Check, X, Crown, Zap, Shuffle, Sparkles,
+  Trophy, Users, RefreshCw, Check, Crown, Zap, Shuffle, Sparkles,
+  LayoutGrid, GraduationCap, Wand2, ShieldCheck, Coins,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Lives, AnswerOption, GameButton, Chip,
+  ModeSelect, RoundBanner, ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './Millonario.css';
 
 // --- Escalera de premios clásica ---
@@ -52,19 +60,6 @@ const MODE_CONFIG = {
 };
 
 const OPTION_LETTERS = ['A', 'B', 'C', 'D'];
-
-// Fondo decorativo de plató: orbes dorado/índigo, focos y destellos.
-const MillDecor = () => (
-  <div className="mill-decor" aria-hidden="true">
-    <div className="fx-app-backdrop" />
-    <div className="mill-decor-grid fx-grid-bg" />
-    <span className="mill-spot left" />
-    <span className="mill-spot right" />
-    {Array.from({ length: 7 }).map((_, i) => (
-      <span key={i} className={`mill-star s${i}`} />
-    ))}
-  </div>
-);
 
 const shuffle = (arr) => {
   const a = [...arr];
@@ -142,7 +137,8 @@ const Millonario = ({ onGameComplete }) => {
   // --- Estado ---
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null); // null | 'easy' | 'medium' | 'exam'
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [status, setStatus] = useState('playing'); // 'playing' | 'correct' | 'wrong' | 'won' | 'lost'
@@ -206,8 +202,9 @@ const Millonario = ({ onGameComplete }) => {
     gameStartRef.current = Date.now();
   }, [gameMode, allWords]);
 
-  // --- Al cargar o cambiar modo, iniciar partida ---
+  // --- Al cargar o elegir modo, iniciar partida ---
   useEffect(() => {
+    if (!gameMode) return; // pantalla previa: aún no hay partida
     if (!loading && allWords.length >= 4) {
       startGame();
     }
@@ -223,7 +220,7 @@ const Millonario = ({ onGameComplete }) => {
   // --- Timer para modo examen ---
   useEffect(() => {
     const cfg = MODE_CONFIG[gameMode];
-    if (!cfg.timer || status !== 'playing' || !questions.length) {
+    if (!cfg || !cfg.timer || status !== 'playing' || !questions.length) {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
@@ -396,7 +393,8 @@ const Millonario = ({ onGameComplete }) => {
 
   // --- Datos derivados ---
   const currentQ = questions[currentIndex];
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa (gameMode null) se usa la config fácil solo para pintar.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
   const prizeLadder = useMemo(() => {
     // Escalar el ladder a la cantidad de preguntas
     const total = cfg.questions;
@@ -428,393 +426,417 @@ const Millonario = ({ onGameComplete }) => {
   const nota = questions.length > 0
     ? Math.round((maxReached / questions.length) * 100) / 10
     : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-    : nota >= 7 ? '¡Muy bien! 👏'
-    : nota >= 5 ? 'Aprobado. Sigue practicando 💪'
-    : 'Necesitas repasar más 📖';
   const isExamMode = gameMode === 'exam';
+
+  // Volver a la pantalla de modos. El estado vuelve al inicial ('playing') para
+  // que, al elegir otro modo, el efecto de tracking no vea el 'won'/'lost' de
+  // la partida anterior mientras arranca la nueva.
+  const backToModes = () => {
+    setStatus('playing');
+    setGameMode(null);
+  };
+
+  const instructions = (
+    <InstructionsModal
+      isOpen={showHelp}
+      onClose={() => setShowHelp(false)}
+      title="Cómo jugar al Millonario"
+    >
+      <h3>🎯 Objetivo</h3>
+      <p>
+        Responde correctamente para subir por la <strong>escalera de premios</strong>.
+        Cada acierto te hace avanzar un nivel. Un solo fallo te puede hacer perder lo
+        ganado... salvo que llegues a las <strong>redes de seguridad</strong>.
+      </p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Lee la pregunta (la definición del vocabulario).</li>
+        <li>Elige una de las <strong>4 opciones</strong> (A, B, C, D).</li>
+        <li>Si aciertas, sumas puntos y avanzas.</li>
+        <li>Si fallas en práctica y tienes vidas, puedes continuar.</li>
+        <li>En examen solo tienes <strong>1 vida</strong> y <strong>30 segundos por pregunta</strong>.</li>
+      </ul>
+
+      <h3>🪄 Comodines (disponibles en TODOS los modos, incluido examen)</h3>
+      <ul>
+        <li><strong>50:50</strong> — Elimina 2 respuestas incorrectas.</li>
+        <li><strong>👥 Público</strong> — Muestra una encuesta orientativa del público.</li>
+        <li><strong>🔄 Cambio</strong> — Sustituye la pregunta actual por otra.</li>
+      </ul>
+      <p>Cada comodín solo se puede usar <strong>una vez por partida</strong>.</p>
+
+      <h3>🎓 Niveles de dificultad</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy">
+          <strong>🟢 Fácil</strong>
+          5 preguntas, 3 vidas, sin tiempo.
+        </div>
+        <div className="instr-mode medium">
+          <strong>🟡 Medio</strong>
+          10 preguntas, 2 vidas, red en nivel 5.
+        </div>
+        <div className="instr-mode exam">
+          <strong>🔴 Examen</strong>
+          15 preguntas, 1 vida, 30s/pregunta, redes 5 y 10.
+        </div>
+      </div>
+
+      <div className="instr-tips">
+        <strong>💡 Redes de seguridad:</strong> al superar los niveles 5 y 10 en modo medio/examen,
+        si fallas después te llevas el último premio asegurado.
+      </div>
+    </InstructionsModal>
+  );
+
+  const shellProps = { accent: '#7c3aed', accent2: '#f59e0b', theme: 'dark', className: 'mil-shell' };
 
   // --- Render ---
   if (loading) {
     return (
-      <div className="mill-root">
-        <div className="mill-card">
-          <div className="mill-loading">Cargando...</div>
-        </div>
-      </div>
+      <GameShell {...shellProps}>
+        <GameLoading label="Encendiendo los focos del plató…" />
+      </GameShell>
     );
   }
 
   if (allWords.length < 4) {
     return (
-      <div className="mill-root">
-        <div className="mill-card">
-          <div className="mill-title">
-            <span>💰</span> Millonario
-          </div>
-          <div className="mill-empty">
-            <p>No hay suficientes preguntas para esta asignatura.</p>
-            <p className="mill-empty-sub">Se necesitan al menos 4 palabras con definición en el Rosco.</p>
-          </div>
-        </div>
-      </div>
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="No hay suficientes preguntas">
+          Se necesitan al menos 4 palabras con definición en el Rosco de esta asignatura.
+        </GameEmpty>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  // --- Pantalla previa: elegir modo ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', title: 'Fácil',
+        desc: 'Cinco preguntas para calentar bajo los focos.',
+        features: ['5 preguntas · 3 vidas', 'Sin reloj', `Hasta ${formatMoney(PRIZE_LADDER[4])}`],
+      },
+      {
+        id: 'medium', tone: 'medium', title: 'Medio',
+        desc: 'Diez preguntas con redes de seguridad.',
+        features: ['10 preguntas · 2 vidas', 'Redes en los niveles 5 y 10', `Hasta ${formatMoney(PRIZE_LADDER[9])}`],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Quince preguntas, una vida y 30 segundos por pregunta.',
+        features: ['Nota sobre 10', '30 s por pregunta', 'A por el millón'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps} scene={<MillStudio />}>
+        <ModeSelect
+          modes={modes}
+          onSelect={(id) => setGameMode(id)}
+          onHelp={() => setShowHelp(true)}
+          footer={(
+            <span className="mil-modes-foot">
+              <Wand2 size={15} /> Comodines 50:50, Público y Cambio en todos los modos · uno de cada por partida
+            </span>
+          )}
+        />
+        {instructions}
+      </GameShell>
     );
   }
 
   const isFinished = status === 'won' || status === 'lost';
+  const finalPrize = status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize);
+  const usedHelps = [usedFifty, usedAudience, usedSwap].filter(Boolean).length;
+
+  // --- Examen terminado: resumen con la nota ---
+  if (isFinished && isExamMode) {
+    return (
+      <GameShell {...shellProps} scene={<MillStudio />}>
+        <ResultsScreen
+          title={status === 'won' ? '¡Eres millonario!' : 'Examen terminado'}
+          subtitle={`Millonario · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={finalPrize}
+          pointsLabel="€ de premio · ¡supera tu récord!"
+          stats={[
+            { icon: Check, tone: 'good', label: 'Aciertos', value: `${maxReached}/${questions.length}` },
+            { icon: ShieldCheck, tone: 'accent', label: 'Red de seguridad', value: safePrize > 0 ? formatMoney(safePrize) : '—' },
+            { icon: Wand2, tone: 'streak', label: 'Comodines', value: `${usedHelps}/3` },
+          ]}
+          actions={[
+            { label: 'Jugar otra vez', onClick: startGame, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const showResult = status === 'correct' || status === 'wrong';
+  const timedOut = status === 'wrong' && cfg.timer && timeLeft === 0;
+  // Texto del botón tras fallar: refleja lo que hará nextQuestion.
+  const nextLabel = status === 'wrong' && lives <= 0
+    ? 'Ver resultado'
+    : status === 'wrong' && cfg.helps
+      ? 'Volver a intentarlo'
+      : currentIndex + 1 >= questions.length ? 'Ver resultado' : 'Siguiente pregunta';
+
+  const renderOption = (i) => {
+    const opt = currentQ.options[i];
+    const isHidden = hiddenOptions.has(i);
+    const isSelected = selectedIndex === i;
+    const isCorrect = i === currentQ.correctIndex;
+    const reveal = showResult && isCorrect;
+    const wrong = showResult && isSelected && !isCorrect;
+    const pollPct = audiencePoll?.[i];
+    const state = reveal ? 'correct' : wrong ? 'wrong' : isSelected ? 'selected' : 'idle';
+    return (
+      <AnswerOption
+        key={`${currentIndex}-${i}`}
+        letter={OPTION_LETTERS[i]}
+        state={state}
+        className={`mil-opt ${isHidden ? 'is-hidden' : ''} ${showResult && !reveal && !wrong ? 'is-dim' : ''}`}
+        onClick={() => answer(i)}
+        disabled={isHidden || status !== 'playing'}
+        aria-label={isHidden ? `Opción ${OPTION_LETTERS[i]} eliminada` : `Opción ${OPTION_LETTERS[i]}: ${opt}`}
+      >
+        <span className="mil-opt__label">{isHidden ? '' : opt}</span>
+        {pollPct !== undefined && !isHidden && (
+          <span className="mil-poll" aria-label={`Público: ${pollPct}%`}>
+            <span className="mil-poll__track">
+              <span className="mil-poll__bar" style={{ transform: `scaleX(${pollPct / 100})` }} />
+            </span>
+            <span className="mil-poll__pct">{pollPct}%</span>
+          </span>
+        )}
+      </AnswerOption>
+    );
+  };
 
   return (
-    <div className="mill-root">
-      <MillDecor />
-      <motion.div
-        className="mill-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
-        {/* Header */}
-        <div className="mill-header">
-          <div className="mill-title">
-            <span className="mill-emoji">💰</span>
-            <span>Millonario</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="mill-stats">
-            {cfg.timer && !isFinished && (
-              <div className={`mill-stat timer ${timeLeft <= 10 ? 'danger' : ''}`}>
-                <Timer size={16} />
-                <span>{timeLeft}s</span>
-              </div>
+    <GameShell {...shellProps} scene={<MillStudio mood={status} />}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={cfg.label}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            {cfg.helps && !isFinished && (
+              <span className="mil-lives"><Lives total={cfg.lives} left={Math.max(0, lives)} /></span>
             )}
-            {cfg.helps && (
-              <div className="mill-stat lives">
-                {'❤️'.repeat(Math.max(0, lives))}
-              </div>
-            )}
-            <div className="mill-stat prize">
-              <Crown size={16} />
-              <motion.span
-                key={reachedPrize}
-                initial={{ scale: 1.5, opacity: 0.4 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
-              >
-                {formatMoney(reachedPrize)}
-              </motion.span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mill-subtitle">
-          {subjectInfo.icon} {subjectInfo.nombre || 'General'}
-        </div>
-
-        {/* Tabs modo */}
-        <div className="mill-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button
-              key={key}
-              className={`mill-gamemode-tab fx-shine ${gameMode === key ? 'active' : ''} ${key}`}
-              onClick={() => setGameMode(key)}
-            >
-              <span className="mill-tab-icon">{c.icon}</span>
-              <span className="mill-tab-label">{c.label}</span>
-              <span className="mill-tab-sub">{c.questions} preguntas</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Pantalla final */}
-        <AnimatePresence>
-          {isFinished && (
-            <motion.div
-              className={`mill-result ${status}`}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
-            >
-              <span className="mill-result-rays" aria-hidden="true" />
-              <div className="mill-result-icon">
-                {status === 'won' ? <Crown size={48} /> : <Trophy size={48} />}
-              </div>
-              <h2 className="mill-result-title">
-                {status === 'won' ? '¡ERES MILLONARIO! 🎉' : '¡Partida terminada!'}
-              </h2>
-
-              {isExamMode ? (
-                <>
-                  {/* Nota principal sobre 10 */}
-                  <div className={`mill-nota ${notaColor}`}>
-                    <div
-                      className="mill-nota-ring fx-grade-ring"
-                      style={{
-                        '--fx-grade': nota,
-                        '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
-                      }}
-                    >
-                      <div className="mill-nota-big">
-                        {nota.toFixed(1)}
-                        <span className="mill-nota-small">/10</span>
-                      </div>
-                    </div>
-                    <div className="mill-nota-msg">{notaMsg}</div>
-                  </div>
-                  {/* Dinero como récord superable */}
-                  <div className="mill-result-record fx-shine fx-shine--auto">
-                    <Crown size={16} />
-                    <span className="mill-result-record-value">
-                      {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
-                    </span>
-                    <span className="mill-result-record-label">· ¡supera tu récord!</span>
-                  </div>
-                </>
-              ) : (
-                <div className="mill-result-prize">
-                  {formatMoney(status === 'won' ? prizeLadder[prizeLadder.length - 1] : Math.max(reachedPrize, safePrize))}
-                </div>
-              )}
-
-              <div className="mill-result-stats">
-                <div className="mill-result-stat">
-                  <Check size={16} /> {maxReached} / {questions.length} correctas
-                </div>
-                {gameMode !== 'easy' && safePrize > 0 && (
-                  <div className="mill-result-stat safe">
-                    <Sparkles size={14} /> Red de seguridad: {formatMoney(safePrize)}
-                  </div>
-                )}
-              </div>
-              <button className="mill-btn primary fx-shine" onClick={startGame}>
-                <RefreshCw size={16} /> Jugar otra vez
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Layout del juego */}
-        {!isFinished && currentQ && (
-          <div className="mill-layout">
-            <div className="mill-main">
-              {/* Comodines */}
-              <div className="mill-lifelines">
-                <button
-                  className={`mill-lifeline ${usedFifty ? 'used' : ''}`}
-                  onClick={useFifty}
-                  disabled={usedFifty || status !== 'playing'}
-                  title="50:50 — elimina 2 opciones incorrectas"
-                >
-                  <span className="mill-lifeline-icon">50:50</span>
-                  <span className="mill-lifeline-label">Mitad</span>
-                </button>
-                <button
-                  className={`mill-lifeline ${usedAudience ? 'used' : ''}`}
-                  onClick={useAudience}
-                  disabled={usedAudience || status !== 'playing'}
-                  title="Público — consulta al público"
-                >
-                  <Users size={20} />
-                  <span className="mill-lifeline-label">Público</span>
-                </button>
-                <button
-                  className={`mill-lifeline ${usedSwap ? 'used' : ''}`}
-                  onClick={useSwap}
-                  disabled={usedSwap || status !== 'playing'}
-                  title="Cambio — sustituye la pregunta por otra"
-                >
-                  <Shuffle size={20} />
-                  <span className="mill-lifeline-label">Cambio</span>
-                </button>
-              </div>
-
-              {/* Número de pregunta y prize */}
-              <div className="mill-question-meta">
-                <span className="mill-question-num">
-                  Pregunta {currentIndex + 1} de {questions.length}
-                </span>
-                <span className="mill-question-prize">
-                  {formatMoney(currentPrize)}
-                </span>
-              </div>
-
-              {/* Pregunta */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  className="mill-question"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="mill-question-beam" aria-hidden="true" />
-                  <div className="mill-question-text">{currentQ.question}</div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Opciones */}
-              <div className="mill-options">
-                {currentQ.options.map((opt, i) => {
-                  const isHidden = hiddenOptions.has(i);
-                  const isSelected = selectedIndex === i;
-                  const isCorrect = i === currentQ.correctIndex;
-                  const showResult = status === 'correct' || status === 'wrong';
-                  const reveal = showResult && isCorrect;
-                  const wrong = showResult && isSelected && !isCorrect;
-                  const pollPct = audiencePoll?.[i];
-
-                  return (
-                    <motion.button
-                      key={`${currentIndex}-${i}`}
-                      className={`mill-option ${isHidden ? 'hidden' : ''} ${
-                        isSelected ? 'selected' : ''
-                      } ${reveal ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}
-                      onClick={() => answer(i)}
-                      disabled={isHidden || status !== 'playing'}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <div className="mill-option-main">
-                        <span className="mill-option-letter">{OPTION_LETTERS[i]}</span>
-                        <span className="mill-option-text">
-                          {isHidden ? '' : opt}
-                        </span>
-                        {showResult && isCorrect && <Check size={18} className="mill-option-icon" />}
-                        {wrong && <X size={18} className="mill-option-icon" />}
-                      </div>
-                      {pollPct !== undefined && !isHidden && (
-                        <div className="mill-option-poll">
-                          <div
-                            className="mill-option-poll-bar"
-                            style={{ width: `${pollPct}%` }}
-                          />
-                          <span className="mill-option-poll-label">{pollPct}%</span>
-                        </div>
-                      )}
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              {/* Feedback + botón siguiente */}
-              <AnimatePresence>
-                {(status === 'correct' || status === 'wrong') && (
-                  <motion.div
-                    className={`mill-feedback ${status}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    {status === 'correct' ? (
-                      <>
-                        <div className="mill-feedback-msg">
-                          <Check size={18} /> ¡Correcto! +{formatMoney(currentPrize)}
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="mill-feedback-msg">
-                          <X size={18} /> Incorrecto. Solución: <strong>{currentQ.correct}</strong>
-                        </div>
-                        {(cfg.helps && lives > 0) || currentIndex + 1 < questions.length ? (
-                          <button className="mill-btn primary" onClick={nextQuestion}>
-                            {lives > 0 && cfg.helps ? 'Intentar siguiente' : 'Ver resultado'}
-                          </button>
-                        ) : (
-                          <button className="mill-btn primary" onClick={nextQuestion}>
-                            Ver resultado
-                          </button>
-                        )}
-                      </>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Escalera de premios */}
-            <div className="mill-ladder">
-              <div className="mill-ladder-title">
-                <Crown size={14} /> Escalera
-              </div>
-              <ul className="mill-ladder-list">
-                {[...prizeLadder].reverse().map((prize, idx) => {
-                  const level = prizeLadder.length - idx; // 1-based
-                  const isCurrent = level === currentIndex + 1 && status === 'playing';
-                  const isWon = level <= maxReached;
-                  const isSafe = SAFE_LEVELS.includes(level) && gameMode !== 'easy';
-                  return (
-                    <li
-                      key={level}
-                      className={`mill-ladder-item ${isCurrent ? 'current' : ''} ${
-                        isWon ? 'won' : ''
-                      } ${isSafe ? 'safe' : ''}`}
-                    >
-                      <span className="mill-ladder-num">{level}</span>
-                      <span className="mill-ladder-amount">{formatMoney(prize)}</span>
-                      {isSafe && <Sparkles size={12} className="mill-ladder-safe-icon" />}
-                    </li>
-                  );
-                })}
-              </ul>
-              {gameMode === 'exam' && (
-                <div className="mill-ladder-note">
-                  <Zap size={12} /> Red: niveles 5 y 10
-                </div>
-              )}
-            </div>
-          </div>
+            <HudStat icon={Crown} tone="streak" value={formatMoney(reachedPrize)} label="Premio" />
+          </Hud>
         )}
-      </motion.div>
+      />
 
-      <InstructionsModal
-        isOpen={showHelp}
-        onClose={() => setShowHelp(false)}
-        title="Cómo jugar al Millonario"
-      >
-        <h3>🎯 Objetivo</h3>
-        <p>
-          Responde correctamente para subir por la <strong>escalera de premios</strong>.
-          Cada acierto te hace avanzar un nivel. Un solo fallo te puede hacer perder lo
-          ganado... salvo que llegues a las <strong>redes de seguridad</strong>.
-        </p>
-
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li>Lee la pregunta (la definición del vocabulario).</li>
-          <li>Elige una de las <strong>4 opciones</strong> (A, B, C, D).</li>
-          <li>Si aciertas, sumas puntos y avanzas.</li>
-          <li>Si fallas en práctica y tienes vidas, puedes continuar.</li>
-          <li>En examen solo tienes <strong>1 vida</strong> y <strong>30 segundos por pregunta</strong>.</li>
-        </ul>
-
-        <h3>🪄 Comodines (disponibles en TODOS los modos, incluido examen)</h3>
-        <ul>
-          <li><strong>50:50</strong> — Elimina 2 respuestas incorrectas.</li>
-          <li><strong>👥 Público</strong> — Muestra una encuesta orientativa del público.</li>
-          <li><strong>🔄 Cambio</strong> — Sustituye la pregunta actual por otra.</li>
-        </ul>
-        <p>Cada comodín solo se puede usar <strong>una vez por partida</strong>.</p>
-
-        <h3>🎓 Niveles de dificultad</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy">
-            <strong>🟢 Fácil</strong>
-            5 preguntas, 3 vidas, sin tiempo.
+      {/* --- Partida de práctica terminada --- */}
+      {isFinished && (
+        <motion.div
+          className={`mil-finale is-${status}`}
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 170, damping: 18 }}
+        >
+          <span className="mil-finale__rays" aria-hidden="true" />
+          <div className="mil-finale__medal" aria-hidden="true">
+            {status === 'won' ? <Crown size={46} /> : <Trophy size={44} />}
           </div>
-          <div className="instr-mode medium">
-            <strong>🟡 Medio</strong>
-            10 preguntas, 2 vidas, red en nivel 5.
+          <h2 className="mil-finale__title">{status === 'won' ? '¡Eres millonario!' : '¡Partida terminada!'}</h2>
+          <div className="mil-cheque">
+            <span className="mil-cheque__label"><Coins size={15} /> Te llevas</span>
+            <strong className="mil-cheque__amount">{formatMoney(finalPrize)}</strong>
           </div>
-          <div className="instr-mode exam">
-            <strong>🔴 Examen</strong>
-            15 preguntas, 1 vida, 30s/pregunta, redes 5 y 10.
+          <div className="mil-finale__stats">
+            <Chip tone="good" icon={Check}>{maxReached} / {questions.length} correctas</Chip>
+            {gameMode !== 'easy' && safePrize > 0 && (
+              <Chip tone="soft" icon={Sparkles}>Red de seguridad: {formatMoney(safePrize)}</Chip>
+            )}
           </div>
+          <div className="mil-finale__actions">
+            <GameButton size="lg" icon={RefreshCw} onClick={startGame}>Jugar otra vez</GameButton>
+            <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={backToModes}>Cambiar de modo</GameButton>
+          </div>
+        </motion.div>
+      )}
+
+      {/* --- Plató --- */}
+      {!isFinished && currentQ && (
+        <div className={`mil-stage is-${status}`}>
+          <div className="mil-main">
+            <div className="mil-qmeta">
+              <span className="mil-qnum">Pregunta <strong>{currentIndex + 1}</strong> de {questions.length}</span>
+              <span className="mil-qprize"><Coins size={15} /> {formatMoney(currentPrize)}</span>
+            </div>
+
+            {cfg.timer && <MillClock timeLeft={timeLeft} total={cfg.timer} paused={status !== 'playing'} />}
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${currentIndex}-${currentQ.question}`}
+                className="mil-q"
+                initial={{ opacity: 0, scaleX: 0.86 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                exit={{ opacity: 0, scaleX: 0.9 }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="mil-lozenge">
+                  <p className="mil-q__text">{currentQ.question}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mil-options" role="group" aria-label="Respuestas">
+              {[0, 2].map((start) => (
+                <div className="mil-row" key={start}>
+                  {renderOption(start)}
+                  {renderOption(start + 1)}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <aside className="mil-board" aria-label="Comodines y escalera de premios">
+            <div className="mil-lifelines">
+              <Lifeline used={usedFifty} disabled={usedFifty || status !== 'playing'} onClick={useFifty} label="Mitad" title="50:50 — elimina 2 opciones incorrectas">
+                <span className="mil-ll__fifty">50:50</span>
+              </Lifeline>
+              <Lifeline used={usedAudience} disabled={usedAudience || status !== 'playing'} onClick={useAudience} label="Público" title="Público — consulta al público">
+                <Users size={20} />
+              </Lifeline>
+              <Lifeline used={usedSwap} disabled={usedSwap || status !== 'playing'} onClick={useSwap} label="Cambio" title="Cambio — sustituye la pregunta por otra">
+                <Shuffle size={20} />
+              </Lifeline>
+            </div>
+
+            <div className="mil-ladder-head"><Crown size={14} /> Escalera de premios</div>
+            <ol className="mil-ladder">
+              {[...prizeLadder].reverse().map((prize, idx) => {
+                const level = prizeLadder.length - idx; // 1-based
+                const isCurrent = level === currentIndex + 1 && status === 'playing';
+                const isWon = level <= maxReached;
+                const isSafe = SAFE_LEVELS.includes(level) && gameMode !== 'easy';
+                const isNear = Math.abs(level - (currentIndex + 1)) <= 2;
+                return (
+                  <li
+                    key={level}
+                    className={[
+                      'mil-rung',
+                      isCurrent && 'is-current',
+                      isWon && 'is-won',
+                      isSafe && 'is-safe',
+                      isNear && 'is-near',
+                      level === prizeLadder.length && 'is-top',
+                    ].filter(Boolean).join(' ')}
+                  >
+                    {isCurrent && (
+                      <motion.span layoutId="mil-rung-hl" className="mil-rung__hl" transition={{ type: 'spring', stiffness: 320, damping: 30 }} />
+                    )}
+                    <span className="mil-rung__num">{level}</span>
+                    <span className="mil-rung__amount">{formatMoney(prize)}</span>
+                    <span className="mil-rung__mark">
+                      {isWon ? <Check size={13} strokeWidth={3} /> : isSafe ? <Sparkles size={12} /> : null}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+            {gameMode === 'exam' && (
+              <div className="mil-ladder-note">
+                <Zap size={12} /> Red: niveles 5 y 10
+              </div>
+            )}
+          </aside>
         </div>
+      )}
 
-        <div className="instr-tips">
-          <strong>💡 Redes de seguridad:</strong> al superar los niveles 5 y 10 en modo medio/examen,
-          si fallas después te llevas el último premio asegurado.
+      <RoundBanner
+        show={!isFinished && showResult}
+        status={status === 'correct' ? 'won' : 'lost'}
+        title={status === 'correct' ? '¡Correcto!' : timedOut ? '¡Se acabó el tiempo!' : 'Incorrecto'}
+        subtitle={status === 'correct'
+          ? `+${formatMoney(currentPrize)} · ${currentIndex + 1 < questions.length ? 'subes un peldaño' : '¡última pregunta superada!'}`
+          : <>La respuesta correcta era <strong>{currentQ?.correct}</strong></>}
+        action={status === 'wrong' ? nextQuestion : undefined}
+        actionLabel={nextLabel}
+      />
+
+      {!isFinished && (
+        <div className="mil-footer">
+          {!isExamMode ? (
+            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToModes}>
+              Cambiar modo
+            </GameButton>
+          ) : (
+            <span className="mil-footer__info">
+              <GraduationCap size={14} /> Modo examen · 1 vida · 30 s por pregunta
+            </span>
+          )}
+          <span className="mil-footer__info mil-footer__subject">
+            {subjectInfo.icon} {subjectInfo.nombre || 'General'}
+          </span>
         </div>
-      </InstructionsModal>
+      )}
+
+      {instructions}
+    </GameShell>
+  );
+};
+
+// Decorado del plató: focos cenitales, suelo brillante y destellos. Estático
+// salvo el leve vaivén de los focos con nivel de efectos alto.
+const MillStudio = ({ mood }) => (
+  <div className={`mil-studio ${mood ? `is-${mood}` : ''}`} aria-hidden="true">
+    <span className="mil-studio__beam mil-studio__beam--l" />
+    <span className="mil-studio__beam mil-studio__beam--r" />
+    <span className="mil-studio__floor" />
+    <span className="mil-studio__flash" />
+    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`mil-studio__star s${i}`} />)}
+  </div>
+);
+
+// Comodín: medallón ovalado de esmalte con aro dorado. Usado → aspa roja.
+const Lifeline = ({ used, disabled, onClick, label, title, children }) => (
+  <button
+    type="button"
+    className={`mil-ll ${used ? 'is-used' : ''}`}
+    onClick={onClick}
+    disabled={disabled}
+    title={title}
+    aria-label={title}
+  >
+    <span className="mil-ll__medal">
+      {children}
+      {used && <span className="mil-ll__x" aria-hidden="true" />}
+    </span>
+    <span className="mil-ll__label">{label}</span>
+  </button>
+);
+
+// Reloj del examen: aro que se vacía segundo a segundo (sin transición: un
+// salto por segundo) con el número en el centro.
+const MillClock = ({ timeLeft, total, paused }) => {
+  const r = 26;
+  const c = 2 * Math.PI * r;
+  const pct = total ? Math.max(0, Math.min(1, timeLeft / total)) : 0;
+  const danger = timeLeft <= 10;
+  return (
+    <div className={`mil-clock ${danger ? 'is-danger' : ''} ${paused ? 'is-paused' : ''}`} role="timer" aria-label={`${timeLeft} segundos`}>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r={r} className="mil-clock__track" />
+        <circle
+          cx="32" cy="32" r={r}
+          className="mil-clock__arc"
+          strokeDasharray={c}
+          strokeDashoffset={c * (1 - pct)}
+          transform="rotate(-90 32 32)"
+        />
+      </svg>
+      <span key={timeLeft} className="mil-clock__num">{timeLeft}</span>
     </div>
   );
 };

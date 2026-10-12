@@ -2,11 +2,20 @@ import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Cpu, Trash2, Lightbulb, Play, RotateCcw, Check, ArrowRight, Clock, Trophy, Sparkles, Zap, ZoomIn, ZoomOut, Move, Maximize2, Volume2, VolumeX, Save, FolderOpen, X, Plus } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import {
+  Cpu, Trash2, Lightbulb, RotateCcw, Check, ArrowRight, Clock, Zap, ZoomIn, ZoomOut, Move, Maximize2,
+  Volume2, VolumeX, Save, FolderOpen, X, Plus, Gauge, Wrench, CircuitBoard, LayoutGrid, Plug,
+  AlertTriangle, Pencil,
+} from 'lucide-react';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, GameButton, ModeSelect, RoundBanner,
+  ResultsScreen, FeedbackItem,
+} from '../_shared/kit';
 import { COMPONENT_TEMPLATES, getExercises } from './roboticaData';
 import { listDesigns, saveDesign, deleteDesign } from './robotLabDesignsService';
 import { useAuth } from '@/contexts/AuthContext';
+import ComponentArt from './LabArt';
 import './LaboratorioRobotica.css';
 
 const BOARD_W = 820;
@@ -205,96 +214,55 @@ function analyzeCircuit(components, wires, states) {
 
 // --- Renderers -------------------------------------------------------------
 
-// Widget interactivo / visual de cada componente según su tipo.
-const ComponentWidget = ({ component, active, state, onToggleState, onButtonDown, tplColor }) => {
+// Parte interactiva de algunos componentes (interruptor, pulsador, sensores,
+// potenciómetro). El dibujo del componente lo pone <ComponentArt>.
+const ComponentWidget = ({ component, active, state, onToggleState, onButtonDown }) => {
   switch (component.type) {
-    case 'led':
-    case 'led2':
-      return (
-        <div
-          className={`rob-led-bulb ${active ? 'on' : ''}`}
-          style={{ '--led-color': tplColor }}
-          aria-label={active ? 'LED encendido' : 'LED apagado'}
-        />
-      );
-    case 'buzzer':
-      return (
-        <div className={`rob-buzzer-ico ${active ? 'on' : ''}`}>
-          <span className="rob-buzzer-emoji">🔔</span>
-          {active && (
-            <>
-              <span className="rob-wave w1" />
-              <span className="rob-wave w2" />
-              <span className="rob-wave w3" />
-            </>
-          )}
-        </div>
-      );
-    case 'motor':
-      return (
-        <div className={`rob-motor-ico ${active ? 'on' : ''}`}>
-          <span className="rob-motor-gear">⚙</span>
-        </div>
-      );
-    case 'rgb': {
-      const r = active?.R ? 255 : 0;
-      const g = active?.G ? 255 : 0;
-      const b = active?.B ? 255 : 0;
-      const isOn = !!(r || g || b);
-      return (
-        <div
-          className={`rob-rgb-bulb ${isOn ? 'on' : ''}`}
-          style={isOn ? { background: `rgb(${r},${g},${b})`, boxShadow: `0 0 22px rgb(${r},${g},${b})` } : undefined}
-          aria-label="LED RGB"
-        />
-      );
-    }
-    case 'servo':
-      return (
-        <div className={`rob-servo-ico ${active ? 'on' : ''}`}>
-          <span className="rob-servo-arrow">↻</span>
-        </div>
-      );
     case 'switch':
       return (
         <button
           type="button"
-          className={`rob-switch-toggle ${state?.on ? 'on' : ''}`}
+          className={`rob-w-switch ${state?.on ? 'on' : ''}`}
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => { e.stopPropagation(); onToggleState(component.id, 'on'); }}
           title={state?.on ? 'Apagar interruptor' : 'Encender interruptor'}
+          aria-pressed={!!state?.on}
         >
-          <span className="rob-switch-knob" />
+          <span className="rob-w-switch__knob" />
+          <span className="rob-w-switch__txt">{state?.on ? 'ON' : 'OFF'}</span>
         </button>
       );
     case 'button':
       return (
         <button
           type="button"
-          className={`rob-press-btn ${state?.pressed ? 'pressed' : ''}`}
+          className={`rob-w-push ${state?.pressed ? 'pressed' : ''}`}
           onPointerDown={(e) => { e.stopPropagation(); onButtonDown(component.id); }}
           title="Mantén pulsado para activar"
-        />
+          aria-label="Pulsador"
+        >
+          <span className="rob-w-push__cap" />
+        </button>
       );
     case 'pir':
     case 'ir':
       return (
         <button
           type="button"
-          className={`rob-sensor-btn ${state?.triggered ? 'triggered' : ''} ${active ? 'powered' : ''}`}
+          className={`rob-w-sensor ${state?.triggered ? 'triggered' : ''} ${active ? 'powered' : ''}`}
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => { e.stopPropagation(); onToggleState(component.id, 'triggered'); }}
           title={active ? (state?.triggered ? 'Desactivar detección' : 'Simular detección') : 'Conecta VCC y GND para activar'}
         >
-          <span className="rob-sensor-led" />
-          <span className="rob-sensor-text">{state?.triggered ? 'DETECTA' : 'STAND-BY'}</span>
+          <span className="rob-w-led" />
+          <span className="rob-w-sensor__txt">{state?.triggered ? 'DETECTA' : 'STAND-BY'}</span>
         </button>
       );
     case 'ultrasonic':
       return (
-        <div className={`rob-ultra-ico ${active ? 'powered' : ''}`}>
-          <span className="rob-sensor-led" />
-          <span className="rob-sensor-text">{active ? 'ON' : 'OFF'}</span>
+        <div className={`rob-w-chip ${active ? 'powered' : ''}`}>
+          <span className="rob-w-led" />
+          <span>{active ? 'ON' : 'OFF'}</span>
         </div>
       );
     case 'pot': {
@@ -304,34 +272,16 @@ const ComponentWidget = ({ component, active, state, onToggleState, onButtonDown
       return (
         <button
           type="button"
-          className="rob-pot-knob"
+          className="rob-w-pot"
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => { e.stopPropagation(); onToggleState(component.id, 'position', (pos + 1) % 3); }}
           title="Click para girar"
         >
-          <span className="rob-pot-dial" style={{ transform: `rotate(${angle}deg)` }}>▲</span>
-          <span className="rob-pot-text">{labels[pos]}</span>
+          <span className="rob-w-pot__dial" style={{ transform: `rotate(${angle}deg)` }}><span className="rob-w-pot__mark" /></span>
+          <span className="rob-w-pot__txt">{labels[pos]}</span>
         </button>
       );
     }
-    case 'ldr':
-      return <span className="rob-passive">☀</span>;
-    case 'ntc':
-      return <span className="rob-passive">🌡</span>;
-    case 'arduino':
-      return (
-        <div className="rob-arduino-power">
-          <span className={`rob-power-led ${active ? 'on' : ''}`} />
-          <span className="rob-arduino-text">UNO</span>
-        </div>
-      );
-    case 'driverH':
-      return <span className="rob-passive">⚡</span>;
-    case 'battery':
-      return <span className="rob-passive">9V</span>;
-    case 'resistor':
-    case 'resistorK':
-      return null;
     default:
       return null;
   }
@@ -340,30 +290,30 @@ const ComponentWidget = ({ component, active, state, onToggleState, onButtonDown
 const ComponentNode = ({ component, onPinClick, selectedPin, wiredPins, onComponentPointerDown, isDragging, isSelected, active, state, onToggleState, onButtonDown }) => {
   const tpl = COMPONENT_TEMPLATES[component.type];
   if (!tpl) return null;
+  const isOn = component.type === 'rgb'
+    ? !!(active && (active.R || active.G || active.B))
+    : !!active;
   return (
     <div
-      className={`rob-component ${isDragging ? 'dragging' : ''} ${isSelected ? 'selected' : ''}`}
+      className={`rob-component type-${component.type} ${isDragging ? 'dragging' : ''} ${isSelected ? 'selected' : ''} ${isOn ? 'is-on' : ''}`}
       style={{
         left: component.x,
         top: component.y,
         width: tpl.w,
         height: tpl.h,
-        borderColor: tpl.color,
+        '--c': tpl.color,
       }}
       onPointerDown={(e) => onComponentPointerDown(e, component.id)}
     >
-      <div className="rob-component-header" style={{ background: tpl.color }}>
-        <span className="rob-component-icon">{tpl.icon}</span>
-        <span className="rob-component-label">{tpl.label}</span>
-      </div>
-      <div className="rob-component-body">
+      <ComponentArt type={component.type} w={tpl.w} h={tpl.h} color={tpl.color} active={active} />
+      <span className="rob-tag"><span className="rob-tag__dot" />{tpl.label}</span>
+      <div className="rob-widget">
         <ComponentWidget
           component={component}
           active={active}
           state={state}
           onToggleState={onToggleState}
           onButtonDown={onButtonDown}
-          tplColor={tpl.color}
         />
       </div>
       {tpl.pins.map((pin) => {
@@ -471,6 +421,8 @@ const WireLayer = ({ wires, components, pendingStart, pendingWaypoints, mousePos
 
   const pendingPos = pendingStart ? getPos(pendingStart) : null;
 
+  // Cada cable se dibuja como un cable real: funda oscura + color + brillo,
+  // con un terminal metálico en cada extremo.
   return (
     <svg className="rob-wires" width={width} height={height} style={{ overflow: 'visible' }}>
       {wires.map((wire, i) => {
@@ -485,8 +437,14 @@ const WireLayer = ({ wires, components, pendingStart, pendingWaypoints, mousePos
             className="rob-wire"
             onClick={(e) => { e.stopPropagation(); onWireClick(wire.id); }}
           >
-            <path d={d} stroke={wireColor(i)} strokeWidth="6" fill="none"
+            <path className="rob-wire__shade" d={d} stroke="rgba(2, 6, 23, 0.55)" strokeWidth="9" fill="none"
                   strokeLinecap="round" strokeLinejoin="round" />
+            <path className="rob-wire__core" d={d} stroke={wireColor(i)} strokeWidth="6" fill="none"
+                  strokeLinecap="round" strokeLinejoin="round" />
+            <path className="rob-wire__gloss" d={d} stroke="#fff" strokeOpacity="0.45" strokeWidth="1.6" fill="none"
+                  strokeLinecap="round" strokeLinejoin="round" transform="translate(-0.8 -1.4)" />
+            <circle cx={pa.x} cy={pa.y} r="4.2" fill="#e2e8f0" stroke="#475569" strokeWidth="1.2" />
+            <circle cx={pb.x} cy={pb.y} r="4.2" fill="#e2e8f0" stroke="#475569" strokeWidth="1.2" />
             <path d={d} stroke="transparent" strokeWidth="18" fill="none" strokeLinejoin="round" />
           </g>
         );
@@ -496,43 +454,34 @@ const WireLayer = ({ wires, components, pendingStart, pendingWaypoints, mousePos
         <>
           <path
             d={polylinePath(pendingPos, pendingWaypoints, mousePos)}
-            stroke="#a855f7"
-            strokeWidth="4"
-            strokeDasharray="4 4"
+            stroke="rgba(2, 6, 23, 0.5)"
+            strokeWidth="7"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity="0.95"
+          />
+          <path
+            className="rob-wire__pending"
+            d={polylinePath(pendingPos, pendingWaypoints, mousePos)}
+            stroke="#22d3ee"
+            strokeWidth="4"
+            strokeDasharray="6 6"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           {(pendingWaypoints || []).map((w, i) => (
-            <circle key={`wp-${i}`} cx={w.x} cy={w.y} r="5"
-                    fill="#a855f7" stroke="#fff" strokeWidth="1.5" />
+            <circle key={`wp-${i}`} cx={w.x} cy={w.y} r="5.5"
+                    fill="#22d3ee" stroke="#fff" strokeWidth="2" />
           ))}
+          <circle cx={mousePos.x} cy={mousePos.y} r="6" fill="none" stroke="#22d3ee" strokeWidth="2" />
         </>
       )}
     </svg>
   );
 };
 
-// Fondo decorativo (orbes + rejilla de PCB + chispas). Solo visual.
-const RobBackdrop = () => (
-  <div className="rob-fx-bg" aria-hidden="true">
-    <span className="rob-fx-orb rob-fx-orb--a" />
-    <span className="rob-fx-orb rob-fx-orb--b" />
-    <span className="rob-fx-orb rob-fx-orb--c" />
-    <span className="rob-fx-grid" />
-    {[0, 1, 2, 3, 4, 5].map((i) => <span key={i} className={`rob-fx-spark rob-fx-spark--${i}`} />)}
-  </div>
-);
-
-// Entrada escalonada de las tarjetas de modo.
-const MODE_CARD_ANIM = (i) => ({
-  initial: { opacity: 0, y: 22, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { delay: 0.08 + i * 0.07, type: 'spring', stiffness: 260, damping: 22 },
-  whileHover: { y: -6, scale: 1.025 },
-  whileTap: { scale: 0.97 },
-});
+const SHELL = { accent: '#06b6d4', accent2: '#2563eb' };
 
 // --- Main App --------------------------------------------------------------
 
@@ -673,6 +622,19 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
     setPan({ x: 0, y: 0 });
     setComponentStates({});
   }, [exerciseIndex, mode]);
+
+  // Solo vista: en pantallas estrechas el tablero se ajusta al ancho disponible
+  // (zoom inicial) para ver el circuito entero. El usuario puede seguir
+  // acercando/alejando con los controles.
+  useEffect(() => {
+    if (screen !== 'play') return;
+    const el = boardRef.current;
+    const w = el ? el.clientWidth : 0;
+    if (w && w < BOARD_W - 1) {
+      setZoom(Math.max(0.4, w / BOARD_W));
+      setPan({ x: 0, y: 0 });
+    }
+  }, [screen, exerciseIndex, mode]);
 
   // Análisis del circuito: qué componentes están activos según los cables y
   // los estados interactivos. Se recalcula cuando cambia algo relevante.
@@ -1200,100 +1162,97 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
 
   // ---- Pantallas --------------------------------------------------------
 
-  if (screen === 'intro') {
-    return (
-      <div className="rob-shell rob-shell--intro">
-        <RobBackdrop />
-        <InstructionsModal
-          isOpen={showInstructions}
-          onClose={() => setShowInstructions(false)}
-          title="Cómo usar el Laboratorio de Robótica"
-        >
-          <h3>🎯 Objetivo</h3>
-          <p>Monta circuitos electrónicos conectando los cables entre los pines de los componentes, como en un verdadero laboratorio de robótica.</p>
-          <h3>🔌 Cómo conectar</h3>
-          <ul>
-            <li>Haz clic en un <b>pin</b> de un componente para iniciar un cable.</li>
-            <li>Haz clic en <b>otro pin</b> para cerrar la conexión.</li>
-            <li>Haz clic sobre un cable existente para <b>borrarlo</b>.</li>
-          </ul>
-          <h3>🎮 Modos</h3>
-          <ul>
-            <li><b>Fácil</b>: verás la solución en gris como guía + pistas ilimitadas.</li>
-            <li><b>Medio</b>: sin solución visible, pero con botón de pista limitada.</li>
-            <li><b>Examen</b>: 10 ejercicios del curso seguidos, sin pistas y puntuados sobre 10.</li>
-          </ul>
-        </InstructionsModal>
+  const fmtTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
-        <div className="rob-hero">
-          <div className="rob-hero-top">
-            <div className="rob-hero-title fx-enter">
-              <div className="rob-hero-badge"><span className="rob-hero-badge-dot" aria-hidden="true" /><Cpu size={18} /> ESO {grade}º</div>
-              <h1>Laboratorio de Robótica</h1>
-              <p>Aprende los circuitos básicos, los componentes electrónicos y el control con Arduino conectando cables como en un laboratorio real.</p>
-            </div>
-            <InstructionsButton onClick={() => setShowInstructions(true)} />
-          </div>
-
-          <div className="rob-mode-grid">
-            <motion.button
-              {...MODE_CARD_ANIM(0)}
-              className="rob-mode-card rob-mode-easy fx-shine"
-              onClick={() => startPractice('easy')}
-            >
-              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🌱</div>
-              <h3>Modo Fácil</h3>
-              <p>Práctica guiada con la solución sugerida en gris y pistas ilimitadas. Ideal para aprender.</p>
-              <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-
-            <motion.button
-              {...MODE_CARD_ANIM(1)}
-              className="rob-mode-card rob-mode-medium fx-shine"
-              onClick={() => startPractice('medium')}
-            >
-              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />⚡</div>
-              <h3>Modo Medio</h3>
-              <p>Sin solución visible. Puedes pedir pistas, pero cada una cuenta. Practica con más autonomía.</p>
-              <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-
-            <motion.button
-              {...MODE_CARD_ANIM(2)}
-              className="rob-mode-card rob-mode-exam fx-shine"
-              onClick={startExam}
-            >
-              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🎯</div>
-              <h3>Modo Examen</h3>
-              <p>Los 10 ejercicios del curso seguidos, sin ayudas. Obtén nota sobre 10 y entra al ranking.</p>
-              <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-
-            <motion.button
-              {...MODE_CARD_ANIM(3)}
-              className="rob-mode-card rob-mode-libre fx-shine"
-              onClick={startLibre}
-            >
-              <div className="rob-mode-icon"><span className="rob-mode-icon-halo" aria-hidden="true" />🛠</div>
-              <h3>Modo libre</h3>
-              <p>Diseña tu propio circuito desde cero con todos los componentes. Guarda tus diseños y ábrelos cuando quieras.</p>
-              <span className="rob-mode-cta">Empezar <ArrowRight size={16} /></span>
-            </motion.button>
-          </div>
-
-          <div className="rob-exercises-grid">
-            <h3>📋 Ejercicios de ESO {grade}º</h3>
-            <div className="rob-exercises-cards fx-stagger">
-              {exercises.map((ex, i) => (
-                <div key={ex.id} className="rob-mini-ex">
-                  <div className="rob-mini-ex-num">{i + 1}</div>
-                  <div className="rob-mini-ex-title">{ex.title.replace(/^\d+\.\s*/, '')}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+  const instructions = screen === 'play' ? (
+    <InstructionsModal
+      isOpen={showInstructions}
+      onClose={() => setShowInstructions(false)}
+      title="Cómo conectar el circuito"
+    >
+      <p>Haz clic en un pin para iniciar un cable y en otro pin para terminarlo. Haz clic sobre un cable para eliminarlo.</p>
+      <p>Pulsa <b>Comprobar</b> cuando creas que el circuito está bien.</p>
+      <div className="instr-tips">
+        <strong>💡 Truco:</strong> haz clic en una zona vacía del tablero mientras tiras un cable para doblarlo en ese punto. <kbd>Esc</kbd> cancela el cable.
       </div>
+    </InstructionsModal>
+  ) : (
+    <InstructionsModal
+      isOpen={showInstructions}
+      onClose={() => setShowInstructions(false)}
+      title="Cómo usar el Laboratorio de Robótica"
+    >
+      <h3>🎯 Objetivo</h3>
+      <p>Monta circuitos electrónicos conectando los cables entre los pines de los componentes, como en un verdadero laboratorio de robótica.</p>
+      <h3>🔌 Cómo conectar</h3>
+      <ul>
+        <li>Haz clic en un <b>pin</b> de un componente para iniciar un cable.</li>
+        <li>Haz clic en <b>otro pin</b> para cerrar la conexión.</li>
+        <li>Haz clic sobre un cable existente para <b>borrarlo</b>.</li>
+      </ul>
+      <h3>🎮 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>Fácil</strong>Práctica guiada con la pista siempre visible.</div>
+        <div className="instr-mode medium"><strong>Medio</strong>Sin pista visible, pero puedes pedirla.</div>
+        <div className="instr-mode exam"><strong>Examen</strong>Los ejercicios del curso seguidos, sin pistas y puntuados sobre 10.</div>
+      </div>
+    </InstructionsModal>
+  );
+
+  if (screen === 'intro') {
+    const modes = [
+      { id: 'easy', tone: 'easy', title: 'Fácil', desc: 'Práctica guiada con la pista siempre a la vista. Ideal para aprender.', features: ['Pista siempre visible', 'Elige cualquier ejercicio'] },
+      { id: 'medium', tone: 'medium', icon: Gauge, title: 'Medio', desc: 'Sin pista visible. Puedes pedirla, pero practicas con más autonomía.', features: ['Pista bajo demanda', 'Elige cualquier ejercicio'] },
+      { id: 'exam', tone: 'exam', title: 'Examen', desc: `Los ${exercises.length} ejercicios del curso seguidos, sin ayudas. Nota sobre 10 y ranking.`, features: ['Nota sobre 10', 'Puntos por rapidez'] },
+      { id: 'libre', tone: 'libre', icon: Wrench, title: 'Taller libre', desc: 'Diseña tu propio circuito desde cero con todos los componentes y guárdalo.', features: ['Todos los componentes', 'Guarda tus diseños'], cta: 'Abrir taller' },
+    ];
+    const selectMode = (id) => {
+      if (id === 'exam') startExam();
+      else if (id === 'libre') startLibre();
+      else startPractice(id);
+    };
+    return (
+      <GameShell {...SHELL} wide className="rob-shell">
+        <ModeSelect
+          description="Aprende los circuitos básicos, los componentes electrónicos y el control con Arduino conectando cables como en un laboratorio real."
+          modes={modes}
+          onSelect={selectMode}
+          onHelp={() => setShowInstructions(true)}
+          extra={(
+            <section className="rob-exlist" aria-label={`Ejercicios de ESO ${grade}º`}>
+              <header className="rob-sec-head">
+                <span className="rob-sec-head__ico"><CircuitBoard size={18} /></span>
+                <div>
+                  <h3>Ejercicios de ESO {grade}º</h3>
+                  <p>De encender un LED a controlar motores y sensores con Arduino.</p>
+                </div>
+              </header>
+              <div className="rob-exlist__grid">
+                {exercises.map((ex, i) => {
+                  const types = [...new Set((ex.components || []).map((c) => c.type))].slice(0, 3);
+                  return (
+                    <div key={ex.id} className="rob-extile" style={{ '--i': i }}>
+                      <span className="rob-extile__num">{i + 1}</span>
+                      <span className="rob-extile__title">{ex.title.replace(/^\d+\.\s*/, '')}</span>
+                      <span className="rob-extile__parts" aria-hidden="true">
+                        {types.map((t) => {
+                          const tpl = COMPONENT_TEMPLATES[t];
+                          return tpl ? (
+                            <span key={t} className="rob-extile__part" title={tpl.label}>
+                              <ComponentArt type={t} w={tpl.w} h={tpl.h} color={tpl.color} active={false} />
+                            </span>
+                          ) : null;
+                        })}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+        />
+        {instructions}
+      </GameShell>
     );
   }
 
@@ -1306,176 +1265,143 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
     const penalty = Math.min(totalExtra * 0.05, 0.3);
     const rawRatio = totalTargets === 0 ? 0 : totalCorrect / totalTargets;
     const nota = Math.round(Math.max(0, rawRatio * (1 - penalty)) * 100) / 10;
-    const colorClass = nota >= 8 ? 'grade-high' : nota >= 5 ? 'grade-mid' : 'grade-low';
-    const msg = nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar';
-
-    const gradeColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
 
     return (
-      <div className="rob-shell rob-shell--summary">
-        <RobBackdrop />
-        <motion.div
-          className="rob-summary-card"
-          initial={{ opacity: 0, y: 26, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-        >
-          <h1><span className="rob-summary-trophy" aria-hidden="true"><Trophy size={26} /></span> {isExam ? 'Examen terminado' : 'Práctica terminada'}</h1>
-
-          {isExam ? (
-            <>
-              <div className="rob-grade-hero">
-                <span className="rob-grade-rays" aria-hidden="true" />
-                <motion.div
-                  className={`rob-grade-ring ${colorClass}`}
-                  style={{ '--rob-grade': nota, '--rob-grade-color': gradeColor }}
-                  initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
-                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                  transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
-                >
-                  <div className={`rob-note ${colorClass}`}>
-                    <span className="rob-note-value">{nota.toFixed(1)}</span>
-                    <span className="rob-note-max">/10</span>
-                  </div>
-                </motion.div>
-              </div>
-              <p className={`rob-note-msg ${colorClass}`}>{msg}</p>
-              <motion.div
-                className="rob-points-pill"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45 }}
-              >
-                <Sparkles size={16} /> <b>{summaryScore.toLocaleString('es-ES')}</b> puntos
-              </motion.div>
-
-              <div className="rob-summary-stats fx-stagger">
-                <div className="rob-stat"><span>✅ Ejercicios perfectos</span><b>{perfectCount} / {exercises.length}</b></div>
-                <div className="rob-stat"><span>🔌 Conexiones correctas</span><b>{totalCorrect} / {totalTargets}</b></div>
-                <div className="rob-stat"><span>⚠️ Cables de más</span><b>{totalExtra}</b></div>
-                <div className="rob-stat"><span>⏱️ Tiempo total</span><b>{Math.floor(elapsed / 60)}m {elapsed % 60}s</b></div>
-              </div>
-
-              <div className="rob-summary-list fx-stagger">
-                {examResults.map((r, i) => (
-                  <div key={r.exerciseId} className={`rob-summary-row ${r.perfect ? 'ok' : 'ko'}`}>
-                    <span className="rob-summary-idx">{i + 1}.</span>
-                    <span className="rob-summary-title">{r.title}</span>
-                    <span className="rob-summary-score">{r.correct}/{r.totalTargets}{r.extra ? ` (+${r.extra})` : ''}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <p className="rob-summary-text">Has completado los {exercises.length} ejercicios de ESO {grade}º. ¡Gran trabajo!</p>
-          )}
-
-          <div className="rob-summary-actions">
-            <button className="rob-btn-primary fx-shine" onClick={restart}><RotateCcw size={16} /> Volver al menú</button>
-            {isExam && (
-              <button className="rob-btn-secondary" onClick={startExam}><Play size={16} /> Repetir examen</button>
-            )}
-          </div>
-        </motion.div>
-      </div>
+      <GameShell {...SHELL} wide className="rob-shell">
+        {isExam ? (
+          <ResultsScreen
+            subtitle={`Laboratorio de Robótica · ESO ${grade}º`}
+            nota={nota}
+            points={summaryScore}
+            stats={[
+              { icon: Check, tone: 'good', label: 'Perfectos', value: `${perfectCount}/${exercises.length}` },
+              { icon: Plug, tone: 'progress', label: 'Conexiones', value: `${totalCorrect}/${totalTargets}` },
+              { icon: AlertTriangle, tone: 'bad', label: 'Cables de más', value: totalExtra },
+              { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(elapsed) },
+            ]}
+            actions={[
+              { label: 'Repetir examen', onClick: startExam, icon: RotateCcw },
+              { label: 'Volver al menú', onClick: restart, icon: LayoutGrid, variant: 'soft' },
+            ]}
+          >
+            {examResults.map((r, i) => (
+              <FeedbackItem key={r.exerciseId} index={i + 1} ok={r.perfect} title={r.title.replace(/^\d+\.\s*/, '')}>
+                {r.correct}/{r.totalTargets} conexiones correctas{r.extra ? ` · ${r.extra} de más` : ''}
+              </FeedbackItem>
+            ))}
+          </ResultsScreen>
+        ) : (
+          <motion.div
+            className="rob-done"
+            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+          >
+            <span className="rob-done__art" aria-hidden="true">
+              <ComponentArt type="led" w={80} h={80} color="#22c55e" active />
+            </span>
+            <h2>Práctica terminada</h2>
+            <p>Has completado los {exercises.length} ejercicios de ESO {grade}º. ¡Gran trabajo!</p>
+            <GameButton size="lg" icon={LayoutGrid} onClick={restart}>Volver al menú</GameButton>
+          </motion.div>
+        )}
+      </GameShell>
     );
   }
 
   // ------ Pantalla de juego ---------------------------------------------
 
-  const progress = `${exerciseIndex + 1} / ${exercises.length}`;
   const isExam = mode === 'exam';
+  const headerMode = isExam ? 'exam' : mode === 'easy' ? 'easy' : mode === 'medium' ? 'medium' : 'practice';
+  const headerLabel = { easy: 'Fácil', medium: 'Medio', exam: 'Examen', libre: 'Taller libre' }[mode];
+  const showTip = mode === 'easy' || (mode === 'medium' && showHintText);
 
   return (
-    <div className={`rob-shell rob-shell--play ${isLibre ? 'is-libre' : ''}`}>
-      <RobBackdrop />
-      <InstructionsModal
-        isOpen={showInstructions}
-        onClose={() => setShowInstructions(false)}
-        title="Cómo conectar el circuito"
-      >
-        <p>Haz clic en un pin para iniciar un cable y en otro pin para terminarlo. Haz clic sobre un cable para eliminarlo.</p>
-        <p>Pulsa <b>Comprobar</b> cuando creas que el circuito está bien.</p>
-      </InstructionsModal>
+    <GameShell {...SHELL} wide className={`rob-shell rob-shell--play ${isLibre ? 'is-libre' : ''}`}>
+      <GameHeader
+        mode={headerMode}
+        modeLabel={headerLabel}
+        onHelp={() => setShowInstructions(true)}
+        right={(
+          <Hud>
+            {!isLibre && <HudStat icon={Zap} tone="progress" value={`${exerciseIndex + 1}/${exercises.length}`} label="Ejercicio" />}
+            {isLibre && <HudStat icon={Cpu} tone="accent" value={freeComponents.length} label="Componentes" />}
+            <HudStat icon={Plug} tone="score" value={wires.length} label="Cables" />
+            {isExam && <HudStat icon={Clock} tone="time" value={fmtTime(elapsed)} label="Tiempo" />}
+          </Hud>
+        )}
+      />
 
-      <div className="rob-playhead">
-        <div className="rob-playhead-left">
-          <span className={`rob-mode-chip mode-${mode}`}>
-            {mode === 'easy' && '🌱 Fácil'}
-            {mode === 'medium' && '⚡ Medio'}
-            {mode === 'exam' && '🎯 Examen'}
-            {mode === 'libre' && '🛠 Libre'}
-          </span>
-          {!isLibre && (
-            <span className="rob-progress">
-              Ejercicio {progress}
-              <span className="rob-progress-track" aria-hidden="true">
-                <span className="rob-progress-fill" style={{ transform: `scaleX(${(exerciseIndex + 1) / exercises.length})` }} />
-              </span>
-            </span>
-          )}
-          {isLibre && (
-            <input
-              type="text"
-              className="rob-free-name"
-              value={freeName}
-              onChange={(e) => setFreeName(e.target.value)}
-              placeholder="Nombre del diseño"
-              maxLength={60}
-            />
-          )}
-          {isExam && (
-            <span className="rob-timer"><Clock size={14} /> {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}</span>
-          )}
-        </div>
-        <div className="rob-playhead-right">
-          {isLibre && (
-            <>
+      <div className="rob-route">
+        <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={restart} title="Salir al menú">Menú</GameButton>
+        {!isExam && !isLibre && (
+          <div className="rob-route__nodes" role="tablist" aria-label="Selector de ejercicio">
+            {exercises.map((ex, i) => (
               <button
-                className="rob-btn-secondary rob-btn-compact"
-                onClick={handleOpenDesignsList}
-                title="Mis diseños"
+                key={ex.id}
+                type="button"
+                className={`rob-route__node ${i === exerciseIndex ? 'is-current' : ''}`}
+                onClick={() => setExerciseIndex(i)}
+                title={ex.title}
+                role="tab"
+                aria-selected={i === exerciseIndex}
               >
-                <FolderOpen size={14} /> Mis diseños
+                {i + 1}
               </button>
-              <button
-                className="rob-btn-primary rob-btn-compact"
-                onClick={() => { setShowSaveDialog(true); }}
-                title="Guardar diseño"
-              >
-                <Save size={14} /> Guardar
-              </button>
-            </>
-          )}
-          <InstructionsButton onClick={() => setShowInstructions(true)} />
-          <button className="rob-icon-btn" onClick={restart} title="Salir al menú"><RotateCcw size={16} /></button>
-        </div>
+            ))}
+          </div>
+        )}
+        {isExam && (
+          <div className="rob-route__dots">
+            <ProgressDots total={exercises.length} current={examStep} results={examResults.map((r) => r.perfect)} />
+          </div>
+        )}
+        {isLibre && (
+          <div className="rob-route__libre">
+            <label className="rob-free-name">
+              <Pencil size={15} aria-hidden="true" />
+              <input
+                type="text"
+                value={freeName}
+                onChange={(e) => setFreeName(e.target.value)}
+                placeholder="Nombre del diseño"
+                maxLength={60}
+                aria-label="Nombre del diseño"
+              />
+            </label>
+            <GameButton variant="soft" size="sm" icon={FolderOpen} onClick={handleOpenDesignsList} title="Mis diseños">Mis diseños</GameButton>
+            <GameButton size="sm" icon={Save} onClick={() => { setShowSaveDialog(true); }} title="Guardar diseño">Guardar</GameButton>
+          </div>
+        )}
       </div>
 
-      {!isExam && !isLibre && (
-        <div className="rob-exercise-picker" role="tablist" aria-label="Selector de ejercicio">
-          {exercises.map((ex, i) => (
-            <button
-              key={ex.id}
-              type="button"
-              className={`rob-exercise-pick ${i === exerciseIndex ? 'active' : ''}`}
-              onClick={() => setExerciseIndex(i)}
-              title={ex.title}
-              role="tab"
-              aria-selected={i === exerciseIndex}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
+      {!isLibre && (
+        <AnimatePresence mode="wait">
+          <motion.section
+            key={exercise.id}
+            className="rob-brief"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28 }}
+          >
+            <span className="rob-brief__ico" aria-hidden="true"><CircuitBoard size={30} /></span>
+            <div className="rob-brief__text">
+              <span className="rob-brief__eyebrow">Ejercicio {exerciseIndex + 1} de {exercises.length}</span>
+              <h2 className="rob-brief__title">{exercise.title.replace(/^\d+\.\s*/, '')}</h2>
+              <p className="rob-brief__desc">{exercise.description}</p>
+              {showTip && <div className="rob-tip"><Lightbulb size={16} /> {exercise.hint}</div>}
+            </div>
+          </motion.section>
+        </AnimatePresence>
       )}
 
       {isLibre && (
-        <div className="rob-palette-bar">
+        <div className="rob-parts" aria-label="Componentes">
           {PALETTE_CATEGORIES.map((cat) => (
-            <div key={cat.id} className="rob-palette-cat">
-              <div className="rob-palette-cat-label">{cat.label}</div>
-              <div className="rob-palette-cat-tiles">
+            <div key={cat.id} className="rob-parts__cat">
+              <div className="rob-parts__label">{cat.label.replace(/^\S+\s/, '')}</div>
+              <div className="rob-parts__tiles">
                 {cat.types.map((t) => {
                   const tpl = COMPONENT_TEMPLATES[t];
                   if (!tpl) return null;
@@ -1483,14 +1409,14 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
                     <button
                       key={t}
                       type="button"
-                      className="rob-palette-tile"
-                      style={{ borderColor: tpl.color }}
+                      className="rob-part"
+                      style={{ '--c': tpl.color }}
                       onClick={() => addFreeComponent(t)}
                       title={`Añadir ${tpl.label}`}
                     >
-                      <span className="rob-palette-tile-ico">{tpl.icon}</span>
-                      <span className="rob-palette-tile-label">{tpl.label}</span>
-                      <Plus size={12} className="rob-palette-tile-plus" />
+                      <span className="rob-part__art"><ComponentArt type={t} w={tpl.w} h={tpl.h} color={tpl.color} active={false} /></span>
+                      <span className="rob-part__label">{tpl.label}</span>
+                      <Plus size={13} className="rob-part__plus" aria-hidden="true" />
                     </button>
                   );
                 })}
@@ -1500,216 +1426,210 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
         </div>
       )}
 
-      {!isLibre && (
-        <motion.div
-          key={exercise.id}
-          className="rob-exercise-card"
-          initial={{ opacity: 0, x: 18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-        >
-          <div className="rob-exercise-title">
-            <Zap size={18} />
-            <h2>{exercise.title}</h2>
-          </div>
-          <p className="rob-exercise-desc">{exercise.description}</p>
-        </motion.div>
-      )}
-
-      <div
-        className={`rob-board ${drag?.kind === 'pan' && drag?.moved ? 'panning' : ''}`}
-        ref={boardRef}
-        style={{ width: BOARD_W, height: BOARD_H }}
-        onMouseMove={handleBoardMouseMove}
-        onClick={handleBoardClick}
-        onContextMenu={handleBoardContextMenu}
-        onPointerDown={handleBoardPointerDown}
-      >
+      <div className="rob-bench">
         <div
-          className="rob-board-inner"
-          style={{
-            width: BOARD_W,
-            height: BOARD_H,
-            transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-            transformOrigin: '0 0',
-          }}
+          className={`rob-board ${drag?.kind === 'pan' && drag?.moved ? 'panning' : ''} ${pendingStart ? 'is-wiring' : ''}`}
+          ref={boardRef}
+          style={{ width: BOARD_W, height: BOARD_H }}
+          onMouseMove={handleBoardMouseMove}
+          onClick={handleBoardClick}
+          onContextMenu={handleBoardContextMenu}
+          onPointerDown={handleBoardPointerDown}
         >
-          <WireLayer
-            wires={wires}
-            components={componentsPositioned}
-            pendingStart={pendingStart}
-            pendingWaypoints={pendingWaypoints}
-            mousePos={mousePos}
-            onWireClick={removeWire}
-            width={BOARD_W}
-            height={BOARD_H}
-          />
-          {componentsPositioned.map(c => (
-            <ComponentNode
-              key={c.id}
-              component={c}
-              onPinClick={handlePinClick}
-              selectedPin={pendingStart}
-              wiredPins={wiredPins}
-              onComponentPointerDown={handleComponentPointerDown}
-              isDragging={drag?.kind === 'component' && drag?.id === c.id}
-              isSelected={isLibre && selectedCompId === c.id}
-              active={circuit.active[c.id]}
-              state={componentStates[c.id]}
-              onToggleState={handleToggleState}
-              onButtonDown={handleButtonDown}
-            />
-          ))}
-        </div>
-
-        <div className="rob-zoom-ctrls" onPointerDown={(e) => e.stopPropagation()}>
-          <button
-            className="rob-zoom-btn"
-            onClick={() => setSoundEnabled((s) => !s)}
-            title={soundEnabled ? 'Silenciar zumbadores' : 'Activar sonido'}
+          <div
+            className="rob-board-inner"
+            style={{
+              width: BOARD_W,
+              height: BOARD_H,
+              transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+              transformOrigin: '0 0',
+            }}
           >
-            {soundEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
-          </button>
-          <button className="rob-zoom-btn" onClick={zoomIn} title="Acercar"><ZoomIn size={14} /></button>
-          <button className="rob-zoom-btn" onClick={zoomOut} title="Alejar"><ZoomOut size={14} /></button>
-          <button className="rob-zoom-btn" onClick={resetView} title="Ver al 100%"><Maximize2 size={14} /></button>
-          <button className="rob-zoom-btn" onClick={resetLayout} title="Restaurar disposición"><RotateCcw size={14} /></button>
-          <span className="rob-zoom-level">{Math.round(zoom * 100)}%</span>
-        </div>
-        <div className="rob-board-hint">
-          <Move size={12} /> Arrastra · rueda para zoom · clic en el vacío para añadir un punto al cable · Esc cancela
+            <WireLayer
+              wires={wires}
+              components={componentsPositioned}
+              pendingStart={pendingStart}
+              pendingWaypoints={pendingWaypoints}
+              mousePos={mousePos}
+              onWireClick={removeWire}
+              width={BOARD_W}
+              height={BOARD_H}
+            />
+            {componentsPositioned.map(c => (
+              <ComponentNode
+                key={c.id}
+                component={c}
+                onPinClick={handlePinClick}
+                selectedPin={pendingStart}
+                wiredPins={wiredPins}
+                onComponentPointerDown={handleComponentPointerDown}
+                isDragging={drag?.kind === 'component' && drag?.id === c.id}
+                isSelected={isLibre && selectedCompId === c.id}
+                active={circuit.active[c.id]}
+                state={componentStates[c.id]}
+                onToggleState={handleToggleState}
+                onButtonDown={handleButtonDown}
+              />
+            ))}
+          </div>
+
+          {isLibre && freeComponents.length === 0 && (
+            <div className="rob-board-empty">
+              <Plus size={22} />
+              <span>Añade componentes desde la barra de arriba y conéctalos con cables.</span>
+            </div>
+          )}
+
+          <div className="rob-zoom-ctrls" onPointerDown={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="rob-zoom-btn"
+              onClick={() => setSoundEnabled((s) => !s)}
+              title={soundEnabled ? 'Silenciar zumbadores' : 'Activar sonido'}
+            >
+              {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            </button>
+            <span className="rob-zoom-sep" aria-hidden="true" />
+            <button type="button" className="rob-zoom-btn" onClick={zoomOut} title="Alejar"><ZoomOut size={15} /></button>
+            <span className="rob-zoom-level">{Math.round(zoom * 100)}%</span>
+            <button type="button" className="rob-zoom-btn" onClick={zoomIn} title="Acercar"><ZoomIn size={15} /></button>
+            <button type="button" className="rob-zoom-btn" onClick={resetView} title="Ver al 100%"><Maximize2 size={15} /></button>
+            <button type="button" className="rob-zoom-btn" onClick={resetLayout} title="Restaurar disposición"><RotateCcw size={15} /></button>
+          </div>
+          <div className="rob-board-hint">
+            <Move size={13} /> {pendingStart
+              ? 'Elige otro pin para terminar el cable · clic en el vacío para doblarlo · Esc cancela'
+              : 'Arrastra piezas · rueda para zoom · clic en un pin para tirar un cable'}
+          </div>
         </div>
       </div>
 
-      <AnimatePresence>
-        {feedback && (
-          <motion.div
-            key={feedback.text}
-            initial={{ opacity: 0, y: -6, scale: 0.96 }}
-            animate={feedback.type === 'error'
-              ? { opacity: 1, y: 0, scale: 1, x: [0, -8, 8, -5, 5, 0] }
-              : { opacity: 1, y: 0, scale: [0.96, 1.03, 1] }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.45 }}
-            className={`rob-feedback rob-feedback-${feedback.type}`}
-            role="status"
-          >
-            {feedback.text}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <RoundBanner
+        show={!!feedback}
+        status={feedback?.type === 'success' ? 'won' : feedback?.type === 'error' ? 'lost' : 'info'}
+        title={feedback?.type === 'success' ? '¡Circuito correcto!' : feedback?.type === 'error' ? 'Aún no está bien' : 'Cuidado'}
+        subtitle={feedback?.type === 'success' ? 'Todas las conexiones son válidas.' : feedback?.text}
+      />
 
       <div className="rob-toolbar">
-        <button className="rob-btn-secondary" onClick={clearWires} disabled={wires.length === 0}>
-          <Trash2 size={16} /> Borrar cables
-        </button>
+        <GameButton variant="soft" size="sm" icon={Trash2} onClick={clearWires} disabled={wires.length === 0}>
+          Borrar cables
+        </GameButton>
 
         {isLibre && (
           <>
-            <button
-              className="rob-btn-secondary"
+            <GameButton
+              variant="soft"
+              size="sm"
+              icon={X}
               onClick={() => selectedCompId && removeFreeComponent(selectedCompId)}
               disabled={!selectedCompId}
               title={selectedCompId ? 'Borrar el componente seleccionado' : 'Selecciona un componente primero'}
             >
-              <X size={16} /> Borrar componente
-            </button>
-            <button className="rob-btn-secondary" onClick={clearFree} disabled={freeComponents.length === 0 && wires.length === 0}>
-              <Trash2 size={16} /> Vaciar todo
-            </button>
+              Borrar componente
+            </GameButton>
+            <GameButton variant="soft" size="sm" icon={Trash2} onClick={clearFree} disabled={freeComponents.length === 0 && wires.length === 0}>
+              Vaciar todo
+            </GameButton>
           </>
         )}
 
         {mode === 'medium' && !showHintText && (
-          <button className="rob-btn-hint" onClick={useHint}>
-            <Lightbulb size={16} /> Pista
-          </button>
+          <GameButton variant="warning" size="sm" icon={Lightbulb} onClick={useHint}>Pista</GameButton>
         )}
 
-        {(mode === 'easy' || (mode === 'medium' && showHintText)) && (
-          <div className="rob-tip"><Sparkles size={14} /> {exercise.hint}</div>
-        )}
-
-        <div className="rob-toolbar-spacer" />
+        <span className="rob-toolbar-spacer" />
 
         {isLibre ? (
           <span className="rob-libre-status">
             {freeComponents.length} componente{freeComponents.length === 1 ? '' : 's'} · {wires.length} cable{wires.length === 1 ? '' : 's'}
           </span>
         ) : (!isExam && feedback?.type === 'success') ? (
-          <button className="rob-btn-primary" onClick={nextExercise}>
-            {exerciseIndex < exercises.length - 1 ? 'Siguiente ejercicio' : 'Terminar'} <ArrowRight size={16} />
-          </button>
+          <GameButton variant="success" iconRight={ArrowRight} onClick={nextExercise}>
+            {exerciseIndex < exercises.length - 1 ? 'Siguiente ejercicio' : 'Terminar'}
+          </GameButton>
         ) : (
-          <button className="rob-btn-primary" onClick={checkCircuit} disabled={wires.length === 0}>
-            <Check size={16} /> {isExam ? (exerciseIndex < exercises.length - 1 ? 'Siguiente' : 'Terminar examen') : 'Comprobar'}
-          </button>
+          <GameButton icon={Check} onClick={checkCircuit} disabled={wires.length === 0}>
+            {isExam ? (exerciseIndex < exercises.length - 1 ? 'Siguiente' : 'Terminar examen') : 'Comprobar'}
+          </GameButton>
         )}
       </div>
+
+      {instructions}
 
       {/* Modal: guardar diseño */}
       <AnimatePresence>
         {showSaveDialog && (
           <motion.div
-            className="rob-modal-overlay"
+            className="rob-overlay"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setShowSaveDialog(false)}
           >
             <motion.div
-              className="rob-modal"
+              className="rob-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Guardar diseño"
               initial={{ scale: 0.92, y: 16 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.92, y: 16 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2><Save size={20} /> Guardar diseño</h2>
-              <label className="rob-modal-label">Nombre</label>
+              <span className="rob-dialog__icon" aria-hidden="true"><Save size={24} /></span>
+              <h2 className="rob-dialog__title">Guardar diseño</h2>
+              <label className="rob-dialog__label" htmlFor="rob-save-name">Nombre</label>
               <input
+                id="rob-save-name"
                 type="text"
-                className="rob-modal-input"
+                className="rob-dialog__input"
                 value={freeName}
                 onChange={(e) => setFreeName(e.target.value)}
                 maxLength={60}
                 autoFocus
               />
               {!userId && (
-                <p className="rob-modal-warn">No has iniciado sesión: el diseño se guardará solo en este navegador.</p>
+                <p className="rob-dialog__warn"><AlertTriangle size={15} /> No has iniciado sesión: el diseño se guardará solo en este navegador.</p>
               )}
-              <div className="rob-modal-actions">
-                <button className="rob-btn-secondary" onClick={() => setShowSaveDialog(false)}>Cancelar</button>
-                <button
-                  className="rob-btn-primary"
+              <div className="rob-dialog__actions">
+                <GameButton variant="soft" onClick={() => setShowSaveDialog(false)}>Cancelar</GameButton>
+                <GameButton
+                  icon={Save}
                   disabled={!freeName.trim() || savingState === 'saving'}
                   onClick={async () => { await handleSaveDesign(); setShowSaveDialog(false); }}
                 >
-                  <Save size={14} /> {savingState === 'saving' ? 'Guardando…' : 'Guardar'}
-                </button>
+                  {savingState === 'saving' ? 'Guardando…' : 'Guardar'}
+                </GameButton>
               </div>
-              {savingState === 'saved' && <div className="rob-modal-toast ok">Diseño guardado ✓</div>}
-              {savingState === 'error' && <div className="rob-modal-toast ko">No se ha podido guardar</div>}
+              {savingState === 'saved' && <div className="rob-dialog__toast ok">Diseño guardado ✓</div>}
+              {savingState === 'error' && <div className="rob-dialog__toast ko">No se ha podido guardar</div>}
             </motion.div>
           </motion.div>
         )}
 
         {showDesignsList && (
           <motion.div
-            className="rob-modal-overlay"
+            className="rob-overlay"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setShowDesignsList(false)}
           >
             <motion.div
-              className="rob-modal rob-modal-wide"
+              className="rob-dialog rob-dialog--wide"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mis diseños"
               initial={{ scale: 0.92, y: 16 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.92, y: 16 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2><FolderOpen size={20} /> Mis diseños</h2>
+              <span className="rob-dialog__icon" aria-hidden="true"><FolderOpen size={24} /></span>
+              <h2 className="rob-dialog__title">Mis diseños</h2>
               {!userId && (
-                <p className="rob-modal-warn">Sin sesión iniciada: solo verás los diseños guardados en este navegador.</p>
+                <p className="rob-dialog__warn"><AlertTriangle size={15} /> Sin sesión iniciada: solo verás los diseños guardados en este navegador.</p>
               )}
               {savedDesigns.length === 0 ? (
-                <p className="rob-modal-empty">Todavía no has guardado ningún diseño.</p>
+                <p className="rob-dialog__empty">Todavía no has guardado ningún diseño.</p>
               ) : (
                 <ul className="rob-design-list">
                   {savedDesigns.map((d) => (
                     <li key={d.id} className="rob-design-row">
+                      <span className="rob-design-ico" aria-hidden="true"><CircuitBoard size={20} /></span>
                       <div className="rob-design-info">
                         <div className="rob-design-name">{d.name}</div>
                         <div className="rob-design-meta">
@@ -1718,25 +1638,23 @@ const LaboratorioRobotica = ({ onGameComplete, isPaused }) => {
                         </div>
                       </div>
                       <div className="rob-design-actions">
-                        <button className="rob-btn-secondary rob-btn-compact" onClick={() => handleLoadDesign(d)}>
-                          <FolderOpen size={14} /> Abrir
-                        </button>
-                        <button className="rob-btn-danger rob-btn-compact" onClick={() => handleDeleteDesign(d)}>
-                          <Trash2 size={14} />
+                        <GameButton variant="soft" size="sm" icon={FolderOpen} onClick={() => handleLoadDesign(d)}>Abrir</GameButton>
+                        <button type="button" className="gk-iconbtn rob-design-del" onClick={() => handleDeleteDesign(d)} title="Borrar diseño" aria-label="Borrar diseño">
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     </li>
                   ))}
                 </ul>
               )}
-              <div className="rob-modal-actions">
-                <button className="rob-btn-secondary" onClick={() => setShowDesignsList(false)}>Cerrar</button>
+              <div className="rob-dialog__actions">
+                <GameButton variant="soft" onClick={() => setShowDesignsList(false)}>Cerrar</GameButton>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </GameShell>
   );
 };
 

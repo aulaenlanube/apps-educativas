@@ -1,1050 +1,329 @@
-/* DARK-MIGRATED */
-/* Criptograma — estilo misterioso con tonos esmeralda y dorado */
+/* Criptograma — rediseño 2026 sobre el kit de interfaz de juego (_shared/kit).
+   Prefijo cph-. Aquí solo va lo propio: visor de caja fuerte (pantalla verde
+   azulada con el mensaje cifrado: número arriba, letra abajo), indicador del
+   número seleccionado, teclado del kit con la tecla de borrar, comodines y
+   tabla de frecuencias. Rendimiento: solo transform/opacity en animaciones. */
 
-.cripto-root {
-  width: 100%;
+.cph-modes-foot { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ---------- Progreso y pista ---------- */
+.cph-progress .gk-bar { height: 8px; }
+
+.cph-hint {
   display: flex;
-  justify-content: center;
-  padding: 1rem;
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-}
-
-.cripto-card {
-  width: 100%;
-  max-width: 960px;
-  background: var(--app-card-bg);
-  backdrop-filter: blur(14px);
-  border-radius: 24px;
-  padding: 1.75rem;
-  box-shadow:
-    0 20px 60px -15px rgba(6, 78, 59, 0.3),
-    0 10px 30px -10px rgba(16, 185, 129, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-/* ============ HEADER ============ */
-.cripto-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 0.25rem;
-}
-
-.cripto-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.85rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #065f46 0%, #10b981 40%, #fbbf24 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-}
-
-.cripto-emoji {
-  font-size: 2rem;
-  -webkit-text-fill-color: initial;
-  animation: criptoKey 3s ease-in-out infinite;
-}
-
-@keyframes criptoKey {
-  0%, 100% { transform: rotate(-5deg) scale(1); }
-  50% { transform: rotate(5deg) scale(1.05); }
-}
-
-.cripto-subtitle {
-  font-size: 0.85rem;
-  color: var(--app-text-muted);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.cripto-stats {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.cripto-stat {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.82rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.cripto-stat.timer {
-  background: linear-gradient(135deg, #065f46, #10b981);
-  color: white;
-  box-shadow: 0 3px 10px -2px rgba(16, 185, 129, 0.45);
-}
-
-.cripto-stat.timer.danger {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  animation: criptoPulse 1s ease-in-out infinite;
-}
-
-@keyframes criptoPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
-
-.cripto-stat.progress {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #78350f;
-  box-shadow: 0 3px 10px -2px rgba(245, 158, 11, 0.4);
-}
-
-/* ============ TABS ============ */
-.cripto-gamemode-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding: 0.4rem;
-  background: rgba(16, 185, 129, 0.06);
-  border-radius: 14px;
-  border: 1px solid rgba(16, 185, 129, 0.15);
-}
-
-.cripto-gamemode-tab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  padding: 0.6rem 0.4rem;
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  color: var(--app-text-muted);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.cripto-gamemode-tab:hover:not(.active) { background: rgba(16, 185, 129, 0.08); color: #065f46; }
-
-.cripto-gamemode-tab.active.easy {
-  background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.45);
-}
-.cripto-gamemode-tab.active.medium {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.45);
-}
-.cripto-gamemode-tab.active.exam {
-  background: linear-gradient(135deg, #ef4444, #dc2626); color: white; box-shadow: 0 4px 12px -2px rgba(239, 68, 68, 0.45);
-}
-
-.cripto-tab-label { font-size: 0.9rem; font-weight: 800; }
-.cripto-tab-sub { font-size: 0.68rem; opacity: 0.9; font-weight: 600; }
-
-/* ============ PISTA ============ */
-.cripto-hint {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1rem;
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.14), rgba(245, 158, 11, 0.08));
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  border-radius: 12px;
-  color: #78350f;
-  font-weight: 600;
-  font-size: 0.88rem;
-  margin-bottom: 1rem;
-}
-
-/* ============ TEXTO CIFRADO ============ */
-.cripto-text-wrap {
-  background: linear-gradient(135deg, #1a2e05, #064e3b, #065f46);
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
   border-radius: 18px;
-  padding: 1.5rem 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 10px 30px -10px rgba(6, 78, 59, 0.5) inset;
-  overflow-x: auto;
-}
-
-.cripto-text {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.15rem 0.3rem;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.cripto-char {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  min-width: 1.6em;
-  cursor: default;
-  position: relative;
-}
-
-.cripto-char.letter {
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.cripto-char.letter:hover:not(.locked) {
-  transform: translateY(-2px);
-}
-
-.cripto-char-top {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: #fbbf24;
-  text-shadow: 0 1px 4px rgba(251, 191, 36, 0.4);
-  height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-variant-numeric: tabular-nums;
-}
-
-.cripto-char-bottom {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #d1fae5;
-  font-family: 'Courier New', monospace;
-  text-transform: uppercase;
-  height: 1.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2em;
-  border-bottom: 2px solid rgba(209, 250, 229, 0.3);
-  transition: all 0.2s;
-}
-
-.cripto-char.punct .cripto-char-bottom {
-  color: rgba(209, 250, 229, 0.5);
-  border-bottom: none;
-  min-width: 0.4em;
-}
-
-.cripto-char.selected .cripto-char-bottom {
-  background: rgba(251, 191, 36, 0.25);
-  border-bottom-color: #fbbf24;
-  border-radius: 4px 4px 0 0;
-  color: #fbbf24;
-  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
-}
-
-.cripto-char.same-guess .cripto-char-bottom {
-  background: rgba(168, 85, 247, 0.2);
-  border-bottom-color: #a855f7;
-  color: #c4b5fd;
-}
-
-.cripto-char.filled .cripto-char-bottom {
-  color: white;
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-}
-
-.cripto-char.locked .cripto-char-bottom {
-  color: #10b981;
-  border-bottom-color: #10b981;
-  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.4);
-}
-
-.cripto-char.correct .cripto-char-bottom {
-  color: #10b981;
-  animation: criptoCorrect 0.5s ease;
-}
-
-.cripto-char.wrong .cripto-char-bottom {
-  color: #ef4444;
-  border-bottom-color: #ef4444;
-  animation: criptoWrong 0.3s ease;
-}
-
-@keyframes criptoCorrect {
-  0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); }
-}
-
-@keyframes criptoWrong {
-  0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); }
-}
-
-/* ============ TECLADO ON-SCREEN ============ */
-.cripto-keyboard {
-  display: grid;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-  gap: 0.35rem;
-  margin-bottom: 0.85rem;
-}
-
-@media (max-width: 520px) {
-  .cripto-keyboard { grid-template-columns: repeat(7, minmax(0, 1fr)); }
-}
-
-.cripto-key {
-  aspect-ratio: 1;
-  font-size: 0.9rem;
-  font-weight: 800;
-  background: var(--app-bg);
-  color: #065f46;
-  border: 2px solid rgba(16, 185, 129, 0.25);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
-}
-
-.cripto-key:hover:not(:disabled) {
-  transform: translateY(-2px);
-  border-color: #10b981;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
-}
-
-.cripto-key.used {
-  background: rgba(16, 185, 129, 0.15);
-  color: #065f46;
-  border-color: rgba(16, 185, 129, 0.4);
-  opacity: 0.6;
-}
-
-.cripto-key.erase {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border-color: transparent;
-  aspect-ratio: auto;
-}
-
-/* ============ AYUDAS ============ */
-.cripto-lifelines {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 0.85rem;
-}
-
-.cripto-lifeline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.55rem 0.85rem;
-  background: linear-gradient(135deg, #065f46, #10b981);
-  color: white;
-  border: 2px solid #fbbf24;
-  border-radius: 10px;
+  font-family: 'Nunito', var(--gk-font);
   font-weight: 700;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 3px 10px -3px rgba(6, 78, 59, 0.4);
-  position: relative;
-}
-
-.cripto-lifeline:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 14px -3px rgba(6, 78, 59, 0.5);
-}
-
-.cripto-lifeline:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  background: linear-gradient(135deg, #374151, #4b5563);
-  border-color: var(--app-text-muted);
-}
-
-.cripto-lifeline.ghost {
-  background: rgba(16, 185, 129, 0.08);
-  color: #065f46;
-  border-color: rgba(16, 185, 129, 0.25);
-}
-
-.cripto-lifeline-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 4px;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.5);
-  border: 1.5px solid white;
-}
-
-/* ============ FRECUENCIAS ============ */
-.cripto-freq {
-  background: rgba(6, 78, 59, 0.06);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 14px;
-  padding: 0.85rem;
-  margin-bottom: 0.85rem;
-  overflow: hidden;
-}
-
-.cripto-freq-title {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: #065f46;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.6rem;
-}
-
-.cripto-freq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 0.25rem;
-}
-
-.cripto-freq-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.cripto-freq-letter {
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  border-radius: 5px;
-  font-size: 0.7rem;
-  font-weight: 900;
-  flex-shrink: 0;
-}
-
-.cripto-freq-bar {
-  height: 8px;
-  background: linear-gradient(90deg, #fbbf24, #f59e0b);
-  border-radius: 4px;
-  transition: width 0.4s ease;
-}
-
-.cripto-freq-pct {
-  color: var(--app-text-muted);
-  font-size: 0.68rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 32px;
-}
-
-/* ============ RESULTADO ============ */
-.cripto-result {
-  margin-top: 0.85rem;
-  padding: 1.75rem 1.5rem;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.cripto-result.won {
-  background: linear-gradient(135deg, #064e3b, #10b981);
-  color: white;
-  border: 3px solid #fbbf24;
-  box-shadow: 0 20px 50px -15px rgba(6, 78, 59, 0.6);
-}
-
-.cripto-result.lost {
-  background: linear-gradient(135deg, #1f2937, #374151);
-  color: white;
-  border: 2px solid #6b7280;
-}
-
-.cripto-result-icon {
-  display: inline-flex;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  font-size: 1rem;
+  line-height: 1.4;
   color: #78350f;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  box-shadow: 0 12px 30px -8px rgba(245, 158, 11, 0.5);
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+  box-shadow: inset 0 0 0 1.5px #fcd34d, 0 4px 0 #fbbf24, 0 12px 22px -16px #f59e0b;
 }
-
-.cripto-result-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  margin: 0 0 0.5rem 0;
-}
-
-/* Nota /10 */
-.cripto-nota {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 1rem 1.5rem;
-  border-radius: 18px;
-  margin: 0.5rem 0 0.75rem;
-  border: 2px solid transparent;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.cripto-nota.excellent {
-  background: rgba(16, 185, 129, 0.25);
-  border-color: rgba(16, 185, 129, 0.5);
-}
-
-.cripto-nota.good {
-  background: rgba(59, 130, 246, 0.25);
-  border-color: rgba(59, 130, 246, 0.5);
-}
-
-.cripto-nota.fail {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.4);
-}
-
-.cripto-nota-big {
-  font-size: 3rem;
-  font-weight: 900;
-  line-height: 1;
-  color: #fde047;
-  text-shadow: 0 4px 20px rgba(253, 224, 71, 0.5);
-  font-variant-numeric: tabular-nums;
-  display: flex;
-  align-items: flex-end;
-}
-
-.cripto-nota-small {
-  font-size: 1.2rem;
-  opacity: 0.75;
-  margin-left: 0.15rem;
-}
-
-.cripto-nota-msg {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: white;
-}
-
-.cripto-result-score,
-.cripto-result-record {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.95rem;
-  background: rgba(253, 224, 71, 0.18);
-  border: 1px solid rgba(253, 224, 71, 0.4);
-  border-radius: 999px;
-  color: #fde047;
-  font-weight: 800;
-  font-size: 0.88rem;
-  margin: 0 0 1rem;
-}
-
-.cripto-result-record-label {
-  font-size: 0.7rem;
-  opacity: 0.85;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.cripto-result-stats {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 1.1rem;
-}
-
-.cripto-result-stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.85rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.82rem;
-  color: white;
-}
-
-.cripto-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 12px;
-  border: none;
-  font-weight: 800;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.cripto-btn.primary {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #78350f;
-  box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.5);
-}
-
-.cripto-btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.6);
-}
-
-/* ============ LOADING / EMPTY ============ */
-.cripto-loading, .cripto-empty {
-  text-align: center;
-  padding: 2rem;
-  color: var(--app-text-muted);
-  font-weight: 600;
-}
-
-/* Responsive */
-@media (max-width: 720px) {
-  .cripto-card { padding: 1rem; }
-  .cripto-title { font-size: 1.5rem; }
-  .cripto-char-bottom { font-size: 1.1rem; height: 1.5rem; }
-  .cripto-char-top { font-size: 0.6rem; }
-  .cripto-nota-big { font-size: 2.5rem; }
-}
-
-/* ==========================================================================
-   PREMIUM 2026 — bóveda esmeralda y oro: cristal, luz y microinteracciones.
-   Solo visual; las clases que usa la lógica no cambian.
-   ========================================================================== */
-
-.cripto-root {
-  position: relative;
-  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --fx-accent: #10b981;
-  --fx-accent-2: #fbbf24;
-}
-
-/* ---------- Fondo ---------- */
-.cripto-decor {
-  position: absolute;
-  inset: -1rem 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 32px;
-}
-.cripto-decor .fx-app-backdrop::before,
-.cripto-decor .fx-app-backdrop::after { opacity: .28; }
-.cripto-decor-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(6, 95, 70, .08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(6, 95, 70, .08) 1px, transparent 1px);
-}
-html.dark .cripto-decor-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-}
-.cripto-ghost-code {
-  position: absolute;
-  font-family: 'Courier New', monospace;
-  font-weight: 800;
-  font-size: 1.6rem;
-  color: #10b981;
-  opacity: .16;
-  text-shadow: 0 0 12px rgba(16, 185, 129, .6);
-  animation: criptoGhost 10s ease-in-out infinite;
-}
-.cripto-ghost-code.c0 { top: 7%; left: 4%; }
-.cripto-ghost-code.c1 { top: 16%; right: 5%; color: #f59e0b; animation-delay: -2s; }
-.cripto-ghost-code.c2 { bottom: 12%; left: 3%; animation-delay: -4s; }
-.cripto-ghost-code.c3 { bottom: 22%; right: 4%; color: #f59e0b; animation-delay: -6s; }
-.cripto-ghost-code.c4 { top: 50%; left: 1.5%; animation-delay: -8s; font-size: 1.2rem; }
-.cripto-ghost-code.c5 { top: 3%; left: 48%; animation-delay: -3s; font-size: 1.1rem; }
-@keyframes criptoGhost {
-  0%, 100% { transform: translate3d(0, 0, 0); opacity: .1; }
-  50%      { transform: translate3d(0, -14px, 0); opacity: .24; }
-}
-@media (max-width: 720px) {
-  .cripto-ghost-code { display: none; }
-}
-
-/* ---------- Tarjeta ---------- */
-.cripto-card {
-  position: relative;
-  z-index: 1;
-  border-radius: 28px;
-  background:
-    radial-gradient(120% 70% at 0% 0%, rgba(16, 185, 129, .10), transparent 55%),
-    radial-gradient(90% 60% at 100% 100%, rgba(251, 191, 36, .09), transparent 60%),
-    var(--app-card-bg);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, .7);
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, .9) inset,
-    0 -1px 0 0 rgba(6, 78, 59, .06) inset,
-    0 40px 80px -40px rgba(6, 95, 70, .5),
-    0 18px 36px -18px rgba(245, 158, 11, .22),
-    0 4px 10px -4px rgba(15, 23, 42, .08);
-}
-.cripto-card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 120px;
-  border-radius: 28px 28px 0 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .55), transparent);
-  opacity: .5;
-  pointer-events: none;
-  z-index: -1;
-}
-html.dark .cripto-card {
-  border-color: rgba(255, 255, 255, .1);
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, .08) inset,
-    0 40px 80px -40px rgba(0, 0, 0, .8),
-    0 18px 36px -18px rgba(16, 185, 129, .25);
-}
-html.dark .cripto-card::before { background: linear-gradient(180deg, rgba(255, 255, 255, .06), transparent); }
-
-/* ---------- Cabecera ---------- */
-.cripto-title {
-  font-weight: 700;
-  background: linear-gradient(90deg, #065f46, #10b981, #fbbf24, #10b981, #065f46);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: fx-pan 12s linear infinite;
-}
-html.dark .cripto-title {
-  background-image: linear-gradient(90deg, #34d399, #6ee7b7, #fbbf24, #6ee7b7, #34d399);
-}
-.cripto-emoji { filter: drop-shadow(0 6px 10px rgba(245, 158, 11, .45)); }
-.cripto-stat {
-  border: 1px solid rgba(255, 255, 255, .3);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 8px 18px -8px rgba(6, 78, 59, .5) !important;
-}
-.cripto-stat span { display: inline-block; }
-.cripto-stat.timer.danger { box-shadow: 0 0 0 3px rgba(239, 68, 68, .25), 0 0 20px -2px rgba(239, 68, 68, .8) !important; }
-
-/* ---------- Barra de progreso con brillo ---------- */
-.cripto-progressbar {
-  position: relative;
-  height: 8px;
-  margin: -.35rem 0 1rem;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, .12);
-  box-shadow: 0 1px 2px rgba(6, 78, 59, .15) inset;
-  overflow: hidden;
-}
-.cripto-progressbar-fill {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #059669, #10b981, #fbbf24);
-  box-shadow: 0 0 12px rgba(16, 185, 129, .6);
-  transition: transform .6s var(--fx-ease-out);
-}
-.cripto-progressbar-fill::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .65) 50%, transparent 100%);
-  background-size: 40% 100%;
-  background-repeat: no-repeat;
-  animation: criptoBarShine 2.4s ease-in-out infinite;
-}
-@keyframes criptoBarShine {
-  from { background-position: -60% 0; }
-  to   { background-position: 160% 0; }
-}
-html.dark .cripto-progressbar { background: rgba(255, 255, 255, .07); }
-
-/* ---------- Tabs de modo con identidad ---------- */
-.cripto-gamemode-tabs {
-  gap: .6rem;
-  padding: .45rem;
-  border-radius: 20px;
-  background: rgba(16, 185, 129, .06);
-  box-shadow: 0 1px 2px rgba(6, 78, 59, .1) inset;
-}
-.cripto-gamemode-tab {
-  --mode: #10b981;
-  --mode-soft: rgba(16, 185, 129, .14);
-  border-radius: 14px;
-  padding: .7rem .4rem;
-  border: 1px solid transparent;
-  transition: transform .3s var(--fx-ease-spring), box-shadow .3s ease, background .25s ease, color .2s ease, border-color .2s ease;
-}
-.cripto-gamemode-tab.easy   { --mode: #10b981; --mode-soft: rgba(16, 185, 129, .16); }
-.cripto-gamemode-tab.medium { --mode: #fbbf24; --mode-soft: rgba(251, 191, 36, .2); }
-.cripto-gamemode-tab.exam   { --mode: #ef4444; --mode-soft: rgba(239, 68, 68, .14); }
-.cripto-gamemode-tab:hover:not(.active) {
-  transform: translateY(-3px);
-  background: var(--mode-soft);
-  border-color: var(--mode);
-  color: var(--app-text);
-}
-.cripto-gamemode-tab.active { transform: translateY(-2px); border-color: rgba(255, 255, 255, .35); }
-.cripto-gamemode-tab.active.easy,
-.cripto-gamemode-tab.active.medium,
-.cripto-gamemode-tab.active.exam {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 0 0 3px var(--mode-soft), 0 14px 26px -12px var(--mode);
-}
-.cripto-gamemode-tab.active.medium { color: #78350f; }
-.cripto-tab-icon {
+.cph-hint__icon {
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .55);
-  box-shadow: 0 0 0 4px var(--mode-soft);
-  transition: transform .4s var(--fx-ease-spring);
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  margin-top: -2px;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(140deg, #fcd34d, #f59e0b);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
 }
-.cripto-gamemode-tab:hover .cripto-tab-icon { transform: scale(1.12) rotate(-8deg); }
-.cripto-gamemode-tab:focus-visible { outline: 3px solid var(--mode); outline-offset: 2px; }
-html.dark .cripto-gamemode-tabs { background: rgba(255, 255, 255, .05); }
-html.dark .cripto-tab-icon { background: rgba(255, 255, 255, .1); }
+html.dark .cph-hint { color: #fde68a; background: rgba(251, 191, 36, .12); box-shadow: inset 0 0 0 1.5px rgba(251, 191, 36, .45); }
 
-/* ---------- Pista ---------- */
-.cripto-hint {
-  border-radius: 16px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 12px 26px -16px rgba(245, 158, 11, .8);
-  animation: fx-bounce-in .5s var(--fx-ease-spring);
-}
-html.dark .cripto-hint { color: #fde68a; }
-
-/* ---------- Texto cifrado: bóveda ---------- */
-.cripto-text-wrap {
-  position: relative;
-  border-radius: 22px;
+/* ---------- Visor de la caja fuerte ---------- */
+.cph-board.gk-panel--screen {
+  padding: 0 clamp(12px, 2.4vw, 24px) clamp(18px, 2.6vw, 26px);
   background:
-    radial-gradient(70% 90% at 10% 0%, rgba(52, 211, 153, .3), transparent 60%),
-    radial-gradient(60% 80% at 100% 100%, rgba(251, 191, 36, .2), transparent 60%),
-    linear-gradient(135deg, #022c22, #064e3b 55%, #065f46);
-  border: 1px solid rgba(255, 255, 255, .12);
+    radial-gradient(120% 110% at 50% 0%, rgba(45, 212, 191, .28), transparent 62%),
+    radial-gradient(60% 80% at 100% 100%, rgba(245, 158, 11, .14), transparent 70%),
+    linear-gradient(180deg, #0b3f3a 0%, #052723 100%);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, .15) inset,
-    0 -18px 30px -18px rgba(0, 0, 0, .6) inset,
-    0 24px 44px -22px rgba(6, 78, 59, .8);
-  transition: box-shadow .4s ease;
+    inset 0 1px 0 rgba(255, 255, 255, .14),
+    inset 0 -10px 30px rgba(0, 0, 0, .35),
+    0 0 0 1px rgba(94, 234, 212, .14),
+    0 6px 0 #03201c,
+    0 26px 40px -24px rgba(13, 148, 136, .8);
+  transition: box-shadow .3s ease;
 }
-.cripto-text-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
-  background-size: 22px 22px;
-  pointer-events: none;
+.cph-board.is-won.gk-panel--screen {
+  box-shadow: inset 0 0 0 2px #34d399, inset 0 -10px 30px rgba(0, 0, 0, .35), 0 6px 0 #03201c, 0 26px 44px -22px #10b981;
 }
-.cripto-text { position: relative; }
-.cripto-text-wrap.is-won {
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, .75), 0 0 46px -6px rgba(16, 185, 129, .8), 0 24px 44px -22px rgba(6, 78, 59, .8);
+.cph-board.is-lost.gk-panel--screen {
+  box-shadow: inset 0 0 0 2px #fb7185, inset 0 -10px 30px rgba(0, 0, 0, .35), 0 6px 0 #03201c, 0 26px 44px -22px #f43f5e;
 }
-.cripto-text-wrap.is-lost {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, .6), 0 0 40px -8px rgba(239, 68, 68, .7);
+.cph-board__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 calc(-1 * clamp(12px, 2.4vw, 24px)) clamp(14px, 2vw, 20px);
+  padding: 10px clamp(12px, 2.4vw, 24px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0));
+  border-bottom: 1px solid rgba(94, 234, 212, .14);
 }
-.cripto-char.letter { transition: transform .25s var(--fx-ease-spring); }
-.cripto-char.letter:hover:not(.locked) { transform: translateY(-3px); }
-.cripto-char-bottom {
-  font-family: 'Fredoka', 'Courier New', monospace;
-  font-weight: 700;
-  border-radius: 6px 6px 0 0;
+.cph-board__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: #5eead4;
 }
-.cripto-char.filled .cripto-char-bottom { animation: fx-pop-in .35s var(--fx-ease-spring); text-shadow: 0 0 10px rgba(209, 250, 229, .6); }
-.cripto-char.selected .cripto-char-bottom {
-  box-shadow: 0 0 0 1px rgba(251, 191, 36, .6), 0 0 18px rgba(251, 191, 36, .55);
-  animation: criptoSelGlow 1.6s ease-in-out infinite;
+.cph-board__leds { display: inline-flex; gap: 6px; }
+.cph-board__leds i { width: 8px; height: 8px; border-radius: 50%; background: #134e4a; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .4); }
+.cph-board__leds i:nth-child(1) { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+.cph-board.is-won .cph-board__leds i { background: #34d399; box-shadow: 0 0 8px #34d399; }
+.cph-board.is-lost .cph-board__leds i:nth-child(1) { background: #fb7185; box-shadow: 0 0 8px #fb7185; }
+
+.cph-text {
+  --slot: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 22px;
 }
-@keyframes criptoSelGlow {
-  0%, 100% { background-color: rgba(251, 191, 36, .2); }
-  50%      { background-color: rgba(251, 191, 36, .34); }
+.cph-text.is-long { --slot: 34px; gap: 12px 16px; }
+.cph-word { display: inline-flex; gap: 5px; }
+
+.cph-char {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: var(--slot);
+  -webkit-tap-highlight-color: transparent;
 }
-.cripto-char.correct .cripto-char-bottom { text-shadow: 0 0 12px rgba(16, 185, 129, .8); }
-.cripto-char.wrong .cripto-char-bottom {
-  text-shadow: 0 0 12px rgba(239, 68, 68, .8);
-  animation: fx-shake .45s cubic-bezier(.36, .07, .19, .97);
+.cph-char.is-letter { cursor: pointer; }
+.cph-char.is-punct { width: auto; min-width: 8px; }
+/* número cifrado (como la rueda de una cerradura) */
+.cph-char__code {
+  display: grid;
+  place-items: center;
+  min-width: calc(var(--slot) * .72);
+  height: calc(var(--slot) * .5);
+  padding: 0 4px;
+  border-radius: 7px;
+  font-size: calc(var(--slot) * .34);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #fde68a;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .38), rgba(0, 0, 0, .18));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .08);
 }
+.cph-char.is-punct .cph-char__code { background: none; box-shadow: none; }
+/* hueco de la letra */
+.cph-char__slot {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(var(--slot) * 1.12);
+  border-radius: 10px;
+  font-size: calc(var(--slot) * .6);
+  font-weight: 800;
+  line-height: 1;
+  color: #f0fdfa;
+  background: rgba(255, 255, 255, .06);
+  box-shadow: inset 0 -3px 0 rgba(94, 234, 212, .35);
+  transition: background .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+.cph-char.is-punct .cph-char__slot { background: none; box-shadow: none; color: #99f6e4; }
+.cph-char.is-filled .cph-char__slot { animation: gk-pop .32s cubic-bezier(.34, 1.56, .64, 1) both; }
+.cph-char.is-letter:hover .cph-char__slot { transform: translateY(-2px); background: rgba(255, 255, 255, .1); }
+
+/* número seleccionado: todas sus apariciones brillan en ámbar */
+.cph-char.is-sel .cph-char__code { color: #451a03; background: linear-gradient(180deg, #fde68a, #f59e0b); box-shadow: 0 0 12px -2px #fbbf24; }
+.cph-char.is-sel .cph-char__slot {
+  color: #451a03;
+  background: linear-gradient(180deg, #fef3c7, #fcd34d 60%, #f59e0b);
+  box-shadow: inset 0 1px 0 #fffbeb, inset 0 -3px 0 #b45309, 0 0 0 2px rgba(253, 230, 138, .55), 0 0 22px -4px #fbbf24;
+  transform: translateY(-2px);
+}
+/* misma letra asignada a otro número (posible conflicto) */
+.cph-char.is-same .cph-char__slot { box-shadow: inset 0 -3px 0 #fbbf24, inset 0 0 0 1.5px rgba(251, 191, 36, .55); }
+/* letra revelada / vocal de partida (no se puede cambiar) */
+.cph-char.is-locked { cursor: default; }
+.cph-char.is-locked .cph-char__slot {
+  color: #042f2e;
+  background: linear-gradient(180deg, #99f6e4, #2dd4bf);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -3px 0 #0f766e;
+}
+.cph-char.is-locked .cph-char__code { color: #99f6e4; }
+/* marcada como incorrecta (Comprobar) */
+.cph-char.is-wrong .cph-char__slot {
+  color: #fff;
+  background: linear-gradient(180deg, #fb7185, #e11d48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 -3px 0 #9f1239;
+  animation: gk-shake .45s cubic-bezier(.36, .07, .19, .97) both;
+}
+/* una letra revelada siempre es correcta: manda sobre la marca de Comprobar */
+.cph-char.is-locked.is-wrong .cph-char__slot {
+  color: #042f2e;
+  background: linear-gradient(180deg, #99f6e4, #2dd4bf);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -3px 0 #0f766e;
+  animation: none;
+}
+/* al terminar */
+.cph-char.is-correct .cph-char__slot {
+  color: #064e3b;
+  background: linear-gradient(180deg, #a7f3d0, #34d399);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -3px 0 #059669;
+}
+.cph-char.is-missed .cph-char__slot {
+  color: #fecdd3;
+  background: rgba(244, 63, 94, .18);
+  box-shadow: inset 0 -3px 0 #fb7185;
+}
+.cph-board.is-review { padding-bottom: 20px; }
 
 /* ---------- Teclado ---------- */
-.cripto-key {
-  border-radius: 12px;
-  border: 1px solid rgba(16, 185, 129, .25);
-  background: linear-gradient(180deg, #ffffff, #ecfdf5);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 1) inset,
-    0 -3px 0 rgba(6, 95, 70, .14) inset,
-    0 6px 12px -8px rgba(6, 95, 70, .5);
-  transition: transform .2s var(--fx-ease-spring), box-shadow .2s ease, border-color .2s ease, background .2s ease;
-}
-.cripto-key:hover:not(:disabled) {
-  transform: translateY(-3px);
-  border-color: #10b981;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset, 0 -3px 0 rgba(245, 158, 11, .25) inset, 0 12px 20px -10px rgba(16, 185, 129, .6);
-}
-.cripto-key:active:not(:disabled) { box-shadow: 0 2px 4px rgba(6, 95, 70, .25) inset; }
-.cripto-key:focus-visible,
-.cripto-lifeline:focus-visible,
-.cripto-btn:focus-visible { outline: 3px solid rgba(251, 191, 36, .85); outline-offset: 2px; }
-.cripto-key.used { background: linear-gradient(180deg, #d1fae5, #a7f3d0); opacity: .7; }
-.cripto-key.erase {
-  background: linear-gradient(180deg, #f87171, #dc2626);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 -3px 0 rgba(0, 0, 0, .15) inset, 0 8px 16px -8px rgba(239, 68, 68, .8);
-}
-html.dark .cripto-key:not(.erase) {
-  background: linear-gradient(180deg, #1f3a35, #15302b);
-  color: #a7f3d0;
-  border-color: rgba(52, 211, 153, .22);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .07) inset, 0 -3px 0 rgba(0, 0, 0, .3) inset, 0 6px 12px -8px rgba(0, 0, 0, .7);
-}
-html.dark .cripto-key.used { background: rgba(16, 185, 129, .18); }
-
-/* ---------- Ayudas ---------- */
-.cripto-lifeline {
-  border-radius: 14px;
-  border-width: 1px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 -2px 0 rgba(0, 0, 0, .15) inset, 0 10px 20px -10px rgba(6, 78, 59, .7);
-  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease;
-}
-.cripto-lifeline:hover:not(:disabled) { transform: translateY(-3px); }
-.cripto-lifeline:active:not(:disabled) { transform: translateY(1px) scale(.97); }
-.cripto-lifeline-count { animation: fx-pop-in .4s var(--fx-ease-spring); }
-html.dark .cripto-lifeline.ghost { color: #a7f3d0; }
-
-/* ---------- Frecuencias ---------- */
-.cripto-freq {
-  border-radius: 18px;
-  background: linear-gradient(160deg, rgba(16, 185, 129, .08), rgba(251, 191, 36, .06));
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset;
-}
-.cripto-freq-bar { box-shadow: 0 0 8px rgba(245, 158, 11, .5); }
-html.dark .cripto-freq-title { color: #6ee7b7; }
-
-/* ---------- Resultado ---------- */
-.cripto-result {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-}
-.cripto-result > * { position: relative; z-index: 1; }
-.cripto-result.won {
-  border: 1px solid rgba(255, 255, 255, .25);
-  background:
-    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .2), transparent 70%),
-    linear-gradient(135deg, #022c22, #059669 55%, #10b981);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 0 0 3px rgba(251, 191, 36, .55), 0 40px 80px -30px rgba(6, 78, 59, .85);
-}
-.cripto-result.lost {
-  border: 1px solid rgba(255, 255, 255, .15);
-  background:
-    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, .1), transparent 70%),
-    linear-gradient(135deg, #111827, #1f2937 55%, #374151);
-  box-shadow: 0 30px 70px -30px rgba(15, 23, 42, .8);
-}
-.cripto-result-rays {
-  position: absolute !important;
-  z-index: 0 !important;
-  top: 50%;
-  left: 50%;
-  width: 900px;
-  height: 900px;
-  margin: -450px 0 0 -450px;
-  background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .08) 0deg 8deg, transparent 8deg 22deg);
-  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 60%);
-  mask-image: radial-gradient(circle, #000 0%, transparent 60%);
-  animation: criptoRays 40s linear infinite;
-  pointer-events: none;
-}
-.cripto-result.lost .cripto-result-rays { opacity: .4; }
-@keyframes criptoRays { to { transform: rotate(360deg); } }
-.cripto-result-icon {
-  box-shadow: 0 0 0 8px rgba(251, 191, 36, .2), 0 0 50px -4px rgba(251, 191, 36, .85);
-  animation: fx-pop-in .7s var(--fx-ease-spring) .1s both;
-}
-.cripto-result-title { font-weight: 700; font-size: 1.75rem; text-shadow: 0 4px 18px rgba(0, 0, 0, .25); }
-.cripto-nota {
-  border-width: 1px;
-  border-radius: 24px;
-  padding: 1.25rem 2rem;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 20px 40px -24px rgba(0, 0, 0, .55);
-}
-.cripto-nota-ring {
-  --fx-glass-bg: rgba(2, 44, 34, .85);
-  width: 156px;
-  height: 156px;
-}
-.cripto-nota-ring .cripto-nota-big {
-  color: #fff;
+.cph-pad { display: flex; flex-direction: column; gap: 12px; }
+.cph-target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 44px;
   font-weight: 700;
-  text-shadow: 0 0 20px var(--fx-grade-color);
-  animation: fx-pop-in .7s var(--fx-ease-spring) .25s both;
+  font-size: .95rem;
+  color: var(--gk-ink-3);
 }
-.cripto-nota-msg { font-size: 1.15rem; }
-.cripto-result-record,
-.cripto-result-score {
-  padding: .6rem 1.3rem;
-  font-size: 1rem;
-  box-shadow: 0 0 24px -6px rgba(253, 224, 71, .7);
-  animation: fx-bounce-in .6s var(--fx-ease-spring) .45s both;
+.cph-target.is-on { color: var(--gk-ink-2); }
+.cph-target__code {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 11px;
+  font-size: 1.05rem;
+  color: #451a03;
+  background: linear-gradient(180deg, #fde68a, #f59e0b);
+  box-shadow: inset 0 1px 0 #fffbeb, 0 3px 0 #b45309;
 }
-.cripto-result-stat { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.cripto-btn {
-  border-radius: 14px;
-  transition: transform .25s var(--fx-ease-spring), box-shadow .25s ease, background-position .6s ease;
+.cph-target__letter {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 40px;
+  border-radius: 11px;
+  font-size: 1.3rem;
+  color: #f0fdfa;
+  background: linear-gradient(180deg, #115e59, #042f2e);
+  box-shadow: inset 0 -3px 0 #2dd4bf, 0 3px 0 #021c1a;
 }
-.cripto-btn.primary {
-  background: linear-gradient(135deg, #fde047, #fbbf24 40%, #f59e0b);
-  background-size: 180% 180%;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 -3px 0 rgba(146, 64, 14, .18) inset, 0 14px 28px -12px rgba(245, 158, 11, .8);
-}
-.cripto-btn.primary:hover { transform: translateY(-2px) scale(1.03); background-position: 100% 50%; }
-.cripto-btn:active { transform: translateY(1px) scale(.98); }
 
+.cph-keys {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 8px;
+}
+.cph-keys .gk-key { width: 100%; min-width: 0; }
+.cph-key--erase { grid-column: span 3; }
+.cph-key--erase .gk-key__face { display: flex; gap: 6px; font-size: .95rem; color: #be123c; }
+html.dark .cph-key--erase .gk-key__face { color: #fda4af; }
+.cph-key.is-used .gk-key__face { opacity: .45; }
+.cph-key.is-used::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gk-accent);
+}
+
+/* ---------- Comodines ---------- */
+.cph-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 4px; }
+.cph-life { overflow: visible; }
+.cph-life__count {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  display: grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(140deg, #fb7185, #e11d48);
+  box-shadow: 0 0 0 2.5px var(--gk-bg-1), 0 4px 8px -3px rgba(225, 29, 72, .7);
+}
+.gk-btn:disabled .cph-life__count { background: #94a3b8; }
+
+/* ---------- Tabla de frecuencias ---------- */
+.cph-freq {
+  padding: 14px 16px;
+  border-radius: 22px;
+  background: var(--gk-surface);
+  border: 1px solid var(--gk-line);
+  box-shadow: 0 18px 40px -28px rgba(30, 20, 90, .45);
+}
+.cph-freq__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gk-ink-2);
+}
+.cph-freq__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 18px; }
+.cph-freq__item { display: grid; grid-template-columns: 22px 1fr 42px; align-items: center; gap: 8px; }
+.cph-freq__letter { font-weight: 800; color: var(--gk-ink); text-align: center; }
+.cph-freq__track { height: 10px; border-radius: 999px; background: var(--gk-inset); overflow: hidden; }
+.cph-freq__bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--gk-accent), #5eead4);
+}
+.cph-freq__pct { font-size: .78rem; font-weight: 800; color: var(--gk-ink-3); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- Pie ---------- */
+.cph-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--gk-line);
+}
+.cph-footer__info {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--gk-ink-3);
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 720px) {
-  .cripto-nota-ring { width: 132px; height: 132px; }
-  .cripto-result-rays { width: 600px; height: 600px; margin: -300px 0 0 -300px; }
-  .cripto-tab-icon { width: 1.7rem; height: 1.7rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cripto-ghost-code,
-  .cripto-title,
-  .cripto-progressbar-fill::after,
-  .cripto-char.selected .cripto-char-bottom,
-  .cripto-result-rays {
-    animation: none !important;
-  }
-}
-
-/* Fundido de bordes del fondo decorativo (sin cortes rectos) */
-.cripto-decor {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
-    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
-    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
-  mask-composite: intersect;
+  .cph-text { --slot: 32px; gap: 12px 14px; }
+  .cph-text.is-long { --slot: 28px; gap: 10px 12px; }
+  .cph-word { gap: 3px; }
+  .cph-char__slot { border-radius: 8px; }
+  .cph-keys { gap: 5px; }
+  .cph-key--erase .gk-key__face { font-size: .82rem; }
+  .cph-freq__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cph-footer__info { margin-left: 0; }
 }

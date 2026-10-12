@@ -1,11 +1,19 @@
+// Panel del alumno (/mi-panel) — rediseño 2026 con el kit de paneles
+// (src/components/dashboard/kit, ver su README). Es un "hub de juego": héroe con
+// avatar, nivel y XP; dock de pestañas; Resumen con la medalla de la nota, la
+// arena de duelos, misiones, insignias, actividad, asignaturas, apps favoritas,
+// batallas y últimas partidas; Tareas como diario de misiones; Historial como
+// línea de tiempo.
+//
+// Solo presentación: las RPC, los estados, los efectos y los cálculos (nota
+// base de tareas, filtros por evaluación/estado) son los de siempre.
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import {
-  Gamepad2, Clock, Target, Trophy, Flame, BarChart3,
-  BookOpen, TrendingUp, CalendarDays, Timer, Star, Zap, MessageSquare,
-  Award, ClipboardList, CheckCircle2, AlertTriangle, Circle,
-  Play, Compass, Swords
+  Gamepad2, Clock, Target, Trophy, Flame, BarChart3, BookOpen, CalendarDays, Star, Zap,
+  MessageSquare, MessagesSquare, Award, ClipboardList, CheckCircle2, AlertTriangle, Compass, Swords,
+  ChevronRight, Medal, Timer, Sparkles, ListChecks, User, Users, Crown, History, PartyPopper,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
@@ -22,29 +30,59 @@ import useIncomingDuels from '@/hooks/useIncomingDuels';
 import { getGradeWithDuelBonus } from '@/services/duelService';
 import UserAvatar from '@/components/ui/UserAvatar';
 import BrandLoader from '@/components/ui/BrandLoader';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import SubjectIcon, { getSubjectAccent } from '@/components/SubjectIcon';
+import BadgeIcon from '@/components/ui/BadgeIcon';
+import {
+  DashPage, DashHero, DashDock, DashCard, StatTile, ProgressRing, MiniBars, MeterRow, QuestCard,
+  Pill, DashButton, DashEmpty, SectionGrid,
+} from '@/components/dashboard/kit';
+import './StudentDashboard.css';
 
 const SUBJECT_LABELS = {
-  matematicas: 'Matematicas',
+  matematicas: 'Matemáticas',
   lengua: 'Lengua',
-  ingles: 'Ingles',
+  ingles: 'Inglés',
   'ciencias-naturales': 'Ciencias Naturales',
   'ciencias-sociales': 'Ciencias Sociales',
   historia: 'Historia',
-  biologia: 'Biologia',
-  fisica: 'Fisica',
-  musica: 'Musica',
-  plastica: 'Plastica',
-  tecnologia: 'Tecnologia',
-  'ed-fisica': 'Ed. Fisica',
-  tutoria: 'Tutoria',
+  'historia-espana': 'Historia de España',
+  'historia-mundo': 'Historia del Mundo',
+  biologia: 'Biología',
+  fisica: 'Física',
+  quimica: 'Química',
+  musica: 'Música',
+  plastica: 'Plástica',
+  tecnologia: 'Tecnología',
+  'ed-fisica': 'Ed. Física',
+  tutoria: 'Tutoría',
   valenciano: 'Valenciano',
-  frances: 'Frances',
-  programacion: 'Programacion',
-  robotica: 'Robotica',
+  frances: 'Francés',
+  programacion: 'Programación',
+  robotica: 'Robótica',
   ia: 'Inteligencia Artificial',
-  latin: 'Latin',
-  economia: 'Economia',
+  latin: 'Latín',
+  economia: 'Economía',
+  filosofia: 'Filosofía',
+  geografia: 'Geografía',
 };
+
+const LEVEL_LABELS = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bach.' };
+
+// Tonos del kit que se reparten entre asignaturas (barras de "Por asignatura").
+const SUBJECT_TONES = ['violet', 'emerald', 'blue', 'amber', 'pink', 'cyan', 'orange', 'indigo'];
+
+function subjectLabel(id) {
+  if (!id) return 'Sin asignatura';
+  if (SUBJECT_LABELS[id]) return SUBJECT_LABELS[id];
+  const s = String(id).replace(/-/g, ' ');
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function courseLabel(level, grade) {
+  if (!level) return '';
+  return `${grade ? `${grade}º ` : ''}${LEVEL_LABELS[level] || level}`;
+}
 
 function formatTime(seconds) {
   if (!seconds || seconds === 0) return '0m';
@@ -56,171 +94,350 @@ function formatTime(seconds) {
   return `${s}s`;
 }
 
-function formatDateTime(dateStr) {
-  if (!dateStr) return '-';
-  return new Date(dateStr).toLocaleDateString('es-ES', {
-    day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-  });
+function formatHour(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 }
 
-// ─── Stat Card ───────────────────────��───────────────────
-function StatCard({ icon: Icon, label, value, subValue, color, delay = 0 }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay }}
-      className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
-    >
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-xs font-medium text-slate-500 mb-1">{label}</p>
-          <p className="text-2xl font-bold text-slate-800">{value}</p>
-          {subValue && <p className="text-xs text-slate-400 mt-0.5">{subValue}</p>}
-        </div>
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${color}`}>
-          <Icon className="w-5 h-5 text-white" />
-        </div>
-      </div>
-    </motion.div>
-  );
+// Número con coma decimal (estilo es-ES) y n decimales.
+function fmtNum(n, digits = 1) {
+  return Number(n).toFixed(digits).replace('.', ',');
 }
 
-function NotaBadge({ value }) {
-  const n = typeof value === 'number' ? value : parseFloat(value) || 0;
-  const color = n >= 9 ? 'bg-green-100 text-green-700'
-    : n >= 7 ? 'bg-emerald-100 text-emerald-700'
-    : n >= 5 ? 'bg-amber-100 text-amber-700'
-    : n > 0 ? 'bg-red-100 text-red-700'
-    : 'bg-slate-100 text-slate-400';
+// Nota en formato corto: 10 → "10", 8.25 → "8,3".
+function fmtNota(n) {
+  const v = Number(n);
+  return Number.isInteger(v) ? String(v) : fmtNum(v, 1);
+}
+
+// Una nota es mostrable solo si llega del servidor y es un número en rango.
+function isShowableNota(v) {
+  if (v === null || v === undefined || v === '') return false;
+  const n = Number(v);
+  return Number.isFinite(n) && n >= 0 && n <= 11;
+}
+
+function notaTone(n) {
+  return n >= 8 ? 'good' : n >= 5 ? 'ok' : 'bad';
+}
+
+function notaMessage(n) {
+  return n >= 9 ? '¡Excelente!' : n >= 7 ? '¡Muy bien!' : n >= 5 ? 'Aprobado' : 'Necesitas repasar';
+}
+
+const pad2 = (n) => String(n).padStart(2, '0');
+const localKey = (d) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+
+// Serie de actividad de los últimos 30 días + hoy, con los días sin partidas a
+// 0 (la RPC solo devuelve los días con actividad, por eso la gráfica antigua
+// salía "a trozos").
+function buildActivity(daily) {
+  const byDay = new Map();
+  for (const d of daily || []) {
+    const k = String(d?.day || '').slice(0, 10);
+    if (!k) continue;
+    const e = byDay.get(k) || { sessions: 0, seconds: 0 };
+    e.sessions += Number(d.sessions) || 0;
+    e.seconds += Number(d.total_seconds) || 0;
+    byDay.set(k, e);
+  }
+  const today = new Date();
+  today.setHours(12, 0, 0, 0);
+  const out = [];
+  for (let i = 30; i >= 0; i -= 1) {
+    const dt = new Date(today);
+    dt.setDate(today.getDate() - i);
+    const k = localKey(dt);
+    const e = byDay.get(k);
+    out.push({ label: k, date: dt, value: e?.sessions || 0, seconds: e?.seconds || 0 });
+  }
+  return out;
+}
+
+// Días seguidos con partidas terminando hoy (o ayer, si hoy aún no has jugado).
+function streakFrom(series) {
+  let i = series.length - 1;
+  if (i >= 0 && !series[i].value) i -= 1;
+  let n = 0;
+  while (i >= 0 && series[i].value > 0) { n += 1; i -= 1; }
+  return n;
+}
+
+function dueText(dueDate, completed) {
+  if (!dueDate) return null;
+  const due = new Date(dueDate);
+  const now = new Date();
+  const days = Math.round((startOfDay(due) - startOfDay(now)) / 86400000);
+  const date = due.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+  if (completed) return `Fecha límite: ${date}`;
+  if (due < now) {
+    if (days >= 0) return 'Venció hoy';
+    return `Venció hace ${-days} día${days === -1 ? '' : 's'} · ${date}`;
+  }
+  if (days === 0) return 'Vence hoy';
+  if (days === 1) return 'Vence mañana';
+  if (days <= 7) return `Vence en ${days} días · ${date}`;
+  return `Fecha límite: ${date}`;
+}
+
+function dayLabel(iso) {
+  const d = new Date(iso);
+  const diff = Math.round((startOfDay(new Date()) - startOfDay(d)) / 86400000);
+  if (diff === 0) return 'Hoy';
+  if (diff === 1) return 'Ayer';
+  const s = d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+const MODE_META = {
+  test: { label: 'Examen', cls: 'is-test' },
+  practice: { label: 'Práctica', cls: 'is-practice' },
+  duel: { label: 'Duelo', cls: 'is-duel' },
+};
+const modeMeta = (mode) => MODE_META[mode] || MODE_META.practice;
+
+// ─── Piezas de presentación ─────────────────────────────
+
+// Icono de app (baldosa) con alternativa si la app no tiene dibujo.
+function AppTile({ appId, size = 48 }) {
+  if (appId && hasAppIcon(appId)) return <AppIcon appId={appId} size={size} />;
   return (
-    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold ${color}`}>
-      {n > 0 ? `${n}/10` : '-'}
+    <span className="sd-apptile-fallback" style={{ width: size, height: size }} aria-hidden="true">
+      <Gamepad2 size={Math.round(size * 0.46)} />
     </span>
   );
 }
 
-// ─── Recent Sessions ─────────────────────────────────────
-function RecentSessions({ sessions }) {
+// Chip de nota /10. Si el servidor no la manda, "—" (nunca puntos disfrazados de nota).
+function NotaBadge({ value, size = 'md' }) {
+  if (!isShowableNota(value)) {
+    return <span className={`sd-nota sd-nota--${size} is-none`} title="Nota no disponible">—</span>;
+  }
+  const n = Number(value);
+  return (
+    <span className={`sd-nota sd-nota--${size} is-${notaTone(n)}`}>
+      {fmtNota(n)}<small>/10</small>
+    </span>
+  );
+}
+
+// ─── Historial (línea de tiempo agrupada por día) ───────
+function RecentSessions({ sessions, compact = false }) {
   if (!sessions || sessions.length === 0) return null;
 
+  const groups = [];
+  for (const s of sessions) {
+    const k = s.created_at ? localKey(new Date(s.created_at)) : 'sin-fecha';
+    let g = groups[groups.length - 1];
+    if (!g || g.key !== k) {
+      g = { key: k, label: s.created_at ? dayLabel(s.created_at) : 'Sin fecha', items: [] };
+      groups.push(g);
+    }
+    g.items.push(s);
+  }
+
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="bg-slate-50 text-left">
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 rounded-l-lg">App</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center">Modo</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center">Nota</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Aciertos</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 text-center hidden sm:table-cell">Duracion</th>
-            <th className="px-3 py-2 text-xs font-medium text-slate-500 rounded-r-lg">Fecha</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-50">
-          {sessions.map((s, i) => (
-            <tr key={i} className="hover:bg-slate-50 transition-colors">
-              <td className="px-3 py-2">
-                <span className="font-medium text-slate-700">{s.app_name}</span>
-                {s.level && (
-                  <span className="ml-1 text-xs text-slate-400 capitalize">{s.level} {s.grade}</span>
-                )}
-              </td>
-              <td className="px-3 py-2 text-center">
-                <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
-                  s.mode === 'test' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'
-                }`}>
-                  {s.mode === 'test' ? 'Examen' : 'Practica'}
-                </span>
-              </td>
-              <td className="px-3 py-2 text-center">
-                <NotaBadge value={s.nota} />
-              </td>
-              <td className="px-3 py-2 text-center text-slate-500 hidden sm:table-cell">
-                {s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '-'}
-              </td>
-              <td className="px-3 py-2 text-center text-slate-500 hidden sm:table-cell">
-                {formatTime(s.duration_seconds)}
-              </td>
-              <td className="px-3 py-2 text-xs text-slate-500">{formatDateTime(s.created_at)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <ol className={`sd-timeline ${compact ? 'is-compact' : ''}`}>
+      {groups.map((g) => (
+        <li key={g.key} className="sd-timeline__day">
+          <span className="sd-timeline__date">
+            <CalendarDays size={14} />{g.label}
+            {!compact && (
+              <em>
+                {g.items.length} partida{g.items.length !== 1 ? 's' : ''} · {formatTime(g.items.reduce((a, s) => a + (Number(s.duration_seconds) || 0), 0))}
+              </em>
+            )}
+          </span>
+          <ul className="sd-timeline__items">
+            {g.items.map((s, i) => {
+              const mm = modeMeta(s.mode);
+              const course = courseLabel(s.level, s.grade);
+              return (
+                <li key={`${s.created_at}-${s.app_id}-${i}`} className={`sd-tl ${mm.cls}`}>
+                  <span className="sd-tl__dot" aria-hidden="true" />
+                  <span className="sd-tl__icon art-host"><AppTile appId={s.app_id} size={compact ? 42 : 48} /></span>
+                  <div className="sd-tl__body">
+                    <strong className="sd-tl__name">{s.app_name}</strong>
+                    <span className="sd-tl__meta">
+                      <span className={`sd-mode ${mm.cls}`}>{mm.label}</span>
+                      {course && <span>{course}{s.subject_id ? ` · ${subjectLabel(s.subject_id)}` : ''}</span>}
+                    </span>
+                  </div>
+                  <div className="sd-tl__stats">
+                    {!compact && (
+                      <>
+                        <span className="sd-tl__stat" title="Aciertos">
+                          <Target size={13} />{s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '—'}
+                        </span>
+                        <span className="sd-tl__stat" title="Duración"><Timer size={13} />{formatTime(s.duration_seconds)}</span>
+                      </>
+                    )}
+                    <span className="sd-tl__time">{formatHour(s.created_at)}</span>
+                  </div>
+                  <NotaBadge value={s.nota} size={compact ? 'sm' : 'md'} />
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// ─── Actividad (30 días) ─────────────────────────────────
+function ActivityChart({ series }) {
+  if (!series || series.length === 0) return null;
+  const total = series.reduce((a, d) => a + d.value, 0);
+  const activeDays = series.filter((d) => d.value > 0).length;
+  const best = series.reduce((m, d) => (d.value > m.value ? d : m), series[0]);
+  const fmtTip = (d) => `${d.date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}: ${d.value} partida${d.value !== 1 ? 's' : ''}${d.seconds ? `, ${formatTime(d.seconds)}` : ''}`;
+
+  return (
+    <div className="sd-activity">
+      <div className="sd-activity__sum">
+        <span><strong>{total}</strong> partidas</span>
+        <span><strong>{activeDays}</strong> días activos</span>
+        {best.value > 0 && (
+          <span>Mejor día: <strong>{best.value}</strong> · {best.date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}</span>
+        )}
+      </div>
+      <div className="sd-activity__chart">
+        <MiniBars data={series} height={140} tone="orange" formatTip={fmtTip} />
+      </div>
+      <div className="sd-activity__axis">
+        <span>Hace 30 días</span>
+        <span>Hace 15 días</span>
+        <span>Hoy</span>
+      </div>
     </div>
   );
 }
 
-// ─── Activity Chart ──────────────────────────────────────
-function ActivityChart({ data }) {
-  if (!data || data.length === 0) return null;
-
-  const maxSessions = Math.max(...data.map(d => d.sessions));
-
-  return (
-    <div>
-      <div className="flex items-end gap-1 h-32">
-        {data.map((day, i) => {
-          const height = maxSessions > 0 ? (day.sessions / maxSessions) * 100 : 0;
-          const date = new Date(day.day);
-          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-          return (
-            <div key={i} className="flex-1 flex flex-col items-center justify-end group relative">
-              <div className="hidden group-hover:block absolute -top-10 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
-                {date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}:
-                {' '}{day.sessions} partida{day.sessions !== 1 ? 's' : ''}, {formatTime(day.total_seconds)}
-              </div>
-              <div
-                className={`w-full rounded-t transition-all duration-300 min-h-[2px] ${
-                  isWeekend
-                    ? 'bg-gradient-to-t from-purple-400 to-purple-300'
-                    : 'bg-gradient-to-t from-blue-500 to-blue-300'
-                }`}
-                style={{ height: `${Math.max(height, 3)}%` }}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex justify-between mt-2">
-        <span className="text-xs text-slate-400">Hace 30 dias</span>
-        <span className="text-xs text-slate-400">Hoy</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Subject Stats ───────────────────────────────────────
+// ─── Por asignatura ──────────────────────────────────────
 function SubjectStats({ data }) {
   if (!data || data.length === 0) return null;
-
-  const maxPlays = Math.max(...data.map(d => d.total_plays));
-
+  const maxPlays = Math.max(1, ...data.map((d) => d.total_plays || 0));
   return (
-    <div className="space-y-3">
-      {data.map((sub) => (
-        <div key={sub.subject_id} className="flex items-center gap-3">
-          <span className="text-sm font-medium text-slate-700 w-32 truncate">
-            {SUBJECT_LABELS[sub.subject_id] || sub.subject_id}
-          </span>
-          <div className="flex-1 h-6 bg-slate-100 rounded-full overflow-hidden relative">
-            <div
-              className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500"
-              style={{ width: `${(sub.total_plays / maxPlays) * 100}%` }}
-            />
-            <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-600">
-              {sub.total_plays} partidas - {sub.accuracy}%
+    <div className="sd-subjects">
+      {data.map((sub, i) => (
+        <MeterRow
+          key={sub.subject_id}
+          tone={SUBJECT_TONES[i % SUBJECT_TONES.length]}
+          icon={(
+            <span className="sd-subj-ico" aria-hidden="true">
+              {getSubjectAccent(sub.subject_id) ? <SubjectIcon subjectId={sub.subject_id} /> : <BookOpen size={18} />}
             </span>
-          </div>
-          <span className="text-xs text-slate-400 w-16 text-right">{formatTime(sub.total_time_seconds)}</span>
-        </div>
+          )}
+          label={subjectLabel(sub.subject_id)}
+          value={sub.total_plays || 0}
+          max={maxPlays}
+          right={(
+            <span className="sd-subjects__right">
+              <b>{sub.total_plays}</b> · {fmtNum(sub.accuracy || 0, 1)} %
+              <em>{formatTime(sub.total_time_seconds)}</em>
+            </span>
+          )}
+        />
       ))}
     </div>
   );
 }
 
+// ─── Apps más jugadas ────────────────────────────────────
+function TopApps({ apps }) {
+  const top = apps.slice(0, 5);
+  return (
+    <div className="sd-topapps">
+      {top.map((app, i) => (
+        <article
+          // La RPC agrupa por app + curso + asignatura: app_id solo puede repetirse.
+          key={`${app.app_id}|${app.level}|${app.grade}|${app.subject_id}|${i}`}
+          className={`sd-topapp art-host is-rank-${i + 1}`}
+          style={{ '--d': `${i * 60}ms` }}
+        >
+          <span className="sd-topapp__rank">{i < 3 ? <Crown size={13} /> : null}{i + 1}</span>
+          <span className="sd-topapp__icon"><AppTile appId={app.app_id} size={62} /></span>
+          <strong className="sd-topapp__name">{app.app_name}</strong>
+          <span className="sd-topapp__sub">
+            {app.total_plays} partida{app.total_plays !== 1 ? 's' : ''}
+            {app.level ? ` · ${courseLabel(app.level, app.grade)}` : ''}
+          </span>
+          <span className="sd-topapp__acc">
+            <span className="sd-topapp__acc-track"><i style={{ transform: `scaleX(${Math.max(0, Math.min(1, (app.accuracy || 0) / 100))})` }} /></span>
+            <span>{fmtNum(app.accuracy || 0, 0)} %</span>
+          </span>
+          <span className="sd-topapp__best">
+            Mejor nota <NotaBadge value={app.best_nota} size="sm" />
+          </span>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+// ─── Batalla (quiz en directo) ───────────────────────────
+function BattleCard({ qb, onJoin }) {
+  const played = Number(qb?.total_played) || 0;
+  const join = (
+    <DashButton size="sm" variant="amber" icon={Zap} onClick={onJoin}>Unirme</DashButton>
+  );
+  if (!played) {
+    return (
+      <DashCard icon={Zap} title="Batalla" subtitle="Quiz en directo con tu clase" tone="amber" className="sd-battle sd-fill">
+        <div className="sd-battle__empty">
+          <span className="sd-battle__bolt" aria-hidden="true"><Zap size={30} /></span>
+          <strong>Aún no has jugado ninguna batalla</strong>
+          <p>Cuando tu profe abra una, entra con el código y compite en directo contra tu clase.</p>
+          <DashButton variant="amber" icon={Zap} onClick={onJoin}>Unirme a una batalla</DashButton>
+        </div>
+      </DashCard>
+    );
+  }
+  const wins = Number(qb.total_wins) || 0;
+  const podium = Number(qb.total_podium) || 0;
+  const acc = Number(qb.avg_accuracy) || 0;
+  const avgRank = qb.avg_rank;
+  return (
+    <DashCard icon={Zap} title="Batalla" subtitle="Quiz en directo con tu clase" tone="amber" actions={join} className="sd-battle sd-fill">
+      <div className="sd-battle__top">
+        <div className="sd-battle__trophy is-gold">
+          <Trophy size={22} />
+          <strong>{wins}</strong>
+          <span>Victorias</span>
+        </div>
+        <div className="sd-battle__trophy is-silver">
+          <Medal size={22} />
+          <strong>{podium}</strong>
+          <span>Podios</span>
+        </div>
+        <div className="sd-battle__trophy is-plain">
+          <Gamepad2 size={22} />
+          <strong>{played}</strong>
+          <span>Partidas</span>
+        </div>
+      </div>
+      <div className="sd-battle__bottom">
+        <ProgressRing value={acc} max={100} size={92} stroke={10} tone="amber" label={`Precisión ${acc}%`}>
+          <span className="sd-battle__acc">{fmtNum(acc, 0)}<small>%</small></span>
+        </ProgressRing>
+        <dl className="sd-battle__list">
+          <div><dt>Puesto medio</dt><dd>{avgRank != null ? `#${fmtNum(avgRank, 1)}` : '—'}</dd></div>
+          <div><dt>Mejor puntuación</dt><dd>{qb.best_score != null ? Number(qb.best_score).toLocaleString('es-ES') : '—'}</dd></div>
+          <div><dt>Puntuación media</dt><dd>{qb.avg_score != null ? Number(qb.avg_score).toLocaleString('es-ES') : '—'}</dd></div>
+        </dl>
+      </div>
+      <div className="sd-battle__meters">
+        <MeterRow label="Victorias" value={wins} max={played} right={`${Math.round((wins / played) * 100)} %`} tone="amber" />
+        <MeterRow label="Podio (top 3)" value={podium} max={played} right={`${Math.round((podium / played) * 100)} %`} tone="violet" />
+      </div>
+    </DashCard>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════
-// MAIN COMPONENT
+// COMPONENTE PRINCIPAL
 // ═══════════════════════════════════════════════════════════
 export default function StudentDashboard() {
   const { student } = useAuth();
@@ -318,13 +535,16 @@ export default function StudentDashboard() {
     return Math.round((weightedNota / weightSum) * 10) / 10;
   }, [termScoped]);
 
+  // Serie de 31 días para la gráfica de actividad y la racha del héroe.
+  const activity = useMemo(() => buildActivity(data?.daily_activity), [data]);
+
   if (loading) {
     return (
       <div>
         <Header subtitle="Mi Panel" />
-        <div className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center">
-          <BrandLoader variant="inline" />
-        </div>
+        <DashPage role="student" className="sd">
+          <div className="sd-state"><BrandLoader variant="inline" /></div>
+        </DashPage>
       </div>
     );
   }
@@ -333,12 +553,13 @@ export default function StudentDashboard() {
     return (
       <div>
         <Header subtitle="Mi Panel" />
-        <div className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center">
-          <div className="text-center text-slate-500">
-            <p className="text-lg font-medium">No se pudieron cargar los datos</p>
-            <p className="text-sm mt-1">{error}</p>
+        <DashPage role="student" className="sd">
+          <div className="sd-state">
+            <DashCard tone="rose" className="sd-state__card">
+              <DashEmpty title="No se pudieron cargar los datos">{error}</DashEmpty>
+            </DashCard>
           </div>
-        </div>
+        </DashPage>
       </div>
     );
   }
@@ -346,23 +567,27 @@ export default function StudentDashboard() {
   const stats = data?.stats || {};
   const apps = data?.apps_detail || [];
   const recent = data?.recent_sessions || [];
-  const daily = data?.daily_activity || [];
   const subjects = data?.by_subject || [];
   const studentInfo = data?.student || {};
 
   const pendingAssignments = assignments.filter(a => !a.completed);
+  const doneAssignments = assignments.length - pendingAssignments.length;
 
   const hasGroup = !!student?.group_id;
+  const incomingDuels = studentDuels?.incoming || [];
+  const outgoingDuels = studentDuels?.outgoing || [];
+  const activeDuels = incomingDuels.length + outgoingDuels.length;
+
   const tabs = [
-    { id: 'overview', label: 'Resumen', icon: BarChart3 },
+    { id: 'overview', label: 'Resumen', icon: BarChart3, badge: incomingDuels.length || null },
     { id: 'logros', label: 'Insignias', icon: Trophy },
     ...(hasGroup ? [
-      { id: 'tasks', label: `Tareas${pendingAssignments.length > 0 ? ` (${pendingAssignments.length})` : ''}`, icon: ClipboardList },
+      { id: 'tasks', label: 'Tareas', icon: ClipboardList, badge: pendingAssignments.length || null },
       { id: 'messages', label: 'Mensajes', icon: MessageSquare },
     ] : []),
     { id: 'history', label: 'Historial', icon: CalendarDays },
-    { id: 'feedback', label: 'Comentarios', icon: MessageSquare },
-    { id: 'profile', label: 'Perfil', icon: Star },
+    { id: 'feedback', label: 'Comentarios', icon: MessagesSquare },
+    { id: 'profile', label: 'Perfil', icon: User },
   ];
 
   const groupLevel = student?.group_level;
@@ -374,499 +599,528 @@ export default function StudentDashboard() {
         : `/curso/${groupLevel}/${groupGrade}`)
     : null;
 
+  // ── Héroe ──
+  const displayName = studentInfo.display_name || student?.display_name || '';
+  const firstName = displayName.split(' ')[0];
+  const groupName = student?.group_id ? (student?.group_name || studentInfo.group_name) : null;
+
+  const lvl = gamification.level;
+  const curXp = gamification.xpForCurrentLevel;
+  const nextXp = gamification.xpForNextLevel;
+  const maxed = !(nextXp > curXp);
+  const xpIn = maxed ? 1 : Math.max(0, gamification.totalXp - curXp);
+  const xpSpan = maxed ? 1 : nextXp - curXp;
+  const xpLabel = maxed
+    ? `Nivel ${lvl} · ¡nivel máximo!`
+    : `Nivel ${lvl} · faltan ${Math.max(0, nextXp - gamification.totalXp).toLocaleString('es-ES')} XP para el ${lvl + 1}`;
+
+  const streak = streakFrom(activity);
+  const ctGrade = gradeData?.current_term_data?.final_grade;
+  const heroNota = isShowableNota(ctGrade) ? fmtNum(ctGrade, 2) : '—';
+  const heroNotaTone = isShowableNota(ctGrade)
+    ? ({ good: 'emerald', ok: 'blue', bad: 'rose' })[notaTone(Number(ctGrade))]
+    : 'slate';
+
+  const heroLine = (() => {
+    const p = pendingAssignments.length;
+    const dl = activeDuels;
+    const duelTxt = dl ? `${dl} duelo${dl !== 1 ? 's' : ''} en la arena` : '';
+    if (hasGroup && p > 0) {
+      return `Tienes ${p} misión${p !== 1 ? 'es' : ''} pendiente${p !== 1 ? 's' : ''}${dl ? ` y ${duelTxt}` : ''}. ¡A por ello!`;
+    }
+    if (dl) return `Tienes ${duelTxt}. ¡Demuestra lo que sabes!`;
+    if (hasGroup) return '¡Todo al día! Sigue sumando XP y desbloqueando avatares.';
+    return 'Práctica libre: juega, sube de nivel y desbloquea avatares.';
+  })();
+
+  const heroStats = [
+    { icon: Flame, value: streak >= activity.length ? `${streak}+` : streak, label: streak === 1 ? 'Día de racha' : 'Días de racha', tone: 'orange' },
+    { icon: Star, value: heroNota, label: 'Nota actual', tone: heroNotaTone },
+    { icon: Trophy, value: gamification.totalEarned, label: 'Insignias', tone: 'amber' },
+  ];
+
+  // ── Resumen: misiones e insignias ──
+  const nextMissions = pendingAssignments
+    .slice()
+    .sort((a, b) => {
+      const da = a.due_date ? new Date(a.due_date).getTime() : Infinity;
+      const db = b.due_date ? new Date(b.due_date).getTime() : Infinity;
+      return da - db;
+    })
+    .slice(0, 3);
+  const latestBadges = (gamification.earnedBadges || [])
+    .slice()
+    .sort((a, b) => (String(b.earned_at || '') > String(a.earned_at || '') ? 1 : -1))
+    .slice(0, 6);
+
+  // La RPC real aún no devuelve best_nota / avg_test_nota (ver src/dev/mock/README.md): "—".
+  const bestNotaOk = isShowableNota(stats.best_nota);
+  const avgNotaOk = isShowableNota(stats.avg_test_nota);
+
+  const assignmentUrl = (asg) => (
+    asg.app_id && asg.level && asg.grade && asg.subject_id
+      ? `/curso/${asg.level}/${asg.grade}/${asg.subject_id}/app/${asg.app_id}`
+      : null
+  );
+
+  const goToArena = () => {
+    setActiveTab('overview');
+    // Espera a que se pinte el Resumen para llevar la vista a la arena, y
+    // reajusta cuando la tarjeta de la nota (que recarga sus datos) ya ha crecido.
+    const toArena = (behavior) => document.getElementById('sd-arena')?.scrollIntoView({ behavior, block: 'start' });
+    setTimeout(() => toArena('smooth'), 80);
+    setTimeout(() => toArena('smooth'), 700);
+  };
+
+  const tabMotion = { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.25 } };
+
   return (
     <div>
       <Header subtitle="Mi Panel" />
-      <div className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div className="container mx-auto px-4 py-6 max-w-5xl">
+      <DashPage role="student" className="sd">
 
-          {/* Header del alumno */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-2xl shadow-sm border border-purple-100 p-5 mb-6"
-          >
-            <div className="flex items-center gap-4 overflow-x-auto scrollbar-hide">
-              <div className="shrink-0">
-                <UserAvatar
-                  selectedAvatarCode={student?.selected_avatar_code || studentInfo.selected_avatar_code}
-                  avatarEmoji={studentInfo.avatar_emoji}
-                  avatarColor={studentInfo.avatar_color}
-                  size="lg"
-                  shape="rounded"
-                  showRarityBorder
-                />
-              </div>
-              <div className="shrink-0">
-                <h1 className="text-xl font-bold text-slate-800">{studentInfo.display_name}</h1>
-                <p className="text-sm text-slate-500">@{studentInfo.username}</p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
-                    student?.group_id
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'bg-emerald-100 text-emerald-700'
-                  }`}>
-                    {student?.group_id ? student?.group_name || studentInfo.group_name : 'Practica libre'}
-                  </span>
-                  {student?.email_verified && (
-                    <button onClick={() => setActiveTab('profile')}
-                      className="text-[10px] text-slate-400 hover:text-indigo-600 transition-colors underline">
-                      Cambiar
-                    </button>
-                  )}
-                </div>
-              </div>
-              <div className="ml-auto flex items-center gap-2 shrink-0">
-                {exploreAppsPath && (
-                  <button
-                    onClick={() => navigate(exploreAppsPath)}
-                    className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl text-lg font-bold hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                    title="Ir a las apps de tu asignatura"
-                  >
-                    <Compass className="w-6 h-6" />
-                    Explorar Apps
-                  </button>
-                )}
-                <button
-                  onClick={() => navigate('/quiz-battle/join')}
-                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-2xl text-lg font-bold hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  title="Unirse a una Batalla"
-                >
-                  <Zap className="w-6 h-6" />
-                  Batalla
+        {/* ── Héroe del alumno ── */}
+        <DashHero
+          avatar={(
+            <UserAvatar
+              selectedAvatarCode={student?.selected_avatar_code || studentInfo.selected_avatar_code}
+              avatarEmoji={studentInfo.avatar_emoji}
+              avatarColor={studentInfo.avatar_color}
+              size="xl"
+              shape="rounded"
+              showRarityBorder
+            />
+          )}
+          title={firstName ? `¡Hola, ${firstName}!` : '¡Hola!'}
+          subtitle={heroLine}
+          chips={(
+            <>
+              {studentInfo.username && <Pill>@{studentInfo.username}</Pill>}
+              <Pill icon={groupName ? Users : Sparkles}>{groupName || 'Práctica libre'}</Pill>
+              {student?.email_verified && (
+                <button type="button" className="sd-hero-chipbtn" onClick={() => setActiveTab('profile')} title="Cambiar de grupo">
+                  Cambiar
                 </button>
-                <button
-                  onClick={() => setDuelModalOpen(true)}
-                  className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-red-500 via-rose-600 to-red-700 text-white rounded-2xl text-lg font-bold hover:from-red-600 hover:via-rose-700 hover:to-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  title="Crear un duelo 1 vs 1"
-                >
-                  <Swords className="w-6 h-6" />
-                  Duelo
-                </button>
-              </div>
-              <div className="hidden sm:flex items-center text-center shrink-0">
-                <div>
-                  <p className="text-2xl font-bold text-yellow-500">{gamification.level}</p>
-                  <p className="text-xs text-slate-500">Nivel</p>
-                  <div className="w-16 h-1.5 bg-slate-200 rounded-full mt-1 mx-auto">
-                    <div className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
-                      style={{ width: `${gamification.xpForNextLevel > gamification.xpForCurrentLevel ? Math.min(100, Math.round(((gamification.totalXp - gamification.xpForCurrentLevel) / (gamification.xpForNextLevel - gamification.xpForCurrentLevel)) * 100)) : 100}%` }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              )}
+            </>
+          )}
+          level={lvl}
+          xp={xpIn}
+          xpNext={xpSpan}
+          xpLabel={xpLabel}
+          stats={heroStats}
+          mascot
+          actions={(
+            <>
+              {exploreAppsPath && (
+                <DashButton size="lg" variant="sky" icon={Compass} onClick={() => navigate(exploreAppsPath)} title="Ir a las apps de tu asignatura">
+                  Explorar apps
+                </DashButton>
+              )}
+              <DashButton size="lg" variant="amber" icon={Zap} onClick={() => navigate('/quiz-battle/join')} title="Unirse a una Batalla">
+                Batalla
+              </DashButton>
+              <DashButton size="lg" variant="rose" icon={Swords} onClick={() => setDuelModalOpen(true)} title="Crear un duelo 1 vs 1">
+                Duelo
+              </DashButton>
+            </>
+          )}
+        />
 
-          {/* Tabs — `flex-auto` reparte el ancho proporcionalmente al
-              contenido (las pestañas con etiqueta más larga ocupan algo más
-              de espacio), sin dejar hueco a la derecha. En móvil, si no
-              caben, el contenedor pasa a scroll horizontal. */}
-          <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-slate-100 shadow-sm overflow-x-auto scrollbar-hide">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
-                  activeTab === tab.id
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        <DashDock tabs={tabs} value={activeTab} onChange={setActiveTab} />
 
-          {/* Inbox de duelos (siempre visible cuando hay alguno) */}
-          <DuelInbox duels={studentDuels} onChange={refreshDuels} />
+        {/* Aviso de duelos fuera del Resumen (la arena completa vive en Resumen) */}
+        {activeTab !== 'overview' && activeDuels > 0 && (
+          <button type="button" className="sd-duelbanner" onClick={goToArena}>
+            <span className="sd-duelbanner__icon"><Swords size={20} /></span>
+            <span className="sd-duelbanner__text">
+              <strong>{activeDuels} duelo{activeDuels !== 1 ? 's' : ''} activo{activeDuels !== 1 ? 's' : ''}</strong>
+              {incomingDuels.length > 0 && <span> · {incomingDuels.length} te {incomingDuels.length !== 1 ? 'esperan' : 'espera'}</span>}
+            </span>
+            <span className="sd-duelbanner__go">Ir a la arena <ChevronRight size={16} /></span>
+          </button>
+        )}
 
-          {/* ── TAB: Resumen ── */}
-          {activeTab === 'overview' && (
-            <div className="space-y-6">
-              {/* Stat cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <StatCard icon={Gamepad2} label="Total partidas" value={stats.total_sessions || 0}
-                  subValue={`${stats.practice_sessions || 0} practica / ${stats.test_sessions || 0} examen`}
-                  color="bg-blue-500" delay={0} />
-                <StatCard icon={Clock} label="Tiempo total" value={formatTime(stats.total_time_seconds)}
-                  subValue={`Sesion mas larga: ${formatTime(stats.longest_session_seconds)}`}
-                  color="bg-purple-500" delay={0.05} />
-                <StatCard icon={Target} label="Precision global" value={`${stats.avg_accuracy || 0}%`}
-                  subValue={`${stats.total_correct || 0} de ${stats.total_questions || 0} aciertos`}
-                  color="bg-green-500" delay={0.1} />
-                <StatCard icon={Trophy} label="Mejor nota" value={
-                    stats.best_nota != null && stats.best_nota >= 0 && stats.best_nota <= 11
-                      ? `${Number(stats.best_nota).toFixed(1)}/10`
-                      : '—/10'
-                  }
-                  subValue={
-                    stats.avg_test_nota != null && stats.avg_test_nota >= 0 && stats.avg_test_nota <= 11
-                      ? `Media examen: ${Number(stats.avg_test_nota).toFixed(1)}/10`
-                      : 'Media examen: —/10'
-                  }
-                  color="bg-amber-500" delay={0.15} />
-              </div>
-
-              {/* Nota con bonificacion/deuda por duelos */}
+        {/* ── TAB: Resumen ── */}
+        {activeTab === 'overview' && (
+          <motion.div {...tabMotion} className="sd-hub">
+            {/* Nota con bonificacion/deuda por duelos */}
+            <div className="sd-rise" style={{ '--d': '0ms' }}>
               <DuelGradePanel refreshKey={lastDuelEvent?.received_at || 0} />
+            </div>
 
-              {/* Batalla stats */}
-              {qbStats && qbStats.total_played > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.18 }}
-                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200 shadow-sm"
+            {/* Arena de duelos (solo si hay alguno) */}
+            {activeDuels > 0 && (
+              <div id="sd-arena" className="sd-rise sd-anchor" style={{ '--d': '60ms' }}>
+                <DuelInbox duels={studentDuels} onChange={refreshDuels} />
+              </div>
+            )}
+
+            {/* Indicadores */}
+            <div className="sd-rise" style={{ '--d': '120ms' }}>
+              <SectionGrid cols={4}>
+                <StatTile
+                  icon={Gamepad2} tone="blue" label="Partidas"
+                  value={stats.total_sessions || 0}
+                  sub={`${stats.practice_sessions || 0} práctica · ${stats.test_sessions || 0} examen`}
+                />
+                <StatTile
+                  icon={Clock} tone="violet" label="Tiempo total"
+                  value={formatTime(stats.total_time_seconds)}
+                  sub={`Sesión más larga: ${formatTime(stats.longest_session_seconds)}`}
+                />
+                <StatTile
+                  icon={Target} tone="emerald" label="Precisión global"
+                  value={Number(stats.avg_accuracy) || 0}
+                  format={(v) => `${fmtNum(v, 1)} %`}
+                  sub={`${stats.total_correct || 0} de ${stats.total_questions || 0} aciertos`}
+                  progress={(Number(stats.avg_accuracy) || 0) / 100}
+                />
+                <StatTile
+                  icon={Trophy} tone="amber" label="Mejor nota"
+                  value={bestNotaOk ? `${fmtNum(stats.best_nota, 1)}/10` : '—/10'}
+                  sub={avgNotaOk ? `Media examen: ${fmtNum(stats.avg_test_nota, 1)}/10` : 'Media examen: —/10'}
+                />
+              </SectionGrid>
+            </div>
+
+            {/* Misiones + insignias */}
+            <div className="sd-row sd-rise" style={{ '--d': '180ms' }}>
+              {hasGroup && (
+                <DashCard
+                  className="sd-fill"
+                  icon={ListChecks} tone="amber" title="Próximas misiones"
+                  subtitle={pendingAssignments.length
+                    ? `${pendingAssignments.length} por completar`
+                    : 'Tareas de tu profe'}
+                  actions={assignments.length > 0 && (
+                    <DashButton size="sm" variant="soft" onClick={() => setActiveTab('tasks')}>
+                      Ver todas <ChevronRight size={15} />
+                    </DashButton>
+                  )}
                 >
-                  <h3 className="text-xl font-bold text-amber-800 mb-4 flex items-center gap-2.5">
-                    <Zap className="w-6 h-6 text-amber-500" />
-                    Batalla
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <div>
-                      <p className="text-sm text-amber-600 font-medium">Partidas</p>
-                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_played}</p>
+                  {nextMissions.length > 0 ? (
+                    <div className="sd-missions">
+                      {nextMissions.map((asg) => {
+                        const url = assignmentUrl(asg);
+                        const overdue = asg.due_date && new Date(asg.due_date) < new Date() && !asg.completed;
+                        return (
+                          <button
+                            key={asg.id}
+                            type="button"
+                            className={`sd-mission art-host ${overdue ? 'is-overdue' : ''}`}
+                            onClick={() => (url ? navigate(url) : setActiveTab('tasks'))}
+                          >
+                            <AppTile appId={asg.app_id} size={46} />
+                            <span className="sd-mission__text">
+                              <strong>{asg.title || asg.app_name}</strong>
+                              <small>
+                                {overdue && <AlertTriangle size={12} />}
+                                {dueText(asg.due_date, asg.completed) || asg.app_name}
+                              </small>
+                            </span>
+                            {asg.weight > 1 && <span className="sd-weight">×{asg.weight}</span>}
+                            <span className="sd-mission__go"><ChevronRight size={18} /></span>
+                          </button>
+                        );
+                      })}
                     </div>
-                    <div>
-                      <p className="text-sm text-amber-600 font-medium flex items-center gap-1">
-                        <Trophy className="w-4 h-4" /> Victorias
-                      </p>
-                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_wins}</p>
+                  ) : (
+                    <div className="sd-allclear">
+                      <span className="sd-allclear__icon"><PartyPopper size={28} /></span>
+                      <strong>{assignments.length ? '¡Misiones completadas!' : 'Sin misiones por ahora'}</strong>
+                      <p>{assignments.length ? 'Has superado todas tus tareas. Puedes mejorar tu nota repitiéndolas.' : 'Cuando tu profe te asigne una tarea, aparecerá aquí.'}</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-amber-600 font-medium">Podio (Top 3)</p>
-                      <p className="text-3xl font-bold text-amber-900">{qbStats.total_podium}</p>
+                  )}
+                  {assignments.length > 0 && (
+                    <div className="sd-missions__foot">
+                      <span className="sd-missions__foot-text">
+                        <CheckCircle2 size={15} />
+                        <strong>{doneAssignments}</strong> de {assignments.length} misiones superadas
+                      </span>
+                      <span className="sd-missions__track"><i style={{ transform: `scaleX(${doneAssignments / assignments.length})` }} /></span>
                     </div>
-                    <div>
-                      <p className="text-sm text-amber-600 font-medium">Precision</p>
-                      <p className="text-3xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-5 mt-4 pt-4 border-t border-amber-200">
-                    <div>
-                      <p className="text-sm text-amber-600">Puesto medio</p>
-                      <p className="text-xl font-bold text-amber-900">#{qbStats.avg_rank}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-amber-600">Mejor punt.</p>
-                      <p className="text-xl font-bold text-amber-900">{qbStats.best_score}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-amber-600">Media punt.</p>
-                      <p className="text-xl font-bold text-amber-900">{qbStats.avg_score}</p>
-                    </div>
-                  </div>
-                </motion.div>
+                  )}
+                </DashCard>
               )}
 
-              {/* Actividad diaria */}
-              {daily.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-                >
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <Flame className="w-5 h-5 text-orange-500" />
-                    Actividad (30 dias)
-                  </h3>
-                  <ActivityChart data={daily} />
-                </motion.div>
-              )}
-
-              {/* Por asignatura */}
-              {subjects.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-                >
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-blue-500" />
-                    Por asignatura
-                  </h3>
-                  <SubjectStats data={subjects} />
-                </motion.div>
-              )}
-
-              {/* Top 5 apps */}
-              {apps.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-                >
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-amber-500" />
-                    Tus apps mas jugadas
-                  </h3>
-                  <div className="space-y-3">
-                    {apps.slice(0, 5).map((app, i) => (
-                      <div key={app.app_id} className="flex items-center gap-3">
-                        <span className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-white ${
-                          i === 0 ? 'bg-amber-400' : i === 1 ? 'bg-slate-400' : i === 2 ? 'bg-orange-400' : 'bg-slate-300'
-                        }`}>
-                          {i + 1}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-slate-700 truncate">{app.app_name}</p>
-                          <p className="text-xs text-slate-400">{app.total_plays} partidas &middot; Precision: {app.accuracy}%</p>
-                        </div>
-                        <div className="text-right">
-                          <NotaBadge value={app.best_nota ?? app.best_score} />
-                          <p className="text-xs text-slate-400 mt-0.5">mejor nota</p>
-                        </div>
+              <DashCard
+                icon={Award} tone="pink" title="Insignias"
+                subtitle={`${gamification.totalEarned} de ${gamification.totalAvailable || '—'} conseguidas`}
+                actions={(
+                  <DashButton size="sm" variant="soft" onClick={() => setActiveTab('logros')}>
+                    Ver todas <ChevronRight size={15} />
+                  </DashButton>
+                )}
+              >
+                <div className="sd-badges__meter">
+                  <span><i style={{ transform: `scaleX(${gamification.totalAvailable ? Math.min(1, gamification.totalEarned / gamification.totalAvailable) : 0})` }} /></span>
+                </div>
+                {latestBadges.length > 0 ? (
+                  <div className="sd-badges">
+                    {latestBadges.map((b) => (
+                      <div key={b.code} className="sd-badge" title={b.description_es || b.description || ''}>
+                        <BadgeIcon code={b.code} rarity={b.rarity} size={54} />
+                        <span>{b.name_es || b.name || b.code}</span>
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              )}
+                ) : (
+                  <DashEmpty title="Aún sin insignias" mascot={false}>Juega partidas y supera retos para ganar tu primera insignia.</DashEmpty>
+                )}
+              </DashCard>
             </div>
-          )}
 
-          {/* ── TAB: Tareas ── */}
-          {activeTab === 'tasks' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-              {/* Filtro por evaluacion */}
-              {assignments.length > 0 && (
-                <div className="flex gap-2 bg-white rounded-xl p-1.5 border border-slate-100 shadow-sm overflow-x-auto">
-                  {[
-                    { id: 'all', label: 'Curso completo' },
-                    { id: 1, label: '1ª Eval' },
-                    { id: 2, label: '2ª Eval' },
-                    { id: 3, label: '3ª Eval' },
-                  ].map(f => (
-                    <button
-                      key={f.id}
-                      onClick={() => setTermFilter(f.id)}
-                      className={`flex-1 min-w-[90px] px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                        termFilter === f.id
-                          ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-sm'
-                          : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
-                      }`}
-                    >
-                      {f.label}
-                    </button>
-                  ))}
-                </div>
-              )}
+            {/* Actividad + asignaturas */}
+            <div className="sd-row sd-rise" style={{ '--d': '240ms' }}>
+              <DashCard icon={Flame} tone="orange" title="Actividad" subtitle="Partidas de los últimos 30 días">
+                {activity.some((d) => d.value > 0) ? (
+                  <ActivityChart series={activity} />
+                ) : (
+                  <DashEmpty title="Sin partidas este mes" mascot={false}>Juega a cualquier app y tu actividad aparecerá aquí.</DashEmpty>
+                )}
+              </DashCard>
+              <DashCard
+                icon={BookOpen} tone="indigo" title="Por asignatura" subtitle="Partidas · precisión · tiempo"
+                actions={subjects.length > 0 && <Pill>{subjects.length} asignatura{subjects.length !== 1 ? 's' : ''}</Pill>}
+              >
+                {subjects.length > 0 ? (
+                  <SubjectStats data={subjects} />
+                ) : (
+                  <DashEmpty title="Aún no hay datos" mascot={false}>Tus asignaturas aparecerán cuando juegues.</DashEmpty>
+                )}
+              </DashCard>
+            </div>
 
-              {/* Nota base de tareas (sin bonus) — filtrada por evaluacion o curso completo */}
-              {baseGrade != null && (() => {
-                const gradeColor = baseGrade >= 8 ? 'from-green-500 to-emerald-600' : baseGrade >= 5 ? 'from-blue-500 to-purple-600' : 'from-red-400 to-orange-500';
-                const msg = baseGrade >= 9 ? '¡Excelente!' : baseGrade >= 7 ? '¡Muy bien!' : baseGrade >= 5 ? 'Aprobado' : 'Necesitas repasar';
-                const doneCount = termScoped.filter(a => a.completed).length;
-                const header = termFilter === 'all' ? 'Nota del curso · solo tareas' : `Nota de la ${termFilter}ª evaluación · solo tareas`;
-                return (
-                  <motion.div
-                    key={termFilter}
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className={`relative overflow-hidden rounded-2xl p-5 shadow-lg text-white bg-gradient-to-br ${gradeColor}`}
+            {/* Top 5 apps */}
+            {apps.length > 0 && (
+              <div className="sd-rise" style={{ '--d': '300ms' }}>
+                <DashCard icon={Crown} tone="amber" title="Tus apps más jugadas" subtitle="Tu top 5 de juegos favoritos">
+                  <TopApps apps={apps} />
+                </DashCard>
+              </div>
+            )}
+
+            {/* Batalla + últimas partidas */}
+            <div className="sd-row sd-row--alt sd-rise" style={{ '--d': '360ms' }}>
+              <BattleCard qb={qbStats} onJoin={() => navigate('/quiz-battle/join')} />
+              <DashCard
+                icon={History} tone="cyan" title="Últimas partidas"
+                actions={recent.length > 0 && (
+                  <DashButton size="sm" variant="soft" onClick={() => setActiveTab('history')}>
+                    Historial <ChevronRight size={15} />
+                  </DashButton>
+                )}
+              >
+                {recent.length > 0 ? (
+                  <RecentSessions sessions={recent.slice(0, 5)} compact />
+                ) : (
+                  <DashEmpty title="Aún no has jugado" mascot={false}>Tus partidas aparecerán aquí.</DashEmpty>
+                )}
+              </DashCard>
+            </div>
+          </motion.div>
+        )}
+
+        {/* ── TAB: Tareas ── */}
+        {activeTab === 'tasks' && (
+          <motion.div {...tabMotion} className="sd-tasks">
+            {/* Filtro por evaluacion */}
+            {assignments.length > 0 && (
+              <div className="sd-seg sd-seg--term" role="group" aria-label="Evaluación">
+                {[
+                  { id: 'all', label: 'Curso completo' },
+                  { id: 1, label: '1ª Eval' },
+                  { id: 2, label: '2ª Eval' },
+                  { id: 3, label: '3ª Eval' },
+                ].map(f => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setTermFilter(f.id)}
+                    className={`sd-seg__btn ${termFilter === f.id ? 'is-active' : ''}`}
+                    aria-pressed={termFilter === f.id}
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-white/80 uppercase tracking-wide">{header}</p>
-                        <p className="text-xs text-white/70 mt-0.5">Media ponderada de {termScoped.length} {termScoped.length === 1 ? 'tarea' : 'tareas'} · {doneCount} aprobada{doneCount !== 1 ? 's' : ''}</p>
-                        <p className="text-lg font-semibold mt-2">{msg}</p>
-                        <p className="text-[11px] text-white/70 mt-1">Esta es la nota de tareas sin bonus. Tu nota completa con duelos, batallas, nivel y avatares está en el panel "Resumen".</p>
-                      </div>
-                      <div className="shrink-0 flex items-baseline">
-                        <span className="text-5xl font-black drop-shadow-sm">{baseGrade.toFixed(1)}</span>
-                        <span className="text-xl font-bold text-white/80 ml-1">/10</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })()}
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            )}
 
-              {/* Filtros */}
-              {termScoped.length > 0 && (
-                <div className="flex gap-2 bg-white rounded-xl p-1.5 border border-slate-100 shadow-sm">
-                  {[
-                    { id: 'all', label: `Todas (${termScoped.length})` },
-                    { id: 'pending', label: `Pendientes (${termScoped.filter(a => !a.completed).length})` },
-                    { id: 'completed', label: `Completadas (${termScoped.filter(a => a.completed).length})` },
-                  ].map(f => (
-                    <button
-                      key={f.id}
-                      onClick={() => setTaskFilter(f.id)}
-                      className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                        taskFilter === f.id
-                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm'
-                          : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
-                      }`}
-                    >
-                      {f.label}
-                    </button>
-                  ))}
-                </div>
-              )}
+            {/* Nota base de tareas (sin bonus) — filtrada por evaluacion o curso completo */}
+            {baseGrade != null && (() => {
+              const msg = notaMessage(baseGrade);
+              const doneCount = termScoped.filter(a => a.completed).length;
+              const header = termFilter === 'all' ? 'Nota del curso · solo tareas' : `Nota de la ${termFilter}ª evaluación · solo tareas`;
+              return (
+                <motion.section
+                  key={termFilter}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className={`sd-taskgrade is-${notaTone(baseGrade)}`}
+                >
+                  <ProgressRing value={baseGrade} size={128} stroke={9} label={`Nota ${baseGrade}`}>
+                    <span className="sd-taskgrade__num">{fmtNum(baseGrade, 1)}</span>
+                    <span className="sd-taskgrade__of">/10</span>
+                  </ProgressRing>
+                  <div className="sd-taskgrade__text">
+                    <span className="sd-taskgrade__kicker">{header}</span>
+                    <strong className="sd-taskgrade__msg">{msg}</strong>
+                    <span className="sd-taskgrade__sub">
+                      Media ponderada de {termScoped.length} {termScoped.length === 1 ? 'tarea' : 'tareas'} · {doneCount} aprobada{doneCount !== 1 ? 's' : ''}
+                    </span>
+                    <span className="sd-taskgrade__bar" aria-hidden="true">
+                      <i style={{ transform: `scaleX(${termScoped.length ? doneCount / termScoped.length : 0})` }} />
+                    </span>
+                    <span className="sd-taskgrade__note">
+                      Esta es la nota de tareas sin bonus. Tu nota completa con duelos, batallas, nivel y avatares está en el panel &quot;Resumen&quot;.
+                    </span>
+                  </div>
+                </motion.section>
+              );
+            })()}
 
-              {termScoped.length === 0 ? (
-                <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm text-center text-slate-400">
-                  <ClipboardList className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p className="font-medium">
-                    {termFilter === 'all' ? 'No tienes tareas asignadas' : `No hay tareas en la ${termFilter}ª evaluación`}
-                  </p>
-                </div>
-              ) : (
-                termScoped
+            {/* Filtros */}
+            {termScoped.length > 0 && (
+              <div className="sd-seg" role="group" aria-label="Estado de las tareas">
+                {[
+                  { id: 'all', label: 'Todas', n: termScoped.length, icon: ListChecks },
+                  { id: 'pending', label: 'Pendientes', n: termScoped.filter(a => !a.completed).length, icon: Target },
+                  { id: 'completed', label: 'Completadas', n: termScoped.filter(a => a.completed).length, icon: CheckCircle2 },
+                ].map(f => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setTaskFilter(f.id)}
+                    className={`sd-seg__btn ${taskFilter === f.id ? 'is-active' : ''}`}
+                    aria-pressed={taskFilter === f.id}
+                  >
+                    <f.icon size={16} />
+                    {f.label}
+                    <span className="sd-seg__count">{f.n}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {termScoped.length === 0 ? (
+              <DashCard tone="amber">
+                <DashEmpty title={termFilter === 'all' ? 'No tienes tareas asignadas' : `No hay tareas en la ${termFilter}ª evaluación`}>
+                  Cuando tu profe te asigne misiones, las verás aquí.
+                </DashEmpty>
+              </DashCard>
+            ) : (
+              <div className="sd-quests">
+                {termScoped
                   .filter(asg => taskFilter === 'all' ? true : taskFilter === 'completed' ? asg.completed : !asg.completed)
                   .map((asg) => {
-                  const isOverdue = asg.due_date && new Date(asg.due_date) < new Date() && !asg.completed;
-                  const canNavigate = asg.app_id && asg.level && asg.grade && asg.subject_id;
-                  const appUrl = canNavigate
-                    ? `/curso/${asg.level}/${asg.grade}/${asg.subject_id}/app/${asg.app_id}`
-                    : null;
-                  return (
-                    <div
-                      key={asg.id}
-                      onClick={() => appUrl && navigate(appUrl)}
-                      className={`bg-white rounded-2xl p-5 border shadow-sm transition-all ${
-                        asg.completed ? 'border-green-200' : isOverdue ? 'border-amber-200' : 'border-slate-100'
-                      } ${appUrl ? 'cursor-pointer hover:shadow-md hover:border-purple-200' : ''}`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          asg.completed ? 'bg-green-100' : isOverdue ? 'bg-amber-100' : 'bg-slate-100'
-                        }`}>
-                          {asg.completed
-                            ? <CheckCircle2 className="w-5 h-5 text-green-600" />
-                            : isOverdue
-                              ? <AlertTriangle className="w-5 h-5 text-amber-600" />
-                              : <Circle className="w-5 h-5 text-slate-400" />
-                          }
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <p className={`font-semibold ${asg.completed ? 'text-green-700' : 'text-slate-800'}`}>
-                              {asg.title || asg.app_name}
-                            </p>
-                            {asg.weight > 1 && (
-                              <span className="text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm">
-                                x{asg.weight}
-                              </span>
+                    const isOverdue = asg.due_date && new Date(asg.due_date) < new Date() && !asg.completed;
+                    const appUrl = assignmentUrl(asg);
+                    const isDuelTask = asg.assignment_type === 'duel' || !!asg.duel_id;
+                    const status = asg.completed ? 'done' : isOverdue ? 'overdue' : isDuelTask ? 'duel' : 'pending';
+                    // Progreso del alumno — siempre hay una nota (0 si no intentada)
+                    const nota = Number(asg.best_nota ?? asg.best_score ?? 0);
+                    const tried = asg.completed || asg.attempts > 0;
+                    return (
+                      <div
+                        key={asg.id}
+                        className={`sd-quest-wrap art-host ${appUrl ? 'is-link' : ''}`}
+                        onClick={() => appUrl && navigate(appUrl)}
+                      >
+                        <QuestCard
+                          appId={asg.app_id}
+                          title={asg.title || asg.app_name}
+                          subtitle={asg.title ? asg.app_name : null}
+                          status={status}
+                          nota={tried ? nota : null}
+                          due={dueText(asg.due_date, asg.completed)}
+                          reward={asg.weight > 1 ? `Cuenta ×${asg.weight}` : null}
+                          meta={(
+                            <>
+                              {asg.term && <span className="sd-quest-term">{asg.term}ª Eval</span>}
+                              <span>Nota mínima: {asg.min_score}/10 en examen</span>
+                            </>
+                          )}
+                          onPlay={appUrl ? (e) => { e.stopPropagation(); navigate(appUrl); } : undefined}
+                          playLabel={asg.completed ? 'Mejorar' : asg.attempts > 0 ? 'Reintentar' : 'Jugar'}
+                        >
+                          {asg.description && <p className="sd-quest-desc">{asg.description}</p>}
+                          <p className={`sd-quest-progress is-${asg.completed ? 'done' : asg.attempts > 0 ? 'tried' : 'new'}`}>
+                            {asg.completed ? (
+                              <><CheckCircle2 size={15} /> Completada — Nota: <strong>{fmtNum(nota, 1)}/10</strong></>
+                            ) : asg.attempts > 0 ? (
+                              <>{asg.attempts} intento{asg.attempts !== 1 ? 's' : ''} — Nota actual: <strong>{fmtNum(nota, 1)}/10</strong> <span>(necesitas {asg.min_score}/10 para superarla)</span></>
+                            ) : (
+                              <>Aún no has intentado esta tarea — Nota actual: <strong>0,0/10</strong></>
                             )}
-                            {asg.term && (
-                              <span className="text-xs font-semibold bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2 py-0.5 rounded-full shadow-sm">
-                                {asg.term}ª Eval
-                              </span>
-                            )}
-                          </div>
-                          {asg.title && <p className="text-sm text-slate-500">{asg.app_name}</p>}
-                          {asg.description && <p className="text-sm text-slate-400 mt-1 italic">{asg.description}</p>}
-
-                          <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                            <span>Nota minima: <strong className="text-slate-600">{asg.min_score}/10</strong> en examen</span>
-                            {asg.due_date && (
-                              <span className={isOverdue ? 'text-amber-600 font-medium' : ''}>
-                                Fecha limite: {new Date(asg.due_date).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}
-                              </span>
-                            )}
-                          </div>
-
-                          {/* Progreso del alumno — siempre se muestra una nota (0 si no intentada) */}
-                          <div className="mt-2 flex items-center gap-3 text-sm">
-                            {(() => {
-                              const nota = Number(asg.best_nota ?? asg.best_score ?? 0);
-                              if (asg.completed) {
-                                return (
-                                  <span className="text-green-600 font-medium flex items-center gap-1">
-                                    <CheckCircle2 className="w-4 h-4" />
-                                    Completada — Nota: <strong>{nota.toFixed(1).replace('.', ',')}/10</strong>
-                                  </span>
-                                );
-                              }
-                              if (asg.attempts > 0) {
-                                return (
-                                  <span className="text-slate-500">
-                                    {asg.attempts} intento{asg.attempts !== 1 ? 's' : ''} — Nota actual: <strong className="text-slate-700">{nota.toFixed(1).replace('.', ',')}/10</strong> <span className="text-slate-400">(necesitas {asg.min_score}/10 para superarla)</span>
-                                  </span>
-                                );
-                              }
-                              return (
-                                <span className="text-slate-500">
-                                  Aún no has intentado esta tarea — Nota actual: <strong className="text-rose-600">0,0/10</strong>
-                                </span>
-                              );
-                            })()}
-                          </div>
-                        </div>
-
-                        {/* Boton jugar */}
-                        {appUrl && (
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
-                            asg.completed
-                              ? 'bg-green-100 text-green-600'
-                              : 'bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-md'
-                          }`}>
-                            <Play className="w-5 h-5" />
-                          </div>
-                        )}
+                          </p>
+                        </QuestCard>
                       </div>
-                    </div>
-                  );
-                })
+                    );
+                  })}
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        {/* ── TAB: Mensajes ── */}
+        {activeTab === 'messages' && (
+          <motion.div {...tabMotion}>
+            <StudentChatTab />
+          </motion.div>
+        )}
+
+        {/* ── TAB: Historial ── */}
+        {activeTab === 'history' && (
+          <motion.div {...tabMotion}>
+            <DashCard
+              icon={CalendarDays} tone="emerald" title="Últimas partidas"
+              subtitle={recent.length ? `Tus ${recent.length} partidas más recientes` : 'Tu diario de juego'}
+              actions={recent.length > 0 && (
+                <div className="sd-hist-legend">
+                  <span className="sd-mode is-test">Examen</span>
+                  <span className="sd-mode is-practice">Práctica</span>
+                </div>
               )}
-            </motion.div>
-          )}
-
-          {/* ── TAB: Mensajes ── */}
-          {activeTab === 'messages' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <StudentChatTab />
-            </motion.div>
-          )}
-
-          {/* ── TAB: Historial ── */}
-          {activeTab === 'history' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
             >
-              <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <CalendarDays className="w-5 h-5 text-green-500" />
-                Ultimas partidas
-              </h3>
               {recent.length > 0 ? (
                 <RecentSessions sessions={recent} />
               ) : (
-                <div className="text-center py-8 text-slate-400">
-                  <p>No hay partidas registradas</p>
-                </div>
+                <DashEmpty
+                  title="No hay partidas registradas"
+                  action={exploreAppsPath && (
+                    <DashButton variant="sky" icon={Compass} onClick={() => navigate(exploreAppsPath)}>Explorar apps</DashButton>
+                  )}
+                >
+                  Cuando juegues, aquí verás cada partida con su nota.
+                </DashEmpty>
               )}
-            </motion.div>
-          )}
+            </DashCard>
+          </motion.div>
+        )}
 
-          {/* ── TAB: Logros ── */}
-          {activeTab === 'logros' && (
-            <StudentLogrosTab gamification={gamification} />
-          )}
+        {/* ── TAB: Logros ── */}
+        {activeTab === 'logros' && (
+          <StudentLogrosTab gamification={gamification} />
+        )}
 
-          {/* ── TAB: Comentarios ── */}
-          {activeTab === 'feedback' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <MyFeedbacksSection />
-            </motion.div>
-          )}
+        {/* ── TAB: Comentarios ── */}
+        {activeTab === 'feedback' && (
+          <motion.div {...tabMotion}>
+            <MyFeedbacksSection />
+          </motion.div>
+        )}
 
-          {/* ── TAB: Perfil ── */}
-          {activeTab === 'profile' && (
-            <StudentProfileEditor
-              student={student}
-              studentInfo={studentInfo}
-              onProfileUpdated={fetchDashboard}
-            />
-          )}
+        {/* ── TAB: Perfil ── */}
+        {activeTab === 'profile' && (
+          <StudentProfileEditor
+            student={student}
+            studentInfo={studentInfo}
+            onProfileUpdated={fetchDashboard}
+          />
+        )}
 
-        </div>
-      </div>
+      </DashPage>
 
       <DuelCreateModal open={duelModalOpen} onClose={() => setDuelModalOpen(false)} />
     </div>

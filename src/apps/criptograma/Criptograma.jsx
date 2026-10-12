@@ -1,17 +1,27 @@
 // src/apps/criptograma/Criptograma.jsx
+// Rediseño 2026 sobre el kit de interfaz de juego (_shared/kit): pantalla previa
+// de modos, visor de caja fuerte con el mensaje cifrado (número arriba, letra
+// abajo), teclado del kit, comodines y resumen con la nota /10. La generación,
+// la puntuación y el tracking no cambian.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Lock, Unlock, RefreshCw, Lightbulb, Eye, Timer,
-  Star, BarChart3, Eraser, Check,
+  BarChart3, Eraser, Check, LayoutGrid, Type, AlignLeft, KeyRound,
 } from 'lucide-react';
 import { getRoscoData, getOrdenaFrasesData } from '../../services/gameDataService';
 import { generateCipherMap, encryptText, SPANISH_FREQ } from './cipherGenerator';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Panel, KeyTile, GameButton, ProgressBar,
+  ModeSelect, RoundBanner, ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './Criptograma.css';
+
+const ALPHABET_KEYS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
 
 const normalize = (s) =>
   String(s || '')
@@ -39,16 +49,6 @@ const MODE_CONFIG = {
 
 const EXAM_REF_TIME_SEC = 300;
 
-// Fondo decorativo: orbes esmeralda/oro, rejilla y dígitos cifrados flotando.
-const CriptoDecor = () => (
-  <div className="cripto-decor" aria-hidden="true">
-    <div className="fx-app-backdrop" />
-    <div className="cripto-decor-grid fx-grid-bg" />
-    {['17', '04', '23', '9', '12', '31'].map((n, i) => (
-      <span key={i} className={`cripto-ghost-code c${i}`}>{n}</span>
-    ))}
-  </div>
-);
 const EXAM_POINTS_PER_LETTER = 100;
 
 const VOWELS = new Set(['A', 'E', 'I', 'O', 'U']);
@@ -69,7 +69,8 @@ const Criptograma = ({ onGameComplete }) => {
   const [palabras, setPalabras] = useState([]);
   const [frases, setFrases] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null); // null | 'easy' | 'medium' | 'exam'
 
   // Puzzle
   const [cipherMap, setCipherMap] = useState(null);
@@ -178,7 +179,7 @@ const Criptograma = ({ onGameComplete }) => {
   }, [gameMode, palabras, frases]);
 
   useEffect(() => {
-    if (!loading && (palabras.length > 0 || frases.length > 0)) generatePuzzle();
+    if (!loading && gameMode && (palabras.length > 0 || frases.length > 0)) generatePuzzle();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps originales
   }, [loading, gameMode, generatePuzzle]);
 
@@ -299,7 +300,7 @@ const Criptograma = ({ onGameComplete }) => {
   // --- Teclado físico ---
   useEffect(() => {
     const handler = (e) => {
-      if (completed || showHelp) return;
+      if (!gameMode || completed || showHelp) return;
       if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); clearGuess(); return; }
       if (e.key === 'Escape') { setSelectedCode(null); return; }
       if (e.key.length === 1 && /[a-zA-ZñÑ]/.test(e.key)) {
@@ -309,10 +310,11 @@ const Criptograma = ({ onGameComplete }) => {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [assignLetter, clearGuess, completed, showHelp]);
+  }, [assignLetter, clearGuess, completed, showHelp, gameMode]);
 
   // --- Ayudas ---
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa aún no hay modo: valores de Fácil solo para que el render no falle.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
 
   const revealsRemaining = Math.max(0, cfg.helps.reveal - revealsUsed);
 
@@ -345,298 +347,363 @@ const Criptograma = ({ onGameComplete }) => {
   // --- Formato tiempo ---
   const formatTime = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
-  // --- Nota visual ---
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-    : nota >= 7 ? '¡Muy bien! 👏'
-    : nota >= 5 ? 'Aprobado. Sigue practicando 💪'
-    : 'Necesitas repasar más 📖';
-
   // --- Render ---
+  const shellProps = { accent: '#0d9488', accent2: '#06b6d4' };
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar al Criptograma">
+      <h3>🎯 Objetivo</h3>
+      <p>Cada letra de la frase ha sido sustituida por un <strong>número secreto</strong>. Tu misión es descubrir qué letra se esconde detrás de cada número.</p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li><strong>Click en un número</strong> del texto cifrado para seleccionarlo.</li>
+        <li><strong>Escribe o pulsa la letra</strong> que creas que corresponde.</li>
+        <li>Todas las apariciones del mismo número se actualizan a la vez.</li>
+        <li>Las letras que ya has usado aparecen atenuadas en el teclado.</li>
+        <li>Usa <kbd>⌫</kbd> o el botón <strong>Borrar</strong> para limpiar una asignación.</li>
+      </ul>
+
+      <h3>💡 Pistas para descifrar</h3>
+      <ul>
+        <li>Busca <strong>palabras de 1-2 letras</strong>: "a", "y", "de", "el", "la"...</li>
+        <li>Las letras más frecuentes en español son <strong>E, A, O, S, R, N</strong>.</li>
+        <li>Los patrones de letras dobles (LL, RR, CC) son muy reveladores.</li>
+        <li>Usa la tabla de <strong>Frecuencias</strong> como referencia.</li>
+      </ul>
+
+      <h3>🎓 Modos de juego</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>🟢 Fácil</strong>Palabra sola. Vocales reveladas. 3 reveals + frecuencias + comprobar.</div>
+        <div className="instr-mode medium"><strong>🟡 Medio</strong>Frase corta. Sin vocales. 2 reveals + frecuencias + comprobar.</div>
+        <div className="instr-mode exam"><strong>🔴 Examen</strong>Frase larga. 5 min. <strong>Sin ayudas</strong>: ni reveals, ni frecuencias, ni comprobar.</div>
+      </div>
+
+      <h3>📊 Nota y puntos en el examen</h3>
+      <p>Tu nota va de <strong>0 a 10</strong> según las letras adivinadas:</p>
+      <p className="instr-formula"><strong>Nota</strong> = letras correctas / total × 10</p>
+      <p>Además ganas <strong>puntos para el ranking</strong>:</p>
+      <p className="instr-formula"><strong>Puntos</strong> = letras × {EXAM_POINTS_PER_LETTER} + bonus de velocidad (hasta {EXAM_REF_TIME_SEC})</p>
+      <p className="instr-note">Dos partidas con un 10 dan distinto ranking según el tiempo: gana quien la termine antes.</p>
+
+      <div className="instr-tips"><strong>💡 Consejo:</strong> empieza por las letras más repetidas en el texto; probablemente sean E, A u O.</div>
+    </InstructionsModal>
+  );
+
   if (loading) {
-    return <div className="cripto-root"><div className="cripto-card"><div className="cripto-loading">Cargando criptograma...</div></div></div>;
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Cerrando la caja fuerte…" />
+      </GameShell>
+    );
   }
 
   if (palabras.length === 0 && frases.length === 0) {
     return (
-      <div className="cripto-root"><div className="cripto-card">
-        <div className="cripto-title"><span>🔐</span> Criptograma</div>
-        <div className="cripto-empty"><p>No hay suficientes datos disponibles para esta asignatura.</p></div>
-      </div></div>
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Sin mensajes secretos">
+          No hay suficientes datos disponibles para esta asignatura.
+        </GameEmpty>
+        {instructions}
+      </GameShell>
     );
   }
 
-  return (
-    <div className="cripto-root">
-      <CriptoDecor />
-      <motion.div className="cripto-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-        {/* Header */}
-        <div className="cripto-header">
-          <div className="cripto-title">
-            <span className="cripto-emoji">🔐</span>
-            <span>Criptograma</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="cripto-stats">
-            {cfg.timer && !completed && (
-              <div className={`cripto-stat timer ${timeLeft <= 30 ? 'danger' : ''}`}>
-                <Timer size={14} /> <span>{formatTime(timeLeft)}</span>
-              </div>
-            )}
-            {!cfg.timer && (
-              <div className="cripto-stat timer">
-                <Timer size={14} /> <span>{formatTime(timer)}</span>
-              </div>
-            )}
-            <div className="cripto-stat progress">
-              <Unlock size={14} />
-              <motion.span
-                key={correctCount}
-                initial={{ scale: 1.5, opacity: 0.4 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
-              >
-                {correctCount}/{totalLetters}
-              </motion.span>
-            </div>
-          </div>
-        </div>
+  // --- Pantalla previa: elegir modo (CLAUDE.md §3) ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', icon: Type, title: 'Fácil',
+        desc: 'Una palabra con su definición y las vocales ya descifradas.',
+        features: ['Vocales reveladas', '3 revelar · frecuencias · comprobar', 'Sin límite de tiempo'],
+      },
+      {
+        id: 'medium', tone: 'medium', icon: AlignLeft, title: 'Medio',
+        desc: 'Una frase corta sin ninguna letra de partida.',
+        features: ['2 revelar · frecuencias · comprobar', 'Frases cortas', 'Sin límite de tiempo'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Una frase larga, 5 minutos y ninguna ayuda.',
+        features: ['Nota sobre 10', '5 minutos, sin ayudas', 'Puntos por rapidez'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={modes}
+          onSelect={(id) => setGameMode(id)}
+          onHelp={() => setShowHelp(true)}
+          footer={<span className="cph-modes-foot"><KeyRound size={14} /> Cada número esconde siempre la misma letra</span>}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        <div className="cripto-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
+  const backToModes = () => {
+    setGameMode(null);
+    setEncrypted([]);
+    setSelectedCode(null);
+  };
 
-        {/* Barra de progreso decorativa (letras descifradas) */}
-        <div className="cripto-progressbar" aria-hidden="true">
-          <span
-            className="cripto-progressbar-fill"
-            style={{ transform: `scaleX(${totalLetters > 0 ? correctCount / totalLetters : 0})` }}
-          />
-        </div>
+  // Mensaje agrupado por palabras para que no se parta al saltar de línea (solo presentación)
+  const cipherWords = [];
+  let currentWordChars = [];
+  encrypted.forEach((ch, i) => {
+    if (ch.original === ' ') {
+      if (currentWordChars.length) cipherWords.push(currentWordChars);
+      currentWordChars = [];
+    } else {
+      currentWordChars.push({ ...ch, i });
+    }
+  });
+  if (currentWordChars.length) cipherWords.push(currentWordChars);
 
-        {/* Tabs modo */}
-        <div className="cripto-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`cripto-gamemode-tab fx-shine ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span className="cripto-tab-icon">{c.icon}</span>
-              <span className="cripto-tab-label">{c.label}</span>
-              <span className="cripto-tab-sub">{c.source === 'word' ? 'Palabra' : 'Frase'}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Pista */}
-        {hint && !isExam && (
-          <div className="cripto-hint">
-            <Lightbulb size={16} /> <span>{hint}</span>
-          </div>
-        )}
-
-        {/* Texto cifrado */}
-        <div className={`cripto-text-wrap ${completed ? (isAllCorrect ? 'is-won' : 'is-lost') : ''}`}>
-          <div className="cripto-text">
-            {encrypted.map((ch, i) => {
-              if (!ch.isLetter) {
-                return (
-                  <span key={i} className="cripto-char punct">
-                    <span className="cripto-char-top">&nbsp;</span>
-                    <span className="cripto-char-bottom">{ch.original}</span>
-                  </span>
-                );
-              }
-              const guess = guesses[ch.code];
-              const isCorrect = completed && guess === ch.normalized;
-              const isWrong = wrongCodes.has(ch.code);
-              const isLocked = lockedCodes.has(ch.code);
-              const isSelected = selectedCode === ch.code;
-              const isSameGuess = selectedCode && guesses[selectedCode] && guess === guesses[selectedCode] && !isSelected;
+  const renderCipher = (interactive) => (
+    <div className={`cph-text ${encrypted.length > 40 ? 'is-long' : ''}`}>
+      {cipherWords.map((word, wi) => (
+        <span key={wi} className="cph-word">
+          {word.map((ch) => {
+            if (!ch.isLetter) {
               return (
-                <span
-                  key={i}
-                  className={`cripto-char letter ${isSelected ? 'selected' : ''} ${
-                    isSameGuess ? 'same-guess' : ''
-                  } ${isCorrect ? 'correct' : ''} ${isWrong ? 'wrong' : ''} ${
-                    isLocked ? 'locked' : ''
-                  } ${guess ? 'filled' : ''}`}
-                  onClick={() => !completed && !isLocked && setSelectedCode(ch.code)}
-                >
-                  <span className="cripto-char-top">{ch.code}</span>
-                  <span className="cripto-char-bottom">
-                    {guess || (completed ? ch.normalized : '_')}
-                  </span>
+                <span key={ch.i} className="cph-char is-punct">
+                  <span className="cph-char__code">&nbsp;</span>
+                  <span className="cph-char__slot">{ch.original}</span>
                 </span>
               );
-            })}
-          </div>
-        </div>
+            }
+            const guess = guesses[ch.code];
+            const isCorrect = completed && guess === ch.normalized;
+            const isMissed = completed && !isCorrect;
+            const isWrong = wrongCodes.has(ch.code);
+            const isLocked = lockedCodes.has(ch.code);
+            const isSelected = interactive && !completed && selectedCode === ch.code;
+            const isSameGuess = interactive && selectedCode && guesses[selectedCode] && guess === guesses[selectedCode] && !isSelected;
+            return (
+              <span
+                key={ch.i}
+                className={`cph-char is-letter ${isSelected ? 'is-sel' : ''} ${
+                  isSameGuess ? 'is-same' : ''
+                } ${isCorrect ? 'is-correct' : ''} ${isMissed ? 'is-missed' : ''} ${isWrong ? 'is-wrong' : ''} ${
+                  isLocked ? 'is-locked' : ''
+                } ${guess ? 'is-filled' : ''}`}
+                onClick={interactive ? () => !completed && !isLocked && setSelectedCode(ch.code) : undefined}
+              >
+                <span className="cph-char__code">{ch.code}</span>
+                <span key={guess || 'empty'} className="cph-char__slot">
+                  {guess || (completed ? ch.normalized : '')}
+                </span>
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </div>
+  );
 
-        {/* Teclado on-screen */}
-        {!completed && (
-          <div className="cripto-keyboard">
-            {'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('').map((letter) => {
+  // --- Examen terminado: resumen con la nota ---
+  if (isExam && completed) {
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title={isAllCorrect ? '¡Descifrado!' : 'Tiempo agotado'}
+          subtitle={`Criptograma · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={finalScore}
+          stats={[
+            { icon: Unlock, tone: 'good', label: 'Letras', value: `${correctCount}/${totalLetters}` },
+            { icon: Timer, tone: 'time', label: 'Tiempo', value: formatTime(timer) },
+          ]}
+          actions={[
+            { label: 'Otro criptograma', onClick: generatePuzzle, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          <Panel variant="screen" className={`cph-board is-review ${isAllCorrect ? 'is-won' : 'is-lost'}`}>
+            <div className="cph-board__bar">
+              <span className="cph-board__label">{isAllCorrect ? <Unlock size={14} /> : <Lock size={14} />} Mensaje descifrado</span>
+            </div>
+            {renderCipher(false)}
+          </Panel>
+        </ResultsScreen>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const selectedGuess = selectedCode ? guesses[selectedCode] : null;
+
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={`${cfg.label} · ${cfg.source === 'word' ? 'Palabra' : 'Frase'}`}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            {cfg.timer && !completed && (
+              <HudStat icon={Timer} tone={timeLeft <= 30 ? 'lives' : 'time'} value={formatTime(timeLeft)} label="Quedan" />
+            )}
+            {!cfg.timer && (
+              <HudStat icon={Timer} tone="time" value={formatTime(timer)} label="Tiempo" />
+            )}
+            <HudStat icon={Unlock} tone="good" value={`${correctCount}/${totalLetters}`} label="Descifradas" />
+          </Hud>
+        )}
+      />
+
+      <div className="cph-progress" aria-hidden="true">
+        <ProgressBar value={correctCount} max={totalLetters || 1} tone="good" />
+      </div>
+
+      {hint && !isExam && (
+        <div className="cph-hint">
+          <span className="cph-hint__icon"><Lightbulb size={17} /></span>
+          <span>{hint}</span>
+        </div>
+      )}
+
+      <RoundBanner
+        show={completed && !isExam}
+        status={isAllCorrect ? 'won' : 'lost'}
+        title={isAllCorrect ? '¡Descifrado!' : 'Tiempo agotado'}
+        subtitle={`${correctCount}/${totalLetters} letras · ${formatTime(timer)} · ${finalScore.toLocaleString('es-ES')} puntos${hintsUsed > 0 ? ` · ${hintsUsed} ayudas` : ''}`}
+        action={generatePuzzle}
+        actionLabel="Otro criptograma"
+        actionIcon={RefreshCw}
+      />
+
+      {/* Visor de la caja fuerte con el mensaje cifrado */}
+      <Panel variant="screen" className={`cph-board ${completed ? (isAllCorrect ? 'is-won' : 'is-lost') : ''}`}>
+        <div className="cph-board__bar">
+          <span className="cph-board__label">
+            {completed && isAllCorrect ? <Unlock size={14} /> : <Lock size={14} />}
+            {completed && isAllCorrect ? 'Mensaje descifrado' : 'Mensaje cifrado'}
+          </span>
+          <span className="cph-board__leds" aria-hidden="true"><i /><i /><i /></span>
+        </div>
+        {renderCipher(true)}
+      </Panel>
+
+      {!completed && (
+        <div className="cph-pad">
+          <div className={`cph-target ${selectedCode ? 'is-on' : ''}`}>
+            {selectedCode ? (
+              <>
+                <span>Número</span>
+                <b className="cph-target__code">{selectedCode}</b>
+                <span>es la letra</span>
+                <b className="cph-target__letter">{selectedGuess || '?'}</b>
+              </>
+            ) : (
+              <span>Toca un número del mensaje y elige su letra</span>
+            )}
+          </div>
+
+          {/* Teclado on-screen */}
+          <div className="cph-keys" role="group" aria-label="Teclado">
+            {ALPHABET_KEYS.map((letter) => {
               // Comprobar si esa letra ya está asignada a algún código
               const usedByCode = Object.entries(guesses).find(([, v]) => v === letter);
               const isUsed = !!usedByCode;
               return (
-                <motion.button
+                <KeyTile
                   key={letter}
-                  className={`cripto-key ${isUsed ? 'used' : ''}`}
+                  state={selectedGuess === letter ? 'selected' : 'idle'}
+                  className={`cph-key ${isUsed ? 'is-used' : ''}`}
                   onClick={() => assignLetter(letter)}
-                  whileTap={{ scale: 0.9 }}
                   disabled={completed}
+                  aria-label={`Letra ${letter}`}
                 >
                   {letter}
-                </motion.button>
+                </KeyTile>
               );
             })}
-            <motion.button className="cripto-key erase" onClick={clearGuess} whileTap={{ scale: 0.9 }}>
-              <Eraser size={16} />
-            </motion.button>
+            <KeyTile className="cph-key cph-key--erase" onClick={clearGuess} aria-label="Borrar letra">
+              <Eraser size={17} /> Borrar
+            </KeyTile>
           </div>
-        )}
-
-        {/* Ayudas */}
-        {!completed && (
-          <div className="cripto-lifelines">
-            {cfg.helps.reveal > 0 && (
-              <button
-                className="cripto-lifeline"
-                onClick={revealLetter}
-                disabled={revealsRemaining <= 0}
-                title={revealsRemaining > 0 ? 'Revelar una letra al azar' : 'Sin reveals disponibles'}
-              >
-                <Eye size={16} /> <span>Revelar</span>
-                <span className="cripto-lifeline-count">{revealsRemaining}</span>
-              </button>
-            )}
-            {cfg.helps.freq && (
-              <button className="cripto-lifeline" onClick={() => setShowFreq((f) => !f)} title="Tabla de frecuencias del español">
-                <BarChart3 size={16} /> <span>Frecuencias</span>
-              </button>
-            )}
-            {cfg.helps.check && (
-              <button className="cripto-lifeline" onClick={checkAnswers} title="Marcar letras incorrectas">
-                <Check size={16} /> <span>Comprobar</span>
-              </button>
-            )}
-            <button className="cripto-lifeline ghost" onClick={generatePuzzle}>
-              <RefreshCw size={16} /> <span>Nuevo</span>
-            </button>
-          </div>
-        )}
-
-        {/* Tabla de frecuencias */}
-        <AnimatePresence>
-          {showFreq && !completed && (
-            <motion.div className="cripto-freq" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}>
-              <div className="cripto-freq-title"><BarChart3 size={14} /> Frecuencia de letras en español</div>
-              <div className="cripto-freq-grid">
-                {Object.entries(SPANISH_FREQ).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([letter, pct]) => (
-                  <div key={letter} className="cripto-freq-item">
-                    <span className="cripto-freq-letter">{letter}</span>
-                    <div className="cripto-freq-bar" style={{ width: `${(pct / 14) * 100}%` }} />
-                    <span className="cripto-freq-pct">{pct}%</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Resultado */}
-        <AnimatePresence>
-          {completed && (
-            <motion.div
-              className={`cripto-result ${isAllCorrect ? 'won' : 'lost'}`}
-              initial={{ opacity: 0, y: 24, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 170, damping: 18 }}
-            >
-              <span className="cripto-result-rays" aria-hidden="true" />
-              <div className="cripto-result-icon">
-                {isAllCorrect ? <Unlock size={48} /> : <Lock size={48} />}
-              </div>
-              <h2 className="cripto-result-title">
-                {isAllCorrect ? '¡Descifrado! 🎉' : 'Tiempo agotado'}
-              </h2>
-
-              {isExam && (
-                <>
-                  <div className={`cripto-nota ${notaColor}`}>
-                    <div
-                      className="cripto-nota-ring fx-grade-ring"
-                      style={{
-                        '--fx-grade': nota,
-                        '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
-                      }}
-                    >
-                      <div className="cripto-nota-big">{nota.toFixed(1)}<span className="cripto-nota-small">/10</span></div>
-                    </div>
-                    <div className="cripto-nota-msg">{notaMsg}</div>
-                  </div>
-                  <div className="cripto-result-record fx-shine fx-shine--auto">
-                    <Star size={14} />
-                    <span>{finalScore.toLocaleString('es-ES')}</span>
-                    <span className="cripto-result-record-label">puntos · ¡supérate!</span>
-                  </div>
-                </>
-              )}
-
-              {!isExam && (
-                <div className="cripto-result-score">
-                  <Star size={14} /> {finalScore.toLocaleString('es-ES')} puntos
-                </div>
-              )}
-
-              <div className="cripto-result-stats">
-                <div className="cripto-result-stat"><Check size={14} /> {correctCount}/{totalLetters} letras</div>
-                <div className="cripto-result-stat"><Timer size={14} /> {formatTime(timer)}</div>
-                {hintsUsed > 0 && <div className="cripto-result-stat"><Lightbulb size={14} /> {hintsUsed} ayudas</div>}
-              </div>
-              <button className="cripto-btn primary fx-shine" onClick={generatePuzzle}>
-                <RefreshCw size={16} /> Otro criptograma
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar al Criptograma">
-        <h3>🎯 Objetivo</h3>
-        <p>Cada letra de la frase ha sido sustituida por un <strong>número secreto</strong>. Tu misión es descubrir qué letra se esconde detrás de cada número.</p>
-
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li><strong>Click en un número</strong> del texto cifrado para seleccionarlo.</li>
-          <li><strong>Escribe o pulsa la letra</strong> que creas que corresponde.</li>
-          <li>Todas las apariciones del mismo número se actualizan a la vez.</li>
-          <li>Cada letra solo puede usarse para UN número (si la reasignas, el anterior se queda vacío).</li>
-          <li>Usa <kbd>⌫</kbd> o el botón de borrador para limpiar una asignación.</li>
-        </ul>
-
-        <h3>💡 Pistas para descifrar</h3>
-        <ul>
-          <li>Busca <strong>palabras de 1-2 letras</strong>: "a", "y", "de", "el", "la"...</li>
-          <li>Las letras más frecuentes en español son <strong>E, A, O, S, R, N</strong>.</li>
-          <li>Los patrones de letras dobles (LL, RR, CC) son muy reveladores.</li>
-          <li>Usa la tabla de <strong>Frecuencias</strong> como referencia.</li>
-        </ul>
-
-        <h3>🎓 Modos de juego</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>Palabra sola. Vocales reveladas. 3 reveals + frecuencias + comprobar.</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>Frase corta. Sin vocales. 2 reveals + frecuencias + comprobar.</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>Frase larga. 5 min. <strong>Sin ayudas</strong>: ni reveals, ni frecuencias, ni comprobar.</div>
         </div>
+      )}
 
-        <h3>📊 Nota y puntos en el examen</h3>
-        <p>Tu nota va de <strong>0 a 10</strong> según las letras adivinadas:</p>
-        <p className="instr-formula"><strong>Nota</strong> = letras correctas / total × 10</p>
-        <p>Además ganas <strong>puntos para el ranking</strong>:</p>
-        <p className="instr-formula"><strong>Puntos</strong> = letras × {EXAM_POINTS_PER_LETTER} + bonus de velocidad (hasta {EXAM_REF_TIME_SEC})</p>
-        <p className="instr-note">Dos partidas con un 10 dan distinto ranking según el tiempo: gana quien la termine antes.</p>
+      {/* Ayudas */}
+      {!completed && (
+        <div className="cph-tools">
+          {cfg.helps.reveal > 0 && (
+            <GameButton
+              variant="primary"
+              icon={Eye}
+              onClick={revealLetter}
+              disabled={revealsRemaining <= 0}
+              title={revealsRemaining > 0 ? 'Revelar una letra al azar' : 'Sin reveals disponibles'}
+              className="cph-life"
+            >
+              Revelar
+              <b className="cph-life__count">{revealsRemaining}</b>
+            </GameButton>
+          )}
+          {cfg.helps.freq && (
+            <GameButton
+              variant={showFreq ? 'warning' : 'soft'}
+              icon={BarChart3}
+              onClick={() => setShowFreq((f) => !f)}
+              title="Tabla de frecuencias del español"
+            >
+              Frecuencias
+            </GameButton>
+          )}
+          {cfg.helps.check && (
+            <GameButton variant="soft" icon={Check} onClick={checkAnswers} title="Marcar letras incorrectas">
+              Comprobar
+            </GameButton>
+          )}
+          <GameButton variant="ghost" icon={RefreshCw} onClick={generatePuzzle}>
+            Nuevo
+          </GameButton>
+        </div>
+      )}
 
-        <div className="instr-tips"><strong>💡 Consejo:</strong> empieza por las letras más repetidas en el texto; probablemente sean E, A u O.</div>
-      </InstructionsModal>
-    </div>
+      {/* Tabla de frecuencias */}
+      <AnimatePresence>
+        {showFreq && !completed && (
+          <motion.div
+            className="cph-freq"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+          >
+            <div className="cph-freq__title"><BarChart3 size={14} /> Frecuencia de letras en español</div>
+            <div className="cph-freq__grid">
+              {Object.entries(SPANISH_FREQ).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([letter, pct]) => (
+                <div key={letter} className="cph-freq__item">
+                  <span className="cph-freq__letter">{letter}</span>
+                  <span className="cph-freq__track">
+                    <span className="cph-freq__bar" style={{ transform: `scaleX(${pct / 14})` }} />
+                  </span>
+                  <span className="cph-freq__pct">{pct}%</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="cph-footer">
+        {!isExam && (
+          <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToModes}>
+            Cambiar modo
+          </GameButton>
+        )}
+        <span className="cph-footer__info">
+          <KeyRound size={14} />
+          {isExam ? 'Modo examen · 5 minutos · sin ayudas' : 'También puedes escribir con el teclado · ⌫ borra'}
+        </span>
+      </div>
+
+      {instructions}
+    </GameShell>
   );
 };
 

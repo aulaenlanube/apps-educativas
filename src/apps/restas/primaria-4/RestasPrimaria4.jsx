@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 import OperationTestBoard from '../../_shared/OperationTestBoard';
+import { BorrowSubtractionBoard } from '../../_shared/UniversalSubtractionBoard';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -129,41 +130,53 @@ const RestasPrimaria4 = ({ onGameComplete } = {}) => {
     return userHasCarryFromRight ? (baseVal + 1) % 10 : baseVal;
   };
 
-  const handlePaletteClick = (val) => {
-    if (isTestMode) {
-      if (testActiveIdx == null) return;
-      const strVal = val.toString();
-      const next = [...testResultSlots];
-      next[testActiveIdx] = strVal;
-      setTestResultSlots(next);
-      const nextIdx = testActiveIdx - 1;
-      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
-      return;
-    }
-    if (!activeSlot) return;
+  // Examen: coloca un número en la casilla idx (la activa, o la de destino al
+  // arrastrar). Misma lógica que antes tenía handlePaletteClick.
+  const applyTestDigit = (idx, val) => {
+    const strVal = val.toString();
+    const next = [...testResultSlots];
+    next[idx] = strVal;
+    setTestResultSlots(next);
+    const nextIdx = idx - 1;
+    setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+  };
+
+  // Práctica: coloca un número en una casilla (la activa al pulsar el teclado,
+  // o la de destino al arrastrar). Misma lógica que antes.
+  const applyDigit = (slot, val) => {
     const strVal = val.toString();
 
-    if (activeSlot.type === 'result') {
+    if (slot.type === 'result') {
       const newResults = [...resultSlots];
-      newResults[activeSlot.index] = strVal;
+      newResults[slot.index] = strVal;
       setResultSlots(newResults);
 
-      if (strVal === correctResultStr[activeSlot.index] && showHelp) {
+      if (strVal === correctResultStr[slot.index] && showHelp) {
         const newCarries = [...carrySlots];
-        newCarries[activeSlot.index] = expectedCarries[activeSlot.index] === 1 ? '1' : '0';
+        newCarries[slot.index] = expectedCarries[slot.index] === 1 ? '1' : '0';
         setCarrySlots(newCarries);
       }
 
-      const nextIdx = activeSlot.index - 1;
+      const nextIdx = slot.index - 1;
       if (nextIdx >= 0) setActiveSlot({ type: 'result', index: nextIdx });
       else setActiveSlot(null);
 
-    } else if (activeSlot.type === 'carry') {
+    } else if (slot.type === 'carry') {
       const newCarries = [...carrySlots];
-      newCarries[activeSlot.index] = strVal === '0' ? '' : strVal;
+      newCarries[slot.index] = strVal === '0' ? '' : strVal;
       setCarrySlots(newCarries);
       setActiveSlot(null);
     }
+  };
+
+  const handlePaletteClick = (val) => {
+    if (isTestMode) {
+      if (testActiveIdx == null) return;
+      applyTestDigit(testActiveIdx, val);
+      return;
+    }
+    if (!activeSlot) return;
+    applyDigit(activeSlot, val);
   };
 
   const checkAnswer = () => {
@@ -194,12 +207,22 @@ const RestasPrimaria4 = ({ onGameComplete } = {}) => {
     }
   };
 
-  // --- Grid dinámico ---
-  const columnTemplate = "25px 60px ";
-  let gridColumnsCSS = "35px ";
-  for (let i = 0; i < structure.intDigits; i++) gridColumnsCSS += columnTemplate;
-  gridColumnsCSS += "35px ";
-  for (let i = 0; i < structure.decimalPlaces; i++) gridColumnsCSS += columnTemplate;
+  // --- Tablero (solo presentación): estado de cada casilla, igual que antes ---
+  const resultState = (i) => {
+    const isResultFilled = resultSlots[i] !== '';
+    const isResultCorrect = resultSlots[i] === correctResultStr[i];
+    return feedback.text && isResultFilled ? (isResultCorrect ? 'correct' : 'incorrect') : '';
+  };
+  const carryState = (i) => {
+    const isCarryFilled = carrySlots[i] === '1';
+    const isCarryCorrect = expectedCarries[i] === 1;
+    return (feedback.text && showHelp && i !== 0)
+      ? (isCarryFilled === isCarryCorrect ? (isCarryFilled ? 'correct' : '') : 'incorrect') : '';
+  };
+  const bottomDigits = Array.from({ length: structure.totalDigits }, (_, i) => {
+    const value = getVisualSubtrahendDigit(i);
+    return { value, modified: value !== parseInt(strNum2[i]) };
+  });
 
   return (
     <MathOperationLayout
@@ -208,12 +231,12 @@ const RestasPrimaria4 = ({ onGameComplete } = {}) => {
       feedback={feedback}
       onCheck={checkAnswer}
       onNew={generateNewProblem}
-      newLabel="Nueva Resta"
+      newLabel="Nueva resta"
       toggleLabel={!isTestMode ? "Ayuda con llevadas" : undefined}
       toggleValue={showHelp}
       onToggleChange={setShowHelp}
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Toca los números 👇"
+      padLayout="side"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -226,13 +249,16 @@ const RestasPrimaria4 = ({ onGameComplete } = {}) => {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Completa la resta colocando los digitos correctos en cada casilla vacia.</p>
-          <h3>Como se juega</h3>
+          <p>Completa la resta colocando la cifra correcta en cada casilla vacía.</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Luego pulsa un numero de la paleta inferior para colocarlo.</li>
-            <li>Fijate en las llevadas si estan activadas.</li>
+            <li>Toca una casilla para seleccionarla.</li>
+            <li>Después toca un número del teclado para colocarlo (o arrástralo hasta la casilla).</li>
+            <li>Con la ayuda activada, cuando la cifra de arriba es menor aparece la llevada: la burbuja con el 1 y el <strong>+1</strong> en la cifra de abajo de la siguiente columna.</li>
+            <li>Pulsa <strong>Comprobar</strong> para ver qué casillas están bien (verde) o mal (rojo).</li>
           </ul>
+          <h3>Examen</h3>
+          <p>5 restas seguidas: escribe solo el resultado. La nota llega al final.</p>
         </>
       }
     >
@@ -244,87 +270,23 @@ const RestasPrimaria4 = ({ onGameComplete } = {}) => {
           resultSlots={testResultSlots}
           activeSlotIndex={testActiveIdx}
           onSlotClick={(i) => setTestActiveIdx(i)}
+          onSlotDrop={applyTestDigit}
         />
       ) : (
-      <div
-        id="problem-area"
-        style={{
-          display: 'inline-grid', justifyItems: 'center', alignItems: 'center',
-          gridGap: '5px 0', gridTemplateRows: '60px 60px 12px 60px',
-          gridTemplateColumns: gridColumnsCSS
-        }}
-      >
-        <div className="operator" style={{ gridRow: '2', gridColumn: '1' }}>-</div>
-        <hr className="operation-line" style={{ gridRow: '3', gridColumn: `2 / span ${structure.totalDigits * 2 + 1}` }} />
-
-        {(() => {
-          const elements = [];
-          let currentGridCol = 2;
-
-          for (let i = 0; i < structure.totalDigits; i++) {
-            if (i === structure.intDigits) {
-              elements.push(
-                <React.Fragment key="comma">
-                  <div className="digit-display" style={{ gridRow: '1', gridColumn: currentGridCol }}></div>
-                  <div className="digit-display" style={{ gridRow: '2', gridColumn: currentGridCol }}>,</div>
-                  <div className="digit-display" style={{ gridRow: '4', gridColumn: currentGridCol }}>,</div>
-                </React.Fragment>
-              );
-              currentGridCol++;
-            }
-
-            const circleGridCol = currentGridCol;
-            const digitGridCol = currentGridCol + 1;
-            currentGridCol += 2;
-
-            const isResultFilled = resultSlots[i] !== '';
-            const isResultCorrect = resultSlots[i] === correctResultStr[i];
-            const resultClass = feedback.text && isResultFilled ? (isResultCorrect ? 'correct' : 'incorrect') : '';
-            const isCarryFilled = carrySlots[i] === '1';
-            const isCarryCorrect = expectedCarries[i] === 1;
-            const carryBoxClass = (feedback.text && showHelp && i !== 0)
-              ? (isCarryFilled === isCarryCorrect ? (isCarryFilled ? 'correct' : '') : 'incorrect') : '';
-
-            elements.push(
-              <React.Fragment key={i}>
-                {i !== 0 && (
-                  <div
-                    className={`borrow-helper-box ${carryBoxClass} ${activeSlot?.type === 'carry' && activeSlot?.index === i ? 'drag-over' : ''}`}
-                    style={{
-                      gridRow: '1', gridColumn: String(circleGridCol),
-                      visibility: showHelp ? 'visible' : 'hidden',
-                      width: "40px", height: "40px", borderRadius: "50%",
-                      border: "2px dashed #ccc", display: "flex",
-                      justifyContent: "center", alignItems: "center",
-                      fontSize: "0.8em", color: "#005a9c", marginRight: "-15px",
-                      userSelect: "none", cursor: 'pointer',
-                      backgroundColor: activeSlot?.type === 'carry' && activeSlot?.index === i ? '#e6f7ff' : 'transparent'
-                    }}
-                    onClick={() => setActiveSlot({ type: 'carry', index: i })}
-                  >
-                    {carrySlots[i]}
-                  </div>
-                )}
-                <div className="digit-display" style={{ gridRow: '1', gridColumn: String(digitGridCol) }}>{strNum1[i]}</div>
-                <div
-                  className={`digit-display subtrahend-digit ${getVisualSubtrahendDigit(i) !== parseInt(strNum2[i]) ? 'modified-digit' : ''}`}
-                  style={{ gridRow: '2', gridColumn: String(digitGridCol) }}
-                >
-                  {getVisualSubtrahendDigit(i)}
-                </div>
-                <div
-                  className={`box result-box ${resultClass} ${activeSlot?.type === 'result' && activeSlot?.index === i ? 'selected' : ''}`}
-                  style={{ gridRow: '4', gridColumn: String(digitGridCol), cursor: 'pointer' }}
-                  onClick={() => setActiveSlot({ type: 'result', index: i })}
-                >
-                  {resultSlots[i]}
-                </div>
-              </React.Fragment>
-            );
-          }
-          return elements;
-        })()}
-      </div>
+      <BorrowSubtractionBoard
+        top={strNum1}
+        bottom={bottomDigits}
+        intDigits={structure.intDigits}
+        decimals={structure.decimalPlaces}
+        resultSlots={resultSlots}
+        carrySlots={carrySlots}
+        resultState={resultState}
+        carryState={carryState}
+        activeSlot={activeSlot}
+        onSelect={setActiveSlot}
+        onDropDigit={applyDigit}
+        showHelp={showHelp}
+      />
       )}
     </MathOperationLayout>
   );

@@ -1,170 +1,413 @@
-/* src/apps/_shared/Runner.css */
-
-/* ============================
-   Efecto de Derrape (Skidding) - MEJORADO
-   ============================ */
-
-/* Contenedor principal de partículas */
-.skid-particles {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 20px;
-    height: 10px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.1s ease-in-out;
-    z-index: 5;
-}
-
-/* Solo visible cuando está en el suelo */
-.on-ground .skid-particles {
-    opacity: 1;
-}
-
-/* Estilo común para todas las partículas */
-.skid-particles div {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 2px;
-    /* Animación base */
-    animation: skidAnimation 0.5s infinite linear;
-}
-
-/* Partícula 1: Grande y rápida */
-.skid-particles .p1 {
-    width: 8px;
-    height: 8px;
-    animation-delay: 0s;
-}
-
-/* Partícula 2: Mediana y retrasada */
-.skid-particles .p2 {
-    width: 6px;
-    height: 6px;
-    left: 4px;
-    bottom: 2px;
-    background-color: rgba(255, 255, 255, 0.7);
-    animation-delay: 0.15s;
-}
-
-/* Partícula 3: Pequeña y más retrasada */
-.skid-particles .p3 {
-    width: 5px;
-    height: 5px;
-    left: 2px;
-    bottom: 1px;
-    background-color: rgba(255, 255, 255, 0.6);
-    animation-delay: 0.3s;
-}
-
-@keyframes skidAnimation {
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-        opacity: 1;
-    }
-
-    100% {
-        /* Se mueven hacia atrás (izquierda) y un poco hacia arriba */
-        transform: translate(-35px, -15px) scale(0) rotate(-90deg);
-        opacity: 0;
-    }
-}
-
-/* Ocultar barra de scroll pero mantener funcionalidad */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 /* ==========================================================================
-   Capa "premium" del Runner (estética arcade/neón conservada)
-   Prefijo runner-*. Solo pseudo-elementos y sombras: el bucle de juego
-   mueve las entidades con estilos inline y no se toca nada de eso.
+   Education Dash (Runner) — rediseño 2026 sobre el kit (_shared/kit), con
+   estética arcade synthwave. Prefijo rn-. El bucle de juego sigue colocando
+   cada entidad con left/bottom en px dentro de .rn-screen (450 px de alto,
+   suelo de 60 px) y añade/quita la clase .on-ground en el jugador.
+   Las entidades se mueven cada frame: sin filter ni backdrop-filter en ellas.
    ========================================================================== */
 
-/* Marco de la pantalla con brillo de neón en capas */
-.runner-screen {
-    isolation: isolate;
-    box-shadow:
-        0 0 0 2px rgba(34, 211, 238, 0.35),
-        0 0 30px -4px rgba(34, 211, 238, 0.55),
-        0 0 70px -20px rgba(217, 70, 239, 0.65),
-        0 30px 60px -20px rgba(0, 0, 0, 0.7) !important;
+/* ---------- Pantalla previa: misión, personaje y ajustes ---------- */
+.rn-loadout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 14px;
+  width: 100%;
 }
-/* Scanlines CRT + viñeta (por encima del juego, por debajo de los menús) */
-.runner-screen::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 35;
-    pointer-events: none;
-    background:
-        radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
+.rn-loadout__box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 22px;
+  background: var(--gk-surface);
+  border: 1px solid var(--gk-line);
+}
+.rn-loadout__box--wide { grid-column: 1 / -1; padding: 10px 14px; }
+.rn-loadout__label { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .9rem; color: var(--gk-ink-2); }
+.rn-loadout__label b { color: var(--gk-ink); }
+.rn-mission-pick { display: flex; align-items: center; gap: 8px; }
+.rn-mission-pick__name {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-align: center;
+  color: #431407;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: linear-gradient(180deg, #fde68a, #fbbf24 55%, #f59e0b);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 4px 0 #b45309, 0 12px 22px -12px #f59e0b;
+}
+.rn-chars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.rn-charpick {
+  display: grid;
+  place-items: center;
+  height: 62px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  background: var(--gk-inset);
+  box-shadow: inset 0 0 0 1.5px var(--gk-line), 0 3px 0 var(--gk-key-edge);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease;
+}
+.rn-charpick .rn-char { width: 36px; height: 36px; }
+.rn-charpick:hover { transform: translateY(-3px); }
+.rn-charpick:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 60%, transparent); outline-offset: 2px; }
+.rn-charpick.is-active { background: radial-gradient(80% 90% at 50% 100%, rgba(168, 85, 247, .35), transparent 70%), #1d1450; box-shadow: inset 0 0 0 2px #c084fc, 0 3px 0 #4c1d95, 0 12px 24px -12px #a855f7; }
+.rn-charpick.is-active .rn-char { transform: scale(1.12) rotate(-8deg); }
+.rn-adv-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: center;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 12px;
+  font-family: var(--gk-font);
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--gk-ink-2);
+  background: transparent;
+  cursor: pointer;
+}
+.rn-adv-toggle:hover, .rn-adv-toggle.is-open { color: var(--gk-ink); background: var(--gk-surface-2); }
+.rn-adv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; padding: 4px 6px 6px; }
+.rn-range { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; font-weight: 700; color: var(--gk-ink-2); }
+.rn-range span { display: inline-flex; align-items: center; gap: 6px; }
+.rn-range b { margin-left: auto; color: var(--gk-ink); font-variant-numeric: tabular-nums; }
+.rn-range input { width: 100%; accent-color: #c084fc; }
+
+/* ---------- Misión en partida ---------- */
+.rn-mission {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px 6px 6px;
+  border-radius: 20px;
+  color: #431407;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(255, 255, 255, .45), transparent 55%),
+    linear-gradient(120deg, #fde68a, #fbbf24 50%, #fb923c);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 4px 0 #b45309, 0 14px 26px -14px #fb923c;
+}
+.rn-mission__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 13px; color: #fff; background: linear-gradient(140deg, #c084fc, #7e22ce); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2); }
+.rn-mission__text { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; flex: 1; }
+.rn-mission__text small { font-size: .64rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
+.rn-mission__text strong { font-size: 1.2rem; font-weight: 800; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rn-mission__legend { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 800; white-space: nowrap; }
+.rn-mission__legend i { width: 12px; height: 12px; border-radius: 4px; }
+.rn-mission__legend i.is-good { background: #059669; }
+.rn-mission__legend i.is-bad { background: #be123c; margin-left: 6px; }
+
+/* ---------- Pantalla de juego ---------- */
+.rn-screen {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 22px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  isolation: isolate;
+  background: linear-gradient(180deg, #12062e 0%, #2a0c5c 40%, #6b1d7a 72%, #c2337a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .08),
+    0 0 0 6px #140a33,
+    0 0 0 7px rgba(192, 132, 252, .3),
+    0 0 46px -10px rgba(217, 70, 239, .7),
+    0 26px 60px -28px rgba(0, 0, 0, .95);
+  margin: 6px;
+}
+/* Scanlines CRT + viñeta (encima del juego, debajo de los avisos) */
+.rn-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, .45) 100%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px);
+}
+.rn-screen.is-invincible { box-shadow: inset 0 0 0 2px #fde047, 0 0 0 6px #140a33, 0 0 0 7px #fde047, 0 0 50px -6px rgba(253, 224, 71, .8); }
+
+.rn-sky { position: absolute; inset: 0 0 60px 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.rn-sky::before {
+  /* estrellas */
+  content: '';
+  position: absolute;
+  inset: 0 0 45% 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 10% 20%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 26% 46%, #f5d0fe 50%, transparent 100%),
+    radial-gradient(1.6px 1.6px at 44% 14%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 62% 34%, #c4b5fd 50%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 86% 18%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 94% 52%, #fbcfe8 50%, transparent 100%);
+  opacity: .8;
+}
+.rn-sky__sun {
+  position: absolute;
+  right: 14%;
+  bottom: -40px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fef08a 0%, #fb923c 45%, #f43f5e 80%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 68%, #000 68% 74%, transparent 74% 79%, #000 79% 84%, transparent 84% 90%, #000 90%);
+  mask-image: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 68%, #000 68% 74%, transparent 74% 79%, #000 79% 84%, transparent 84% 90%, #000 90%);
+  box-shadow: 0 0 80px 10px rgba(251, 146, 60, .35);
+  opacity: .9;
+}
+.rn-sky__hills {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 110px;
+  background: linear-gradient(180deg, #3b0764, #1e0838);
+  clip-path: polygon(0 100%, 0 62%, 8% 40%, 16% 58%, 26% 22%, 36% 52%, 44% 38%, 54% 64%, 63% 30%, 72% 56%, 80% 44%, 90% 66%, 100% 34%, 100% 100%);
+  opacity: .95;
+}
+.rn-sky__hills::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(236, 72, 153, .35), transparent 30%);
+}
+/* Rejilla que se desplaza con el fondo (el JSX la mueve con translateX) */
+.rn-grid {
+  position: absolute;
+  inset: 0 -100px 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(192, 132, 252, .22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(192, 132, 252, .12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 20%, #000 75%);
+  mask-image: linear-gradient(180deg, transparent 20%, #000 75%);
+}
+.rn-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(34, 211, 238, .35), transparent 22%),
+    repeating-linear-gradient(90deg, rgba(34, 211, 238, .18) 0 2px, transparent 2px 50px),
+    linear-gradient(180deg, #160733, #07020f);
+  box-shadow: 0 -2px 0 #22d3ee, 0 -10px 26px -4px rgba(34, 211, 238, .55);
 }
 
-/* HUD con texto de neón */
-.runner-hud {
-    text-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
-    box-shadow: 0 0 16px -2px rgba(34, 211, 238, 0.6), 4px 4px 0 #000;
+/* ---------- Jugador (cubo) ---------- */
+.rn-player { position: absolute; z-index: 20; display: flex; align-items: center; justify-content: center; }
+.rn-char {
+  --c1: #fef08a;
+  --c2: #facc15;
+  --c3: #ca8a04;
+  --eye: #1c1917;
+  --glow: rgba(250, 204, 21, .6);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .55) 0 18%, transparent 40%),
+    linear-gradient(160deg, var(--c1), var(--c2) 55%, var(--c3));
+  box-shadow:
+    inset 0 0 0 2.5px rgba(0, 0, 0, .55),
+    inset -4px -4px 0 rgba(0, 0, 0, .18),
+    inset 3px 3px 0 rgba(255, 255, 255, .35),
+    0 0 18px -2px var(--glow);
+  transition: transform .2s ease;
+}
+.rn-char--1 { --c1: #a5f3fc; --c2: #22d3ee; --c3: #0e7490; --eye: #db2777; --glow: rgba(34, 211, 238, .85); }
+.rn-char--2 { --c1: #c084fc; --c2: #7e22ce; --c3: #3b0764; --eye: #34d399; --glow: rgba(16, 185, 129, .8); }
+.rn-char.is-invincible { box-shadow: inset 0 0 0 2.5px #fef9c3, inset -4px -4px 0 rgba(0, 0, 0, .18), 0 0 0 3px rgba(253, 224, 71, .55), 0 0 26px 2px rgba(253, 224, 71, .9); }
+.rn-char__eye {
+  position: absolute;
+  top: 18%;
+  width: 24%;
+  height: 26%;
+  border-radius: 3px;
+  background: var(--eye);
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .7), 0 0 0 1.5px rgba(255, 255, 255, .65);
+}
+.rn-char__eye--l { left: 16%; }
+.rn-char__eye--r { right: 16%; }
+.rn-char__mouth { position: absolute; left: 30%; right: 30%; bottom: 20%; height: 10%; border-radius: 999px; background: rgba(0, 0, 0, .5); }
+
+/* ---------- Entidades ---------- */
+.rn-spike {
+  position: absolute;
+  z-index: 10;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, .45) 0 30%, transparent 50%),
+    linear-gradient(180deg, #fecdd3, #f43f5e 45%, #881337);
+}
+.rn-platform {
+  position: absolute;
+  z-index: 10;
+  border-radius: 7px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .18), transparent 40%),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(103, 232, 249, .12) 18px 20px),
+    linear-gradient(180deg, #3730a3, #1e1b4b);
+  box-shadow: inset 0 3px 0 #67e8f9, inset 0 -3px 0 rgba(0, 0, 0, .35), 0 0 14px -2px rgba(34, 211, 238, .65);
+}
+.rn-item {
+  --i1: #8b5cf6;
+  --i2: #4c1d95;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 1.05;
+  font-family: var(--gk-font);
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
+  background: linear-gradient(180deg, var(--i1), var(--i2));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35), inset 0 -3px 0 rgba(0, 0, 0, .25), 0 0 16px -4px var(--i1);
+}
+.rn-item.is-good { --i1: #34d399; --i2: #047857; }
+.rn-item.is-bad { --i1: #fb7185; --i2: #881337; opacity: .82; }
+.rn-star { position: absolute; z-index: 10; width: 40px; height: 40px; }
+html[data-fx="high"] .rn-star svg { animation: rn-bob 1s ease-in-out infinite; }
+.rn-boom {
+  position: absolute;
+  z-index: 50;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff7ed 0 15%, #fdba74 35%, #f97316 55%, transparent 70%);
+  animation: rn-boom .5s ease-out forwards;
 }
 
-/* Menú de inicio: brillo radial y cuadrícula retro en perspectiva */
-.runner-menu {
-    background:
-        radial-gradient(60% 50% at 50% 0%, rgba(99, 102, 241, 0.35), transparent 70%),
-        radial-gradient(50% 40% at 50% 100%, rgba(217, 70, 239, 0.25), transparent 70%),
-        rgba(0, 0, 0, 0.95) !important;
+/* Derrape: partículas bajo el cubo cuando toca suelo (.on-ground la pone el bucle) */
+.skid-particles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+  z-index: 5;
 }
-.runner-menu::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 45%;
-    pointer-events: none;
-    background-image:
-        linear-gradient(rgba(34, 211, 238, 0.22) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 211, 238, 0.22) 1px, transparent 1px);
-    background-size: 40px 40px;
-    transform: perspective(300px) rotateX(60deg);
-    transform-origin: bottom;
-    -webkit-mask-image: linear-gradient(to top, #000, transparent);
-    mask-image: linear-gradient(to top, #000, transparent);
-    animation: runner-grid 2.4s linear infinite;
-    z-index: -1;
+.on-ground .skid-particles { opacity: 1; }
+.skid-particles div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, .9);
+  animation: skidAnimation .5s infinite linear;
 }
-.runner-menu { isolation: isolate; }
+.skid-particles .p1 { width: 8px; height: 8px; }
+.skid-particles .p2 { width: 6px; height: 6px; left: 4px; bottom: 2px; background-color: rgba(255, 255, 255, .7); animation-delay: .15s; }
+.skid-particles .p3 { width: 5px; height: 5px; left: 2px; bottom: 1px; background-color: rgba(255, 255, 255, .6); animation-delay: .3s; }
 
-/* Botón de empezar con pulso de luz */
-.runner-start-btn:not(:disabled) {
-    animation: runner-glow 2s ease-in-out infinite;
+/* ---------- Fin de partida (práctica) ---------- */
+.rn-over {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  cursor: default;
+  overflow-y: auto;
+  background: radial-gradient(70% 60% at 50% 40%, rgba(244, 63, 94, .3), transparent 70%), rgba(14, 4, 30, .78);
+}
+.rn-over__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(520px, 100%);
+  padding: 22px 20px;
+  border-radius: 26px;
+  text-align: center;
+  color: var(--gk-ink);
+  background: radial-gradient(120% 80% at 50% 0%, rgba(244, 63, 94, .25), transparent 60%), linear-gradient(180deg, #2b1a6b, #1a0f47);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 0 0 1px rgba(255, 255, 255, .08), 0 30px 60px -24px rgba(0, 0, 0, .9);
+}
+.rn-over__kicker {
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: #fda4af;
+}
+.rn-over__title {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #fff7ed, #fdba74 55%, #fb7185);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.rn-over__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+.rn-collected { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-height: 140px; overflow-y: auto; }
+.rn-collected__chip {
+  padding: 4px 11px;
+  border-radius: 10px;
+  font-size: .85rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(180deg, #34d399, #059669);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2), 0 3px 0 #065f46;
+  animation: gk-pop .4s cubic-bezier(.34, 1.56, .64, 1) both;
 }
 
-/* Game over con viñeta roja */
-.runner-gameover {
-    background:
-        radial-gradient(70% 60% at 50% 40%, rgba(239, 68, 68, 0.35), transparent 70%),
-        rgba(127, 29, 29, 0.95) !important;
+/* ---------- Botón de salto táctil ---------- */
+.rn-jump { display: none; }
+.rn-jump__btn { width: 100%; padding-top: 22px; padding-bottom: 22px; font-size: 1.35rem; letter-spacing: .1em; text-transform: uppercase; touch-action: none; user-select: none; }
+@media (pointer: coarse), (max-width: 1024px) {
+  .rn-jump { display: block; }
 }
 
-@keyframes runner-grid {
-    from { background-position: 0 0; }
-    to   { background-position: 0 40px; }
-}
-@keyframes runner-glow {
-    0%, 100% { box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
-    50%      { box-shadow: 0 0 34px rgba(234, 179, 8, 0.85), 0 0 60px rgba(249, 115, 22, 0.35); }
-}
+/* ---------- Guía de misiones (dentro de InstructionsModal) ---------- */
+.rn-guide { display: flex; flex-direction: column; gap: 12px; }
+.rn-guide__cat { padding: 12px 14px; border-radius: 18px; background: var(--im-surface, rgba(255, 255, 255, .06)); box-shadow: inset 0 0 0 1px var(--im-line, rgba(255, 255, 255, .1)); }
+.rn-guide__cat.is-current { box-shadow: inset 0 0 0 2px #f59e0b, 0 10px 24px -16px #f59e0b; }
+.rn-guide__title { display: flex !important; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 8px !important; font-size: .9rem; text-transform: uppercase; letter-spacing: .06em; }
+.rn-guide__now { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; font-size: .68rem; color: #431407; background: linear-gradient(120deg, #fde68a, #fb923c); }
+.rn-guide__words { display: flex; flex-wrap: wrap; gap: 6px; }
+.rn-guide__chip { padding: 3px 10px; border-radius: 10px; font-size: .82rem; font-weight: 700; color: var(--im-ink-2, inherit); background: var(--im-inset, rgba(0, 0, 0, .2)); }
 
-@media (prefers-reduced-motion: reduce) {
-    .runner-menu::before,
-    .runner-start-btn:not(:disabled) { animation: none; }
+/* ---------- Animaciones ---------- */
+@keyframes skidAnimation {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translate(-35px, -15px) scale(0) rotate(-90deg); opacity: 0; }
+}
+@keyframes rn-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes rn-boom { 0% { transform: scale(.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .rn-loadout { grid-template-columns: 1fr; }
+  .rn-adv { grid-template-columns: 1fr; }
+  .rn-mission__legend { display: none; }
+  .rn-screen { border-radius: 16px; margin: 4px; }
+  .rn-jump { margin-bottom: 56px; }
+  .rn-sky__sun { width: 130px; height: 130px; right: 6%; }
 }

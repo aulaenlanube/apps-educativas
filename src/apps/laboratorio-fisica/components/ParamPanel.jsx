@@ -1,68 +1,79 @@
 // Panel de parámetros generado desde simDef.paramsDef + controles de
 // reproducción + ayudas visuales + lecturas en vivo (throttled por el shell)
-// + fórmula viva.
+// + fórmula viva. Solo presentación (kit _shared/kit): los valores y los
+// manejadores llegan del shell y no se transforman aquí.
 import React from 'react';
-import { Play, Pause, RotateCcw, Eye, EyeOff, Route } from 'lucide-react';
+import {
+  Play, Pause, RotateCcw, Eye, EyeOff, Route, Turtle, Rabbit, Gauge, Activity, SlidersHorizontal, Clapperboard,
+} from 'lucide-react';
+import { GameButton, Segmented } from '../../_shared/kit';
 import { fmt } from '../engine/integrator';
 
 const SPEEDS = [
-  { value: 0.25, label: '🐢 0,25×' },
-  { value: 1, label: '▶ 1×' },
-  { value: 2, label: '⏩ 2×' },
+  { value: 0.25, label: '0,25×', icon: Turtle },
+  { value: 1, label: '1×', icon: Play },
+  { value: 2, label: '2×', icon: Rabbit },
 ];
 
 function ParamControl({ def, value, onChange, disabled }) {
   if (def.type === 'toggle') {
     return (
-      <label className={`fislab-param fislab-param-toggle ${disabled ? 'disabled' : ''}`}>
-        <span className="fislab-param-label">{def.label}</span>
+      <div className={`fislab-param fislab-param--toggle ${disabled ? 'is-disabled' : ''}`}>
+        <span className="fislab-param__label">{def.label}</span>
         <button
           type="button"
-          className={`fislab-switch ${value ? 'on' : ''}`}
+          role="switch"
+          aria-checked={!!value}
+          aria-label={def.label}
+          className={`fislab-switch ${value ? 'is-on' : ''}`}
           onClick={() => !disabled && onChange(!value)}
-          aria-pressed={!!value}
         >
-          <span className="fislab-switch-knob" />
+          <span className="fislab-switch__knob" />
         </button>
-      </label>
+      </div>
     );
   }
   if (def.type === 'select') {
     return (
-      <div className={`fislab-param ${disabled ? 'disabled' : ''}`}>
-        <span className="fislab-param-label">{def.label}</span>
-        <div className="fislab-param-options">
-          {def.options.map((o) => (
-            <button
-              key={o.value}
-              type="button"
-              className={value === o.value ? 'active' : ''}
-              onClick={() => !disabled && onChange(o.value)}
-            >
-              {o.label}
-            </button>
-          ))}
-        </div>
+      <div className={`fislab-param ${disabled ? 'is-disabled' : ''}`}>
+        <span className="fislab-param__label">{def.label}</span>
+        <Segmented
+          size="sm"
+          options={def.options.map((o) => ({ value: o.value, label: o.label, disabled }))}
+          value={value}
+          onChange={(v) => !disabled && onChange(v)}
+        />
       </div>
     );
   }
   // slider numérico
   const decimals = def.decimals ?? (def.step < 1 ? 1 : 0);
+  const span = def.max - def.min;
+  const pct = span > 0 ? Math.max(0, Math.min(100, ((value - def.min) / span) * 100)) : 0;
   return (
-    <div className={`fislab-param ${disabled ? 'disabled' : ''}`}>
-      <span className="fislab-param-label">
-        {def.label}
-        <strong>{fmt(value, decimals)} {def.unit}</strong>
+    <div className={`fislab-param ${disabled ? 'is-disabled' : ''}`}>
+      <span className="fislab-param__head">
+        <span className="fislab-param__label">{def.label}</span>
+        <output className="fislab-param__value">
+          {fmt(value, decimals)}{def.unit ? <small> {def.unit}</small> : null}
+        </output>
       </span>
       <input
         type="range"
+        className="fislab-range"
+        style={{ '--pct': `${pct}%` }}
         min={def.min}
         max={def.max}
         step={def.step}
         value={value}
         disabled={disabled}
+        aria-label={def.label}
         onChange={(e) => onChange(parseFloat(e.target.value))}
       />
+      <span className="fislab-param__ends" aria-hidden="true">
+        <span>{fmt(def.min, decimals)}</span>
+        <span>{fmt(def.max, decimals)}</span>
+      </span>
     </div>
   );
 }
@@ -88,71 +99,79 @@ export default function ParamPanel({
   return (
     <div className="fislab-panel">
       {/* controles de reproducción */}
-      <div className="fislab-controls">
-        <button type="button" className="fislab-btn-play" onClick={onPlayPause}>
-          {playing ? <Pause size={18} /> : <Play size={18} />}
-          {playing ? 'Pausa' : 'Reproducir'}
-        </button>
-        <button type="button" className="fislab-btn-reset" onClick={onReset} title="Reiniciar">
-          <RotateCcw size={16} />
-        </button>
-        <div className="fislab-speeds">
-          {SPEEDS.map((s) => (
-            <button
-              key={s.value}
-              type="button"
-              className={speed === s.value ? 'active' : ''}
-              onClick={() => onSpeedChange(s.value)}
-            >
-              {s.label}
-            </button>
-          ))}
+      <section className="fislab-section">
+        <h5 className="fislab-section__title"><Clapperboard size={13} /> Simulación</h5>
+        <div className="fislab-transport">
+          <GameButton
+            variant={playing ? 'warning' : 'success'}
+            icon={playing ? Pause : Play}
+            className="fislab-transport__play"
+            onClick={onPlayPause}
+          >
+            {playing ? 'Pausa' : 'Reproducir'}
+          </GameButton>
+          <button type="button" className="gk-iconbtn" onClick={onReset} title="Reiniciar" aria-label="Reiniciar">
+            <RotateCcw size={17} />
+          </button>
         </div>
-      </div>
+        <div className="fislab-speedrow">
+          <span className="fislab-minilabel"><Gauge size={13} /> Velocidad</span>
+          <Segmented size="sm" options={SPEEDS} value={speed} onChange={onSpeedChange} />
+        </div>
 
-      {/* ayudas visuales */}
-      {(simDef.usaVectores !== false || simDef.usaTrayectoria !== false) && (
-        <div className="fislab-aids">
-          {simDef.usaVectores !== false && (
-            <button type="button" className={showVectors ? 'active' : ''} onClick={onToggleVectors}>
-              {showVectors ? <Eye size={14} /> : <EyeOff size={14} />} Vectores
-            </button>
-          )}
-          {simDef.usaTrayectoria !== false && (
-            <button type="button" className={showTrajectory ? 'active' : ''} onClick={onToggleTrajectory}>
-              <Route size={14} /> Trayectoria
-            </button>
-          )}
-        </div>
-      )}
+        {/* ayudas visuales */}
+        {(simDef.usaVectores !== false || simDef.usaTrayectoria !== false) && (
+          <div className="fislab-aids">
+            {simDef.usaVectores !== false && (
+              <button type="button" className={`fislab-aid ${showVectors ? 'is-on' : ''}`} aria-pressed={!!showVectors} onClick={onToggleVectors}>
+                {showVectors ? <Eye size={14} /> : <EyeOff size={14} />} Vectores
+              </button>
+            )}
+            {simDef.usaTrayectoria !== false && (
+              <button type="button" className={`fislab-aid ${showTrajectory ? 'is-on' : ''}`} aria-pressed={!!showTrajectory} onClick={onToggleTrajectory}>
+                <Route size={14} /> Trayectoria
+              </button>
+            )}
+          </div>
+        )}
+      </section>
 
       {/* parámetros */}
-      <div className="fislab-params">
-        {simDef.paramsDef.map((def) => (
-          <ParamControl
-            key={def.key}
-            def={def}
-            value={params[def.key]}
-            disabled={paramsLocked}
-            onChange={(v) => onParamChange(def.key, v)}
-          />
-        ))}
-      </div>
+      <section className="fislab-section">
+        <h5 className="fislab-section__title"><SlidersHorizontal size={13} /> Parámetros</h5>
+        <div className="fislab-params">
+          {simDef.paramsDef.map((def) => (
+            <ParamControl
+              key={def.key}
+              def={def}
+              value={params[def.key]}
+              disabled={paramsLocked}
+              onChange={(v) => onParamChange(def.key, v)}
+            />
+          ))}
+        </div>
+      </section>
 
       {/* lecturas en vivo */}
       {readouts?.length > 0 && (
-        <div className="fislab-readouts">
-          {readouts.map((r) => (
-            <div className="fislab-readout" key={r.label}>
-              <span>{r.label}</span>
-              <strong>{typeof r.value === 'number' ? fmt(r.value, r.decimals ?? 2) : r.value} {r.unit || ''}</strong>
-            </div>
-          ))}
-        </div>
+        <section className="fislab-section">
+          <h5 className="fislab-section__title"><Activity size={13} /> Medidas en vivo</h5>
+          <div className="fislab-readouts">
+            {readouts.map((r) => (
+              <div className="fislab-readout" key={r.label}>
+                <span className="fislab-readout__label">{r.label}</span>
+                <span className="fislab-readout__value">
+                  {typeof r.value === 'number' ? fmt(r.value, r.decimals ?? 2) : r.value}
+                  {r.unit ? <small> {r.unit}</small> : null}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* fórmula viva */}
-      {formulaViva && <div className="fislab-formula-viva">{formulaViva}</div>}
+      {formulaViva && <div className="fislab-formula-inline">{formulaViva}</div>}
 
       {children}
     </div>

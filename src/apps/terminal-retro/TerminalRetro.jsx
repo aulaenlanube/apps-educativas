@@ -1,7 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useParams } from 'react-router-dom';
+import {
+    Check, ChevronsRight, Code2, Cpu, Eraser, FileCode2, Lock, Play, ScanSearch, ShieldAlert, Unlock,
+} from 'lucide-react';
 import { getAppContent } from '../../services/gameDataService';
+import { GameShell, GameHeader, Hud, HudStat } from '../_shared/kit';
 import './TerminalRetro.css';
+
+// Solo presentación: familia de cada comando para colorear la leyenda de su tecla.
+const CMD_GROUP = {
+    SET: 'io', PRINT: 'io', READ: 'io',
+    ADD: 'math', SUB: 'math', MUL: 'math', DIV: 'math', MOD: 'math',
+    IF: 'flow', ELSE: 'flow', REPEAT: 'flow', WHILE: 'flow', END: 'flow',
+    '>': 'cmp', '<': 'cmp', '==': 'cmp',
+};
+const pad2 = (n) => String(n).padStart(2, '0');
+
+// Marco del monitor CRT (carcasa, cristal con scanlines/viñeta/reflejo y frontal).
+function CrtMonitor({ children, led = 'on' }) {
+    return (
+        <section className={`trx-monitor is-${led}`} aria-label="Terminal">
+            <div className="trx-monitor__frame">
+                <div className="trx-glass">
+                    <span className="trx-glass__refresh" aria-hidden="true" />
+                    {children}
+                </div>
+            </div>
+            <div className="trx-monitor__chin" aria-hidden="true">
+                <span className="trx-vents"><i /><i /><i /><i /><i /></span>
+                <span className="trx-plate">EDU·TERM <b>2000</b></span>
+                <span className={`trx-power is-${led}`}><i />PWR</span>
+            </div>
+        </section>
+    );
+}
 
 const TerminalRetro = () => {
     const { grade } = useParams(); // Get the grade (1, 2, 3, 4) from URL
@@ -318,206 +351,325 @@ const TerminalRetro = () => {
         if (currentLevelIndex < levelData.length - 1) setCurrentLevelIndex(prev => prev + 1);
     };
 
+    // ---- Solo presentación: numeración de líneas del editor sincronizada con su scroll ----
+    const gutterRef = useRef(null);
+    const syncGutter = (e) => {
+        if (gutterRef.current) gutterRef.current.scrollTop = e.target.scrollTop;
+    };
+
     if (!currentLevel) return (
-        <div className="tr-root bg-black text-green-500 h-screen p-10 font-mono relative overflow-hidden">
-            <div className="tr-scanlines" aria-hidden="true" />
-            <div className="tr-vignette" aria-hidden="true" />
-            <span className="tr-status-dot" aria-hidden="true" />LOADING SYSTEM...<span className="animate-pulse">_</span>
-        </div>
+        <GameShell theme="dark" accent="#22c55e" accent2="#a3e635" wide className="trx-shell">
+            <GameHeader />
+            <CrtMonitor led="boot">
+                <div className="trx-boot" role="status">
+                    <span>EDU-TERM BIOS v2.0</span>
+                    <span>MEMORIA ............. OK</span>
+                    <span>MÓDULOS DE MISIÓN ... CARGANDO</span>
+                    <strong>LOADING SYSTEM...<span className="trx-cursor">_</span></strong>
+                </div>
+            </CrtMonitor>
+        </GameShell>
     );
 
-    return (
-        <div className="tr-root min-h-[85vh] md:h-[85vh] bg-black text-green-500 font-mono p-3 sm:p-4 flex flex-col md:flex-row gap-4 overflow-hidden relative border-2 border-green-900 rounded-lg shadow-[0_0_50px_rgba(0,255,0,0.1)]">
-            {/* Capas CRT decorativas: grano, scanlines, barra de refresco y viñeta */}
-            <div className="tr-noise" aria-hidden="true"></div>
-            <div className="tr-scanlines" aria-hidden="true"></div>
-            <div className="tr-refresh" aria-hidden="true"></div>
-            <div className="tr-vignette" aria-hidden="true"></div>
+    const isTrace = currentLevel.type === 'trace';
+    const codeLines = code.split('\n');
+    const isIdle = inputs.length === 0 && !feedback && !isRunning;
 
-            {/* FIXED TOOLTIP */}
-            {hoveredCmd && (
+    return (
+        <GameShell theme="dark" accent="#22c55e" accent2="#a3e635" wide className="trx-shell">
+            {/* FIXED TOOLTIP (en <body> para quedar por encima de todo) */}
+            {hoveredCmd && createPortal(
                 <div
-                    className="tr-tooltip fixed z-50 bg-black border border-green-500 text-green-400 text-xs p-3 rounded shadow-[0_0_20px_rgba(0,255,0,0.4)] pointer-events-none max-w-xs whitespace-pre-wrap"
+                    className="trx-tooltip"
                     style={{
                         left: Math.min(hoveredCmd.x, window.innerWidth - 300),
                         top: hoveredCmd.y
                     }}
                 >
-                    <div className="font-bold border-b border-green-800 pb-1 mb-1 text-center text-green-300">{hoveredCmd.cmd}</div>
+                    <div className="trx-tooltip__cmd">{hoveredCmd.cmd}</div>
                     {HELP_DOCS[hoveredCmd.cmd] ? HELP_DOCS[hoveredCmd.cmd].split('\n').slice(1).join('\n') : 'Insertar comando'}
-                </div>
+                </div>,
+                document.body
             )}
 
             {/* HELP MODAL */}
-            {showHelp && (
-                <div className="tr-modal-bg fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-2xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar tr-modal fx-enter-pop">
-                        <button
-                            onClick={() => setShowHelp(false)}
-                            className="tr-modal-close absolute top-4 right-4 text-green-500 hover:text-white font-bold"
-                        >
-                            [X] CERRAR
-                        </button>
-                        <h2 className="text-2xl font-bold mb-6 text-green-400 border-b border-green-800 pb-2">MANUAL DE COMANDOS v1.0</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {Object.entries(HELP_DOCS).map(([cmd, doc]) => (
-                                <div key={cmd} className="tr-doc bg-black/50 p-3 rounded border border-green-900">
-                                    <h3 className="text-green-300 font-bold mb-1">{cmd}</h3>
-                                    <pre className="text-xs text-green-600 whitespace-pre-wrap font-mono">{doc}</pre>
-                                </div>
-                            ))}
+            {showHelp && createPortal(
+                <div className="trx-modal-bg" role="dialog" aria-modal="true" aria-labelledby="trx-help-title">
+                    <div className="trx-window trx-window--md">
+                        <div className="trx-window__bar">
+                            <span className="trx-window__lights" aria-hidden="true"><i /><i /><i /></span>
+                            <span className="trx-window__name">MANUAL.TXT</span>
+                            <button type="button" onClick={() => setShowHelp(false)} className="trx-window__close">
+                                [X] CERRAR
+                            </button>
+                        </div>
+                        <div className="trx-window__body">
+                            <h2 id="trx-help-title" className="trx-window__title">MANUAL DE COMANDOS v1.0</h2>
+                            <div className="trx-docs">
+                                {Object.entries(HELP_DOCS).map(([cmd, doc]) => (
+                                    <div key={cmd} className={`trx-doc is-${CMD_GROUP[cmd] || 'io'}`}>
+                                        <h3 className="trx-doc__cmd">{cmd}</h3>
+                                        <pre className="trx-doc__text">{doc}</pre>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
 
             {/* EXAMPLES MODAL */}
-            {showExamples && (
-                <div className="tr-modal-bg fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 border-2 border-green-500 p-6 rounded max-w-4xl w-full max-h-[80vh] overflow-y-auto relative shadow-[0_0_30px_rgba(0,255,0,0.3)] no-scrollbar tr-modal fx-enter-pop">
-                        <button
-                            onClick={() => setShowExamples(false)}
-                            className="tr-modal-close absolute top-4 right-4 text-green-500 hover:text-white font-bold"
-                        >
-                            [X] CERRAR
-                        </button>
-                        <h2 className="text-2xl font-bold mb-6 text-green-400 border-b border-green-800 pb-2">MODELOS DE PROGRAMAS</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {Object.entries(EXAMPLES).map(([difficulty, programs]) => (
-                                <div key={difficulty} className="flex flex-col gap-4">
-                                    <h3 className={`text-xl font-bold border-b pb-1 ${difficulty === 'FACIL' ? 'tr-diff-easy text-green-300 border-green-300' : difficulty === 'MEDIO' ? 'tr-diff-medium text-yellow-300 border-yellow-300' : 'tr-diff-exam text-red-400 border-red-400'}`}>{difficulty}</h3>
-                                    {programs.map((prog, idx) => (
-                                        <div key={idx} className="tr-doc bg-black border border-green-900 p-3 rounded hover:border-green-500 transition-colors cursor-default group">
-                                            <h4 className="text-green-100 font-bold mb-1 group-hover:text-green-400">{prog.title}</h4>
-                                            <p className="text-xs text-green-600 mb-2 italic border-b border-green-900/50 pb-2">{prog.description}</p>
-                                            <pre className="text-xs text-gray-400 whitespace-pre-wrap font-mono bg-gray-900/50 p-2 rounded">{prog.code}</pre>
+            {showExamples && createPortal(
+                <div className="trx-modal-bg" role="dialog" aria-modal="true" aria-labelledby="trx-examples-title">
+                    <div className="trx-window trx-window--lg">
+                        <div className="trx-window__bar">
+                            <span className="trx-window__lights" aria-hidden="true"><i /><i /><i /></span>
+                            <span className="trx-window__name">EJEMPLOS.BAS</span>
+                            <button type="button" onClick={() => setShowExamples(false)} className="trx-window__close">
+                                [X] CERRAR
+                            </button>
+                        </div>
+                        <div className="trx-window__body">
+                            <h2 id="trx-examples-title" className="trx-window__title">MODELOS DE PROGRAMAS</h2>
+                            <div className="trx-examples">
+                                {Object.entries(EXAMPLES).map(([difficulty, programs]) => (
+                                    <div key={difficulty} className={`trx-examples__col is-${difficulty === 'FACIL' ? 'easy' : difficulty === 'MEDIO' ? 'medium' : 'hard'}`}>
+                                        <h3 className="trx-examples__h">{difficulty}</h3>
+                                        {programs.map((prog, idx) => (
+                                            <div key={idx} className="trx-example">
+                                                <h4 className="trx-example__title">{prog.title}</h4>
+                                                <p className="trx-example__desc">{prog.description}</p>
+                                                <pre className="trx-example__code">{prog.code}</pre>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
+
+            <GameHeader
+                right={(
+                    <Hud>
+                        <HudStat icon={Cpu} tone="good" value={`${currentLevelIndex + 1}/${levelData.length}`} label="Nivel" />
+                        <HudStat icon={isTrace ? ScanSearch : Code2} tone="accent" value={isTrace ? 'Análisis' : 'Código'} label="Tipo" />
+                    </Hud>
+                )}
+            />
+
+            {/* Barra: progreso de niveles (indicador visual) + manual y ejemplos */}
+            <div className="trx-bar">
+                <div className="trx-strip" aria-label="Progreso de niveles">
+                    <span className="trx-strip__label">Nivel</span>
+                    <ol className="trx-strip__track">
+                        {levelData.map((lvl, i) => {
+                            const state = i < currentLevelIndex ? 'done' : i === currentLevelIndex ? 'current' : 'locked';
+                            const cleared = state === 'done' || (state === 'current' && isSuccess);
+                            return (
+                                <li
+                                    key={i}
+                                    className={`trx-seg is-${state} ${cleared ? 'is-cleared' : ''}`}
+                                    aria-current={state === 'current' ? 'step' : undefined}
+                                    title={`Nivel ${i + 1} · ${lvl.type === 'trace' ? 'Análisis' : 'Codificación'}`}
+                                >
+                                    <span className="trx-seg__num">{pad2(i + 1)}</span>
+                                    <span className="trx-seg__type" aria-hidden="true">
+                                        {lvl.type === 'trace' ? <ScanSearch size={13} /> : <Code2 size={13} />}
+                                    </span>
+                                    <span className="trx-seg__icon" aria-hidden="true">
+                                        {cleared ? <Check size={13} strokeWidth={3} /> : state === 'locked' ? <Lock size={12} /> : <ChevronsRight size={14} />}
+                                    </span>
+                                </li>
+                            );
+                        })}
+                    </ol>
+                </div>
+                <div className="trx-bar__tools">
+                    <button type="button" onClick={() => setShowHelp(true)} className="trx-tool">
+                        <span className="trx-tool__glyph" aria-hidden="true">?</span> Manual de ayuda
+                    </button>
+                    <button type="button" onClick={() => setShowExamples(true)} className="trx-tool">
+                        <span className="trx-tool__glyph" aria-hidden="true">#</span> Ejemplos de código
+                    </button>
+                </div>
+            </div>
+
+            <div className={`trx-rig ${isTrace ? 'is-trace' : 'is-coding'}`}>
+                {/* EXPEDIENTE DE LA MISIÓN */}
+                <section className="trx-dossier" aria-label="Expediente de la misión">
+                    <span className="trx-dossier__tab">Expediente</span>
+                    <div className="trx-dossier__sheet">
+                        <span className="trx-stamp" aria-hidden="true">Clasificado</span>
+                        <div className="trx-dossier__head">
+                            <h2 className="trx-dossier__level">NIVEL {currentLevel.id}</h2>
+                            <span className="trx-badge">{isTrace ? 'ANÁLISIS' : 'CODIFICACIÓN'}</span>
+                        </div>
+                        <p className="trx-dossier__title">{currentLevel.title}</p>
+                        <p className="trx-dossier__desc">{currentLevel.description}</p>
+
+                        {isTrace ? (
+                            <div className="trx-printout">
+                                <span className="trx-printout__chip">READ-ONLY</span>
+                                <div className="trx-printout__paper">
+                                    {String(currentLevel.code || '').split('\n').map((ln, i) => (
+                                        <div key={i} className="trx-printout__line">
+                                            <span className="trx-printout__ln" aria-hidden="true">{pad2(i + 1)}</span>
+                                            <code>{ln || ' '}</code>
                                         </div>
                                     ))}
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="trx-goal">
+                                <strong>OBJETIVO:</strong>
+                                <span>{currentLevel.goal}</span>
+                            </div>
+                        )}
                     </div>
-                </div>
-            )}
+                </section>
 
-            {/* LEFT PANEL */}
-            <div className="tr-panel w-full md:w-1/3 bg-gray-900 border-2 border-green-800 p-4 sm:p-6 rounded shadow-[0_0_15px_rgba(0,255,0,0.1)] flex flex-col z-10 gap-4">
-                <div className="border-b border-green-800 pb-4 text-center">
-                    <h1 className="tr-title text-3xl font-bold mb-1 tracking-widest text-green-400 drop-shadow-[0_0_5px_rgba(0,255,0,0.5)]">TERMINAL v.2</h1>
-                    <div className="text-[10px] text-green-700 uppercase tracking-[0.3em]"><span className="tr-status-dot" aria-hidden="true" />System Ready</div>
-                </div>
-
-                {/* HELP & EXAMPLES BUTTONS */}
-                <div className="flex flex-col gap-2 mx-8">
-                    <button
-                        onClick={() => setShowHelp(true)}
-                        className="tr-btn text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
-                    >
-                        [?] Manual de Ayuda
-                    </button>
-                    <button
-                        onClick={() => setShowExamples(true)}
-                        className="tr-btn text-xs bg-green-900/40 border border-green-600 hover:bg-green-600 hover:text-black text-green-200 font-bold px-4 py-2 rounded shadow-[0_0_10px_rgba(0,255,0,0.1)] transition-all uppercase tracking-wider"
-                    >
-                        [#] Ejemplos de código
-                    </button>
-                </div>
-
-                <div className="flex-1 flex flex-col mt-2">
-                    <div className="flex items-center justify-between mb-2">
-                        <h2 className="text-xl text-green-400 font-bold">NIVEL {currentLevel.id}</h2>
-                        <span className="tr-level-badge text-xs bg-green-900 text-green-200 px-2 py-1 rounded border border-green-700">{currentLevel.type === 'trace' ? 'ANÁLISIS' : 'CODIFICACIÓN'}</span>
-                    </div>
-                    <p className="text-green-300 font-bold mb-1">{currentLevel.title}</p>
-                    <p className="text-green-600 text-sm mb-4 leading-relaxed">{currentLevel.description}</p>
-
-                    {currentLevel.type === 'trace' ? (
-                        <div className="tr-box bg-black border border-green-700 p-4 mb-4 rounded relative flex-1 overflow-y-auto custom-scrollbar">
-                            <span className="tr-chip-ro absolute top-0 right-0 bg-green-900 text-[10px] px-2 text-green-200">READ-ONLY</span>
-                            <pre className="whitespace-pre-wrap text-sm leading-relaxed opacity-90 font-mono text-green-400">{currentLevel.code}</pre>
-                        </div>
-                    ) : (
-                        <div className="tr-box bg-green-900/10 p-3 rounded border border-green-800 text-sm mb-4">
-                            <strong className="text-green-400 block mb-1">OBJETIVO:</strong>
-                            <span className="text-green-600">{currentLevel.goal}</span>
+                {/* MONITOR CRT */}
+                <CrtMonitor led={isRunning ? 'busy' : feedback && !isSuccess ? 'alert' : 'on'}>
+                    {!isTrace && (
+                        <div className="trx-pane trx-pane--editor">
+                            <div className="trx-pane__bar">
+                                <span><FileCode2 size={12} aria-hidden="true" /> EDITOR DE CÓDIGO</span>
+                                <span className="trx-pane__file">MISION_{pad2(currentLevel.id)}.BAS</span>
+                            </div>
+                            <div className="trx-editor">
+                                <div className="trx-editor__gutter" ref={gutterRef} aria-hidden="true">
+                                    {codeLines.map((_, i) => <span key={i}>{i + 1}</span>)}
+                                </div>
+                                <textarea
+                                    ref={codeAreaRef}
+                                    value={code}
+                                    onChange={(e) => setCode(e.target.value)}
+                                    onScroll={syncGutter}
+                                    className="trx-editor__input"
+                                    placeholder="// Escribe tu código aquí..."
+                                    spellCheck={false}
+                                    wrap="off"
+                                    aria-label="Editor de código"
+                                />
+                            </div>
                         </div>
                     )}
-                </div>
 
-                {/* CONTROLS */}
-                {currentLevel.type === 'trace' ? (
-                    <div className="mt-auto pt-4 border-t border-green-900">
-                        <label className="block text-xs mb-2 uppercase tracking-wider text-green-500">Introduce el resultado:</label>
-                        <div className="flex gap-2">
-                            <input type="text" value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} className="tr-input bg-black border border-green-600 p-2 flex-1 min-w-0 outline-none text-green-400 font-bold placeholder-green-900" placeholder=">_" />
-                            <button onClick={runInterpreter} className="tr-check bg-green-700 text-black font-bold px-4 hover:bg-green-600 border border-green-500 flex-shrink-0">CHECK</button>
+                    <div className="trx-pane trx-pane--output">
+                        <div className="trx-pane__bar">
+                            <span>SYSTEM OUTPUT</span>
+                            <span className="trx-live">● LIVE</span>
                         </div>
+                        <div className="trx-output">
+                            {isIdle && (
+                                <div className="trx-idle" aria-hidden="true">
+                                    <span>EDU-TERM v2.0 · SISTEMA LISTO</span>
+                                    {isTrace ? (
+                                        <>
+                                            <span>&gt; ANALIZA EL CÓDIGO DEL EXPEDIENTE</span>
+                                            <span>&gt; ESCRIBE EL RESULTADO EN EL PROMPT</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>&gt; ESCRIBE TU PROGRAMA EN EL EDITOR</span>
+                                            <span>&gt; PULSA EJECUTAR PARA LANZARLO</span>
+                                        </>
+                                    )}
+                                    <span className="trx-cursor">_</span>
+                                </div>
+                            )}
+                            {inputs.map((line, i) => (
+                                <div key={i} className={`trx-line ${line.startsWith('INPUT') ? 'is-input' : ''}`}>{line}</div>
+                            ))}
+                            {isRunning && <span className="trx-cursor trx-cursor--run">_</span>}
+                            <div ref={bottomRef}></div>
+                        </div>
+                        {/* Aviso y tecla de siguiente nivel fijos al pie de la salida (siempre visibles) */}
+                        {(feedback || isSuccess) && (
+                            <div className="trx-output__foot">
+                                {feedback && (
+                                    <div key={feedback} role="status" className={`trx-alert ${isSuccess ? 'is-ok' : 'is-ko'}`}>
+                                        <span className="trx-alert__icon" aria-hidden="true">
+                                            {isSuccess ? <Unlock size={22} /> : <ShieldAlert size={22} />}
+                                        </span>
+                                        <span className="trx-alert__text">
+                                            <strong>{isSuccess ? 'ACCESO CONCEDIDO' : 'ALERTA DEL SISTEMA'}</strong>
+                                            <span>{feedback}</span>
+                                        </span>
+                                    </div>
+                                )}
+                                {isSuccess && (
+                                    <button type="button" onClick={nextLevel} className="trx-next">
+                                        <span className="trx-next__cap">SIGUIENTE NIVEL <ChevronsRight size={20} aria-hidden="true" /></span>
+                                    </button>
+                                )}
+                            </div>
+                        )}
                     </div>
 
-                ) : (
-                    <div className="flex-1 overflow-y-auto no-scrollbar border-t border-green-900 pt-2">
-                        <h3 className="text-[10px] font-bold mb-2 text-green-700 uppercase tracking-widest text-center">- COMANDOS -</h3>
-                        <div className="grid grid-cols-4 gap-1">
+                    {isTrace && (
+                        <div className="trx-prompt">
+                            <label htmlFor="trx-answer" className="trx-prompt__label">Introduce el resultado:</label>
+                            <div className="trx-prompt__row">
+                                <span className="trx-prompt__ps" aria-hidden="true">root@edu:~$</span>
+                                <input
+                                    id="trx-answer"
+                                    type="text"
+                                    value={userAnswer}
+                                    onChange={(e) => setUserAnswer(e.target.value)}
+                                    className="trx-prompt__input"
+                                    placeholder=">_"
+                                    autoComplete="off"
+                                    spellCheck={false}
+                                />
+                                <button type="button" onClick={runInterpreter} className="trx-check">CHECK</button>
+                            </div>
+                        </div>
+                    )}
+                </CrtMonitor>
+            </div>
+
+            {/* TECLADO DE COMANDOS (solo niveles de codificación) */}
+            {!isTrace && (
+                <section className="trx-deck" aria-label="Teclado de comandos">
+                    <div className="trx-deck__top">
+                        <span className="trx-deck__label">Comandos</span>
+                        <span className="trx-deck__hint">Pulsa una tecla para insertarla · pasa el ratón para ver su ayuda</span>
+                        <span className="trx-deck__leds" aria-hidden="true"><i className="is-on" /><i className={isRunning ? 'is-on' : ''} /><i /></span>
+                    </div>
+                    <div className="trx-deck__body">
+                        <div className="trx-keys">
                             {commands.map(cmd => (
                                 <button
                                     key={cmd}
+                                    type="button"
                                     onClick={() => addToCode(cmd)}
                                     onMouseEnter={(e) => handleCmdMouseEnter(cmd, e)}
                                     onMouseLeave={handleCmdMouseLeave}
-                                    className="tr-cmd w-full bg-gray-900 border border-green-800 hover:border-green-400 text-xs py-1 px-1 rounded hover:bg-green-900 text-green-400 font-bold transition-all transform hover:scale-105"
+                                    className={`trx-key is-${CMD_GROUP[cmd] || 'io'}`}
                                 >
-                                    {cmd}
+                                    <span className="trx-key__cap">{cmd}</span>
                                 </button>
                             ))}
                         </div>
+                        <div className="trx-deck__actions">
+                            <button type="button" onClick={() => setCode('')} className="trx-key trx-key--clear">
+                                <span className="trx-key__cap"><Eraser size={16} aria-hidden="true" /> LIMPIAR</span>
+                            </button>
+                            <button type="button" onClick={runInterpreter} disabled={isRunning} className={`trx-key trx-key--run ${isRunning ? 'is-busy' : ''}`}>
+                                <span className="trx-key__cap">
+                                    <Play size={18} aria-hidden="true" /> {isRunning ? 'EJECUTANDO...' : 'EJECUTAR'}
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                )}
-            </div>
-
-            {/* RIGHT PANEL: TERMINAL */}
-            <div className="tr-panel--right flex-1 flex flex-col gap-4 z-10">
-                {currentLevel.type === 'coding' && (
-                    <div className="tr-screen flex-1 min-h-[180px] bg-black border-2 border-green-800 rounded p-4 relative output-glow flex flex-col">
-                        <div className="tr-screen-tag absolute top-0 right-0 bg-green-800 text-black text-xs px-2 font-bold uppercase rounded-bl">EDITOR DE CÓDIGO</div>
-                        <textarea ref={codeAreaRef} value={code} onChange={(e) => setCode(e.target.value)} className="w-full flex-1 bg-transparent border-none outline-none resize-none font-mono text-green-500 placeholder-green-900 leading-relaxed mt-4 custom-scrollbar" placeholder="// Escribe tu código aquí..." />
-                    </div>
-                )}
-                <div className={`tr-screen flex-1 min-h-[160px] bg-black border-2 border-green-800 rounded p-4 overflow-y-auto font-mono text-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] custom-scrollbar ${currentLevel.type === 'trace' ? 'h-full' : 'h-1/2'}`}>
-                    <div className="tr-console-head absolute top-0 left-0 bg-green-900/30 text-green-600 text-[10px] px-2 w-full border-b border-green-900 uppercase tracking-widest flex justify-between items-center">
-                        <span>System Output</span>
-                        <span className="text-[9px] animate-pulse">● LIVE</span>
-                    </div>
-                    <div className="mt-6 flex flex-col gap-1">
-                        {inputs.map((line, i) => <div key={i} className="tr-line opacity-90 border-l-2 border-green-900 pl-2">{line}</div>)}
-                        {isRunning && <span className="animate-pulse pl-2">_</span>}
-                        {feedback && <div key={feedback} role="status" className={`tr-feedback ${isSuccess ? 'tr-feedback--ok' : 'tr-feedback--ko'} mt-4 p-2 border-l-4 ${isSuccess ? 'border-green-500 text-green-400 bg-green-900/20' : 'border-red-500 text-red-500 bg-red-900/20'}`}>{feedback}</div>}
-                        {isSuccess && <button onClick={nextLevel} className="tr-next mt-4 bg-green-600 text-black font-bold py-3 w-full hover:bg-green-500 animate-bounce shadow-[0_0_15px_rgba(0,255,0,0.6)] uppercase tracking-widest">{'>'}{'>'} SIGUIENTE NIVEL {'>'}{'>'}</button>}
-                    </div>
-                    <div ref={bottomRef}></div>
-                </div>
-                {currentLevel.type === 'coding' && (
-                    <div className="flex gap-2">
-                        <button onClick={runInterpreter} disabled={isRunning} className={`tr-run ${isRunning ? 'tr-run--busy' : ''} flex-1 bg-green-700 text-black font-bold py-3 rounded hover:bg-green-600 disabled:opacity-50 tracking-widest text-lg shadow-[0_0_15px_rgba(0,255,0,0.3)] border border-green-500 transition-all hover:scale-[1.01] active:scale-[0.99]`}>
-                            {isRunning ? 'E J E C U T A N D O . . .' : '▶ E J E C U T A R'}
-                        </button>
-                        <button onClick={() => setCode('')} className="tr-clear bg-red-900/20 text-red-500 border border-red-900 px-6 rounded hover:bg-red-900/40 hover:text-red-400 transition-colors uppercase font-bold text-xs tracking-wider">
-                            LIMPIAR
-                        </button>
-                    </div>
-                )}
-            </div>
-
-            <style>{`
-                @keyframes scanline { 0% { background-position: 0% 0%; } 100% { background-position: 0% 100%; } }
-                .output-glow { box-shadow: 0 0 10px rgba(0, 255, 0, 0.1); }
-                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-                .custom-scrollbar::-webkit-scrollbar-track { background: #001100; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: #004400; border-radius: 3px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #006600; }
-                .no-scrollbar::-webkit-scrollbar { display: none; }
-                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-            `}</style>
-        </div>
+                </section>
+            )}
+        </GameShell>
     );
 };
 

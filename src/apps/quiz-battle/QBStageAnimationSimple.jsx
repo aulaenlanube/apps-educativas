@@ -1,34 +1,27 @@
 import React from 'react';
 
 /**
- * Animacion SVG minimalista para zona central durante la batalla.
- * 3 anillos concentricos finos que rotan lentamente + 4 puntos cardinales
- * que laten suavemente. Diseno limpio, sin distracciones.
- *
- * Prop `intensity`: 'normal' | 'critical' (acelera y vira a rojo).
+ * Animación "Simple" del plató (bgAnimMode = 'simple'): tres anillos finos y
+ * cuatro puntos cardinales. Mismo sistema de capas que QBStageAnimation (giro
+ * por CSS, sin filtros) y mismo cambio a rojo con `intensity="critical"`.
  */
 export default function QBStageAnimationSimple({ intensity = 'normal' }) {
-  const isCritical = intensity === 'critical';
-  const stroke = isCritical ? '#ef4444' : '#8b5cf6';
-  const dot = isCritical ? '#f97316' : '#ec4899';
-
+  const critical = intensity === 'critical';
   return (
-    <div className="qb-stage-anim qb-stage-simple" aria-hidden="true">
-      <svg viewBox="-200 -200 400 400" preserveAspectRatio="xMidYMid meet">
-        <g className={`qb-simple-rotate-cw ${isCritical ? 'is-fast' : ''}`}>
-          <circle cx="0" cy="0" r="170" fill="none" stroke={stroke} strokeWidth="1.2" opacity="0.35" strokeDasharray="2 6" />
-        </g>
-        <g className={`qb-simple-rotate-ccw ${isCritical ? 'is-fast' : ''}`}>
-          <circle cx="0" cy="0" r="120" fill="none" stroke={stroke} strokeWidth="1.4" opacity="0.5" strokeDasharray="4 10" />
-        </g>
-        <circle cx="0" cy="0" r="70" fill="none" stroke={stroke} strokeWidth="1.6" opacity="0.6" className="qb-simple-pulse" />
-
-        {[[0, -150], [150, 0], [0, 150], [-150, 0]].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="4" fill={dot} className={`qb-simple-dot qb-simple-dot-${i}`} />
-        ))}
-
-        <circle cx="0" cy="0" r="6" fill={dot} opacity="0.85" className="qb-simple-core" />
-      </svg>
+    <div className={`qb-stagefx qb-stagefx--simple ${critical ? 'is-critical' : ''}`} aria-hidden="true">
+      <span className="qb-stagefx__layer qb-stagefx__ring">
+        <svg viewBox="-200 -200 400 400"><circle r="170" strokeDasharray="2 7" className="is-thin" /></svg>
+      </span>
+      <span className="qb-stagefx__layer qb-stagefx__hex">
+        <svg viewBox="-200 -200 400 400"><circle r="120" strokeDasharray="4 10" className="is-thin" /></svg>
+      </span>
+      <span className="qb-stagefx__layer qb-stagefx__orbit">
+        <svg viewBox="-200 -200 400 400">
+          {[[0, -150], [150, 0], [0, 150], [-150, 0]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r="5" />)}
+        </svg>
+      </span>
+      <span className="qb-stagefx__pulse" />
+      <span className="qb-stagefx__core qb-stagefx__core--small" />
     </div>
   );
 }

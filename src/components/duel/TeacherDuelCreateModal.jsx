@@ -1,10 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, X, Users, Gamepad2, Search, Sparkles } from 'lucide-react';
+import { Swords, X, Search, Sparkles, Check, AlertTriangle, Info } from 'lucide-react';
 import { teacherGetDuelOpponents, teacherCreateDuel } from '@/services/duelService';
 import { DUELABLE_APPS } from '@/apps/config/duelableApps';
 import UserAvatar from '@/components/ui/UserAvatar';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashButton } from '@/components/dashboard/kit';
+import { Step } from '@/pages/dashboard/AssignTaskDialog';
+import '@/pages/dashboard/teacherPanels.css';
+import './teacherDuel.css';
 
 // Modal de "retar a un alumno" para el docente. Siempre crea un duelo
 // amistoso (stake=0), sin oculto. El alumno verá el reto en su inbox y
@@ -44,8 +50,20 @@ export default function TeacherDuelCreateModal({ open, onClose, onCreated }) {
     );
   }, [opponents, search]);
 
+  // Agrupa por grupo para pintar cabeceras (solo presentación)
+  const opponentGroups = useMemo(() => {
+    const map = new Map();
+    filteredOpponents.forEach(o => {
+      const key = o.group_name || 'Sin grupo';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(o);
+    });
+    return [...map.entries()];
+  }, [filteredOpponents]);
+
   const opponent = opponents.find(o => o.id === opponentId);
   const canSubmit = opponentId && appId && !submitting;
+  const pickedApp = DUELABLE_APPS.find(a => a.id === appId);
 
   async function onSubmit() {
     if (!canSubmit) return;
@@ -75,152 +93,168 @@ export default function TeacherDuelCreateModal({ open, onClose, onCreated }) {
     }
   }
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+          className="tp-root tp-modal"
           onClick={onClose}
         >
           <motion.div
             initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+            className="tp-modal__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tp-duel-create-title"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-500 text-white">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                  <Swords className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold">Retar a un alumno</h2>
-                  <p className="text-xs text-white/80">Duelo amistoso (no se juega nota)</p>
+            <header className="tp-dhead tp-dhead--duel">
+              <div className="tp-dhead__row">
+                <span className="tp-dhead__icon"><Swords size={26} /></span>
+                <div className="tp-dhead__text">
+                  <h2 id="tp-duel-create-title" className="tp-dhead__title">Retar a un alumno</h2>
+                  <p className="tp-dhead__sub">Duelo amistoso (no se juega nota)</p>
                 </div>
               </div>
-              <button onClick={onClose} className="p-2 rounded-lg hover:bg-white/15">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+              <div className="tp-dhead__tools">
+                <button type="button" onClick={onClose} className="tp-iconbtn tp-iconbtn--glass" title="Cerrar" aria-label="Cerrar">
+                  <X size={18} />
+                </button>
+              </div>
+            </header>
 
-            <div className="flex-1 overflow-y-auto p-5 space-y-5">
-              <section>
-                <div className="flex items-center gap-2 mb-2">
-                  <Users className="w-4 h-4 text-violet-600" />
-                  <h3 className="text-sm font-bold text-slate-800">Elige a tu alumno rival</h3>
-                </div>
-                <div className="relative mb-2">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                  <input
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    placeholder="Buscar por nombre o grupo…"
-                    className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-violet-400"
-                  />
-                </div>
-                {loading ? (
-                  <div className="text-sm text-slate-400 py-3">Cargando alumnos…</div>
-                ) : opponents.length === 0 ? (
-                  <div className="text-sm text-slate-400 py-3">
-                    No tienes alumnos en ningún grupo todavía.
+            <div className="tp-dbody">
+              <div className="tp-steps">
+                <Step n={1} title="Elige a tu alumno rival" done={!!opponentId}>
+                  <div className="tp-search" style={{ marginBottom: 10 }}>
+                    <Search size={16} />
+                    <input
+                      value={search}
+                      onChange={e => setSearch(e.target.value)}
+                      placeholder="Buscar por nombre o grupo…"
+                      className="tp-input"
+                    />
                   </div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-72 overflow-y-auto pr-1">
-                    {filteredOpponents.map(o => (
+                  {loading ? (
+                    <div className="tp-center"><span className="tp-spin" /></div>
+                  ) : opponents.length === 0 ? (
+                    <div className="tp-arena__empty">
+                      No tienes alumnos en ningún grupo todavía.
+                    </div>
+                  ) : (
+                    <div className="tp-opps">
+                      {opponentGroups.map(([groupName, list]) => (
+                        <React.Fragment key={groupName}>
+                          <div className="tp-opps__group">{groupName}</div>
+                          {list.map(o => (
+                            <button
+                              key={o.id}
+                              type="button"
+                              onClick={() => setOpponentId(o.id)}
+                              className={`tp-choice tp-opp ${opponentId === o.id ? 'is-on' : ''}`}
+                              aria-pressed={opponentId === o.id}
+                            >
+                              <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+                              <UserAvatar
+                                selectedAvatarCode={o.selected_avatar_code}
+                                avatarEmoji={o.emoji}
+                                avatarColor={o.color}
+                                size="md"
+                                showRarityBorder={false}
+                              />
+                              <span className="tp-choice__text" style={{ paddingRight: 22 }}>
+                                <span className="tp-choice__title">{o.name}</span>
+                                <span className="tp-choice__desc">{o.group_name}</span>
+                              </span>
+                            </button>
+                          ))}
+                        </React.Fragment>
+                      ))}
+                      {filteredOpponents.length === 0 && (
+                        <p className="tp-picker__empty">Sin coincidencias.</p>
+                      )}
+                    </div>
+                  )}
+                </Step>
+
+                <Step n={2} title="Elige el juego" done={!!appId}>
+                  <div className="tp-apps tp-apps--wide">
+                    {DUELABLE_APPS.map(a => (
                       <button
-                        key={o.id}
+                        key={a.id}
                         type="button"
-                        onClick={() => setOpponentId(o.id)}
-                        className={`flex items-center gap-2 p-2 rounded-lg border transition-all text-left ${
-                          opponentId === o.id
-                            ? 'border-violet-500 bg-violet-50 shadow-sm'
-                            : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
-                        }`}
+                        onClick={() => setAppId(a.id)}
+                        className={`tp-choice tp-choice--col tp-apptile ${appId === a.id ? 'is-on' : ''}`}
+                        aria-pressed={appId === a.id}
                       >
-                        <UserAvatar
-                          selectedAvatarCode={o.selected_avatar_code}
-                          avatarEmoji={o.emoji}
-                          avatarColor={o.color}
-                          size="md"
-                          showRarityBorder={false}
-                        />
-                        <div className="min-w-0">
-                          <p className="text-sm font-semibold text-slate-800 truncate">{o.name}</p>
-                          <p className="text-[10px] text-slate-400 truncate">{o.group_name}</p>
-                        </div>
+                        <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+                        <span className="tp-apptile__icon">
+                          {hasAppIcon(a.id) ? <AppIcon appId={a.id} size={48} /> : <span className="tp-apptile__fallback">🎮</span>}
+                        </span>
+                        <span className="tp-choice__text">
+                          <span className="tp-choice__title">{a.name}</span>
+                          <span className="tp-choice__desc">{a.description}</span>
+                        </span>
+                        {a.duel?.bestOf > 1 && (
+                          <span className="tp-chip tp-chip--amber">Al mejor de {a.duel.bestOf}</span>
+                        )}
                       </button>
                     ))}
-                    {filteredOpponents.length === 0 && (
-                      <p className="text-xs text-slate-400 italic col-span-full text-center py-2">
-                        Sin coincidencias.
-                      </p>
-                    )}
                   </div>
-                )}
-              </section>
+                </Step>
+              </div>
 
-              <section>
-                <div className="flex items-center gap-2 mb-2">
-                  <Gamepad2 className="w-4 h-4 text-violet-600" />
-                  <h3 className="text-sm font-bold text-slate-800">Elige el juego</h3>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {DUELABLE_APPS.map(a => (
-                    <button
-                      key={a.id}
-                      type="button"
-                      onClick={() => setAppId(a.id)}
-                      className={`p-3 rounded-xl border text-left transition-all ${
-                        appId === a.id
-                          ? 'border-violet-500 bg-violet-50 shadow-sm'
-                          : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <p className="text-sm font-bold text-slate-800">{a.name}</p>
-                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2">{a.description}</p>
-                      {a.duel?.bestOf > 1 && (
-                        <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">
-                          Al mejor de {a.duel.bestOf}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </section>
-
-              <div className="flex items-start gap-2 bg-violet-50 border border-violet-200 rounded-lg p-3 text-xs text-violet-900">
-                <Sparkles className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <p>
+              <div className="tp-note" style={{ marginTop: 20 }}>
+                <Sparkles size={18} />
+                <p style={{ margin: 0 }}>
                   Es un duelo <strong>amistoso</strong>: ni tú ni el alumno os jugáis puntos en la nota.
                   El alumno recibirá el reto en su bandeja de duelos y deberá aceptarlo para empezar.
                 </p>
               </div>
 
               {err && (
-                <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-                  {err}
+                <div className="tp-note tp-note--rose" style={{ marginTop: 12 }}>
+                  <AlertTriangle size={18} />
+                  <p style={{ margin: 0 }}>{err}</p>
                 </div>
               )}
             </div>
 
-            <div className="flex gap-2 p-4 border-t border-slate-100 bg-slate-50">
-              <button
-                onClick={onClose}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-slate-300 text-slate-600 font-medium hover:bg-white"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={onSubmit}
-                disabled={!canSubmit}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold shadow hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {submitting ? 'Enviando reto…' : 'Retar'}
-              </button>
-            </div>
+            <footer className="tp-dfoot">
+              <div className="tp-dfoot__info">
+                {opponent ? (
+                  <>
+                    <span className="tp-vsmini">
+                      <span className="tp-vsmini__me">TÚ</span>
+                      <Swords size={15} className="tp-vsmini__x" />
+                      <UserAvatar
+                        selectedAvatarCode={opponent.selected_avatar_code}
+                        avatarEmoji={opponent.emoji}
+                        avatarColor={opponent.color}
+                        size="sm"
+                        showRarityBorder={false}
+                      />
+                    </span>
+                    <span>{opponent.name}{pickedApp ? ` · ${pickedApp.name}` : ''}</span>
+                  </>
+                ) : (
+                  <><Info size={18} /><span>Elige rival y juego</span></>
+                )}
+              </div>
+              <div className="tp-dfoot__actions">
+                <DashButton variant="soft" onClick={onClose}>Cancelar</DashButton>
+                <DashButton variant="rose" icon={Swords} onClick={onSubmit} disabled={!canSubmit}>
+                  {submitting ? 'Enviando reto…' : 'Retar'}
+                </DashButton>
+              </div>
+            </footer>
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

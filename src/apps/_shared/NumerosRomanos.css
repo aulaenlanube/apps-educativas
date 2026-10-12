@@ -1,764 +1,418 @@
-/* DARK-MIGRATED */
-/* src/apps/_shared/NumerosRomanos.css */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
-/* --- CONTENEDOR PRINCIPAL (gradiente violeta-rosa-ambar) --- */
-.roman-container {
-    font-family: 'Lexend', sans-serif;
-    width: 100%;
-    max-width: 900px;
-    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
-    padding: 34px 30px 30px;
-    border-radius: 24px;
-    box-shadow: 0 20px 45px -20px rgba(124, 58, 237, 0.35), 0 4px 12px rgba(236, 72, 153, 0.12);
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    color: #1f2937;
-}
-
-.roman-container::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 6px;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
-    border-radius: 24px 24px 0 0;
-}
-
-.roman-container h1 {
-    margin-top: 0;
-    font-family: 'Fredoka One', cursive;
-    margin-bottom: 0.5rem;
-}
-
-.roman-container h1 .gradient-text {
-    background: linear-gradient(90deg, #7c3aed, #db2777, #f59e0b);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.roman-container .instrucciones {
-    font-size: 15px;
-    color: #6b7280;
-    margin-bottom: 22px;
-}
-
-/* --- ZONA DE NÚMERO OBJETIVO --- */
-.target-number {
-    font-size: 5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #7c3aed, #db2777);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin: 1.2rem 0;
-    font-family: 'Fredoka One', cursive;
-    line-height: 1;
-    filter: drop-shadow(0 4px 10px rgba(124, 58, 237, 0.25));
-}
-
-/* --- DROP ZONE --- */
-.drop-zone {
-    min-height: 110px;
-    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
-    border: 3px dashed rgba(139, 92, 246, 0.35);
-    border-radius: 18px;
-    margin: 18px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 20px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: inset 0 2px 6px rgba(139, 92, 246, 0.06);
-}
-
-.drop-zone.active {
-    border-color: #8b5cf6;
-    background: linear-gradient(135deg, #f3e8ff 0%, #ffffff 100%);
-    transform: scale(1.02);
-}
-
-.drop-zone:empty::before {
-    content: 'Arrastra las fichas aquí';
-    color: #94a3b8;
-    font-style: italic;
-    font-size: 1.1rem;
-    pointer-events: none;
-}
-
-/* --- FICHAS ROMANAS --- */
-.roman-tile {
-    min-width: 52px;
-    padding: 0 10px;
-    height: 52px;
-    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
-    border: 2px solid #8b5cf6;
-    color: #5b21b6;
-    border-radius: 14px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: 'Times New Roman', serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: grab;
-    user-select: none;
-    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.15), inset 0 -4px 0 rgba(124, 58, 237, 0.15);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.roman-tile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 18px rgba(124, 58, 237, 0.22), inset 0 -4px 0 rgba(124, 58, 237, 0.15);
-    border-color: #a78bfa;
-}
-
-.drop-zone .roman-tile {
-    cursor: pointer;
-    position: relative;
-    /* Para posicionar el botón de borrar */
-}
-
-/* --- BOTÓN DE BORRAR --- */
-.delete-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 20px;
-    height: 20px;
-    background-color: #ef4444;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-    z-index: 10;
-}
-
-.roman-tile:hover .delete-btn {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.delete-btn svg {
-    width: 12px;
-    height: 12px;
-    stroke-width: 3px;
-}
-
-/* --- PALETA DE FICHAS --- */
-.palette {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    padding: 18px;
-    background: rgba(139, 92, 246, 0.06);
-    border-radius: 18px;
-    box-shadow: inset 0 2px 4px rgba(139, 92, 246, 0.08);
-}
-
-/* --- BOTONES DE MODO --- */
-.roman-container .mode-selection {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-}
-
-.roman-container .btn-mode {
-    font-family: 'Lexend', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px 22px;
-    border-radius: 999px;
-    border: 2px solid #e5e7eb;
-    background: #f3f4f6;
-    color: #4b5563;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.roman-container .btn-mode:hover {
-    background: #ede9fe;
-    color: #5b21b6;
-    border-color: #c4b5fd;
-}
-
-.roman-container .btn-mode.active {
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.35);
-}
-
-/* --- CONTROLES DE JUEGO --- */
-.controles {
-    margin: 22px 0 6px;
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.controles button {
-    font-family: 'Lexend', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 12px 26px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    color: white;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    min-width: 140px;
-}
-
-.controles button:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
-    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.4);
-}
-
-.controles .btn-saltar {
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
-}
-
-.controles .btn-saltar:hover {
-    box-shadow: 0 8px 18px rgba(234, 88, 12, 0.4);
-}
-
-/* --- FEEDBACK Y AYUDA --- */
-.helper-display {
-    min-height: 2rem;
-    font-size: 1.2rem;
-    color: var(--app-text-muted);
-    font-weight: 600;
-    margin: 10px 0;
-}
-
-.feedback-message {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    animation: slideIn 0.3s ease-out;
-}
-
-.feedback-correct {
-    background-color: #dcfce7;
-    color: #166534;
-}
-
-.feedback-incorrect {
-    background-color: #fee2e2;
-    color: #991b1b;
-}
-
-/* Switch de Ayuda */
-.roman-container .switch-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
-    border: none;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 44px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: var(--app-bg);
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked+.slider {
-    background-color: #4f46e5;
-}
-
-input:checked+.slider:before {
-    transform: translateX(20px);
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- TABLA DE REFERENCIA --- */
-.roman-reference-table {
-    margin: 20px auto;
-    background: #f8fafc;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    max-width: 100%;
-    box-shadow: none;
-}
-
-.roman-reference-table h3 {
-    font-size: 0.9rem;
-    color: var(--app-text-muted);
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 0;
-}
-
-.reference-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 10px;
-    justify-items: center;
-}
-
-.reference-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.ref-tile {
-    width: 35px;
-    height: 35px;
-    background: var(--app-bg);
-    border: none;
-    color: #4f46e5;
-    border-radius: 6px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Times New Roman', serif;
-    font-size: 1.1rem;
-    box-shadow: none;
-}
-
-.ref-value {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #1e293b;
-}
-
-/* --- AJUSTES HORIZONTALES PARA TABLA --- */
-.reference-grid {
-    display: flex !important;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    gap: 20px;
-    justify-content: center;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-}
-
-.reference-grid::-webkit-scrollbar {
-    height: 6px;
-}
-
-.reference-grid::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 10px;
-}
-
-.reference-grid::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-}
-
-.reference-item {
-    flex: 0 0 auto;
-}
-
-.roman-rules {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: none;
-    text-align: left;
-}
-
-.roman-rules h4 {
-    font-size: 0.85rem;
-    color: #475569;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.roman-rules ul {
-    margin: 0;
-    padding-left: 20px;
-    list-style-type: disc;
-}
-
-.roman-rules li {
-    font-size: 0.8rem;
-    color: var(--app-text-muted);
-    margin-bottom: 4px;
-    line-height: 1.4;
-}
-
-/* --- CABECERA DURANTE EL EXAMEN (contador + cronometro) --- */
-.roman-test-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-}
-
-.roman-test-chip {
-    font-size: 13px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 999px;
-    letter-spacing: 0.2px;
-}
-
-.roman-test-chip.counter {
-    background: #ede9fe;
-    color: #5b21b6;
-}
-
-.roman-test-chip.timer {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-/* --- BARRA DE PROGRESO --- */
-.roman-progress {
-    width: 100%;
-    height: 8px;
-    background: #e5e7eb;
-    border-radius: 999px;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-.roman-progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
-    border-radius: 999px;
-    transition: width 0.3s ease-in-out;
-}
-
-/* --- NOTA FINAL EN RESULTADOS --- */
-.roman-nota {
-    margin: 20px auto 14px;
-    padding: 22px 20px;
-    border-radius: 20px;
-    max-width: 340px;
-    border: 3px solid transparent;
-    background: #f8fafc;
-    animation: roman-pop 0.35s ease;
-}
-
-.roman-nota.excellent {
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    border-color: #10b981;
-    color: #065f46;
-    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
-}
-
-.roman-nota.good {
-    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-    border-color: #3b82f6;
-    color: #1e3a8a;
-    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.35);
-}
-
-.roman-nota.fail {
-    background: linear-gradient(135deg, #fee2e2, #fecaca);
-    border-color: #ef4444;
-    color: #7f1d1d;
-    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.35);
-}
-
-.roman-nota-big {
-    font-family: 'Fredoka One', cursive;
-    font-size: 64px;
-    line-height: 1;
-    font-weight: bold;
-}
-
-.roman-nota-small {
-    font-size: 26px;
-    opacity: 0.75;
-    margin-left: 4px;
-}
-
-.roman-nota-msg {
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 8px;
-}
-
-@keyframes roman-pop {
-    0% { transform: scale(0.92); opacity: 0; }
-    60% { transform: scale(1.04); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* --- FILA DE CHIPS CON PUNTOS, ACIERTOS Y TIEMPO --- */
-.roman-score-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 8px 0 18px;
-    flex-wrap: wrap;
-}
-
-.roman-score-chip {
-    background: white;
-    color: #4b5563;
-    border: 1.5px solid rgba(139, 92, 246, 0.2);
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.08);
-}
-
-.roman-score-chip strong {
-    font-family: 'Fredoka One', cursive;
-    color: #7c3aed;
-    margin-right: 4px;
-}
-
-.roman-score-chip.points {
-    background: linear-gradient(135deg, #f3e8ff, #fce7f3);
-    border-color: rgba(219, 39, 119, 0.25);
-}
-
-/* --- TARJETAS DE RESPUESTAS --- */
-.roman-answer-card {
-    padding: 12px 16px;
-    margin-bottom: 10px;
-    border-radius: 14px;
-    border: 2px solid transparent;
-    background: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.roman-answer-card.ok {
-    background: linear-gradient(135deg, #ecfdf5, #ffffff);
-    border-color: #a7f3d0;
-}
-
-.roman-answer-card.ko {
-    background: linear-gradient(135deg, #fef2f2, #ffffff);
-    border-color: #fecaca;
-}
-
-.roman-answer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.roman-answer-row.small {
-    font-size: 13px;
-    color: #4b5563;
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px dashed rgba(0, 0, 0, 0.08);
-}
-
-.roman-answer-q {
-    font-weight: 700;
-    color: #1f2937;
-}
-
-.roman-answer-q strong {
-    font-family: 'Fredoka One', cursive;
-    color: #7c3aed;
-    margin-left: 6px;
-    font-size: 1.15em;
-}
-
-.roman-answer-icon {
-    font-size: 20px;
-}
-
-.roman-answer-sol {
-    background: white;
-    color: #991b1b;
-    padding: 3px 10px;
-    border-radius: 8px;
-    border: 1px solid #fecaca;
-    font-weight: 700;
-}
-
-/* --- Responsive --- */
+/* Números romanos — rediseño 2026 sobre el kit (_shared/kit).
+   Lo propio del juego: templo de piedra arenisca, placa de bronce con el
+   número, lápida de mármol donde se graban las letras, sillares de piedra para
+   elegir, sello de valor y tabla de valores. Prefijo rmn-. Solo se anima
+   transform/opacity. */
+
+.rmn-progress { padding: 0 2px; }
+
+/* ---------- Templo (escenario) ---------- */
+.rmn-temple {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(16px, 2.6vw, 26px) clamp(14px, 6vw, 70px) clamp(18px, 2.6vw, 26px);
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 251, 235, .95), transparent 70%),
+    linear-gradient(180deg, #fdf3df 0%, #f6e3bf 100%);
+  box-shadow: inset 0 2px 6px rgba(120, 80, 20, .14), inset 0 0 0 1px rgba(180, 130, 60, .2);
+}
+/* columnas acanaladas a los lados */
+.rmn-temple::before,
+.rmn-temple::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(18px, 3vw, 30px);
+  background:
+    linear-gradient(180deg, #e9d3a8 0 14px, transparent 14px calc(100% - 14px), #e9d3a8 calc(100% - 14px)),
+    repeating-linear-gradient(90deg, #fbf0d9 0 4px, #ead6ae 4px 6px, #fbf0d9 6px 10px);
+  box-shadow: inset -2px 0 4px rgba(120, 80, 20, .15), inset 2px 0 4px rgba(255, 255, 255, .6);
+  opacity: .9;
+  pointer-events: none;
+}
+.rmn-temple::before { left: clamp(8px, 2vw, 22px); }
+.rmn-temple::after { right: clamp(8px, 2vw, 22px); }
+html.dark .rmn-temple {
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(251, 191, 36, .14), transparent 70%),
+    linear-gradient(180deg, #2b2142 0%, #1d1631 100%);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .4), inset 0 0 0 1px rgba(251, 191, 36, .14);
+}
+html.dark .rmn-temple::before,
+html.dark .rmn-temple::after {
+  background:
+    linear-gradient(180deg, #4a3a5f 0 14px, transparent 14px calc(100% - 14px), #4a3a5f calc(100% - 14px)),
+    repeating-linear-gradient(90deg, #3a2f52 0 4px, #2a2140 4px 6px, #3a2f52 6px 10px);
+  box-shadow: none;
+  opacity: .7;
+}
+
+/* ---------- Placa de bronce ---------- */
+.rmn-plaque {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rmn-laurel { width: 44px; height: auto; flex-shrink: 0; }
+.rmn-laurel.is-flip { transform: scaleX(-1); }
+.rmn-plaque__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 220px;
+  padding: 10px 34px 14px;
+  border-radius: 18px;
+  color: #6b2f0a;
+  background:
+    radial-gradient(120% 90% at 25% 10%, #fff7d1 0%, transparent 50%),
+    linear-gradient(180deg, #fcd581 0%, #f2a93b 55%, #c9761c 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 251, 235, .9),
+    inset 0 -4px 0 rgba(120, 53, 15, .28),
+    inset 0 0 0 2px rgba(146, 64, 14, .25),
+    0 7px 0 #92400e,
+    0 20px 30px -14px rgba(180, 83, 9, .75);
+}
+.rmn-plaque__rivet {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fffbeb, #b45309 70%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6);
+}
+.rmn-plaque__rivet.is-tl { top: 9px; left: 10px; }
+.rmn-plaque__rivet.is-tr { top: 9px; right: 10px; }
+.rmn-plaque__rivet.is-bl { bottom: 11px; left: 10px; }
+.rmn-plaque__rivet.is-br { bottom: 11px; right: 10px; }
+.rmn-plaque__label {
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  opacity: .8;
+}
+.rmn-plaque__num {
+  font-size: clamp(2.4rem, 5.6vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .01em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 0 rgba(255, 247, 214, .8), 0 -1px 0 rgba(120, 53, 15, .35);
+}
+
+/* ---------- Lápida de mármol ---------- */
+.rmn-tablet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  min-height: 128px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 100% at 18% 8%, #ffffff 0%, #f5f6f8 45%, #e2e6ec 100%);
+  box-shadow:
+    inset 0 2px 0 #fff,
+    inset 0 -6px 14px rgba(100, 116, 139, .18),
+    0 9px 0 #a3adbb,
+    0 10px 0 #8792a2,
+    0 28px 36px -18px rgba(51, 65, 85, .6);
+  transition: box-shadow .25s ease;
+}
+.rmn-veins { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.rmn-tablet__inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px 4px;
+  min-height: 128px;
+  margin: 9px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  box-shadow: inset 0 0 0 1.5px rgba(148, 163, 184, .7), inset 1px 1px 0 2.5px rgba(255, 255, 255, .9);
+}
+.rmn-tablet.is-invalid .rmn-tablet__inner { box-shadow: inset 0 0 0 2px rgba(225, 29, 72, .55), inset 0 0 26px rgba(244, 63, 94, .14); }
+.rmn-tablet.is-won { box-shadow: inset 0 2px 0 #fff, 0 0 0 3px #10b981, 0 9px 0 #a3adbb, 0 10px 0 #8792a2, 0 28px 36px -18px rgba(16, 185, 129, .8); }
+.rmn-tablet.is-lost { box-shadow: inset 0 2px 0 #fff, 0 0 0 3px #f43f5e, 0 9px 0 #a3adbb, 0 10px 0 #8792a2, 0 28px 36px -18px rgba(244, 63, 94, .7); }
+.rmn-tablet__empty {
+  max-width: 30ch;
+  text-align: center;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+/* letra grabada (se puede tocar para quitarla) */
+.rmn-carved {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', Georgia, serif;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #9f1239;
+  text-shadow: 0 1.5px 0 rgba(255, 255, 255, .95), 0 -1.5px 0 rgba(76, 5, 25, .45);
+  -webkit-tap-highlight-color: transparent;
+}
+.rmn-carved:hover { background: rgba(148, 163, 184, .16); }
+.rmn-carved:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 1px; }
+.rmn-carved__x {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #fff;
+  background: #e11d48;
+  box-shadow: 0 2px 6px -1px rgba(159, 18, 57, .6);
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.rmn-carved:hover .rmn-carved__x,
+.rmn-carved:focus-visible .rmn-carved__x { opacity: 1; transform: scale(1); }
+@media (hover: none) {
+  .rmn-carved__x { opacity: .85; transform: scale(.85); }
+}
+
+/* raya de los millares sobre la letra */
+.rmn-rtext { display: inline-flex; }
+.rmn-bar { position: relative; }
+.rmn-bar::before {
+  content: '';
+  position: absolute;
+  left: .06em;
+  right: .06em;
+  top: .02em;
+  height: .07em;
+  min-height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+/* ---------- Sello con el valor ---------- */
+.rmn-helper { position: relative; z-index: 1; min-height: 42px; display: grid; place-items: center; }
+.rmn-seal {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #065f46;
+  background: linear-gradient(180deg, #ecfdf5, #a7f3d0);
+  box-shadow: inset 0 1px 0 #fff, 0 3px 0 #10b981, 0 10px 18px -10px #10b981;
+}
+.rmn-seal.is-bad {
+  color: #9f1239;
+  background: linear-gradient(180deg, #fff1f2, #fecdd3);
+  box-shadow: inset 0 1px 0 #fff, 0 3px 0 #f43f5e, 0 10px 18px -10px #f43f5e;
+}
+
+/* ---------- Cantera: sillares de piedra ---------- */
+.rmn-quarry {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 640px;
+}
+.rmn-stone {
+  --edge: #ad916a;
+  display: inline-grid;
+  width: 66px;
+  height: 74px;
+  padding: 0 0 6px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--edge);
+  cursor: grab;
+  box-shadow: 0 16px 20px -12px rgba(92, 64, 22, .55);
+  transition: transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.rmn-stone__face {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border-radius: 16px;
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #7f1d1d;
+  text-shadow: 0 1.5px 0 rgba(255, 255, 255, .9), 0 -1px 0 rgba(69, 26, 3, .35);
+  background:
+    radial-gradient(circle at 22% 70%, rgba(168, 132, 80, .28) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle at 74% 34%, rgba(168, 132, 80, .22) 0 1px, transparent 1.6px),
+    radial-gradient(130% 100% at 25% 10%, #fffdf6 0%, transparent 55%),
+    linear-gradient(160deg, #f8efdc 0%, #e4d1ad 100%);
+  background-size: 17px 15px, 13px 19px, auto, auto;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, .9), inset 0 -5px 10px rgba(120, 90, 40, .16), inset 0 0 0 1px rgba(160, 120, 60, .25);
+  transition: transform .12s ease;
+}
+.rmn-stone:hover .rmn-stone__face { transform: translateY(-3px); }
+.rmn-stone:active { cursor: grabbing; }
+.rmn-stone:active .rmn-stone__face { transform: translateY(4px); }
+.rmn-stone:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 3px; }
+/* letras con raya (×1000): granito gris azulado */
+.rmn-stone.is-thousand { --edge: #64748b; }
+.rmn-stone.is-thousand .rmn-stone__face {
+  color: #1e3a8a;
+  background:
+    radial-gradient(circle at 22% 70%, rgba(71, 85, 105, .3) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle at 74% 34%, rgba(71, 85, 105, .25) 0 1px, transparent 1.6px),
+    radial-gradient(130% 100% at 25% 10%, #ffffff 0%, transparent 55%),
+    linear-gradient(160deg, #eef2f7 0%, #c6d0dd 100%);
+  background-size: 17px 15px, 13px 19px, auto, auto;
+}
+
+/* ---------- Interruptores de ayuda ---------- */
+.rmn-toggles { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.rmn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px 7px 14px;
+  border: 1px solid var(--gk-line);
+  border-radius: 999px;
+  font-family: var(--gk-font);
+  font-size: .9rem;
+  font-weight: 800;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: 0 3px 0 var(--gk-key-edge);
+  cursor: pointer;
+  transition: transform .15s ease, color .2s ease;
+}
+.rmn-toggle:hover { transform: translateY(-1px); color: var(--gk-ink); }
+.rmn-toggle:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 55%, transparent); outline-offset: 2px; }
+.rmn-toggle__track {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--gk-inset);
+  box-shadow: inset 0 1px 3px rgba(30, 20, 90, .2);
+  transition: background .2s ease;
+}
+.rmn-toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(30, 20, 90, .3);
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+.rmn-toggle.is-on { color: var(--gk-ink); }
+.rmn-toggle.is-on .rmn-toggle__track { background: linear-gradient(90deg, var(--gk-accent), var(--gk-accent-2)); }
+.rmn-toggle.is-on .rmn-toggle__thumb { transform: translateX(18px); }
+
+/* ---------- Tabla de valores ---------- */
+.rmn-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: var(--gk-surface);
+  border: 1px solid var(--gk-line);
+  box-shadow: 0 16px 34px -26px rgba(30, 20, 90, .45);
+}
+.rmn-legend__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.rmn-legend__item { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 54px; }
+.rmn-legend__tile {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 50px;
+  border-radius: 12px;
+  font-family: 'Cinzel', 'Times New Roman', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #7f1d1d;
+  background: linear-gradient(160deg, #f8efdc, #e4d1ad);
+  box-shadow: inset 0 1px 0 #fff, 0 4px 0 #ad916a;
+}
+.rmn-legend__value { font-weight: 800; font-size: .95rem; color: var(--gk-ink); font-variant-numeric: tabular-nums; }
+.rmn-legend__rules {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--gk-ink-2);
+}
+.rmn-legend__rules b { color: var(--gk-ink); }
+
+/* ---------- Acciones y pie ---------- */
+.rmn-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+.rmn-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--gk-line);
+}
+.rmn-footer__info { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 700; color: var(--gk-ink-3); }
+.rmn-footer__tip { margin-left: auto; }
+
+/* ---------- Resultados ---------- */
+.rmn-fb { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.rmn-fb__roman {
+  font-family: 'Cinzel', 'Times New Roman', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  color: var(--gk-ink);
+}
+.rmn-fb__roman.is-ok { color: #059669; }
+
+/* ---------- Responsive ---------- */
 @media (max-width: 720px) {
-    .roman-container {
-        padding: 28px 18px 22px;
-        border-radius: 20px;
-    }
-    .target-number { font-size: 4rem; }
-    .roman-nota-big { font-size: 54px; }
-}
-
-/* ==========================================================================
-   Capa "premium" propia de Números Romanos (utilidades sp-* en
-   SharedPremium.css). Las fichas .roman-tile las mueve framer-motion
-   (transform inline), así que aquí no se toca su transform.
-   ========================================================================== */
-
-/* Conserva el degradado violeta-rosa-ámbar original bajo la capa sp-shell */
-.roman-container.sp-shell.sp-shell.sp-shell {
-    background: linear-gradient(160deg, #ffffff 0%, #fdf4ff 55%, #fff7ed 100%);
-    border-color: rgba(255, 255, 255, 0.85);
-}
-html.dark .roman-container.sp-shell.sp-shell.sp-shell {
-    background: linear-gradient(160deg, #1f1b3a 0%, #261a3d 55%, #2a1e24 100%);
-    border-color: rgba(255, 255, 255, 0.08);
-    color: #e2e8f0;
-}
-html.dark .roman-container .instrucciones { color: var(--app-text-secondary); }
-
-/* Número objetivo con halo */
-.roman-container .target-number {
-    filter: drop-shadow(0 8px 22px rgba(219, 39, 119, 0.35));
-}
-
-/* Zona de destino: cristal con brillo interior */
-.roman-container .drop-zone {
-    border-radius: 22px;
-    box-shadow:
-        inset 0 2px 10px rgba(139, 92, 246, 0.08),
-        0 1px 0 rgba(255, 255, 255, 0.9);
-}
-.roman-container .drop-zone.active {
-    box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.14), 0 18px 34px -16px rgba(139, 92, 246, 0.6);
-}
-
-/* Fichas: relieve tipo tecla + brillo (sin tocar transform) */
-.roman-container .roman-tile {
-    background:
-        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 55%),
-        linear-gradient(160deg, #ffffff 0%, #f3e8ff 100%);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        inset 0 -4px 0 rgba(124, 58, 237, 0.18),
-        0 8px 16px -8px rgba(124, 58, 237, 0.55);
-}
-.roman-container .roman-tile:hover {
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        inset 0 -4px 0 rgba(124, 58, 237, 0.18),
-        0 0 0 3px rgba(139, 92, 246, 0.14),
-        0 14px 24px -10px rgba(124, 58, 237, 0.65);
-}
-.roman-container .palette {
-    border-radius: 22px;
-}
-
-/* Feedback con glow (la entrada la anima framer-motion) */
-.roman-container .feedback-message { border-radius: 999px; padding: 0.75rem 1.4rem; }
-.roman-container .feedback-message.feedback-correct {
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35), 0 12px 26px -12px rgba(16, 185, 129, 0.8);
-}
-.roman-container .feedback-message.feedback-incorrect {
-    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35), 0 12px 26px -12px rgba(239, 68, 68, 0.75);
-}
-
-/* Examen: chip contador con pop y barra con brillo */
-.roman-container .roman-test-chip.counter { animation: roman-pop 0.35s cubic-bezier(.34, 1.56, .64, 1); }
-.roman-container .roman-progress {
-    height: 10px;
-    box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.15);
-}
-.roman-container .roman-progress-bar {
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
-    transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
-}
-.roman-container .roman-progress-bar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
-    background-size: 200% 100%;
-    animation: roman-bar-shine 2.2s linear infinite;
-}
-
-/* Resultado */
-.roman-container .roman-nota { max-width: 360px; }
-.roman-container .roman-answer-card { border-radius: 14px; }
-
-html.dark .roman-container .drop-zone { background: rgba(139, 92, 246, 0.08); border-color: rgba(167, 139, 250, 0.35); }
-html.dark .roman-container .roman-tile {
-    background: linear-gradient(160deg, rgba(139, 92, 246, 0.28), rgba(139, 92, 246, 0.12));
-    color: #ede9fe;
-    border-color: #a78bfa;
-}
-
-@keyframes roman-bar-shine {
-    from { background-position: 200% 0; }
-    to   { background-position: -200% 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .roman-container .roman-progress-bar::after { animation: none; }
+  .rmn-temple { padding: 14px 12px 16px; }
+  .rmn-temple::before,
+  .rmn-temple::after { display: none; }
+  .rmn-laurel { width: 24px; }
+  .rmn-plaque__body { min-width: 0; padding: 8px 24px 12px; }
+  .rmn-plaque__num { font-size: 2.2rem; }
+  .rmn-tablet,
+  .rmn-tablet__inner { min-height: 104px; }
+  .rmn-carved { min-width: 34px; font-size: 2.3rem; padding: 0 3px; }
+  .rmn-quarry { gap: 9px; }
+  .rmn-stone { width: 54px; height: 62px; }
+  .rmn-stone__face { font-size: 1.7rem; border-radius: 14px; }
+  .rmn-footer__tip { display: none; }
 }

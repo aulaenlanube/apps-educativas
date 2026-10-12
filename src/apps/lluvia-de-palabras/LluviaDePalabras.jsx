@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowLeftRight, Play, RotateCcw, Lightbulb, Pause, Home, Menu, CloudRain, BookOpen, X } from 'lucide-react';
+import {
+    ArrowLeftRight, Play, RefreshCw, Lightbulb, LightbulbOff, Pause, LayoutGrid, ArrowLeft,
+    Sprout, Flame, GraduationCap, Droplets, Gauge, Rabbit, Turtle, Zap, Star, Inbox,
+} from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, Lives, GameButton, ModeSelect, ResultsScreen,
+    GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './LluviaDePalabras.css';
 
 const SPAWN_RATE_START = 2000;
@@ -15,31 +22,8 @@ const SPAWN_DECREMENT_PER_LEVEL = 25;
 // Modificador de nota segun la velocidad elegida en el examen
 const EXAM_SUBMODE_MODIFIER = { slow: -1, normal: 0, fast: 1 };
 
-// Colores fijos para las categorías (Gradientes vibrantes)
-const CATEGORY_COLORS = [
-    'bg-gradient-to-b from-red-500 to-red-700 shadow-red-900/20',
-    'bg-gradient-to-b from-green-500 to-green-700 shadow-green-900/20',
-    'bg-gradient-to-b from-blue-500 to-blue-700 shadow-blue-900/20',
-    'bg-gradient-to-b from-purple-500 to-purple-700 shadow-purple-900/20',
-    'bg-gradient-to-b from-orange-500 to-orange-700 shadow-orange-900/20'
-];
-
-const gridStyles = `
-  @keyframes moveGrid {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 -80px; } 
-  }
-  .scrolling-grid {
-    width: 100%;
-    height: 100%;
-    background-size: 80px 80px; 
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    animation: moveGrid 0.8s linear infinite;
-    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-  }
-`;
+// Colores fijos para las categorías (clases de LluviaDePalabras.css; solo aspecto)
+const CATEGORY_COLORS = ['llv-c0', 'llv-c1', 'llv-c2', 'llv-c3', 'llv-c4'];
 
 const LluviaDePalabras = ({ onGameComplete } = {}) => {
     // eslint-disable-next-line no-unused-vars
@@ -345,149 +329,124 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
         }
     };
 
-    if (gamePhase === 'loading') return <div className="p-10 text-center text-slate-500 animate-pulse">Cargando...</div>;
-    if (!configData) return <div className="p-10 text-center text-red-500">Error: No hay datos.</div>;
+    // --- PRESENTACIÓN (rediseño 2026 con el kit) ---
+    const [showInstructions, setShowInstructions] = useState(false);
 
-    // 1. MENÚ (UI REDISEÑADA Y MODERNA)
-    if (gamePhase === 'menu') {
+    // Velocidades del examen: mismos valores de siempre (se pasan a startGame)
+    const EXAM_SPEEDS = {
+        slow: { speed: 0.10, spawn: 2500 },
+        normal: { speed: 0.15, spawn: 2000 },
+        fast: { speed: 0.22, spawn: 1500 },
+    };
+    const shellProps = { accent: '#0ea5e9', accent2: '#8b5cf6', className: 'llv' };
+    const isExamMode = difficulty === 'hard';
+    const modeTone = difficulty === 'easy' ? 'easy' : difficulty === 'medium' ? 'medium' : 'exam';
+    const speedLabel = examSubMode === 'slow' ? 'Lento' : examSubMode === 'fast' ? 'Rápido' : examSubMode === 'normal' ? 'Normal' : null;
+
+    // Como antes: abrir la guía (o las instrucciones) en plena partida la pausa
+    const openGuide = () => {
+        if (gamePhase === 'playing') setGamePhase('paused');
+        setShowCheatSheet(true);
+    };
+    const openInstructions = () => {
+        if (gamePhase === 'playing') setGamePhase('paused');
+        setShowInstructions(true);
+    };
+
+    const modals = (
+        <>
+            <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Lluvia de Palabras">
+                <h3>🎯 Objetivo</h3>
+                <p>
+                    Las palabras caen del cielo: haz que cada una caiga en la <strong>caja de su categoría</strong>.
+                    Cada acierto suma 10 puntos y la lluvia se acelera poco a poco.
+                </p>
+                <h3>🕹️ Cómo se juega</h3>
+                <ul>
+                    <li>Las palabras no se mueven de columna: lo que mueves son las <strong>cajas</strong>.</li>
+                    <li>Pulsa la <strong>gema</strong> que hay entre dos cajas para intercambiarlas.</li>
+                    <li>Si una palabra cae en la caja equivocada pierdes una vida. Tienes 3.</li>
+                    <li>En Fácil y Medio puedes activar la <strong>ayuda de colores</strong>: cada palabra toma el color de su caja.</li>
+                </ul>
+                <h3>🎓 Modos de juego</h3>
+                <div className="instr-modes">
+                    <div className="instr-mode easy"><strong>Fácil</strong> 2 cajas y ayuda de colores.</div>
+                    <div className="instr-mode medium"><strong>Medio</strong> 3 cajas y ayuda de colores.</div>
+                    <div className="instr-mode exam"><strong>Examen</strong> 3 cajas sin ayudas. 30 palabras = un 10. Lento −1 punto · Rápido +1 punto.</div>
+                </div>
+            </InstructionsModal>
+            <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de palabras">
+                <div className="llv-guide">
+                    {configData && Object.entries(configData)
+                        .filter(([key, words]) => key !== 'title' && key !== 'instructions' && Array.isArray(words))
+                        .map(([category, words]) => (
+                            <section key={category} className="llv-guide__cat">
+                                <h4 className="llv-guide__title">{category.replace(/_/g, ' ')}</h4>
+                                <div className="llv-guide__words">
+                                    {words.map((word, wIdx) => <span key={wIdx} className="llv-guide__chip">{word}</span>)}
+                                </div>
+                            </section>
+                        ))}
+                </div>
+            </InstructionsModal>
+        </>
+    );
+
+    if (gamePhase === 'loading') {
         return (
-            <div className="lluvia-menu relative flex flex-col items-center justify-center min-h-[85vh] text-center px-4 max-w-4xl mx-auto py-10">
-                {/* Fondo decorativo: orbes + gotas de lluvia */}
-                <div className="lluvia-fx" aria-hidden="true">
-                    <span className="lluvia-fx-orb a" />
-                    <span className="lluvia-fx-orb b" />
-                    <span className="lluvia-fx-rain" />
-                </div>
-
-                {/* ICONO FLOTANTE */}
-                <motion.div
-                    initial={{ y: -20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="lluvia-hero-icon mb-6 p-6 rounded-[2rem] rotate-3"
-                >
-                    <CloudRain className="w-16 h-16 text-blue-500 fill-blue-50" />
-                    <span className="lluvia-hero-drop d1" aria-hidden="true" />
-                    <span className="lluvia-hero-drop d2" aria-hidden="true" />
-                    <span className="lluvia-hero-drop d3" aria-hidden="true" />
-                </motion.div>
-
-                {/* TÍTULO CON DEGRADADO */}
-                <div className="mb-10 md:mb-14 relative z-10">
-                    <h2 className="lluvia-title text-5xl md:text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-600 to-pink-500 bg-clip-text text-transparent drop-shadow-sm pb-2 font-fredoka">
-                        {configData.title || "Lluvia de Palabras"}
-                    </h2>
-                    <p className="text-xl text-white/85 drop-shadow-md max-w-lg mx-auto leading-relaxed font-fredoka">
-                        {showExamMenu
-                            ? "Selecciona la velocidad del examen para ajustarla a tu nivel."
-                            : (configData.instructions || "Atrapa las palabras en la caja correcta. ¡Usa los botones mágicos para mover las cajas!")}
-                    </p>
-                </div>
-
-                <AnimatePresence mode="wait">
-                    {!showExamMenu ? (
-                        <motion.div
-                            key="main-menu"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4"
-                        >
-                            {[
-                                { id: 'easy', emoji: '🌱', label: 'Fácil', sub: '2 Cajas', accent: 'bg-green-500', shadow: 'shadow-green-200' },
-                                { id: 'medium', emoji: '🚀', label: 'Medio', sub: '3 Cajas + Ayuda', accent: 'bg-amber-400', shadow: 'shadow-amber-200' },
-                                { id: 'hard', emoji: '🔥', label: 'EXAMEN', sub: '3 Cajas sin Ayudas', accent: 'bg-red-500', shadow: 'shadow-red-200' }
-                            ].map((mode) => (
-                                <motion.button
-                                    key={mode.id}
-                                    whileHover={{ scale: 1.05, y: -5 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    onClick={() => mode.id === 'hard' ? setShowExamMenu(true) : startGame(mode.id)}
-                                    className={`
-                                        lluvia-mode lluvia-mode--${mode.id}
-                                        group relative w-full h-48 rounded-3xl transition-all duration-300 overflow-hidden
-                                    `}
-                                >
-                                    {/* Fondo acento suave */}
-                                    <div className={`absolute top-0 w-full h-2 ${mode.accent}`} />
-                                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity ${mode.accent}`} />
-
-                                    <div className="flex flex-col items-center justify-center h-full gap-3 p-4">
-                                        <span className="lluvia-mode-icon text-5xl filter drop-shadow-md mb-2">{mode.emoji}</span>
-                                        <h3 className="text-2xl font-black text-slate-800 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-slate-600 transition-colors font-fredoka">
-                                            {mode.label}
-                                        </h3>
-                                        <span className="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wide group-hover:bg-slate-200 transition-colors">
-                                            {mode.sub}
-                                        </span>
-                                    </div>
-                                </motion.button>
-                            ))}
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="exam-menu"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="flex flex-col items-center w-full gap-6"
-                        >
-                            {/* Aviso del modificador de nota */}
-                            <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 text-left text-sm text-amber-900">
-                                <p className="font-bold mb-1 flex items-center gap-2">⚠️ Modificador de nota</p>
-                                <ul className="list-disc list-inside space-y-0.5 text-[13px]">
-                                    <li><strong>Lento</strong> — resta <strong>1 punto</strong> a la nota final.</li>
-                                    <li><strong>Normal</strong> — nota sin cambios.</li>
-                                    <li><strong>Rápido</strong> — suma <strong>1 punto</strong> a la nota final (puede superar el 10).</li>
-                                </ul>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
-                                {[
-                                    { id: 'slow', emoji: '🕰️', label: 'Examen Lento', sub: 'Más tiempo', speed: 0.10, spawn: 2500, accent: 'bg-orange-400', shadow: 'shadow-orange-200', modLabel: '−1 pto', modClass: 'bg-red-100 text-red-700' },
-                                    { id: 'normal', emoji: '⚡', label: 'Examen Normal', sub: 'Equilibrado', speed: 0.15, spawn: 2000, accent: 'bg-red-500', shadow: 'shadow-red-200', modLabel: 'Sin modificador', modClass: 'bg-slate-100 text-slate-600' },
-                                    { id: 'fast', emoji: '🌪️', label: 'Examen Rápido', sub: '¡Solo expertos!', speed: 0.22, spawn: 1500, accent: 'bg-purple-600', shadow: 'shadow-purple-200', modLabel: '+1 pto', modClass: 'bg-green-100 text-green-700' }
-                                ].map((subMode) => (
-                                    <motion.button
-                                        key={subMode.id}
-                                        whileHover={{ scale: 1.05, y: -5 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        onClick={() => startGame('hard', subMode.speed, subMode.spawn, subMode.id)}
-                                        className={`
-                                            lluvia-mode lluvia-mode--exam lluvia-mode--${subMode.id}
-                                            group relative w-full h-56 rounded-3xl transition-all duration-300 overflow-hidden
-                                        `}
-                                    >
-                                        <div className={`absolute top-0 w-full h-2 ${subMode.accent}`} />
-                                        <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity ${subMode.accent}`} />
-
-                                        <div className="flex flex-col items-center justify-center h-full gap-2 p-4">
-                                            <span className="lluvia-mode-icon text-5xl filter drop-shadow-md mb-1">{subMode.emoji}</span>
-                                            <h3 className="text-lg font-black text-slate-800 tracking-tight font-fredoka">
-                                                {subMode.label}
-                                            </h3>
-                                            <span className="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wide">
-                                                {subMode.sub}
-                                            </span>
-                                            <span className={`px-3 py-1 rounded-full text-xs font-black ${subMode.modClass}`}>
-                                                {subMode.modLabel}
-                                            </span>
-                                        </div>
-                                    </motion.button>
-                                ))}
-                            </div>
-                            <Button variant="ghost" className="text-slate-400 hover:text-slate-600 font-bold gap-2" onClick={() => setShowExamMenu(false)}>
-                                <ArrowLeftRight className="w-4 h-4 rotate-180" /> Volver al menú principal
-                            </Button>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+            <GameShell {...shellProps}>
+                <GameLoading label="Preparando la tormenta…" />
+            </GameShell>
+        );
+    }
+    if (!configData) {
+        return (
+            <GameShell {...shellProps}>
+                <GameEmpty title="No hay datos">No hay palabras para esta asignatura.</GameEmpty>
+            </GameShell>
         );
     }
 
-    // Tracking
-    // 2. GAME OVER / RESULTS
+    // 1. PANTALLA PREVIA (modos y, para el examen, velocidad)
+    if (gamePhase === 'menu') {
+        if (showExamMenu) {
+            return (
+                <GameShell {...shellProps}>
+                    <ModeSelect
+                        title="Examen"
+                        description="Elige la velocidad de la lluvia. La velocidad modifica la nota final."
+                        modes={[
+                            { id: 'slow', tone: 'easy', icon: Turtle, title: 'Lento', desc: 'Más tiempo para pensar cada palabra.', features: ['Resta 1 punto a la nota'], cta: 'Empezar' },
+                            { id: 'normal', tone: 'medium', icon: Gauge, title: 'Normal', desc: 'La velocidad equilibrada de siempre.', features: ['Nota sin cambios'], cta: 'Empezar' },
+                            { id: 'fast', tone: 'exam', icon: Rabbit, title: 'Rápido', desc: '¡Solo para expertos!', features: ['Suma 1 punto (puede superar el 10)'], cta: 'Empezar' },
+                        ]}
+                        onSelect={(id) => startGame('hard', EXAM_SPEEDS[id].speed, EXAM_SPEEDS[id].spawn, id)}
+                        onHelp={() => setShowInstructions(true)}
+                        extra={<GameButton variant="ghost" icon={ArrowLeft} onClick={() => setShowExamMenu(false)}>Volver a los modos</GameButton>}
+                    />
+                    {modals}
+                </GameShell>
+            );
+        }
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect
+                    description={configData.instructions || 'Haz que cada palabra caiga en la caja de su categoría. ¡Usa las gemas mágicas para intercambiar las cajas!'}
+                    modes={[
+                        { id: 'easy', tone: 'easy', icon: Sprout, title: 'Fácil', desc: 'Dos cajas y la lluvia más tranquila.', features: ['2 cajas', 'Ayuda de colores'] },
+                        { id: 'medium', tone: 'medium', icon: Flame, title: 'Medio', desc: 'Tres cajas: más palabras que ordenar.', features: ['3 cajas', 'Ayuda de colores'] },
+                        { id: 'hard', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Tres cajas sin ayudas. Tú eliges la velocidad.', features: ['Nota sobre 10', 'Velocidad: −1 / 0 / +1'] },
+                    ]}
+                    onSelect={(id) => (id === 'hard' ? setShowExamMenu(true) : startGame(id))}
+                    onHelp={() => setShowInstructions(true)}
+                    onStudy={() => setShowCheatSheet(true)}
+                />
+                {modals}
+            </GameShell>
+        );
+    }
+
+    // 2. FIN DE PARTIDA
     if (gamePhase === 'gameOver') {
         const isExam = difficulty === 'hard';
         const correctWords = score / 10;
@@ -496,354 +455,215 @@ const LluviaDePalabras = ({ onGameComplete } = {}) => {
         const finalNotaNum = isExam
             ? Math.max(0, Math.round((baseNotaNum + modifier) * 10) / 10)
             : Math.round(baseNotaNum * 10) / 10;
-        const baseGrade = baseNotaNum.toFixed(1);
-        const examGrade = finalNotaNum.toFixed(1);
+        const baseGrade = baseNotaNum.toFixed(1).replace('.', ',');
+        const examGrade = finalNotaNum.toFixed(1).replace('.', ',');
         const hasPassedExam = isExam && correctWords >= 30;
-        const subModeLabel = examSubMode === 'slow' ? 'Lento' : examSubMode === 'fast' ? 'Rápido' : examSubMode === 'normal' ? 'Normal' : null;
+
+        if (isExam) {
+            return (
+                <GameShell {...shellProps}>
+                    <ResultsScreen
+                        title={hasPassedExam ? '¡Examen superado!' : 'Examen terminado'}
+                        subtitle={hasPassedExam ? '¡Enhorabuena! Has conseguido todas las palabras.' : undefined}
+                        nota={finalNotaNum}
+                        points={score}
+                        stats={[
+                            { icon: Droplets, tone: 'good', label: 'Palabras', value: `${correctWords}/30` },
+                            { icon: Gauge, tone: 'time', label: 'Velocidad', value: speedLabel || 'Normal' },
+                            { icon: Zap, tone: 'streak', label: 'Modificador', value: modifier > 0 ? `+${modifier}` : String(modifier) },
+                        ]}
+                        actions={[
+                            { label: 'Repetir examen', onClick: () => { returnToMenu(); setShowExamMenu(true); }, icon: RefreshCw },
+                            { label: 'Cambiar de modo', onClick: () => { returnToMenu(); setShowExamMenu(false); }, icon: LayoutGrid, variant: 'soft' },
+                        ]}
+                    >
+                        {modifier !== 0 && (
+                            <div className={`llv-breakdown ${modifier > 0 ? 'is-up' : 'is-down'}`}>
+                                <span className="llv-breakdown__item"><small>Nota base</small><b>{baseGrade}</b></span>
+                                <span className="llv-breakdown__op">{modifier > 0 ? '+' : '−'}</span>
+                                <span className="llv-breakdown__item is-mod"><small>Modo {speedLabel}</small><b>{Math.abs(modifier)}</b></span>
+                                <span className="llv-breakdown__op">=</span>
+                                <span className="llv-breakdown__item is-total"><small>Nota final</small><b>{examGrade}</b></span>
+                            </div>
+                        )}
+                    </ResultsScreen>
+                    {modals}
+                </GameShell>
+            );
+        }
 
         return (
-            <div className="lluvia-over relative flex flex-col items-center justify-center min-h-[85vh] gap-8 text-center px-4 max-w-4xl mx-auto py-10">
-                <div className="lluvia-fx" aria-hidden="true">
-                    <span className="lluvia-fx-orb a" />
-                    <span className="lluvia-fx-orb b" />
-                </div>
+            <GameShell {...shellProps}>
+                <GameHeader mode={modeTone} onHelp={() => setShowInstructions(true)} />
                 <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="w-full flex flex-col items-center"
+                    className="llv-over"
+                    initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 170, damping: 20 }}
                 >
-                    <h2 className={`text-4xl md:text-5xl font-black mb-10 tracking-tight font-fredoka drop-shadow-lg ${hasPassedExam ? 'text-green-300' : 'text-white'}`}>
-                        {hasPassedExam ? "🏆 ¡EXAMEN SUPERADO!" : (isExam ? "🏁 EXAMEN FINALIZADO" : "🎮 PARTIDA TERMINADA")}
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
-                        {/* CARD PUNTUACIÓN */}
-                        <div className="lluvia-result-card p-8 rounded-[2.5rem] flex flex-col items-center justify-center">
-                            <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Palabras Correctas</p>
-                            <div className="flex items-baseline gap-2">
-                                <span className="lluvia-big-num text-7xl font-black font-fredoka">{correctWords}</span>
-                                {isExam && <span className="text-2xl text-slate-300 font-bold">/ 30</span>}
-                            </div>
-                        </div>
-
-                        {/* CARD NOTA (Solo en examen o siempre para feedback) */}
-                        <div className={`lluvia-result-card lluvia-nota-card p-8 rounded-[2.5rem] flex flex-col items-center justify-center ${isExam ? 'is-exam' : ''}`}>
-                            <p className={`text-xs font-black uppercase tracking-[0.2em] mb-4 ${isExam ? 'text-blue-100' : 'text-slate-400'}`}>Nota Final</p>
-                            <div
-                                className={`lluvia-nota-ring fx-grade-ring ${finalNotaNum >= 8 ? 'is-high' : finalNotaNum >= 5 ? 'is-mid' : 'is-low'}`}
-                                style={{ '--fx-grade': Math.min(10, finalNotaNum) }}
-                            >
-                                <div className="flex items-baseline gap-1">
-                                    <span className="lluvia-nota-num text-6xl font-black font-fredoka">{examGrade}</span>
-                                    <span className="lluvia-nota-den text-xl font-bold">/ 10</span>
-                                </div>
-                            </div>
-                            <span className={`lluvia-nota-msg ${finalNotaNum >= 8 ? 'is-high' : finalNotaNum >= 5 ? 'is-mid' : 'is-low'}`}>
-                                {finalNotaNum >= 9 ? '¡Excelente! 🌟' : finalNotaNum >= 7 ? '¡Muy bien! 👏' : finalNotaNum >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖'}
-                            </span>
-
-                            {isExam && modifier !== 0 && (
-                                <div className="mt-4 w-full text-center text-xs font-semibold text-blue-100 space-y-1">
-                                    <div className="flex items-center justify-between px-2">
-                                        <span>Base</span>
-                                        <span>{baseGrade}</span>
-                                    </div>
-                                    <div className="flex items-center justify-between px-2">
-                                        <span>Modo {subModeLabel}</span>
-                                        <span className={modifier > 0 ? 'text-green-300' : 'text-red-300'}>
-                                            {modifier > 0 ? `+${modifier}` : modifier}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-between px-2 pt-1 border-t border-white/20 font-black">
-                                        <span>Total</span>
-                                        <span>{examGrade}</span>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                    <div className="llv-over__art" aria-hidden="true"><RainCloud /></div>
+                    <span className="llv-over__kicker">Partida terminada</span>
+                    <strong className="llv-over__num">{correctWords}</strong>
+                    <span className="llv-over__unit">palabras atrapadas</span>
+                    <div className="llv-over__chips">
+                        <span className="llv-over__chip"><Star size={15} /> <b>{score}</b> puntos</span>
+                        <span className="llv-over__chip"><GraduationCap size={15} /> Nota orientativa <b>{examGrade}</b></span>
                     </div>
-
-                    {hasPassedExam && (
-                        <motion.p
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="mt-8 text-xl text-green-600 font-bold font-fredoka bg-green-50 px-6 py-2 rounded-full border border-green-100"
-                        >
-                            ¡Enhorabuena! Has conseguido todas las palabras.
-                        </motion.p>
-                    )}
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center mt-12">
-                        <Button variant="ghost" size="lg" onClick={returnToMenu} className="gap-2 rounded-2xl h-14 text-slate-500 hover:text-slate-800 font-bold px-8">
-                            <Menu className="w-5 h-5" /> Menú Principal
-                        </Button>
-                        <Button size="lg" onClick={() => startGame(difficulty)} className="lluvia-retry gap-4 rounded-2xl h-14 bg-slate-900 hover:bg-slate-800 text-white font-black px-10 shadow-xl transition-all hover:scale-105 active:scale-95">
-                            <RotateCcw className="w-5 h-5" /> REINTENTAR
-                        </Button>
+                    <div className="llv-over__actions">
+                        <GameButton size="lg" icon={RefreshCw} onClick={() => startGame(difficulty)} autoFocus>Reintentar</GameButton>
+                        <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={returnToMenu}>Cambiar de modo</GameButton>
                     </div>
                 </motion.div>
-            </div>
+                {modals}
+            </GameShell>
         );
     }
 
     // 3. JUEGO ACTIVO
     const numCols = categories.length;
     const colWidthPercent = 100 / numCols;
+    const canShowHelp = showHelp && difficulty !== 'hard';
 
     return (
-        <div className="lluvia-stage relative w-full max-w-2xl mx-auto h-[80vh] bg-slate-900 overflow-hidden rounded-xl border-4 border-slate-800 shadow-2xl select-none touch-none">
-            <style>{gridStyles}</style>
-
-            {/* Cielo nocturno con lluvia ligera (decorativo) */}
-            <div className="lluvia-stage-sky" aria-hidden="true">
-                <span className="lluvia-fx-rain" />
-            </div>
-
-            {/* FONDO GRID ANIMADO */}
-            <div className="absolute inset-0 scrolling-grid pointer-events-none opacity-40"></div>
-
-            {/* HUD */}
-            <div className="absolute top-0 w-full p-4 grid grid-cols-3 items-start z-20 bg-gradient-to-b from-slate-900/80 to-transparent">
-                <div className="flex justify-start">
-                    <button
-                        className="bg-slate-800/80 backdrop-blur text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-700 transition active:scale-95 shadow-lg border border-slate-700"
-                        onClick={togglePause}
-                    >
-                        {gamePhase === 'paused' ? <Play className="w-5 h-5 ml-1" /> : <Pause className="w-5 h-5" />}
-                    </button>
-                </div>
-
-                <div className="flex justify-center gap-2">
-                    {difficulty !== 'hard' && (
-                        <button
-                            title="Ayuda visual"
-                            className="bg-slate-800/80 backdrop-blur px-3 py-2 rounded-full border border-slate-700 shadow-lg flex items-center gap-2 transition-colors hover:bg-slate-700"
-                            onClick={() => setShowHelp(!showHelp)}
-                        >
-                            <Lightbulb className={`w-4 h-4 ${showHelp ? 'text-yellow-400 fill-yellow-400' : 'text-slate-500'}`} />
-                            <div className={`w-8 h-4 rounded-full p-1 transition-colors relative ${showHelp ? 'bg-green-500' : 'bg-slate-600'}`}>
-                                <div className={`absolute top-1 w-2 h-2 bg-white rounded-full shadow-sm transition-transform duration-300 ${showHelp ? 'translate-x-4' : 'translate-x-0'}`} />
-                            </div>
-                        </button>
-                    )}
-                    <button
-                        title="Guía de categorías"
-                        className="bg-slate-800/80 backdrop-blur w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-700 transition active:scale-95 shadow-lg border border-slate-700 text-blue-400"
-                        onClick={() => {
-                            if (gamePhase === 'playing') setGamePhase('paused');
-                            setShowCheatSheet(true);
-                        }}
-                    >
-                        <BookOpen className="w-5 h-5" />
-                    </button>
-                </div>
-
-                <div className="flex flex-col items-end gap-2">
-                    <div className="lluvia-score bg-white px-4 py-1.5 rounded-full font-black text-slate-900 shadow-lg border-2 border-slate-200 text-lg min-w-[80px] text-center">
-                        <motion.span
-                            key={score}
-                            className="inline-block"
-                            initial={{ scale: 1.45 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: 'spring', stiffness: 520, damping: 16 }}
-                        >
-                            {score}
-                        </motion.span>
-                    </div>
-                    <div className="flex gap-1">
-                        {[...Array(3)].map((_, i) => (
-                            <span key={i} className={`text-xl transition-all duration-500 ${i < lives ? 'scale-100 opacity-100 grayscale-0' : 'scale-75 opacity-30 grayscale'}`}>❤️</span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* MODAL PAUSA */}
-            <AnimatePresence>
-                {gamePhase === 'paused' && !showCheatSheet && (
-                    <motion.div
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex flex-col items-center justify-center gap-6 p-4"
-                    >
-                        <h2 className="text-4xl font-bold text-white tracking-wide">PAUSA</h2>
-                        <Button size="lg" onClick={togglePause} className="w-full max-w-xs h-14 text-lg bg-yellow-500 hover:bg-yellow-400 text-yellow-950 font-bold border-none shadow-xl rounded-2xl">
-                            <Play className="w-6 h-6 mr-2" /> Continuar
-                        </Button>
-                        <Button variant="outline" onClick={returnToMenu} className="w-full max-w-xs h-14 text-lg bg-transparent border-2 border-slate-600 text-slate-300 hover:bg-slate-800 rounded-2xl">
-                            <Home className="w-6 h-6 mr-2" /> Elegir dificultad
-                        </Button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET) */}
-            <AnimatePresence>
-                {showCheatSheet && (
-                    <motion.div
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl z-[60] flex flex-col p-6 overflow-hidden"
-                    >
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                                <BookOpen className="w-6 h-6 text-blue-400" /> Guía de Palabras
-                            </h2>
+        <GameShell {...shellProps}>
+            <GameHeader
+                mode={modeTone}
+                modeLabel={isExamMode && speedLabel ? `Examen · ${speedLabel}` : undefined}
+                onHelp={openInstructions}
+                onStudy={openGuide}
+                right={(
+                    <Hud>
+                        <HudStat icon={Droplets} tone="score" value={score} label="Puntos" />
+                        <span className="llv-lives"><Lives total={3} left={Math.max(0, lives)} /></span>
+                        {difficulty !== 'hard' && (
                             <button
-                                onClick={() => setShowCheatSheet(false)}
-                                className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors"
+                                type="button"
+                                className={`llv-helpswitch ${showHelp ? 'is-on' : ''}`}
+                                onClick={() => setShowHelp(!showHelp)}
+                                aria-pressed={showHelp}
+                                title="Ayuda de colores"
                             >
-                                <X className="w-6 h-6" />
+                                {showHelp ? <Lightbulb size={16} /> : <LightbulbOff size={16} />}
+                                <span>Colores</span>
+                                <i className="llv-helpswitch__track"><i /></i>
                             </button>
-                        </div>
-
-                        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                            <div className="grid gap-4">
-                                {Object.entries(configData)
-                                    .filter(([key]) => key !== 'title' && key !== 'instructions')
-                                    .map(([category, words], idx) => (
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: idx * 0.05 }}
-                                            key={category}
-                                            className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50"
-                                        >
-                                            <h3 className="text-blue-400 font-bold uppercase tracking-wider text-sm mb-3 px-1 border-l-4 border-blue-500">
-                                                {category.replace(/_/g, ' ')}
-                                            </h3>
-                                            <div className="flex flex-wrap gap-2">
-                                                {Array.isArray(words) && words.map((word, wIdx) => (
-                                                    <span
-                                                        key={wIdx}
-                                                        className="px-3 py-1 bg-slate-900/80 text-slate-300 rounded-lg text-xs border border-white/5"
-                                                    >
-                                                        {word}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                            </div>
-                        </div>
-
-                        <div className="mt-6">
-                            <Button
-                                size="lg"
-                                onClick={() => {
-                                    setShowCheatSheet(false);
-                                    if (gamePhase === 'paused') togglePause();
-                                }}
-                                className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95"
-                            >
-                                ¡Lo tengo! Continuar
-                            </Button>
-                        </div>
-                    </motion.div>
+                        )}
+                        <button type="button" className="gk-iconbtn" onClick={togglePause} aria-label={gamePhase === 'paused' ? 'Continuar' : 'Pausa'} title={gamePhase === 'paused' ? 'Continuar' : 'Pausa'}>
+                            {gamePhase === 'paused' ? <Play size={18} /> : <Pause size={18} />}
+                        </button>
+                    </Hud>
                 )}
-            </AnimatePresence>
+            />
 
-            {/* PALABRAS CAYENDO */}
-            <div className="absolute inset-0 z-10 pointer-events-none">
-                <AnimatePresence>
-                    {fallingWords.map(word => {
-                        const targetCategory = categories.find(c => c.id === word.categoryId);
-                        const canShowHelp = showHelp && difficulty !== 'hard';
+            <div className="llv-stage" style={{ '--llv-cols': numCols }}>
+                <div className="llv-sky" aria-hidden="true">
+                    <span className="llv-sky__cloud llv-sky__cloud--a" />
+                    <span className="llv-sky__cloud llv-sky__cloud--b" />
+                    <span className="llv-sky__cloud llv-sky__cloud--c" />
+                    <span className="llv-sky__rain" />
+                    <span className="llv-sky__lanes" style={{ backgroundSize: `${colWidthPercent}% 100%` }} />
+                </div>
 
-                        // LÓGICA DE AYUDA
-                        const bgClass = (canShowHelp && targetCategory)
-                            ? targetCategory.color
-                            : 'bg-white';
-
-                        const textClass = (canShowHelp && targetCategory)
-                            ? 'text-white border-white/50'
-                            : 'text-slate-900 border-slate-200';
-
-                        return (
-                            <motion.div
-                                key={word.id}
-                                initial={{ opacity: 0, scale: 0.5, x: "-50%" }}
-                                animate={{ opacity: 1, scale: 1, x: "-50%" }}
-                                exit={{ opacity: 0, scale: 0, x: "-50%" }}
-                                className={`lluvia-word absolute px-4 py-2 rounded-xl shadow-xl border-2 font-bold text-base md:text-lg whitespace-nowrap z-10 ${bgClass} ${textClass}`}
-                                style={{
-                                    left: `${(word.colIndex * colWidthPercent) + (colWidthPercent / 2)}%`,
-                                    top: `${word.y}%`
-                                }}
-                            >
-                                {word.text}
-                            </motion.div>
-                        );
-                    })}
-                </AnimatePresence>
-            </div>
-
-            {/* ZONA INFERIOR (CAJAS) */}
-            <div
-                className="lluvia-floor absolute bottom-0 w-full h-[16%] bg-slate-900 border-t border-slate-700 grid items-start z-20 pt-0"
-                style={{ gridTemplateColumns: `repeat(${numCols}, 1fr)` }}
-            >
-                <AnimatePresence mode='popLayout'>
-                    {categories.map((cat, index) => (
-                        <React.Fragment key={cat.id}>
-                            <motion.div
-                                layout
-                                layoutId={cat.id}
-                                animate={getBoxAnimation(index)}
-                                className={`
-                                    lluvia-box relative h-full w-[92%] max-w-[300px]
-                                    ${cat.color} 
-                                    rounded-b-[2rem] rounded-t-none
-                                    shadow-2xl flex items-center justify-center 
-                                    text-white text-center 
-                                    border-b-4 border-x border-white/20
-                                `}
-                                style={{ justifySelf: 'center' }}
-                            >
-                                {/* Brillo interior */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-black/5 to-transparent pointer-events-none rounded-b-[2rem]"></div>
-                                <span className="font-bold text-sm md:text-base uppercase tracking-wider drop-shadow-md px-1 relative z-10">
-                                    {cat.name}
-                                </span>
-                            </motion.div>
-
-                            {/* BOTÓN DE CAMBIO - DISEÑO "GEMA MÁGICA" */}
-                            {index < numCols - 1 && (
-                                <div
-                                    className="absolute z-30 flex items-center justify-center pointer-events-auto"
+                {/* PALABRAS CAYENDO */}
+                <div className="llv-words">
+                    <AnimatePresence>
+                        {fallingWords.map(word => {
+                            const targetCategory = categories.find(c => c.id === word.categoryId);
+                            const tint = canShowHelp && targetCategory ? `is-tinted ${targetCategory.color}` : '';
+                            return (
+                                <motion.div
+                                    key={word.id}
+                                    initial={{ opacity: 0, scale: 0.5, x: "-50%" }}
+                                    animate={{ opacity: 1, scale: 1, x: "-50%" }}
+                                    exit={{ opacity: 0, scale: 0, x: "-50%" }}
+                                    className={`llv-word ${tint}`}
                                     style={{
-                                        left: `${(index + 1) * colWidthPercent}%`,
-                                        bottom: '50%', // Centrado vertical en la zona de cajas
-                                        transform: 'translate(-50%, 20%)'
+                                        left: `${(word.colIndex * colWidthPercent) + (colWidthPercent / 2)}%`,
+                                        top: `${word.y}%`
                                     }}
                                 >
-                                    {/* Puente de luz entre cajas */}
-                                    <div className="absolute w-24 h-16 bg-gradient-to-r from-transparent via-amber-200/20 to-transparent blur-xl -z-10" />
+                                    {word.text}
+                                </motion.div>
+                            );
+                        })}
+                    </AnimatePresence>
+                </div>
 
-                                    <button
-                                        className="group relative w-16 h-16 flex items-center justify-center focus:outline-none"
-                                        onClick={() => swapCategories(index, index + 1)}
-                                    >
-                                        {/* Anillo de energía exterior */}
-                                        <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-all duration-500" />
+                {/* ZONA INFERIOR (CAJAS) */}
+                <div className="llv-floor" style={{ gridTemplateColumns: `repeat(${numCols}, 1fr)` }}>
+                    <AnimatePresence mode='popLayout'>
+                        {categories.map((cat, index) => (
+                            <React.Fragment key={cat.id}>
+                                <motion.div
+                                    layout
+                                    layoutId={cat.id}
+                                    animate={getBoxAnimation(index)}
+                                    className={`llv-box ${cat.color}`}
+                                >
+                                    <span className="llv-box__water" aria-hidden="true" />
+                                    <span className="llv-box__rim" aria-hidden="true" />
+                                    <span className="llv-box__name"><Inbox size={14} aria-hidden="true" /> {cat.name}</span>
+                                </motion.div>
 
-                                        {/* Cuerpo principal (Estilo Gema/Cristal) */}
-                                        <div className="relative w-14 h-14 bg-gradient-to-br from-amber-300 via-amber-500 to-orange-600 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)] border-2 border-amber-200/50 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 group-active:scale-95">
+                                {/* Gema de intercambio entre cajas */}
+                                {index < numCols - 1 && (
+                                    <div className="llv-swap" style={{ left: `${(index + 1) * colWidthPercent}%` }}>
+                                        <button
+                                            type="button"
+                                            className="llv-gem"
+                                            onClick={() => swapCategories(index, index + 1)}
+                                            aria-label={`Intercambiar ${cat.name} y ${categories[index + 1]?.name}`}
+                                        >
+                                            <ArrowLeftRight size={24} />
+                                        </button>
+                                    </div>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </AnimatePresence>
+                </div>
 
-                                            {/* Brillo Gloss superior */}
-                                            <div className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-white/60 to-transparent opacity-80 pointer-events-none" />
-
-                                            {/* Icono Blanco Brillante */}
-                                            <ArrowLeftRight className="relative z-10 w-7 h-7 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] group-hover:rotate-180 transition-transform duration-500 ease-out" />
-                                        </div>
-                                    </button>
-                                </div>
-                            )}
-                        </React.Fragment>
-                    ))}
+                {/* PAUSA */}
+                <AnimatePresence>
+                    {gamePhase === 'paused' && !showCheatSheet && !showInstructions && (
+                        <motion.div className="llv-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                            <motion.div className="llv-card" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+                                <span className="llv-card__badge"><Pause size={26} /></span>
+                                <strong className="llv-card__title">Pausa</strong>
+                                <GameButton size="lg" icon={Play} onClick={togglePause} autoFocus>Continuar</GameButton>
+                                {!isExamMode && (
+                                    <GameButton variant="soft" icon={LayoutGrid} onClick={returnToMenu}>Cambiar de modo</GameButton>
+                                )}
+                            </motion.div>
+                        </motion.div>
+                    )}
                 </AnimatePresence>
             </div>
-        </div>
+            {modals}
+        </GameShell>
     );
 };
+
+// Nube con gotas para el resumen (SVG sin filtros).
+const RainCloud = () => (
+    <svg viewBox="0 0 160 110" width="160" height="110">
+        <defs>
+            <linearGradient id="llv-cloud-g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#ffffff" />
+                <stop offset="1" stopColor="#c7d7f5" />
+            </linearGradient>
+            <linearGradient id="llv-drop-g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#bae6fd" />
+                <stop offset="1" stopColor="#0284c7" />
+            </linearGradient>
+        </defs>
+        <ellipse cx="80" cy="64" rx="56" ry="8" fill="#0c4a6e" opacity=".18" />
+        <path d="M38 56c-12 0-20-8-20-18s9-18 20-17c3-12 14-20 27-19 9 0 17 5 22 12 4-3 9-4 14-4 14 0 25 10 25 23 10 1 17 8 17 17 0 10-8 17-19 17H38z" fill="url(#llv-cloud-g)" />
+        <path d="M30 30c4-6 10-9 16-8" stroke="#fff" strokeWidth="4" strokeLinecap="round" fill="none" opacity=".9" />
+        {[[52, 72], [80, 80], [108, 72], [66, 92], [94, 94]].map(([x, y], i) => (
+            <path key={i} d={`M${x} ${y - 9}c4 6 6 9 6 12a6 6 0 0 1-12 0c0-3 2-6 6-12z`} fill="url(#llv-drop-g)" />
+        ))}
+    </svg>
+);
 
 export default LluviaDePalabras;

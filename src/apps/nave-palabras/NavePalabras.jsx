@@ -1,8 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, RotateCcw, Zap, Rocket, BookOpen, X, Shuffle, Target, Trophy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+  Zap, Rocket, BookOpen, Shuffle, Target, Clock, Crosshair, XCircle, Star,
+  RefreshCw, LayoutGrid, Sprout, Flame, GraduationCap,
+} from 'lucide-react';
 import { getRunnerData } from '@/services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressBar, GameButton, ModeSelect,
+  ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './NavePalabras.css';
 
 const ARENA_W = 800;
@@ -147,11 +154,11 @@ export const SHIPS = [
   },
 ];
 
-// 3 modos de juego
+// 3 modos de juego (pantalla previa con el kit). Los ids son los de siempre.
 const MODES = [
-  { id: 'easy',   label: 'Fácil',  desc: 'Pistas marcadas y disparo ágil.', icon: '🟢', color: '#10b981' },
-  { id: 'medium', label: 'Medio',  desc: 'Con pistas de color en las palabras objetivo.', icon: '🟡', color: '#fbbf24' },
-  { id: 'exam',   label: 'Examen', desc: 'Sin pistas. La sesión cuenta para tareas.', icon: '🔴', color: '#ef4444' },
+  { id: 'easy', tone: 'easy', icon: Sprout, title: 'Fácil', desc: 'Las palabras objetivo brillan en verde y disparas más rápido.', features: ['Pistas de color', 'Disparo ágil'] },
+  { id: 'medium', tone: 'medium', icon: Flame, title: 'Medio', desc: 'Con pistas de color en las palabras objetivo.', features: ['Pistas de color', 'Cadencia normal'] },
+  { id: 'exam', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Sin pistas: tú decides a qué palabra disparar.', features: ['Nota sobre 10', 'Cuenta para tareas'] },
 ];
 
 function rnd(min, max) { return min + Math.random() * (max - min); }
@@ -335,9 +342,12 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
     });
   };
 
-  const startGame = () => {
+  // `m` permite arrancar directamente desde la pantalla de modos (el estado
+  // `mode` aún no se ha actualizado en ese render). Sin argumento, repite modo.
+  const startGame = (m = mode) => {
     if (!targetCat || !gameData) return;
-    modeRef.current = mode;
+    setMode(m);
+    modeRef.current = m;
     setPhase('playing');
     setScore(0); setHits(0); setMisses(0);
     scoreRef.current = 0; hitsRef.current = 0; missesRef.current = 0;
@@ -482,302 +492,349 @@ export default function NavePalabras({ level, grade, subjectId, onGameComplete }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, targetCat]);
 
-  const secondsLeft = Math.ceil(timeLeftMs / 1000);
+  // Escala del escenario: el bucle trabaja en coordenadas fijas de 800×520 y
+  // aquí solo se ajusta el dibujo al ancho real del contenedor (solo vista).
+  const [viewScale, setViewScale] = useState(1);
+  useLayoutEffect(() => {
+    if (phase !== 'playing') return undefined;
+    const el = arenaRef.current;
+    if (!el) return undefined;
+    const update = () => setViewScale(el.clientWidth / ARENA_W || 1);
+    update();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [phase]);
 
-  return (
-    <div className="np-root">
-      <div className="np-nebula" aria-hidden="true" />
-      <div className={`np-head ${phase === 'playing' ? 'np-head-playing' : ''}`}>
-        {phase !== 'playing' && (
-          <div className="np-badge"><Rocket className="w-4 h-4" /> Nave Palabras</div>
-        )}
-        {phase === 'playing' && (
-          <>
-            <div className="np-hud">⏱ <span className={secondsLeft <= 10 ? 'np-time-low' : ''}>{secondsLeft}s</span></div>
-            <div className="np-hud">🎯 <span key={`h-${hits}`} className="np-hud-pop">{hits}</span></div>
-            <div className="np-hud">★ <span key={`s-${score}`} className="np-hud-pop">{score}</span></div>
-            <div className="np-hud-target">
-              <Target className="w-3.5 h-3.5" />
-              <span>{formatName(targetCat) || '—'}</span>
-            </div>
-            <div className="np-hud np-hud-speed" title={`Cadencia de disparo (fallos: ${penaltyLevel}/3). Cada fallo dispara más lento.`}>
-              {[0, 1, 2].map(i => (
-                <span key={i} className={i < (MAX_PENALTY - penaltyLevel) ? 'np-spd-on' : 'np-spd-off'}>⚡</span>
-              ))}
-              <span className="np-spd-label">CADENCIA</span>
-            </div>
-            {combo > 0 && penaltyLevel > 0 && (
-              <div className="np-hud np-hud-combo" title={`Combo ${combo}/${COMBO_TO_RECOVER} — recupera la cadencia`}>
-                🔥 {combo}/{COMBO_TO_RECOVER}
+  const [showInstructions, setShowInstructions] = useState(false);
+
+  const secondsLeft = Math.ceil(timeLeftMs / 1000);
+  const shellProps = { theme: 'dark', accent: '#6366f1', accent2: '#22d3ee', className: 'np' };
+  const isExam = mode === 'exam';
+  const modeTone = mode === 'easy' ? 'easy' : mode === 'medium' ? 'medium' : 'exam';
+  const ship = SHIPS[shipId] || SHIPS[0];
+
+  const modals = (
+    <>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Nave Palabras">
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Tienes <strong>60 segundos</strong>. Dispara solo a las palabras de la <strong>categoría objetivo</strong>
+          antes de que lleguen al suelo. Cada acierto suma 10 puntos.
+        </p>
+        <h3>🕹️ Controles</h3>
+        <ul>
+          <li><kbd>←</kbd> <kbd>→</kbd> (o <kbd>A</kbd> <kbd>D</kbd>) para moverte; <kbd>Espacio</kbd> o <kbd>↑</kbd> para disparar.</li>
+          <li>Con ratón o dedo: la nave sigue al puntero y dispara mientras mantienes pulsado.</li>
+          <li>Disparar a una palabra equivocada o dejar pasar una correcta <strong>reduce tu cadencia</strong>. La recuperas con 5 aciertos seguidos.</li>
+          <li>Los bloques especiales dan poderes: disparo rápido, lluvia de palabras o puntos ×2. ¡Ojo con el de <strong>controles invertidos</strong>!</li>
+        </ul>
+        <h3>🎓 Modos de juego</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Fácil</strong> Palabras objetivo marcadas y disparo más ágil.</div>
+          <div className="instr-mode medium"><strong>Medio</strong> Palabras objetivo marcadas con color.</div>
+          <div className="instr-mode exam"><strong>Examen</strong> Sin pistas. 10 aciertos = un 10.</div>
+        </div>
+      </InstructionsModal>
+      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Guía de palabras">
+        <div className="np-guide">
+          {categories.map(cat => (
+            <section key={cat} className={`np-guide__cat ${cat === targetCat ? 'is-current' : ''}`}>
+              <h4 className="np-guide__title">
+                {formatName(cat)}
+                {cat === targetCat && <span className="np-guide__now"><Target size={12} /> Objetivo</span>}
+              </h4>
+              <div className="np-guide__words">
+                {(gameData?.[cat] || []).map((w, i) => <span key={i} className="np-guide__chip">{w}</span>)}
               </div>
-            )}
-          </>
+            </section>
+          ))}
+        </div>
+      </InstructionsModal>
+    </>
+  );
+
+  if (loadError) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader />
+        <GameEmpty title="No hay palabras">No se encontraron datos. Prueba otra asignatura.</GameEmpty>
+      </GameShell>
+    );
+  }
+  if (!gameData) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Cargando el hangar…" />
+      </GameShell>
+    );
+  }
+
+  // --- Pantalla previa: modos + nave + objetivo ---
+  if (phase === 'menu') {
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={MODES}
+          onSelect={(id) => startGame(id)}
+          onHelp={() => setShowInstructions(true)}
+          onStudy={() => setShowHelp(true)}
+          extra={(
+            <div className="np-loadout">
+              <section className="np-loadout__box">
+                <span className="np-loadout__label"><Rocket size={15} /> Tu nave · <b style={{ color: ship.color }}>{ship.name}</b></span>
+                <div className="np-ships" role="radiogroup" aria-label="Elige tu nave">
+                  {SHIPS.map(s => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={shipId === s.id}
+                      onClick={() => setShipId(s.id)}
+                      className={`np-shipcard ${shipId === s.id ? 'is-active' : ''}`}
+                      style={{ '--np-ship': s.color }}
+                      title={s.name}
+                    >
+                      <ShipPreview design={s} />
+                    </button>
+                  ))}
+                </div>
+              </section>
+              <section className="np-loadout__box">
+                <span className="np-loadout__label"><Target size={15} /> Categoría objetivo</span>
+                <div className="np-targetpick">
+                  <span className="np-targetpick__name">{formatName(targetCat) || 'Cargando…'}</span>
+                  <GameButton variant="soft" size="sm" icon={Shuffle} onClick={changeCategory} disabled={categories.length <= 1} aria-label="Cambiar categoría" title="Cambiar categoría" />
+                  <GameButton variant="soft" size="sm" icon={BookOpen} onClick={() => setShowHelp(true)} aria-label="Ver palabras" title="Ver palabras de cada categoría" />
+                </div>
+              </section>
+            </div>
+          )}
+          footer="60 s · Fallar reduce tu cadencia de disparo (se recupera con 5 aciertos seguidos)"
+        />
+        {modals}
+      </GameShell>
+    );
+  }
+
+  // --- Fin de partida ---
+  if (phase === 'over') {
+    const notaNum = Math.min(10, hits);
+    if (isExam) {
+      return (
+        <GameShell {...shellProps}>
+          <ResultsScreen
+            title="¡Misión terminada!"
+            nota={notaNum}
+            points={score}
+            stats={[
+              { icon: Crosshair, tone: 'good', label: 'Aciertos', value: hits },
+              { icon: XCircle, tone: 'bad', label: 'Fallos', value: misses },
+              { icon: Clock, tone: 'time', label: 'Tiempo', value: `${Math.round(GAME_DURATION_MS / 1000)}s` },
+            ]}
+            actions={[
+              { label: 'Revancha', onClick: () => startGame(), icon: RefreshCw },
+              { label: 'Cambiar de modo', onClick: () => setPhase('menu'), icon: LayoutGrid, variant: 'soft' },
+            ]}
+          />
+          {modals}
+        </GameShell>
+      );
+    }
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader mode={modeTone} />
+        <motion.div
+          className="np-summary"
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+        >
+          <div className="np-summary__sky" aria-hidden="true">
+            <span className="np-summary__planet" />
+            <span className="np-summary__ship"><ShipPreview design={ship} size={120} /></span>
+          </div>
+          <span className="np-summary__kicker">Fin de la misión</span>
+          <strong className="np-summary__score">{score}</strong>
+          <span className="np-summary__unit">puntos</span>
+          <div className="np-summary__stats">
+            <span className="np-summary__stat is-good"><Crosshair size={16} /> <b>{hits}</b> aciertos</span>
+            <span className="np-summary__stat is-bad"><XCircle size={16} /> <b>{misses}</b> fallos</span>
+            <span className="np-summary__stat"><Target size={16} /> {formatName(targetCat)}</span>
+          </div>
+          <div className="np-summary__actions">
+            <GameButton size="lg" icon={RefreshCw} onClick={() => startGame()} autoFocus>Revancha</GameButton>
+            <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={() => setPhase('menu')}>Cambiar de modo</GameButton>
+          </div>
+        </motion.div>
+        {modals}
+      </GameShell>
+    );
+  }
+
+  // --- Partida ---
+  const timeTone = secondsLeft <= 10 ? 'bad' : secondsLeft <= 25 ? 'warn' : 'good';
+  const nowMs = performance.now();
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={modeTone}
+        compact
+        right={(
+          <Hud>
+            <HudStat icon={Clock} tone="time" value={`${secondsLeft}s`} label="Tiempo" />
+            <HudStat icon={Crosshair} tone="good" value={hits} label="Aciertos" />
+            <HudStat icon={Star} tone="score" value={score} label="Puntos" />
+          </Hud>
         )}
+      />
+
+      <div className="np-bar">
+        <div className="np-target">
+          <span className="np-target__icon"><Target size={18} /></span>
+          <span className="np-target__text"><small>Dispara a</small><strong>{formatName(targetCat) || '—'}</strong></span>
+        </div>
+        <div className="np-cadence" title={`Cadencia de disparo (fallos: ${penaltyLevel}/3). Cada fallo dispara más lento.`}>
+          <span className="np-cadence__label">Cadencia</span>
+          <span className="np-cadence__bolts">
+            {[0, 1, 2].map(i => (
+              <span key={i} className={`np-bolt ${i < (MAX_PENALTY - penaltyLevel) ? 'is-on' : ''}`}><Zap size={15} /></span>
+            ))}
+          </span>
+          {combo > 0 && penaltyLevel > 0 && (
+            <span key={combo} className="np-cadence__combo" title={`Combo ${combo}/${COMBO_TO_RECOVER} — recupera la cadencia`}>
+              <Flame size={13} /> {combo}/{COMBO_TO_RECOVER}
+            </span>
+          )}
+        </div>
+        <div className="np-timebar"><ProgressBar value={timeLeftMs} max={GAME_DURATION_MS} tone={timeTone} label="Tiempo restante" /></div>
       </div>
 
-      {/* Menú inicial: fuera del arena para que respire */}
-      {phase === 'menu' && (
-        <div className="np-menu-wrap">
-          <div className="np-panel np-panel-menu">
-            <header className="np-menu-header">
-              <h2 className="np-title">🚀 NAVE PALABRAS</h2>
-              <p className="np-sub-compact">
-                60s · Dispara solo a la <b>categoría objetivo</b> · Fallar reduce tu cadencia (se recupera con 5 aciertos).
-              </p>
-            </header>
-
-            <section className="np-menu-section">
-              <div className="np-section-label">Tu nave</div>
-              <div className="np-ship-grid">
-                {SHIPS.map(s => (
-                  <button key={s.id}
-                    type="button"
-                    onClick={() => setShipId(s.id)}
-                    className={`np-ship-card ${shipId === s.id ? 'np-ship-card-active' : ''}`}
-                    style={{ borderColor: shipId === s.id ? s.color : undefined }}
-                    title={s.name}>
-                    <ShipPreview design={s} />
-                    <span className="np-ship-name" style={{ color: shipId === s.id ? s.color : undefined }}>
-                      {s.name}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            <section className="np-menu-section">
-              <div className="np-section-label">Objetivo</div>
-              <div className="np-cat-chooser">
-                <div className="np-cat-current">{formatName(targetCat) || 'Cargando…'}</div>
-                <button className="np-cat-btn" onClick={changeCategory} title="Cambiar categoría">
-                  <Shuffle className="w-4 h-4" />
-                </button>
-                <button className="np-cat-btn" onClick={() => setShowHelp(true)} title="Ver palabras válidas">
-                  <BookOpen className="w-4 h-4" />
-                </button>
-              </div>
-            </section>
-
-            <section className="np-menu-section">
-              <div className="np-section-label">Dificultad</div>
-              <div className="np-mode-grid">
-                {MODES.map(m => (
-                  <button key={m.id}
-                    type="button"
-                    onClick={() => setMode(m.id)}
-                    className={`np-mode-card np-mode-card--${m.id} ${mode === m.id ? 'np-mode-card-active' : ''}`}
-                    style={{ borderColor: mode === m.id ? m.color : undefined }}>
-                    <span className="np-mode-icon" aria-hidden="true">{m.icon}</span>
-                    <span className="np-mode-label" style={{ color: mode === m.id ? m.color : undefined }}>
-                      {m.label}
-                    </span>
-                    <span className="np-mode-desc">{m.desc}</span>
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            {loadError && <p className="np-err">No se encontraron datos. Prueba otra asignatura.</p>}
-            <Button disabled={!targetCat || loadError} onClick={startGame} className="np-play-btn">
-              <Play className="w-5 h-5 mr-2" /> JUGAR
-            </Button>
+      <div
+        ref={arenaRef}
+        className={`np-arena ${isExam ? 'is-exam' : ''}`}
+        style={{ aspectRatio: `${ARENA_W} / ${ARENA_H}` }}
+        onMouseMove={onPointerMove}
+        onMouseDown={onPointerDown}
+        onMouseUp={onPointerUp}
+        onMouseLeave={onPointerUp}
+        onTouchMove={onPointerMove}
+        onTouchStart={onPointerDown}
+        onTouchEnd={onPointerUp}
+      >
+        <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H, transform: `scale(${viewScale})` }}>
+          <div className="np-space" aria-hidden="true">
+            <span className="np-space__stars" />
+            <span className="np-space__stars np-space__stars--b" />
+            <span className="np-space__planet" />
           </div>
-        </div>
-      )}
+          <div className="np-floor" style={{ top: FLOOR_Y }} aria-hidden="true" />
+          <div className="np-ground" style={{ top: FLOOR_Y }} aria-hidden="true" />
 
-      {/* Arena de juego: solo durante 'playing' */}
-      {phase === 'playing' && (
-        <div
-          ref={arenaRef}
-          className="np-arena"
-          style={{ aspectRatio: `${ARENA_W} / ${ARENA_H}` }}
-          onMouseMove={onPointerMove}
-          onMouseDown={onPointerDown}
-          onMouseUp={onPointerUp}
-          onMouseLeave={onPointerUp}
-          onTouchMove={onPointerMove}
-          onTouchStart={onPointerDown}
-          onTouchEnd={onPointerUp}
-        >
-          <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H }}>
-            <div className="np-stars" />
-            <div className="np-floor" style={{ top: FLOOR_Y }} />
+          <AnimatePresence>
+            {missFlashKey > 0 && (
+              <motion.div
+                key={missFlashKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.75, 0] }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.55, times: [0, 0.2, 1] }}
+                className="np-miss-flash"
+              />
+            )}
+            {missFlashKey > 0 && (
+              <motion.div
+                key={`txt-${missFlashKey}`}
+                initial={{ opacity: 0, scale: 0.6, y: 20 }}
+                animate={{ opacity: 1, scale: 1.1, y: 0 }}
+                exit={{ opacity: 0, scale: 1.4, y: -30 }}
+                transition={{ duration: 0.7 }}
+                className="np-miss-text">
+                ¡FALLO!
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            <AnimatePresence>
-              {missFlashKey > 0 && (
-                <motion.div
-                  key={missFlashKey}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.75, 0] }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.55, times: [0, 0.2, 1] }}
-                  className="np-miss-flash"
-                />
-              )}
-              {missFlashKey > 0 && (
-                <motion.div
-                  key={`txt-${missFlashKey}`}
-                  initial={{ opacity: 0, scale: 0.6, y: 20 }}
-                  animate={{ opacity: 1, scale: 1.1, y: 0 }}
-                  exit={{ opacity: 0, scale: 1.4, y: -30 }}
-                  transition={{ duration: 0.7 }}
-                  className="np-miss-text">
-                  ¡FALLO!
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {wordsRef.current.map(w => {
+            const hintsOn = modeRef.current !== 'exam';
+            const cls = w.special
+              ? (w.special === 'invert' ? 'np-danger' : 'np-power')
+              : (hintsOn && w.category === targetCat ? 'np-target-word' : 'np-noise');
+            return (
+              <div key={w.id} className={`np-word ${cls}`}
+                style={{ width: w.w, height: WORD_H, transform: `translate(${w.x}px, ${w.y}px)` }}>
+                <span className="np-word__text">{w.text}</span>
+              </div>
+            );
+          })}
 
-            {wordsRef.current.map(w => {
-              const hintsOn = modeRef.current !== 'exam';
-              const cls = w.special
-                ? (w.special === 'invert' ? 'np-danger' : 'np-power')
-                : (hintsOn && w.category === targetCat ? 'np-target-word' : 'np-noise');
+          {activePowers.invert && activePowers.invert > nowMs && (
+            <div className="np-invert-banner">⚠️ ¡CONTROLES INVERTIDOS!</div>
+          )}
+
+          {projsRef.current.map(p => (
+            <div key={p.id} className="np-proj" style={{ width: PROJ_W, height: PROJ_H, transform: `translate(${p.x}px, ${p.y}px)` }} />
+          ))}
+
+          <Ship x={shipXRef.current} y={FLOOR_Y - SHIP_H} rapid={!!powersRef.current.rapid} shipId={shipId} />
+
+          <div className="np-powers">
+            {Object.keys(activePowers).map(id => {
+              const p = POWERS.find(pp => pp.id === id);
+              if (!p) return null;
+              const remain = Math.max(0, Math.ceil((activePowers[id] - nowMs) / 1000));
               return (
-                <div key={w.id} className={`np-word ${cls}`}
-                  style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
-                  {w.text}
-                </div>
+                <span key={id} className={`np-pow-badge ${p.dangerous ? 'is-danger' : ''}`} style={{ '--np-pow': p.color }}>
+                  {p.icon} {p.label} · {remain}s
+                </span>
               );
             })}
-
-            {activePowers.invert && activePowers.invert > performance.now() && (
-              <div className="np-invert-banner">⚠️ ¡CONTROLES INVERTIDOS!</div>
-            )}
-
-            {projsRef.current.map(p => (
-              <div key={p.id} className="np-proj" style={{ left: p.x, top: p.y, width: PROJ_W, height: PROJ_H }} />
-            ))}
-
-            <Ship x={shipXRef.current} y={FLOOR_Y - SHIP_H} rapid={!!powersRef.current.rapid} shipId={shipId} />
-
-            <div className="np-powers">
-              {Object.keys(activePowers).map(id => {
-                const p = POWERS.find(pp => pp.id === id);
-                if (!p) return null;
-                const remain = Math.max(0, Math.ceil((activePowers[id] - performance.now()) / 1000));
-                return (
-                  <span key={id} className="np-pow-badge" style={{ background: p.color }}>
-                    {p.icon} {p.label} · {remain}s
-                  </span>
-                );
-              })}
-            </div>
           </div>
         </div>
-      )}
-
-      {/* Pantalla de fin de partida: fuera del arena */}
-      {phase === 'over' && (() => {
-        const notaNum = Math.min(10, hits);
-        const notaColor = notaNum >= 8 ? '#10b981' : notaNum >= 5 ? '#3b82f6' : '#ef4444';
-        const notaMsg  = notaNum >= 9 ? 'Excelente' : notaNum >= 7 ? 'Muy bien' : notaNum >= 5 ? 'Aprobado' : 'Necesitas repasar';
-        return (
-          <div className="np-menu-wrap">
-            <div className="np-panel np-panel-end">
-              <Trophy className="np-trophy" />
-              <h2 className="np-title">¡Fin de partida!</h2>
-
-              <div className="np-nota-ring" style={{ '--np-grade': notaNum, '--np-grade-color': notaColor }}>
-                <div>
-                  <div className="np-nota-big">{notaNum.toFixed(1)}</div>
-                  <div className="np-nota-over">/ 10</div>
-                </div>
-                <div className="np-nota-msg">{notaMsg}</div>
-              </div>
-
-              <div className="np-stats-row">
-                <div><div className="np-stat-n">{hits}</div><div className="np-stat-l">Aciertos</div></div>
-                <div><div className="np-stat-n">{misses}</div><div className="np-stat-l">Fallos</div></div>
-                <div><div className="np-stat-n np-stat-points">{score}</div><div className="np-stat-l">Puntos</div></div>
-              </div>
-              <p className="np-nota-hint">
-                La nota es sobre 10. Los puntos son complementarios — dos alumnos pueden tener 10 y distinto ranking.
-              </p>
-
-              <div className="np-actions-row">
-                <Button onClick={() => setPhase('menu')} className="np-menu-btn">
-                  <RotateCcw className="w-4 h-4 mr-2" /> Menú
-                </Button>
-                <Button onClick={startGame} className="np-play-btn">
-                  <Play className="w-4 h-4 mr-2" /> Revancha
-                </Button>
-              </div>
-            </div>
-          </div>
-        );
-      })()}
-
-      {/* Modal guía categorías (global, sobre cualquier fase) */}
-      <AnimatePresence>
-        {showHelp && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="np-help"
-            onClick={() => setShowHelp(false)}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.18 }}
-              className="np-help-card"
-              onClick={(e) => e.stopPropagation()}>
-              <div className="np-help-head">
-                <span>Guía de palabras</span>
-                <button onClick={() => setShowHelp(false)} className="np-help-close">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="np-help-body">
-                {categories.map(cat => (
-                  <div key={cat} className="np-help-cat">
-                    <div className={`np-help-title ${cat === targetCat ? 'np-help-title-active' : ''}`}>
-                      {formatName(cat)} {cat === targetCat && '🎯'}
-                    </div>
-                    <div className="np-help-words">
-                      {(gameData?.[cat] || []).map((w, i) => (
-                        <span key={i} className="np-help-chip">{w}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
 
       {/* Botón de disparo móvil (solo durante la partida) */}
-      {phase === 'playing' && (
-        <div className="np-mobile-fire">
-          <button
-            onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
-            onTouchEnd={() => { keysRef.current.fire = false; }}
-            onMouseDown={() => { keysRef.current.fire = true; }}
-            onMouseUp={() => { keysRef.current.fire = false; }}
-            className="np-fire-btn">
-            <Zap className="w-6 h-6" /> DISPARAR
-          </button>
-        </div>
-      )}
-    </div>
+      <div className="np-mobile-fire">
+        <GameButton
+          variant="danger"
+          size="lg"
+          icon={Zap}
+          onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
+          onTouchEnd={() => { keysRef.current.fire = false; }}
+          onMouseDown={() => { keysRef.current.fire = true; }}
+          onMouseUp={() => { keysRef.current.fire = false; }}
+          className="np-fire-btn"
+        >
+          Disparar
+        </GameButton>
+      </div>
+      {modals}
+    </GameShell>
   );
 }
 
-// Vista estática de nave (para selector del menú). Sin posicionamiento absoluto.
-function ShipPreview({ design }) {
-  const gradId = `preview-grad-${design.id}`;
+// Vista estática de nave (selector, resumen). Sin filtros: halo con degradado.
+function ShipPreview({ design, size = 64 }) {
+  const gradId = `preview-grad-${design.id}-${size}`;
   return (
-    <svg viewBox="0 0 70 36" width="64" height="32"
-         style={{ filter: `drop-shadow(0 0 6px ${design.color}88)` }}>
-      <defs>
-        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor={design.color} />
-          <stop offset="1" stopColor={design.accent} />
-        </linearGradient>
-      </defs>
-      {design.render(gradId, design.color, design.accent)}
-    </svg>
+    <span className="np-shippreview" style={{ '--np-ship': design.color, width: size, height: size / 2 }}>
+      <span className="np-shippreview__glow" aria-hidden="true" />
+      <svg viewBox="0 0 70 36" width={size} height={size / 2}>
+        <defs>
+          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor={design.color} />
+            <stop offset="1" stopColor={design.accent} />
+          </linearGradient>
+        </defs>
+        {design.render(gradId, design.color, design.accent)}
+      </svg>
+    </span>
   );
 }
 
+// Nave en el escenario. Se coloca con transform (no left/top) para no forzar
+// maquetación en cada frame; el brillo del motor es un degradado, no un filtro.
 export function Ship({ x, y, rapid, flip = false, color, shipId = 0, size = SHIP_W, height = SHIP_H }) {
   const design = SHIPS[shipId] || SHIPS[0];
   const mainColor = color || design.color;
@@ -785,7 +842,8 @@ export function Ship({ x, y, rapid, flip = false, color, shipId = 0, size = SHIP
   const gradId = `grad-${design.id}-${(mainColor || '').slice(1)}`;
   return (
     <div className={`np-ship ${rapid ? 'np-ship-rapid' : ''}`}
-         style={{ left: x, top: y, width: size, height, transform: flip ? 'scaleY(-1)' : 'none' }}>
+         style={{ width: size, height, transform: `translate(${x}px, ${y}px)${flip ? ' scaleY(-1)' : ''}`, '--np-ship': mainColor }}>
+      <span className="np-ship__glow" aria-hidden="true" />
       <svg viewBox="0 0 70 36" width={size} height={height}>
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">

@@ -1,28 +1,32 @@
 import React from 'react';
 
 /**
- * Fondo animado con 5 orbes de colores que flotan por la pantalla.
- * Se sitúa detrás de todo el contenido (z-index: 0, pointer-events: none).
- * Respeta el tema claro/oscuro via la opacidad heredada del tema.
+ * Plató de Quiz Battle: focos de colores que bajan desde el techo, cielo
+ * estrellado, brillo del suelo y chispas. Va DENTRO del escenario (GameShell),
+ * detrás de las fases (z-index 0, pointer-events none).
+ * Todo es estático salvo con nivel de efectos alto (html[data-fx="high"]):
+ * entonces los focos se balancean y las chispas titilan (solo transform/opacity).
  */
 export default function QBBackground() {
   return (
-    <div className="qb-bg-orbs" aria-hidden="true">
-      <span className="qb-orb qb-orb-1" />
-      <span className="qb-orb qb-orb-2" />
-      <span className="qb-orb qb-orb-3" />
-      <span className="qb-orb qb-orb-4" />
-      <span className="qb-orb qb-orb-5" />
-      {/* Rejilla sutil + grano de película: textura premium sin tapar contenido */}
-      <span className="qb-bg-grid" />
-      <span className="qb-bg-grain" />
-      <span className="qb-sparkles">
-        {Array.from({ length: 14 }).map((_, i) => (
-          <span key={i} className={`qb-sparkle qb-sparkle-${i % 5}`} style={{
-            left: `${(i * 73) % 100}%`,
-            top: `${(i * 47) % 100}%`,
-            animationDelay: `${(i * 0.7) % 6}s`,
-          }} />
+    <div className="qb-bg" aria-hidden="true">
+      <span className="qb-bg__stars" />
+      <span className="qb-bg__beam qb-bg__beam--a" />
+      <span className="qb-bg__beam qb-bg__beam--b" />
+      <span className="qb-bg__beam qb-bg__beam--c" />
+      <span className="qb-bg__beam qb-bg__beam--d" />
+      <span className="qb-bg__floor" />
+      <span className="qb-bg__sparkles">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <span
+            key={i}
+            className={`qb-sparkle qb-sparkle--${i % 4}`}
+            style={{
+              left: `${(i * 73 + 7) % 100}%`,
+              top: `${(i * 41 + 11) % 92}%`,
+              animationDelay: `${(i * 0.7) % 5}s`,
+            }}
+          />
         ))}
       </span>
     </div>

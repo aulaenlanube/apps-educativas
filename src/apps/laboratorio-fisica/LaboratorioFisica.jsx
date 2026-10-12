@@ -7,10 +7,15 @@ import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  ArrowLeft, BookOpen, Compass, Target, GraduationCap, Lightbulb,
-  CheckCircle2, Circle, X, FlaskConical, SlidersHorizontal, ChevronRight, LineChart, Info,
+  ArrowLeft, Compass, Target, GraduationCap, Lightbulb, Check, X, FlaskConical,
+  SlidersHorizontal, ChevronDown, LineChart, Info, Star, LayoutGrid, RefreshCw, Brain, Eye,
+  PanelRightClose, Play, Pause, RotateCcw, Trophy, Settings2, ChevronRight, Sparkles,
 } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ModeSelect, ModeChip, Panel, GameButton, ProgressBar,
+  ResultsScreen, FeedbackItem,
+} from '../_shared/kit';
 import SimInfoModal from './components/SimInfoModal';
 import SIM_INFO from './simInfo';
 import { temaDeSim, pickAmbience, NEUTRAL_AMBIENCE } from './engine/ambiences';
@@ -27,43 +32,50 @@ import { SIMS, catalogoPara, defaultsDe, simPorId } from './registry';
 import { generarExamen, examPool, cursoLabel } from './engine/exam';
 import './LaboratorioFisica.css';
 
-const notaColor = (nota) => (nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444');
-const notaMensaje = (nota) => (nota >= 9 ? '¡Excelente!' : nota >= 7 ? '¡Muy bien!' : nota >= 5 ? 'Aprobado' : 'Necesitas repasar');
 const EXAM_MAX_SCORE = 2200; // 10 preguntas × máximo de 220 puntos
 
-// Entrada escalonada + hover de las tarjetas de modo (solo visual).
-const MODE_ANIM = (i) => ({
-  initial: { opacity: 0, y: 22, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { delay: 0.1 + i * 0.08, type: 'spring', stiffness: 260, damping: 22 },
-  whileHover: { y: -6, scale: 1.03 },
-  whileTap: { scale: 0.97 },
-});
+// Colores de la app (icono: cristal azul + violeta). Se aplican al escenario
+// del kit y a las capas a pantalla completa que heredan sus variables.
+const ACCENT = '#0ea5e9';
+const ACCENT_2 = '#8b5cf6';
+const SCOPE_STYLE = { '--gk-accent': ACCENT, '--gk-accent-2': ACCENT_2 };
+
+// Tinte de cada grupo del catálogo (solo presentación).
+const GROUP_TINT = {
+  '1º ESO': '#10b981', '2º ESO': '#14b8a6', '3º ESO': '#0ea5e9', '4º ESO': '#6366f1',
+  '1º Bach': '#f59e0b', '2º Bach': '#f43f5e', ampliacion: '#d946ef',
+};
 
 function RetosList({ sim, done, pistas, onTogglePista }) {
   return (
-    <div className="fislab-retos">
-      <h4><Target size={15} /> Retos ({done.length}/{sim.retos.length})</h4>
-      {sim.retos.map((reto) => {
+    <section className="fislab-section fislab-retos">
+      <h5 className="fislab-section__title">
+        <Target size={13} /> Retos
+        <span className="fislab-section__count">{done.length}/{sim.retos.length}</span>
+      </h5>
+      <ProgressBar value={done.length} max={sim.retos.length} tone="good" />
+      {sim.retos.map((reto, i) => {
         const isDone = done.includes(reto.id);
         const pistaKey = `${sim.id}:${reto.id}`;
         return (
-          <div key={reto.id} className={`fislab-reto ${isDone ? 'done' : ''}`}>
-            <div className="fislab-reto-head">
-              {isDone ? <CheckCircle2 size={16} color="#4ade80" /> : <Circle size={16} color="#64748b" />}
+          <div key={reto.id} className={`fislab-reto ${isDone ? 'is-done' : ''}`}>
+            <span className="fislab-reto__medal">{isDone ? <Check size={14} strokeWidth={3} /> : i + 1}</span>
+            <div className="fislab-reto__body">
               <strong>{reto.titulo}</strong>
+              <p>{reto.descripcion}</p>
+              {!isDone && !pistas[pistaKey] && (
+                <button type="button" className="fislab-reto__hintbtn" onClick={() => onTogglePista(pistaKey)}>
+                  <Lightbulb size={13} /> Ver pista <small>(pierdes el bonus de +25)</small>
+                </button>
+              )}
+              {pistas[pistaKey] && !isDone && (
+                <p className="fislab-reto__hint"><Lightbulb size={14} /> {reto.pista}</p>
+              )}
             </div>
-            <p>{reto.descripcion}</p>
-            {!isDone && !pistas[pistaKey] && (
-              <button type="button" className="fislab-reto-pista-btn" onClick={() => onTogglePista(pistaKey)}>
-                <Lightbulb size={13} /> Pista (pierdes el bonus de +25)
-              </button>
-            )}
-            {pistas[pistaKey] && !isDone && <p className="fislab-reto-pista">💡 {reto.pista}</p>}
           </div>
         );
       })}
-    </div>
+    </section>
   );
 }
 
@@ -366,98 +378,144 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
   // las pantallas de menú (sin escenario propio) muestran el entorno 3D de fondo
   const enPantallaMenu = screen === 'select' || screen === 'catalog' || screen === 'summary';
 
+  // ---- derivados SOLO de presentación ----
+  // Catálogo agrupado por curso (respeta el orden de SIMS) para pintar secciones.
+  const grupos = useMemo(() => {
+    const out = [];
+    const byKey = new Map();
+    catalogo.forEach((entry) => {
+      const key = entry.comoAmpliacion ? 'ampliacion' : cursoLabel(entry.sim.curso);
+      let g = byKey.get(key);
+      if (!g) {
+        g = { key, label: entry.comoAmpliacion ? 'Ampliación' : key, items: [], nueva: false };
+        byKey.set(key, g);
+        out.push(g);
+      }
+      g.items.push(entry);
+      if (entry.esNueva && !entry.comoAmpliacion) g.nueva = true;
+    });
+    return out;
+  }, [catalogo]);
+  const totalRetos = catalogo.reduce((acc, c) => acc + (c.sim.retos?.length || 0), 0);
+  const retosHechos = Object.values(retosDone).reduce((acc, l) => acc + l.length, 0);
+  const modeTone = mode === 'retos' ? 'medium' : mode === 'examen' ? 'exam' : 'easy';
+  const modeLabel = mode === 'retos' ? 'Retos' : mode === 'examen' ? 'Examen' : 'Explora';
+  const simEstado = playing ? 'run' : simDone ? 'done' : 'pause';
+  const simEstadoLabel = playing ? 'Simulando' : simDone ? 'Terminada' : 'En pausa';
+  const shellProps = { accent: ACCENT, accent2: ACCENT_2, theme: 'dark', className: 'fislab-shell' };
+
   return (
     <div className="fislab-root">
       {enPantallaMenu && <Scene3DBackground />}
 
       {/* ============ SELECCIÓN DE MODO ============ */}
       {screen === 'select' && (
-        <motion.div className="fislab-select" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="fislab-hero">
-            <span className="fislab-hero-icon">
-              <span className="fislab-hero-icon-halo" aria-hidden="true" />
-              <span className="fislab-hero-icon-orbit" aria-hidden="true" />
-              🧲
-            </span>
-            <h1>Laboratorio de Física 3D</h1>
-            <p className="fislab-hero-sub">
-              {catalogo.length} simulaciones de fuerzas y fluidos para <strong>{cursoActual}</strong>
-            </p>
-            <InstructionsButton className="fislab-help-btn" onClick={() => setShowHelp(true)} />
-          </div>
-
-          <div className="fislab-modes">
-            <motion.button className="fislab-mode explora fx-shine" {...MODE_ANIM(0)} onClick={() => startMode('explora')}>
-              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><Compass size={30} /></span>
-              <span className="fislab-mode-name">🟢 Explora</span>
-              <span className="fislab-mode-desc">Laboratorio libre · toca todos los parámetros · vectores, gráficas y fórmulas a la vista</span>
-            </motion.button>
-            <motion.button className="fislab-mode retos fx-shine" {...MODE_ANIM(1)} onClick={() => startMode('retos')}>
-              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><Target size={30} /></span>
-              <span className="fislab-mode-name">🟡 Retos</span>
-              <span className="fislab-mode-desc">Misiones guiadas en cada simulación · pistas opcionales · suma puntos</span>
-            </motion.button>
-            <motion.button className="fislab-mode examen fx-shine" {...MODE_ANIM(2)} onClick={() => startMode('examen')}>
-              <span className="fislab-mode-icon"><span className="fislab-mode-icon-halo" aria-hidden="true" /><GraduationCap size={30} /></span>
-              <span className="fislab-mode-name">🔴 Examen</span>
-              <span className="fislab-mode-desc">10 preguntas Predice → Observa → Explica · sin ayudas · nota /10</span>
-            </motion.button>
-          </div>
-
-          <button className="fislab-study-btn" onClick={() => setShowFormulario(true)}>
-            <BookOpen size={16} /> Formulario de {cursoActual}
-          </button>
-
-          <GraphicsQualitySelector className="gfxsel-on-dark fislab-gfx-row" />
-        </motion.div>
+        <GameShell {...shellProps}>
+          <ModeSelect
+            description={`${catalogo.length} simulaciones 3D de fuerzas y fluidos para ${cursoActual}: experimenta, supera retos y examínate.`}
+            modes={[
+              {
+                id: 'explora', tone: 'easy', icon: Compass, title: 'Explora', cta: 'Entrar',
+                desc: 'Laboratorio libre: mueve los parámetros y mira qué pasa.',
+                features: ['Vectores, trayectorias y gráficas', `${catalogo.length} simulaciones`],
+              },
+              {
+                id: 'retos', tone: 'medium', icon: Target, title: 'Retos',
+                desc: 'Misiones guiadas dentro de cada simulación.',
+                features: ['Pistas opcionales', `${totalRetos} retos que suman puntos`],
+              },
+              {
+                id: 'examen', tone: 'exam', title: 'Examen',
+                desc: '10 preguntas: Predice → Observa → Explica, sin ayudas.',
+                features: ['Nota sobre 10', 'Puntos por rapidez, precisión y racha'],
+              },
+            ]}
+            onSelect={startMode}
+            onHelp={() => setShowHelp(true)}
+            onStudy={() => setShowFormulario(true)}
+            extra={<GraphicsQualitySelector className="gfxsel-on-dark fislab-gfx" />}
+          />
+        </GameShell>
       )}
 
       {/* ============ CATÁLOGO ============ */}
       {screen === 'catalog' && (
-        <motion.div className="fislab-catalog" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="fislab-topbar">
-            <button type="button" className="fislab-back" onClick={volverASelect}><ArrowLeft size={17} /> Modos</button>
-            <h2>{mode === 'retos' ? '🟡 Retos' : '🟢 Explora'} · {cursoActual}</h2>
-            {mode === 'retos' && <span className="fislab-points-badge">⭐ {retosPoints} pts</span>}
+        <GameShell {...shellProps}>
+          <GameHeader
+            mode={modeTone}
+            modeLabel={modeLabel}
+            onHelp={() => setShowHelp(true)}
+            onStudy={() => setShowFormulario(true)}
+            right={(
+              <Hud>
+                {mode === 'retos' && <HudStat icon={Star} tone="score" value={retosPoints} label="puntos" />}
+                {mode === 'retos' && <HudStat icon={Target} tone="good" value={`${retosHechos}/${totalRetos}`} label="retos" />}
+                {mode !== 'retos' && <HudStat icon={FlaskConical} tone="progress" value={catalogo.length} label="simulaciones" />}
+              </Hud>
+            )}
+          />
+          <div className="fislab-toolbar">
+            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={volverASelect}>Cambiar modo</GameButton>
+            <span className="fislab-toolbar__hint">
+              {mode === 'retos'
+                ? 'Elige una simulación y supera sus misiones.'
+                : 'Elige una simulación para entrar al laboratorio.'}
+            </span>
           </div>
-          <div className="fislab-grid">
-            {catalogo.map(({ sim, esNueva, comoAmpliacion }, idx) => {
-              const done = retosDone[sim.id]?.length || 0;
-              return (
-                <motion.button
-                  key={sim.id}
-                  type="button"
-                  className="fislab-card"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: Math.min(idx, 12) * 0.035, type: 'spring', stiffness: 280, damping: 26 }}
-                  whileHover={{ scale: 1.025, y: -4 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => abrirSim(sim)}
-                >
-                  <span className="fislab-card-icon"><span className="fislab-card-icon-glow" aria-hidden="true" />{sim.icono}</span>
-                  <span className="fislab-card-name">{sim.nombre}</span>
-                  <span className="fislab-card-desc">{sim.descripcion}</span>
-                  <span className="fislab-card-badges">
-                    {esNueva && !comoAmpliacion && <span className="fislab-badge nueva">Nuevo en {cursoActual}</span>}
-                    {comoAmpliacion && <span className="fislab-badge ampliacion">Ampliación</span>}
-                    {!esNueva && !comoAmpliacion && <span className="fislab-badge repaso">{cursoLabel(sim.curso)}</span>}
-                    {mode === 'retos' && sim.retos?.length > 0 && (
-                      <span className={`fislab-badge retos ${done === sim.retos.length ? 'completos' : ''}`}>
-                        🎯 {done}/{sim.retos.length}
+
+          {grupos.map((g, gi) => (
+            <section key={g.key} className="fislab-group" style={{ '--tint': GROUP_TINT[g.key] || ACCENT }}>
+              <header className="fislab-group__head">
+                <span className="fislab-group__label">{g.label}</span>
+                {g.nueva && <span className="fislab-group__new"><Sparkles size={12} /> Tu curso</span>}
+                <span className="fislab-group__line" aria-hidden="true" />
+                <span className="fislab-group__count">{g.items.length}</span>
+              </header>
+              <div className="fislab-grid">
+                {g.items.map(({ sim, esNueva, comoAmpliacion }, idx) => {
+                  const done = retosDone[sim.id]?.length || 0;
+                  const nRetos = sim.retos?.length || 0;
+                  return (
+                    <motion.button
+                      key={sim.id}
+                      type="button"
+                      className="fislab-sim"
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: Math.min(gi * 2 + idx, 14) * 0.03, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      onClick={() => abrirSim(sim)}
+                    >
+                      <span className="fislab-sim__tile" aria-hidden="true">
+                        <span className="fislab-sim__emoji">{sim.icono}</span>
                       </span>
-                    )}
-                  </span>
-                </motion.button>
-              );
-            })}
-          </div>
-        </motion.div>
+                      <span className="fislab-sim__body">
+                        <span className="fislab-sim__name">{sim.nombre}</span>
+                        <span className="fislab-sim__desc">{sim.descripcion}</span>
+                        <span className="fislab-sim__meta">
+                          {esNueva && !comoAmpliacion && <span className="fislab-tag fislab-tag--new">Nuevo en {cursoActual}</span>}
+                          {comoAmpliacion && <span className="fislab-tag fislab-tag--amp">Ampliación</span>}
+                          {!esNueva && !comoAmpliacion && <span className="fislab-tag">{cursoLabel(sim.curso)}</span>}
+                        </span>
+                        {mode === 'retos' && nRetos > 0 && (
+                          <span className={`fislab-sim__retos ${done === nRetos ? 'is-complete' : ''}`}>
+                            <Target size={12} /> {done}/{nRetos}
+                            <ProgressBar value={done} max={nRetos} tone="good" />
+                          </span>
+                        )}
+                      </span>
+                      <ChevronRight className="fislab-sim__go" size={18} aria-hidden="true" />
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </GameShell>
       )}
 
       {/* ============ SIMULACIÓN (escenario 3D a pantalla completa) ============ */}
       {screen === 'sim' && activeSim && (
-        <div className="fislab-stage">
+        <div className="fislab-stage gk-shell gk-theme-dark" style={SCOPE_STYLE}>
           {/* 3D a sangre completa, de fondo */}
           <div className="fislab-stage-canvas">
             <SimViewport
@@ -484,62 +542,94 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
             </SimViewport>
           </div>
 
-          {/* Barra superior flotante (deja orbitar por los huecos) */}
-          <div className="fislab-stage-top">
-            <button type="button" className="fislab-back" onClick={volverACatalogo}>
-              <ArrowLeft size={17} /> Catálogo
-            </button>
-            <button type="button" className="fislab-info-btn" onClick={() => setShowInfo(true)} title="¿Qué es esta simulación?">
-              <Info size={16} /> Info
-            </button>
-            <div className="fislab-stage-title">
-              <span className="fislab-stage-title-icon">{activeSim.icono}</span>
-              <h2>{activeSim.nombre}</h2>
+          {/* Barra superior flotante (pointer-events solo en los botones: se puede orbitar por los huecos) */}
+          <div className={`fislab-hudtop ${panelOpen ? 'with-panel' : ''}`}>
+            <div className="fislab-hudtop__left">
+              <GameButton variant="soft" size="sm" icon={ArrowLeft} onClick={volverACatalogo}>
+                <span className="fislab-hide-sm">Catálogo</span>
+              </GameButton>
+              <div className="fislab-simtitle">
+                <span className="fislab-simtitle__tile" aria-hidden="true">{activeSim.icono}</span>
+                <span className="fislab-simtitle__text">
+                  <strong>{activeSim.nombre}</strong>
+                  <span className="fislab-simtitle__meta">
+                    <ModeChip mode={modeTone} label={modeLabel} />
+                    <span className={`fislab-status is-${simEstado}`}><i aria-hidden="true" /> {simEstadoLabel}</span>
+                  </span>
+                </span>
+              </div>
+              <GameButton variant="primary" size="sm" icon={Info} onClick={() => setShowInfo(true)} title="¿Qué es esta simulación?">
+                <span className="fislab-hide-sm">Info</span>
+              </GameButton>
             </div>
-            <div className="fislab-stage-top-actions">
-              {mode === 'retos' && <span className="fislab-points-badge">⭐ {retosPoints} pts</span>}
+            <div className="fislab-hudtop__right">
+              {mode === 'retos' && (
+                <Hud className="fislab-hud-retos">
+                  <HudStat icon={Star} tone="score" value={retosPoints} label="puntos" />
+                </Hud>
+              )}
               {!panelOpen && (
-                <button type="button" className="fislab-stage-open" onClick={() => setPanelOpen(true)}>
-                  <SlidersHorizontal size={16} /> Controles
-                </button>
+                <GameButton variant="primary" size="sm" icon={SlidersHorizontal} onClick={() => setPanelOpen(true)}>
+                  <span className="fislab-hide-sm">Controles</span>
+                </GameButton>
               )}
             </div>
           </div>
 
-          {/* Gráfica flotante (abajo-izquierda, plegable) */}
-          {activeSim.graficas && (
-            <div className={`fislab-stage-graph ${graphOpen ? '' : 'collapsed'}`}>
-              <button type="button" className="fislab-stage-graph-toggle" onClick={() => setGraphOpen((o) => !o)}>
-                <LineChart size={14} /> Gráfica
-                <ChevronRight
-                  size={15}
-                  style={{ marginLeft: 'auto', transform: graphOpen ? 'rotate(90deg)' : 'none', transition: 'transform .15s' }}
-                />
-              </button>
-              {graphOpen && <GraphPanel seriesRef={seriesRef} lines={activeSim.graficas} height={130} />}
-            </div>
-          )}
+          {/* Fila inferior: gráfica (izq.), fórmula viva (centro) y mando rápido (dcha.).
+              Flex en lugar de posiciones sueltas: nunca se solapan. */}
+          <div className={`fislab-hudbottom ${panelOpen ? 'with-panel' : ''}`}>
+            {activeSim.graficas && (
+              <div className={`fislab-graphcard ${graphOpen ? '' : 'is-collapsed'}`}>
+                <button type="button" className="fislab-graphcard__toggle" onClick={() => setGraphOpen((o) => !o)} aria-expanded={graphOpen}>
+                  <span className="fislab-graphcard__ico"><LineChart size={14} /></span>
+                  Gráfica en vivo
+                  <ChevronDown size={16} className="fislab-graphcard__chev" />
+                </button>
+                {graphOpen && <GraphPanel seriesRef={seriesRef} lines={activeSim.graficas} height={130} />}
+              </div>
+            )}
 
-          {/* Fórmula viva flotante (abajo, centrada sobre el 3D — sin scroll) */}
-          {formulaViva && <div className="fislab-stage-formula">{formulaViva}</div>}
+            {formulaViva && (
+              <div className="fislab-formula">
+                <span className="fislab-formula__tag" aria-hidden="true">ƒ</span>
+                <span className="fislab-formula__text">{formulaViva}</span>
+              </div>
+            )}
+
+            {/* Mando rápido cuando el panel está plegado (mismos manejadores del panel) */}
+            {!panelOpen && (
+              <div className="fislab-dock">
+                <GameButton variant={playing ? 'warning' : 'success'} icon={playing ? Pause : Play} onClick={handlePlayPause}>
+                  <span className="fislab-hide-sm">{playing ? 'Pausa' : 'Reproducir'}</span>
+                </GameButton>
+                <button type="button" className="gk-iconbtn" onClick={resetSim} title="Reiniciar" aria-label="Reiniciar">
+                  <RotateCcw size={17} />
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Panel de control flotante (derecha, plegable) */}
           <AnimatePresence>
             {panelOpen && (
               <motion.aside
-                className="fislab-stage-panel"
+                className="fislab-drawer"
                 initial={{ x: 30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 30, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 320, damping: 32 }}
               >
-                <div className="fislab-stage-panel-head">
-                  <span><SlidersHorizontal size={15} /> Controles</span>
-                  <button type="button" onClick={() => setPanelOpen(false)} title="Ocultar panel">
-                    <ChevronRight size={18} />
+                <header className="fislab-drawer__head">
+                  <span className="fislab-drawer__title">
+                    <span className="fislab-drawer__ico"><SlidersHorizontal size={15} /></span>
+                    Panel de control
+                  </span>
+                  <button type="button" className="gk-iconbtn" onClick={() => setPanelOpen(false)} title="Ocultar panel" aria-label="Ocultar panel">
+                    <PanelRightClose size={18} />
                   </button>
-                </div>
-                <div className="fislab-stage-panel-body">
+                </header>
+                <div className="fislab-drawer__body">
                   <ParamPanel
                     simDef={activeSim}
                     params={params}
@@ -574,50 +664,47 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
 
       {/* ============ AVISO PREVIO AL EXAMEN ============ */}
       {screen === 'exam-intro' && (
-        <motion.div className="fislab-exam-intro" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="fislab-topbar">
-            <button type="button" className="fislab-back" onClick={volverASelect}><ArrowLeft size={17} /> Modos</button>
-            <h2><GraduationCap size={20} /> Examen · {cursoActual}</h2>
-          </div>
-          <div className="fislab-exam-intro-card">
-            <p className="fislab-exam-intro-lead">
-              10 preguntas en tres pasos (<strong>Predice → Observa → Explica</strong>).
+        <GameShell {...shellProps}>
+          <GameHeader mode="exam" modeLabel="Examen" onHelp={() => setShowHelp(true)} onStudy={() => setShowFormulario(true)} />
+          <Panel variant="surface" className="fislab-intro">
+            <ol className="fislab-poe fislab-poe--intro" aria-label="Pasos de cada pregunta">
+              <li><span className="fislab-poe__ico"><Lightbulb size={18} /></span><strong>Predice</strong><small>Responde antes de ver nada</small></li>
+              <li><span className="fislab-poe__ico"><Eye size={18} /></span><strong>Observa</strong><small>La simulación real lo comprueba</small></li>
+              <li><span className="fislab-poe__ico"><Brain size={18} /></span><strong>Explica</strong><small>Elige el porqué correcto</small></li>
+            </ol>
+            <p className="fislab-intro__lead">
+              <strong>10 preguntas</strong> en tres pasos. La predicción vale el 70% de cada pregunta y la explicación el 30%.
               El examen de <strong>{cursoActual}</strong> solo pregunta sobre estos temas:
             </p>
-            <div className="fislab-exam-intro-list">
+            <div className="fislab-intro__temas">
               {examIncluidos.map((s) => (
-                <span key={s.id} className="fislab-exam-intro-tema">
-                  <span className="fislab-exam-intro-icono">{s.icono}</span>
-                  <span className="fislab-exam-intro-nombre">{s.nombre}</span>
+                <span key={s.id} className="fislab-intro__tema">
+                  <span className="fislab-intro__emoji" aria-hidden="true">{s.icono}</span>
+                  <span className="fislab-intro__nombre">{s.nombre}</span>
                   <small>{cursoLabel(s.curso)}</small>
                 </span>
               ))}
             </div>
             {hayExcluidasDelExamen && (
-              <p className="fislab-exam-intro-nota">
-                ℹ️ En los modos <strong>Explora</strong> y <strong>Retos</strong> tienes más simulaciones
-                (de otros cursos o de ampliación) para practicar, pero <strong>no entran en el examen de {cursoActual}</strong>.
+              <p className="fislab-intro__nota">
+                <Info size={16} />
+                <span>
+                  En <strong>Explora</strong> y <strong>Retos</strong> tienes más simulaciones (de otros cursos o de ampliación)
+                  para practicar, pero <strong>no entran en el examen de {cursoActual}</strong>.
+                </span>
               </p>
             )}
-            <div className="fislab-exam-intro-actions">
-              <button type="button" className="fislab-btn-primary" onClick={comenzarExamen}>
-                <GraduationCap size={16} /> Comenzar examen
-              </button>
-              <button type="button" className="fislab-btn-ghost" onClick={volverASelect}>Volver</button>
+            <div className="fislab-intro__actions">
+              <GameButton variant="primary" size="lg" icon={GraduationCap} onClick={comenzarExamen}>Comenzar examen</GameButton>
+              <GameButton variant="soft" size="lg" icon={LayoutGrid} onClick={volverASelect}>Volver</GameButton>
             </div>
-          </div>
-        </motion.div>
+          </Panel>
+        </GameShell>
       )}
 
       {/* ============ EXAMEN ============ */}
       {screen === 'exam' && examQuestions && (
-        <div className="fislab-exam-wrap">
-          <div className="fislab-topbar">
-            <h2><GraduationCap size={20} /> Examen · {cursoActual}</h2>
-            <button type="button" className="fislab-abandon" onClick={() => setShowAbandon(true)}>
-              <X size={15} /> Entregar y salir
-            </button>
-          </div>
+        <GameShell {...shellProps} className="fislab-shell fislab-shell--exam">
           <ExamScreen
             questions={examQuestions}
             tier={tier}
@@ -625,90 +712,91 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
             onAutoDowngrade={handleAutoDowngrade}
             onProgress={(r) => { examResultsRef.current = r; }}
             onFinish={finishExam}
+            onAbandon={() => setShowAbandon(true)}
           />
-        </div>
+        </GameShell>
       )}
 
       {/* ============ RESUMEN ============ */}
       {screen === 'summary' && summary && (
-        <motion.div className="fislab-summary" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-          <h2>Resultado del examen</h2>
-          <div className="fislab-nota-hero">
-            <span className="fislab-nota-rays" aria-hidden="true" />
-            <motion.div
-              className="fislab-nota"
-              style={{
-                color: notaColor(summary.nota),
-                borderColor: notaColor(summary.nota),
-                '--fislab-grade': summary.nota,
-                '--fislab-grade-color': notaColor(summary.nota),
-              }}
-              initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 14 }}
-            >
-              <span className="fislab-nota-value">
-                {summary.nota.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
-              </span>
-              <span className="fislab-nota-max">/10</span>
-            </motion.div>
-          </div>
-          <p className="fislab-nota-msg" style={{ color: notaColor(summary.nota) }}>{notaMensaje(summary.nota)}</p>
-          <div className="fislab-summary-stats">
-            <div><strong>{summary.predCorrect}/{summary.total}</strong><span>predicciones</span></div>
-            <div><strong>{summary.explCorrect}/{summary.total}</strong><span>explicaciones</span></div>
-            <div className="fislab-summary-points"><strong>⭐ {summary.points}</strong><span>puntos</span></div>
-          </div>
-          <div className="fislab-summary-list">
+        <GameShell {...shellProps}>
+          <ResultsScreen
+            subtitle={`Laboratorio de Física 3D · ${cursoActual}`}
+            nota={summary.nota}
+            points={summary.points}
+            stats={[
+              { icon: Lightbulb, tone: 'good', label: 'Predicciones', value: `${summary.predCorrect}/${summary.total}` },
+              { icon: Brain, tone: 'progress', label: 'Explicaciones', value: `${summary.explCorrect}/${summary.total}` },
+            ]}
+            actions={[
+              { label: 'Repetir examen', onClick: () => startMode('examen'), icon: RefreshCw },
+              { label: 'Volver al menú', onClick: volverASelect, icon: LayoutGrid, variant: 'soft' },
+            ]}
+          >
             {summary.results.filter(Boolean).map((r) => (
-              <div key={r.numero} className="fislab-summary-row">
-                <span className="fislab-summary-sim">{r.simIcono}</span>
-                <span className="fislab-summary-enun">{r.enunciado}</span>
-                <span className={`fislab-summary-mark ${r.predOk ? 'ok' : 'ko'}`}>{r.predOk ? '✓' : '✗'}</span>
-                <span className={`fislab-summary-mark expl ${r.explOk ? 'ok' : 'ko'}`}>🧠{r.explOk ? '✓' : '✗'}</span>
-              </div>
+              <FeedbackItem key={r.numero} index={r.numero} ok={r.predOk} title={`${r.simIcono} ${r.simNombre}`}>
+                <span className="fislab-fb__text">{r.enunciado}</span>
+                <span className="fislab-fb__marks">
+                  <span className={`fislab-fb__mark ${r.predOk ? 'is-ok' : 'is-ko'}`}>
+                    <Lightbulb size={12} /> Predicción {r.predOk ? <Check size={12} strokeWidth={3} /> : <X size={12} strokeWidth={3} />}
+                  </span>
+                  <span className={`fislab-fb__mark ${r.explOk ? 'is-ok' : 'is-ko'}`}>
+                    <Brain size={12} /> Explicación {r.explOk ? <Check size={12} strokeWidth={3} /> : <X size={12} strokeWidth={3} />}
+                  </span>
+                </span>
+              </FeedbackItem>
             ))}
-          </div>
-          <div className="fislab-summary-actions">
-            <button type="button" className="fislab-btn-primary" onClick={() => startMode('examen')}>
-              <FlaskConical size={16} /> Repetir examen
-            </button>
-            <button type="button" className="fislab-btn-ghost" onClick={volverASelect}>Volver al menú</button>
-          </div>
-        </motion.div>
+          </ResultsScreen>
+        </GameShell>
       )}
 
       {/* ============ TOASTS ============ */}
-      <AnimatePresence>
-        {gfxToast && (
-          <motion.div className="fislab-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            ⚙️ {gfxToast}
-          </motion.div>
-        )}
-        {retoToast && (
-          <motion.div className="fislab-toast reto" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            {retoToast}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Ámbito del kit (display: contents, sin caja ni contexto de apilado) para
+          las capas fijas de la raíz: avisos, diálogo y modales heredan el tema
+          oscuro y los colores de la app. */}
+      <div className="gk-shell gk-theme-dark fislab-portal" style={SCOPE_STYLE}>
+      <div className="fislab-toasts" aria-live="polite">
+        <AnimatePresence>
+          {gfxToast && (
+            <motion.div key="gfx" className="fislab-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+              <span className="fislab-toast__ico"><Settings2 size={15} /></span> {gfxToast}
+            </motion.div>
+          )}
+          {retoToast && (
+            <motion.div key="reto" className="fislab-toast fislab-toast--reto" initial={{ opacity: 0, y: -12, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0 }}>
+              <span className="fislab-toast__ico"><Trophy size={15} /></span> {retoToast.replace(/^🏆\s*/u, '')}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* ============ MODAL ABANDONAR EXAMEN ============ */}
       <AnimatePresence>
         {showAbandon && (
-          <motion.div className="fislab-modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowAbandon(false)}>
+          <motion.div
+            className="fislab-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowAbandon(false)}
+          >
             <motion.div
-              className="fislab-modal"
-              initial={{ scale: 0.88, opacity: 0, y: 16 }}
+              className="fislab-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="fislab-abandon-title"
+              initial={{ scale: 0.9, opacity: 0, y: 16 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.88, opacity: 0, y: 16 }}
+              exit={{ scale: 0.9, opacity: 0, y: 16 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3>¿Entregar el examen ahora?</h3>
+              <span className="fislab-dialog__medal gk-tone-exam"><GraduationCap size={26} /></span>
+              <h3 id="fislab-abandon-title">¿Entregar el examen ahora?</h3>
               <p>Las preguntas sin responder contarán como 0. Se registrará la nota de lo que llevas hecho.</p>
-              <div className="fislab-modal-actions">
-                <button type="button" className="fislab-btn-danger" onClick={() => finishExam(examResultsRef.current || [])}>Entregar y salir</button>
-                <button type="button" className="fislab-btn-ghost" onClick={() => setShowAbandon(false)}>Seguir con el examen</button>
+              <div className="fislab-dialog__actions">
+                <GameButton variant="soft" onClick={() => setShowAbandon(false)}>Seguir con el examen</GameButton>
+                <GameButton variant="danger" icon={X} onClick={() => finishExam(examResultsRef.current || [])}>Entregar y salir</GameButton>
               </div>
             </motion.div>
           </motion.div>
@@ -717,26 +805,46 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
 
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Laboratorio de Física 3D">
-        <h3>🟢 Explora</h3>
-        <p>Laboratorio libre: entra en cualquier simulación, mueve los parámetros y observa qué pasa. Activa los vectores de fuerza, la trayectoria y las gráficas para entender el porqué.</p>
-        <h3>🟡 Retos</h3>
-        <p>Cada simulación esconde misiones ("consigue que la caja se pare entre los 10 y los 14 m"). Supéralas para ganar puntos; las pistas te ayudan pero restan bonus.</p>
-        <h3>🔴 Examen</h3>
-        <p>10 preguntas en tres pasos: <strong>predice</strong> el resultado, <strong>observa</strong> la simulación real comprobándolo y <strong>explica</strong> el porqué. Tu nota va de 0 a 10: la predicción vale el 70% de cada pregunta y la explicación el 30%. Acumula puntos extra por rapidez, precisión y racha.</p>
-        <p>En las respuestas numéricas puedes usar coma o punto decimal. Usa g = 9,8 m/s² salvo que el enunciado diga otra cosa.</p>
+        <h3>🎯 Objetivo</h3>
+        <p>Experimenta con simulaciones 3D de fuerzas y fluidos: cambia los parámetros, observa qué ocurre y comprende la física que hay detrás.</p>
+        <h3>🎓 Modos de juego</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy">
+            <strong>Explora</strong>
+            Laboratorio libre: entra en cualquier simulación, mueve los parámetros y activa vectores, trayectoria y gráficas para entender el porqué.
+          </div>
+          <div className="instr-mode medium">
+            <strong>Retos</strong>
+            Cada simulación esconde misiones («consigue que la caja se pare entre los 10 y los 14 m»). Supéralas para ganar puntos; las pistas ayudan pero restan bonus.
+          </div>
+          <div className="instr-mode exam">
+            <strong>Examen</strong>
+            10 preguntas: <strong>predice</strong> el resultado, <strong>observa</strong> la simulación real y <strong>explica</strong> el porqué. La predicción vale el 70% de cada pregunta y la explicación el 30%. Sumas puntos extra por rapidez, precisión y racha.
+          </div>
+        </div>
+        <h3>🕹️ Controles</h3>
+        <ul>
+          <li>Arrastra sobre el escenario para girar la cámara y usa la rueda o el pellizco para acercarte.</li>
+          <li>El <strong>panel de control</strong> (derecha) tiene reproducir/pausa, velocidad, ayudas visuales, parámetros y medidas en vivo. Puedes plegarlo para ver mejor.</li>
+          <li>El botón <strong>Info</strong> explica qué estás viendo y las leyes que usa cada simulación.</li>
+        </ul>
+        <div className="instr-tips">
+          <strong>💡 Consejo:</strong> en las respuestas numéricas puedes usar coma o punto decimal. Usa g = 9,8 m/s² salvo que el enunciado diga otra cosa.
+        </div>
       </InstructionsModal>
 
       {/* ============ FORMULARIO ============ */}
       <InstructionsModal isOpen={showFormulario} onClose={() => setShowFormulario(false)} title={`Formulario · ${cursoActual}`}>
         {catalogo.map(({ sim, comoAmpliacion }) => (
           sim.formulas?.length > 0 && (
-            <div key={sim.id} className="fislab-formulario-sim">
+            <div key={sim.id} className="fislab-formulario">
               <h3>{sim.icono} {sim.nombre}{comoAmpliacion ? ' · ampliación' : ''}</h3>
               {sim.formulas.map((f) => (
-                <p key={f.titulo} className="fislab-formulario-row">
-                  <strong>{f.titulo}:</strong> <code>{f.expr}</code>
-                  <br /><small>{f.leyenda}</small>
-                </p>
+                <div key={f.titulo} className="fislab-formulario__row">
+                  <span className="fislab-formulario__title">{f.titulo}</span>
+                  <code>{f.expr}</code>
+                  {f.leyenda && <small>{f.leyenda}</small>}
+                </div>
               ))}
             </div>
           )
@@ -752,6 +860,7 @@ const LaboratorioFisica = ({ level: levelProp, grade: gradeProp, onGameComplete 
         dontShow={infoHidden}
         onToggleDontShow={toggleInfoHidden}
       />
+      </div>
     </div>
   );
 };

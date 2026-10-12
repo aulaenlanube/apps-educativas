@@ -97,6 +97,8 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
    - **Obligatorio**: el componente `<Nombre>Duel.jsx` debe montar `<DuelChatBar channel={channel} me={me} rival={rival} />` (importado de `@/components/duel/DuelChatBar`) como hermano del juego, dentro del return raíz. Es autoposicionable (fixed, botón de frases en la esquina inferior izquierda + bocadillo del rival arriba a la derecha) — no necesita wrapper ni dimensiones. Sin él, el alumno no puede usar las frases de duelo, que son parte de la experiencia 1 vs 1 (ver sección "Frases de duelo").
 
 ### 8. Diseño
+- **Interfaz de la app con el kit de juego** `src/apps/_shared/kit` (GameShell, GameHeader, Hud, ModeSelect, ResultsScreen, ConfirmDialog…). Contrato y reglas en su [README](src/apps/_shared/kit/README.md); app de referencia: Ahorcado; galería `/__kit` (solo dev); capturas con `node tools/app-shots.mjs`. El decorado propio va en el hueco `scene` del GameShell (nunca con z-index negativo).
+- **Paneles (alumno/docente/libre) con el kit de paneles** `src/components/dashboard/kit` (DashPage, DashHero, DashDock, DashCard, StatTile, QuestCard…). Contrato en su [README](src/components/dashboard/kit/README.md); galería `/__dash-kit`; capturas sin cuenta con `node tools/dash-shots.mjs --role=student|teacher|free` (modo simulado `?mock=`, solo dev).
 - Gradientes violeta-rosa-ámbar (o color propio por app).
 - `framer-motion`, `canvas-confetti`, `lucide-react`.
 - Responsive: `@media (max-width: 720px)`.

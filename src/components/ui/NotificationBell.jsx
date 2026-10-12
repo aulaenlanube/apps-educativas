@@ -1,9 +1,47 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Bell, X, Check, CheckCheck, MessageSquare, Zap } from 'lucide-react';
+import {
+  Bell, CheckCheck, MessageSquare, Zap, Swords, Trophy, Users, CheckCircle2, BellOff, ChevronRight,
+} from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import './NotificationBell.css';
+
+// ─── Presentación: tipo de aviso → icono, color y etiqueta ─────────────────
+function notifKind(type = '') {
+  if (type === 'duel_invite') return { icon: Swords, tone: 'rose', label: 'Reto' };
+  if (type === 'duel_accepted') return { icon: Swords, tone: 'emerald', label: 'Duelo' };
+  if (type === 'duel_result') return { icon: Trophy, tone: 'amber', label: 'Resultado' };
+  if (type.startsWith('duel')) return { icon: Swords, tone: 'violet', label: 'Duelo' };
+  if (type === 'quiz_battle_team_member') return { icon: Users, tone: 'violet', label: 'Equipo' };
+  if (type.startsWith('quiz_battle')) return { icon: Zap, tone: 'amber', label: 'Batalla' };
+  if (type === 'feedback_resolved') return { icon: CheckCircle2, tone: 'emerald', label: 'Comentario' };
+  if (type.startsWith('feedback')) return { icon: MessageSquare, tone: 'sky', label: 'Comentario' };
+  return { icon: Bell, tone: 'indigo', label: 'Aviso' };
+}
+
+// Agrupa por fecha conservando el orden del servidor (más recientes primero).
+function dayBucket(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return 'Anteriores';
+  const start = (x) => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+  const diff = Math.round((start(new Date()) - start(d)) / 86400000);
+  if (diff <= 0) return 'Hoy';
+  if (diff === 1) return 'Ayer';
+  if (diff < 7) return 'Esta semana';
+  return 'Anteriores';
+}
+
+function whenLabel(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const mins = Math.round((Date.now() - d.getTime()) / 60000);
+  if (mins < 1) return 'Ahora';
+  if (mins < 60) return `Hace ${mins} min`;
+  if (mins < 60 * 12) return `Hace ${Math.round(mins / 60)} h`;
+  return d.toLocaleString('es-ES', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
 
 export default function NotificationBell({ variant = 'default' }) {
   const isGlass = variant === 'glass';
@@ -82,19 +120,32 @@ export default function NotificationBell({ variant = 'default' }) {
 
   if (!isAuthenticated) return null;
 
+  // Grupos por fecha (solo presentación).
+  const groups = [];
+  for (const n of notifications) {
+    const key = dayBucket(n.created_at);
+    const last = groups[groups.length - 1];
+    if (last && last.key === key) last.items.push(n);
+    else groups.push({ key, items: [n] });
+  }
+
   return (
     <div className="relative" ref={panelRef}>
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className={`relative flex items-center justify-center w-9 h-9 rounded-full transition-colors focus:outline-none ${
+        aria-label="Notificaciones"
+        aria-expanded={open}
+        title="Notificaciones"
+        className={`nb-trigger relative flex items-center justify-center w-9 h-9 rounded-full transition-colors focus:outline-none ${
           isGlass
             ? 'border border-white/15 bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 focus:ring-2 focus:ring-white/20'
             : 'border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 focus:ring-2 focus:ring-purple-300'
-        }`}
+        }${unreadCount > 0 ? ' has-unread' : ''}${open ? ' is-open' : ''}`}
       >
-        <Bell className={`w-4.5 h-4.5 ${isGlass ? 'text-white/85' : 'text-gray-600'}`} />
+        <Bell className={`nb-trigger__bell w-4.5 h-4.5 ${isGlass ? 'text-white/85' : 'text-gray-600 dark:text-slate-200'}`} />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+          <span key={unreadCount} className="nb-count">
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
         )}
@@ -106,96 +157,96 @@ export default function NotificationBell({ variant = 'default' }) {
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            className="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-purple-100 dark:border-slate-700 overflow-hidden z-50"
+            transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+            className="nb-panel"
+            role="dialog"
+            aria-label="Notificaciones"
           >
-            {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-100 dark:border-slate-700 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100">Notificaciones</h3>
+            {/* Cabecera */}
+            <div className="nb-head">
+              <span className="nb-head__icon" aria-hidden="true"><Bell size={18} /></span>
+              <div className="nb-head__titles">
+                <h3>Notificaciones</h3>
+                <p>{unreadCount > 0 ? `${unreadCount} sin leer` : 'Estás al día'}</p>
+              </div>
               {unreadCount > 0 && (
-                <button
-                  onClick={handleMarkAllRead}
-                  className="text-xs text-purple-600 hover:text-purple-800 font-medium flex items-center gap-1"
-                >
-                  <CheckCheck className="w-3.5 h-3.5" /> Marcar todas
+                <button type="button" onClick={handleMarkAllRead} className="nb-head__all">
+                  <CheckCheck size={14} /> Marcar todas
                 </button>
               )}
             </div>
 
-            {/* List */}
-            <div className="max-h-80 overflow-y-auto">
+            {/* Lista */}
+            <div className="nb-list">
               {loading ? (
-                <div className="flex justify-center py-8">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600" />
+                <div className="nb-skeleton" aria-label="Cargando">
+                  {[0, 1, 2].map((k) => (
+                    <div key={k} className="nb-skeleton__row">
+                      <span className="nb-skeleton__dot" />
+                      <span className="nb-skeleton__lines"><i /><i /></span>
+                    </div>
+                  ))}
                 </div>
               ) : notifications.length === 0 ? (
-                <div className="py-8 text-center">
-                  <Bell className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Sin notificaciones</p>
+                <div className="nb-empty">
+                  <span className="nb-empty__art" aria-hidden="true"><BellOff size={26} /></span>
+                  <p className="nb-empty__title">Sin notificaciones</p>
+                  <p className="nb-empty__text">Aquí verás retos, batallas y respuestas a tus comentarios.</p>
                 </div>
               ) : (
-                notifications.map(n => {
-                  const isTeamRep = n.type === 'quiz_battle_team_rep';
-                  const isTeamMember = n.type === 'quiz_battle_team_member';
-                  const isQuizInvite = n.type === 'quiz_battle_invite' || isTeamRep;
-                  const isQuizRelated = isQuizInvite || isTeamMember;
-                  const quizCode = isQuizRelated && n.data?.room_code;
+                groups.map((g) => (
+                  <section key={g.key} className="nb-group">
+                    <p className="nb-group__label">{g.key}</p>
+                    {g.items.map(n => {
+                      const isTeamRep = n.type === 'quiz_battle_team_rep';
+                      const isTeamMember = n.type === 'quiz_battle_team_member';
+                      const isQuizInvite = n.type === 'quiz_battle_invite' || isTeamRep;
+                      const isQuizRelated = isQuizInvite || isTeamMember;
+                      const quizCode = isQuizRelated && n.data?.room_code;
+                      const kind = notifKind(n.type);
+                      const KindIcon = kind.icon;
 
-                  const handleClick = () => {
-                    if (!n.read) handleMarkRead(n.id);
-                    // Solo el rep o las salas abiertas navegan a /join. Los
-                    // miembros de equipo no se conectan — solo leen el aviso.
-                    if (isQuizInvite && quizCode) {
-                      setOpen(false);
-                      navigate(`/quiz-battle/join/${quizCode}`);
-                    }
-                  };
+                      const handleClick = () => {
+                        if (!n.read) handleMarkRead(n.id);
+                        // Solo el rep o las salas abiertas navegan a /join. Los
+                        // miembros de equipo no se conectan — solo leen el aviso.
+                        if (isQuizInvite && quizCode) {
+                          setOpen(false);
+                          navigate(`/quiz-battle/join/${quizCode}`);
+                        }
+                      };
 
-                  return (
-                    <div
-                      key={n.id}
-                      onClick={handleClick}
-                      className={`px-4 py-3 border-b border-gray-50 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors ${
-                        isQuizInvite ? 'cursor-pointer' : 'cursor-default'
-                      } ${
-                        !n.read ? 'bg-purple-50/50 dark:bg-purple-900/20' : ''
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                          isQuizRelated
-                            ? (!n.read ? 'bg-amber-100 text-amber-600' : 'bg-amber-50 text-amber-400')
-                            : (!n.read ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-400')
-                        }`}>
-                          {isQuizRelated ? <Zap className="w-4 h-4" /> : <MessageSquare className="w-4 h-4" />}
+                      return (
+                        <div
+                          key={n.id}
+                          onClick={handleClick}
+                          className={`nb-item nb-tone-${kind.tone}${!n.read ? ' is-unread' : ''}${isQuizInvite && quizCode ? ' is-action' : ''}`}
+                        >
+                          <span className="nb-item__icon" aria-hidden="true"><KindIcon size={17} /></span>
+                          <div className="nb-item__body">
+                            <p className="nb-item__top">
+                              <span className="nb-item__kind">{kind.label}</span>
+                              <span className="nb-item__time">{whenLabel(n.created_at)}</span>
+                            </p>
+                            <p className="nb-item__title">{n.title}</p>
+                            {n.message && <p className="nb-item__msg">{n.message}</p>}
+                            {isQuizInvite && quizCode && (
+                              <span className="nb-chip nb-chip--join">
+                                <Zap size={12} /> Unirse: {quizCode} <ChevronRight size={12} />
+                              </span>
+                            )}
+                            {isTeamMember && (
+                              <span className="nb-chip nb-chip--team">
+                                <Users size={12} /> Equipo: {n.data?.team_name}
+                              </span>
+                            )}
+                          </div>
+                          {!n.read && <span className="nb-item__dot" aria-label="Sin leer" />}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className={`text-sm ${!n.read ? 'font-semibold text-gray-800 dark:text-gray-100' : 'text-gray-600 dark:text-gray-300'}`}>
-                            {n.title}
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">{n.message}</p>
-                          {isQuizInvite && quizCode && (
-                            <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
-                              <Zap className="w-3 h-3" /> Unirse: {quizCode}
-                            </span>
-                          )}
-                          {isTeamMember && (
-                            <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">
-                              👥 Equipo: {n.data?.team_name}
-                            </span>
-                          )}
-                          <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-                            {new Date(n.created_at).toLocaleString('es-ES', {
-                              day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-                            })}
-                          </p>
-                        </div>
-                        {!n.read && (
-                          <div className="w-2 h-2 rounded-full bg-purple-500 shrink-0 mt-2" />
-                        )}
-                      </div>
-                    </div>
-                  );
-                })
+                      );
+                    })}
+                  </section>
+                ))
               )}
             </div>
           </motion.div>

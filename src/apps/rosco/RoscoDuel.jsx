@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Trophy, LogOut } from 'lucide-react';
+import { Trophy, LogOut, ShieldX } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import { useRoscoGame } from '@/hooks/useRoscoGame';
-import RoscoUI from '../_shared/RoscoUI.jsx';
+import RoscoUI, { RoscoShell } from '../_shared/RoscoUI.jsx';
+import { GameButton, GameLoading, GameEmpty } from '../_shared/kit';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 
@@ -296,44 +297,40 @@ export default function RoscoDuel({ onGameComplete, registerDuelExit }) {
   if (duelOverWinnerId != null && me?.id) {
     const won = duelOverWinnerId === me.id;
     return (
-      <div className="min-h-[60vh] flex items-center justify-center p-6">
-        <div className={`rosco-duel-result ${won ? 'rosco-duel-result--won' : 'rosco-duel-result--lost'} max-w-md w-full p-8 rounded-3xl text-center text-white shadow-2xl bg-gradient-to-br ${won ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'}`}>
-          <span className="rosco-duel-result-glow" aria-hidden="true" />
-          <span className="rosco-duel-trophy">
-            <Trophy className="w-12 h-12 mx-auto" />
+      <RoscoShell>
+        <div className={`rsc-duelres ${won ? 'rsc-duelres--won' : 'rsc-duelres--lost'}`} role="status">
+          <span className="rsc-duelres__medal">
+            <span className="rsc-duelres__burst" aria-hidden="true" />
+            {won ? <Trophy size={54} strokeWidth={2.2} /> : <ShieldX size={54} strokeWidth={2.2} />}
           </span>
-          <h2 className="text-3xl font-black mb-2">{won ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</h2>
-          <p className="text-sm opacity-90 mb-6">La partida ha terminado.</p>
-          <button
-            onClick={() => navigate('/mi-panel')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold transition-colors"
-          >
-            <LogOut className="w-4 h-4" /> Salir a mi panel
-          </button>
+          <h2>{won ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</h2>
+          <p>La partida ha terminado.</p>
+          <GameButton size="lg" icon={LogOut} onClick={() => navigate('/mi-panel')}>
+            Salir a mi panel
+          </GameButton>
         </div>
-      </div>
+      </RoscoShell>
     );
   }
 
   if (loadErr) {
     return (
-      <div className="p-8 text-center text-rose-600">
-        <p className="font-bold">No se pudo cargar el Rosco</p>
-        <p className="text-sm text-slate-500">{loadErr}</p>
-      </div>
+      <RoscoShell>
+        <GameEmpty title="No se pudo cargar el Rosco">{loadErr}</GameEmpty>
+      </RoscoShell>
     );
   }
   if (loadingData || !api || api.gameState === 'config') {
     return (
-      <div className="min-h-[50vh] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600" />
-      </div>
+      <RoscoShell>
+        <GameLoading label="Preparando el duelo…" />
+      </RoscoShell>
     );
   }
 
   return (
     <>
-      <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton />
+      <RoscoUI {...api} onGameComplete={onGameComplete} restartLabel="Salir a mi panel" hideExitButton chip={{ label: 'Duelo 1 vs 1', tone: 'medium' }} />
       <DuelChatBar channel={channel} me={me} rival={rival} />
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UserPlus, X, GraduationCap, Crown } from 'lucide-react';
+import { DashCard, DashButton } from '@/components/dashboard/kit';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
@@ -71,34 +72,34 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
   const teachers = coTeachers || [];
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-bold text-slate-800 flex items-center gap-2 text-sm">
-          <GraduationCap className="w-4 h-4 text-blue-500" />
-          Profesores del grupo
-        </h3>
-        {isOwner && (
-          <button
-            onClick={() => { setTeacherCode(''); setShowAddDialog(true); }}
-            className="flex items-center gap-1 text-xs font-medium text-purple-600 hover:text-purple-800 transition-colors"
-          >
-            <UserPlus className="w-3.5 h-3.5" />
-            Anadir profesor
-          </button>
-        )}
-      </div>
-
-      <div className="space-y-1.5">
+    <DashCard
+      icon={GraduationCap}
+      title="Profesorado"
+      subtitle={`${1 + teachers.length} docente${teachers.length > 0 ? 's' : ''} con acceso`}
+      tone="indigo"
+      actions={isOwner && (
+        <DashButton
+          variant="soft"
+          size="sm"
+          icon={UserPlus}
+          onClick={() => { setTeacherCode(''); setShowAddDialog(true); }}
+          title="Añadir profesor"
+        >
+          Añadir
+        </DashButton>
+      )}
+    >
+      <div className="tdb-teachers">
         {/* Owner */}
-        <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-amber-50/50 border border-amber-100">
-          <Crown className="w-4 h-4 text-amber-500 shrink-0" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-slate-700 truncate">
+        <div className="tdb-teacher tdb-teacher--owner">
+          <span className="tdb-teacher__badge"><Crown size={18} /></span>
+          <div className="tdb-teacher__text">
+            <p className="tdb-teacher__name">
               {teacher?.id === undefined ? ownerName : (ownerName || teacher?.display_name)}
-              {isOwner && <span className="text-xs text-amber-600 ml-1">(tu)</span>}
+              {isOwner && <em> (tú)</em>}
             </p>
+            <p className="tdb-teacher__role">Propietario del grupo</p>
           </div>
-          <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-1.5 py-0.5 rounded">PROPIETARIO</span>
         </div>
 
         {/* Co-teachers */}
@@ -109,22 +110,25 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -5 }}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-white border border-slate-100"
+              className="tdb-teacher"
             >
-              <GraduationCap className="w-4 h-4 text-blue-400 shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-700 truncate">
+              <span className="tdb-teacher__badge">{(ct.display_name || '?').trim().charAt(0).toUpperCase()}</span>
+              <div className="tdb-teacher__text">
+                <p className="tdb-teacher__name">
                   {ct.display_name}
-                  {ct.teacher_id === teacher?.id && <span className="text-xs text-blue-600 ml-1">(tu)</span>}
+                  {ct.teacher_id === teacher?.id && <em> (tú)</em>}
                 </p>
-                <p className="text-[10px] text-slate-400 font-mono">{ct.teacher_code}</p>
+                <p className="tdb-teacher__code">{ct.teacher_code}</p>
               </div>
               {isOwner && (
                 <button
+                  type="button"
                   onClick={() => { setRemovingTeacher(ct); setShowRemoveDialog(true); }}
-                  className="p-1 rounded hover:bg-red-50 text-slate-300 hover:text-red-500 transition-colors"
+                  className="tdb-iconbtn tdb-iconbtn--sm tdb-iconbtn--danger"
+                  title="Quitar co-docente"
+                  aria-label={`Quitar a ${ct.display_name}`}
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X size={15} />
                 </button>
               )}
             </motion.div>
@@ -136,13 +140,13 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
       <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Anadir profesor a {groupName}</DialogTitle>
+            <DialogTitle>Añadir profesor a {groupName}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
               <p className="text-sm text-slate-600">
-                Introduce el codigo de profesor (PROF-XXXX) del docente que quieres anadir.
-                Tendra acceso a ver alumnos, estadisticas, tareas y chat del grupo.
+                Introduce el código de profesor (PROF-XXXX) del docente que quieres añadir.
+                Tendrá acceso a ver alumnos, estadísticas, tareas y chat del grupo.
               </p>
               <Input
                 placeholder="PROF-XXXX"
@@ -162,7 +166,7 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
               disabled={loading || !teacherCode.trim()}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
             >
-              {loading ? 'Buscando...' : 'Anadir profesor'}
+              {loading ? 'Buscando...' : 'Añadir profesor'}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -174,8 +178,8 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar co-docente</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de que quieres eliminar a "{removingTeacher?.display_name}" del grupo "{groupName}"?
-              Perdera acceso a los alumnos, estadisticas y chat del grupo.
+              ¿Estás seguro de que quieres eliminar a "{removingTeacher?.display_name}" del grupo "{groupName}"?
+              Perderá acceso a los alumnos, estadísticas y chat del grupo.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -186,6 +190,6 @@ export default function CoTeachersSection({ groupId, groupName, isOwner, ownerNa
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </DashCard>
   );
 }

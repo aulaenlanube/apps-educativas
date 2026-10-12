@@ -1,12 +1,19 @@
 // src/apps/porcentajes/Porcentajes.jsx
+// Rediseño 2026 sobre el kit de interfaz de juego (_shared/kit). La lógica de
+// partida (generador, comprobación, puntos, nota y onGameComplete) no cambia.
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Percent, Calculator, Check, X, Lightbulb, RefreshCw,
-  Sparkles, ChevronRight, LogOut, Eye, EyeOff,
+  Percent, Calculator, Check, X, Lightbulb, RefreshCw, Sparkles, LogOut, Eye, EyeOff,
+  LayoutGrid, TrendingUp, TrendingDown, Receipt, Activity, Scale, Ruler, PieChart as PieIcon,
+  Target, Clock, GraduationCap, Flame, Pin, Sprout, Trophy,
 } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Panel, GameButton, ModeSelect, RoundBanner,
+  ResultsScreen, FeedbackItem,
+} from '../_shared/kit';
 import { generateProblem, formatNumber, checkAnswer } from './problemGenerator';
 import './Porcentajes.css';
 
@@ -15,29 +22,39 @@ const POINTS_PER_CORRECT = 100;
 const MAX_SPEED_BONUS = 100;
 const SPEED_BONUS_WINDOW_SEC = 30; // por pregunta
 
-const DIFFICULTIES = [
+// Tarjetas de la pantalla previa (los ids son los valores internos de siempre)
+const MODES = [
   {
-    id: 'easy',
-    label: 'Fácil',
-    icon: '🟢',
-    desc: '% de un número, encontrar total, proporciones, aumento y descuento básicos. Resultados enteros.',
-    helps: 'con ayudas',
+    id: 'easy', tone: 'easy', icon: Sprout, title: 'Fácil',
+    desc: '% de un número, encontrar el total, proporciones, aumentos y descuentos básicos.',
+    features: ['Resultados enteros', 'Ayuda visual siempre a mano'],
   },
   {
-    id: 'medium',
-    label: 'Medio',
-    icon: '🟡',
-    desc: 'Añade qué % es, IVA y repartos. Hasta 1 decimal.',
-    helps: 'con ayudas',
+    id: 'medium', tone: 'medium', icon: Flame, title: 'Medio',
+    desc: 'Añade qué % es, IVA y repartos proporcionales.',
+    features: ['Hasta 1 decimal', 'Ayuda visual opcional'],
   },
   {
-    id: 'exam',
-    label: 'Examen',
-    icon: '🔴',
-    desc: '10 preguntas con todos los tipos (incluye variación y escalas). Hasta 2 decimales. Sin ayudas.',
-    helps: 'sin ayudas',
+    id: 'exam', tone: 'exam', icon: GraduationCap, title: 'Examen',
+    desc: `${TOTAL_EXAM_QUESTIONS} preguntas con todos los tipos (incluye variación y escalas).`,
+    features: ['Hasta 2 decimales · sin ayudas', 'Nota /10 y puntos por rapidez'],
   },
 ];
+
+// Ficha visual de cada tipo de problema (por su etiqueta)
+const TYPE_META = {
+  '% de un número': { icon: Percent, color: '#ec4899' },
+  'qué % es': { icon: PieIcon, color: '#8b5cf6' },
+  'encontrar total': { icon: Target, color: '#f59e0b' },
+  'aumento %': { icon: TrendingUp, color: '#10b981' },
+  'IVA': { icon: Receipt, color: '#a855f7' },
+  'descuento %': { icon: TrendingDown, color: '#ef4444' },
+  'variación %': { icon: Activity, color: '#f97316' },
+  'proporción': { icon: Scale, color: '#6366f1' },
+  'escala': { icon: Ruler, color: '#0ea5e9' },
+  'reparto': { icon: PieIcon, color: '#db2777' },
+};
+const typeMeta = (label) => TYPE_META[label] || { icon: Calculator, color: '#fb923c' };
 
 const explainProblem = (p) => {
   // Devuelve texto explicativo del cálculo para feedback en práctica
@@ -74,50 +91,72 @@ const explainProblem = (p) => {
 
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
-// --- Fracción visible con barra colorada ---
-const Fraction = ({ num, den, color = '#EC4899', size = 'md' }) => (
-  <div className={`pp-frac pp-frac-${size}`}>
-    <div className="pp-frac-num">{num}</div>
-    <div className="pp-frac-bar" style={{ background: color }} />
-    <div className="pp-frac-den">{den}</div>
-  </div>
+// Materiales (claro → base → oscuro) para las piezas de las ilustraciones
+const TONES = {
+  pink: { light: '#fbcfe8', base: '#ec4899', dark: '#9d174d' },
+  violet: { light: '#ddd6fe', base: '#8b5cf6', dark: '#5b21b6' },
+  amber: { light: '#fde68a', base: '#f59e0b', dark: '#b45309' },
+  green: { light: '#a7f3d0', base: '#10b981', dark: '#047857' },
+  red: { light: '#fecdd3', base: '#f43f5e', dark: '#9f1239' },
+  indigo: { light: '#c7d2fe', base: '#6366f1', dark: '#3730a3' },
+};
+
+const Material = ({ id, tone }) => {
+  const t = TONES[tone] || TONES.pink;
+  return (
+    <linearGradient id={id} x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stopColor={t.light} />
+      <stop offset="0.45" stopColor={t.base} />
+      <stop offset="1" stopColor={t.dark} />
+    </linearGradient>
+  );
+};
+
+// --- Fracción con barra del color del tipo ---
+const Fraction = ({ num, den, tone = 'pink', size = 'md' }) => (
+  <span className={`pct-frac pct-frac--${size} pct-tone-${tone}`}>
+    <span className="pct-frac__num">{num}</span>
+    <span className="pct-frac__bar" />
+    <span className="pct-frac__den">{den}</span>
+  </span>
 );
 
-// --- Cuadrícula 10×10 mostrando P de cada 100 ---
-const PercentGrid100 = ({ pct, color = '#EC4899' }) => {
+// --- Cuadrícula 10×10: P fichas de cada 100 ---
+const PercentGrid100 = ({ pct, tone = 'pink' }) => {
   const filled = Math.min(100, Math.max(0, Math.round(pct)));
+  const t = TONES[tone];
   const cells = [];
   for (let i = 0; i < 100; i++) {
-    const row = Math.floor(i / 10);
-    const col = i % 10;
-    cells.push(
-      <rect
-        key={i}
-        x={col * 14 + 1}
-        y={row * 14 + 1}
-        width={12}
-        height={12}
-        rx={2.5}
-        fill={i < filled ? color : '#fff'}
-        stroke={i < filled ? color : '#E2E8F0'}
-        strokeWidth="0.8"
-      />
-    );
+    const x = 5 + (i % 10) * 14;
+    const y = 5 + Math.floor(i / 10) * 14;
+    if (i < filled) {
+      cells.push(
+        <g key={i}>
+          <rect x={x} y={y + 1.4} width="12" height="11.6" rx="3" fill={t.dark} />
+          <rect x={x} y={y} width="12" height="11" rx="3" fill={`url(#pct-g100-${tone})`} />
+          <rect x={x + 2} y={y + 1.6} width="5" height="2" rx="1" fill="#fff" opacity=".55" />
+        </g>
+      );
+    } else {
+      cells.push(<rect key={i} x={x} y={y} width="12" height="12" rx="3" className="pct-svg-cell" />);
+    }
   }
   return (
-    <svg viewBox="0 0 142 142" width="120" height="120" className="pp-grid100">
+    <svg viewBox="0 0 150 150" className="pct-grid100" role="img" aria-label={`${filled} de cada 100`}>
+      <defs><Material id={`pct-g100-${tone}`} tone={tone} /></defs>
+      <rect x="0" y="0" width="150" height="150" rx="16" className="pct-svg-tray" />
       {cells}
     </svg>
   );
 };
 
-// --- Tarta con sector destacado ---
-const PieChart = ({ pct, color = '#EC4899', size = 110 }) => {
+// --- Tarta en relieve con el sector destacado ---
+const PieChart = ({ pct, tone = 'violet' }) => {
   const safe = clamp(pct, 0, 100);
   const angle = (safe / 100) * 360;
-  const r = size / 2 - 6;
-  const cx = size / 2;
-  const cy = size / 2;
+  const r = 50;
+  const cx = 60;
+  const cy = 56;
   const radians = (angle - 90) * (Math.PI / 180);
   const x = cx + r * Math.cos(radians);
   const y = cy + r * Math.sin(radians);
@@ -128,131 +167,139 @@ const PieChart = ({ pct, color = '#EC4899', size = 110 }) => {
       ? ''
       : `M ${cx} ${cy} L ${cx} ${cy - r} A ${r} ${r} 0 ${largeArc} 1 ${x} ${y} Z`;
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="pp-pie">
-      <circle cx={cx} cy={cy} r={r} fill="#FCE7F3" stroke="#fff" strokeWidth="2" />
-      {path && <path d={path} fill={color} stroke="#fff" strokeWidth="2" />}
-      <text x={cx} y={cy + 6} textAnchor="middle" fontSize="20" fontWeight="800" fill="#1e293b">
-        {safe}%
+    <svg viewBox="0 0 120 124" className="pct-pie" role="img" aria-label={`${formatNumber(safe)} %`}>
+      <defs>
+        <Material id={`pct-pie-${tone}`} tone={tone} />
+        <radialGradient id="pct-pie-gloss" cx="0.32" cy="0.22" r="0.7">
+          <stop offset="0" stopColor="#fff" stopOpacity=".55" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="60" cy="114" rx="40" ry="6" className="pct-svg-shadow" />
+      <circle cx={cx} cy={cy + 3} r={r} fill={TONES[tone].dark} opacity=".35" />
+      <circle cx={cx} cy={cy} r={r} className="pct-svg-disc" />
+      {path && <path d={path} fill={`url(#pct-pie-${tone})`} className="pct-svg-slice" />}
+      <circle cx={cx} cy={cy} r={r} fill="url(#pct-pie-gloss)" />
+      <circle cx={cx} cy={cy} r="25" className="pct-svg-hole" />
+      <text x={cx} y={cy + 6} textAnchor="middle" className="pct-svg-big">
+        {formatNumber(safe)}%
       </text>
     </svg>
   );
 };
 
-// --- Barras apiladas mostrando precio inicial y resultado (aumento o descuento) ---
+// --- Barras: precio inicial y resultado (aumento, descuento o IVA) ---
 const StackBars = ({ V, P, mode }) => {
   // mode: 'increase' | 'decrease' | 'iva'
   const isUp = mode !== 'decrease';
-  const baseColor = '#94A3B8';
-  const deltaColor = mode === 'iva' ? '#A855F7' : (isUp ? '#10B981' : '#EF4444');
-  // Para visualizar, normalizamos las longitudes
-  const baseLen = 100; // % horizontal del original
+  const deltaTone = mode === 'iva' ? 'violet' : (isUp ? 'green' : 'red');
   const deltaLen = clamp(P, 0, 100); // visualmente proporcional al porcentaje
+  const U = 222; // unidades de ancho de la pista (100 + hueco + 100 + margen)
+  const w = (n) => `${(n / U) * 100}%`;
   return (
-    <svg viewBox="0 0 280 100" width="100%" height="92" className="pp-stackbars">
-      <defs>
-        <linearGradient id={`pp-base-${mode}`} x1="0" y1="0" x2="0" y2="40">
-          <stop offset="0" stopColor="#CBD5E1" />
-          <stop offset="1" stopColor={baseColor} />
-        </linearGradient>
-        <linearGradient id={`pp-delta-${mode}`} x1="0" y1="0" x2="0" y2="40">
-          <stop offset="0" stopColor={deltaColor} stopOpacity="0.85" />
-          <stop offset="1" stopColor={deltaColor} />
-        </linearGradient>
-      </defs>
-      {/* Fila 1: original */}
-      <text x="6" y="20" fontSize="11" fontWeight="700" fill="#64748B">Original</text>
-      <rect x="60" y="8" width={baseLen} height="20" rx="6" fill={`url(#pp-base-${mode})`} />
-      <text x={60 + baseLen / 2} y="22" textAnchor="middle" fontSize="11" fontWeight="800" fill="#fff">{formatNumber(V)}</text>
-
-      {/* Fila 2: resultado */}
-      <text x="6" y="62" fontSize="11" fontWeight="700" fill="#64748B">Resultado</text>
-      {isUp ? (
-        <>
-          <rect x="60" y="50" width={baseLen} height="20" rx="6" fill={`url(#pp-base-${mode})`} />
-          <text x={60 + baseLen / 2} y="64" textAnchor="middle" fontSize="11" fontWeight="800" fill="#fff">{formatNumber(V)}</text>
-          <rect x={60 + baseLen + 4} y="50" width={Math.max(deltaLen, 18)} height="20" rx="6"
-                fill={`url(#pp-delta-${mode})`} stroke={deltaColor} strokeWidth="1.5" strokeDasharray="3 2" />
-          <text x={60 + baseLen + 4 + Math.max(deltaLen, 18) / 2} y="64" textAnchor="middle" fontSize="11" fontWeight="800" fill="#fff">+{P}%</text>
-        </>
-      ) : (
-        <>
-          <rect x="60" y="50" width={baseLen - deltaLen} height="20" rx="6" fill={`url(#pp-base-${mode})`} />
-          <text x={60 + (baseLen - deltaLen) / 2} y="64" textAnchor="middle" fontSize="11" fontWeight="800" fill="#fff">?</text>
-          <rect x={60 + baseLen - deltaLen} y="50" width={deltaLen} height="20" rx="6"
-                fill={`url(#pp-delta-${mode})`} opacity="0.45" stroke={deltaColor} strokeWidth="1.5" strokeDasharray="3 2" />
-          <text x={60 + baseLen - deltaLen / 2} y="64" textAnchor="middle" fontSize="11" fontWeight="800" fill={deltaColor}>−{P}%</text>
-        </>
-      )}
-    </svg>
+    <div className="pct-bars">
+      <div className="pct-bars__row">
+        <span className="pct-bars__label">Original</span>
+        <div className="pct-bars__track">
+          <span className="pct-seg pct-seg--base" style={{ width: w(100) }}>{formatNumber(V)}</span>
+        </div>
+      </div>
+      <div className="pct-bars__row">
+        <span className="pct-bars__label">Resultado</span>
+        <div className="pct-bars__track">
+          {isUp ? (
+            <>
+              <span className="pct-seg pct-seg--base" style={{ width: w(100) }}>{formatNumber(V)}</span>
+              <span className={`pct-seg pct-seg--delta pct-tone-${deltaTone}`} style={{ width: w(Math.max(deltaLen, 18)) }}>+{P}%</span>
+            </>
+          ) : (
+            <>
+              <span className="pct-seg pct-seg--base pct-seg--unknown" style={{ width: w(100 - deltaLen) }}>?</span>
+              <span className="pct-seg pct-seg--ghost pct-tone-red" style={{ width: w(deltaLen) }}>−{P}%</span>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
-// --- Ecuación de proporciones con flechas en cruz ---
+// --- Proporción con productos cruzados ---
 const ProportionEq = ({ a, b, c, d }) => (
-  <svg viewBox="0 0 280 110" width="100%" height="110" className="pp-propeq-svg">
+  <svg viewBox="0 0 280 136" className="pct-propeq" role="img" aria-label={`${a}/${b} = ${c}/${d}`}>
     <defs>
-      <marker id="pp-eq-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M0 0 L10 5 L0 10 Z" fill="#9333EA" />
+      <marker id="pct-eq-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 Z" className="pct-svg-accent-fill" />
       </marker>
     </defs>
-    {/* Fracción izquierda */}
-    <text x="50" y="40" textAnchor="middle" fontSize="22" fontWeight="800" fill="#1e293b">{a}</text>
-    <line x1="20" y1="50" x2="80" y2="50" stroke="#EC4899" strokeWidth="3" strokeLinecap="round" />
-    <text x="50" y="76" textAnchor="middle" fontSize="22" fontWeight="800" fill="#1e293b">{b}</text>
+    {/* Tarjetas de las dos razones */}
+    <rect x="22" y="22" width="76" height="94" rx="18" className="pct-svg-card-edge" />
+    <rect x="22" y="18" width="76" height="94" rx="18" className="pct-svg-card" />
+    <rect x="182" y="22" width="76" height="94" rx="18" className="pct-svg-card-edge" />
+    <rect x="182" y="18" width="76" height="94" rx="18" className="pct-svg-card is-goal" />
 
-    <text x="140" y="58" textAnchor="middle" fontSize="22" fontWeight="800" fill="#1e293b">=</text>
+    <text x="60" y="56" textAnchor="middle" className="pct-svg-num">{a}</text>
+    <line x1="38" y1="66" x2="82" y2="66" stroke="#ec4899" strokeWidth="3.5" strokeLinecap="round" />
+    <text x="60" y="98" textAnchor="middle" className="pct-svg-num">{b}</text>
 
-    {/* Fracción derecha */}
-    <text x="230" y="40" textAnchor="middle" fontSize="22" fontWeight="800" fill="#9333EA">{c}</text>
-    <line x1="200" y1="50" x2="260" y2="50" stroke="#EC4899" strokeWidth="3" strokeLinecap="round" />
-    <text x="230" y="76" textAnchor="middle" fontSize="22" fontWeight="800" fill="#1e293b">{d}</text>
+    <text x="140" y="74" textAnchor="middle" className="pct-svg-num pct-svg-muted">=</text>
 
-    {/* Flechas en cruz */}
-    <path d="M 60 38 Q 145 0 230 65" fill="none" stroke="#9333EA" strokeWidth="1.6"
-          strokeDasharray="4 3" markerEnd="url(#pp-eq-arr)" />
-    <path d="M 60 75 Q 145 110 230 47" fill="none" stroke="#9333EA" strokeWidth="1.6"
-          strokeDasharray="4 3" markerEnd="url(#pp-eq-arr)" />
-    <text x="145" y="14" textAnchor="middle" fontSize="9" fontWeight="700" fill="#9333EA">cruzar</text>
-    <text x="145" y="106" textAnchor="middle" fontSize="9" fontWeight="700" fill="#9333EA">cruzar</text>
+    <text x="220" y="56" textAnchor="middle" className="pct-svg-num pct-svg-x">{c}</text>
+    <line x1="198" y1="66" x2="242" y2="66" stroke="#ec4899" strokeWidth="3.5" strokeLinecap="round" />
+    <text x="220" y="98" textAnchor="middle" className="pct-svg-num">{d}</text>
+
+    {/* Flechas en cruz: a·d y b·x */}
+    <path d="M 82 40 Q 140 4 204 86" className="pct-svg-cross" markerEnd="url(#pct-eq-arr)" />
+    <path d="M 82 92 Q 140 132 204 46" className="pct-svg-cross" markerEnd="url(#pct-eq-arr)" />
+    <g className="pct-svg-badge">
+      <circle cx="140" cy="20" r="9" />
+      <text x="140" y="24" textAnchor="middle">×</text>
+    </g>
+    <g className="pct-svg-badge">
+      <circle cx="140" cy="116" r="9" />
+      <text x="140" y="120" textAnchor="middle">×</text>
+    </g>
   </svg>
 );
 
-// --- Escala visual: regla pequeña vs regla grande con un objeto ---
+// --- Escala: medida del plano frente a la medida real ---
 const ScaleVisual = ({ N, X }) => (
-  <svg viewBox="0 0 280 120" width="100%" height="110" className="pp-scale-svg">
+  <svg viewBox="0 0 280 132" className="pct-scale" role="img" aria-label={`Escala 1:${N}`}>
     <defs>
-      <linearGradient id="pp-scale-plano" x1="0" y1="0" x2="0" y2="20">
-        <stop offset="0" stopColor="#818CF8" />
-        <stop offset="1" stopColor="#4338CA" />
-      </linearGradient>
-      <linearGradient id="pp-scale-real" x1="0" y1="0" x2="0" y2="20">
-        <stop offset="0" stopColor="#F472B6" />
-        <stop offset="1" stopColor="#BE185D" />
-      </linearGradient>
+      <Material id="pct-scale-plano" tone="indigo" />
+      <Material id="pct-scale-real" tone="pink" />
+      <marker id="pct-scale-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" className="pct-svg-accent-fill" />
+      </marker>
     </defs>
 
     {/* Plano (pequeño) */}
-    <text x="6" y="20" fontSize="11" fontWeight="700" fill="#64748B">PLANO</text>
-    <rect x="60" y="8" width="60" height="22" rx="6" fill="url(#pp-scale-plano)" />
-    <text x="90" y="24" textAnchor="middle" fontSize="12" fontWeight="800" fill="#fff">{X} cm</text>
-    {/* Marcas regla */}
-    <line x1="60" y1="34" x2="120" y2="34" stroke="#94A3B8" strokeWidth="1" />
-    {[0, 1, 2, 3, 4, 5].map(i => (
-      <line key={i} x1={60 + i * 12} y1="32" x2={60 + i * 12} y2="38" stroke="#94A3B8" strokeWidth="1" />
+    <text x="4" y="25" className="pct-svg-label">PLANO</text>
+    <rect x="62" y="12" width="66" height="24" rx="8" fill="#3730a3" />
+    <rect x="62" y="10" width="66" height="23" rx="8" fill="url(#pct-scale-plano)" />
+    <rect x="68" y="13" width="30" height="4" rx="2" fill="#fff" opacity=".45" />
+    <text x="95" y="27" textAnchor="middle" className="pct-svg-chip-text">{X} cm</text>
+    <line x1="62" y1="42" x2="128" y2="42" className="pct-svg-rule" />
+    {[0, 1, 2, 3, 4, 5].map((i) => (
+      <line key={i} x1={62 + i * 13.2} y1="39" x2={62 + i * 13.2} y2="46" className="pct-svg-rule" />
     ))}
 
     {/* Multiplicador */}
-    <text x="180" y="50" textAnchor="middle" fontSize="14" fontWeight="800" fill="#9333EA">×{N}</text>
-    <path d="M 130 50 L 230 50" stroke="#9333EA" strokeWidth="2" strokeLinecap="round" markerEnd="url(#pp-eq-arr)" />
+    <path d="M 136 30 C 168 30 188 46 214 62" className="pct-svg-cross" markerEnd="url(#pct-scale-arr)" />
+    <g className="pct-svg-badge pct-svg-badge--wide">
+      <rect x="150" y="34" width="56" height="22" rx="11" />
+      <text x="178" y="50" textAnchor="middle">×{N}</text>
+    </g>
 
     {/* Real (grande) */}
-    <text x="6" y="80" fontSize="11" fontWeight="700" fill="#64748B">REAL</text>
-    <rect x="60" y="68" width="200" height="22" rx="6" fill="url(#pp-scale-real)" stroke="#9333EA" strokeWidth="1.5" strokeDasharray="3 2" />
-    <text x="160" y="84" textAnchor="middle" fontSize="13" fontWeight="800" fill="#fff">?</text>
-    {/* Marcas regla */}
-    <line x1="60" y1="94" x2="260" y2="94" stroke="#94A3B8" strokeWidth="1" />
+    <text x="4" y="91" className="pct-svg-label">REAL</text>
+    <rect x="62" y="78" width="206" height="24" rx="8" fill="#9d174d" />
+    <rect x="62" y="76" width="206" height="23" rx="8" fill="url(#pct-scale-real)" />
+    <rect x="70" y="79" width="80" height="4" rx="2" fill="#fff" opacity=".45" />
+    <text x="165" y="93" textAnchor="middle" className="pct-svg-chip-text">?</text>
+    <line x1="62" y1="110" x2="268" y2="110" className="pct-svg-rule" />
     {Array.from({ length: 11 }).map((_, i) => (
-      <line key={i} x1={60 + i * 20} y1="92" x2={60 + i * 20} y2="98" stroke="#94A3B8" strokeWidth="1" />
+      <line key={i} x1={62 + i * 20.6} y1="107" x2={62 + i * 20.6} y2="114" className="pct-svg-rule" />
     ))}
   </svg>
 );
@@ -262,46 +309,59 @@ const ShareVisual = ({ T, p, q }) => {
   const total = p + q;
   const pPct = (p / total) * 100;
   const angle = (pPct / 100) * 360;
-  const size = 120;
-  const r = size / 2 - 6;
-  const cx = size / 2;
-  const cy = size / 2;
+  const r = 50;
+  const cx = 60;
+  const cy = 56;
   const radians = (angle - 90) * (Math.PI / 180);
   const x = cx + r * Math.cos(radians);
   const y = cy + r * Math.sin(radians);
   const largeArc = angle > 180 ? 1 : 0;
   const path = `M ${cx} ${cy} L ${cx} ${cy - r} A ${r} ${r} 0 ${largeArc} 1 ${x} ${y} Z`;
+  // Posición de las etiquetas: en mitad de cada sector
+  const mid = (deg) => {
+    const rad = (deg - 90) * (Math.PI / 180);
+    return [cx + 30 * Math.cos(rad), cy + 30 * Math.sin(rad) + 5];
+  };
+  const [px, py] = mid(angle / 2);
+  const [qx, qy] = mid(angle + (360 - angle) / 2);
   return (
-    <div className="pp-share-vis">
-      <svg viewBox={`0 0 ${size} ${size}`} width="120" height="120" className="pp-share-pie">
-        <circle cx={cx} cy={cy} r={r} fill="#6366F1" stroke="#fff" strokeWidth="2" />
-        <path d={path} fill="#EC4899" stroke="#fff" strokeWidth="2" />
-        <text x={cx - 18} y={cy + 4} textAnchor="middle" fontSize="13" fontWeight="800" fill="#fff">{p}</text>
-        <text x={cx + 18} y={cy + 4} textAnchor="middle" fontSize="13" fontWeight="800" fill="#fff">{q}</text>
+    <div className="pct-share">
+      <svg viewBox="0 0 120 124" className="pct-pie" role="img" aria-label={`Reparto ${p}:${q}`}>
+        <defs>
+          <Material id="pct-share-p" tone="pink" />
+          <Material id="pct-share-q" tone="indigo" />
+          <radialGradient id="pct-share-gloss" cx="0.32" cy="0.22" r="0.7">
+            <stop offset="0" stopColor="#fff" stopOpacity=".5" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="60" cy="114" rx="40" ry="6" className="pct-svg-shadow" />
+        <circle cx={cx} cy={cy + 3} r={r} fill="#312e81" opacity=".4" />
+        <circle cx={cx} cy={cy} r={r} fill="url(#pct-share-q)" />
+        <path d={path} fill="url(#pct-share-p)" className="pct-svg-slice" />
+        <circle cx={cx} cy={cy} r={r} fill="url(#pct-share-gloss)" />
+        <text x={px} y={py} textAnchor="middle" className="pct-svg-chip-text pct-svg-chip-text--lg">{p}</text>
+        <text x={qx} y={qy} textAnchor="middle" className="pct-svg-chip-text pct-svg-chip-text--lg">{q}</text>
       </svg>
-      <div className="pp-share-legend">
-        <div className="pp-share-leg-item">
-          <span className="pp-share-leg-color first" /> {p} partes (esto te piden)
-        </div>
-        <div className="pp-share-leg-item">
-          <span className="pp-share-leg-color second" /> {q} partes (la otra)
-        </div>
-        <div className="pp-share-leg-total">Total a repartir: {T}</div>
+      <div className="pct-share__legend">
+        <span className="pct-share__item"><i className="pct-swatch pct-tone-pink" /> {p} partes (esto te piden)</span>
+        <span className="pct-share__item"><i className="pct-swatch pct-tone-indigo" /> {q} partes (la otra)</span>
+        <span className="pct-share__total">Total a repartir: <strong>{T}</strong></span>
       </div>
     </div>
   );
 };
 
-// --- Caja de fórmula con varias líneas (matemáticamente bonita) ---
+// --- Pantalla de fórmula ---
 const FormulaBox = ({ children }) => (
-  <div className="pp-formula-box">{children}</div>
+  <Panel variant="screen" className="pct-formula">{children}</Panel>
 );
 
 // --- Bloque de ejemplo resuelto ---
 const Example = ({ children }) => (
-  <div className="pp-example">
-    <div className="pp-example-label">📌 Ejemplo</div>
-    <div className="pp-example-content">{children}</div>
+  <div className="pct-example">
+    <span className="pct-example__label"><Pin size={13} /> Ejemplo</span>
+    <div className="pct-example__content">{children}</div>
   </div>
 );
 
@@ -313,35 +373,40 @@ const ProblemHelper = ({ problem }) => {
   const { label, params, unit } = problem;
 
   const wrapper = (visual, formula, example) => (
-    <div className="pp-help-panel">
-      <div className="pp-help-title">
-        <Lightbulb size={16} />
+    <motion.div
+      className="pct-help"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="pct-help__head">
+        <span className="pct-help__badge"><Lightbulb size={15} /></span>
         <span>Cómo se calcula</span>
       </div>
-      <div className="pp-help-grid">
-        <div className="pp-help-visual">{visual}</div>
-        <div className="pp-help-side">
+      <div className="pct-help__grid">
+        <div className="pct-help__visual">{visual}</div>
+        <div className="pct-help__side">
           {formula}
           {example}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 
   switch (label) {
     case '% de un número': {
       const { P, V } = params;
       return wrapper(
-        <div className="pp-vis-stack">
+        <div className="pct-vis">
           <PercentGrid100 pct={P} />
-          <p className="pp-vis-caption">{P} de cada 100 cuadritos</p>
+          <p className="pct-vis__caption">{P} de cada 100 cuadritos</p>
         </div>,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
             <Fraction num={`${V} × ${P}`} den="100" />
           </div>
-          <p className="pp-formula-tip">"% de" = multiplicar y dividir entre 100</p>
+          <p className="pct-formula__tip">"% de" = multiplicar y dividir entre 100</p>
         </FormulaBox>,
         <Example>
           El 50% de 80 = <Fraction num="80 × 50" den="100" size="sm" /> = 40 (la mitad)
@@ -352,17 +417,17 @@ const ProblemHelper = ({ problem }) => {
       const { X, V } = params;
       const pct = (X / V) * 100;
       return wrapper(
-        <div className="pp-vis-stack">
-          <PieChart pct={pct} color="#A855F7" />
-          <p className="pp-vis-caption">{formatNumber(X)} es esa porción de {V}</p>
+        <div className="pct-vis">
+          <PieChart pct={pct} tone="violet" />
+          <p className="pct-vis__caption">{formatNumber(X)} es esa porción de {V}</p>
         </div>,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <Fraction num={formatNumber(X)} den={V} color="#A855F7" />
-            <span className="pp-formula-times">× 100</span>
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <Fraction num={formatNumber(X)} den={V} tone="violet" />
+            <span className="pct-formula__op">× 100</span>
           </div>
-          <p className="pp-formula-tip">divides parte / total y multiplicas por 100</p>
+          <p className="pct-formula__tip">divides parte / total y multiplicas por 100</p>
         </FormulaBox>,
         <Example>
           ¿Qué % es 20 de 80? <Fraction num="20" den="80" size="sm" /> × 100 = 25%
@@ -372,16 +437,16 @@ const ProblemHelper = ({ problem }) => {
     case 'encontrar total': {
       const { P, X } = params;
       return wrapper(
-        <div className="pp-vis-stack">
-          <PercentGrid100 pct={P} color="#F59E0B" />
-          <p className="pp-vis-caption">{P} cuadritos = {formatNumber(X)} → 100 cuadritos = ?</p>
+        <div className="pct-vis">
+          <PercentGrid100 pct={P} tone="amber" />
+          <p className="pct-vis__caption">{P} cuadritos = {formatNumber(X)} → 100 cuadritos = ?</p>
         </div>,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <Fraction num={`${formatNumber(X)} × 100`} den={P} color="#F59E0B" />
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <Fraction num={`${formatNumber(X)} × 100`} den={P} tone="amber" />
           </div>
-          <p className="pp-formula-tip">si conoces el % y su valor, "subes" al 100%</p>
+          <p className="pct-formula__tip">si conoces el % y su valor, "subes" al 100%</p>
         </FormulaBox>,
         <Example>
           Si el 25% es 30, el total = <Fraction num="30 × 100" den="25" size="sm" /> = 120
@@ -395,12 +460,12 @@ const ProblemHelper = ({ problem }) => {
       return wrapper(
         <StackBars V={V} P={P} mode={isIVA ? 'iva' : 'increase'} />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <span className="pp-formula-paren">{V} ×</span>
-            <Fraction num={`100 + ${P}`} den="100" color="#10B981" />
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <span className="pct-formula__op">{V} ×</span>
+            <Fraction num={`100 + ${P}`} den="100" tone="green" />
           </div>
-          <p className="pp-formula-tip">
+          <p className="pct-formula__tip">
             {isIVA
               ? 'añadir IVA = sumar ese porcentaje al 100% inicial'
               : 'aumentar P% = multiplicar por (100 + P) entre 100'}
@@ -418,12 +483,12 @@ const ProblemHelper = ({ problem }) => {
       return wrapper(
         <StackBars V={V} P={P} mode="decrease" />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <span className="pp-formula-paren">{V} ×</span>
-            <Fraction num={`100 − ${P}`} den="100" color="#EF4444" />
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <span className="pct-formula__op">{V} ×</span>
+            <Fraction num={`100 − ${P}`} den="100" tone="red" />
           </div>
-          <p className="pp-formula-tip">descontar P% = quedarte con el (100 − P)% del precio</p>
+          <p className="pct-formula__tip">descontar P% = quedarte con el (100 − P)% del precio</p>
         </FormulaBox>,
         <Example>
           100 € con 25% de descuento → 100 × <Fraction num="75" den="100" size="sm" /> = 75 €
@@ -434,14 +499,14 @@ const ProblemHelper = ({ problem }) => {
       const { A, B } = params;
       const isUp = B >= A;
       return wrapper(
-        <StackBars V={formatNumber(A)} P={Math.abs(Math.round(((B - A) / A) * 100))} mode={isUp ? 'increase' : 'decrease'} />,
+        <StackBars V={A} P={Math.abs(Math.round(((B - A) / A) * 100))} mode={isUp ? 'increase' : 'decrease'} />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <Fraction num={`|${formatNumber(B)} − ${formatNumber(A)}|`} den={formatNumber(A)} color="#F59E0B" />
-            <span className="pp-formula-times">× 100</span>
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <Fraction num={`|${formatNumber(B)} − ${formatNumber(A)}|`} den={formatNumber(A)} tone="amber" />
+            <span className="pct-formula__op">× 100</span>
           </div>
-          <p className="pp-formula-tip">la variación = diferencia / valor inicial × 100</p>
+          <p className="pct-formula__tip">la variación = diferencia / valor inicial × 100</p>
         </FormulaBox>,
         <Example>
           De 80 a 100: <Fraction num="|100 − 80|" den="80" size="sm" /> × 100 = 25%
@@ -453,11 +518,11 @@ const ProblemHelper = ({ problem }) => {
       return wrapper(
         <ProportionEq a={a} b={b} c="x" d={d} />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <Fraction num={`${a} × ${d}`} den={b} color="#9333EA" />
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <Fraction num={`${a} × ${d}`} den={b} tone="violet" />
           </div>
-          <p className="pp-formula-tip">
+          <p className="pct-formula__tip">
             si <Fraction num={a} den={b} size="xs" /> = <Fraction num="x" den={d} size="xs" />,
             entonces multiplicas en cruz: a × d = b × x
           </p>
@@ -473,11 +538,11 @@ const ProblemHelper = ({ problem }) => {
       return wrapper(
         <ScaleVisual N={N} X={X} />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">real =</span>
-            <span className="pp-formula-times">{X} × {N} cm</span>
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">real =</span>
+            <span className="pct-formula__op">{X} × {N} cm</span>
           </div>
-          <p className="pp-formula-tip">
+          <p className="pct-formula__tip">
             convierte el resultado a {unit} ({unit === 'm' ? '÷ 100' : '÷ 100 000'})
           </p>
         </FormulaBox>,
@@ -492,11 +557,11 @@ const ProblemHelper = ({ problem }) => {
       return wrapper(
         <ShareVisual T={T} p={p} q={q} />,
         <FormulaBox>
-          <div className="pp-formula-row">
-            <span className="pp-formula-x">x =</span>
-            <Fraction num={`${T} × ${p}`} den={total} color="#EC4899" />
+          <div className="pct-formula__row">
+            <span className="pct-formula__x">x =</span>
+            <Fraction num={`${T} × ${p}`} den={total} tone="pink" />
           </div>
-          <p className="pp-formula-tip">
+          <p className="pct-formula__tip">
             te toca = total × (tu parte) / (suma de partes)
           </p>
         </FormulaBox>,
@@ -510,18 +575,54 @@ const ProblemHelper = ({ problem }) => {
   }
 };
 
-// =============================================================
-
-// Fondo decorativo (solo visual): orbes + rejilla + símbolos % flotando
-const PPBackdrop = () => (
-  <div className="fx-app-backdrop pp-fx-backdrop" aria-hidden="true">
-    <div className="pp-fx-grid" />
-    <span className="pp-fx-glyph g1">%</span>
-    <span className="pp-fx-glyph g2">%</span>
-    <span className="pp-fx-glyph g3">÷</span>
-    <span className="pp-fx-spark s1" /><span className="pp-fx-spark s2" /><span className="pp-fx-spark s3" />
+// Progreso del examen: un tramo por pregunta (sin revelar aciertos)
+const ExamSteps = ({ total, current }) => (
+  <div className="pct-steps" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={current}>
+    {Array.from({ length: total }).map((_, i) => (
+      <span key={i} className={`pct-steps__seg ${i < current ? 'is-done' : i === current ? 'is-current' : ''}`} />
+    ))}
   </div>
 );
+
+// Confirmación propia para entregar el examen antes de tiempo
+const ExitModal = ({ open, correct, answered, onCancel, onConfirm }) => (
+  <AnimatePresence>
+    {open && (
+      <motion.div
+        className="pct-modal"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onCancel}
+      >
+        <motion.div
+          className="pct-modal__card"
+          role="dialog"
+          aria-modal="true"
+          initial={{ scale: 0.9, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0, y: 20 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span className="pct-modal__icon"><LogOut size={28} /></span>
+          <h3>¿Salir del examen?</h3>
+          <p>
+            Llevas <strong>{correct} de {answered}</strong> respuestas correctas.<br />
+            Si sales ahora, tu nota será <strong>{((correct / TOTAL_EXAM_QUESTIONS) * 10).toFixed(1)}/10</strong>
+            {' '}y se guardará el intento.
+          </p>
+          <div className="pct-modal__actions">
+            <GameButton variant="soft" onClick={onCancel}>Cancelar</GameButton>
+            <GameButton variant="danger" icon={LogOut} onClick={onConfirm}>Salir y guardar</GameButton>
+          </div>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const SHELL = { accent: '#fb923c', accent2: '#db2777', className: 'pct' };
 
 const Porcentajes = ({ onGameComplete }) => {
   const [phase, setPhase] = useState('setup'); // 'setup' | 'play' | 'finished'
@@ -533,6 +634,9 @@ const Porcentajes = ({ onGameComplete }) => {
   const [showExitModal, setShowExitModal] = useState(false);
   // Ayuda visual: en fácil siempre on, en medio toggleable (off por defecto), en examen siempre off
   const [showHelp, setShowHelp] = useState(true);
+  // Marcador de la práctica (solo visual, no se registra)
+  const [practiceStats, setPracticeStats] = useState({ ok: 0, streak: 0 });
+  const inputRef = useRef(null);
 
   // Estado del examen
   const [examIndex, setExamIndex] = useState(0);
@@ -556,6 +660,7 @@ const Porcentajes = ({ onGameComplete }) => {
     setExamCorrect(0);
     setExamPoints(0);
     setExamHistory([]);
+    setPracticeStats({ ok: 0, streak: 0 });
     trackedRef.current = false;
     setShowHelp(diff === 'easy');
     if (diff === 'exam') {
@@ -615,6 +720,7 @@ const Porcentajes = ({ onGameComplete }) => {
       }
     } else {
       setFeedback(correct ? 'correct' : 'incorrect');
+      setPracticeStats((s) => (correct ? { ok: s.ok + 1, streak: s.streak + 1 } : { ...s, streak: 0 }));
       if (correct) {
         confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 }, colors: ['#10b981', '#34d399', '#059669'] });
       }
@@ -653,436 +759,320 @@ const Porcentajes = ({ onGameComplete }) => {
     return () => window.removeEventListener('keydown', handler);
   }, [phase, handleCheck, nextProblem, feedback, isExam]);
 
+  // Devuelve el foco a la pantalla de respuesta con cada problema nuevo (solo UX)
+  useEffect(() => {
+    if (phase === 'play' && !feedback) inputRef.current?.focus();
+  }, [phase, problem, feedback]);
+
+  const instructions = (
+    <InstructionsModal
+      isOpen={showInstructions}
+      onClose={() => setShowInstructions(false)}
+      title="Cómo jugar a Porcentajes y Proporciones"
+    >
+      <h3>🎯 Objetivo</h3>
+      <p>
+        Resuelve problemas variados de porcentajes y proporciones. La aplicación
+        genera <strong>combinaciones distintas</strong> en cada partida.
+      </p>
+
+      <h3>🧮 Tipos de problema</h3>
+      <ul>
+        <li><strong>% de un número</strong>: ¿cuánto es el 25 % de 80? → 80 × 25 / 100.</li>
+        <li><strong>Qué % es</strong>: ¿qué porcentaje es 15 de 60? → 15 / 60 × 100.</li>
+        <li><strong>Encontrar el total</strong>: si 30 es el 25 % de un número → 30 × 100 / 25.</li>
+        <li><strong>Aumento / Descuento / IVA</strong>: precio × (1 ± P/100).</li>
+        <li><strong>Variación</strong>: |B − A| / A × 100 (escribe el valor sin signo).</li>
+        <li><strong>Proporción</strong>: a/b = x/d → x = a × d / b.</li>
+        <li><strong>Escala</strong>: medida en plano × escala → realidad (atento a las unidades pedidas).</li>
+        <li><strong>Reparto proporcional</strong>: total × parte / (suma de partes).</li>
+      </ul>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Lee el enunciado y calcula la respuesta.</li>
+        <li>Escribe el número (con coma o punto si es decimal). Ignora el símbolo % en la respuesta.</li>
+        <li><kbd>Enter</kbd> = comprobar / siguiente.</li>
+      </ul>
+
+      <h3>🎓 Niveles de dificultad</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy">
+          <strong>🟢 Fácil</strong>
+          Resultados enteros. Con ayudas (explicación al fallar).
+        </div>
+        <div className="instr-mode medium">
+          <strong>🟡 Medio</strong>
+          Hasta 1 decimal. Con ayudas.
+        </div>
+        <div className="instr-mode exam">
+          <strong>🔴 Examen</strong>
+          {' '}{TOTAL_EXAM_QUESTIONS} preguntas. Hasta 2 decimales. Sin ayudas.
+        </div>
+      </div>
+
+      <h3>📊 Nota y puntos en el examen</h3>
+      <p>Tu nota va de <strong>0 a 10</strong>:</p>
+      <p className="instr-formula">
+        <strong>Nota</strong> = aciertos / {TOTAL_EXAM_QUESTIONS} × 10
+      </p>
+      <p>
+        Además ganas <strong>puntos para el ranking</strong> en cada acierto, según la velocidad:
+      </p>
+      <p className="instr-formula">
+        <strong>Puntos</strong> = {POINTS_PER_CORRECT} + bonus de velocidad (hasta {MAX_SPEED_BONUS})
+      </p>
+      <p className="instr-note">
+        Dos exámenes con un 10 pueden tener distinta puntuación: gana el ranking quien lo
+        resuelva antes.
+      </p>
+
+      <div className="instr-tips">
+        <strong>💡 Consejo:</strong> identifica primero qué te piden (porcentaje, total, parte,
+        variación...) antes de calcular. La mayoría de errores son por aplicar la fórmula equivocada.
+      </div>
+    </InstructionsModal>
+  );
+
   // ---------- SETUP ----------
   if (phase === 'setup') {
     return (
-      <div className="pp-root">
-        <PPBackdrop />
-        <motion.div
-          className="pp-card fx-grain"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="pp-header">
-            <div className="pp-title">
-              <span className="pp-emoji">📊</span>
-              <span>Porcentajes y Proporciones</span>
-              <InstructionsButton onClick={() => setShowInstructions(true)} />
+      <GameShell {...SHELL}>
+        <ModeSelect
+          modes={MODES}
+          onSelect={startGame}
+          onHelp={() => setShowInstructions(true)}
+          extra={(
+            <div className="pct-types" aria-label="Tipos de problema">
+              {Object.entries(TYPE_META).map(([label, meta]) => (
+                <span key={label} className="pct-type-chip" style={{ '--pt': meta.color }}>
+                  <meta.icon size={13} /> {label}
+                </span>
+              ))}
             </div>
-          </div>
-
-          <p className="pp-intro">
-            Aprende a manejar <strong>porcentajes</strong> (calcular un %, descuentos, IVA,
-            variaciones) y <strong>proporciones</strong> (razones equivalentes, escalas,
-            repartos). Elige la dificultad para empezar.
-          </p>
-
-          <div className="pp-difficulty-grid">
-            {DIFFICULTIES.map((d, i) => (
-              <motion.button
-                key={d.id}
-                className={`pp-difficulty-card pp-diff-${d.id} fx-shine`}
-                initial={{ opacity: 0, y: 22, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.15 + i * 0.09, type: 'spring', stiffness: 260, damping: 22 } }}
-                whileHover={{ scale: 1.03, y: -6 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => startGame(d.id)}
-              >
-                <div className="pp-diff-icon"><span className="pp-diff-halo" aria-hidden="true" />{d.icon}</div>
-                <div className="pp-diff-label">{d.label}</div>
-                <div className="pp-diff-desc">{d.desc}</div>
-                <div className="pp-diff-helps">{d.helps}</div>
-                <ChevronRight size={18} className="pp-diff-arrow" />
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        <InstructionsModal
-          isOpen={showInstructions}
-          onClose={() => setShowInstructions(false)}
-          title="Cómo jugar a Porcentajes y Proporciones"
-        >
-          <h3>🎯 Objetivo</h3>
-          <p>
-            Resuelve problemas variados de porcentajes y proporciones. La aplicación
-            genera <strong>combinaciones distintas</strong> en cada partida.
-          </p>
-
-          <h3>🧮 Tipos de problema</h3>
-          <ul>
-            <li><strong>% de un número</strong>: ¿cuánto es el 25 % de 80? → 80 × 25 / 100.</li>
-            <li><strong>Qué % es</strong>: ¿qué porcentaje es 15 de 60? → 15 / 60 × 100.</li>
-            <li><strong>Encontrar el total</strong>: si 30 es el 25 % de un número → 30 × 100 / 25.</li>
-            <li><strong>Aumento / Descuento / IVA</strong>: precio × (1 ± P/100).</li>
-            <li><strong>Variación</strong>: |B − A| / A × 100 (escribe el valor sin signo).</li>
-            <li><strong>Proporción</strong>: a/b = x/d → x = a × d / b.</li>
-            <li><strong>Escala</strong>: medida en plano × escala → realidad (atento a las unidades pedidas).</li>
-            <li><strong>Reparto proporcional</strong>: total × parte / (suma de partes).</li>
-          </ul>
-
-          <h3>🕹️ Cómo se juega</h3>
-          <ul>
-            <li>Lee el enunciado y calcula la respuesta.</li>
-            <li>Escribe el número (con coma o punto si es decimal). Ignora el símbolo % en la respuesta.</li>
-            <li><kbd>Enter</kbd> = comprobar / siguiente.</li>
-          </ul>
-
-          <h3>🎓 Niveles de dificultad</h3>
-          <div className="instr-modes">
-            <div className="instr-mode easy">
-              <strong>🟢 Fácil</strong>
-              Resultados enteros. Con ayudas (explicación al fallar).
-            </div>
-            <div className="instr-mode medium">
-              <strong>🟡 Medio</strong>
-              Hasta 1 decimal. Con ayudas.
-            </div>
-            <div className="instr-mode exam">
-              <strong>🔴 Examen</strong>
-              {' '}{TOTAL_EXAM_QUESTIONS} preguntas. Hasta 2 decimales. Sin ayudas.
-            </div>
-          </div>
-
-          <h3>📊 Nota y puntos en el examen</h3>
-          <p>Tu nota va de <strong>0 a 10</strong>:</p>
-          <p className="instr-formula">
-            <strong>Nota</strong> = aciertos / {TOTAL_EXAM_QUESTIONS} × 10
-          </p>
-          <p>
-            Además ganas <strong>puntos para el ranking</strong> en cada acierto, según la velocidad:
-          </p>
-          <p className="instr-formula">
-            <strong>Puntos</strong> = {POINTS_PER_CORRECT} + bonus de velocidad (hasta {MAX_SPEED_BONUS})
-          </p>
-          <p className="instr-note">
-            Dos exámenes con un 10 pueden tener distinta puntuación: gana el ranking quien lo
-            resuelva antes.
-          </p>
-
-          <div className="instr-tips">
-            <strong>💡 Consejo:</strong> identifica primero qué te piden (porcentaje, total, parte,
-            variación...) antes de calcular. La mayoría de errores son por aplicar la fórmula equivocada.
-          </div>
-        </InstructionsModal>
-      </div>
+          )}
+        />
+        {instructions}
+      </GameShell>
     );
   }
 
   // ---------- FINISHED ----------
   if (phase === 'finished') {
     const nota = Math.round((examCorrect / TOTAL_EXAM_QUESTIONS) * 100) / 10;
-    const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
-    const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-      : nota >= 7 ? '¡Muy bien!'
-        : nota >= 5 ? 'Aprobado'
-          : 'Necesitas repasar';
     const elapsed = examStartRef.current
       ? Math.round((Date.now() - examStartRef.current) / 1000)
       : 0;
 
     return (
-      <div className="pp-root">
-        <PPBackdrop />
-        <motion.div
-          className="pp-card pp-result-card fx-grain"
-          initial={{ opacity: 0, scale: 0.94, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+      <GameShell {...SHELL}>
+        <ResultsScreen
+          nota={nota}
+          points={examPoints}
+          stats={[
+            { icon: Target, tone: 'good', label: 'Aciertos', value: `${examCorrect}/${TOTAL_EXAM_QUESTIONS}` },
+            { icon: Clock, tone: 'time', label: 'Tiempo', value: `${elapsed}s` },
+            { icon: Trophy, tone: 'streak', label: 'Respondidas', value: `${examHistory.length}/${TOTAL_EXAM_QUESTIONS}` },
+          ]}
+          actions={[
+            { label: 'Repetir examen', onClick: () => startGame('exam'), icon: RefreshCw },
+            { label: 'Cambiar dificultad', onClick: () => setPhase('setup'), icon: LayoutGrid, variant: 'soft' },
+          ]}
         >
-          <div className="pp-header">
-            <div className="pp-title">
-              <span className="pp-emoji">🏁</span>
-              <span>Examen finalizado</span>
-            </div>
-          </div>
-
-          <div className="pp-result-hero">
-            <div className="pp-nota-block" style={{ borderColor: notaColor, '--pp-nota-color': notaColor }}>
-              <div className="pp-nota-label">Tu nota</div>
-              <div
-                className="fx-grade-ring pp-nota-ring"
-                style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
-              >
-                <div className="pp-nota-value" style={{ color: notaColor }}>
-                  {nota.toFixed(1)}<span className="pp-nota-max">/10</span>
-                </div>
-              </div>
-              <div className="pp-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
-            </div>
-            <div className="pp-stats-block fx-stagger">
-              <div className="pp-stat">
-                <span className="pp-stat-label">Aciertos</span>
-                <span className="pp-stat-value">{examCorrect} / {TOTAL_EXAM_QUESTIONS}</span>
-              </div>
-              <div className="pp-stat pp-stat--points">
-                <span className="pp-stat-label"><Sparkles size={12} aria-hidden="true" /> Puntos</span>
-                <span className="pp-stat-value">{examPoints}</span>
-              </div>
-              <div className="pp-stat">
-                <span className="pp-stat-label">Tiempo</span>
-                <span className="pp-stat-value">{elapsed}s</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="pp-history fx-stagger">
-            {examHistory.map((it, idx) => (
-              <div key={idx} className={`pp-history-item ${it.isCorrect ? 'correct' : 'incorrect'}`}>
-                <div className="pp-history-head">
-                  <span className="pp-history-num">P{idx + 1}</span>
-                  <span className={`pp-history-label pp-tag-${it.type}`}>{it.label}</span>
+          {examHistory.map((it, idx) => {
+            const meta = typeMeta(it.label);
+            return (
+              <FeedbackItem key={idx} index={idx + 1} ok={it.isCorrect} title={it.label}>
+                <span className="pct-fb__text">{it.text}</span>
+                <span className="pct-fb__line">
                   {it.isCorrect ? (
-                    <span className="pp-history-result correct">
-                      <Check size={14} /> +{it.points} pts ({it.elapsedSec}s)
+                    <span className="pct-fb__pill is-ok" style={{ '--pt': meta.color }}>
+                      <Sparkles size={12} /> +{it.points} pts · {it.elapsedSec}s
                     </span>
                   ) : (
-                    <span className="pp-history-result incorrect">
-                      <X size={14} /> Era {formatNumber(it.correctAnswer)} {it.unit}
-                    </span>
+                    <>
+                      <span className="pct-fb__pill is-ko">Tu respuesta: {it.userAnswer || '—'}</span>
+                      <span className="pct-fb__pill is-sol">Era {formatNumber(it.correctAnswer)} {it.unit}</span>
+                    </>
                   )}
-                </div>
-                <div className="pp-history-text">{it.text}</div>
-                {!it.isCorrect && (
-                  <div className="pp-history-user">
-                    Tu respuesta: <strong>{it.userAnswer || '—'}</strong>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="pp-result-actions">
-            <button className="pp-btn primary" onClick={() => startGame('exam')}>
-              <RefreshCw size={16} /> Repetir examen
-            </button>
-            <button className="pp-btn ghost" onClick={() => setPhase('setup')}>
-              Cambiar dificultad
-            </button>
-          </div>
-        </motion.div>
-      </div>
+                </span>
+              </FeedbackItem>
+            );
+          })}
+        </ResultsScreen>
+      </GameShell>
     );
   }
 
   // ---------- PLAY ----------
-  const diffMeta = DIFFICULTIES.find((d) => d.id === difficulty);
+  const meta = typeMeta(problem?.label);
+  const helpVisible = showHelp && !isExam;
+  const isLast = examIndex + 1 >= TOTAL_EXAM_QUESTIONS;
 
   return (
-    <div className="pp-root">
-      <PPBackdrop />
-      <motion.div
-        className="pp-card fx-grain"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="pp-header">
-          <div className="pp-title">
-            <span className="pp-emoji">📊</span>
-            <span>Porcentajes y Proporciones</span>
-            <InstructionsButton onClick={() => setShowInstructions(true)} />
-          </div>
-          <div className="pp-stats">
-            <span className={`pp-badge pp-badge-${difficulty}`}>
-              {diffMeta?.icon} {diffMeta?.label}
-            </span>
-            {isExam && (
-              <span className="pp-badge pp-badge-progress">
-                {examIndex + 1} / {TOTAL_EXAM_QUESTIONS}
-              </span>
+    <GameShell {...SHELL}>
+      <GameHeader
+        mode={difficulty}
+        onHelp={() => setShowInstructions(true)}
+        right={(
+          <Hud>
+            {isExam ? (
+              <HudStat icon={GraduationCap} tone="progress" value={`${examIndex + 1}/${TOTAL_EXAM_QUESTIONS}`} label="Pregunta" />
+            ) : (
+              <>
+                <HudStat icon={Check} tone="good" value={practiceStats.ok} label="Aciertos" />
+                <HudStat icon={Flame} tone="streak" value={practiceStats.streak} label="Racha" />
+              </>
             )}
-            {problem?.label && (
-              <span className={`pp-badge pp-tag-${problem.type}`}>{problem.label}</span>
-            )}
-            {difficulty === 'medium' && (
-              <button
-                type="button"
-                className={`pp-help-toggle ${showHelp ? 'on' : ''}`}
-                onClick={() => setShowHelp((s) => !s)}
-                title={showHelp ? 'Ocultar ayuda' : 'Mostrar ayuda'}
-                aria-pressed={showHelp}
-              >
-                {showHelp ? <Eye size={14} /> : <EyeOff size={14} />}
-                <span>{showHelp ? 'Ayuda activa' : 'Ayuda'}</span>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {isExam && (
-          <div className="pp-progress-bar">
-            <div
-              className="pp-progress-fill pp-progress-shine"
-              style={{ width: `${((examIndex) / TOTAL_EXAM_QUESTIONS) * 100}%` }}
-            />
-          </div>
+          </Hud>
         )}
+      />
 
-        {problem && (
-          <>
-            <motion.div
-              key={`${examIndex}-${problem.text}`}
-              className="pp-problem-text"
-              initial={{ opacity: 0, y: 14, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-            >
-              <span className="pp-problem-icon-wrap" aria-hidden="true">
-                <Calculator size={20} className="pp-problem-icon" />
-              </span>
-              <p>{problem.text}</p>
-            </motion.div>
+      {isExam && <ExamSteps total={TOTAL_EXAM_QUESTIONS} current={examIndex} />}
 
-            {showHelp && !isExam && (
-              <ProblemHelper problem={problem} />
-            )}
-
-            <div className="pp-input-row">
-              <label className="pp-input-label">Tu respuesta:</label>
-              <div className="pp-input-wrap">
-                <input
-                  type="text"
-                  inputMode="decimal"
-                  className={`pp-input ${feedback === 'correct' ? 'correct' : feedback === 'incorrect' ? 'incorrect' : ''}`}
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder="?"
-                  autoFocus
-                  disabled={feedback !== null && !isExam}
-                />
-                <span className="pp-input-unit">{problem.unit || ''}</span>
-              </div>
+      {problem && (
+        <>
+          <motion.div
+            key={`${examIndex}-${problem.text}`}
+            className="pct-problem"
+            style={{ '--pt': meta.color }}
+            initial={{ opacity: 0, y: 14, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+          >
+            <span className="pct-problem__medal" aria-hidden="true"><meta.icon size={26} /></span>
+            <div className="pct-problem__body">
+              <span className="pct-problem__tag">{problem.label}</span>
+              <p className="pct-problem__text">{problem.text}</p>
             </div>
+          </motion.div>
 
-            {feedback && !isExam && (
-              <motion.div
-                className={`pp-feedback ${feedback}`}
-                initial={{ opacity: 0, y: -10, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+          <div className={`pct-work ${helpVisible ? 'has-help' : ''}`}>
+            {helpVisible && <ProblemHelper problem={problem} />}
+
+            <div className="pct-answer">
+              <Panel
+                variant="screen"
+                className={`pct-display is-${feedback || 'idle'} ${feedback === 'incorrect' ? 'gk-anim-shake' : ''}`}
               >
-                {feedback === 'correct' ? (
-                  <>
-                    <Check size={20} /> ¡Correcto! La respuesta es <strong>{formatNumber(problem.answer)} {problem.unit}</strong>.
-                  </>
-                ) : (
-                  <>
-                    <X size={20} /> No es correcto. La respuesta era <strong>{formatNumber(problem.answer)} {problem.unit}</strong>.
-                  </>
-                )}
-              </motion.div>
-            )}
-
-            {showHelps && feedback === 'incorrect' && (
-              <motion.div className="pp-explanation" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <Lightbulb size={16} className="pp-explanation-icon" />
-                <div>
-                  <p><strong>Cómo se resuelve ({problem.label}):</strong></p>
-                  <p>{explainProblem(problem)}</p>
+                <label htmlFor="pct-input" className="pct-display__label">
+                  <Calculator size={14} /> Tu respuesta
+                </label>
+                <div className="pct-display__row">
+                  <input
+                    id="pct-input"
+                    ref={inputRef}
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
+                    className="pct-display__input"
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="?"
+                    autoFocus
+                    disabled={feedback !== null && !isExam}
+                  />
+                  {problem.unit && <span className="pct-display__unit">{problem.unit}</span>}
+                  {feedback && (
+                    <span className={`pct-display__mark is-${feedback}`} aria-hidden="true">
+                      {feedback === 'correct' ? <Check size={22} strokeWidth={3} /> : <X size={22} strokeWidth={3} />}
+                    </span>
+                  )}
                 </div>
-              </motion.div>
-            )}
+                <span className="pct-display__hint">Usa coma o punto para los decimales · <kbd>Enter</kbd></span>
+              </Panel>
 
-            <div className="pp-actions">
-              {feedback === null || isExam ? (
-                <button
-                  className="pp-btn primary"
-                  onClick={handleCheck}
-                  disabled={!userInput.trim()}
-                >
-                  <Check size={16} /> {isExam ? (examIndex + 1 >= TOTAL_EXAM_QUESTIONS ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
-                </button>
-              ) : (
-                <button className="pp-btn primary" onClick={nextProblem}>
-                  <Sparkles size={16} /> Otro problema
-                </button>
+              {(feedback === null || isExam) && (
+                <div className="pct-actions">
+                  <GameButton
+                    size="lg"
+                    icon={isExam ? (isLast ? GraduationCap : Check) : Check}
+                    onClick={handleCheck}
+                    disabled={!userInput.trim()}
+                  >
+                    {isExam ? (isLast ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
+                  </GameButton>
+                  {!isExam && (
+                    <GameButton variant="soft" icon={RefreshCw} onClick={nextProblem} title="Generar otro problema">
+                      Otro problema
+                    </GameButton>
+                  )}
+                </div>
               )}
+            </div>
+          </div>
 
-              {!isExam && feedback === null && (
-                <button className="pp-btn ghost" onClick={nextProblem} title="Generar otro problema">
-                  <RefreshCw size={16} /> Otro problema
-                </button>
-              )}
+          <RoundBanner
+            show={!!feedback && !isExam}
+            status={feedback === 'correct' ? 'won' : 'lost'}
+            title={feedback === 'correct' ? '¡Correcto!' : 'No es correcto'}
+            subtitle={<>La respuesta {feedback === 'correct' ? 'es' : 'era'} <strong>{formatNumber(problem.answer)}{problem.unit ? ` ${problem.unit}` : ''}</strong>.</>}
+            action={nextProblem}
+            actionLabel="Otro problema"
+            actionIcon={Sparkles}
+          />
 
-              {!isExam && (
-                <button className="pp-btn ghost" onClick={() => setPhase('setup')}>
+          {showHelps && feedback === 'incorrect' && (
+            <motion.div className="pct-explain" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+              <span className="pct-explain__icon"><Lightbulb size={18} /></span>
+              <div>
+                <strong>Cómo se resuelve ({problem.label})</strong>
+                <p>{explainProblem(problem)}</p>
+              </div>
+            </motion.div>
+          )}
+
+          <div className="pct-footer">
+            {!isExam ? (
+              <>
+                <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={() => setPhase('setup')}>
                   Cambiar dificultad
-                </button>
-              )}
-
-              {isExam && (
-                <button
-                  className="pp-btn danger"
+                </GameButton>
+                {difficulty === 'medium' && (
+                  <GameButton
+                    variant={showHelp ? 'warning' : 'soft'}
+                    size="sm"
+                    icon={showHelp ? Eye : EyeOff}
+                    onClick={() => setShowHelp((s) => !s)}
+                    aria-pressed={showHelp}
+                    title={showHelp ? 'Ocultar ayuda' : 'Mostrar ayuda'}
+                  >
+                    {showHelp ? 'Ayuda activa' : 'Ver ayuda'}
+                  </GameButton>
+                )}
+                <span className="pct-footer__info"><Percent size={14} /> Problemas nuevos sin fin</span>
+              </>
+            ) : (
+              <>
+                <span className="pct-footer__info pct-footer__info--left">
+                  <GraduationCap size={14} /> Modo examen · sin ayudas
+                </span>
+                <GameButton
+                  variant="ghost"
+                  size="sm"
+                  icon={LogOut}
+                  className="pct-footer__exit"
                   onClick={() => setShowExitModal(true)}
                   title="Entregar el examen con tu nota actual"
                 >
-                  <LogOut size={16} /> Salir del examen
-                </button>
-              )}
-            </div>
-          </>
-        )}
-      </motion.div>
+                  Salir del examen
+                </GameButton>
+              </>
+            )}
+          </div>
+        </>
+      )}
 
-      <InstructionsModal
-        isOpen={showInstructions}
-        onClose={() => setShowInstructions(false)}
-        title="Cómo jugar a Porcentajes y Proporciones"
-      >
-        <h3>🎯 Tipos de problema</h3>
-        <ul>
-          <li><strong>% de un número</strong>: <Percent size={12} /> P% × cantidad / 100.</li>
-          <li><strong>Qué % es</strong>: parte / total × 100.</li>
-          <li><strong>Encontrar total</strong>: parte × 100 / porcentaje.</li>
-          <li><strong>Aumento / Descuento / IVA</strong>: precio × (1 ± P/100).</li>
-          <li><strong>Variación</strong>: |B − A| / A × 100 (sin signo).</li>
-          <li><strong>Proporción</strong>: a/b = x/d → x = a × d / b.</li>
-          <li><strong>Escala</strong>: plano × escala (cuidado con las unidades).</li>
-          <li><strong>Reparto</strong>: total × parte / (suma de partes).</li>
-        </ul>
+      {instructions}
 
-        <h3>📊 Nota y puntos</h3>
-        <p className="instr-formula"><strong>Nota</strong> = aciertos / {TOTAL_EXAM_QUESTIONS} × 10</p>
-        <p className="instr-formula"><strong>Puntos</strong> = {POINTS_PER_CORRECT} + bonus de velocidad (hasta {MAX_SPEED_BONUS}) por acierto</p>
-      </InstructionsModal>
-
-      <AnimatePresence>
-        {showExitModal && (
-          <motion.div
-            className="pp-exit-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowExitModal(false)}
-          >
-            <motion.div
-              className="pp-exit-modal"
-              initial={{ scale: 0.88, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.88, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="pp-exit-icon"><LogOut size={32} /></div>
-              <h3 className="pp-exit-title">¿Salir del examen?</h3>
-              <p className="pp-exit-text">
-                Llevas <strong>{examCorrect} de {examIndex}</strong> respuestas correctas.<br />
-                Si sales ahora, tu nota será <strong>{((examCorrect / TOTAL_EXAM_QUESTIONS) * 10).toFixed(1)}/10</strong>
-                {' '}y se guardará el intento.
-              </p>
-              <div className="pp-exit-actions">
-                <button className="pp-btn ghost" onClick={() => setShowExitModal(false)}>
-                  Cancelar
-                </button>
-                <button className="pp-btn danger" onClick={handleExitExam}>
-                  <LogOut size={16} /> Salir y guardar
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      <ExitModal
+        open={showExitModal}
+        correct={examCorrect}
+        answered={examIndex}
+        onCancel={() => setShowExitModal(false)}
+        onConfirm={handleExitExam}
+      />
+    </GameShell>
   );
 };
 

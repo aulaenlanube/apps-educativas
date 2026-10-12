@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Pencil, Trash2, UserCircle, Users, RotateCcw, History, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Pencil, Trash2, Users, RotateCcw, History, CheckCircle2, AlertTriangle, BarChart3, ChevronDown, ChevronUp, Search, MoreVertical, KeyRound } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { USERNAME_RE, sanitizePlainText } from '@/lib/sanitize';
 import { useToast } from '@/components/ui/use-toast';
@@ -8,6 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import UserAvatar from '@/components/ui/UserAvatar';
+import { DashCard, DashButton, DashEmpty } from '@/components/dashboard/kit';
+import {
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
+} from '@/components/ui/dropdown-menu';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from '@/components/ui/dialog';
@@ -28,6 +32,9 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
   const [editingStudent, setEditingStudent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  // Filtro local del listado (solo presentación)
+  const [query, setQuery] = useState('');
+  const [rosterFilter, setRosterFilter] = useState('all'); // 'all' | 'pending'
 
   // Form state
   const [bulkUsernames, setBulkUsernames] = useState('');
@@ -197,155 +204,184 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
     }
   };
 
+  // Alumnos sin contraseña (password_hash null) y listado filtrado para el roster
+  const needsPasswordStudents = students.filter(s => s.password_hash === null);
+  const visibleStudents = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return students.filter((s) => {
+      if (rosterFilter === 'pending' && s.password_hash !== null) return false;
+      if (!q) return true;
+      return `${s.display_name || ''} ${s.username || ''}`.toLowerCase().includes(q);
+    });
+  }, [students, query, rosterFilter]);
+
   if (!groupId) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
-        <div className="text-center">
-          <UserCircle className="w-16 h-16 mx-auto mb-3 opacity-50" />
-          <p className="text-lg font-medium">Selecciona un grupo</p>
-          <p className="text-sm">para ver y gestionar sus alumnos</p>
-        </div>
-      </div>
+      <DashEmpty title="Selecciona un grupo">
+        Elige una de tus tarjetas de grupo para ver y gestionar su alumnado, sus tareas, el chat y los duelos.
+      </DashEmpty>
     );
   }
 
-  // Check which students have no password set
-  const needsPasswordStudents = students.filter(s => s.password_hash === null);
+  const openEdit = (student) => {
+    setEditingStudent(student);
+    setDisplayName(student.display_name);
+    setAvatarEmoji(student.avatar_emoji);
+    setShowEditDialog(true);
+  };
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
-        <button
-          onClick={() => setCollapsed(c => !c)}
-          className="flex items-center gap-2 text-left group"
-        >
-          {collapsed
-            ? <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            : <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-          }
-          <div>
-            <h2 className="text-lg font-bold text-gray-800">Alumnos de {groupName}</h2>
-            <p className="text-sm text-gray-500">{students.length}/30 alumno{students.length !== 1 ? 's' : ''}</p>
-          </div>
-        </button>
-        <Button
-          size="sm"
-          onClick={() => { setBulkUsernames(''); setBulkResult(null); setShowBulkDialog(true); }}
-          disabled={students.length >= 30}
-          title={students.length >= 30 ? 'Has alcanzado el máximo de 30 alumnos' : ''}
-          className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white disabled:opacity-50"
-        >
-          <Plus className="w-4 h-4 mr-1" />
-          Anadir alumnos
-        </Button>
-      </div>
-
+    <DashCard
+      icon={Users}
+      title={`Alumnos de ${groupName}`}
+      subtitle={`${students.length}/30 alumno${students.length !== 1 ? 's' : ''}`}
+      tone="blue"
+      actions={(
+        <>
+          <DashButton
+            variant="emerald"
+            size="sm"
+            icon={Plus}
+            onClick={() => { setBulkUsernames(''); setBulkResult(null); setShowBulkDialog(true); }}
+            disabled={students.length >= 30}
+            title={students.length >= 30 ? 'Has alcanzado el máximo de 30 alumnos' : ''}
+          >
+            Añadir alumnos
+          </DashButton>
+          <button
+            type="button"
+            onClick={() => setCollapsed(c => !c)}
+            className="tdb-iconbtn"
+            title={collapsed ? 'Mostrar alumnos' : 'Plegar alumnos'}
+            aria-expanded={!collapsed}
+          >
+            {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+          </button>
+        </>
+      )}
+    >
       <AnimatePresence initial={false}>
       {!collapsed && (
         <motion.div
           key="students-body"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.2 }}
-          className="overflow-hidden"
         >
       {students.length === 0 ? (
-        <div className="text-center py-8 text-gray-400">
-          <Users className="w-12 h-12 mx-auto mb-2 opacity-50" />
-          <p>No hay alumnos en este grupo</p>
-          <p className="text-sm">Anade alumnos escribiendo un nombre de usuario por linea</p>
-        </div>
+        <DashEmpty title="No hay alumnos en este grupo">
+          Añade alumnos escribiendo un nombre de usuario por línea. Después entrarán con el código de grupo.
+        </DashEmpty>
       ) : (
-        <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
-          <AnimatePresence>
-            {students.map((student, idx) => (
-              <motion.div
-                key={student.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ delay: idx * 0.03 }}
-                className="flex items-center justify-between bg-white rounded-xl p-3 border border-gray-100 hover:shadow-sm transition-shadow"
-              >
-                <div className="flex items-center gap-3">
-                  <UserAvatar
-                    selectedAvatarCode={student.selected_avatar_code}
-                    avatarEmoji={student.avatar_emoji}
-                    avatarColor={student.avatar_color}
-                    size="md"
-                    shape="rounded"
-                    showRarityBorder
-                  />
-                  <div>
-                    <p className="font-medium text-gray-800">{student.display_name}</p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-xs text-gray-400">@{student.username}</p>
-                      {student.password_hash === null && (
-                        <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium">
-                          Sin contrasena
-                        </span>
+        <>
+          <div className="tdb-toolbar">
+            <label className="tdb-search">
+              <Search size={16} />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar por nombre o usuario"
+                aria-label="Buscar alumno"
+              />
+            </label>
+            <div className="tdb-seg" role="group" aria-label="Filtrar alumnos">
+              <button type="button" className={rosterFilter === 'all' ? 'is-on' : ''} onClick={() => setRosterFilter('all')}>
+                Todos <span className="tdb-seg__n">{students.length}</span>
+              </button>
+              <button type="button" className={rosterFilter === 'pending' ? 'is-on' : ''} onClick={() => setRosterFilter('pending')}>
+                <KeyRound size={13} /> Sin contraseña <span className="tdb-seg__n">{needsPasswordStudents.length}</span>
+              </button>
+            </div>
+          </div>
+
+          {visibleStudents.length === 0 ? (
+            <p className="tdb-muted" style={{ textAlign: 'center', fontWeight: 700, padding: '18px 0' }}>
+              {rosterFilter === 'pending' && !query ? 'Todo el grupo ha creado su contraseña.' : 'Ningún alumno coincide con la búsqueda.'}
+            </p>
+          ) : (
+            <div className="tdb-roster">
+              {visibleStudents.map((student) => {
+                const pending = student.password_hash === null;
+                return (
+                  <div key={student.id} className={`tdb-stu ${pending ? 'is-pending' : ''}`}>
+                    <button
+                      type="button"
+                      className="tdb-stu__main"
+                      onClick={() => (onViewStats ? onViewStats(student.id) : openEdit(student))}
+                      aria-label={onViewStats ? `Ver informe de ${student.display_name}` : `Editar a ${student.display_name}`}
+                    >
+                      <span className="tdb-stu__ava">
+                        <UserAvatar
+                          selectedAvatarCode={student.selected_avatar_code}
+                          avatarEmoji={student.avatar_emoji}
+                          avatarColor={student.avatar_color}
+                          size="md"
+                          shape="rounded"
+                          showRarityBorder
+                        />
+                        <span
+                          className={`tdb-stu__dot ${pending ? 'tdb-stu__dot--pending' : ''}`}
+                          title={pending ? 'Sin contraseña' : 'Cuenta activada'}
+                        />
+                      </span>
+                      <span className="tdb-stu__text">
+                        <span className="tdb-stu__name">{student.display_name}</span>
+                        <span className="tdb-stu__user">@{student.username}</span>
+                        {pending && <span className="tdb-chip tdb-chip--warn tdb-stu__flag">Sin contraseña</span>}
+                      </span>
+                    </button>
+                    <div className="tdb-stu__acts">
+                      {onViewStats && (
+                        <button
+                          type="button"
+                          onClick={() => onViewStats(student.id)}
+                          className="tdb-iconbtn tdb-iconbtn--accent tdb-iconbtn--sm"
+                          title="Ver estadisticas"
+                        >
+                          <BarChart3 size={16} />
+                        </button>
                       )}
+                      <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger asChild>
+                          <button type="button" className="tdb-iconbtn tdb-iconbtn--sm" title="Más acciones" aria-label={`Más acciones para ${student.display_name}`}>
+                            <MoreVertical size={16} />
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="tdb-menu">
+                          <DropdownMenuLabel className="tdb-menu__label">{student.display_name}</DropdownMenuLabel>
+                          <DropdownMenuItem className="tdb-menu__item" onSelect={() => openEdit(student)}>
+                            <Pencil /> Editar alumno
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            className="tdb-menu__item"
+                            onSelect={() => { setEditingStudent(student); setShowResetDialog(true); }}
+                          >
+                            <RotateCcw /> Restablecer contraseña
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            className="tdb-menu__item tdb-menu__item--warn"
+                            onSelect={() => { setEditingStudent(student); setShowResetProgressDialog(true); }}
+                          >
+                            <History /> Reiniciar progreso del curso
+                          </DropdownMenuItem>
+                          <div className="tdb-menu__sep" role="separator" />
+                          <DropdownMenuItem
+                            className="tdb-menu__item tdb-menu__item--danger"
+                            onSelect={() => { setEditingStudent(student); setShowDeleteDialog(true); }}
+                          >
+                            <Trash2 /> Eliminar alumno
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-1">
-                  {onViewStats && (
-                    <button
-                      onClick={() => onViewStats(student.id)}
-                      className="p-1.5 rounded-lg hover:bg-blue-50 text-gray-400 hover:text-blue-600 transition-colors"
-                      title="Ver estadisticas"
-                    >
-                      <BarChart3 className="w-4 h-4" />
-                    </button>
-                  )}
-                  <button
-                    onClick={() => {
-                      setEditingStudent(student);
-                      setDisplayName(student.display_name);
-                      setAvatarEmoji(student.avatar_emoji);
-                      setShowEditDialog(true);
-                    }}
-                    className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
-                    title="Editar alumno"
-                  >
-                    <Pencil className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingStudent(student);
-                      setShowResetDialog(true);
-                    }}
-                    className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
-                    title="Restablecer contrasena"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingStudent(student);
-                      setShowResetProgressDialog(true);
-                    }}
-                    className="p-1.5 rounded-lg hover:bg-amber-50 text-gray-400 hover:text-amber-600 transition-colors"
-                    title="Reiniciar progreso del curso"
-                  >
-                    <History className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingStudent(student);
-                      setShowDeleteDialog(true);
-                    }}
-                    className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
-                    title="Eliminar alumno"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
         </motion.div>
       )}
@@ -355,11 +391,11 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
       <Dialog open={showBulkDialog} onOpenChange={(open) => { if (!open) closeBulkDialog(); }}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>Anadir alumnos a {groupName}</DialogTitle>
+            <DialogTitle>Añadir alumnos a {groupName}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label>Nombres de usuario (uno por linea)</Label>
+              <Label>Nombres de usuario (uno por línea)</Label>
               <textarea
                 className="w-full min-h-[200px] rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent resize-y font-mono"
                 placeholder={"maria.garcia\npedro.lopez\nana.martinez\ncarlos.ruiz"}
@@ -368,7 +404,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                 disabled={loading}
               />
               <p className="text-xs text-gray-400">
-                Los alumnos deberan crear su contrasena en su primer inicio de sesion usando el codigo de grupo <span className="font-mono font-bold text-purple-600">{groupCode}</span>
+                Los alumnos deberán crear su contraseña en su primer inicio de sesión usando el código de grupo <span className="font-mono font-bold text-purple-600">{groupCode}</span>
               </p>
             </div>
 
@@ -383,7 +419,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                 {bulkResult.created === 0 && (!bulkResult.errors || bulkResult.errors.length === 0) && (
                   <div className="flex items-center gap-2 text-red-600">
                     <AlertTriangle className="w-4 h-4" />
-                    <span className="text-sm font-medium">No se pudo crear ningun alumno. Los nombres de usuario ya estan en uso.</span>
+                    <span className="text-sm font-medium">No se pudo crear ningún alumno. Los nombres de usuario ya están en uso.</span>
                   </div>
                 )}
                 {bulkResult.errors?.length > 0 && (
@@ -464,11 +500,11 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Restablecer contrasena</AlertDialogTitle>
+            <AlertDialogTitle>Restablecer contraseña</AlertDialogTitle>
             <AlertDialogDescription>
-              Se eliminara la contrasena de <strong>{editingStudent?.display_name}</strong>.
-              El alumno debera crear una nueva contrasena en su proximo inicio de sesion
-              usando su nombre de usuario y el codigo de grupo.
+              Se eliminará la contraseña de <strong>{editingStudent?.display_name}</strong>.
+              El alumno deberá crear una nueva contraseña en su próximo inicio de sesión
+              usando su nombre de usuario y el código de grupo.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -477,7 +513,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
               onClick={handleResetPassword}
               className="bg-amber-600 hover:bg-amber-700 text-white"
             >
-              {loading ? 'Restableciendo...' : 'Restablecer contrasena'}
+              {loading ? 'Restableciendo...' : 'Restablecer contraseña'}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -502,7 +538,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                       <li>Insignias</li>
                       <li>Historial de partidas</li>
                       <li>Tiempo total de juego</li>
-                      <li>Contrasena</li>
+                      <li>Contraseña</li>
                     </ul>
                   </div>
                   <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
@@ -516,7 +552,7 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
                   </div>
                 </div>
                 <p className="text-xs text-gray-500">
-                  Las tareas asignadas se mantienen activas. El alumno tendra que volver a hacer los examenes para que cuenten en la nota del curso.
+                  Las tareas asignadas se mantienen activas. El alumno tendrá que volver a hacer los exámenes para que cuenten en la nota del curso.
                   {' '}Solo afecta a este grupo; sus datos en otros grupos no cambian.
                 </p>
               </div>
@@ -540,8 +576,8 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar alumno</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de que quieres eliminar a "{editingStudent?.display_name}"?
-              Se eliminaran todos sus datos. Esta accion no se puede deshacer.
+              ¿Estás seguro de que quieres eliminar a "{editingStudent?.display_name}"?
+              Se eliminarán todos sus datos. Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -552,6 +588,6 @@ export default function StudentsPanel({ students, groupId, groupName, groupCode,
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </DashCard>
   );
 }

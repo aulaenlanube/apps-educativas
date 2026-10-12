@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Sparkles, Trophy, ChevronRight } from 'lucide-react';
+import { Sparkles, Trophy, ChevronRight, Target } from 'lucide-react';
 import { rarityMeta, RarityBadge } from '@/components/ui/UserAvatar';
-import { Button } from '@/components/ui/button';
+import RobotMascot from '@/components/RobotMascot';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import './AvatarUnlockModal.css';
+
+// Momento (ms) en que la carta termina de girar y se "revela" el avatar:
+// destello, onda de rareza, confeti y la mascota celebrando.
+const REVEAL_MS = 950;
+const RARE_RANK = { common: 0, rare: 1, epic: 2, legendary: 3, mythic: 4 };
 
 /**
  * Modal celebrativo. Se muestra cuando una partida desbloquea uno o varios avatares.
- * Los recibe en `avatars` (array) y los muestra en secuencia con confeti y animación.
+ * Los recibe en `avatars` (array) y los muestra en secuencia con confeti y animación:
+ * la carta llega boca abajo, gira y se revela con un destello y una onda del
+ * color de la rareza mientras la mascota lo celebra.
  *
  * Props:
  *  - avatars: [{code, title, rarity, points_bonus, image_lg, unlock_label}]
@@ -21,115 +30,143 @@ export default function AvatarUnlockModal({ avatars, onClose }) {
   const { byCode } = useAvatarCatalog();
   const fullDef = current ? byCode(current.code) : null;
   const description = fullDef?.description || current?.description;
+  const reduceMotion = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
 
+  const code = current?.code;
+  const rarity = current?.rarity;
+
+  // Revelado + confeti (por cada avatar de la secuencia).
   useEffect(() => {
-    if (!current) return;
-    const meta = rarityMeta(current.rarity);
+    if (!code) return undefined;
+    const meta = rarityMeta(rarity);
     const colors = [meta.ring, meta.glow, '#ffffff'];
-    confetti({ particleCount: 80, spread: 70, origin: { y: 0.4 }, colors });
-    setTimeout(() => confetti({ particleCount: 40, spread: 100, origin: { y: 0.5 }, colors }), 250);
-  }, [current?.code]);
+    const delay = reduceMotion ? 0 : REVEAL_MS;
+    const timers = [];
+    setRevealed(false);
+    timers.push(setTimeout(() => setRevealed(true), delay));
+    timers.push(setTimeout(() => confetti({ particleCount: 80, spread: 70, origin: { y: 0.4 }, colors, zIndex: 10060 }), delay));
+    timers.push(setTimeout(() => confetti({ particleCount: 40, spread: 100, origin: { y: 0.5 }, colors, zIndex: 10060 }), delay + 250));
+    // Épicos o mejores: cañones laterales.
+    if ((RARE_RANK[rarity] || 0) >= 2) {
+      timers.push(setTimeout(() => {
+        confetti({ particleCount: 50, angle: 60, spread: 60, origin: { x: 0, y: 0.7 }, colors, zIndex: 10060 });
+        confetti({ particleCount: 50, angle: 120, spread: 60, origin: { x: 1, y: 0.7 }, colors, zIndex: 10060 });
+      }, delay + 450));
+    }
+    return () => timers.forEach(clearTimeout);
+  }, [code, rarity, reduceMotion]);
 
-  if (!current) return null;
+  if (!current || typeof document === 'undefined') return null;
   const meta = rarityMeta(current.rarity);
   const isLast = index === list.length - 1;
+  const rk = RARE_RANK[current.rarity] != null ? current.rarity : 'common';
+  const t0 = reduceMotion ? 0 : REVEAL_MS / 1000;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[140] flex items-center justify-center p-4 bg-black/85 backdrop-blur"
+        className={`aum r-${rk}${revealed ? ' is-revealed' : ''}`}
+        style={{ '--rc1': meta.ring, '--rc2': meta.glow }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="¡Avatar desbloqueado!"
       >
+        <div className="aum__bg" aria-hidden="true">
+          <span className="aum__rays" />
+          <span className="aum__glow" />
+          <span className="aum__stars" />
+        </div>
+
         <motion.div
           key={current.code}
-          initial={{ scale: 0.6, rotate: -8, opacity: 0 }}
-          animate={{ scale: 1, rotate: 0, opacity: 1 }}
-          exit={{ scale: 0.85, opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-          className="relative max-w-md w-full bg-gradient-to-b from-slate-900 to-black rounded-3xl overflow-hidden shadow-2xl border-2"
-          style={{ borderColor: meta.ring, boxShadow: `0 0 60px ${meta.glow}` }}
+          className="aum__panel"
+          initial={{ scale: 0.85, opacity: 0, y: 24 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 20 }}
         >
-          {/* Brillo de fondo */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-30"
-            style={{ background: `radial-gradient(circle at 50% 30%, ${meta.glow}, transparent 60%)` }}
-          />
-
-          <div className="relative p-6 text-center text-white">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-yellow-300" />
-              <span className="text-[10px] uppercase font-black tracking-[0.3em] text-yellow-300">
-                ¡Avatar desbloqueado!
-              </span>
-              <Sparkles className="w-5 h-5 text-yellow-300" />
+          <div className="aum__kicker">
+            <Sparkles size={16} />
+            <span>¡Avatar desbloqueado!</span>
+            <Sparkles size={16} />
+          </div>
+          {list.length > 1 && (
+            <div className="aum__steps" aria-label={`${index + 1} de ${list.length}`}>
+              {list.map((a, i) => <i key={a.code || i} className={i === index ? 'is-on' : i < index ? 'is-done' : ''} />)}
+              <span>{index + 1} de {list.length}</span>
             </div>
-            {list.length > 1 && (
-              <p className="text-[11px] text-white/70 mb-2">
-                {index + 1} de {list.length}
-              </p>
-            )}
+          )}
 
+          {/* Carta que gira y se revela */}
+          <div className="aum__reveal">
+            <span className="aum__burst" aria-hidden="true" />
+            <span className="aum__burst aum__burst--2" aria-hidden="true" />
             <motion.div
-              initial={{ scale: 0.5, rotate: -10 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: 'spring', stiffness: 180, damping: 15, delay: 0.1 }}
-              className="relative mx-auto rounded-3xl overflow-hidden"
-              style={{ width: 220, height: 220, boxShadow: `0 0 40px ${meta.glow}` }}
+              className="aum__flip"
+              initial={reduceMotion ? false : { rotateY: 180, scale: 0.7, y: 20 }}
+              animate={{ rotateY: 0, scale: 1, y: 0 }}
+              transition={{ rotateY: { delay: 0.25, duration: 0.7, ease: [0.34, 1.3, 0.64, 1] }, scale: { duration: 0.5, ease: 'easeOut' }, y: { duration: 0.5 } }}
             >
-              <img
-                src={current.image_lg}
-                alt={current.title}
-                className="w-full h-full object-cover"
-              />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ boxShadow: `inset 0 0 0 5px ${meta.ring}` }}
-              />
+              <div className="aum__face aum__face--front">
+                <img src={current.image_lg} alt={current.title} />
+                <span className="aum__holo" aria-hidden="true" />
+              </div>
+              <div className="aum__face aum__face--back" aria-hidden="true">
+                <span className="aum__back-mark">?</span>
+              </div>
             </motion.div>
+            <span className="aum__flash" aria-hidden="true" />
+            <div className="aum__mascot" aria-hidden="true">
+              <RobotMascot act={revealed ? 'cheer' : null} actKey={index} />
+            </div>
+          </div>
 
-            <div className="mt-4 flex items-center justify-center gap-2">
+          {/* Ficha */}
+          <motion.div
+            className="aum__text"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: t0 + 0.1, duration: 0.4 }}
+          >
+            <h2 className="aum__title">{current.title}</h2>
+            <div className="aum__rarity">
               <RarityBadge rarity={current.rarity} size="lg" />
             </div>
             {description && (
-              <p className="mt-3 text-sm text-white/85 italic leading-relaxed">
-                {description}
-              </p>
+              <p className="aum__desc">{description}</p>
             )}
             {current.unlock_label && (
-              <p className="mt-3 text-xs text-white/60">
-                Recompensa: {current.unlock_label}
+              <p className="aum__goal">
+                <Target size={14} /> Reto superado: {current.unlock_label}
               </p>
             )}
 
-            <div className="mt-4 flex items-center justify-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-xl px-3 py-2">
-              <Trophy className="w-4 h-4 text-amber-300" />
-              <span className="text-sm font-bold">
-                +{Number(current.points_bonus).toFixed(2)} a tu nota media
+            <div className="aum__bonus">
+              <Trophy size={18} />
+              <span>
+                <strong>+{Number(current.points_bonus).toFixed(2)}</strong> a tu nota media
               </span>
             </div>
 
-            <div className="mt-5 flex justify-center">
+            <div className="aum__actions">
               {isLast ? (
-                <Button
-                  onClick={onClose}
-                  className="bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-900 font-black"
-                >
+                <button type="button" onClick={onClose} className="aum__btn aum__btn--gold">
                   ¡Genial!
-                </Button>
+                </button>
               ) : (
-                <Button
-                  onClick={() => setIndex((i) => i + 1)}
-                  className="bg-white/15 hover:bg-white/25 text-white border border-white/30"
-                >
-                  Siguiente <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
+                <button type="button" onClick={() => setIndex((i) => i + 1)} className="aum__btn aum__btn--glass">
+                  Siguiente <ChevronRight size={18} />
+                </button>
               )}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

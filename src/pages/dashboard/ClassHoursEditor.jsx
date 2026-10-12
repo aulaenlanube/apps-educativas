@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, CalendarClock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import './TeacherDashboard.css';
 
 const WEEKDAYS = [
   { id: 1, label: 'Lun' },
@@ -11,9 +12,6 @@ const WEEKDAYS = [
   { id: 6, label: 'Sáb' },
   { id: 7, label: 'Dom' },
 ];
-
-const selectCls = 'h-9 rounded-md border border-slate-200 bg-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200';
-const timeCls = 'h-9 rounded-md border border-slate-200 bg-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200';
 
 export const MAX_WEEKLY_MINUTES = 240; // 4 horas totales
 export const MIN_CLASS_HOURS = 1;
@@ -57,9 +55,10 @@ export default function ClassHoursEditor({ hours, onChange }) {
   const update = (idx, field, value) => onChange(hours.map((h, i) => (i === idx ? { ...h, [field]: value } : h)));
 
   return (
-    <div className="space-y-2">
+    <div className="tdb-hours">
       {hours.length === 0 && (
-        <div className="text-center py-3 text-xs text-slate-400 border border-dashed border-slate-200 rounded-md">
+        <div className="tdb-hours__empty">
+          <CalendarClock size={16} />
           Sin franjas. Añade al menos 1 para permitir duelos y batallas.
         </div>
       )}
@@ -67,37 +66,55 @@ export default function ClassHoursEditor({ hours, onChange }) {
         const mins = minutesOf(h);
         const invalid = mins <= 0;
         return (
-          <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg border ${invalid ? 'bg-rose-50 border-rose-200' : 'bg-slate-50 border-slate-100'}`}>
-            <select className={selectCls} value={h.weekday} onChange={(e) => update(idx, 'weekday', Number(e.target.value))}>
-              {WEEKDAYS.map(d => <option key={d.id} value={d.id}>{d.label}</option>)}
-            </select>
-            <input type="time" className={timeCls} value={h.start_time}
-                  onChange={(e) => update(idx, 'start_time', e.target.value)} />
-            <span className="text-slate-400 text-sm">–</span>
-            <input type="time" className={timeCls} value={h.end_time}
-                  onChange={(e) => update(idx, 'end_time', e.target.value)} />
-            <span className={`text-[11px] tabular-nums ${invalid ? 'text-rose-500 font-semibold' : 'text-slate-400'}`}>
-              {invalid ? 'inválido' : fmtDuration(mins)}
-            </span>
-            <button type="button" onClick={() => remove(idx)}
-                    className="ml-auto p-1.5 rounded-md hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors"
-                    title="Quitar franja">
-              <Trash2 className="w-4 h-4" />
-            </button>
+          <div key={idx} className={`tdb-slotrow ${invalid ? 'is-invalid' : ''}`}>
+            <div className="tdb-slotrow__days" role="radiogroup" aria-label={`Día de la franja ${idx + 1}`}>
+              {WEEKDAYS.map(d => (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={h.weekday === d.id}
+                  className={`tdb-day ${h.weekday === d.id ? 'is-on' : ''}`}
+                  onClick={() => update(idx, 'weekday', Number(d.id))}
+                >
+                  {d.label}
+                </button>
+              ))}
+              <button type="button" onClick={() => remove(idx)}
+                      className="tdb-slotrow__del"
+                      title="Quitar franja">
+                <Trash2 size={16} />
+              </button>
+            </div>
+            <div className="tdb-slotrow__times">
+              <input type="time" value={h.start_time} aria-label="Hora de inicio"
+                    onChange={(e) => update(idx, 'start_time', e.target.value)} />
+              <span className="tdb-slotrow__sep">–</span>
+              <input type="time" value={h.end_time} aria-label="Hora de fin"
+                    onChange={(e) => update(idx, 'end_time', e.target.value)} />
+              <span className={`tdb-slotrow__dur ${invalid ? 'is-bad' : ''}`}>
+                {invalid ? 'inválido' : fmtDuration(mins)}
+              </span>
+            </div>
           </div>
         );
       })}
-      <div className="flex items-center justify-between pt-1 gap-2 flex-wrap">
-        <div className="text-[11px]">
-          <span className={overLimit ? 'text-rose-600 font-semibold' : 'text-slate-500'}>
-            Total: {fmtDuration(total)} / 4 h
+      <div className="tdb-hours__foot">
+        <div className="tdb-hours__meter">
+          <div className="tdb-hours__meta">
+            <span className={overLimit ? 'is-bad' : ''}>
+              Total: <strong>{fmtDuration(total)}</strong> / 4 h
+            </span>
+            {!overLimit && remaining > 0 && (
+              <span>te quedan {fmtDuration(remaining)}</span>
+            )}
+            {overLimit && (
+              <span className="is-bad">excedes {fmtDuration(total - MAX_WEEKLY_MINUTES)}</span>
+            )}
+          </div>
+          <span className={`tdb-hours__track ${overLimit ? 'is-bad' : ''}`}>
+            <i style={{ transform: `scaleX(${Math.min(1, total / MAX_WEEKLY_MINUTES)})` }} />
           </span>
-          {!overLimit && remaining > 0 && (
-            <span className="text-slate-400"> · te quedan {fmtDuration(remaining)}</span>
-          )}
-          {overLimit && (
-            <span className="text-rose-500"> · excedes {fmtDuration(total - MAX_WEEKLY_MINUTES)}</span>
-          )}
         </div>
         <Button type="button" size="sm" variant="outline" onClick={add} disabled={remaining <= 0}>
           <Plus className="w-4 h-4 mr-1" /> Añadir franja

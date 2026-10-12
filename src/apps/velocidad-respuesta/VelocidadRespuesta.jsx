@@ -1,21 +1,29 @@
 // src/apps/velocidad-respuesta/VelocidadRespuesta.jsx
+// Rediseño 2026 sobre el kit de interfaz (_shared/kit): consola de carreras
+// con cuentarrevoluciones (la aguja corre hacia la zona roja según se agota
+// el tiempo), mecha de tiempo, casillas de letras que se rellenan al escribir
+// y feedback de acierto/fallo. Tiempos, puntuación y tracking sin cambios.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Timer, Flame, Star, RefreshCw, SkipForward, Eye,
-  Award, Trophy, Check, X, Send,
+  Timer, Flame, Star, RefreshCw, SkipForward, Eye, Trophy, Check, X, Send,
+  LayoutGrid, GraduationCap, Zap, Gauge,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, GameButton, Chip, ModeSelect,
+  RoundBanner, ResultsScreen, FeedbackItem, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './VelocidadRespuesta.css';
 
 const normalize = (s) =>
   String(s || '')
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[̀-ͯ]/g, '')
     .toUpperCase()
     .replace(/[^A-ZÑ ]/g, '')
     .trim();
@@ -95,7 +103,8 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
 
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [status, setStatus] = useState('idle'); // idle|playing|correct|wrong|timeout|won|lost
@@ -122,6 +131,10 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   const [helpsRemaining, setHelpsRemaining] = useState({});
   const [revealedFirst, setRevealedFirst] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+
+  // Solo presentación: resultado de cada pregunta (true/false) para los puntos
+  // de progreso y la retroalimentación del resumen.
+  const [resultados, setResultados] = useState([]);
 
   // --- Cargar rosco ---
   useEffect(() => {
@@ -180,6 +193,7 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
   }, [allWords, gameMode, getBaseTime]);
 
   useEffect(() => {
+    if (!gameMode) return; // pantalla previa: aún no hay partida
     if (!loading && allWords.length >= 4) startGame();
   }, [loading, gameMode, allWords, startGame]);
 
@@ -299,6 +313,17 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
     });
   }, [status, score, correctCount, questions.length, gameMode, onGameComplete]);
 
+  // Solo presentación: anota el resultado de la pregunta al resolverse.
+  useEffect(() => { setResultados([]); }, [questions]);
+  useEffect(() => {
+    if (status !== 'correct' && status !== 'wrong' && status !== 'timeout') return;
+    setResultados((r) => {
+      const next = [...r];
+      next[currentIndex] = status === 'correct';
+      return next;
+    });
+  }, [status, currentIndex]);
+
   // --- Ayudas ---
   const useFirstLetter = useCallback(() => {
     if (!currentQ || helpsRemaining.firstLetter <= 0 || revealedFirst || status !== 'playing') return;
@@ -336,248 +361,354 @@ const VelocidadRespuesta = ({ onGameComplete }) => {
     }
   }, [submitAnswer]);
 
+  // Volver a la pantalla de modos. El estado vuelve al inicial ('idle'): se
+  // detienen el cronómetro y el auto-avance, y al elegir otro modo el efecto
+  // de tracking no ve el final de la partida anterior.
+  const backToModes = () => {
+    setStatus('idle');
+    setGameMode(null);
+  };
+
   // --- Derivados ---
-  // eslint-disable-next-line no-unused-vars
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa (gameMode null) se usa la config fácil solo para pintar.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
   const isExam = gameMode === 'exam';
   const isFinished = status === 'won' || status === 'lost';
   const multiplier = (1 + streak * 0.2).toFixed(1);
   const timerPct = maxTime > 0 ? (timeLeft / maxTime) * 100 : 0;
   const timerColor = timerPct > 50 ? 'green' : timerPct > 25 ? 'yellow' : 'red';
   const nota = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) / 10 : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Velocidad">
+      <h3>🎯 Objetivo</h3>
+      <p>Lee la definición y <strong>escribe la palabra correcta</strong> antes de que se agote la barra de tiempo.</p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Aparece una definición del vocabulario de la asignatura.</li>
+        <li>Escribe la respuesta en el campo de texto y pulsa <kbd>Enter</kbd> o el botón de enviar.</li>
+        <li>Si aciertas: sumas puntos y la racha crece (más multiplicador).</li>
+        <li>Si fallas o se acaba el tiempo: la racha se resetea y la siguiente pregunta gana tiempo extra.</li>
+        <li>En modo medio/examen, cuanto mayor es la racha, <strong>menos tiempo</strong> tienes por pregunta.</li>
+      </ul>
+
+      <h3>🔥 Puntuación</h3>
+      <ul>
+        <li><strong>Base</strong>: 100 puntos por acierto.</li>
+        <li><strong>Multiplicador</strong>: crece con la racha.</li>
+        <li><strong>Bonus tiempo</strong>: cuanto más rápido respondas, más puntos extra.</li>
+      </ul>
+
+      <h3>🎓 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>🟢 Fácil</strong>{MODE_CONFIG.easy.questions} preguntas · {getBaseTime('easy')}s · 3 pistas + 3 saltos</div>
+        <div className="instr-mode medium"><strong>🟡 Medio</strong>{MODE_CONFIG.medium.questions} preguntas · {getBaseTime('medium')}s · la velocidad sube con la racha</div>
+        <div className="instr-mode exam"><strong>🔴 Examen</strong>{MODE_CONFIG.exam.questions} preguntas · {getBaseTime('exam')}s · la velocidad sube · nota /10</div>
+      </div>
+
+      <div className="instr-tips"><strong>💡 Consejo:</strong> no escribas tildes — la comparación ignora acentos. Concéntrate en la velocidad.</div>
+    </InstructionsModal>
+  );
+
+  const shellProps = { accent: '#ef4444', accent2: '#f59e0b', className: 'vr-shell' };
 
   // --- Render ---
   if (loading) {
-    return <div className="veloc-root"><div className="veloc-card"><div className="veloc-loading">Cargando...</div></div></div>;
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Calentando motores…" />
+      </GameShell>
+    );
   }
 
   if (allWords.length < 4) {
     return (
-      <div className="veloc-root"><div className="veloc-card">
-        <div className="veloc-title"><span>⚡</span> Velocidad</div>
-        <div className="veloc-empty"><p>No hay suficientes palabras para esta asignatura.</p></div>
-      </div></div>
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Faltan palabras">No hay suficientes palabras para esta asignatura.</GameEmpty>
+        {instructions}
+      </GameShell>
     );
   }
 
-  return (
-    <div className="veloc-root">
-      <motion.div className="veloc-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        {/* Fondo decorativo (orbes + rejilla + chispas) */}
-        <div className="veloc-fx" aria-hidden="true">
-          <span className="veloc-fx-orb a" />
-          <span className="veloc-fx-orb b" />
-          <span className="veloc-fx-grid" />
-          <span className="veloc-fx-spark s1" />
-          <span className="veloc-fx-spark s2" />
-          <span className="veloc-fx-spark s3" />
-        </div>
+  // --- Pantalla previa: elegir modo ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', title: 'Fácil',
+        desc: 'Ritmo tranquilo para coger confianza.',
+        features: [`${MODE_CONFIG.easy.questions} preguntas · ${getBaseTime('easy')} s`, '3 primeras letras + 3 saltos'],
+      },
+      {
+        id: 'medium', tone: 'medium', title: 'Medio',
+        desc: 'Cada racha acelera el reloj.',
+        features: [`${MODE_CONFIG.medium.questions} preguntas · ${getBaseTime('medium')} s`, 'El tiempo baja con la racha'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'A toda velocidad y sin saltos.',
+        features: ['Nota sobre 10', `${MODE_CONFIG.exam.questions} preguntas · ${getBaseTime('exam')} s`, 'Puntos por racha y rapidez'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={modes}
+          onSelect={(id) => setGameMode(id)}
+          onHelp={() => setShowHelp(true)}
+          footer={<span className="vr-modes-foot"><Gauge size={15} /> Tiempos ajustados a tu curso · sin tildes</span>}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        {/* Header */}
-        <div className="veloc-header">
-          <div className="veloc-title">
-            <span className="veloc-emoji">⚡</span>
-            <span>Velocidad</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="veloc-stats">
-            {mistakes > 0 && (
-              <div className="veloc-stat lives" title="Fallos">
-                <X size={14} color="#ef4444" /> <span>{mistakes}</span>
-              </div>
-            )}
-            {pendingTimeBonus > 0 && (
-              <motion.div
-                className="veloc-stat streak"
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                title="Tiempo extra para la siguiente pregunta"
-              >
-                <Timer size={14} /> <span>+{pendingTimeBonus}s</span>
-              </motion.div>
-            )}
-            {streak >= 2 && (
-              <motion.div className="veloc-stat streak" key={streak} initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
-                <Flame size={14} /> <span>×{multiplier}</span>
-              </motion.div>
-            )}
-            <div className="veloc-stat score">
-              <Star size={14} />
-              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
-                {score.toLocaleString('es-ES')}
-              </motion.span>
-            </div>
-          </div>
-        </div>
-
-        <div className="veloc-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
-
-        {/* Tabs */}
-        <div className="veloc-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`veloc-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span>{c.icon}</span>
-              <span className="veloc-tab-label">{c.label}</span>
-              <span className="veloc-tab-sub">{c.questions} · {getBaseTime(key)}s</span>
-            </button>
+  // --- Examen terminado ---
+  if (isFinished && isExam) {
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title="¡Carrera terminada!"
+          subtitle={`Velocidad · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={score}
+          stats={[
+            { icon: Check, tone: 'good', label: 'Aciertos', value: `${correctCount}/${questions.length}` },
+            { icon: Flame, tone: 'streak', label: 'Racha máx.', value: maxStreak },
+            { icon: X, tone: 'bad', label: 'Fallos', value: mistakes },
+          ]}
+          actions={[
+            { label: 'Jugar otra vez', onClick: startGame, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {questions.map((q, i) => (
+            <FeedbackItem key={i} index={i + 1} ok={resultados[i] === true} title={q.word.toUpperCase()}>
+              {resultados[i] === undefined ? 'Saltada · ' : ''}{q.clue}
+            </FeedbackItem>
           ))}
-        </div>
+        </ResultsScreen>
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        {/* Resultado final */}
-        <AnimatePresence>
-          {isFinished && (
-            <motion.div className={`veloc-result ${status}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <div className="veloc-result-icon">
-                {status === 'won' ? <Trophy size={48} /> : <Award size={48} />}
-              </div>
-              <h2 className="veloc-result-title">{status === 'won' ? '¡Ronda completada! 🎉' : '¡Se acabó!'}</h2>
+  const wordLen = currentQ ? currentQ.word.length : 0;
+  const typed = normalize(answer).replace(/ /g, '');
+  const revealWord = (status === 'wrong' || status === 'timeout') && showAnswer;
+  const slots = currentQ
+    ? Array.from({ length: wordLen }, (_, i) => (revealWord ? currentQ.word[i].toUpperCase() : typed[i] || ''))
+    : [];
 
-              {isExam ? (
-                <>
-                  <div className={`veloc-nota ${notaColor}`}>
-                    <div className="veloc-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
-                      <div className="veloc-nota-big">{nota.toFixed(1)}<span className="veloc-nota-small">/10</span></div>
-                    </div>
-                    <div className="veloc-nota-msg">{notaMsg}</div>
-                  </div>
-                  <div className="veloc-result-record">
-                    <Star size={14} /> <span>{score.toLocaleString('es-ES')}</span>
-                    <span className="veloc-result-record-label">puntos · ¡supérate!</span>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="veloc-result-score">{score.toLocaleString('es-ES')}</div>
-                  <div className="veloc-result-score-label">puntos</div>
-                </>
-              )}
-
-              <div className="veloc-result-stats">
-                <div className="veloc-result-stat"><Check size={14} /> {correctCount}/{questions.length}</div>
-                <div className="veloc-result-stat"><Flame size={14} /> Racha máx: {maxStreak}</div>
-              </div>
-              <button className="veloc-btn primary" onClick={startGame}><RefreshCw size={16} /> Jugar otra vez</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Juego activo */}
-        {!isFinished && currentQ && (
-          <>
-            {/* Progreso */}
-            <div className="veloc-progress-row">
-              <span className="veloc-progress-label">Pregunta {currentIndex + 1}/{questions.length}</span>
-              <div className="veloc-progress-bar">
-                <div className="veloc-progress-fill" style={{ width: `${((currentIndex) / questions.length) * 100}%` }} />
-              </div>
-            </div>
-
-            {/* Timer bar */}
-            <div className="veloc-timer-bar-wrap">
-              <motion.div
-                className={`veloc-timer-bar ${timerColor}`}
-                style={{ width: `${timerPct}%` }}
-                transition={{ duration: 0.05 }}
-              />
-              <span className="veloc-timer-label">{Math.ceil(timeLeft)}s</span>
-            </div>
-
-            {/* Definición */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                className="veloc-question"
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.25 }}
-              >
-                <div className="veloc-question-text">{currentQ.clue}</div>
-                <div className="veloc-question-meta">{currentQ.word.length} letras</div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Input */}
-            <div className={`veloc-input-wrap ${status === 'correct' ? 'correct' : ''} ${status === 'wrong' || status === 'timeout' ? 'wrong' : ''}`}>
-              <input
-                ref={inputRef}
-                type="text"
-                className="veloc-input"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Escribe la respuesta..."
-                autoComplete="off"
-                autoCapitalize="off"
-                spellCheck="false"
-                disabled={status !== 'playing'}
-              />
-              <button className="veloc-send-btn" onClick={submitAnswer} disabled={status !== 'playing' || !answer.trim()}>
-                <Send size={18} />
-              </button>
-            </div>
-
-            {/* Feedback */}
-            <AnimatePresence>
-              {status === 'correct' && (
-                <motion.div className="veloc-feedback correct" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-                  <Check size={18} /> ¡Correcto!
-                  {lastGain && <span className="veloc-gain">+{lastGain.value}</span>}
-                </motion.div>
-              )}
-              {(status === 'wrong' || status === 'timeout') && showAnswer && (
-                <motion.div className="veloc-feedback wrong" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-                  <X size={18} /> {status === 'timeout' ? '¡Tiempo!' : 'Incorrecto'} → <strong>{currentQ.word}</strong>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Ayudas */}
-            <div className="veloc-lifelines">
-              <button className="veloc-lifeline" onClick={useFirstLetter} disabled={helpsRemaining.firstLetter <= 0 || revealedFirst || status !== 'playing'}>
-                <Eye size={14} /> 1ª letra
-                {helpsRemaining.firstLetter > 0 && <span className="veloc-lifeline-count">{helpsRemaining.firstLetter}</span>}
-              </button>
-              <button className="veloc-lifeline" onClick={skipQuestion} disabled={helpsRemaining.skip <= 0 || status !== 'playing'}>
-                <SkipForward size={14} /> Saltar
-                {helpsRemaining.skip > 0 && <span className="veloc-lifeline-count">{helpsRemaining.skip}</span>}
-              </button>
-            </div>
-          </>
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={cfg.label}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            {pendingTimeBonus > 0 && !isFinished && (
+              <HudStat icon={Timer} tone="time" value={`+${pendingTimeBonus}s`} label="Extra" title="Tiempo extra para la siguiente pregunta" />
+            )}
+            {streak >= 2 && <HudStat icon={Flame} tone="streak" value={`×${multiplier}`} label="Racha" />}
+            {mistakes > 0 && <HudStat icon={X} tone="bad" value={mistakes} label="Fallos" />}
+            <HudStat icon={Star} tone="score" value={score.toLocaleString('es-ES')} label="Puntos" />
+          </Hud>
         )}
-      </motion.div>
+      />
 
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Velocidad">
-        <h3>🎯 Objetivo</h3>
-        <p>Lee la definición y <strong>escribe la palabra correcta</strong> antes de que se agote la barra de tiempo.</p>
+      {/* --- Partida de práctica terminada --- */}
+      {isFinished && (
+        <motion.div
+          className="vr-finish"
+          initial={{ opacity: 0, y: 20, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+        >
+          <span className="vr-finish__flag" aria-hidden="true"><Trophy size={42} /></span>
+          <h2 className="vr-finish__title">¡Ronda completada!</h2>
+          <div className="vr-finish__score"><strong>{score.toLocaleString('es-ES')}</strong><span>puntos</span></div>
+          <div className="vr-finish__stats">
+            <Chip tone="good" icon={Check}>{correctCount}/{questions.length} aciertos</Chip>
+            <Chip tone="soft" icon={Flame}>Racha máx: {maxStreak}</Chip>
+          </div>
+          <div className="vr-finish__actions">
+            <GameButton size="lg" icon={RefreshCw} onClick={startGame}>Jugar otra vez</GameButton>
+            <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={backToModes}>Cambiar de modo</GameButton>
+          </div>
+        </motion.div>
+      )}
 
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li>Aparece una definición del vocabulario de la asignatura.</li>
-          <li>Escribe la respuesta en el campo de texto y pulsa <kbd>Enter</kbd> o el botón de enviar.</li>
-          <li>Si aciertas: sumas puntos y la racha crece (más multiplicador).</li>
-          <li>Si fallas o se acaba el tiempo: pierdes una vida y la racha se resetea.</li>
-          <li>En modo medio/examen, cuanto mayor es la racha, <strong>menos tiempo</strong> tienes por pregunta.</li>
-        </ul>
+      {/* --- Juego activo --- */}
+      {!isFinished && currentQ && (
+        <>
+          <ProgressDots total={questions.length} current={currentIndex} results={resultados} />
 
-        <h3>🔥 Puntuación</h3>
-        <ul>
-          <li><strong>Base</strong>: 100 + longitud de palabra × 15</li>
-          <li><strong>Multiplicador</strong>: ×1.0, ×1.2, ×1.4... (crece con la racha)</li>
-          <li><strong>Bonus tiempo</strong>: cuanto más rápido respondas, más puntos extra.</li>
-        </ul>
+          <div className={`vr-console is-${status}`}>
+            <SpeedGauge pct={timerPct} timeLeft={timeLeft} tone={timerColor} />
 
-        <h3>🎓 Modos</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>10 preguntas · 10s · 3 vidas · 3 pistas + 3 saltos</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>15 preguntas · 7s · 2 vidas · velocidad sube con racha</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>20 preguntas · 5s · 1 vida · velocidad sube · nota /10</div>
-        </div>
+            <div className="vr-clue">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  className="vr-clue__body"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <span className="vr-clue__label"><Zap size={13} /> Definición</span>
+                  <p className="vr-clue__text">{currentQ.clue}</p>
+                  <div className="vr-slots" style={{ '--n': wordLen }} aria-label={`${wordLen} letras`}>
+                    {slots.map((ch, i) => (
+                      <span
+                        key={i}
+                        className={`vr-slot ${ch ? 'is-filled' : ''} ${revealWord ? 'is-reveal' : ''} ${status === 'correct' ? 'is-ok' : ''}`}
+                      >
+                        {ch}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="vr-clue__meta">{wordLen} letras</span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-        <div className="instr-tips"><strong>💡 Consejo:</strong> no escribas tildes — la comparación ignora acentos. Concéntrate en la velocidad.</div>
-      </InstructionsModal>
+            <AnimatePresence>
+              {status === 'correct' && lastGain && (
+                <motion.span
+                  key={lastGain.key}
+                  className="vr-gain"
+                  initial={{ opacity: 0, y: 10, scale: 0.7 }}
+                  animate={{ opacity: 1, y: -6, scale: 1 }}
+                  exit={{ opacity: 0, y: -24 }}
+                  transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+                >
+                  <Check size={18} strokeWidth={3} /> +{lastGain.value}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mecha de tiempo */}
+          <div className={`vr-fuse is-${timerColor}`} aria-hidden="true">
+            <span className="vr-fuse__fill" style={{ transform: `scaleX(${Math.max(0, Math.min(1, timerPct / 100))})` }} />
+          </div>
+
+          {/* Entrada */}
+          <div className={`vr-input ${status === 'correct' ? 'is-correct' : ''} ${status === 'wrong' || status === 'timeout' ? 'is-wrong' : ''}`}>
+            <input
+              ref={inputRef}
+              type="text"
+              className="vr-input__field"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Escribe la respuesta…"
+              autoComplete="off"
+              autoCapitalize="off"
+              spellCheck="false"
+              disabled={status !== 'playing'}
+              aria-label="Tu respuesta"
+            />
+            <GameButton
+              className="vr-input__send"
+              icon={Send}
+              onClick={submitAnswer}
+              disabled={status !== 'playing' || !answer.trim()}
+              aria-label="Enviar respuesta"
+            >
+              Enviar
+            </GameButton>
+          </div>
+
+          <RoundBanner
+            show={revealWord}
+            status="lost"
+            title={status === 'timeout' ? '¡Tiempo!' : 'Incorrecto'}
+            subtitle={<>La respuesta era <strong>{currentQ.word}</strong>{pendingTimeBonus > 0 ? ` · +${pendingTimeBonus}s para la siguiente` : ''}</>}
+          />
+
+          <div className="vr-tools">
+            <GameButton
+              variant="soft"
+              size="sm"
+              icon={Eye}
+              onClick={useFirstLetter}
+              disabled={helpsRemaining.firstLetter <= 0 || revealedFirst || status !== 'playing'}
+            >
+              1ª letra
+              {helpsRemaining.firstLetter > 0 && <span className="vr-count">{helpsRemaining.firstLetter}</span>}
+            </GameButton>
+            <GameButton
+              variant="soft"
+              size="sm"
+              icon={SkipForward}
+              onClick={skipQuestion}
+              disabled={helpsRemaining.skip <= 0 || status !== 'playing'}
+            >
+              Saltar
+              {helpsRemaining.skip > 0 && <span className="vr-count">{helpsRemaining.skip}</span>}
+            </GameButton>
+            {!isExam ? (
+              <GameButton variant="ghost" size="sm" icon={LayoutGrid} onClick={backToModes}>Cambiar modo</GameButton>
+            ) : (
+              <span className="vr-tools__info"><GraduationCap size={14} /> Modo examen · sin saltos</span>
+            )}
+          </div>
+        </>
+      )}
+
+      {instructions}
+    </GameShell>
+  );
+};
+
+// Cuentarrevoluciones: arco verde → ámbar → rojo, marcas y aguja. La aguja va
+// de la izquierda (tiempo lleno) a la derecha (sin tiempo). Solo transform.
+const ARC = (a0, a1, r = 78) => {
+  const p = (a) => [100 + r * Math.cos((a * Math.PI) / 180), 100 + r * Math.sin((a * Math.PI) / 180)];
+  const [x0, y0] = p(a0);
+  const [x1, y1] = p(a1);
+  return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+};
+const TICKS = Array.from({ length: 11 }, (_, i) => {
+  const a = ((180 + i * 18) * Math.PI) / 180;
+  const r1 = i % 5 === 0 ? 58 : 63;
+  return `M${(100 + r1 * Math.cos(a)).toFixed(2)} ${(100 + r1 * Math.sin(a)).toFixed(2)} L${(100 + 69 * Math.cos(a)).toFixed(2)} ${(100 + 69 * Math.sin(a)).toFixed(2)}`;
+}).join(' ');
+
+const SpeedGauge = ({ pct, timeLeft, tone }) => {
+  const angle = -90 + 180 * (1 - Math.max(0, Math.min(100, pct)) / 100);
+  return (
+    <div className={`vr-gauge is-${tone}`} role="timer" aria-label={`${Math.ceil(timeLeft)} segundos`}>
+      <svg viewBox="0 0 200 118" aria-hidden="true">
+        <defs>
+          <radialGradient id="vr-hub" cx=".38" cy=".32" r=".8">
+            <stop offset="0" stopColor="#f8fafc" />
+            <stop offset=".6" stopColor="#cbd5e1" />
+            <stop offset="1" stopColor="#64748b" />
+          </radialGradient>
+          <linearGradient id="vr-needle" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#fecaca" />
+            <stop offset=".5" stopColor="#ef4444" />
+            <stop offset="1" stopColor="#991b1b" />
+          </linearGradient>
+        </defs>
+        <path d={ARC(180, 360, 84)} className="vr-gauge__bezel" />
+        <path d={ARC(181, 270)} className="vr-gauge__zone is-green" />
+        <path d={ARC(270, 318)} className="vr-gauge__zone is-yellow" />
+        <path d={ARC(318, 359)} className="vr-gauge__zone is-red" />
+        <path d={TICKS} className="vr-gauge__ticks" />
+        <g className="vr-gauge__needle" style={{ transform: `rotate(${angle}deg)` }}>
+          <path d="M97 100 L100 34 L103 100 Z" fill="url(#vr-needle)" />
+        </g>
+        <circle cx="100" cy="100" r="11" fill="url(#vr-hub)" />
+        <circle cx="100" cy="100" r="4" fill="#334155" />
+      </svg>
+      <span className="vr-gauge__value">{Math.ceil(timeLeft)}<small>s</small></span>
     </div>
   );
 };

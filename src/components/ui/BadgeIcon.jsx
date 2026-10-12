@@ -23,7 +23,6 @@ const LEG_ACCENT = {
   exploration:      { accent: '#22d3ee', dark: '#155e75', gem: '#06b6d4' },
   general:          { accent: '#fbbf24', dark: '#78350f', gem: '#dc2626' },
   mastery:          { accent: '#c084fc', dark: '#581c87', gem: '#a855f7' },
-  programacion:     { accent: '#22d3ee', dark: '#0f172a', gem: '#06b6d4' },
   ranking:          { accent: '#fde047', dark: '#14532d', gem: '#10b981' },
   speed:            { accent: '#fbbf24', dark: '#9a3412', gem: '#f97316' },
   streaks:          { accent: '#fb923c', dark: '#7f1d1d', gem: '#ef4444' },
@@ -46,7 +45,6 @@ const LEG_CAT = {
   perfect_50: 'mastery',
   perfect_10_apps: 'mastery',
   perfect_15_apps: 'mastery',
-  robot_retos_eso4: 'programacion',
   rank_top3_10: 'ranking',
   rank_first_10: 'ranking',
   rank_class1_10: 'ranking',
@@ -248,30 +246,6 @@ const LEG_CENTER = {
       <circle cx="32" cy="34" r="2.5" fill="#2563eb" stroke="#1e3a8a" strokeWidth="0.6" />
       <circle cx="31" cy="33" r="0.8" fill="#bfdbfe" />
       <rect x="22" y="38" width="20" height="3" fill="#b45309" stroke="#451a03" strokeWidth="0.5" />
-    </g>
-  ),
-  // La mascota de la plataforma (RobotMascot) en miniatura: cabeza-monitor
-  // índigo, visor oscuro, ojo derecho mayor, antena con orbe rosa y núcleo cian.
-  robot_retos_eso4: () => (
-    <g>
-      <line x1="32" y1="17.5" x2="32" y2="21.5" stroke="#4f46e5" strokeWidth="1.3" strokeLinecap="round" />
-      <circle cx="32" cy="17" r="2" fill="#f0abfc" stroke="#a21caf" strokeWidth="0.5" className="ba-anim anim-twinkle" style={{ transformOrigin: '32px 17px' }} />
-      <circle cx="31.3" cy="16.3" r="0.6" fill="#fff" opacity="0.85" />
-      <rect x="21.6" y="24.6" width="2.6" height="6" rx="1.3" fill="#818cf8" />
-      <rect x="39.8" y="24.6" width="2.6" height="6" rx="1.3" fill="#4338ca" />
-      <rect x="23" y="21" width="18" height="14.5" rx="5" fill="#6366f1" stroke="#312e81" strokeWidth="0.8" />
-      <path d="M25.5 22.6 Q29 21.6 33.5 21.8" stroke="#c7d2fe" strokeWidth="1.1" strokeLinecap="round" fill="none" opacity="0.8" />
-      <rect x="24.6" y="23.6" width="14.8" height="8.4" rx="4" fill="#0b0a24" stroke="#22d3ee" strokeOpacity="0.55" strokeWidth="0.5" />
-      <circle cx="29.2" cy="27.8" r="2.2" fill="#fff" />
-      <circle cx="29.4" cy="28" r="1.2" fill="#6366f1" />
-      <circle cx="29" cy="27.5" r="0.45" fill="#fff" />
-      <circle cx="34.6" cy="27.6" r="2.8" fill="#fff" />
-      <circle cx="34.8" cy="27.8" r="1.5" fill="#6366f1" />
-      <circle cx="34.3" cy="27.2" r="0.55" fill="#fff" />
-      <path d="M30 33.4 Q32 34.6 34 33.4" stroke="#67e8f9" strokeWidth="0.9" strokeLinecap="round" fill="none" />
-      <path d="M26.5 37 Q32 35.6 37.5 37 L38.2 43 Q32 45 25.8 43 Z" fill="#5b4ff0" stroke="#312e81" strokeWidth="0.8" />
-      <circle cx="32" cy="40.2" r="2.3" fill="#0e7490" stroke="#a5f3fc" strokeWidth="0.5" />
-      <circle cx="32" cy="40.2" r="1" fill="#ecfeff" className="ba-anim anim-pulse" style={{ transformOrigin: '32px 40.2px' }} />
     </g>
   ),
   rank_top3_10: () => (
@@ -529,7 +503,6 @@ const SVGS = {
 
   // ═══════════════════════ TEACHER: RATINGS ═══════════════════════
   speed_perfect: (id) => legBadge('speed_perfect', id),
-  robot_retos_eso4: (id) => legBadge('robot_retos_eso4', id),
 
   // ═══════════════════════════════════════════════════════════════
   // MÍTICAS (rareza única, 1000 XP)

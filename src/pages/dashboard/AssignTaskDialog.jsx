@@ -1,16 +1,98 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ClipboardList, ChevronRight, Swords } from 'lucide-react';
+import { ClipboardList, ChevronRight, Swords, Users, User, Check, Home, Info, Trophy } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
+  Dialog, DialogContent, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashButton, ProgressRing } from '@/components/dashboard/kit';
 import { getLevels, getGrades, getSubjects, getApps } from '@/apps/appCatalog';
 import { DUELABLE_APPS } from '@/apps/config/duelableApps';
 import { teacherCreateDuelAssignment } from '@/services/duelService';
+import './teacherPanels.css';
+
+// ── Piezas de presentación (también las usa EditAssignmentDialog) ───────────
+
+const WEIGHTS = [
+  { v: 1, label: 'x1', hint: 'Normal' },
+  { v: 2, label: 'x2', hint: 'Cuenta doble' },
+  { v: 3, label: 'x3', hint: 'Cuenta triple' },
+];
+const TERMS = [
+  { v: 1, label: '1ª Evaluación' },
+  { v: 2, label: '2ª Evaluación' },
+  { v: 3, label: '3ª Evaluación' },
+];
+const LEVEL_EMOJI = { primaria: '🎒', eso: '🧪', bachillerato: '🎓' };
+const QUICK_SCORES = [0, 3, 5, 7, 8, 9, 10];
+
+const bandColor = (v) => (v >= 8 ? '#10b981' : v >= 5 ? '#3b82f6' : '#ef4444');
+const fmtScore = (v) => Number(v).toLocaleString('es-ES', { maximumFractionDigits: 1 });
+
+// Paso numerado del formulario (el número pasa a ✓ cuando está completo).
+export function Step({ n, title, hint, done = false, children }) {
+  return (
+    <section className={`tp-step ${done ? 'is-done' : ''}`}>
+      <div className="tp-step__head">
+        <span className="tp-step__num">{done ? <Check size={16} strokeWidth={3} /> : n}</span>
+        <h3 className="tp-step__title">{title}</h3>
+        {hint && <span className="tp-step__hint">{hint}</span>}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+// Peso en la nota final (x1 · x2 · x3) como monedas.
+export function WeightPicker({ value, onChange }) {
+  return (
+    <div className="tp-weights">
+      {WEIGHTS.map(opt => (
+        <button
+          key={opt.v}
+          type="button"
+          onClick={() => onChange(opt.v)}
+          className={`tp-choice tp-weight ${value === opt.v ? 'is-on' : ''}`}
+          aria-pressed={value === opt.v}
+        >
+          <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+          <span className="tp-weight__coins" aria-hidden="true">
+            {Array.from({ length: opt.v }).map((_, i) => <i key={i} />)}
+          </span>
+          <span className="tp-weight__x">{opt.label}</span>
+          <span className="tp-weight__hint">{opt.hint}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// Evaluación (1ª · 2ª · 3ª) como control segmentado.
+export function TermPicker({ value, onChange }) {
+  return (
+    <div className="tp-seg tp-seg--rose" role="radiogroup" aria-label="Evaluación">
+      {TERMS.map(opt => (
+        <button
+          key={opt.v}
+          type="button"
+          role="radio"
+          aria-checked={value === opt.v}
+          onClick={() => onChange(opt.v)}
+          className={`tp-seg__btn ${value === opt.v ? 'is-on' : ''}`}
+        >
+          {opt.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function AppGlyph({ appId, size = 48 }) {
+  return hasAppIcon(appId)
+    ? <AppIcon appId={appId} size={size} />
+    : <span className="tp-apptile__fallback" style={{ width: size, height: size }}>🎮</span>;
+}
 
 export default function AssignTaskDialog({ open, onOpenChange, groupId, groupName, groupLevel, groupGrade, groupSubject, students, studentId, onCreated }) {
   const { toast } = useToast();
@@ -151,192 +233,209 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
     selectedSubject && subjects.find(s => s.id === selectedSubject)?.nombre,
   ].filter(Boolean);
 
+  const showTarget = !isDuel && !studentId && students && students.length > 0;
+  const submitDisabled = loading || (isDuel ? !duelApp : (!selectedApp || (targetType === 'student' && !targetStudentId)));
+  let stepN = 1;
+  const nextStep = () => { stepN += 1; return stepN; };
+
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) resetForm(); onOpenChange(v); }}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <ClipboardList className="w-5 h-5 text-purple-500" />
-            Asignar tarea a {groupName}
-          </DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-4">
-          {/* Tipo de tarea */}
-          <div className="space-y-2">
-            <Label>Tipo de tarea</Label>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => setTaskType('standard')}
-                className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-                  taskType === 'standard'
-                    ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow'
-                    : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
-                }`}
-              >
-                <ClipboardList className="w-4 h-4" /> Estándar
-              </button>
-              <button
-                type="button"
-                onClick={() => setTaskType('duel')}
-                className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-                  taskType === 'duel'
-                    ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow'
-                    : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
-                }`}
-              >
-                <Swords className="w-4 h-4" /> Duelo 1 vs 1
-              </button>
+      <DialogContent className="tp-root tp-dialog tp-dialog--lg">
+        {/* Cabecera */}
+        <header className={`tp-dhead ${isDuel ? 'tp-dhead--duel' : ''}`}>
+          <div className="tp-dhead__row">
+            <span className="tp-dhead__icon">{isDuel ? <Swords size={26} /> : <ClipboardList size={26} />}</span>
+            <div className="tp-dhead__text">
+              <DialogTitle className="tp-dhead__title">Asignar tarea a {groupName}</DialogTitle>
+              <DialogDescription className="tp-dhead__sub">
+                {isDuel
+                  ? 'Duelos 1 vs 1 entre alumnos de nota parecida'
+                  : 'Elige la app, cómo se evalúa y para quién es'}
+              </DialogDescription>
             </div>
-            {isDuel && (
-              <p className="text-[11px] text-violet-700">
-                Los alumnos del grupo se emparejarán automáticamente por nota similar. Cada pareja juega un duelo oculto.
-              </p>
-            )}
           </div>
+        </header>
 
-          {/* Duelo */}
-          {isDuel && (
-            <>
-              <div className="space-y-2">
-                <Label>App del duelo</Label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {DUELABLE_APPS.map(a => (
-                    <button
-                      key={a.id}
-                      type="button"
-                      onClick={() => setDuelAppId(a.id)}
-                      className={`p-3 rounded-xl border text-left transition-all ${
-                        duelAppId === a.id
-                          ? 'border-violet-500 bg-violet-50 shadow-sm'
-                          : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <p className="text-sm font-bold text-slate-800">{a.name}</p>
-                      <p className="text-[11px] text-slate-500 line-clamp-2">{a.description}</p>
-                      {a.duel?.bestOf > 1 && (
-                        <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">
-                          Al mejor de {a.duel.bestOf}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-violet-200 bg-violet-50/60 px-3 py-2 text-xs text-violet-700 leading-snug">
-                <strong>+0,10</strong> al ganador de cada pareja (suma al bonus de duelos, tope +0,5).
-                El perdedor <strong>no tiene penalización</strong>.
-              </div>
-
-              <div className="space-y-2">
-                <Label>Título</Label>
-                <Input
-                  placeholder="Ej: Duelo de vocabulario"
-                  value={title}
-                  onChange={e => setTitle(e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label>Fecha límite (opcional)</Label>
-                <Input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
-              </div>
-            </>
-          )}
-
-          {/* Destino */}
-          {!isDuel && !studentId && students && students.length > 0 && (
-            <div className="space-y-2">
-              <Label>Asignar a</Label>
-              <div className="flex gap-2">
+        <div className="tp-dbody">
+          <div className="tp-steps">
+            {/* Tipo de tarea */}
+            <Step n={1} title="Tipo de tarea" done>
+              <div className="tp-choices">
                 <button
-                  onClick={() => { setTargetType('group'); setTargetStudentId(null); }}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                    targetType === 'group'
-                      ? 'bg-purple-100 text-purple-700 ring-2 ring-purple-300'
-                      : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
-                  }`}
+                  type="button"
+                  onClick={() => setTaskType('standard')}
+                  className={`tp-choice dk-tone-indigo ${taskType === 'standard' ? 'is-on' : ''}`}
+                  aria-pressed={taskType === 'standard'}
                 >
-                  Todo el grupo
+                  <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+                  <span className="tp-choice__icon"><ClipboardList size={22} /></span>
+                  <span className="tp-choice__text">
+                    <span className="tp-choice__title">Estándar</span>
+                    <span className="tp-choice__desc">Una app con nota mínima, peso y evaluación</span>
+                  </span>
                 </button>
                 <button
-                  onClick={() => setTargetType('student')}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                    targetType === 'student'
-                      ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-300'
-                      : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
-                  }`}
+                  type="button"
+                  onClick={() => setTaskType('duel')}
+                  className={`tp-choice dk-tone-pink ${taskType === 'duel' ? 'is-on' : ''}`}
+                  aria-pressed={taskType === 'duel'}
                 >
-                  Un alumno
+                  <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+                  <span className="tp-choice__icon"><Swords size={22} /></span>
+                  <span className="tp-choice__text">
+                    <span className="tp-choice__title">Duelo 1 vs 1</span>
+                    <span className="tp-choice__desc">Parejas por nota · +0,10 al ganador</span>
+                  </span>
                 </button>
               </div>
-              {targetType === 'student' && (
-                <select
-                  className="w-full rounded-lg border border-slate-200 p-2.5 text-sm focus:ring-2 focus:ring-purple-300 focus:border-transparent"
-                  value={targetStudentId || ''}
-                  onChange={(e) => setTargetStudentId(e.target.value || null)}
-                >
-                  <option value="">Selecciona un alumno...</option>
-                  {students.map(s => (
-                    <option key={s.id} value={s.id}>{s.avatar_emoji} {s.display_name}</option>
-                  ))}
-                </select>
+              {isDuel && (
+                <p className="tp-help" style={{ marginTop: 10 }}>
+                  Los alumnos del grupo se emparejarán automáticamente por nota similar. Cada pareja juega un duelo oculto.
+                </p>
               )}
-            </div>
-          )}
+            </Step>
 
-          {/* Cascading app selection */}
-          {!isDuel && <>
-          <div className="space-y-2">
-            <Label>Seleccionar app</Label>
+            {/* Duelo */}
+            {isDuel && (
+              <>
+                <Step n={2} title="App del duelo" hint="Juegos con modo 1 vs 1" done={!!duelApp}>
+                  <div className="tp-apps tp-apps--wide">
+                    {DUELABLE_APPS.map(a => (
+                      <button
+                        key={a.id}
+                        type="button"
+                        onClick={() => setDuelAppId(a.id)}
+                        className={`tp-choice tp-choice--col tp-apptile dk-tone-pink ${duelAppId === a.id ? 'is-on' : ''}`}
+                        aria-pressed={duelAppId === a.id}
+                      >
+                        <span className="tp-choice__check"><Check size={13} strokeWidth={3} /></span>
+                        <span className="tp-apptile__icon"><AppGlyph appId={a.id} size={48} /></span>
+                        <span className="tp-choice__text">
+                          <span className="tp-choice__title">{a.name}</span>
+                          <span className="tp-choice__desc">{a.description}</span>
+                        </span>
+                        {a.duel?.bestOf > 1 && (
+                          <span className="tp-chip tp-chip--amber">Al mejor de {a.duel.bestOf}</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="tp-note tp-note--rose" style={{ marginTop: 12 }}>
+                    <Trophy size={18} />
+                    <span>
+                      <strong>+0,10</strong> al ganador de cada pareja (suma al bonus de duelos, tope +0,5).
+                      El perdedor <strong>no tiene penalización</strong>.
+                    </span>
+                  </div>
+                </Step>
 
-            {/* Show selected app or the cascading picker */}
-            {selectedApp ? (
-              <div className="bg-purple-50 rounded-xl p-3 border border-purple-200 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-purple-700">{selectedApp.name}</span>
+                <Step n={3} title="Detalles" hint="Opcional">
+                  <div className="tp-fields">
+                    <div className="tp-field">
+                      <label className="tp-label" htmlFor="asg-duel-title">Título</label>
+                      <input
+                        id="asg-duel-title"
+                        className="tp-input"
+                        placeholder="Ej: Duelo de vocabulario"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                      />
+                    </div>
+                    <div className="tp-field">
+                      <label className="tp-label" htmlFor="asg-duel-due">Fecha límite (opcional)</label>
+                      <input id="asg-duel-due" className="tp-input" type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
+                    </div>
+                  </div>
+                </Step>
+              </>
+            )}
+
+            {/* Destino */}
+            {showTarget && (
+              <Step n={nextStep()} title="Asignar a" done={targetType === 'group' || !!targetStudentId}>
+                <div className="tp-seg">
                   <button
+                    type="button"
+                    onClick={() => { setTargetType('group'); setTargetStudentId(null); }}
+                    className={`tp-seg__btn ${targetType === 'group' ? 'is-on' : ''}`}
+                  >
+                    <Users size={16} /> Todo el grupo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTargetType('student')}
+                    className={`tp-seg__btn ${targetType === 'student' ? 'is-on' : ''}`}
+                  >
+                    <User size={16} /> Un alumno
+                  </button>
+                </div>
+                {targetType === 'student' && (
+                  <select
+                    className="tp-select"
+                    style={{ marginTop: 10 }}
+                    value={targetStudentId || ''}
+                    onChange={(e) => setTargetStudentId(e.target.value || null)}
+                  >
+                    <option value="">Selecciona un alumno...</option>
+                    {students.map(s => (
+                      <option key={s.id} value={s.id}>{s.avatar_emoji} {s.display_name}</option>
+                    ))}
+                  </select>
+                )}
+              </Step>
+            )}
+
+            {/* Cascading app selection */}
+            {!isDuel && <>
+            <Step n={nextStep()} title="Seleccionar app" hint={selectedApp ? null : 'Etapa → curso → asignatura → app'} done={!!selectedApp}>
+              {/* Show selected app or the cascading picker */}
+              {selectedApp ? (
+                <div className="tp-picked">
+                  <span className="tp-picked__icon"><AppGlyph appId={selectedApp.id} size={60} /></span>
+                  <div className="tp-picked__body">
+                    <p className="tp-picked__name">{selectedApp.name}</p>
+                    {selectionSummary.length > 0 && (
+                      <p className="tp-picked__path">
+                        {selectionSummary.map((s, i) => (
+                          <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 2 }}>
+                            {i > 0 && <ChevronRight size={13} />}
+                            {s}
+                          </span>
+                        ))}
+                      </p>
+                    )}
+                  </div>
+                  <DashButton
+                    variant="soft"
+                    size="sm"
                     onClick={() => {
                       setSelectedLevel(null);
                       setSelectedGrade(null);
                       setSelectedSubject(null);
                       setSelectedApp(null);
                     }}
-                    className="text-xs text-purple-500 hover:text-purple-700 font-medium"
                   >
                     Cambiar
-                  </button>
+                  </DashButton>
                 </div>
-                {selectionSummary.length > 0 && (
-                  <p className="text-xs text-purple-500 flex items-center gap-1">
-                    {selectionSummary.map((s, i) => (
-                      <span key={i} className="flex items-center gap-1">
-                        {i > 0 && <ChevronRight className="w-3 h-3" />}
-                        {s}
-                      </span>
-                    ))}
-                  </p>
-                )}
-              </div>
-            ) : (
-              <div className="border border-slate-200 rounded-xl overflow-hidden">
-                {/* Breadcrumb */}
-                {selectionSummary.length > 0 && (
-                  <div className="bg-slate-50 px-3 py-2 border-b border-slate-100 flex items-center gap-1 flex-wrap">
+              ) : (
+                <div className="tp-picker">
+                  {/* Breadcrumb */}
+                  <nav className="tp-crumbs" aria-label="Selección">
                     <button
+                      type="button"
                       onClick={() => { setSelectedLevel(null); setSelectedGrade(null); setSelectedSubject(null); }}
-                      className="text-xs text-purple-600 hover:text-purple-800 font-medium"
+                      className={`tp-crumb ${selectionSummary.length === 0 ? 'is-current' : ''}`}
                     >
-                      Inicio
+                      <Home size={13} /> Inicio
                     </button>
                     {selectedLevel && (
                       <>
-                        <ChevronRight className="w-3 h-3 text-slate-400" />
+                        <ChevronRight size={14} className="tp-crumbs__sep" />
                         <button
+                          type="button"
                           onClick={() => { setSelectedGrade(null); setSelectedSubject(null); }}
-                          className={`text-xs font-medium ${selectedGrade ? 'text-purple-600 hover:text-purple-800' : 'text-slate-700'}`}
+                          className={`tp-crumb ${selectedGrade ? '' : 'is-current'}`}
                         >
                           {levels.find(l => l.id === selectedLevel)?.label}
                         </button>
@@ -344,10 +443,11 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                     )}
                     {selectedGrade && (
                       <>
-                        <ChevronRight className="w-3 h-3 text-slate-400" />
+                        <ChevronRight size={14} className="tp-crumbs__sep" />
                         <button
+                          type="button"
                           onClick={() => { setSelectedSubject(null); }}
-                          className={`text-xs font-medium ${selectedSubject ? 'text-purple-600 hover:text-purple-800' : 'text-slate-700'}`}
+                          className={`tp-crumb ${selectedSubject ? '' : 'is-current'}`}
                         >
                           {grades.find(g => g.id === selectedGrade)?.label}
                         </button>
@@ -355,209 +455,173 @@ export default function AssignTaskDialog({ open, onOpenChange, groupId, groupNam
                     )}
                     {selectedSubject && (
                       <>
-                        <ChevronRight className="w-3 h-3 text-slate-400" />
-                        <span className="text-xs font-medium text-slate-700">
+                        <ChevronRight size={14} className="tp-crumbs__sep" />
+                        <span className="tp-crumb is-current">
                           {subjects.find(s => s.id === selectedSubject)?.nombre}
                         </span>
                       </>
                     )}
+                  </nav>
+
+                  <div className="tp-picker__grid">
+                    {/* Step 1: Level */}
+                    {!selectedLevel && levels.map(level => (
+                      <button key={level.id} type="button" onClick={() => setSelectedLevel(level.id)} className="tp-pick">
+                        <span className="tp-pick__emoji">{LEVEL_EMOJI[level.id] || '📚'}</span>
+                        <span className="tp-pick__label">{level.label}</span>
+                        <ChevronRight size={16} className="tp-pick__chev" />
+                      </button>
+                    ))}
+
+                    {/* Step 2: Grade */}
+                    {selectedLevel && !selectedGrade && grades.map(grade => (
+                      <button key={grade.id} type="button" onClick={() => setSelectedGrade(grade.id)} className="tp-pick">
+                        <span className="tp-pick__num">{grade.id}º</span>
+                        <span className="tp-pick__label">{grade.label}</span>
+                        <ChevronRight size={16} className="tp-pick__chev" />
+                      </button>
+                    ))}
+
+                    {/* Step 3: Subject */}
+                    {selectedLevel && selectedGrade && !selectedSubject && subjects.map(subj => (
+                      <button key={subj.id} type="button" onClick={() => setSelectedSubject(subj.id)} className="tp-pick">
+                        <span className="tp-pick__emoji">{subj.icon}</span>
+                        <span className="tp-pick__label">{subj.nombre}</span>
+                        <ChevronRight size={16} className="tp-pick__chev" />
+                      </button>
+                    ))}
+
+                    {/* Step 4: App */}
+                    {selectedLevel && selectedGrade && selectedSubject && apps.map(app => (
+                      <button key={app.id} type="button" onClick={() => setSelectedApp(app)} className="tp-pick tp-pick--app">
+                        <AppGlyph appId={app.id} size={46} />
+                        <span className="tp-pick__label">{app.name}</span>
+                      </button>
+                    ))}
+
+                    {selectedLevel && selectedGrade && selectedSubject && apps.length === 0 && (
+                      <p className="tp-picker__empty">No hay apps disponibles</p>
+                    )}
                   </div>
-                )}
-
-                <div className="relative">
-                <div className="max-h-64 overflow-y-auto scrollbar-hide divide-y divide-slate-50">
-                  {/* Step 1: Level */}
-                  {!selectedLevel && levels.map(level => (
-                    <button
-                      key={level.id}
-                      onClick={() => setSelectedLevel(level.id)}
-                      className="w-full text-left px-3 py-2.5 text-sm hover:bg-purple-50 transition-colors flex items-center justify-between"
-                    >
-                      <span className="font-medium text-slate-700">{level.label}</span>
-                      <ChevronRight className="w-4 h-4 text-slate-400" />
-                    </button>
-                  ))}
-
-                  {/* Step 2: Grade */}
-                  {selectedLevel && !selectedGrade && grades.map(grade => (
-                    <button
-                      key={grade.id}
-                      onClick={() => setSelectedGrade(grade.id)}
-                      className="w-full text-left px-3 py-2.5 text-sm hover:bg-purple-50 transition-colors flex items-center justify-between"
-                    >
-                      <span className="font-medium text-slate-700">{grade.label}</span>
-                      <ChevronRight className="w-4 h-4 text-slate-400" />
-                    </button>
-                  ))}
-
-                  {/* Step 3: Subject */}
-                  {selectedLevel && selectedGrade && !selectedSubject && subjects.map(subj => (
-                    <button
-                      key={subj.id}
-                      onClick={() => setSelectedSubject(subj.id)}
-                      className="w-full text-left px-3 py-2.5 text-sm hover:bg-purple-50 transition-colors flex items-center justify-between"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span>{subj.icon}</span>
-                        <span className="font-medium text-slate-700">{subj.nombre}</span>
-                      </span>
-                      <ChevronRight className="w-4 h-4 text-slate-400" />
-                    </button>
-                  ))}
-
-                  {/* Step 4: App */}
-                  {selectedLevel && selectedGrade && selectedSubject && apps.map(app => (
-                    <button
-                      key={app.id}
-                      onClick={() => setSelectedApp(app)}
-                      className="w-full text-left px-3 py-2.5 text-sm hover:bg-purple-50 transition-colors"
-                    >
-                      <span className="font-medium text-slate-700">{app.name}</span>
-                    </button>
-                  ))}
-
-                  {selectedLevel && selectedGrade && selectedSubject && apps.length === 0 && (
-                    <p className="text-center py-4 text-sm text-slate-400">No hay apps disponibles</p>
-                  )}
                 </div>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent" />
+              )}
+            </Step>
+
+            {/* Cómo se evalúa: nota mínima, peso y evaluación */}
+            <Step n={nextStep()} title="Cómo se evalúa">
+              <div className="tp-field">
+                <span className="tp-label">Nota mínima para aprobar (0-10)</span>
+                <div className="tp-score" style={{ '--rc': bandColor(minScore) }}>
+                  <ProgressRing value={minScore} max={10} size={84} stroke={9} label={`Nota mínima ${minScore}`}>
+                    <span>
+                      <span className="tp-score__ring-num">{fmtScore(minScore)}</span>
+                      <span className="tp-score__ring-sub">/10</span>
+                    </span>
+                  </ProgressRing>
+                  <div className="tp-score__ctrl">
+                    <input
+                      type="range"
+                      min={0}
+                      max={10}
+                      step={0.5}
+                      value={minScore}
+                      onChange={(e) => setMinScore(parseFloat(e.target.value))}
+                      className="tp-range"
+                      style={{ '--p': `${minScore * 10}%` }}
+                      aria-label="Nota mínima para aprobar"
+                    />
+                    <div className="tp-quick">
+                      {QUICK_SCORES.map(v => (
+                        <button
+                          key={v}
+                          type="button"
+                          onClick={() => setMinScore(v)}
+                          className={`tp-quick__btn ${minScore === v ? 'is-on' : ''}`}
+                        >
+                          {v}
+                        </button>
+                      ))}
+                    </div>
+                    <span className="tp-score__hint">Sobre 10 en modo examen</span>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
 
-          {/* Nota minima */}
-          <div className="space-y-2">
-            <Label>Nota minima para aprobar (0-10)</Label>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <input
-                  type="range"
-                  min={0}
-                  max={10}
-                  step={0.5}
-                  value={minScore}
-                  onChange={(e) => setMinScore(parseFloat(e.target.value))}
-                  className="w-40 accent-purple-600"
-                />
-                <span className="text-lg font-bold text-purple-700 min-w-[3ch] text-center">{minScore}</span>
+              <div className="tp-field" style={{ marginTop: 16 }}>
+                <span className="tp-label">Peso en la nota final</span>
+                <WeightPicker value={weight} onChange={setWeight} />
               </div>
-              <span className="text-sm text-slate-500">sobre 10 en modo examen</span>
-            </div>
-            <div className="flex gap-1.5 mt-1">
-              {[0, 3, 5, 7, 8, 9, 10].map(v => (
-                <button
-                  key={v}
-                  type="button"
-                  onClick={() => setMinScore(v)}
-                  className={`px-2 py-0.5 rounded text-xs font-medium transition-all ${
-                    minScore === v
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                  }`}
-                >
-                  {v}
-                </button>
-              ))}
-            </div>
-          </div>
 
-          {/* Peso / multiplicador */}
-          <div className="space-y-2">
-            <Label>Peso en la nota final</Label>
-            <div className="flex gap-2">
-              {[
-                { v: 1, label: 'x1', hint: 'Normal' },
-                { v: 2, label: 'x2', hint: 'Cuenta doble' },
-                { v: 3, label: 'x3', hint: 'Cuenta triple' },
-              ].map(opt => (
-                <button
-                  key={opt.v}
-                  type="button"
-                  onClick={() => setWeight(opt.v)}
-                  className={`flex-1 flex flex-col items-center py-2 rounded-xl border transition-all ${
-                    weight === opt.v
-                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white border-transparent shadow-sm'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-purple-300'
-                  }`}
-                >
-                  <span className="text-lg font-bold leading-tight">{opt.label}</span>
-                  <span className={`text-[11px] ${weight === opt.v ? 'text-white/80' : 'text-slate-400'}`}>{opt.hint}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+              <div className="tp-field" style={{ marginTop: 16 }}>
+                <span className="tp-label">Evaluación</span>
+                <TermPicker value={term} onChange={setTerm} />
+              </div>
+            </Step>
 
-          {/* Evaluacion */}
-          <div className="space-y-2">
-            <Label>Evaluación</Label>
-            <div className="flex gap-2">
-              {[
-                { v: 1, label: '1ª Evaluación' },
-                { v: 2, label: '2ª Evaluación' },
-                { v: 3, label: '3ª Evaluación' },
-              ].map(opt => (
-                <button
-                  key={opt.v}
-                  type="button"
-                  onClick={() => setTerm(opt.v)}
-                  className={`flex-1 py-2 rounded-xl border text-sm font-medium transition-all ${
-                    term === opt.v
-                      ? 'bg-gradient-to-br from-pink-500 to-rose-600 text-white border-transparent shadow-sm'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-pink-300'
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
+            {/* Detalles opcionales */}
+            <Step n={nextStep()} title="Detalles" hint="Opcional">
+              <div className="tp-fields">
+                <div className="tp-field">
+                  <label className="tp-label" htmlFor="asg-title">Título (opcional)</label>
+                  <input
+                    id="asg-title"
+                    className="tp-input"
+                    placeholder="Ej: Practica de sumas"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div className="tp-field">
+                  <label className="tp-label" htmlFor="asg-due">Fecha límite (opcional)</label>
+                  <input
+                    id="asg-due"
+                    className="tp-input"
+                    type="date"
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
+                  />
+                </div>
+                <div className="tp-field tp-field--full">
+                  <label className="tp-label" htmlFor="asg-desc">Instrucciones (opcional)</label>
+                  <textarea
+                    id="asg-desc"
+                    className="tp-textarea"
+                    placeholder="Instrucciones para los alumnos..."
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+              </div>
+            </Step>
+            </>}
           </div>
-
-          {/* Titulo (opcional) */}
-          <div className="space-y-2">
-            <Label>Titulo (opcional)</Label>
-            <Input
-              placeholder="Ej: Practica de sumas"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          {/* Descripcion (opcional) */}
-          <div className="space-y-2">
-            <Label>Instrucciones (opcional)</Label>
-            <textarea
-              className="w-full min-h-[60px] rounded-lg border border-slate-200 p-3 text-sm focus:ring-2 focus:ring-purple-300 focus:border-transparent resize-y"
-              placeholder="Instrucciones para los alumnos..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-          {/* Fecha limite (opcional) */}
-          <div className="space-y-2">
-            <Label>Fecha limite (opcional)</Label>
-            <Input
-              type="date"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-            />
-          </div>
-          </>}
         </div>
 
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancelar</Button>
-          <Button
-            onClick={handleCreate}
-            disabled={loading || (isDuel ? !duelApp : (!selectedApp || (targetType === 'student' && !targetStudentId)))}
-            className={isDuel
-              ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white'
-              : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white'}
-          >
-            {loading ? 'Asignando...' : isDuel ? 'Crear duelos' : 'Asignar tarea'}
-          </Button>
-        </DialogFooter>
+        {/* Pie: resumen + acciones */}
+        <footer className="tp-dfoot">
+          <div className="tp-dfoot__info">
+            {isDuel ? (
+              duelApp
+                ? <><AppGlyph appId={duelApp.id} size={34} /><span>Duelo · {duelApp.name}</span></>
+                : <><Info size={18} /><span>Elige el juego del duelo</span></>
+            ) : (
+              selectedApp
+                ? <><AppGlyph appId={selectedApp.id} size={34} /><span>{selectedApp.name} · mín. {fmtScore(minScore)} · x{weight} · {term}ª ev.</span></>
+                : <><Info size={18} /><span>Elige una app para continuar</span></>
+            )}
+          </div>
+          <div className="tp-dfoot__actions">
+            <DashButton variant="soft" onClick={() => onOpenChange(false)}>Cancelar</DashButton>
+            <DashButton
+              variant={isDuel ? 'rose' : 'primary'}
+              onClick={handleCreate}
+              disabled={submitDisabled}
+              icon={isDuel ? Swords : Check}
+            >
+              {loading ? 'Asignando...' : isDuel ? 'Crear duelos' : 'Asignar tarea'}
+            </DashButton>
+          </div>
+        </footer>
       </DialogContent>
     </Dialog>
   );

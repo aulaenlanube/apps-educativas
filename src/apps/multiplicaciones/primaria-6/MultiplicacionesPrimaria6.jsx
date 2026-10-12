@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 import MultiplicacionTestBoard from '../../_shared/MultiplicacionTestBoard';
+import { OpBoard, OpNum, OpCell, OpCarry, OpSign, OpRule, OpComma } from '../OpTablero';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -263,30 +264,30 @@ export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
     return arr;
   }, [multiplicador, ancho]);
 
-  const getHighlightStyle = (section, idx, r_idx) => {
-    if (!ayudaLlevadas || !activeSlot) return {};
-    const style = { backgroundColor: '#e0f2fe', transition: 'background-color 0.2s', borderRadius: '4px' };
+  // Ayuda visual: cifras que intervienen en la casilla activa (mismas reglas de antes).
+  const isFocus = (section, idx, r_idx) => {
+    if (!ayudaLlevadas || !activeSlot) return false;
 
     // Fases de Multiplicación
     if (activeSlot.type === 'parcial') {
         const activeRow = activeSlot.row;
         const digitosMultReales = multiplicador.replace('.','').length;
         const offsetMult = (ancho - digitosMultReales) + (digitosMultReales - 1 - activeRow);
-        
-        if (section === 'mulcdr' && idx === offsetMult) return style;
+
+        if (section === 'mulcdr' && idx === offsetMult) return true;
         if (section === 'mulcdo' && idx === (activeSlot.col + activeRow)) {
-             if (mulcdoRelleno[idx]) return style;
+             if (mulcdoRelleno[idx]) return true;
         }
     }
 
     // Fase Suma Final
     if (activeSlot.type === 'final') {
         if (section === 'parcial' && idx === activeSlot.col) {
-             if (parcialesEsperados[r_idx].digitos[idx] !== "") return style;
+             if (parcialesEsperados[r_idx].digitos[idx] !== "") return true;
         }
     }
 
-    return {};
+    return false;
   };
 
   // ---------- Manejadores ----------
@@ -460,78 +461,31 @@ export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
   };
 
   // ---------- Renderizado ----------
-  let operadorColocado = false;
-  const columnas = [];
-  
-  for (let c = 0; c < ancho; c++) {
-    const dMulcdr = mulcdrRelleno[c];
-    const comaA = d1 > 0 && c === (ancho - d1 - 1);
-    const comaB = d2 > 0 && c === (ancho - d2 - 1);
+  // Una sola rejilla para todo: columna 1 = signos; después, para cada cifra,
+  // una ranura estrecha (coma) y la columna de la cifra; al final, la última
+  // ranura. Así las comas de los factores, los productos parciales y el
+  // resultado quedan alineados.
+  const nParciales = parcialesEsperados.length;
+  const slotCol = (s) => 2 + 2 * s;          // ranura de coma s (0..ancho)
+  const digitCol = (c) => 3 + 2 * c;         // cifra c (0..ancho-1)
+  const cols = Array.from({ length: ancho }, (_, c) => c);
 
-    // Llevada Multiplicación (Única fila visual)
-    let activeCarryVal = "";
-    let activeCarryClass = "";
-    let currentRowIdx = -1;
-
-    if (activeSlot && (activeSlot.type === 'parcial' || activeSlot.type === 'llevada')) {
-        currentRowIdx = activeSlot.row;
-        activeCarryVal = entradasLlevadas[currentRowIdx]?.[c] || "";
-        activeCarryClass = clasesLlevadas[currentRowIdx]?.[c] || "";
-    }
-    const showCarryBox = ayudaLlevadas && (currentRowIdx !== -1);
-
-    columnas.push(
-      <div className="column" key={`col-${c}`}>
-        {/* Llevada Multiplicación */}
-        <div
-            className={`box carry-box ${!showCarryBox ? 'invisible' : ''} ${activeCarryClass} ${activeSlot?.type==='llevada' && activeSlot?.col===c ? 'selected' : ''}`}
-            onClick={() => showCarryBox && handleSlotClick('llevada', currentRowIdx, c)}
-        >
-            {showCarryBox ? activeCarryVal : ""}
-        </div>
-
-        {/* Multiplicando */}
-        <div className="digit-display with-decimal" style={getHighlightStyle('mulcdo', c)}>
-          {mulcdoRelleno[c] || ""}
-          {comaA ? <span className="decimal-mark">,</span> : null}
-        </div>
-
-        {/* Multiplicador */}
-        <div className="digit-display with-decimal" style={getHighlightStyle('mulcdr', c)}>
-          {dMulcdr ? (
-            !operadorColocado ? (<><span className="cross-inline">×</span><span>{dMulcdr}</span></>)
-                               : dMulcdr
-          ) : ""}
-          {comaB ? <span className="decimal-mark">,</span> : null}
-        </div>
-        {dMulcdr && !operadorColocado ? (operadorColocado = true) : null}
-
-        <hr className="operation-line" />
-
-        {/* Parciales */}
-        {parcialesEsperados.map((fila, r) => {
-          const enabled = fila.digitos[c] !== "";
-          return (
-            <div
-              key={`parcial-${r}-${c}`}
-              className={`box result-box parcial-box ${!enabled ? "disabled" : ""} ${clasesParciales[r]?.[c] || ""} ${activeSlot?.type==='parcial' && activeSlot.row===r && activeSlot.col===c ? 'selected' : ''}`}
-              onClick={() => enabled && handleSlotClick('parcial', r, c)}
-              style={getHighlightStyle('parcial', c, r)}
-            >
-              {entradasParciales[r]?.[c] || ""}
-            </div>
-          );
-        })}
-
-        <hr className="operation-line" />
-      </div>
-    );
+  // Fila de llevadas de la multiplicación (la de la fila parcial activa)
+  let currentRowIdx = -1;
+  if (activeSlot && (activeSlot.type === 'parcial' || activeSlot.type === 'llevada')) {
+      currentRowIdx = activeSlot.row;
   }
+  const showCarryBox = ayudaLlevadas && (currentRowIdx !== -1);
 
-  // Configuración del Grid Final
-  const resultGridColumns = Array.from({ length: 2 * ancho + 1 }, (_, k) => 
-      k % 2 === 0 ? "var(--slot-w)" : "var(--box-w)"
-  ).join(" ");
+  // Fila de cada cifra del multiplicador (unidades = 1, decenas = 2…), para el color.
+  const filaDeCifra = (c) => (mulcdrRelleno[c] ? String(ancho - c) : undefined);
+
+  // Tras comprobar, la coma elegida se pinta verde o roja (solo visual).
+  const comprobado = clasesFinal.some(Boolean);
+  const comaEsperada = decimalesTotal > 0 ? (ancho - decimalesTotal) : null;
+
+  const rFinal = 7 + nParciales;
+  const resultGridColumns = `calc(var(--cell) * .8) repeat(${ancho}, var(--slot) var(--cell)) var(--slot)`;
 
   return (
     <MathOperationLayout
@@ -545,7 +499,9 @@ export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
       toggleValue={ayudaLlevadas}
       onToggleChange={setAyudaLlevadas}
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Toca los números 👇"
+      paletteLabel="Toca un número"
+      padLayout="side"
+      operator="×"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -567,12 +523,13 @@ export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Completa la multiplicacion con decimales colocando cada digito en su casilla correcta.</p>
-          <h3>Como se juega</h3>
+          <p>Multiplica como si no hubiera comas y coloca la coma en el resultado: lleva tantas cifras decimales como los dos factores juntos.</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Coloca el digito correcto desde la paleta numerica.</li>
-            <li>Pulsa en la ranura de la coma para activarla en el resultado.</li>
+            <li>Toca una casilla para elegirla (se ilumina) y escribe la cifra con el teclado de la pantalla o con el del ordenador.</li>
+            <li>Cada fila de color es el multiplicando por una cifra del multiplicador (la del mismo color).</li>
+            <li>En el resultado, toca el punto que hay entre dos casillas para poner (o quitar) la coma.</li>
+            <li>Con <strong>Ayuda con llevadas</strong> se iluminan las cifras que intervienen y las llevadas aparecen solas en monedas doradas.</li>
           </ul>
           <h3>🔴 Modo Examen</h3>
           <p>5 multiplicaciones de 3 × 3 cifras (números enteros). Escribe directamente el resultado final.</p>
@@ -588,74 +545,117 @@ export default function MultiplicacionesPrimaria6({ onGameComplete } = {}) {
           onSlotClick={(i) => setTestActiveIdx(i)}
         />
       ) : (
-      <>
-      <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
-        {columnas}
-      </div>
+      <OpBoard>
+        <div
+          className="op-grid mx-grid mx-grid--dec"
+          style={{ '--n': ancho, gridTemplateColumns: resultGridColumns }}
+        >
+          {/* Llevadas de la multiplicación (fila parcial activa) */}
+          {cols.map((c) => (
+            <OpCarry
+              key={`carry-${c}`}
+              at={{ gridRow: 1, gridColumn: digitCol(c) }}
+              off={!showCarryBox}
+              value={showCarryBox ? (entradasLlevadas[currentRowIdx]?.[c] || "") : ""}
+              state={showCarryBox ? (clasesLlevadas[currentRowIdx]?.[c] || "") : ""}
+              active={activeSlot?.type === 'llevada' && activeSlot?.col === c}
+              onClick={() => showCarryBox && handleSlotClick('llevada', currentRowIdx, c)}
+            />
+          ))}
 
-      {/* Grid Resultado Final + Llevadas Suma */}
-      <div
-        className="result-grid"
-        style={{
-          display: 'grid',
-          justifyContent: 'center',
-          marginTop: '10px',
-          gridTemplateColumns: resultGridColumns,
-          gridTemplateRows: '35px 55px' // Altura aumentada para números grandes
-        }}
-      >
-        {Array.from({ length: 2 * ancho + 1 }, (_, k) => {
-            const gridCol = k + 1; // 1-based index
-            
-            if (k % 2 === 0) {
-                // --- Ranura Coma (Fila 2) ---
-                const s = Math.floor(k / 2);
-                const activo = commaSlot === s;
-                return (
-                <div
-                    key={`slot-${s}`}
-                    className={["comma-slot", activo ? "active" : ""].join(" ")}
-                    style={{ gridColumn: gridCol, gridRow: 2 }}
-                    onClick={() => {
-                        if (decimalesTotal === 0) { setCommaSlot(null); return; }
-                        setCommaSlot(prev => (prev === s ? null : s));
-                    }}
-                >
-                    ,
-                </div>
-                );
-            } else {
-                // --- Columna Dígito ---
-                const c = (k - 1) / 2;
-                const style = getHighlightStyle('final', c);
-                const isSelected = activeSlot?.type === 'final' && activeSlot?.col === c;
-                const showCarry = ayudaLlevadas; 
-                
-                return [
-                    // Elemento 1: Llevada (Fila 1) - Fuente aumentada
-                    <div 
-                        key={`carrySuma-${c}`}
-                        className={`box carry-box ${!showCarry ? 'invisible' : ''} ${clasesLlevadasSuma[c] || ""} ${activeSlot?.type==='llevadaSuma' && activeSlot?.col===c ? 'selected' : ''}`}
-                        style={{ gridColumn: gridCol, gridRow: 1, width: 'var(--box-w)', margin: '0 auto', fontSize: '1.3rem', fontWeight: 'bold' }}
-                        onClick={() => showCarry && handleSlotClick('llevadaSuma', 0, c)}
-                    >
-                        {entradasLlevadasSuma[c] || ""}
-                    </div>,
-                    
-                    // Elemento 2: Resultado (Fila 2) - Fuente Aumentada y Negrita
-                    <div
-                        key={`final-${c}`}
-                        className={`box result-box final-box ${clasesFinal[c] || ""} ${isSelected ? "selected" : ""}`}
-                        style={{ ...style, gridColumn: gridCol, gridRow: 2, fontSize: '1.6rem', fontWeight: 'bold' }}
-                        onClick={() => handleSlotClick('final', 0, c)}
-                    >
-                        {entradasFinal[c] || ""}
-                    </div>
-                ];
-            }
-        })}
-      </div>
-      </>
+          {/* Multiplicando (con su coma) */}
+          {cols.map((c) => (
+            <OpNum key={`mulcdo-${c}`} at={{ gridRow: 2, gridColumn: digitCol(c) }} focus={isFocus('mulcdo', c)}>
+              {mulcdoRelleno[c] || ""}
+            </OpNum>
+          ))}
+          {d1 > 0 && <OpComma at={{ gridRow: 2, gridColumn: slotCol(ancho - d1) }} />}
+
+          {/* Multiplicador (con su coma) */}
+          <OpSign op="mul" at={{ gridRow: 3, gridColumn: 1 }} />
+          {cols.map((c) => (
+            <OpNum key={`mulcdr-${c}`} at={{ gridRow: 3, gridColumn: digitCol(c) }} focus={isFocus('mulcdr', c)} row={filaDeCifra(c)}>
+              {mulcdrRelleno[c] || ""}
+            </OpNum>
+          ))}
+          {d2 > 0 && <OpComma at={{ gridRow: 3, gridColumn: slotCol(ancho - d2) }} />}
+
+          <OpRule at={{ gridRow: 4, gridColumn: '1 / -1' }} />
+
+          {/* Productos parciales */}
+          {parcialesEsperados.map((fila, r) => cols.map((c) => {
+            const enabled = fila.digitos[c] !== "";
+            return (
+              <OpCell
+                key={`parcial-${r}-${c}`}
+                at={{ gridRow: 5 + r, gridColumn: digitCol(c) }}
+                i={c}
+                row={String(Math.min(r + 1, 3))}
+                value={entradasParciales[r]?.[c] || ""}
+                state={clasesParciales[r]?.[c] || ""}
+                off={!enabled}
+                focus={isFocus('parcial', c, r)}
+                active={activeSlot?.type === 'parcial' && activeSlot.row === r && activeSlot.col === c}
+                onClick={() => enabled && handleSlotClick('parcial', r, c)}
+              />
+            );
+          }))}
+          {/* Producto parcial por 0: la fila queda sin cifras */}
+          {parcialesEsperados.map((fila, r) => (fila.digitos.every((d) => d === "") ? (
+            <span
+              key={`cero-${r}`}
+              className="mx-zero"
+              data-row={String(Math.min(r + 1, 3))}
+              style={{ gridRow: 5 + r, gridColumn: `2 / ${digitCol(Math.max(1, ancho - 3))}` }}
+            >
+              × 0 = 0 · esta fila se deja en blanco
+            </span>
+          ) : null))}
+          {nParciales > 1 && <OpSign op="add" at={{ gridRow: 4 + nParciales, gridColumn: 1 }} />}
+
+          <OpRule at={{ gridRow: 5 + nParciales, gridColumn: '1 / -1' }} />
+
+          {/* Llevadas de la suma */}
+          {cols.map((c) => (
+            <OpCarry
+              key={`carrySuma-${c}`}
+              at={{ gridRow: 6 + nParciales, gridColumn: digitCol(c) }}
+              off={!ayudaLlevadas}
+              value={entradasLlevadasSuma[c] || ""}
+              state={clasesLlevadasSuma[c] || ""}
+              active={activeSlot?.type === 'llevadaSuma' && activeSlot?.col === c}
+              onClick={() => ayudaLlevadas && handleSlotClick('llevadaSuma', 0, c)}
+            />
+          ))}
+
+          {/* Resultado final + ranuras para la coma */}
+          {Array.from({ length: ancho + 1 }, (_, s) => (
+            <OpComma
+              key={`slot-${s}`}
+              at={{ gridRow: rFinal, gridColumn: slotCol(s) }}
+              on={commaSlot === s}
+              state={comprobado && commaSlot === s ? (s === comaEsperada ? 'correct' : 'incorrect') : ''}
+              onClick={() => {
+                  if (decimalesTotal === 0) { setCommaSlot(null); return; }
+                  setCommaSlot(prev => (prev === s ? null : s));
+              }}
+            />
+          ))}
+          {cols.map((c) => (
+            <OpCell
+              key={`final-${c}`}
+              at={{ gridRow: rFinal, gridColumn: digitCol(c) }}
+              i={c}
+              stamp
+              value={entradasFinal[c] || ""}
+              state={clasesFinal[c] || ""}
+              focus={isFocus('final', c)}
+              active={activeSlot?.type === 'final' && activeSlot?.col === c}
+              onClick={() => handleSlotClick('final', 0, c)}
+            />
+          ))}
+        </div>
+      </OpBoard>
       )}
     </MathOperationLayout>
   );

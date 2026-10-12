@@ -1,17 +1,21 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, EyeOff, ArrowLeft, Play, Users, Trophy, XCircle } from 'lucide-react';
+import {
+  Swords, EyeOff, ArrowLeft, Play, Trophy, XCircle, Coins, Repeat, Activity, Radio, BookOpen, Wifi, WifiOff,
+} from 'lucide-react';
 import useDuelChannel from '@/hooks/useDuelChannel';
 import useDuelActor from '@/hooks/useDuelActor';
 import {
   getDuelState, startDuel, voidDuel,
   teacherGetDuelState, teacherStartDuel, teacherVoidDuel,
 } from '@/services/duelService';
-import { DUELABLE_APPS, getDuelConfig } from '@/apps/config/duelableApps';
-import InstructionsModal from '@/apps/_shared/InstructionsModal';
-import UserAvatar from '@/components/ui/UserAvatar';
+import { DUELABLE_APPS } from '@/apps/config/duelableApps';
+import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
+import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
 import BrandLoader from '@/components/ui/BrandLoader';
+import './DuelLobby.css';
 
 // Instrucciones por app. Pueden extenderse libremente.
 const INSTRUCTIONS = {
@@ -175,25 +179,30 @@ export default function DuelLobby() {
     } catch (e) { setErr(e.message); }
   }
 
+  // Solo presentación: tamaño del avatar según el ancho de pantalla.
+  const compact = useCompact();
+
   if (err) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white p-6">
-        <div className="text-center">
-          <XCircle className="w-12 h-12 mx-auto mb-3 text-rose-400" />
-          <p className="font-bold">No se pudo cargar el duelo</p>
-          <p className="text-sm text-slate-400 mt-1">{err}</p>
-          <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
-            Volver al panel
+      <div className="dl-arena dl-arena--center">
+        <ArenaBackdrop />
+        <motion.div className="dl-notice" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+          <span className="dl-notice__icon is-bad"><XCircle size={30} /></span>
+          <p className="dl-notice__title">No se pudo cargar el duelo</p>
+          <p className="dl-notice__text">{err}</p>
+          <button type="button" onClick={() => navigate(homePath)} className="dl-btn dl-btn--ghost">
+            <ArrowLeft size={16} /> Volver al panel
           </button>
-        </div>
+        </motion.div>
       </div>
     );
   }
 
   if (!state) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-        <BrandLoader variant="inline" className="brand-loader--on-dark" />
+      <div className="dl-arena dl-arena--center">
+        <ArenaBackdrop />
+        <BrandLoader variant="inline" className="brand-loader--on-dark" label="Entrando en la sala…" />
       </div>
     );
   }
@@ -204,192 +213,214 @@ export default function DuelLobby() {
   const rivalInfo = opponentIsMe ? state.challenger : state.opponent;
   const rivalHidden = rivalInfo?.hidden;
 
+  // ─── Derivados de presentación ───────────────────────────────────────────
+  const mePresent = presence.some(p => p.id === actor?.id);
+  const rivalPresent = presence.some(p => p.id !== actor?.id);
+  // Con el estado ya cargado, 'loading' solo significa "aún no estáis los dos":
+  // se pinta igual que la espera.
+  const view = phase === 'loading' ? 'waiting' : phase;
+  const appTitle = cleanAppName(state.app_name) || app?.name || 'Duelo';
+  const friendly = Number(state.stake) === 0;
+  const stakeLabel = friendly ? 'Amistoso' : `${(+state.stake).toFixed(1).replace('.', ',')} pt`;
+  const statusLabel = STATUS_LABEL[state.status] || state.status;
+  const iWon = state.winner_id === actor?.id;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-950 to-fuchsia-900 text-white">
-      <div className="container mx-auto px-4 py-6 max-w-2xl">
-        <button
-          onClick={() => setShowAbortModal(true)}
-          className="flex items-center gap-2 text-sm text-white/70 hover:text-white mb-6"
+    <div className={`dl-arena is-${view}`}>
+      <ArenaBackdrop />
+
+      <div className="dl-wrap">
+        <header className="dl-top">
+          <button type="button" onClick={() => setShowAbortModal(true)} className="dl-exit">
+            <ArrowLeft size={16} /> Salir del duelo
+          </button>
+          <span className={`dl-conn${isConnected ? ' is-on' : ''}`} title={`Conexion ${isConnected ? 'activa' : 'pendiente'}`}>
+            {isConnected ? <Wifi size={14} /> : <WifiOff size={14} />}
+            <span className="dl-conn__txt">Conexión {isConnected ? 'activa' : 'pendiente'}</span>
+            <b>{presence.length}/2</b>
+          </span>
+        </header>
+
+        <motion.section
+          className="dl-title"
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
         >
-          <ArrowLeft className="w-4 h-4" /> Salir del duelo
-        </button>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className="bg-white/10 backdrop-blur rounded-3xl p-6 border border-white/10"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-                <Swords className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-white/60 uppercase tracking-wide">Sala de duelo</p>
-                <h1 className="text-xl font-bold">{state.app_name}</h1>
-              </div>
-            </div>
-            {state.is_hidden && (
-              <div className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-white/10">
-                <EyeOff className="w-3.5 h-3.5" /> Oculto
-              </div>
-            )}
+          <span className="dl-title__icon">
+            {hasAppIcon(state.app_id) ? <AppIcon appId={state.app_id} size={compact ? 52 : 68} /> : <Swords size={30} />}
+          </span>
+          <div className="dl-title__text">
+            <p className="dl-kicker">
+              <Swords size={13} /> Sala de duelo
+              {state.is_hidden && <span className="dl-hidden-pill"><EyeOff size={12} /> Oculto</span>}
+            </p>
+            <h1>{appTitle}</h1>
+            {app?.description && <p className="dl-title__desc">{app.description}</p>}
           </div>
+        </motion.section>
 
-          {/* Jugadores */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            <PlayerCard
-              label="Tú"
-              name={user.name}
-              emoji={user.emoji}
-              color={user.color}
-              selectedAvatarCode={user.selected_avatar_code}
-              present={presence.some(p => p.id === actor?.id)}
-            />
-            <PlayerCard
-              label="Rival"
-              name={rivalHidden ? 'Oculto' : rivalInfo?.name}
-              emoji={rivalHidden ? '🕵️' : rivalInfo?.emoji}
-              color={rivalInfo?.color}
-              selectedAvatarCode={rivalHidden ? null : rivalInfo?.selected_avatar_code}
-              hidden={rivalHidden}
-              present={presence.some(p => p.id !== actor?.id)}
-            />
-          </div>
+        <section className="dl-stage">
+          <PlayerCard
+            side="me"
+            label="Tú"
+            role={amHost ? 'Retador' : 'Retado'}
+            name={user.name}
+            emoji={user.emoji}
+            color={user.color}
+            selectedAvatarCode={user.selected_avatar_code}
+            present={mePresent}
+            compact={compact}
+          />
+          <VsEmblem view={view} countdown={countdown} />
+          <PlayerCard
+            side="rival"
+            label="Rival"
+            role={amHost ? 'Retado' : 'Retador'}
+            name={rivalHidden ? 'Oculto' : rivalInfo?.name}
+            emoji={rivalHidden ? '🕵️' : rivalInfo?.emoji}
+            color={rivalInfo?.color}
+            selectedAvatarCode={rivalHidden ? null : rivalInfo?.selected_avatar_code}
+            hidden={rivalHidden}
+            present={rivalPresent}
+            compact={compact}
+          />
+        </section>
 
-          {/* Info duelo */}
-          <div className="grid grid-cols-3 gap-2 text-center text-sm mb-6">
-            <InfoPill
-              label="Apuesta"
-              value={Number(state.stake) === 0 ? 'Amistoso' : `${(+state.stake).toFixed(1).replace('.', ',')} pt`}
-            />
-            <InfoPill label="Formato" value={state.best_of > 1 ? `Mejor de ${state.best_of}` : 'Una partida'} />
-            <InfoPill label="Estado" value={state.status} />
-          </div>
+        <section className="dl-info">
+          <InfoPill icon={Coins} tone="amber" label="Apuesta" value={stakeLabel} sub={friendly ? 'No cambia la nota' : 'Nota en juego'} />
+          <InfoPill icon={Repeat} tone="violet" label="Formato" value={state.best_of > 1 ? `Mejor de ${state.best_of}` : 'Una partida'} />
+          <InfoPill icon={Activity} tone="cyan" label="Estado" value={statusLabel} />
+        </section>
 
-          {/* Fase */}
+        <div className="dl-phase">
           <AnimatePresence mode="wait">
-            {phase === 'waiting' && (
-              <motion.div key="wait"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="text-center py-6"
+            {view === 'waiting' && (
+              <motion.div key="wait" className="dl-step"
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
               >
-                <Users className="w-12 h-12 mx-auto mb-3 text-white/40 animate-pulse" />
-                <p className="text-lg font-bold">Esperando al rival…</p>
-                <p className="text-sm text-white/60">
+                <div className="dl-radar" aria-hidden="true">
+                  <span /><span /><span />
+                  <Radio size={26} />
+                </div>
+                <p className="dl-step__title">Esperando al rival…</p>
+                <p className="dl-step__text">
                   {bothPresent ? 'Preparando duelo' : 'Le avisaremos cuando esté listo.'}
                 </p>
               </motion.div>
             )}
-            {phase === 'countdown' && (
-              <motion.div key="cd"
-                initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8"
+            {view === 'countdown' && (
+              <motion.div key="cd" className="dl-step"
+                initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
               >
-                <p className="text-xs uppercase tracking-widest text-white/60 mb-2">El duelo comienza en</p>
+                <p className="dl-step__kicker">El duelo comienza en</p>
                 <motion.p
                   key={countdown}
-                  initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                  className="text-7xl font-black bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent"
+                  className="dl-count"
+                  initial={{ scale: 1.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 20 }}
                 >
-                  {countdown > 0 ? countdown : '¡YA!'}
+                  {countdown > 0 ? '¡Prepárate!' : '¡YA!'}
                 </motion.p>
+                <div className="dl-pips" aria-hidden="true">
+                  {Array.from({ length: COUNTDOWN_SECONDS }, (_, i) => (
+                    <i key={i} className={i < COUNTDOWN_SECONDS - countdown ? 'is-lit' : ''} />
+                  ))}
+                </div>
               </motion.div>
             )}
-            {phase === 'ready' && (
-              <motion.div key="ready"
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                className="text-center py-4"
+            {view === 'ready' && (
+              <motion.div key="ready" className="dl-step dl-step--ready"
+                initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               >
-                <div className="bg-white/5 rounded-xl p-4 mb-4 text-left text-sm leading-relaxed text-white/90 space-y-2">
-                  {instructions}
-                </div>
+                {showInstructions && (
+                  <div className="dl-rules">
+                    <p className="dl-rules__head"><BookOpen size={15} /> Cómo se juega</p>
+                    <div className="dl-rules__body">{instructions}</div>
+                  </div>
+                )}
                 {amHost ? (
-                  <button
+                  <motion.button
+                    type="button"
                     onClick={handleStart}
-                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-green-500 text-white font-bold text-lg shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                    className="dl-start"
+                    whileHover={{ y: -3 }}
+                    whileTap={{ y: 3 }}
                   >
-                    <Play className="w-5 h-5 fill-current" /> Iniciar duelo
-                  </button>
+                    <span className="dl-start__shine" aria-hidden="true" />
+                    <Play size={22} fill="currentColor" /> Iniciar duelo
+                  </motion.button>
                 ) : (
-                  <p className="text-sm text-white/70">Esperando a que el retador pulse <strong>Iniciar duelo</strong>…</p>
+                  <p className="dl-step__text">Esperando a que el retador pulse <strong>Iniciar duelo</strong>…</p>
                 )}
               </motion.div>
             )}
-            {phase === 'starting' && (
-              <motion.div key="starting"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="text-center py-6"
+            {view === 'starting' && (
+              <motion.div key="starting" className="dl-step"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               >
-                <BrandLoader variant="inline" className="brand-loader--on-dark" />
-                <p className="text-sm text-white/70">Cargando partida…</p>
+                <BrandLoader variant="inline" className="brand-loader--on-dark" label="Cargando partida…" />
               </motion.div>
             )}
-            {phase === 'voided' && (
-              <motion.div key="void"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="text-center py-6"
+            {view === 'voided' && (
+              <motion.div key="void" className="dl-step"
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               >
-                <XCircle className="w-12 h-12 mx-auto mb-3 text-rose-400" />
-                <p className="text-lg font-bold">Duelo cancelado</p>
-                <p className="text-sm text-white/70">{state.void_reason || 'La partida fue anulada.'}</p>
-                <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
-                  Volver al panel
+                <span className="dl-notice__icon is-bad"><XCircle size={30} /></span>
+                <p className="dl-step__title">Duelo cancelado</p>
+                <p className="dl-step__text">{state.void_reason || 'La partida fue anulada.'}</p>
+                <button type="button" onClick={() => navigate(homePath)} className="dl-btn dl-btn--ghost">
+                  <ArrowLeft size={16} /> Volver al panel
                 </button>
               </motion.div>
             )}
-            {phase === 'finished' && (
-              <motion.div key="fin"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="text-center py-6"
+            {view === 'finished' && (
+              <motion.div key="fin" className={`dl-step dl-result ${iWon ? 'is-win' : 'is-loss'}`}
+                initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
               >
-                <Trophy className="w-12 h-12 mx-auto mb-3 text-amber-300" />
-                <p className="text-lg font-bold">
+                <span className="dl-result__trophy"><Trophy size={34} /></span>
+                <p className="dl-step__title">
                   {state.winner_id === actor?.id ? '¡Has ganado!' : 'Has perdido'}
                 </p>
-                <button onClick={() => navigate(homePath)} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20">
-                  Volver al panel
+                <button type="button" onClick={() => navigate(homePath)} className="dl-btn dl-btn--ghost">
+                  <ArrowLeft size={16} /> Volver al panel
                 </button>
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>
-
-        <p className="text-[11px] text-white/30 text-center mt-4">
-          Conexion {isConnected ? 'activa' : 'pendiente'} · {presence.length}/2 en sala
-        </p>
+        </div>
       </div>
 
       <AnimatePresence>
         {showAbortModal && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            className="dl-modal"
             onClick={() => setShowAbortModal(false)}
           >
             <motion.div
-              initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95 }}
+              initial={{ scale: 0.92, y: 14 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 28 }}
               onClick={e => e.stopPropagation()}
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+              className="dl-modal__card"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="dl-abort-title"
             >
-              <div className="p-5 bg-gradient-to-r from-rose-500 to-rose-600 text-white">
-                <h3 className="text-lg font-bold flex items-center gap-2">
-                  <XCircle className="w-5 h-5" /> Salir del duelo
-                </h3>
+              <div className="dl-modal__head">
+                <span className="dl-modal__icon"><XCircle size={22} /></span>
+                <h3 id="dl-abort-title">Salir del duelo</h3>
               </div>
-              <div className="p-5 text-slate-700">
-                <p className="text-sm">
-                  ¿Seguro que quieres anular el duelo? La partida no afectará a la nota de ninguno.
-                </p>
-              </div>
-              <div className="p-4 bg-slate-50 flex gap-2 justify-end border-t border-slate-100">
-                <button
-                  onClick={() => setShowAbortModal(false)}
-                  className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 text-sm font-medium hover:bg-white"
-                >Seguir en la sala</button>
-                <button
-                  onClick={confirmAbort}
-                  className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold"
-                >Sí, anular duelo</button>
+              <p className="dl-modal__text">
+                ¿Seguro que quieres anular el duelo? La partida no afectará a la nota de ninguno.
+              </p>
+              <div className="dl-modal__actions">
+                <button type="button" onClick={() => setShowAbortModal(false)} className="dl-btn dl-btn--ghost">
+                  Seguir en la sala
+                </button>
+                <button type="button" onClick={confirmAbort} className="dl-btn dl-btn--danger">
+                  Sí, anular duelo
+                </button>
               </div>
             </motion.div>
           </motion.div>
@@ -399,42 +430,137 @@ export default function DuelLobby() {
   );
 }
 
-function PlayerCard({ label, name, emoji, color, selectedAvatarCode, hidden, present }) {
+// ─── Piezas de presentación ────────────────────────────────────────────────
+
+const STATUS_LABEL = {
+  pending: 'Pendiente',
+  accepted: 'Aceptado',
+  in_progress: 'En juego',
+  finished: 'Terminado',
+  void: 'Anulado',
+  cancelled: 'Cancelado',
+  rejected: 'Rechazado',
+};
+
+// Los app_name de los duelos llevan un emoji delante ("🎯 Ahorcado").
+const cleanAppName = (name = '') =>
+  String(name).replace(/^[\p{Extended_Pictographic}\p{Emoji_Presentation}️‍\s]+/u, '').trim();
+
+function useCompact(query = '(max-width: 720px)') {
+  const [match, setMatch] = useState(() => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false));
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined;
+    const mq = window.matchMedia(query);
+    const onChange = () => setMatch(mq.matches);
+    onChange();
+    mq.addEventListener?.('change', onChange);
+    return () => mq.removeEventListener?.('change', onChange);
+  }, [query]);
+  return match;
+}
+
+function ArenaBackdrop() {
   return (
-    <div className={`p-4 rounded-xl border flex items-center gap-3 ${
-      present ? 'bg-emerald-500/10 border-emerald-400/40' : 'bg-white/5 border-white/10'
-    }`}>
-      {hidden ? (
-        <div className="w-16 h-16 rounded-2xl bg-slate-700/60 border border-white/10 flex items-center justify-center text-3xl">
-          🕵️
-        </div>
-      ) : (
-        <UserAvatar
-          selectedAvatarCode={selectedAvatarCode}
-          avatarEmoji={emoji}
-          avatarColor={color}
-          size="lg"
-          shape="rounded"
-          showRarityBorder
-          showRarityGlow
-        />
-      )}
-      <div className="min-w-0">
-        <p className="text-[10px] uppercase tracking-wide text-white/60">{label}</p>
-        <p className="font-bold truncate">{name || '…'}</p>
-        <p className={`text-[10px] ${present ? 'text-emerald-300' : 'text-white/40'}`}>
-          {present ? 'conectado' : 'esperando'}
-        </p>
+    <div className="dl-bg" aria-hidden="true">
+      <span className="dl-bg__side dl-bg__side--me" />
+      <span className="dl-bg__side dl-bg__side--rival" />
+      <span className="dl-bg__beam" />
+      <span className="dl-bg__floor" />
+      <span className="dl-bg__stars" />
+    </div>
+  );
+}
+
+function VsEmblem({ view, countdown }) {
+  const counting = view === 'countdown';
+  return (
+    <div className={`dl-vs${counting ? ' is-counting' : ''}${view === 'ready' ? ' is-ready' : ''}`} aria-hidden="true">
+      <span className="dl-vs__ring" />
+      <span className="dl-vs__ring dl-vs__ring--2" />
+      <svg className="dl-vs__bolt" viewBox="0 0 60 120">
+        <path d="M36 2 L10 64 H28 L20 118 L52 46 H33 Z" />
+      </svg>
+      <div className="dl-vs__core">
+        {/* Sin AnimatePresence: cada número entra con su propio "pop" (key) y
+            el anterior desaparece al instante, para que la cuenta no se retrase. */}
+        {counting ? (
+          <motion.span
+            key={`n${countdown}`}
+            className={`dl-vs__num${countdown > 0 ? '' : ' is-go'}`}
+            initial={{ scale: 2.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {countdown > 0 ? countdown : '¡YA!'}
+          </motion.span>
+        ) : (
+          <motion.span
+            key="vs"
+            className="dl-vs__txt"
+            initial={{ scale: 0.5, opacity: 0, rotate: -12 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 16 }}
+          >
+            VS
+          </motion.span>
+        )}
       </div>
     </div>
   );
 }
 
-function InfoPill({ label, value }) {
+function PlayerCard({ side, label, role, name, emoji, color, selectedAvatarCode, hidden, present, compact }) {
+  const { byCode } = useAvatarCatalog();
+  const def = !hidden && selectedAvatarCode ? byCode(selectedAvatarCode) : null;
+  const meta = def ? rarityMeta(def.rarity) : null;
   return (
-    <div className="bg-white/5 border border-white/10 rounded-lg py-2">
-      <p className="text-[10px] uppercase text-white/50">{label}</p>
-      <p className="text-sm font-bold">{value}</p>
+    <motion.div
+      className={`dl-player dl-player--${side}${present ? ' is-present' : ' is-away'}${hidden ? ' is-hidden' : ''}`}
+      style={meta ? { '--glow': meta.glow, '--ring': meta.ring } : undefined}
+      initial={{ opacity: 0, x: side === 'me' ? -48 : 48 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ type: 'spring', stiffness: 170, damping: 18, delay: side === 'me' ? 0.05 : 0.18 }}
+    >
+      <span className="dl-player__tag">{label}</span>
+      <div className="dl-player__avatar">
+        <span className="dl-player__halo" />
+        {hidden ? (
+          <div className="dl-mystery" style={{ width: compact ? 80 : 128, height: compact ? 80 : 128 }}>
+            <span>?</span>
+          </div>
+        ) : (
+          <UserAvatar
+            selectedAvatarCode={selectedAvatarCode}
+            avatarEmoji={emoji}
+            avatarColor={color}
+            size={compact ? 'lg' : 'xl'}
+            shape="rounded"
+            showRarityBorder
+            showRarityGlow
+          />
+        )}
+      </div>
+      <strong className="dl-player__name">{name || '…'}</strong>
+      <span className="dl-player__role">
+        {hidden ? 'Se revelará al empezar' : role}
+        {meta && <em className="dl-player__rarity">{meta.label}</em>}
+      </span>
+      <span className="dl-player__status">
+        <i />{present ? 'Conectado' : 'Esperando…'}
+      </span>
+    </motion.div>
+  );
+}
+
+function InfoPill({ icon: Icon, label, value, sub, tone }) {
+  return (
+    <div className={`dl-pill dl-pill--${tone}`}>
+      <span className="dl-pill__icon"><Icon size={16} /></span>
+      <span className="dl-pill__body">
+        <span className="dl-pill__label">{label}</span>
+        <span className="dl-pill__value">{value}</span>
+        {sub && <span className="dl-pill__sub">{sub}</span>}
+      </span>
     </div>
   );
 }

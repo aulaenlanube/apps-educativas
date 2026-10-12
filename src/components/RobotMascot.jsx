@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { ACTS, CONTEXT_ACTS, pick } from '@/components/mascot/acts';
+import { getFxTier } from '@/services/uiFx';
 import './RobotMascot.css';
 
 // Robot mascota de EduApps (rediseño 2026).
@@ -12,20 +14,104 @@ import './RobotMascot.css';
 //   - Flota sobre un propulsor con llama, sombra sincronizada y partículas.
 //   - Al pasar el ratón saluda; al hacer clic da un salto feliz con chispas.
 //   - Mientras habla: boca-ecualizador, ondas de sonido y núcleo más brillante.
+//   - Director de escena: con `context` ('home' | 'subjects' | 'apps') el robot
+//     alterna solo "números" graciosos (baile, voltereta, estornudo, siesta,
+//     malabares, leer, pizarra, consola…; ver src/components/mascot/acts.js)
+//     cada 7-13 s mientras nadie interactúa con él y está en pantalla.
+//   - `act` + `actKey` fuerzan un número concreto (la tragaperras pide 'press',
+//     'watch' y 'cheer'); `onActEnd(id)` avisa al terminar.
 // Las animaciones en bucle son CSS (RobotMascot.css) para no cargar el hilo de React.
-// API: <RobotMascot isTalking onClick expression="default|confused" />.
+// API: <RobotMascot isTalking onClick expression="default|confused" context act actKey onActEnd quips />.
 
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
 const SPARK_COLORS = ['#a78bfa', '#f472b6', '#fbbf24', '#22d3ee', '#818cf8'];
 
-const RobotMascot = ({ isTalking = false, onClick, expression = 'default', className = '', style }) => {
+const RobotMascot = ({
+    isTalking = false, onClick, expression = 'default', className = '', style,
+    context = null, act: forcedAct = null, actKey = 0, onActEnd, quips = true,
+}) => {
     const reduceMotion = useReducedMotion();
     const rootRef = useRef(null);
     const [blink, setBlink] = useState(false);
     const [hover, setHover] = useState(false);
     const [jumpKey, setJumpKey] = useState(0);
     const [sparks, setSparks] = useState([]);
+
+    // ---------- Director de escena ----------
+    const [act, setAct] = useState(null); // { id, key }
+    const [quip, setQuip] = useState(null);
+    const actTimers = useRef([]);
+    const lastActRef = useRef(null);
+    const busyRef = useRef(false);
+    const visibleRef = useRef(true);
+    const onActEndRef = useRef(onActEnd);
+    useEffect(() => { onActEndRef.current = onActEnd; }, [onActEnd]);
+
+    const clearActTimers = () => { actTimers.current.forEach(clearTimeout); actTimers.current = []; };
+
+    const startAct = useCallback((id) => {
+        const def = ACTS[id];
+        if (!def) return;
+        clearActTimers();
+        lastActRef.current = id;
+        setAct({ id, key: Date.now() });
+        if (quips && def.lines?.length) {
+            if (Array.isArray(def.lines[0])) {
+                for (const [at, text] of def.lines) {
+                    actTimers.current.push(setTimeout(() => setQuip({ text, key: `${id}-${at}` }), at * def.dur));
+                }
+            } else {
+                setQuip({ text: pick(def.lines), key: `${id}-${Date.now()}` });
+            }
+        } else {
+            setQuip(null);
+        }
+        actTimers.current.push(setTimeout(() => {
+            setAct(null);
+            setQuip(null);
+            onActEndRef.current?.(id);
+        }, def.dur));
+    }, [quips]);
+
+    useEffect(() => () => clearActTimers(), []);
+
+    // Número pedido por la página (controlado). actKey permite repetirlo.
+    useEffect(() => {
+        if (!forcedAct) return;
+        startAct(forcedAct);
+    }, [forcedAct, actKey, startAct]);
+
+    useEffect(() => { busyRef.current = hover || isTalking || !!act || !!forcedAct; }, [hover, isTalking, act, forcedAct]);
+
+    // Solo actúa en pantalla
+    useEffect(() => {
+        const el = rootRef.current;
+        if (!el || typeof IntersectionObserver === 'undefined') return undefined;
+        const io = new IntersectionObserver(([e]) => { visibleRef.current = e.isIntersecting; });
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
+    // Números automáticos: cada 7-13 s si no está ocupado y está visible (en
+    // equipos con nivel de efectos bajo, la mitad de a menudo: son cortos).
+    useEffect(() => {
+        const list = context && CONTEXT_ACTS[context];
+        if (!list || reduceMotion) return undefined;
+        let timer;
+        const schedule = (delay) => {
+            timer = setTimeout(() => {
+                const canAct = !document.hidden && visibleRef.current && !busyRef.current;
+                if (canAct) {
+                    const options = list.filter((a) => a !== lastActRef.current);
+                    startAct(pick(options.length ? options : list));
+                }
+                schedule((7000 + Math.random() * 6000) * (getFxTier() === 'low' ? 2 : 1));
+            }, delay);
+        };
+        schedule(2600 + Math.random() * 2000);
+        return () => clearTimeout(timer);
+    }, [context, reduceMotion, startAct]);
 
     // Puntero normalizado (-1..1) respecto al centro de la cabeza
     const px = useMotionValue(0);
@@ -113,18 +199,25 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
         onClick?.(e);
     }, [onClick]);
 
-    const happy = hover || (jumpKey > 0 && sparks.length > 0);
-    const confused = expression === 'confused' && !happy && !isTalking;
+    const def = act ? ACTS[act.id] : null;
+    const actEyes = def?.eyes || null;
+    const actMouth = def?.mouth || null;
+    const happy = hover || (jumpKey > 0 && sparks.length > 0) || actEyes === 'happy';
+    const confused = expression === 'confused' && !happy && !isTalking && !act;
     const mood = isTalking ? 'talking' : happy ? 'happy' : 'idle';
-    const smileD = confused
-        ? 'M147 161 Q150.5 157 154 161 T161 161 T168 161 T173 160'
+    // Ojos de "dibujo" que sustituyen a los normales durante algunos números
+    const drawnEyes = ['stars', 'closed', 'squint', 'hearts', 'dizzy'].includes(actEyes) ? actEyes : null;
+    const smileD = actMouth === 'grin' ? 'M144 156 Q160 172 176 156'
+        : actMouth === 'flat' ? 'M150 160 L170 160'
+        : actMouth === 'wavy' || confused ? 'M147 161 Q150.5 157 154 161 T161 161 T168 161 T173 160'
         : mood === 'happy' ? 'M146 157 Q160 170 174 157' : 'M148 159 Q160 166 172 159';
+    const prop = def?.prop || null;
 
     return (
         <div
             ref={rootRef}
-            className={`robo ${confused ? 'robo--confused' : ''} ${isTalking ? 'robo--talking' : ''} ${hover ? 'robo--hover' : ''} ${reduceMotion ? 'robo--still' : ''} ${className}`}
-            style={style}
+            className={`robo ${confused ? 'robo--confused' : ''} ${isTalking ? 'robo--talking' : ''} ${hover && !act ? 'robo--hover' : ''} ${act ? `robo--acting robo--act-${act.id}` : ''} ${reduceMotion ? 'robo--still' : ''} ${className}`}
+            style={def ? { ...style, '--act-dur': `${def.dur}ms` } : style}
             onClick={handleClick}
             onPointerEnter={() => setHover(true)}
             onPointerLeave={() => setHover(false)}
@@ -146,6 +239,34 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
             </div>
 
             {confused && <span className="robo__puzzled" aria-hidden="true">?</span>}
+
+            {/* Bocadillo corto del número en curso */}
+            <AnimatePresence>
+                {quip && (
+                    <motion.span
+                        key={quip.key}
+                        className="robo__quip"
+                        initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.8, y: -6 }}
+                        transition={{ type: 'spring', stiffness: 420, damping: 22 }}
+                        aria-hidden="true"
+                    >
+                        {quip.text}
+                    </motion.span>
+                )}
+            </AnimatePresence>
+
+            {/* Partículas HTML de algunos números (notas, Zzz, corazones, confeti…) */}
+            {act && ['notes', 'zzz', 'hearts', 'confetti', 'sparkles', 'guitar'].includes(prop) && (
+                <div key={act.key} className={`robo__fx robo__fx--${prop}`} aria-hidden="true">
+                    {Array.from({ length: prop === 'confetti' ? 18 : prop === 'sparkles' ? 8 : 6 }).map((_, i) => (
+                        <i key={i} style={{ '--i': i }}>
+                            {prop === 'notes' || prop === 'guitar' ? (i % 2 ? '♫' : '♪') : prop === 'zzz' ? 'Z' : prop === 'hearts' ? '♥' : prop === 'sparkles' ? '✦' : ''}
+                        </i>
+                    ))}
+                </div>
+            )}
 
             {/* Chispas del clic */}
             <div className="robo__sparks" aria-hidden="true">
@@ -176,6 +297,7 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                 transition={{ duration: 0.75, ease: 'easeOut' }}
             >
                 <div className="robo__float">
+                <div className="robo__act">
                 <svg className="robo__svg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="robo-head" x1="0" y1="0" x2="1" y2="1">
@@ -255,6 +377,14 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                         </clipPath>
                     </defs>
 
+                    {/* Accesorios que van DETRÁS del robot */}
+                    {prop === 'chalkboard' && <PropChalkboard />}
+                    {prop === 'radar' && (
+                        <g className="robo-prop-radar" fill="none" stroke="#67e8f9" strokeWidth="2">
+                            <circle cx="154" cy="24" r="16" /><circle cx="154" cy="24" r="16" /><circle cx="154" cy="24" r="16" />
+                        </g>
+                    )}
+
                     <g>
                         {/* ===== PROPULSOR ===== */}
                         <g className="robo-thruster">
@@ -316,6 +446,11 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                             <circle cx="122" cy="262" r="2.2" fill="url(#robo-metal)" />
                             <circle cx="198" cy="262" r="2.2" fill="url(#robo-metal)" />
 
+                            {/* Accesorios que sujeta delante del pecho */}
+                            {prop === 'book' && <PropBook />}
+                            {prop === 'gamepad' && <PropGamepad />}
+                            {prop === 'guitar' && <PropGuitar />}
+
                             {/* ===== CUELLO ===== */}
                             <rect x="146" y="168" width="28" height="20" rx="6" fill="url(#robo-metal)" />
                             <rect x="142" y="172" width="36" height="5" rx="2.5" fill="#4338ca" />
@@ -366,6 +501,7 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                                         <rect className="robo-scan" x="103" y="84" width="114" height="14" fill="rgba(103,232,249,0.16)" />
                                         {/* Ojos */}
                                         <motion.g style={{ x: faceX, y: faceY }}>
+                                        <g className={`robo-gaze ${drawnEyes ? 'robo-gaze--hidden' : ''}`}>
                                             <g className={`robo-eye ${blink ? 'robo-eye--blink' : ''} robo-eye--${mood}`}>
                                                 <circle cx="138" cy="116" r="15" fill="url(#robo-sclera)" />
                                                 <motion.g style={{ x: irisX, y: irisY }}>
@@ -386,7 +522,9 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                                                 </motion.g>
                                                 <path className="robo-eye-happy" d="M166 119 Q182 99 198 119" stroke="#e0e7ff" strokeWidth="5.5" strokeLinecap="round" fill="none" />
                                             </g>
+                                        </g>
                                         </motion.g>
+                                        {drawnEyes && <DrawnEyes kind={drawnEyes} />}
                                         {/* Reflejo del cristal */}
                                         <path d="M112 92 Q150 84 200 90 L196 96 Q150 90 114 98 Z" fill="rgba(255,255,255,0.10)" />
                                     </g>
@@ -411,6 +549,11 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                                                     />
                                                 ))}
                                             </g>
+                                        ) : actMouth === 'open' ? (
+                                            <g className="robo-mouth-open">
+                                                <ellipse cx="160" cy="160" rx="7" ry="5.5" fill="#0e7490" stroke="#67e8f9" strokeWidth="2" />
+                                                <ellipse cx="160" cy="161.5" rx="3.6" ry="2.2" fill="#f472b6" opacity=".8" />
+                                            </g>
                                         ) : (
                                             <>
                                                 {/* brillo: trazo ancho y tenue debajo (sustituye al filtro) */}
@@ -432,10 +575,26 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                                     <circle cx="100" cy="72" r="2.6" fill="url(#robo-metal)" />
                                     <circle cx="220" cy="72" r="2.6" fill="url(#robo-metal)" />
                                     <circle className="robo-power" cx="214" cy="164" r="2.6" fill="#4ade80" />
+
+                                    {/* Accesorios de la cabeza */}
+                                    {prop === 'glasses' && <PropGlasses />}
+                                    {prop === 'bulb' && <PropBulb />}
+                                    {prop === 'puff' && <PropPuff />}
                                 </g>
                             </motion.g>
                         </motion.g>
                     </g>
+
+                    {/* Accesorios por delante de todo */}
+                    {prop === 'balls' && <PropBalls />}
+                    {prop === 'dice' && <PropDice />}
+                    {prop === 'trophy' && <PropTrophy />}
+                    {prop === 'phone' && <PropPhone />}
+                    {prop === 'boost' && (
+                        <g className="robo-prop-boost" stroke="#a5f3fc" strokeWidth="3" strokeLinecap="round" opacity=".8">
+                            <path d="M120 300 v26" /><path d="M200 300 v26" /><path d="M136 312 v22" /><path d="M184 312 v22" />
+                        </g>
+                    )}
 
                     {/* Ondas de voz */}
                     {isTalking && (
@@ -448,9 +607,193 @@ const RobotMascot = ({ isTalking = false, onClick, expression = 'default', class
                     )}
                 </svg>
                 </div>
+                </div>
             </motion.div>
         </div>
     );
 };
+
+/* ───────────── Ojos dibujados (sustituyen a los normales en algunos números) ───────────── */
+const DrawnEyes = ({ kind }) => {
+    const L = { x: 138, y: 116, r: 13 };
+    const R = { x: 182, y: 114, r: 16 };
+    const star = (c, r) => {
+        const pts = [];
+        for (let i = 0; i < 10; i++) {
+            const a = -Math.PI / 2 + (i * Math.PI) / 5;
+            const rr = i % 2 ? r * 0.45 : r;
+            pts.push(`${(c.x + Math.cos(a) * rr).toFixed(1)},${(c.y + Math.sin(a) * rr).toFixed(1)}`);
+        }
+        return pts.join(' ');
+    };
+    const heart = (c, r) => `M${c.x} ${c.y + r * 0.8} C${c.x - r * 1.4} ${c.y - r * 0.1} ${c.x - r * 0.7} ${c.y - r * 1.1} ${c.x} ${c.y - r * 0.35} C${c.x + r * 0.7} ${c.y - r * 1.1} ${c.x + r * 1.4} ${c.y - r * 0.1} ${c.x} ${c.y + r * 0.8} Z`;
+    return (
+        <g className={`robo-drawn-eyes robo-drawn-eyes--${kind}`}>
+            {[L, R].map((c, i) => (
+                <g key={i} className="robo-drawn-eye" style={{ transformOrigin: `${c.x}px ${c.y}px` }}>
+                    {kind === 'stars' && <polygon points={star(c, c.r)} fill="#fde68a" stroke="#f59e0b" strokeWidth="1.5" strokeLinejoin="round" />}
+                    {kind === 'hearts' && <path d={heart(c, c.r * 0.9)} fill="#f472b6" stroke="#fbcfe8" strokeWidth="1.5" />}
+                    {kind === 'closed' && <path d={`M${c.x - c.r * 0.8} ${c.y} Q${c.x} ${c.y + c.r * 0.7} ${c.x + c.r * 0.8} ${c.y}`} stroke="#e0e7ff" strokeWidth="4.5" strokeLinecap="round" fill="none" />}
+                    {kind === 'squint' && <path d={i === 0 ? `M${c.x - 8} ${c.y - 7} L${c.x + 6} ${c.y} L${c.x - 8} ${c.y + 7}` : `M${c.x + 9} ${c.y - 8} L${c.x - 7} ${c.y} L${c.x + 9} ${c.y + 8}`} stroke="#e0e7ff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />}
+                    {kind === 'dizzy' && <path d={`M${c.x} ${c.y} m-2 0 a2 2 0 1 1 4 0 a4.5 4.5 0 1 1 -9 0 a7 7 0 1 1 14 0 a9.5 9.5 0 1 1 -19 0`} stroke="#c4b5fd" strokeWidth="2.6" strokeLinecap="round" fill="none" />}
+                </g>
+            ))}
+        </g>
+    );
+};
+
+/* ───────────── Accesorios ───────────── */
+const Mitt = ({ x, y }) => (
+    <g>
+        <circle cx={x} cy={y} r="10" fill="url(#robo-limb)" />
+        <circle cx={x - 3} cy={y - 3} r="3" fill="rgba(255,255,255,0.45)" />
+    </g>
+);
+
+const PropBook = () => (
+    <g className="robo-prop-book">
+        <path d="M112 226 Q136 216 160 228 Q184 216 208 226 L206 262 Q184 252 160 264 Q136 252 114 262 Z" fill="#4338ca" />
+        <path d="M116 224 Q138 214 160 226 L160 258 Q138 248 117 256 Z" fill="#fffbeb" />
+        <path d="M204 224 Q182 214 160 226 L160 258 Q182 248 203 256 Z" fill="#fef3c7" />
+        <g className="robo-prop-book__page"><path d="M160 226 Q182 214 204 224 L203 256 Q182 248 160 258 Z" fill="#fff7ed" /></g>
+        {[0, 1, 2, 3].map((i) => (
+            <path key={i} d={`M${122 + (i % 2) * 2} ${232 + i * 6} q16 -4 32 2`} stroke="#c7d2fe" strokeWidth="2" strokeLinecap="round" fill="none" />
+        ))}
+        {[0, 1, 2].map((i) => (
+            <path key={`r${i}`} d={`M${168} ${234 + i * 6} q14 -5 30 -2`} stroke="#fbcfe8" strokeWidth="2" strokeLinecap="round" fill="none" />
+        ))}
+        <path d="M160 226 L160 260" stroke="#312e81" strokeWidth="2" />
+        <Mitt x={112} y={246} /><Mitt x={208} y={246} />
+    </g>
+);
+
+const PropGamepad = () => (
+    <g className="robo-prop-gamepad">
+        <path d="M118 232 Q118 220 132 220 L188 220 Q202 220 202 232 L206 252 Q208 266 194 266 Q184 266 178 254 L142 254 Q136 266 126 266 Q112 266 114 252 Z" fill="#1e1b4b" />
+        <path d="M122 230 Q124 224 134 224 L186 224 Q196 224 198 230" stroke="#6366f1" strokeWidth="2" fill="none" />
+        <rect x="128" y="234" width="16" height="5" rx="2" fill="#a5b4fc" /><rect x="133.5" y="228.5" width="5" height="16" rx="2" fill="#a5b4fc" />
+        <circle className="robo-prop-gamepad__btn" cx="182" cy="232" r="3.6" fill="#f472b6" />
+        <circle className="robo-prop-gamepad__btn" cx="190" cy="239" r="3.6" fill="#fbbf24" style={{ animationDelay: '.15s' }} />
+        <circle className="robo-prop-gamepad__btn" cx="174" cy="239" r="3.6" fill="#34d399" style={{ animationDelay: '.3s' }} />
+        <circle className="robo-prop-gamepad__btn" cx="182" cy="246" r="3.6" fill="#60a5fa" style={{ animationDelay: '.45s' }} />
+        <Mitt x={120} y={252} /><Mitt x={200} y={252} />
+    </g>
+);
+
+const PropGlasses = () => (
+    <g className="robo-prop-glasses">
+        <circle cx="138" cy="116" r="19" fill="rgba(165,243,252,0.12)" stroke="#fbbf24" strokeWidth="4.5" />
+        <circle cx="182" cy="114" r="22" fill="rgba(165,243,252,0.12)" stroke="#fbbf24" strokeWidth="4.5" />
+        <path d="M157 113 Q160 108 162 112" stroke="#fbbf24" strokeWidth="4" fill="none" strokeLinecap="round" />
+        <path d="M119 112 L100 106 M204 110 L220 104" stroke="#d97706" strokeWidth="4" strokeLinecap="round" />
+        <path d="M128 104 q8 -5 16 -2 M172 101 q9 -5 19 -2" stroke="#fff" strokeOpacity=".75" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+    </g>
+);
+
+const PropBulb = () => (
+    <g className="robo-prop-bulb">
+        <g className="robo-prop-bulb__rays" stroke="#fde68a" strokeWidth="3.5" strokeLinecap="round">
+            <path d="M200 -36 v-12" /><path d="M222 -26 l9 -8" /><path d="M178 -26 l-9 -8" /><path d="M230 -6 h12" /><path d="M170 -6 h-12" />
+        </g>
+        <circle cx="200" cy="-8" r="22" fill="#fde68a" opacity=".35" />
+        <path d="M200 -30 C186 -30 178 -20 178 -9 C178 0 184 5 188 10 L212 10 C216 5 222 0 222 -9 C222 -20 214 -30 200 -30 Z" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2.5" />
+        <path d="M192 -2 Q200 -12 208 -2" stroke="#f59e0b" strokeWidth="2.5" fill="none" />
+        <rect x="189" y="10" width="22" height="6" rx="2" fill="#a5b4fc" /><rect x="191" y="16" width="18" height="5" rx="2" fill="#6366f1" />
+        <path d="M188 -22 q-4 6 -2 12" stroke="#fff" strokeWidth="3" strokeLinecap="round" fill="none" opacity=".8" />
+    </g>
+);
+
+const PropPuff = () => (
+    <g className="robo-prop-puff">
+        {[[196, 160, 8], [212, 150, 11], [228, 166, 9], [240, 148, 13], [256, 162, 8]].map(([x, y, r], i) => (
+            <circle key={i} cx={x} cy={y} r={r} fill="#e0f2fe" opacity=".9" style={{ animationDelay: `${i * 0.04}s` }} />
+        ))}
+    </g>
+);
+
+const PropChalkboard = () => (
+    <g className="robo-prop-chalk">
+        <path d="M24 296 L40 230 M84 296 L68 230" stroke="#92400e" strokeWidth="5" strokeLinecap="round" />
+        <rect x="6" y="170" width="96" height="70" rx="8" fill="#92400e" />
+        <rect x="11" y="175" width="86" height="60" rx="5" fill="#14532d" />
+        <rect x="11" y="175" width="86" height="60" rx="5" fill="url(#robo-gloss)" opacity=".12" />
+        {/* "2 + 2 = 4" escrito trazo a trazo */}
+        {[
+            'M18 197 q6 -7 10 0 q2 6 -10 11 h11',
+            'M37 202 h10 M42 197 v10',
+            'M55 197 q6 -7 10 0 q2 6 -10 11 h11',
+            'M74 200 h10 M74 205 h10',
+            'M96 195 l-6 9 h11 M98 199 v10',
+        ].map((d, k) => (
+            <path key={k} className="robo-prop-chalk__stroke" style={{ '--k': k }} d={d} stroke="#f8fafc" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        ))}
+        <path className="robo-prop-chalk__check" d="M30 222 l6 6 l12 -12" stroke="#fde68a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <rect x="70" y="236" width="14" height="4" rx="2" fill="#f8fafc" />
+    </g>
+);
+
+const PropBalls = () => (
+    <g className="robo-prop-balls">
+        {['#f472b6', '#fbbf24', '#22d3ee'].map((c, i) => (
+            <g key={c} className="robo-prop-ball" style={{ animationDelay: `${-i * 0.42}s` }}>
+                <circle cx="160" cy="40" r="11" fill={c} />
+                <circle cx="156" cy="36" r="3.5" fill="#fff" opacity=".7" />
+            </g>
+        ))}
+    </g>
+);
+
+const PropDice = () => (
+    <g className="robo-prop-dice">
+        {[0, 1].map((i) => (
+            <g key={i} className="robo-prop-die" style={{ animationDelay: `${i * 0.12}s` }}>
+                <rect x={232 + i * 30} y="262" width="26" height="26" rx="6" fill="#fff" stroke="#c7d2fe" strokeWidth="2" />
+                {[[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]].map(([cx, cy]) => (
+                    <circle key={`${cx}${cy}`} cx={239 + i * 30 + cx * 12} cy={268 + cy * 7} r="2.4" fill="#4338ca" />
+                ))}
+            </g>
+        ))}
+    </g>
+);
+
+const PropTrophy = () => (
+    <g className="robo-prop-trophy">
+        <path d="M134 -40 h52 v10 q0 30 -26 34 q-26 -4 -26 -34 Z" fill="#fbbf24" stroke="#b45309" strokeWidth="2.5" />
+        <path d="M134 -34 q-16 0 -14 12 q2 10 16 10 M186 -34 q16 0 14 12 q-2 10 -16 10" stroke="#f59e0b" strokeWidth="5" fill="none" strokeLinecap="round" />
+        <rect x="153" y="-6" width="14" height="14" fill="#f59e0b" />
+        <rect x="142" y="8" width="36" height="9" rx="3" fill="#6366f1" />
+        <path d="M144 -34 q4 18 12 26" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity=".7" />
+        <path d="M160 -30 l3 6 l6 1 l-4.5 4 l1 6 l-5.5 -3 l-5.5 3 l1 -6 l-4.5 -4 l6 -1 Z" fill="#fff7ed" />
+        <Mitt x={128} y={10} /><Mitt x={192} y={10} />
+    </g>
+);
+
+const PropGuitar = () => (
+    <g className="robo-prop-guitar">
+        <g transform="rotate(-28 160 238)">
+            <rect x="166" y="232" width="78" height="8" rx="3" fill="#92400e" />
+            {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={176 + i * 11} y="232" width="1.6" height="8" fill="#fde68a" opacity=".8" />)}
+            <rect x="240" y="227" width="16" height="18" rx="4" fill="#1e1b4b" />
+            <path d="M120 236 C120 218 140 214 152 222 C160 214 178 216 178 236 C178 256 160 260 152 252 C140 262 120 256 120 236 Z" fill="#ec4899" />
+            <path d="M126 232 C128 222 140 220 150 226" stroke="#fbcfe8" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <circle cx="150" cy="237" r="7" fill="#1e1b4b" />
+            <rect x="132" y="230" width="6" height="14" rx="2" fill="#f8fafc" />
+            {[0, 1, 2].map((i) => <line key={i} x1="140" y1={234 + i * 2.2} x2="244" y2={234 + i * 2.2} stroke="#e2e8f0" strokeWidth=".8" />)}
+        </g>
+        <g className="robo-prop-guitar__pick"><Mitt x={146} y={250} /></g>
+    </g>
+);
+
+const PropPhone = () => (
+    <g className="robo-prop-phone">
+        <g transform="rotate(-12 70 120)">
+            <rect x="48" y="86" width="40" height="70" rx="9" fill="#1e1b4b" />
+            <rect x="52" y="92" width="32" height="56" rx="5" fill="#312e81" />
+            <circle cx="68" cy="98" r="3" fill="#a5b4fc" />
+            <circle className="robo-prop-phone__flash" cx="68" cy="98" r="30" fill="#fff" />
+        </g>
+        <Mitt x={78} y={150} />
+    </g>
+);
 
 export default RobotMascot;

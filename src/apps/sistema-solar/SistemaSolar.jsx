@@ -4,8 +4,16 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Html, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    Check, X, HelpCircle, ChevronDown, ChevronUp, Compass, Gauge, Eye, Puzzle, RotateCcw, Ruler,
+    ArrowDownToLine, Thermometer, RotateCw, Orbit, Satellite, Sun, FlaskConical, Globe2, Lightbulb,
+    BarChart3, AlertTriangle, PlayCircle, Settings2,
+} from 'lucide-react';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { GameShell, GameButton, useAppMeta, cleanAppName } from '../_shared/kit';
 import { solarSystemData } from './model/solarSystemData';
-import SolarSystemActivity from './SolarSystemActivity';
+import SolarSystemActivity, { PlanetOrb } from './SolarSystemActivity';
 import './SistemaSolar.css';
 
 // --- HELPER PARA DESCRIPCIONES ---
@@ -333,7 +341,7 @@ const AsteroidBelt = ({ simSpeed, isPaused, showLabels }) => {
 
             {showLabels && (
                 <Html position={[0, 3, BELT_CENTER]} center distanceFactor={20} style={{ pointerEvents: 'none' }}>
-                    <div className="planet-label asteroid-belt-label">Cinturón de Asteroides</div>
+                    <div className="ss-label ss-label--belt">Cinturón de Asteroides</div>
                 </Html>
             )}
         </group>
@@ -431,19 +439,21 @@ const CloudLayer = ({ textureUrl, size }) => {
 // --- COMPONENTE ANILLOS MEJORADO ---
 const Hotspot = ({ position, title, desc, onClick, isVisited, isActive }) => {
     return (
-        <Html position={position} center className="hotspot-wrapper">
-            <div className={`hotspot-container ${isVisited ? 'visited' : ''} ${isActive ? 'active' : ''}`}>
+        <Html position={position} center className="ss-hotspot-wrap">
+            <div className={`ss-hotspot ${isVisited ? 'is-visited' : ''} ${isActive ? 'is-active' : ''}`}>
                 <button
-                    className="hotspot-dot"
+                    type="button"
+                    className="ss-hotspot__dot"
+                    aria-label={title}
                     onClick={(e) => {
                         e.stopPropagation();
                         onClick({ title, desc });
                     }}
                 >
-                    {!isVisited && <span className="hotspot-pulse"></span>}
+                    {isVisited ? <Check size={10} strokeWidth={4} /> : <span className="ss-hotspot__pulse"></span>}
                 </button>
                 {isActive && (
-                    <div className="hotspot-popup">
+                    <div className="ss-hotspot__card">
                         <h4>{title}</h4>
                         <p>{desc}</p>
                     </div>
@@ -538,160 +548,136 @@ const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, co
 };
 
 // --- PANEL DE CONFIGURACIÓN ---
-const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount, onLaunchActivity }) => {
+const RING_PATH = 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831';
+
+// Deslizador con relleno (solo presentación: mismo input y mismo onChange)
+const RangeField = ({ label, display, min, max, step, value, onChange }) => (
+    <label className="ss-range">
+        <span className="ss-range__row">
+            <span className="ss-range__label">{label}</span>
+            <span className="ss-range__value">{display}</span>
+        </span>
+        <input
+            type="range"
+            min={min} max={max} step={step}
+            value={value}
+            onChange={onChange}
+            style={{ '--p': `${((value - min) / (max - min)) * 100}%` }}
+        />
+    </label>
+);
+
+const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount, onLaunchActivity, onHelp }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const meta = useAppMeta();
     const remaining = totalCount - visitedCount;
     const percentage = Math.round((visitedCount / totalCount) * 100);
 
     return (
-        <div className={`config-panel-v2 ${isOpen ? 'is-open' : ''}`}>
-            <div className="config-header" onClick={() => setIsOpen(!isOpen)}>
-                <div className="header-left">
-                    <div className="config-icon-wrapper">
-                        <span className={`config-icon-svg ${isOpen ? 'rotating' : ''}`}>⚙️</span>
-                    </div>
-                    <div className="header-text-group">
-                        <span className="config-main-title">Centro de Control</span>
-                        <span className="config-sub-title">{isOpen ? 'Ajustes del simulador' : 'Puntos de exploración encontrados'}</span>
-                    </div>
-                </div>
-                <div className="header-right">
-                    {!isOpen && (
-                        <div className="mini-stats">
-                            <span className="stats-val">{percentage}%</span>
-                            <div className="stats-dot" style={{ background: percentage === 100 ? '#10b981' : '#f59e0b' }}></div>
-                        </div>
+        <section className={`ss-control ${isOpen ? 'is-open' : ''}`} aria-label="Centro de control">
+            <div className="ss-control__head">
+                <button type="button" className="ss-control__toggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
+                    {meta.appId && hasAppIcon(meta.appId) ? (
+                        <span className="ss-control__icon"><AppIcon appId={meta.appId} size={40} /></span>
+                    ) : (
+                        <span className="ss-control__icon ss-control__icon--gear"><Settings2 size={20} /></span>
                     )}
-                    <span className={`chevron-icon ${isOpen ? 'up' : 'down'}`}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
+                    <span className="ss-control__titles">
+                        <strong>{cleanAppName(meta.name) || 'Sistema Solar 3D'}</strong>
+                        <span>{isOpen ? 'Ajustes del simulador' : 'Centro de control'}</span>
+                    </span>
+                    {!isOpen && (
+                        <span className={`ss-control__pct ${percentage === 100 ? 'is-full' : ''}`}>{percentage}%</span>
+                    )}
+                    <span className={`ss-control__chev ${isOpen ? 'is-up' : ''}`}><ChevronDown size={18} /></span>
+                </button>
+                <button type="button" className="gk-iconbtn" onClick={onHelp} title="Cómo se juega" aria-label="Cómo se juega">
+                    <HelpCircle size={18} />
+                </button>
+            </div>
+
+            <div className="ss-hud">
+                <div className="ss-hud__ring">
+                    <svg viewBox="0 0 36 36" aria-hidden="true">
+                        <path className="ss-hud__track" d={RING_PATH} />
+                        <path className="ss-hud__arc" style={{ strokeDasharray: `${percentage}, 100` }} d={RING_PATH} />
+                    </svg>
+                    <span>{percentage}%</span>
+                </div>
+                <div className="ss-hud__info">
+                    <div className="ss-hud__row">
+                        <span className="ss-hud__label">Sistema explorado</span>
+                        <span className="ss-hud__value">{visitedCount}<small>/{totalCount}</small></span>
+                    </div>
+                    <div className="ss-hud__dots" aria-hidden="true">
+                        {[...Array(totalCount)].map((_, i) => (
+                            <i key={i} className={i < visitedCount ? 'is-found' : ''}></i>
+                        ))}
+                    </div>
+                    <span className={`ss-hud__msg ${remaining > 0 ? '' : 'is-done'}`}>
+                        {remaining > 0 ? `${remaining} puntos de interés por descubrir` : '¡Base de datos completa!'}
                     </span>
                 </div>
             </div>
 
-            <div className="exploration-hud">
-                <div className="hud-scanner-line"></div>
-                <div className="hud-content">
-                    <div className="hud-left">
-                        <div className="radial-progress-container">
-                            <svg viewBox="0 0 36 36" className="circular-chart">
-                                <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path className="circle" style={{ strokeDasharray: `${percentage}, 100` }} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            </svg>
-                            <span className="hud-percent">{percentage}%</span>
-                        </div>
-                    </div>
-                    <div className="hud-right">
-                        <div className="hud-info-row">
-                            <span className="hud-label">SISTEMA EXPLORADO</span>
-                            <span className="hud-value">{visitedCount} / {totalCount}</span>
-                        </div>
-                        <div className="hud-status-bar">
-                            {[...Array(totalCount)].map((_, i) => (
-                                <div key={i} className={`status-dot ${i < visitedCount ? 'found' : ''}`}></div>
-                            ))}
-                        </div>
-                        <div className="hud-footer-actions">
-                            <span className="hud-message">
-                                {remaining > 0 ? `DETECTADOS: ${remaining} PUNTOS RESTANTES` : 'BASE DE DATOS COMPLETA'}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className={`config-deploy-container ${isOpen ? 'is-open' : ''}`}>
-                <div className="config-scroll-area">
-                    <div className="config-section">
-                        <h4 className="section-title">Navegación</h4>
-                        <p className="config-instruction-v2">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
-
-                        <button className="btn-launch-activity" onClick={onLaunchActivity}>
-                            <span className="btn-icon">🧩</span>
-                            Desafío de Planetas
-                        </button>
+            {isOpen && (
+                <div className="ss-control__deploy">
+                    <div className="ss-sec">
+                        <h4 className="ss-sec__title"><Compass size={14} /> Navegación</h4>
+                        <p className="ss-sec__text">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
+                        <GameButton variant="warning" icon={Puzzle} onClick={onLaunchActivity} className="ss-sec__cta">
+                            Desafío de planetas
+                        </GameButton>
                     </div>
 
-                    <div className="config-section">
-                        <h4 className="section-title">Simulación Cinética</h4>
-
-                        <div className="ss-config-item">
-                            <div className="ss-config-label-row">
-                                <span className="ss-label-name">Velocidad Orbital</span>
-                                <span className="ss-label-value">x{config.simSpeed.toFixed(1)}</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="0.1" max="5" step="0.1"
-                                value={config.simSpeed}
-                                onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
-                                className="config-slider-v2"
-                            />
-                        </div>
-
-                        <div className="ss-config-item">
-                            <div className="ss-config-label-row">
-                                <span className="ss-label-name">Velocidad Rotación</span>
-                                <span className="ss-label-value">x{config.rotationSpeed.toFixed(1)}</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="0" max="10" step="0.1"
-                                value={config.rotationSpeed}
-                                onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
-                                className="config-slider-v2"
-                            />
-                        </div>
+                    <div className="ss-sec">
+                        <h4 className="ss-sec__title"><Gauge size={14} /> Simulación cinética</h4>
+                        <RangeField
+                            label="Velocidad orbital"
+                            display={`x${config.simSpeed.toFixed(1)}`}
+                            min={0.1} max={5} step={0.1}
+                            value={config.simSpeed}
+                            onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
+                        />
+                        <RangeField
+                            label="Velocidad de rotación"
+                            display={`x${config.rotationSpeed.toFixed(1)}`}
+                            min={0} max={10} step={0.1}
+                            value={config.rotationSpeed}
+                            onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
+                        />
                     </div>
 
-
-
-                    <div className="config-section">
-                        <h4 className="section-title">Visualización Avanzada</h4>
-
-                        <div className="ss-config-item">
-                            <div className="ss-config-label-row">
-                                <span className="ss-label-name">Opacidad Órbitas</span>
-                                <span className="ss-label-value">{Math.round(config.orbitOpacity * 100)}%</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="0" max="0.5" step="0.01"
-                                value={config.orbitOpacity}
-                                onChange={(e) => setConfig({ ...config, orbitOpacity: parseFloat(e.target.value) })}
-                                className="config-slider-v2"
-                            />
-                        </div>
-
-                        <div className="ss-config-item">
-                            <div className="ss-config-label-row">
-                                <span className="ss-label-name">Grosor Órbitas</span>
-                                <span className="ss-label-value">{config.orbitThickness.toFixed(2)}</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="0.01" max="0.3" step="0.01"
-                                value={config.orbitThickness}
-                                onChange={(e) => setConfig({ ...config, orbitThickness: parseFloat(e.target.value) })}
-                                className="config-slider-v2"
-                            />
-                        </div>
+                    <div className="ss-sec">
+                        <h4 className="ss-sec__title"><Eye size={14} /> Visualización avanzada</h4>
+                        <RangeField
+                            label="Opacidad de las órbitas"
+                            display={`${Math.round(config.orbitOpacity * 100)}%`}
+                            min={0} max={0.5} step={0.01}
+                            value={config.orbitOpacity}
+                            onChange={(e) => setConfig({ ...config, orbitOpacity: parseFloat(e.target.value) })}
+                        />
+                        <RangeField
+                            label="Grosor de las órbitas"
+                            display={config.orbitThickness.toFixed(2)}
+                            min={0.01} max={0.3} step={0.01}
+                            value={config.orbitThickness}
+                            onChange={(e) => setConfig({ ...config, orbitThickness: parseFloat(e.target.value) })}
+                        />
                     </div>
 
-                    <div className="config-footer">
-                        <button className="btn-reset-v2" onClick={onResetProgress}>
-                            <span className="btn-icon">🔄</span>
+                    <div className="ss-sec ss-sec--foot">
+                        <GameButton variant="soft" size="sm" icon={RotateCcw} onClick={onResetProgress} className="ss-reset">
                             Reiniciar exploración
-                        </button>
-                        <div className="footer-info">
-                            <p className="footer-note">Simulador del Sistema Solar v3.0</p>
-                            <p className="footer-credits">
-                                Texturas obtenidas de <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
-                            </p>
-                        </div>
+                        </GameButton>
+                        <p className="ss-credits">
+                            Simulador del Sistema Solar v3.0 · Texturas de{' '}
+                            <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </section>
     );
 };
 
@@ -858,21 +844,23 @@ const VideoStarHotspot = ({ planetId, planetSize, onVideoClick }) => {
     return (
         <Html position={[xPos, yPos, 0]} center distanceFactor={planetId === 'sun' ? 24 : 8} style={{ pointerEvents: 'auto' }}>
             <button
-                className="video-star-btn"
+                type="button"
+                className="ss-star"
                 onClick={(e) => {
                     e.stopPropagation();
                     onVideoClick(videoData);
                 }}
                 title={videoData.title}
+                aria-label={`Ver vídeo: ${videoData.title}`}
             >
-                <svg className="video-star-svg" viewBox="0 0 24 24" width="22" height="22">
+                <svg className="ss-star__svg" viewBox="0 0 24 24" width="22" height="22">
                     <polygon
                         points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
                         fill="currentColor"
                     />
                 </svg>
-                <span className="video-star-pulse-ring"></span>
-                <span className="video-star-pulse-ring delay"></span>
+                <span className="ss-star__ring"></span>
+                <span className="ss-star__ring is-delay"></span>
             </button>
         </Html>
     );
@@ -880,28 +868,27 @@ const VideoStarHotspot = ({ planetId, planetSize, onVideoClick }) => {
 
 // --- VIDEO MODAL (rendered via Portal to escape Canvas stacking context) ---
 const VideoModal = ({ video, onClose }) => {
-    if (!video) return null;
-
-    // Use Escape key to close
+    // Escape para cerrar (el hook va antes del return condicional: reglas de hooks)
     useEffect(() => {
+        if (!video) return undefined;
         const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [onClose]);
+    }, [video, onClose]);
+
+    if (!video) return null;
 
     return createPortal(
-        <div className="video-modal-overlay" onClick={onClose}>
-            <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
-                <div className="video-modal-header">
-                    <div className="video-modal-title-group">
-                        <span className="video-modal-badge">Kurzgesagt</span>
-                        <h3>{video.title}</h3>
-                    </div>
-                    <button className="video-modal-close" onClick={onClose}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        <div className="ss-video" onClick={onClose}>
+            <div className="ss-video__card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={video.title}>
+                <div className="ss-video__head">
+                    <span className="ss-video__badge"><PlayCircle size={14} /> Kurzgesagt</span>
+                    <h3>{video.title}</h3>
+                    <button type="button" className="ss-video__close" onClick={onClose} aria-label="Cerrar vídeo">
+                        <X size={20} />
                     </button>
                 </div>
-                <div className="video-modal-player">
+                <div className="ss-video__player">
                     <iframe
                         src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
                         title={video.title}
@@ -911,9 +898,7 @@ const VideoModal = ({ video, onClose }) => {
                         style={{ width: '100%', height: '100%', border: 'none' }}
                     ></iframe>
                 </div>
-                <div className="video-modal-footer">
-                    <span className="video-modal-channel">📺 En Pocas Palabras – Kurzgesagt</span>
-                </div>
+                <div className="ss-video__foot">En Pocas Palabras – Kurzgesagt</div>
             </div>
         </div>,
         document.body
@@ -999,7 +984,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
 
             {showLabels && (
                 <Html position={[0, currentSize + 1.5, 0]} center distanceFactor={12} style={{ pointerEvents: 'none' }}>
-                    <div className="planet-label" style={{ opacity: isPaused ? 0.5 : 1 }}>{planet.name}</div>
+                    <div className="ss-label" style={{ opacity: isPaused ? 0.5 : 1, '--pc': planet.color }}>{planet.name}</div>
                 </Html>
             )}
 
@@ -1130,6 +1115,27 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
 };
 
 // --- INFO PANEL ---
+const STAT_ITEMS = [
+    { key: 'diameter', label: 'Diámetro', Icon: Ruler },
+    { key: 'gravity', label: 'Gravedad', Icon: ArrowDownToLine },
+    { key: 'avgTemp', label: 'Temperatura', Icon: Thermometer },
+    { key: 'rotationPeriod', label: 'Rotación', Icon: RotateCw },
+    { key: 'orbitalPeriod', label: 'Órbita', Icon: Orbit },
+    { key: 'moonCount', label: 'Satélites', Icon: Satellite },
+];
+const BODY_KIND = { star: 'Estrella', planet: 'Planeta' };
+
+const CompareRow = ({ label, ratio, fill, mark, color, dim }) => (
+    <div className="ss-compare__row">
+        <span className="ss-compare__label">{label} <small>vs Tierra</small></span>
+        <span className="ss-compare__track">
+            <span className="ss-compare__fill" style={{ transform: `scaleX(${fill / 100})`, background: color, opacity: dim ? 0.75 : 1 }} />
+            <span className="ss-compare__mark" style={{ left: `${mark}%` }} title="Tierra" />
+        </span>
+        <span className="ss-compare__ratio">×{ratio}</span>
+    </div>
+);
+
 const InfoPanel = ({ planet, level, grade, onClose }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
     if (!planet) return null;
@@ -1142,126 +1148,90 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
     const gravityBarWidth = stats ? Math.min((stats.gravityRatio / 3) * 100, 100) : 0;
 
     return (
-        <div className={`info-panel-overlay ${showAdvanced ? 'expanded' : ''}`}>
-            <div className="info-panel-glow-border"></div>
-            <div className="info-panel-card">
-                <div className="panel-header">
-                    <div className="panel-header-left">
-                        <div className="planet-color-indicator" style={{ background: planet.color, boxShadow: `0 0 20px ${planet.color}` }}></div>
-                        <h2 style={{ color: planet.color }}>{planet.name}</h2>
-                    </div>
-                    <button className="btn-exit-planet" onClick={onClose}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-                        Salir
-                    </button>
+        <aside className={`ss-info ${showAdvanced ? 'is-expanded' : ''}`} style={{ '--pc': planet.color }} aria-label={`Ficha: ${planet.name}`}>
+            <div className="ss-info__head">
+                <PlanetOrb id={planet.id} color={planet.color} size={58} />
+                <div className="ss-info__titles">
+                    <span className="ss-info__kind">{BODY_KIND[planet.type] || 'Satélite'}</span>
+                    <h2>{planet.name}</h2>
                 </div>
-
-                <div className="planet-details">
-                    <p className="main-desc">{description}</p>
-
-                    {/* --- FICHA TÉCNICA --- */}
-                    {stats && (
-                        <div className="tech-card">
-                            <h4 className="tech-card-title">
-                                <span>📊</span> Ficha Técnica
-                            </h4>
-                            <div className="tech-stats-grid">
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">📏</span>
-                                    <span className="tech-label">Diámetro</span>
-                                    <span className="tech-value">{stats.diameter}</span>
-                                </div>
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">⚖️</span>
-                                    <span className="tech-label">Gravedad</span>
-                                    <span className="tech-value">{stats.gravity}</span>
-                                </div>
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">🌡️</span>
-                                    <span className="tech-label">Temperatura</span>
-                                    <span className="tech-value">{stats.avgTemp}</span>
-                                </div>
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">🔄</span>
-                                    <span className="tech-label">Rotación</span>
-                                    <span className="tech-value">{stats.rotationPeriod}</span>
-                                </div>
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">🪐</span>
-                                    <span className="tech-label">Órbita</span>
-                                    <span className="tech-value">{stats.orbitalPeriod}</span>
-                                </div>
-                                <div className="tech-stat-cell">
-                                    <span className="tech-icon">🛰️</span>
-                                    <span className="tech-label">Satélites</span>
-                                    <span className="tech-value">{stats.moonCount}</span>
-                                </div>
-                            </div>
-
-                            {stats.distanceFromSun !== '—' && (
-                                <div className="tech-distance-row">
-                                    <span className="tech-icon">☀️</span>
-                                    <span className="tech-label">Distancia al Sol</span>
-                                    <span className="tech-value">{stats.distanceFromSun}</span>
-                                </div>
-                            )}
-
-                            {/* Visual comparisons */}
-                            {planet.id !== 'sun' && planet.id !== 'moon' && (
-                                <div className="tech-comparisons">
-                                    <div className="tech-comparison-row">
-                                        <span className="comparison-label">Tamaño vs 🌍</span>
-                                        <div className="comparison-track">
-                                            <div className="comparison-fill" style={{ width: `${sizeBarWidth}%`, background: planet.color }}></div>
-                                            <div className="comparison-earth-mark" style={{ left: `${Math.min((1 / 11) * 100, 100)}%` }}></div>
-                                        </div>
-                                        <span className="comparison-ratio">×{stats.sizeRatio}</span>
-                                    </div>
-                                    <div className="tech-comparison-row">
-                                        <span className="comparison-label">Gravedad vs 🌍</span>
-                                        <div className="comparison-track">
-                                            <div className="comparison-fill" style={{ width: `${gravityBarWidth}%`, background: planet.color, opacity: 0.7 }}></div>
-                                            <div className="comparison-earth-mark" style={{ left: `${Math.min((1 / 3) * 100, 100)}%` }}></div>
-                                        </div>
-                                        <span className="comparison-ratio">×{stats.gravityRatio}</span>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    <button
-                        className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
-                        onClick={() => setShowAdvanced(!showAdvanced)}
-                    >
-                        <span className="btn-advanced-icon">{showAdvanced ? '🔼' : '🧪'}</span>
-                        {showAdvanced ? 'Menos Información' : 'Composición y Datos'}
-                    </button>
-
-                    {showAdvanced && planet.advanced && (
-                        <div className="advanced-info-section">
-                            <div className="advanced-block">
-                                <h3>🧪 Composición Química</h3>
-                                <p><strong>Elementos:</strong> {planet.advanced.composition.elements.join(', ')}</p>
-                                <p><strong>Compuestos:</strong> {planet.advanced.composition.compounds.join(', ')}</p>
-                            </div>
-                            <div className="advanced-block">
-                                <h3>🌍 Geografía y Estructura</h3>
-                                <p>{planet.advanced.geography}</p>
-                            </div>
-                            <div className="advanced-block">
-                                <h3>💡 Curiosidades Técnicas</h3>
-                                <ul>
-                                    {planet.advanced.curiosities.map((c, i) => (
-                                        <li key={i}>{c}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                <button type="button" className="ss-exit" onClick={onClose}>
+                    <X size={15} strokeWidth={3} /> Salir
+                </button>
             </div>
-        </div>
+
+            <div className="ss-info__body">
+                <p className="ss-info__desc">{description}</p>
+
+                {/* --- FICHA TÉCNICA --- */}
+                {stats && (
+                    <section className="ss-tech">
+                        <h4 className="ss-sec__title"><BarChart3 size={14} /> Ficha técnica</h4>
+                        <div className="ss-tech__grid">
+                            {STAT_ITEMS.map(({ key, label, Icon }) => (
+                                <div key={key} className="ss-tech__cell">
+                                    <span className="ss-tech__icon"><Icon size={14} /></span>
+                                    <span className="ss-tech__label">{label}</span>
+                                    <span className="ss-tech__value">{stats[key]}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {stats.distanceFromSun !== '—' && (
+                            <div className="ss-tech__row">
+                                <span className="ss-tech__icon"><Sun size={14} /></span>
+                                <span className="ss-tech__label">Distancia al Sol</span>
+                                <span className="ss-tech__value">{stats.distanceFromSun}</span>
+                            </div>
+                        )}
+
+                        {planet.id !== 'sun' && planet.id !== 'moon' && (
+                            <div className="ss-compare">
+                                <CompareRow label="Tamaño" ratio={stats.sizeRatio} fill={sizeBarWidth} mark={Math.min((1 / 11) * 100, 100)} color={planet.color} />
+                                <CompareRow label="Gravedad" ratio={stats.gravityRatio} fill={gravityBarWidth} mark={Math.min((1 / 3) * 100, 100)} color={planet.color} dim />
+                            </div>
+                        )}
+                    </section>
+                )}
+
+                <button
+                    type="button"
+                    className={`ss-more ${showAdvanced ? 'is-on' : ''}`}
+                    onClick={() => setShowAdvanced(!showAdvanced)}
+                >
+                    {showAdvanced ? <ChevronUp size={17} /> : <FlaskConical size={17} />}
+                    {showAdvanced ? 'Menos información' : 'Composición y datos'}
+                </button>
+
+                {showAdvanced && planet.advanced && (
+                    <div className="ss-adv">
+                        <section className="ss-adv__block">
+                            <h4><FlaskConical size={14} /> Composición química</h4>
+                            <div className="ss-adv__chips">
+                                <span className="ss-adv__k">Elementos</span>
+                                {planet.advanced.composition.elements.map((e) => <span key={e} className="ss-chip">{e}</span>)}
+                            </div>
+                            <div className="ss-adv__chips">
+                                <span className="ss-adv__k">Compuestos</span>
+                                {planet.advanced.composition.compounds.map((c) => <span key={c} className="ss-chip">{c}</span>)}
+                            </div>
+                        </section>
+                        <section className="ss-adv__block">
+                            <h4><Globe2 size={14} /> Geografía y estructura</h4>
+                            <p>{planet.advanced.geography}</p>
+                        </section>
+                        <section className="ss-adv__block">
+                            <h4><Lightbulb size={14} /> Curiosidades técnicas</h4>
+                            <ul>
+                                {planet.advanced.curiosities.map((c, i) => (
+                                    <li key={i}>{c}</li>
+                                ))}
+                            </ul>
+                        </section>
+                    </div>
+                )}
+            </div>
+        </aside>
     );
 };
 
@@ -1269,41 +1239,42 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
 const ResetModal = ({ isOpen, onConfirm, onCancel }) => {
     if (!isOpen) return null;
     return (
-        <div className="modal-overlay" style={{
-            zIndex: 5000
-        }}>
-            <div className="modal-content" style={{ pointerEvents: 'auto' }}>
-                <span className="modal-icon">⚠️</span>
-                <h3>¿Reiniciar Exploración?</h3>
+        <div className="ss-confirm" role="dialog" aria-modal="true" aria-label="Reiniciar exploración">
+            <div className="ss-confirm__card">
+                <span className="ss-confirm__icon"><AlertTriangle size={26} /></span>
+                <h3>¿Reiniciar la exploración?</h3>
                 <p>Se borrarán todos tus puntos de interés visitados y volverás al estado inicial del sistema.</p>
-                <div className="modal-actions">
-                    <button type="button" className="btn-modal-cancel" onClick={onCancel}>Cancelar</button>
-                    <button type="button" className="btn-modal-confirm" onClick={onConfirm}>Confirmar Reinicio</button>
+                <div className="ss-confirm__actions">
+                    <GameButton variant="soft" onClick={onCancel}>Cancelar</GameButton>
+                    <GameButton variant="danger" icon={RotateCcw} onClick={onConfirm}>Confirmar reinicio</GameButton>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
 // --- PLANET NAV BAR ---
 const PlanetNavBar = ({ planets, selectedPlanet, onSelect }) => {
     return (
-        <div className="planet-nav-bar">
-            {planets.map((planet) => (
-                <button
-                    key={planet.id}
-                    className={`planet-nav-item ${selectedPlanet?.id === planet.id ? 'active' : ''}`}
-                    onClick={() => onSelect(planet)}
-                    title={planet.name}
-                >
-                    <div className="planet-nav-dot" style={{
-                        background: planet.color,
-                        boxShadow: selectedPlanet?.id === planet.id ? `0 0 15px ${planet.color}, 0 0 30px ${planet.color}40` : `0 0 6px ${planet.color}60`
-                    }}></div>
-                    <span className="planet-nav-name">{planet.name}</span>
-                </button>
-            ))}
-        </div>
+        <nav className="ss-nav" aria-label="Cuerpos celestes">
+            {planets.map((planet) => {
+                const active = selectedPlanet?.id === planet.id;
+                return (
+                    <button
+                        type="button"
+                        key={planet.id}
+                        className={`ss-nav__item ${active ? 'is-active' : ''}`}
+                        onClick={() => onSelect(planet)}
+                        title={planet.name}
+                        aria-pressed={active}
+                        style={{ '--pc': planet.color }}
+                    >
+                        <PlanetOrb id={planet.id} color={planet.color} size={24} />
+                        <span className="ss-nav__name">{planet.name}</span>
+                    </button>
+                );
+            })}
+        </nav>
     );
 };
 
@@ -1315,6 +1286,7 @@ const SistemaSolar = ({ level, grade }) => {
     const [introVisible, setIntroVisible] = useState(true);
     const [activeVideo, setActiveVideo] = useState(null);
     const [showActivity, setShowActivity] = useState(false);
+    const [showHelp, setShowHelp] = useState(false);
 
     const [visitedHotspots, setVisitedHotspots] = useState(() => {
         try {
@@ -1435,21 +1407,26 @@ const SistemaSolar = ({ level, grade }) => {
     const isVideoOpen = !!activeVideo;
 
     return (
-        <div className={`sistema-solar-container ${isVideoOpen ? 'video-active' : ''}`}>
+        <GameShell
+            theme="dark"
+            wide
+            accent="#818cf8"
+            accent2="#fbbf24"
+            className={`ss-shell ${isVideoOpen ? 'is-video' : ''} ${introVisible ? 'is-intro' : ''}`}
+        >
             <AppOrientationWarning />
-            {/* Cinematic intro overlay */}
-            <div className={`intro-overlay ${introVisible ? 'visible' : ''}`}>
-                <div className="intro-content">
-                    <div className="intro-icon">🌌</div>
-                    <h1 className="intro-title">Sistema Solar 3D</h1>
-                    <p className="intro-subtitle">Explora el universo</p>
-                    <div className="intro-loading-bar">
-                        <div className="intro-loading-fill"></div>
+            {/* Intro cinematográfica */}
+            <div className={`ss-intro ${introVisible ? 'is-visible' : ''}`} aria-hidden={!introVisible}>
+                <div className="ss-intro__content">
+                    <span className="ss-intro__halo" aria-hidden="true" />
+                    <span className="ss-intro__icon"><AppIcon appId="sistema-solar" size={120} /></span>
+                    <h1 className="ss-intro__title">Sistema Solar 3D</h1>
+                    <p className="ss-intro__subtitle">Explora el universo</p>
+                    <div className="ss-intro__bar">
+                        <div className="ss-intro__fill"></div>
                     </div>
                 </div>
             </div>
-
-
 
             <ConfigPanel
                 config={config}
@@ -1458,10 +1435,14 @@ const SistemaSolar = ({ level, grade }) => {
                 visitedCount={visitedCount}
                 totalCount={totalHotspots}
                 onLaunchActivity={() => setShowActivity(true)}
+                onHelp={() => setShowHelp(true)}
             />
 
             {showActivity && <SolarSystemActivity onClose={() => setShowActivity(false)} />}
 
+            {/* Escena 3D en su propio contexto de apilado: las etiquetas <Html> de drei
+                no pueden pintarse por encima de los paneles de la interfaz */}
+            <div className="ss-scene">
             <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows frameloop={(isVideoOpen || showActivity) ? 'never' : 'always'}>
                 {!showActivity && (
                     <>
@@ -1527,6 +1508,7 @@ const SistemaSolar = ({ level, grade }) => {
                 )}
                 {showActivity && <color attach="background" args={['#010103']} />}
             </Canvas>
+            </div>
 
             <InfoPanel
                 planet={selectedPlanet}
@@ -1552,18 +1534,37 @@ const SistemaSolar = ({ level, grade }) => {
                 onClose={() => setActiveVideo(null)}
             />
 
-            {/* Animación de Reinicio de Sistema mejorada */}
-            <div className={`reboot-overlay ${isResetting ? 'active' : ''}`}>
-                <div className="reboot-wipe"></div>
-                <div className="reboot-scanlines"></div>
-                <div className="reboot-horizontal-bar"></div>
-                <div className="reboot-grid"></div>
-                <div className="reboot-text-container">
-                    <div className="reboot-text">REBOOTING</div>
-                    <span className="reboot-subtext">PURGING DATA & CALIBRATING OPTICS...</span>
+            <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo explorar el Sistema Solar">
+                <h3>🌌 Objetivo</h3>
+                <p>
+                    Viaja por el <strong>Sistema Solar en 3D</strong>: descubre cada planeta, su ficha técnica y
+                    todos sus <strong>puntos de interés</strong>.
+                </p>
+                <h3>🕹️ Cómo se explora</h3>
+                <ul>
+                    <li>Toca un planeta en la escena o en la <strong>barra inferior</strong> para viajar hasta él y abrir su ficha.</li>
+                    <li>Los <strong>puntos dorados</strong> sobre el planeta son puntos de interés: tócalos para leerlos (cuentan en tu progreso).</li>
+                    <li>La <strong>estrella</strong> junto al planeta abre un vídeo de divulgación.</li>
+                    <li>Arrastra para girar la cámara y usa la rueda del ratón para el zoom.</li>
+                </ul>
+                <h3>🧭 Centro de control</h3>
+                <p>
+                    Arriba a la derecha verás cuánto has explorado. Despliégalo para ajustar la simulación o lanzar el
+                    <strong> Desafío de planetas</strong>: ordénalos por distancia al Sol y relaciona cada uno con su característica.
+                </p>
+            </InstructionsModal>
+
+            {/* Animación de reinicio del sistema */}
+            <div className={`ss-reboot ${isResetting ? 'is-active' : ''}`} aria-hidden={!isResetting}>
+                <div className="ss-reboot__wipe"></div>
+                <div className="ss-reboot__scan"></div>
+                <div className="ss-reboot__bar"></div>
+                <div className="ss-reboot__text">
+                    <strong>Reiniciando sistema</strong>
+                    <span>Borrando datos y calibrando telescopios…</span>
                 </div>
             </div>
-        </div>
+        </GameShell>
     );
 };
 

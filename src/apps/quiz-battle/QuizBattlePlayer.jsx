@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, animate, useTransform } from 'framer-motion';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, Check, X, Trophy, Clock, Crown, Users } from 'lucide-react';
+import { ArrowLeft, Check, Trophy, Crown, Zap, Medal, ListOrdered, AlertTriangle, Sparkles } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import { useTheme } from '@/contexts/ThemeContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
@@ -12,32 +11,23 @@ import useBattlePhrases from './useBattlePhrases';
 import BattleRisingMessages from './BattleRisingMessages';
 import PhraseLauncher from '@/components/duel/PhraseLauncher';
 import BadgeIcon from '@/components/ui/BadgeIcon';
-import UserAvatar from '@/components/ui/UserAvatar';
 import QBBackground from './QBBackground';
 import QBStageAnimation from './QBStageAnimation';
 import QBStageAnimationSimple from './QBStageAnimationSimple';
 import { ROOM_CODE_RE, sanitizePlainText } from '@/lib/sanitize';
+import { GameShell, HudStat, Panel, Chip, GameButton } from '../_shared/kit';
+import { QBEmblem, QBShape, QBMedal, QBVerdictArt } from './QBArt';
+import { QBNumber, QBAvatar, QBTimerRing, QBTile, QBLeaderboard } from './QBParts';
 import './QuizBattle.css';
 
-/** Contador que anima de 0 hasta `to` en `duration` segundos, con formato ES. */
-function AnimatedNumber({ value, duration = 0.9, className, style, suffix = '' }) {
-  const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => Math.round(v).toLocaleString('es-ES') + suffix);
-  useEffect(() => {
-    const controls = animate(mv, value, { duration, ease: 'easeOut' });
-    return () => controls.stop();
-  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
-  return <motion.span className={className} style={style}>{rounded}</motion.span>;
-}
+// Avatares para invitados (sin cuenta): contenido, no ilustración.
+const GUEST_EMOJIS = ['🙂', '😎', '🦊', '🐱', '🐸', '🦄', '🎮', '🚀', '⭐', '🔥'];
 
-const OPTION_COLORS = ['#dc2626', '#2563eb', '#15803d', '#d97706'];
-const OPTION_SHAPES = ['⭐', '❤️', '🔵', '🟩'];
 
 export default function QuizBattlePlayer() {
   const { code: urlCode } = useParams();
   const { student } = useAuth();
   const navigate = useNavigate();
-  const { theme } = useTheme();
 
   // ── Join state ──
   const [roomCode, setRoomCode] = useState(urlCode?.toUpperCase() || '');
@@ -330,8 +320,6 @@ export default function QuizBattlePlayer() {
   };
 
   // ── Derived ──
-  const timerPct = timeLimit > 0 ? (timeLeft / timeLimit) * 100 : 0;
-  const timerColor = timerPct > 50 ? 'qb-timer-green' : timerPct > 25 ? 'qb-timer-yellow' : 'qb-timer-red';
   // selectedAnswer es la posición visual pulsada; traducimos al índice original
   // antes de comparar con correctIndex (que siempre es el índice original).
   const isCorrect = selectedAnswer >= 0 && posPerm[selectedAnswer] === correctIndex;
@@ -360,479 +348,462 @@ export default function QuizBattlePlayer() {
   // ═══════════════ RENDER ═══════════════
   const isTimerCritical = phase === 'question' && timeLeft <= 5 && timeLeft > 0;
 
+  // Datos solo de presentación (no alteran el flujo de la batalla).
+  const verdict = selectedAnswer < 0 ? 'timeout' : isCorrect ? 'correct' : 'wrong';
+  const correctText = currentQuestion && correctIndex >= 0 ? currentQuestion.options[correctIndex] : '';
+  const myFinal = finalLeaderboard.find((p) => p.id === userInfo.id);
+  const joinDisabled = roomCode.length < 4 || (!student && !guestName.trim());
+  // Transiciones de fase cortas y solo de opacidad al salir: con AnimatePresence
+  // mode="wait" la fase siguiente no entra hasta que la anterior termina de salir.
+  const phaseExit = { opacity: 0, transition: { duration: 0.18 } };
+  const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }, exit: phaseExit };
+
   return (
-    <div className={`qb-container ${theme === 'dark' ? 'qb-dark' : ''}`}>
-      <QBBackground />
+    <div className="qb-container">
       <Header subtitle="Batalla" />
 
-      <AnimatePresence mode="wait">
-        {/* ── JOIN ── */}
-        {phase === 'join' && (
-          <motion.div key="join" className="qb-join"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-
-            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>⚡</div>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '1.5rem' }}>Unirse al Quiz</h1>
-
-            <input
-              type="text"
-              placeholder="CODIGO"
-              maxLength={8}
-              value={roomCode}
-              onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8))}
-            />
-
-            {!student && (
-              <>
-                <input
-                  type="text"
-                  placeholder="Tu nombre"
-                  maxLength={30}
-                  value={guestName}
-                  onChange={(e) => setGuestName(e.target.value.replace(/[<>]/g, '').slice(0, 30))}
-                  style={{ fontSize: '1rem', letterSpacing: 'normal', marginBottom: '0.75rem' }}
-                />
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-                  {['🙂', '😎', '🦊', '🐱', '🐸', '🦄', '🎮', '🚀', '⭐', '🔥'].map((e) => (
-                    <button key={e} onClick={() => setGuestEmoji(e)}
-                      style={{
-                        fontSize: '1.5rem', padding: '0.3rem', border: '2px solid',
-                        borderColor: guestEmoji === e ? '#fbbf24' : 'transparent',
-                        borderRadius: 8, background: guestEmoji === e ? 'rgba(251,191,36,0.2)' : 'transparent',
-                        cursor: 'pointer',
-                      }}>{e}</button>
-                  ))}
+      <main className="qb-main">
+        <GameShell
+          theme="dark"
+          accent="#8b5cf6"
+          accent2="#ec4899"
+          className={`qb-shell qb-shell--player is-${phase}`}
+          scene={<QBBackground />}
+        >
+          <AnimatePresence mode="wait">
+            {/* ── JOIN ── */}
+            {phase === 'join' && (
+              <motion.div key="join" className="qb-phase qb-join" {...fadeUp}>
+                <div className="qb-join__hero">
+                  <motion.span
+                    className="qb-join__emblem"
+                    initial={{ opacity: 0, scale: 0.6, rotate: -12 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 14 }}
+                  >
+                    <QBEmblem size={104} />
+                  </motion.span>
+                  <h1 className="qb-join__title">Quiz Battle</h1>
+                  <p className="qb-join__sub">Únete a la batalla en directo de tu clase</p>
                 </div>
-              </>
+
+                {/* Formulario real para que "Intro"/"Ir" del teclado móvil también una. */}
+                <form
+                  className="gk-panel gk-panel--surface qb-join__card"
+                  onSubmit={(e) => { e.preventDefault(); if (!joinDisabled) handleJoin(); }}
+                >
+                  {student && (
+                    <div className="qb-whoami">
+                      <QBAvatar p={userInfo} size="md" />
+                      <div>
+                        <span className="qb-label">Jugarás como</span>
+                        <strong>{userInfo.name}</strong>
+                      </div>
+                    </div>
+                  )}
+
+                  <label className="qb-label" htmlFor="qb-code">Código de la sala</label>
+                  <input
+                    id="qb-code"
+                    className="qb-input qb-input--code"
+                    type="text"
+                    placeholder="CÓDIGO"
+                    maxLength={8}
+                    autoComplete="off"
+                    autoCapitalize="characters"
+                    spellCheck={false}
+                    value={roomCode}
+                    onChange={(e) => setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8))}
+                  />
+
+                  {!student && (
+                    <>
+                      <label className="qb-label" htmlFor="qb-name">Tu nombre</label>
+                      <input
+                        id="qb-name"
+                        className="qb-input"
+                        type="text"
+                        placeholder="¿Cómo te llamas?"
+                        maxLength={30}
+                        autoComplete="off"
+                        value={guestName}
+                        onChange={(e) => setGuestName(e.target.value.replace(/[<>]/g, '').slice(0, 30))}
+                      />
+                      <span className="qb-label">Elige tu avatar</span>
+                      <div className="qb-emojis">
+                        {GUEST_EMOJIS.map((e) => (
+                          <button
+                            key={e}
+                            type="button"
+                            aria-pressed={guestEmoji === e}
+                            onClick={() => setGuestEmoji(e)}
+                            className={`qb-emoji-btn ${guestEmoji === e ? 'is-active' : ''}`}
+                          >
+                            {e}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+
+                  {joinError && (
+                    <div className="qb-alert gk-anim-shake" role="alert">
+                      <AlertTriangle size={18} />
+                      <span>{joinError}</span>
+                    </div>
+                  )}
+
+                  <GameButton type="submit" variant="primary" size="lg" icon={Zap} disabled={joinDisabled} className="qb-wide-btn">
+                    Unirse
+                  </GameButton>
+                </form>
+
+                <GameButton variant="ghost" icon={ArrowLeft} className="qb-join__back" onClick={() => navigate(student ? '/mi-panel' : '/')}>
+                  Volver
+                </GameButton>
+              </motion.div>
             )}
 
-            {joinError && (
-              <div style={{
-                padding: '0.75rem 1rem', borderRadius: 12, marginBottom: '1rem',
-                background: 'rgba(220,38,38,0.2)', border: '1px solid rgba(220,38,38,0.4)',
-                color: '#fca5a5', fontSize: '0.85rem', fontWeight: 600,
-              }}>
-                {joinError}
-              </div>
+            {/* ── WAITING ── */}
+            {phase === 'waiting' && (
+              <motion.div key="waiting-player" className="qb-phase qb-wait" {...fadeUp}>
+                <div className="qb-wait__stage">
+                  <span className="qb-wait__spot" />
+                  <span className="qb-wait__floor" />
+                  <span className="qb-wait__ring" />
+                  <span className="qb-wait__ring qb-wait__ring--2" />
+                  <motion.span
+                    className="qb-wait__avatar"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+                  >
+                    <QBAvatar p={userInfo} size="xl" glow />
+                  </motion.span>
+                </div>
+                <h2 className="qb-wait__name">{userInfo.name}</h2>
+                <Chip tone="good" icon={Check}>¡Estás dentro!</Chip>
+
+                {teamInfo && (
+                  <motion.div
+                    className="qb-team-banner"
+                    initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 15 }}
+                  >
+                    <span className="qb-team-banner__kicker"><Crown size={15} /> REPRESENTANTE DEL EQUIPO</span>
+                    <strong>{teamInfo.team_name}</strong>
+                    <p>Juegas por todo tu equipo. Los demás miembros recibirán los mismos beneficios que tú al final.</p>
+                  </motion.div>
+                )}
+
+                <p className="qb-wait__msg">
+                  Esperando a que el profesor inicie la partida<span className="qb-dots"><i /><i /><i /></span>
+                </p>
+
+                <Panel className="qb-wait__room">
+                  <motion.span
+                    className="qb-live"
+                    key={players.length}
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                  >
+                    <i /> {players.length} en la sala
+                  </motion.span>
+                  <div className="qb-chips qb-chips--sm">
+                    {players.map((p) => (
+                      <span key={p.id} className={`qb-pchip ${p.id === userInfo.id ? 'is-me' : ''}`}>
+                        <QBAvatar p={p} size="xs" />
+                        <span>{p.name}</span>
+                      </span>
+                    ))}
+                  </div>
+                </Panel>
+              </motion.div>
             )}
 
-            <button className="qb-btn-primary" onClick={handleJoin}
-              disabled={roomCode.length < 4 || (!student && !guestName.trim())}>
-              Unirse
-            </button>
-
-            <button className="qb-btn-back" onClick={() => navigate(student ? '/mi-panel' : '/')}
-              style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
-              <ArrowLeft className="w-4 h-4" /> Volver
-            </button>
-          </motion.div>
-        )}
-
-        {/* ── WAITING ── */}
-        {phase === 'waiting' && (
-          <motion.div key="waiting-player" className="qb-waiting"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 12 }}
-              className="qb-player-emoji-ripple"
-              style={{ marginBottom: '0.5rem', display: 'inline-block', position: 'relative' }}
-            >
-              {userInfo.selected_avatar_code ? (
-                <UserAvatar
-                  selectedAvatarCode={userInfo.selected_avatar_code}
-                  avatarEmoji={userInfo.emoji}
-                  avatarColor={userInfo.color}
-                  size="hero"
-                  shape="rounded"
-                  showRarityBorder
-                  showRarityGlow
-                />
-              ) : (
-                <span style={{ fontSize: '4.8rem' }}>{userInfo.emoji}</span>
-              )}
-            </motion.div>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 800 }}>{userInfo.name}</h2>
-
-            {teamInfo && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 15 }}
-                style={{
-                  margin: '0.75rem auto',
-                  padding: '0.75rem 1rem',
-                  maxWidth: 360,
-                  borderRadius: 14,
-                  background: 'linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.1))',
-                  border: '2px solid rgba(251,191,36,0.5)',
-                  boxShadow: '0 4px 20px rgba(251,191,36,0.25)',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginBottom: 4 }}>
-                  <Crown className="w-4 h-4" style={{ color: '#fbbf24' }} />
-                  <span style={{ fontWeight: 900, color: '#fbbf24', fontSize: '0.85rem', letterSpacing: '0.04em' }}>
-                    REPRESENTANTE DEL EQUIPO
-                  </span>
+            {/* ── COUNTDOWN ── */}
+            {phase === 'countdown' && (
+              <motion.div key="countdown-player" className="qb-phase qb-countdown"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={phaseExit}>
+                {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
+                {bgAnimMode === 'simple' && <QBStageAnimationSimple intensity="normal" />}
+                <span className="qb-countdown__label">¡Prepárate!</span>
+                <div className="qb-countdown__ring">
+                  <span key={`burst${countdownValue}`} className="qb-countdown__burst" />
+                  <motion.span
+                    key={`cd${countdownValue}`}
+                    className="qb-countdown__num"
+                    initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 14 }}
+                  >
+                    {countdownValue}
+                  </motion.span>
                 </div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 900 }}>{teamInfo.team_name}</div>
-                <p style={{ fontSize: '0.72rem', opacity: 0.85, marginTop: 4, lineHeight: 1.35 }}>
-                  Juegas por todo tu equipo. Los demás miembros recibirán los mismos beneficios que tú al final.
+                {totalQuestions > 0 && <span className="qb-countdown__sub">{totalQuestions} preguntas</span>}
+              </motion.div>
+            )}
+
+            {/* ── QUESTION ── */}
+            {(phase === 'question' || phase === 'sent') && currentQuestion && (
+              <motion.div key={`pq${questionIndex}`} className="qb-phase qb-play qb-play--player"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={phaseExit}>
+                <div className="qb-topbar qb-topbar--player">
+                  <HudStat icon={ListOrdered} tone="progress" value={`${questionIndex + 1}/${totalQuestions}`} label="Pregunta" />
+                  <QBTimerRing timeLeft={timeLeft} timeLimit={timeLimit} size="sm" />
+                  <HudStat icon={Trophy} tone="score" value={myScore.toLocaleString('es-ES')} label="Puntos" />
+                </div>
+
+                <div className="qb-question-wrap">
+                  {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
+                  {bgAnimMode === 'simple' && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
+                  <motion.div
+                    key={`pqtext${questionIndex}`}
+                    className="qb-question qb-question--player"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, ease: 'easeOut' }}
+                  >
+                    <p className="qb-question__text">{currentQuestion.question}</p>
+                  </motion.div>
+                </div>
+
+                <div className="qb-tiles qb-tiles--player">
+                  {currentQuestion.options.map((_, visualSlot) => {
+                    // Slot visual: texto desde posPerm, color/forma desde colorPerm.
+                    const origIdx = posPerm[visualSlot];
+                    const colorIdx = colorPerm[visualSlot];
+                    const opt = currentQuestion.options[origIdx];
+                    const state = selectedAnswer < 0 ? 'idle' : selectedAnswer === visualSlot ? 'selected' : 'dim';
+                    return (
+                      <QBTile
+                        key={visualSlot}
+                        interactive
+                        colorIdx={colorIdx}
+                        text={opt}
+                        state={state}
+                        disabled={selectedAnswer >= 0}
+                        onClick={() => handleAnswer(visualSlot)}
+                        delay={0.1 + visualSlot * 0.08}
+                      />
+                    );
+                  })}
+
+                  <AnimatePresence>
+                    {phase === 'sent' && (
+                      <motion.div className="qb-sent" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={phaseExit}>
+                        <motion.div
+                          className="qb-sent__card"
+                          initial={{ opacity: 0, scale: 0.7, y: 20 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                        >
+                          {selectedAnswer >= 0 && (
+                            <span className={`qb-sent__shape qb-tile--c${colorPerm[selectedAnswer]}`}>
+                              <QBShape kind={colorPerm[selectedAnswer]} size={44} />
+                            </span>
+                          )}
+                          <strong>Respuesta enviada</strong>
+                          <span>¿Habrás acertado? Espera a que se cierre la pregunta<span className="qb-dots"><i /><i /><i /></span></span>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── RESULTS ── */}
+            {phase === 'results' && (
+              <motion.div key="results-player" className="qb-phase qb-feedback" {...fadeUp}>
+                {/* My result */}
+                <motion.div
+                  className={`qb-verdict is-${verdict}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 180, damping: 16 }}
+                >
+                  <span className="qb-verdict__burst" />
+                  <motion.span
+                    className="qb-verdict__art"
+                    initial={{ scale: 0, rotate: -30 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.1, type: 'spring', stiffness: 260, damping: 12 }}
+                  >
+                    <QBVerdictArt kind={verdict} size={92} />
+                  </motion.span>
+                  <strong className="qb-verdict__title">
+                    {verdict === 'timeout' ? 'Sin respuesta' : verdict === 'correct' ? '¡Correcto!' : 'Incorrecto'}
+                  </strong>
+                  {myDelta > 0 && (
+                    <motion.span
+                      className="qb-verdict__points"
+                      initial={{ opacity: 0, y: 8, scale: 0.6 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 0.25, type: 'spring', stiffness: 240, damping: 12 }}
+                    >
+                      +<QBNumber value={myDelta} duration={0.7} /> <small>puntos</small>
+                    </motion.span>
+                  )}
+                  {verdict !== 'correct' && correctText && (
+                    <span className="qb-verdict__answer">La respuesta correcta era <b>{correctText}</b></span>
+                  )}
+                </motion.div>
+
+                <div className="qb-feedback__stats">
+                  <HudStat icon={Trophy} tone="score" value={<QBNumber value={myScore} duration={0.9} />} label="Puntos" />
+                  <HudStat icon={Medal} tone="streak" value={`#${myRank || '—'}`} label="Puesto" />
+                </div>
+
+                {/* Options with correct/wrong highlight (respetando las permutaciones) */}
+                {currentQuestion && (
+                  <div className="qb-tiles qb-tiles--reveal">
+                    {currentQuestion.options.map((_, visualSlot) => {
+                      const origIdx = posPerm[visualSlot];
+                      const colorIdx = colorPerm[visualSlot];
+                      const opt = currentQuestion.options[origIdx];
+                      const isThisCorrect = visualSlot === correctVisualSlot;
+                      const state = isThisCorrect ? 'correct' : visualSlot === selectedAnswer ? 'wrong' : 'missed';
+                      return (
+                        <QBTile
+                          key={visualSlot}
+                          size="sm"
+                          colorIdx={colorIdx}
+                          text={opt}
+                          state={state}
+                          count={distribution[origIdx] || 0}
+                          delay={0.2 + visualSlot * 0.06}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Mini leaderboard */}
+                <Panel className="qb-card">
+                  <h2 className="qb-card__title"><Trophy size={18} /> Top 5</h2>
+                  <QBLeaderboard entries={leaderboard.slice(0, 5)} meId={userInfo.id} startDelay={500} dense />
+                </Panel>
+
+                <p className="qb-wait__msg is-small">
+                  Esperando al profesor<span className="qb-dots"><i /><i /><i /></span>
                 </p>
               </motion.div>
             )}
 
-            <p className="qb-faint-text" style={{ marginTop: '0.5rem' }}>
-              Esperando a que el profesor inicie la partida...
-            </p>
-
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-              <motion.span className="qb-player-count-ring"
-                key={players.length}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
-                {players.length} en la sala
-              </motion.span>
-            </div>
-
-            <div className="qb-players-grid">
-              {players.map((p) => (
-                <div key={p.id} className="qb-player-card">
-                  <div className="qb-player-emoji">
-                    {p.selected_avatar_code ? (
-                      <UserAvatar
-                        selectedAvatarCode={p.selected_avatar_code}
-                        avatarEmoji={p.emoji}
-                        avatarColor={p.color}
-                        size="lg"
-                        shape="rounded"
-                        showRarityBorder
-                      />
-                    ) : (
-                      <span>{p.emoji}</span>
-                    )}
-                  </div>
-                  <div className="qb-player-name">{p.name}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="qb-spinner" style={{ minHeight: 60 }} />
-          </motion.div>
-        )}
-
-        {/* ── QUESTION ── */}
-        {phase === 'countdown' && (
-          <motion.div key="countdown-player" className="qb-countdown"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            {bgAnimMode === 'complex' && <QBStageAnimation intensity="normal" />}
-            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity="normal" />}
-            <p className="qb-countdown-label">Preparate...</p>
-            <motion.div
-              key={`cd${countdownValue}`}
-              className="qb-countdown-num"
-              initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              exit={{ scale: 1.6, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 14 }}
-            >
-              {countdownValue}
-            </motion.div>
-          </motion.div>
-        )}
-
-        {(phase === 'question' || phase === 'sent') && currentQuestion && (
-          <motion.div key={`pq${questionIndex}`} className="qb-question-screen"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-
-            {bgAnimMode === 'complex' && <QBStageAnimation intensity={isTimerCritical ? 'critical' : 'normal'} />}
-            {bgAnimMode === 'simple'  && <QBStageAnimationSimple intensity={isTimerCritical ? 'critical' : 'normal'} />}
-
-            <div className="qb-header">
-              <span className="qb-q-number">
-                {questionIndex + 1}/{totalQuestions}
-              </span>
-              <span className="qb-answer-count">
-                <Clock className="w-3.5 h-3.5" style={{ display: 'inline', verticalAlign: 'middle' }} /> {timeLeft}s
-              </span>
-            </div>
-
-            <div className="qb-timer-bar">
-              <div className={`qb-timer-fill ${timerColor}`} style={{ width: `${timerPct}%` }} />
-            </div>
-
-            <div className={`qb-timer-big ${isTimerCritical ? 'is-critical' : ''}`}>{timeLeft}</div>
-
-            <motion.div
-              key={`pqtext${questionIndex}`}
-              className="qb-question-text"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
-            >
-              {currentQuestion.question}
-            </motion.div>
-
-            <div className="qb-options-grid">
-              {currentQuestion.options.map((_, visualSlot) => {
-                // Slot visual: texto desde posPerm, color/forma desde colorPerm.
-                const origIdx  = posPerm[visualSlot];
-                const colorIdx = colorPerm[visualSlot];
-                const opt = currentQuestion.options[origIdx];
-                return (
-                  <motion.button
-                    key={visualSlot}
-                    className={`qb-option qb-opt-${colorIdx} ${selectedAnswer === visualSlot ? 'qb-opt-selected' : ''}`}
-                    disabled={selectedAnswer >= 0}
-                    onClick={() => handleAnswer(visualSlot)}
-                    initial={{ opacity: 0, scale: 0.85, y: 15 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ delay: 0.1 + visualSlot * 0.08, type: 'spring', stiffness: 220, damping: 18 }}
-                    whileTap={{ scale: 0.95 }}
+            {/* ── FINAL ── */}
+            {phase === 'final' && (
+              <motion.div key="final-player" className="qb-phase qb-final qb-final--player"
+                initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={phaseExit}>
+                <div className="qb-final__medal">
+                  <span className="qb-final__rays" />
+                  <motion.span
+                    initial={{ scale: 0, rotate: -15 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 180, damping: 12 }}
                   >
-                    <span className="qb-opt-shape">{OPTION_SHAPES[colorIdx]}</span>
-                    <span>{opt}</span>
-                  </motion.button>
-                );
-              })}
-            </div>
+                    <QBMedal rank={myRank} size={128} />
+                  </motion.span>
+                </div>
 
-            {phase === 'sent' && (
-              <motion.div
-                className="qb-sent-msg"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <Check className="w-6 h-6" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-                Respuesta enviada
-              </motion.div>
-            )}
-          </motion.div>
-        )}
-
-        {/* ── RESULTS ── */}
-        {phase === 'results' && (
-          <motion.div key="results-player" className="qb-results"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-
-            {/* My result */}
-            <motion.div
-              className={`qb-my-result ${selectedAnswer < 0 ? 'is-timeout' : isCorrect ? 'is-correct' : 'is-wrong'}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 180, damping: 16 }}
-            >
-              <div className={`qb-my-result-icon ${selectedAnswer < 0 ? 'is-timeout' : isCorrect ? 'is-correct' : 'is-wrong'}`}>
-                {selectedAnswer < 0 ? '⏰' : isCorrect ? '✅' : '❌'}
-              </div>
-              <div style={{ fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.25rem' }}>
-                {selectedAnswer < 0 ? 'Sin respuesta' : isCorrect ? '¡Correcto!' : 'Incorrecto'}
-              </div>
-              {myDelta > 0 && (
-                <motion.div
-                  className="qb-my-result-points"
-                  initial={{ opacity: 0, y: 8, scale: 0.6 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.25, type: 'spring', stiffness: 240, damping: 12 }}
+                <motion.h1
+                  className="qb-final__title"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                  style={{ textAlign: 'center' }}
                 >
-                  +<AnimatedNumber value={myDelta} duration={0.7} /> puntos
+                  {myRank === 1 ? '¡Campeón!' : myRank > 0 && myRank <= 3 ? '¡En el podio!' : 'Resultado final'}
+                </motion.h1>
+
+                <motion.div
+                  className="qb-final__me"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                >
+                  <QBAvatar p={userInfo} size="md" glow />
+                  <strong>{userInfo.name}</strong>
                 </motion.div>
-              )}
-              <div className="qb-my-result-total">
-                Total: <AnimatedNumber value={myScore} duration={0.9} /> pts &nbsp;·&nbsp; Puesto #{myRank || '—'}
-              </div>
-            </motion.div>
 
-            {/* Options with correct/wrong highlight (respetando las permutaciones) */}
-            {currentQuestion && (
-              <div className="qb-options-grid" style={{ marginBottom: '1.5rem' }}>
-                {currentQuestion.options.map((_, visualSlot) => {
-                  const origIdx  = posPerm[visualSlot];
-                  const colorIdx = colorPerm[visualSlot];
-                  const opt = currentQuestion.options[origIdx];
-                  const isThisCorrect = visualSlot === correctVisualSlot;
-                  const extra = isThisCorrect ? 'qb-opt-correct' : 'qb-opt-wrong';
-                  return (
-                    <div key={visualSlot}
-                      className={`qb-option qb-opt-${colorIdx} ${extra}`}
-                      style={{ cursor: 'default' }}>
-                      <span className="qb-opt-shape">{OPTION_SHAPES[colorIdx]}</span>
-                      <span>{opt}</span>
-                      {isThisCorrect && <Check className="w-5 h-5" style={{ marginLeft: 'auto' }} />}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+                <motion.div
+                  className="qb-final__stats"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <div className="qb-bigstat is-score">
+                    <QBNumber value={myScore} duration={1.6} className="qb-bigstat__value" />
+                    <span>puntos</span>
+                  </div>
+                  <div className="qb-bigstat">
+                    <span className="qb-bigstat__value">
+                      {myFinal && totalQuestions > 0 ? `${myFinal.correctCount}/${totalQuestions}` : '—'}
+                    </span>
+                    <span>aciertos</span>
+                  </div>
+                  <div className="qb-bigstat">
+                    <span className="qb-bigstat__value">#{myRank || '—'}</span>
+                    <span>de {finalLeaderboard.length}</span>
+                  </div>
+                </motion.div>
 
-            {/* Mini leaderboard */}
-            <div className="qb-leaderboard">
-              <div className="qb-lb-title">Top 5</div>
-              {leaderboard.slice(0, 5).map((p, i) => (
-                <div key={p.id} className={`qb-lb-row ${p.id === userInfo.id ? 'qb-opt-selected' : ''}`}
-                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10 } : undefined}>
-                  <span className="qb-lb-rank">
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
-                  </span>
-                  <span className="qb-lb-emoji">
-                    {p.selected_avatar_code ? (
-                      <UserAvatar
-                        selectedAvatarCode={p.selected_avatar_code}
-                        avatarEmoji={p.emoji}
-                        avatarColor={p.color}
-                        size="md"
-                        shape="rounded"
-                        showRarityBorder
-                      />
-                    ) : (
-                      p.emoji
-                    )}
-                  </span>
-                  <span className="qb-lb-name">{p.name}</span>
-                  <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="qb-faint-text" style={{ textAlign: 'center', fontSize: '0.85rem', marginTop: '0.75rem' }}>
-              Esperando al profesor...
-            </p>
-          </motion.div>
-        )}
-
-        {/* ── FINAL ── */}
-        {phase === 'final' && (
-          <motion.div key="final-player" className="qb-final"
-            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-
-            <div className="qb-final-title">
-              {myRank === 1 ? '🏆 ¡CAMPEÓN! 🏆' : myRank <= 3 ? '🏅 ¡En el podio! 🏅' : 'Resultado Final'}
-            </div>
-
-            {/* My result prominently */}
-            <motion.div
-              initial={{ scale: 0, rotate: -15 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: 'spring', stiffness: 180, damping: 12 }}
-              style={{
-                fontSize: '5rem', fontWeight: 900, color: 'var(--qb-score-color)',
-                textShadow: '0 0 24px var(--qb-code-shadow)', marginBottom: '0.25rem',
-                lineHeight: 1,
-              }}>
-              #{myRank || '—'}
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '0.25rem' }}>
-              <span style={{ fontSize: '1.6rem', marginRight: 8 }}>{userInfo.emoji}</span>
-              {userInfo.name}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              style={{ color: 'var(--qb-score-color)', fontWeight: 900, fontSize: '1.5rem', marginBottom: '2rem' }}>
-              <AnimatedNumber value={myScore} duration={1.6} /> <span style={{ fontSize: '0.9rem', opacity: 0.7 }}>puntos</span>
-            </motion.p>
-
-            {/* New badges unlocked in this battle */}
-            {newBadges.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                style={{
-                  margin: '0 auto 2rem',
-                  padding: '1rem',
-                  maxWidth: 420,
-                  background: 'linear-gradient(135deg, rgba(251,191,36,0.18), rgba(236,72,153,0.18))',
-                  border: '2px solid rgba(251,191,36,0.5)',
-                  borderRadius: 16,
-                  boxShadow: '0 0 30px rgba(251,191,36,0.25)',
-                }}
-              >
-                <div style={{
-                  fontSize: '0.9rem', fontWeight: 900, textAlign: 'center',
-                  color: '#fbbf24', marginBottom: '0.75rem', letterSpacing: '0.05em',
-                }}>
-                  ¡INSIGNIA{newBadges.length > 1 ? 'S' : ''} DESBLOQUEADA{newBadges.length > 1 ? 'S' : ''}!
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {newBadges.map((b, i) => (
-                    <motion.div
-                      key={b.code}
-                      initial={{ scale: 0, rotate: -20, opacity: 0 }}
-                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                      transition={{
-                        delay: 0.6 + i * 0.3,
-                        type: 'spring', stiffness: 180, damping: 14,
-                      }}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: '0.85rem',
-                        padding: '0.6rem 0.8rem', borderRadius: 12,
-                        background: 'rgba(0,0,0,0.25)',
-                      }}
-                    >
-                      <BadgeIcon code={b.code} rarity={b.rarity} size={56} animated />
-                      <div style={{ flex: 1, textAlign: 'left' }}>
-                        <div style={{ fontWeight: 900, fontSize: '1rem', color: '#fef3c7' }}>
-                          {b.name_es}
+                {/* New badges unlocked in this battle */}
+                {newBadges.length > 0 && (
+                  <motion.div
+                    className="qb-badges"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    <span className="qb-badges__title">
+                      <Sparkles size={16} />
+                      ¡Insignia{newBadges.length > 1 ? 's' : ''} desbloqueada{newBadges.length > 1 ? 's' : ''}!
+                    </span>
+                    {newBadges.map((b, i) => (
+                      <motion.div
+                        key={b.code}
+                        className="qb-badge"
+                        initial={{ scale: 0, rotate: -20, opacity: 0 }}
+                        animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                        transition={{ delay: 0.6 + i * 0.3, type: 'spring', stiffness: 180, damping: 14 }}
+                      >
+                        <BadgeIcon code={b.code} rarity={b.rarity} size={56} animated />
+                        <div>
+                          <strong>{b.name_es}</strong>
+                          <span>{b.description_es}</span>
+                          <em>+{b.xp_reward} XP</em>
                         </div>
-                        <div style={{ fontSize: '0.8rem', opacity: 0.8, lineHeight: 1.3 }}>
-                          {b.description_es}
-                        </div>
-                        <div style={{
-                          marginTop: 2, fontSize: '0.75rem', fontWeight: 800,
-                          color: '#fbbf24',
-                        }}>
-                          +{b.xp_reward} XP
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+
+                {/* Full ranking */}
+                <Panel className="qb-card">
+                  <h2 className="qb-card__title"><ListOrdered size={18} /> Clasificación completa</h2>
+                  <QBLeaderboard
+                    entries={finalLeaderboard}
+                    meId={userInfo.id}
+                    animateRanks={false}
+                    showDelta={false}
+                    startDelay={700}
+                    dense
+                  />
+                </Panel>
+
+                <div className="qb-cta">
+                  <GameButton variant="soft" size="lg" icon={ArrowLeft} onClick={() => navigate(student ? '/mi-panel' : '/')}>
+                    Volver
+                  </GameButton>
                 </div>
               </motion.div>
             )}
-
-            {/* Full ranking */}
-            <div className="qb-leaderboard">
-              <div className="qb-lb-title">Clasificacion completa</div>
-              {finalLeaderboard.map((p, i) => (
-                <div key={p.id} className="qb-lb-row"
-                  style={p.id === userInfo.id ? { background: 'rgba(251,191,36,0.15)', borderRadius: 10 } : {}}>
-                  <span className="qb-lb-rank">
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
-                  </span>
-                  <span className="qb-lb-emoji">
-                    {p.selected_avatar_code ? (
-                      <UserAvatar
-                        selectedAvatarCode={p.selected_avatar_code}
-                        avatarEmoji={p.emoji}
-                        avatarColor={p.color}
-                        size="md"
-                        shape="rounded"
-                        showRarityBorder
-                      />
-                    ) : (
-                      p.emoji
-                    )}
-                  </span>
-                  <span className="qb-lb-name">{p.name}</span>
-                  <span className="qb-lb-score">{p.score.toLocaleString('es-ES')}</span>
-                </div>
-              ))}
-            </div>
-
-            <button className="qb-btn-back" onClick={() => navigate(student ? '/mi-panel' : '/')}>
-              <ArrowLeft className="w-4 h-4" /> Volver
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </AnimatePresence>
+        </GameShell>
+      </main>
 
       {/* Overlay global de mensajes ascendentes. Aparecen en posiciones
           aleatorias de la parte inferior y suben mientras se difuminan. */}

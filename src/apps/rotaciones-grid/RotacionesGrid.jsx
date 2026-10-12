@@ -1,6 +1,19 @@
+// Giros y Rotaciones — rediseño 2026 sobre el kit de interfaz de juego
+// (_shared/kit). La lógica (figuras, giro, comprobación por forma, examen de 5
+// preguntas, puntos × dificultad y onGameComplete) no cambia: solo la
+// presentación y la pantalla previa para elegir modo y nivel.
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import {
+    Check, RefreshCw, Eraser, Shapes, Palette, RotateCw, RotateCcw, Wand2, LayoutGrid,
+    GraduationCap, Gamepad2, Star, Target, Gauge, Lock, LogOut, Sprout, Puzzle, Rocket,
+} from 'lucide-react';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+    GameShell, GameHeader, Hud, HudStat, Panel, GameButton, Segmented, ModeSelect, RoundBanner,
+    ResultsScreen, FeedbackItem, Chip,
+} from '../_shared/kit';
 import './RotacionesGrid.css';
 
 const GRID_SIZE = 9;
@@ -16,6 +29,14 @@ const DIFFICULTY_NAMES = ['Simple', 'Compuesto', 'Complejo'];
 const BASE_POINTS = 100;
 const MAX_SPEED_BONUS = 100;
 const SPEED_BONUS_WINDOW_SEC = 30;
+
+// Solo presentación: ficha de cada nivel
+const LEVELS = [
+    { icon: Sprout, cells: '3-4 casillas', max: '1.000' },
+    { icon: Puzzle, cells: '5-6 casillas', max: '1.500' },
+    { icon: Rocket, cells: '7-10 casillas', max: '2.500' },
+];
+const multLabel = (d) => `×${String(DIFFICULTY_MULT[d]).replace('.', ',')}`;
 
 const FIGURES = {
     simples: [
@@ -59,9 +80,43 @@ const FIGURES = {
         { name: 'Cangrejo', cells: [[-2, 1], [-1, 1], [0, 1], [1, 1], [2, 1], [-1, 0], [1, 0], [-2, -1], [2, -1]] },
     ]
 };
+const CATEGORY_INFO = {
+    simples: { label: 'Simples', icon: Sprout },
+    compuestas: { label: 'Compuestas', icon: Puzzle },
+    complejas: { label: 'Complejas', icon: Rocket },
+};
+
+// Esfera con el giro pedido: arco desde las 12 en el sentido indicado.
+const RotationDial = ({ angle, clockwise }) => {
+    const r = 30;
+    const c = 42;
+    const end = ((clockwise ? angle : -angle) - 90) * (Math.PI / 180);
+    const x = c + r * Math.cos(end);
+    const y = c + r * Math.sin(end);
+    const large = angle > 180 ? 1 : 0;
+    const sweep = clockwise ? 1 : 0;
+    const d = `M ${c} ${c - r} A ${r} ${r} 0 ${large} ${sweep} ${x} ${y}`;
+    return (
+        <svg viewBox="0 0 84 84" className="rg-dial" aria-hidden="true">
+            <defs>
+                <marker id="rg-dial-head" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
+                    <path d="M0 0 L10 5 L0 10 Z" fill="#fbbf24" />
+                </marker>
+            </defs>
+            <circle cx={c} cy={c} r={r} className="rg-dial__track" />
+            {[0, 90, 180, 270].map((a) => {
+                const rad = (a - 90) * (Math.PI / 180);
+                return <circle key={a} cx={c + r * Math.cos(rad)} cy={c + r * Math.sin(rad)} r="2.6" className="rg-dial__tick" />;
+            })}
+            <path key={`${angle}-${clockwise}`} d={d} className="rg-dial__arc" markerEnd="url(#rg-dial-head)" />
+            <circle cx={c} cy={c} r="5" className="rg-dial__pin" />
+        </svg>
+    );
+};
 
 const RotacionesGrid = ({ onGameComplete }) => {
-    const [mode, setMode] = useState('practice');
+    // null = pantalla previa (modo y nivel se eligen antes de jugar)
+    const [mode, setMode] = useState(null);
     const [currentFigure, setCurrentFigure] = useState([]);
     const [targetRotation, setTargetRotation] = useState(90);
     const [isClockwise, setIsClockwise] = useState(true);
@@ -80,6 +135,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
     const [examFinished, setExamFinished] = useState(false);
     const [examHistory, setExamHistory] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
+    const [showExitModal, setShowExitModal] = useState(false);
     const questionStartRef = useRef(null);
     const TOTAL_EXAM_STEPS = 5;
 
@@ -243,6 +299,7 @@ const RotacionesGrid = ({ onGameComplete }) => {
         generateExercise();
     };
 
+    // Cuadrícula 9×9: casillas hundidas y bloques en relieve.
     const renderGrid = (cellData, isInteractive = false) => {
         const grid = [];
         const cellMap = new Map();
@@ -256,27 +313,38 @@ const RotacionesGrid = ({ onGameComplete }) => {
             for (let x = 0; x < GRID_SIZE; x++) {
                 const key = `${x},${y}`;
                 const colorIdx = cellMap.get(key);
-                let className = 'grid-cell';
-                if (colorIdx !== undefined) className += ' filled';
-                if (isCorrect && colorIdx !== undefined && isInteractive) className += ' correct';
-
-                grid.push(
-                    <div key={key} className={className} onClick={isInteractive ? () => toggleCell(x, y) : undefined}>
-                        {colorIdx !== undefined && (
-                            <div
-                                className="dot"
-                                style={{
-                                    backgroundColor: colorMode ? COLORS[colorIdx % COLORS.length] : '#4A90E2'
-                                }}
+                const filled = colorIdx !== undefined;
+                const isPivot = x === CENTER && y === CENTER;
+                const className = `rg-cell ${filled ? 'is-filled' : ''} ${isCorrect && filled && isInteractive ? 'is-correct' : ''} ${isPivot ? 'is-pivot' : ''}`;
+                const content = (
+                    <>
+                        {filled && (
+                            <span
+                                className={`rg-block ${colorMode ? 'is-colored' : ''}`}
+                                style={colorMode ? { '--bc': COLORS[colorIdx % COLORS.length] } : undefined}
                             />
                         )}
-                        {x === CENTER && y === CENTER && <div style={{ position: 'absolute', width: 4, height: 4, background: 'rgba(0,0,0,0.2)', borderRadius: '50%' }} />}
-                    </div>
+                        {isPivot && <span className="rg-pivot" />}
+                    </>
                 );
+                grid.push(isInteractive ? (
+                    <button
+                        key={key}
+                        type="button"
+                        className={className}
+                        onClick={() => toggleCell(x, y)}
+                        aria-label={`Casilla ${x + 1}, ${y + 1}${filled ? ' (pintada)' : ''}`}
+                        aria-pressed={filled}
+                    >
+                        {content}
+                    </button>
+                ) : (
+                    <div key={key} className={className}>{content}</div>
+                ));
             }
         }
         return (
-            <div className="rotation-grid" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)` }}>
+            <div className={`rg-grid ${isInteractive ? 'is-interactive' : ''}`} style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)` }}>
                 {grid}
             </div>
         );
@@ -298,312 +366,361 @@ const RotacionesGrid = ({ onGameComplete }) => {
             for (let x = 0; x < SIZE; x++) {
                 const key = `${x},${y}`;
                 grid.push(
-                    <div key={key} className={`mini-cell ${cellMap.has(key) ? 'filled' : ''}`}>
-                        {cellMap.has(key) && <div className="mini-dot" />}
+                    <div key={key} className={`rg-mini__cell ${cellMap.has(key) ? 'is-filled' : ''}`}>
+                        {cellMap.has(key) && <span className="rg-mini__block" />}
                     </div>
                 );
             }
         }
-        return <div className="mini-grid" style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)` }}>{grid}</div>;
+        return <div className="rg-mini" style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)` }}>{grid}</div>;
     };
 
-    // Fondo decorativo (solo visual): orbes, rejilla y piezas girando
-    const backdrop = (
-        <div className="fx-app-backdrop rot-backdrop" aria-hidden="true">
-            <div className="rot-grid-bg fx-grid-bg" />
-            <span className="rot-piece p1" /><span className="rot-piece p2" /><span className="rot-piece p3" />
-            <span className="rot-spark s1" /><span className="rot-spark s2" /><span className="rot-spark s3" />
-        </div>
-    );
+    const shellProps = { accent: '#d946ef', accent2: '#8b5cf6', className: 'rg' };
+    const difficultyOptions = DIFFICULTY_NAMES.map((name, i) => ({ value: i, label: `${name} ${multLabel(i)}`, icon: LEVELS[i].icon }));
 
-    if (examFinished) {
-        const nota = Math.round((examScore / TOTAL_EXAM_STEPS) * 100) / 10;
-        const notaColor = nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444';
-        const notaMsg = nota >= 9 ? 'Excelente'
-            : nota >= 7 ? 'Muy bien'
-                : nota >= 5 ? 'Aprobado'
-                    : 'Necesitas repasar';
+    const instructions = (
+        <InstructionsModal
+            isOpen={showInstructions}
+            onClose={() => setShowInstructions(false)}
+            title="Cómo jugar a Giros y Rotaciones"
+        >
+            <h3>🎯 Objetivo</h3>
+            <p>
+                Observa la figura <strong>original</strong> y dibújala en la cuadrícula
+                de la derecha tras girarla los grados indicados, hacia la derecha o
+                hacia la izquierda.
+            </p>
 
-        return (
-            <div className="rotaciones-container">
-                {backdrop}
-                <div className="grid-card wide rot-result-card fx-enter">
-                    <div className="rotaciones-header"><h1>¡Examen Finalizado!</h1></div>
+            <h3>🕹️ Cómo se juega</h3>
+            <ul>
+                <li>Haz <strong>click en una casilla</strong> para pintarla. Click otra vez para borrarla.</li>
+                <li>Pulsa <strong>Validar</strong> cuando creas que tu dibujo coincide con la rotación pedida.</li>
+                <li>Se evalúa la <strong>forma</strong>: no importa el color ni en qué casillas la coloques siempre que sea la misma figura girada.</li>
+            </ul>
 
-                    <div className="rot-result-hero">
-                        <div className="rot-nota-block" style={{ borderColor: notaColor, '--rot-nota-color': notaColor }}>
-                            <div className="rot-nota-label">Tu nota</div>
-                            <div
-                                className="fx-grade-ring rot-nota-ring"
-                                style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}
-                            >
-                                <div className="rot-nota-value" style={{ color: notaColor }}>
-                                    {nota.toFixed(1)}<span className="rot-nota-max">/10</span>
-                                </div>
-                            </div>
-                            <div className="rot-nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
-                        </div>
-                        <div className="rot-stats-block fx-stagger">
-                            <div className="rot-stat">
-                                <span className="rot-stat-label">Aciertos</span>
-                                <span className="rot-stat-value">{examScore} / {TOTAL_EXAM_STEPS}</span>
-                            </div>
-                            <div className="rot-stat rot-stat--points">
-                                <span className="rot-stat-label">✨ Puntos</span>
-                                <span className="rot-stat-value">{examPoints}</span>
-                            </div>
-                            <div className="rot-stat">
-                                <span className="rot-stat-label">Dificultad</span>
-                                <span className="rot-stat-value">{DIFFICULTY_NAMES[difficulty]} ×{DIFFICULTY_MULT[difficulty]}</span>
-                            </div>
-                        </div>
-                    </div>
+            <h3>🛠️ Herramientas en práctica</h3>
+            <ul>
+                <li><strong>Entrenar</strong> — gira la figura paso a paso para visualizar el resultado antes de dibujar.</li>
+                <li><strong>Catálogo</strong> — muestra todas las figuras agrupadas por dificultad.</li>
+                <li><strong>Colores</strong> — cada punto de la figura recibe un color, ayuda a seguir cómo se mueve cada uno (sólo visual).</li>
+            </ul>
 
-                    <div className="exam-history-summary fx-stagger">
-                        {examHistory.map((item, idx) => (
-                            <div key={idx} className={`summary-card ${item.isCorrect ? 'correct' : 'incorrect'}`}>
-                                <div className="summary-header">
-                                    <span className="question-number">Pregunta {idx + 1}</span>
-                                    <span className="status-badge">
-                                        {item.isCorrect ? `✅ +${item.points} pts (${item.elapsedSec}s)` : '❌ Fallido'}
-                                    </span>
-                                </div>
-                                <div className="summary-details">
-                                    <p>Giro de <strong>{item.targetRotation}º</strong> a la <strong>{item.isClockwise ? 'derecha' : 'izquierda'}</strong></p>
-                                    {!item.isCorrect && (
-                                        <div className="comparison-area">
-                                            <div className="comparison-box">
-                                                <span>Tu dibujo:</span>
-                                                {renderMiniGrid(item.userCells)}
-                                            </div>
-                                            <div className="comparison-box">
-                                                <span>Solución:</span>
-                                                {renderMiniGrid(item.targetCells)}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+            <h3>📊 Nota y puntos en el examen</h3>
+            <p>
+                El examen tiene <strong>5 preguntas</strong>. Tu nota va de <strong>0 a 10</strong> según los aciertos:
+            </p>
+            <p className="instr-formula">
+                <strong>Nota</strong> = aciertos / 5 × 10
+            </p>
+            <p>
+                Además ganas <strong>puntos</strong> por cada acierto. Cuanto más rápido
+                respondas, más puntos. Y cuanto más alta sea la dificultad, mayor es el
+                multiplicador final:
+            </p>
+            <p className="instr-formula">
+                <strong>Puntos</strong> = (100 + bonus de velocidad) × multiplicador de dificultad
+            </p>
 
-                    <div className="controls-panel">
-                        <div className="button-group">
-                            <button className="btn-primary" onClick={() => { setMode('practice'); setExamFinished(false); generateExercise(); }}>Volver a Práctica</button>
-                            <button className="btn-secondary" onClick={startExam}>Repetir Examen</button>
-                        </div>
-                    </div>
+            <h3>🎓 Niveles de dificultad</h3>
+            <p className="instr-note">
+                El nivel se elige <strong>antes</strong> de empezar el examen y queda
+                <strong> bloqueado</strong> hasta terminarlo.
+            </p>
+            <div className="instr-modes">
+                <div className="instr-mode easy">
+                    <strong>🌱 Simple ×1.0</strong>
+                    Figuras de 3-4 casillas. Puntuación máxima: 1.000 pts.
+                </div>
+                <div className="instr-mode medium">
+                    <strong>🧩 Compuesto ×1.5</strong>
+                    Figuras de 5-6 casillas. Puntuación máxima: 1.500 pts.
+                </div>
+                <div className="instr-mode exam">
+                    <strong>🚀 Complejo ×2.5</strong>
+                    Figuras de 7-10 casillas. Puntuación máxima: 2.500 pts.
                 </div>
             </div>
+
+            <div className="instr-tips">
+                <strong>💡 Consejo:</strong> usa <kbd>Entrenar</kbd> en práctica para
+                coger soltura visualizando los giros antes de saltar al examen.
+            </div>
+        </InstructionsModal>
+    );
+
+    // ---------- Pantalla previa ----------
+    if (!mode) {
+        const level = LEVELS[difficulty];
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect
+                    modes={[
+                        {
+                            id: 'practice', tone: 'easy', icon: Gamepad2, title: 'Práctica',
+                            desc: 'Gira figuras sin límite y comprueba tu dibujo cuantas veces quieras.',
+                            features: ['Entrenar girando la figura', 'Catálogo y ayuda de colores'],
+                        },
+                        {
+                            id: 'exam', tone: 'exam', title: 'Examen',
+                            desc: '5 giros seguidos con el nivel elegido, sin herramientas.',
+                            features: ['Nota /10', `Puntos ${multLabel(difficulty)} por rapidez`],
+                        },
+                    ]}
+                    onSelect={(id) => {
+                        if (id === 'exam') { startExam(); return; }
+                        setMode('practice');
+                        generateExercise();
+                    }}
+                    onHelp={() => setShowInstructions(true)}
+                    extra={(
+                        <div className="rg-level">
+                            <span className="rg-level__title"><Gauge size={16} /> Nivel de las figuras</span>
+                            <Segmented options={difficultyOptions} value={difficulty} onChange={setDifficulty} />
+                            <span className="rg-level__info">
+                                <level.icon size={14} /> {level.cells} · máximo {level.max} pts en el examen
+                            </span>
+                        </div>
+                    )}
+                />
+                {instructions}
+            </GameShell>
         );
     }
 
-    return (
-        <div className="rotaciones-container">
-            {backdrop}
-            <div className="rotaciones-header">
-                <h1>Giros y Rotaciones</h1>
-            </div>
+    // ---------- Resultados del examen ----------
+    if (examFinished) {
+        const nota = Math.round((examScore / TOTAL_EXAM_STEPS) * 100) / 10;
 
-            <div className="top-actions-panel">
-                <div className={`difficulty-selector ${mode === 'exam' ? 'locked' : ''}`}>
-                    <div className="difficulty-label">
-                        {difficulty === 0 && '🌱 Nivel: Simple ×1.0'}
-                        {difficulty === 1 && '🧩 Nivel: Compuesto ×1.5'}
-                        {difficulty === 2 && '🚀 Nivel: Complejo ×2.5'}
-                        {mode === 'exam' && <span className="rot-lock-badge">🔒 bloqueado durante el examen</span>}
-                    </div>
-                    <input
-                        type="range"
-                        min="0"
-                        max="2"
+        return (
+            <GameShell {...shellProps}>
+                <ResultsScreen
+                    nota={nota}
+                    points={examPoints}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${examScore}/${TOTAL_EXAM_STEPS}` },
+                        { icon: Gauge, tone: 'accent', label: 'Dificultad', value: `${DIFFICULTY_NAMES[difficulty]} ${multLabel(difficulty)}` },
+                    ]}
+                    actions={[
+                        { label: 'Repetir examen', onClick: startExam, icon: RefreshCw },
+                        { label: 'Practicar', onClick: () => { setMode('practice'); setExamFinished(false); generateExercise(); }, icon: Gamepad2, variant: 'soft' },
+                        { label: 'Cambiar modo', onClick: () => { setMode(null); setExamFinished(false); }, icon: LayoutGrid, variant: 'ghost' },
+                    ]}
+                >
+                    {examHistory.map((item, idx) => (
+                        <FeedbackItem
+                            key={idx}
+                            index={idx + 1}
+                            ok={item.isCorrect}
+                            title={`Giro de ${item.targetRotation}º a la ${item.isClockwise ? 'derecha' : 'izquierda'}`}
+                        >
+                            {item.isCorrect ? (
+                                <span className="rg-fb__pill"><Star size={12} /> +{item.points} pts · {item.elapsedSec}s</span>
+                            ) : (
+                                <div className="rg-compare">
+                                    <div className="rg-compare__box">
+                                        <span>Tu dibujo</span>
+                                        {item.userCells.length > 0 ? renderMiniGrid(item.userCells) : <span className="rg-compare__empty">Vacío</span>}
+                                    </div>
+                                    <div className="rg-compare__box is-solution">
+                                        <span>Solución</span>
+                                        {renderMiniGrid(item.targetCells)}
+                                    </div>
+                                </div>
+                            )}
+                        </FeedbackItem>
+                    ))}
+                </ResultsScreen>
+            </GameShell>
+        );
+    }
+
+    // ---------- Partida ----------
+    const isExam = mode === 'exam';
+    const DirIcon = isClockwise ? RotateCw : RotateCcw;
+    const waiting = isExam && feedback?.type === 'info';
+
+    return (
+        <GameShell {...shellProps}>
+            <GameHeader
+                mode={isExam ? 'exam' : 'practice'}
+                onHelp={() => setShowInstructions(true)}
+                right={(
+                    <Hud>
+                        {isExam && <HudStat icon={GraduationCap} tone="progress" value={`${examStep + 1}/${TOTAL_EXAM_STEPS}`} label="Pregunta" />}
+                        {isExam && <HudStat icon={Star} tone="score" value={examPoints} label="Puntos" />}
+                        <HudStat icon={Gauge} tone="accent" value={multLabel(difficulty)} label={DIFFICULTY_NAMES[difficulty]} />
+                    </Hud>
+                )}
+            />
+
+            {isExam && (
+                <div className="rg-steps" aria-hidden="true">
+                    {Array.from({ length: TOTAL_EXAM_STEPS }).map((_, i) => (
+                        <span key={i} className={`rg-steps__seg ${i < examStep ? 'is-done' : i === examStep ? 'is-current' : ''}`} />
+                    ))}
+                </div>
+            )}
+
+            <div className="rg-toolbar">
+                {isExam ? (
+                    <Chip icon={Lock}>Nivel {DIFFICULTY_NAMES[difficulty]} bloqueado durante el examen</Chip>
+                ) : (
+                    <Segmented
+                        size="sm"
+                        options={difficultyOptions}
                         value={difficulty}
-                        onChange={(e) => {
-                            const val = parseInt(e.target.value);
+                        onChange={(val) => {
                             setDifficulty(val);
                             generateExercise(val);
                         }}
-                        disabled={mode === 'exam'}
-                        className="range-slider"
                     />
-                </div>
-
-                {mode === 'practice' && (
-                    <div className="button-group">
-                        <InstructionsButton onClick={() => setShowInstructions(true)} />
-                        <button className="btn-secondary" onClick={() => { setShowHelp(true); setHelpAngle(0); }}>💡 Entrenar</button>
-                        <button className="btn-secondary" onClick={() => setShowIndex(true)}>📚 Catálogo</button>
-                        <button className="btn-accent fx-shine" onClick={startExam}>🏆 Examen</button>
+                )}
+                {!isExam && (
+                    <div className="rg-toolbar__tools">
+                        <GameButton variant="soft" size="sm" icon={Wand2} onClick={() => { setShowHelp(true); setHelpAngle(0); }}>Entrenar</GameButton>
+                        <GameButton variant="soft" size="sm" icon={Shapes} onClick={() => setShowIndex(true)}>Catálogo</GameButton>
                     </div>
                 )}
             </div>
 
-            <div className="instruction-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <p className="instruction-text" style={{ flex: 1, textAlign: 'center', fontSize: '1.4rem' }}>
-                    Gira la figura <span key={`${targetRotation}-${isClockwise}`} className="angle-badge rot-angle-pop">{targetRotation}º</span> hacia la <strong>{isClockwise ? 'derecha ➡️' : 'izquierda ⬅️'}</strong>.
+            <Panel variant="screen" className="rg-order">
+                <RotationDial angle={targetRotation} clockwise={isClockwise} />
+                <p className="rg-order__text">
+                    Gira la figura{' '}
+                    <span key={`${targetRotation}-${isClockwise}`} className="rg-order__angle">{targetRotation}º</span>{' '}
+                    hacia la <strong className="rg-order__dir"><DirIcon size={20} /> {isClockwise ? 'derecha' : 'izquierda'}</strong>
                 </p>
-                <div className="switch-container has-tooltip">
-                    <span>Colores</span>
-                    <label className="switch">
-                        <input type="checkbox" checked={colorMode} onChange={(e) => setColorMode(e.target.checked)} />
-                        <span className="slider"></span>
-                    </label>
-                    <div className="tooltip-box">
-                        💡 Ayuda visual: Se evalúa la forma, no los colores ni su orden.
+                <label className={`rg-switch ${colorMode ? 'is-on' : ''}`} title="Ayuda visual: se evalúa la forma, no los colores ni su orden.">
+                    <input type="checkbox" checked={colorMode} onChange={(e) => setColorMode(e.target.checked)} />
+                    <span className="rg-switch__track"><span className="rg-switch__knob" /></span>
+                    <span className="rg-switch__label"><Palette size={14} /> Colores</span>
+                </label>
+            </Panel>
+
+            <div className={`rg-boards ${feedback?.type === 'success' ? 'is-success' : feedback?.type === 'error' ? 'is-error' : ''}`}>
+                <Panel variant="surface" className="rg-board">
+                    <div className="rg-board__head">
+                        <span className="rg-board__title">Original</span>
+                        <span className="rg-board__hint">{currentFigure.length} casillas</span>
                     </div>
+                    {renderGrid(currentFigure)}
+                </Panel>
+
+                <div className="rg-boards__arrow" aria-hidden="true">
+                    <span className="rg-boards__badge"><DirIcon size={22} /></span>
+                    <span className="rg-boards__deg">{targetRotation}º</span>
                 </div>
+
+                <Panel variant="surface" className={`rg-board rg-board--draw ${feedback?.type === 'error' ? 'gk-anim-shake' : ''}`}>
+                    <div className="rg-board__head">
+                        <span className="rg-board__title">Tu dibujo</span>
+                        <span className="rg-board__hint">{userCells.length} pintadas</span>
+                    </div>
+                    {renderGrid(userCells, true)}
+                </Panel>
             </div>
 
-            {mode === 'exam' && (
-                <div className="exam-stats">
-                    <span>Pregunta: {examStep + 1} / {TOTAL_EXAM_STEPS}</span>
-                    <span key={`pts-${examPoints}`} className="rot-pts-pop">Puntos: {examPoints}</span>
-                    <span>Nivel: {DIFFICULTY_NAMES[difficulty]} ×{DIFFICULTY_MULT[difficulty]}</span>
-                </div>
-            )}
-            {mode === 'exam' && (
-                <div className="rot-progress" aria-hidden="true">
-                    <div className="rot-progress-fill" style={{ width: `${(examStep / TOTAL_EXAM_STEPS) * 100}%` }} />
-                </div>
-            )}
+            <RoundBanner
+                show={!!feedback}
+                status={feedback?.type === 'success' ? 'won' : feedback?.type === 'error' ? 'lost' : 'info'}
+                title={feedback?.type === 'success' ? '¡Excelente!' : feedback?.type === 'error' ? 'Aún no es la forma' : 'Respuesta guardada'}
+                subtitle={feedback?.type === 'success' ? 'La forma es correcta.' : feedback?.type === 'error' ? feedback.text : 'Siguiente…'}
+                action={feedback?.type === 'success' ? () => generateExercise() : undefined}
+                actionLabel="Nueva figura"
+                actionIcon={RefreshCw}
+            />
 
-            <div className={`rotaciones-game-area ${feedback?.type === 'success' ? 'rot-fb-success' : feedback?.type === 'error' ? 'rot-fb-error' : ''}`}>
-                <div className="grid-card"><h3 className="grid-title">Original</h3>{renderGrid(currentFigure)}</div>
-                <div className="grid-card"><h3 className="grid-title">Tu Dibujo</h3>{renderGrid(userCells, true)}</div>
+            <div className="rg-controls">
+                <GameButton size="lg" icon={Check} onClick={checkAnswer} disabled={waiting}>Validar</GameButton>
+                <GameButton variant="soft" icon={Eraser} onClick={() => setUserCells([])} disabled={waiting}>Borrar</GameButton>
+                {!isExam && (
+                    <GameButton variant="soft" icon={RefreshCw} onClick={() => generateExercise()}>Nueva</GameButton>
+                )}
             </div>
 
-            {feedback && <p key={`${feedback.type}-${examStep}-${feedback.text}`} className={`feedback-msg ${feedback.type}`}>{feedback.text}</p>}
-
-            <div className="controls-panel">
-                <div className="button-group">
-                    <button className="btn-primary btn-large fx-shine" onClick={checkAnswer}>✅ Validar</button>
-                </div>
-                <div className="button-group">
-                    {mode === 'practice' ? (
-                        <button className="btn-secondary" onClick={() => generateExercise()}>🔄 Nueva</button>
-                    ) : (
-                        <button className="btn-secondary danger" onClick={exitExam}>🛑 Abandonar</button>
-                    )}
-                    <button className="btn-secondary danger" onClick={() => setUserCells([])}>🗑️ Borrar</button>
-                </div>
+            <div className="rg-footer">
+                {isExam ? (
+                    <>
+                        <span className="rg-footer__info"><GraduationCap size={14} /> Modo examen · sin herramientas</span>
+                        <GameButton variant="ghost" size="sm" icon={LogOut} className="rg-footer__exit" onClick={() => setShowExitModal(true)} disabled={waiting}>
+                            Abandonar
+                        </GameButton>
+                    </>
+                ) : (
+                    <>
+                        <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={() => setMode(null)}>Cambiar modo</GameButton>
+                        <span className="rg-footer__info rg-footer__info--right"><Target size={14} /> Se evalúa la forma, no la posición</span>
+                    </>
+                )}
             </div>
 
-            {showHelp && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <button className="close-modal" onClick={() => setShowHelp(false)}>×</button>
-                        <div className="rotaciones-header"><h1>Área de Entrenamiento</h1></div>
-                        <div className="help-grid-container">
-                            <div className="help-grid-animated" style={{ transform: `rotate(${helpAngle}deg)` }}>
-                                {renderGrid(currentFigure)}
-                            </div>
+            {/* Área de entrenamiento */}
+            <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Área de entrenamiento">
+                <p className="rg-train__lead">Gira la figura original de 90º en 90º y observa dónde acaba cada casilla.</p>
+                <div className="rg-train">
+                    <div className="rg-train__stage">
+                        <div className="rg-train__grid" style={{ transform: `rotate(${helpAngle}deg)` }}>
+                            {renderGrid(currentFigure)}
                         </div>
-                        <div className="rotation-controls">
-                            <button className="btn-rotation-circle" onClick={() => setHelpAngle(prev => prev - 90)} title="Girar 90º a la izquierda">
-                                <span className="icon">↺</span>
-                                <span className="label">-90º</span>
-                            </button>
-                            <div className="angle-display-glow">{helpAngle}º</div>
-                            <button className="btn-rotation-circle primary" onClick={() => setHelpAngle(prev => prev + 90)} title="Girar 90º a la derecha">
-                                <span className="icon">↻</span>
-                                <span className="label">+90º</span>
-                            </button>
-                        </div>
                     </div>
-                </div>
-            )}
-
-            {showIndex && (
-                <div className="modal-overlay">
-                    <div className="modal-content wide">
-                        <button className="close-modal" onClick={() => setShowIndex(false)}>×</button>
-                        <div className="rotaciones-header"><h1>Catálogo de Figuras</h1></div>
-                        {Object.entries(FIGURES).map(([category, items]) => (
-                            <div key={category} className="figures-category-section">
-                                <h3 className="category-title">
-                                    {category === 'simples' && '🌱 Simples'}
-                                    {category === 'compuestas' && '🧩 Compuestas'}
-                                    {category === 'complejas' && '🚀 Complejas'}
-                                </h3>
-                                <div className="figures-index-grid">
-                                    {items.map((fig, idx) => (
-                                        <div key={idx} className="figure-index-item">{renderMiniGrid(fig.cells)}<span className="figure-name">{fig.name}</span></div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+                    <div className="rg-train__controls">
+                        <GameButton variant="soft" icon={RotateCcw} onClick={() => setHelpAngle(prev => prev - 90)} title="Girar 90º a la izquierda">−90º</GameButton>
+                        <span className="rg-train__angle">{helpAngle}º</span>
+                        <GameButton icon={RotateCw} onClick={() => setHelpAngle(prev => prev + 90)} title="Girar 90º a la derecha">+90º</GameButton>
                     </div>
-                </div>
-            )}
-
-            <InstructionsModal
-                isOpen={showInstructions}
-                onClose={() => setShowInstructions(false)}
-                title="Cómo jugar a Giros y Rotaciones"
-            >
-                <h3>🎯 Objetivo</h3>
-                <p>
-                    Observa la figura <strong>original</strong> y dibújala en la cuadrícula
-                    de la derecha tras girarla los grados indicados, hacia la derecha o
-                    hacia la izquierda.
-                </p>
-
-                <h3>🕹️ Cómo se juega</h3>
-                <ul>
-                    <li>Haz <strong>click en una casilla</strong> para pintarla. Click otra vez para borrarla.</li>
-                    <li>Pulsa <strong>✅ Validar</strong> cuando creas que tu dibujo coincide con la rotación pedida.</li>
-                    <li>Se evalúa la <strong>forma</strong>: no importa el color ni en qué casillas la coloques siempre que sea la misma figura girada.</li>
-                </ul>
-
-                <h3>🛠️ Herramientas en práctica</h3>
-                <ul>
-                    <li><strong>💡 Entrenar</strong> — gira la figura paso a paso para visualizar el resultado antes de dibujar.</li>
-                    <li><strong>📚 Catálogo</strong> — muestra todas las figuras agrupadas por dificultad.</li>
-                    <li><strong>Colores</strong> — cada punto de la figura recibe un color, ayuda a seguir cómo se mueve cada uno (sólo visual).</li>
-                </ul>
-
-                <h3>📊 Nota y puntos en el examen</h3>
-                <p>
-                    El examen tiene <strong>5 preguntas</strong>. Tu nota va de <strong>0 a 10</strong> según los aciertos:
-                </p>
-                <p className="instr-formula">
-                    <strong>Nota</strong> = aciertos / 5 × 10
-                </p>
-                <p>
-                    Además ganas <strong>puntos</strong> por cada acierto. Cuanto más rápido
-                    respondas, más puntos. Y cuanto más alta sea la dificultad, mayor es el
-                    multiplicador final:
-                </p>
-                <p className="instr-formula">
-                    <strong>Puntos</strong> = (100 + bonus de velocidad) × multiplicador de dificultad
-                </p>
-
-                <h3>🎓 Niveles de dificultad</h3>
-                <p className="instr-note">
-                    El nivel se elige <strong>antes</strong> de empezar el examen y queda
-                    <strong> bloqueado</strong> hasta terminarlo.
-                </p>
-                <div className="instr-modes">
-                    <div className="instr-mode easy">
-                        <strong>🌱 Simple ×1.0</strong>
-                        Figuras de 3-4 casillas. Puntuación máxima: 1.000 pts.
-                    </div>
-                    <div className="instr-mode medium">
-                        <strong>🧩 Compuesto ×1.5</strong>
-                        Figuras de 5-6 casillas. Puntuación máxima: 1.500 pts.
-                    </div>
-                    <div className="instr-mode exam">
-                        <strong>🚀 Complejo ×2.5</strong>
-                        Figuras de 7-10 casillas. Puntuación máxima: 2.500 pts.
-                    </div>
-                </div>
-
-                <div className="instr-tips">
-                    <strong>💡 Consejo:</strong> usa <kbd>💡 Entrenar</kbd> en práctica para
-                    coger soltura visualizando los giros antes de saltar al examen.
                 </div>
             </InstructionsModal>
-        </div>
+
+            {/* Catálogo de figuras */}
+            <InstructionsModal isOpen={showIndex} onClose={() => setShowIndex(false)} title="Catálogo de figuras">
+                {Object.entries(FIGURES).map(([category, items]) => {
+                    const info = CATEGORY_INFO[category];
+                    return (
+                        <div key={category} className="rg-cat">
+                            <h3 className="rg-cat__title"><info.icon size={16} /> {info.label}</h3>
+                            <div className="rg-cat__grid">
+                                {items.map((fig, idx) => (
+                                    <div key={idx} className="rg-cat__item">{renderMiniGrid(fig.cells)}<span>{fig.name}</span></div>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
+            </InstructionsModal>
+
+            {instructions}
+
+            <AnimatePresence>
+                {showExitModal && (
+                    <motion.div
+                        className="rg-modal"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowExitModal(false)}
+                    >
+                        <motion.div
+                            className="rg-modal__card"
+                            role="dialog"
+                            aria-modal="true"
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <span className="rg-modal__icon"><LogOut size={28} /></span>
+                            <h3>¿Abandonar el examen?</h3>
+                            <p>Si sales ahora, este intento <strong>no se guardará</strong> y volverás a la práctica.</p>
+                            <div className="rg-modal__actions">
+                                <GameButton variant="soft" onClick={() => setShowExitModal(false)}>Seguir</GameButton>
+                                <GameButton variant="danger" icon={LogOut} onClick={() => { setShowExitModal(false); exitExam(); }}>Abandonar</GameButton>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </GameShell>
     );
 };
 

@@ -1,4 +1,6 @@
 import React from 'react';
+// Set 2 (humanos/fantasía)
+import avatars2 from './RoscoAvatarsSet2';
 
 let raStylesInjected = false;
 const injectRaStyles = () => {
@@ -12,6 +14,8 @@ const injectRaStyles = () => {
     @keyframes ra-glow{0%,100%{opacity:0.5}50%{opacity:1}}
     @keyframes ra-twitch{0%,90%{transform:rotate(0)}93%{transform:rotate(3deg)}96%{transform:rotate(-3deg)}100%{transform:rotate(0)}}
     @keyframes ra-wiggle{0%,100%{transform:translateX(0)}25%{transform:translateX(-1px)}75%{transform:translateX(1px)}}
+    html:not([data-fx="high"]) .ra-avatar *{animation:none!important}
+    @media (prefers-reduced-motion: reduce){.ra-avatar *{animation:none!important}}
   `;
   const el = document.createElement('style'); el.textContent = css; document.head.appendChild(el);
 };
@@ -597,7 +601,7 @@ const avatars = {
       <path d="M13 21.5 L14.5 23.5" stroke="#6D28D9" strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
       <path d="M13.5 20 L15.5 22" stroke="#6D28D9" strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
       <path d="M14.5 19 L16.5 21" stroke="#6D28D9" strokeWidth="0.7" strokeLinecap="round" opacity="0.6" />
-      <path d="M16" y1="18.5" d="M16 18.5 L17.5 20.5" stroke="#6D28D9" strokeWidth="0.6" strokeLinecap="round" opacity="0.5" />
+      <path d="M16 18.5 L17.5 20.5" stroke="#6D28D9" strokeWidth="0.6" strokeLinecap="round" opacity="0.5" />
       <path d="M35 21.5 L33.5 23.5" stroke="#6D28D9" strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
       <path d="M34.5 20 L32.5 22" stroke="#6D28D9" strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
       <path d="M33.5 19 L31.5 21" stroke="#6D28D9" strokeWidth="0.7" strokeLinecap="round" opacity="0.6" />
@@ -699,20 +703,30 @@ const avatars = {
   ),
 };
 
-// Importar set 2 (humanos/fantasía)
-import avatars2 from './RoscoAvatarsSet2';
-
 const allAvatars = { ...avatars, ...avatars2 };
 
 // Lista ordenada de IDs para el selector
 export const AVATAR_IDS = Object.keys(allAvatars);
 
-// Componente que renderiza un avatar por su emoji ID
+// Componente que renderiza un avatar por su emoji ID.
+//   size: número (px) o cualquier medida CSS ('100%' para llenar su contenedor).
+// Los parpadeos/balanceos en bucle solo se animan con el nivel de efectos alto
+// (html[data-fx="high"]), como el resto de ilustraciones de la plataforma.
 const RoscoAvatar = ({ id, size = 48, className = '' }) => {
   const Avatar = allAvatars[id];
-  if (!Avatar) return <span style={{ fontSize: size * 0.7 }}>{id}</span>;
+  if (!Avatar) {
+    // Emoji suelto (p. ej. el emoji de perfil del rival en un duelo)
+    return (
+      <span
+        className={`ra-avatar ra-avatar--emoji ${className}`}
+        style={{ width: size, height: size, display: 'inline-grid', placeItems: 'center', containerType: 'size', lineHeight: 1 }}
+      >
+        <span style={{ fontSize: typeof size === 'number' ? size * 0.7 : '70cqh' }}>{id}</span>
+      </span>
+    );
+  }
   return (
-    <div className={`inline-block shrink-0 ${className}`} style={{ width: size, height: size }}>
+    <div className={`ra-avatar inline-block shrink-0 ${className}`} style={{ width: size, height: size }}>
       <Avatar />
     </div>
   );

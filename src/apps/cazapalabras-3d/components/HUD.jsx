@@ -2,7 +2,13 @@
 // Muestra objetivo (definición), tiempo, puntuación, combo, feedback y la LEYENDA
 // de las 2 categorías que puntúan (principal +5 · secundaria +2). El resto de
 // palabras no puntúan: dispararlas hace desaparecer válidas (regla, abajo).
+// Rediseño 2026: piezas del kit (HudStat) dentro del ámbito gk-shell de la
+// partida; las barras se escalan con transform (sin reflow a ~11 Hz).
 import React from 'react';
+import {
+  Timer, Star, Flame, BookOpen, Target, Crosshair, AlertTriangle, Snail, ArrowLeftRight, Vibrate, Zap, Rocket,
+} from 'lucide-react';
+import { HudStat } from '../../_shared/kit';
 
 const fmtTime = (s) => {
   const v = Math.max(0, Math.ceil(s));
@@ -11,21 +17,22 @@ const fmtTime = (s) => {
 };
 
 const DEBUFF_META = {
-  slow: { ic: '🐌', label: 'Mirilla lenta' },
-  invert: { ic: '🔄', label: 'Controles al revés' },
-  shake: { ic: '📳', label: 'Vibración' },
+  slow: { Icon: Snail, label: 'Mirilla lenta' },
+  invert: { Icon: ArrowLeftRight, label: 'Controles al revés' },
+  shake: { Icon: Vibrate, label: 'Vibración' },
 };
 const BUFF_META = {
-  rapid: { ic: '⚡', label: 'Disparo rápido' },
-  swift: { ic: '🚀', label: 'Mirilla ágil' },
+  rapid: { Icon: Zap, label: 'Disparo rápido' },
+  swift: { Icon: Rocket, label: 'Mirilla ágil' },
 };
-const effectPct = (e) => Math.max(0, Math.min(100, (e.remaining / e.total) * 100));
+const effectFrac = (e) => Math.max(0, Math.min(1, e.remaining / e.total));
+const prettyCat = (name) => String(name || '').replace(/[_-]+/g, ' ').trim();
 
 export default function HUD({
   timeLeft, totalTime, score, combo,
   activeDef, defRemaining, defWindow, feedback, examInfo, categories, debuffs, buffs,
 }) {
-  const timePct = Math.max(0, Math.min(100, (timeLeft / totalTime) * 100));
+  const timeFrac = Math.max(0, Math.min(1, timeLeft / totalTime));
   const low = timeLeft <= 10;
   const cats = categories || [];
   const dbf = debuffs || [];
@@ -37,61 +44,72 @@ export default function HUD({
           cada uno con su BARRA DE DURACIÓN. El tinte rojo de fondo lo pinta el shell. */}
       {(bff.length > 0 || dbf.length > 0) && (
         <div className="cz3d-effects">
-          {bff.map((b) => (BUFF_META[b.type] ? (
-            <span key={`b-${b.type}`} className="cz3d-effect buff">
-              <span className="cz3d-effect-label"><span className="ic">{BUFF_META[b.type].ic}</span> {BUFF_META[b.type].label}</span>
-              <span className="cz3d-effect-bar"><i style={{ width: `${effectPct(b)}%` }} /></span>
-            </span>
-          ) : null))}
-          {dbf.map((d) => (DEBUFF_META[d.type] ? (
-            <span key={`d-${d.type}`} className="cz3d-effect debuff">
-              <span className="cz3d-effect-label"><span className="ic">{DEBUFF_META[d.type].ic}</span> {DEBUFF_META[d.type].label}</span>
-              <span className="cz3d-effect-bar"><i style={{ width: `${effectPct(d)}%` }} /></span>
-            </span>
-          ) : null))}
+          {bff.map((b) => {
+            const meta = BUFF_META[b.type];
+            if (!meta) return null;
+            return (
+              <span key={`b-${b.type}`} className="cz3d-effect is-buff">
+                <span className="cz3d-effect__label"><span className="cz3d-effect__ico"><meta.Icon size={14} /></span> {meta.label}</span>
+                <span className="cz3d-effect__bar"><i style={{ transform: `scaleX(${effectFrac(b)})` }} /></span>
+              </span>
+            );
+          })}
+          {dbf.map((d) => {
+            const meta = DEBUFF_META[d.type];
+            if (!meta) return null;
+            return (
+              <span key={`d-${d.type}`} className="cz3d-effect is-debuff">
+                <span className="cz3d-effect__label"><span className="cz3d-effect__ico"><meta.Icon size={14} /></span> {meta.label}</span>
+                <span className="cz3d-effect__bar"><i style={{ transform: `scaleX(${effectFrac(d)})` }} /></span>
+              </span>
+            );
+          })}
         </div>
       )}
+
       {/* Objetivo / definición */}
       <div className="cz3d-objective">
         {activeDef ? (
           <div className="cz3d-def">
-            <span className="cz3d-def-tag">📖 Dispara la palabra que significa…</span>
-            <span className="cz3d-def-text">«{activeDef.definition}»</span>
-            <span className="cz3d-def-bar">
-              <i style={{ width: `${Math.max(0, Math.min(100, (defRemaining / defWindow) * 100))}%` }} />
+            <span className="cz3d-def__tag"><BookOpen size={14} /> Dispara la palabra que significa…</span>
+            <span className="cz3d-def__text">«{activeDef.definition}»</span>
+            <span className="cz3d-def__bar">
+              <i style={{ transform: `scaleX(${Math.max(0, Math.min(1, defRemaining / defWindow))})` }} />
             </span>
           </div>
         ) : (
-          <div className="cz3d-hint">🎯 Lee la palabra antes de disparar</div>
+          <div className="cz3d-hint"><Target size={15} /> Lee la palabra antes de disparar</div>
         )}
       </div>
 
-      {/* Cluster de stats arriba-derecha */}
+      {/* Marcador arriba-derecha */}
       <div className="cz3d-stats">
-        <div className={`cz3d-time ${low ? 'low' : ''}`}>
-          <span className="cz3d-time-val">⏱ {fmtTime(timeLeft)}</span>
-          <span className="cz3d-time-bar"><i style={{ width: `${timePct}%` }} /></span>
+        <div className={`cz3d-time ${low ? 'is-low' : ''}`}>
+          <span className="cz3d-time__ico"><Timer size={16} /></span>
+          <span className="cz3d-time__val">{fmtTime(timeLeft)}</span>
+          <span className="cz3d-time__bar"><i style={{ transform: `scaleX(${timeFrac})` }} /></span>
         </div>
-        <div className="cz3d-score">⭐ <span key={score} className="cz3d-score-n">{score.toLocaleString('es-ES')}</span></div>
-        <div className="cz3d-sub">
-          {combo >= 2 && <span key={`c-${combo}`} className="cz3d-combo">🔥 Combo ×{combo}</span>}
-          {examInfo && <span className="cz3d-examinfo">📖 {examInfo}</span>}
+        <div className="cz3d-stats__row">
+          <HudStat icon={Star} tone="score" value={score.toLocaleString('es-ES')} label="Puntos" />
+          {combo >= 2 && <HudStat icon={Flame} tone="streak" value={`×${combo}`} label="Combo" />}
+          {examInfo && <HudStat icon={BookOpen} tone="good" value={examInfo} label="Definiciones" />}
         </div>
       </div>
 
       {/* Leyenda: SOLO las 2 categorías que puntúan + regla del resto */}
       {cats.length > 0 && (
         <div className="cz3d-legend">
-          <div className="cz3d-legend-row">
-            <span className="cz3d-legend-label good">✓ DISPARA</span>
+          <div className="cz3d-legend__row">
+            <span className="cz3d-legend__label"><Crosshair size={14} /> Dispara</span>
             {cats.map((c) => (
               <span key={c.name} className={`cz3d-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
-                {c.name} <b>+{c.points}</b>
+                {prettyCat(c.name)} <b>+{c.points}</b>
               </span>
             ))}
           </div>
-          <div className="cz3d-legend-note">
-            ⚠️ El resto de palabras no puntúan: dispararlas hace <b>desaparecer válidas</b>
+          <div className="cz3d-legend__note">
+            <AlertTriangle size={13} />
+            <span>El resto de palabras no puntúan: dispararlas hace <b>desaparecer válidas</b></span>
           </div>
         </div>
       )}

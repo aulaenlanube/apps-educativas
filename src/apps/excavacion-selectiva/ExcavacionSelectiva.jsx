@@ -9,15 +9,44 @@ import { Bloque3D } from './Bloque3D';
 import { Arbol3D } from './Arbol3D';
 import { Player } from './Player';
 import { MobileLookControls } from './MobileLookControls';
-import { Button } from '@/components/ui/button';
-import { Tablet, MousePointer2, BookOpen, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Tablet, MousePointer2, BookOpen, Star, Flame, Clock, Snowflake, Shovel, RefreshCw,
+  HelpCircle, Target, Keyboard, Skull,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, GameButton, GradeRing, notaMessage, notaTone, Chip,
+} from '../_shared/kit';
 import './ExcavacionSelectiva.css';
 
-// === ICONO DE CRUZ (SVG Inline) ===
+// === MIRA (SVG inline, sin filtros: el contorno oscuro da el contraste) ===
 const CrosshairIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" className="drop-shadow-md filter drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-    <path d="M16 8v16M8 16h16" stroke="white" strokeWidth="3" fill="none" strokeLinecap="square" />
+  <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+    <path d="M17 7v20M7 17h20" stroke="#0f172a" strokeOpacity=".7" strokeWidth="5" strokeLinecap="round" />
+    <path d="M17 7v20M7 17h20" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
+    <circle cx="17" cy="17" r="2.2" fill="#fde047" stroke="#0f172a" strokeOpacity=".6" />
+  </svg>
+);
+
+// === PICO (SVG con volumen, en lugar del emoji) ===
+const PickaxeIcon = () => (
+  <svg width="70" height="70" viewBox="0 0 70 70" aria-hidden="true">
+    <defs>
+      <linearGradient id="exs-pick-wood" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#d6a35c" />
+        <stop offset="1" stopColor="#7c4a1e" />
+      </linearGradient>
+      <linearGradient id="exs-pick-metal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#f1f5f9" />
+        <stop offset=".5" stopColor="#94a3b8" />
+        <stop offset="1" stopColor="#475569" />
+      </linearGradient>
+    </defs>
+    <path d="M20 58 L44 26" stroke="#3b2410" strokeWidth="9" strokeLinecap="round" />
+    <path d="M20 58 L44 26" stroke="url(#exs-pick-wood)" strokeWidth="6" strokeLinecap="round" />
+    <path d="M22 18 C36 8 54 12 62 24 C52 20 42 20 34 26 Z" fill="url(#exs-pick-metal)" stroke="#1e293b" strokeWidth="2" strokeLinejoin="round" />
+    <path d="M27 17 C37 12 49 13 56 19" stroke="#fff" strokeOpacity=".75" strokeWidth="2" strokeLinecap="round" fill="none" />
   </svg>
 );
 
@@ -133,364 +162,306 @@ const ExcavacionSelectiva = ({ level, grade, subjectId, onGameComplete }) => {
   const handleLookStart = (evt) => setJoystickLook(evt);
   const handleLookStop = () => setJoystickLook(null);
 
-  if (error) return <div className="p-10 text-red-500 font-pixel">Error: No encuentro el mapa</div>;
-  if (!data) return <div className="p-10 text-center text-white font-pixel">Cargando chunks...</div>;
+
+  // --- PRESENTACIÓN (rediseño 2026: solo el "chrome" alrededor de la escena 3D) ---
+  const [showInstructions, setShowInstructions] = useState(false);
+  const shellProps = { theme: 'dark', wide: true, accent: '#f59e0b', accent2: '#84cc16', className: 'exs' };
+
+  if (error) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader />
+        <div className="exs-msg">No encuentro el mapa de esta asignatura.</div>
+      </GameShell>
+    );
+  }
+  if (!data) {
+    return (
+      <GameShell {...shellProps}>
+        <div className="exs-msg"><span className="exs-msg__blocks" aria-hidden="true"><i /><i /><i /></span>Cargando el terreno…</div>
+      </GameShell>
+    );
+  }
+
+  // Solo visual: misma fórmula que la nota que ya se mostraba al final
+  const notaFinal = Math.min((score / 2000) * 10, 10);
+  const timeVal = Math.max(0, timeLeft).toFixed(1);
+  const timeState = isSuddenDeath ? 'is-danger' : isFrozen ? 'is-frozen' : timeLeft < 10 ? 'is-low' : '';
 
   return (
-    // Agregamos la clase 'sudden-death-mode' si estamos en esa fase (necesita el CSS)
-    <div className={`excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 
-        ${isSuddenDeath ? 'sudden-death-mode' : ''} 
-        ${isFrozen ? 'time-frozen' : ''} 
-        ${lastEvent?.type === 'tnt' ? 'shake-effect' : ''}`}>
+    <GameShell {...shellProps}>
+      <GameHeader
+        compact
+        onHelp={() => setShowInstructions(true)}
+        onStudy={() => setShowCheatSheet(true)}
+        right={<Chip tone="accent" icon={Shovel}>Cada partida cuenta</Chip>}
+      />
 
-      {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
-      {!controlMode && (
-        <div className="exs-menu absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
-          {/* Decoración: cielo con orbes, rejilla de vóxeles y bloques flotantes */}
-          <div className="exs-menu-bg" aria-hidden="true">
-            <span className="exs-orb exs-orb--a" />
-            <span className="exs-orb exs-orb--b" />
-            <span className="exs-grid" />
-            {['🟫', '🟩', '💎', '🟨', '🧱', '⭐'].map((b, i) => (
-              <span key={i} className={`exs-float-block exs-float-block--${i}`}>{b}</span>
-            ))}
-          </div>
-          <h1 className="exs-menu-title text-2xl md:text-3xl text-yellow-400 mb-8 text-center">
-            SELECCIONA TU MODO
-          </h1>
-          <div className="exs-menu-cards flex flex-col md:flex-row gap-6">
-            <Button
-              onClick={() => setControlMode('mobile')}
-              className="exs-device-card exs-device-card--touch flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-green-500 transition-all"
-            >
-              <span className="exs-device-icon" aria-hidden="true"><Tablet size={48} className="text-green-400" /></span>
-              <span>TÁCTIL</span>
-            </Button>
+      {/* Agregamos la clase 'sudden-death-mode' si estamos en esa fase (necesita el CSS) */}
+      <div className={`exs-viewport
+          ${isSuddenDeath ? 'sudden-death-mode' : ''}
+          ${isFrozen ? 'time-frozen' : ''}
+          ${lastEvent?.type === 'tnt' ? 'shake-effect' : ''}`}>
 
-            <Button
-              onClick={() => setControlMode('pc')}
-              className="exs-device-card exs-device-card--pc flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-blue-500 transition-all"
-            >
-              <span className="exs-device-icon" aria-hidden="true"><MousePointer2 size={48} className="text-blue-400" /></span>
-              <span>ORDENADOR</span>
-            </Button>
-          </div>
-
-          <Button
-            variant="ghost"
-            onClick={() => setShowCheatSheet(true)}
-            className="exs-guide-btn mt-8 flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-white/5 border border-cyan-400/30 rounded-lg px-6 py-2 transition-all transition-colors font-bold tracking-wider"
-          >
-            <BookOpen size={20} />
-            GUÍA DE PALABRAS
-          </Button>
-        </div>
-      )}
-
-      {/* === INDICADOR DE CONGELACIÓN === */}
-      {isFrozen && (
-        <div className="absolute inset-0 z-40 bg-blue-400/20 pointer-events-none flex items-center justify-center">
-          <h2 className="text-3xl md:text-5xl text-blue-200 pixel-text animate-pulse drop-shadow-lg">❄️ TIEMPO DETENIDO ❄️</h2>
-        </div>
-      )}
-
-      {/* === MENSAJE FLASH DE MUERTE SÚBITA === */}
-      {showSuddenDeathMsg && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center pointer-events-none">
-          <h1 className="text-4xl md:text-6xl text-red-600 font-bold animate-ping pixel-text text-center drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">
-            ¡MUERTE SÚBITA!
-          </h1>
-          <p className="text-xl md:text-2xl text-yellow-400 mt-8 animate-bounce pixel-text bg-black/50 p-2 rounded">
-            ¡CORRE!
-          </p>
-        </div>
-      )}
-
-      {/* === HUD SUPERIOR === */}
-      <div className="exs-hud absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
-        <div>
-          {/* Si es muerte súbita, cambiamos el color a rojo */}
-          <h2 className={`text-sm md:text-base mb-1 tracking-widest uppercase shadow-black drop-shadow-md ${isSuddenDeath ? 'text-red-500 animate-pulse' : 'text-yellow-400'}`}>
-            {isSuddenDeath ? "¡SOBREVIVE!" : mission}
-          </h2>
-          <p className="text-xs text-gray-300">
-            {controlMode === 'pc' ? "WASD mover | SHIFT correr" : "Usa los Joysticks"}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-6 text-sm md:text-lg font-bold">
-          {/* COMBO INDICATOR */}
-          {combo > 1 && (
-            <div className="exs-combo flex flex-col items-center">
-              <span className="text-yellow-400 text-xs md:text-sm animate-bounce">COMBO</span>
-              <motion.span
-                key={combo}
-                className="exs-combo-value text-orange-500 text-xl"
-                initial={{ scale: 1.8, opacity: 0.3 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 14 }}
-              >
-                x{combo}
-              </motion.span>
+        {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
+        {!controlMode && (
+          <div className="exs-overlay exs-overlay--menu">
+            <div className="exs-device">
+              <span className="exs-device__kicker"><Shovel size={15} /> Antes de excavar</span>
+              <h2 className="exs-device__title">¿Con qué vas a jugar?</h2>
+              <div className="exs-device__cards">
+                <motion.button
+                  type="button"
+                  className="exs-device-card exs-device-card--touch"
+                  onClick={() => setControlMode('mobile')}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 }}
+                >
+                  <span className="exs-device-card__icon"><Tablet size={34} /></span>
+                  <strong>Táctil</strong>
+                  <small>Dos joysticks: uno para moverte y otro para mirar.</small>
+                </motion.button>
+                <motion.button
+                  type="button"
+                  className="exs-device-card exs-device-card--pc"
+                  onClick={() => setControlMode('pc')}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                >
+                  <span className="exs-device-card__icon"><MousePointer2 size={34} /></span>
+                  <strong>Ordenador</strong>
+                  <small>Teclado WASD para moverte y ratón para mirar y picar.</small>
+                </motion.button>
+              </div>
+              <div className="exs-device__links">
+                <GameButton variant="soft" size="sm" icon={BookOpen} onClick={() => setShowCheatSheet(true)}>Guía de palabras</GameButton>
+                <GameButton variant="soft" size="sm" icon={HelpCircle} onClick={() => setShowInstructions(true)}>Cómo se juega</GameButton>
+              </div>
             </div>
-          )}
-
-          <motion.span
-            key={score}
-            className="exs-xp text-green-400 drop-shadow-sm"
-            initial={{ scale: 1.25 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 520, damping: 16 }}
-          >
-            XP: {score}
-          </motion.span>
-
-          {/* TEMPORIZADOR DINÁMICO */}
-          <div className={`flex items-center drop-shadow-sm transition-all duration-200 
-            ${isSuddenDeath ? 'text-red-600 scale-110' : (isFrozen ? 'text-blue-400' : (timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white'))
-            }`}>
-            <span className="mr-2">{isFrozen ? "❄️" : "⏰"}</span>
-            <span className="min-w-[4ch] text-right">{Math.max(0, timeLeft).toFixed(1)}s</span>
           </div>
-        </div>
-      </div>
+        )}
 
-      {/* === CURSOR VIRTUAL (CENTRO) === */}
-      {((controlMode === 'pc' && isLocked) || controlMode === 'mobile') && gameState === 'playing' && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-          {cursorType === 'pickaxe' ? (
-            // Animación swing
-            <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>
-              ⛏️
+        {/* === INDICADOR DE CONGELACIÓN === */}
+        {isFrozen && (
+          <div className="exs-frozen" aria-live="polite">
+            <span className="exs-banner exs-banner--ice"><Snowflake size={22} /> Tiempo detenido</span>
+          </div>
+        )}
+
+        {/* === MENSAJE FLASH DE MUERTE SÚBITA === */}
+        {showSuddenDeathMsg && (
+          <div className="exs-sudden" aria-live="assertive">
+            <motion.span
+              className="exs-banner exs-banner--danger"
+              initial={{ scale: 1.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 16 }}
+            >
+              <Skull size={30} /> ¡Muerte súbita!
+            </motion.span>
+            <motion.span className="exs-sudden__run" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25 }}>
+              ¡Corre!
+            </motion.span>
+          </div>
+        )}
+
+        {/* === HUD SUPERIOR === */}
+        <div className="exs-hud">
+          <div className={`exs-mission ${isSuddenDeath ? 'is-danger' : ''}`}>
+            <span className="exs-mission__icon">{isSuddenDeath ? <Skull size={18} /> : <Target size={18} />}</span>
+            <span className="exs-mission__text">
+              <small>{isSuddenDeath ? 'Muerte súbita' : 'Misión'}</small>
+              <strong>{isSuddenDeath ? '¡Sobrevive!' : mission}</strong>
             </span>
-          ) : (
-            <CrosshairIcon />
-          )}
-        </div>
-      )}
-
-      {/* === CONTROLES TÁCTILES DOBLE JOYSTICK (MÓVIL) === */}
-      {controlMode === 'mobile' && gameState === 'playing' && (
-        <>
-          {/* IZQUIERDA: MOVIMIENTO */}
-          <div className="absolute bottom-8 left-8 z-40 opacity-80">
-            <Joystick
-              size={100}
-              sticky={false}
-              baseColor="rgba(255, 255, 255, 0.2)"
-              stickColor="rgba(255, 255, 255, 0.5)"
-              move={handleMoveStart}
-              stop={handleMoveStop}
-            />
+            <span className="exs-mission__hint">
+              <Keyboard size={13} /> {controlMode === 'pc' ? 'WASD mover · SHIFT correr' : controlMode === 'mobile' ? 'Usa los joysticks' : 'Elige cómo jugar'}
+            </span>
           </div>
-
-          {/* DERECHA: CÁMARA (MIRAR) */}
-          <div className="absolute bottom-8 right-8 z-40 opacity-80">
-            <Joystick
-              size={100}
-              sticky={false}
-              baseColor="rgba(255, 255, 255, 0.2)"
-              stickColor="rgba(200, 50, 50, 0.5)"
-              move={handleLookStart}
-              stop={handleLookStop}
-            />
-          </div>
-        </>
-      )}
-
-      {/* === MENÚ INICIO (PC) === */}
-      {controlMode === 'pc' && !isLocked && gameState === 'playing' && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/60 text-white pixel-text backdrop-blur-sm cursor-pointer"
-          onClick={() => { }}
-        >
-          <h1 className="text-4xl text-yellow-400 mb-4 animate-bounce">HAZ CLICK PARA JUGAR</h1>
-          <p className="text-lg">Capturaremos tu ratón. Pulsa ESC para salir.</p>
+          <Hud className="exs-hud__stats">
+            {combo > 1 && <HudStat icon={Flame} tone="streak" value={`x${combo}`} label="Combo" />}
+            <HudStat icon={Star} tone="good" value={score} label="XP" />
+            <span className={`exs-time ${timeState}`}>
+              <span className="exs-time__icon">{isFrozen ? <Snowflake size={15} /> : <Clock size={15} />}</span>
+              <span className="exs-time__value">{timeVal}s</span>
+            </span>
+          </Hud>
         </div>
-      )}
 
-      {/* === PANTALLA FINAL === */}
-      {gameState !== 'playing' && (
-        <div
-          className="exs-end absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/90 text-white pixel-text text-center p-4 backdrop-blur-sm overflow-y-auto"
-          style={{
-            // Solo visual: misma fórmula que la nota mostrada, para pintar el anillo
-            '--exs-grade': Math.min((score / 2000) * 10, 10),
-            '--exs-grade-color': Math.min((score / 2000) * 10, 10) >= 8 ? '#10b981' : (Math.min((score / 2000) * 10, 10) >= 5 ? '#3b82f6' : '#ef4444'),
-          }}
-        >
-          <div className="exs-end-rays" aria-hidden="true" />
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-            className="relative flex flex-col items-center"
-          >
-            <h1 className="exs-end-title text-3xl md:text-5xl text-yellow-500 mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] animate-bounce uppercase">
-              ¡Misión Finalizada!
-            </h1>
+        {/* === CURSOR VIRTUAL (CENTRO) === */}
+        {((controlMode === 'pc' && isLocked) || controlMode === 'mobile') && gameState === 'playing' && (
+          <div className="exs-cursor">
+            {cursorType === 'pickaxe' ? (
+              // Animación swing
+              <span className={`exs-pick ${isSwinging ? 'swing-animation' : ''}`}>
+                <PickaxeIcon />
+              </span>
+            ) : (
+              <CrosshairIcon />
+            )}
+          </div>
+        )}
 
-            <div className="exs-end-card bg-slate-800/80 p-8 rounded-3xl border-4 border-slate-600 mb-8 max-w-sm w-full shadow-2xl">
-              <div className="exs-end-grade pb-6 mb-6 border-b-4 border-slate-700/50">
-                <p className="text-xs text-gray-300 uppercase tracking-[0.2em] mb-4">Nota Final</p>
-                <div className="exs-grade-ring">
-                  <span className="exs-grade-ring-halo" aria-hidden="true" />
-                  <div className="exs-grade-value font-black flex items-baseline justify-center gap-1">
-                    {Math.min((score / 2000) * 10, 10).toFixed(1)}
-                    <span className="exs-grade-max">/10</span>
-                  </div>
+        {/* === CONTROLES TÁCTILES DOBLE JOYSTICK (MÓVIL) === */}
+        {controlMode === 'mobile' && gameState === 'playing' && (
+          <>
+            {/* IZQUIERDA: MOVIMIENTO */}
+            <div className="exs-stick exs-stick--move">
+              <Joystick
+                size={100}
+                sticky={false}
+                baseColor="rgba(15, 23, 42, 0.45)"
+                stickColor="rgba(253, 230, 138, 0.85)"
+                move={handleMoveStart}
+                stop={handleMoveStop}
+              />
+              <span className="exs-stick__label">Mover</span>
+            </div>
+
+            {/* DERECHA: CÁMARA (MIRAR) */}
+            <div className="exs-stick exs-stick--look">
+              <Joystick
+                size={100}
+                sticky={false}
+                baseColor="rgba(15, 23, 42, 0.45)"
+                stickColor="rgba(134, 239, 172, 0.85)"
+                move={handleLookStart}
+                stop={handleLookStop}
+              />
+              <span className="exs-stick__label">Mirar</span>
+            </div>
+          </>
+        )}
+
+        {/* === MENÚ INICIO (PC) === */}
+        {controlMode === 'pc' && !isLocked && gameState === 'playing' && (
+          <div className="exs-overlay exs-overlay--click" onClick={() => { }}>
+            <div className="exs-clickcard">
+              <span className="exs-clickcard__icon"><MousePointer2 size={30} /></span>
+              <strong>Haz clic para jugar</strong>
+              <span>Capturaremos tu ratón. Pulsa <kbd>Esc</kbd> para salir.</span>
+              <span className="exs-clickcard__keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> mover · <kbd>Shift</kbd> correr · clic para picar</span>
+            </div>
+          </div>
+        )}
+
+        {/* === PANTALLA FINAL === */}
+        {gameState !== 'playing' && (
+          <div className="exs-overlay exs-overlay--end">
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+              className={`exs-end exs-end--${notaTone(notaFinal)}`}
+            >
+              <span className="exs-end__kicker"><Shovel size={15} /> ¡Misión finalizada!</span>
+              <div className="exs-end__hero">
+                <GradeRing nota={notaFinal} size={168} />
+                <div className="exs-end__verdict">
+                  <strong>{notaMessage(notaFinal)}</strong>
+                  <span className="exs-end__xp"><Star size={16} /> {score} <small>XP</small></span>
                 </div>
               </div>
+              <GameButton size="lg" icon={RefreshCw} onClick={() => window.location.reload()}>Nueva partida</GameButton>
+            </motion.div>
+          </div>
+        )}
 
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-2">Puntuación XP</p>
-                <motion.div
-                  className="exs-end-xp text-4xl text-green-400 font-bold drop-shadow-sm"
-                  initial={{ y: 12, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.45, type: 'spring', stiffness: 260, damping: 18 }}
-                >
-                  ⭐ {score}
-                </motion.div>
-              </div>
-            </div>
+        {/* === ESCENA 3D === */}
+        <Canvas shadows camera={{ position: [0, 1.7, 0], fov: 70 }}>
 
-            <Button
-              onClick={() => window.location.reload()}
-              className="exs-replay-btn bg-yellow-600 hover:bg-yellow-500 border-b-8 border-yellow-800 text-white font-bold py-8 px-12 rounded-xl text-xl hover:scale-105 active:border-b-0 active:mt-2 transition-all pointer-events-auto"
-            >
-              NUEVA PARTIDA
-            </Button>
-          </motion.div>
-        </div>
-      )}
+          <color attach="background" args={['#87CEEB']} />
+          <fog attach="fog" args={['#87CEEB', 10, 50]} />
 
-      {/* === ESCENA 3D === */}
-      <Canvas shadows camera={{ position: [0, 1.7, 0], fov: 70 }}>
+          <ambientLight intensity={1.5} />
+          <directionalLight position={[20, 50, 10]} intensity={1.5} castShadow />
 
-        <color attach="background" args={['#87CEEB']} />
-        <fog attach="fog" args={['#87CEEB', 10, 50]} />
+          {/* Controles PC: PointerLock */}
+          {controlMode === 'pc' && (
+            <PointerLockControls
+              onLock={() => setIsLocked(true)}
+              onUnlock={() => setIsLocked(false)}
+            />
+          )}
 
-        <ambientLight intensity={1.5} />
-        <directionalLight position={[20, 50, 10]} intensity={1.5} castShadow />
+          {/* Controles Móvil: Lógica de cámara con Joystick */}
+          {controlMode === 'mobile' && (
+            <MobileLookControls isEnabled={gameState === 'playing'} joystickData={joystickLook} />
+          )}
 
-        {/* Controles PC: PointerLock */}
-        {controlMode === 'pc' && (
-          <PointerLockControls
-            onLock={() => setIsLocked(true)}
-            onUnlock={() => setIsLocked(false)}
+          {/* Jugador: Movimiento (Teclado + Joystick Izq) */}
+          <Player
+            isLocked={isLocked || controlMode === 'mobile'}
+            joystickMove={joystickMove}
+            isMining={isSwinging}
           />
-        )}
 
-        {/* Controles Móvil: Lógica de cámara con Joystick */}
-        {controlMode === 'mobile' && (
-          <MobileLookControls isEnabled={gameState === 'playing'} joystickData={joystickLook} />
-        )}
+          {/* Suelo */}
+          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+            <planeGeometry args={[200, 200]} />
+            <meshStandardMaterial map={grassTexture} />
+          </mesh>
 
-        {/* Jugador: Movimiento (Teclado + Joystick Izq) */}
-        <Player
-          isLocked={isLocked || controlMode === 'mobile'}
-          joystickMove={joystickMove}
-          isMining={isSwinging}
-        />
+          {/* Objetos del Juego */}
+          <Suspense fallback={null}>
+            <group>
+              {blocks.map(block => (
+                block.visible && (
+                  <Bloque3D
+                    key={block.id}
+                    position={[block.x, block.y, block.z]}
+                    text={block.text}
+                    isTarget={block.isTarget}
+                    isStar={block.isStar}
+                    isTNT={block.isTNT}
+                    isFreeze={block.isFreeze}
+                    isGold={block.isGold}
+                    setHoverState={setCursorType}
+                    onMine={() => triggerSwing()}
+                    onDestructionComplete={() => mineBlock(block.id)}
+                  />
+                )
+              ))}
+              {trees.map(tree => (
+                <Arbol3D key={tree.id} position={[tree.x, 0, tree.z]} />
+              ))}
+            </group>
+          </Suspense>
 
-        {/* Suelo */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-          <planeGeometry args={[200, 200]} />
-          <meshStandardMaterial map={grassTexture} />
-        </mesh>
+        </Canvas>
+      </div>
 
-        {/* Objetos del Juego */}
-        <Suspense fallback={null}>
-          <group>
-            {blocks.map(block => (
-              block.visible && (
-                <Bloque3D
-                  key={block.id}
-                  position={[block.x, block.y, block.z]}
-                  text={block.text}
-                  isTarget={block.isTarget}
-                  isStar={block.isStar}
-                  isTNT={block.isTNT}
-                  isFreeze={block.isFreeze}
-                  isGold={block.isGold}
-                  setHoverState={setCursorType}
-                  onMine={() => triggerSwing()}
-                  onDestructionComplete={() => mineBlock(block.id)}
-                />
-              )
+      {/* === INSTRUCCIONES Y GUÍA DE PALABRAS === */}
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Excavación Selectiva">
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Recorre el terreno y <strong>pica solo los bloques de la misión</strong>. Cada bloque correcto da XP y
+          alarga tu racha; los incorrectos te penalizan. Cuando se acaba el tiempo llega la <strong>muerte súbita</strong>.
+        </p>
+        <h3>🕹️ Controles</h3>
+        <ul>
+          <li><strong>Ordenador:</strong> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> para moverte, <kbd>Shift</kbd> para correr, ratón para mirar y clic para picar.</li>
+          <li><strong>Táctil:</strong> joystick izquierdo para moverte, derecho para mirar; toca un bloque para picarlo.</li>
+          <li>Hay bloques especiales: <strong>estrella</strong>, <strong>oro</strong>, <strong>TNT</strong> y <strong>hielo</strong> (congela el tiempo).</li>
+        </ul>
+        <div className="instr-tips"><strong>💡 Consejo:</strong> cada partida cuenta para tus tareas; tu nota sale de los XP conseguidos (2.000 XP = un 10).</div>
+      </InstructionsModal>
+      <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de palabras">
+        <div className="exs-guide">
+          {data && Object.entries(data)
+            .filter(([key, words]) => key !== 'title' && key !== 'instructions' && Array.isArray(words))
+            .map(([category, words]) => (
+              <section key={category} className="exs-guide__cat">
+                <h4 className="exs-guide__title">{category.replace(/_/g, ' ')}</h4>
+                <div className="exs-guide__words">
+                  {words.map((word, wIdx) => <span key={wIdx} className="exs-guide__chip">{word}</span>)}
+                </div>
+              </section>
             ))}
-            {trees.map(tree => (
-              <Arbol3D key={tree.id} position={[tree.x, 0, tree.z]} />
-            ))}
-          </group>
-        </Suspense>
-
-      </Canvas>
-
-      {/* === 6. MODAL GUÍA DE PALABRAS === */}
-      <AnimatePresence>
-        {showCheatSheet && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="exs-guide absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden select-none"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-black text-white flex items-center gap-2 pixel-text">
-                <BookOpen className="w-6 h-6 text-yellow-400" /> GUÍA DE PALABRAS
-              </h2>
-              <button
-                onClick={() => setShowCheatSheet(false)}
-                className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors border-2 border-slate-700"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-              <div className="grid gap-4 md:grid-cols-2">
-                {data && Object.entries(data)
-                  .filter(([key]) => key !== 'title' && key !== 'instructions')
-                  .map(([category, words], idx) => (
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      key={category}
-                      className="exs-guide-card bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
-                    >
-                      <h3 className="text-yellow-400 font-bold uppercase tracking-wider text-xs mb-3 px-2 border-l-4 border-yellow-500">
-                        {category.replace(/_/g, ' ')}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {Array.isArray(words) && words.map((word, wIdx) => (
-                          <span
-                            key={wIdx}
-                            className="px-2.5 py-1 bg-slate-950/60 text-slate-300 rounded-lg text-[11px] border border-white/5 font-medium"
-                          >
-                            {word}
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <Button
-                size="lg"
-                onClick={() => setShowCheatSheet(false)}
-                className="w-full h-14 text-lg bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95 pixel-text"
-              >
-                ¡ENTENDIDO!
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </div>
+      </InstructionsModal>
+    </GameShell>
   );
 };
 

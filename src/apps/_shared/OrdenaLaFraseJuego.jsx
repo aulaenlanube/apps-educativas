@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
 import { getOrdenaFrasesData } from '../../services/gameDataService';
+import { GameShell, GameHeader, GameLoading, GameEmpty } from './kit';
+
+// Colores del icono de la app (fichas blancas sobre baldosa rosa + ficha índigo)
+const SHELL = { accent: '#f43f5e', accent2: '#8b5cf6' };
 
 const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -25,13 +29,26 @@ const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
     cargarContenido();
   }, [level, grade, subjectId]);
 
-  if (isLoading) return <div className="text-center p-10 font-bold">Cargando juego...</div>;
+  if (isLoading) {
+    return (
+      <GameShell {...SHELL}>
+        <GameLoading label="Preparando frases…" />
+      </GameShell>
+    );
+  }
   if (!frases || frases.length === 0) {
-    return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía</div>;
+    return (
+      <GameShell {...SHELL}>
+        <GameHeader />
+        <GameEmpty title="Aún no hay frases">
+          No hay contenido disponible para este juego todavía.
+        </GameEmpty>
+      </GameShell>
+    );
   }
 
   // Un único componente UI gestiona práctica y test
-  return <OrdenaLaFraseUI game={game} onGameComplete={onGameComplete} />;
+  return <OrdenaLaFraseUI game={game} onGameComplete={onGameComplete} total={frases.length} />;
 };
 
 export default OrdenaLaFraseJuego;

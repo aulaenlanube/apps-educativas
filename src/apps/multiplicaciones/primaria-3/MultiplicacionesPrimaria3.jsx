@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 import MultiplicacionTestBoard from '../../_shared/MultiplicacionTestBoard';
+import { OpBoard, OpNum, OpCell, OpCarry, OpSign, OpRule } from '../OpTablero';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -224,37 +225,12 @@ export default function MultiplicacionesPrimaria3({ onGameComplete } = {}) {
   };
 
   // --- Board rendering ---
+  // Rejilla: columna 1 = signo; columnas 2.. = cifras (una por posición).
   const ancho = filaEsperada.digitos.length;
   const mulcdoStr = multiplicando.toString().padStart(ancho, ' ');
   const mulcdrStr = multiplicador.toString().padStart(ancho, ' ');
-
-  const columnas = [];
-  let operadorPintado = false;
-  for (let c = 0; c < ancho; c++) {
-    const tieneLlevada = filaEsperada.llevadas[c] !== "";
-    const tieneProducto = filaEsperada.digitos[c] !== "";
-    const digitoMult = mulcdrStr[c];
-    let contenidoMultiplicador = digitoMult;
-    if (digitoMult !== ' ' && !operadorPintado) {
-      contenidoMultiplicador = (<><span className="cross-inline">×</span><span>{digitoMult}</span></>);
-      operadorPintado = true;
-    }
-    columnas.push(
-      <div className="column" key={c}>
-        <div className={`box carry-box ${!tieneLlevada ? 'disabled' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${clases.llevada[c] || ''} ${activeSlot?.type === 'llevada' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => tieneLlevada && handleSlotClick('llevada', c)}>
-          {entradas.llevada[c]}
-        </div>
-        <div className="digit-display">{mulcdoStr[c]}</div>
-        <div className="digit-display">{contenidoMultiplicador}</div>
-        <hr className="operation-line" />
-        <div className={`box result-box ${!tieneProducto ? 'disabled' : ''} ${clases.producto[c] || ''} ${activeSlot?.type === 'producto' && activeSlot?.index === c ? 'selected' : ''}`}
-          onClick={() => tieneProducto && handleSlotClick('producto', c)}>
-          {entradas.producto[c]}
-        </div>
-      </div>
-    );
-  }
+  const at = (row, c) => ({ gridRow: row, gridColumn: c + 2 });
+  const cols = Array.from({ length: ancho }, (_, c) => c);
 
   return (
     <MathOperationLayout
@@ -268,7 +244,9 @@ export default function MultiplicacionesPrimaria3({ onGameComplete } = {}) {
       toggleValue={ayudaLlevadas}
       onToggleChange={setAyudaLlevadas}
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Toca los números 👇"
+      paletteLabel="Toca un número"
+      padLayout="side"
+      operator="×"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -290,12 +268,13 @@ export default function MultiplicacionesPrimaria3({ onGameComplete } = {}) {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Completa la multiplicacion colocando cada digito en su casilla correcta.</p>
-          <h3>Como se juega</h3>
+          <p>Completa la multiplicación escribiendo cada cifra del resultado en su casilla.</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Coloca el digito correcto desde la paleta numerica.</li>
-            <li>Recuerda completar tambien las llevadas si estan visibles.</li>
+            <li>Toca una casilla para elegirla (se ilumina). Empieza por la derecha: las unidades.</li>
+            <li>Escribe la cifra con el teclado de la pantalla o con el del ordenador.</li>
+            <li>Con <strong>Ayuda con llevadas</strong>, la llevada aparece sola en su moneda dorada cuando aciertas la cifra. También puedes tocar una moneda y escribirla tú.</li>
+            <li>Pulsa <strong>Comprobar</strong>: cada casilla se pone en verde o en rojo.</li>
           </ul>
           <h3>🔴 Modo Examen</h3>
           <p>5 multiplicaciones. Escribe directamente el resultado final (sin llevadas).</p>
@@ -311,9 +290,53 @@ export default function MultiplicacionesPrimaria3({ onGameComplete } = {}) {
           onSlotClick={(i) => setTestActiveIdx(i)}
         />
       ) : (
-        <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
-          {columnas}
-        </div>
+        <OpBoard>
+          <div
+            className="op-grid mx-grid"
+            style={{ '--units': 1.6 + ancho * 1.14, gridTemplateColumns: `calc(var(--cell) * .8) repeat(${ancho}, var(--cell))` }}
+          >
+            {/* Llevadas */}
+            {cols.map((c) => {
+              const tieneLlevada = filaEsperada.llevadas[c] !== "";
+              return (
+                <OpCarry
+                  key={`k-${c}`}
+                  at={at(1, c)}
+                  value={entradas.llevada[c]}
+                  state={clases.llevada[c]}
+                  ghost={!tieneLlevada}
+                  off={!ayudaLlevadas}
+                  active={activeSlot?.type === 'llevada' && activeSlot?.index === c}
+                  onClick={tieneLlevada ? () => handleSlotClick('llevada', c) : undefined}
+                />
+              );
+            })}
+
+            {/* Multiplicando y multiplicador */}
+            {cols.map((c) => <OpNum key={`a-${c}`} at={at(2, c)}>{mulcdoStr[c].trim()}</OpNum>)}
+            <OpSign op="mul" at={{ gridRow: 3, gridColumn: 1 }} />
+            {cols.map((c) => <OpNum key={`b-${c}`} at={at(3, c)}>{mulcdrStr[c].trim()}</OpNum>)}
+            <OpRule at={{ gridRow: 4, gridColumn: '1 / -1' }} />
+
+            {/* Producto */}
+            {cols.map((c) => {
+              const tieneProducto = filaEsperada.digitos[c] !== "";
+              return (
+                <OpCell
+                  key={`p-${c}`}
+                  at={at(5, c)}
+                  i={c}
+                  stamp
+                  value={entradas.producto[c]}
+                  state={clases.producto[c]}
+                  off={!tieneProducto}
+                  active={activeSlot?.type === 'producto' && activeSlot?.index === c}
+                  onClick={() => tieneProducto && handleSlotClick('producto', c)}
+                />
+              );
+            })}
+          </div>
+        </OpBoard>
       )}
     </MathOperationLayout>
   );

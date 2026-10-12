@@ -1,20 +1,10 @@
-/* Sumas — importa estilos compartidos de cajas de mates */
-/* DARK-MIGRATED */
-@import './MathBoxShared.css';
+/* Sumas — tablero en columnas (ColumnOperationBoard, también lo usa la resta de 1º).
+   La base del tablero está en MathBoxShared.css (piezas opb-*); aquí solo lo propio. */
 
-/* Board layout (específico de sumas) */
-.board {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin: 20px auto;
-  font-size: 2.5em;
-  font-weight: bold;
-  min-height: 140px;
-}
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 2px;
-}
+/* Sin ayuda de llevadas, la fila de burbujas se pliega (1º no lleva). */
+.opb-grid.opb-grid--sum.is-carries-hidden,
+.opb-grid.opb-grid--sub.is-carries-hidden { --opb-carry: 0px; }
+
+/* La columna de guarda (a la izquierda) solo recibe la última llevada: más tenue. */
+.opb-grid--sum .opb-guide:first-of-type,
+.opb-grid--sub .opb-guide:first-of-type { opacity: .65; }

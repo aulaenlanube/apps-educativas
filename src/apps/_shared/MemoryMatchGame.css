@@ -1,0 +1,76 @@
+/* MemoryMatchGame — juego de parejas genérico sobre el kit (_shared/kit).
+   Prefijo mm-. Cartas con giro 3D: dorso violeta con celosía y estrella,
+   cara de cartulina; acierto con aro verde. Solo transform/opacity. */
+
+.mm-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1.6vw, 16px); }
+
+.mm-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 900px;
+  font-family: var(--gk-font);
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--gk-accent) 60%, transparent); outline-offset: 3px; border-radius: 16px; }
+.mm-card__inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3, 1.35, .5, 1); }
+.mm-card:hover:not(.is-flipped) .mm-card__inner { transform: translateY(-5px) rotateX(6deg); }
+.mm-card.is-flipped .mm-card__inner { transform: rotateY(180deg); }
+.mm-card.is-matched .mm-card__inner { transform: rotateY(180deg) scale(.95); }
+
+.mm-card__back,
+.mm-card__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.mm-card__back {
+  background:
+    radial-gradient(75% 55% at 30% 18%, rgba(255, 255, 255, .3), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, .08) 0 5px, transparent 5px 14px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, .08) 0 5px, transparent 5px 14px),
+    linear-gradient(150deg, #a78bfa 0%, #6d28d9 52%, #3b0f7a 100%);
+  box-shadow: inset 0 0 0 5px #faf7ff, inset 0 0 0 7px #fde68a, 0 6px 0 #3b0f7a, 0 16px 22px -12px rgba(46, 16, 101, .8);
+}
+.mm-card__emblem {
+  width: 40%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 36% 30%, #fff7d1, #fbbf24 48%, #b45309 100%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.mm-card__face {
+  transform: rotateY(180deg);
+  padding: 10%;
+  color: #2e1065;
+  background: linear-gradient(170deg, #ffffff 0%, #f5f2ff 100%);
+  box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5.5px color-mix(in srgb, var(--gk-accent) 28%, transparent), 0 6px 0 #d6ccf7;
+}
+.mm-card__text { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; text-align: center; line-height: 1.1; overflow-wrap: anywhere; }
+.mm-card__text.is-long { font-size: clamp(.95rem, 1.8vw, 1.2rem); }
+.mm-card__img { width: 100%; height: 100%; object-fit: contain; }
+.mm-card.is-matched .mm-card__face { background: linear-gradient(170deg, #f0fdf4, #d1fae5); box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 6px #34d399, 0 6px 0 #059669; }
+.mm-card__check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 35% 30%, #6ee7b7, #10b981 60%, #047857);
+  animation: gk-pop .4s cubic-bezier(.34, 1.56, .64, 1) .2s both;
+}
+
+@media (max-width: 720px) {
+  .mm-board { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+}

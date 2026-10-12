@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Duelos del docente (rediseño 2026): bandeja de retos, crear reto y frases.
+   Base común (variables, cabeceras de diálogo, tarjetas seleccionables…) en
+   pages/dashboard/teacherPanels.css. Prefijo tp-.
+   ========================================================================== */
+
+/* ---------- Modal propio (portal a body) ---------- */
+.tp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(10, 8, 35, .62);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.tp-modal__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow: hidden;
+  border-radius: 30px;
+  color: var(--dk-ink);
+  background: var(--tp-panel);
+  box-shadow: 0 40px 90px -30px rgba(15, 10, 60, .7), 0 0 0 1px var(--dk-line);
+}
+.tp-modal__panel--sm { max-width: 640px; }
+.tp-dhead__tools { position: absolute; top: 16px; right: 16px; z-index: 2; display: flex; gap: 6px; }
+
+/* ---------- Bandeja: retos salientes ---------- */
+.tp-duelrows { display: flex; flex-direction: column; gap: 10px; }
+.tp-duelrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 22px;
+  background: var(--dk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--dk-line), 0 10px 22px -18px rgba(30, 20, 90, .55);
+}
+.tp-duelrow__vs { position: relative; display: flex; align-items: center; flex-shrink: 0; }
+.tp-duelrow__me {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(140deg, var(--dk-hero-2), var(--dk-hero-3));
+  box-shadow: 0 0 0 3px var(--tp-panel);
+}
+.tp-duelrow__vs > :last-child { margin-left: -10px; border-radius: 50%; box-shadow: 0 0 0 3px var(--tp-panel); }
+.tp-duelrow__x {
+  position: absolute;
+  left: 50%;
+  top: -7px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(140deg, #f43f5e, #8b5cf6);
+  box-shadow: 0 3px 8px -2px rgba(0, 0, 0, .35);
+  transform: rotate(45deg);
+}
+.tp-duelrow__x svg { transform: rotate(-45deg); }
+.tp-duelrow__body { flex: 1; min-width: 0; }
+.tp-duelrow__top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.tp-duelrow__name { margin: 0; font-size: 1rem; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tp-duelrow__meta { display: flex; align-items: center; gap: 6px; margin: 4px 0 0; font-size: .8rem; font-weight: 700; color: var(--dk-ink-3); }
+.tp-duelrow__meta > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- Crear reto ---------- */
+.tp-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; max-height: 300px; overflow-y: auto; padding: 4px 4px 6px 2px; }
+.tp-opps__group { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: .72rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--dk-ink-3); }
+.tp-opps__group:first-child { margin-top: 0; }
+.tp-opps__group::after { content: ''; flex: 1; height: 1px; background: var(--dk-line); }
+.tp-opp { --t: #8b5cf6; --t2: #a855f7; gap: 10px; padding: 9px 10px; border-radius: 16px; }
+.tp-opp .tp-choice__title { font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tp-opp .tp-choice__desc { font-size: .72rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tp-opp .tp-choice__check { top: 50%; right: 10px; margin-top: -11px; }
+.tp-vsmini { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.tp-vsmini__me {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: .62rem;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(140deg, var(--dk-hero-2), var(--dk-hero-3));
+}
+.tp-vsmini__x { color: #f43f5e; }
+
+/* ---------- Frases de duelo ---------- */
+.tp-slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tp-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 14px;
+  border-radius: 22px;
+  background: var(--dk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--dk-line), 0 10px 22px -20px rgba(30, 20, 90, .55);
+}
+.tp-slot.is-empty { background: transparent; box-shadow: none; border: 2px dashed var(--dk-line); padding: 10px 12px 12px; }
+.tp-slot__top { display: flex; align-items: center; gap: 6px; min-height: 30px; }
+.tp-slot__num { padding: 2px 9px; border-radius: 999px; font-size: .7rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: #be123c; background: color-mix(in srgb, #f43f5e 14%, transparent); }
+html.dark .tp-slot__num { color: #fda4af; }
+.tp-slot__top .tp-iconbtn { margin-left: auto; width: 30px; height: 30px; }
+.tp-speech {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 58px;
+  padding: 11px 13px;
+  margin-bottom: 6px;
+  border-radius: 18px 18px 18px 6px;
+  background: linear-gradient(135deg, color-mix(in srgb, #f43f5e 13%, var(--tp-panel)), color-mix(in srgb, #8b5cf6 12%, var(--tp-panel)));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #f43f5e 22%, transparent);
+}
+.tp-speech::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  bottom: -8px;
+  width: 16px;
+  height: 10px;
+  background: color-mix(in srgb, #f43f5e 13%, var(--tp-panel));
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.tp-speech__emoji { flex-shrink: 0; font-size: 1.8rem; line-height: 1; }
+.tp-speech__text { margin: 0; font-size: .95rem; font-weight: 800; line-height: 1.25; color: var(--dk-ink); }
+.tp-speech--empty { align-items: center; justify-content: center; font-weight: 700; color: var(--dk-ink-3); background: var(--dk-inset); box-shadow: none; }
+.tp-speech--empty::after { display: none; }
+.tp-slot .dk-btn { align-self: stretch; }
+
+.tp-locked__head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 22px 0 4px; }
+.tp-locked__title { margin: 0; font-size: 1rem; font-weight: 800; }
+.tp-locked__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.tp-lockph { position: relative; padding: 12px 14px; border-radius: 20px; background: var(--dk-inset); box-shadow: inset 0 0 0 1px var(--dk-line); overflow: hidden; }
+.tp-lockph__rar { position: absolute; top: 9px; right: 9px; padding: 2px 8px; border-radius: 999px; font-size: .62rem; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; color: #fff; box-shadow: 0 3px 8px -4px rgba(0, 0, 0, .4); }
+.tp-lockph__row { display: flex; align-items: flex-start; gap: 10px; padding-right: 74px; opacity: .75; }
+.tp-lockph__emoji { flex-shrink: 0; font-size: 1.6rem; line-height: 1; filter: grayscale(1); }
+.tp-lockph__text { margin: 0; font-size: .88rem; font-weight: 700; line-height: 1.25; color: var(--dk-ink-2); }
+.tp-lockph__track { height: 7px; margin-top: 10px; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--dk-ink-3) 22%, transparent); }
+.tp-lockph__track i { display: block; height: 100%; border-radius: inherit; transition: width .6s ease; }
+.tp-lockph__nums { display: flex; align-items: center; gap: 5px; margin-top: 5px; font-size: .72rem; font-weight: 800; color: var(--dk-ink-3); font-variant-numeric: tabular-nums; }
+
+.tp-phrases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tp-phrase { --t: #f43f5e; --t2: #fb7185; align-items: flex-start; gap: 10px; padding: 11px 12px; border-radius: 18px; }
+.tp-phrase:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.tp-phrase__emoji { flex-shrink: 0; font-size: 1.6rem; line-height: 1; }
+.tp-phrase .tp-choice__title { font-size: .92rem; line-height: 1.25; padding-right: 18px; }
+.tp-cat { align-self: flex-start; margin-top: 5px; }
+
+@media (max-width: 720px) {
+  .tp-modal { padding: 8px; align-items: flex-end; }
+  .tp-modal__panel { max-height: 94vh; border-radius: 26px; }
+  .tp-slots, .tp-locked__grid, .tp-phrases { grid-template-columns: 1fr; }
+  .tp-opps { grid-template-columns: 1fr 1fr; max-height: 260px; }
+  .tp-duelrow { flex-wrap: wrap; }
+}
+@media (max-width: 420px) {
+  .tp-opps { grid-template-columns: 1fr; }
+}
+.tp-modal .tp-dhead { padding-right: 104px; }

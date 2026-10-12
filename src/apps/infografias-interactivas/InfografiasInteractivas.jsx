@@ -3,10 +3,39 @@ import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Eye, BookOpen, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Clock, Award, FileSearch, RotateCcw, Sparkles, ZoomIn, ZoomOut, Maximize2, Minimize2 } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import {
+  Eye, BookOpen, CheckCircle2, ArrowRight, ArrowLeft, Clock, FileSearch, RotateCcw, ZoomIn, ZoomOut,
+  Maximize2, Minimize2, Target, ListChecks, GraduationCap, Image as ImageIcon,
+} from 'lucide-react';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressBar, Panel, Chip, AnswerOption, GameButton,
+  ResultsScreen, FeedbackItem, GameEmpty,
+} from '../_shared/kit';
 import { getInfografiasFor } from './data/infografiasData';
 import './InfografiasInteractivas.css';
+
+const SHELL = { accent: '#8b5cf6', accent2: '#f472b6' };
+
+// Fases del recorrido (solo visual): estudiar → responder → nota
+const STEPS = [
+  { id: 'study', label: 'Estudia', Icon: Eye },
+  { id: 'quiz', label: 'Responde', Icon: ListChecks },
+  { id: 'summary', label: 'Tu nota', Icon: GraduationCap },
+];
+const Stepper = ({ current }) => {
+  const idx = STEPS.findIndex((st) => st.id === current);
+  return (
+    <ol className="igx-steps" aria-label="Progreso">
+      {STEPS.map((st, i) => (
+        <li key={st.id} className={`igx-step ${i < idx ? 'is-done' : ''} ${i === idx ? 'is-current' : ''}`}>
+          <span className="igx-step__dot">{i < idx ? <CheckCircle2 size={15} /> : <st.Icon size={15} />}</span>
+          <span className="igx-step__label">{st.label}</span>
+        </li>
+      ))}
+    </ol>
+  );
+};
 
 const PHASE = {
   SELECTOR: 'selector',
@@ -184,73 +213,72 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
     }
   }, [selectedInfo, quizAnswers, onGameComplete, testStartedAt]);
 
+  const helpModal = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Infografías interactivas">
+      <h3>¿Cómo funciona?</h3>
+      <ol>
+        <li><strong>Elige una infografía</strong> de tu asignatura.</li>
+        <li><strong>Estudia la imagen</strong> todo el tiempo que necesites.</li>
+        <li><strong>Responde a las preguntas</strong> sobre los datos de la infografía.</li>
+        <li><strong>Obtén tu nota /10</strong> según los aciertos.</li>
+      </ol>
+      <p><em>Modo único: cada infografía completada cuenta como tarea.</em></p>
+    </InstructionsModal>
+  );
+
   // ─────────────────────────────────────────────────────────────────
   // Render: SELECTOR
   // ─────────────────────────────────────────────────────────────────
   if (phase === PHASE.SELECTOR) {
     return (
-      <div className="infografias-app">
-        <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Infografías interactivas">
-          <h3>¿Cómo funciona?</h3>
-          <ol>
-            <li><strong>Elige una infografía</strong> de tu asignatura.</li>
-            <li><strong>Estudia la imagen</strong> todo el tiempo que necesites.</li>
-            <li><strong>Responde a las preguntas</strong> sobre los datos de la infografía.</li>
-            <li><strong>Obtén tu nota /10</strong> según los aciertos.</li>
-          </ol>
-          <p><em>Modo único: cada infografía completada cuenta como tarea.</em></p>
-        </InstructionsModal>
-
-        <div className="infografias-header">
-          <div>
-            <h1 className="infografias-title">
-              <span className="ifx-title-icon" aria-hidden="true"><FileSearch size={26} /></span>
-              <span className="ifx-title-text">Infografías interactivas</span>
-            </h1>
-            <p className="infografias-subtitle">
-              Estudia la imagen y demuestra lo que has aprendido
-            </p>
-          </div>
-          <InstructionsButton onClick={() => setShowHelp(true)} />
-        </div>
+      <GameShell {...SHELL}>
+        {helpModal}
+        <GameHeader onHelp={() => setShowHelp(true)} />
 
         {available.length === 0 ? (
-          <div className="infografias-empty">
-            <span className="ifx-empty-icon" aria-hidden="true"><Sparkles size={40} /></span>
-            <p>Todavía no hay infografías disponibles para este curso y asignatura.</p>
-            <p className="hint">¡Pronto añadiremos más!</p>
-          </div>
+          <GameEmpty title="Aún no hay infografías">
+            Todavía no hay infografías disponibles para este curso y asignatura. ¡Pronto añadiremos más!
+          </GameEmpty>
         ) : (
-          <div className="infografias-grid">
-            {available.map((info, idx) => (
-              <motion.button
-                key={info.id}
-                className="info-card"
-                initial={{ opacity: 0, y: 22 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(idx, 8) * 0.06, type: 'spring', stiffness: 260, damping: 24 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => startInfografia(info)}
-              >
-                <div className="info-card-img">
-                  <img src={info.image} alt={info.title} loading="lazy" />
-                  <span className="ifx-card-sheen" aria-hidden="true" />
-                  <div className="info-card-icon">{info.icon}</div>
-                </div>
-                <div className="info-card-body">
-                  <h3>{info.title}</h3>
-                  <p>{info.subtitle}</p>
-                  <div className="info-card-meta">
-                    <span><BookOpen size={14} /> {info.questions.length} preguntas</span>
-                    <span className="ifx-card-go" aria-hidden="true"><ArrowRight size={16} /></span>
-                  </div>
-                </div>
-              </motion.button>
-            ))}
-          </div>
+          <>
+            <div className="igx-intro">
+              <span className="igx-intro__icon"><FileSearch size={20} /></span>
+              <p>
+                Elige una infografía, <strong>estúdiala</strong> con calma y demuestra lo que has aprendido
+                en un <strong>examen</strong> con nota sobre 10.
+              </p>
+            </div>
+            <div className="igx-grid">
+              {available.map((info, idx) => (
+                <motion.button
+                  key={info.id}
+                  type="button"
+                  className="igx-card"
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(idx, 8) * 0.06, type: 'spring', stiffness: 260, damping: 24 }}
+                  onClick={() => startInfografia(info)}
+                >
+                  <span className="igx-card__stage">
+                    <span className="igx-card__poster">
+                      <img src={info.image} alt={info.title} loading="lazy" />
+                    </span>
+                    <span className="igx-card__badge" aria-hidden="true">{info.icon}</span>
+                  </span>
+                  <span className="igx-card__body">
+                    <span className="igx-card__title">{info.title}</span>
+                    <span className="igx-card__sub">{info.subtitle}</span>
+                    <span className="igx-card__meta">
+                      <span className="gk-chip gk-chip--soft"><BookOpen size={13} /> {info.questions.length} preguntas</span>
+                      <span className="igx-card__go">Estudiar <ArrowRight size={15} /></span>
+                    </span>
+                  </span>
+                </motion.button>
+              ))}
+            </div>
+          </>
         )}
-      </div>
+      </GameShell>
     );
   }
 
@@ -259,80 +287,73 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
   // ─────────────────────────────────────────────────────────────────
   if (phase === PHASE.STUDY) {
     return (
-      <div className="infografias-app">
-        <div className="study-header">
-          <button className="btn-ghost" onClick={backToSelector}>
-            <ArrowLeft size={18} /> Cambiar de infografía
-          </button>
-          <div className="study-title">
-            <span className="icon">{selectedInfo.icon}</span>
-            <div>
-              <h2>{selectedInfo.title}</h2>
-              <p>{selectedInfo.subtitle}</p>
-            </div>
-          </div>
-          <button className="btn-primary" onClick={startTest}>
-            Empezar examen <ArrowRight size={18} />
-          </button>
+      <GameShell {...SHELL}>
+        {helpModal}
+        <GameHeader
+          onHelp={() => setShowHelp(true)}
+          right={
+            <GameButton variant="primary" iconRight={ArrowRight} onClick={startTest}>
+              Empezar examen
+            </GameButton>
+          }
+        />
+
+        <div className="igx-topline">
+          <GameButton variant="ghost" size="sm" icon={ArrowLeft} onClick={backToSelector}>
+            Cambiar de infografía
+          </GameButton>
+          <Stepper current="study" />
         </div>
 
-        <div className="study-banner">
-          <span className="ifx-banner-icon" aria-hidden="true"><Eye size={20} /></span>
-          <span>
-            Observa la infografía todo el tiempo que necesites. Después tendrás que responder a <strong>{selectedInfo.questions.length} preguntas</strong>.
-          </span>
+        <div className="igx-subject">
+          <span className="igx-subject__icon" aria-hidden="true">{selectedInfo.icon}</span>
+          <div>
+            <h2>{selectedInfo.title}</h2>
+            <p>{selectedInfo.subtitle}</p>
+          </div>
+          <Chip tone="accent" icon={Eye}>Fase de estudio</Chip>
         </div>
+
+        <Panel variant="inset" className="igx-banner">
+          <span className="igx-banner__icon" aria-hidden="true"><Eye size={18} /></span>
+          <span>
+            Observa la infografía todo el tiempo que necesites. Después tendrás que responder a{' '}
+            <strong>{selectedInfo.questions.length} preguntas</strong> sin poder verla.
+          </span>
+        </Panel>
 
         <div
           ref={imageContainerRef}
-          className={`study-image-wrap ${isFullscreen ? 'is-fullscreen' : ''}`}
+          className={`igx-viewer ${isFullscreen ? 'is-fullscreen' : ''}`}
         >
-          <div className="image-toolbar">
-            <button
-              type="button"
-              className="image-toolbar-btn"
-              onClick={zoomOut}
-              disabled={zoom <= ZOOM_MIN}
-              title="Reducir zoom"
-              aria-label="Reducir zoom"
-            >
-              <ZoomOut size={18} />
-            </button>
-            <span className="image-toolbar-zoom">{Math.round(zoom * 100)}%</span>
-            <button
-              type="button"
-              className="image-toolbar-btn"
-              onClick={zoomIn}
-              disabled={zoom >= ZOOM_MAX}
-              title="Aumentar zoom"
-              aria-label="Aumentar zoom"
-            >
-              <ZoomIn size={18} />
-            </button>
-            <button
-              type="button"
-              className="image-toolbar-btn"
-              onClick={resetZoom}
-              disabled={zoom === 1}
-              title="Restablecer zoom"
-              aria-label="Restablecer zoom"
-            >
-              <RotateCcw size={16} />
-            </button>
-            <div className="image-toolbar-sep" />
-            <button
-              type="button"
-              className="image-toolbar-btn"
-              onClick={toggleFullscreen}
-              title={isFullscreen ? 'Salir de pantalla completa' : 'Ver a pantalla completa'}
-              aria-label={isFullscreen ? 'Salir de pantalla completa' : 'Ver a pantalla completa'}
-            >
-              {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-            </button>
+          <div className="igx-toolbar">
+            <span className="igx-toolbar__label"><ImageIcon size={15} /> Infografía</span>
+            <div className="igx-toolbar__group">
+              <button type="button" className="igx-tool" onClick={zoomOut} disabled={zoom <= ZOOM_MIN} title="Reducir zoom" aria-label="Reducir zoom">
+                <ZoomOut size={17} />
+              </button>
+              <span className="igx-toolbar__zoom">{Math.round(zoom * 100)}%</span>
+              <button type="button" className="igx-tool" onClick={zoomIn} disabled={zoom >= ZOOM_MAX} title="Aumentar zoom" aria-label="Aumentar zoom">
+                <ZoomIn size={17} />
+              </button>
+              <button type="button" className="igx-tool" onClick={resetZoom} disabled={zoom === 1} title="Restablecer zoom" aria-label="Restablecer zoom">
+                <RotateCcw size={15} />
+              </button>
+              <span className="igx-toolbar__sep" />
+              <button
+                type="button"
+                className="igx-tool"
+                onClick={toggleFullscreen}
+                title={isFullscreen ? 'Salir de pantalla completa' : 'Ver a pantalla completa'}
+                aria-label={isFullscreen ? 'Salir de pantalla completa' : 'Ver a pantalla completa'}
+              >
+                {isFullscreen ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
+              </button>
+            </div>
           </div>
           <div
             ref={scrollRef}
-            className={`image-scroll ${zoom > 1 ? 'pannable' : ''}`}
+            className={`igx-scroll ${zoom > 1 ? 'pannable' : ''}`}
           >
             <img
               src={selectedInfo.image}
@@ -343,12 +364,12 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
           </div>
         </div>
 
-        <div className="study-footer">
-          <button className="btn-primary big" onClick={startTest}>
-            Estoy listo · Empezar examen <ArrowRight size={20} />
-          </button>
+        <div className="igx-foot">
+          <GameButton variant="success" size="lg" iconRight={ArrowRight} onClick={startTest}>
+            Estoy listo · Empezar examen
+          </GameButton>
         </div>
-      </div>
+      </GameShell>
     );
   }
 
@@ -357,68 +378,84 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
   // ─────────────────────────────────────────────────────────────────
   if (phase === PHASE.QUIZ) {
     const allAnswered = selectedInfo.questions.every((_, i) => quizAnswers[i] !== undefined);
-    // Solo visual: barra de progreso de preguntas respondidas
+    // Solo visual: progreso de preguntas respondidas
     const answeredCount = Object.keys(quizAnswers).length;
-    const answeredPct = Math.round((answeredCount / selectedInfo.questions.length) * 100);
+    const total = selectedInfo.questions.length;
     return (
-      <div className="infografias-app">
-        <div className="phase-header">
-          <div className="phase-badge">Examen</div>
-          <h2>Preguntas sobre la infografía</h2>
-          <p>Responde a las {selectedInfo.questions.length} preguntas basándote en lo que has estudiado.</p>
-        </div>
+      <GameShell {...SHELL}>
+        {helpModal}
+        <GameHeader
+          mode="exam"
+          onHelp={() => setShowHelp(true)}
+          right={
+            <Hud>
+              <HudStat icon={Target} tone="progress" value={`${answeredCount}/${total}`} label="Respondidas" />
+            </Hud>
+          }
+        />
 
-        <div className="ifx-progress" aria-hidden="true">
-          <div className="ifx-progress-track">
-            <div className="ifx-progress-fill" style={{ width: `${answeredPct}%` }} />
-          </div>
-          <motion.span
-            key={answeredCount}
-            className="ifx-progress-count"
-            initial={{ scale: 1.35, opacity: 0.4 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 16 }}
-          >
-            {answeredCount}/{selectedInfo.questions.length}
-          </motion.span>
-        </div>
-
-        <div className="quiz-list">
-          {selectedInfo.questions.map((q, i) => (
-            <div key={i} className={`quiz-item ${quizAnswers[i] !== undefined ? 'ifx-answered' : ''}`} style={{ '--ifx-i': i }}>
-              <div className="quiz-q">
-                <span className="quiz-num">{i + 1}</span>
-                <p>{q.q}</p>
-              </div>
-              <div className="quiz-options">
-                {q.options.map((opt, k) => (
-                  <button
-                    key={k}
-                    type="button"
-                    className={`quiz-opt ${quizAnswers[i] === k ? 'selected' : ''}`}
-                    aria-pressed={quizAnswers[i] === k}
-                    onClick={() => setQuizAnswers((prev) => ({ ...prev, [i]: k }))}
-                  >
-                    <span className="quiz-opt-letter">{String.fromCharCode(65 + k)}</span>
-                    {opt}
-                  </button>
-                ))}
-              </div>
+        <div className="igx-topline">
+          <div className="igx-subject igx-subject--sm">
+            <span className="igx-subject__icon" aria-hidden="true">{selectedInfo.icon}</span>
+            <div>
+              <h2>{selectedInfo.title}</h2>
+              <p>Responde basándote en lo que has estudiado.</p>
             </div>
-          ))}
+          </div>
+          <Stepper current="quiz" />
         </div>
 
-        <div className="phase-footer">
-          <button
-            className="btn-primary big"
+        <ProgressBar value={answeredCount} max={total} tone={allAnswered ? 'good' : 'accent'} label="Preguntas respondidas" />
+
+        <div className="igx-quiz">
+          {selectedInfo.questions.map((q, i) => {
+            const answered = quizAnswers[i] !== undefined;
+            return (
+              <Panel
+                key={i}
+                variant="surface"
+                className={`igx-q ${answered ? 'is-answered' : ''}`}
+                style={{ '--i': i }}
+              >
+                <div className="igx-q__head">
+                  <span className="igx-q__num">{answered ? <CheckCircle2 size={17} /> : i + 1}</span>
+                  <p>{q.q}</p>
+                </div>
+                <div className="igx-q__opts">
+                  {q.options.map((opt, k) => (
+                    <AnswerOption
+                      key={k}
+                      letter={String.fromCharCode(65 + k)}
+                      state={quizAnswers[i] === k ? 'selected' : 'idle'}
+                      className={answered && quizAnswers[i] !== k ? 'is-dim' : ''}
+                      aria-pressed={quizAnswers[i] === k}
+                      onClick={() => setQuizAnswers((prev) => ({ ...prev, [i]: k }))}
+                    >
+                      {opt}
+                    </AnswerOption>
+                  ))}
+                </div>
+              </Panel>
+            );
+          })}
+        </div>
+
+        <div className="igx-foot igx-foot--sticky">
+          <span className="igx-foot__info">
+            {allAnswered ? '¡Todo listo! Puedes enviar tus respuestas.' : `Te faltan ${total - answeredCount} por responder`}
+          </span>
+          <GameButton
+            variant="success"
+            size="lg"
+            icon={CheckCircle2}
             onClick={submitQuiz}
             disabled={!allAnswered}
             title={!allAnswered ? 'Responde a todas las preguntas para continuar' : ''}
           >
-            Enviar respuestas <CheckCircle2 size={20} />
-          </button>
+            Enviar respuestas
+          </GameButton>
         </div>
-      </div>
+      </GameShell>
     );
   }
 
@@ -426,81 +463,29 @@ const InfografiasInteractivas = ({ onGameComplete }) => {
   // Render: SUMMARY
   // ─────────────────────────────────────────────────────────────────
   if (phase === PHASE.SUMMARY && results) {
-    const notaColor = results.nota >= 8 ? '#10b981' : results.nota >= 5 ? '#3b82f6' : '#ef4444';
-    const notaMsg =
-      results.nota >= 9 ? '¡Excelente!' :
-      results.nota >= 7 ? '¡Muy bien!' :
-      results.nota >= 5 ? 'Aprobado' :
-      'Necesitas repasar';
-
     return (
-      <div className="infografias-app">
-        <div className="summary-header">
-          <h2><Award size={28} /> Resultados · {selectedInfo.title}</h2>
-        </div>
-
-        <motion.div
-          className="summary-nota"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+      <GameShell {...SHELL}>
+        {helpModal}
+        <ResultsScreen
+          subtitle={`${selectedInfo.icon} ${selectedInfo.title}`}
+          nota={results.nota}
+          stats={[
+            { icon: Target, tone: 'good', label: 'Aciertos', value: `${results.correct}/${results.total}` },
+            { icon: Clock, tone: 'time', label: 'Tiempo', value: formatTime(results.durationSeconds) },
+          ]}
+          actions={[
+            { label: 'Repetir esta infografía', onClick: () => startInfografia(selectedInfo), icon: RotateCcw },
+            { label: 'Elegir otra infografía', onClick: backToSelector, icon: FileSearch, variant: 'soft' },
+          ]}
         >
-          <div
-            className="nota-circle ifx-nota-ring"
-            style={{ borderColor: notaColor, color: notaColor, '--ifx-grade': results.nota, '--ifx-grade-color': notaColor }}
-          >
-            <span className="ifx-nota-halo" aria-hidden="true" />
-            <span className="ifx-nota-sparks" aria-hidden="true">
-              {[0, 1, 2, 3, 4, 5, 6, 7].map((n) => <i key={n} style={{ '--ifx-n': n }} />)}
-            </span>
-            <span className="nota-number">{results.nota.toFixed(1)}</span>
-            <span className="nota-of">/10</span>
-          </div>
-          <div className="nota-msg" style={{ color: notaColor }}>{notaMsg}</div>
-        </motion.div>
-
-        <div className="summary-stats">
-          <div className="stat-card ifx-stat ifx-stat--ok">
-            <div className="stat-label">Aciertos</div>
-            <div className="stat-value">{results.correct} / {results.total}</div>
-          </div>
-          <div className="stat-card ifx-stat ifx-stat--time">
-            <div className="stat-label">Tiempo</div>
-            <div className="stat-value"><Clock size={16} /> {formatTime(results.durationSeconds)}</div>
-          </div>
-        </div>
-
-        <div className="summary-sections">
-          <section>
-            <h3><BookOpen size={20} /> Preguntas</h3>
-            <ul className="result-list">
-              {results.quizResults.map((r, i) => (
-                <li key={i} className={r.isCorrect ? 'ok' : 'wrong'} style={{ '--ifx-i': i }}>
-                  <span className="r-icon">
-                    {r.isCorrect ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
-                  </span>
-                  <div className="r-body">
-                    <strong>{i + 1}.</strong> {r.q}
-                    <div className="r-detail">
-                      Tu respuesta: <em>{r.given !== undefined ? r.options[r.given] : '—'}</em>
-                      {!r.isCorrect && <span className="r-correct"> · Solución: <strong>{r.options[r.correct]}</strong></span>}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
-
-        <div className="summary-actions">
-          <button className="btn-ghost" onClick={() => startInfografia(selectedInfo)}>
-            <RotateCcw size={18} /> Repetir esta infografía
-          </button>
-          <button className="btn-primary" onClick={backToSelector}>
-            <FileSearch size={18} /> Elegir otra infografía
-          </button>
-        </div>
-      </div>
+          {results.quizResults.map((r, i) => (
+            <FeedbackItem key={i} index={i + 1} ok={r.isCorrect} title={r.q}>
+              Tu respuesta: <em>{r.given !== undefined ? r.options[r.given] : '—'}</em>
+              {!r.isCorrect && <> · Solución: <strong>{r.options[r.correct]}</strong></>}
+            </FeedbackItem>
+          ))}
+        </ResultsScreen>
+      </GameShell>
     );
   }
 

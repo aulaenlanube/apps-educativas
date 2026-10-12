@@ -1,11 +1,18 @@
+// Modal "Crear duelo 1 vs 1" del alumno — rediseño 2026.
+// Tres pasos (rival con avatar, juego con su icono, apuesta en fichas) y una
+// vista previa "Tú VS rival". Solo presentación: la carga de rivales, la
+// validación y createDuel son los de siempre.
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, X, EyeOff, Users, Gamepad2, Target } from 'lucide-react';
+import { Swords, X, EyeOff, Users, Gamepad2, Target, Check, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { getDuelOpponents, createDuel } from '@/services/duelService';
 import { DUELABLE_APPS } from '@/apps/config/duelableApps';
 import UserAvatar from '@/components/ui/UserAvatar';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashButton } from '@/components/dashboard/kit';
+import './DuelCreateModal.css';
 
 const STAKES = [
   { value: 0,   label: 'Amistoso',   color: 'from-slate-400 to-slate-500', display: 'Sin nota' },
@@ -73,71 +80,105 @@ export default function DuelCreateModal({ open, onClose }) {
     }
   }
 
+  // Solo para la vista previa (no cambia lo que se envía).
+  const rival = opponents.find(o => o.id === opponentId) || null;
+  const pickedApp = DUELABLE_APPS.find(a => a.id === appId) || null;
+  const stakeText = stake === 0 ? 'Amistoso' : `±${String(stake).replace('.', ',')}`;
+
   return (
     <AnimatePresence>
       {open && (
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+          className="dcm-overlay"
           onClick={onClose}
         >
           <motion.div
             initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+            className="dcm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="dcm-title"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-500 text-white">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                  <Swords className="w-5 h-5" />
-                </div>
+            {/* Cabecera con vista previa Tú VS rival */}
+            <header className="dcm-head">
+              <span className="dcm-head__art" aria-hidden="true" />
+              <div className="dcm-head__title">
+                <span className="dcm-head__icon"><Swords size={22} /></span>
                 <div>
-                  <h2 className="text-lg font-bold">Crear duelo 1 vs 1</h2>
-                  <p className="text-xs text-white/80">Reta a un compañero y juega tu nota</p>
+                  <h2 id="dcm-title">Crear duelo 1 vs 1</h2>
+                  <p>Reta a un compañero y juega tu nota</p>
                 </div>
               </div>
-              <button onClick={onClose} className="p-2 rounded-lg hover:bg-white/15">
-                <X className="w-5 h-5" />
+              <div className="dcm-preview" aria-hidden="true">
+                <span className="dcm-preview__ava is-me">
+                  <UserAvatar
+                    selectedAvatarCode={student?.selected_avatar_code}
+                    avatarEmoji={student?.avatar_emoji}
+                    avatarColor={student?.avatar_color}
+                    size="md"
+                    shape="rounded"
+                    showRarityBorder={false}
+                  />
+                </span>
+                <span className="dcm-preview__vs">VS</span>
+                <span className={`dcm-preview__ava is-rival ${rival ? '' : 'is-empty'}`}>
+                  {rival ? (
+                    <UserAvatar
+                      selectedAvatarCode={rival.selected_avatar_code}
+                      avatarEmoji={rival.emoji}
+                      avatarColor={rival.color}
+                      size="md"
+                      shape="rounded"
+                      showRarityBorder={false}
+                    />
+                  ) : <span>?</span>}
+                </span>
+              </div>
+              <button type="button" onClick={onClose} className="dcm-close" aria-label="Cerrar">
+                <X size={20} />
               </button>
-            </div>
+            </header>
 
-            <div className="flex-1 overflow-y-auto p-5 space-y-5">
+            <div className="dcm-body">
               {/* Oponente */}
-              <section>
-                <div className="flex items-center gap-2 mb-2">
-                  <Users className="w-4 h-4 text-violet-600" />
-                  <h3 className="text-sm font-bold text-slate-800">Elige a tu rival</h3>
+              <section className="dcm-step">
+                <div className="dcm-step__head">
+                  <span className="dcm-step__num">1</span>
+                  <Users size={16} />
+                  <h3>Elige a tu rival</h3>
+                  {!loading && opponents.length > 0 && <span className="dcm-step__count">{opponents.length} compañeros</span>}
                 </div>
                 {loading ? (
-                  <div className="text-sm text-slate-400">Cargando compañeros…</div>
+                  <div className="dcm-muted"><Loader2 size={16} className="dcm-spin" /> Cargando compañeros…</div>
                 ) : opponents.length === 0 ? (
-                  <div className="text-sm text-slate-400">
+                  <div className="dcm-muted">
                     No hay compañeros disponibles en tu grupo.
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-72 overflow-y-auto pr-1">
+                  <div className="dcm-rivals">
                     {opponents.map(o => (
                       <button
                         key={o.id}
                         type="button"
                         onClick={() => setOpponentId(o.id)}
-                        className={`flex items-center gap-2 p-2 rounded-lg border transition-all text-left ${
-                          opponentId === o.id
-                            ? 'border-violet-500 bg-violet-50 shadow-sm'
-                            : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
-                        }`}
+                        className={`dcm-rival ${opponentId === o.id ? 'is-active' : ''}`}
+                        aria-pressed={opponentId === o.id}
                       >
                         <UserAvatar
                           selectedAvatarCode={o.selected_avatar_code}
                           avatarEmoji={o.emoji}
                           avatarColor={o.color}
                           size="md"
+                          shape="rounded"
                           showRarityBorder={false}
                         />
-                        <div className="min-w-0">
-                          <p className="text-sm font-semibold text-slate-800 truncate">{o.name}</p>
-                          <p className="text-[10px] text-slate-400 truncate">{o.group_name}</p>
-                        </div>
+                        <span className="dcm-rival__text">
+                          <strong>{o.name}</strong>
+                          <small>{o.group_name}</small>
+                        </span>
+                        {opponentId === o.id && <span className="dcm-check"><Check size={13} /></span>}
                       </button>
                     ))}
                   </div>
@@ -145,62 +186,63 @@ export default function DuelCreateModal({ open, onClose }) {
               </section>
 
               {/* App */}
-              <section>
-                <div className="flex items-center gap-2 mb-2">
-                  <Gamepad2 className="w-4 h-4 text-violet-600" />
-                  <h3 className="text-sm font-bold text-slate-800">Elige el juego</h3>
+              <section className="dcm-step">
+                <div className="dcm-step__head">
+                  <span className="dcm-step__num">2</span>
+                  <Gamepad2 size={16} />
+                  <h3>Elige el juego</h3>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="dcm-apps">
                   {DUELABLE_APPS.map(a => (
                     <button
                       key={a.id}
                       type="button"
                       onClick={() => setAppId(a.id)}
-                      className={`p-3 rounded-xl border text-left transition-all ${
-                        appId === a.id
-                          ? 'border-violet-500 bg-violet-50 shadow-sm'
-                          : 'border-slate-200 hover:border-violet-300 hover:bg-slate-50'
-                      }`}
+                      className={`dcm-app art-host ${appId === a.id ? 'is-active' : ''}`}
+                      aria-pressed={appId === a.id}
                     >
-                      <p className="text-sm font-bold text-slate-800">{a.name}</p>
-                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2">{a.description}</p>
-                      {a.duel?.bestOf > 1 && (
-                        <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">
-                          Al mejor de {a.duel.bestOf}
-                        </span>
-                      )}
+                      {hasAppIcon(a.id)
+                        ? <AppIcon appId={a.id} size={52} />
+                        : <span className="dcm-app__fallback"><Gamepad2 size={24} /></span>}
+                      <span className="dcm-app__text">
+                        <strong>{a.name}</strong>
+                        <small>{a.description}</small>
+                        {a.duel?.bestOf > 1 && (
+                          <span className="dcm-app__bo">Al mejor de {a.duel.bestOf}</span>
+                        )}
+                      </span>
+                      {appId === a.id && <span className="dcm-check"><Check size={13} /></span>}
                     </button>
                   ))}
                 </div>
               </section>
 
               {/* Stake */}
-              <section>
-                <div className="flex items-center gap-2 mb-2">
-                  <Target className="w-4 h-4 text-violet-600" />
-                  <h3 className="text-sm font-bold text-slate-800">¿Qué os jugáis?</h3>
+              <section className="dcm-step">
+                <div className="dcm-step__head">
+                  <span className="dcm-step__num">3</span>
+                  <Target size={16} />
+                  <h3>¿Qué os jugáis?</h3>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="dcm-stakes">
                   {STAKES.map(s => (
                     <button
                       key={s.value}
                       type="button"
                       onClick={() => setStake(s.value)}
-                      className={`p-3 rounded-xl border-2 transition-all text-center ${
-                        stake === s.value
-                          ? 'border-violet-500 shadow-md'
-                          : 'border-slate-200 hover:border-violet-300'
-                      }`}
+                      className={`dcm-stake ${stake === s.value ? 'is-active' : ''}`}
+                      aria-pressed={stake === s.value}
                     >
-                      <div className={`text-white font-bold text-lg bg-gradient-to-br ${s.color} rounded-lg py-2`}>
-                        {s.value === 0 ? s.display : `+/- ${s.value.toString().replace('.', ',')}`}
-                      </div>
-                      <p className="text-[11px] text-slate-500 mt-1">{s.label}</p>
+                      <span className={`dcm-stake__coin bg-gradient-to-br ${s.color}`}>
+                        {s.value === 0 ? '🤝' : `±${s.value.toString().replace('.', ',')}`}
+                      </span>
+                      <strong>{s.value === 0 ? s.display : `+/- ${s.value.toString().replace('.', ',')}`}</strong>
+                      <small>{s.label}</small>
                     </button>
                   ))}
                 </div>
                 {stake === 0 && (
-                  <p className="text-[11px] text-slate-500 mt-2 italic">
+                  <p className="dcm-note">
                     Duelo amistoso: el resultado no afecta a la nota de ninguno.
                   </p>
                 )}
@@ -208,46 +250,47 @@ export default function DuelCreateModal({ open, onClose }) {
 
               {/* Oculto */}
               <section>
-                <label className="flex items-start gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                <label className={`dcm-toggle ${isHidden ? 'is-on' : ''}`}>
                   <input
                     type="checkbox"
                     checked={isHidden}
                     onChange={e => setIsHidden(e.target.checked)}
-                    className="mt-1"
+                    className="dcm-toggle__input"
                   />
-                  <div className="flex-1">
-                    <p className="text-sm font-bold text-slate-800 flex items-center gap-2">
-                      <EyeOff className="w-4 h-4 text-slate-500" /> Duelo oculto
-                    </p>
-                    <p className="text-xs text-slate-500">
+                  <span className="dcm-toggle__switch" aria-hidden="true"><i /></span>
+                  <span className="dcm-toggle__text">
+                    <strong><EyeOff size={15} /> Duelo oculto</strong>
+                    <small>
                       Tu rival no sabrá quién le ha retado hasta el final de la partida.
-                    </p>
-                  </div>
+                    </small>
+                  </span>
                 </label>
               </section>
 
               {err && (
-                <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
+                <div className="dcm-error" role="alert">
                   {err}
                 </div>
               )}
             </div>
 
-            <div className="flex gap-2 p-4 border-t border-slate-100 bg-slate-50">
-              <button
-                onClick={onClose}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-slate-300 text-slate-600 font-medium hover:bg-white"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={onSubmit}
-                disabled={!canSubmit}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold shadow hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {submitting ? 'Enviando reto…' : 'Retar'}
-              </button>
-            </div>
+            <footer className="dcm-foot">
+              <p className="dcm-summary">
+                {rival && pickedApp ? (
+                  <><strong>Tú vs {rival.name}</strong> · {pickedApp.name} · {stakeText}</>
+                ) : (
+                  <>Elige rival y juego para lanzar el reto</>
+                )}
+              </p>
+              <div className="dcm-foot__btns">
+                <DashButton variant="soft" onClick={onClose}>
+                  Cancelar
+                </DashButton>
+                <DashButton variant="rose" icon={submitting ? undefined : Swords} onClick={onSubmit} disabled={!canSubmit}>
+                  {submitting ? 'Enviando reto…' : 'Retar'}
+                </DashButton>
+              </div>
+            </footer>
           </motion.div>
         </motion.div>
       )}

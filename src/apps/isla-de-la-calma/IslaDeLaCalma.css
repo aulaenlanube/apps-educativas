@@ -1,979 +1,676 @@
-/* DARK-MIGRATED */
-/* src/apps/isla-de-la-calma/IslaDeLaCalma.css */
-
-/* ── Base ───────────────────────────────────────────────────── */
-.calma-app {
-  position: relative;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  overflow: hidden;
-  background: linear-gradient(160deg, #0f2027 0%, #203a43 40%, #2c5364 100%);
-  border-radius: 24px;
-}
-
-/* ── Partículas flotantes ───────────────────────────────────── */
-.calma-particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.calma-particle {
-  position: absolute;
-  bottom: -10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  animation: calma-float-up linear infinite;
-}
-
-@keyframes calma-float-up {
-  0% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--particle-opacity, 0.2);
-  }
-  90% {
-    opacity: var(--particle-opacity, 0.2);
-  }
-  100% {
-    transform: translateY(-85vh) translateX(30px) scale(0.3);
-    opacity: 0;
-  }
-}
-
-/* ── Olas de fondo ──────────────────────────────────────────── */
-.calma-waves-bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  pointer-events: none;
-}
-
-.calma-wave {
-  position: absolute;
-  bottom: 0;
-  left: -5%;
-  width: 110%;
-  height: 100%;
-}
-
-.calma-wave-1 { animation: calma-wave-drift 8s ease-in-out infinite; }
-.calma-wave-2 { animation: calma-wave-drift 10s ease-in-out 2s infinite reverse; }
-.calma-wave-3 { animation: calma-wave-drift 12s ease-in-out 4s infinite; }
-
-@keyframes calma-wave-drift {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(3%); }
-}
-
-/* ── Card glass ─────────────────────────────────────────────── */
-.calma-card {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 460px;
-}
-
-.calma-card-inner {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 32px;
-  padding: 3rem 2.5rem;
-  text-align: center;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* ── Hero icon ──────────────────────────────────────────────── */
-.calma-hero-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(110, 231, 183, 0.2), rgba(59, 130, 246, 0.15));
-  border: 1px solid rgba(110, 231, 183, 0.2);
-  color: rgba(167, 243, 208, 0.9);
-  margin-bottom: 1.5rem;
-}
-
-/* ── Tipografía ─────────────────────────────────────────────── */
-.calma-title {
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #a7f3d0, #67e8f9, #c4b5fd);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0 0 1rem;
-}
-
-.calma-subtitle {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0 0 2rem;
-}
-
-/* ── Selector de ciclos ─────────────────────────────────────── */
-.calma-cycles-config {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.calma-cycles-label {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 600;
-}
-
-.calma-cycles-control {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.calma-cycle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1rem;
-}
-
-.calma-cycle-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.calma-cycle-value {
-  width: 48px;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: rgba(167, 243, 208, 0.9);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  line-height: 44px;
-}
-
-/* ── Botón comenzar / reiniciar ─────────────────────────────── */
-.calma-start-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.9rem 2.2rem;
-  border: none;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  background: linear-gradient(135deg, #065f46, #0d9488);
-  color: var(--app-card-bg);
-  box-shadow:
-    0 4px 20px rgba(13, 148, 136, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: box-shadow 0.3s;
-}
-
-.calma-start-btn:hover {
-  box-shadow:
-    0 6px 28px rgba(13, 148, 136, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-.calma-restart-btn {
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.calma-restart-btn:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-  color: var(--app-card-bg);
-}
-
-/* ── Pantalla de respiración ────────────────────────────────── */
-.calma-breathing-screen {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 500px;
-}
-
-/* ── Círculo de respiración ─────────────────────────────────── */
-.calma-breath-wrapper {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.calma-breath-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(110, 231, 183, 0.08);
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), border-color 1s;
-}
-
-.calma-ring-1 { border-color: rgba(110, 231, 183, 0.15); }
-.calma-ring-2 { border-color: rgba(110, 231, 183, 0.08); }
-.calma-ring-3 { border-color: rgba(110, 231, 183, 0.04); }
-
-.calma-breath-core {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background 1.2s, box-shadow 1.2s;
-  background: linear-gradient(135deg, rgba(110, 231, 183, 0.2), rgba(59, 130, 246, 0.12));
-  box-shadow:
-    0 0 40px rgba(110, 231, 183, 0.1),
-    0 0 80px rgba(110, 231, 183, 0.05),
-    inset 0 0 30px rgba(110, 231, 183, 0.05);
-}
-
-.calma-breath-icon {
-  color: rgba(167, 243, 208, 0.7);
-  transition: color 1s;
-}
-
-/* Colores por fase */
-.calma-phase-inhale.calma-breath-core {
-  background: linear-gradient(135deg, rgba(110, 231, 183, 0.3), rgba(52, 211, 153, 0.15));
-  box-shadow:
-    0 0 60px rgba(110, 231, 183, 0.2),
-    0 0 120px rgba(110, 231, 183, 0.08),
-    inset 0 0 40px rgba(110, 231, 183, 0.08);
-}
-
-.calma-phase-hold.calma-breath-core {
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(139, 92, 246, 0.12));
-  box-shadow:
-    0 0 60px rgba(167, 139, 250, 0.15),
-    0 0 120px rgba(167, 139, 250, 0.06),
-    inset 0 0 40px rgba(167, 139, 250, 0.06);
-}
-
-.calma-phase-exhale.calma-breath-core {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.1));
-  box-shadow:
-    0 0 50px rgba(96, 165, 250, 0.15),
-    0 0 100px rgba(96, 165, 250, 0.06),
-    inset 0 0 30px rgba(96, 165, 250, 0.06);
-}
-
-.calma-phase-rest.calma-breath-core {
-  background: linear-gradient(135deg, rgba(110, 231, 183, 0.15), rgba(59, 130, 246, 0.08));
-  box-shadow:
-    0 0 30px rgba(110, 231, 183, 0.08),
-    inset 0 0 20px rgba(110, 231, 183, 0.04);
-}
-
-/* Anillos: colores por fase */
-.calma-phase-inhale.calma-ring-1 { border-color: rgba(110, 231, 183, 0.25); }
-.calma-phase-hold.calma-ring-1   { border-color: rgba(167, 139, 250, 0.2); }
-.calma-phase-exhale.calma-ring-1 { border-color: rgba(96, 165, 250, 0.2); }
-.calma-phase-inhale.calma-ring-2 { border-color: rgba(110, 231, 183, 0.12); }
-.calma-phase-hold.calma-ring-2   { border-color: rgba(167, 139, 250, 0.1); }
-.calma-phase-exhale.calma-ring-2 { border-color: rgba(96, 165, 250, 0.1); }
-
-.calma-phase-inhale .calma-breath-icon { color: rgba(167, 243, 208, 0.9); }
-.calma-phase-hold .calma-breath-icon   { color: rgba(196, 181, 253, 0.8); }
-.calma-phase-exhale .calma-breath-icon { color: rgba(147, 197, 253, 0.8); }
-
-/* ── Instrucción de texto ───────────────────────────────────── */
-.calma-instruction {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-  min-height: 2.4rem;
-}
-
-/* ── Barra de progreso ──────────────────────────────────────── */
-.calma-progress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  width: 60%;
-  max-width: 240px;
-}
-
-.calma-progress-bar {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.calma-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, rgba(110, 231, 183, 0.4), rgba(167, 139, 250, 0.4));
-  border-radius: 2px;
-}
-
-.calma-progress-text {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.08em;
-}
-
-/* ── Pantalla final ─────────────────────────────────────────── */
-.calma-final {
-  position: relative;
-  overflow: hidden;
-}
-
-.calma-final-glow {
-  position: absolute;
-  top: -40%;
-  left: -40%;
-  width: 180%;
-  height: 180%;
-  background: conic-gradient(
-    from 0deg,
-    rgba(110, 231, 183, 0.04),
-    rgba(167, 139, 250, 0.04),
-    rgba(96, 165, 250, 0.04),
-    rgba(110, 231, 183, 0.04)
-  );
-  pointer-events: none;
-}
-
-.calma-final-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 0 20px rgba(110, 231, 183, 0.3));
-}
-
-/* ── Botón de audio ─────────────────────────────────────────── */
-.calma-audio-btn {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s;
-}
-
-.calma-audio-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* ── Modo oscuro ────────────────────────────────────────────── */
-html.dark .calma-app {
-  background: linear-gradient(160deg, #050a0e 0%, #0a1520 40%, #0f1f2e 100%);
-}
-
-/* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 520px) {
-  .calma-app {
-    padding: 1.5rem 0.75rem;
-    min-height: 70vh;
-  }
-
-  .calma-card-inner {
-    padding: 2rem 1.5rem;
-    border-radius: 24px;
-  }
-
-  .calma-title {
-    font-size: 1.6rem;
-  }
-
-  .calma-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .calma-breath-wrapper {
-    width: 180px;
-    height: 180px;
-  }
-
-  .calma-breath-core {
-    width: 100px;
-    height: 100px;
-  }
-
-  .calma-instruction {
-    font-size: 1.3rem;
-  }
-
-  .calma-hero-icon {
-    width: 64px;
-    height: 64px;
-  }
-}
-
 /* ==========================================================================
-   Acabado premium (2026) — calmado: todo lento, suave y de baja intensidad.
-   Solo se animan transform/opacity. Movimiento reducido respetado al final.
+   Isla de la Calma — rediseño 2026 sobre el kit de interfaz (_shared/kit).
+   Prefijo cal-. Aquí va solo lo propio de la app: la escena nocturna (cielo,
+   luna, mar, isla), el orbe de respiración con su anillo de fase y las tres
+   pantallas. El escenario es GameShell theme="dark" (siempre de noche).
+   Rendimiento: solo se animan transform/opacity; los bucles decorativos
+   (estrellas, olas, reflejo, estrella fugaz) solo con html[data-fx="high"].
    ========================================================================== */
 
-.calma-app {
-  isolation: isolate;
-  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  background:
-    radial-gradient(120% 70% at 50% 110%, rgba(13, 148, 136, 0.35), transparent 60%),
-    radial-gradient(80% 60% at 15% 0%, rgba(99, 102, 241, 0.22), transparent 60%),
-    linear-gradient(170deg, #0b1a2a 0%, #13314a 45%, #1c4a5e 80%, #21606a 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 120px rgba(0, 0, 0, 0.25),
-    0 30px 80px -40px rgba(8, 47, 73, 0.8);
+.cal-shell {
+  --cal-horizon: 61%;
+  --cal-ease: cubic-bezier(.45, .05, .55, .95);
 }
 
-html.dark .calma-app {
-  background:
-    radial-gradient(120% 70% at 50% 110%, rgba(13, 148, 136, 0.22), transparent 60%),
-    radial-gradient(80% 60% at 15% 0%, rgba(99, 102, 241, 0.16), transparent 60%),
-    linear-gradient(170deg, #040910 0%, #08141f 45%, #0c1d2b 100%);
-}
+/* Tonos de fase: --ph (principal) · --ph-2 (profundo) · --ph-l (luz) */
+.cal-tone--prep   { --ph: #a5b4fc; --ph-2: #4f46e5; --ph-l: #e0e7ff; }
+.cal-tone--inhale { --ph: #5eead4; --ph-2: #0d9488; --ph-l: #ccfbf1; }
+.cal-tone--hold   { --ph: #c4b5fd; --ph-2: #7c3aed; --ph-l: #ede9fe; }
+.cal-tone--exhale { --ph: #7dd3fc; --ph-2: #0369a1; --ph-l: #e0f2fe; }
+.cal-tone--rest   { --ph: #a3b1cc; --ph-2: #3f4c72; --ph-l: #e2e8f0; }
 
-/* ── Cielo: auroras, luna, estrellas, grano ─────────────────── */
-.calma-sky {
+/* ───────────────────────── Escena nocturna ───────────────────────── */
+/* Va en el hueco `scene` del GameShell (capa de fondo del escenario). */
+.cal-scene {
   position: absolute;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
-  z-index: 0;
-  border-radius: inherit;
-}
-
-.calma-aurora {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.45;
-  will-change: transform;
-}
-
-.calma-aurora-1 {
-  width: 70%;
-  height: 45%;
-  top: -12%;
-  left: -10%;
-  background: radial-gradient(closest-side, rgba(110, 231, 183, 0.55), transparent);
-  animation: calma-aurora-drift 34s ease-in-out infinite alternate;
-}
-
-.calma-aurora-2 {
-  width: 60%;
-  height: 40%;
-  top: -5%;
-  right: -15%;
-  background: radial-gradient(closest-side, rgba(167, 139, 250, 0.5), transparent);
-  animation: calma-aurora-drift 42s ease-in-out infinite alternate-reverse;
-}
-
-.calma-aurora-3 {
-  width: 55%;
-  height: 35%;
-  bottom: 8%;
-  left: 25%;
-  background: radial-gradient(closest-side, rgba(56, 189, 248, 0.35), transparent);
-  opacity: 0.3;
-  animation: calma-aurora-drift 50s ease-in-out infinite alternate;
-}
-
-@keyframes calma-aurora-drift {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(8%, 6%, 0) scale(1.15); }
-  100% { transform: translate3d(-6%, 3%, 0) scale(0.95); }
-}
-
-.calma-moon {
-  position: absolute;
-  top: 7%;
-  right: 9%;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fefce8 0%, #fde68a 45%, #fcd34d 100%);
-  box-shadow:
-    0 0 30px 6px rgba(253, 230, 138, 0.25),
-    0 0 90px 20px rgba(253, 230, 138, 0.12);
-  opacity: 0.85;
-  animation: calma-breathe-soft 12s ease-in-out infinite;
-}
-
-.calma-moon::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 62% 58%, rgba(202, 138, 4, 0.18) 0 12%, transparent 13%),
-    radial-gradient(circle at 38% 70%, rgba(202, 138, 4, 0.12) 0 8%, transparent 9%),
-    radial-gradient(circle at 55% 30%, rgba(202, 138, 4, 0.1) 0 6%, transparent 7%);
+    radial-gradient(42% 30% at 66% 13%, rgba(199, 210, 254, .16), transparent 70%),
+    radial-gradient(70% 12% at 55% var(--cal-horizon), rgba(167, 139, 250, .26), transparent 72%),
+    linear-gradient(180deg,
+      #070c24 0%,
+      #0d1940 24%,
+      #172b5c 46%,
+      #27467c calc(var(--cal-horizon) - .4%),
+      #113452 var(--cal-horizon),
+      #0c2843 74%,
+      #071a2e 100%);
 }
 
-@keyframes calma-breathe-soft {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50%      { transform: scale(1.05); opacity: 0.95; }
-}
-
-.calma-star {
+/* estrellas (estáticas; titilan solo con efectos altos) */
+.cal-stars { position: absolute; inset: 0; }
+.cal-stars i {
   position: absolute;
+  width: var(--s);
+  height: var(--s);
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-  opacity: 0.2;
-  animation: calma-twinkle ease-in-out infinite;
+  background: #f5f3ff;
+  opacity: .75;
+  box-shadow: 0 0 6px rgba(199, 210, 254, .85);
 }
-
-@keyframes calma-twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(0.8); }
-  50%      { opacity: 0.85; transform: scale(1.1); }
-}
-
-.calma-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.06;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
-.calma-particles,
-.calma-waves-bg { z-index: 1; }
-
-.calma-particle {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(167, 243, 208, 0.4) 60%, transparent 70%);
-  box-shadow: 0 0 8px rgba(167, 243, 208, 0.45);
-}
-
-/* Olas con más presencia (gradiente de luz en la cresta) */
-.calma-waves-bg::before {
+.cal-stars i.is-big { width: 3px; height: 3px; opacity: .95; }
+.cal-stars i.is-big::before,
+.cal-stars i.is-big::after {
   content: '';
-  position: absolute;
-  inset: 30% 0 0 0;
-  background: linear-gradient(180deg, transparent, rgba(6, 78, 59, 0.25));
-}
-.calma-wave-1 { animation-duration: 14s; }
-.calma-wave-2 { animation-duration: 18s; }
-.calma-wave-3 { animation-duration: 22s; }
-.calma-wave path { fill: rgba(167, 243, 208, 0.06); }
-.calma-wave-2 path { fill: rgba(125, 211, 252, 0.05); }
-.calma-wave-3 path { fill: rgba(196, 181, 253, 0.045); }
-
-/* ── Tarjeta de cristal ─────────────────────────────────────── */
-.calma-card-inner {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(120% 70% at 0% 0%, rgba(110, 231, 183, 0.12), transparent 55%),
-    radial-gradient(100% 70% at 100% 100%, rgba(167, 139, 250, 0.12), transparent 60%),
-    rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(26px) saturate(140%);
-  -webkit-backdrop-filter: blur(26px) saturate(140%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-    0 40px 90px -40px rgba(0, 0, 0, 0.6),
-    0 12px 30px -16px rgba(13, 148, 136, 0.35);
-}
-
-/* Reflejo superior tipo vidrio */
-.calma-card-inner::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 55% 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
-  pointer-events: none;
-}
-
-/* Borde de luz lenta que recorre la tarjeta */
-.calma-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(from var(--fx-angle, 0deg),
-      transparent 0deg, rgba(167, 243, 208, 0.55) 60deg, transparent 120deg,
-      transparent 200deg, rgba(196, 181, 253, 0.45) 260deg, transparent 320deg);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: fx-spin-angle 16s linear infinite;
-  pointer-events: none;
-}
-
-.calma-card-inner > * { position: relative; z-index: 1; }
-
-.calma-hero-icon {
-  position: relative;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.25), transparent 45%),
-    linear-gradient(135deg, rgba(110, 231, 183, 0.25), rgba(59, 130, 246, 0.2));
-  border: 1px solid rgba(167, 243, 208, 0.35);
-  box-shadow:
-    0 0 0 8px rgba(110, 231, 183, 0.05),
-    0 0 40px rgba(110, 231, 183, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-.calma-hero-icon::after {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  border: 1px solid rgba(167, 243, 208, 0.25);
-  animation: calma-ripple 6s ease-out infinite;
-}
-
-@keyframes calma-ripple {
-  0%   { transform: scale(0.85); opacity: 0.7; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-.calma-title {
-  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-weight: 600;
-  background: linear-gradient(90deg, #a7f3d0, #67e8f9, #c4b5fd, #a7f3d0);
-  background-size: 300% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: fx-pan 18s linear infinite;
-  filter: drop-shadow(0 2px 14px rgba(103, 232, 249, 0.25));
-}
-
-.calma-subtitle { color: rgba(226, 245, 240, 0.7); }
-
-/* ── Selector de ciclos ─────────────────────────────────────── */
-.calma-cycles-label { color: rgba(204, 251, 241, 0.6); }
-
-.calma-cycles-control {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 24px -14px rgba(0, 0, 0, 0.5);
-}
-
-.calma-cycle-btn {
-  color: rgba(255, 255, 255, 0.7);
-  transition: background 0.4s ease, color 0.4s ease;
-}
-.calma-cycle-btn:hover { background: rgba(110, 231, 183, 0.12); color: #ecfdf5; }
-.calma-cycle-btn:active { background: rgba(110, 231, 183, 0.2); }
-.calma-cycle-btn:focus-visible,
-.calma-start-btn:focus-visible,
-.calma-audio-btn:focus-visible {
-  outline: 2px solid rgba(167, 243, 208, 0.8);
-  outline-offset: 3px;
-}
-
-.calma-cycle-value {
-  color: #a7f3d0;
-  text-shadow: 0 0 14px rgba(110, 231, 183, 0.45);
-}
-
-/* ── Botones ────────────────────────────────────────────────── */
-.calma-start-btn {
-  position: relative;
-  overflow: hidden;
-  color: #fff;
-  font-weight: 600;
-  background: linear-gradient(135deg, #047857 0%, #0d9488 50%, #0e7490 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
-    0 14px 34px -14px rgba(13, 148, 136, 0.75),
-    0 0 0 1px rgba(167, 243, 208, 0.15);
-}
-
-/* Brillo lento que cruza el botón principal */
-.calma-start-btn--main::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -60%;
-  width: 40%;
-  height: 200%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: translateX(-120%) rotate(12deg);
-  animation: fx-shine-sweep 5s ease-in-out 1.5s infinite;
-  pointer-events: none;
-}
-
-.calma-start-btn:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.32),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
-    0 18px 40px -14px rgba(20, 184, 166, 0.85),
-    0 0 0 1px rgba(167, 243, 208, 0.3);
-}
-
-.calma-restart-btn {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 10px 26px -14px rgba(0, 0, 0, 0.5);
-}
-.calma-restart-btn:hover { color: #fff; }
-
-/* ── Círculo de respiración ─────────────────────────────────── */
-.calma-breath-wrapper {
-  --calma-tone: 110, 231, 183;
-  width: 260px;
-  height: 260px;
-}
-.calma-breath-wrapper.calma-phase-hold   { --calma-tone: 167, 139, 250; }
-.calma-breath-wrapper.calma-phase-exhale { --calma-tone: 96, 165, 250; }
-
-.calma-breath-halo {
-  position: absolute;
-  inset: -20%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--calma-tone), 0.28) 0%, rgba(var(--calma-tone), 0.08) 40%, transparent 68%);
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background 1.5s ease;
-  pointer-events: none;
-}
-
-.calma-breath-petals {
-  position: absolute;
-  inset: 12%;
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-/* Cada pétalo es una elipse girada; el conjunto rota muy despacio */
-.calma-breath-petals::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px dashed rgba(var(--calma-tone), 0.18);
-  animation: calma-slow-spin 60s linear infinite;
-}
-
-.calma-petal {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 44%;
-  height: 22%;
-  margin: -11% 0 0 0;
-  border-radius: 50%;
-  transform-origin: 0% 50%;
-  transform: rotate(calc(var(--i) * 45deg));
-  background: radial-gradient(ellipse at 70% 50%, rgba(var(--calma-tone), 0.16), transparent 70%);
-  border: 1px solid rgba(var(--calma-tone), 0.14);
-  transition: background 1.5s ease, border-color 1.5s ease;
+  width: 13px;
+  height: 1px;
+  margin: -.5px 0 0 -6.5px;
+  background: linear-gradient(90deg, transparent, rgba(238, 242, 255, .9), transparent);
 }
+.cal-stars i.is-big::after { transform: rotate(90deg); }
 
-@keyframes calma-slow-spin { to { transform: rotate(360deg); } }
-
-.calma-breath-ring {
-  border-width: 1.5px;
-  box-shadow: 0 0 24px rgba(var(--calma-tone), 0.08), inset 0 0 24px rgba(var(--calma-tone), 0.05);
-}
-
-.calma-breath-core {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-/* Reflejo de burbuja dentro del núcleo */
-.calma-breath-core-shine {
+/* estrella fugaz: solo con efectos altos */
+.cal-shooting {
   position: absolute;
-  top: 10%;
-  left: 18%;
-  width: 45%;
-  height: 30%;
+  top: 9%;
+  left: 12%;
+  width: 110px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(238, 242, 255, .95));
+  opacity: 0;
+  transform: rotate(16deg);
+  display: none;
+}
+
+/* luna */
+.cal-moon {
+  position: absolute;
+  left: 66%;
+  top: 3%;
+  width: 200px;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+}
+
+/* horizonte e islotes lejanos */
+.cal-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--cal-horizon);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 210, 254, .45) 25%, rgba(199, 210, 254, .45) 75%, transparent);
+}
+.cal-far {
+  position: absolute;
+  left: 0;
+  width: 46%;
+  height: 26px;
+  top: calc(var(--cal-horizon) - 25px);
+}
+
+/* reflejo de la luna en el agua */
+.cal-shine {
+  position: absolute;
+  left: 66%;
+  top: calc(var(--cal-horizon) + 8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  transform: translateX(-50%);
+}
+.cal-shine { transition: opacity 1.4s ease; }
+.cal-scene--respiracion .cal-shine,
+.cal-scene--final .cal-shine { opacity: .35; }
+.cal-shine i {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, rgba(254, 249, 195, .7) 30%, rgba(238, 242, 255, .8) 50%, rgba(254, 249, 195, .7) 70%, transparent);
+  opacity: calc(.95 - var(--i) * .07);
+}
+
+/* isla: se aparta y se encoge mientras se respira */
+.cal-isle {
+  position: absolute;
+  right: 1.5%;
+  bottom: 6%;
+  width: min(46%, 420px);
+  aspect-ratio: 400 / 320;
+  transform-origin: 100% 100%;
+  transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity 1.4s ease;
+}
+.cal-scene--respiracion .cal-isle { transform: scale(.5); opacity: .72; }
+.cal-scene--final .cal-isle { transform: scale(.66); opacity: .9; }
+
+/* olas: tres bandas; derivan despacio solo con efectos altos */
+.cal-waves { position: absolute; left: 0; right: 0; bottom: 0; height: 11%; }
+.cal-wave { position: absolute; left: 0; bottom: 0; width: 200%; }
+.cal-wave svg { display: block; width: 100%; height: 100%; }
+.cal-wave--0 { height: 70%; bottom: 40%; }
+.cal-wave--1 { height: 70%; bottom: 18%; }
+.cal-wave--2 { height: 60%; }
+
+/* ───────────────────────── Estructura ───────────────────────── */
+.cal-top { position: relative; z-index: 2; transition: opacity .8s ease; }
+.cal-shell--respiracion .cal-top { opacity: .5; }
+.cal-shell--respiracion .cal-top:hover,
+.cal-shell--respiracion .cal-top:has(:focus-visible) { opacity: 1; }
+
+.cal-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+}
+.cal-stage > section { flex: 1; }
+
+.cal-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  background: linear-gradient(100deg, #ccfbf1 0%, #5eead4 38%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.cal-lead {
+  margin: 0;
+  max-width: 44ch;
+  font-family: 'Nunito', var(--gk-font);
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: #c7d2f0;
+}
+
+/* sonido */
+.cal-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px 0 12px;
+  border-radius: 14px;
+  font-family: var(--gk-font);
+  font-size: .86rem;
+  font-weight: 700;
+  color: var(--gk-ink-2);
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 3px 0 #0a1230, 0 10px 20px -14px rgba(0, 0, 0, .8);
+  cursor: pointer;
+  transition: transform .18s ease, color .2s ease, background .2s ease;
+}
+.cal-sound:hover { transform: translateY(-2px); color: #ccfbf1; }
+.cal-sound:active { transform: translateY(2px); box-shadow: 0 1px 0 #0a1230; }
+.cal-sound:focus-visible { outline: 3px solid rgba(94, 234, 212, .55); outline-offset: 2px; }
+.cal-sound.is-on {
+  color: #ccfbf1;
+  background: linear-gradient(180deg, rgba(45, 212, 191, .26), rgba(20, 184, 166, .14));
+  border-color: rgba(94, 234, 212, .45);
+  box-shadow: 0 3px 0 #0b3b40, 0 10px 22px -12px rgba(45, 212, 191, .8);
+}
+.cal-sound__bars { display: none; align-items: flex-end; gap: 2px; height: 14px; }
+.cal-sound.is-on .cal-sound__bars { display: inline-flex; }
+.cal-sound__bars i { width: 3px; height: 100%; border-radius: 2px; background: #5eead4; transform-origin: 50% 100%; }
+.cal-sound__bars i:nth-child(1) { transform: scaleY(.45); }
+.cal-sound__bars i:nth-child(2) { transform: scaleY(.9); }
+.cal-sound__bars i:nth-child(3) { transform: scaleY(.6); }
+
+/* ───────────────────────── Inicio ───────────────────────── */
+.cal-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center;
+}
+.cal-intro__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 470px;
+  padding: 6px 0 22px;
+}
+.cal-kicker.gk-chip {
+  color: #99f6e4;
+  background: rgba(45, 212, 191, .12);
+  border-color: rgba(94, 234, 212, .3);
+}
+
+.cal-rhythm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cal-rhythm__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--ph-l);
+  background: color-mix(in srgb, var(--ph) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ph) 30%, transparent);
+}
+.cal-rhythm__step i {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35), transparent 70%);
-  pointer-events: none;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--ph) 60%, var(--ph-2));
+  box-shadow: 0 0 8px var(--ph);
+}
+.cal-rhythm__step small { font-size: .72rem; font-weight: 700; opacity: .6; }
+
+/* contador de respiraciones */
+.cal-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(100%, 360px);
+  padding: 14px 16px 16px;
+  border-radius: 24px;
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(94, 234, 212, .12), transparent 60%),
+    linear-gradient(180deg, rgba(30, 45, 92, .78), rgba(15, 25, 58, .82));
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 22px 40px -26px rgba(0, 0, 0, .9);
+}
+.cal-stepper__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cal-stepper__label {
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+}
+.cal-stepper__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: #94a3c8;
+}
+.cal-stepper__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cal-stepper__btn {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 18px;
+  color: #e0e7ff;
+  background: linear-gradient(180deg, #34477e 0%, #243565 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .22),
+    0 4px 0 #0b1433,
+    0 12px 20px -12px rgba(0, 0, 0, .9);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, color .2s ease;
+}
+.cal-stepper__btn:hover:not(:disabled) { transform: translateY(-2px); color: #5eead4; }
+.cal-stepper__btn:active:not(:disabled) { transform: translateY(3px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 1px 0 #0b1433; }
+.cal-stepper__btn:focus-visible { outline: 3px solid rgba(94, 234, 212, .55); outline-offset: 2px; }
+.cal-stepper__btn:disabled { opacity: .38; cursor: not-allowed; }
+.cal-stepper__value {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  height: 60px;
+  border-radius: 18px;
+  background: rgba(3, 8, 28, .55);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 255, 255, .06);
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #ccfbf1;
+  text-shadow: 0 0 18px rgba(45, 212, 191, .75);
+}
+.cal-stepper__value span { display: inline-block; animation: cal-bump .45s cubic-bezier(.34, 1.56, .64, 1); }
+.cal-stepper__pearls { display: flex; justify-content: space-between; gap: 4px; padding: 0 2px; }
+.cal-stepper__pearls i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4);
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), opacity .3s ease;
+}
+.cal-stepper__pearls i.is-on {
+  background: radial-gradient(circle at 35% 30%, #f0fdfa, #5eead4 55%, #0d9488);
+  box-shadow: 0 0 8px rgba(94, 234, 212, .7);
+  transform: scale(1.08);
 }
 
-.calma-breath-icon {
+.cal-cta { min-width: 220px; }
+
+/* ───────────────────────── Respiración ───────────────────────── */
+.cal-breath {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 46px;
+  text-align: center;
+}
+
+.cal-orb {
   position: relative;
-  filter: drop-shadow(0 0 10px rgba(var(--calma-tone), 0.6));
+  width: min(340px, 78vw);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+.cal-orb > * { position: absolute; }
+
+/* aura: una capa por tono, se funden con opacidad */
+.cal-orb__aura {
+  inset: -14%;
+  transition: transform 4s var(--cal-ease);
+}
+.cal-orb__aura span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ph) 55%, transparent) 30%, color-mix(in srgb, var(--ph) 22%, transparent) 58%, transparent);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.cal-orb__aura span.is-on { opacity: 1; }
+
+/* mandala de pétalos que se abre al inhalar */
+.cal-orb__petals {
+  inset: 0;
+  transition: transform 4s var(--cal-ease);
+}
+.cal-orb__petals span {
+  position: absolute;
+  left: 39%;
+  top: 8%;
+  width: 22%;
+  height: 42%;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  transform-origin: 50% 100%;
+  transform: rotate(calc(var(--i) * 45deg));
+  background: linear-gradient(0deg, rgba(255, 255, 255, .03) 10%, rgba(255, 255, 255, .24) 100%);
+  border: 1px solid rgba(255, 255, 255, .22);
+  box-shadow: inset 0 6px 10px -6px rgba(255, 255, 255, .35);
 }
 
-.calma-instruction {
-  font-family: 'Fredoka', system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 1.85rem;
-  color: rgba(240, 253, 250, 0.88);
-  text-shadow: 0 0 24px rgba(167, 243, 208, 0.35), 0 2px 10px rgba(0, 0, 0, 0.25);
+.cal-orb__ring {
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .16);
+  transition: transform 4s var(--cal-ease);
 }
+.cal-orb__ring--inner { border-style: dashed; border-color: rgba(255, 255, 255, .2); }
 
-/* ── Progreso ───────────────────────────────────────────────── */
-.calma-progress-bar {
-  position: relative;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.06);
+/* anillo de fase: dos mitades que giran (solo transform) bajo una máscara de anillo */
+.cal-dial { inset: 3%; }
+.cal-dial__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
 }
-
-.calma-progress-fill {
-  position: relative;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(110, 231, 183, 0.75), rgba(103, 232, 249, 0.75), rgba(167, 139, 250, 0.75));
-  box-shadow: 0 0 12px rgba(110, 231, 183, 0.45);
-  overflow: hidden;
-}
-
-.calma-progress-fill::after {
+.cal-dial__ring::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-  transform: translateX(-100%);
-  animation: calma-progress-sheen 4s ease-in-out infinite;
-}
-
-@keyframes calma-progress-sheen {
-  to { transform: translateX(100%); }
-}
-
-.calma-progress-text { color: rgba(204, 251, 241, 0.6); }
-
-/* ── Pantalla final ─────────────────────────────────────────── */
-.calma-final-glow {
-  background: conic-gradient(from 0deg,
-      rgba(110, 231, 183, 0.1), rgba(167, 139, 250, 0.1),
-      rgba(96, 165, 250, 0.1), rgba(110, 231, 183, 0.1));
-}
-
-.calma-final-icon {
-  position: relative;
-  display: inline-grid;
-  place-items: center;
-  width: 110px;
-  height: 110px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), transparent 50%),
-    radial-gradient(circle, rgba(110, 231, 183, 0.22), rgba(59, 130, 246, 0.12));
-  border: 1px solid rgba(167, 243, 208, 0.3);
-  box-shadow: 0 0 50px rgba(110, 231, 183, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, .1);
+}
+.cal-dial__half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.cal-dial__half--r { left: 50%; }
+.cal-dial__half--l { left: 0; }
+.cal-dial__half i {
+  position: absolute;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  border-radius: 50%;
+  transform: rotate(0deg);
+  animation: cal-half calc(var(--dur, 4s) / 2) linear both;
+}
+/* mitad derecha: disco con su mitad IZQUIERDA pintada que entra girando */
+.cal-dial__half--r i {
+  left: -100%;
+  background: linear-gradient(90deg, var(--ph-l) 0%, var(--ph) 50%, transparent 50%);
+}
+/* mitad izquierda: disco con su mitad DERECHA pintada; arranca a mitad de fase */
+.cal-dial__half--l i {
+  left: 0;
+  background: linear-gradient(90deg, transparent 50%, var(--ph) 50%, var(--ph-l) 100%);
+  animation-delay: calc(var(--dur, 4s) / 2);
+}
+.cal-dial__tip {
+  position: absolute;
+  inset: 0;
+  animation: cal-turn var(--dur, 4s) linear both;
+}
+.cal-dial__tip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fff, var(--ph-l) 45%, var(--ph) 100%);
+  box-shadow: 0 0 14px 2px var(--ph);
 }
 
-.calma-final-emoji { position: relative; z-index: 1; line-height: 1; }
-
-.calma-final-ripple {
+/* núcleo luminoso: capas de tono que se funden + brillo */
+.cal-orb__core {
+  inset: 30%;
+  border-radius: 50%;
+  transition: transform 4s var(--cal-ease);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 24px 48px -18px rgba(0, 0, 0, .7);
+}
+.cal-orb__tone {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(167, 243, 208, 0.45);
-  animation: calma-ripple 5s ease-out infinite;
-  pointer-events: none;
+  background:
+    radial-gradient(circle at 34% 28%, #fff 0%, var(--ph-l) 16%, var(--ph) 52%, var(--ph-2) 100%);
+  box-shadow:
+    inset -10px -14px 28px rgba(8, 14, 48, .38),
+    inset 6px 8px 14px rgba(255, 255, 255, .3),
+    0 0 46px -4px var(--ph);
+  opacity: 0;
+  transition: opacity 1.4s ease;
 }
-.calma-final-ripple-2 { animation-delay: 1.66s; border-color: rgba(103, 232, 249, 0.4); }
-.calma-final-ripple-3 { animation-delay: 3.33s; border-color: rgba(196, 181, 253, 0.4); }
+.cal-orb__tone.is-on { opacity: 1; }
+.cal-orb__gloss {
+  position: absolute;
+  left: 18%;
+  top: 10%;
+  width: 46%;
+  height: 26%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0));
+  transform: rotate(-24deg);
+}
 
-/* ── Botón de audio ─────────────────────────────────────────── */
-.calma-audio-btn {
-  width: 44px;
-  height: 44px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+/* palabra de la fase */
+.cal-cue { min-height: 92px; }
+.cal-cue__word {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: .01em;
+  color: var(--ph-l);
+  text-shadow: 0 0 26px color-mix(in srgb, var(--ph) 70%, transparent);
 }
-.calma-audio-btn:hover {
-  color: #ecfdf5;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 24px rgba(110, 231, 183, 0.3);
+.cal-cue__hint {
+  margin: 8px 0 0;
+  text-shadow: 0 1px 10px rgba(5, 12, 36, .9);
+  font-family: 'Nunito', var(--gk-font);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #aab6db;
 }
 
-/* ── Responsive ─────────────────────────────────────────────── */
+/* fila de fases */
+.cal-phases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 520px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cal-phase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 8px;
+  border-radius: 16px;
+  font-size: .92rem;
+  font-weight: 700;
+  color: #8f9cc4;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: transform .5s cubic-bezier(.34, 1.56, .64, 1);
+}
+.cal-phase i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ph);
+  opacity: .55;
+}
+.cal-phase.is-on {
+  color: #0b1433;
+  background: linear-gradient(180deg, var(--ph-l), var(--ph));
+  border-color: transparent;
+  box-shadow: 0 3px 0 var(--ph-2), 0 12px 26px -12px var(--ph);
+  transform: translateY(-2px);
+}
+.cal-phase.is-on i { background: var(--ph-2); opacity: 1; }
+
+/* ciclos */
+.cal-cycles { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cal-cycles__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; max-width: 320px; }
+.cal-cycles__dots i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .45);
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), opacity .4s ease;
+}
+.cal-cycles__dots i.is-done { background: radial-gradient(circle at 35% 30%, #f0fdfa, #5eead4 60%, #0d9488); box-shadow: none; }
+.cal-cycles__dots i.is-now {
+  background: radial-gradient(circle at 35% 30%, #fff, #a5b4fc 55%, #6366f1);
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, .25), 0 0 12px rgba(165, 180, 252, .8);
+  transform: scale(1.2);
+}
+.cal-cycles__text { font-size: .9rem; font-weight: 700; color: #94a3c8; }
+.cal-cycles__text strong { color: #e0e7ff; }
+
+/* ───────────────────────── Final ───────────────────────── */
+.cal-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 46px 0 36px;
+  text-align: center;
+}
+.cal-final__art { width: min(270px, 70vw); aspect-ratio: 240 / 210; margin: -4px 0 -18px; }
+.cal-final .cal-lead { max-width: 40ch; }
+.cal-final__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cal-final__chips .gk-chip { color: #c7d2fe; background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .12); }
+
+/* ───────────────────────── Animaciones ───────────────────────── */
+@keyframes cal-half { from { transform: rotate(0deg); } to { transform: rotate(180deg); } }
+@keyframes cal-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes cal-bump { 0% { transform: scale(.6); opacity: .3; } 60% { transform: scale(1.18); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes cal-twinkle { 0%, 100% { opacity: .85; transform: scale(1); } 50% { opacity: .25; transform: scale(.6); } }
+@keyframes cal-drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes cal-shimmer { from { opacity: calc(.95 - var(--i) * .07); transform: scaleX(1); } to { opacity: .2; transform: scaleX(.8); } }
+@keyframes cal-shoot {
+  0%, 86% { opacity: 0; transform: translate(0, 0) rotate(16deg); }
+  88% { opacity: 1; }
+  94%, 100% { opacity: 0; transform: translate(260px, 75px) rotate(16deg); }
+}
+@keyframes cal-ripple { 0% { transform: scale(.7); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.12); opacity: 0; } }
+@keyframes cal-eq { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+
+/* bucles decorativos: solo con nivel de efectos alto */
+html[data-fx="high"] .cal-stars i { animation: cal-twinkle 4.8s ease-in-out var(--d) infinite; }
+html[data-fx="high"] .cal-wave--0 { animation: cal-drift 70s linear infinite; }
+html[data-fx="high"] .cal-wave--1 { animation: cal-drift 52s linear infinite reverse; }
+html[data-fx="high"] .cal-wave--2 { animation: cal-drift 38s linear infinite; }
+html[data-fx="high"] .cal-shine i { animation: cal-shimmer 2.8s ease-in-out calc(var(--i) * -.45s) infinite alternate; }
+html[data-fx="high"] .cal-shooting { display: block; animation: cal-shoot 14s ease-in 3s infinite; }
+html[data-fx="high"] .cal-ripple { transform-box: fill-box; transform-origin: center; animation: cal-ripple 5s ease-out infinite; }
+html[data-fx="high"] .cal-ripple--2 { animation-delay: 2.5s; }
+html[data-fx="high"] .cal-sound.is-on .cal-sound__bars i { animation: cal-eq 1.1s ease-in-out infinite; }
+html[data-fx="high"] .cal-sound.is-on .cal-sound__bars i:nth-child(2) { animation-delay: -.35s; }
+html[data-fx="high"] .cal-sound.is-on .cal-sound__bars i:nth-child(3) { animation-delay: -.7s; }
+
+/* ───────────────────────── Responsive ───────────────────────── */
 @media (max-width: 720px) {
-  .calma-moon { width: 40px; height: 40px; top: 5%; right: 7%; }
-  .calma-aurora { filter: blur(44px); }
-}
+  .cal-shell { --cal-horizon: 60%; }
+  .cal-stage { min-height: 0; }
+  .cal-moon { left: 80%; top: 2%; width: 130px; }
+  .cal-shine { left: 80%; gap: 9px; }
+  .cal-shine i { max-width: 64px; }
+  .cal-far { width: 70%; }
 
-@media (max-width: 520px) {
-  .calma-breath-wrapper { width: 200px; height: 200px; }
-  .calma-instruction { font-size: 1.4rem; }
-  .calma-final-icon { width: 92px; height: 92px; }
-  .calma-audio-btn { bottom: 1rem; right: 1rem; }
-}
+  .cal-isle {
+    right: auto;
+    left: 50%;
+    width: 80%;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%);
+  }
+  .cal-scene--respiracion .cal-isle { transform: translate(-88%, -7%) scale(.36); opacity: .6; }
+  .cal-scene--final .cal-isle { transform: translate(-88%, -7%) scale(.4); opacity: .75; }
+  .cal-waves { height: 11%; }
 
-/* ── Movimiento reducido ────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .calma-aurora,
-  .calma-moon,
-  .calma-star,
-  .calma-particle,
-  .calma-wave,
-  .calma-title,
-  .calma-card-inner::after,
-  .calma-hero-icon::after,
-  .calma-start-btn--main::after,
-  .calma-breath-petals::before,
-  .calma-progress-fill::after,
-  .calma-final-ripple {
-    animation: none !important;
+  .cal-intro { grid-template-columns: 1fr; }
+  .cal-intro__copy {
+    max-width: none;
+    align-items: center;
+    text-align: center;
+    padding-bottom: calc(64vw + 8px);
   }
-  .calma-breath-ring,
-  .calma-breath-core,
-  .calma-breath-halo,
-  .calma-breath-petals {
-    transition-duration: 1.5s;
-  }
+  .cal-rhythm { justify-content: center; }
+  .cal-stepper { width: 100%; }
+  .cal-cta { width: 100%; }
+
+  .cal-sound span:not(.cal-sound__bars) { display: none; }
+  .cal-sound { padding: 0 11px; }
+
+  .cal-phases { gap: 5px; }
+  .cal-phase { padding: 8px 4px; font-size: .8rem; gap: 5px; }
+  .cal-phase i { width: 7px; height: 7px; }
+  .cal-cue { min-height: 84px; }
+  .cal-cue__hint { font-size: .92rem; }
+  .cal-breath { padding-bottom: 18vw; }
+  .cal-final { padding-bottom: 26vw; }
 }

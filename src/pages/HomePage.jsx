@@ -409,7 +409,7 @@ const HomePage = () => {
           >
             <OrbitLayer />
             <div className="home-hero__robot-inner">
-              <Mascot />
+              <Mascot context="home" />
             </div>
             <OrbitLayer front />
           </motion.div>

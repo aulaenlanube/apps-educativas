@@ -1,11 +1,26 @@
+// Clasificador — rediseño 2026 sobre el kit de interfaz (_shared/kit).
+// Cada palabra es una pieza que cae en una de las cestas (categorías). Se
+// juega pulsando la cesta o arrastrando la pieza hasta ella: los dos caminos
+// llaman a handleAnswer, que es la lógica original sin cambios (puntos,
+// rachas, tiempos de espera y tracking intactos). Todo lo demás es solo
+// presentación: vuelo de la pieza, cestas que se llenan, avisos y resultados.
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
 import {
-  Loader2, CheckCircle2, XCircle, Flame, Trophy, RefreshCcw, ArrowRight, BookOpen, Clock, Lightbulb, SkipForward, Sparkles, LogOut, X, Home
+  Flame, RefreshCw, ArrowRight, BookOpen, Clock, Lightbulb, SkipForward, LayoutGrid, X,
+  Check, Target, Zap, Trophy, Shapes, Hand, GraduationCap, Sparkles,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  motion, AnimatePresence, useAnimationControls, useMotionValue, useReducedMotion,
+} from 'framer-motion';
+import confetti from 'canvas-confetti';
 import { getRunnerData } from '../../services/gameDataService';
+import useArtIds from '@/components/art/useArtIds';
+import InstructionsModal from './InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, GameButton, ModeSelect,
+  ResultsScreen, FeedbackItem, GameLoading, GameEmpty,
+} from './kit';
 import './Clasificador.css';
 
 // Constantes de configuración
@@ -16,41 +31,18 @@ const MAX_SPEED_BONUS = 200;
 const SPEED_BONUS_WINDOW_SEC = 120; // ~12s por pregunta como referencia
 const MAX_STREAK_BONUS = 200;
 
-// --- TEMAS ACTUALIZADOS (Hover Oscuro) ---
-const BUTTON_THEMES = [
-  {
-    id: 'violet',
-    color: 'text-violet-600',
-    bg: 'bg-white',
-    border: 'border-violet-200',
-    hover: 'hover:bg-violet-700 hover:border-violet-700 hover:shadow-violet-500/30',
-    active: 'active:bg-violet-800'
-  },
-  {
-    id: 'pink',
-    color: 'text-pink-600',
-    bg: 'bg-white',
-    border: 'border-pink-200',
-    hover: 'hover:bg-pink-600 hover:border-pink-600 hover:shadow-pink-500/30',
-    active: 'active:bg-pink-800'
-  },
-  {
-    id: 'sky',
-    color: 'text-sky-600',
-    bg: 'bg-white',
-    border: 'border-sky-200',
-    hover: 'hover:bg-sky-600 hover:border-sky-600 hover:shadow-sky-500/30',
-    active: 'active:bg-sky-800'
-  },
-  {
-    id: 'orange',
-    color: 'text-orange-600',
-    bg: 'bg-white',
-    border: 'border-orange-200',
-    hover: 'hover:bg-orange-600 hover:border-orange-600 hover:shadow-orange-500/30',
-    active: 'active:bg-orange-800'
-  }
+const SHELL = { accent: '#14b8a6', accent2: '#6366f1' };
+
+// Cestas: color y emblema de forma (como un juego de encajar formas).
+const BIN_THEMES = [
+  { id: 'violet', light: '#ddd6fe', base: '#8b5cf6', dark: '#4c1d95', shape: 'circle' },
+  { id: 'pink', light: '#fbcfe8', base: '#ec4899', dark: '#831843', shape: 'triangle' },
+  { id: 'sky', light: '#bae6fd', base: '#0ea5e9', dark: '#0c4a6e', shape: 'square' },
+  { id: 'orange', light: '#fed7aa', base: '#f97316', dark: '#7c2d12', shape: 'star' },
 ];
+const PIECE_COLORS = ['#fbbf24', '#34d399', '#f472b6', '#60a5fa', '#a78bfa', '#fb923c'];
+
+const prettyCat = (cat = '') => String(cat).replace(/_/g, ' ');
 
 // Función auxiliar para barajar
 const shuffleArray = (array) => {
@@ -62,33 +54,164 @@ const shuffleArray = (array) => {
   return newArray;
 };
 
-// Componente Confetti
-const ConfettiEffect = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none z-50">
-    {[...Array(30)].map((_, i) => (
-      <motion.div
-        key={i}
-        initial={{ y: '110vh', x: `${Math.random() * 100}vw`, opacity: 1, scale: 0 }}
-        animate={{
-          y: '-10vh',
-          opacity: [0, 1, 1, 0],
-          rotate: 720,
-          scale: [0, 1, 0.5],
-          x: `calc(${Math.random() * 100}vw - 50vw)`
-        }}
-        transition={{
-          duration: 3 + Math.random() * 2,
-          delay: i * 0.1,
-          ease: "easeOut"
-        }}
-        className="absolute w-3 h-3 rounded-md shadow-sm"
-        style={{
-          backgroundColor: ['#fde047', '#f472b6', '#818cf8', '#34d399', '#fb923c'][i % 5]
-        }}
-      />
-    ))}
-  </div>
-);
+/* ───────────── Ilustración de la cesta (SVG sin filtros) ───────────── */
+
+const Emblem = ({ shape, fill }) => {
+  if (shape === 'triangle') return <path d="M80 72 L91 91 H69 Z" fill={fill} strokeLinejoin="round" stroke={fill} strokeWidth="3" />;
+  if (shape === 'square') return <rect x="70.5" y="72.5" width="19" height="19" rx="4" fill={fill} />;
+  if (shape === 'star') return <path d="M80 70.5 l3.3 6.9 7.5 1 -5.5 5.2 1.4 7.5 -6.7 -3.7 -6.7 3.7 1.4 -7.5 -5.5 -5.2 7.5 -1 Z" fill={fill} />;
+  return <circle cx="80" cy="82" r="10" fill={fill} />;
+};
+
+const BinArt = ({ theme, fill = 0 }) => {
+  const [id, url] = useArtIds();
+  const shown = Math.min(fill, 6);
+  // Piezas asomando por la boca de la cesta (las que ya has acertado)
+  const pieces = Array.from({ length: shown }).map((_, i) => {
+    const col = i % 3;
+    const row = Math.floor(i / 3);
+    return { x: 48 + col * 24 + (row ? 12 : 0), y: 22 - row * 9, c: PIECE_COLORS[i % PIECE_COLORS.length], r: (i % 2 ? -1 : 1) * (8 + i * 3) };
+  });
+  return (
+    <svg className="clf-binart" viewBox="0 0 160 128" aria-hidden="true">
+      <defs>
+        <linearGradient id={id('body')} x1="0.1" y1="0" x2="0.9" y2="1">
+          <stop offset="0" stopColor={theme.light} />
+          <stop offset="0.45" stopColor={theme.base} />
+          <stop offset="1" stopColor={theme.dark} />
+        </linearGradient>
+        <linearGradient id={id('inside')} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={theme.dark} />
+          <stop offset="1" stopColor={theme.base} stopOpacity=".7" />
+        </linearGradient>
+        <linearGradient id={id('gloss')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#fff" stopOpacity=".55" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id={id('shade')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor={theme.dark} stopOpacity="0" />
+          <stop offset="1" stopColor={theme.dark} stopOpacity=".45" />
+        </linearGradient>
+        <radialGradient id={id('ground')} cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#1e1b4b" stopOpacity=".35" />
+          <stop offset="1" stopColor="#1e1b4b" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id={id('glow')} cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#fff" stopOpacity=".9" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="80" cy="121" rx="62" ry="6" fill={url('ground')} />
+      {/* boca (interior) */}
+      <ellipse cx="80" cy="34" rx="64" ry="13" fill={url('inside')} />
+      <ellipse className="clf-binart__glow" cx="80" cy="34" rx="50" ry="9" fill={url('glow')} />
+      {/* piezas ya clasificadas */}
+      {pieces.map((p, i) => (
+        <g key={i} transform={`rotate(${p.r} ${p.x} ${p.y + 12})`}>
+          <rect x={p.x - 10} y={p.y} width="20" height="20" rx="5" fill={p.c} />
+          <rect x={p.x - 7} y={p.y + 3} width="9" height="4" rx="2" fill="#fff" opacity=".6" />
+        </g>
+      ))}
+      {/* cuerpo */}
+      <path d="M16 36 L28 110 Q30 118 39 118 H121 Q130 118 132 110 L144 36 Q112 50 80 50 Q48 50 16 36 Z" fill={url('body')} />
+      {/* trenzado de la cesta */}
+      <path d="M21 62 Q80 76 139 62 M24.5 84 Q80 97 135.5 84" stroke="#fff" strokeOpacity=".28" strokeWidth="3" fill="none" strokeLinecap="round" />
+      <path d="M21 66 Q80 80 139 66 M24.5 88 Q80 101 135.5 88" stroke={theme.dark} strokeOpacity=".25" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* sombra propia (derecha) y brillo (izquierda) */}
+      <path d="M110 48 Q128 44 144 36 L132 110 Q130 118 121 118 H112 Z" fill={url('shade')} />
+      <path d="M24 44 L33 104 Q34 108 38 109 L32 46 Z" fill={url('gloss')} />
+      {/* borde de la boca */}
+      <ellipse cx="80" cy="34" rx="64" ry="13" fill="none" stroke={theme.light} strokeWidth="5" />
+      <path d="M22 30 Q50 20 80 21" stroke="#fff" strokeOpacity=".75" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+      {/* emblema */}
+      <circle cx="80" cy="82" r="18" fill="#fff" opacity=".96" />
+      <circle cx="80" cy="82" r="18" fill="none" stroke={theme.dark} strokeOpacity=".2" strokeWidth="2" />
+      <Emblem shape={theme.shape} fill={theme.base} />
+    </svg>
+  );
+};
+
+/* ───────────── Pieza (la palabra que hay que clasificar) ───────────── */
+
+// innerRef: para medir la pieza y calcular el vuelo hasta la cesta.
+// flight: { ok, dx, dy } → vuela a la cesta (acierto) o rebota (fallo).
+const ClfPiece = ({ word, feedback, flight, canDrag, innerRef, onDropOnBin, onHoverBin }) => {
+  const reduce = useReducedMotion();
+  const controls = useAnimationControls();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const draggedRef = useRef(false);
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 320, damping: 22 } });
+  }, [controls]);
+
+  useEffect(() => {
+    if (!flight || reduce) return;
+    const x0 = x.get();
+    const y0 = y.get();
+    if (flight.ok) {
+      controls.start({
+        x: x0 + flight.dx,
+        y: [y0, y0 + flight.dy - 40, y0 + flight.dy],
+        scale: [1, 0.8, 0.22],
+        rotate: [0, -6, 8],
+        opacity: [1, 1, 0],
+        transition: { duration: 0.55, times: [0, 0.55, 1], ease: 'easeIn' },
+      });
+    } else {
+      controls.start({
+        x: [x0, x0 + flight.dx * 0.82, 0, -14, 12, -6, 0],
+        y: [y0, y0 + flight.dy * 0.7, 0, 0, 0, 0, 0],
+        scale: [1, 0.66, 1, 1, 1, 1, 1],
+        rotate: [0, -10, 0, 0, 0, 0, 0],
+        transition: { duration: 1.05, times: [0, 0.32, 0.62, 0.72, 0.82, 0.92, 1] },
+      });
+    }
+  }, [flight, reduce, controls, x, y]);
+
+  // Cesta bajo el puntero (los dos ejes en coordenadas de ventana)
+  const binAt = (event, info) => {
+    const cx = event?.clientX ?? (info.point.x - window.scrollX);
+    const cy = event?.clientY ?? (info.point.y - window.scrollY);
+    const els = document.elementsFromPoint(cx, cy);
+    const bin = els.find((el) => el.dataset && el.dataset.clfBin);
+    return bin ? bin.dataset.clfBin : null;
+  };
+
+  const state = feedback === 'correct' ? 'is-good' : feedback === 'incorrect' ? 'is-bad' : '';
+  return (
+    <motion.div
+      ref={innerRef}
+      className={`clf-piece ${state} ${canDrag ? 'can-drag' : ''}`}
+      style={{ x, y }}
+      initial={{ opacity: 0, y: -46, scale: 0.85 }}
+      animate={controls}
+      exit={{ opacity: 0, scale: 0.85, transition: { duration: 0.18 } }}
+      drag={canDrag}
+      dragMomentum={false}
+      whileDrag={{ scale: 0.72, rotate: -4, cursor: 'grabbing' }}
+      onDragStart={() => { draggedRef.current = true; }}
+      onDrag={(e, info) => onHoverBin(binAt(e, info))}
+      onDragEnd={(e, info) => {
+        const cat = binAt(e, info);
+        onHoverBin(null);
+        if (cat) onDropOnBin(cat);
+        else controls.start({ x: 0, y: 0, rotate: 0, scale: 1, transition: { type: 'spring', stiffness: 380, damping: 26 } });
+      }}
+    >
+      <span className="clf-piece__edge" aria-hidden="true" />
+      <span className="clf-piece__face">
+        <span className="clf-piece__tag">
+          {feedback === 'correct' ? <><Check size={13} strokeWidth={3} /> ¡Bien!</>
+            : feedback === 'incorrect' ? <><X size={13} strokeWidth={3} /> No va ahí</>
+              : <><Hand size={13} /> ¿Dónde va?</>}
+        </span>
+        <span className="clf-piece__word">{word}</span>
+      </span>
+    </motion.div>
+  );
+};
 
 const Clasificador = ({ onGameComplete }) => {
   const { level, grade, subjectId } = useParams();
@@ -103,6 +226,7 @@ const Clasificador = ({ onGameComplete }) => {
   const [categories, setCategories] = useState([]);
   const [rawGameData, setRawGameData] = useState(null);
   const [showCheatSheet, setShowCheatSheet] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -115,6 +239,15 @@ const Clasificador = ({ onGameComplete }) => {
   const [skipTimeout, setSkipTimeout] = useState(null);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [examResult, setExamResult] = useState(null); // { nota, basePoints, timeBonus, streakBonus, total, elapsed }
+
+  // --- Solo presentación ---
+  const [flight, setFlight] = useState(null); // { n, ok, dx, dy }
+  const [hit, setHit] = useState(null); // { n, cat, ok, gain }
+  const [hoverBin, setHoverBin] = useState(null);
+  const [binFill, setBinFill] = useState({}); // piezas acertadas en cada cesta
+  const [answerLog, setAnswerLog] = useState([]); // [{ ok, chosen }] por pregunta (examen)
+  const pieceRef = useRef(null);
+  const binRefs = useRef({});
 
   // --- Selección de preguntas ---
   const activeQuestions = useMemo(() => {
@@ -288,484 +421,422 @@ const Clasificador = ({ onGameComplete }) => {
     gameStartRef.current = Date.now();
   };
 
+  // --- Envoltorios de presentación (la lógica de arriba no cambia) ---
+  const resetUi = () => {
+    setFlight(null);
+    setHit(null);
+    setHoverBin(null);
+    setBinFill({});
+    setAnswerLog([]);
+  };
+  const beginPractice = () => { resetUi(); startPractice(); };
+  const beginTest = () => { resetUi(); startTest(); };
+  const backToModes = () => { resetUi(); restart(); };
+
+  // Elegir cesta (pulsándola o soltando la pieza encima)
+  const pickBin = (cat) => {
+    if (finished || feedback) return;
+    const item = activeQuestions[currentIndex];
+    if (!item) return;
+    const ok = item.category === cat;
+    const gain = 10 + (gameMode === 'practice' ? 0 : Math.min(streak, 5) * 2);
+    const pr = pieceRef.current?.getBoundingClientRect();
+    const br = binRefs.current[cat]?.getBoundingClientRect();
+    if (pr && br) {
+      setFlight({
+        n: currentIndex,
+        ok,
+        dx: br.left + br.width / 2 - (pr.left + pr.width / 2),
+        dy: br.top + br.height * 0.3 - (pr.top + pr.height / 2),
+      });
+    }
+    setHit({ n: currentIndex, cat, ok, gain });
+    if (ok) setBinFill((f) => ({ ...f, [cat]: (f[cat] || 0) + 1 }));
+    setAnswerLog((log) => {
+      const next = [...log];
+      next[currentIndex] = { ok, chosen: cat };
+      return next;
+    });
+    handleAnswer(cat);
+  };
+
+  // Celebración al terminar (mismos umbrales que el confeti original)
+  const celebratedRef = useRef(false);
+  useEffect(() => {
+    if (!finished) { celebratedRef.current = false; return; }
+    if (celebratedRef.current) return;
+    const isTestFinish = gameMode === 'test' && examResult;
+    if (gameMode === 'test' && !examResult) return;
+    celebratedRef.current = true;
+    const great = isTestFinish ? examResult.nota >= 9 : totalQuestions > 0 && score / (totalQuestions * 10) >= 0.9;
+    if (great) confetti({ particleCount: 180, spread: 100, origin: { y: 0.45 }, colors: ['#14b8a6', '#6366f1', '#f472b6', '#fbbf24'] });
+  }, [finished, gameMode, examResult, score, totalQuestions]);
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar al Clasificador">
+      <h3>🎯 Objetivo</h3>
+      <p>Cada palabra pertenece a una <strong>categoría</strong>. Métela en su cesta.</p>
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li><strong>Arrastra</strong> la pieza hasta la cesta correcta, o simplemente <strong>pulsa la cesta</strong>.</li>
+        <li>Si aciertas, la pieza cae dentro y la cesta se va llenando.</li>
+        <li>Si fallas, la pieza rebota y verás cuál era la cesta buena.</li>
+      </ul>
+      <h3>🎓 Modos de juego</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy">
+          <strong>Práctica</strong>
+          Todas las palabras, sin tiempo. Puedes saltar las que no sepas.
+        </div>
+        <div className="instr-mode exam">
+          <strong>Examen</strong>
+          {TEST_QUESTION_COUNT} palabras al azar. Nota sobre 10 y puntos extra por rapidez y racha.
+        </div>
+      </div>
+      <div className="instr-tips">
+        <strong>💡 Consejo:</strong> antes de empezar repasa la <kbd>Guía de categorías</kbd> (Material de estudio).
+      </div>
+    </InstructionsModal>
+  );
+
+  // Guía de categorías (material de estudio): modal propio
+  const cheatSheet = (
+    <AnimatePresence>
+      {showCheatSheet && (
+        <motion.div
+          className="clf-sheet-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowCheatSheet(false)}
+        >
+          <motion.div
+            className="clf-sheet"
+            initial={{ scale: 0.92, y: 20, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.92, y: 20, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Guía de categorías"
+          >
+            <div className="clf-sheet__head">
+              <span className="clf-sheet__icon"><BookOpen size={22} /></span>
+              <div>
+                <h2>Guía de categorías</h2>
+                <p>Estudia qué palabras van en cada cesta</p>
+              </div>
+              <button type="button" className="gk-iconbtn clf-sheet__close" onClick={() => setShowCheatSheet(false)} aria-label="Cerrar guía">
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="clf-sheet__body">
+              {rawGameData && Object.entries(rawGameData)
+                .filter(([key]) => key !== 'title' && key !== 'instructions')
+                .map(([category, words]) => {
+                  const ti = categories.indexOf(category);
+                  const theme = ti >= 0 ? BIN_THEMES[ti % BIN_THEMES.length] : null;
+                  return (
+                    <div
+                      key={category}
+                      className={`clf-sheet__cat${theme ? ' is-in-game' : ''}`}
+                      style={theme ? { '--bin': theme.base, '--bin-light': theme.light } : undefined}
+                    >
+                      <h3><span className="clf-sheet__dot" />{prettyCat(category)}</h3>
+                      <div className="clf-sheet__words">
+                        {Array.isArray(words) && words.map((word, wIdx) => (
+                          <span key={wIdx} className="clf-sheet__word">{word}</span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+
+            <div className="clf-sheet__foot">
+              <GameButton variant="primary" size="lg" icon={Check} onClick={() => setShowCheatSheet(false)}>
+                ¡Entendido! Vamos allá
+              </GameButton>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
   if (loading) return (
-    <div className="flex flex-col items-center justify-center min-h-[400px] text-white">
-      <Loader2 className="h-16 w-16 animate-spin mb-4 opacity-80" />
-      <p className="font-bold text-lg animate-pulse">Preparando materiales...</p>
-    </div>
+    <GameShell {...SHELL}>
+      <GameLoading label="Preparando las cestas…" />
+    </GameShell>
   );
 
   if (error) return (
-    <div className="flex flex-col items-center justify-center p-8 text-center max-w-md mx-auto mt-10 bg-white/90 rounded-3xl shadow-xl">
-      <div className="bg-red-100 p-4 rounded-full mb-4">
-        <XCircle className="h-12 w-12 text-red-500" />
-      </div>
-      <h3 className="text-xl font-bold text-slate-800 mb-2">Algo salió mal</h3>
-      <p className="text-slate-600 mb-6">{error}</p>
-      <Button onClick={() => window.location.reload()} variant="default">Reintentar</Button>
-    </div>
+    <GameShell {...SHELL}>
+      <GameHeader />
+      <GameEmpty
+        title="Algo salió mal"
+        action={<GameButton variant="soft" icon={RefreshCw} onClick={() => window.location.reload()}>Reintentar</GameButton>}
+      >
+        {error}
+      </GameEmpty>
+    </GameShell>
   );
 
   const currentItem = activeQuestions[currentIndex];
-  const progress = totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
   const isPractice = gameMode === 'practice';
   const isTestPossible = allQuestions.length >= TEST_QUESTION_COUNT;
 
-  return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-6 flex flex-col gap-6 relative">
-
-      {/* ---------------------------------------------------------
-          PANTALLA DE SELECCIÓN DE MODO
-      --------------------------------------------------------- */}
-      {gameMode === 'selection' && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="clf-glass flex flex-col items-center justify-center p-8 bg-white/60 backdrop-blur-xl rounded-[2rem] shadow-2xl max-w-lg mx-auto mt-8 border border-white/50"
-        >
-          <div className="clf-icon-halo bg-indigo-600 p-4 rounded-2xl mb-6 shadow-lg rotate-3">
-            <Sparkles className="h-8 w-8 text-white" />
-          </div>
-          <h2 className="text-3xl font-black text-slate-800 mb-2 text-center tracking-tight">¡A JUGAR!</h2>
-          <p className="text-slate-600 mb-8 text-center">Selecciona cómo quieres practicar hoy.</p>
-
-          <div className="grid grid-cols-1 gap-4 w-full">
-            <Button
-              variant="outline"
-              onClick={() => setShowCheatSheet(true)}
-              className="w-full h-12 bg-amber-50 hover:bg-amber-100 text-amber-700 border-amber-200 rounded-xl gap-2 font-bold transition-all"
-            >
-              <BookOpen className="h-5 w-5" />
-              Guía de Categorías
-            </Button>
-
-            <div className="h-px bg-slate-200 w-full my-1"></div>
-
-            <motion.button
-              whileHover={{ scale: 1.03, translateY: -2 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={startPractice}
-              className="clf-mode clf-mode--easy relative group overflow-hidden bg-white hover:bg-gradient-to-br hover:from-emerald-400 hover:to-teal-500 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-emerald-100 text-left"
-            >
-              <div className="flex items-center gap-4">
-                <div className="clf-mode-icon bg-emerald-100 group-hover:bg-white/20 p-3 rounded-xl transition-colors">
-                  <BookOpen className="h-8 w-8 text-emerald-600 group-hover:text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-white">Modo Práctica</h3>
-                  <p className="text-sm text-slate-500 group-hover:text-emerald-50">Sin tiempo, sin presión.</p>
-                </div>
-              </div>
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: isTestPossible ? 1.03 : 1, translateY: isTestPossible ? -2 : 0 }}
-              whileTap={{ scale: isTestPossible ? 0.98 : 1 }}
-              onClick={startTest}
-              disabled={!isTestPossible}
-              className={`clf-mode clf-mode--exam relative group overflow-hidden p-6 rounded-2xl shadow-md transition-all duration-300 border-2 text-left
-                        ${isTestPossible
-                  ? 'bg-white hover:bg-gradient-to-br hover:from-rose-500 hover:to-red-600 border-rose-100 hover:shadow-xl cursor-pointer'
-                  : 'bg-slate-100 border-slate-200 opacity-60 cursor-not-allowed'}
-                    `}
-            >
-              <div className="flex items-center gap-4">
-                <div className={`clf-mode-icon p-3 rounded-xl transition-colors ${isTestPossible ? 'bg-rose-100 group-hover:bg-white/20' : 'bg-slate-200'}`}>
-                  <Clock className={`h-8 w-8 ${isTestPossible ? 'text-rose-600 group-hover:text-white' : 'text-slate-400'}`} />
-                </div>
-                <div>
-                  <h3 className={`text-xl font-bold ${isTestPossible ? 'text-slate-800 group-hover:text-white' : 'text-slate-400'}`}>Modo Examen</h3>
-                  <p className={`text-sm ${isTestPossible ? 'text-slate-500 group-hover:text-rose-50' : 'text-slate-400'}`}>
-                    {isTestPossible ? `${TEST_QUESTION_COUNT} preguntas aleatorias.` : `Necesitas ${TEST_QUESTION_COUNT} preguntas.`}
-                  </p>
-                </div>
-              </div>
-            </motion.button>
-          </div>
-        </motion.div>
-      )}
-
-      {/* ---------------------------------------------------------
-          PANTALLA FINAL (RESULTADOS)
-      --------------------------------------------------------- */}
-      {finished && (() => {
-        const isTestFinish = gameMode === 'test' && examResult;
-        const nota = isTestFinish ? examResult.nota : 0;
-        const notaColor = nota >= 8 ? 'text-emerald-600' : nota >= 5 ? 'text-blue-600' : 'text-red-500';
-        const notaBg = nota >= 8 ? 'bg-emerald-50 border-emerald-200' : nota >= 5 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200';
-        const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-          : nota >= 7 ? '¡Muy bien!'
-            : nota >= 5 ? 'Aprobado'
-              : 'Necesitas repasar';
-        return (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="clf-glass flex flex-col items-center justify-center p-8 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl max-w-md mx-auto mt-8 border border-white/60 relative overflow-hidden"
-          >
-            {((isTestFinish && nota >= 9) || (!isTestFinish && score / (totalQuestions * 10) >= 0.9)) && <ConfettiEffect />}
-
-            <div className="relative mb-6">
-              <motion.div
-                initial={{ rotate: -180, scale: 0 }}
-                animate={{ rotate: 0, scale: 1 }}
-                transition={{ type: "spring", duration: 1.5 }}
-              >
-                <Trophy className="clf-trophy h-24 w-24 text-yellow-400 drop-shadow-lg" fill="currentColor" />
-              </motion.div>
-            </div>
-
-            <h2 className="text-3xl font-black mb-2 text-center text-slate-800 tracking-tight">
-              {isTestFinish && correctAnswersCount === TEST_QUESTION_COUNT ? '¡PERFECTO!' : '¡Buen trabajo!'}
-            </h2>
-
-            {isTestFinish && (
-              <div className={`clf-grade-card w-full mb-6 p-5 rounded-2xl border-2 ${notaBg} flex flex-col items-center`}>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tu nota</span>
-                {/* Anillo de nota: verde >=8, azul >=5, rojo <5 (solo presentación) */}
-                <div
-                  className="clf-grade-ring"
-                  style={{ '--clf-grade': nota, '--clf-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444' }}
-                >
-                  <div className={`clf-grade-value text-6xl font-black leading-none ${notaColor}`}>
-                    {nota.toFixed(1)}<span className="text-2xl opacity-60">/10</span>
-                  </div>
-                </div>
-                <span className={`mt-2 font-bold ${notaColor}`}>{notaMsg}</span>
-              </div>
-            )}
-
-            <div className="grid grid-cols-2 gap-4 w-full mb-6">
-              <div className="clf-stat bg-indigo-50 p-4 rounded-2xl flex flex-col items-center border border-indigo-100">
-                <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Aciertos</span>
-                <span className="text-3xl font-black text-indigo-700">{correctAnswersCount}<span className="text-lg text-indigo-300">/{totalQuestions}</span></span>
-              </div>
-              <div className="clf-stat clf-stat--points bg-emerald-50 p-4 rounded-2xl flex flex-col items-center border border-emerald-100">
-                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Puntos</span>
-                <span className="text-3xl font-black text-emerald-700">{isTestFinish ? examResult.total : score}</span>
-              </div>
-            </div>
-
-            {isTestFinish && (
-              <div className="w-full mb-6 grid grid-cols-3 gap-2 text-[11px] font-bold text-slate-500 text-center">
-                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                  <div className="text-slate-400 uppercase">Base</div>
-                  <div className="text-slate-700 text-base font-black">{examResult.basePoints}</div>
-                </div>
-                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                  <div className="text-slate-400 uppercase">Velocidad</div>
-                  <div className="text-slate-700 text-base font-black">+{examResult.timeBonus}</div>
-                  <div className="text-[9px] text-slate-400">{examResult.elapsed}s</div>
-                </div>
-                <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                  <div className="text-slate-400 uppercase">Racha</div>
-                  <div className="text-slate-700 text-base font-black">+{examResult.streakBonus}</div>
-                </div>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-3 w-full">
-              <Button onClick={restart} className="clf-cta w-full h-14 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl rounded-xl gap-2 transition-all">
-                <RefreshCcw className="h-5 w-5" /> Jugar de nuevo
-              </Button>
-              <Button onClick={() => setGameMode('selection')} variant="outline" className="w-full h-12 text-slate-600 border-slate-200 rounded-xl gap-2">
-                <Home className="h-4 w-4" /> Cambiar modo / Inicio
-              </Button>
-            </div>
-          </motion.div>
-        );
-      })()}
-
-      {/* ---------------------------------------------------------
-          PANTALLA DE JUEGO ACTIVO
-      --------------------------------------------------------- */}
-      {(!finished && gameMode !== 'selection') && (
-        <div className="w-full flex flex-col gap-6">
-          <div className="clf-hud flex justify-between items-center bg-white/70 backdrop-blur-md px-4 py-3 rounded-2xl shadow-sm border border-white/50">
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={() => setGameMode('selection')}
-                variant="ghost"
-                size="sm"
-                className="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300"
-                title="Cambiar modo"
-              >
-                <Home className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Modo</span>
-              </Button>
-
-              {isPractice ? (
-                <>
-                  <Button
-                    onClick={skipWord}
-                    disabled={feedback !== null}
-                    variant="ghost"
-                    size="sm"
-                    className="bg-white hover:bg-slate-800 text-slate-600 hover:text-white border border-slate-200 transition-all duration-200"
-                    title="Otra palabra"
-                  >
-                    <SkipForward className="h-4 w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Saltar</span>
-                  </Button>
-
-                  <Button
-                    onClick={startTest}
-                    disabled={!isTestPossible}
-                    variant="ghost"
-                    size="sm"
-                    className={`border ${!isTestPossible ? 'opacity-50' : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-600 border-indigo-200'}`}
-                    title="Modo Examen"
-                  >
-                    <Clock className="h-4 w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Examen</span>
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    onClick={startTest}
-                    variant="ghost"
-                    size="sm"
-                    className="bg-white/50 hover:bg-white text-slate-600 border border-slate-200"
-                    title="Reiniciar Examen"
-                  >
-                    <RefreshCcw className="h-4 w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Reiniciar</span>
-                  </Button>
-
-                  <Button
-                    onClick={startPractice}
-                    variant="ghost"
-                    size="sm"
-                    className="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200"
-                    title="Volver a Práctica"
-                  >
-                    <LogOut className="h-4 w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Práctica</span>
-                  </Button>
-                </>
-              )}
-            </div>
-
-            <div className="flex items-center gap-4">
-              {streak > 1 && (
-                <motion.div
-                  key={streak}
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="hidden sm:flex items-center gap-1 bg-gradient-to-r from-orange-400 to-pink-500 text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg shadow-orange-200"
-                >
-                  <Flame className="h-3 w-3 fill-white" />
-                  <span>x{Math.min(streak, 5)}</span>
-                </motion.div>
-              )}
-
-              <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    {isPractice ? 'Práctica' : `Pregunta ${currentIndex + 1}/${totalQuestions}`}
-                  </div>
-                  <motion.div
-                    key={score}
-                    initial={{ scale: 1.2 }}
-                    animate={{ scale: 1 }}
-                    className="text-xl font-black text-indigo-600 leading-none"
-                  >
-                    {score} pts
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {!isPractice && (
-            <div className="h-3 w-full bg-white/30 rounded-full overflow-hidden shadow-inner backdrop-blur-sm -mt-2">
-              <motion.div
-                className="clf-progress-fill h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.5, ease: "circOut" }}
-              />
+  // ---------------------------------------------------------
+  // PANTALLA DE SELECCIÓN DE MODO
+  // ---------------------------------------------------------
+  if (gameMode === 'selection') {
+    const modes = [
+      {
+        id: 'practice', tone: 'easy', icon: Shapes, title: 'Práctica',
+        desc: 'Clasifica todas las palabras sin prisa. Puedes saltar las que no sepas.',
+        features: ['Sin tiempo ni presión', `${allQuestions.length} palabras`],
+      },
+      isTestPossible && {
+        id: 'test', tone: 'exam', title: 'Examen',
+        desc: `${TEST_QUESTION_COUNT} palabras al azar: demuestra lo que sabes.`,
+        features: ['Nota sobre 10', 'Bonus por rapidez y racha'],
+      },
+    ].filter(Boolean);
+    const onSelect = (id) => (id === 'test' ? beginTest() : beginPractice());
+    return (
+      <GameShell {...SHELL}>
+        <ModeSelect
+          modes={modes}
+          onSelect={onSelect}
+          onHelp={() => setShowHelp(true)}
+          onStudy={() => setShowCheatSheet(true)}
+          extra={(
+            <div className="clf-cats-preview">
+              <span className="clf-cats-preview__label"><Shapes size={15} /> Cestas</span>
+              {categories.map((cat, idx) => {
+                const theme = BIN_THEMES[idx % BIN_THEMES.length];
+                return (
+                  <span key={cat} className="clf-cat-chip" style={{ '--bin': theme.base, '--bin-light': theme.light }}>
+                    <span className="clf-cat-chip__dot" />{prettyCat(cat)}
+                  </span>
+                );
+              })}
             </div>
           )}
+          footer={!isTestPossible ? `El examen necesita al menos ${TEST_QUESTION_COUNT} palabras.` : null}
+        />
+        {instructions}
+        {cheatSheet}
+      </GameShell>
+    );
+  }
 
-          <div className="relative min-h-[300px] flex flex-col justify-center perspective-1000">
-            <AnimatePresence mode='wait'>
-              <motion.div
-                key={currentItem?.word}
-                initial={{ opacity: 0, rotateX: 90 }}
-                animate={{
-                  opacity: 1, rotateX: 0,
-                  x: feedback === 'incorrect' ? [0, -20, 20, -10, 10, 0] : 0
-                }}
-                exit={{ opacity: 0, rotateX: -90 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className={`
-                  clf-word-card ${feedback ? `clf-word-card--${feedback}` : ''}
-                  relative w-full flex flex-col items-center justify-center 
-                  h-72 sm:h-80 rounded-[3rem] shadow-2xl border-[6px] 
-                  transition-colors duration-500 z-10 bg-white
-                  ${feedback === 'correct' ? 'border-green-400 shadow-green-200' :
-                    feedback === 'incorrect' ? 'border-red-400 shadow-red-200' :
-                      'border-white/50 shadow-indigo-100'}
-                `}
-              >
-                <AnimatePresence>
-                  {feedback && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0 }}
-                      className={`absolute -top-6 p-4 rounded-full shadow-xl border-4 border-white z-20 
-                        ${feedback === 'correct' ? 'bg-green-500' : 'bg-red-500'}`}
-                    >
-                      {feedback === 'correct' ? <CheckCircle2 className="h-10 w-10 text-white" /> : <XCircle className="h-10 w-10 text-white" />}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <span className="text-xs font-black text-slate-300 uppercase tracking-[0.2em] mb-6 select-none">
-                  ¿A QUÉ CATEGORÍA PERTENECE?
-                </span>
-
-                <h1 className={`text-5xl sm:text-7xl font-black text-center px-6 transition-colors duration-300
-                  ${feedback === 'correct' ? 'text-green-600' :
-                    feedback === 'incorrect' ? 'text-red-500 line-through decoration-4 decoration-red-300' :
-                      'text-slate-800'}
-                `}>
-                  {currentItem?.word}
-                </h1>
-
-                <AnimatePresence>
-                  {feedback === 'incorrect' && correctAnswer && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="absolute bottom-6 bg-slate-100/80 backdrop-blur px-5 py-2 rounded-xl border border-slate-200"
-                    >
-                      <div className="flex items-center text-sm font-bold text-slate-600">
-                        <Lightbulb className="h-4 w-4 mr-2 text-amber-500" />
-                        Correcta: <span className="ml-1 text-slate-900 uppercase">{correctAnswer.replace(/_/g, " ")}</span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            {categories.map((cat, idx) => {
-              const theme = BUTTON_THEMES[idx % BUTTON_THEMES.length];
+  // ---------------------------------------------------------
+  // PANTALLA FINAL (RESULTADOS)
+  // ---------------------------------------------------------
+  if (finished) {
+    if (gameMode === 'test') {
+      if (!examResult) return <GameShell {...SHELL}><GameLoading label="Corrigiendo…" /></GameShell>;
+      return (
+        <GameShell {...SHELL}>
+          <ResultsScreen
+            title={correctAnswersCount === TEST_QUESTION_COUNT ? '¡Perfecto!' : 'Examen terminado'}
+            nota={examResult.nota}
+            points={examResult.total}
+            stats={[
+              { icon: Target, tone: 'good', label: 'Aciertos', value: `${correctAnswersCount}/${totalQuestions}` },
+              { icon: Zap, tone: 'time', label: `Velocidad · ${examResult.elapsed}s`, value: `+${examResult.timeBonus}` },
+              { icon: Flame, tone: 'streak', label: 'Bonus racha', value: `+${examResult.streakBonus}` },
+              { icon: Trophy, tone: 'score', label: 'Base', value: examResult.basePoints },
+            ]}
+            actions={[
+              { label: 'Repetir examen', onClick: beginTest, icon: RefreshCw },
+              { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+            ]}
+          >
+            {activeQuestions.map((q, i) => {
+              const a = answerLog[i];
+              if (!a) return null;
               return (
-                <motion.div
-                  key={cat}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <Button
-                    onClick={() => handleAnswer(cat)}
-                    disabled={feedback !== null}
-                    className={`
-                    clf-cat-btn w-full h-20 sm:h-24 text-lg sm:text-2xl capitalize font-bold tracking-tight
-                    rounded-2xl border-2 shadow-sm transition-all duration-200 group relative overflow-hidden
-                    ${feedback === null
-                        ? `${theme.bg} ${theme.color} ${theme.border} ${theme.hover} ${theme.active}`
-                        : 'opacity-50 grayscale cursor-not-allowed bg-slate-100 border-slate-200 text-slate-400'}
-                  `}
-                    variant="ghost"
-                  >
-                    <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity transform group-hover:scale-150 duration-500">
-                      <Sparkles className="h-16 w-16 text-white" />
-                    </div>
-                    <span className="relative z-10 flex items-center justify-center w-full group-hover:text-white transition-colors duration-200">
-                      {cat.replace(/_/g, " ")}
-                      {feedback === null && (
-                        <ArrowRight className="ml-3 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-white" />
-                      )}
-                    </span>
-                  </Button>
-                </motion.div>
-              )
+                <FeedbackItem key={i} index={i + 1} ok={a.ok} title={q.word}>
+                  {a.ok
+                    ? <>Cesta: <strong>{prettyCat(q.category)}</strong></>
+                    : <>Era <strong>{prettyCat(q.category)}</strong> · elegiste {prettyCat(a.chosen)}</>}
+                </FeedbackItem>
+              );
             })}
+          </ResultsScreen>
+          {instructions}
+        </GameShell>
+      );
+    }
+
+    return (
+      <GameShell {...SHELL}>
+        <motion.div
+          className="clf-summary"
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+        >
+          <span className="clf-summary__medal"><Trophy size={44} /></span>
+          <span className="gk-chip gk-chip--mode gk-tone-easy"><Shapes size={13} /> Práctica</span>
+          <h2 className="clf-summary__title">¡Ronda completada!</h2>
+          <p className="clf-summary__sub">Has pasado por todas las palabras del clasificador.</p>
+          <div className="clf-summary__stats">
+            <HudStat icon={Target} tone="good" value={`${correctAnswersCount}/${totalQuestions}`} label="Aciertos" />
+            <HudStat icon={Trophy} tone="score" value={score} label="Puntos" />
+            <HudStat icon={Flame} tone="streak" value={highStreak} label="Mejor racha" />
           </div>
-        </div>
+          <div className="clf-summary__bins">
+            {categories.map((cat, idx) => (
+              <div key={cat} className="clf-summary__bin">
+                <BinArt theme={BIN_THEMES[idx % BIN_THEMES.length]} fill={binFill[cat] || 0} />
+                <span>{prettyCat(cat)} · {binFill[cat] || 0}</span>
+              </div>
+            ))}
+          </div>
+          <div className="clf-summary__actions">
+            <GameButton size="lg" icon={RefreshCw} onClick={beginPractice}>Otra ronda</GameButton>
+            <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={backToModes}>Cambiar de modo</GameButton>
+          </div>
+        </motion.div>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  // ---------------------------------------------------------
+  // PANTALLA DE JUEGO ACTIVO
+  // ---------------------------------------------------------
+  const curFlight = flight && flight.n === currentIndex ? flight : null;
+  const curHit = hit && hit.n === currentIndex && feedback ? hit : null;
+  const canDrag = feedback === null;
+
+  return (
+    <GameShell {...SHELL}>
+      <GameHeader
+        mode={isPractice ? 'easy' : 'exam'}
+        modeLabel={isPractice ? 'Práctica' : 'Examen'}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            {streak > 1 && <HudStat icon={Flame} tone="streak" value={`x${Math.min(streak, 5)}`} label="Racha" />}
+            <HudStat icon={Trophy} tone="score" value={score} label="Puntos" />
+            <HudStat
+              icon={isPractice ? Shapes : GraduationCap}
+              tone="progress"
+              value={`${Math.min(currentIndex + 1, totalQuestions)}/${totalQuestions}`}
+              label={isPractice ? 'Palabra' : 'Pregunta'}
+            />
+          </Hud>
+        )}
+      />
+
+      {!isPractice && (
+        <ProgressDots total={totalQuestions} current={currentIndex} results={answerLog.map((a) => (a ? a.ok : undefined))} />
       )}
 
-      {/* ---------------------------------------------------------
-          MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET)
-      --------------------------------------------------------- */}
-      <AnimatePresence>
-        {showCheatSheet && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          >
+      {/* Escenario: la pieza sobre su peana */}
+      <div className={`clf-stage ${feedback ? `is-${feedback}` : ''}`}>
+        <span className="clf-stage__spot" aria-hidden="true" />
+        <span className="clf-stage__pedestal" aria-hidden="true" />
+        <AnimatePresence mode="wait">
+          {currentItem && (
+            <ClfPiece
+              key={`${currentIndex}-${currentItem.word}`}
+              word={currentItem.word}
+              feedback={feedback}
+              flight={curFlight}
+              canDrag={canDrag}
+              innerRef={pieceRef}
+              onDropOnBin={pickBin}
+              onHoverBin={setHoverBin}
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {feedback === 'incorrect' && correctAnswer && (
             <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden border border-white/50"
+              className="clf-stage__answer"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
+              exit={{ opacity: 0 }}
             >
-              <div className="p-6 sm:p-8 flex justify-between items-center border-b border-slate-100 bg-slate-50/50">
-                <div className="flex items-center gap-3">
-                  <div className="bg-amber-100 p-2 rounded-xl">
-                    <BookOpen className="h-6 w-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-black text-slate-800 tracking-tight leading-none">Guía de Repaso</h2>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Estudia las categorías antes de empezar</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setShowCheatSheet(false)}
-                  className="p-2 hover:bg-slate-200 rounded-full transition-colors"
-                >
-                  <X className="h-6 w-6 text-slate-400" />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar bg-white">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {rawGameData && Object.entries(rawGameData)
-                    .filter(([key]) => key !== 'title' && key !== 'instructions')
-                    .map(([category, words], idx) => (
-                      <div key={category} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:border-indigo-200 transition-colors group">
-                        <h3 className="font-black text-xs text-indigo-500 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-indigo-400 group-hover:scale-125 transition-transform" />
-                          {category.replace(/_/g, ' ')}
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5">
-                          {Array.isArray(words) && words.map((word, wIdx) => (
-                            <span key={wIdx} className="px-2 py-0.5 bg-white text-slate-600 text-[11px] font-bold rounded-lg border border-slate-200/60 shadow-sm">
-                              {word}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-8 bg-slate-50 border-t border-slate-100">
-                <Button
-                  onClick={() => setShowCheatSheet(false)}
-                  className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg rounded-2xl shadow-xl shadow-indigo-100 gap-2"
-                >
-                  <CheckCircle2 className="h-5 w-5" />
-                  ¡Entendido! Vamos allá
-                </Button>
-              </div>
+              <Lightbulb size={16} /> Correcta: <strong>{prettyCat(correctAnswer)}</strong>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
 
-    </div>
+      {/* Cestas */}
+      <div className="clf-bins" style={{ '--n': categories.length }}>
+        {categories.map((cat, idx) => {
+          const theme = BIN_THEMES[idx % BIN_THEMES.length];
+          const isHit = curHit && curHit.cat === cat;
+          const isTarget = feedback === 'incorrect' && correctAnswer === cat;
+          const cls = [
+            'clf-bin',
+            isHit ? (curHit.ok ? 'is-good' : 'is-bad') : '',
+            isTarget ? 'is-target' : '',
+            hoverBin === cat && canDrag ? 'is-over' : '',
+            feedback && !isHit && !isTarget ? 'is-dim' : '',
+          ].filter(Boolean).join(' ');
+          return (
+            <motion.button
+              key={cat}
+              type="button"
+              ref={(el) => { binRefs.current[cat] = el; }}
+              data-clf-bin={cat}
+              className={cls}
+              style={{ '--bin': theme.base, '--bin-light': theme.light, '--bin-dark': theme.dark }}
+              onClick={() => pickBin(cat)}
+              disabled={feedback !== null}
+              aria-label={`Cesta ${prettyCat(cat)}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.08, type: 'spring', stiffness: 260, damping: 22 }}
+            >
+              <span className="clf-bin__art">
+                <BinArt theme={theme} fill={binFill[cat] || 0} />
+              </span>
+              <span className="clf-bin__label">{prettyCat(cat)}</span>
+              {isTarget && <span className="clf-bin__flag"><ArrowRight size={13} strokeWidth={3} /> Era aquí</span>}
+              <AnimatePresence>
+                {isHit && curHit.ok && (
+                  <motion.span
+                    className="clf-bin__plus"
+                    initial={{ opacity: 0, y: 10, scale: 0.6 }}
+                    animate={{ opacity: 1, y: -18, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 0.35, type: 'spring', stiffness: 300, damping: 18 }}
+                  >
+                    +{curHit.gain}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          );
+        })}
+      </div>
+
+      <div className="clf-footer">
+        {isPractice ? (
+          <>
+            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToModes}>Cambiar modo</GameButton>
+            <GameButton variant="ghost" size="sm" icon={SkipForward} onClick={skipWord} disabled={feedback !== null}>Saltar</GameButton>
+            <span className="clf-footer__info"><Sparkles size={14} /> Arrastra la pieza o pulsa su cesta</span>
+          </>
+        ) : (
+          <span className="clf-footer__info"><Clock size={14} /> Modo examen · cuenta el tiempo y la racha</span>
+        )}
+      </div>
+
+      {instructions}
+    </GameShell>
   );
 };
 
-export default Clasificador;
+export default Clasificador;

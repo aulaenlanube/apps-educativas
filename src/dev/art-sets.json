@@ -238,5 +238,11 @@
   "teacher_days_90",
   "teacher_first_rating",
   "teacher_ratings_10"
+ ],
+ "src/components/icons/badge/set4.jsx": [
+  "robot_retos_eso1",
+  "robot_retos_eso2",
+  "robot_retos_eso3",
+  "robot_retos_eso4"
  ]
 }

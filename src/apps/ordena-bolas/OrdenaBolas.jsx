@@ -1,19 +1,22 @@
 // src/apps/ordena-bolas/OrdenaBolas.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Matter from 'matter-js';
-import { Button } from '@/components/ui/button';
-import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square, XCircle } from 'lucide-react';
-import { drawBallGloss, drawBallLabel } from './ballFx';
+import {
+    RefreshCw, Timer, Play, Settings, Check, Circle, Gauge, RotateCw, Shapes, EyeOff, Trophy,
+} from 'lucide-react';
+import { drawBall3D, drawBallLabel, drawWalls } from './ballFx';
+import InstructionsModal from '../_shared/InstructionsModal';
+import { GameShell, GameHeader, Hud, GameButton, ResultsScreen, Chip } from '../_shared/kit';
 import './OrdenaBolas.css';
 
-// Bolas decorativas de la cabecera de configuración (solo estética)
-const DECO_BUBBLES = [
-    { size: 46, left: '6%', top: '18%', c: '#3b82f6', d: '0s' },
-    { size: 26, left: '18%', top: '62%', c: '#f59e0b', d: '-1.5s' },
-    { size: 34, left: '82%', top: '14%', c: '#10b981', d: '-3s' },
-    { size: 20, left: '90%', top: '64%', c: '#ef4444', d: '-2.2s' },
-    { size: 16, left: '72%', top: '70%', c: '#a78bfa', d: '-4s' },
+// Bolas de muestra de la ilustración de la pantalla de ajustes (solo estética)
+const DEMO_BALLS = [
+    { n: '3', s: 46, x: 14, y: 58, t: 'done' },
+    { n: '7', s: 58, x: 34, y: 34, t: 'done' },
+    { n: '12', s: 70, x: 58, y: 58, t: 'idle' },
+    { n: '4 + 9', s: 64, x: 80, y: 30, t: 'idle' },
+    { n: '20', s: 82, x: 40, y: 78, t: 'idle' },
 ];
 
 const OrdenaBolas = ({ onGameComplete }) => {
@@ -255,7 +258,9 @@ const OrdenaBolas = ({ onGameComplete }) => {
                 height,
                 wireframes: false,
                 background: 'transparent',
-                pixelRatio: 1
+                // Nitidez en pantallas de alta densidad (solo dibujo: las
+                // coordenadas del mundo siguen siendo px CSS).
+                pixelRatio: Math.min(2, window.devicePixelRatio || 1)
             }
         });
 
@@ -264,7 +269,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
         const wallThickness = 40;
         const centerX = width / 2;
         const centerY = height / 2;
-        const wallStyle = { fillStyle: '#3730a3', strokeStyle: '#6366f1', lineWidth: 2 };
+        const wallStyle = { fillStyle: '#4f46e5', strokeStyle: '#c7d2fe', lineWidth: 1 };
         const wallOptions = { isStatic: true, render: wallStyle, friction: 1, restitution: 0.2 };
 
         const offset = (boxSize - wallThickness) / 2;
@@ -318,7 +323,7 @@ const OrdenaBolas = ({ onGameComplete }) => {
                     render: {
                         fillStyle: '#3b82f6',
                         strokeStyle: '#1d4ed8',
-                        lineWidth: 3
+                        lineWidth: 0 // el contorno lo pinta drawBall3D (solo dibujo)
                     }
                 }
             );
@@ -387,15 +392,12 @@ const OrdenaBolas = ({ onGameComplete }) => {
             const context = render.context;
             if (!context) return;
 
-            context.font = 'bold 18px Fredoka, Arial, sans-serif';
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-
+            // Solo dibujo: recipiente con volumen, esferas y etiquetas ajustadas
+            drawWalls(context, [floor, ceiling, leftWall, rightWall]);
             balls.forEach(ball => {
                 const { x, y } = ball.position;
-                // Brillo esférico + halo en las ya marcadas (solo dibujo)
-                drawBallGloss(context, ball, { halo: ball.plugin.isCorrect ? '#fca5a5' : null });
-                drawBallLabel(context, ball.plugin.text, x, y, 'white');
+                drawBall3D(context, ball, { tone: ball.plugin.isCorrect ? 'done' : 'idle', pixelRatio: render.options.pixelRatio });
+                drawBallLabel(context, ball.plugin.text, x, y, 'white', ball.circleRadius * 1.7);
             });
         });
 
@@ -417,6 +419,34 @@ const OrdenaBolas = ({ onGameComplete }) => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [key]);
+
+    // --- PRESENTACIÓN (rediseño 2026 con el kit) ---
+    // El cronómetro re-renderiza cada 10 ms (como siempre): las partes estáticas
+    // van memorizadas para que React no las vuelva a pintar en cada tic.
+    const [showInstructions, setShowInstructions] = useState(false);
+    const shellProps = { accent: '#f43f5e', accent2: '#6366f1', className: 'ob' };
+
+    const instructions = useMemo(() => (
+        <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Ordena las Bolas">
+            <h3>🎯 Objetivo</h3>
+            <p>
+                Dentro del recipiente que gira hay bolas con números u operaciones. Tócalas <strong>de menor a mayor valor</strong>.
+                Si te equivocas una sola vez, se acaba el reto.
+            </p>
+            <h3>🕹️ Cómo se juega</h3>
+            <ul>
+                <li>Resuelve mentalmente cada operación para saber su valor.</li>
+                <li>Normalmente las bolas más grandes valen más… salvo que actives el <strong>tamaño engañoso</strong>.</li>
+                <li>Las bolas ya marcadas se vuelven verdes.</li>
+                <li>Cuanto antes termines, más puntos extra consigues.</li>
+            </ul>
+            <div className="instr-tips"><strong>💡 Consejo:</strong> busca primero la bola más pequeña y ve subiendo poco a poco; no hace falta ordenar todas de golpe.</div>
+        </InstructionsModal>
+    ), [showInstructions]);
+
+    const header = useMemo(() => (
+        <GameHeader mode="exam" onHelp={() => setShowInstructions(true)} />
+    ), []);
 
     if (gameState === 'config') {
         const allOperations = [
@@ -443,179 +473,134 @@ const OrdenaBolas = ({ onGameComplete }) => {
         };
 
         return (
-            <div className="ob-root flex flex-col items-center justify-center p-4 sm:p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
-                <div className="ob-backdrop" aria-hidden="true" />
-                <div className="ob-card bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-5 sm:p-8 w-full border border-purple-100 dark:border-slate-700">
-                    <div className="ob-hero text-center mb-6">
-                        <div className="ob-bubbles" aria-hidden="true">
-                            {DECO_BUBBLES.map((b, i) => (
-                                <span key={i} className="ob-bubble" style={{ width: b.size, height: b.size, left: b.left, top: b.top, '--ob-c': b.c, animationDelay: b.d }} />
+            <GameShell {...shellProps}>
+                <GameHeader
+                    onHelp={() => setShowInstructions(true)}
+                    right={<Chip tone="accent" icon={Trophy}>Cada reto cuenta como examen</Chip>}
+                />
+                <div className="ob-setup">
+                    <div className="ob-demo" aria-hidden="true">
+                        <div className="ob-demo__box">
+                            {DEMO_BALLS.map((b) => (
+                                <span
+                                    key={b.n}
+                                    className={`ob-demo__ball is-${b.t}`}
+                                    style={{ width: b.s, height: b.s, left: `${b.x}%`, top: `${b.y}%` }}
+                                >
+                                    {b.n}
+                                </span>
                             ))}
                         </div>
-                        <h2 className="text-3xl font-bold text-purple-700 mb-2">Configuración</h2>
-                        <p className="text-gray-500 font-medium">{getLevelTitle()}</p>
-                        <p className="text-sm text-gray-400">Personaliza tu desafío matemático</p>
+                        <p className="ob-demo__caption">Toca las bolas de <b>menor</b> a <b>mayor</b> valor</p>
                     </div>
 
-                    <div className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
-                                <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({ ...config, ballCount: parseInt(e.target.value) })} className="ob-range w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="font-medium text-gray-700 text-sm">Velocidad giro: {config.rotationSpeed}</label>
-                                <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({ ...config, rotationSpeed: parseInt(e.target.value) })} className="ob-range w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600" />
-                            </div>
+                    <div className="ob-config">
+                        <div className="ob-config__head">
+                            <strong>Prepara tu reto</strong>
+                            <span>{getLevelTitle()}</span>
                         </div>
 
-                        <div className="ob-section bg-slate-50 p-4 rounded-xl border border-slate-200">
-                            <h3 className="font-medium text-gray-700 mb-3">Tipos de Contenido</h3>
+                        <label className="ob-slider">
+                            <span className="ob-slider__label"><Circle size={15} /> Cantidad de bolas <b>{config.ballCount}</b></span>
+                            <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({ ...config, ballCount: parseInt(e.target.value) })} />
+                        </label>
+                        <label className="ob-slider">
+                            <span className="ob-slider__label"><RotateCw size={15} /> Velocidad de giro <b>{config.rotationSpeed}</b></span>
+                            <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({ ...config, rotationSpeed: parseInt(e.target.value) })} />
+                        </label>
+
+                        <div className="ob-ops">
+                            <span className="ob-slider__label"><Shapes size={15} /> Tipos de contenido</span>
                             {visibleOperations.length > 0 ? (
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <div className="ob-ops__grid">
                                     {visibleOperations.map(op => (
-                                        <div
+                                        <button
                                             key={op.id}
+                                            type="button"
                                             onClick={() => toggleOp(op.id)}
-                                            className={`ob-chip flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'ob-chip--on bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
+                                            className={`ob-op ${config.ops[op.id] ? 'is-on' : ''}`}
+                                            aria-pressed={!!config.ops[op.id]}
                                         >
-                                            {config.ops[op.id] ? <CheckSquare className="w-4 h-4 text-blue-600" /> : <Square className="w-4 h-4 text-gray-400" />}
-                                            <span className={`text-sm ${config.ops[op.id] ? 'font-semibold text-blue-900' : 'text-gray-600'}`}>{op.label}</span>
-                                        </div>
+                                            <span className="ob-op__check">{config.ops[op.id] && <Check size={13} strokeWidth={3} />}</span>
+                                            {op.label}
+                                        </button>
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text-sm text-red-500">Error: No hay operaciones disponibles para este nivel.</p>
+                                <p className="ob-error">Error: No hay operaciones disponibles para este nivel.</p>
                             )}
                         </div>
 
-                        <div className="ob-section flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({ ...config, randomSize: !config.randomSize })}>
-                            <div className="flex-1">
-                                <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
-                                <span className="text-xs text-gray-500">El tamaño no indica el valor</span>
-                            </div>
-                            <div className={`ob-switch w-12 h-6 rounded-full p-1 transition-colors ${config.randomSize ? 'ob-switch--on bg-green-500' : 'bg-gray-300'}`}>
-                                <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform ${config.randomSize ? 'translate-x-6' : ''}`} />
-                            </div>
-                        </div>
+                        <button
+                            type="button"
+                            className={`ob-switchrow ${config.randomSize ? 'is-on' : ''}`}
+                            onClick={() => setConfig({ ...config, randomSize: !config.randomSize })}
+                            aria-pressed={config.randomSize}
+                        >
+                            <span className="ob-switchrow__icon"><EyeOff size={16} /></span>
+                            <span className="ob-switchrow__text">
+                                <b>Tamaño engañoso</b>
+                                <small>El tamaño no indica el valor</small>
+                            </span>
+                            <i className="ob-switchrow__track"><i /></i>
+                        </button>
 
-                        <Button onClick={startGame} className="ob-cta w-full h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
-                            <Play className="mr-2 h-5 w-5" /> ¡Jugar!
-                        </Button>
+                        <GameButton size="lg" icon={Play} onClick={startGame} className="ob-play">¡Jugar!</GameButton>
                     </div>
                 </div>
-            </div>
+                {instructions}
+            </GameShell>
         );
     }
 
+    // Solo presentación: mismos números que se envían en onGameComplete
+    const secs = Math.max(1, Math.round(timeElapsed / 1000));
+    const bonusVis = Math.max(0, Math.round((config.ballCount * 5 - secs) * 10));
+
     return (
-        <div className="ob-root flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50 dark:bg-transparent">
-            <div className="ob-backdrop" aria-hidden="true" />
-            {/* Control Bar PRO */}
-            <div className="ob-bar w-full max-w-4xl flex items-center justify-between bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 dark:shadow-black/20 border border-white/50 dark:border-slate-700/50 gap-3 sm:gap-6">
-
-                {/* Botón Ajustes */}
-                <Button
-                    onClick={backToConfig}
-                    variant="ghost"
-                    className="group flex items-center gap-3 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50/50 rounded-2xl transition-all p-2 sm:px-4"
-                >
-                    <div className="p-2 sm:p-2.5 bg-slate-100 group-hover:bg-indigo-100 rounded-xl transition-colors duration-500">
-                        <Settings className="h-6 w-6 sm:h-5 sm:w-5 group-hover:rotate-90 transition-transform duration-700" />
-                    </div>
-                    <span className="hidden md:inline font-bold text-xs uppercase tracking-[0.2em]">Ajustes</span>
-                </Button>
-
-                {/* Timer Display PRO */}
-                <div className="flex-1 flex justify-center">
-                    <div className="ob-timer relative flex items-center bg-slate-900 px-4 sm:px-10 py-2.5 sm:py-3.5 rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-transparent pointer-events-none" />
-                        <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 animate-pulse mr-2 sm:mr-3" />
-                        <span className="ob-timer__digits font-mono text-xl sm:text-3xl font-black text-white tracking-[0.1em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                            {formatTime(timeElapsed)}
-                        </span>
-                    </div>
+        <GameShell {...shellProps}>
+            {header}
+            <div className="ob-bar">
+                <span className={`ob-timer ${gameState !== 'playing' ? 'is-stopped' : ''}`}>
+                    <span className="ob-timer__icon"><Timer size={16} /></span>
+                    <span className="ob-timer__digits">{formatTime(timeElapsed)}</span>
+                </span>
+                <Hud>
+                    <span className="ob-info"><Circle size={14} /> {config.ballCount} bolas</span>
+                    <span className="ob-info"><Gauge size={14} /> Giro {config.rotationSpeed}</span>
+                </Hud>
+                <div className="ob-bar__tools">
+                    <GameButton variant="soft" size="sm" icon={Settings} onClick={backToConfig}>Ajustes</GameButton>
+                    <GameButton variant="soft" size="sm" icon={RefreshCw} onClick={restartGame}>Reiniciar</GameButton>
                 </div>
-
-                {/* Botón Reiniciar PRO */}
-                <Button
-                    onClick={restartGame}
-                    variant="ghost"
-                    className="group flex items-center justify-center p-2 sm:p-3 text-slate-500 hover:text-rose-600 hover:bg-rose-50/50 rounded-2xl transition-all"
-                >
-                    <div className="p-2 sm:p-2.5 bg-slate-100 group-hover:bg-rose-100 rounded-xl transition-colors duration-500">
-                        <RefreshCw className="h-6 w-6 sm:h-5 sm:w-5 group-hover:rotate-180 transition-transform duration-700" />
-                    </div>
-                </Button>
             </div>
 
-            <div className="ob-stage relative w-full max-w-4xl overflow-hidden">
-                <div ref={sceneRef} className="w-full h-[600px] cursor-pointer" />
+            <div className="ob-stage">
+                <div ref={sceneRef} className="ob-scene" />
 
-                {gameState === 'lost' && (
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-                        <div className="ob-result ob-result--lose bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
-                            <div className="ob-grade" style={{ '--ob-grade': 0, '--ob-grade-color': '#ef4444' }}>
-                                <div className="text-center">
-                                    <div className="ob-grade__n">0</div>
-                                    <div className="ob-grade__of">/10</div>
-                                </div>
-                            </div>
-                            <span className="ob-grade__msg" style={{ '--ob-grade-color': '#ef4444' }}>Necesitas repasar</span>
-                            <h3 className="text-2xl font-bold text-red-500 flex items-center justify-center gap-2"><XCircle className="w-6 h-6" aria-hidden="true" /> ¡Fallaste!</h3>
-                            <p className="font-medium text-gray-800">Debes marcar las bolas de menor a mayor valor.</p>
-                            <div className="text-xl font-mono text-gray-600">Tiempo: {formatTime(timeElapsed)}</div>
-                            <div className="flex space-x-2 mt-4">
-                                <Button onClick={backToConfig} variant="outline" className="flex-1 rounded-xl">Menú</Button>
-                                <Button onClick={restartGame} className="ob-cta flex-1">Reintentar</Button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {gameState === 'won' && (
-                    <div className="absolute inset-0 bg-green-500/10 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl pointer-events-none">
-                        <div className="ob-result ob-result--win bg-white/95 p-6 sm:p-8 rounded-xl shadow-2xl border-2 border-green-500 text-center space-y-4 animate-in zoom-in max-w-sm mx-4 pointer-events-auto">
-                            {(() => {
-                                // Solo presentación: mismos números que se envían en onGameComplete
-                                const secs = Math.max(1, Math.round(timeElapsed / 1000));
-                                const bonusVis = Math.max(0, Math.round((config.ballCount * 5 - secs) * 10));
-                                return (
-                                    <>
-                                        <div className="flex items-center justify-center gap-4">
-                                            <Trophy className="ob-trophy w-12 h-12 text-yellow-500" aria-hidden="true" />
-                                            <div className="ob-grade" style={{ '--ob-grade': 10, '--ob-grade-color': '#10b981' }}>
-                                                <div className="text-center">
-                                                    <div className="ob-grade__n">10</div>
-                                                    <div className="ob-grade__of">/10</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ob-grade__msg" style={{ '--ob-grade-color': '#10b981' }}>Excelente</span>
-                                        <h3 className="text-2xl font-bold text-green-700">¡Victoria!</h3>
-                                        <p>¡Has ordenado todo correctamente!</p>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <div className="ob-stat">
-                                                <div className="ob-stat__n text-gray-800 font-mono">{formatTime(timeElapsed)}</div>
-                                                <div className="ob-stat__l">Tiempo</div>
-                                            </div>
-                                            <div className="ob-stat">
-                                                <div className="ob-stat__n text-amber-500">{config.ballCount * 100 + bonusVis}</div>
-                                                <div className="ob-stat__l">Puntos</div>
-                                            </div>
-                                        </div>
-                                    </>
-                                );
-                            })()}
-                            <div className="flex space-x-2 mt-4">
-                                <Button onClick={backToConfig} variant="outline" className="flex-1 rounded-xl">Menú</Button>
-                                <Button onClick={restartGame} className="ob-cta flex-1 bg-green-600 hover:bg-green-700">Jugar otra vez</Button>
-                            </div>
+                {(gameState === 'lost' || gameState === 'won') && (
+                    <div className={`ob-result ${gameState === 'won' ? 'is-won' : 'is-lost'}`}>
+                        <div className="ob-result__card">
+                            <ResultsScreen
+                                title={gameState === 'won' ? '¡Victoria!' : '¡Fallaste!'}
+                                subtitle={gameState === 'won' ? '¡Has ordenado todo correctamente!' : 'Debes marcar las bolas de menor a mayor valor.'}
+                                nota={gameState === 'won' ? 10 : 0}
+                                points={gameState === 'won' ? config.ballCount * 100 + bonusVis : 0}
+                                stats={[
+                                    { icon: Timer, tone: 'time', label: 'Tiempo', value: formatTime(timeElapsed) },
+                                    { icon: Circle, tone: 'accent', label: 'Bolas', value: config.ballCount },
+                                ]}
+                                actions={[
+                                    { label: gameState === 'won' ? 'Jugar otra vez' : 'Reintentar', onClick: restartGame, icon: RefreshCw },
+                                    { label: 'Ajustes', onClick: backToConfig, icon: Settings, variant: 'soft' },
+                                ]}
+                            />
                         </div>
                     </div>
                 )}
             </div>
-        </div>
+            {instructions}
+        </GameShell>
     );
 };
 

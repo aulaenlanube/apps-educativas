@@ -1,11 +1,32 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  MessageSquare, Send, Users, User, ChevronLeft, Megaphone,
-  X, Circle, ChevronDown, ChevronUp,
-} from 'lucide-react';
+import { MessageSquare, Send, ChevronLeft, ChevronDown, Megaphone, Pin } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import UserAvatar from '@/components/ui/UserAvatar';
+import { DashCard, DashButton, Pill } from '@/components/dashboard/kit';
+import './teacherPanels.css';
 
+// ── Formato de fechas (solo presentación) ──────────────────────────────────
+const fmtTime = (iso) => new Date(iso).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+const dayKey = (iso) => new Date(iso).toDateString();
+function dayLabel(iso) {
+  const d = new Date(iso);
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+  if (d.toDateString() === today.toDateString()) return 'Hoy';
+  if (d.toDateString() === yesterday.toDateString()) return 'Ayer';
+  return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'short' });
+}
+function shortWhen(iso) {
+  const d = new Date(iso);
+  if (d.toDateString() === new Date().toDateString()) return fmtTime(iso);
+  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+}
+
+// Chat del grupo con aspecto de mensajería: anuncios fijados arriba, lista de
+// conversaciones con avatar y no leídos, y el hilo con burbujas a la derecha
+// (en móvil, lista e hilo se alternan).
 export default function GroupChatPanel({ groupId, groupName }) {
   const [overview, setOverview] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +58,8 @@ export default function GroupChatPanel({ groupId, groupName }) {
 
   useEffect(() => {
     if (messages.length > 0) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      // 'nearest': desplaza la lista de mensajes sin arrastrar la página entera
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, [messages]);
 
@@ -74,231 +96,228 @@ export default function GroupChatPanel({ groupId, groupName }) {
 
   if (!groupId) return null;
 
-  // Thread view
-  if (selectedThread !== null) {
-    const isBroadcast = selectedThread === 'broadcast';
-    const studentInfo = !isBroadcast && overview?.threads
-      ? overview.threads.find(t => t.student_id === selectedThread)
-      : null;
-
-    return (
-      <div>
-        {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <button
-            onClick={() => { setSelectedThread(null); setMessages([]); }}
-            className="flex items-center gap-2 text-purple-600 hover:text-purple-800 font-medium transition-colors text-sm"
-          >
-            <ChevronLeft className="w-4 h-4" /> Volver
-          </button>
-          <div className="flex items-center gap-2 text-sm text-slate-600">
-            {isBroadcast ? (
-              <>
-                <Megaphone className="w-4 h-4 text-amber-500" />
-                <span className="font-medium">Anuncios al grupo</span>
-              </>
-            ) : (
-              <>
-                <span className="text-lg">{studentInfo?.avatar_emoji || '🎓'}</span>
-                <span className="font-medium">{studentInfo?.display_name || 'Alumno'}</span>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* Messages */}
-        <div className="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden">
-          <div className="p-3 space-y-2.5 max-h-[350px] overflow-y-auto">
-            {messagesLoading ? (
-              <div className="flex justify-center py-6">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-500" />
-              </div>
-            ) : messages.length === 0 ? (
-              <p className="text-sm text-slate-400 text-center py-6">
-                {isBroadcast ? 'No hay anuncios todavia. Envia el primer mensaje al grupo.' : 'No hay mensajes. Inicia la conversacion.'}
-              </p>
-            ) : (
-              messages.map(msg => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${msg.sender_type === 'teacher' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[75%] px-3.5 py-2.5 rounded-2xl text-sm ${
-                    msg.sender_type === 'teacher'
-                      ? 'bg-purple-600 text-white rounded-br-sm'
-                      : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm shadow-sm'
-                  }`}>
-                    <p className={`text-[10px] font-bold mb-0.5 ${
-                      msg.sender_type === 'teacher' ? 'text-purple-200' : 'text-slate-400'
-                    }`}>
-                      {msg.sender_name}
-                    </p>
-                    <p className="whitespace-pre-wrap">{msg.message}</p>
-                    <p className={`text-[10px] mt-1 ${
-                      msg.sender_type === 'teacher' ? 'text-purple-300' : 'text-slate-400'
-                    }`}>
-                      {new Date(msg.created_at).toLocaleString('es-ES', {
-                        day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-                      })}
-                    </p>
-                  </div>
-                </motion.div>
-              ))
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Reply */}
-          <div className="flex gap-2 px-3 py-2.5 border-t border-slate-100 bg-white">
-            <input
-              type="text"
-              value={reply}
-              onChange={(e) => setReply(e.target.value)}
-              placeholder={isBroadcast ? 'Escribe un mensaje para todo el grupo...' : 'Escribe un mensaje...'}
-              className="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSend();
-                }
-              }}
-              disabled={sending}
-            />
-            <button
-              onClick={handleSend}
-              disabled={sending || !reply.trim()}
-              className="px-3 py-2 bg-purple-600 text-white rounded-xl text-sm font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 flex items-center gap-1.5"
-            >
-              {sending ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-              ) : (
-                <Send className="w-4 h-4" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Overview
   const threads = overview?.threads || [];
   const totalUnread = threads.reduce((sum, t) => sum + (t.unread_count || 0), 0);
+  const hasThread = selectedThread !== null;
+  const isBroadcast = selectedThread === 'broadcast';
+  const studentInfo = hasThread && !isBroadcast && overview?.threads
+    ? overview.threads.find(t => t.student_id === selectedThread)
+    : null;
+  const closeThread = () => { setSelectedThread(null); setMessages([]); };
+
+  const studentAvatar = (info, size) => (
+    <UserAvatar
+      avatarEmoji={info?.avatar_emoji || '🎓'}
+      avatarColor={info?.avatar_color}
+      selectedAvatarCode={info?.selected_avatar_code}
+      size={size}
+    />
+  );
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-3">
-        <button
-          onClick={() => setCollapsed(c => !c)}
-          className="flex items-center gap-2 group"
-        >
-          {collapsed
-            ? <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
-            : <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
-          }
-          <h3 className="font-bold text-slate-800 flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-purple-500" />
-            Chat de {groupName}
-          </h3>
-        </button>
-        {totalUnread > 0 && (
-          <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-purple-100 text-purple-600">
-            {totalUnread} sin leer
-          </span>
-        )}
-      </div>
-
-      <AnimatePresence initial={false}>
-      {!collapsed && (
-        <motion.div
-          key="chat-body"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="overflow-hidden"
-        >
-      {loading ? (
-        <div className="flex justify-center py-8">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500" />
-        </div>
-      ) : (
-        <div className="space-y-1.5 max-h-[400px] overflow-y-auto pr-1">
-          {/* Broadcast thread */}
+    <DashCard
+      className="tp-root tp-chatcard"
+      icon={MessageSquare}
+      tone="pink"
+      title={`Chat de ${groupName}`}
+      subtitle={`${threads.length} alumno${threads.length !== 1 ? 's' : ''} · anuncios y mensajes privados`}
+      actions={(
+        <>
+          {totalUnread > 0 && <Pill tone="accent">{totalUnread} sin leer</Pill>}
           <button
-            onClick={() => openThread('broadcast')}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-amber-50 transition-colors text-left border border-slate-100"
+            type="button"
+            onClick={() => setCollapsed(c => !c)}
+            className="tp-iconbtn"
+            title={collapsed ? 'Mostrar chat' : 'Ocultar chat'}
+            aria-expanded={!collapsed}
           >
-            <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-              <Megaphone className="w-4.5 h-4.5 text-amber-600" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-slate-800">Anuncios al grupo</p>
-              <p className="text-xs text-slate-400 truncate">
-                {overview?.last_broadcast
-                  ? overview.last_broadcast.message
-                  : 'Envia un mensaje a todos los alumnos'}
-              </p>
-            </div>
-            <span className="text-xs text-slate-400">{overview?.broadcast_count || 0} msg</span>
+            <ChevronDown size={18} className={`tp-collapse ${collapsed ? 'is-closed' : ''}`} />
           </button>
+        </>
+      )}
+    >
+      <AnimatePresence initial={false}>
+        {!collapsed && (
+          <motion.div
+            key="chat-body"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+          >
+            <div className={`tp-chat ${hasThread ? 'has-thread' : ''}`}>
+              {/* Lista de conversaciones */}
+              <div className="tp-chat__list">
+                {loading ? (
+                  <div className="tp-center"><span className="tp-spin" /></div>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => openThread('broadcast')}
+                      className={`tp-pin ${isBroadcast ? 'is-active' : ''}`}
+                    >
+                      <span className="tp-pin__tack" aria-hidden="true"><Pin size={12} /></span>
+                      <span className="tp-pin__icon"><Megaphone size={22} /></span>
+                      <span className="tp-pin__body">
+                        <span className="tp-pin__title">Anuncios al grupo</span>
+                        <span className="tp-pin__msg">
+                          {overview?.last_broadcast
+                            ? overview.last_broadcast.message
+                            : 'Envía un mensaje a todos los alumnos'}
+                        </span>
+                      </span>
+                      <span className="tp-pin__count">{overview?.broadcast_count || 0} msg</span>
+                    </button>
 
-          {/* Divider */}
-          {threads.length > 0 && (
-            <div className="flex items-center gap-2 py-1.5 px-1">
-              <span className="text-xs text-slate-400 font-medium">Conversaciones privadas</span>
-              <div className="flex-1 h-px bg-slate-100" />
-            </div>
-          )}
+                    {threads.length > 0 && <div className="tp-chat__sep">Conversaciones privadas</div>}
 
-          {/* Student threads */}
-          {threads.map(thread => (
-            <button
-              key={thread.student_id}
-              onClick={() => openThread(thread.student_id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-left border ${
-                thread.has_unread ? 'border-purple-200 bg-purple-50/30' : 'border-slate-100'
-              }`}
-            >
-              <div className="relative">
-                <span className="text-2xl">{thread.avatar_emoji || '🎓'}</span>
-                {thread.has_unread && (
-                  <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-purple-500 border-2 border-white" />
+                    {threads.map(thread => {
+                      const active = selectedThread === thread.student_id;
+                      const unread = thread.has_unread && !active;
+                      return (
+                        <button
+                          key={thread.student_id}
+                          type="button"
+                          onClick={() => openThread(thread.student_id)}
+                          className={`tp-convo ${active ? 'is-active' : ''} ${unread ? 'is-unread' : ''}`}
+                        >
+                          <span className="tp-convo__av">
+                            {studentAvatar(thread, 'md')}
+                            {unread && <span className="tp-convo__dot" />}
+                          </span>
+                          <span className="tp-convo__body">
+                            <span className="tp-convo__top">
+                              <span className="tp-convo__name">{thread.display_name}</span>
+                              {thread.last_message_at && (
+                                <span className="tp-convo__time">{shortWhen(thread.last_message_at)}</span>
+                              )}
+                            </span>
+                            <span className="tp-convo__msg">
+                              <span>
+                                {thread.last_message
+                                  ? `${thread.last_sender === 'teacher' ? 'Tú: ' : ''}${thread.last_message}`
+                                  : 'Sin mensajes'}
+                              </span>
+                              {thread.unread_count > 0 && !active && (
+                                <span className="tp-count-badge">{thread.unread_count}</span>
+                              )}
+                            </span>
+                          </span>
+                        </button>
+                      );
+                    })}
+
+                    {threads.length === 0 && (
+                      <p className="tp-arena__empty">No hay alumnos en este grupo</p>
+                    )}
+                  </>
                 )}
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <p className={`text-sm font-semibold ${thread.has_unread ? 'text-purple-800' : 'text-slate-800'}`}>
-                    {thread.display_name}
-                  </p>
-                  {thread.unread_count > 0 && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-purple-500 text-white">
-                      {thread.unread_count}
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs text-slate-400 truncate">
-                  {thread.last_message || 'Sin mensajes'}
-                </p>
-              </div>
-              {thread.last_message_at && (
-                <span className="text-[10px] text-slate-400 shrink-0">
-                  {new Date(thread.last_message_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}
-                </span>
-              )}
-            </button>
-          ))}
 
-          {threads.length === 0 && (
-            <p className="text-sm text-slate-400 text-center py-4">No hay alumnos en este grupo</p>
-          )}
-        </div>
-      )}
-        </motion.div>
-      )}
+              {/* Hilo abierto (o invitación a elegir uno) */}
+              <div className="tp-chat__pane">
+                {hasThread ? (
+                  <div className="tp-thread">
+                    <div className="tp-thread__head">
+                      <button type="button" onClick={closeThread} className="tp-iconbtn" title="Volver" aria-label="Volver">
+                        <ChevronLeft size={18} />
+                      </button>
+                      {isBroadcast
+                        ? <span className="tp-thread__megaphone"><Megaphone size={20} /></span>
+                        : studentAvatar(studentInfo, 'md')}
+                      <div className="tp-thread__who">
+                        <p className="tp-thread__name">
+                          {isBroadcast ? 'Anuncios al grupo' : (studentInfo?.display_name || 'Alumno')}
+                        </p>
+                        <p className="tp-thread__sub">
+                          {isBroadcast
+                            ? `Lo verán los ${threads.length} alumnos de ${groupName}`
+                            : 'Conversación privada'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="tp-thread__msgs">
+                      {messagesLoading ? (
+                        <div className="tp-center"><span className="tp-spin" /></div>
+                      ) : messages.length === 0 ? (
+                        <p className="tp-thread__empty">
+                          {isBroadcast ? <Megaphone size={34} /> : <MessageSquare size={34} />}
+                          {isBroadcast
+                            ? 'No hay anuncios todavía. Envía el primer mensaje al grupo.'
+                            : 'No hay mensajes. Inicia la conversación.'}
+                        </p>
+                      ) : (
+                        messages.map((msg, i) => {
+                          const mine = msg.sender_type === 'teacher';
+                          const newDay = i === 0 || dayKey(messages[i - 1].created_at) !== dayKey(msg.created_at);
+                          return (
+                            <React.Fragment key={msg.id}>
+                              {newDay && <span className="tp-day">{dayLabel(msg.created_at)}</span>}
+                              <motion.div
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`tp-msg ${mine ? 'is-me' : 'is-them'}`}
+                              >
+                                {!mine && !isBroadcast && studentAvatar(studentInfo, 'sm')}
+                                <div className="tp-bubble">
+                                  <p className="tp-bubble__who">{msg.sender_name}</p>
+                                  <p className="tp-bubble__text">{msg.message}</p>
+                                  <p className="tp-bubble__time">{fmtTime(msg.created_at)}</p>
+                                </div>
+                              </motion.div>
+                            </React.Fragment>
+                          );
+                        })
+                      )}
+                      <div ref={messagesEndRef} />
+                    </div>
+
+                    <div className="tp-composer">
+                      <input
+                        type="text"
+                        value={reply}
+                        onChange={(e) => setReply(e.target.value)}
+                        placeholder={isBroadcast ? 'Escribe un mensaje para todo el grupo...' : 'Escribe un mensaje...'}
+                        className="tp-input"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            handleSend();
+                          }
+                        }}
+                        disabled={sending}
+                      />
+                      <DashButton
+                        className="tp-send"
+                        onClick={handleSend}
+                        disabled={sending || !reply.trim()}
+                        title="Enviar"
+                        aria-label="Enviar"
+                      >
+                        {sending ? <span className="tp-spin tp-spin--sm tp-spin--light" /> : <Send size={18} />}
+                      </DashButton>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="tp-chat__idle">
+                    <div className="tp-bubbles-art" aria-hidden="true">
+                      <span><Megaphone size={22} /></span>
+                      <span><MessageSquare size={22} /></span>
+                    </div>
+                    <strong>Elige una conversación</strong>
+                    <p>Escribe un anuncio para todo {groupName} o abre el chat privado de un alumno.</p>
+                    <DashButton variant="amber" size="sm" icon={Megaphone} onClick={() => openThread('broadcast')}>
+                      Escribir anuncio
+                    </DashButton>
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
-    </div>
+    </DashCard>
   );
 }

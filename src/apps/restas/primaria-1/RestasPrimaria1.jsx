@@ -153,6 +153,7 @@ const RestasPrimaria1 = ({ onGameComplete } = {}) => {
   return (
     <SumasLayout
       title="Resta como en el cole (1º)"
+      newLabel="Nueva resta"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}

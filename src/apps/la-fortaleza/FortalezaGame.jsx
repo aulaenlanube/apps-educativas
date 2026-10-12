@@ -10,7 +10,11 @@ import {
   Heart, Coins, Star, Flame, Play, Volume2, VolumeX, Maximize2,
   FastForward, Flag, X, ArrowUpCircle, Trash2, Waves, Timer, Zap, Move, LogOut, Castle, Settings2, Lock,
   Crosshair, Hammer, Landmark, Bomb, Hourglass, Trophy, Swords,
+  Shield, Gem, GraduationCap, Check, Crown, ScrollText, Sailboat, Droplets, CloudSun, DoorOpen, Sparkles,
 } from 'lucide-react';
+import {
+  HudStat, AnswerOption, GameButton, ProgressBar, Segmented,
+} from '../_shared/kit';
 import {
   createGame, startRun, stepGame, placeTower, upgradeTower,
   sellTower, moveTower, classifyEnemy, bossStrike, bossEnrage, canPlace, rewardCorrectAnswer,
@@ -35,6 +39,10 @@ const PERIODIC_SECONDS = 20;    // pregunta periódica durante la acción
 const DRAG_THRESHOLD = 8; // px: por debajo es un toque, por encima orbita la cámara
 
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+
+// Presentación: letras de las opciones y colores de la app para el ámbito del kit
+const LETTERS = ['A', 'B', 'C', 'D'];
+const SCOPE_STYLE = { '--gk-accent': '#a855f7', '--gk-accent-2': '#f59e0b' };
 
 const MINIGAME_BASE_POINTS = 50; // puntos = base · nº de acierto en la cadena
 const MINIGAME_BASE_COINS = 15;  // monedas = base · nº de acierto en la cadena
@@ -910,71 +918,119 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
 
   // --- derivados ---
   const selectedTower = selectedTowerId ? game.towers.find((t) => t.id === selectedTowerId) : null;
-  const levelLabel = isExam
-    ? (hud.endless ? `Nv. ${hud.level} ⚔️` : `Nv. ${Math.min(hud.level, EXAM_VICTORY_LEVEL)}/${EXAM_VICTORY_LEVEL}`)
-    : `Nv. ${hud.level}`;
+  // nivel de amenaza (solo presentación): valor + etiqueta del marcador
+  const levelValue = isExam
+    ? (hud.endless ? `${hud.level}` : `${Math.min(hud.level, EXAM_VICTORY_LEVEL)}/${EXAM_VICTORY_LEVEL}`)
+    : `${hud.level}`;
+  const levelTag = hud.endless ? 'Asedio ∞' : 'Amenaza';
   const a = academicRef.current;
   const nextUp = FORT_UPGRADES[hud.fortLevel] ?? null;
   const ambience = useMemo(() => pickAmbience(seed), [seed]);
   const sealedNota = sealedRef.current
     ? (Math.round((sealedRef.current.correct / Math.max(sealedRef.current.total, 1)) * 100) / 10).toFixed(1)
     : null;
+  const qualityOptions = [
+    { value: 'auto', label: 'Auto', icon: Sparkles },
+    ...QUALITY_LEVELS.map((l) => ({ value: l.id, label: l.name })),
+  ];
+
+  // Pregunta tipo test con las opciones del kit (A, B, C, D)
+  const renderOptions = (options, onPick) => (
+    <div className={`fort-dlg__options ${options.length === 2 ? 'is-two' : ''}`}>
+      {options.map((opt, i) => (
+        <AnswerOption key={opt} letter={LETTERS[i]} onClick={() => onPick(opt)}>{opt}</AnswerOption>
+      ))}
+    </div>
+  );
+  // Respuesta escrita (solo examen)
+  const renderWrite = (value, onChange, onSubmit, placeholder, cta) => (
+    <form className="fort-write" onSubmit={(e) => { e.preventDefault(); if (value.trim()) onSubmit(value); }}>
+      <input
+        autoFocus
+        className="fort-write__input"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        aria-label="Tu respuesta"
+        autoComplete="off" autoCorrect="off" spellCheck="false"
+      />
+      <GameButton type="submit" variant="primary" disabled={!value.trim()}>{cta}</GameButton>
+    </form>
+  );
 
   return (
-    <div className="fort-game" ref={rootRef}>
+    <div className="fort-game gk-shell gk-theme-dark" ref={rootRef} style={SCOPE_STYLE}>
       {/* ---------- HUD superior ---------- */}
       <div className="fort-hud">
-        <span className="fort-hud-item lives"><Heart size={16} /> {hud.lives}</span>
-        {game.fortShieldMax > 0 && <span className="fort-hud-item shield" title="Escudo de la muralla externa">🛡️ {hud.shield}</span>}
-        {hud.relics > 0 && (
-          <span className="fort-hud-item relics" title={game.relics.map((id) => `${RELICS[id].name}: ${RELICS[id].desc}`).join('\n')}>
-            🏺 {hud.relics}
-          </span>
-        )}
-        <span className="fort-hud-item coins"><Coins size={16} /> {hud.coins}</span>
-        <span className="fort-hud-item wave"><Waves size={16} /> {levelLabel}</span>
-        <span className="fort-hud-item score"><Star size={16} /> {hud.score.toLocaleString('es-ES')}</span>
-        {streak > 1 && <span className="fort-hud-item streak"><Flame size={16} /> x{streak}</span>}
-        <span className="fort-hud-spacer" />
-        <span className="fort-hud-academic">🎓 {a.correct}/{a.total}</span>
-        {phase === 'run' && (
-          <button className={`fort-hud-btn ${speed === 2 ? 'active' : ''}`} onClick={() => setSpeed((s) => (s === 1 ? 2 : 1))} title="Velocidad x2">
-            <FastForward size={16} />{speed === 2 ? ' x2' : ' x1'}
-          </button>
-        )}
-        {(phase === 'build' || phase === 'run') && (
+        <div className="fort-hud__stats">
+          <HudStat icon={Heart} tone="lives" value={hud.lives} label="Vidas" />
+          {game.fortShieldMax > 0 && <HudStat icon={Shield} tone="shield" value={hud.shield} label="Escudo" title="Escudo de la muralla externa" />}
+          {hud.relics > 0 && (
+            <HudStat
+              icon={Gem}
+              tone="relic"
+              value={hud.relics}
+              label="Reliquias"
+              title={game.relics.map((id) => `${RELICS[id].name}: ${RELICS[id].desc}`).join('\n')}
+            />
+          )}
+          <HudStat icon={Coins} tone="coins" value={hud.coins} label="Monedas" />
+          <HudStat icon={Waves} tone={hud.endless ? 'bad' : 'progress'} value={levelValue} label={levelTag} />
+          <HudStat icon={Star} tone="score" value={hud.score.toLocaleString('es-ES')} label="Puntos" />
+          {streak > 1 && <HudStat icon={Flame} tone="streak" value={`×${streak}`} label="Racha" />}
+        </div>
+        <div className="fort-hud__tools">
+          <HudStat icon={GraduationCap} tone="good" value={`${a.correct}/${a.total}`} label="Aciertos" title="Respuestas acertadas / respondidas" />
+          {phase === 'run' && (
+            <GameButton
+              variant={speed === 2 ? 'warning' : 'soft'}
+              size="sm"
+              icon={FastForward}
+              className="fort-speed"
+              onClick={() => setSpeed((s) => (s === 1 ? 2 : 1))}
+              title="Velocidad x2"
+            >
+              ×{speed}
+            </GameButton>
+          )}
+          {(phase === 'build' || phase === 'run') && (
+            <button
+              type="button"
+              className={`gk-iconbtn fort-tool ${nextUp && hud.coins >= nextUp.cost ? 'fort-glow' : ''} ${fortOpen ? 'is-active' : ''}`}
+              onClick={() => {
+                setSelectedTowerId(null);
+                setPlacingType(null);
+                setAimingAbility(null);
+                setMovingTowerId(null);
+                setGfxOpen(false);
+                setFortOpen((o) => !o);
+              }}
+              title="Mejoras de la fortaleza"
+              aria-label="Mejoras de la fortaleza"
+            >
+              <Castle size={18} />
+            </button>
+          )}
+          {phase === 'run' && !isExam && (
+            <button type="button" className="gk-iconbtn fort-tool" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'quit' }); }} title="Terminar partida" aria-label="Terminar partida"><Flag size={18} /></button>
+          )}
+          {phase !== 'ended' && (
+            <button type="button" className="gk-iconbtn fort-tool" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'exit' }); }} title="Volver a la selección de modo" aria-label="Volver a la selección de modo"><LogOut size={18} /></button>
+          )}
           <button
-            className={`fort-hud-btn ${nextUp && hud.coins >= nextUp.cost ? 'fort-glow' : ''}`}
-            onClick={() => {
-              setSelectedTowerId(null);
-              setPlacingType(null);
-              setAimingAbility(null);
-              setMovingTowerId(null);
-              setGfxOpen(false);
-              setFortOpen((o) => !o);
-            }}
-            title="Mejoras de la fortaleza"
+            type="button"
+            className={`gk-iconbtn fort-tool ${gfxOpen ? 'is-active' : ''}`}
+            onClick={() => { setFortOpen(false); setGfxOpen((o) => !o); }}
+            title="Calidad gráfica"
+            aria-label="Calidad gráfica"
           >
-            <Castle size={16} />
+            <Settings2 size={18} />
           </button>
-        )}
-        {phase === 'run' && !isExam && (
-          <button className="fort-hud-btn" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'quit' }); }} title="Terminar partida"><Flag size={16} /></button>
-        )}
-        {phase !== 'ended' && (
-          <button className="fort-hud-btn" onClick={() => { settleMiniOverlay(); setOverlay({ type: 'exit' }); }} title="Volver a la selección de modo"><LogOut size={16} /></button>
-        )}
-        <button
-          className={`fort-hud-btn ${gfxOpen ? 'active' : ''}`}
-          onClick={() => { setFortOpen(false); setGfxOpen((o) => !o); }}
-          title="Calidad gráfica"
-        >
-          <Settings2 size={16} />
-        </button>
-        <button className="fort-hud-btn" onClick={toggleFullscreen} title="Pantalla completa"><Maximize2 size={16} /></button>
-        <button className="fort-hud-btn" onClick={toggleSound} title="Sonido">
-          {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
-        </button>
+          <button type="button" className="gk-iconbtn fort-tool fort-hide-sm" onClick={toggleFullscreen} title="Pantalla completa" aria-label="Pantalla completa"><Maximize2 size={18} /></button>
+          <button type="button" className="gk-iconbtn fort-tool" onClick={toggleSound} title="Sonido" aria-label="Sonido">
+            {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* ---------- escena 3D ---------- */}
@@ -994,16 +1050,9 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         <AnimatePresence>
           {gfxOpen && (
             <motion.div className="fort-gfxpanel" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-              <div className="fort-gfxpanel-title"><Settings2 size={15} /> Calidad gráfica</div>
-              <div className="fort-gfx-options">
-                <button className={gfxPref === 'auto' ? 'active' : ''} onClick={() => changeQuality('auto')}>🪄 Auto</button>
-                {QUALITY_LEVELS.map((l) => (
-                  <button key={l.id} className={gfxPref === l.id ? 'active' : ''} onClick={() => changeQuality(l.id)}>
-                    {l.icon} {l.name}
-                  </button>
-                ))}
-              </div>
-              <p className="fort-gfx-note">
+              <div className="fort-gfxpanel__title"><span className="fort-medal fort-medal--sm"><Settings2 size={14} /></span> Calidad gráfica</div>
+              <Segmented size="sm" options={qualityOptions} value={gfxPref} onChange={changeQuality} />
+              <p className="fort-gfxpanel__note">
                 Nivel activo: <strong>{QUALITY_LABELS[gfxTier]}</strong> · se aplica al instante, la partida no se pierde.
                 {gfxPref === 'auto' && ' En Auto, si el equipo va justo se baja solo.'}
               </p>
@@ -1014,8 +1063,8 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* aviso del governor de FPS */}
         <AnimatePresence>
           {gfxToast && (
-            <motion.div className="fort-gfx-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              ⚙️ {gfxToast}
+            <motion.div className="fort-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+              <span className="fort-medal fort-medal--sm fort-medal--gold"><Settings2 size={14} /></span> {gfxToast}
             </motion.div>
           )}
         </AnimatePresence>
@@ -1023,38 +1072,28 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- panel de quiz ---------- */}
         <AnimatePresence>
           {phase === 'quiz' && quiz && (
-            <motion.div className="fort-quiz" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}>
-              <div className="fort-quiz-head">
-                <span className="fort-quiz-tag">📜 Pregunta {quiz.qNum}/{PREP_QUESTIONS} · gana monedas y energía</span>
-                {quiz.timeLeft != null && (
-                  <span className={`fort-quiz-timer ${quiz.timeLeft <= 10 ? 'urgent' : ''}`}><Timer size={14} /> {quiz.timeLeft}s</span>
-                )}
+            <motion.div className="fort-dlg fort-dlg--quiz" role="dialog" aria-label="Pregunta" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}>
+              <div className="fort-dlg__head">
+                <span className="fort-medal"><ScrollText size={20} /></span>
+                <div className="fort-dlg__titles">
+                  <strong>Pregunta {quiz.qNum} de {PREP_QUESTIONS}</strong>
+                  <span>Gana monedas y energía antes de la batalla</span>
+                </div>
+                {quiz.timeLeft != null && <TimerChip left={quiz.timeLeft} urgent={quiz.timeLeft <= 10} />}
               </div>
-              <p className="fort-quiz-def">{quiz.question.definicion}</p>
+              {quiz.timeLeft != null && !quiz.feedback && <ProgressBar value={quiz.timeLeft} max={QUIZ_SECONDS_EXAM} tone={quiz.timeLeft <= 10 ? 'bad' : 'accent'} />}
+              <p className="fort-dlg__text">{quiz.question.definicion}</p>
 
               {quiz.feedback ? (
-                <div className={`fort-quiz-feedback ${quiz.feedback}`}>
+                <Feedback ok={quiz.feedback === 'correct'}>
                   {quiz.feedback === 'correct'
-                    ? <>✅ ¡Correcto! <strong>+{quiz.reward} 🪙 +25 ⚡</strong>{streak > 1 ? ` (racha x${streak})` : ''}</>
-                    : <>❌ Era: <strong>{quiz.question.solucion}</strong></>}
-                </div>
+                    ? <><strong>¡Correcto!</strong> <Reward coins={quiz.reward} energy={25} />{streak > 1 ? <span className="fort-fb__note">Racha ×{streak}</span> : null}</>
+                    : <><strong>Era:</strong> {quiz.question.solucion}</>}
+                </Feedback>
               ) : isExam && quiz.question.qtype === 'write' ? (
-                <form className="fort-quiz-form" onSubmit={(e) => { e.preventDefault(); if (quiz.input.trim()) answerQuiz(quiz.input); }}>
-                  <input
-                    autoFocus
-                    value={quiz.input}
-                    onChange={(e) => setQuiz((p) => ({ ...p, input: e.target.value }))}
-                    placeholder="Escribe la respuesta..."
-                    autoComplete="off" autoCorrect="off" spellCheck="false"
-                  />
-                  <button type="submit" disabled={!quiz.input.trim()}>Responder</button>
-                </form>
+                renderWrite(quiz.input, (v) => setQuiz((p) => ({ ...p, input: v })), answerQuiz, 'Escribe la respuesta…', 'Responder')
               ) : (
-                <div className="fort-quiz-options">
-                  {quiz.question.options.map((opt) => (
-                    <button key={opt} onClick={() => answerQuiz(opt)}>{opt}</button>
-                  ))}
-                </div>
+                renderOptions(quiz.question.options, answerQuiz)
               )}
             </motion.div>
           )}
@@ -1063,42 +1102,44 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- Desafío Relámpago ---------- */}
         <AnimatePresence>
           {mini && (
-            <motion.div className="fort-quiz fort-mini" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+            <motion.div className="fort-dlg fort-dlg--mini" role="dialog" aria-label="Desafío Relámpago" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
               {mini.stage === 'offer' ? (
                 <>
-                  <div className="fort-mini-title">⚡ ¡Desafío Relámpago!</div>
-                  <p className="fort-quiz-def">
+                  <div className="fort-dlg__hero">
+                    <span className="fort-medal fort-medal--lg"><Zap size={30} /></span>
+                    <strong className="fort-dlg__bigtitle">¡Desafío Relámpago!</strong>
+                  </div>
+                  <p className="fort-dlg__text">
                     Encadena aciertos: cada respuesta correcta vale más que la anterior
-                    ({MINIGAME_BASE_POINTS}, {MINIGAME_BASE_POINTS * 2}, {MINIGAME_BASE_POINTS * 3}... puntos
-                    y {MINIGAME_BASE_COINS}, {MINIGAME_BASE_COINS * 2}, {MINIGAME_BASE_COINS * 3}... monedas),
+                    ({MINIGAME_BASE_POINTS}, {MINIGAME_BASE_POINTS * 2}, {MINIGAME_BASE_POINTS * 3}… puntos
+                    y {MINIGAME_BASE_COINS}, {MINIGAME_BASE_COINS * 2}, {MINIGAME_BASE_COINS * 3}… monedas),
                     pero las preguntas se vuelven más difíciles y el tiempo se acorta. ¡La cadena dura hasta que falles!
                   </p>
-                  <div className="fort-quit-btns">
-                    <button className="fort-btn-secondary" onClick={endMini}>Ahora no</button>
-                    <button className="fort-btn-launch" onClick={startMini}><Zap size={16} /> ¡Acepto!</button>
+                  <div className="fort-dlg__actions">
+                    <GameButton variant="soft" onClick={endMini}>Ahora no</GameButton>
+                    <GameButton variant="warning" icon={Zap} onClick={startMini}>¡Acepto!</GameButton>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="fort-quiz-head">
-                    <span className="fort-mini-chain">⚡ Cadena x{mini.step} · <strong>{mini.total.toLocaleString('es-ES')} pts · {mini.totalCoins} 🪙</strong></span>
-                    {!mini.feedback && (
-                      <span className={`fort-quiz-timer ${mini.timeLeft <= 3 ? 'urgent' : ''}`}><Timer size={14} /> {mini.timeLeft}s</span>
-                    )}
+                  <div className="fort-dlg__head">
+                    <span className="fort-medal"><Zap size={20} /></span>
+                    <div className="fort-dlg__titles">
+                      <strong>Cadena ×{mini.step}</strong>
+                      <span className="fort-chain">{mini.total.toLocaleString('es-ES')} pts · {mini.totalCoins} <Coin /></span>
+                    </div>
+                    {!mini.feedback && <TimerChip left={mini.timeLeft} urgent={mini.timeLeft <= 3} />}
                   </div>
-                  <p className="fort-quiz-def">{mini.question.definicion}</p>
+                  {!mini.feedback && <ProgressBar value={mini.timeLeft} max={miniTimeFor(mini.step)} tone={mini.timeLeft <= 3 ? 'bad' : 'warn'} />}
+                  <p className="fort-dlg__text">{mini.question.definicion}</p>
                   {mini.feedback ? (
-                    <div className={`fort-quiz-feedback ${mini.feedback}`}>
+                    <Feedback ok={mini.feedback === 'correct'}>
                       {mini.feedback === 'correct'
-                        ? <>✅ ¡+{mini.reward} puntos +{mini.rewardCoins} 🪙! La siguiente vale {MINIGAME_BASE_POINTS * (mini.step + 1)} pts y {MINIGAME_BASE_COINS * (mini.step + 1)} 🪙...</>
-                        : <>💥 Cadena rota. Era: <strong>{mini.question.solucion}</strong> · Te llevas {mini.total.toLocaleString('es-ES')} puntos y {mini.totalCoins} 🪙</>}
-                    </div>
+                        ? <><strong>+{mini.reward} puntos</strong> <Reward coins={mini.rewardCoins} /> <span className="fort-fb__note">La siguiente vale {MINIGAME_BASE_POINTS * (mini.step + 1)} pts y {MINIGAME_BASE_COINS * (mini.step + 1)} <Coin /></span></>
+                        : <><strong>Cadena rota.</strong> Era: <strong>{mini.question.solucion}</strong> <span className="fort-fb__note">Te llevas {mini.total.toLocaleString('es-ES')} puntos y {mini.totalCoins} <Coin /></span></>}
+                    </Feedback>
                   ) : (
-                    <div className="fort-quiz-options">
-                      {mini.question.options.map((opt) => (
-                        <button key={opt} onClick={() => answerMini(opt)}>{opt}</button>
-                      ))}
-                    </div>
+                    renderOptions(mini.question.options, answerMini)
                   )}
                 </>
               )}
@@ -1109,18 +1150,19 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- modal clasificación ---------- */}
         <AnimatePresence>
           {overlay?.type === 'classify' && (
-            <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <button className="fort-classify-close" onClick={() => setOverlay(null)}><X size={16} /></button>
-              <div className="fort-classify-word">«{overlay.word}»</div>
-              <div className="fort-classify-ask">¿A qué categoría pertenece?</div>
-              <div className="fort-classify-opts">
+            <motion.div className="fort-dlg fort-dlg--small fort-dlg--classify" role="dialog" aria-label="Disparo de precisión" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <button type="button" className="gk-iconbtn fort-dlg__close" onClick={() => setOverlay(null)} aria-label="Cerrar"><X size={16} /></button>
+              <span className="fort-medal fort-medal--gold"><Crosshair size={20} /></span>
+              <div className="fort-word">«{overlay.word}»</div>
+              <div className="fort-dlg__ask">¿A qué categoría pertenece?</div>
+              <div className="fort-cats">
                 {game.categories.map((cat, i) => (
-                  <button key={cat.name} style={{ '--cat': cat.color }} onClick={() => answerClassify(i)}>
-                    {cat.name}
+                  <button type="button" key={cat.name} className="fort-cat" style={{ '--cat': cat.color }} onClick={() => answerClassify(i)}>
+                    <span className="fort-cat__dot" aria-hidden="true" />{cat.name}
                   </button>
                 ))}
               </div>
-              <div className="fort-classify-hint">✅ crítico + energía · ❌ torres atascadas 3s</div>
+              <div className="fort-dlg__hint"><Check size={13} /> crítico + energía · <X size={13} /> torres atascadas 3 s</div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1128,35 +1170,27 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- modal jefe ---------- */}
         <AnimatePresence>
           {overlay?.type === 'boss' && (
-            <motion.div className="fort-boss" initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              <div className="fort-boss-head">
-                <span>👑 ¡JEFE A LA VISTA!</span>
-                <span className={`fort-quiz-timer ${overlay.timeLeft <= 8 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
+            <motion.div className="fort-dlg fort-dlg--boss" role="dialog" aria-label="Jefe" initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+              <div className="fort-dlg__head">
+                <span className="fort-medal fort-medal--gold"><Crown size={20} /></span>
+                <div className="fort-dlg__titles">
+                  <strong>¡Jefe a la vista!</strong>
+                  <span>Acierta a tiempo y perderá el 70% de su vida</span>
+                </div>
+                {!overlay.feedback && <TimerChip left={overlay.timeLeft} urgent={overlay.timeLeft <= 8} />}
               </div>
-              <p className="fort-quiz-def">{overlay.question.definicion}</p>
+              {!overlay.feedback && <ProgressBar value={overlay.timeLeft} max={BOSS_SECONDS} tone={overlay.timeLeft <= 8 ? 'bad' : 'warn'} />}
+              <p className="fort-dlg__text">{overlay.question.definicion}</p>
               {overlay.feedback ? (
-                <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                <Feedback ok={overlay.feedback === 'correct'}>
                   {overlay.feedback === 'correct'
-                    ? '⚡ ¡Golpe de sabiduría! El jefe pierde el 70% de su vida'
-                    : <>😤 El jefe se enfurece. Era: <strong>{overlay.question.solucion}</strong></>}
-                </div>
+                    ? <><strong>¡Golpe de sabiduría!</strong> El jefe pierde el 70% de su vida.</>
+                    : <><strong>El jefe se enfurece.</strong> Era: <strong>{overlay.question.solucion}</strong></>}
+                </Feedback>
               ) : isExam && overlay.question.qtype === 'write' ? (
-                <form className="fort-quiz-form" onSubmit={(e) => { e.preventDefault(); if (overlay.input.trim()) answerBoss(overlay.input); }}>
-                  <input
-                    autoFocus
-                    value={overlay.input}
-                    onChange={(e) => setOverlay((p) => ({ ...p, input: e.target.value }))}
-                    placeholder="Respuesta para debilitarlo..."
-                    autoComplete="off" autoCorrect="off" spellCheck="false"
-                  />
-                  <button type="submit" disabled={!overlay.input.trim()}>¡Atacar!</button>
-                </form>
+                renderWrite(overlay.input, (v) => setOverlay((p) => ({ ...p, input: v })), answerBoss, 'Respuesta para debilitarlo…', '¡Atacar!')
               ) : (
-                <div className="fort-quiz-options">
-                  {overlay.question.options.map((opt) => (
-                    <button key={opt} onClick={() => answerBoss(opt)}>{opt}</button>
-                  ))}
-                </div>
+                renderOptions(overlay.question.options, answerBoss)
               )}
             </motion.div>
           )}
@@ -1165,35 +1199,27 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- pregunta del Oráculo (exprés, tipo test) ---------- */}
         <AnimatePresence>
           {overlay?.type === 'oracle' && (
-            <motion.div className="fort-oracle" initial={{ opacity: 0, y: -24, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-boss-head oracle">
-                <span>📜 ¡Pregunta sorpresa!</span>
-                <span className={`fort-quiz-timer ${overlay.timeLeft <= 4 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
+            <motion.div className="fort-dlg fort-dlg--oracle" role="dialog" aria-label="Pregunta sorpresa" initial={{ opacity: 0, y: -24, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-dlg__head">
+                <span className="fort-medal"><Sparkles size={20} /></span>
+                <div className="fort-dlg__titles">
+                  <strong>¡Pregunta sorpresa!</strong>
+                  <span>Monedas y energía si aciertas</span>
+                </div>
+                {!overlay.feedback && <TimerChip left={overlay.timeLeft} urgent={overlay.timeLeft <= 4} />}
               </div>
-              <p className="fort-quiz-def">{overlay.question.definicion}</p>
+              {!overlay.feedback && <ProgressBar value={overlay.timeLeft} max={PERIODIC_SECONDS} tone={overlay.timeLeft <= 4 ? 'bad' : 'accent'} />}
+              <p className="fort-dlg__text">{overlay.question.definicion}</p>
               {overlay.feedback ? (
-                <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                <Feedback ok={overlay.feedback === 'correct'}>
                   {overlay.feedback === 'correct'
-                    ? <>✅ ¡Correcto! <strong>+{overlay.reward} 🪙 +25 ⚡</strong></>
-                    : <>❌ Era: <strong>{overlay.question.solucion}</strong></>}
-                </div>
+                    ? <><strong>¡Correcto!</strong> <Reward coins={overlay.reward} energy={25} /></>
+                    : <><strong>Era:</strong> {overlay.question.solucion}</>}
+                </Feedback>
               ) : isExam && overlay.question.qtype === 'write' ? (
-                <form className="fort-quiz-form" onSubmit={(e) => { e.preventDefault(); if (overlay.input.trim()) answerOracle(overlay.input); }}>
-                  <input
-                    autoFocus
-                    value={overlay.input}
-                    onChange={(e) => setOverlay((p) => ({ ...p, input: e.target.value }))}
-                    placeholder="Escribe la respuesta..."
-                    autoComplete="off" autoCorrect="off" spellCheck="false"
-                  />
-                  <button type="submit" disabled={!overlay.input.trim()}>Responder</button>
-                </form>
+                renderWrite(overlay.input, (v) => setOverlay((p) => ({ ...p, input: v })), answerOracle, 'Escribe la respuesta…', 'Responder')
               ) : (
-                <div className="fort-quiz-options">
-                  {overlay.question.options.map((opt) => (
-                    <button key={opt} onClick={() => answerOracle(opt)}>{opt}</button>
-                  ))}
-                </div>
+                renderOptions(overlay.question.options, answerOracle)
               )}
             </motion.div>
           )}
@@ -1202,13 +1228,14 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- modal elegir categoría al construir ---------- */}
         <AnimatePresence>
           {overlay?.type === 'catpick' && (
-            <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <button className="fort-classify-close" onClick={() => setOverlay(null)}><X size={16} /></button>
-              <div className="fort-classify-ask"><FortIcon id={overlay.towerType} size={20} className="fort-icon-inline" /> ¿Qué categoría vigilará esta torre?</div>
-              <div className="fort-classify-opts">
+            <motion.div className="fort-dlg fort-dlg--small" role="dialog" aria-label="Categoría de la torre" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <button type="button" className="gk-iconbtn fort-dlg__close" onClick={() => setOverlay(null)} aria-label="Cerrar"><X size={16} /></button>
+              <span className="fort-tile"><FortIcon id={overlay.towerType} size={40} /></span>
+              <div className="fort-dlg__ask fort-dlg__ask--big">¿Qué categoría vigilará esta torre?</div>
+              <div className="fort-cats">
                 {game.categories.map((cat, i) => (
-                  <button key={cat.name} style={{ '--cat': cat.color }} onClick={() => pickCategoryAndPlace(i)}>
-                    {cat.name}
+                  <button type="button" key={cat.name} className="fort-cat" style={{ '--cat': cat.color }} onClick={() => pickCategoryAndPlace(i)}>
+                    <span className="fort-cat__dot" aria-hidden="true" />{cat.name}
                   </button>
                 ))}
               </div>
@@ -1216,15 +1243,23 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           )}
         </AnimatePresence>
 
+        {/* velo tras las confirmaciones de salir/terminar (solo presentación) */}
+        <AnimatePresence>
+          {(overlay?.type === 'quit' || overlay?.type === 'exit') && (
+            <motion.div className="fort-scrim" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+          )}
+        </AnimatePresence>
+
         {/* ---------- modal confirmar rendición (práctica) ---------- */}
         <AnimatePresence>
           {overlay?.type === 'quit' && (
-            <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-classify-ask">🏳️ ¿Terminar la partida aquí?</div>
-              <div className="fort-classify-hint">Se guardarán tus puntos y tu progreso.</div>
-              <div className="fort-quit-btns">
-                <button className="fort-btn-secondary" onClick={() => setOverlay(null)}>Seguir jugando</button>
-                <button className="fort-btn-danger" onClick={() => endGame('finished')}>Terminar</button>
+            <motion.div className="fort-dlg fort-dlg--small fort-dlg--confirm" role="dialog" aria-label="Terminar partida" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <span className="fort-medal fort-medal--lg"><Flag size={26} /></span>
+              <div className="fort-dlg__ask fort-dlg__ask--big">¿Terminar la partida aquí?</div>
+              <div className="fort-dlg__hint">Se guardarán tus puntos y tu progreso.</div>
+              <div className="fort-dlg__actions">
+                <GameButton variant="soft" onClick={() => setOverlay(null)}>Seguir jugando</GameButton>
+                <GameButton variant="danger" icon={Flag} onClick={() => endGame('finished')}>Terminar</GameButton>
               </div>
             </motion.div>
           )}
@@ -1233,15 +1268,16 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- modal volver a la selección de modo ---------- */}
         <AnimatePresence>
           {overlay?.type === 'exit' && (
-            <motion.div className="fort-classify" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-classify-ask">🚪 ¿Volver a la selección de modo?</div>
-              <div className="fort-classify-hint">
+            <motion.div className="fort-dlg fort-dlg--small fort-dlg--confirm" role="dialog" aria-label="Salir" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <span className="fort-medal fort-medal--lg fort-medal--red"><DoorOpen size={26} /></span>
+              <div className="fort-dlg__ask fort-dlg__ask--big">¿Volver a la selección de modo?</div>
+              <div className="fort-dlg__hint">
                 Se perderá el progreso de la partida actual.
                 {isExam && ' El intento quedará registrado con tus aciertos hasta ahora.'}
               </div>
-              <div className="fort-quit-btns">
-                <button className="fort-btn-secondary" onClick={() => setOverlay(null)}>Seguir jugando</button>
-                <button className="fort-btn-danger" onClick={() => onExitRef.current?.()}><LogOut size={15} /> Salir</button>
+              <div className="fort-dlg__actions">
+                <GameButton variant="soft" onClick={() => setOverlay(null)}>Seguir jugando</GameButton>
+                <GameButton variant="danger" icon={LogOut} onClick={() => onExitRef.current?.()}>Salir</GameButton>
               </div>
             </motion.div>
           )}
@@ -1250,17 +1286,20 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- reliquia: elegir 1 de 3 (pausa/cámara lenta) ---------- */}
         <AnimatePresence>
           {overlay?.type === 'relic' && (
-            <motion.div className="fort-quiz fort-relic" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-mini-title">🏺 ¡Reliquia del nivel {hud.level}!</div>
-              <p className="fort-quiz-def">Elige un poder permanente para esta partida:</p>
-              <div className="fort-relic-opts">
+            <motion.div className="fort-dlg fort-dlg--relic" role="dialog" aria-label="Reliquia" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-dlg__hero">
+                <span className="fort-medal fort-medal--lg"><Gem size={28} /></span>
+                <strong className="fort-dlg__bigtitle">¡Reliquia del nivel {hud.level}!</strong>
+                <span className="fort-dlg__sub">Elige un poder permanente para esta partida</span>
+              </div>
+              <div className="fort-relics">
                 {overlay.options.map((id) => {
                   const RelicIcon = RELIC_ICONS[id];
                   return (
-                    <button key={id} onClick={() => pickRelic(id)}>
-                      <span className="fort-relic-ico"><RelicIcon size={24} /></span>
+                    <button type="button" key={id} className="fort-relic" onClick={() => pickRelic(id)}>
+                      <span className="fort-relic__ico"><RelicIcon size={26} /></span>
                       <strong>{RELICS[id].name}</strong>
-                      <span className="fort-relic-desc">{RELICS[id].desc}</span>
+                      <span className="fort-relic__desc">{RELICS[id].desc}</span>
                     </button>
                   );
                 })}
@@ -1272,16 +1311,22 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- victoria del examen: terminar o asedio infinito ---------- */}
         <AnimatePresence>
           {overlay?.type === 'victory' && (
-            <motion.div className="fort-quiz fort-victory" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-mini-title"><Trophy size={20} /> ¡Fortaleza defendida!</div>
-              <p className="fort-quiz-def">
-                Tu nota queda sellada: <strong>{sealedNota}/10</strong>. Puedes terminar aquí
-                o lanzarte al <strong>Asedio infinito</strong>: enemigos cada vez más brutales
+            <motion.div className="fort-dlg fort-dlg--victory" role="dialog" aria-label="Victoria" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-dlg__hero">
+                <span className="fort-medal fort-medal--lg fort-medal--gold"><Trophy size={30} /></span>
+                <strong className="fort-dlg__bigtitle">¡Fortaleza defendida!</strong>
+              </div>
+              <div className="fort-sealed">
+                <span className="fort-sealed__label">Nota sellada</span>
+                <span className="fort-sealed__value">{sealedNota?.replace('.', ',')}<small>/10</small></span>
+              </div>
+              <p className="fort-dlg__text">
+                Puedes terminar aquí o lanzarte al <strong>Asedio infinito</strong>: enemigos cada vez más brutales
                 y puntos multiplicados para el ranking. Pase lo que pase, la nota ya no cambia.
               </p>
-              <div className="fort-quit-btns">
-                <button className="fort-btn-secondary" onClick={() => endGame('victory')}><Flag size={15} /> Terminar con victoria</button>
-                <button className="fort-btn-launch" onClick={continueEndless}><Swords size={16} /> ¡Asedio infinito!</button>
+              <div className="fort-dlg__actions">
+                <GameButton variant="soft" icon={Flag} onClick={() => endGame('victory')}>Terminar con victoria</GameButton>
+                <GameButton variant="danger" icon={Swords} onClick={continueEndless}>¡Asedio infinito!</GameButton>
               </div>
             </motion.div>
           )}
@@ -1290,39 +1335,38 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- Mercader Errante: pregunta difícil por monedas ---------- */}
         <AnimatePresence>
           {overlay?.type === 'merchant' && (
-            <motion.div className="fort-quiz fort-merchant" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-quiz-head">
-                <span className="fort-merchant-title">⛵ El Mercader Errante</span>
-                {!overlay.feedback && (
-                  <span className={`fort-quiz-timer ${overlay.timeLeft <= 5 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
-                )}
+            <motion.div className="fort-dlg fort-dlg--merchant" role="dialog" aria-label="Mercader Errante" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-dlg__head">
+                <span className="fort-medal"><Sailboat size={20} /></span>
+                <div className="fort-dlg__titles">
+                  <strong>El Mercader Errante</strong>
+                  <span>Una pregunta difícil a cambio de monedas</span>
+                </div>
+                {!overlay.feedback && <TimerChip left={overlay.timeLeft} urgent={overlay.timeLeft <= 5} />}
               </div>
+              {!overlay.feedback && <ProgressBar value={overlay.timeLeft} max={PERIODIC_SECONDS} tone={overlay.timeLeft <= 5 ? 'bad' : 'accent'} />}
               {overlay.stage === 'offer' ? (
                 <>
-                  <p className="fort-quiz-def">
+                  <p className="fort-dlg__text fort-dlg__text--quote">
                     «Llevo una <strong>bolsa de monedas</strong> para quien responda mi pregunta,
                     grumete. Pero aviso: una vez la oigas, no hay vuelta atrás. ¿Cerramos el trato?»
                   </p>
-                  <div className="fort-quit-btns">
-                    <button className="fort-btn-secondary" onClick={declineMerchant}>Dejarlo zarpar</button>
-                    <button className="fort-btn-launch" onClick={acceptMerchant}>¡Acepto el trato!</button>
+                  <div className="fort-dlg__actions">
+                    <GameButton variant="soft" onClick={declineMerchant}>Dejarlo zarpar</GameButton>
+                    <GameButton variant="success" icon={Check} onClick={acceptMerchant}>¡Acepto el trato!</GameButton>
                   </div>
                 </>
               ) : (
                 <>
-                  <p className="fort-quiz-def">{overlay.question.definicion}</p>
+                  <p className="fort-dlg__text">{overlay.question.definicion}</p>
                   {overlay.feedback ? (
-                    <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                    <Feedback ok={overlay.feedback === 'correct'}>
                       {overlay.feedback === 'correct'
-                        ? <>✅ ¡Trato cerrado! <strong>+{overlay.reward} 🪙</strong></>
-                        : <>❌ Era: <strong>{overlay.question.solucion}</strong>. El barco zarpa sin trato.</>}
-                    </div>
+                        ? <><strong>¡Trato cerrado!</strong> <Reward coins={overlay.reward} /></>
+                        : <><strong>Era:</strong> {overlay.question.solucion}. El barco zarpa sin trato.</>}
+                    </Feedback>
                   ) : (
-                    <div className="fort-quiz-options">
-                      {overlay.question.options.map((opt) => (
-                        <button key={opt} onClick={() => answerMerchant(opt)}>{opt}</button>
-                      ))}
-                    </div>
+                    renderOptions(overlay.question.options, answerMerchant)
                   )}
                 </>
               )}
@@ -1333,46 +1377,46 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
         {/* ---------- Pozo de los Deseos: apuesta + pregunta difícil ---------- */}
         <AnimatePresence>
           {overlay?.type === 'well' && (
-            <motion.div className="fort-quiz fort-well" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
-              <div className="fort-quiz-head">
-                <span className="fort-well-title">⛲ El Pozo de los Deseos</span>
-                {overlay.stage === 'question' && !overlay.feedback && (
-                  <span className={`fort-quiz-timer ${overlay.timeLeft <= 5 ? 'urgent' : ''}`}><Timer size={14} /> {overlay.timeLeft}s</span>
-                )}
+            <motion.div className="fort-dlg fort-dlg--well" role="dialog" aria-label="Pozo de los Deseos" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <div className="fort-dlg__head">
+                <span className="fort-medal"><Droplets size={20} /></span>
+                <div className="fort-dlg__titles">
+                  <strong>El Pozo de los Deseos</strong>
+                  <span>Acierta y te devuelve ×{String(WELL_MULT).replace('.', ',')}</span>
+                </div>
+                {overlay.stage === 'question' && !overlay.feedback && <TimerChip left={overlay.timeLeft} urgent={overlay.timeLeft <= 5} />}
               </div>
+              {overlay.stage === 'question' && !overlay.feedback && <ProgressBar value={overlay.timeLeft} max={PERIODIC_SECONDS} tone={overlay.timeLeft <= 5 ? 'bad' : 'accent'} />}
               {overlay.stage === 'bet' ? (
                 <>
-                  <p className="fort-quiz-def">
+                  <p className="fort-dlg__text">
                     Lanza monedas al pozo y responde una pregunta difícil: si aciertas
                     el pozo te devuelve <strong>×{WELL_MULT}</strong>; si fallas, se hunden para siempre.
                   </p>
-                  <div className="fort-well-bets">
+                  <div className="fort-bets">
                     {WELL_BETS.map((b) => (
-                      <button key={b} disabled={hud.coins < b} onClick={() => placeWellBet(b)}>
-                        <strong>{b} 🪙</strong>
-                        <span className="fort-well-win">acierto: +{Math.round(b * WELL_MULT)}</span>
+                      <button type="button" key={b} className="fort-bet" disabled={hud.coins < b} onClick={() => placeWellBet(b)}>
+                        <span className="fort-bet__stack" aria-hidden="true"><Coin size={20} /><Coin size={20} /><Coin size={20} /></span>
+                        <strong>{b} <Coin /></strong>
+                        <span className="fort-bet__win">acierto: +{Math.round(b * WELL_MULT)}</span>
                       </button>
                     ))}
                   </div>
-                  <button className="fort-btn-secondary fort-mini-skip" onClick={() => { wellCancel(gameRef.current); setOverlay(null); }}>
-                    Ahora no
-                  </button>
+                  <div className="fort-dlg__actions">
+                    <GameButton variant="ghost" onClick={() => { wellCancel(gameRef.current); setOverlay(null); }}>Ahora no</GameButton>
+                  </div>
                 </>
               ) : (
                 <>
-                  <p className="fort-quiz-def">{overlay.question.definicion}</p>
+                  <p className="fort-dlg__text">{overlay.question.definicion}</p>
                   {overlay.feedback ? (
-                    <div className={`fort-quiz-feedback ${overlay.feedback}`}>
+                    <Feedback ok={overlay.feedback === 'correct'}>
                       {overlay.feedback === 'correct'
-                        ? <>✅ ¡El pozo te lo devuelve con creces! <strong>+{overlay.payout} 🪙</strong></>
-                        : <>❌ Era: <strong>{overlay.question.solucion}</strong>. Las monedas se hunden… <strong>−{overlay.bet} 🪙</strong></>}
-                    </div>
+                        ? <><strong>¡El pozo te lo devuelve con creces!</strong> <Reward coins={overlay.payout} /></>
+                        : <><strong>Era:</strong> {overlay.question.solucion}. Las monedas se hunden… <span className="fort-reward fort-reward--loss">−{overlay.bet} <Coin /></span></>}
+                    </Feedback>
                   ) : (
-                    <div className="fort-quiz-options">
-                      {overlay.question.options.map((opt) => (
-                        <button key={opt} onClick={() => answerWell(opt)}>{opt}</button>
-                      ))}
-                    </div>
+                    renderOptions(overlay.question.options, answerWell)
                   )}
                 </>
               )}
@@ -1380,88 +1424,123 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
           )}
         </AnimatePresence>
 
-        {/* ---------- fase de preparación: construir y arrancar ---------- */}
-        {phase === 'build' && (
-          <motion.div className="fort-buildbar" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="fort-forecast">
-              <span className="fort-forecast-label">🛠️ Prepara tus defensas:</span>
-              <span className="fort-forecast-cat">los enemigos saldrán sin parar y cada vez más rápido — y al subir la amenaza despertarán nuevas fortalezas enemigas (hasta 3 frentes). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}</span>
-              <span className="fort-forecast-amb">{ambience.name}</span>
-            </div>
-            <div className="fort-buildbar-actions">
-              <button className="fort-btn-launch" onClick={startDefense}><Play size={17} /> ¡Defender la Fortaleza!</button>
-            </div>
-          </motion.div>
-        )}
-
-        {/* ---------- panel torre seleccionada ---------- */}
-        <AnimatePresence>
-          {selectedTower && (
-            <motion.div className="fort-towerpanel" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
-              <span className="fort-towerpanel-name">
-                <FortIcon id={selectedTower.type} size={20} className="fort-icon-inline" /> {TOWER_TYPES[selectedTower.type].name}
-                {selectedTower.catIdx != null && (
-                  <span className="fort-towerpanel-cat" style={{ '--cat': game.categories[selectedTower.catIdx].color }}>
-                    {game.categories[selectedTower.catIdx].name}
+        {/* Pila inferior (flex): paneles de mejora/torre encima de la barra de
+            preparación. Nunca se solapan entre sí. */}
+        <div className="fort-bottomstack">
+          {/* ---------- panel torre seleccionada ---------- */}
+          <AnimatePresence>
+            {selectedTower && (
+              <motion.div className="fort-dock" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
+                <span className="fort-tile fort-tile--sm"><FortIcon id={selectedTower.type} size={34} /></span>
+                <span className="fort-dock__info">
+                  <strong>{TOWER_TYPES[selectedTower.type].name}</strong>
+                  <span className="fort-dock__meta">
+                    {selectedTower.catIdx != null && (
+                      <span className="fort-catchip" style={{ '--cat': game.categories[selectedTower.catIdx].color }}>
+                        {game.categories[selectedTower.catIdx].name}
+                      </span>
+                    )}
+                    <span className="fort-pips" aria-label={`Nivel ${selectedTower.level} de ${MAX_TOWER_LEVEL}`}>
+                      {Array.from({ length: MAX_TOWER_LEVEL }).map((_, i) => (
+                        <i key={i} className={i < selectedTower.level ? 'is-on' : ''} />
+                      ))}
+                    </span>
                   </span>
-                )}
-                <span className="fort-towerpanel-lvl">Nv. {selectedTower.level}</span>
-              </span>
-              {TOWER_TYPES[selectedTower.type].kind === 'oracle' ? null : selectedTower.level < MAX_TOWER_LEVEL ? (
-                <button
-                  className="fort-btn-upgrade"
-                  disabled={hud.coins < upgradeCost(selectedTower.type, selectedTower.level)}
-                  onClick={doUpgrade}
-                >
-                  <ArrowUpCircle size={15} /> Mejorar ({upgradeCost(selectedTower.type, selectedTower.level)} 🪙)
-                </button>
-              ) : (
-                <span className="fort-towerpanel-max">⭐ Nivel máximo</span>
-              )}
-              <button className="fort-btn-secondary" disabled={hud.coins < MOVE_COST} onClick={startMove}>
-                <Move size={15} /> Mover ({MOVE_COST} 🪙)
-              </button>
-              <button className="fort-btn-danger" onClick={doSell}><Trash2 size={15} /> Vender (+{sellValue(selectedTower)} 🪙)</button>
-              <button className="fort-hud-btn" onClick={() => setSelectedTowerId(null)}><X size={15} /></button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </span>
+                <span className="fort-dock__actions">
+                  {TOWER_TYPES[selectedTower.type].kind === 'oracle' ? null : selectedTower.level < MAX_TOWER_LEVEL ? (
+                    <GameButton
+                      variant="success"
+                      size="sm"
+                      icon={ArrowUpCircle}
+                      disabled={hud.coins < upgradeCost(selectedTower.type, selectedTower.level)}
+                      onClick={doUpgrade}
+                    >
+                      Mejorar · {upgradeCost(selectedTower.type, selectedTower.level)} <Coin />
+                    </GameButton>
+                  ) : (
+                    <span className="fort-chip fort-chip--gold"><Star size={13} /> Nivel máximo</span>
+                  )}
+                  <GameButton variant="soft" size="sm" icon={Move} disabled={hud.coins < MOVE_COST} onClick={startMove}>
+                    Mover · {MOVE_COST} <Coin />
+                  </GameButton>
+                  <GameButton variant="danger" size="sm" icon={Trash2} onClick={doSell}>
+                    Vender · +{sellValue(selectedTower)} <Coin />
+                  </GameButton>
+                </span>
+                <button type="button" className="gk-iconbtn fort-dock__close" onClick={() => setSelectedTowerId(null)} aria-label="Cerrar"><X size={16} /></button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-        {/* ---------- panel de mejoras de la fortaleza ---------- */}
-        <AnimatePresence>
-          {fortOpen && !selectedTower && (
-            <motion.div className="fort-towerpanel fort-fortpanel" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
-              <span className="fort-towerpanel-name">
-                <Castle size={15} /> La Biblioteca
-                {game.fortUpgrades.map((id) => {
-                  const up = FORT_UPGRADES.find((u) => u.id === id);
-                  return <span key={id} className="fort-fortpanel-owned" title={up.name}><FortIcon id={up.id} size={18} className="fort-icon-inline" /></span>;
-                })}
-                {game.fortShieldMax > 0 && <span className="fort-towerpanel-lvl">🛡️ {hud.shield}/{game.fortShieldMax}</span>}
-              </span>
-              {nextUp ? (
-                <>
-                  <span className="fort-fortpanel-desc"><FortIcon id={nextUp.id} size={18} className="fort-icon-inline" /> <strong>{nextUp.name}:</strong> {nextUp.desc}</span>
-                  <button className="fort-btn-upgrade" disabled={hud.coins < nextUp.cost} onClick={doFortUpgrade}>
-                    <ArrowUpCircle size={15} /> Construir ({nextUp.cost} 🪙)
-                  </button>
-                </>
-              ) : (
-                <span className="fort-towerpanel-max">⭐ Fortaleza al máximo</span>
-              )}
-              <button className="fort-hud-btn" onClick={() => setFortOpen(false)}><X size={15} /></button>
+          {/* ---------- panel de mejoras de la fortaleza ---------- */}
+          <AnimatePresence>
+            {fortOpen && !selectedTower && (
+              <motion.div className="fort-dock fort-dock--fort" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}>
+                <span className="fort-tile fort-tile--sm fort-tile--castle"><Castle size={26} /></span>
+                <span className="fort-dock__info">
+                  <strong>La Biblioteca</strong>
+                  <span className="fort-dock__meta">
+                    {game.fortUpgrades.map((id) => {
+                      const up = FORT_UPGRADES.find((u) => u.id === id);
+                      return <span key={id} className="fort-dock__owned" title={up.name}><FortIcon id={up.id} size={20} /></span>;
+                    })}
+                    {game.fortShieldMax > 0 && <span className="fort-chip"><Shield size={12} /> {hud.shield}/{game.fortShieldMax}</span>}
+                    {game.fortUpgrades.length === 0 && <span className="fort-dock__muted">Sin mejoras todavía</span>}
+                  </span>
+                </span>
+                {nextUp ? (
+                  <>
+                    <span className="fort-dock__next">
+                      <FortIcon id={nextUp.id} size={26} />
+                      <span><strong>{nextUp.name}:</strong> {nextUp.desc}</span>
+                    </span>
+                    <span className="fort-dock__actions">
+                      <GameButton variant="success" size="sm" icon={ArrowUpCircle} disabled={hud.coins < nextUp.cost} onClick={doFortUpgrade}>
+                        Construir · {nextUp.cost} <Coin />
+                      </GameButton>
+                    </span>
+                  </>
+                ) : (
+                  <span className="fort-chip fort-chip--gold"><Star size={13} /> Fortaleza al máximo</span>
+                )}
+                <button type="button" className="gk-iconbtn fort-dock__close" onClick={() => setFortOpen(false)} aria-label="Cerrar"><X size={16} /></button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ---------- fase de preparación: construir y arrancar ---------- */}
+          {phase === 'build' && (
+            <motion.div className="fort-buildbar" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <span className="fort-medal fort-medal--lg fort-hide-sm"><Hammer size={26} /></span>
+              <div className="fort-buildbar__text">
+                <strong>Prepara tus defensas</strong>
+                <span>
+                  Los enemigos saldrán sin parar y cada vez más rápido, y al subir la amenaza despertarán nuevas fortalezas
+                  enemigas (hasta 3 frentes). {isExam ? `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL}.` : '¿Hasta qué nivel llegarás?'}
+                </span>
+                <span className="fort-buildbar__chips">
+                  <span className="fort-chip"><CloudSun size={13} /> {ambience.name}</span>
+                  {isExam && <span className="fort-chip fort-chip--exam"><GraduationCap size={13} /> Meta: nivel {EXAM_VICTORY_LEVEL}</span>}
+                </span>
+              </div>
+              <GameButton variant="success" size="lg" icon={Play} onClick={startDefense}>¡Defender la Fortaleza!</GameButton>
             </motion.div>
           )}
-        </AnimatePresence>
+
+        </div>
 
         {/* ---------- aviso de colocación/apuntado/mover ---------- */}
         {(placingType || aimingAbility || movingTowerId) && (
-          <div className="fort-placing-hint">
+          <div className="fort-hint">
+            <span className="fort-medal fort-medal--sm fort-medal--gold">
+              {placingType ? <Hammer size={14} /> : aimingAbility ? <Crosshair size={14} /> : <Move size={14} />}
+            </span>
             {placingType
               ? `${TOWER_TYPES[placingType].desc} — toca una celda libre para construir`
               : aimingAbility
                 ? `${ABILITIES[aimingAbility].desc} — toca el campo para lanzarla`
-                : `Recolocando construcción — toca una celda libre (${MOVE_COST} 🪙)`}
+                : <>Recolocando construcción — toca una celda libre ({MOVE_COST} <Coin />)</>}
           </div>
         )}
       </div>
@@ -1474,8 +1553,9 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
               const sanctLocked = t.id === 'santuario' && a.correct < SANCT_UNLOCK_CORRECT;
               return (
                 <button
+                  type="button"
                   key={t.id}
-                  className={`fort-palette-btn ${placingType === t.id ? 'selected' : ''} ${sanctLocked ? 'locked' : ''}`}
+                  className={`fort-slot ${placingType === t.id ? 'is-selected' : ''} ${sanctLocked ? 'is-locked' : ''}`}
                   disabled={sanctLocked || hud.coins < t.cost || (t.unique && game.towers.some((tw) => tw.type === t.id))}
                   onClick={() => {
                     setSelectedTowerId(null);
@@ -1486,9 +1566,13 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
                   }}
                   title={sanctLocked ? `Se desbloquea con ${SANCT_UNLOCK_CORRECT} aciertos (llevas ${a.correct})` : t.desc}
                 >
-                  <span className="fort-palette-emoji">{sanctLocked ? <Lock size={26} /> : <FortIcon id={t.id} size={40} />}</span>
-                  <span className="fort-palette-name">{t.name}</span>
-                  <span className="fort-palette-cost">{sanctLocked ? `${a.correct}/${SANCT_UNLOCK_CORRECT} 🎓` : `${t.cost} 🪙`}</span>
+                  <span className="fort-slot__face">
+                    <span className="fort-slot__icon">{sanctLocked ? <Lock size={24} /> : <FortIcon id={t.id} size={40} />}</span>
+                    <span className="fort-slot__name">{t.name}</span>
+                    <span className="fort-slot__cost">
+                      {sanctLocked ? <>{a.correct}/{SANCT_UNLOCK_CORRECT} <GraduationCap size={11} /></> : <>{t.cost} <Coin size={12} /></>}
+                    </span>
+                  </span>
                 </button>
               );
             })}
@@ -1496,24 +1580,24 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
 
           <div className="fort-abilities">
             <div className="fort-energy" title="Energía: se carga acertando preguntas y clasificaciones">
-              <Zap size={14} />
-              <div className="fort-energy-bar">
-                <div className="fort-energy-fill" style={{ width: `${(hud.energy / ENERGY_MAX) * 100}%` }} />
-              </div>
-              <span className="fort-energy-num">{hud.energy}</span>
+              <span className="fort-energy__head"><Zap size={14} /> Energía <strong>{hud.energy}</strong></span>
+              <ProgressBar value={hud.energy} max={ENERGY_MAX} tone="warn" label="Energía" />
             </div>
             <div className="fort-ability-btns">
               {Object.values(ABILITIES).map((ab) => (
                 <button
+                  type="button"
                   key={ab.id}
-                  className={`fort-ability-btn ${aimingAbility === ab.id ? 'selected' : ''}`}
+                  className={`fort-slot fort-slot--ability ${aimingAbility === ab.id ? 'is-selected' : ''}`}
                   disabled={phase !== 'run' || hud.energy < ab.cost || !hud.abilityReady}
                   onClick={() => toggleAbility(ab.id)}
                   title={ab.desc}
                 >
-                  <span className="fort-palette-emoji"><FortIcon id={ab.id} size={40} /></span>
-                  <span className="fort-palette-name">{ab.name}</span>
-                  <span className="fort-ability-cost">{ab.cost} ⚡</span>
+                  <span className="fort-slot__face">
+                    <span className="fort-slot__icon"><FortIcon id={ab.id} size={40} /></span>
+                    <span className="fort-slot__name">{ab.name}</span>
+                    <span className="fort-slot__cost fort-slot__cost--energy">{ab.cost} <Zap size={11} /></span>
+                  </span>
                 </button>
               ))}
             </div>
@@ -1523,5 +1607,49 @@ const FortalezaGame = ({ seed, mode, categories, questions, bossQuestions, pools
     </div>
   );
 };
+
+// ---------- piezas de presentación propias de la app ----------
+
+// Moneda dibujada (sin gradientes con id: se repite muchas veces en pantalla)
+function Coin({ size = 14 }) {
+  return (
+    <svg className="fort-coin" viewBox="0 0 20 20" width={size} height={size} aria-hidden="true">
+      <circle cx="10" cy="10.6" r="8.6" fill="#b45309" />
+      <circle cx="10" cy="9.6" r="8.6" fill="#f59e0b" />
+      <circle cx="10" cy="9.6" r="6.2" fill="#fbbf24" stroke="#d97706" strokeWidth="1.1" />
+      <path d="M7.6 7.4h4.8M10 7.4v5" stroke="#b45309" strokeWidth="1.6" strokeLinecap="round" />
+      <ellipse cx="7.2" cy="5.6" rx="2.4" ry="1.3" fill="#fef3c7" opacity=".8" />
+    </svg>
+  );
+}
+
+// Recompensa (+monedas · +energía) con iconos propios
+function Reward({ coins, energy }) {
+  return (
+    <span className="fort-reward">
+      {coins != null && <span>+{coins} <Coin /></span>}
+      {energy != null && <span className="fort-reward__energy">+{energy} <Zap size={13} /></span>}
+    </span>
+  );
+}
+
+// Cronómetro del diálogo
+function TimerChip({ left, urgent }) {
+  return (
+    <span className={`fort-timer ${urgent ? 'is-urgent' : ''}`}>
+      <Timer size={14} /> {left}s
+    </span>
+  );
+}
+
+// Retroalimentación tras responder (acierto / fallo)
+function Feedback({ ok, children }) {
+  return (
+    <div className={`fort-fb ${ok ? 'is-ok' : 'is-ko'}`} role="status">
+      <span className="fort-fb__badge">{ok ? <Check size={20} strokeWidth={3} /> : <X size={20} strokeWidth={3} />}</span>
+      <div className="fort-fb__text">{children}</div>
+    </div>
+  );
+}
 
 export default FortalezaGame;

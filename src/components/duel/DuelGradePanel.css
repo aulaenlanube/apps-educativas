@@ -1,0 +1,248 @@
+/* "Mi nota actual" (DuelGradePanel) — rediseño 2026 sobre el kit dk-*.
+   Medalla + barra apilada + fichas de las 5 partes. Solo transform/opacity. */
+
+.dgp__layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+/* ---------- Medalla ---------- */
+.dgp-medal {
+  --m1: #818cf8;
+  --m2: #4f46e5;
+  --m3: #312e81;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0 54px;
+}
+.dgp-medal.is-good { --m1: #34d399; --m2: #059669; --m3: #065f46; }
+.dgp-medal.is-bad { --m1: #fb7185; --m2: #e11d48; --m3: #9f1239; }
+.dgp-medal.is-none { --m1: #cbd5e1; --m2: #64748b; --m3: #334155; }
+
+.dgp-medal__ribbons { position: absolute; left: 50%; top: 116px; width: 136px; height: 136px; transform: translateX(-50%); }
+.dgp-medal__ribbon--l { fill: var(--m2); }
+.dgp-medal__ribbon--r { fill: var(--m3); }
+.dgp-medal__ribbon-shine { fill: none; stroke: rgba(255, 255, 255, .28); stroke-width: 3; stroke-linecap: round; }
+
+.dgp-medal__disc {
+  position: relative;
+  z-index: 1;
+  padding: 9px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, #fff 0%, color-mix(in srgb, var(--m1) 45%, #fff) 38%, var(--m1) 72%, var(--m2) 100%);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--m2) 35%, transparent),
+    inset 0 -6px 10px rgba(0, 0, 0, .14),
+    0 22px 40px -20px var(--m2);
+}
+.dgp-medal .dk-ring {
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, var(--dk-surface-2), color-mix(in srgb, var(--m1) 16%, var(--dk-surface-2)) 80%);
+  box-shadow: inset 0 3px 8px rgba(30, 20, 90, .14);
+}
+html.dark .dgp-medal__disc {
+  background: radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--m1) 80%, #fff), var(--m2) 55%, var(--m3) 100%);
+}
+html.dark .dgp-medal .dk-ring { background: radial-gradient(circle at 50% 30%, #2c2763, #17143c 85%); }
+.dgp-medal .dk-ring__center { gap: 2px; line-height: 1; }
+.dgp-medal__kicker { font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--dk-ink-3); }
+.dgp-medal__num {
+  font-size: 2.65rem;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  color: var(--m2);
+  font-variant-numeric: tabular-nums;
+}
+html.dark .dgp-medal__num { color: var(--m1); }
+.dgp-medal__of { font-size: .72rem; font-weight: 700; color: var(--dk-ink-3); }
+
+.dgp-medal__msg {
+  position: relative;
+  z-index: 2;
+  margin-top: -16px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: .92rem;
+  font-weight: 900;
+  color: #fff;
+  white-space: nowrap;
+  background: linear-gradient(120deg, var(--m1), var(--m2));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), 0 4px 0 var(--m3), 0 14px 22px -12px var(--m2);
+}
+
+.dgp-medal__spark { position: absolute; z-index: 2; color: #fbbf24; font-size: 1rem; line-height: 1; pointer-events: none; animation: dgp-twinkle 2.6s ease-in-out infinite; }
+.dgp-medal__spark--a { left: 18px; top: 18px; font-size: 1.2rem; }
+.dgp-medal__spark--b { right: 16px; top: 46px; animation-delay: .9s; }
+.dgp-medal__spark--c { right: 34px; top: 4px; font-size: .8rem; animation-delay: 1.6s; }
+.dgp-medal.is-none .dgp-medal__spark { display: none; }
+
+/* ---------- Barra apilada ---------- */
+.dgp__parts { min-width: 0; }
+.dgp-stack__track {
+  position: relative;
+  height: 22px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--dk-inset);
+  box-shadow: inset 0 2px 4px rgba(30, 20, 90, .14);
+}
+.dgp-stack__fill {
+  position: relative;
+  display: flex;
+  height: 100%;
+  transform-origin: left center;
+  animation: dgp-grow 1.1s cubic-bezier(.22, 1, .36, 1) .15s both;
+}
+.dgp-seg {
+  --s1: #6366f1;
+  --s2: #a5b4fc;
+  flex: none;
+  height: 100%;
+  background: linear-gradient(180deg, var(--s2), var(--s1));
+  box-shadow: inset -2px 0 0 rgba(255, 255, 255, .6), inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+.dgp-seg.is-duels { --s1: #10b981; --s2: #6ee7b7; }
+.dgp-seg.is-battles { --s1: #f59e0b; --s2: #fde68a; }
+.dgp-seg.is-level { --s1: #0ea5e9; --s2: #7dd3fc; }
+.dgp-seg.is-avatars { --s1: #d946ef; --s2: #f0abfc; }
+.dgp-seg.is-debt {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(135deg, #ef4444 0 6px, #fecaca 6px 12px);
+  box-shadow: inset 2px 0 0 #b91c1c;
+}
+.dgp-stack__mark { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: rgba(255, 255, 255, .75); box-shadow: 0 0 0 1px rgba(30, 20, 90, .12); }
+.dgp-stack__ticks { position: relative; height: 16px; margin-top: 4px; font-size: .72rem; font-weight: 800; color: var(--dk-ink-3); }
+.dgp-stack__ticks span { position: absolute; top: 0; transform: translateX(-50%); }
+.dgp-stack__ticks span:first-child { transform: none; }
+.dgp-stack__ticks span:last-child { transform: translateX(-100%); }
+
+/* ---------- Fichas de las 5 partes ---------- */
+.dgp-chips { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.dgp-chip {
+  --c: #6366f1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px 12px;
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 65%),
+    var(--dk-surface-2);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 26%, var(--dk-line));
+}
+.dgp-chip.is-duels { --c: #10b981; }
+.dgp-chip.is-battles { --c: #f59e0b; }
+.dgp-chip.is-level { --c: #0ea5e9; }
+.dgp-chip.is-avatars { --c: #d946ef; }
+.dgp-chip.is-neg { --c: #ef4444; }
+.dgp-chip__head { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--dk-ink-2); }
+.dgp-chip__icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--c) 65%, white), var(--c));
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
+}
+.dgp-chip__value {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: color-mix(in srgb, var(--c) 78%, var(--dk-ink));
+  font-variant-numeric: tabular-nums;
+}
+.dgp-chip.is-zero .dgp-chip__value { color: var(--dk-ink-3); }
+.dgp-chip__sub { font-size: .74rem; font-weight: 600; color: var(--dk-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dgp-chip__bar { display: block; height: 5px; margin-top: 4px; border-radius: 999px; background: var(--dk-inset); overflow: hidden; }
+.dgp-chip__bar i { display: block; height: 100%; border-radius: inherit; transform-origin: left; background: var(--c); transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
+
+.dgp__formula { margin: 12px 0 0; font-size: .82rem; font-weight: 600; color: var(--dk-ink-3); }
+.dgp__formula b { font-weight: 800; }
+.dgp__formula b.is-duels { color: #059669; }
+.dgp__formula b.is-battles { color: #d97706; }
+.dgp__formula b.is-level { color: #0284c7; }
+.dgp__formula b.is-avatars { color: #c026d3; }
+html.dark .dgp__formula b.is-duels { color: #34d399; }
+html.dark .dgp__formula b.is-battles { color: #fbbf24; }
+html.dark .dgp__formula b.is-level { color: #38bdf8; }
+html.dark .dgp__formula b.is-avatars { color: #e879f9; }
+.dgp__formula strong { color: var(--dk-ink); font-weight: 900; }
+.dgp__cap-m { display: none; font-weight: 800; }
+.dgp__note { margin: 4px 0 0; font-size: .74rem; font-weight: 600; color: var(--dk-ink-3); opacity: .85; }
+
+/* ---------- Deudas de duelo ---------- */
+.dgp-debts {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: color-mix(in srgb, #fef3c7 75%, var(--dk-surface-2));
+  box-shadow: inset 0 0 0 1px #fcd34d;
+}
+html.dark .dgp-debts { background: rgba(245, 158, 11, .1); box-shadow: inset 0 0 0 1px rgba(251, 191, 36, .32); }
+.dgp-debts__head { display: flex; align-items: center; gap: 10px; color: #92400e; font-size: .95rem; }
+html.dark .dgp-debts__head { color: #fcd34d; }
+.dgp-debts__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(140deg, #fbbf24, #f97316);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
+}
+.dgp-debts__list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.dgp-debts__list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(80px, 160px) auto;
+  align-items: center;
+  gap: 10px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #78350f;
+}
+html.dark .dgp-debts__list li { color: #fde68a; }
+.dgp-debts__fallback { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: #fff; background: #f59e0b; }
+.dgp-debts__name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dgp-debts__track { height: 8px; border-radius: 999px; overflow: hidden; background: rgba(146, 64, 14, .16); }
+.dgp-debts__track i { display: block; height: 100%; border-radius: inherit; transform-origin: left; background: linear-gradient(90deg, #f59e0b, #10b981); }
+.dgp-debts__amount { font-weight: 900; font-variant-numeric: tabular-nums; }
+.dgp-debts__list li.dgp-debts__more { display: block; opacity: .75; }
+.dgp-debts__hint { margin: 10px 0 0; font-size: .8rem; font-weight: 600; color: #b45309; }
+html.dark .dgp-debts__hint { color: #fbbf24; }
+
+@keyframes dgp-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes dgp-twinkle {
+  0%, 100% { opacity: .25; transform: scale(.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@media (max-width: 1180px) {
+  .dgp-chip { padding: 9px 10px 10px; }
+  .dgp-chip__value { font-size: 1.28rem; }
+}
+@media (max-width: 900px) {
+  .dgp__layout { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 18px; }
+  .dgp__parts { width: 100%; }
+}
+@media (max-width: 720px) {
+  .dgp .dk-card__actions { display: none; }
+  .dgp__cap-m { display: inline; }
+  .dgp-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dgp-chip.is-tasks { grid-column: 1 / -1; }
+  .dgp-debts__list li { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .dgp-debts__track { grid-column: 2 / 4; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dgp-stack__fill, .dgp-medal__spark { animation: none; }
+}

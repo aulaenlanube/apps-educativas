@@ -1,38 +1,37 @@
 // src/apps/crucigrama/Crucigrama.jsx
+// Rediseño 2026 sobre el kit de interfaz de juego (_shared/kit): pantalla previa
+// de modos (práctica con tamaño / examen), tablero de casillas con volumen sobre
+// pantalla nocturna, pista activa destacada y listas de pistas. La generación,
+// la puntuación y el tracking no cambian.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  RefreshCw, GraduationCap, Gamepad2, Lightbulb, Eye, CheckCircle2,
-  ArrowRight, ArrowDown, Trophy, Timer, Puzzle, Award, Sparkles, BookOpen
+  RefreshCw, Gamepad2, Lightbulb, Eye, CheckCircle2,
+  ArrowRight, ArrowDown, Trophy, Timer, Puzzle, Sparkles, BookOpen,
+  LayoutGrid, Grid3x3, Keyboard, Check,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import { generateCrossword, groupClues } from './crosswordGenerator';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Panel, Chip, GameButton, Segmented,
+  ModeSelect, RoundBanner, ResultsScreen, FeedbackItem, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './Crucigrama.css';
 
 const normalize = (s) =>
   String(s || '')
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[̀-ͯ]/g, '')
     .toUpperCase();
 
 // Carácter "centinela" que mantenemos en el input oculto para que el botón de
 // borrar del teclado virtual siempre tenga algo que eliminar y dispare un evento.
 const HIDDEN_SENTINEL = ' ';
 
-// Fondo decorativo: orbes azul-violeta, rejilla de crucigrama y casillas flotando.
-const CruciDecor = () => (
-  <div className="cruci-decor" aria-hidden="true">
-    <div className="fx-app-backdrop" />
-    <div className="cruci-decor-grid fx-grid-bg" />
-    {['C', 'R', 'U', 'Z'].map((l, i) => (
-      <span key={l} className={`cruci-ghost-cell q${i}`}>{l}</span>
-    ))}
-  </div>
-);
 
 const SIZE_CONFIG = {
   small:  { label: 'Pequeño',  words: 6,  maxSize: 13, icon: '🟢' },
@@ -59,7 +58,8 @@ const Crucigrama = ({ onGameComplete }) => {
   // --- Estado ---
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('practice'); // 'practice' | 'exam'
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null); // null | 'practice' | 'exam'
   const [size, setSize] = useState('medium');
   const [crossword, setCrossword] = useState(null);
   const [userGrid, setUserGrid] = useState(null);
@@ -161,7 +161,7 @@ const Crucigrama = ({ onGameComplete }) => {
   }, [allWords, size, gameMode]);
 
   useEffect(() => {
-    if (!loading) regenerate();
+    if (!loading && gameMode) regenerate();
   }, [loading, size, gameMode, regenerate]);
 
   // --- Timer ---
@@ -483,178 +483,262 @@ const Crucigrama = ({ onGameComplete }) => {
   };
 
   // --- Render ---
-  if (loading) {
-    return (
-      <div className="cruci-root">
-        <div className="cruci-card">
-          <div className="cruci-loading">Cargando crucigrama...</div>
+  const shellProps = { accent: '#6366f1', accent2: '#8b5cf6' };
+
+  const instructions = (
+    <InstructionsModal
+      isOpen={showHelp}
+      onClose={() => setShowHelp(false)}
+      title="Cómo jugar al Crucigrama"
+    >
+      <h3>🎯 Objetivo</h3>
+      <p>
+        Rellena todas las casillas blancas con la palabra correcta usando las
+        <strong> pistas horizontales y verticales</strong>. Las palabras se cruzan
+        entre ellas compartiendo letras.
+      </p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li><strong>Click en una casilla</strong> para seleccionarla. Un segundo click cambia la dirección (↔ / ↕).</li>
+        <li>Escribe la letra con el teclado físico y avanza automáticamente.</li>
+        <li>Usa <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> para moverte entre casillas.</li>
+        <li><kbd>Espacio</kbd> cambia entre dirección horizontal y vertical.</li>
+        <li><kbd>Retroceso</kbd> borra y retrocede.</li>
+        <li>Click en una pista de las listas salta a esa palabra.</li>
+        <li>La tarjeta de arriba siempre muestra la pista de la palabra activa.</li>
+      </ul>
+
+      <h3>💡 Ayudas (solo en Práctica)</h3>
+      <ul>
+        <li><strong>👁 Revelar letra</strong>: muestra la letra correcta de la casilla seleccionada.</li>
+        <li><strong>✅ Comprobar</strong>: marca en rojo las letras incorrectas.</li>
+        <li><strong>✨ Solución</strong>: revela el crucigrama completo.</li>
+      </ul>
+
+      <h3>🎓 Modos y tamaños</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy">
+          <strong>🟢 Pequeño</strong>
+          ~6 palabras, ideal para empezar.
+        </div>
+        <div className="instr-mode medium">
+          <strong>🟡 Mediano</strong>
+          ~10 palabras, reto equilibrado.
+        </div>
+        <div className="instr-mode exam">
+          <strong>🔴 Grande</strong>
+          ~15 palabras. Obligatorio en modo examen (sin ayudas).
         </div>
       </div>
+
+      <div className="instr-tips">
+        <strong>💡 Consejo:</strong> empieza por las pistas que creas más fáciles. Las letras
+        que coloques te ayudarán a descifrar las palabras que se cruzan con ellas.
+      </div>
+    </InstructionsModal>
+  );
+
+  if (loading) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Preparando el crucigrama…" />
+      </GameShell>
     );
   }
 
   if (allWords.length < 3) {
     return (
-      <div className="cruci-root">
-        <div className="cruci-card">
-          <div className="cruci-title">
-            <span>🧩</span> Crucigrama
-          </div>
-          <div className="cruci-empty">
-            <p>No hay suficientes palabras disponibles para esta asignatura.</p>
-            <p className="cruci-empty-sub">Se necesitan al menos 3 palabras simples del vocabulario.</p>
-          </div>
-        </div>
-      </div>
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Faltan palabras">
+          No hay suficientes palabras disponibles para esta asignatura. Se necesitan al menos
+          3 palabras simples del vocabulario.
+        </GameEmpty>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  // --- Pantalla previa: elegir modo (CLAUDE.md §3: práctica + examen) ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'practice', tone: 'easy', icon: Gamepad2, title: 'Práctica',
+        desc: 'Elige el tamaño y usa las ayudas cuando te atasques.',
+        features: ['Revelar letra, comprobar y solución', 'Tres tamaños: 6, 10 o 15 palabras', 'Puntos por rapidez'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Crucigrama grande de 15 palabras y sin ninguna ayuda.',
+        features: ['Nota sobre 10 al completarlo', 'Tamaño grande, sin ayudas', 'Puntos por rapidez'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={modes}
+          onSelect={(id) => setGameMode(id)}
+          onHelp={() => setShowHelp(true)}
+          extra={(
+            <div className="cw-size">
+              <span className="cw-size__label"><Grid3x3 size={15} /> Tamaño en práctica</span>
+              <Segmented
+                options={Object.entries(SIZE_CONFIG).map(([key, c]) => ({ value: key, label: `${c.label} · ${c.words}` }))}
+                value={size}
+                onChange={setSize}
+              />
+            </div>
+          )}
+          footer={<span className="cw-modes-foot"><Keyboard size={14} /> Se juega con el teclado: escribe, muévete con las flechas y cambia de dirección con Espacio</span>}
+        />
+        {instructions}
+      </GameShell>
     );
   }
 
   const { horizontales = [], verticales = [] } = crossword ? groupClues(crossword) : {};
   const isExam = gameMode === 'exam';
   const effectiveSize = isExam ? 'large' : size;
+  const wordCount = crossword?.placed?.length || 0;
+
+  const backToModes = () => {
+    setGameMode(null);
+    setCrossword(null);
+  };
+
+  // --- Examen completado: resumen con la nota ---
+  if (isExam && completed) {
+    // En examen, la nota siempre es 10 porque solo se llega aquí si completaste todo
+    const nota = 10;
+    const solved = [...horizontales.map((p) => ({ ...p, dir: 'h' })), ...verticales.map((p) => ({ ...p, dir: 'v' }))]
+      .sort((a, b) => a.number - b.number || (a.dir === 'h' ? -1 : 1));
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title="¡Crucigrama completado!"
+          subtitle={`Crucigrama · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={finalScore}
+          stats={[
+            { icon: Timer, tone: 'time', label: 'Tiempo', value: formatTime(timer) },
+            { icon: Puzzle, tone: 'progress', label: 'Palabras', value: wordCount },
+            { icon: Trophy, tone: 'good', label: 'Ayudas', value: 'Ninguna' },
+          ]}
+          actions={[
+            { label: 'Otro crucigrama', onClick: regenerate, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {solved.map((p) => (
+            <FeedbackItem key={`${p.dir}-${p.number}`} index={p.number} ok title={(p.original || p.word).toUpperCase()}>
+              {p.dir === 'h' ? 'Horizontal' : 'Vertical'} · {p.clue}
+            </FeedbackItem>
+          ))}
+        </ResultsScreen>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  // Palabras con todas sus casillas escritas (solo presentación, no dice si están bien)
+  const isWordFilled = (p) => {
+    if (!userGrid) return false;
+    for (let i = 0; i < p.word.length; i++) {
+      const r = p.direction === 'v' ? p.row + i : p.row;
+      const c = p.direction === 'h' ? p.col + i : p.col;
+      if (!userGrid[r]?.[c]) return false;
+    }
+    return true;
+  };
+
+  const clueColumns = [
+    { dir: 'h', label: 'Horizontales', Icon: ArrowRight, list: horizontales },
+    { dir: 'v', label: 'Verticales', Icon: ArrowDown, list: verticales },
+  ];
 
   return (
-    <div className="cruci-root">
-      <CruciDecor />
-      <motion.div
-        className="cruci-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
-        {/* Header */}
-        <div className="cruci-header">
-          <div className="cruci-title">
-            <span className="cruci-emoji">🧩</span>
-            <span>Crucigrama</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="cruci-stats">
-            <div className="cruci-stat timer" title="Tiempo">
-              <Timer size={16} />
-              <span>{formatTime(timer)}</span>
-            </div>
-            <div className="cruci-stat words" title="Palabras">
-              <Puzzle size={16} />
-              <motion.span
-                key={crossword?.placed?.length || 0}
-                initial={{ scale: 1.5, opacity: 0.4 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 14 }}
-              >
-                {crossword?.placed?.length || 0}
-              </motion.span>
-            </div>
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={isExam ? 'exam' : 'practice'}
+        modeLabel={isExam ? 'Examen' : `Práctica · ${SIZE_CONFIG[effectiveSize].label}`}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            <HudStat icon={Timer} tone="time" value={formatTime(timer)} label="Tiempo" />
+            <HudStat icon={Puzzle} tone="progress" value={wordCount} label="Palabras" />
             {!isExam && hintsUsed > 0 && (
-              <div className="cruci-stat hints" title="Ayudas usadas">
-                <Lightbulb size={16} />
-                <span>{hintsUsed}</span>
-              </div>
+              <HudStat icon={Lightbulb} tone="streak" value={hintsUsed} label="Ayudas" />
             )}
-          </div>
-        </div>
-
-        {/* Subtitle */}
-        <div className="cruci-subtitle">
-          {subjectInfo.icon} {subjectInfo.nombre || 'General'}
-        </div>
-
-        {/* Tabs práctica / examen */}
-        <div className="cruci-gamemode-tabs">
-          <button
-            className={`cruci-gamemode-tab is-practice ${!isExam ? 'active' : ''}`}
-            onClick={() => setGameMode('practice')}
-          >
-            <Gamepad2 size={16} /> Práctica
-          </button>
-          <button
-            className={`cruci-gamemode-tab is-exam ${isExam ? 'active' : ''}`}
-            onClick={() => setGameMode('exam')}
-          >
-            <GraduationCap size={16} /> Examen
-          </button>
-        </div>
-
-        {/* Selector de tamaño (solo práctica) */}
-        {!isExam && (
-          <div className="cruci-size-switch">
-            {Object.entries(SIZE_CONFIG).map(([key, cfg]) => (
-              <button
-                key={key}
-                className={`cruci-size-btn fx-shine size-${key} ${size === key ? 'active' : ''}`}
-                onClick={() => setSize(key)}
-              >
-                <span className="cruci-size-icon">{cfg.icon}</span>
-                <span className="cruci-size-label">{cfg.label}</span>
-                <span className="cruci-size-count">{cfg.words} palabras</span>
-              </button>
-            ))}
-          </div>
+          </Hud>
         )}
+      />
 
-        {isExam && (
-          <div className="cruci-exam-banner">
-            <GraduationCap size={16} />
-            <span>Modo examen · tamaño grande · sin pistas</span>
+      {/* Pista de la palabra activa */}
+      {currentWord && crossword && !completed && (
+        <motion.div
+          className="cw-now"
+          key={`${currentWord.number}-${currentWord.direction}`}
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          <span className="cw-now__num">{currentWord.number}</span>
+          <div className="cw-now__body">
+            <span className="cw-now__dir">
+              {currentWord.direction === 'h'
+                ? <><ArrowRight size={13} /> Horizontal</>
+                : <><ArrowDown size={13} /> Vertical</>}
+              <span className="cw-now__len">{currentWord.word.length} letras</span>
+            </span>
+            <span className="cw-now__text">{currentWord.clue}</span>
           </div>
-        )}
+        </motion.div>
+      )}
 
-        {/* Pista actual */}
-        {currentWord && crossword && !completed && (
-          <motion.div
-            className="cruci-clue-current"
-            key={`${currentWord.number}-${currentWord.direction}`}
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="cruci-clue-badge">
-              <span className="cruci-clue-num">{currentWord.number}</span>
-              <span className="cruci-clue-dir">
-                {currentWord.direction === 'h' ? (
-                  <><ArrowRight size={14} /> Horizontal</>
-                ) : (
-                  <><ArrowDown size={14} /> Vertical</>
-                )}
-              </span>
-            </div>
-            <div className="cruci-clue-text">{currentWord.clue}</div>
-          </motion.div>
-        )}
+      <RoundBanner
+        show={completed && !isExam}
+        status="won"
+        title="¡Crucigrama completado!"
+        subtitle={`${wordCount} palabras en ${formatTime(timer)} · ${finalScore.toLocaleString('es-ES')} puntos · ${hintsUsed} ayudas`}
+        action={regenerate}
+        actionLabel="Otro crucigrama"
+        actionIcon={RefreshCw}
+      />
 
-        {/* Grid + Clues */}
-        <div className="cruci-layout">
-          <div className="cruci-grid-wrap">
-            {/* Input oculto: al enfocarlo (tap en una casilla) invoca el teclado virtual en móvil */}
-            <input
-              ref={hiddenInputRef}
-              className="cruci-hidden-input"
-              type="text"
-              defaultValue={HIDDEN_SENTINEL}
-              inputMode="text"
-              autoCapitalize="characters"
-              autoCorrect="off"
-              autoComplete="off"
-              spellCheck={false}
-              aria-hidden="true"
-              tabIndex={-1}
-              onKeyDown={handleInputKeyDown}
-              onInput={handleInputChange}
-            />
-            {generating && <div className="cruci-generating">Generando crucigrama...</div>}
-            {noPuzzle && (
-              <div className="cruci-empty">
-                <p>No se ha podido generar el crucigrama con las palabras disponibles.</p>
-                <button className="cruci-btn primary" onClick={regenerate}>
-                  <RefreshCw size={16} /> Intentar de nuevo
-                </button>
-              </div>
-            )}
-            {crossword && !generating && (
+      <div className="cw-layout">
+        <div className="cw-board-col">
+          {/* Input oculto: al enfocarlo (tap en una casilla) invoca el teclado virtual en móvil */}
+          <input
+            ref={hiddenInputRef}
+            className="cw-hidden-input"
+            type="text"
+            defaultValue={HIDDEN_SENTINEL}
+            inputMode="text"
+            autoCapitalize="characters"
+            autoCorrect="off"
+            autoComplete="off"
+            spellCheck={false}
+            aria-hidden="true"
+            tabIndex={-1}
+            onKeyDown={handleInputKeyDown}
+            onInput={handleInputChange}
+          />
+          {generating && <GameLoading label="Generando crucigrama…" />}
+          {noPuzzle && (
+            <GameEmpty
+              title="No ha salido el crucigrama"
+              action={<GameButton icon={RefreshCw} onClick={regenerate}>Intentar de nuevo</GameButton>}
+            >
+              No se ha podido generar el crucigrama con las palabras disponibles.
+            </GameEmpty>
+          )}
+          {crossword && !generating && (
+            <Panel variant="screen" className={`cw-board ${completed ? 'is-done' : ''}`}>
               <div
-                className={`cruci-grid size-${effectiveSize}`}
-                style={{
-                  gridTemplateColumns: `repeat(${crossword.width}, minmax(0, 1fr))`,
-                }}
+                className="cw-grid"
+                data-dir={direction}
+                style={{ '--cols': crossword.width, '--rows': crossword.height }}
               >
                 {Array.from({ length: crossword.height }).map((_, r) =>
                   Array.from({ length: crossword.width }).map((_, c) => {
@@ -668,240 +752,102 @@ const Crucigrama = ({ onGameComplete }) => {
                     const isRevealed = revealedCells.has(key);
 
                     if (!letter) {
-                      return <div key={key} className="cruci-cell black" />;
+                      return <div key={key} className="cw-cell is-void" />;
                     }
                     return (
                       <div
                         key={key}
                         ref={(el) => { cellRefs.current[key] = el; }}
-                        className={`cruci-cell ${isSelected ? 'selected' : ''} ${
-                          isHighlight ? 'highlight' : ''
-                        } ${isWrong ? 'wrong' : ''} ${isRevealed ? 'revealed' : ''}`}
+                        className={`cw-cell ${isSelected ? 'is-sel' : ''} ${
+                          isHighlight ? 'is-hl' : ''
+                        } ${isWrong ? 'is-wrong' : ''} ${isRevealed ? 'is-revealed' : ''} ${userLetter ? 'is-filled' : ''}`}
+                        style={completed ? { '--d': r + c } : undefined}
                         onClick={() => handleCellClick(r, c)}
                       >
-                        {num > 0 && <span className="cruci-cell-num">{num}</span>}
-                        <span key={userLetter || 'empty'} className="cruci-cell-letter">{userLetter}</span>
+                        {num > 0 && <span className="cw-cell__num">{num}</span>}
+                        <span key={userLetter || 'empty'} className="cw-cell__letter">{userLetter}</span>
                       </div>
                     );
                   })
                 )}
               </div>
-            )}
-          </div>
-
-          {/* Lista de pistas */}
-          {crossword && (
-            <div className="cruci-clues">
-              <div className="cruci-clues-col">
-                <div className="cruci-clues-title">
-                  <ArrowRight size={14} /> Horizontales
-                </div>
-                <ul className="cruci-clues-list">
-                  {horizontales.map((p) => (
-                    <li
-                      key={`h-${p.number}`}
-                      className={`cruci-clue-item ${
-                        currentWord && currentWord.number === p.number && currentWord.direction === 'h'
-                          ? 'active'
-                          : ''
-                      }`}
-                      onClick={() => {
-                        setSelected({ row: p.row, col: p.col });
-                        setDirection('h');
-                      }}
-                    >
-                      <span className="cruci-clue-item-num">{p.number}.</span>
-                      <span className="cruci-clue-item-text">{p.clue}</span>
-                      <span className="cruci-clue-item-len">({p.word.length})</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="cruci-clues-col">
-                <div className="cruci-clues-title">
-                  <ArrowDown size={14} /> Verticales
-                </div>
-                <ul className="cruci-clues-list">
-                  {verticales.map((p) => (
-                    <li
-                      key={`v-${p.number}`}
-                      className={`cruci-clue-item ${
-                        currentWord && currentWord.number === p.number && currentWord.direction === 'v'
-                          ? 'active'
-                          : ''
-                      }`}
-                      onClick={() => {
-                        setSelected({ row: p.row, col: p.col });
-                        setDirection('v');
-                      }}
-                    >
-                      <span className="cruci-clue-item-num">{p.number}.</span>
-                      <span className="cruci-clue-item-text">{p.clue}</span>
-                      <span className="cruci-clue-item-len">({p.word.length})</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </Panel>
           )}
         </div>
 
-        {/* Acciones */}
-        {crossword && !completed && (
-          <div className="cruci-actions">
-            {!isExam ? (
-              <>
-                <button className="cruci-btn hint" onClick={revealLetter} title="Revelar letra seleccionada">
-                  <Eye size={16} /> Revelar letra
-                </button>
-                <button className="cruci-btn hint" onClick={checkAnswers} title="Comprobar respuestas">
-                  <CheckCircle2 size={16} /> Comprobar
-                </button>
-                <button className="cruci-btn hint" onClick={revealAll} title="Mostrar solución completa">
-                  <Sparkles size={16} /> Solución
-                </button>
-              </>
-            ) : (
-              <div className="cruci-exam-info">
-                <BookOpen size={14} />
-                <span>Sin ayudas. Suerte!</span>
-              </div>
-            )}
-            <button className="cruci-btn ghost" onClick={regenerate} title="Nuevo crucigrama">
-              <RefreshCw size={16} /> Nuevo
-            </button>
-          </div>
-        )}
-
-        {/* Pantalla de completado */}
-        <AnimatePresence>
-          {completed && (() => {
-            // En examen, la nota siempre es 10 porque solo se llega aquí si completaste todo
-            // pero aplicamos una penalización si tardaste mucho (para dar matices)
-            const nota = 10;
-            const notaColor = 'excellent';
-            return (
-              <motion.div
-                className="cruci-completed"
-                initial={{ opacity: 0, y: 24, scale: 0.94 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 170, damping: 18 }}
-              >
-                <span className="cruci-completed-rays" aria-hidden="true" />
-                <div className="cruci-completed-icon">
-                  <Award size={48} />
+        {/* Listas de pistas */}
+        {crossword && (
+          <div className="cw-clues">
+            {clueColumns.map(({ dir, label, Icon, list }) => (
+              <Panel key={dir} variant="surface" className="cw-cluebox">
+                <div className="cw-cluebox__title">
+                  <span className="cw-cluebox__icon"><Icon size={14} /></span>
+                  {label}
+                  <span className="cw-cluebox__count">{list.length}</span>
                 </div>
-                <h2 className="cruci-completed-title">¡Crucigrama completado! 🎉</h2>
-
-                {isExam ? (
-                  <>
-                    <div className={`cruci-nota ${notaColor}`}>
-                      <div
-                        className="cruci-nota-ring fx-grade-ring"
-                        style={{
-                          '--fx-grade': nota,
-                          '--fx-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
+                <ul className="cw-cluelist">
+                  {list.map((p) => {
+                    const active = currentWord && currentWord.number === p.number && currentWord.direction === dir;
+                    const filled = isWordFilled(p);
+                    return (
+                      <li
+                        key={`${dir}-${p.number}`}
+                        className={`cw-clueitem ${active ? 'is-active' : ''} ${filled ? 'is-filled' : ''}`}
+                        onClick={() => {
+                          setSelected({ row: p.row, col: p.col });
+                          setDirection(dir);
                         }}
                       >
-                        <div className="cruci-nota-big">
-                          {nota.toFixed(1)}<span className="cruci-nota-small">/10</span>
-                        </div>
-                      </div>
-                      <div className="cruci-nota-msg">¡Excelente! 🌟</div>
-                    </div>
-                    <div className="cruci-completed-record fx-shine fx-shine--auto">
-                      <Trophy size={14} />
-                      <span className="cruci-completed-record-value">
-                        {finalScore.toLocaleString('es-ES')}
-                      </span>
-                      <span className="cruci-completed-record-label">puntos · ¡supera tu récord!</span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="cruci-completed-score">
-                    <Trophy size={14} /> {finalScore.toLocaleString('es-ES')} puntos
-                  </div>
-                )}
-
-                <div className="cruci-completed-stats">
-                  <div className="cruci-completed-stat">
-                    <Timer size={16} /> {formatTime(timer)}
-                  </div>
-                  <div className="cruci-completed-stat">
-                    <Puzzle size={16} /> {crossword?.placed?.length || 0} palabras
-                  </div>
-                  {!isExam && (
-                    <div className="cruci-completed-stat">
-                      <Lightbulb size={16} /> {hintsUsed} ayudas
-                    </div>
-                  )}
-                  {isExam && (
-                    <div className="cruci-completed-stat exam">
-                      <Trophy size={16} /> ¡Sin ayudas!
-                    </div>
-                  )}
-                </div>
-                <button className="cruci-btn primary fx-shine" onClick={regenerate}>
-                  <RefreshCw size={16} /> Otro crucigrama
-                </button>
-              </motion.div>
-            );
-          })()}
-        </AnimatePresence>
-      </motion.div>
-
-      <InstructionsModal
-        isOpen={showHelp}
-        onClose={() => setShowHelp(false)}
-        title="Cómo jugar al Crucigrama"
-      >
-        <h3>🎯 Objetivo</h3>
-        <p>
-          Rellena todas las casillas blancas con la palabra correcta usando las
-          <strong> pistas horizontales y verticales</strong>. Las palabras se cruzan
-          entre ellas compartiendo letras.
-        </p>
-
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li><strong>Click en una casilla</strong> para seleccionarla. Un segundo click cambia la dirección (↔ / ↕).</li>
-          <li>Escribe la letra con el teclado físico y avanza automáticamente.</li>
-          <li>Usa <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> para moverte entre casillas.</li>
-          <li><kbd>Espacio</kbd> cambia entre dirección horizontal y vertical.</li>
-          <li><kbd>Retroceso</kbd> borra y retrocede.</li>
-          <li>Click en una pista del panel derecho salta a esa palabra.</li>
-          <li>El banner morado de arriba siempre muestra la pista de la palabra activa.</li>
-        </ul>
-
-        <h3>💡 Ayudas (solo en Práctica)</h3>
-        <ul>
-          <li><strong>👁 Revelar letra</strong>: muestra la letra correcta de la casilla seleccionada.</li>
-          <li><strong>✅ Comprobar</strong>: marca en rojo las letras incorrectas.</li>
-          <li><strong>✨ Solución</strong>: revela el crucigrama completo.</li>
-        </ul>
-
-        <h3>🎓 Modos y tamaños</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy">
-            <strong>🟢 Pequeño</strong>
-            ~6 palabras, ideal para empezar.
+                        <span className="cw-clueitem__num">{filled ? <Check size={12} strokeWidth={3} /> : p.number}</span>
+                        <span className="cw-clueitem__text">{p.clue}</span>
+                        <span className="cw-clueitem__len">{p.word.length}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Panel>
+            ))}
           </div>
-          <div className="instr-mode medium">
-            <strong>🟡 Mediano</strong>
-            ~10 palabras, reto equilibrado.
-          </div>
-          <div className="instr-mode exam">
-            <strong>🔴 Grande</strong>
-            ~15 palabras. Obligatorio en modo examen (sin ayudas).
-          </div>
+        )}
+      </div>
+
+      {/* Ayudas y acciones */}
+      {crossword && !completed && (
+        <div className="cw-tools">
+          {!isExam ? (
+            <>
+              <GameButton variant="soft" icon={Eye} onClick={revealLetter} title="Revelar letra seleccionada">
+                Revelar letra
+              </GameButton>
+              <GameButton variant="soft" icon={CheckCircle2} onClick={checkAnswers} title="Comprobar respuestas">
+                Comprobar
+              </GameButton>
+              <GameButton variant="warning" icon={Sparkles} onClick={revealAll} title="Mostrar solución completa">
+                Solución
+              </GameButton>
+            </>
+          ) : (
+            <Chip tone="soft" icon={BookOpen} className="cw-exam-chip">Sin ayudas. ¡Suerte!</Chip>
+          )}
+          <GameButton variant="ghost" icon={RefreshCw} onClick={regenerate} title="Nuevo crucigrama">
+            Nuevo
+          </GameButton>
         </div>
+      )}
 
-        <div className="instr-tips">
-          <strong>💡 Consejo:</strong> empieza por las pistas que creas más fáciles. Las letras
-          que coloques te ayudarán a descifrar las palabras que se cruzan con ellas.
-        </div>
-      </InstructionsModal>
-    </div>
+      <div className="cw-footer">
+        {!isExam && (
+          <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToModes}>
+            Cambiar modo
+          </GameButton>
+        )}
+        <span className="cw-footer__info">
+          <Keyboard size={14} /> Doble toque en una casilla o <kbd>Espacio</kbd> para cambiar de dirección
+        </span>
+      </div>
+
+      {instructions}
+    </GameShell>
   );
 };
 

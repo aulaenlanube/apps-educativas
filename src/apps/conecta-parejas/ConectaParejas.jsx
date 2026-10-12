@@ -1,15 +1,22 @@
 // src/apps/conecta-parejas/ConectaParejas.jsx
+// Rediseño 2026 sobre el kit de interfaz (_shared/kit): panel de conexiones
+// con fichas-enchufe (palabra) y tarjetas-toma (definición) unidas por cables
+// de luz del color de cada pareja. Lógica, vidas, ayudas y tracking intactos.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Link2, RefreshCw, Eye, CheckCircle2, Timer, Award, Trophy,
-  Star, Heart, Check, X, Flame,
+  Link2, RefreshCw, Eye, CheckCircle2, Timer, Trophy, Star, Check, X, Flame,
+  LayoutGrid, GraduationCap, Plug,
 } from 'lucide-react';
 import { getRoscoData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, Lives, ProgressBar, GameButton, Chip,
+  ModeSelect, ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './ConectaParejas.css';
 
 const PAIR_COLORS = [
@@ -41,7 +48,8 @@ const ConectaParejas = ({ onGameComplete }) => {
 
   const [allWords, setAllWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null);
 
   // Puzzle
   const [leftItems, setLeftItems] = useState([]);   // [{id, text, pairId}]
@@ -131,6 +139,7 @@ const ConectaParejas = ({ onGameComplete }) => {
   }, [allWords, gameMode]);
 
   useEffect(() => {
+    if (!gameMode) return; // pantalla previa: aún no hay partida
     if (!loading && allWords.length >= 5) generatePuzzle();
   }, [loading, gameMode, generatePuzzle, allWords.length]);
 
@@ -292,250 +301,264 @@ const ConectaParejas = ({ onGameComplete }) => {
     setHelpsRemaining((h) => ({ ...h, check: h.check - 1 }));
   }, [helpsRemaining, revealPair]);
 
+  // Volver a la pantalla de modos dejando el tablero como al montar: así, al
+  // elegir otro modo, ni el cronómetro ni el tracking ven la partida anterior.
+  const backToModes = () => {
+    setGameMode(null);
+    setLeftItems([]);
+    setRightItems([]);
+    setSelected(null);
+    setMatched({});
+    setLines([]);
+    setCompleted(false);
+    setLives(Infinity);
+    setCorrectCount(0);
+  };
+
   // --- Derivados ---
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa (gameMode null) se usa la config fácil solo para pintar.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
   const isExam = gameMode === 'exam';
   const isWon = completed && correctCount >= totalPairs;
-  // eslint-disable-next-line no-unused-vars
-  const isLost = completed && !isWon;
   const nota = totalPairs > 0 ? Math.round((correctCount / totalPairs) * 100) / 10 : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
   const formatTime = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Conecta Parejas">
+      <h3>🎯 Objetivo</h3>
+      <p>Une cada <strong>palabra</strong> de la columna izquierda con su <strong>definición</strong> correcta de la columna derecha.</p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Haz click en un elemento de cualquier columna para seleccionarlo.</li>
+        <li>Luego click en el elemento de la otra columna que creas que es su pareja.</li>
+        <li>Si aciertas: se unen con una <strong>línea de color</strong> y ambos se bloquean.</li>
+        <li>Si fallas: flash rojo y pierdes una vida (si aplica).</li>
+        <li>Puedes cambiar de selección haciendo click en otro elemento del mismo lado.</li>
+      </ul>
+
+      <h3>🎓 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>🟢 Fácil</strong>5 pares · Sin límite de vidas · 2 reveals + 3 pistas</div>
+        <div className="instr-mode medium"><strong>🟡 Medio</strong>8 pares · 3 vidas · 1 reveal + 1 pista</div>
+        <div className="instr-mode exam"><strong>🔴 Examen</strong>12 pares · 2 vidas · 3 min · 1 reveal · Nota /10</div>
+      </div>
+
+      <div className="instr-tips"><strong>💡 Consejo:</strong> empieza por las parejas que tengas más claras. Cada acierto consecutivo aumenta tu multiplicador de puntos.</div>
+    </InstructionsModal>
+  );
+
+  const shellProps = { accent: '#d946ef', accent2: '#8b5cf6', className: 'cp-shell' };
 
   // --- Render ---
   if (loading) {
-    return <div className="cparejas-root"><div className="cparejas-card"><div className="cparejas-loading">Cargando...</div></div></div>;
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Tendiendo los cables…" />
+      </GameShell>
+    );
   }
 
   if (allWords.length < 5) {
     return (
-      <div className="cparejas-root"><div className="cparejas-card">
-        <div className="cparejas-title"><span>🧲</span> Conecta Parejas</div>
-        <div className="cparejas-empty"><p>No hay suficientes palabras para esta asignatura.</p></div>
-      </div></div>
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Faltan palabras">No hay suficientes palabras para esta asignatura.</GameEmpty>
+        {instructions}
+      </GameShell>
     );
   }
 
-  return (
-    <div className="cparejas-root">
-      <motion.div className="cparejas-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        {/* Fondo decorativo (orbes + rejilla + chispas) */}
-        <div className="cparejas-fx" aria-hidden="true">
-          <span className="cparejas-fx-orb a" />
-          <span className="cparejas-fx-orb b" />
-          <span className="cparejas-fx-grid" />
-          <span className="cparejas-fx-spark s1" />
-          <span className="cparejas-fx-spark s2" />
-          <span className="cparejas-fx-spark s3" />
-        </div>
+  // --- Pantalla previa: elegir modo ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', title: 'Fácil',
+        desc: 'Cinco parejas sin límite de vidas para empezar.',
+        features: ['5 parejas · vidas sin límite', '2 revelados + 3 pistas'],
+      },
+      {
+        id: 'medium', tone: 'medium', title: 'Medio',
+        desc: 'Ocho parejas y tres vidas: piensa antes de unir.',
+        features: ['8 parejas · 3 vidas', '1 revelado + 1 pista'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Doce parejas, dos vidas y tres minutos.',
+        features: ['Nota sobre 10', '12 parejas · 3 min', '1 revelado'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect modes={modes} onSelect={(id) => setGameMode(id)} onHelp={() => setShowHelp(true)} />
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        {/* Header */}
-        <div className="cparejas-header">
-          <div className="cparejas-title">
-            <span className="cparejas-emoji">🧲</span>
-            <span>Conecta Parejas</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="cparejas-stats">
+  // --- Examen terminado ---
+  if (completed && isExam) {
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title={isWon ? '¡Todas conectadas!' : 'Examen terminado'}
+          subtitle={`Conecta Parejas · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={score}
+          stats={[
+            { icon: Link2, tone: 'good', label: 'Parejas', value: `${correctCount}/${totalPairs}` },
+            { icon: X, tone: 'bad', label: 'Fallos', value: wrongCount },
+            { icon: Timer, tone: 'time', label: 'Tiempo', value: formatTime(timer) },
+            { icon: Flame, tone: 'streak', label: 'Mejor racha', value: maxStreak },
+          ]}
+          actions={[
+            { label: 'Jugar otra vez', onClick: generatePuzzle, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const renderItem = (side, item) => {
+    const isMatched = matched[item.pairId] !== undefined;
+    const isSelected = selected?.id === item.id;
+    const isWrongItem = side === 'left' ? wrongFlash?.leftId === item.id : wrongFlash?.rightId === item.id;
+    const color = isMatched ? PAIR_COLORS[matched[item.pairId] % PAIR_COLORS.length] : null;
+    const refs = side === 'left' ? leftRefs : rightRefs;
+    return (
+      <motion.button
+        key={item.id}
+        type="button"
+        ref={(el) => { refs.current[item.id] = el; }}
+        className={[
+          'cp-item',
+          side === 'left' ? 'is-word' : 'is-def',
+          isMatched && 'is-matched',
+          isSelected && 'is-selected',
+          isWrongItem && 'is-wrong',
+        ].filter(Boolean).join(' ')}
+        style={isMatched ? { '--pair': color } : undefined}
+        onClick={() => handleClick(side, item)}
+        disabled={isMatched}
+        whileTap={{ scale: 0.97 }}
+        layout
+      >
+        <span className="cp-item__text">{item.text}</span>
+        <span className="cp-item__socket" aria-hidden="true" />
+        {isMatched && <span className="cp-item__ok" aria-hidden="true"><Check size={12} strokeWidth={3.5} /></span>}
+      </motion.button>
+    );
+  };
+
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={cfg.label}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
             {cfg.timer && !completed && (
-              <div className={`cparejas-stat timer ${timeLeft <= 30 ? 'danger' : ''}`}>
-                <Timer size={14} /> <span>{formatTime(timeLeft)}</span>
-              </div>
+              <HudStat icon={Timer} tone={timeLeft <= 30 ? 'bad' : 'time'} value={formatTime(timeLeft)} label="Tiempo" />
             )}
             {cfg.lives !== Infinity && (
-              <div className="cparejas-stat lives">
-                {Array.from({ length: Math.min(cfg.lives, 5) }).map((_, i) => (
-                  <Heart key={i} size={14} fill={i < lives ? '#ef4444' : 'none'} stroke={i < lives ? '#ef4444' : '#d1d5db'} />
-                ))}
-              </div>
+              <span className="cp-lives"><Lives total={Math.min(cfg.lives, 5)} left={Math.max(0, lives)} /></span>
             )}
-            <div className="cparejas-stat matched">
-              <Link2 size={14} />
-              <motion.span key={correctCount} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
-                {correctCount}/{totalPairs}
-              </motion.span>
+            <HudStat icon={Link2} tone="good" value={`${correctCount}/${totalPairs}`} label="Parejas" />
+            <HudStat icon={Star} tone="score" value={score.toLocaleString('es-ES')} label="Puntos" />
+          </Hud>
+        )}
+      />
+
+      {cfg.timer && !completed && (
+        <div className={`cp-timebar ${timeLeft <= 30 ? 'is-danger' : ''}`}>
+          <ProgressBar value={timeLeft} max={cfg.timer} tone={timeLeft <= 30 ? 'bad' : timeLeft <= 90 ? 'warn' : 'good'} label="Tiempo restante" />
+        </div>
+      )}
+
+      {/* --- Partida de práctica terminada --- */}
+      {completed && (
+        <motion.div
+          className={`cp-finish ${isWon ? 'is-won' : 'is-lost'}`}
+          initial={{ opacity: 0, y: 20, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+        >
+          <span className="cp-finish__badge" aria-hidden="true">{isWon ? <Trophy size={40} /> : <Plug size={38} />}</span>
+          <h2 className="cp-finish__title">{isWon ? '¡Todas conectadas!' : '¡Se acabó!'}</h2>
+          <div className="cp-finish__score">
+            <strong>{score.toLocaleString('es-ES')}</strong>
+            <span>puntos</span>
+          </div>
+          <div className="cp-finish__stats">
+            <Chip tone="good" icon={Check}>{correctCount}/{totalPairs} pares</Chip>
+            <Chip tone="bad" icon={X}>{wrongCount} fallos</Chip>
+            <Chip tone="soft" icon={Timer}>{formatTime(timer)}</Chip>
+            {maxStreak > 1 && <Chip tone="soft" icon={Flame}>Racha: {maxStreak}</Chip>}
+          </div>
+          <div className="cp-finish__actions">
+            <GameButton size="lg" icon={RefreshCw} onClick={generatePuzzle}>Jugar otra vez</GameButton>
+            <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={backToModes}>Cambiar de modo</GameButton>
+          </div>
+        </motion.div>
+      )}
+
+      {/* --- Panel de conexiones --- */}
+      {!completed && leftItems.length > 0 && (
+        <>
+          <div className={`cp-board ${selected ? `has-selection from-${selected.side}` : ''}`} ref={containerRef}>
+            <svg className="cp-wires" aria-hidden="true">
+              {lines.map((line, i) => {
+                const mx = (line.x1 + line.x2) / 2;
+                const d = `M ${line.x1} ${line.y1} C ${mx} ${line.y1}, ${mx} ${line.y2}, ${line.x2} ${line.y2}`;
+                return (
+                  <g key={i} className="cp-wire" style={{ '--pair': line.color }}>
+                    <path d={d} className="cp-wire__glow" />
+                    <path d={d} className="cp-wire__core" />
+                    <path d={d} className="cp-wire__shine" />
+                    <circle cx={line.x1} cy={line.y1} r="5" className="cp-wire__end" />
+                    <circle cx={line.x2} cy={line.y2} r="5" className="cp-wire__end" />
+                  </g>
+                );
+              })}
+            </svg>
+
+            <div className="cp-col is-left">
+              <div className="cp-col__title">Palabra</div>
+              {leftItems.map((item) => renderItem('left', item))}
             </div>
-            <div className="cparejas-stat score">
-              <Star size={14} />
-              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
-                {score.toLocaleString('es-ES')}
-              </motion.span>
+
+            <div className="cp-col is-right">
+              <div className="cp-col__title">Definición</div>
+              {rightItems.map((item) => renderItem('right', item))}
             </div>
           </div>
-        </div>
 
-        <div className="cparejas-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
+          <div className="cp-tools">
+            <GameButton variant="soft" size="sm" icon={Eye} onClick={revealPair} disabled={helpsRemaining.reveal <= 0}>
+              Revelar par
+              {helpsRemaining.reveal > 0 && <span className="cp-count">{helpsRemaining.reveal}</span>}
+            </GameButton>
+            {helpsRemaining.check > 0 && (
+              <GameButton variant="soft" size="sm" icon={CheckCircle2} onClick={checkAnswers} disabled={helpsRemaining.check <= 0}>
+                Pista extra
+                <span className="cp-count">{helpsRemaining.check}</span>
+              </GameButton>
+            )}
+            <GameButton variant="ghost" size="sm" icon={RefreshCw} onClick={generatePuzzle}>Nuevo</GameButton>
+            {!isExam ? (
+              <GameButton variant="ghost" size="sm" icon={LayoutGrid} onClick={backToModes}>Cambiar modo</GameButton>
+            ) : (
+              <span className="cp-tools__info"><GraduationCap size={14} /> Examen · {cfg.pairs} parejas · 2 vidas</span>
+            )}
+          </div>
+        </>
+      )}
 
-        {/* Tabs */}
-        <div className="cparejas-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`cparejas-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span>{c.icon}</span>
-              <span className="cparejas-tab-label">{c.label}</span>
-              <span className="cparejas-tab-sub">{c.pairs} pares</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Resultado */}
-        <AnimatePresence>
-          {completed && (
-            <motion.div className={`cparejas-result ${isWon ? 'won' : 'lost'}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <div className="cparejas-result-icon">{isWon ? <Trophy size={48} /> : <Award size={48} />}</div>
-              <h2 className="cparejas-result-title">{isWon ? '¡Todas conectadas! 🎉' : '¡Se acabó!'}</h2>
-
-              {isExam ? (
-                <>
-                  <div className={`cparejas-nota ${notaColor}`}>
-                    <div className="cparejas-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
-                      <div className="cparejas-nota-big">{nota.toFixed(1)}<span className="cparejas-nota-small">/10</span></div>
-                    </div>
-                    <div className="cparejas-nota-msg">{notaMsg}</div>
-                  </div>
-                  <div className="cparejas-result-record">
-                    <Star size={14} /> <span>{score.toLocaleString('es-ES')}</span>
-                    <span className="cparejas-result-record-label">puntos · ¡supérate!</span>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="cparejas-result-score">{score.toLocaleString('es-ES')}</div>
-                  <div className="cparejas-result-score-label">puntos</div>
-                </>
-              )}
-
-              <div className="cparejas-result-stats">
-                <div className="cparejas-result-stat"><Check size={14} /> {correctCount}/{totalPairs} pares</div>
-                <div className="cparejas-result-stat"><X size={14} /> {wrongCount} fallos</div>
-                <div className="cparejas-result-stat"><Timer size={14} /> {formatTime(timer)}</div>
-                {maxStreak > 1 && <div className="cparejas-result-stat"><Flame size={14} /> Racha: {maxStreak}</div>}
-              </div>
-              <button className="cparejas-btn primary" onClick={generatePuzzle}><RefreshCw size={16} /> Jugar otra vez</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Juego */}
-        {!completed && leftItems.length > 0 && (
-          <>
-            {/* Columnas con SVG overlay */}
-            <div className="cparejas-board" ref={containerRef}>
-              {/* SVG lines */}
-              <svg className="cparejas-svg" aria-hidden>
-                {lines.map((line, i) => {
-                  const mx = (line.x1 + line.x2) / 2;
-                  return (
-                    <path
-                      key={i}
-                      d={`M ${line.x1} ${line.y1} C ${mx} ${line.y1}, ${mx} ${line.y2}, ${line.x2} ${line.y2}`}
-                      stroke={line.color}
-                      strokeWidth="3"
-                      fill="none"
-                      strokeLinecap="round"
-                      pathLength="1"
-                      opacity="0.9"
-                    />
-                  );
-                })}
-              </svg>
-
-              {/* Columna izquierda (palabras) */}
-              <div className="cparejas-col left">
-                <div className="cparejas-col-title">Palabra</div>
-                {leftItems.map((item) => {
-                  const isMatched = matched[item.pairId] !== undefined;
-                  const isSelected = selected?.id === item.id;
-                  const isWrongItem = wrongFlash?.leftId === item.id;
-                  const color = isMatched ? PAIR_COLORS[matched[item.pairId] % PAIR_COLORS.length] : null;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      ref={(el) => { leftRefs.current[item.id] = el; }}
-                      className={`cparejas-item ${isMatched ? 'matched' : ''} ${isSelected ? 'selected' : ''} ${isWrongItem ? 'wrong' : ''}`}
-                      style={isMatched ? { borderColor: color, background: `${color}18` } : undefined}
-                      onClick={() => handleClick('left', item)}
-                      disabled={isMatched}
-                      whileTap={{ scale: 0.97 }}
-                      layout
-                    >
-                      {isMatched && <span className="cparejas-item-dot" style={{ background: color }} />}
-                      <span className="cparejas-item-text">{item.text}</span>
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              {/* Columna derecha (definiciones) */}
-              <div className="cparejas-col right">
-                <div className="cparejas-col-title">Definición</div>
-                {rightItems.map((item) => {
-                  const isMatched = matched[item.pairId] !== undefined;
-                  const isSelected = selected?.id === item.id;
-                  const isWrongItem = wrongFlash?.rightId === item.id;
-                  const color = isMatched ? PAIR_COLORS[matched[item.pairId] % PAIR_COLORS.length] : null;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      ref={(el) => { rightRefs.current[item.id] = el; }}
-                      className={`cparejas-item def ${isMatched ? 'matched' : ''} ${isSelected ? 'selected' : ''} ${isWrongItem ? 'wrong' : ''}`}
-                      style={isMatched ? { borderColor: color, background: `${color}18` } : undefined}
-                      onClick={() => handleClick('right', item)}
-                      disabled={isMatched}
-                      whileTap={{ scale: 0.97 }}
-                      layout
-                    >
-                      {isMatched && <span className="cparejas-item-dot" style={{ background: color }} />}
-                      <span className="cparejas-item-text">{item.text}</span>
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Ayudas */}
-            <div className="cparejas-lifelines">
-              <button className="cparejas-lifeline" onClick={revealPair} disabled={helpsRemaining.reveal <= 0}>
-                <Eye size={14} /> Revelar par
-                {helpsRemaining.reveal > 0 && <span className="cparejas-lifeline-count">{helpsRemaining.reveal}</span>}
-              </button>
-              {helpsRemaining.check > 0 && (
-                <button className="cparejas-lifeline" onClick={checkAnswers} disabled={helpsRemaining.check <= 0}>
-                  <CheckCircle2 size={14} /> Pista extra
-                  <span className="cparejas-lifeline-count">{helpsRemaining.check}</span>
-                </button>
-              )}
-              <button className="cparejas-lifeline ghost" onClick={generatePuzzle}>
-                <RefreshCw size={14} /> Nuevo
-              </button>
-            </div>
-          </>
-        )}
-      </motion.div>
-
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Conecta Parejas">
-        <h3>🎯 Objetivo</h3>
-        <p>Une cada <strong>palabra</strong> de la columna izquierda con su <strong>definición</strong> correcta de la columna derecha.</p>
-
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li>Haz click en un elemento de cualquier columna para seleccionarlo.</li>
-          <li>Luego click en el elemento de la otra columna que creas que es su pareja.</li>
-          <li>Si aciertas: se unen con una <strong>línea de color</strong> y ambos se bloquean.</li>
-          <li>Si fallas: flash rojo y pierdes una vida (si aplica).</li>
-          <li>Puedes cambiar de selección haciendo click en otro elemento del mismo lado.</li>
-        </ul>
-
-        <h3>🎓 Modos</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>5 pares · Sin límite de vidas · 2 reveals + 3 pistas</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>8 pares · 3 vidas · 1 reveal + 1 pista</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>12 pares · 2 vidas · 3 min · 1 reveal · Nota /10</div>
-        </div>
-
-        <div className="instr-tips"><strong>💡 Consejo:</strong> empieza por las parejas que tengas más claras. Cada acierto consecutivo aumenta tu multiplicador de puntos.</div>
-      </InstructionsModal>
-    </div>
+      {instructions}
+    </GameShell>
   );
 };
 

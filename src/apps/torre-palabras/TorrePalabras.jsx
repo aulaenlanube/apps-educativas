@@ -1,15 +1,23 @@
 // src/apps/torre-palabras/TorrePalabras.jsx
+// Rediseño 2026 sobre el kit de interfaz (_shared/kit): obra con grúa y torre
+// de bloques con volumen (cara, techo y lateral) que cae y se apila con cada
+// acierto y se tambalea con cada fallo; el bloque actual cuelga del gancho y
+// las categorías son cajones de color. Reglas, tiempos y tracking intactos.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Layers, RefreshCw, Timer, Trophy, Star, Flame,
-  Check, X, Lightbulb, SkipForward,
+  Check, X, Lightbulb, SkipForward, LayoutGrid, GraduationCap,
 } from 'lucide-react';
 import { getRunnerData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressBar, AnswerOption, GameButton, Chip,
+  ModeSelect, ResultsScreen, FeedbackItem, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './TorrePalabras.css';
 
 const BLOCK_COLORS = [
@@ -58,7 +66,8 @@ const TorrePalabras = ({ onGameComplete }) => {
 
   const [allCategories, setAllCategories] = useState({}); // {cat: [words]}
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null);
 
   // Puzzle
   const [categories, setCategories] = useState([]); // [{name, color, words}]
@@ -77,6 +86,10 @@ const TorrePalabras = ({ onGameComplete }) => {
   const [helpsRemaining, setHelpsRemaining] = useState({});
   const [hintVisible, setHintVisible] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+
+  // Solo presentación: última categoría pulsada y resultado de cada bloque.
+  const [lastPick, setLastPick] = useState(null);
+  const [resultados, setResultados] = useState([]);
 
   // Timer
   const [timeLeft, setTimeLeft] = useState(0);
@@ -156,6 +169,7 @@ const TorrePalabras = ({ onGameComplete }) => {
   }, [allCategories, gameMode]);
 
   useEffect(() => {
+    if (!gameMode) return; // pantalla previa: aún no hay partida
     if (!loading && Object.keys(allCategories).length >= 2) startGame();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, gameMode, startGame]);
@@ -163,7 +177,7 @@ const TorrePalabras = ({ onGameComplete }) => {
   // --- Timer por bloque (examen) ---
   useEffect(() => {
     const cfg = MODE_CONFIG[gameMode];
-    if (!cfg.timer || status !== 'playing') {
+    if (!cfg || !cfg.timer || status !== 'playing') {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
@@ -186,7 +200,8 @@ const TorrePalabras = ({ onGameComplete }) => {
   }, [currentBlockIdx, status, gameMode]);
 
   const currentBlock = blocks[currentBlockIdx];
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa (gameMode null) se usa la config fácil solo para pintar.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
 
   // --- Responder: elegir categoría ---
   const answerCategory = useCallback((catIdx) => {
@@ -241,6 +256,17 @@ const TorrePalabras = ({ onGameComplete }) => {
     });
   }, [status, score, correctCount, blocks.length, gameMode, onGameComplete]);
 
+  // Solo presentación: resultado de cada bloque (puntos de progreso y resumen).
+  useEffect(() => { setResultados([]); }, [blocks]);
+  useEffect(() => {
+    if (status !== 'correct' && status !== 'wrong' && status !== 'timeout') return;
+    setResultados((r) => {
+      const next = [...r];
+      next[currentBlockIdx] = status === 'correct';
+      return next;
+    });
+  }, [status, currentBlockIdx]);
+
   // --- Ayudas ---
   const useHint = useCallback(() => {
     if (helpsRemaining.hint <= 0) return;
@@ -258,222 +284,298 @@ const TorrePalabras = ({ onGameComplete }) => {
     setHintVisible(cfg.showCategory);
   }, [helpsRemaining, status, currentBlockIdx, blocks.length, cfg.showCategory]);
 
+  // Volver a la pantalla de modos. El estado vuelve al inicial ('idle'): se
+  // paran reloj y auto-avance, y al elegir otro modo el efecto de tracking no
+  // ve el final de la partida anterior.
+  const backToModes = () => {
+    setStatus('idle');
+    setGameMode(null);
+  };
+
   // --- Derivados ---
   const isExam = gameMode === 'exam';
   const isFinished = status === 'won';
   const nota = blocks.length > 0 ? Math.round((correctCount / blocks.length) * 100) / 10 : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
 
-  if (loading) return <div className="torre-root"><div className="torre-card"><div className="torre-loading">Cargando...</div></div></div>;
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Torre de Palabras">
+      <h3>🎯 Objetivo</h3>
+      <p>Cada bloque muestra una palabra. Debes <strong>clasificarla en su categoría correcta</strong> pulsando el botón correspondiente. Cada acierto apila un bloque en la torre; cada fallo la hace temblar.</p>
 
-  if (Object.keys(allCategories).length < 2) {
-    return <div className="torre-root"><div className="torre-card">
-      <div className="torre-title"><span>🏗️</span> Torre de Palabras</div>
-      <div className="torre-empty"><p>No hay suficientes categorías para esta asignatura (mínimo 2).</p></div>
-    </div></div>;
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Aparece una palabra en el bloque central.</li>
+        <li>Debajo verás los botones con los nombres de las categorías (ej: "Animales", "Plantas", "Minerales").</li>
+        <li>Pulsa la categoría a la que pertenece la palabra.</li>
+        <li>Si aciertas: el bloque se apila y la torre crece. Si fallas: la torre tiembla, se cuenta el error y pasas a la siguiente palabra.</li>
+      </ul>
+
+      <h3>🏗️ La torre</h3>
+      <p>La torre es tu progreso visual. Cada bloque correcto la hace más alta. ¡El objetivo es construir la torre más alta posible!</p>
+
+      <h3>🎓 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>🟢 Fácil</strong>12 bloques · 2 categorías · categoría visible</div>
+        <div className="instr-mode medium"><strong>🟡 Medio</strong>12 bloques · 3 categorías</div>
+        <div className="instr-mode exam"><strong>🔴 Examen</strong>12 bloques · 4 categorías · 8s/bloque · nota /10</div>
+      </div>
+
+      <div className="instr-tips"><strong>💡 Consejo:</strong> si dudas, usa la pista para ver qué categoría se resalta. En modo fácil, la categoría correcta siempre está visible.</div>
+    </InstructionsModal>
+  );
+
+  const shellProps = { accent: '#0ea5e9', accent2: '#6366f1', className: 'tp-shell' };
+
+  if (loading) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Preparando la obra…" />
+      </GameShell>
+    );
   }
 
-  return (
-    <div className="torre-root">
-      <motion.div className="torre-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        {/* Fondo decorativo (orbes + rejilla + chispas) */}
-        <div className="torre-fx" aria-hidden="true">
-          <span className="torre-fx-orb a" />
-          <span className="torre-fx-orb b" />
-          <span className="torre-fx-grid" />
-          <span className="torre-fx-spark s1" />
-          <span className="torre-fx-spark s2" />
-          <span className="torre-fx-spark s3" />
-        </div>
+  if (Object.keys(allCategories).length < 2) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Faltan categorías">No hay suficientes categorías para esta asignatura (mínimo 2).</GameEmpty>
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        {/* Header */}
-        <div className="torre-header">
-          <div className="torre-title">
-            <span className="torre-emoji">🏗️</span>
-            <span>Torre de Palabras</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="torre-stats">
-            {cfg.timer && !isFinished && status === 'playing' && (
-              <div className={`torre-stat timer ${timeLeft <= 3 ? 'danger' : ''}`}>
-                <Timer size={14} /> <span>{timeLeft}s</span>
-              </div>
-            )}
-            {wrongCount > 0 && (
-              <div className="torre-stat errors">
-                <X size={14} /> <span>{wrongCount}</span>
-              </div>
-            )}
-            {streak >= 2 && (
-              <motion.div className="torre-stat streak" key={streak} initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
-                <Flame size={14} /> <span>{streak}</span>
-              </motion.div>
-            )}
-            <div className="torre-stat score">
-              <Star size={14} />
-              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
-                {score.toLocaleString('es-ES')}
-              </motion.span>
-            </div>
-          </div>
-        </div>
+  // --- Pantalla previa: elegir modo ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', title: 'Fácil',
+        desc: 'Dos categorías y la correcta siempre iluminada.',
+        features: ['12 bloques · 2 categorías', 'Categoría visible', '3 pistas + 2 saltos'],
+      },
+      {
+        id: 'medium', tone: 'medium', title: 'Medio',
+        desc: 'Tres categorías: ahora decides tú.',
+        features: ['12 bloques · 3 categorías', '1 pista + 1 salto'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Cuatro categorías y 8 segundos por bloque.',
+        features: ['Nota sobre 10', '8 s por bloque', '1 pista'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect modes={modes} onSelect={(id) => setGameMode(id)} onHelp={() => setShowHelp(true)} />
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        <div className="torre-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
-
-        {/* Tabs */}
-        <div className="torre-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`torre-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span>{c.icon}</span>
-              <span className="torre-tab-label">{c.label}</span>
-              <span className="torre-tab-sub">{c.rounds} bloques · {c.categories} cat.</span>
-            </button>
+  // --- Examen terminado ---
+  if (isFinished && isExam) {
+    return (
+      <GameShell {...shellProps}>
+        <ResultsScreen
+          title="¡Torre terminada!"
+          subtitle={`Torre de Palabras · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+          nota={nota}
+          points={score}
+          stats={[
+            { icon: Layers, tone: 'accent', label: 'Bloques apilados', value: towerHeight },
+            { icon: Check, tone: 'good', label: 'Aciertos', value: `${correctCount}/${blocks.length}` },
+            { icon: Flame, tone: 'streak', label: 'Racha máx.', value: maxStreak },
+          ]}
+          actions={[
+            { label: 'Jugar otra vez', onClick: startGame, icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+          ]}
+        >
+          {blocks.map((b, i) => (
+            <FeedbackItem key={b.id} index={i + 1} ok={resultados[i] === true} title={b.word}>
+              {resultados[i] === undefined ? 'Saltado · ' : ''}Categoría: {formatCategoryName(categories[b.categoryIdx]?.name)}
+            </FeedbackItem>
           ))}
-        </div>
+        </ResultsScreen>
+        {instructions}
+      </GameShell>
+    );
+  }
 
-        {/* Resultado */}
-        <AnimatePresence>
-          {isFinished && (
-            <motion.div className={`torre-result ${status}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <div className="torre-result-icon"><Trophy size={48} /></div>
-              <h2 className="torre-result-title">¡Torre completada! 🎉</h2>
+  const failed = status === 'wrong' || status === 'timeout';
 
-              {isExam ? (
-                <>
-                  <div className={`torre-nota ${notaColor}`}>
-                    <div className="torre-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
-                      <div className="torre-nota-big">{nota.toFixed(1)}<span className="torre-nota-small">/10</span></div>
-                    </div>
-                    <div className="torre-nota-msg">{notaMsg}</div>
-                  </div>
-                  <div className="torre-result-record"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span> <span className="torre-result-record-label">puntos · ¡supérate!</span></div>
-                </>
-              ) : (
-                <>
-                  <div className="torre-result-score">{score.toLocaleString('es-ES')}</div>
-                  <div className="torre-result-score-label">puntos</div>
-                </>
-              )}
-
-              <div className="torre-result-stats">
-                <div className="torre-result-stat"><Layers size={14} /> {towerHeight} bloques apilados</div>
-                <div className="torre-result-stat"><Check size={14} /> {correctCount}/{blocks.length}</div>
-                <div className="torre-result-stat"><Flame size={14} /> Racha: {maxStreak}</div>
-              </div>
-              <button className="torre-btn primary" onClick={startGame}><RefreshCw size={16} /> Jugar otra vez</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Juego */}
-        {!isFinished && currentBlock && (
-          <>
-            {/* Progreso */}
-            <div className="torre-progress-row">
-              <span className="torre-progress-label">Bloque {currentBlockIdx + 1}/{blocks.length}</span>
-              <div className="torre-progress-bar"><div className="torre-progress-fill" style={{ width: `${(currentBlockIdx / blocks.length) * 100}%` }} /></div>
-            </div>
-
-            {/* Torre visual */}
-            <div className={`torre-visual ${shaking ? 'shaking' : ''}`}>
-              <div className="torre-stack">
-                {Array.from({ length: towerHeight }).map((_, i) => (
-                  <motion.div
-                    key={`block-${i}`}
-                    className="torre-block stacked"
-                    style={{ background: BLOCK_COLORS[i % BLOCK_COLORS.length] }}
-                    initial={{ opacity: 0, y: -30, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.05 }}
-                  />
-                ))}
-              </div>
-              <div className="torre-stack-label">
-                <Layers size={14} /> {towerHeight}
-              </div>
-            </div>
-
-            {/* Bloque actual */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentBlockIdx}
-                className={`torre-current-block ${status === 'correct' ? 'correct' : ''} ${status === 'wrong' || status === 'timeout' ? 'wrong' : ''}`}
-                style={{ borderColor: status === 'correct' ? '#10b981' : status === 'wrong' || status === 'timeout' ? '#ef4444' : '#a855f7' }}
-                initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-              >
-                <span className="torre-current-word">{currentBlock.word}</span>
-                {(status === 'wrong' || status === 'timeout') && (
-                  <span className="torre-correct-cat">
-                    → {formatCategoryName(categories[currentBlock.categoryIdx]?.name)}
-                  </span>
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Botones de categoría */}
-            <div className="torre-categories">
-              {categories.map((cat, idx) => (
-                <motion.button
-                  key={cat.name}
-                  className={`torre-cat-btn ${hintVisible && idx === currentBlock?.categoryIdx ? 'hint-glow' : ''}`}
-                  style={{ '--cat-color': cat.color }}
-                  onClick={() => answerCategory(idx)}
-                  disabled={status !== 'playing'}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="torre-cat-dot" style={{ background: cat.color }} />
-                  <span className="torre-cat-name">{formatCategoryName(cat.name)}</span>
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Ayudas */}
-            <div className="torre-lifelines">
-              {!hintVisible && !cfg.showCategory && (
-                <button className="torre-lifeline" onClick={useHint} disabled={helpsRemaining.hint <= 0}>
-                  <Lightbulb size={14} /> Pista
-                  {helpsRemaining.hint > 0 && <span className="torre-lifeline-count">{helpsRemaining.hint}</span>}
-                </button>
-              )}
-              <button className="torre-lifeline" onClick={skipBlock} disabled={helpsRemaining.skip <= 0 || status !== 'playing'}>
-                <SkipForward size={14} /> Saltar
-                {helpsRemaining.skip > 0 && <span className="torre-lifeline-count">{helpsRemaining.skip}</span>}
-              </button>
-              <button className="torre-lifeline ghost" onClick={startGame}><RefreshCw size={14} /> Nuevo</button>
-            </div>
-          </>
+  return (
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={cfg.label}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
+            {cfg.timer && !isFinished && status === 'playing' && (
+              <HudStat icon={Timer} tone={timeLeft <= 3 ? 'bad' : 'time'} value={`${timeLeft}s`} label="Tiempo" />
+            )}
+            {wrongCount > 0 && <HudStat icon={X} tone="bad" value={wrongCount} label="Fallos" />}
+            {streak >= 2 && <HudStat icon={Flame} tone="streak" value={streak} label="Racha" />}
+            <HudStat icon={Star} tone="score" value={score.toLocaleString('es-ES')} label="Puntos" />
+          </Hud>
         )}
-      </motion.div>
+      />
 
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Torre de Palabras">
-        <h3>🎯 Objetivo</h3>
-        <p>Cada bloque muestra una palabra. Debes <strong>clasificarla en su categoría correcta</strong> pulsando el botón correspondiente. Cada acierto apila un bloque en la torre; cada fallo la hace temblar.</p>
+      {/* --- Partida de práctica terminada --- */}
+      {isFinished && (
+        <motion.div
+          className="tp-finish"
+          initial={{ opacity: 0, y: 20, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+        >
+          <TowerScene height={towerHeight} finished />
+          <div className="tp-finish__panel">
+            <span className="tp-finish__badge" aria-hidden="true"><Trophy size={30} /></span>
+            <h2 className="tp-finish__title">¡Torre completada!</h2>
+            <div className="tp-finish__score"><strong>{score.toLocaleString('es-ES')}</strong><span>puntos</span></div>
+            <div className="tp-finish__stats">
+              <Chip tone="soft" icon={Layers}>{towerHeight} bloques apilados</Chip>
+              <Chip tone="good" icon={Check}>{correctCount}/{blocks.length}</Chip>
+              <Chip tone="soft" icon={Flame}>Racha: {maxStreak}</Chip>
+            </div>
+            <div className="tp-finish__actions">
+              <GameButton size="lg" icon={RefreshCw} onClick={startGame}>Jugar otra vez</GameButton>
+              <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={backToModes}>Cambiar de modo</GameButton>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li>Aparece una palabra en el bloque central.</li>
-          <li>Debajo verás los botones con los nombres de las categorías (ej: "Animales", "Plantas", "Minerales").</li>
-          <li>Pulsa la categoría a la que pertenece la palabra.</li>
-          <li>Si aciertas: el bloque se apila y la torre crece. Si fallas: la torre tiembla, se cuenta el error y pasas a la siguiente palabra.</li>
-        </ul>
+      {/* --- Obra --- */}
+      {!isFinished && currentBlock && (
+        <>
+          <div className="tp-stage">
+            <TowerScene height={towerHeight} shaking={shaking} />
 
-        <h3>🏗️ La torre</h3>
-        <p>La torre es tu progreso visual. Cada bloque correcto la hace más alta. ¡El objetivo es construir la torre más alta posible!</p>
+            <div className="tp-play">
+              <div className="tp-progress">
+                <span className="tp-progress__label">Bloque <strong>{currentBlockIdx + 1}</strong> de {blocks.length}</span>
+                <ProgressBar value={currentBlockIdx} max={blocks.length} label="Progreso" />
+              </div>
 
-        <h3>🎓 Modos</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>12 bloques · 2 categorías · categoría visible</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>12 bloques · 3 categorías</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>12 bloques · 4 categorías · 8s/bloque · nota /10</div>
-        </div>
+              <div className="tp-hook-area">
+                <span className="tp-cable" aria-hidden="true" />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentBlockIdx}
+                    className={`tp-current ${status === 'correct' ? 'is-correct' : ''} ${failed ? 'is-wrong' : ''}`}
+                    initial={{ opacity: 0, y: -46, rotate: -4 }}
+                    animate={{ opacity: 1, y: 0, rotate: 0 }}
+                    exit={status === 'correct' ? { opacity: 0, y: 60, scale: 0.6 } : { opacity: 0, x: 60, rotate: 8 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                  >
+                    <span className="tp-current__hook" aria-hidden="true" />
+                    <span className="tp-current__word">{currentBlock.word}</span>
+                    {failed && (
+                      <span className="tp-current__cat">
+                        Era: {formatCategoryName(categories[currentBlock.categoryIdx]?.name)}
+                      </span>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-        <div className="instr-tips"><strong>💡 Consejo:</strong> si dudas, usa la pista para ver qué categoría se resalta. En modo fácil, la categoría correcta siempre está visible.</div>
-      </InstructionsModal>
-    </div>
+              {cfg.timer && (
+                <div className={`tp-timer ${timeLeft <= 3 ? 'is-danger' : ''}`}>
+                  <ProgressBar value={status === 'playing' ? timeLeft : 0} max={cfg.timer} tone={timeLeft <= 3 ? 'bad' : 'warn'} label="Tiempo del bloque" />
+                </div>
+              )}
+
+              <div className={`tp-cats is-${categories.length}`} role="group" aria-label="Categorías">
+                {categories.map((cat, idx) => {
+                  const isRight = idx === currentBlock.categoryIdx;
+                  const state = (status === 'correct' && isRight) || (failed && isRight)
+                    ? 'correct'
+                    : status === 'wrong' && lastPick === idx ? 'wrong' : 'idle';
+                  return (
+                    <AnswerOption
+                      key={cat.name}
+                      state={state}
+                      className={`tp-cat ${hintVisible && isRight && status === 'playing' ? 'is-hint' : ''} ${status !== 'playing' && state === 'idle' ? 'is-dim' : ''}`}
+                      style={{ '--cat': cat.color }}
+                      onClick={() => { setLastPick(idx); answerCategory(idx); }}
+                      disabled={status !== 'playing'}
+                    >
+                      <span className="tp-cat__swatch" aria-hidden="true" />
+                      <span className="tp-cat__name">{formatCategoryName(cat.name)}</span>
+                    </AnswerOption>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="tp-tools">
+            {!hintVisible && !cfg.showCategory && (
+              <GameButton variant="warning" size="sm" icon={Lightbulb} onClick={useHint} disabled={helpsRemaining.hint <= 0}>
+                Pista
+                {helpsRemaining.hint > 0 && <span className="tp-count">{helpsRemaining.hint}</span>}
+              </GameButton>
+            )}
+            <GameButton variant="soft" size="sm" icon={SkipForward} onClick={skipBlock} disabled={helpsRemaining.skip <= 0 || status !== 'playing'}>
+              Saltar
+              {helpsRemaining.skip > 0 && <span className="tp-count">{helpsRemaining.skip}</span>}
+            </GameButton>
+            <GameButton variant="ghost" size="sm" icon={RefreshCw} onClick={startGame}>Nuevo</GameButton>
+            {!isExam ? (
+              <GameButton variant="ghost" size="sm" icon={LayoutGrid} onClick={backToModes}>Cambiar modo</GameButton>
+            ) : (
+              <span className="tp-tools__info"><GraduationCap size={14} /> Examen · 8 s por bloque</span>
+            )}
+          </div>
+        </>
+      )}
+
+      {instructions}
+    </GameShell>
   );
 };
+
+// Obra: cielo, grúa, suelo y la torre de bloques con volumen. Cada bloque
+// nuevo cae desde arriba (transform) y la torre se tambalea al fallar.
+const TowerScene = ({ height, shaking = false, finished = false }) => (
+  <div className={`tp-site ${finished ? 'is-finished' : ''}`} aria-label={`Torre de ${height} bloques`}>
+    <span className="tp-site__sun" aria-hidden="true" />
+    <span className="tp-site__cloud c1" aria-hidden="true" />
+    <span className="tp-site__cloud c2" aria-hidden="true" />
+    <svg className="tp-crane" viewBox="0 0 160 200" aria-hidden="true">
+      <defs>
+        <linearGradient id="tp-steel" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#fde68a" />
+          <stop offset=".5" stopColor="#f59e0b" />
+          <stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+      </defs>
+      <rect x="18" y="20" width="12" height="180" fill="url(#tp-steel)" />
+      <path d="M18 30 L30 42 M30 42 L18 54 M18 54 L30 66 M30 66 L18 78 M18 78 L30 90 M30 90 L18 102 M18 102 L30 114 M30 114 L18 126 M18 126 L30 138 M30 138 L18 150 M18 150 L30 162 M30 162 L18 174 M18 174 L30 186" stroke="#92400e" strokeWidth="2" strokeOpacity=".6" />
+      <rect x="4" y="14" width="156" height="9" rx="2" fill="url(#tp-steel)" />
+      <path d="M8 14 L24 2 L40 14" stroke="#b45309" strokeWidth="2.4" fill="none" />
+      <rect x="2" y="23" width="16" height="12" rx="2" fill="#475569" />
+      <rect x="31" y="24" width="14" height="11" rx="2" fill="#0ea5e9" />
+      <rect x="33" y="26" width="10" height="5" rx="1" fill="#e0f2fe" opacity=".85" />
+    </svg>
+    <div className={`tp-tower ${shaking ? 'is-shaking' : ''}`}>
+      {Array.from({ length: height }).map((_, i) => (
+        <motion.div
+          key={`block-${i}`}
+          className="tp-brick"
+          style={{ '--c': BLOCK_COLORS[i % BLOCK_COLORS.length], '--dx': `${((i * 37) % 9) - 4}px` }}
+          initial={{ opacity: 0, y: -160 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 380, damping: 22, delay: finished ? i * 0.07 : 0 }}
+        />
+      ))}
+      {!finished && <span className="tp-ghost" aria-hidden="true" />}
+    </div>
+    <span className="tp-site__ground" aria-hidden="true" />
+    <span className="tp-site__count"><Layers size={14} /> {height}</span>
+  </div>
+);
 
 export default TorrePalabras;

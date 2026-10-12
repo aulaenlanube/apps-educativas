@@ -1,10 +1,18 @@
+// Arena de duelos del alumno (Resumen de /mi-panel) — rediseño 2026.
+// Cada duelo es una carta "VS" (tú contra tu rival, con avatares) con el juego,
+// lo que hay en juego y sus acciones. Solo presentación: aceptar, rechazar,
+// entrar y mostrar identidad llaman a los mismos servicios que antes.
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Swords, EyeOff, Eye, Check, X, ArrowRight, Clock, Lock } from 'lucide-react';
+import { Swords, EyeOff, Eye, Check, X, ArrowRight, Clock, Lock, Gamepad2, GraduationCap } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { acceptDuel, rejectDuel, setDuelReveal } from '@/services/duelService';
 import { useToast } from '@/components/ui/use-toast';
+import UserAvatar from '@/components/ui/UserAvatar';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashCard, DashButton, Pill } from '@/components/dashboard/kit';
+import './DuelInbox.css';
 
 function stakeLabel(n) {
   return `${(+n).toFixed(1).replace('.', ',')} pt`;
@@ -92,119 +100,99 @@ export default function DuelInbox({ duels, onChange }) {
     const isPending = d.status === 'pending';
     const showAcceptButtons = kind === 'incoming' && isPending && !isTask;
 
+    const variant = isTask ? 'is-task' : kind === 'incoming' ? 'is-incoming' : 'is-outgoing';
+    const tag = isTask ? 'Tarea · pendiente' : (kind === 'incoming' ? 'te reta' : statusLabel(d.status));
+    const friendly = Number(d.stake) === 0;
+
     return (
-      <motion.div
+      <motion.article
         key={d.duel_id}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        className={`p-3 rounded-xl border ${
-          isTask || kind === 'incoming'
-            ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 border-violet-200'
-            : 'bg-slate-50 border-slate-200'
-        }`}
+        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94 }}
+        transition={{ duration: 0.25 }}
+        className={`dib-card ${variant}`}
       >
-        <div className="flex items-center gap-3">
-          <div className="text-3xl shrink-0">{rivalEmoji}</div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 flex-wrap">
-              <p className="text-sm font-bold text-slate-800 truncate">
-                {kind === 'outgoing' && !rivalHidden ? `vs ${rivalName}` : rivalName}
-              </p>
-              <span className={`text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded-full font-bold ${
-                isTask
-                  ? 'bg-violet-600 text-white'
-                  : kind === 'incoming'
-                    ? 'bg-violet-600 text-white'
-                    : 'bg-slate-600 text-white'
-              }`}>
-                {isTask ? 'Tarea · pendiente' : (kind === 'incoming' ? 'te reta' : statusLabel(d.status))}
-              </span>
-              {d.is_hidden && (
-                <span title="Duelo oculto" className="text-slate-400">
-                  <EyeOff className="w-3.5 h-3.5" />
-                </span>
-              )}
-              {/* Toggle propio: solo relevante cuando el duelo empieza oculto
-                  (tarea o personal con is_hidden). Para personales visibles
-                  me_revealed ya viene true y no mostramos el botón. */}
-              {(isTask || d.is_hidden) && (
-                <button
-                  type="button"
-                  onClick={() => handleToggleMyReveal(d)}
-                  disabled={revealBusy === d.duel_id}
-                  title={d.me_revealed
-                    ? 'Tu rival puede verte. Pulsa para volver a ocultarte.'
-                    : 'Tu rival no sabe quién eres. Pulsa para mostrarle tu identidad.'}
-                  className={`text-[10px] inline-flex items-center gap-1 px-2 py-0.5 rounded-full border font-semibold transition-all ${
-                    d.me_revealed
-                      ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100'
-                      : 'bg-white/80 border-violet-300 text-violet-700 hover:bg-white'
-                  } disabled:opacity-50`}
-                >
-                  {d.me_revealed ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                  {d.me_revealed ? 'Mi rival me ve' : 'Mostrar mi identidad'}
-                </button>
-              )}
-            </div>
-            <p className="text-xs text-slate-500 truncate">
-              {d.app_name} {d.best_of > 1 && `· al mejor de ${d.best_of}`}
-            </p>
+        <header className="dib-card__top">
+          <span className="dib-tag">{tag}</span>
+          {d.is_hidden && (
+            <span title="Duelo oculto" className="dib-hiddenflag"><EyeOff size={13} /> Oculto</span>
+          )}
+          {!isTask && !isPending && (
+            <span className="dib-stakechip">{friendly ? 'Amistoso' : `±${stakeLabel(d.stake)}`}</span>
+          )}
+        </header>
+
+        {/* Tú VS rival */}
+        <div className="dib-vs">
+          <div className="dib-fighter is-me">
+            <span className="dib-fighter__ava">
+              <UserAvatar
+                selectedAvatarCode={student?.selected_avatar_code}
+                avatarEmoji={student?.avatar_emoji}
+                avatarColor={student?.avatar_color}
+                size="lg"
+                shape="rounded"
+                showRarityBorder={false}
+              />
+            </span>
+            <strong className="dib-fighter__name">Tú</strong>
           </div>
 
-          {showAcceptButtons ? (
-            <div className="flex gap-1 shrink-0">
-              <button
-                onClick={() => handleAccept(d.duel_id)}
-                disabled={busy === d.duel_id}
-                title="Aceptar"
-                className="w-9 h-9 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center disabled:opacity-50"
-              ><Check className="w-4 h-4" /></button>
-              <button
-                onClick={() => handleReject(d.duel_id)}
-                disabled={busy === d.duel_id}
-                title="Rechazar"
-                className="w-9 h-9 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center disabled:opacity-50"
-              ><X className="w-4 h-4" /></button>
-            </div>
-          ) : kind === 'outgoing' && isPending && !isTask ? (
-            <div className="flex items-center gap-1 text-xs text-slate-400 shrink-0">
-              <Clock className="w-3.5 h-3.5" /> esperando
-            </div>
-          ) : (
-            <button
-              onClick={() => handleEnter(d)}
-              disabled={!canEnter}
-              title={canEnter ? 'Entrar al duelo' : 'Fuera del horario de clase'}
-              className={`px-3 py-1.5 rounded-lg text-white text-xs font-bold flex items-center gap-1 ${
-                canEnter
-                  ? (isTask || kind === 'incoming' ? 'bg-violet-600 hover:bg-violet-700' : 'bg-slate-800 hover:bg-slate-900')
-                  : 'bg-slate-400 cursor-not-allowed'
-              }`}
-            >
-              {canEnter
-                ? (<>Entrar <ArrowRight className="w-3 h-3" /></>)
-                : (<><Lock className="w-3 h-3" /> Fuera de horario</>)}
-            </button>
-          )}
+          <div className={`dib-vs__mark ${showAcceptButtons || isTask ? 'is-hot' : ''}`} aria-label="contra">
+            <span>VS</span>
+          </div>
+
+          <div className={`dib-fighter is-rival ${rivalHidden ? 'is-hidden' : ''}`}>
+            <span className="dib-fighter__ava">
+              {rivalHidden ? (
+                <span className="dib-mystery" aria-hidden="true">
+                  <span className="dib-mystery__emoji">{rivalEmoji}</span>
+                  <span className="dib-mystery__q">?</span>
+                </span>
+              ) : (
+                <UserAvatar
+                  selectedAvatarCode={rival?.selected_avatar_code}
+                  avatarEmoji={rivalEmoji}
+                  avatarColor={rival?.color}
+                  size="lg"
+                  shape="rounded"
+                  showRarityBorder={false}
+                />
+              )}
+            </span>
+            <strong className="dib-fighter__name" title={rivalName}>
+              {kind === 'outgoing' && !rivalHidden ? `vs ${rivalName}` : rivalName}
+            </strong>
+            {d.rival_is_teacher && !rivalHidden && (
+              <span className="dib-teacher"><GraduationCap size={12} /> Profe</span>
+            )}
+          </div>
+        </div>
+
+        {/* Juego */}
+        <div className="dib-game">
+          {d.app_id && hasAppIcon(d.app_id)
+            ? <AppIcon appId={d.app_id} size={34} />
+            : <span className="dib-game__fallback"><Gamepad2 size={17} /></span>}
+          <span className="dib-game__name">{d.app_name}</span>
+          {d.best_of > 1 && <span className="dib-game__bo">al mejor de {d.best_of}</span>}
         </div>
 
         {/* Aviso clásico de duelo personal pendiente */}
         {isPending && !isTask && kind === 'incoming' && (
-          <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-violet-300">
-            <div className="flex flex-col items-center px-2">
-              <span className="text-[9px] uppercase font-bold text-violet-600">En juego</span>
-              <span className="text-base font-black text-violet-700">
-                {Number(d.stake) === 0 ? 'Amistoso' : `±${stakeLabel(d.stake)}`}
-              </span>
+          <div className="dib-info">
+            <div className="dib-info__stake">
+              <span>En juego</span>
+              <strong>{friendly ? 'Amistoso' : `±${stakeLabel(d.stake)}`}</strong>
             </div>
-            <p className="text-[11px] text-slate-600 leading-tight">
-              {Number(d.stake) === 0 ? (
+            <p>
+              {friendly ? (
                 <>Duelo <strong>amistoso</strong>: el resultado no afecta a la nota de ninguno. Decide si aceptas el reto.</>
               ) : (
                 <>
-                  Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+{stakeLabel(d.stake)}</strong> a tu nota.
-                  Si <strong>pierdes</strong> restas <strong className="text-rose-600">−{stakeLabel(d.stake)}</strong>.
+                  Si <strong>ganas</strong> sumas <strong className="is-win">+{stakeLabel(d.stake)}</strong> a tu nota.
+                  Si <strong>pierdes</strong> restas <strong className="is-lose">−{stakeLabel(d.stake)}</strong>.
                   Decide si aceptas el reto.
                 </>
               )}
@@ -212,45 +200,122 @@ export default function DuelInbox({ duels, onChange }) {
           </div>
         )}
 
-        {isTask && (
-          <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-violet-300">
-            <div className="flex flex-col items-center px-2">
-              <span className="text-[9px] uppercase font-bold text-violet-600">Tarea</span>
-              <span className="text-base font-black text-violet-700">+0,10</span>
+        {/* Reto enviado, a la espera de que el rival acepte */}
+        {isPending && !isTask && kind === 'outgoing' && (
+          <div className="dib-info">
+            <div className="dib-info__stake">
+              <span>En juego</span>
+              <strong>{friendly ? 'Amistoso' : `±${stakeLabel(d.stake)}`}</strong>
             </div>
-            <p className="text-[11px] text-slate-600 leading-tight">
-              Tienes un <strong>duelo pendiente</strong> asignado por tu profesor. Si <strong>ganas</strong> sumas <strong className="text-emerald-600">+0,10</strong> a tu bonus de duelos; si pierdes, <strong>sin penalización</strong>.
+            <p>
+              <strong>Reto enviado.</strong> En cuanto tu rival lo acepte podréis entrar a jugar.
+            </p>
+          </div>
+        )}
+
+        {isTask && (
+          <div className="dib-info">
+            <div className="dib-info__stake">
+              <span>Tarea</span>
+              <strong>+0,10</strong>
+            </div>
+            <p>
+              Tienes un <strong>duelo pendiente</strong> asignado por tu profesor. Si <strong>ganas</strong> sumas <strong className="is-win">+0,10</strong> a tu bonus de duelos; si pierdes, <strong>sin penalización</strong>.
               {d.in_class_window === false && (
-                <> <br /><span className="text-amber-700 font-semibold">Solo se puede jugar dentro del horario de clase.</span></>
+                <> <br /><span className="dib-info__warn">Solo se puede jugar dentro del horario de clase.</span></>
               )}
             </p>
           </div>
         )}
-      </motion.div>
+
+        <footer className="dib-card__foot">
+          {/* Toggle propio: solo relevante cuando el duelo empieza oculto
+              (tarea o personal con is_hidden). Para personales visibles
+              me_revealed ya viene true y no mostramos el botón. */}
+          {(isTask || d.is_hidden) && (
+            <button
+              type="button"
+              onClick={() => handleToggleMyReveal(d)}
+              disabled={revealBusy === d.duel_id}
+              title={d.me_revealed
+                ? 'Tu rival puede verte. Pulsa para volver a ocultarte.'
+                : 'Tu rival no sabe quién eres. Pulsa para mostrarle tu identidad.'}
+              className={`dib-reveal ${d.me_revealed ? 'is-on' : ''}`}
+            >
+              {d.me_revealed ? <Eye size={14} /> : <EyeOff size={14} />}
+              {d.me_revealed ? 'Mi rival me ve' : 'Mostrar mi identidad'}
+            </button>
+          )}
+
+          <div className="dib-card__actions">
+            {showAcceptButtons ? (
+              <>
+                <DashButton
+                  size="sm"
+                  variant="emerald"
+                  icon={Check}
+                  onClick={() => handleAccept(d.duel_id)}
+                  disabled={busy === d.duel_id}
+                  title="Aceptar"
+                >
+                  Aceptar
+                </DashButton>
+                <DashButton
+                  size="sm"
+                  variant="glass"
+                  icon={X}
+                  onClick={() => handleReject(d.duel_id)}
+                  disabled={busy === d.duel_id}
+                  title="Rechazar"
+                >
+                  Rechazar
+                </DashButton>
+              </>
+            ) : kind === 'outgoing' && isPending && !isTask ? (
+              <span className="dib-waiting">
+                <span className="dib-waiting__dot" aria-hidden="true" />
+                <Clock size={14} /> esperando
+              </span>
+            ) : (
+              <DashButton
+                size="sm"
+                variant={canEnter ? 'amber' : 'glass'}
+                onClick={() => handleEnter(d)}
+                disabled={!canEnter}
+                title={canEnter ? 'Entrar al duelo' : 'Fuera del horario de clase'}
+              >
+                {canEnter
+                  ? (<>Entrar <ArrowRight size={15} /></>)
+                  : (<><Lock size={14} /> Fuera de horario</>)}
+              </DashButton>
+            )}
+          </div>
+        </footer>
+      </motion.article>
     );
   }
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl border border-violet-200 shadow-sm p-4 mb-6"
-    >
-      <div className="flex items-center gap-2 mb-3">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-          <Swords className="w-4 h-4 text-white" />
-        </div>
-        <h3 className="text-base font-bold text-slate-800">Duelos</h3>
-        <span className="text-xs text-slate-400 ml-auto">
-          {incoming.length + outgoing.length} activo{incoming.length + outgoing.length !== 1 ? 's' : ''}
-        </span>
-      </div>
+  const total = incoming.length + outgoing.length;
 
-      <div className="space-y-2">
+  return (
+    <DashCard
+      icon={Swords}
+      tone="rose"
+      className="dib"
+      title="Arena de duelos"
+      subtitle="Retos 1 vs 1 con tu clase"
+      actions={(
+        <Pill tone={incoming.length ? 'accent' : 'soft'}>
+          {total} activo{total !== 1 ? 's' : ''}
+        </Pill>
+      )}
+    >
+      <div className="dib-grid">
         <AnimatePresence>
           {incoming.map(d => renderCard(d, 'incoming'))}
           {outgoing.map(d => renderCard(d, 'outgoing'))}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </DashCard>
   );
 }

@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import {
-  RefreshCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
-  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Sparkles, BookOpen, X
+  RefreshCw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
+  Play, Pause, Lightbulb, LightbulbOff, AlertTriangle, Star,
+  Target, Flame, LayoutGrid, Ruler, Trophy, Sprout, GraduationCap, Type,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from "@/lib/utils";
 import { getRunnerData } from '../../services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, KeyTile, GameButton, Segmented,
+  ModeSelect, ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
+import { SnakeStar, SnakeWordGuide } from './SnakeParts';
 import './Snake.css';
 
 // Configuración del tablero y tiempos
@@ -16,6 +21,17 @@ const SPEED_INITIAL = 250;
 const SPEED_MIN = 100;
 const ITEM_LIFESPAN = 15000;
 const ITEM_BLINK_TIME = 5000;
+
+// Tamaños de letra de las palabras (solo presentación)
+const TEXT_SIZES = [
+  { value: 10, label: 'S' },
+  { value: 12, label: 'M' },
+  { value: 15, label: 'L' },
+  { value: 19, label: 'XL' },
+];
+
+// Grados de giro de la cabeza según la dirección (solo dibujo)
+const headAngle = (d) => (d.x === 1 ? 0 : d.x === -1 ? 180 : d.y === 1 ? 90 : d.y === -1 ? -90 : 0);
 
 const SnakeDePalabras = (props) => {
   const params = useParams();
@@ -47,10 +63,10 @@ const SnakeDePalabras = (props) => {
 
   // Configuración
   const [difficulty, setDifficulty] = useState('medium');
-  const [pendingDifficulty, setPendingDifficulty] = useState(null);
   const [showConfirmRestart, setShowConfirmRestart] = useState(false);
   const [showHelp, setShowHelp] = useState(true);
   const [showCheatSheet, setShowCheatSheet] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
 
   // Datos
   const [data, setData] = useState(null);
@@ -368,533 +384,352 @@ const SnakeDePalabras = (props) => {
     setShowHelp(!showHelp);
   };
 
-  const handleDifficultyRequest = (newDiff) => {
-    if (gameState === 'menu' || gameState === 'gameover') {
-      startGame(newDiff);
-    } else {
-      setIsPaused(true);
-      setPendingDifficulty(newDiff);
-      setShowConfirmRestart(true);
-    }
+  // Salir de la partida en curso a la pantalla de modos (antes: cambiar de
+  // dificultad desde la pausa). Pide confirmación con un modal propio.
+  const requestExit = () => {
+    setIsPaused(true);
+    setShowConfirmRestart(true);
   };
 
-  const confirmRestart = () => {
-    startGame(pendingDifficulty);
+  const confirmExit = () => {
+    setShowConfirmRestart(false);
+    setIsPaused(false);
+    setGameState('menu');
   };
 
   const cancelRestart = () => {
     setShowConfirmRestart(false);
-    setPendingDifficulty(null);
   };
 
-  if (loading) return <div className="text-slate-500 text-center p-10 animate-pulse font-bold">Cargando juego...</div>;
-  if (loadingError) return <div className="text-red-400 text-center p-10 font-bold">Error cargando datos.</div>;
+  // Guía de palabras: como antes, abrirla en plena partida la pausa (y lo
+  // mismo con las instrucciones, para que la serpiente no choque detrás)
+  const openGuide = () => {
+    if (gameState === 'playing') setIsPaused(true);
+    setShowCheatSheet(true);
+  };
+  const openInstructions = () => {
+    if (gameState === 'playing') setIsPaused(true);
+    setShowInstructions(true);
+  };
 
+  const shellProps = { theme: 'dark', accent: '#84cc16', accent2: '#22d3ee', className: 'snk' };
+  // Tracking: mismo componente y mismas props que antes. Va SIEMPRE como primer
+  // hijo del escenario para que sea la misma instancia en todas las pantallas.
+  const tracker = (
+    <SnakeTracker gameState={gameState} score={score} difficulty={difficulty} gameStartRef={gameStartRef} onGameComplete={props.onGameComplete} />
+  );
+  const isExam = difficulty === 'hard';
   const currentCategoryName = categories.length > 0 ? formatName(categories[currentCatIndex]) : '';
 
-  return (
-    <div className="snk-root flex flex-col items-center w-full max-w-5xl mx-auto p-4 gap-6 relative">
-      <div className="snk-backdrop" aria-hidden="true" />
-
-      {/* Estilos Animaciones y Cola */}
-      <style>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px) rotate(-5deg); }
-          75% { transform: translateX(5px) rotate(5deg); }
-        }
-        @keyframes popGreen {
-          0% { transform: scale(1); box-shadow: 0 0 0 rgba(34, 197, 94, 0); }
-          50% { transform: scale(1.3); box-shadow: 0 0 20px rgba(34, 197, 94, 0.8); }
-          100% { transform: scale(1); box-shadow: 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        @keyframes popGold {
-           0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
-           50% { transform: scale(1.4) rotate(180deg); filter: brightness(1.5); box-shadow: 0 0 30px rgba(250, 204, 21, 0.9); }
-           100% { transform: scale(1) rotate(360deg); filter: brightness(1); }
-        }
-        @keyframes zoomInUp {
-            0% { opacity: 0; transform: scale(0.5) translateY(50px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .animate-head-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        .animate-head-success { animation: popGreen 0.4s ease-out both; }
-        .animate-head-bonus { animation: popGold 0.5s ease-out both; }
-        .animate-popup-in { animation: zoomInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-
-        .tail-up { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
-        .tail-down { clip-path: polygon(0% 0%, 100% 0%, 50% 100%); }
-        .tail-left { clip-path: polygon(100% 0%, 100% 100%, 0% 50%); }
-        .tail-right { clip-path: polygon(0% 0%, 0% 100%, 100% 50%); }
-      `}</style>
-
-      {/* HEADER CENTRADO */}
-      <div className="snk-layer w-full max-w-[600px] flex flex-col sm:flex-row justify-between items-end sm:items-end gap-4">
-        <div className="text-center sm:text-left w-full sm:w-auto">
-          <h1 className="snk-title text-4xl md:text-5xl font-black pb-2">
-            NEON SNAKE
-          </h1>
-          {gameState === 'playing' && (
-            <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
-              <span className="text-slate-400 text-sm font-bold">Objetivo:</span>
-              <span className="snk-target-chip text-amber-600 dark:text-amber-300 font-bold text-base uppercase tracking-wider">
-                <span className="snk-target-chip__dot" aria-hidden="true" />
-                {currentCategoryName}
-              </span>
-            </div>
-          )}
+  const instructions = (
+    <>
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Snake">
+        <h3>🎯 Objetivo</h3>
+        <p>
+          Guía a la serpiente para que se coma solo las palabras de la <strong>temática objetivo</strong>.
+          Cada acierto seguido multiplica tus puntos; una palabra equivocada te quita puntos y corta la racha.
+        </p>
+        <h3>🕹️ Controles</h3>
+        <ul>
+          <li><strong>Flechas</strong> del teclado o la <strong>cruceta</strong> táctil para girar.</li>
+          <li><strong>P</strong> o <strong>Esc</strong> para pausar.</li>
+          <li>La <strong>estrella</strong> da muchos puntos, hace crecer la serpiente y cambia de temática.</li>
+          <li>Las palabras que parpadean están a punto de desaparecer.</li>
+        </ul>
+        <h3>🎓 Modos de juego</h3>
+        <div className="instr-modes">
+          <div className="instr-mode easy"><strong>Fácil</strong> Atraviesas las paredes y ves los colores de ayuda.</div>
+          <div className="instr-mode medium"><strong>Medio</strong> Las paredes son letales. Ayuda de colores activable.</div>
+          <div className="instr-mode exam"><strong>Examen</strong> Sin ayudas. Al terminar recibes tu nota sobre 10.</div>
         </div>
+      </InstructionsModal>
+      <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de palabras">
+        <SnakeWordGuide data={data} current={categories[currentCatIndex]} />
+      </InstructionsModal>
+    </>
+  );
 
-        <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
-          <div className="snk-score flex flex-col items-end mr-2 relative">
-            {/* Indicador de Combo */}
-            {combo > 1 && (
-              <div className="snk-combo absolute -top-6 right-0 font-bold text-sm animate-bounce">
-                x{combo} Racha!
-              </div>
-            )}
+  if (loading) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Preparando el tablero…" />
+      </GameShell>
+    );
+  }
+  if (loadingError) {
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader />
+        <GameEmpty title="No hay palabras">No se han podido cargar las palabras de esta asignatura.</GameEmpty>
+      </GameShell>
+    );
+  }
 
-            <div className="text-slate-400 text-xs uppercase tracking-widest mb-0 font-bold">Puntuación</div>
-            <div key={score} className="snk-score__value snk-score__value--pop text-4xl font-black leading-none">
-              {score.toString().padStart(4, '0')}
+  // --- Pantalla previa: elegir modo ---
+  if (gameState === 'menu') {
+    return (
+      <GameShell {...shellProps}>
+        {tracker}
+        <ModeSelect
+          modes={[
+            { id: 'easy', tone: 'easy', icon: Sprout, title: 'Fácil', desc: 'Atraviesa las paredes y aparece por el lado contrario.', features: ['Paredes sin peligro', 'Colores de ayuda'] },
+            { id: 'medium', tone: 'medium', icon: Flame, title: 'Medio', desc: 'Las paredes ya no perdonan: ¡cuidado con chocar!', features: ['Paredes letales', 'Ayuda de colores activable'] },
+            { id: 'hard', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Sin ayudas: tú decides qué palabras son de la temática.', features: ['Nota sobre 10', 'Puntos por rapidez'] },
+          ]}
+          onSelect={(id) => startGame(id)}
+          onHelp={() => setShowInstructions(true)}
+          onStudy={() => setShowCheatSheet(true)}
+          extra={(
+            <div className="snk-option">
+              <span className="snk-option__label"><Type size={15} /> Tamaño de las palabras</span>
+              <Segmented size="sm" options={TEXT_SIZES} value={textSize} onChange={setTextSize} />
             </div>
-          </div>
+          )}
+          footer="Flechas o cruceta para girar · P para pausar"
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
 
-          {gameState === 'playing' && difficulty !== 'hard' && (
-            <Button
-              variant="outline"
-              size="icon"
-              className={cn(
-                "snk-hud-btn h-12 w-12 rounded-full border-2 transition-all shadow-sm",
-                showHelp
-                  ? "snk-hud-btn--on bg-white border-yellow-400 text-yellow-500 hover:bg-yellow-50"
-                  : "bg-slate-100 border-slate-300 text-slate-400 hover:bg-slate-200"
-              )}
+  // --- Examen terminado: resumen con la nota (misma fórmula que ya se mostraba: 10.000 pts = 10) ---
+  if (gameState === 'gameover' && isExam) {
+    const notaVis = Math.min(score / 1000, 10);
+    return (
+      <GameShell {...shellProps}>
+        {tracker}
+        <ResultsScreen
+          title="¡Fin del examen!"
+          nota={notaVis}
+          points={score}
+          stats={[
+            { icon: Ruler, tone: 'good', label: 'Longitud', value: snake.length },
+            { icon: Target, tone: 'accent', label: 'Temática', value: currentCategoryName || '—' },
+          ]}
+          actions={[
+            { label: 'Otro examen', onClick: () => startGame('hard'), icon: RefreshCw },
+            { label: 'Cambiar de modo', onClick: () => setGameState('menu'), icon: LayoutGrid, variant: 'soft' },
+          ]}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const modeTone = difficulty === 'easy' ? 'easy' : difficulty === 'medium' ? 'medium' : 'exam';
+  const angle = headAngle(direction);
+  const len = snake.length;
+
+  return (
+    <GameShell {...shellProps}>
+      {tracker}
+      <GameHeader
+        mode={modeTone}
+        onHelp={openInstructions}
+        onStudy={openGuide}
+        right={(
+          <Hud>
+            <HudStat icon={Star} tone="score" value={score.toString().padStart(4, '0')} label="Puntos" />
+            <HudStat icon={Flame} tone="streak" value={`x${combo}`} label="Racha" />
+          </Hud>
+        )}
+      />
+
+      <div className="snk-topbar">
+        <div className={`snk-target ${gameState === 'levelup' ? 'is-changing' : ''}`}>
+          <span className="snk-target__icon"><Target size={18} /></span>
+          <span className="snk-target__text">
+            <small>Come solo</small>
+            <strong key={currentCategoryName}>{currentCategoryName}</strong>
+          </span>
+        </div>
+        <div className="snk-topbar__tools">
+          {!isExam && (
+            <button
+              type="button"
+              className={`gk-iconbtn snk-tool ${showHelp ? 'is-on' : ''}`}
               onClick={toggleHelp}
-              title="Ayuda de color"
+              title={showHelp ? 'Ocultar colores de ayuda' : 'Mostrar colores de ayuda'}
+              aria-pressed={showHelp}
             >
-              {showHelp ? <Lightbulb className="h-6 w-6" /> : <LightbulbOff className="h-6 w-6" />}
-            </Button>
+              {showHelp ? <Lightbulb size={18} /> : <LightbulbOff size={18} />}
+            </button>
           )}
-
-          {gameState === 'playing' && (
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
-                onClick={() => {
-                  setIsPaused(true);
-                  setShowCheatSheet(true);
-                }}
-                title="Guía de palabras"
-              >
-                <BookOpen className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                className="snk-hud-btn h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
-                onClick={togglePause}
-              >
-                {isPaused ? <Play className="fill-current h-5 w-5" /> : <Pause className="fill-current h-5 w-5" />}
-              </Button>
-            </div>
-          )}
+          <button
+            type="button"
+            className="gk-iconbtn snk-tool"
+            onClick={togglePause}
+            disabled={gameState !== 'playing'}
+            title={isPaused ? 'Continuar' : 'Pausa'}
+            aria-label={isPaused ? 'Continuar' : 'Pausa'}
+          >
+            {isPaused ? <Play size={18} /> : <Pause size={18} />}
+          </button>
         </div>
       </div>
 
-      {/* CONTENEDOR PRINCIPAL */}
-      <div className="snk-board relative w-full max-w-[600px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
+      {/* TABLERO */}
+      <div className={`snk-board snk-board--${modeTone} ${gameState === 'gameover' ? 'is-over' : ''}`}>
+        <div className="snk-board__grid" style={{ backgroundSize: `${200 / GRID_SIZE}% ${200 / GRID_SIZE}%` }} aria-hidden="true" />
+        <div className="snk-board__glow" aria-hidden="true" />
 
-        {/* Capas decorativas: reflejo, viñeta y línea de escaneo */}
-        <div className="snk-board__sheen" aria-hidden="true" />
-        <div className="snk-board__scan" aria-hidden="true" />
-
-        <div className="snk-grid-lines absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
-            backgroundSize: `${100 / GRID_SIZE}% ${100 / GRID_SIZE}%`
-          }}>
-        </div>
-
-        {/* POPUP DE NIVEL (NUEVO) */}
-        {gameState === 'levelup' && (
-          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="snk-levelup-card animate-popup-in flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
-              <div className="snk-rays" aria-hidden="true" />
-              <div className="relative mb-4 animate-float">
-                <Star className="w-24 h-24 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" />
-                <Sparkles className="absolute -top-2 -right-4 w-10 h-10 text-yellow-200 animate-pulse" />
-              </div>
-
-              <h2 className="text-3xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">
-                ¡Nueva Temática!
-              </h2>
-
-              <div className="h-1 w-20 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mb-4"></div>
-
-              <p className="text-4xl md:text-5xl font-black bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-500 bg-clip-text text-transparent drop-shadow-sm tracking-tight px-4 py-2">
-                {nextTopic}
-              </p>
-
-              <p className="text-yellow-200/60 font-bold mt-4 text-sm uppercase tracking-widest animate-pulse">
-                Preparando tablero...
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* MENÚ */}
-        {gameState === 'menu' && (
-          <div className="snk-overlay absolute inset-0 z-40 bg-slate-900/95 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
-            <p className="text-cyan-300/80 text-xs font-bold uppercase tracking-[0.3em] mb-2">Neon Snake</p>
-            <h2 className="snk-overlay-title text-4xl font-black text-white mb-6 tracking-wide">Elige Dificultad</h2>
-
-            {/* Selector Dificultad */}
-            <div className="snk-stagger grid gap-4 w-full max-w-xs mb-8">
-              <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
-            </div>
-
-            {/* Slider Texto */}
-            <div className="snk-panel w-full max-w-xs bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-              <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
-                <span>Tamaño Texto</span>
-                <span>{textSize}px</span>
-              </div>
-              <input
-                type="range"
-                min="10"
-                max="24"
-                step="1"
-                value={textSize}
-                onChange={(e) => setTextSize(parseInt(e.target.value))}
-                className="snk-range w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* PAUSA */}
-        {isPaused && !showConfirmRestart && gameState === 'playing' && (
-          <div className="snk-overlay absolute inset-0 z-40 bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-200">
-            <h2 className="snk-overlay-title text-4xl font-black text-white mb-6 tracking-wide">PAUSA</h2>
-
-            <Button onClick={togglePause} className="snk-cta w-full max-w-xs h-14 text-xl bg-blue-600 hover:bg-blue-500 mb-6 font-bold shadow-lg shadow-blue-900/50 rounded-xl">
-              <Play className="mr-2 h-6 w-6 fill-current" /> CONTINUAR
-            </Button>
-
-            <div className="w-full max-w-xs border-t border-slate-700 pt-6 space-y-6">
-
-              {/* Slider Texto */}
-              <div className="snk-panel bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-                <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
-                  <span>Tamaño Texto</span>
-                  <span>{textSize}px</span>
-                </div>
-                <input
-                  type="range"
-                  min="10"
-                  max="24"
-                  step="1"
-                  value={textSize}
-                  onChange={(e) => setTextSize(parseInt(e.target.value))}
-                  className="snk-range w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
-                />
-              </div>
-
-              <div>
-                <p className="text-slate-400 text-sm mb-4 font-bold uppercase tracking-wider">Cambiar Dificultad</p>
-                <div className="snk-stagger grid gap-3">
-                  <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* CONFIRMACIÓN REINICIO */}
-        {showConfirmRestart && (
-          <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-in zoom-in-95 duration-200">
-            <div className="snk-result-card fx-enter-pop bg-slate-800 border-2 border-yellow-600 p-6 rounded-2xl max-w-sm w-full shadow-2xl">
-              <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4 drop-shadow-[0_0_14px_rgba(234,179,8,0.7)]" />
-              <h3 className="text-2xl font-black text-white mb-2">¿Reiniciar?</h3>
-              <p className="text-slate-300 mb-6 font-medium">
-                Perderás tu progreso actual.
-              </p>
-              <div className="flex gap-3 justify-center">
-                <Button variant="outline" onClick={cancelRestart} className="snk-ghost border-slate-600 text-slate-300 hover:bg-slate-700 font-bold">
-                  Cancelar
-                </Button>
-                <Button onClick={confirmRestart} className="snk-mode snk-mode--medium bg-yellow-600 hover:bg-yellow-500 text-white font-bold">
-                  Sí, Reiniciar
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Tracking */}
-        <SnakeTracker gameState={gameState} score={score} difficulty={difficulty} gameStartRef={gameStartRef} onGameComplete={props.onGameComplete} />
-
-        {/* GAME OVER */}
-        {gameState === 'gameover' && (
-          <div className="snk-gameover absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/95 backdrop-blur-sm text-white animate-in zoom-in duration-300 p-4 overflow-y-auto">
-            <h2 className="snk-gameover__title text-5xl sm:text-6xl font-black mb-4 tracking-tighter drop-shadow-xl text-red-100">GAME OVER</h2>
-            <div className="snk-result-card fx-enter-pop bg-black/20 p-6 rounded-2xl mb-6 sm:mb-8 border border-white/10 w-64 text-center">
-              {difficulty === 'hard' && (() => {
-                // Solo presentación: misma fórmula que ya se mostraba (10.000 pts = 10).
-                const notaVis = Math.min(score / 1000, 10);
-                const gradeColor = notaVis >= 8 ? '#10b981' : notaVis >= 5 ? '#3b82f6' : '#ef4444';
-                return (
-                  <div className="mb-4 pb-4 border-b border-white/10">
-                    <p className="text-xs font-bold text-red-200 mb-3 uppercase tracking-widest">Nota Examen</p>
-                    <div className="snk-grade" style={{ '--snk-grade': notaVis, '--snk-grade-color': gradeColor }}>
-                      <div className="text-center">
-                        {/* Cálculo: 10,000 = 10. Máximo 10. 2 decimales. */}
-                        <span className="snk-grade__value">{notaVis.toFixed(2)}</span>
-                        <span className="snk-grade__label">/10</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })()}
-              <p className="text-sm font-bold text-red-200 mb-1 uppercase tracking-widest">Puntuación Final</p>
-              <p className="snk-points text-5xl font-black text-yellow-400">{score}</p>
-            </div>
-            <div className="flex gap-4">
-              <Button
-                size="lg"
-                onClick={() => setGameState('menu')}
-                className="snk-ghost gap-2 px-6 py-6 text-lg bg-slate-800 text-white hover:bg-slate-700 border border-slate-600 rounded-xl font-bold"
-              >
-                Menú
-              </Button>
-              <Button
-                size="lg"
-                onClick={() => startGame()}
-                className="snk-cta gap-2 px-6 py-6 text-lg bg-white text-red-900 hover:bg-red-50 font-black shadow-xl rounded-xl"
-              >
-                <RefreshCcw className="w-6 h-6 mr-2" /> Reintentar
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {/* TABLERO */}
         <div
-          className="w-full h-full relative"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-            gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`
-          }}
+          className="snk-cells"
+          style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`, gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)` }}
           ref={gameBoardRef}
         >
-          {/* MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET) */}
-          <AnimatePresence>
-            {showCheatSheet && (
-              <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="snk-overlay absolute inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden"
-              >
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <BookOpen className="w-6 h-6 text-blue-400" /> Guía de Palabras
-                  </h2>
-                  <button
-                    onClick={() => setShowCheatSheet(false)}
-                    className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors border-2 border-slate-700"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <div className="grid gap-4">
-                    {data && Object.entries(data)
-                      .filter(([key]) => key !== 'title' && key !== 'instructions')
-                      .map(([category, words], idx) => (
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.05 }}
-                          key={category}
-                          className="snk-guide-card bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
-                        >
-                          <h3 className="text-blue-400 font-bold uppercase tracking-wider text-xs mb-3 px-2 border-l-4 border-blue-500">
-                            {category.replace(/_/g, ' ')}
-                          </h3>
-                          <div className="flex flex-wrap gap-2">
-                            {Array.isArray(words) && words.map((word, wIdx) => (
-                              <span
-                                key={wIdx}
-                                className="snk-guide-chip px-2.5 py-1 bg-slate-950/60 text-slate-300 rounded-lg text-[11px] border border-white/5 font-medium"
-                              >
-                                {word}
-                              </span>
-                            ))}
-                          </div>
-                        </motion.div>
-                      ))}
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <Button
-                    size="lg"
-                    onClick={() => {
-                      setShowCheatSheet(false);
-                      // NO reanudamos automáticamente para que el usuario pueda prepararse
-                    }}
-                    className="snk-cta w-full h-14 text-lg bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95"
-                  >
-                    ¡Lo tengo!
-                  </Button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Snake */}
-          {snake.map((segment, i) => {
-            const isHead = i === 0;
-            const isTail = i === snake.length - 1 && snake.length > 1;
-
-            let headClasses = "bg-cyan-400 z-20 shadow-[0_0_15px_rgba(34,211,238,0.6)] scale-110";
-            let tailClass = '';
-
-            if (isHead) {
-              if (headAnim === 'error') headClasses = "bg-red-500 shadow-[0_0_20px_rgba(239,68,68,0.9)] animate-head-error";
-              else if (headAnim === 'success') headClasses = "bg-green-500 shadow-[0_0_20px_rgba(34,197,94,0.9)] animate-head-success";
-              else if (headAnim === 'bonus') headClasses = "bg-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.9)] animate-head-bonus";
-            } else if (isTail) {
-              // Determinar dirección de la cola
-              const prev = snake[i - 1];
-              if (prev.y < segment.y) tailClass = 'tail-down';
-              else if (prev.y > segment.y) tailClass = 'tail-up';
-              else if (prev.x < segment.x) tailClass = 'tail-right';
-              else if (prev.x > segment.x) tailClass = 'tail-left';
-            }
-
-            return (
-              <div
-                key={i}
-                className={cn(
-                  "snk-seg relative transition-all duration-75",
-                  isHead && "snk-head",
-                  !isTail && "rounded-sm", // La cola no es redondeada
-                  isHead ? headClasses : (isTail ? `bg-cyan-600/80 z-10 ${tailClass}` : "bg-cyan-600/80 z-10")
-                )}
-                style={{ gridColumnStart: segment.x + 1, gridRowStart: segment.y + 1 }}
-              >
-                {isHead && (
-                  // Cabeza Original (Puntos)
-                  <div className="w-full h-full flex items-center justify-center gap-[1px]">
-                    <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
-                    <div className="snk-eye bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
-
           {/* Comida */}
           {food.map((item) => {
-            let colorClass = "bg-slate-700 border-slate-500 text-slate-200";
-
-            if (showHelp || item.type === 'bonus') {
-              if (item.type === 'valid') colorClass = "bg-green-900/80 border-green-500 text-green-200 shadow-[0_0_10px_rgba(34,197,94,0.4)]";
-              else if (item.type === 'invalid') colorClass = "bg-red-900/80 border-red-500 text-red-200";
-              else if (item.type === 'bonus') colorClass = "bg-yellow-500/20 border-yellow-400 text-yellow-200 animate-pulse";
-            }
-
-            const timeLeft = item.expiresAt - Date.now();
-            const isExpiring = timeLeft < ITEM_BLINK_TIME;
-
+            const tone = item.type === 'bonus' ? 'bonus' : showHelp ? item.type : 'neutral';
+            const isExpiring = item.expiresAt - Date.now() < ITEM_BLINK_TIME;
             return (
               <div
                 key={item.id}
-                className={cn(
-                  "flex items-center justify-center relative z-0 transition-opacity",
-                  isExpiring && "animate-pulse"
-                )}
+                className={`snk-food is-${tone} ${isExpiring ? 'is-expiring' : ''}`}
                 style={{ gridColumnStart: item.x + 1, gridRowStart: item.y + 1 }}
               >
-                {item.type === 'bonus' ? (
-                  <Star className="snk-star w-full h-full text-yellow-400 animate-spin-slow p-1" fill="currentColor" />
-                ) : (
-                  <div className={`snk-orb w-3/4 h-3/4 rounded-full border-2 ${colorClass.split(" ")[0]} ${colorClass.split(" ")[1]}`}></div>
-                )}
-
+                {item.type === 'bonus' ? <SnakeStar /> : <span className="snk-food__orb" />}
                 {item.word && (
                   <span
-                    className={cn(
-                      "snk-word absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded font-bold border pointer-events-none z-30 transition-colors duration-300 shadow-md",
-                      colorClass
-                    )}
+                    className={`snk-word ${item.y < 2 ? 'is-below' : ''} ${item.x < 3 ? 'is-left' : item.x > GRID_SIZE - 4 ? 'is-right' : ''}`}
                     style={{ fontSize: `${textSize}px` }}
                   >
                     {item.word}
                   </span>
                 )}
               </div>
-            )
+            );
+          })}
+
+          {/* Serpiente */}
+          {snake.map((segment, i) => {
+            const isHead = i === 0;
+            const isTail = i === len - 1 && len > 1;
+            const t = len > 1 ? i / (len - 1) : 0;
+            return (
+              <div
+                key={i}
+                className={`snk-seg ${isHead ? 'snk-seg--head' : ''} ${isTail ? 'snk-seg--tail' : ''} ${i % 2 ? 'is-alt' : ''}`}
+                style={{ gridColumnStart: segment.x + 1, gridRowStart: segment.y + 1, '--t': t }}
+              >
+                {isHead && (
+                  <span className={`snk-head ${headAnim ? `is-${headAnim}` : ''}`}>
+                    <span className="snk-head__face" style={{ transform: `rotate(${angle}deg)` }}>
+                      <i className="snk-eye snk-eye--a" />
+                      <i className="snk-eye snk-eye--b" />
+                      <i className="snk-tongue" />
+                    </span>
+                  </span>
+                )}
+              </div>
+            );
           })}
         </div>
+
+        {/* Nueva temática */}
+        <AnimatePresence>
+          {gameState === 'levelup' && (
+            <motion.div className="snk-overlay snk-overlay--soft" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div
+                className="snk-card snk-card--gold"
+                initial={{ scale: 0.6, y: 30, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+              >
+                <span className="snk-card__rays" aria-hidden="true" />
+                <span className="snk-card__star"><SnakeStar /></span>
+                <span className="snk-card__kicker">¡Nueva temática!</span>
+                <strong className="snk-card__topic">{nextTopic}</strong>
+                <span className="snk-card__hint">+10 de longitud · prepara la siguiente racha</span>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Pausa */}
+        <AnimatePresence>
+          {isPaused && !showConfirmRestart && gameState === 'playing' && (
+            <motion.div className="snk-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div className="snk-card" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+                <span className="snk-card__badge"><Pause size={26} /></span>
+                <strong className="snk-card__title">Pausa</strong>
+                <GameButton size="lg" icon={Play} onClick={togglePause} autoFocus>Continuar</GameButton>
+                <div className="snk-option snk-option--stack">
+                  <span className="snk-option__label"><Type size={15} /> Tamaño de las palabras</span>
+                  <Segmented size="sm" options={TEXT_SIZES} value={textSize} onChange={setTextSize} />
+                </div>
+                {!isExam && (
+                  <GameButton variant="soft" icon={LayoutGrid} onClick={requestExit}>Cambiar de modo</GameButton>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Confirmación de salida */}
+        <AnimatePresence>
+          {showConfirmRestart && (
+            <motion.div className="snk-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div className="snk-card snk-card--warn" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+                <span className="snk-card__badge"><AlertTriangle size={26} /></span>
+                <strong className="snk-card__title">¿Salir de la partida?</strong>
+                <p className="snk-card__text">Perderás el progreso de esta partida.</p>
+                <div className="snk-card__row">
+                  <GameButton variant="soft" onClick={cancelRestart}>Cancelar</GameButton>
+                  <GameButton variant="warning" icon={LayoutGrid} onClick={confirmExit}>Sí, salir</GameButton>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Fin de partida (práctica) */}
+        <AnimatePresence>
+          {gameState === 'gameover' && (
+            <motion.div className="snk-overlay snk-overlay--over" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.div
+                className="snk-card snk-card--over"
+                initial={{ scale: 0.7, y: 20, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 240, damping: 18, delay: 0.1 }}
+              >
+                <span className="snk-card__kicker">Game over</span>
+                <strong className="snk-card__score">{score}</strong>
+                <span className="snk-card__hint">puntos</span>
+                <div className="snk-card__stats">
+                  <span><Ruler size={14} /> Longitud {len}</span>
+                  <span><Target size={14} /> {currentCategoryName}</span>
+                </div>
+                <div className="snk-card__row">
+                  <GameButton size="lg" icon={RefreshCw} onClick={() => startGame()} autoFocus>Reintentar</GameButton>
+                  <GameButton variant="soft" icon={LayoutGrid} onClick={() => setGameState('menu')}>Modos</GameButton>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Controles Móvil/Tablet (visible hasta 2xl) */}
-      <div className="snk-layer grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2" aria-label="Controles de dirección">
-        <div />
-        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, -1)}><ArrowUp /></Button>
-        <div />
-        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(-1, 0)}><ArrowLeft /></Button>
-        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, 1)}><ArrowDown /></Button>
-        <Button variant="secondary" className="snk-pad h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(1, 0)}><ArrowRight /></Button>
+      {/* Cruceta táctil */}
+      <div className="snk-pad" aria-label="Controles de dirección">
+        <span />
+        <KeyTile className="snk-pad__key" onPointerDown={() => changeDir(0, -1)} aria-label="Arriba"><ArrowUp size={24} /></KeyTile>
+        <span />
+        <KeyTile className="snk-pad__key" onPointerDown={() => changeDir(-1, 0)} aria-label="Izquierda"><ArrowLeft size={24} /></KeyTile>
+        <KeyTile className="snk-pad__key" onPointerDown={() => changeDir(0, 1)} aria-label="Abajo"><ArrowDown size={24} /></KeyTile>
+        <KeyTile className="snk-pad__key" onPointerDown={() => changeDir(1, 0)} aria-label="Derecha"><ArrowRight size={24} /></KeyTile>
       </div>
-    </div>
+
+      <div className="snk-legend">
+        {showHelp && <span><i className="snk-legend__dot is-valid" /> Temática objetivo</span>}
+        {showHelp && <span><i className="snk-legend__dot is-invalid" /> Otra temática</span>}
+        <span><Trophy size={13} /> La estrella da puntos extra y cambia la temática</span>
+      </div>
+
+      {instructions}
+    </GameShell>
   );
 };
-
-const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
-  <>
-    <Button
-      onClick={() => onSelect('easy')}
-      className={cn(
-        "snk-mode snk-mode--easy h-14 text-xl font-bold bg-green-600 hover:bg-green-500 border-b-4 border-green-800 hover:border-green-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
-        currentDifficulty === 'easy' && "snk-mode--current ring-4 ring-white"
-      )}
-    >
-      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">🌱</span> FÁCIL
-      <span className="snk-mode__hint">Atraviesa muros</span>
-    </Button>
-    <Button
-      onClick={() => onSelect('medium')}
-      className={cn(
-        "snk-mode snk-mode--medium h-14 text-xl font-bold bg-yellow-600 hover:bg-yellow-500 border-b-4 border-yellow-800 hover:border-yellow-700 active:border-b-0 active:mt-1 transition-all text-white rounded-xl",
-        currentDifficulty === 'medium' && "snk-mode--current ring-4 ring-white"
-      )}
-    >
-      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">🤖</span> MEDIO
-      <span className="snk-mode__hint">Con ayuda</span>
-    </Button>
-    <Button
-      onClick={() => onSelect('hard')}
-      className={cn(
-        "snk-mode snk-mode--exam h-14 text-xl font-bold bg-red-600 hover:bg-red-500 border-b-4 border-red-800 hover:border-red-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
-        currentDifficulty === 'hard' && "snk-mode--current ring-4 ring-white"
-      )}
-    >
-      <span className="snk-mode__icon mr-3 text-xl" aria-hidden="true">💀</span> EXAMEN
-      <span className="snk-mode__hint">Sin ayudas</span>
-    </Button>
-  </>
-);
 
 function SnakeTracker({ gameState, score, difficulty, gameStartRef, onGameComplete }) {
   const tracked = useRef(false);

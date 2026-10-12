@@ -6,6 +6,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { MousePointer2 } from 'lucide-react';
 import {
   GLOBAL_QUALITY_PARAMS, effectiveDpr, createFpsGovernor, lowerTier,
 } from '@/services/graphicsQuality';
@@ -156,7 +157,9 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
       onPointerLeave={() => { drag.current.down = false; }}
     >
       {hasMouse && !locked && (
-        <div className="cz3d-lockhint">🖱️ Haz clic para mirar y disparar · mueve el ratón para girar</div>
+        <div className="cz3d-lockhint">
+          <MousePointer2 size={16} aria-hidden="true" /> Haz clic para mirar y disparar · mueve el ratón para girar
+        </div>
       )}
       <Canvas
         key={`${tier}-${ctxKey}`}

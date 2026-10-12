@@ -1,0 +1,291 @@
+/* Máquina del azar (selector de apps) — ver MascotSlotMachine.jsx.
+   Mueble lacado con marquesina de bombillas, pantalla con rodillo de apps,
+   botón rojo que pulsa la mascota y palanca. Animaciones solo transform/opacity;
+   las bombillas solo "persiguen" mientras gira o en nivel de efectos alto. */
+
+.slot-stage {
+  display: grid;
+  grid-template-columns: clamp(150px, 20vw, 220px) minmax(0, 1fr);
+  align-items: end;
+  gap: 0;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 3rem;
+}
+.slot-stage__robot { position: relative; z-index: 2; margin-right: -18px; margin-bottom: 26px; }
+
+/* ---------- Mueble ---------- */
+.slot {
+  position: relative;
+  z-index: 1;
+  padding: 14px 14px 16px;
+  border-radius: 34px 34px 24px 24px;
+  background:
+    radial-gradient(120% 70% at 20% 0%, rgba(255, 255, 255, .35), transparent 55%),
+    linear-gradient(160deg, #7c3aed 0%, #c026d3 48%, #db2777 75%, #f59e0b 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, .28),
+    inset 0 -12px 22px rgba(60, 0, 60, .35),
+    0 30px 60px -28px rgba(76, 29, 149, .9),
+    0 10px 20px -10px rgba(0, 0, 0, .5);
+}
+.slot::after {
+  /* zócalo */
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -14px;
+  height: 18px;
+  border-radius: 0 0 16px 16px;
+  background: linear-gradient(180deg, #4c1d95, #2e1065);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .6);
+  z-index: -1;
+}
+
+/* ---------- Marquesina ---------- */
+.slot__marquee {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px 12px 12px;
+  margin-bottom: 12px;
+  border-radius: 24px 24px 14px 14px;
+  background: linear-gradient(180deg, #1e1b4b, #2e1065);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, .12), inset 0 -4px 10px rgba(0, 0, 0, .4);
+  overflow: hidden;
+}
+.slot__bulbs {
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.slot__bulbs i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #fde68a 45%, #f59e0b);
+  box-shadow: 0 0 10px #fbbf24;
+  opacity: .45;
+}
+html[data-fx="high"] .slot-stage.is-idle .slot__bulbs i { animation: slot-twinkle 1.6s ease-in-out calc(var(--i) * .1s) infinite; }
+.slot-stage.is-spin .slot__bulbs i,
+.slot-stage.is-press .slot__bulbs i { animation: slot-chase .45s linear calc(var(--i) * .028s) infinite; }
+.slot-stage.is-win .slot__bulbs i { animation: slot-flash .3s steps(2, jump-none) infinite; }
+.slot__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 900 clamp(1.05rem, 2.6vw, 1.45rem)/1 Fredoka, system-ui, sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff7ed 10%, #fde68a 45%, #f59e0b 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 #7c2d12);
+}
+.slot__title svg { color: #fde68a; -webkit-text-fill-color: initial; }
+
+/* ---------- Cuerpo: botón · pantalla · palanca ---------- */
+.slot__body { display: flex; align-items: center; gap: 12px; }
+
+.slot__button {
+  position: relative;
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: radial-gradient(circle at 35% 30%, #f1f5f9, #94a3b8 55%, #475569);
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, .35), 0 6px 14px -6px rgba(0, 0, 0, .6);
+  -webkit-tap-highlight-color: transparent;
+}
+.slot__button-cap {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #fecaca, #ef4444 45%, #991b1b);
+  box-shadow: 0 6px 0 #7f1d1d, 0 10px 18px -6px rgba(239, 68, 68, .9), inset 0 2px 2px rgba(255, 255, 255, .5);
+  transform: translateY(-5px);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.slot__button:hover:not(:disabled) .slot__button-cap { transform: translateY(-7px); }
+.slot__button:active .slot__button-cap,
+.slot-stage.is-press .slot__button-cap,
+.slot-stage.is-spin .slot__button-cap {
+  transform: translateY(0);
+  box-shadow: 0 1px 0 #7f1d1d, 0 4px 10px -6px rgba(239, 68, 68, .9), inset 0 2px 2px rgba(255, 255, 255, .4);
+}
+.slot__button:disabled { cursor: default; }
+.slot__button:focus-visible { outline: 3px solid #fde68a; outline-offset: 4px; }
+
+.slot__window {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 156px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .55), transparent 28%, transparent 72%, rgba(0, 0, 0, .55)),
+    linear-gradient(180deg, #0f0c29, #1e1b4b 50%, #0f0c29);
+  box-shadow:
+    inset 0 0 0 3px #fbbf24,
+    inset 0 0 0 6px #7c2d12,
+    inset 0 10px 24px rgba(0, 0, 0, .6),
+    0 0 26px -6px rgba(251, 191, 36, .6);
+}
+.slot__reel {
+  position: absolute;
+  inset: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.slot__row { display: flex; justify-content: center; }
+.slot__row--0, .slot__row--2 { opacity: .38; transform: scale(.82); }
+/* mientras gira: el rodillo vibra y las filas laterales se difuminan */
+.slot-stage.is-spin .slot__reel { animation: slot-reel-roll .1s linear infinite; }
+.slot-stage.is-spin .slot__row--0,
+.slot-stage.is-spin .slot__row--2 { opacity: .22; }
+@keyframes slot-reel-roll { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(3px); } }
+.slot-item { display: flex; align-items: center; gap: 12px; max-width: 100%; }
+.slot-item__icon { flex-shrink: 0; display: grid; place-items: center; }
+.slot-item__emoji { font-size: 1.6rem; }
+.slot-item__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 800 1rem/1.15 Fredoka, system-ui, sans-serif;
+  color: #c7d2fe;
+}
+.slot-item.is-featured .slot-item__name {
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  color: #fff;
+  text-shadow: 0 0 18px rgba(167, 139, 250, .8);
+}
+.slot-stage.is-spin .slot-item__name { color: #e0e7ff; }
+
+.slot__payline {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -9px;
+  border: 9px solid transparent;
+  z-index: 2;
+}
+.slot__payline--l { left: 4px; border-left-color: #fbbf24; }
+.slot__payline--r { right: 4px; border-right-color: #fbbf24; }
+.slot__win-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 40% at 50% 50%, rgba(251, 191, 36, .45), transparent 70%);
+  animation: slot-win 0.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Palanca */
+.slot__lever {
+  position: relative;
+  flex-shrink: 0;
+  width: 26px;
+  height: 120px;
+  align-self: center;
+}
+.slot__lever::before {
+  /* base atornillada */
+  content: '';
+  position: absolute;
+  left: -2px;
+  bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: radial-gradient(circle at 35% 30%, #f1f5f9, #94a3b8 55%, #475569);
+  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, .35);
+}
+.slot__lever-stick,
+.slot__lever-ball {
+  position: absolute;
+  left: 50%;
+  transform-origin: 50% 105px;
+  transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.slot__lever-stick {
+  bottom: 22px;
+  width: 8px;
+  height: 84px;
+  margin-left: -4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #94a3b8, #f8fafc 45%, #64748b);
+  transform-origin: 50% 100%;
+}
+.slot__lever-ball {
+  top: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fecaca, #ef4444 50%, #991b1b);
+  box-shadow: 0 6px 12px -4px rgba(0, 0, 0, .5);
+}
+.slot__lever.is-pulled .slot__lever-stick { transform: scaleY(-.55); }
+.slot__lever.is-pulled .slot__lever-ball { transform: translateY(116px); }
+
+/* ---------- Bandeja ---------- */
+.slot__tray { display: flex; justify-content: center; margin-top: 14px; }
+.slot__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  font: 800 1.05rem/1 Fredoka, system-ui, sans-serif;
+  color: #451a03;
+  background: linear-gradient(180deg, #fef3c7, #fbbf24 55%, #f59e0b);
+  box-shadow: inset 0 1px 0 #fff, 0 5px 0 #b45309, 0 14px 24px -12px rgba(245, 158, 11, .9);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.slot__cta:hover:not(:disabled) { transform: translateY(-2px); }
+.slot__cta:active:not(:disabled) { transform: translateY(3px); box-shadow: inset 0 1px 0 #fff, 0 1px 0 #b45309; }
+.slot__cta:disabled { cursor: progress; filter: saturate(.7); }
+.slot__cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.slot__result {
+  padding: 10px 20px;
+  border-radius: 16px;
+  font: 900 1.15rem/1.1 Fredoka, system-ui, sans-serif;
+  color: #fff;
+  background: rgba(30, 27, 75, .55);
+  box-shadow: inset 0 0 0 2px #fde68a, 0 0 24px -4px #fbbf24;
+  animation: slot-pop .45s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+@keyframes slot-twinkle { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes slot-chase { 0%, 100% { opacity: .3; transform: scale(.85); } 20% { opacity: 1; transform: scale(1.15); } }
+@keyframes slot-flash { 50% { opacity: .2; } }
+@keyframes slot-win { from { opacity: .5; } to { opacity: 1; } }
+@keyframes slot-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 720px) {
+  .slot-stage { grid-template-columns: 112px minmax(0, 1fr); }
+  .slot-stage__robot { margin-right: -14px; margin-bottom: 40px; }
+  .slot { padding: 10px 10px 12px; border-radius: 26px 26px 20px 20px; }
+  .slot__button { width: 48px; height: 48px; }
+  .slot__lever { display: none; }
+  .slot__window { height: 132px; }
+  .slot-item { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot-stage .slot__bulbs i, .slot__win-glow { animation: none !important; }
+}

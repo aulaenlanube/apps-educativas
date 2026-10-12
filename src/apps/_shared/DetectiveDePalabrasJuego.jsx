@@ -5,9 +5,14 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { RefreshCw } from 'lucide-react';
 import { useDetectiveDePalabras } from '../../hooks/useDetectiveDePalabras';
 import { getDetectiveData } from '../../services/gameDataService';
 import DetectiveDePalabrasUI from './DetectiveDePalabrasUI';
+import { GameShell, GameHeader, GameLoading, GameEmpty, GameButton } from './kit';
+
+// Azul expediente → violeta (el dorado de la lupa va en el propio tablero)
+const SHELL = { accent: '#2563eb', accent2: '#7c3aed' };
 
 const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
   // Parámetros de ruta
@@ -89,10 +94,35 @@ const DetectiveDePalabrasJuego = ({ onGameComplete } = {}) => {
     return () => { vivo = false; };
   }, [level, grado, asignatura]);
 
-  if (cargando) return <div className="text-center p-10 font-bold">Cargando juego...</div>;
-  if (error) return <div className="text-center p-10 font-bold text-red-600">{error}</div>;
+  if (cargando) {
+    return (
+      <GameShell {...SHELL}>
+        <GameLoading label="Abriendo el expediente…" />
+      </GameShell>
+    );
+  }
+  if (error) {
+    return (
+      <GameShell {...SHELL}>
+        <GameHeader />
+        <GameEmpty
+          title="Algo salió mal"
+          action={<GameButton variant="soft" icon={RefreshCw} onClick={() => window.location.reload()}>Reintentar</GameButton>}
+        >
+          {error}
+        </GameEmpty>
+      </GameShell>
+    );
+  }
   if (!frasesDelNivel.length) {
-    return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía</div>;
+    return (
+      <GameShell {...SHELL}>
+        <GameHeader />
+        <GameEmpty title="Aún no hay casos">
+          No hay contenido disponible para este juego todavía.
+        </GameEmpty>
+      </GameShell>
+    );
   }
 
   // UI unificada: gestiona práctica y test según game.isTestMode

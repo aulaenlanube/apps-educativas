@@ -1,990 +1,821 @@
-/* src/apps/la-fortaleza/LaFortaleza.css */
-
-.fort-root {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 16px;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-}
-
-/* ---------- tarjeta genérica (selección, resumen, errores) ---------- */
-.fort-card {
-  width: 100%;
-  max-width: 640px;
-  margin-top: 24px;
-  background: linear-gradient(160deg, #161430 0%, #261b4e 55%, #3a1a45 100%);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 22px;
-  padding: 28px;
-  color: #f1f5f9;
-  text-align: center;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-}
-
-.fort-loading { font-size: 1.2rem; padding: 40px 0; animation: fort-pulse 1.4s ease-in-out infinite; }
-@keyframes fort-pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-
-.fort-title-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
-.fort-title {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 1.6rem; font-weight: 800;
-  background: linear-gradient(90deg, #c084fc, #f0abfc, #fbbf24);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.fort-title svg { color: #c084fc; }
-.fort-subject { margin: 6px 0 0; color: #cbd5e1; font-weight: 600; }
-.fort-tagline { margin: 10px 0 22px; color: #94a3b8; font-size: 0.95rem; }
-.fort-empty { color: #cbd5e1; padding: 16px 8px; line-height: 1.5; }
-
-/* ---------- selección de modo ---------- */
-.fort-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-.fort-mode {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 20px 14px; border-radius: 18px; cursor: pointer;
-  border: 2px solid transparent; color: #f8fafc;
-  transition: border-color 0.2s;
-}
-.fort-mode.practice { background: linear-gradient(150deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.08)); border-color: rgba(16, 185, 129, 0.5); }
-.fort-mode.exam { background: linear-gradient(150deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.08)); border-color: rgba(239, 68, 68, 0.5); }
-.fort-mode-icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.1); }
-.fort-mode.practice .fort-mode-icon { color: #34d399; }
-.fort-mode.exam .fort-mode-icon { color: #f87171; }
-.fort-mode-name { font-size: 1.1rem; font-weight: 800; }
-.fort-mode-desc { font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; }
-
-.fort-study-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(168, 85, 247, 0.18); color: #e9d5ff;
-  border: 1px solid rgba(168, 85, 247, 0.45);
-  padding: 10px 18px; border-radius: 12px; cursor: pointer;
-  font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
-}
-.fort-study-btn:hover { background: rgba(168, 85, 247, 0.32); }
-
-/* ---------- juego (overlay a pantalla completa) ---------- */
-.fort-game {
-  position: fixed; inset: 0; z-index: 60;
-  display: flex; flex-direction: column;
-  background: #16133a;
-}
-
-.fort-hud {
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  background: rgba(15, 23, 42, 0.82);
-  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
-  padding: 8px 12px; color: #f1f5f9;
-}
-.fort-hud-academic { font-size: 0.85rem; color: #c4b5fd; font-weight: 700; }
-.fort-hud-item {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-weight: 700; font-size: 0.95rem; padding: 3px 9px; border-radius: 9px;
-  background: rgba(255, 255, 255, 0.06);
-}
-.fort-hud-item.lives { color: #f87171; }
-.fort-hud-item.coins { color: #fbbf24; }
-.fort-hud-item.wave { color: #7dd3fc; }
-.fort-hud-item.score { color: #e9d5ff; }
-.fort-hud-item.streak { color: #fb923c; animation: fort-pulse 1s infinite; }
-.fort-hud-spacer { flex: 1; }
-.fort-hud-btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(255, 255, 255, 0.08); color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 9px; padding: 6px 10px; cursor: pointer; font-weight: 700; font-size: 0.85rem;
-}
-.fort-hud-btn.active { background: rgba(251, 191, 36, 0.25); color: #fbbf24; border-color: rgba(251, 191, 36, 0.5); }
-
-.fort-3d {
-  position: relative; flex: 1; min-height: 0; overflow: hidden;
-  touch-action: none; cursor: grab;
-}
-.fort-3d.targeting { cursor: crosshair; }
-.fort-3d canvas { display: block; width: 100% !important; height: 100% !important; }
-
-/* ---------- panel de quiz ---------- */
-.fort-quiz {
-  /* centrado sin transform: framer-motion pisa el transform al animar */
-  position: absolute; inset: 0; margin: auto; height: fit-content;
-  width: min(92%, 460px);
-  background: rgba(15, 23, 42, 0.94);
-  border: 1px solid rgba(168, 85, 247, 0.5);
-  border-radius: 18px; padding: 18px; color: #f1f5f9;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
-}
-.fort-quiz-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
-.fort-quiz-tag { font-size: 0.8rem; font-weight: 700; color: #c084fc; }
-.fort-quiz-timer {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-weight: 800; font-size: 0.85rem; color: #7dd3fc;
-  background: rgba(125, 211, 252, 0.12); padding: 3px 9px; border-radius: 9px;
-}
-.fort-quiz-timer.urgent { color: #f87171; background: rgba(239, 68, 68, 0.15); animation: fort-pulse 0.7s infinite; }
-.fort-quiz-def { font-size: 1.02rem; line-height: 1.45; margin: 0 0 14px; text-align: left; }
-
-.fort-quiz-form { display: flex; gap: 8px; }
-.fort-quiz-form input {
-  flex: 1; background: rgba(255, 255, 255, 0.08); color: #f8fafc;
-  border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 11px;
-  padding: 11px 14px; font-size: 1rem; outline: none;
-}
-.fort-quiz-form input:focus { border-color: #c084fc; }
-.fort-quiz-form button {
-  background: linear-gradient(135deg, #a855f7, #ec4899); color: #fff;
-  border: none; border-radius: 11px; padding: 11px 18px;
-  font-weight: 800; cursor: pointer; font-size: 0.95rem;
-}
-.fort-quiz-form button:disabled { opacity: 0.45; cursor: not-allowed; }
-
-.fort-quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.fort-quiz-options button {
-  background: rgba(168, 85, 247, 0.16); color: #f1f5f9;
-  border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 11px;
-  padding: 11px 10px; font-weight: 600; cursor: pointer; font-size: 0.92rem;
-  transition: background 0.15s, transform 0.1s;
-}
-.fort-quiz-options button:hover { background: rgba(168, 85, 247, 0.35); transform: translateY(-1px); }
-
-.fort-quiz-feedback {
-  border-radius: 11px; padding: 12px; font-size: 0.98rem; font-weight: 600;
-}
-.fort-quiz-feedback.correct { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
-.fort-quiz-feedback.wrong { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
-
-/* ---------- modal clasificación / catpick / quit ---------- */
-.fort-classify {
-  position: absolute; inset: 0; margin: auto; height: fit-content;
-  width: min(90%, 380px);
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(251, 191, 36, 0.5);
-  border-radius: 18px; padding: 20px; color: #f1f5f9; text-align: center;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
-}
-.fort-classify-close {
-  position: absolute; top: 10px; right: 10px;
-  background: rgba(255, 255, 255, 0.08); border: none; color: #94a3b8;
-  border-radius: 8px; padding: 5px; cursor: pointer; display: grid; place-items: center;
-}
-.fort-classify-word { font-size: 1.35rem; font-weight: 800; color: #fbbf24; margin-bottom: 4px; }
-.fort-classify-ask { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 14px; }
-.fort-classify-opts { display: flex; flex-direction: column; gap: 8px; }
-.fort-classify-opts button {
-  background: color-mix(in srgb, var(--cat) 18%, transparent);
-  border: 2px solid var(--cat); color: #f8fafc;
-  border-radius: 11px; padding: 11px; font-weight: 700; font-size: 0.98rem;
-  cursor: pointer; transition: background 0.15s, transform 0.1s;
-}
-.fort-classify-opts button:hover { background: color-mix(in srgb, var(--cat) 38%, transparent); transform: translateY(-1px); }
-.fort-classify-hint { margin-top: 12px; font-size: 0.75rem; color: #94a3b8; }
-.fort-quit-btns { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
-
-/* ---------- modal jefe ---------- */
-.fort-boss {
-  position: absolute; inset: 0; margin: auto; height: fit-content;
-  width: min(94%, 480px);
-  background: linear-gradient(160deg, rgba(76, 29, 149, 0.96), rgba(15, 23, 42, 0.96));
-  border: 2px solid #fbbf24;
-  border-radius: 18px; padding: 16px; color: #f1f5f9;
-  box-shadow: 0 0 35px rgba(251, 191, 36, 0.35);
-}
-.fort-boss-head {
-  display: flex; justify-content: space-between; align-items: center;
-  font-weight: 900; color: #fbbf24; margin-bottom: 8px; letter-spacing: 0.5px;
-}
-.fort-boss-head.oracle { color: #67e8f9; }
-
-/* ---------- Desafío Relámpago ---------- */
-.fort-mini { border-color: rgba(253, 224, 71, 0.6); text-align: center; }
-.fort-mini-title {
-  font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;
-  background: linear-gradient(90deg, #fde047, #fb923c);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.fort-mini-chain { font-size: 0.95rem; font-weight: 700; color: #fde047; }
-.fort-mini .fort-quiz-def { text-align: left; }
-
-/* ---------- pregunta del Oráculo ---------- */
-.fort-oracle {
-  position: absolute; inset: 0; margin: auto; height: fit-content;
-  width: min(94%, 440px);
-  background: linear-gradient(160deg, rgba(8, 51, 68, 0.96), rgba(15, 23, 42, 0.96));
-  border: 2px solid #22d3ee;
-  border-radius: 18px; padding: 14px; color: #f1f5f9;
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.35);
-}
-
-/* ---------- barra de construcción (flotante sobre el 3D) ---------- */
-.fort-buildbar {
-  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
-  width: min(94%, 760px);
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 14px; padding: 10px 14px; color: #e2e8f0;
-}
-.fort-forecast { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.88rem; }
-.fort-forecast-label { font-weight: 800; color: #7dd3fc; }
-.fort-forecast-cat {
-  background: color-mix(in srgb, var(--cat, #94a3b8) 20%, transparent);
-  border: 1px solid var(--cat, #64748b);
-  padding: 3px 10px; border-radius: 9px; font-weight: 700; font-size: 0.82rem;
-}
-.fort-buildbar-actions { display: flex; gap: 8px; }
-
-.fort-btn-launch {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: linear-gradient(135deg, #10b981, #059669); color: #fff;
-  border: none; border-radius: 12px; padding: 11px 20px;
-  font-weight: 800; font-size: 1rem; cursor: pointer;
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
-  transition: transform 0.1s;
-}
-.fort-btn-launch:hover { transform: translateY(-1px); }
-.fort-btn-secondary {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255, 255, 255, 0.08); color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
-}
-.fort-btn-danger {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(239, 68, 68, 0.16); color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.45);
-  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
-}
-.fort-btn-upgrade {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(16, 185, 129, 0.16); color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  border-radius: 12px; padding: 11px 16px; font-weight: 700; cursor: pointer;
-}
-.fort-btn-upgrade:disabled { opacity: 0.4; cursor: not-allowed; }
-
-/* ---------- panel torre (flotante sobre el 3D) ---------- */
-.fort-towerpanel {
-  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
-  background: rgba(15, 23, 42, 0.88);
-  border: 1px solid rgba(251, 191, 36, 0.4);
-  border-radius: 14px; padding: 10px 14px; color: #f1f5f9;
-  max-width: 94%;
-}
-.fort-towerpanel-name { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; flex: 1; }
-.fort-towerpanel-cat {
-  background: color-mix(in srgb, var(--cat) 22%, transparent);
-  border: 1px solid var(--cat);
-  padding: 2px 9px; border-radius: 8px; font-size: 0.78rem; font-weight: 700;
-}
-.fort-towerpanel-lvl { color: #fbbf24; font-size: 0.85rem; }
-.fort-towerpanel-max { color: #fbbf24; font-weight: 700; font-size: 0.88rem; }
-
-/* ---------- panel de mejoras de la fortaleza ---------- */
-/* va más alto que el towerpanel/buildbar (ambos en bottom 14px) para no solaparse en fase de construcción */
-.fort-fortpanel { border-color: rgba(168, 85, 247, 0.55); max-width: min(94%, 640px); bottom: 92px; }
-.fort-fortpanel-owned { font-size: 1.05rem; margin-left: 2px; }
-.fort-fortpanel-desc {
-  flex-basis: 100%; font-size: 0.82rem; color: #cbd5e1; line-height: 1.35;
-}
-.fort-fortpanel-desc strong { color: #e9d5ff; }
-.fort-hud-item.shield { color: #fbbf24; }
-.fort-hud-btn.fort-glow {
-  border-color: #fbbf24; color: #fbbf24;
-  animation: fort-pulse 1.2s infinite;
-}
-
-/* ---------- barra inferior: torres + habilidades ---------- */
-.fort-bottombar {
-  display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap;
-  background: rgba(15, 23, 42, 0.85);
-  border-top: 1px solid rgba(168, 85, 247, 0.3);
-  padding: 8px 12px;
-}
-.fort-palette {
-  flex: 1; min-width: 360px;
-  display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px;
-}
-.fort-palette-btn.locked { opacity: 0.5; filter: grayscale(0.6); }
-
-.fort-abilities { display: flex; align-items: center; gap: 10px; }
-.fort-energy { display: flex; align-items: center; gap: 6px; color: #fde047; }
-.fort-energy-bar {
-  width: 64px; height: 10px; border-radius: 6px; overflow: hidden;
-  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(253, 224, 71, 0.4);
-}
-.fort-energy-fill {
-  height: 100%; border-radius: 6px;
-  background: linear-gradient(90deg, #facc15, #fde047);
-  transition: width 0.3s;
-}
-.fort-energy-num { font-size: 0.78rem; font-weight: 800; min-width: 24px; }
-.fort-ability-btns { display: flex; gap: 8px; }
-.fort-ability-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  background: rgba(76, 29, 149, 0.5); color: #e2e8f0;
-  border: 2px solid rgba(253, 224, 71, 0.35);
-  border-radius: 13px; padding: 9px 10px; cursor: pointer;
-  transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
-}
-.fort-ability-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(253, 224, 71, 0.8); }
-.fort-ability-btn.selected { border-color: #fde047; box-shadow: 0 0 16px rgba(253, 224, 71, 0.45); background: rgba(253, 224, 71, 0.18); }
-.fort-ability-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.fort-ability-cost { font-size: 0.7rem; color: #fde047; font-weight: 700; }
-.fort-palette-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  background: rgba(15, 23, 42, 0.78); color: #e2e8f0;
-  border: 2px solid rgba(168, 85, 247, 0.3);
-  border-radius: 13px; padding: 9px 4px; cursor: pointer;
-  transition: border-color 0.15s, transform 0.1s, background 0.15s;
-}
-.fort-palette-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(192, 132, 252, 0.7); }
-.fort-palette-btn.selected { border-color: #fbbf24; background: rgba(251, 191, 36, 0.14); box-shadow: 0 0 14px rgba(251, 191, 36, 0.3); }
-.fort-palette-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.fort-palette-emoji { font-size: 1.4rem; }
-.fort-palette-name { font-size: 0.74rem; font-weight: 700; }
-.fort-palette-cost { font-size: 0.7rem; color: #fbbf24; font-weight: 700; }
-
-.fort-placing-hint {
-  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-  width: max-content; max-width: 92%;
-  text-align: center; font-size: 0.82rem; color: #fde68a;
-  background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(251, 191, 36, 0.35);
-  border-radius: 10px; padding: 7px 14px;
-}
-
-/* ---------- resumen ---------- */
-.fort-result-banner { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 16px; }
-.fort-result-banner h2 { margin: 0; font-size: 1.45rem; }
-.fort-result-banner.victory svg { color: #fbbf24; }
-.fort-result-banner.defeat svg { color: #f87171; }
-.fort-result-banner.finished svg { color: #c084fc; }
-
-.fort-nota { border-radius: 16px; padding: 16px; margin-bottom: 14px; }
-.fort-nota.excellent { background: rgba(16, 185, 129, 0.16); color: #34d399; }
-.fort-nota.good { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
-.fort-nota.fail { background: rgba(239, 68, 68, 0.16); color: #f87171; }
-.fort-nota-big { font-size: 3.2rem; font-weight: 900; line-height: 1; }
-.fort-nota-small { font-size: 1.3rem; opacity: 0.7; }
-.fort-nota-msg { font-weight: 700; margin-top: 6px; }
-
-.fort-wave-reached { font-size: 1.15rem; color: #7dd3fc; margin-bottom: 14px; }
-.fort-wave-reached strong { font-size: 1.5rem; }
-
-.fort-result-score {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 1.2rem; font-weight: 800; color: #fbbf24; margin-bottom: 18px;
-}
-
-.fort-breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 20px; }
-.fort-breakdown-item {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255, 255, 255, 0.05); border-radius: 11px; padding: 10px 13px;
-  font-size: 0.86rem; color: #cbd5e1;
-}
-.fort-breakdown-item svg { color: #c084fc; flex-shrink: 0; }
-.fort-breakdown-item span { flex: 1; text-align: left; }
-.fort-breakdown-item strong { color: #f8fafc; }
-
-.fort-summary-actions { display: flex; justify-content: center; gap: 10px; }
-
-/* ---------- material de estudio ---------- */
-.fort-study-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
-.fort-study-tabs button {
-  flex: 1; background: rgba(168, 85, 247, 0.1); color: inherit;
-  border: 1.5px solid rgba(168, 85, 247, 0.3); border-radius: 10px;
-  padding: 8px; font-weight: 700; cursor: pointer; font-size: 0.88rem;
-}
-.fort-study-tabs button.active { background: rgba(168, 85, 247, 0.3); border-color: #a855f7; }
-.fort-study-cat { margin-bottom: 14px; }
-.fort-study-cat h3 { margin: 0 0 8px; }
-.fort-study-words { display: flex; flex-wrap: wrap; gap: 6px; }
-.fort-study-chip {
-  background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3);
-  border-radius: 8px; padding: 3px 10px; font-size: 0.82rem;
-}
-.fort-study-letter h3 {
-  margin: 12px 0 6px; color: #c084fc;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 3px;
-}
-.fort-study-def { margin: 5px 0; font-size: 0.88rem; line-height: 1.45; }
-
-/* ---------- responsive ---------- */
-@media (max-width: 720px) {
-  .fort-root { padding: 8px; }
-  .fort-card { padding: 18px; margin-top: 8px; }
-  .fort-modes { grid-template-columns: 1fr; }
-  .fort-palette { grid-template-columns: repeat(4, 1fr); gap: 4px; min-width: 0; }
-  .fort-palette-name { font-size: 0.62rem; }
-  .fort-palette-emoji { font-size: 1.15rem; }
-  .fort-palette-btn { padding: 6px 2px; }
-  .fort-hud { padding: 5px 7px; gap: 4px; }
-  .fort-hud-item { font-size: 0.78rem; padding: 2px 6px; }
-  .fort-hud-academic { display: none; }
-  .fort-quiz { padding: 14px; }
-  .fort-quiz-options { grid-template-columns: 1fr; }
-  .fort-breakdown { grid-template-columns: 1fr; }
-  .fort-buildbar { flex-direction: column; align-items: stretch; bottom: 8px; }
-  .fort-fortpanel { bottom: 132px; font-size: 0.85rem; }
-  .fort-buildbar-actions { justify-content: stretch; }
-  .fort-buildbar-actions .fort-btn-launch { flex: 1; justify-content: center; }
-  .fort-bottombar { flex-direction: column; gap: 6px; padding: 6px 8px; }
-  .fort-abilities { justify-content: space-between; }
-  .fort-ability-btn { padding: 6px 8px; flex: 1; }
-}
-
-/* ---------- calidad grafica: selector, panel, toast, vineta y stats ---------- */
-.fort-gfx-row {
-  display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap;
-  margin-top: 14px; padding-top: 12px;
-  border-top: 1px solid rgba(168, 85, 247, 0.22);
-}
-.fort-gfx-row-label {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.82rem; font-weight: 700; color: #c4b5fd;
-}
-.fort-gfx-row button {
-  background: rgba(255, 255, 255, 0.07); color: #e2e8f0;
-  border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 999px;
-  padding: 5px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
-  transition: all 0.15s;
-}
-.fort-gfx-row button:hover { border-color: rgba(251, 191, 36, 0.6); }
-.fort-gfx-row button.active {
-  background: rgba(251, 191, 36, 0.22); color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.65);
-}
-
-.fort-gfxpanel {
-  position: absolute; top: 10px; right: 10px; z-index: 30;
-  background: rgba(15, 23, 42, 0.94);
-  border: 1px solid rgba(168, 85, 247, 0.55); border-radius: 14px;
-  padding: 12px 14px; color: #f1f5f9; max-width: 320px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-}
-.fort-gfxpanel-title {
-  display: flex; align-items: center; gap: 6px;
-  font-weight: 800; font-size: 0.92rem; margin-bottom: 9px; color: #e9d5ff;
-}
-.fort-gfx-options { display: flex; gap: 6px; flex-wrap: wrap; }
-.fort-gfx-options button {
-  background: rgba(255, 255, 255, 0.07); color: #e2e8f0;
-  border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 999px;
-  padding: 6px 12px; font-size: 0.84rem; font-weight: 700; cursor: pointer;
-  transition: all 0.15s;
-}
-.fort-gfx-options button:hover { border-color: rgba(251, 191, 36, 0.6); }
-.fort-gfx-options button.active {
-  background: rgba(251, 191, 36, 0.22); color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.65);
-}
-.fort-gfx-note { margin: 9px 0 0; font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
-.fort-gfx-note strong { color: #fbbf24; }
-
-.fort-gfx-toast {
-  position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 30;
-  background: rgba(15, 23, 42, 0.94); color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.5); border-radius: 12px;
-  padding: 8px 16px; font-size: 0.86rem; font-weight: 700;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
-  pointer-events: none; white-space: nowrap;
-}
-
-.fort-vignette {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 58%, rgba(8, 6, 24, 0.28) 100%);
-}
-
-.fort-stats {
-  position: absolute; left: 8px; bottom: 8px; z-index: 40;
-  background: rgba(0, 0, 0, 0.65); color: #4ade80;
-  font: 700 11px/1.4 ui-monospace, Consolas, monospace;
-  padding: 4px 8px; border-radius: 8px; pointer-events: none;
-}
-
-@media (max-width: 720px) {
-  .fort-gfxpanel { right: 6px; left: 6px; max-width: none; }
-  .fort-gfx-row button { padding: 4px 9px; font-size: 0.76rem; }
-}
-
-/* ---------- iconos SVG de construcciones y habilidades ---------- */
-.fort-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.fort-icon svg { width: 100%; height: 100%; display: block; }
-.fort-icon-inline { vertical-align: -4px; }
-.fort-palette-emoji {
-  display: flex; align-items: center; justify-content: center; min-height: 42px;
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
-  transition: transform 0.15s;
-}
-.fort-palette-btn:not(:disabled):hover .fort-palette-emoji { transform: scale(1.12); }
-.fort-palette-btn.locked .fort-palette-emoji { color: #64748b; filter: none; }
-.fort-classify-ask .fort-icon-inline { vertical-align: -4px; margin-right: 2px; }
-
-@media (max-width: 720px) {
-  .fort-palette-emoji .fort-icon { width: 30px !important; height: 30px !important; }
-  .fort-palette-emoji { min-height: 30px; }
-}
-
-/* ---------- reliquias, asedio infinito y ambiente ---------- */
-.fort-relic { max-width: min(94%, 620px); }
-.fort-relic-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.fort-relic-opts button {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  background: rgba(168, 85, 247, 0.1); color: #f1f5f9;
-  border: 1px solid rgba(168, 85, 247, 0.45); border-radius: 14px;
-  padding: 14px 10px; cursor: pointer; text-align: center;
-  transition: all 0.15s;
-}
-.fort-relic-opts button:hover {
-  background: rgba(168, 85, 247, 0.22); border-color: #c084fc;
-  transform: translateY(-2px);
-}
-.fort-relic-ico {
-  display: flex; align-items: center; justify-content: center;
-  width: 44px; height: 44px; border-radius: 12px; color: #e9d5ff;
-  background: rgba(168, 85, 247, 0.25);
-}
-.fort-relic-opts strong { font-size: 0.88rem; color: #e9d5ff; }
-.fort-relic-desc { font-size: 0.76rem; color: #cbd5e1; line-height: 1.3; }
-
-.fort-victory { max-width: min(94%, 520px); border-color: rgba(251, 191, 36, 0.55); }
-.fort-victory .fort-mini-title { color: #fbbf24; display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-/* ---------- minijuegos: mercader, pozo y geoda ---------- */
-.fort-merchant { border-color: rgba(45, 212, 191, 0.55); }
-.fort-merchant-title { font-size: 0.92rem; font-weight: 800; color: #5eead4; }
-.fort-merchant .fort-quiz-options button {
-  background: rgba(45, 212, 191, 0.14); border-color: rgba(45, 212, 191, 0.4);
-}
-.fort-merchant .fort-quiz-options button:hover { background: rgba(45, 212, 191, 0.3); }
-
-.fort-well { border-color: rgba(103, 232, 249, 0.55); }
-.fort-well-title { font-size: 0.92rem; font-weight: 800; color: #67e8f9; }
-.fort-well .fort-quiz-options button {
-  background: rgba(103, 232, 249, 0.12); border-color: rgba(103, 232, 249, 0.4);
-}
-.fort-well .fort-quiz-options button:hover { background: rgba(103, 232, 249, 0.28); }
-.fort-well-bets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.fort-well-bets button {
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
-  background: rgba(103, 232, 249, 0.12); color: #f1f5f9;
-  border: 1.5px solid rgba(103, 232, 249, 0.45); border-radius: 12px;
-  padding: 12px 8px; cursor: pointer; font-size: 1rem;
-  transition: background 0.15s, transform 0.1s;
-}
-.fort-well-bets button:hover:not(:disabled) { background: rgba(103, 232, 249, 0.28); transform: translateY(-1px); }
-.fort-well-bets button:disabled { opacity: 0.4; cursor: not-allowed; }
-.fort-well-win { font-size: 0.74rem; font-weight: 700; color: #6ee7b7; }
-
-.fort-mini-skip { width: 100%; margin-top: 10px; padding: 9px 12px; border-radius: 11px; font-size: 0.88rem; }
-
-.fort-hud-item.relics { color: #c084fc; cursor: help; }
-.fort-forecast-amb {
-  font-size: 0.78rem; font-weight: 700; color: #93c5fd;
-  background: rgba(255, 255, 255, 0.07); border-radius: 999px; padding: 2px 10px;
-}
-.fort-endless-line {
-  text-align: center; font-size: 0.92rem; color: #fca5a5; font-weight: 700;
-  background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35);
-  border-radius: 10px; padding: 7px 12px; margin: 10px 0 4px;
-}
-
-@media (max-width: 720px) {
-  .fort-relic-opts { grid-template-columns: 1fr; }
-}
-
-/* la estrella de valorar la app solo se ve en la seleccion de modo */
-body.fort-in-game .app-rating-fab { display: none !important; }
-
 /* ==========================================================================
-   CAPA PREMIUM (solo presentación): cristal, luz y microinteracciones.
-   No toca el render 3D (render3d.js) ni la lógica. Muchos paneles son
-   motion.div: aquí NUNCA se anima `transform` con fill-mode forwards/both
-   sobre ellos (pisaría el transform de framer-motion).
+   La Fortaleza — rediseño 2026 sobre el kit (_shared/kit), tema noche.
+   Solo el "chrome" 2D: selección de modo, HUD, barra de construcción,
+   diálogos (quiz, jefe, oráculo, minijuegos, reliquias), paneles de torre y
+   resumen. La escena three.js (render3d.js), el motor y el bucle no se tocan.
+
+   Ámbitos del kit fuera de GameShell: la partida a pantalla completa
+   (.fort-game, fixed) lleva gk-shell gk-theme-dark para heredar las variables
+   --gk-*; aquí se anula su caja. Los modales de ayuda/estudio van dentro de un
+   ámbito sin caja (.fort-portal, display: contents).
+   .fort-root NO crea contexto de apilado (sin isolation/z-index): atraparía
+   los overlays fixed bajo la cabecera de AppRunnerPage (z-30).
+   Rendimiento: sin backdrop-filter ni filter en piezas repetidas sobre el
+   WebGL; solo se anima transform/opacity; bucles decorativos solo con
+   html[data-fx="high"].
    ========================================================================== */
 
 .fort-root {
+  --gk-accent: #a855f7;
+  --gk-accent-2: #f59e0b;
   position: relative;
-  /* Sin `isolation`/z-index propio: crearía un contexto de apilado y atraparía
-     los overlays `fixed` (modales, DuelChatBar) bajo la barra de AppRunnerPage
-     (z-30). El fondo decorativo va a z-index 0 y el contenido es `position:
-     relative` (mismo nivel, posterior en el DOM → se pinta encima). */
-  font-family: 'Fredoka', 'Segoe UI', system-ui, sans-serif;
+  min-height: 100%;
+  padding: 4px 0 24px;
 }
-/* Fondo decorativo de selección/resumen: orbes + estrellas */
-.fort-sky {
+
+/* ---------- Escenario del kit (selección, resumen, carga) ---------- */
+.gk-shell.fort-shell {
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(168, 85, 247, .32), transparent 58%),
+    radial-gradient(90% 60% at 100% 100%, rgba(245, 158, 11, .2), transparent 60%),
+    linear-gradient(160deg, #1f1a4e 0%, #17123f 55%, #2a1545 100%);
+}
+/* almenas en el borde superior del escenario */
+.gk-shell.fort-shell::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
+  top: 0;
+  left: 6%;
+  right: 6%;
+  height: 9px;
   z-index: 0;
-}
-.fort-sky::before,
-.fort-sky::after {
-  content: '';
-  position: absolute;
-  width: 460px; height: 460px;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: .35;
-  animation: fort-orb 22s ease-in-out infinite alternate;
-}
-.fort-sky::before { top: -120px; left: -80px; background: radial-gradient(circle, #a855f7, transparent 65%); }
-.fort-sky::after  { bottom: -140px; right: -100px; background: radial-gradient(circle, #f59e0b, transparent 65%); opacity: .22; animation-duration: 28s; animation-direction: alternate-reverse; }
-html.dark .fort-sky::before { opacity: .28; }
-
-/* ---------- Tarjeta ---------- */
-.fort-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(192, 132, 252, .4);
-  background:
-    radial-gradient(120% 70% at 0% 0%, rgba(168, 85, 247, .35), transparent 55%),
-    radial-gradient(90% 60% at 100% 100%, rgba(245, 158, 11, .16), transparent 60%),
-    linear-gradient(160deg, #161430 0%, #261b4e 55%, #3a1a45 100%);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.12) inset,
-    0 0 0 1px rgba(255,255,255,.03) inset,
-    0 0 60px -20px rgba(168, 85, 247, .6),
-    0 40px 80px -40px rgba(15, 12, 41, .9);
-}
-/* Almenas decorativas en el borde superior */
-.fort-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 10px;
-  background:
-    linear-gradient(90deg, transparent 0 8%, rgba(192, 132, 252, .22) 8% 14%, transparent 14% 22%, rgba(192, 132, 252, .22) 22% 28%, transparent 28% 36%, rgba(192, 132, 252, .22) 36% 42%, transparent 42% 58%, rgba(192, 132, 252, .22) 58% 64%, transparent 64% 72%, rgba(192, 132, 252, .22) 72% 78%, transparent 78% 86%, rgba(192, 132, 252, .22) 86% 92%, transparent 92%);
   pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(251, 191, 36, .22) 0 26px, transparent 26px 52px);
+  border-radius: 0 0 4px 4px;
 }
-.fort-card > * { position: relative; }
-
-.fort-title {
-  font-size: 1.8rem;
-  background: linear-gradient(90deg, #c084fc, #f0abfc, #fbbf24, #c084fc);
-  background-size: 300% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 16px rgba(192, 132, 252, .45));
-  animation: fort-pan 10s linear infinite;
-}
-.fort-title svg { filter: drop-shadow(0 0 8px rgba(192, 132, 252, .8)); }
+.fort-gfx { justify-content: center; }
 .fort-subject {
-  display: inline-block;
-  padding: 3px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
   border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
+  color: var(--gk-ink-2);
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--gk-line);
 }
 
-/* ---------- Modos ---------- */
-.fort-mode {
-  --fort-mode: #10b981;
-  position: relative;
-  overflow: hidden;
-  border-width: 1px;
-  border-radius: 22px;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.12) inset,
-    0 18px 40px -20px var(--fort-mode),
-    0 10px 24px -14px rgba(0,0,0,.6);
-  transition: border-color .2s, box-shadow .3s ease;
-  animation: fort-rise .6s cubic-bezier(.22, 1, .36, 1) backwards;
+/* ámbito sin caja para los modales de la raíz */
+.gk-shell.fort-portal { display: contents; }
+
+/* material de estudio (dentro del InstructionsModal) */
+.fort-study-tabs { display: flex; justify-content: center; margin-bottom: 14px; }
+.fort-study-cat { --cat: var(--gk-accent); margin-bottom: 16px; }
+.fort-study-cat h3 { color: var(--cat); }
+.fort-study-words { display: flex; flex-wrap: wrap; gap: 6px; }
+.fort-study-chip {
+  padding: 4px 11px;
+  border-radius: 10px;
+  font-size: .86rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--cat) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cat) 40%, transparent);
 }
-.fort-mode.practice { --fort-mode: #10b981; animation-delay: .08s; }
-.fort-mode.exam { --fort-mode: #ef4444; animation-delay: .16s; }
-.fort-mode:hover {
-  border-color: var(--fort-mode);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.18) inset,
-    0 0 0 1px var(--fort-mode) inset,
-    0 26px 50px -18px var(--fort-mode),
-    0 10px 24px -14px rgba(0,0,0,.6);
-}
-.fort-mode:focus-visible { outline: 3px solid var(--fort-mode); outline-offset: 3px; }
-.fort-mode::after {
-  content: '';
+.fort-study-letter h3 { color: var(--gk-accent-2); }
+.fort-study-def { margin: 6px 0; font-size: .92rem; line-height: 1.45; }
+
+/* ---------- Resumen de práctica ---------- */
+.fort-sum { --rk: #a855f7; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+.fort-sum--gold { --rk: #f59e0b; }
+.fort-sum--red { --rk: #ef4444; }
+.fort-sum--violet { --rk: #a855f7; }
+.fort-sum__top { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.fort-sum__title { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; }
+.fort-sum__subtitle { margin: 0; font-weight: 700; color: var(--gk-ink-2); }
+.fort-sum__hero { position: relative; display: flex; align-items: center; justify-content: center; gap: clamp(18px, 4vw, 44px); flex-wrap: wrap; padding: 6px 0; }
+.fort-sum__burst {
   position: absolute;
-  top: -50%; left: -60%;
-  width: 40%; height: 200%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.22), transparent);
-  transform: translateX(-120%) rotate(12deg);
-  pointer-events: none;
+  inset: -30% 12%;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--rk) 18%, transparent) 0 10deg, transparent 10deg 20deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
+  mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
 }
-.fort-mode:hover::after { animation: fort-sweep 1s cubic-bezier(.22, 1, .36, 1) forwards; }
-.fort-mode-icon {
-  width: 64px; height: 64px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--fort-mode) 38%, transparent), rgba(255,255,255,.04) 70%);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--fort-mode) 50%, transparent) inset, 0 0 28px -6px var(--fort-mode);
-  transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
-}
-.fort-mode:hover .fort-mode-icon { transform: scale(1.1) rotate(-6deg); }
-.fort-mode-name { letter-spacing: .02em; }
-
-.fort-study-btn {
-  border-radius: 14px;
-  box-shadow: 0 1px 0 rgba(255,255,255,.1) inset, 0 10px 24px -14px rgba(168, 85, 247, .8);
-  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), background .2s, box-shadow .2s;
-}
-.fort-study-btn:hover { transform: translateY(-2px); box-shadow: 0 0 22px -4px rgba(168, 85, 247, .8); }
-.fort-gfx-row button,
-.fort-gfx-options button { transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background .15s, border-color .15s, color .15s; }
-.fort-gfx-row button:hover,
-.fort-gfx-options button:hover { transform: translateY(-1px); }
-.fort-gfx-row button.active,
-.fort-gfx-options button.active { box-shadow: 0 0 14px -4px rgba(251, 191, 36, .8); }
-
-/* ---------- Partida: HUD y barras flotantes ---------- */
-.fort-hud {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)),
-    rgba(15, 23, 42, .8);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  backdrop-filter: blur(12px) saturate(150%);
-  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 30px -16px rgba(0,0,0,.8);
-}
-.fort-hud-item {
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset;
+.fort-crest { width: 168px; height: auto; display: block; }
+html[data-fx="high"] .fort-crest { animation: gk-float 5s ease-in-out infinite; }
+.fort-sum__verdict { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.fort-sum__kicker { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--gk-ink-3); }
+.fort-sum__verdict strong { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1; color: var(--rk); }
+.fort-sum__points {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #78350f;
+  background: linear-gradient(180deg, #fef3c7, #fde68a);
+  box-shadow: inset 0 1px 0 #fff, 0 4px 0 #f59e0b, 0 12px 22px -12px #f59e0b;
   font-variant-numeric: tabular-nums;
 }
-.fort-hud-item.lives  { box-shadow: 0 0 14px -6px rgba(248, 113, 113, .9); }
-.fort-hud-item.coins  { box-shadow: 0 0 14px -6px rgba(251, 191, 36, .9); }
-.fort-hud-item.streak { box-shadow: 0 0 16px -4px rgba(251, 146, 60, .9); }
-.fort-hud-btn {
-  border-radius: 12px;
-  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background .2s, border-color .2s;
-}
-.fort-hud-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.14); }
-
-.fort-buildbar,
-.fort-towerpanel,
-.fort-placing-hint,
-.fort-gfxpanel,
-.fort-gfx-toast {
+.fort-sum__points svg { color: #d97706; }
+.fort-sum__points small { font-size: .78rem; font-weight: 700; opacity: .8; }
+.fort-sum__stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.fort-sum__stat {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  padding: 8px 16px 8px 8px;
   border-radius: 18px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,0) 60%),
-    rgba(15, 23, 42, .82);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  backdrop-filter: blur(14px) saturate(150%);
-  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 18px 40px -18px rgba(0,0,0,.85);
+  text-align: left;
+  background: var(--gk-surface-2);
+  border: 1px solid var(--gk-line);
+  box-shadow: 0 3px 0 var(--gk-key-edge);
 }
-.fort-bottombar {
-  background:
-    linear-gradient(0deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
-    rgba(15, 23, 42, .86);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 -10px 30px -16px rgba(0,0,0,.8);
-}
-.fort-palette-btn,
-.fort-ability-btn {
-  border-width: 1px;
+.fort-sum__stat .gk-stat__icon { grid-row: 1 / 3; }
+.fort-sum__stat-value { font-size: 1.15rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.fort-sum__stat-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gk-ink-3); }
+.fort-sum__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+
+.fort-endless {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
   border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.01)), rgba(15, 23, 42, .78);
-  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -2px 0 rgba(0,0,0,.35) inset;
+  font-family: 'Nunito', var(--gk-font);
+  font-weight: 700;
+  font-size: .95rem;
+  color: #fecaca;
+  background: rgba(239, 68, 68, .12);
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .4);
 }
-.fort-ability-btn { background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.01)), rgba(76, 29, 149, .5); }
-.fort-palette-btn:focus-visible,
-.fort-ability-btn:focus-visible,
-.fort-hud-btn:focus-visible,
-.fort-quiz-options button:focus-visible,
-.fort-classify-opts button:focus-visible { outline: 3px solid rgba(251, 191, 36, .8); outline-offset: 2px; }
-.fort-palette-btn.selected,
-.fort-ability-btn.selected { animation: fort-sel-glow 1.6s ease-in-out infinite; }
-.fort-energy-bar { border-radius: 999px; }
-.fort-energy-fill { border-radius: 999px; box-shadow: 0 0 10px rgba(253, 224, 71, .7); position: relative; overflow: hidden; }
-.fort-energy-fill::after {
+.fort-endless strong { color: #fff; }
+.fort-endless__ico {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(140deg, #fb7185, #e11d48);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2);
+}
+
+/* ==========================================================================
+   Partida a pantalla completa
+   ========================================================================== */
+.gk-shell.gk-theme-dark.fort-game {
+  /* superficies opacas: flotan sobre una escena 3D a menudo muy clara */
+  --gk-surface: rgba(24, 19, 62, .94);
+  --gk-surface-2: rgba(42, 35, 96, .97);
+  --gk-inset: rgba(8, 6, 30, .72);
+  --gk-key-edge: #0f0b30;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #16133a;
+}
+/* tonos propios del marcador */
+.fort-game .gk-stat--coins { --st: #f59e0b; }
+.fort-game .gk-stat--shield { --st: #eab308; }
+.fort-game .gk-stat--relic { --st: #c026d3; }
+
+/* ---------- HUD superior ---------- */
+.fort-hud {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background:
+    radial-gradient(60% 140% at 0% 0%, rgba(168, 85, 247, .22), transparent 70%),
+    linear-gradient(180deg, #241e5c 0%, #19143f 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08), 0 10px 26px -14px rgba(0, 0, 0, .9);
+}
+.fort-hud__stats, .fort-hud__tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.fort-hud__tools { margin-left: auto; }
+.fort-hud .gk-stat { padding: 3px 12px 3px 3px; box-shadow: 0 3px 0 var(--gk-key-edge); }
+.fort-hud .gk-stat__icon { width: 28px; height: 28px; }
+.fort-hud .gk-stat__value { font-size: 1rem; }
+.fort-speed { min-width: 64px; }
+.gk-iconbtn.fort-tool { width: 38px; height: 38px; border-radius: 13px; position: relative; }
+.gk-iconbtn.fort-tool.is-active { color: #fbbf24; box-shadow: inset 0 0 0 2px #f59e0b, 0 3px 0 var(--gk-key-edge); }
+/* mejora de la fortaleza disponible: aro dorado (pulso solo con efectos altos) */
+.fort-glow { color: #fbbf24; }
+.fort-glow::after {
   content: '';
   position: absolute;
+  inset: -4px;
+  border-radius: 16px;
+  border: 2px solid #fbbf24;
+  box-shadow: 0 0 14px -2px #f59e0b;
+  pointer-events: none;
+}
+html[data-fx="high"] .fort-glow::after { animation: fort-ring 1.4s ease-in-out infinite; }
+
+/* ---------- escena ---------- */
+.fort-3d {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+.fort-3d.targeting { cursor: crosshair; }
+.fort-3d canvas { display: block; width: 100% !important; height: 100% !important; }
+.fort-vignette {
+  position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
-  transform: translateX(-100%);
-  animation: fort-bar-shine 2.2s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 58%, rgba(8, 6, 24, .3) 100%);
 }
-.fort-btn-launch {
-  border-radius: 16px;
-  background: linear-gradient(135deg, #34d399, #10b981 50%, #047857);
-  box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 -3px 0 rgba(0,0,0,.2) inset, 0 14px 30px -12px rgba(16, 185, 129, .85);
-  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), filter .2s;
+.fort-stats {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 40;
+  padding: 4px 8px;
+  border-radius: 8px;
+  pointer-events: none;
+  font: 700 11px/1.4 ui-monospace, Consolas, monospace;
+  color: #4ade80;
+  background: rgba(0, 0, 0, .65);
 }
-.fort-btn-launch:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); }
-.fort-btn-launch:active { transform: scale(.97); }
-.fort-btn-launch:focus-visible { outline: 3px solid #6ee7b7; outline-offset: 3px; }
-.fort-btn-secondary, .fort-btn-danger, .fort-btn-upgrade {
-  border-radius: 16px;
-  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background .2s, filter .2s;
-}
-.fort-btn-secondary:hover, .fort-btn-danger:hover, .fort-btn-upgrade:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.15); }
 
-/* ---------- Paneles de pregunta / modales ---------- */
-.fort-quiz,
-.fort-classify {
-  border-radius: 24px;
+/* ---------- medallones e iconos ---------- */
+.fort-medal {
+  --m1: var(--gk-accent);
+  --m2: color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: #fff;
+  background: radial-gradient(90% 70% at 30% 20%, rgba(255, 255, 255, .35), transparent 60%), linear-gradient(140deg, var(--m1), var(--m2));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .2), 0 8px 18px -8px var(--m1);
+}
+.fort-medal--sm { width: 28px; height: 28px; border-radius: 10px; box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2); }
+.fort-medal--lg { width: 62px; height: 62px; border-radius: 20px; }
+.fort-medal--gold { --m1: #f59e0b; --m2: #b45309; color: #fff; }
+.fort-medal--red { --m1: #f43f5e; --m2: #9f1239; }
+.fort-tile {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: radial-gradient(80% 70% at 50% 25%, rgba(168, 85, 247, .45), transparent 70%), var(--gk-inset);
+  box-shadow: inset 0 0 0 1px var(--gk-line), inset 0 2px 6px rgba(0, 0, 0, .35);
+}
+.fort-tile--sm { width: 50px; height: 50px; border-radius: 16px; }
+.fort-tile--castle { color: #fde68a; }
+.fort-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fort-icon svg { width: 100%; height: 100%; display: block; }
+.fort-icon-inline { vertical-align: -4px; }
+.fort-coin { display: inline-block; flex-shrink: 0; vertical-align: -2px; }
+
+/* ---------- chips ---------- */
+.fort-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .76rem;
+  font-weight: 800;
+  white-space: nowrap;
+  color: var(--gk-ink-2);
+  background: var(--gk-inset);
+  box-shadow: inset 0 0 0 1px var(--gk-line);
+}
+.fort-chip--exam { color: #fecaca; background: rgba(239, 68, 68, .16); box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .45); }
+.fort-chip--gold { color: #fde68a; background: rgba(245, 158, 11, .16); box-shadow: inset 0 0 0 1px rgba(245, 158, 11, .45); }
+
+/* ---------- diálogos sobre la escena ---------- */
+/* centrado sin transform: framer-motion pisa el transform al animar */
+.fort-dlg {
+  --dlg: var(--gk-accent);
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  margin: auto;
+  width: min(94%, 520px);
+  height: fit-content;
+  max-height: calc(100% - 20px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 26px;
+  color: var(--gk-ink);
   background:
-    radial-gradient(120% 70% at 0% 0%, rgba(168, 85, 247, .22), transparent 55%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 40%),
-    rgba(15, 23, 42, .9);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
+    radial-gradient(120% 60% at 0% 0%, color-mix(in srgb, var(--dlg) 26%, transparent), transparent 60%),
+    linear-gradient(170deg, #262063 0%, #17123f 100%);
   box-shadow:
-    0 1px 0 rgba(255,255,255,.1) inset,
-    0 0 50px -16px rgba(168, 85, 247, .7),
-    0 30px 60px -20px rgba(0,0,0,.8);
+    inset 0 1px 0 rgba(255, 255, 255, .14),
+    inset 0 0 0 1.5px color-mix(in srgb, var(--dlg) 40%, transparent),
+    0 0 50px -18px var(--dlg),
+    0 30px 70px -24px rgba(0, 0, 0, .9);
 }
-.fort-classify { box-shadow: 0 1px 0 rgba(255,255,255,.1) inset, 0 0 50px -16px rgba(251, 191, 36, .6), 0 30px 60px -20px rgba(0,0,0,.8); }
-.fort-boss { border-radius: 24px; box-shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 0 60px -10px rgba(251, 191, 36, .55), 0 30px 60px -20px rgba(0,0,0,.8); }
-.fort-oracle { border-radius: 24px; box-shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 0 60px -10px rgba(34, 211, 238, .55), 0 30px 60px -20px rgba(0,0,0,.8); }
-.fort-quiz-tag { letter-spacing: .03em; }
-.fort-quiz-def { font-size: 1.06rem; }
-.fort-quiz-timer { border-radius: 999px; font-variant-numeric: tabular-nums; }
-.fort-quiz-form input {
-  border-radius: 14px;
-  transition: border-color .2s, box-shadow .2s;
-}
-.fort-quiz-form input:focus { box-shadow: 0 0 0 3px rgba(192, 132, 252, .25), 0 0 20px -6px rgba(192, 132, 252, .8); }
-.fort-quiz-form button {
-  border-radius: 14px;
-  box-shadow: 0 1px 0 rgba(255,255,255,.3) inset, 0 10px 22px -10px rgba(236, 72, 153, .8);
-  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), filter .2s;
-}
-.fort-quiz-form button:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.1); }
-.fort-quiz-options button,
-.fort-classify-opts button,
-.fort-well-bets button,
-.fort-relic-opts button {
-  border-radius: 14px;
-  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -2px 0 rgba(0,0,0,.25) inset;
-  transition: background .15s, transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s, border-color .15s;
-}
-.fort-quiz-options button:hover,
-.fort-classify-opts button:hover { box-shadow: 0 0 18px -6px rgba(192, 132, 252, .9), 0 1px 0 rgba(255,255,255,.12) inset; }
-.fort-quiz-options button:active,
-.fort-classify-opts button:active { transform: scale(.97); }
+.fort-dlg--boss { --dlg: #f59e0b; }
+.fort-dlg--boss .fort-dlg__titles strong { color: #fde68a; }
+.fort-dlg--oracle { --dlg: #22d3ee; }
+.fort-dlg--oracle .fort-medal { --m1: #22d3ee; --m2: #0e7490; }
+.fort-dlg--mini { --dlg: #facc15; }
+.fort-dlg--mini .fort-medal { --m1: #facc15; --m2: #a16207; color: #422006; }
+.fort-dlg--merchant { --dlg: #2dd4bf; }
+.fort-dlg--merchant .fort-medal { --m1: #2dd4bf; --m2: #0f766e; }
+.fort-dlg--well { --dlg: #38bdf8; }
+.fort-dlg--well .fort-medal { --m1: #38bdf8; --m2: #1d4ed8; }
+.fort-dlg--victory { --dlg: #f59e0b; width: min(94%, 520px); }
+.fort-dlg--relic { --dlg: #c084fc; width: min(94%, 640px); }
+.fort-dlg--small { width: min(92%, 400px); align-items: center; text-align: center; padding: 22px 18px 18px; }
+.fort-dlg--confirm { z-index: 24; }
+.fort-scrim { position: absolute; inset: 0; z-index: 23; background: rgba(8, 6, 26, .62); }
 
-/* Feedback de respuesta: pop + glow verde / shake + glow rojo */
-.fort-quiz-feedback { border-radius: 14px; border: 1px solid transparent; }
-.fort-quiz-feedback.correct {
-  border-color: rgba(52, 211, 153, .5);
-  animation: fort-fb-pop .5s cubic-bezier(.34, 1.56, .64, 1) both, fort-fb-ok 1s ease-out both;
+.fort-dlg__head { display: flex; align-items: center; gap: 12px; }
+.fort-dlg__titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.fort-dlg__titles strong { font-size: 1.1rem; font-weight: 800; line-height: 1.15; }
+.fort-dlg__titles span { font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .84rem; color: var(--gk-ink-2); }
+.fort-dlg__hero { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.fort-dlg__bigtitle { font-size: 1.45rem; font-weight: 800; line-height: 1.1; }
+.fort-dlg__sub { font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .9rem; color: var(--gk-ink-2); }
+.fort-dlg__text { margin: 0; font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: 1.05rem; line-height: 1.5; color: var(--gk-ink); }
+.fort-dlg__text strong { color: #fde68a; }
+.fort-dlg__text--quote { font-style: italic; color: var(--gk-ink-2); }
+.fort-dlg__options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.fort-dlg__options .gk-answer { padding: 11px 12px; font-size: .95rem; }
+.fort-dlg__options .gk-answer__letter { width: 30px; height: 30px; border-radius: 10px; }
+.fort-dlg__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 2px; }
+.fort-dlg__close { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 11px; }
+.fort-dlg__ask { font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .98rem; color: var(--gk-ink-2); }
+.fort-dlg__ask--big { font-family: var(--gk-font); font-size: 1.2rem; font-weight: 800; color: var(--gk-ink); }
+.fort-dlg__hint { display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; font-size: .8rem; font-weight: 700; color: var(--gk-ink-3); }
+.fort-dlg .gk-bar { height: 7px; }
+
+.fort-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+  color: #e0f2fe;
+  background: rgba(14, 165, 233, .18);
+  box-shadow: inset 0 0 0 1px rgba(14, 165, 233, .45);
 }
-.fort-quiz-feedback.wrong {
-  border-color: rgba(248, 113, 113, .5);
-  animation: fort-fb-shake .45s cubic-bezier(.36, .07, .19, .97) both, fort-fb-ko 1s ease-out both;
+.fort-timer.is-urgent { color: #fecaca; background: rgba(239, 68, 68, .22); box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .6); }
+html[data-fx="high"] .fort-timer.is-urgent { animation: fort-blink .7s ease-in-out infinite; }
+
+/* escritura (solo examen) */
+.fort-write { display: flex; gap: 8px; }
+.fort-write__input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 16px;
+  outline: none;
+  font-family: var(--gk-font);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(4, 3, 20, .6);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .4), inset 0 0 0 1.5px color-mix(in srgb, var(--dlg) 45%, transparent);
+  transition: box-shadow .2s ease;
+}
+.fort-write__input::placeholder { color: var(--gk-ink-3); }
+.fort-write__input:focus { box-shadow: inset 0 2px 5px rgba(0, 0, 0, .4), inset 0 0 0 2px var(--dlg), 0 0 0 4px color-mix(in srgb, var(--dlg) 22%, transparent); }
+
+/* retroalimentación */
+.fort-fb {
+  --fb: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--fb) 45%, transparent), 0 16px 30px -18px var(--fb);
+  animation: gk-pop .4s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.fort-fb.is-ko { --fb: #f43f5e; animation: gk-shake .45s cubic-bezier(.36, .07, .19, .97) both; }
+.fort-fb__badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--fb) 65%, white), var(--fb));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 8px 16px -8px var(--fb);
+}
+.fort-fb__text { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .98rem; line-height: 1.4; color: var(--gk-ink); }
+.fort-fb__text strong { font-family: var(--gk-font); font-weight: 800; }
+.fort-fb__note { flex-basis: 100%; font-size: .86rem; color: var(--gk-ink-2); }
+.fort-reward { display: inline-flex; align-items: center; gap: 8px; font-family: var(--gk-font); font-weight: 800; color: #fde68a; }
+.fort-reward > span { display: inline-flex; align-items: center; gap: 3px; }
+.fort-reward__energy { color: #fef08a; }
+.fort-reward--loss { color: #fda4af; display: inline-flex; align-items: center; gap: 3px; font-family: var(--gk-font); font-weight: 800; }
+.fort-chain { display: inline-flex; align-items: center; gap: 4px; color: #fde68a !important; font-family: var(--gk-font) !important; font-weight: 800 !important; }
+
+/* clasificación y categorías */
+.fort-word {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fde68a;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+}
+.fort-cats { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 4px; }
+.fort-cat {
+  --cat: var(--gk-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 16px;
+  font-family: var(--gk-font);
+  font-weight: 800;
+  font-size: 1rem;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cat) 34%, #2a2470), color-mix(in srgb, var(--cat) 20%, #1d1854));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--cat) 70%, transparent), inset 0 1px 0 rgba(255, 255, 255, .14), 0 4px 0 color-mix(in srgb, var(--cat) 40%, #0b0a24);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.fort-cat:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 2px var(--cat), inset 0 1px 0 rgba(255, 255, 255, .18), 0 6px 0 color-mix(in srgb, var(--cat) 40%, #0b0a24), 0 14px 26px -14px var(--cat); }
+.fort-cat:active { transform: translateY(3px); box-shadow: inset 0 0 0 2px var(--cat), 0 1px 0 color-mix(in srgb, var(--cat) 40%, #0b0a24); }
+.fort-cat:focus-visible { outline: 3px solid var(--cat); outline-offset: 2px; }
+.fort-cat__dot { width: 14px; height: 14px; flex-shrink: 0; border-radius: 50%; background: var(--cat); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cat) 30%, transparent); }
+.fort-catchip {
+  --cat: var(--gk-accent);
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 800;
+  color: #fff;
+  background: color-mix(in srgb, var(--cat) 30%, transparent);
+  box-shadow: inset 0 0 0 1px var(--cat);
 }
 
-/* ---------- Resumen ---------- */
-.fort-result-banner svg { animation: fort-bob 3s ease-in-out infinite; }
-.fort-result-banner.victory svg { filter: drop-shadow(0 0 18px rgba(251, 191, 36, .8)); }
-.fort-result-banner.defeat svg { filter: drop-shadow(0 0 14px rgba(248, 113, 113, .7)); }
-.fort-result-banner.finished svg { filter: drop-shadow(0 0 14px rgba(192, 132, 252, .8)); }
-.fort-result-banner h2 { font-weight: 900; text-shadow: 0 0 22px rgba(192, 132, 252, .45); }
-
-/* Nota /10 como anillo héroe (valor en --fort-grade, color por clase) */
-.fort-nota {
-  --fort-grade-color: #3b82f6;
-  background: transparent !important;
-  padding: 6px 0 0;
+/* reliquias */
+.fort-relics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fort-relic {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 7px;
+  padding: 14px 10px;
+  border: 0;
+  border-radius: 20px;
+  text-align: center;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
+  cursor: pointer;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px rgba(192, 132, 252, .35), 0 4px 0 var(--gk-key-edge), 0 16px 26px -18px #c084fc;
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s ease;
 }
-.fort-nota.excellent { --fort-grade-color: #10b981; color: #34d399; }
-.fort-nota.good { --fort-grade-color: #3b82f6; color: #60a5fa; }
-.fort-nota.fail { --fort-grade-color: #ef4444; color: #f87171; }
-.fort-nota-ring {
-  width: 156px; height: 156px;
-  border-radius: 50%;
+.fort-relic:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 2px #c084fc, 0 7px 0 var(--gk-key-edge), 0 22px 30px -16px #c084fc; }
+.fort-relic:active { transform: translateY(2px); }
+.fort-relic:focus-visible { outline: 3px solid #c084fc; outline-offset: 2px; }
+.fort-relic__ico {
   display: grid;
   place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 17px;
+  color: #fff;
+  background: radial-gradient(90% 70% at 30% 20%, rgba(255, 255, 255, .4), transparent 60%), linear-gradient(140deg, #c084fc, #7e22ce);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .2), 0 10px 18px -8px #a855f7;
+}
+.fort-relic strong { font-size: .95rem; font-weight: 800; }
+.fort-relic__desc { font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .8rem; line-height: 1.35; color: var(--gk-ink-2); }
+
+/* victoria: nota sellada */
+.fort-sealed {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 26px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fef3c7, #fde68a);
+  box-shadow: inset 0 1px 0 #fff, 0 5px 0 #d97706, 0 16px 30px -14px #f59e0b;
+}
+.fort-sealed__label { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #92400e; }
+.fort-sealed__value { font-size: 2.2rem; font-weight: 800; line-height: 1; color: #78350f; font-variant-numeric: tabular-nums; }
+.fort-sealed__value small { font-size: 1rem; opacity: .7; }
+
+/* pozo: apuestas */
+.fort-bets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.fort-bet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px 10px;
+  border: 0;
+  border-radius: 18px;
+  font-family: var(--gk-font);
+  color: var(--gk-ink);
+  cursor: pointer;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1.5px rgba(56, 189, 248, .4), 0 4px 0 var(--gk-key-edge);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.fort-bet:hover:not(:disabled) { transform: translateY(-3px); box-shadow: inset 0 0 0 2px #38bdf8, 0 7px 0 var(--gk-key-edge), 0 16px 24px -14px #38bdf8; }
+.fort-bet:active:not(:disabled) { transform: translateY(2px); }
+.fort-bet:disabled { opacity: .4; cursor: not-allowed; }
+.fort-bet strong { display: inline-flex; align-items: center; gap: 4px; font-size: 1.05rem; font-weight: 800; }
+.fort-bet__stack { display: flex; }
+.fort-bet__stack .fort-coin + .fort-coin { margin-left: -9px; }
+.fort-bet__win { font-size: .74rem; font-weight: 800; color: #6ee7b7; }
+
+/* ---------- pila inferior: paneles de torre/fortaleza + barra de preparación ---------- */
+/* flex en columna (sin translateX: framer-motion pisa el transform de sus hijos) */
+.fort-bottomstack {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 14px;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.fort-bottomstack > * { pointer-events: auto; }
+
+/* ---------- barra de construcción (fase de preparación) ---------- */
+.fort-buildbar {
+  position: relative;
+  width: fit-content;
+  max-width: min(100%, 860px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 24px;
   background:
-    radial-gradient(closest-side, #1e1640 80%, transparent 81% 100%),
-    conic-gradient(var(--fort-grade-color) calc(var(--fort-grade, 0) * 36deg), rgba(148, 163, 184, .18) 0);
-  box-shadow: 0 0 50px -8px var(--fort-grade-color);
-  animation: fort-ring-in .9s cubic-bezier(.34, 1.56, .64, 1) .1s both;
+    radial-gradient(100% 120% at 0% 0%, rgba(16, 185, 129, .2), transparent 60%),
+    linear-gradient(180deg, rgba(40, 33, 96, .97), rgba(22, 17, 60, .97));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 0 0 1px rgba(16, 185, 129, .35), 0 24px 50px -20px rgba(0, 0, 0, .9);
 }
-.fort-nota-big { text-shadow: 0 0 20px var(--fort-grade-color); font-variant-numeric: tabular-nums; }
-.fort-nota-msg {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 4px 16px;
-  border-radius: 999px;
-  border: 1px solid currentColor;
-  background: color-mix(in srgb, var(--fort-grade-color) 14%, transparent);
-  letter-spacing: .04em;
+.fort-buildbar .fort-medal { --m1: #10b981; --m2: #047857; }
+.fort-buildbar__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.fort-buildbar__text > strong { font-size: 1.1rem; font-weight: 800; }
+.fort-buildbar__text > span:not(.fort-buildbar__chips) { font-family: 'Nunito', var(--gk-font); font-weight: 700; font-size: .86rem; line-height: 1.4; color: var(--gk-ink-2); }
+.fort-buildbar__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.fort-buildbar > .gk-btn { flex-shrink: 0; }
+
+/* ---------- panel de torre / mejoras de la fortaleza ---------- */
+.fort-dock {
+  position: relative;
+  width: fit-content;
+  max-width: min(100%, 860px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 52px 10px 10px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(40, 33, 96, .97), rgba(22, 17, 60, .97));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 0 0 1px rgba(251, 191, 36, .35), 0 24px 50px -20px rgba(0, 0, 0, .9);
 }
-.fort-result-score {
-  padding: 6px 18px;
+.fort-dock--fort { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 0 0 1px rgba(168, 85, 247, .5), 0 24px 50px -20px rgba(0, 0, 0, .9); }
+.fort-dock__info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fort-dock__info > strong { font-size: 1.05rem; font-weight: 800; }
+.fort-dock__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.fort-dock__owned { display: inline-flex; }
+.fort-dock__muted { font-size: .78rem; font-weight: 700; color: var(--gk-ink-3); }
+.fort-dock__next {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 260px;
+  min-width: 0;
+  font-family: 'Nunito', var(--gk-font);
+  font-weight: 700;
+  font-size: .84rem;
+  line-height: 1.35;
+  color: var(--gk-ink-2);
+}
+.fort-dock__next strong { color: #e9d5ff; font-family: var(--gk-font); }
+.fort-dock__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.fort-dock__actions .gk-btn span { display: inline-flex; align-items: center; gap: 4px; }
+.fort-dock__close { position: absolute; top: 50%; right: 10px; margin-top: -17px; width: 34px; height: 34px; border-radius: 11px; }
+.fort-pips { display: inline-flex; gap: 4px; }
+.fort-pips i { width: 10px; height: 10px; border-radius: 50%; background: var(--gk-inset); box-shadow: inset 0 0 0 1px var(--gk-line); }
+.fort-pips i.is-on { background: linear-gradient(140deg, #fde68a, #f59e0b); box-shadow: 0 0 8px -1px #f59e0b; }
+
+/* aviso de colocación / apuntado / mover */
+.fort-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 16;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  max-width: 92%;
+  padding: 6px 16px 6px 6px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(251, 191, 36, .18), rgba(245, 158, 11, .08));
-  border: 1px solid rgba(251, 191, 36, .45);
-  box-shadow: 0 0 24px -8px rgba(251, 191, 36, .8);
+  font-weight: 800;
+  font-size: .86rem;
+  color: #fde68a;
+  pointer-events: none;
+  background: rgba(24, 19, 62, .95);
+  box-shadow: inset 0 0 0 1px rgba(251, 191, 36, .45), 0 14px 30px -14px rgba(0, 0, 0, .8);
+}
+
+/* calidad gráfica y aviso del governor */
+.fort-gfxpanel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 30;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(40, 33, 96, .98), rgba(22, 17, 60, .98));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 0 0 1px var(--gk-line), 0 20px 44px -18px rgba(0, 0, 0, .9);
+}
+.fort-gfxpanel__title { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: .95rem; }
+.fort-gfxpanel__note { margin: 0; font-family: 'Nunito', var(--gk-font); font-weight: 600; font-size: .78rem; line-height: 1.4; color: var(--gk-ink-3); }
+.fort-gfxpanel__note strong { color: #fde68a; }
+.fort-toast {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 92%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 16px 6px 6px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: .88rem;
+  color: #fde68a;
+  pointer-events: none;
+  background: rgba(24, 19, 62, .96);
+  box-shadow: inset 0 0 0 1px rgba(251, 191, 36, .45), 0 14px 30px -14px rgba(0, 0, 0, .8);
+}
+
+/* ---------- barra inferior: construcciones + habilidades ---------- */
+.fort-bottombar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  padding: 9px 12px 10px;
+  background:
+    radial-gradient(60% 140% at 100% 100%, rgba(245, 158, 11, .14), transparent 70%),
+    linear-gradient(0deg, #17123d 0%, #221c58 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 -10px 26px -14px rgba(0, 0, 0, .9);
+}
+.fort-palette { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 7px; }
+.fort-abilities { display: flex; align-items: center; gap: 12px; padding-left: 12px; border-left: 1px solid var(--gk-line); }
+.fort-energy { display: flex; flex-direction: column; gap: 6px; width: 118px; }
+.fort-energy__head { display: flex; align-items: center; gap: 5px; font-size: .74rem; font-weight: 800; color: #fef08a; }
+.fort-energy__head strong { margin-left: auto; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.fort-energy .gk-bar { height: 9px; }
+.fort-ability-btns { display: flex; gap: 7px; }
+.fort-ability-btns .fort-slot { width: 76px; }
+
+/* ranura con canto 3D (mismo lenguaje que las teclas del kit) */
+.fort-slot {
+  position: relative;
+  display: block;
+  padding: 0 0 5px;
+  border: 0;
+  border-radius: 16px;
+  font-family: var(--gk-font);
+  cursor: pointer;
+  background: var(--gk-key-edge);
+  -webkit-tap-highlight-color: transparent;
+}
+.fort-slot__face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  padding: 6px 4px 7px;
+  border-radius: 16px;
+  color: #f3f1ff;
+  background: linear-gradient(180deg, #3e3790 0%, #2b2574 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 0 0 1px rgba(255, 255, 255, .06);
+  transition: transform .12s ease, background .2s ease;
+}
+.fort-slot--ability .fort-slot__face { background: linear-gradient(180deg, #6d28d9 0%, #46138f 100%); }
+.fort-slot:hover:not(:disabled) .fort-slot__face { transform: translateY(-2px); }
+.fort-slot:active:not(:disabled) .fort-slot__face { transform: translateY(4px); }
+.fort-slot:focus-visible { outline: 3px solid #fbbf24; outline-offset: 2px; }
+.fort-slot:disabled { cursor: not-allowed; }
+.fort-slot:disabled .fort-slot__face { opacity: .42; }
+.fort-slot.is-selected { background: #b45309; }
+.fort-slot.is-selected .fort-slot__face {
+  transform: translateY(3px);
+  color: #451a03;
+  background: linear-gradient(180deg, #fde68a 0%, #f59e0b 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 0 22px -4px #f59e0b;
+}
+.fort-slot.is-locked .fort-slot__face { opacity: .55; }
+.fort-slot__icon { display: flex; align-items: center; justify-content: center; height: 42px; color: #94a3b8; }
+.fort-slot__name { font-size: .74rem; font-weight: 800; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.fort-slot__cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
+  color: #fde68a;
+  background: rgba(0, 0, 0, .28);
 }
-.fort-breakdown-item {
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.07);
-  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
-  animation: fort-rise .5s cubic-bezier(.22, 1, .36, 1) both;
-}
-.fort-breakdown-item:nth-child(1) { animation-delay: .3s; }
-.fort-breakdown-item:nth-child(2) { animation-delay: .37s; }
-.fort-breakdown-item:nth-child(3) { animation-delay: .44s; }
-.fort-breakdown-item:nth-child(4) { animation-delay: .51s; }
-.fort-breakdown-item:nth-child(5) { animation-delay: .58s; }
-.fort-study-chip { border-radius: 10px; }
-.fort-study-tabs button { border-radius: 14px; transition: background .2s, border-color .2s; }
+.fort-slot__cost--energy { color: #fef08a; }
+.fort-slot.is-selected .fort-slot__cost { color: #451a03; background: rgba(255, 255, 255, .45); }
+html[data-fx="high"] .fort-slot.is-selected .fort-slot__face { animation: fort-sel 1.6s ease-in-out infinite; }
 
-/* ---------- Keyframes ---------- */
-@keyframes fort-orb { to { transform: translate3d(60px, 50px, 0) scale(1.12); } }
-@keyframes fort-pan { to { background-position: 300% 0; } }
-@keyframes fort-rise { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
-@keyframes fort-sweep { to { transform: translateX(420%) rotate(12deg); } }
-@keyframes fort-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes fort-bar-shine { to { transform: translateX(100%); } }
-@keyframes fort-sel-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
-@keyframes fort-ring-in { 0% { opacity: 0; transform: scale(.5) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.06); } 100% { transform: none; } }
-@keyframes fort-fb-pop { 0% { opacity: 0; transform: scale(.85); } 70% { opacity: 1; transform: scale(1.04); } 100% { transform: none; } }
-@keyframes fort-fb-ok {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-  30% { box-shadow: 0 0 0 5px rgba(16, 185, 129, .45), 0 0 28px 4px rgba(16, 185, 129, .4); }
-  100% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
-}
-@keyframes fort-fb-ko {
-  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-  30% { box-shadow: 0 0 0 5px rgba(239, 68, 68, .45), 0 0 26px 4px rgba(239, 68, 68, .4); }
-  100% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-}
-@keyframes fort-fb-shake {
-  10%, 90% { transform: translate3d(-1px, 0, 0); }
-  20%, 80% { transform: translate3d(3px, 0, 0); }
-  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-  40%, 60% { transform: translate3d(6px, 0, 0); }
-}
+/* la estrella de valorar la app solo se ve en la selección de modo */
+body.fort-in-game .app-rating-fab { display: none !important; }
 
+/* ---------- animaciones ---------- */
+@keyframes fort-ring { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(1.08); } }
+@keyframes fort-blink { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes fort-sel { 0%, 100% { transform: translateY(3px); } 50% { transform: translateY(1px); } }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .fort-bottombar { flex-direction: column; gap: 8px; padding: 7px 8px 8px; }
+  .fort-abilities { padding-left: 0; border-left: 0; justify-content: space-between; }
+  .fort-ability-btns { flex: 1; justify-content: flex-end; }
+}
 @media (max-width: 720px) {
-  .fort-sky::before, .fort-sky::after { width: 280px; height: 280px; }
-  .fort-title { font-size: 1.45rem; }
-  .fort-nota-ring { width: 128px; height: 128px; }
-  .fort-mode-icon { width: 54px; height: 54px; }
+  .fort-root { padding: 0 0 16px; }
+  .fort-hide-sm { display: none !important; }
+  .fort-hud { padding: 6px 8px; gap: 6px; }
+  .fort-hud__stats, .fort-hud__tools { gap: 5px; }
+  .fort-hud .gk-stat { padding: 2px 9px 2px 2px; gap: 6px; }
+  .fort-hud .gk-stat__icon { width: 24px; height: 24px; }
+  .fort-hud .gk-stat__label { display: none; }
+  .fort-hud .gk-stat__value { font-size: .9rem; }
+  .gk-iconbtn.fort-tool { width: 34px; height: 34px; border-radius: 11px; }
+  .fort-hud__tools { margin-left: 0; }
+  .fort-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+  .fort-slot__icon { height: 30px; }
+  .fort-slot__icon .fort-icon { width: 30px !important; height: 30px !important; }
+  .fort-slot__name { font-size: .64rem; }
+  .fort-ability-btns .fort-slot { width: 68px; }
+  .fort-energy { width: 96px; }
+  .fort-dlg { padding: 14px; border-radius: 22px; }
+  .fort-dlg__options { grid-template-columns: 1fr; }
+  .fort-relics { grid-template-columns: 1fr; }
+  .fort-relic { flex-direction: row; text-align: left; }
+  .fort-write { flex-direction: column; }
+  .fort-bottomstack { left: 8px; right: 8px; bottom: 8px; gap: 8px; }
+  .fort-buildbar { flex-direction: column; align-items: stretch; gap: 10px; width: 100%; }
+  .fort-buildbar > .gk-btn { width: 100%; }
+  .fort-dock { padding-right: 48px; }
+  .fort-dock__actions .gk-btn { padding: 7px 10px; font-size: .8rem; }
+  .fort-sum__stat { flex: 1 1 40%; }
+  .fort-crest { width: 140px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fort-sky::before, .fort-sky::after, .fort-title, .fort-result-banner svg,
-  .fort-energy-fill::after, .fort-palette-btn.selected, .fort-ability-btn.selected { animation: none !important; }
-  .fort-mode, .fort-nota-ring, .fort-breakdown-item, .fort-quiz-feedback { animation-duration: .01ms !important; }
-}
-
-/* Desvanece los bordes del fondo decorativo (evita cortes rectos del overflow) */
-.fort-sky {
-  -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse closest-side at center, #000 55%, transparent 100%);
+  .fort-fb, .fort-fb.is-ko { animation: none; }
+  .fort-slot__face, .fort-cat, .fort-relic, .fort-bet { transition: none; }
 }

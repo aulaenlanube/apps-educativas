@@ -1,9 +1,21 @@
-// src/apps/supermercado-primaria-X/TestScreen.jsx (CORREGIDO)
-
+// src/apps/_shared/TestScreen.jsx
+// Examen del Supermercado Matemático (API sin cambios: game, productos, onGameComplete).
+// Rediseño 2026 sobre el kit (_shared/kit): estantería de productos, ticket con la
+// pregunta en pantalla oscura, caja para la respuesta y resumen con la nota /10.
+// SOLO presentación: el registro del examen (onGameComplete) es el de siempre.
 import React, { useEffect, useRef } from 'react';
-import './SupermercadoShared.css';
+import { Clock, ListChecks, RefreshCw, ShoppingCart, Target, ArrowRight, Award, Receipt } from 'lucide-react';
+import {
+    GameShell, GameHeader, Hud, HudStat, Panel, GameButton, ProgressBar,
+    ResultsScreen, FeedbackItem, useAppMeta,
+} from './kit';
+import './TestScreen.css';
+
+const SHELL = { accent: '#f97316', accent2: '#e11d48' };
+const fmtSecs = (s) => (s >= 60 ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : `${s}s`);
 
 const TestScreen = ({ game, productos, onGameComplete }) => {
+    const meta = useAppMeta();
     // La barra de progreso ahora refleja la pregunta actual, no la completada
     const progressPercentage = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
 
@@ -39,95 +51,103 @@ const TestScreen = ({ game, productos, onGameComplete }) => {
     }, [game.showResults, game.score, onGameComplete]);
 
     if (game.showResults) {
-        const correctAnswers = game.testQuestions.filter((q, i) => {
-            const userAnswer = parseFloat(String(game.userAnswers[i]).replace(',', '.'));
-            return Math.abs(userAnswer - q.solucion) < 0.001;
-        }).length;
+        const isOk = (q, i) => Math.abs(parseFloat(String(game.userAnswers[i]).replace(',', '.')) - q.solucion) < 0.001;
+        const correctAnswers = game.testQuestions.filter((q, i) => isOk(q, i)).length;
 
         const nota = Math.round((correctAnswers / game.TOTAL_TEST_QUESTIONS) * 100) / 10;
-        const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-        const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
 
         return (
-            <div id="supermercado-app-container" className="test-results">
-                <h1 className="supermercado-title">¡Test Completado!</h1>
-                <div className={`nota-final ${notaColor}`}>
-                    {/* Anillo de progreso de la nota (decorativo, el valor está en .nota-big) */}
-                    <div
-                        className="sup-grade-ring"
-                        style={{
-                            '--sup-grade': nota,
-                            '--sup-grade-color': nota >= 8 ? '#10b981' : nota >= 5 ? '#3b82f6' : '#ef4444',
-                        }}
-                    >
-                        <div className="nota-big">{nota.toFixed(1)}<span className="nota-small">/10</span></div>
-                    </div>
-                    <div className="nota-msg">{notaMsg}</div>
-                </div>
-                <div className="score"><span className="sup-score-label">⭐ Puntos:</span> <span>{game.score.toLocaleString('es-ES')}</span></div>
-                <p>Has acertado {correctAnswers} de {game.TOTAL_TEST_QUESTIONS} preguntas.</p>
-                {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos.</p>}
-                
-                <div className="results-summary">
-                    {game.testQuestions.map((q, i) => (
-                        <div key={i} className="result-item">
-                            <p><strong>Pregunta {i + 1}:</strong> {q.texto}</p>
-                            <p className={Math.abs(parseFloat(String(game.userAnswers[i]).replace(',', '.')) - q.solucion) < 0.001 ? 'correcta' : 'incorrecta'}>
-                                Tu respuesta: {game.userAnswers[i] || 'N/A'} | Correcta: {formatPrice(q.solucion)}€
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="test-controls">
-                    <button onClick={game.startTest} className="btn-test">Volver a intentar</button>
-                    <button onClick={game.exitTestMode} className="btn-mode">Modo Práctica</button>
-                </div>
-            </div>
+            <GameShell {...SHELL} className="tsc">
+                <ResultsScreen
+                    title="¡Test completado!"
+                    subtitle="Supermercado Matemático"
+                    nota={nota}
+                    points={game.score}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${correctAnswers}/${game.TOTAL_TEST_QUESTIONS}` },
+                        game.elapsedTime > 0 && { icon: Clock, tone: 'time', label: 'Tiempo', value: `${game.elapsedTime}s` },
+                    ].filter(Boolean)}
+                    actions={[
+                        { label: 'Volver a intentar', onClick: game.startTest, icon: RefreshCw },
+                        { label: 'Modo práctica', onClick: game.exitTestMode, icon: ShoppingCart, variant: 'soft' },
+                    ]}
+                >
+                    {game.testQuestions.map((q, i) => {
+                        const ok = isOk(q, i);
+                        return (
+                            <FeedbackItem key={i} index={i + 1} ok={ok} title={`Pregunta ${i + 1}`}>
+                                <span className="tsc-fb__q">{q.texto}</span>
+                                <span className="tsc-fb__row">
+                                    <span className={`tsc-fb__ans ${ok ? 'is-ok' : 'is-ko'}`}><small>Tú</small> {game.userAnswers[i] || 'N/A'}{game.userAnswers[i] ? ' €' : ''}</span>
+                                    <span className="tsc-fb__ans is-right"><small>Correcta</small> {formatPrice(q.solucion)} €</span>
+                                </span>
+                            </FeedbackItem>
+                        );
+                    })}
+                </ResultsScreen>
+            </GameShell>
         );
     }
 
+    const isLast = game.currentQuestionIndex === game.TOTAL_TEST_QUESTIONS - 1;
+
     return (
-        <div id="supermercado-app-container" className="sup-test-running">
-            <h1 className="supermercado-title gradient-text text-4xl font-bold mb-4">🛒 Test Matemático</h1>
-            
-            <div id="panel-productos">
-                {productos.map(p => (
-                    <div key={p.nombre} className="producto">
-                        <span className="producto-emoji" aria-hidden="true">{p.emoji}</span>
-                        <span className="producto-nombre">{p.nombre}</span>
-                        <span className="producto-precio">{formatPrice(p.precio)}€</span>
-                    </div>
-                ))}
+        <GameShell {...SHELL} className="tsc">
+            <GameHeader
+                title={meta.name ? undefined : 'Supermercado Matemático'}
+                mode="exam"
+                right={
+                    <Hud>
+                        <HudStat icon={ListChecks} tone="progress" value={`${game.currentQuestionIndex + 1}/${game.TOTAL_TEST_QUESTIONS}`} label="Pregunta" />
+                        {game.elapsedTime > 0 && <HudStat icon={Clock} tone="time" value={fmtSecs(game.elapsedTime)} label="Tiempo" />}
+                    </Hud>
+                }
+            />
+
+            <ProgressBar value={progressPercentage} max={100} label="Progreso del examen" />
+
+            {/* Estantería con los precios */}
+            <div className="tsc-shelf">
+                <div className="tsc-shelf__items">
+                    {productos.map(p => (
+                        <div key={p.nombre} className="tsc-product">
+                            <span className="tsc-product__emoji" aria-hidden="true">{p.emoji}</span>
+                            <span className="tsc-product__name">{p.nombre}</span>
+                            <span className="tsc-product__price">{formatPrice(p.precio)} €</span>
+                        </div>
+                    ))}
+                </div>
+                <span className="tsc-shelf__plank" aria-hidden="true" />
             </div>
 
-            <div className="test-header">
-                <div className="question-counter">Pregunta {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
-                {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
+            {/* Ticket con la pregunta */}
+            <Panel variant="screen" className="tsc-mission" key={game.currentQuestionIndex}>
+                <span className="tsc-mission__kicker"><Receipt size={15} /> ¡Pregunta {game.currentQuestionIndex + 1}!</span>
+                <p className="tsc-mission__text">{game.mision.texto}</p>
+            </Panel>
+
+            {/* Caja: respuesta */}
+            <div className="tsc-answer">
+                <label className="tsc-answer__field">
+                    <input
+                        key={game.currentQuestionIndex}
+                        type="text"
+                        inputMode="decimal"
+                        value={game.respuesta}
+                        onChange={(e) => game.setRespuesta(e.target.value)}
+                        placeholder="Tu respuesta..."
+                        aria-label="Tu respuesta en euros"
+                        autoFocus
+                        onKeyPress={(event) => event.key === 'Enter' && game.handleNextQuestion()}
+                    />
+                    <span className="tsc-answer__unit" aria-hidden="true">€</span>
+                </label>
+                <GameButton size="lg" icon={isLast ? Award : undefined} iconRight={isLast ? undefined : ArrowRight} variant={isLast ? 'success' : 'primary'} onClick={game.handleNextQuestion}>
+                    {isLast ? 'Finalizar' : 'Siguiente'}
+                </GameButton>
             </div>
-            <div className="progress-bar-container">
-                <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
-            </div>
-            
-            <div className="mision" key={game.currentQuestionIndex}>
-                <h2>¡Pregunta {game.currentQuestionIndex + 1}!</h2>
-                <p id="textoMision">{game.mision.texto}</p>
-            </div>
-            <div className="respuesta-usuario">
-                <input 
-                    type="text" 
-                    value={game.respuesta} 
-                    onChange={(e) => game.setRespuesta(e.target.value)}
-                    placeholder="Tu respuesta..."
-                    autoFocus
-                    onKeyPress={(event) => event.key === 'Enter' && game.handleNextQuestion()}
-                />
-                <button onClick={game.handleNextQuestion} className="btn-test">
-                    {game.currentQuestionIndex === game.TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
-                </button>
-            </div>
-        </div>
+        </GameShell>
     );
 };
 
-export default TestScreen;
+export default TestScreen;

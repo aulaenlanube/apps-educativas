@@ -1,19 +1,25 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Lock, Filter, Gamepad2, Clock, Target, BookOpen, TrendingUp, Award, BarChart3 } from 'lucide-react';
+import { Trophy, Lock, Gamepad2, Clock, Target, BookOpen, TrendingUp, Award, BarChart3, Filter } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import BadgeIcon from '@/components/ui/BadgeIcon';
 import BadgeModal from '@/components/ui/BadgeModal';
 import BrandLoader from '@/components/ui/BrandLoader';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { DashCard, StatTile, SectionGrid, LevelShield, XPBar, Pill, DashEmpty } from '@/components/dashboard/kit';
+import './teacherPanels.css';
 
 const RARITY_CONFIG = {
-  common:    { label: 'Comun',      color: 'border-slate-300 bg-slate-50',     badge: 'bg-slate-200 text-slate-700' },
-  rare:      { label: 'Rara',       color: 'border-blue-400 bg-blue-50',       badge: 'bg-blue-100 text-blue-700' },
-  epic:      { label: 'Epica',      color: 'border-purple-500 bg-purple-50',   badge: 'bg-purple-100 text-purple-700' },
-  legendary: { label: 'Legendaria', color: 'border-yellow-400 bg-gradient-to-br from-yellow-50 to-amber-50', badge: 'bg-amber-100 text-amber-700' },
+  common:    { label: 'Común' },
+  rare:      { label: 'Rara' },
+  epic:      { label: 'Épica' },
+  legendary: { label: 'Legendaria' },
 };
+const RARITY_FILTERS = ['all', 'common', 'rare', 'epic', 'legendary'];
+// Orden para elegir las insignias de la vitrina (solo presentación).
+const RARITY_RANK = { mythic: 4, legendary: 3, epic: 2, rare: 1, common: 0 };
 
 const CHART_DAYS = 14;
 
@@ -25,17 +31,11 @@ const formatDuration = (totalSeconds) => {
   return `${m}m`;
 };
 
-const StatCard = ({ icon: Icon, label, value, hint, gradient }) => (
-  <div className={`rounded-xl p-3.5 text-white ${gradient} shadow-sm`}>
-    <div className="flex items-center gap-2 mb-1.5 opacity-90">
-      <Icon className="w-3.5 h-3.5" />
-      <span className="text-[11px] font-bold uppercase tracking-wide">{label}</span>
-    </div>
-    <div className="text-2xl font-black leading-none">{value}</div>
-    {hint && <div className="text-[10px] mt-1 opacity-80">{hint}</div>}
-  </div>
-);
+const fmt1 = (v) => Number(v).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
+// Sala de trofeos del docente (también la usa el panel del usuario libre):
+// vitrina con las mejores insignias, nivel y XP, indicadores, actividad,
+// apps favoritas y la colección completa de insignias.
 export default function TeacherLogrosSection() {
   const { user } = useAuth();
   const { totalXp, level, xpForCurrentLevel, xpForNextLevel, allBadges, totalEarned, totalAvailable, loading: gamifLoading } = useGamification();
@@ -99,11 +99,11 @@ export default function TeacherLogrosSection() {
     const uniqueApps = new Set(sessions.map(s => s.app_id).filter(Boolean)).size;
     const uniqueSubjects = new Set(sessions.map(s => s.subject_id).filter(Boolean)).size;
 
-    // Top apps por nº de partidas
+    // Top apps por nº de partidas (el id solo se usa para pintar su icono)
     const appCounts = {};
     completed.forEach(s => {
       if (!s.app_id) return;
-      if (!appCounts[s.app_id]) appCounts[s.app_id] = { name: s.app_name || s.app_id, count: 0 };
+      if (!appCounts[s.app_id]) appCounts[s.app_id] = { id: s.app_id, name: s.app_name || s.app_id, count: 0 };
       appCounts[s.app_id].count += 1;
     });
     const topApps = Object.values(appCounts).sort((a, b) => b.count - a.count).slice(0, 5);
@@ -143,273 +143,220 @@ export default function TeacherLogrosSection() {
     return { days, max };
   }, [sessions]);
 
+  // Vitrina: las 3 insignias conseguidas más raras (2ª · 1ª · 3ª en la balda)
+  const showcase = useMemo(() => {
+    const best = allBadges
+      .filter(b => b.earned)
+      .sort((a, b) => ((RARITY_RANK[b.rarity] || 0) - (RARITY_RANK[a.rarity] || 0)) || ((b.xp_reward || 0) - (a.xp_reward || 0)))
+      .slice(0, 3);
+    return [best[1], best[0], best[2]].filter(Boolean);
+  }, [allBadges]);
+
+  const rarityCounts = useMemo(() => Object.keys(RARITY_CONFIG).map(id => {
+    const all = allBadges.filter(b => b.rarity === id);
+    return { id, label: RARITY_CONFIG[id].label, total: all.length, earned: all.filter(b => b.earned).length };
+  }), [allBadges]);
+
+  const filterCount = (r) => (r === 'all' ? allBadges.length : allBadges.filter(b => b.rarity === r).length);
+
   const loading = gamifLoading || loadingSessions;
+  const todayKey = new Date().toISOString().slice(0, 10);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl shadow-sm border border-purple-100 overflow-hidden"
+      className="tp-root tp-logros"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between p-5 border-b border-slate-100">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-sm">
-            <Trophy className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-slate-800">Mis Logros y Estadísticas</h3>
-            <p className="text-xs text-slate-500">Nivel {level} · {totalXp.toLocaleString()} XP · {totalEarned}/{totalAvailable} insignias</p>
+      {/* Sala de trofeos: nivel, XP y vitrina */}
+      <section className="tp-trophy">
+        <div className="tp-trophy__main">
+          <div className="tp-trophy__shield"><LevelShield level={level} /></div>
+          <div className="tp-trophy__text">
+            <span className="tp-trophy__eyebrow">Sala de trofeos</span>
+            <h2 className="tp-trophy__title">Mis logros y estadísticas</h2>
+            <XPBar
+              value={xpInLevel}
+              max={xpNeeded}
+              level={level}
+              label={`Nivel ${level} · ${progress}% · ${totalXp.toLocaleString('es-ES')} XP en total`}
+            />
+            <div className="tp-trophy__rar">
+              {rarityCounts.map(r => (
+                <span key={r.id}><i className={`tp-rardot--${r.id}`} />{r.label} {r.earned}/{r.total}</span>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="hidden sm:flex items-center gap-2">
-          <span className="text-xs font-bold text-amber-600">Nv.{level}</span>
-          <div className="w-32 h-2 bg-slate-200 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-500"
-              style={{ width: `${progress}%` }} />
-          </div>
-        </div>
-      </div>
 
-      <div className="p-5 space-y-5">
-        {loading ? (
-          <div className="flex justify-center py-8">
-            <BrandLoader variant="inline" />
-          </div>
-        ) : (
-          <>
-            {/* XP Summary */}
-            <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-xl p-4 text-white">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-xl font-black">{level}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/70">Nivel actual</p>
-                    <p className="text-lg font-bold">Nivel {level}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-xs text-white/70">XP Total</p>
-                  <p className="text-lg font-bold">{totalXp.toLocaleString()}</p>
-                </div>
-              </div>
-              <div className="w-full h-2.5 bg-white/20 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 1, ease: 'easeOut' }}
-                  className="h-full bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-full"
-                />
-              </div>
-              <div className="flex justify-between mt-1.5">
-                <span className="text-[11px] text-white/60">{xpInLevel} / {xpNeeded} XP</span>
-                <span className="text-[11px] text-white/60 flex items-center gap-1">
-                  <Trophy className="w-3 h-3" /> {totalEarned} insignias
-                </span>
-              </div>
-            </div>
-
-            {/* Stat cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              <StatCard
-                icon={Gamepad2}
-                label="Partidas"
-                value={stats.completed}
-                hint={`${stats.exams} exámenes · ${stats.practices} práctica`}
-                gradient="bg-gradient-to-br from-blue-500 to-indigo-600"
-              />
-              <StatCard
-                icon={Award}
-                label="Nota media"
-                value={stats.avgNota.toFixed(1)}
-                hint={`Examen: ${stats.avgExamNota.toFixed(1)} / 10`}
-                gradient="bg-gradient-to-br from-emerald-500 to-teal-600"
-              />
-              <StatCard
-                icon={Target}
-                label="Precisión"
-                value={`${stats.accuracy.toFixed(0)}%`}
-                hint="Aciertos sobre total"
-                gradient="bg-gradient-to-br from-purple-500 to-fuchsia-600"
-              />
-              <StatCard
-                icon={Clock}
-                label="Tiempo jugado"
-                value={formatDuration(stats.totalSecs)}
-                hint={`${stats.total} sesiones`}
-                gradient="bg-gradient-to-br from-amber-500 to-orange-600"
-              />
-              <StatCard
-                icon={BookOpen}
-                label="Apps usadas"
-                value={stats.uniqueApps}
-                hint="Diferentes"
-                gradient="bg-gradient-to-br from-pink-500 to-rose-600"
-              />
-              <StatCard
-                icon={TrendingUp}
-                label="Asignaturas"
-                value={stats.uniqueSubjects}
-                hint="Diferentes"
-                gradient="bg-gradient-to-br from-cyan-500 to-blue-600"
-              />
-              <StatCard
-                icon={Trophy}
-                label="Insignias"
-                value={`${totalEarned}/${totalAvailable}`}
-                hint={`Nivel ${level}`}
-                gradient="bg-gradient-to-br from-yellow-500 to-amber-600"
-              />
-              <StatCard
-                icon={BarChart3}
-                label="XP Total"
-                value={totalXp.toLocaleString()}
-                hint={`+${xpInLevel} en este nivel`}
-                gradient="bg-gradient-to-br from-violet-500 to-purple-600"
-              />
-            </div>
-
-            {/* Gráfico de uso */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-indigo-600" />
-                  <h4 className="text-sm font-bold text-slate-700">Actividad de los últimos {CHART_DAYS} días</h4>
-                </div>
-                <span className="text-[11px] text-slate-500 font-medium">{stats.total} partidas totales</span>
-              </div>
-              <div className="flex items-end gap-1.5 h-32">
-                {chartData.days.map((d) => {
-                  const heightPct = (d.count / chartData.max) * 100;
-                  const isToday = d.key === new Date().toISOString().slice(0, 10);
+        <div className="tp-shelf">
+          <span className="tp-shelf__label">Vitrina · {totalEarned}/{totalAvailable} insignias</span>
+          {gamifLoading ? (
+            <div className="tp-center"><span className="tp-spin tp-spin--light" /></div>
+          ) : showcase.length > 0 ? (
+            <>
+              <div className="tp-shelf__row">
+                {showcase.map((b, i) => {
+                  const center = showcase.length === 1 || (showcase.length > 1 && i === 1);
                   return (
-                    <div key={d.key} className="flex-1 flex flex-col items-center gap-1 group">
-                      <div className="relative w-full flex-1 flex items-end">
-                        <div
-                          className={`w-full rounded-t-md transition-all ${
-                            d.count === 0
-                              ? 'bg-slate-200'
-                              : isToday
-                                ? 'bg-gradient-to-t from-amber-500 to-orange-400'
-                                : 'bg-gradient-to-t from-indigo-500 to-purple-400'
-                          } group-hover:opacity-80`}
-                          style={{ height: `${Math.max(heightPct, d.count === 0 ? 4 : 8)}%` }}
-                          title={`${d.count} partida${d.count !== 1 ? 's' : ''}`}
-                        />
-                        {d.count > 0 && (
-                          <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] font-bold text-slate-600">
-                            {d.count}
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-[9px] text-slate-400 font-medium">
+                    <button
+                      key={b.code}
+                      type="button"
+                      className={`tp-shelf__item ${center ? 'tp-shelf__item--center' : ''}`}
+                      onClick={() => setSelectedBadge(b)}
+                      title={b.name_es}
+                    >
+                      <span className="tp-shelf__medal">
+                        <BadgeIcon code={b.code} rarity={b.rarity} size={center ? 104 : 78} earned />
+                      </span>
+                      <span className="tp-shelf__name">{b.name_es}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="tp-shelf__plank" />
+            </>
+          ) : (
+            <div className="tp-shelf__empty">Tu vitrina está vacía: juega a cualquier app para ganar tu primera insignia.</div>
+          )}
+        </div>
+      </section>
+
+      {loading ? (
+        <DashCard tone="amber">
+          <div className="tp-center"><BrandLoader variant="inline" /></div>
+        </DashCard>
+      ) : (
+        <>
+          <SectionGrid cols={4}>
+            <StatTile icon={Gamepad2} tone="blue" label="Partidas" value={stats.completed}
+              sub={`${stats.exams} exámenes · ${stats.practices} práctica`} />
+            <StatTile icon={Award} tone="emerald" label="Nota media" value={stats.avgNota} format={fmt1}
+              sub={`Examen: ${fmt1(stats.avgExamNota)} / 10`} progress={stats.avgNota / 10} />
+            <StatTile icon={Target} tone="violet" label="Precisión" value={stats.accuracy}
+              format={(v) => `${Math.round(v)} %`} sub="Aciertos sobre total" progress={stats.accuracy / 100} />
+            <StatTile icon={Clock} tone="amber" label="Tiempo jugado" value={formatDuration(stats.totalSecs)}
+              sub={`${stats.total} sesiones`} />
+            <StatTile icon={BookOpen} tone="pink" label="Apps usadas" value={stats.uniqueApps} sub="Diferentes" />
+            <StatTile icon={TrendingUp} tone="cyan" label="Asignaturas" value={stats.uniqueSubjects} sub="Diferentes" />
+            <StatTile icon={Trophy} tone="orange" label="Insignias" value={`${totalEarned}/${totalAvailable}`}
+              sub={`Nivel ${level}`} progress={totalAvailable ? totalEarned / totalAvailable : 0} />
+            <StatTile icon={BarChart3} tone="indigo" label="XP Total" value={totalXp}
+              sub={`+${xpInLevel.toLocaleString('es-ES')} en este nivel`} />
+          </SectionGrid>
+
+          <SectionGrid cols={2}>
+            {/* Gráfico de uso */}
+            <DashCard
+              icon={BarChart3}
+              tone="indigo"
+              title="Actividad"
+              subtitle={`Últimos ${CHART_DAYS} días`}
+              actions={<Pill>{stats.total} partidas totales</Pill>}
+            >
+              <div className="tp-chart" style={{ '--n': chartData.days.length }}>
+                {chartData.days.map((d, i) => {
+                  const heightPct = (d.count / chartData.max) * 100;
+                  const isToday = d.key === todayKey;
+                  return (
+                    <div key={d.key} className="tp-chart__col" title={`${d.count} partida${d.count !== 1 ? 's' : ''}`}>
+                      <span
+                        className={`tp-chart__bar ${d.count === 0 ? 'is-zero' : ''} ${isToday && d.count > 0 ? 'is-today' : ''}`}
+                        style={{ height: `${Math.max(heightPct, d.count === 0 ? 4 : 8)}%`, '--i': i }}
+                      >
+                        {d.count > 0 && <span className="tp-chart__n">{d.count}</span>}
+                      </span>
+                      <span className={`tp-chart__day ${isToday ? 'is-today' : ''}`}>
                         {d.date.getDate()}/{d.date.getMonth() + 1}
                       </span>
                     </div>
                   );
                 })}
               </div>
-            </div>
+            </DashCard>
 
             {/* Top apps */}
-            {stats.topApps.length > 0 && (
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                  <Trophy className="w-4 h-4 text-amber-500" /> Apps más jugadas
-                </h4>
-                <div className="space-y-2">
+            <DashCard icon={Trophy} tone="amber" title="Apps más jugadas" subtitle="Tu podio personal de juegos">
+              {stats.topApps.length > 0 ? (
+                <div className="tp-topapps">
                   {stats.topApps.map((app, i) => {
-                    const pct = (app.count / stats.topApps[0].count) * 100;
+                    const pct = app.count / stats.topApps[0].count;
                     return (
-                      <div key={app.name} className="flex items-center gap-3">
-                        <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold flex items-center justify-center flex-shrink-0">
-                          {i + 1}
-                        </span>
-                        <span className="text-xs font-medium text-slate-700 w-32 truncate">{app.name}</span>
-                        <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
-                            style={{ width: `${pct}%` }}
-                          />
+                      <div key={app.name} className="tp-topapp">
+                        <span className="tp-topapp__rank">{i + 1}</span>
+                        {hasAppIcon(app.id)
+                          ? <AppIcon appId={app.id} size={40} />
+                          : <span className="tp-apptile__fallback">🎮</span>}
+                        <div className="tp-topapp__body">
+                          <div className="tp-topapp__name">{app.name}</div>
+                          <div className="tp-topapp__track"><i style={{ width: `${pct * 100}%` }} /></div>
                         </div>
-                        <span className="text-xs font-bold text-slate-600 w-10 text-right">{app.count}</span>
+                        <span className="tp-topapp__count">{app.count} <small>partidas</small></span>
                       </div>
                     );
                   })}
                 </div>
-              </div>
-            )}
-
-            {/* Filtros insignias */}
-            <div className="pt-2">
-              <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                <Award className="w-4 h-4 text-purple-500" /> Insignias
-              </h4>
-              <div className="flex items-center gap-2 flex-wrap mb-3">
-                <Filter className="w-3.5 h-3.5 text-slate-400" />
-                {['all', 'common', 'rare', 'epic', 'legendary'].map(r => (
-                  <button
-                    key={r}
-                    onClick={() => setFilterRarity(r)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                      filterRarity === r ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    {r === 'all' ? 'Todas' : RARITY_CONFIG[r]?.label}
-                  </button>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                {filteredBadges.map((badge) => {
-                  const rarity = RARITY_CONFIG[badge.rarity] || RARITY_CONFIG.common;
-                  return (
-                    <div
-                      key={badge.code}
-                      onClick={() => setSelectedBadge(badge)}
-                      className={`rounded-xl border-2 p-3 transition-all cursor-pointer hover:shadow-md hover:-translate-y-0.5 ${
-                        badge.earned
-                          ? `${rarity.color} shadow-sm`
-                          : 'border-slate-200 bg-slate-50/50 opacity-40 hover:opacity-70'
-                      }`}
-                    >
-                      <div className="flex items-start gap-2.5">
-                        <div className="flex-shrink-0 relative">
-                          <BadgeIcon code={badge.code} rarity={badge.rarity} size={48} earned={badge.earned} />
-                          {!badge.earned && (
-                            <Lock className="w-3.5 h-3.5 text-slate-400 absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className={`text-xs font-bold truncate ${badge.earned ? 'text-slate-800' : 'text-slate-400'}`}>
-                            {badge.name_es}
-                          </p>
-                          <p className={`text-[10px] leading-snug ${badge.earned ? 'text-slate-500' : 'text-slate-400'}`}>
-                            {badge.description_es}
-                          </p>
-                          <div className="flex items-center gap-1.5 mt-1">
-                            <span className={`text-[9px] px-1 py-px rounded-full font-bold ${rarity.badge}`}>{rarity.label}</span>
-                            <span className="text-[9px] text-slate-400">+{badge.xp_reward} XP</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {filteredBadges.length === 0 && (
-                <div className="text-center py-6">
-                  <Trophy className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                  <p className="text-sm text-slate-400">No hay insignias con este filtro</p>
-                </div>
+              ) : (
+                <DashEmpty mascot={false} title="Aún no hay partidas">Juega a cualquier app y aquí aparecerán tus favoritas.</DashEmpty>
               )}
+            </DashCard>
+          </SectionGrid>
+
+          {/* Insignias */}
+          <DashCard
+            icon={Award}
+            tone="violet"
+            title="Colección de insignias"
+            subtitle={`${totalEarned} de ${totalAvailable} conseguidas · pulsa una para ver cómo se gana`}
+          >
+            <div className="tp-filters" style={{ marginBottom: 14 }}>
+              <Filter size={15} style={{ alignSelf: 'center', color: 'var(--dk-ink-3)' }} />
+              {RARITY_FILTERS.map(r => (
+                <button
+                  key={r}
+                  type="button"
+                  onClick={() => setFilterRarity(r)}
+                  className={`tp-filter ${filterRarity === r ? 'is-on' : ''}`}
+                >
+                  {r === 'all' ? 'Todas' : RARITY_CONFIG[r]?.label}
+                  <span className="tp-filter__n">{filterCount(r)}</span>
+                </button>
+              ))}
             </div>
-          </>
-        )}
-      </div>
+
+            <div className="tp-badges">
+              {filteredBadges.map((badge) => {
+                const rarity = RARITY_CONFIG[badge.rarity] || RARITY_CONFIG.common;
+                return (
+                  <button
+                    key={badge.code}
+                    type="button"
+                    onClick={() => setSelectedBadge(badge)}
+                    className={`tp-badge tp-badge--${badge.rarity || 'common'} ${badge.earned ? 'is-earned' : 'is-locked'}`}
+                  >
+                    <span className="tp-badge__icon">
+                      <BadgeIcon code={badge.code} rarity={badge.rarity} size={52} earned={badge.earned} />
+                      {!badge.earned && <span className="tp-badge__lock"><Lock size={11} /></span>}
+                    </span>
+                    <span className="tp-badge__body">
+                      <span className="tp-badge__name" style={{ display: 'block' }}>{badge.name_es}</span>
+                      <span className="tp-badge__desc">{badge.description_es}</span>
+                      <span className="tp-badge__meta">
+                        <span className="tp-rar">{rarity.label}</span>
+                        <span className="tp-xp">+{badge.xp_reward} XP</span>
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {filteredBadges.length === 0 && (
+              <DashEmpty mascot={false} title="No hay insignias con este filtro" />
+            )}
+          </DashCard>
+        </>
+      )}
       <BadgeModal badge={selectedBadge} onClose={() => setSelectedBadge(null)} />
     </motion.div>
   );

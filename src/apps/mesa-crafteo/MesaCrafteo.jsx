@@ -18,7 +18,26 @@ import {
     layoutMoleculeFromGraph
 } from './atomConfig';
 import AppOrientationWarning from '../_shared/AppOrientationWarning';
+import {
+    FlaskConical, BookOpen, Grid3x3, GraduationCap, Dices, ScanSearch, Lightbulb, Undo2, Trash2,
+    Atom, Send, X, LogOut, Clock, Target, RefreshCw, HelpCircle, Zap, Lock, Link2, Beaker, Gauge,
+    ArrowRight, Sparkles,
+} from 'lucide-react';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import {
+    GameShell, GameButton, ModeSelect, ModeChip, ResultsScreen, FeedbackItem, ProgressDots,
+    Hud, HudStat, useAppMeta, cleanAppName,
+} from '../_shared/kit';
+import { FlaskArt } from './CrafteoArt';
 import './MesaCrafteo.css';
+
+// --- Presentación (rediseño 2026) ---
+const SHELL = { accent: '#818cf8', accent2: '#22d3ee' };
+const DIFF_NAME = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' };
+const DIFF_TONE = { easy: 'easy', medium: 'medium', hard: 'exam' };
+const DIFF_ICON = { easy: Beaker, medium: FlaskConical, hard: Atom };
+const fmtMult = (m) => `×${String(m).replace('.', ',')} puntos`;
+const LEVEL_LABEL = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bachillerato', ad: 'Diversidad' };
 
 const STORAGE_KEY = 'mesa_crafteo_discoveries';
 
@@ -70,6 +89,9 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
     const [hoveredInventoryItem, setHoveredInventoryItem] = useState(null);
     const [isShuffling, setIsShuffling] = useState(false);
     const [showTutorial, setShowTutorial] = useState(false);
+    // Solo presentación: pantalla previa de modos (laboratorio libre / examen)
+    const [started, setStarted] = useState(false);
+    const meta = useAppMeta();
 
     // Exam State
     const [isExamMode, setIsExamMode] = useState(false);
@@ -339,10 +361,29 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
         });
     }, [showExamResults, examScore, examQuestions.length, examFinalTime, examDifficulty, onGameComplete]);
 
+    const familyColor = (sym) => FAMILIES[elementsData.find(e => e.symbol === sym)?.category]?.color || '#94a3b8';
+    const courseText = meta.level ? (meta.grade && meta.level !== 'ad' ? `${meta.grade}º ${LEVEL_LABEL[meta.level] || meta.level}` : (LEVEL_LABEL[meta.level] || meta.level)) : '';
+    const inventory = elementsData
+        .filter(e => e.atomicNumber <= 36 || [47, 53, 79, 82].includes(e.atomicNumber))
+        .slice(0, 40); // máx. 8×5 = 40 elementos
+
+    const overlayAnim = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.2 },
+    };
+    const panelAnim = {
+        initial: { opacity: 0, y: 24, scale: 0.97 },
+        animate: { opacity: 1, y: 0, scale: 1 },
+        transition: { type: 'spring', stiffness: 260, damping: 24 },
+    };
+
     return (
-        <div className="mc-app full-screen">
+        <GameShell theme="dark" wide {...SHELL} className={`mc-shell ${isExamMode ? 'is-exam' : ''}`}>
             <AppOrientationWarning />
-            {/* ===== FONDO / VIEWPORT 3D ===== */}
+
+            {/* ===== LABORATORIO 3D (fondo) ===== */}
             <section className="mc-viewport-full">
                 <MoleculeBuilder3D
                     placedAtoms={placedAtoms}
@@ -353,238 +394,265 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                 />
             </section>
 
-            {/* Capa decorativa sobre el 3D: viñeta + rejilla de laboratorio (no captura eventos) */}
+            {/* Capa decorativa sobre el 3D (no captura eventos) */}
             <div className="mc-fx-layer" aria-hidden="true">
                 <span className="mc-fx-vignette" />
                 <span className="mc-fx-grid" />
-                <span className="mc-fx-scan" />
             </div>
 
-            {/* ===== UI FLOTANTE ===== */}
-            <div className="mc-ui-overlay">
-                {/* Botón de Ayuda Superior */}
-                <motion.div
-                    className={`mc-top-help-container ${showFormula ? 'is-expanded' : ''}`}
-                >
-                    <div className="mc-help-clickable-area" onClick={() => setShowTutorial(true)} title="Instrucciones">
-                        <span className="mc-help-icon">❓</span>
-                        <span className="mc-help-text">Ayuda</span>
-                    </div>
-
-                    <AnimatePresence>
-                        {showFormula && currentTarget && (
-                            <motion.div
-                                initial={{ height: 0, opacity: 0, scale: 0.95 }}
-                                animate={{ height: 'auto', opacity: 1, scale: 1 }}
-                                exit={{ height: 0, opacity: 0, scale: 0.95 }}
-                                className="mc-top-formula-section"
-                            >
-                                <div className="mc-formula-divider"></div>
-                                <div className="mc-formula-reveal-header">FÓRMULA REVELADA</div>
-                                <div className="mc-formula-main-text">{currentTarget.formula}</div>
-                                <div className="mc-formula-badges-row">
-                                    {targetCounts.map(([sym, count]) => (
-                                        <span key={sym} className="mc-mini-badge"
-                                            style={{ backgroundColor: FAMILIES[elementsData.find(e => e.symbol === sym)?.category]?.color || '#666' }}>
-                                            {sym}<sub>{count}</sub>
-                                        </span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
-                {/* --- Lado Izquierdo Superior: Título/Misión (Eliminado) --- */}
-
-                {/* --- Lado Derecho: Misión e Inventario --- */}
-                <aside className="mc-floating-sidebar">
-                    {currentTarget && (
-                        <div className="mc-panel mc-panel-mission">
-                            <div className="mc-mission-top-actions">
-                                <button className="mc-action-btn full-width" onClick={() => setShowRecipes(true)} disabled={isExamMode} style={{ opacity: isExamMode ? 0.5 : 1 }}>
-                                    <span className="mc-btn-icon">📖</span>
-                                    <span className="mc-btn-label">Recetario</span>
-                                </button>
-                                <button className="mc-action-btn full-width" onClick={() => setShowPeriodicTable(true)} disabled={isExamMode} style={{ opacity: isExamMode ? 0.5 : 1 }}>
-                                    <span className="mc-btn-icon">📊</span>
-                                    <span className="mc-btn-label">Tabla</span>
-                                </button>
-                                {!isExamMode ? (
-                                    <button className="mc-action-btn full-width exam-mode-btn" onClick={() => setShowDifficultySelector(true)} style={{ borderColor: '#818cf8' }}>
-                                        <span className="mc-btn-icon">📝</span>
-                                        <span className="mc-btn-label">Examen</span>
-                                    </button>
-                                ) : (
-                                    <button className="mc-action-btn full-width" onClick={exitExamMode} style={{ borderColor: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}>
-                                        <span className="mc-btn-icon">✖️</span>
-                                        <span className="mc-btn-label">Salir</span>
-                                    </button>
-                                )}
-                            </div>
-
-                            {isExamMode && (
-                                <div className="mc-exam-progress">
-                                    <span className={`mc-exam-badge difficulty-${examDifficulty}`}>{EXAM_DIFFICULTY[examDifficulty]?.label || 'EXAMEN'}</span>
-                                    <span className="mc-exam-count">Pregunta {currentQuestionIndex + 1} de {examQuestions.length}</span>
-                                    <span className="mc-exam-timer">⏱ {examElapsedTime}s</span>
-                                </div>
+            {started && (
+                <>
+                    {/* ===== BARRA SUPERIOR ===== */}
+                    <header className="mc-topbar">
+                        <div className="mc-topbar__id">
+                            {meta.appId && hasAppIcon(meta.appId) && (
+                                <span className="mc-topbar__icon"><AppIcon appId={meta.appId} size={38} /></span>
                             )}
+                            <span className="mc-topbar__text">
+                                <strong>{cleanAppName(meta.name) || 'Mesa de Crafteo'}</strong>
+                                {courseText && <span>{courseText}</span>}
+                            </span>
+                        </div>
+                        {isExamMode
+                            ? <ModeChip mode="exam" label={`Examen · ${DIFF_NAME[examDifficulty] || ''}`} />
+                            : <ModeChip mode="practice" label="Laboratorio" />}
+                        {isExamMode && (
+                            <Hud>
+                                <HudStat icon={Target} tone="progress" value={`${currentQuestionIndex + 1}/${examQuestions.length}`} label="Pregunta" />
+                                <HudStat icon={Clock} tone="time" value={`${examElapsedTime}s`} label="Tiempo" />
+                            </Hud>
+                        )}
+                        <button type="button" className="gk-iconbtn" onClick={() => setShowTutorial(true)} title="Cómo se juega" aria-label="Cómo se juega">
+                            <HelpCircle size={18} />
+                        </button>
+                    </header>
 
-                            <div className="mc-mission-divider"></div>
-
-                            <div className="mc-mission-header-row">
-                                <span className="mc-mission-tag">{isExamMode ? 'CONSTRUYE LA MOLÉCULA' : 'OBJETIVO ACTUAL'}</span>
-                            </div>
-
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={currentTarget.name}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    className="mc-mission-body-v2"
-                                >
-                                    <h2 className="mc-mission-name-v2">{currentTarget.name}</h2>
-                                    {!isExamMode && (
-                                        <button className="mc-next-btn highlight-btn" onClick={selectNextTarget}>
-                                            <motion.span animate={{ rotate: isShuffling ? 360 : 0 }}>🎲</motion.span>
-                                            Siguiente Molécula
+                    {/* ===== PANEL DERECHO: misión + inventario ===== */}
+                    <aside className="mc-side">
+                        {currentTarget && (
+                            <div className="mc-card mc-mission">
+                                <div className="mc-tools">
+                                    <button type="button" className="mc-tool" onClick={() => setShowRecipes(true)} disabled={isExamMode}>
+                                        <BookOpen size={18} /> <span>Recetario</span>
+                                    </button>
+                                    <button type="button" className="mc-tool" onClick={() => setShowPeriodicTable(true)} disabled={isExamMode}>
+                                        <Grid3x3 size={18} /> <span>Tabla</span>
+                                    </button>
+                                    {!isExamMode ? (
+                                        <button type="button" className="mc-tool mc-tool--exam" onClick={() => setShowDifficultySelector(true)}>
+                                            <GraduationCap size={18} /> <span>Examen</span>
+                                        </button>
+                                    ) : (
+                                        <button type="button" className="mc-tool mc-tool--exit" onClick={exitExamMode}>
+                                            <LogOut size={18} /> <span>Salir</span>
                                         </button>
                                     )}
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    )}
+                                </div>
 
-                    <div className="mc-panel mc-panel-elements">
-                        <div className="mc-panel-header">
-                            <span className="mc-panel-title">ELEMENTOS</span>
-                            {hoveredInventoryItem && (
-                                <motion.span
-                                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                    className="mc-element-hover-name"
-                                    style={{ color: FAMILIES[hoveredInventoryItem.category]?.color }}
-                                >
-                                    {hoveredInventoryItem.name}
-                                </motion.span>
-                            )}
-                        </div>
-                        <div className="mc-elements-grid-v2">
-                            {elementsData
-                                .filter(e => e.atomicNumber <= 36 || [47, 53, 79, 82].includes(e.atomicNumber))
-                                .slice(0, 40) // Ensure max 8x5 = 40 items if more exist, or just fits naturally
-                                .map(el => (
-                                    <div
+                                {isExamMode && (
+                                    <div className="mc-mission__dots">
+                                        <ProgressDots total={examQuestions.length} current={currentQuestionIndex} />
+                                    </div>
+                                )}
+
+                                <span className="mc-kicker"><Target size={13} /> {isExamMode ? 'Construye la molécula' : 'Objetivo actual'}</span>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={currentTarget.name}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="mc-mission__body"
+                                    >
+                                        <h2 className="mc-target">{currentTarget.name}</h2>
+                                        <AnimatePresence>
+                                            {showFormula && (
+                                                <motion.div
+                                                    className="mc-formula"
+                                                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.97 }}
+                                                >
+                                                    <span className="mc-formula__label"><ScanSearch size={13} /> Fórmula revelada</span>
+                                                    <strong className="mc-formula__text">{currentTarget.formula}</strong>
+                                                    <span className="mc-chips">
+                                                        {targetCounts.map(([sym, count]) => (
+                                                            <span key={sym} className="mc-atomchip" style={{ '--el': familyColor(sym) }}>
+                                                                {sym}{count > 1 && <small>×{count}</small>}
+                                                            </span>
+                                                        ))}
+                                                    </span>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                        {!isExamMode && (
+                                            <button type="button" className="mc-next" onClick={selectNextTarget}>
+                                                <motion.span className="mc-next__icon" animate={{ rotate: isShuffling ? 360 : 0 }}>
+                                                    <Dices size={18} />
+                                                </motion.span>
+                                                Siguiente molécula
+                                            </button>
+                                        )}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+                        )}
+
+                        <div className="mc-card mc-inventory">
+                            <div className="mc-inventory__head">
+                                <span className="mc-kicker"><Atom size={13} /> Elementos</span>
+                                {(hoveredInventoryItem || selectedElement) && (
+                                    <span
+                                        className="mc-inventory__name"
+                                        style={{ '--el': FAMILIES[(hoveredInventoryItem || selectedElement).category]?.color || '#94a3b8' }}
+                                    >
+                                        {(hoveredInventoryItem || selectedElement).name}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="mc-elements">
+                                {inventory.map(el => (
+                                    <button
+                                        type="button"
                                         key={el.symbol}
-                                        className={`mc-element-card ${selectedElement?.symbol === el.symbol ? 'is-active' : ''}`}
+                                        className={`mc-el ${selectedElement?.symbol === el.symbol ? 'is-active' : ''}`}
                                         onClick={() => setSelectedElement(el)}
                                         onMouseEnter={() => setHoveredInventoryItem(el)}
                                         onMouseLeave={() => setHoveredInventoryItem(null)}
-                                        style={{ '--accent-color': FAMILIES[el.category]?.color || '#444' }}
+                                        style={{ '--el': FAMILIES[el.category]?.color || '#94a3b8' }}
+                                        aria-label={`${el.name} (${el.symbol})`}
+                                        aria-pressed={selectedElement?.symbol === el.symbol}
                                     >
-                                        <span className="mc-el-symbol">{el.symbol}</span>
-                                        <span className="mc-el-number">{el.atomicNumber}</span>
-                                    </div>
-                                ))}
-                        </div>
-                    </div>
-                </aside>
-
-                {/* --- Centro Inferior: Acciones --- */}
-                <div className="mc-bottom-controls">
-                    <div className="mc-actions-glass">
-                        <div className="mc-btn-group">
-                            {!isExamMode && (
-                                <>
-                                    <button className="mc-glass-btn hint" onClick={() => setShowFormula(true)} disabled={showFormula}>
-                                        🔍 Revelar Fórmula
+                                        <span className="mc-el__num">{el.atomicNumber}</span>
+                                        <span className="mc-el__sym">{el.symbol}</span>
                                     </button>
-                                    <button className="mc-glass-btn solution" onClick={handleShowSolution} disabled={elementsData.length === 0}>
-                                        💡 Ver Solución
+                                ))}
+                            </div>
+                        </div>
+                    </aside>
+
+                    {/* ===== ACCIONES (abajo) ===== */}
+                    <div className="mc-dock">
+                        <div className="mc-dock__group">
+                            {!isExamMode ? (
+                                <>
+                                    <button type="button" className="mc-action" onClick={() => setShowFormula(true)} disabled={showFormula} title="Revelar fórmula" aria-label="Revelar fórmula">
+                                        <ScanSearch size={17} /> <span>Revelar fórmula</span>
+                                    </button>
+                                    <button type="button" className="mc-action" onClick={handleShowSolution} disabled={elementsData.length === 0} title="Ver solución" aria-label="Ver solución">
+                                        <Lightbulb size={17} /> <span>Ver solución</span>
                                     </button>
                                 </>
-                            )}
-                            {isExamMode && (
-                                <div className="mc-exam-locked-msg">Sin Ayudas</div>
+                            ) : (
+                                <span className="mc-locked"><Lock size={15} /> Sin ayudas</span>
                             )}
                         </div>
 
-                        <div className="mc-craft-container">
-                            <button
-                                className={`mc-main-craft-btn ${isFusing ? 'is-fusing' : ''}`}
-                                disabled={placedAtoms.length === 0 || isFusing}
-                                onClick={checkRecipe}
+                        <button
+                            type="button"
+                            className={`mc-craft ${isFusing ? 'is-fusing' : ''}`}
+                            disabled={placedAtoms.length === 0 || isFusing}
+                            onClick={checkRecipe}
+                        >
+                            <span className="mc-craft__shine" aria-hidden="true" />
+                            <span className="mc-craft__icon">{isFusing ? <Zap size={22} /> : (isExamMode ? <Send size={21} /> : <FlaskConical size={22} />)}</span>
+                            <span className="mc-craft__text">{isFusing ? 'Procesando…' : (isExamMode ? 'Enviar respuesta' : 'Craftear')}</span>
+                        </button>
+
+                        <div className="mc-dock__group">
+                            <button type="button" className="mc-action" onClick={handleUndo} disabled={placedAtoms.length === 0} title="Deshacer" aria-label="Deshacer">
+                                <Undo2 size={17} /> <span>Deshacer</span>
+                            </button>
+                            <button type="button" className="mc-action mc-action--danger" onClick={handleClear} disabled={placedAtoms.length === 0} title="Limpiar" aria-label="Limpiar">
+                                <Trash2 size={17} /> <span>Limpiar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Composición de lo construido */}
+                    <AnimatePresence>
+                        {placedAtoms.length > 0 && (
+                            <motion.div
+                                className="mc-compo"
+                                initial={{ opacity: 0, x: -16 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -16 }}
                             >
-                                <span className="mc-craft-icon">{isFusing ? '⚡' : (isExamMode ? '📨' : '⚗️')}</span>
-                                <span className="mc-craft-text">{isFusing ? 'PROCESANDO' : (isExamMode ? 'ENVIAR RESPUESTA' : 'CRAFTEAR')}</span>
-                            </button>
-                        </div>
-
-                        <div className="mc-btn-group">
-                            <button className="mc-glass-btn undo" onClick={handleUndo} disabled={placedAtoms.length === 0}>
-                                ↩️ Deshacer
-                            </button>
-                            <button className="mc-glass-btn clear" onClick={handleClear} disabled={placedAtoms.length === 0}>
-                                🗑️ Limpiar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Indicador de átomos puestos (flotante) */}
-                {placedAtoms.length > 0 && (
-                    <div className="mc-atom-status-hud">
-                        <div className="mc-hud-title">COMPOSICIÓN ACTUAL</div>
-                        <div className="mc-hud-list">
-                            {placedCounts.map(([sym, count]) => (
-                                <div key={sym} className="mc-hud-item"
-                                    style={{ borderLeftColor: FAMILIES[elementsData.find(e => e.symbol === sym)?.category]?.color || '#666' }}>
-                                    <span className="mc-hud-sym">{sym}</span>
-                                    <span className="mc-hud-count">x{count}</span>
+                                <span className="mc-kicker">Composición</span>
+                                <div className="mc-compo__list">
+                                    {placedCounts.map(([sym, count]) => (
+                                        <span key={sym} className="mc-compo__item" style={{ '--el': familyColor(sym) }}>
+                                            <b>{sym}</b><small>×{count}</small>
+                                        </span>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-            </div>
+                                <span className="mc-compo__bonds"><Link2 size={13} /> {builtBonds.length} {builtBonds.length === 1 ? 'enlace' : 'enlaces'}</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </>
+            )}
+
+            {/* ===== PANTALLA PREVIA: modo ===== */}
+            {!started && !showDifficultySelector && (
+                <div className="mc-overlay mc-overlay--start">
+                    <motion.div className="mc-panel mc-panel--wide" {...panelAnim}>
+                        <ModeSelect
+                            modes={[
+                                {
+                                    id: 'lab', tone: 'easy', icon: FlaskConical, title: 'Laboratorio libre',
+                                    desc: 'Construye moléculas conectando átomos en 3D, a tu ritmo.',
+                                    features: ['Recetario y tabla periódica', 'Revelar fórmula y ver solución'],
+                                    cta: 'Entrar al laboratorio',
+                                },
+                                {
+                                    id: 'exam', tone: 'exam', title: 'Examen',
+                                    desc: 'Construye las moléculas que te pidan, sin ayudas.',
+                                    features: ['Nota sobre 10 (Fácil 9 · Difícil 11)', 'Puntos por rapidez'],
+                                    cta: 'Elegir dificultad',
+                                },
+                            ]}
+                            onSelect={(id) => (id === 'lab' ? setStarted(true) : setShowDifficultySelector(true))}
+                            onHelp={() => setShowTutorial(true)}
+                        />
+                    </motion.div>
+                </div>
+            )}
 
             {/* ===== MODALES ===== */}
             <AnimatePresence>
                 {showRecipes && (
-                    <div className="modal-overlay" onClick={() => setShowRecipes(false)}>
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-                            className="periodic-table-modal recipe-book-modal"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <div className="modal-header">
-                                <h2>TODAS LAS RECETAS ({gradeLabel})</h2>
-                                <button className="btn-close" onClick={() => setShowRecipes(false)}>X</button>
+                    <motion.div className="mc-overlay" {...overlayAnim} onClick={() => setShowRecipes(false)}>
+                        <motion.div className="mc-panel mc-panel--wide" {...panelAnim} onClick={e => e.stopPropagation()}>
+                            <div className="mc-panel__head">
+                                <span className="mc-panel__badge"><BookOpen size={22} /></span>
+                                <div>
+                                    <h2>Recetario</h2>
+                                    <p>{availableMolecules.length} moléculas · {gradeLabel}</p>
+                                </div>
+                                <button type="button" className="gk-iconbtn" onClick={() => setShowRecipes(false)} aria-label="Cerrar recetario"><X size={18} /></button>
                             </div>
-                            <div className="recipes-grid-modern custom-scrollbar">
+                            <div className="mc-recipes">
                                 {availableMolecules.map((m, idx) => (
-                                    <div key={idx} className="recipe-card-modern">
-                                        <div className="recipe-card-header">
+                                    <article key={idx} className="mc-recipe">
+                                        <header className="mc-recipe__head">
                                             <h3>{m.name}</h3>
-                                            <span className="recipe-formula">{m.formula}</span>
-                                        </div>
-                                        <div className="recipe-composition">
+                                            <span className="mc-formula-chip">{m.formula}</span>
+                                        </header>
+                                        <div className="mc-chips">
                                             {getElementCounts(m.atoms).map(([symbol, count]) => (
-                                                <span key={symbol} className="recipe-atom-badge"
-                                                    style={{ backgroundColor: FAMILIES[elementsData.find(e => e.symbol === symbol)?.category]?.color || '#666' }}>
-                                                    {symbol}{count > 1 ? ` x${count}` : ''}
+                                                <span key={symbol} className="mc-atomchip" style={{ '--el': familyColor(symbol) }}>
+                                                    {symbol}{count > 1 && <small>×{count}</small>}
                                                 </span>
                                             ))}
+                                            <span className="mc-recipe__bonds"><Link2 size={12} /> {m.bonds.length} enlace{m.bonds.length !== 1 ? 's' : ''}</span>
                                         </div>
-                                        <div className="recipe-bond-info">
-                                            {m.bonds.length} enlace{m.bonds.length !== 1 ? 's' : ''}
-                                        </div>
-                                        <p className="recipe-desc">{m.description}</p>
-                                    </div>
+                                        <p>{m.description}</p>
+                                    </article>
                                 ))}
                             </div>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
@@ -596,101 +664,81 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
 
             <AnimatePresence>
                 {result && (
-                    <div className="result-overlay">
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0, y: 24 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                            className="molecule-reveal-card mc-reveal-success"
-                        >
-                            <span className="mc-reveal-rays" aria-hidden="true" />
+                    <motion.div className="mc-overlay" {...overlayAnim}>
+                        <motion.div className="mc-panel mc-result is-ok" {...panelAnim}>
+                            <span className="mc-result__rays" aria-hidden="true" />
+                            <FlaskArt status="ok" className="mc-result__art" />
                             {result.isExamFeedback ? (
                                 <>
-                                    <h2 className="molecule-title" style={{ color: '#4ade80' }}>¡CORRECTO!</h2>
-                                    <div className="result-main-icon">✅</div>
-                                    <p className="molecule-description">{result.feedbackMessage}</p>
-                                    <button className="btn-alchemy" onClick={() => { setResult(null); selectNextTarget(); }}>
-                                        {currentQuestionIndex < examQuestions.length - 1 ? 'SIGUIENTE PREGUNTA' : 'VER RESULTADOS'}
-                                    </button>
+                                    <span className="mc-result__tag"><Sparkles size={13} /> ¡Correcto!</span>
+                                    <p className="mc-result__desc">{result.feedbackMessage}</p>
+                                    <GameButton variant="success" size="lg" iconRight={ArrowRight} onClick={() => { setResult(null); selectNextTarget(); }}>
+                                        {currentQuestionIndex < examQuestions.length - 1 ? 'Siguiente pregunta' : 'Ver resultados'}
+                                    </GameButton>
                                 </>
                             ) : (
                                 <>
-                                    <h2 className="molecule-title">SÍNTESIS EXITOSA</h2>
-                                    <h3 className="molecule-subtitle">{result.name} ({result.formula})</h3>
-                                    <div className="result-main-icon">🧪</div>
-                                    <p className="molecule-description">{result.description}</p>
-                                    <div className="fun-fact-box">
-                                        <strong>DATO CIENTÍFICO:</strong> {result.funFact}
+                                    <span className="mc-result__tag"><Sparkles size={13} /> Síntesis exitosa</span>
+                                    <h2 className="mc-result__title">{result.name}</h2>
+                                    <span className="mc-formula-chip mc-formula-chip--lg">{result.formula}</span>
+                                    <p className="mc-result__desc">{result.description}</p>
+                                    <div className="mc-fact">
+                                        <span className="mc-fact__icon"><Lightbulb size={18} /></span>
+                                        <div>
+                                            <strong>Dato científico</strong>
+                                            <p>{result.funFact}</p>
+                                        </div>
                                     </div>
-                                    <button className="btn-alchemy" onClick={() => { setResult(null); selectNextTarget(); }}>SIGUIENTE MOLÉCULA</button>
+                                    <GameButton variant="success" size="lg" iconRight={ArrowRight} onClick={() => { setResult(null); selectNextTarget(); }}>
+                                        Siguiente molécula
+                                    </GameButton>
                                 </>
                             )}
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
             <AnimatePresence>
                 {errorModal && (
-                    <div className="result-overlay">
-                        <motion.div
-                            initial={{ scale: 0.85, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-                            className="molecule-reveal-card error-card"
-                        >
-                            <span className="mc-error-flash" aria-hidden="true" />
-                            <h2 className="molecule-title" style={{ color: '#ff0000' }}>FALLO DE FUSIÓN</h2>
-                            <div className="result-main-icon">💥</div>
-                            <p className="molecule-description">{errorModal}</p>
-                            <button className="btn-alchemy" style={{ backgroundColor: '#8b0000' }} onClick={() => setErrorModal(null)}>
-                                REPETIR
-                            </button>
+                    <motion.div className="mc-overlay" {...overlayAnim}>
+                        <motion.div className="mc-panel mc-result is-ko gk-anim-shake" {...panelAnim}>
+                            <FlaskArt status="ko" className="mc-result__art" />
+                            <span className="mc-result__tag">Fallo de fusión</span>
+                            <p className="mc-result__desc">{errorModal}</p>
+                            <GameButton variant="danger" size="lg" icon={RefreshCw} onClick={() => setErrorModal(null)}>
+                                Repetir
+                            </GameButton>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
             <AnimatePresence>
                 {showDifficultySelector && (
-                    <div className="result-overlay">
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-                            className="molecule-reveal-card difficulty-card"
-                        >
-                            <h2 className="molecule-title">CONFIGURAR EXAMEN</h2>
-                            <p className="molecule-description">Elige el nivel: la nota base está en <strong>Medio</strong>.</p>
-
-                            <div className="difficulty-options">
-                                <button className="btn-alchemy diff-easy" onClick={() => startExam('easy')}>
-                                    <span className="diff-icon" aria-hidden="true">🧪</span>
-                                    <span className="diff-name">FÁCIL</span>
-                                    <span className="diff-count">{EXAM_DIFFICULTY.easy.questions} preguntas</span>
-                                    <span className="diff-note">{EXAM_DIFFICULTY.easy.note}</span>
-                                </button>
-                                <button className="btn-alchemy diff-med" onClick={() => startExam('medium')}>
-                                    <span className="diff-icon" aria-hidden="true">⚗️</span>
-                                    <span className="diff-name">MEDIO</span>
-                                    <span className="diff-count">{EXAM_DIFFICULTY.medium.questions} preguntas</span>
-                                    <span className="diff-note">{EXAM_DIFFICULTY.medium.note}</span>
-                                </button>
-                                <button className="btn-alchemy diff-hard" onClick={() => startExam('hard')}>
-                                    <span className="diff-icon" aria-hidden="true">☢️</span>
-                                    <span className="diff-name">DIFÍCIL</span>
-                                    <span className="diff-count">{EXAM_DIFFICULTY.hard.questions} preguntas</span>
-                                    <span className="diff-note">{EXAM_DIFFICULTY.hard.note}</span>
-                                </button>
-                            </div>
-
-                            <p className="difficulty-legend">
-                                Además la <strong>puntuación</strong> depende del <strong>tiempo</strong>: dos alumnos con la misma nota pueden obtener puntos distintos.
-                            </p>
-
-                            <button className="btn-text-only" onClick={() => setShowDifficultySelector(false)}>CANCELAR</button>
+                    <motion.div className="mc-overlay" {...overlayAnim}>
+                        <motion.div className="mc-panel mc-panel--wide" {...panelAnim}>
+                            <ModeSelect
+                                title="Configura el examen"
+                                description="Elige el nivel: la nota base está en Medio. Además, la puntuación depende del tiempo: dos alumnos con la misma nota pueden obtener puntos distintos."
+                                modes={['easy', 'medium', 'hard'].map((d) => ({
+                                    id: d,
+                                    tone: DIFF_TONE[d],
+                                    icon: DIFF_ICON[d],
+                                    title: DIFF_NAME[d],
+                                    desc: `${EXAM_DIFFICULTY[d].questions} moléculas para construir.`,
+                                    features: [EXAM_DIFFICULTY[d].note, fmtMult(EXAM_DIFFICULTY[d].scoreMult)],
+                                    cta: 'Empezar',
+                                }))}
+                                onSelect={(d) => { setStarted(true); startExam(d); }}
+                                footer={(
+                                    <GameButton variant="ghost" size="sm" icon={X} onClick={() => setShowDifficultySelector(false)}>
+                                        Cancelar
+                                    </GameButton>
+                                )}
+                            />
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
@@ -700,59 +748,34 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
                     const diffConfig = EXAM_DIFFICULTY[examDifficulty] || EXAM_DIFFICULTY.medium;
                     const ratio = examScore / total;
                     const nota = Math.round(ratio * diffConfig.gradeMax * 10) / 10;
-                    const notaClass = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-                    const notaMsg = nota >= 9 ? '¡Excelente! 🌟'
-                        : nota >= 7 ? '¡Muy bien! 👏'
-                        : nota >= 5 ? 'Aprobado 💪'
-                        : 'Necesitas repasar 📖';
                     const points = computeCrafteoScore(examScore, total, examFinalTime, examDifficulty);
                     return (
-                    <div className="result-overlay">
-                        <motion.div
-                            initial={{ scale: 0.88, opacity: 0, y: 30 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            transition={{ type: 'spring', stiffness: 220, damping: 22 }}
-                            className="molecule-reveal-card exam-results-card"
-                        >
-                            <h2 className="molecule-title">RESULTADOS FINALES</h2>
-
-                            <div
-                                className={`exam-final-score-lg ${notaClass}`}
-                                style={{ '--mc-grade-pct': Math.max(0, Math.min(1, nota / diffConfig.gradeMax)) }}
-                            >
-                                <span className="mc-grade-orbit" aria-hidden="true" />
-                                <span className="score-val-lg">{nota.toFixed(1)}</span>
-                                <span className="score-total-lg">/ {diffConfig.gradeMax}</span>
-                            </div>
-                            <div className="exam-nota-msg">{notaMsg}</div>
-
-                            <div className="exam-score-chips">
-                                <span className={`exam-chip difficulty-${examDifficulty}`}>{diffConfig.label}</span>
-                                <span className="exam-chip points"><strong>{points.toLocaleString('es-ES')}</strong> pts</span>
-                                <span className="exam-chip">✅ {examScore}/{total}</span>
-                                <span className="exam-chip">⏱ {examFinalTime}s</span>
-                            </div>
-
-                            <div className="exam-details-list custom-scrollbar">
-                                {examResultsData.map((res, idx) => (
-                                    <div key={idx} className={`exam-result-item ${res.correct ? 'correct' : 'incorrect'}`}>
-                                        <div className="res-icon">{res.correct ? '✅' : '❌'}</div>
-                                        <div className="res-info">
-                                            <span className="res-name">{res.question.name}</span>
-                                            {!res.correct && (
-                                                <span className="res-solution">Solución: {res.question.formula} ({getElementCounts(res.question.atoms).map(([s, c]) => `${s}${c > 1 ? c : ''}`).join(' ')})</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="exam-actions-row">
-                                <button className="btn-alchemy secondary" onClick={exitExamMode} style={{ background: '#cbd5e1', color: '#0f172a' }}>SALIR</button>
-                                <button className="btn-alchemy" onClick={() => { setShowExamResults(false); setShowDifficultySelector(true); }}>NUEVO EXAMEN</button>
+                        <motion.div className="mc-overlay" {...overlayAnim}>
+                            <div className="mc-panel mc-panel--wide">
+                                <ResultsScreen
+                                    subtitle={`Mesa de Crafteo · ${DIFF_NAME[examDifficulty] || ''} · ${diffConfig.note}`}
+                                    nota={nota}
+                                    points={points}
+                                    stats={[
+                                        { icon: Target, tone: 'good', label: 'Aciertos', value: `${examScore}/${total}` },
+                                        { icon: Clock, tone: 'time', label: 'Tiempo', value: `${examFinalTime}s` },
+                                        { icon: Gauge, tone: 'progress', label: 'Dificultad', value: DIFF_NAME[examDifficulty] || '' },
+                                    ]}
+                                    actions={[
+                                        { label: 'Nuevo examen', onClick: () => { setShowExamResults(false); setShowDifficultySelector(true); }, icon: RefreshCw },
+                                        { label: 'Volver al laboratorio', onClick: exitExamMode, icon: LogOut, variant: 'soft' },
+                                    ]}
+                                >
+                                    {examResultsData.map((res, idx) => (
+                                        <FeedbackItem key={idx} index={idx + 1} ok={res.correct} title={res.question.name}>
+                                            {res.correct
+                                                ? <>Fórmula: <strong>{res.question.formula}</strong></>
+                                                : <>Solución: <strong>{res.question.formula}</strong> ({getElementCounts(res.question.atoms).map(([sym, c]) => `${sym}${c > 1 ? c : ''}`).join(' ')})</>}
+                                        </FeedbackItem>
+                                    ))}
+                                </ResultsScreen>
                             </div>
                         </motion.div>
-                    </div>
                     );
                 })()}
             </AnimatePresence>
@@ -760,7 +783,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp, onGameComplete }) => {
             <AnimatePresence>
                 {showTutorial && <TutorialModal onClose={() => setShowTutorial(false)} />}
             </AnimatePresence>
-        </div >
+        </GameShell>
     );
 };
 

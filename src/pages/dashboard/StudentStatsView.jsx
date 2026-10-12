@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import {
   ArrowLeft, Gamepad2, Clock, Target, Trophy, CalendarDays,
-  ChevronDown, ChevronUp, TrendingUp, Zap, Medal, Crown
+  ChevronDown, TrendingUp, Zap, Medal, Crown, Activity, LayoutGrid, Hash, BarChart3, Percent,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import { Button } from '@/components/ui/button';
 import BrandLoader from '@/components/ui/BrandLoader';
+import UserAvatar from '@/components/ui/UserAvatar';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import {
+  DashCard, StatTile, ProgressRing, MiniBars, MeterRow, SectionGrid, DashButton, DashEmpty, Pill,
+} from '@/components/dashboard/kit';
+import materiasData from '/public/data/materias.json';
 
 function formatTime(seconds) {
   if (!seconds || seconds === 0) return '0m';
@@ -21,6 +25,37 @@ function formatDateTime(dateStr) {
   return new Date(dateStr).toLocaleDateString('es-ES', {
     day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
   });
+}
+
+const LEVEL_SHORT = { primaria: 'Primaria', eso: 'ESO', bachillerato: 'Bach.' };
+
+// Clave estable por app: la RPC agrupa por app + curso + asignatura, así que el
+// mismo app_id puede repetirse (p. ej. Rosco en Lengua y en Inglés).
+const appKey = (app, idx) => [app.app_id, app.level, app.grade, app.subject_id, idx].join('|');
+
+// "3º ESO · Lengua" (curso y asignatura en que se jugó; distingue apps repetidas)
+const appCourse = (app) => {
+  const lvl = LEVEL_SHORT[app.level];
+  const course = (lvl || app.grade) ? [app.grade ? `${app.grade}º` : '', lvl || ''].join(' ').trim() : '';
+  const subject = app.subject_id
+    ? (materiasData?.[app.level]?.[app.grade]?.find((m) => m.id === app.subject_id)?.nombre || app.subject_id)
+    : '';
+  return [course, subject].filter(Boolean).join(' · ') || null;
+};
+
+// Quita el emoji inicial del nombre cuando ya se pinta el icono de la app
+const cleanName = (appId, name) => (
+  appId && hasAppIcon(appId) ? String(name || '').replace(/^[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D\s]+/u, '') || name : name
+);
+
+// Color por nota /10 (verde ≥8, azul ≥5, rojo <5)
+const gradeTone = (g) => (g == null ? 'slate' : g >= 8 ? 'good' : g >= 5 ? 'ok' : 'bad');
+const gradeClass = (g) => (g == null ? 'is-empty' : g >= 8 ? 'tdb-g--good' : g >= 5 ? 'tdb-g--ok' : 'tdb-g--bad');
+const fmtGrade = (g) => Number(g).toFixed(1).replace('.', ',');
+
+function AppGlyph({ appId, size = 40 }) {
+  if (appId && hasAppIcon(appId)) return <AppIcon appId={appId} size={size} />;
+  return <span className="tdb-session__ico" style={{ width: size, height: size }}><Gamepad2 size={Math.round(size / 2)} /></span>;
 }
 
 export default function StudentStatsView({ studentId, onBack }) {
@@ -62,96 +97,122 @@ export default function StudentStatsView({ studentId, onBack }) {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
-        <BrandLoader variant="inline" />
+      <div className="tdb-slot">
+        <div className="tdb-loading"><BrandLoader variant="inline" /></div>
       </div>
     );
   }
 
   if (!data) {
     return (
-      <div className="text-center py-12 text-slate-400">
-        <p>No se pudieron cargar los datos</p>
-        <Button variant="outline" onClick={onBack} className="mt-4">Volver</Button>
+      <div className="tdb-slot">
+        <DashEmpty
+          title="No se pudieron cargar los datos"
+          action={<DashButton variant="soft" icon={ArrowLeft} onClick={onBack}>Volver</DashButton>}
+        />
       </div>
     );
   }
 
   const { student, stats, apps_detail: apps, recent_sessions: recent } = data;
 
+  const signed = n => (n > 0 ? '+' : '−') + Math.abs(n).toFixed(2).replace('.', ',');
+  const finalGrade = gradeStats && gradeStats.total_assignments > 0 ? gradeStats.final_grade : null;
+
+  // Rendimiento de las últimas partidas (de la más antigua a la más reciente)
+  const recentPerf = (recent || []).slice().reverse().map((r, i) => {
+    const pct = r.total_questions > 0
+      ? Math.round((r.correct_answers / r.total_questions) * 100)
+      : r.max_score > 0 ? Math.round((r.score / r.max_score) * 100) : 0;
+    return { label: `${i}`, value: pct, name: r.app_name, mode: r.mode, date: r.created_at };
+  });
+  const topApps = (apps || []).slice(0, 6);
+  const maxPlays = Math.max(1, ...topApps.map(a => a.total_plays || 0));
+
   return (
-    <div>
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
-        <Button variant="outline" size="sm" onClick={onBack}>
-          <ArrowLeft className="w-4 h-4 mr-1" />
+    <div className="tdb-stack">
+      {/* Cabecera del informe */}
+      <section className="tdb-report-hero">
+        <DashButton variant="glass" size="sm" icon={ArrowLeft} onClick={onBack} className="tdb-report-hero__back">
           Volver
-        </Button>
-        <div className="flex items-center gap-3">
-          <span className="text-4xl">{student.avatar_emoji || '🎓'}</span>
-          <div>
-            <h2 className="text-lg font-bold text-slate-800">{student.display_name}</h2>
-            <p className="text-sm text-slate-500">@{student.username} &middot; {student.group_name}</p>
+        </DashButton>
+        <div className="tdb-report-hero__ava">
+          <UserAvatar
+            selectedAvatarCode={student.selected_avatar_code}
+            avatarEmoji={student.avatar_emoji || '🎓'}
+            avatarColor={student.avatar_color}
+            size="lg"
+          />
+        </div>
+        <div className="tdb-report-hero__text">
+          <p className="tdb-report-hero__kicker">Informe del alumno</p>
+          <h2 className="tdb-report-hero__name">{student.display_name}</h2>
+          <div className="tdb-report-hero__chips">
+            <Pill>@{student.username}</Pill>
+            {student.group_name && <Pill icon={Hash}>{student.group_name}</Pill>}
+            <Pill icon={CalendarDays}>{stats.days_active || 0} días activo</Pill>
           </div>
         </div>
-      </div>
+        {finalGrade != null && (
+          <div className="tdb-report-hero__grade">
+            <ProgressRing value={Number(finalGrade)} size={104} stroke={9} label={`Nota final ${fmtGrade(finalGrade)}`}>
+              <span className="tdb-bignum">{fmtGrade(finalGrade)}</span>
+            </ProgressRing>
+            <span className="tdb-report-hero__grade-label">Nota final</span>
+          </div>
+        )}
+      </section>
 
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <StatMini icon={Gamepad2} label="Partidas" value={stats.total_sessions || 0}
-          sub={`${stats.practice_sessions || 0} prac. / ${stats.test_sessions || 0} exam.`} color="bg-blue-500" />
-        <StatMini icon={Clock} label="Tiempo" value={formatTime(stats.total_time_seconds)}
-          sub={`${stats.days_active || 0} dias activo`} color="bg-purple-500" />
-        <StatMini icon={Target} label="Precision" value={`${stats.avg_accuracy || 0}%`}
-          sub={`${stats.total_correct || 0}/${stats.total_questions || 0}`} color="bg-green-500" />
-        <StatMini icon={Trophy} label="Mejor punt." value={stats.best_score || 0}
-          sub={`Media exam.: ${stats.avg_test_score || 0}`} color="bg-amber-500" />
-      </div>
+      {/* Indicadores */}
+      <SectionGrid cols={4}>
+        <StatTile icon={Gamepad2} label="Partidas" value={stats.total_sessions || 0}
+          sub={`${stats.practice_sessions || 0} prác. · ${stats.test_sessions || 0} exam.`} tone="blue" />
+        <StatTile icon={Clock} label="Tiempo" value={formatTime(stats.total_time_seconds)}
+          sub={`${stats.days_active || 0} días activo`} tone="violet" />
+        <StatTile icon={Target} label="Precisión" value={Number(stats.avg_accuracy) || 0}
+          format={(v) => `${Math.round(v)} %`}
+          sub={`${stats.total_correct || 0}/${stats.total_questions || 0} aciertos`} tone="emerald"
+          progress={(Number(stats.avg_accuracy) || 0) / 100} />
+        <StatTile icon={Trophy} label="Mejor puntuación" value={Number(stats.best_score) || 0}
+          sub={`Media examen: ${stats.avg_test_score || 0}`} tone="amber" />
+      </SectionGrid>
 
       {/* Notas por evaluacion */}
       {gradeStats && gradeStats.total_assignments > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl border border-purple-100 shadow-sm p-4 mb-6"
-        >
-          <h3 className="font-bold text-slate-800 flex items-center gap-2 mb-3">
-            <TrendingUp className="w-4 h-4 text-purple-500" />
-            Notas de las tareas
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <DashCard icon={TrendingUp} title="Notas de las tareas" subtitle="Base de tareas · 0,9 + bonus de duelos, batallas, nivel y avatares" tone="pink">
+          <div className="tdb-terms">
             {[1, 2, 3].map(t => {
               const tStats = gradeStats.terms?.find(x => x.term === t);
               const grade = tStats?.final_grade;
               const battleBonus = Number(tStats?.battle_bonus) || 0;
               const duelBonus = Number(tStats?.duel_bonus) || 0;
               const progressBonus = Number(tStats?.progress_bonus ?? gradeStats.progress_bonus) || 0;
-              const gradeColor = grade == null ? 'text-slate-300' : grade >= 8 ? 'text-green-600' : grade >= 5 ? 'text-blue-600' : 'text-red-500';
-              const signed = n => (n > 0 ? '+' : '−') + Math.abs(n).toFixed(2).replace('.', ',');
+              const avatarBonus = Number(tStats?.avatar_bonus) || 0;
               return (
-                <div key={t} className="rounded-xl border border-slate-100 bg-gradient-to-br from-pink-50 to-rose-50 p-3 text-center">
-                  <div className="text-xs text-rose-600 font-semibold">{t}ª Evaluación</div>
-                  <div className={`text-2xl font-black mt-1 ${gradeColor}`}>
-                    {grade != null ? Number(grade).toFixed(1) : '—'}
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">
+                <div key={t} className="tdb-term">
+                  <span className="tdb-term__label">{t}ª Evaluación</span>
+                  <ProgressRing value={grade != null ? Number(grade) : 0} size={76} stroke={9} tone={gradeTone(grade)}>
+                    <span className={`tdb-term__num ${gradeClass(grade)}`}>
+                      {grade != null ? fmtGrade(grade) : '—'}
+                    </span>
+                  </ProgressRing>
+                  <span className="tdb-term__sub">
                     {tStats ? `${tStats.completed}/${tStats.total} aprobadas` : 'Sin tareas'}
+                  </span>
+                  <div className="tdb-term__bonus">
+                    {duelBonus !== 0 && (
+                      <span className={`tdb-chip ${duelBonus > 0 ? 'tdb-chip--good' : 'tdb-chip--bad'}`}>{signed(duelBonus)} duelos</span>
+                    )}
+                    {battleBonus > 0 && (
+                      <span className="tdb-chip tdb-chip--warn">+{battleBonus.toFixed(2).replace('.', ',')} batallas</span>
+                    )}
+                    {progressBonus > 0 && (
+                      <span className="tdb-chip tdb-chip--blue">+{progressBonus.toFixed(2).replace('.', ',')} nivel</span>
+                    )}
+                    {avatarBonus > 0 && (
+                      <span className="tdb-chip tdb-chip--violet">+{avatarBonus.toFixed(2).replace('.', ',')} avatares</span>
+                    )}
                   </div>
-                  {duelBonus !== 0 && (
-                    <div className={`text-[10px] font-semibold mt-0.5 ${duelBonus > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                      {signed(duelBonus)} duelos
-                    </div>
-                  )}
-                  {battleBonus > 0 && (
-                    <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
-                      +{battleBonus.toFixed(2).replace('.', ',')} batallas
-                    </div>
-                  )}
-                  {progressBonus > 0 && (
-                    <div className="text-[10px] font-semibold text-blue-600 mt-0.5">
-                      +{progressBonus.toFixed(2).replace('.', ',')} nivel
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -160,239 +221,184 @@ export default function StudentStatsView({ studentId, onBack }) {
               const battleTotal = Number(gradeStats.battle_bonus_total) || 0;
               const duelTotal = Number(gradeStats.duel_bonus_total) || 0;
               const progressTotal = Number(gradeStats.progress_bonus) || 0;
-              const gradeColor = g == null ? 'text-slate-300' : g >= 8 ? 'text-green-600' : g >= 5 ? 'text-blue-600' : 'text-red-500';
-              const signed = n => (n > 0 ? '+' : '−') + Math.abs(n).toFixed(2).replace('.', ',');
+              const avatarTotal = Number(gradeStats.avatar_bonus) || 0;
               return (
-                <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-100 to-blue-100 p-3 text-center shadow-sm">
-                  <div className="text-xs text-purple-700 font-bold uppercase tracking-wide">Nota final</div>
-                  <div className={`text-2xl font-black mt-1 ${gradeColor}`}>
-                    {g != null ? Number(g).toFixed(1) : '—'}
-                  </div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">
+                <div className="tdb-term tdb-term--final">
+                  <span className="tdb-term__label">Nota final</span>
+                  <ProgressRing value={g != null ? Number(g) : 0} size={76} stroke={9} tone={gradeTone(g)}>
+                    <span className={`tdb-term__num ${gradeClass(g)}`}>
+                      {g != null ? fmtGrade(g) : '—'}
+                    </span>
+                  </ProgressRing>
+                  <span className="tdb-term__sub">
                     {gradeStats.completed_assignments}/{gradeStats.total_assignments} aprobadas
+                  </span>
+                  <div className="tdb-term__bonus">
+                    {duelTotal !== 0 && (
+                      <span className={`tdb-chip ${duelTotal > 0 ? 'tdb-chip--good' : 'tdb-chip--bad'}`}>{signed(duelTotal)} duelos</span>
+                    )}
+                    {battleTotal > 0 && (
+                      <span className="tdb-chip tdb-chip--warn">+{battleTotal.toFixed(2).replace('.', ',')} batallas</span>
+                    )}
+                    {progressTotal > 0 && (
+                      <span className="tdb-chip tdb-chip--blue">
+                        +{progressTotal.toFixed(2).replace('.', ',')} nivel {gradeStats.level ? `(${gradeStats.level})` : ''}
+                      </span>
+                    )}
+                    {avatarTotal > 0 && (
+                      <span className="tdb-chip tdb-chip--violet">+{avatarTotal.toFixed(2).replace('.', ',')} avatares</span>
+                    )}
                   </div>
-                  {duelTotal !== 0 && (
-                    <div className={`text-[10px] font-semibold mt-0.5 ${duelTotal > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                      {signed(duelTotal)} duelos
-                    </div>
-                  )}
-                  {battleTotal > 0 && (
-                    <div className="text-[10px] font-semibold text-amber-600 mt-0.5">
-                      +{battleTotal.toFixed(2).replace('.', ',')} batallas
-                    </div>
-                  )}
-                  {progressTotal > 0 && (
-                    <div className="text-[10px] font-semibold text-blue-600 mt-0.5">
-                      +{progressTotal.toFixed(2).replace('.', ',')} nivel {gradeStats.level ? `(${gradeStats.level})` : ''}
-                    </div>
-                  )}
                 </div>
               );
             })()}
           </div>
-        </motion.div>
+        </DashCard>
+      )}
+
+      {/* Rendimiento reciente + reparto por app */}
+      {((recent && recent.length > 0) || topApps.length > 0) && (
+        <SectionGrid cols={2}>
+          {recent && recent.length > 0 && (
+            <DashCard icon={Activity} title="Rendimiento reciente" subtitle={`% de aciertos en las últimas ${recent.length} partidas`} tone="emerald">
+              <MiniBars
+                data={recentPerf}
+                tone="emerald"
+                height={170}
+                formatTip={(d) => `${d.name} · ${d.mode === 'test' ? 'Examen' : 'Práctica'} · ${d.value} % · ${formatDateTime(d.date)}`}
+              />
+              <div className="tdb-perf-legend">
+                <span><b>{Math.round(recentPerf.reduce((a, d) => a + d.value, 0) / Math.max(1, recentPerf.length))} %</b> media</span>
+                <span><b>{Math.max(0, ...recentPerf.map(d => d.value))} %</b> mejor</span>
+                <span><b>{recentPerf.filter(d => d.mode === 'test').length}</b> de examen</span>
+                <span className="tdb-perf-legend__axis">← más antiguas · más recientes →</span>
+              </div>
+            </DashCard>
+          )}
+          {topApps.length > 0 && (
+            <DashCard icon={BarChart3} title="Apps más jugadas" subtitle="Partidas · precisión" tone="indigo">
+              {topApps.map((app, idx) => (
+                <MeterRow
+                  key={appKey(app, idx)}
+                  icon={<AppGlyph appId={app.app_id} size={24} />}
+                  label={<span className="tdb-ellipsis" title={app.app_name}>{cleanName(app.app_id, app.app_name)}</span>}
+                  value={app.total_plays || 0}
+                  max={maxPlays}
+                  right={`${app.total_plays} · ${app.accuracy}%`}
+                  tone={['violet', 'blue', 'emerald', 'amber', 'pink', 'cyan'][idx % 6]}
+                />
+              ))}
+            </DashCard>
+          )}
+        </SectionGrid>
       )}
 
       {/* Batalla stats */}
       {qbStats && qbStats.total_played > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 shadow-sm p-4 mb-6"
-        >
-          <h3 className="font-bold text-amber-800 flex items-center gap-2 mb-3">
-            <Zap className="w-4 h-4 text-amber-500" />
-            Batalla
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div>
-              <p className="text-xs text-amber-600">Partidas</p>
-              <p className="text-xl font-bold text-amber-900">{qbStats.total_played}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600 flex items-center gap-1"><Crown className="w-3 h-3" /> Victorias</p>
-              <p className="text-xl font-bold text-amber-900">{qbStats.total_wins}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600 flex items-center gap-1"><Medal className="w-3 h-3" /> Podio (Top 3)</p>
-              <p className="text-xl font-bold text-amber-900">{qbStats.total_podium}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600">Precision</p>
-              <p className="text-xl font-bold text-amber-900">{qbStats.avg_accuracy}%</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600">Mejor punt.</p>
-              <p className="text-lg font-bold text-amber-900">{qbStats.best_score}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600">Media punt.</p>
-              <p className="text-lg font-bold text-amber-900">{qbStats.avg_score}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600">Puesto medio</p>
-              <p className="text-lg font-bold text-amber-900">#{qbStats.avg_rank}</p>
-            </div>
-            <div>
-              <p className="text-xs text-amber-600">Aciertos</p>
-              <p className="text-lg font-bold text-amber-900">{qbStats.total_correct}/{qbStats.total_questions}</p>
-            </div>
+        <DashCard icon={Zap} title="Batallas en directo" subtitle="Quiz Battle del grupo" tone="amber">
+          <div className="tdb-qb">
+            {[
+              { icon: Gamepad2, label: 'Partidas', value: qbStats.total_played },
+              { icon: Crown, label: 'Victorias', value: qbStats.total_wins },
+              { icon: Medal, label: 'Podio (Top 3)', value: qbStats.total_podium },
+              { icon: Percent, label: 'Precisión', value: `${qbStats.avg_accuracy}%` },
+              { icon: Trophy, label: 'Mejor punt.', value: qbStats.best_score },
+              { icon: BarChart3, label: 'Media punt.', value: qbStats.avg_score },
+              { icon: Hash, label: 'Puesto medio', value: `#${qbStats.avg_rank}` },
+              { icon: Target, label: 'Aciertos', value: `${qbStats.total_correct}/${qbStats.total_questions}` },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="tdb-qb__item">
+                <span className="tdb-qb__icon"><Icon size={17} /></span>
+                <span className="tdb-qb__text">
+                  <span className="tdb-qb__value">{value}</span>
+                  <span className="tdb-qb__label">{label}</span>
+                </span>
+              </div>
+            ))}
           </div>
-        </motion.div>
+        </DashCard>
       )}
 
       {/* Apps detail */}
       {apps && apps.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl border border-slate-100 shadow-sm mb-6"
-        >
-          <div className="p-4 border-b border-slate-50">
-            <h3 className="font-bold text-slate-800 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-blue-500" />
-              Apps ({apps.length})
-            </h3>
+        <DashCard icon={LayoutGrid} title={`Apps (${apps.length})`} subtitle="Pulsa una app para ver más detalle" tone="blue">
+          <div className="tdb-apps">
+            {apps.map((app, idx) => {
+              const key = appKey(app, idx);
+              const open = expandedApp === key;
+              const course = appCourse(app);
+              const accTone = app.accuracy >= 80 ? '#10b981' : app.accuracy >= 50 ? '#f59e0b' : '#ef4444';
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  className={`tdb-app group ${open ? 'is-open' : ''}`}
+                  onClick={() => setExpandedApp(open ? null : key)}
+                  aria-expanded={open}
+                >
+                  <span className="tdb-app__top">
+                    <AppGlyph appId={app.app_id} size={44} />
+                    <span className="tdb-app__name">
+                      <strong>{cleanName(app.app_id, app.app_name)}</strong>
+                      {course && <span>{course}</span>}
+                      <span>{app.total_plays} partidas ({app.test_plays} exam.)</span>
+                    </span>
+                    <ChevronDown size={18} className="tdb-app__chev" />
+                  </span>
+                  <span className="tdb-app__acc" style={{ '--st': accTone }}>
+                    <span className="tdb-track"><i style={{ transform: `scaleX(${Math.max(0, Math.min(1, (Number(app.accuracy) || 0) / 100))})` }} /></span>
+                    <span style={{ color: accTone }}>{app.accuracy}%</span>
+                  </span>
+                  <span className="tdb-app__metrics">
+                    <span className="tdb-app__metric"><b>{app.best_score}</b><small>Mejor</small></span>
+                    <span className="tdb-app__metric"><b>{app.avg_test_score}</b><small>Media ex.</small></span>
+                    <span className="tdb-app__metric"><b>{formatTime(app.total_time_seconds)}</b><small>Tiempo</small></span>
+                  </span>
+                  {open && (
+                    <span className="tdb-app__more">
+                      <span><small>Media práctica</small><b>{app.avg_score}</b></span>
+                      <span><small>Mejor exam.</small><b>{app.best_test_score}</b></span>
+                      <span><small>Última partida</small><b>{formatDateTime(app.last_played)}</b></span>
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-slate-50 text-left">
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500">App</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Partidas</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Precision</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Mejor</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Media exam.</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Tiempo</th>
-                  <th className="px-4 py-2 w-8"></th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-50">
-                {apps.map((app) => (
-                  <React.Fragment key={app.app_id}>
-                    <tr
-                      className="hover:bg-slate-50 cursor-pointer"
-                      onClick={() => setExpandedApp(expandedApp === app.app_id ? null : app.app_id)}
-                    >
-                      <td className="px-4 py-2.5 font-medium text-slate-700">{app.app_name}</td>
-                      <td className="px-4 py-2.5 text-center text-slate-600">
-                        {app.total_plays}
-                        <span className="text-xs text-slate-400 ml-1">({app.test_plays} exam.)</span>
-                      </td>
-                      <td className="px-4 py-2.5 text-center">
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                          app.accuracy >= 80 ? 'bg-green-100 text-green-700'
-                          : app.accuracy >= 50 ? 'bg-amber-100 text-amber-700'
-                          : 'bg-red-100 text-red-700'
-                        }`}>{app.accuracy}%</span>
-                      </td>
-                      <td className="px-4 py-2.5 text-center font-semibold text-amber-600">{app.best_score}</td>
-                      <td className="px-4 py-2.5 text-center text-slate-600">{app.avg_test_score}</td>
-                      <td className="px-4 py-2.5 text-center text-slate-500">{formatTime(app.total_time_seconds)}</td>
-                      <td className="px-4 py-2.5">
-                        {expandedApp === app.app_id
-                          ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                          : <ChevronDown className="w-4 h-4 text-slate-400" />}
-                      </td>
-                    </tr>
-                    {expandedApp === app.app_id && (
-                      <tr>
-                        <td colSpan={7}>
-                          <div className="bg-slate-50 px-4 py-3 grid grid-cols-3 gap-3 text-sm">
-                            <div>
-                              <p className="text-xs text-slate-400">Media practica</p>
-                              <p className="font-bold text-slate-700">{app.avg_score}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Mejor exam.</p>
-                              <p className="font-bold text-amber-600">{app.best_test_score}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-slate-400">Ultima partida</p>
-                              <p className="font-bold text-slate-700">{formatDateTime(app.last_played)}</p>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
+        </DashCard>
       )}
 
       {/* Recent sessions */}
       {recent && recent.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white rounded-xl border border-slate-100 shadow-sm"
-        >
-          <div className="p-4 border-b border-slate-50">
-            <h3 className="font-bold text-slate-800 flex items-center gap-2">
-              <CalendarDays className="w-4 h-4 text-green-500" />
-              Ultimas partidas
-            </h3>
+        <DashCard icon={CalendarDays} title="Últimas partidas" tone="emerald">
+          <div className="tdb-sessions">
+            {recent.map((s, i) => (
+              <div key={i} className="tdb-session">
+                <AppGlyph appId={s.app_id} size={36} />
+                <span className="tdb-session__app">
+                  {cleanName(s.app_id, s.app_name)}{' '}
+                  <span className={`tdb-chip ${s.mode === 'test' ? 'tdb-chip--violet' : 'tdb-chip--blue'}`} style={{ marginLeft: 6 }}>
+                    {s.mode === 'test' ? 'Examen' : 'Practica'}
+                  </span>
+                </span>
+                <span className="tdb-session__score">{s.score}{s.max_score > 0 ? `/${s.max_score}` : ''}</span>
+                <span className="tdb-session__hits">
+                  {s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '-'}
+                </span>
+                <span className="tdb-session__date">{formatDateTime(s.created_at)}</span>
+              </div>
+            ))}
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-slate-50 text-left">
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500">App</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Modo</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Puntuacion</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500 text-center">Aciertos</th>
-                  <th className="px-4 py-2 text-xs font-medium text-slate-500">Fecha</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-50">
-                {recent.map((s, i) => (
-                  <tr key={i} className="hover:bg-slate-50">
-                    <td className="px-4 py-2 font-medium text-slate-700">{s.app_name}</td>
-                    <td className="px-4 py-2 text-center">
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                        s.mode === 'test' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'
-                      }`}>{s.mode === 'test' ? 'Examen' : 'Practica'}</span>
-                    </td>
-                    <td className="px-4 py-2 text-center font-semibold">{s.score}{s.max_score > 0 ? `/${s.max_score}` : ''}</td>
-                    <td className="px-4 py-2 text-center text-slate-500">
-                      {s.total_questions > 0 ? `${s.correct_answers}/${s.total_questions}` : '-'}
-                    </td>
-                    <td className="px-4 py-2 text-xs text-slate-500">{formatDateTime(s.created_at)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
+        </DashCard>
       )}
 
       {(!apps || apps.length === 0) && (!recent || recent.length === 0) && (
-        <div className="text-center py-12 text-slate-400">
-          <Gamepad2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
-          <p>Este alumno aun no tiene actividad registrada</p>
+        <div className="tdb-slot">
+          <DashEmpty title="Sin actividad todavía">
+            Este alumno aún no tiene actividad registrada.
+          </DashEmpty>
         </div>
       )}
-    </div>
-  );
-}
-
-function StatMini({ icon: Icon, label, value, sub, color }) {
-  return (
-    <div className="bg-white rounded-xl p-3 border border-slate-100 shadow-sm">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-xs text-slate-500">{label}</p>
-          <p className="text-xl font-bold text-slate-800">{value}</p>
-          {sub && <p className="text-xs text-slate-400">{sub}</p>}
-        </div>
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${color}`}>
-          <Icon className="w-4 h-4 text-white" />
-        </div>
-      </div>
     </div>
   );
 }

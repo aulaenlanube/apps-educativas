@@ -1,13 +1,15 @@
+// Pestaña "Perfil" del alumno — rediseño 2026.
+// Ficha de jugador (avatar, nivel, XP) + índice de secciones + tarjetas del
+// kit: galería de personajes, frases de duelo, avatar clásico (emoji),
+// calidad gráfica, contraseña, email y grupos. Solo presentación: las RPC y
+// los manejadores son los de siempre.
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { UserCircle, KeyRound, Eye, EyeOff, Lock, Check, Users, Trophy, Sparkles, Award, Calendar, Zap } from 'lucide-react';
+import { KeyRound, Eye, EyeOff, Lock, Check, Users, Trophy, Sparkles, Award, Zap, Smile, Settings2, MessageSquare, Mail, Crown } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGamification } from '@/hooks/useGamification';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import EmailLinkSection from '@/components/student/EmailLinkSection';
 import GroupSelector from '@/components/student/GroupSelector';
 import UserAvatar, { rarityMeta } from '@/components/ui/UserAvatar';
@@ -16,6 +18,8 @@ import DuelPhrasesEditor from '@/components/duel/DuelPhrasesEditor';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import { useAvatarCatalog } from '@/hooks/useAvatarCatalog';
 import AnimatedNumber from '@/components/ui/AnimatedNumber';
+import { DashCard, LevelShield, XPBar, DashButton } from '@/components/dashboard/kit';
+import './StudentProfileEditor.css';
 
 const AVATAR_EMOJIS = [
   '🎓', '🦊', '🐱', '🐶', '🐼', '🦁', '🐸', '🦄',
@@ -40,6 +44,20 @@ const AVATAR_COLORS = [
   { id: 'from-slate-600 to-slate-800', label: 'Oscuro', from: '#475569', to: '#1e293b' },
   { id: 'from-rose-400 to-purple-500', label: 'Pastel', from: '#fb7185', to: '#a855f7' },
 ];
+
+// Índice de secciones (solo navegación dentro de la pestaña).
+const SECTIONS = [
+  { id: 'spe-avatars', label: 'Personajes', icon: Sparkles },
+  { id: 'spe-phrases', label: 'Frases', icon: MessageSquare },
+  { id: 'spe-emoji', label: 'Emoji', icon: Smile },
+  { id: 'spe-graphics', label: 'Gráficos', icon: Settings2 },
+  { id: 'spe-password', label: 'Contraseña', icon: KeyRound },
+  { id: 'spe-account', label: 'Email y grupos', icon: Mail },
+];
+
+const scrollToSection = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
 
 export default function StudentProfileEditor({ student, studentInfo, onProfileUpdated }) {
   const { updateStudentLocal } = useAuth();
@@ -133,463 +151,326 @@ export default function StudentProfileEditor({ student, studentInfo, onProfileUp
   const equippedRarity = equippedAvatar?.rarity;
   const rMeta = equippedRarity ? rarityMeta(equippedRarity) : null;
 
+  const displayName = studentInfo?.email_verified || student?.email_verified
+    ? (studentInfo?.display_name || 'Alumno')
+    : `@${username}`;
+  const passwordMismatch = !!confirmPassword && newPassword !== confirmPassword;
+
+  // Colores de la ficha: rareza del avatar equipado o el color del emoji.
+  const idStyle = equippedAvatar
+    ? { '--id-1': rMeta.ring, '--id-2': rMeta.glow }
+    : { '--id-1': selectedColorObj.from, '--id-2': selectedColorObj.to };
+
   return (
-    <div className="space-y-6">
-      {/* HERO CARD: layout técnico cuando hay avatar equipado, banner clásico cuando no */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
+    <div className="spe">
+      {/* ── Ficha de jugador ── */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative bg-white dark:bg-slate-900 rounded-3xl shadow-lg border border-purple-100 dark:border-slate-700 overflow-hidden"
+        className={`spe-id ${equippedAvatar ? 'has-avatar' : 'is-classic'}`}
+        style={idStyle}
       >
-        {equippedAvatar ? (
-          // Layout con avatar: fondo técnico oscuro con grid + glow de rareza
-          <div
-            className="relative px-5 sm:px-7 py-6 sm:py-7 overflow-hidden"
-            style={{
-              background: `radial-gradient(circle at 20% 30%, ${rMeta.glow}33 0%, transparent 55%), radial-gradient(circle at 80% 70%, ${rMeta.ring}22 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
-            }}
-          >
-            {/* Grid técnico */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-25"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
-                backgroundSize: '32px 32px',
-              }}
-            />
-            {/* Líneas diagonales sutiles */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-15"
-              style={{
-                backgroundImage:
-                  `repeating-linear-gradient(45deg, transparent 0 80px, ${rMeta.ring}33 80px 81px)`,
-              }}
-            />
-            {/* Highlight superior */}
-            <div
-              className="absolute inset-x-0 top-0 h-px"
-              style={{ background: `linear-gradient(90deg, transparent, ${rMeta.glow}, transparent)` }}
-            />
-            {studentInfo?.group_name && (
-              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/8 backdrop-blur-md rounded-full px-3 py-1 border border-white/15">
-                <Users className="w-3.5 h-3.5 text-white/80" />
-                <span className="text-xs font-bold text-white/90">{studentInfo.group_name}</span>
-              </div>
-            )}
-
-            <div className="relative flex flex-col sm:flex-row gap-5 sm:gap-7 items-start sm:items-center">
-              {/* Avatar enorme */}
-              <motion.div
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                className="flex-shrink-0"
-              >
-                <UserAvatar
-                  selectedAvatarCode={student.selected_avatar_code}
-                  size="mega"
-                  shape="rounded"
-                  showRarityBorder
-                  showRarityGlow
-                  className="shadow-[0_0_60px_rgba(0,0,0,0.6)]"
-                />
-              </motion.div>
-
-              <div className="flex-1 min-w-0 space-y-3">
-                {/* Etiqueta rareza + bonus */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span
-                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-white"
-                    style={{ background: `linear-gradient(135deg, ${rMeta.ring}, ${rMeta.glow})` }}
-                  >
-                    {rMeta.label}
-                  </span>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/50">
-                    +{Number(equippedAvatar.points_bonus).toFixed(2)} pts · nota media
-                  </span>
-                </div>
-
-                {/* Nombre alumno */}
-                <h1 className="text-2xl sm:text-3xl font-black text-white truncate">
-                  {studentInfo?.email_verified || student?.email_verified
-                    ? (studentInfo?.display_name || 'Alumno')
-                    : `@${username}`}
-                </h1>
-
-                {/* Descripción del avatar */}
-                {equippedAvatar.description && (
-                  <p className="text-sm text-white/70 italic leading-snug max-w-prose">
-                    {equippedAvatar.description}
-                  </p>
-                )}
-
-                {/* Chips */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-indigo-200 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/10 text-emerald-300 rounded-full px-3 py-1.5 text-xs font-bold border border-white/15 backdrop-blur">
-                    <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          // Layout clásico (banner color + emoji) cuando no hay avatar
-          <>
-            <div className={`h-36 sm:h-40 bg-gradient-to-r ${selectedColor} relative overflow-hidden`}>
-              <div className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)',
-                }}
-              />
-              {studentInfo?.group_name && (
-                <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
-                  <Users className="w-3.5 h-3.5 text-white" />
-                  <span className="text-xs font-bold text-white">{studentInfo.group_name}</span>
-                </div>
-              )}
-              <div className="absolute bottom-3 left-40 sm:left-48 right-4">
-                <h1 className="text-2xl sm:text-3xl font-black text-white truncate drop-shadow-lg">
-                  {studentInfo?.email_verified || student?.email_verified
-                    ? (studentInfo?.display_name || 'Alumno')
-                    : `@${username}`}
-                </h1>
-              </div>
-            </div>
-
-            <div className="px-5 sm:px-6 pb-5 -mt-16 sm:-mt-20 relative">
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                  className="flex-shrink-0"
-                >
-                  <div className={`w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-br ${selectedColor} flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden`}>
-                    <div className="absolute inset-0 opacity-20"
-                      style={{ backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 60%)' }}
-                    />
-                    <span className="text-6xl sm:text-7xl leading-none drop-shadow-lg relative">{selectedEmoji}</span>
-                  </div>
-                </motion.div>
-
-                <div className="flex-1 min-w-0 pt-2 sm:pt-24">
-                  <div className="flex flex-wrap gap-2">
-                    <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 rounded-full px-3 py-1.5 text-xs font-bold border border-amber-200">
-                      <Trophy className="w-3.5 h-3.5" /> Nivel {level}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 rounded-full px-3 py-1.5 text-xs font-bold border border-indigo-200">
-                      <Sparkles className="w-3.5 h-3.5" /> {totalXp.toLocaleString()} XP
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-bold border border-emerald-200">
-                      <Award className="w-3.5 h-3.5" /> {totalEarned}/{totalAvailable} insignias
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-
-        <div className="px-5 sm:px-6 pb-5 pt-4 relative">
-
-          {/* Progreso de experiencia */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="relative overflow-hidden mt-5 rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white shadow-lg"
-          >
-            <div
-              className="absolute inset-0 opacity-25 pointer-events-none"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle at 12% 20%, rgba(255,255,255,0.4) 0%, transparent 45%), radial-gradient(circle at 88% 80%, rgba(255,200,255,0.3) 0%, transparent 50%)',
-              }}
-            />
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
-                backgroundSize: '28px 28px',
-              }}
-            />
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-
-            <div className="relative p-4 sm:p-5">
-              <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
-                <div className="flex items-center gap-3">
-                  <motion.div
-                    initial={{ scale: 0, rotate: -45 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 14 }}
-                    className="relative w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg"
-                    style={{ boxShadow: '0 0 20px rgba(253,224,71,0.35)' }}
-                  >
-                    <span className="text-2xl font-black tabular-nums drop-shadow">{level}</span>
-                  </motion.div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-white/70">Tu progreso</p>
-                    <p className="text-base font-black leading-tight">Nivel {level} de 101</p>
-                  </div>
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.18, duration: 0.4 }}
-                  className="text-right"
-                >
-                  <p className="text-[10px] uppercase tracking-wider text-white/70 font-bold">XP total</p>
-                  <div className="flex items-center justify-end gap-1.5">
-                    <Sparkles className="w-4 h-4 text-yellow-300" />
-                    <AnimatedNumber value={totalXp} className="text-2xl font-black tabular-nums drop-shadow" />
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Barra principal */}
-              <div>
-                <div className="flex items-center justify-between text-[11px] text-white/85 mb-1.5">
-                  <span className="flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 text-yellow-300" />
-                    <span className="font-semibold">
-                      {level >= 101 ? '¡Nivel máximo alcanzado!' : `Camino al nivel ${level + 1}`}
-                    </span>
-                  </span>
-                  <span className="text-white/70 tabular-nums">
-                    {level >= 101 ? '—' : `${xpInLevel.toLocaleString('es-ES')} / ${xpNeeded.toLocaleString('es-ES')} XP`}
-                  </span>
-                </div>
-                <div className="relative w-full h-3 bg-white/15 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${xpProgress}%` }}
-                    transition={{ duration: 1.2, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                    className="h-full rounded-full bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-400 shadow-[0_0_16px_rgba(251,191,36,0.55)]"
-                  />
-                  <motion.div
-                    initial={{ x: '-100%' }}
-                    animate={{ x: '120%' }}
-                    transition={{ duration: 1.6, delay: 0.45, ease: 'easeOut' }}
-                    className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-                  />
-                </div>
-                <div className="mt-1.5 flex items-center justify-between text-[10px] text-white/65">
-                  <span>{xpProgress}% del nivel</span>
-                  {level < 101 && (
-                    <span className="tabular-nums">Faltan {(xpNeeded - xpInLevel).toLocaleString('es-ES')} XP</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+        <div className="spe-id__bg" aria-hidden="true">
+          <span className="spe-id__grid" />
+          <span className="spe-id__orb spe-id__orb--a" />
+          <span className="spe-id__orb spe-id__orb--b" />
         </div>
-      </motion.div>
+
+        <motion.div
+          className="spe-id__avatar"
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+        >
+          {equippedAvatar ? (
+            <UserAvatar
+              selectedAvatarCode={student.selected_avatar_code}
+              size="hero"
+              shape="rounded"
+              showRarityBorder
+              showRarityGlow
+              className="spe-id__img"
+            />
+          ) : (
+            <div
+              className="spe-id__emoji"
+              style={{ background: `linear-gradient(135deg, ${selectedColorObj.from}, ${selectedColorObj.to})` }}
+            >
+              <span>{selectedEmoji}</span>
+            </div>
+          )}
+          <LevelShield level={level} />
+        </motion.div>
+
+        <div className="spe-id__main">
+          <div className="spe-id__tags">
+            <span className="spe-id__kicker">Ficha de jugador</span>
+            {studentInfo?.group_name && (
+              <span className="spe-id__tag"><Users size={13} /> {studentInfo.group_name}</span>
+            )}
+            {equippedAvatar && (
+              <span className="spe-id__tag spe-id__tag--rar">
+                <Crown size={13} /> {rMeta.label} · +{Number(equippedAvatar.points_bonus).toFixed(2)} nota
+              </span>
+            )}
+          </div>
+
+          <h1 className="spe-id__name">{displayName}</h1>
+          {equippedAvatar ? (
+            <p className="spe-id__desc">
+              <strong>{equippedAvatar.title}</strong>
+              {equippedAvatar.description ? ` — ${equippedAvatar.description}` : ''}
+            </p>
+          ) : (
+            <p className="spe-id__desc">Avatar clásico. Desbloquea personajes jugando y equípalos desde tu galería.</p>
+          )}
+
+
+          {level >= 101 ? (
+            <div className="spe-id__max"><Zap size={15} /> ¡Nivel máximo alcanzado!</div>
+          ) : (
+            <div className="spe-id__xp">
+              <XPBar value={xpInLevel} max={xpNeeded} label={`Camino al nivel ${level + 1} · ${xpProgress}%`} />
+              <span className="spe-id__left">
+                <Zap size={13} /> Faltan {(xpNeeded - xpInLevel).toLocaleString('es-ES')} XP · nivel {level} de 101
+              </span>
+            </div>
+          )}
+        </div>
+
+        <div className="spe-id__stats">
+          <span className="spe-id__stat">
+            <span className="spe-id__stat-icon is-amber"><Trophy size={16} /></span>
+            <span><b>{level}</b><em>Nivel</em></span>
+          </span>
+          <span className="spe-id__stat">
+            <span className="spe-id__stat-icon is-violet"><Sparkles size={16} /></span>
+            <span><AnimatedNumber value={totalXp} className="spe-id__num" /><em>XP total</em></span>
+          </span>
+          <span className="spe-id__stat">
+            <span className="spe-id__stat-icon is-emerald"><Award size={16} /></span>
+            <span><b>{totalEarned}/{totalAvailable}</b><em>Insignias</em></span>
+          </span>
+        </div>
+      </motion.section>
+
+      {/* ── Índice de secciones ── */}
+      <nav className="spe-jump" aria-label="Secciones del perfil">
+        {SECTIONS.map((s) => (
+          <button key={s.id} type="button" className="spe-jump__btn" onClick={() => scrollToSection(s.id)}>
+            <s.icon size={15} /> {s.label}
+          </button>
+        ))}
+      </nav>
 
       {/* Galería de personajes (avatar coleccionables) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
-        className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
+      <DashCard
+        id="spe-avatars"
+        className="spe-section"
+        icon={Sparkles}
+        tone="violet"
+        title="Galería de personajes"
+        subtitle="Desbloquea avatares jugando. Cada uno suma puntos a tu nota media (tope +0,5). Los más raros se ven sobre todo en duelo y batalla, como símbolo de estatus."
       >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Galería de personajes</h3>
-        <p className="text-xs text-slate-500 mb-4">
-          Desbloquea avatares jugando. Cada uno suma puntos a tu nota media (tope +0,5). Los más raros se ven sobre todo en duelo y batalla, como símbolo de estatus.
-        </p>
         <AvatarGallery onSelected={() => onProfileUpdated?.()} />
-      </motion.div>
+      </DashCard>
 
       {/* Frases para duelos 1 vs 1 */}
-      <DuelPhrasesEditor />
+      <div id="spe-phrases" className="spe-section">
+        <DuelPhrasesEditor />
+      </div>
 
-      {/* Calidad gráfica global (se guarda por dispositivo) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.08 }}
-        className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm"
-      >
-        <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Calidad gráfica</h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
-          Ajusta los gráficos de las apps 3D (La Fortaleza, Laboratorio de Física…) en este dispositivo.
-          En Auto se adapta sola a la potencia del equipo.
-        </p>
-        <GraphicsQualitySelector variant="row" />
-      </motion.div>
-
-      {/* Personalizar avatar (emoji + color clásico) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-      >
-        <h3 className="text-base font-bold text-slate-800 mb-1">Avatar clásico (emoji)</h3>
-        <p className="text-xs text-slate-500 mb-5">Si no tienes ningún avatar equipado, se mostrará este emoji con su color.</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Selector emoji */}
-          <div>
-            <Label className="text-slate-500 text-xs font-semibold mb-2 block uppercase tracking-wide">Emoji</Label>
-            <div className="grid grid-cols-8 gap-2">
-              {AVATAR_EMOJIS.map((emoji) => (
-                <button
-                  key={emoji}
-                  type="button"
-                  onClick={() => setSelectedEmoji(emoji)}
-                  className={`text-2xl p-2 rounded-xl transition-all ${
-                    selectedEmoji === emoji
-                      ? 'bg-purple-100 ring-2 ring-purple-400 scale-110'
-                      : 'hover:bg-slate-100'
-                  }`}
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Selector color */}
-          <div>
-            <Label className="text-slate-500 text-xs font-semibold mb-2 block uppercase tracking-wide">Color del panel</Label>
-            <div className="grid grid-cols-6 gap-2">
-              {AVATAR_COLORS.map((color) => (
-                <button
-                  key={color.id}
-                  type="button"
-                  onClick={() => setSelectedColor(color.id)}
-                  className={`relative h-10 rounded-xl transition-all ${
-                    selectedColor === color.id
-                      ? 'ring-2 ring-offset-2 ring-purple-400 scale-105'
-                      : 'hover:scale-105'
-                  }`}
-                  style={{ background: `linear-gradient(135deg, ${color.from}, ${color.to})` }}
-                  title={color.label}
-                >
-                  {selectedColor === color.id && (
-                    <Check className="w-4 h-4 text-white absolute inset-0 m-auto drop-shadow" />
-                  )}
-                </button>
-              ))}
-            </div>
-            <p className="text-[11px] text-slate-400 mt-2">Color actual: <span className="font-semibold">{selectedColorObj.label}</span></p>
-          </div>
-        </div>
-
-        {hasChanges && (
-          <Button
-            onClick={handleSaveAvatar}
-            disabled={savingEmoji}
-            className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white"
-          >
-            <Check className="w-4 h-4 mr-1" />
-            {savingEmoji ? 'Guardando...' : 'Guardar avatar'}
-          </Button>
-        )}
-      </motion.div>
-
-      {/* Vincular email */}
-      <EmailLinkSection
-        student={student}
-        studentInfo={studentInfo}
-        onUpdated={onProfileUpdated}
-      />
-
-      {/* Mis grupos (solo si tiene email verificado) */}
-      {(student?.email_verified || studentInfo?.email_verified) && (
-        <MyGroupsSection student={student} />
-      )}
-
-      {/* Cambiar contrasena */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-      >
-        <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-          <KeyRound className="w-5 h-5 text-amber-500" />
-          Cambiar contrasena
-        </h3>
-        <form onSubmit={handleChangePassword} className="space-y-4 max-w-md">
-          <div className="space-y-2">
-            <Label htmlFor="current-pw">Contrasena actual</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="current-pw"
-                type={showPasswords ? 'text' : 'password'}
-                placeholder="Tu contrasena actual"
-                className="pl-10 pr-10"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPasswords(!showPasswords)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+      <div className="spe-split">
+        {/* Personalizar avatar (emoji + color clásico) */}
+        <DashCard
+          id="spe-emoji"
+          className="spe-section"
+          icon={Smile}
+          tone="amber"
+          title="Avatar clásico (emoji)"
+          subtitle="Si no tienes ningún avatar equipado, se mostrará este emoji con su color."
+        >
+          <div className="spe-emoji">
+            <div className="spe-emoji__preview">
+              <div
+                className="spe-emoji__tile"
+                style={{ background: `linear-gradient(135deg, ${selectedColorObj.from}, ${selectedColorObj.to})` }}
               >
-                {showPasswords ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
+                <span>{selectedEmoji}</span>
+              </div>
+              <div className="spe-emoji__meta">
+                <span className="spe-label">Vista previa</span>
+                <strong>{selectedColorObj.label}</strong>
+                {equippedAvatar && <span className="spe-emoji__note">Ahora llevas un personaje equipado: el emoji se verá cuando vuelvas a él.</span>}
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="new-pw">Nueva contrasena</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="new-pw"
-                type={showPasswords ? 'text' : 'password'}
-                placeholder="Minimo 4 caracteres"
-                className="pl-10"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                required
-                minLength={4}
-              />
+            {/* Selector emoji */}
+            <div>
+              <span className="spe-label">Emoji</span>
+              <div className="spe-emoji__grid">
+                {AVATAR_EMOJIS.map((emoji) => (
+                  <button
+                    key={emoji}
+                    type="button"
+                    onClick={() => setSelectedEmoji(emoji)}
+                    className={`spe-emoji__btn${selectedEmoji === emoji ? ' is-active' : ''}`}
+                    aria-pressed={selectedEmoji === emoji}
+                  >
+                    {emoji}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="confirm-pw">Repetir nueva contrasena</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="confirm-pw"
-                type={showPasswords ? 'text' : 'password'}
-                placeholder="Repite la nueva contrasena"
-                className="pl-10"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                minLength={4}
-              />
+            {/* Selector color */}
+            <div>
+              <span className="spe-label">Color del panel</span>
+              <div className="spe-colors">
+                {AVATAR_COLORS.map((color) => (
+                  <button
+                    key={color.id}
+                    type="button"
+                    onClick={() => setSelectedColor(color.id)}
+                    className={`spe-colors__btn${selectedColor === color.id ? ' is-active' : ''}`}
+                    style={{ background: `linear-gradient(135deg, ${color.from}, ${color.to})` }}
+                    title={color.label}
+                    aria-label={color.label}
+                    aria-pressed={selectedColor === color.id}
+                  >
+                    {selectedColor === color.id && <Check size={16} />}
+                  </button>
+                ))}
+              </div>
             </div>
-            {confirmPassword && newPassword !== confirmPassword && (
-              <p className="text-xs text-red-500">Las contrasenas no coinciden</p>
+
+            {hasChanges && (
+              <DashButton
+                variant="amber"
+                icon={Check}
+                onClick={handleSaveAvatar}
+                disabled={savingEmoji}
+                className="spe-emoji__save"
+              >
+                {savingEmoji ? 'Guardando...' : 'Guardar avatar'}
+              </DashButton>
             )}
           </div>
+        </DashCard>
 
-          <Button
-            type="submit"
-            disabled={savingPassword || !currentPassword || newPassword.length < 4 || newPassword !== confirmPassword}
-            className="bg-gradient-to-r from-amber-500 to-orange-500 text-white"
+        <div className="spe-col">
+          {/* Calidad gráfica global (se guarda por dispositivo) */}
+          <DashCard
+            id="spe-graphics"
+            className="spe-section"
+            icon={Settings2}
+            tone="cyan"
+            title="Calidad gráfica"
+            subtitle="Se guarda en este dispositivo"
           >
-            {savingPassword ? 'Cambiando...' : 'Cambiar contrasena'}
-          </Button>
-        </form>
-      </motion.div>
+            <p className="spe-text">
+              Ajusta los gráficos de las apps 3D (La Fortaleza, Laboratorio de Física…) en este dispositivo.
+              En Auto se adapta sola a la potencia del equipo.
+            </p>
+            <GraphicsQualitySelector variant="row" className="spe-gfx" />
+          </DashCard>
+
+          {/* Cambiar contraseña */}
+          <DashCard
+            id="spe-password"
+            className="spe-section"
+            icon={KeyRound}
+            tone="orange"
+            title="Cambiar contraseña"
+            subtitle="Mínimo 4 caracteres"
+          >
+            <form onSubmit={handleChangePassword} className="spe-form">
+              <div className="spe-field">
+                <label htmlFor="current-pw" className="spe-label">Contraseña actual</label>
+                <div className="spe-input">
+                  <Lock size={16} className="spe-input__icon" />
+                  <input
+                    id="current-pw"
+                    type={showPasswords ? 'text' : 'password'}
+                    placeholder="Tu contraseña actual"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswords(!showPasswords)}
+                    className="spe-input__eye"
+                    aria-label={showPasswords ? 'Ocultar contraseñas' : 'Mostrar contraseñas'}
+                  >
+                    {showPasswords ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="spe-field">
+                <label htmlFor="new-pw" className="spe-label">Nueva contraseña</label>
+                <div className="spe-input">
+                  <Lock size={16} className="spe-input__icon" />
+                  <input
+                    id="new-pw"
+                    type={showPasswords ? 'text' : 'password'}
+                    placeholder="Mínimo 4 caracteres"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                    minLength={4}
+                  />
+                </div>
+              </div>
+
+              <div className="spe-field">
+                <label htmlFor="confirm-pw" className="spe-label">Repetir nueva contraseña</label>
+                <div className={`spe-input${passwordMismatch ? ' is-bad' : ''}`}>
+                  <Lock size={16} className="spe-input__icon" />
+                  <input
+                    id="confirm-pw"
+                    type={showPasswords ? 'text' : 'password'}
+                    placeholder="Repite la nueva contraseña"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                    minLength={4}
+                  />
+                </div>
+                {passwordMismatch && (
+                  <p className="spe-error">Las contraseñas no coinciden</p>
+                )}
+              </div>
+
+              <DashButton
+                type="submit"
+                variant="amber"
+                icon={KeyRound}
+                disabled={savingPassword || !currentPassword || newPassword.length < 4 || newPassword !== confirmPassword}
+              >
+                {savingPassword ? 'Cambiando...' : 'Cambiar contraseña'}
+              </DashButton>
+            </form>
+          </DashCard>
+        </div>
+      </div>
+
+      {/* Vincular email + grupos */}
+      <div id="spe-account" className="spe-section spe-account">
+        <div className="spe-legacy">
+          <EmailLinkSection
+            student={student}
+            studentInfo={studentInfo}
+            onUpdated={onProfileUpdated}
+          />
+        </div>
+
+        {/* Mis grupos (solo si tiene email verificado) */}
+        {(student?.email_verified || studentInfo?.email_verified) && (
+          <MyGroupsSection student={student} />
+        )}
+      </div>
     </div>
   );
 }
@@ -616,15 +497,7 @@ function MyGroupsSection({ student }) {
   if (loading) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm"
-    >
-      <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-        <Users className="w-5 h-5 text-indigo-500" />
-        Mis grupos
-      </h3>
+    <DashCard icon={Users} tone="indigo" title="Mis grupos" subtitle="Cambia de grupo o únete a uno nuevo" className="spe-groups">
       <GroupSelector
         groups={groups}
         activeGroupId={student?.group_id || null}
@@ -633,6 +506,6 @@ function MyGroupsSection({ student }) {
         studentId={student.id}
         onGroupJoined={() => fetchGroups()}
       />
-    </motion.div>
+    </DashCard>
   );
 }

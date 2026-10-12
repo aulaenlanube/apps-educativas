@@ -1,12 +1,22 @@
+// src/apps/ahorcado/AhorcadoDuel.jsx
+// Duelo 1 vs 1 de Ahorcado. Rediseño 2026 con el kit de interfaz de juego
+// (_shared/kit): escenario, marcador de los dos jugadores con su horca, palabra
+// en pantalla nocturna, teclado del kit y avisos de ronda. La lógica del duelo
+// (useDuel, mensajes del canal, turnos, puntuación y reporte) no cambia.
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, Trophy, X, LogOut, Lightbulb } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Swords, Trophy, LogOut, Lightbulb, Send, Hourglass, Crown } from 'lucide-react';
 import { getRoscoData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 import UserAvatar from '@/components/ui/UserAvatar';
-import './Ahorcado.css';
+import useArtIds from '@/components/art/useArtIds';
+import {
+  GameShell, GameHeader, Chip, Panel, KeyTile, GameButton, Lives, RoundBanner,
+  GameLoading, GameEmpty,
+} from '../_shared/kit';
+import './AhorcadoDuel.css';
 
 const LIVES = 6;
 const TARGET_WINS = 3;
@@ -34,32 +44,92 @@ function buildRound(pool, firstTurn) {
   };
 }
 
-// SVG del ahorcado — mismo estilo que la version 1 jugador
-function HangmanSvg({ fails, color = 'currentColor' }) {
+// Escena del ahorcado de cada jugador: horca de madera sobre una colina y un
+// muñeco que aparece pieza a pieza (mismo estilo que la versión en solitario).
+// La camiseta lleva el color del jugador. Sin filtros SVG.
+function HangmanSvg({ fails, tint = '#8b5cf6' }) {
+  const [id, url] = useArtIds();
+  const lost = fails >= LIVES;
   const parts = [
-    <line key="base" x1="10" y1="140" x2="110" y2="140" stroke={color} strokeWidth="4" strokeLinecap="round" />,
-    <line key="poste" x1="30" y1="140" x2="30" y2="20" stroke={color} strokeWidth="4" strokeLinecap="round" />,
-    <line key="travesano" x1="30" y1="20" x2="85" y2="20" stroke={color} strokeWidth="4" strokeLinecap="round" />,
-    <line key="cuerda" x1="85" y1="20" x2="85" y2="35" stroke={color} strokeWidth="3" strokeLinecap="round" />,
-  ];
-  const body = [
-    <circle key="cabeza" cx="85" cy="45" r="10" stroke={color} strokeWidth="3" fill="none" />,
-    <line key="torso" x1="85" y1="55" x2="85" y2="90" stroke={color} strokeWidth="3" strokeLinecap="round" />,
-    <line key="brazoI" x1="85" y1="65" x2="70" y2="80" stroke={color} strokeWidth="3" strokeLinecap="round" />,
-    <line key="brazoD" x1="85" y1="65" x2="100" y2="80" stroke={color} strokeWidth="3" strokeLinecap="round" />,
-    <line key="piernaI" x1="85" y1="90" x2="72" y2="110" stroke={color} strokeWidth="3" strokeLinecap="round" />,
-    <line key="piernaD" x1="85" y1="90" x2="98" y2="110" stroke={color} strokeWidth="3" strokeLinecap="round" />,
+    // cabeza
+    <g key="head">
+      <circle cx="96" cy="62" r="15" fill={url('skin')} />
+      <circle cx="96" cy="62" r="15" fill="none" stroke="#b45309" strokeOpacity=".35" strokeWidth="1.5" />
+      <ellipse cx="91" cy="56" rx="5" ry="3.4" fill="#fff" opacity=".55" />
+      {lost ? (
+        <g stroke="#7c2d12" strokeWidth="2.2" strokeLinecap="round">
+          <path d="M88 58 l5 5 M93 58 l-5 5 M99 58 l5 5 M104 58 l-5 5" />
+          <path d="M90 70 q6 -4 12 0" fill="none" />
+        </g>
+      ) : (
+        <g>
+          <circle cx="90.5" cy="61" r="2.3" fill="#1e1b4b" />
+          <circle cx="101.5" cy="61" r="2.3" fill="#1e1b4b" />
+          <circle cx="91.3" cy="60.2" r=".8" fill="#fff" />
+          <circle cx="102.3" cy="60.2" r=".8" fill="#fff" />
+          <path d={fails >= 4 ? 'M90 70 q6 -4 12 0' : 'M90 68 q6 4 12 0'} stroke="#7c2d12" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <ellipse cx="86" cy="67" rx="3" ry="1.8" fill="#fb7185" opacity=".5" />
+          <ellipse cx="106" cy="67" rx="3" ry="1.8" fill="#fb7185" opacity=".5" />
+        </g>
+      )}
+    </g>,
+    // cuerpo (camiseta del color del jugador)
+    <path key="torso" d="M83 82 q13 -6 26 0 l3 30 q-16 6 -32 0 Z" fill={url('shirt')} />,
+    <path key="armL" d="M85 86 q-12 8 -16 22" stroke={url('shirt')} strokeWidth="8" strokeLinecap="round" fill="none" />,
+    <path key="armR" d="M107 86 q12 8 16 22" stroke={url('shirt')} strokeWidth="8" strokeLinecap="round" fill="none" />,
+    <path key="legL" d="M89 111 l-6 26" stroke="#3730a3" strokeWidth="8.5" strokeLinecap="round" />,
+    <path key="legR" d="M103 111 l6 26" stroke="#3730a3" strokeWidth="8.5" strokeLinecap="round" />,
   ];
   return (
-    <svg viewBox="0 0 120 150" className="w-full h-full" aria-label="Ahorcado">
-      {parts}
-      {body.slice(0, fails).map((el, i) => (
+    <svg viewBox="0 0 160 170" className="ahd-art" aria-label={`Ahorcado: ${fails} fallos de ${LIVES}`}>
+      <defs>
+        <linearGradient id={id('wood')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#b45309" />
+          <stop offset=".45" stopColor="#d97706" />
+          <stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+        <linearGradient id={id('wood-h')} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f59e0b" />
+          <stop offset="1" stopColor="#92400e" />
+        </linearGradient>
+        <linearGradient id={id('hill')} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={lost ? '#fda4af' : '#86efac'} />
+          <stop offset="1" stopColor={lost ? '#e11d48' : '#16a34a'} />
+        </linearGradient>
+        <radialGradient id={id('skin')} cx=".38" cy=".32" r=".75">
+          <stop offset="0" stopColor="#fde7c8" />
+          <stop offset=".7" stopColor="#f6c08f" />
+          <stop offset="1" stopColor="#e8a46a" />
+        </radialGradient>
+        <linearGradient id={id('shirt')} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={tint} stopOpacity=".75" />
+          <stop offset="1" stopColor={tint} />
+        </linearGradient>
+        <radialGradient id={id('sun')} cx=".5" cy=".5" r=".5">
+          <stop offset="0" stopColor={lost ? '#fecaca' : '#e0e7ff'} />
+          <stop offset="1" stopColor={lost ? '#fecaca' : '#e0e7ff'} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="122" cy="40" r="34" fill={url('sun')} />
+      <path d="M0 152 Q50 132 100 146 T160 140 V170 H0 Z" fill={url('hill')} />
+      <path d="M0 152 Q50 132 100 146 T160 140" stroke="#fff" strokeOpacity=".5" strokeWidth="2" fill="none" />
+      {/* horca */}
+      <rect x="14" y="146" width="76" height="9" rx="4" fill={url('wood-h')} />
+      <rect x="30" y="18" width="10" height="132" rx="3" fill={url('wood')} />
+      <rect x="31.5" y="22" width="2.4" height="124" rx="1.2" fill="#fde68a" opacity=".5" />
+      <rect x="28" y="14" width="78" height="10" rx="4" fill={url('wood-h')} />
+      <path d="M40 38 L58 24" stroke={url('wood')} strokeWidth="6" strokeLinecap="round" />
+      <path d="M96 24 v22" stroke="#a16207" strokeWidth="3" strokeLinecap="round" strokeDasharray="3 2" />
+      {parts.slice(0, fails).map((el, i) => (
         <motion.g
           key={i}
-          initial={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.4 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >{el}</motion.g>
+          transition={{ type: 'spring', stiffness: 320, damping: 16 }}
+          style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+        >
+          {el}
+        </motion.g>
       ))}
     </svg>
   );
@@ -369,131 +439,111 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
   const rivalPoints = score[rival.id] || 0;
   const myTurn = round.turn === (me.isHost ? 'host' : 'guest');
 
-  return (
-    <div className="ahd-root min-h-[80vh] flex flex-col items-center p-4">
-      <div className="ahorcado-decor" aria-hidden="true">
-        <div className="fx-app-backdrop" />
-        <div className="ahorcado-decor-grid fx-grid-bg" />
-      </div>
-      <motion.div
-        className="ahd-card w-full max-w-3xl p-5"
-        initial={{ opacity: 0, y: 18, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 180, damping: 20 }}
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <span className="ahd-swords"><Swords className="w-5 h-5" /></span>
-          <h2 className="ahd-title text-lg font-bold">Ahorcado Duelo · Al mejor de {TARGET_WINS * 2 - 1}</h2>
-          <span className="ml-auto text-xs text-slate-500">
-            Turnos alternos
-          </span>
-        </div>
+  const roundOver = round.roundWinner !== undefined;
+  const rivalName = rival.hidden ? 'tu rival' : rival.name;
+  const iWon = finished && winnerId === me.id;
 
-        {/* Dos ahorcados + scoreboard */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+  return (
+    <>
+      <GameShell accent="#f97316" accent2="#ec4899" className="ahd-shell">
+        <GameHeader
+          title="Ahorcado · Duelo"
+          subtitle={`Al mejor de ${TARGET_WINS * 2 - 1} · turnos alternos`}
+          right={<Chip tone="accent" icon={Swords}>Duelo 1 vs 1</Chip>}
+        />
+
+        {/* Los dos jugadores: horca, vidas y rondas ganadas */}
+        <div className="ahd-arena">
           <PlayerPanel
             label="Tú" name={me.name}
             emoji={me.emoji} avatarColor={me.color} avatarCode={me.selectedAvatarCode}
             lives={myLives} fails={LIVES - myLives}
             points={myPoints} target={TARGET_WINS}
-            color="#8b5cf6" isTurn={myTurn}
+            color="#8b5cf6" isTurn={!roundOver && !finished && myTurn}
           />
+          <span className="ahd-vs" aria-hidden="true"><Swords size={20} /></span>
           <PlayerPanel
             label="Rival" name={rival.hidden ? 'Oculto' : rival.name}
             emoji={rival.emoji} avatarColor={rival.color} avatarCode={rival.selectedAvatarCode}
             lives={rivalLives} fails={LIVES - rivalLives}
             points={rivalPoints} target={TARGET_WINS}
-            color="#f59e0b" isTurn={!myTurn}
+            color="#f59e0b" isTurn={!roundOver && !finished && !myTurn}
           />
         </div>
 
         {/* Palabra */}
-        <div className="flex flex-wrap justify-center gap-1 mb-4">
-          {round.answer.split('').map((ch, i) => (
-            <span
-              key={i}
-              className={`ahd-slot w-9 h-11 rounded border-b-2 flex items-center justify-center font-bold text-xl ${
-                /[A-ZÑ]/.test(ch)
-                  ? round.revealed[i]
-                    ? 'ahd-slot--on border-violet-500 bg-violet-50 text-violet-700'
-                    : 'border-slate-400 bg-slate-50 text-transparent'
-                  : 'border-transparent text-slate-500'
-              }`}
-            >
-              {round.revealed[i] || (/[A-ZÑ]/.test(ch) ? '?' : ch)}
-            </span>
-          ))}
-        </div>
+        <Panel variant="screen" className={`ahd-board ${roundOver ? (round.roundWinner === me.id ? 'is-won' : round.roundWinner === rival.id ? 'is-lost' : 'is-draw') : ''}`}>
+          <div className={`ahd-word ${round.answer.length > 12 ? 'is-long' : ''}`}>
+            {round.answer.split('').map((ch, i) => {
+              const isLetter = /[A-ZÑ]/.test(ch);
+              const shown = round.revealed[i];
+              return (
+                <span
+                  key={i}
+                  className={`ahd-tile ${isLetter ? (shown ? 'is-revealed' : '') : 'is-punct'}`}
+                >
+                  {shown || (isLetter ? '' : ch)}
+                </span>
+              );
+            })}
+          </div>
+        </Panel>
 
         {/* Comodín de pista (1 por partida) */}
-        <div className="flex items-center justify-center gap-2 mb-3 flex-wrap">
+        <div className="ahd-hint">
           {hintsUsed[me.id] === round.id ? (
-            <div className="px-3 py-2 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-sm max-w-xl">
-              <span className="font-bold inline-flex items-center gap-1 mr-1"><Lightbulb className="w-4 h-4" /> Pista:</span>
-              {round.hint}
-            </div>
+            <motion.div className="ahd-hint__box" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }}>
+              <Lightbulb size={18} />
+              <span><b>Pista:</b> {round.hint}</span>
+            </motion.div>
           ) : hintsUsed[me.id] ? (
-            <span className="px-2 py-1 rounded bg-slate-100 text-slate-500 text-xs font-bold border border-slate-200 inline-flex items-center gap-1">
-              <Lightbulb className="w-3 h-3" /> Comodín gastado
-            </span>
+            <Chip icon={Lightbulb}>Comodín gastado</Chip>
           ) : (
-            <button
+            <GameButton
+              variant="warning"
+              size="sm"
+              icon={Lightbulb}
               onClick={handleUseHint}
               disabled={round.roundWinner !== undefined || finished}
-              className="px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm inline-flex items-center gap-1.5 disabled:opacity-40"
             >
-              <Lightbulb className="w-4 h-4" /> Ver pista (1 por partida)
-            </button>
+              Ver pista (1 por partida)
+            </GameButton>
           )}
           {hintsUsed[rival.id] && (
-            <span className="px-2 py-1 rounded bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200 inline-flex items-center gap-1">
-              <Lightbulb className="w-3 h-3" /> El rival usó su comodín
-            </span>
+            <Chip icon={Lightbulb}>El rival usó su comodín</Chip>
           )}
         </div>
 
         {/* Indicador de turno */}
-        <div className={`ahd-turn text-center py-2 mb-3 rounded-lg text-sm font-bold ${
-          round.roundWinner === undefined && myTurn ? 'ahd-turn--me ' : ''
-        }${
-          round.roundWinner !== undefined
-            ? 'bg-slate-100 text-slate-500'
-            : myTurn
-              ? 'bg-emerald-100 text-emerald-700'
-              : 'bg-slate-100 text-slate-500'
-        }`}>
-          {round.roundWinner !== undefined
-            ? 'Ronda terminada'
-            : myTurn
-              ? '¡Es tu turno! Elige una letra o resuelve la palabra'
-              : `Turno de ${rival.hidden ? 'tu rival' : rival.name}… (puedes resolver si lo sabes)`}
-        </div>
+        {!finished && (
+          <div className={`ahd-turn ${roundOver ? 'is-over' : myTurn ? 'is-mine' : 'is-rival'}`}>
+            {roundOver ? <Hourglass size={16} /> : myTurn ? <Crown size={16} /> : <Hourglass size={16} />}
+            <span>
+              {roundOver
+                ? 'Ronda terminada'
+                : myTurn
+                  ? '¡Es tu turno! Elige una letra o resuelve la palabra'
+                  : `Turno de ${rivalName}… (puedes resolver si lo sabes)`}
+            </span>
+          </div>
+        )}
 
         {/* Letras */}
-        <div className="flex flex-wrap justify-center gap-1 mb-4">
+        <div className={`ahd-keyboard ${!myTurn || roundOver || finished ? 'is-waiting' : ''}`} role="group" aria-label="Teclado">
           {LETTERS.map(L => {
             const used = round.usedLetters.includes(L);
             const inWord = used && round.answer.includes(L);
             const disabled = used || round.roundWinner !== undefined || finished || !myTurn;
             return (
-              <button
+              <KeyTile
                 key={L}
+                state={used ? (inWord ? 'correct' : 'wrong') : 'idle'}
                 disabled={disabled}
                 onClick={() => sendAction({ type: 'letter', letter: L })}
-                className={`ahd-key w-8 h-9 rounded text-sm font-bold border transition-colors ${
-                  used
-                    ? inWord ? 'ahd-key--ok ' : 'ahd-key--ko '
-                    : ''
-                }${
-                  used
-                    ? inWord
-                      ? 'bg-emerald-500 text-white border-emerald-600'
-                      : 'bg-rose-500 text-white border-rose-600 line-through'
-                    : myTurn
-                      ? 'bg-white hover:bg-violet-50 border-slate-300 text-slate-700'
-                      : 'bg-slate-50 border-slate-200 text-slate-400'
-                } disabled:cursor-not-allowed`}
-              >{L}</button>
+                aria-label={`Letra ${L}`}
+              >
+                {L}
+              </KeyTile>
             );
           })}
         </div>
@@ -501,66 +551,59 @@ export default function AhorcadoDuel({ onGameComplete, registerDuelExit }) {
         {/* Resolver entera — disponible para cualquiera en cualquier momento */}
         <form
           onSubmit={(e) => { e.preventDefault(); if (guess.trim()) sendAction({ type: 'solve', word: guess }); setGuess(''); }}
-          className="flex gap-2"
+          className="ahd-solve"
         >
           <input
             value={guess}
             onChange={e => setGuess(e.target.value)}
             placeholder="Resuelve la palabra entera…"
             disabled={round.roundWinner !== undefined || finished}
-            className="flex-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-violet-400 outline-none disabled:bg-slate-50"
+            className="ahd-solve__input"
           />
-          <button
+          <GameButton
             type="submit"
+            icon={Send}
             disabled={!guess.trim() || round.roundWinner !== undefined || finished}
-            className="ahd-solve fx-shine px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold disabled:opacity-40"
-          >Resolver</button>
+          >
+            Resolver
+          </GameButton>
         </form>
+        <p className="ahd-solve__note">Si fallas al resolver pierdes 2 vidas.</p>
 
-        <AnimatePresence>
-          {round.roundWinner !== undefined && !finished && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              className="mt-4 p-3 rounded-xl bg-slate-100 text-center"
-            >
-              <p className="font-bold text-slate-700">
-                {round.roundWinner === me.id ? '¡Ronda para ti!' :
-                 round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda en empate'}
-              </p>
-              <p className="text-xs text-slate-500">Palabra: {round.answer}</p>
-            </motion.div>
-          )}
-          {finished && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 220, damping: 16 }}
-              className={`ahd-final fx-shine fx-shine--auto mt-4 p-4 rounded-xl text-center text-white bg-gradient-to-r ${
-                winnerId === me.id ? 'from-emerald-500 to-green-600' : 'from-rose-500 to-rose-700'
-              }`}
-            >
-              <Trophy className="w-8 h-8 mx-auto mb-1" />
-              <p className="text-xl font-black mb-3">{winnerId === me.id ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</p>
-              <button
-                onClick={() => navigate('/mi-panel')}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white font-bold text-sm transition-colors"
-              >
-                <LogOut className="w-4 h-4" /> Salir a mi panel
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+        <RoundBanner
+          show={round.roundWinner !== undefined && !finished}
+          status={round.roundWinner === me.id ? 'won' : round.roundWinner === rival.id ? 'lost' : 'info'}
+          title={round.roundWinner === me.id ? '¡Ronda para ti!' :
+            round.roundWinner === rival.id ? 'Ronda para el rival' : 'Ronda en empate'}
+          subtitle={<>Palabra: <strong>{round.answer}</strong></>}
+        />
+
+        {finished && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 220, damping: 16 }}
+            className={`ahd-final ${iWon ? 'is-won' : 'is-lost'}`}
+          >
+            <span className="ahd-final__medal"><Trophy size={34} /></span>
+            <div className="ahd-final__text">
+              <strong>{iWon ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</strong>
+              <span>{myPoints} – {rivalPoints} en rondas</span>
+            </div>
+            <GameButton variant="soft" icon={LogOut} onClick={() => navigate('/mi-panel')}>
+              Salir a mi panel
+            </GameButton>
+          </motion.div>
+        )}
+      </GameShell>
       <DuelChatBar channel={channel} me={me} rival={rival} />
-    </div>
+    </>
   );
 }
 
 function PlayerPanel({ label, name, emoji, avatarColor, avatarCode, lives, fails, points, target, color, isTurn }) {
   return (
-    <div className={`ahd-player p-3 rounded-xl border-2 transition-colors ${isTurn ? 'ahd-player--turn ' : ''}${
-      isTurn ? 'border-violet-400 bg-violet-50 shadow-sm' : 'border-slate-200 bg-white'
-    }`}>
-      <div className="flex items-center gap-2 mb-2">
+    <div className={`ahd-player ${isTurn ? 'is-turn' : ''} ${fails >= LIVES ? 'is-hanged' : ''}`} style={{ '--pc': color }}>
+      <div className="ahd-player__head">
         <UserAvatar
           selectedAvatarCode={avatarCode}
           avatarEmoji={emoji}
@@ -568,33 +611,41 @@ function PlayerPanel({ label, name, emoji, avatarColor, avatarCode, lives, fails
           size="lg"
           showRarityGlow={isTurn}
         />
-        <div className="flex-1 min-w-0">
-          <p className="text-[10px] uppercase text-slate-500 tracking-wide">{label}</p>
-          <p className="font-bold truncate text-sm">{name}</p>
+        <div className="ahd-player__id">
+          <span>{label}</span>
+          <strong>{name}</strong>
         </div>
-        {isTurn && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-violet-600 text-white">TURNO</span>}
-        <div className="w-7 h-7 rounded-lg text-white flex items-center justify-center font-black" style={{ background: color }}>
-          {points}
-        </div>
+        {isTurn && <span className="ahd-player__turn">Turno</span>}
+        <span className="ahd-player__points" title="Rondas ganadas">{points}</span>
       </div>
       {/* Dibujo del ahorcado */}
-      <div className="aspect-[4/5] mx-auto max-w-[140px]" style={{ color: fails >= LIVES ? '#ef4444' : '#475569' }}>
-        <HangmanSvg fails={fails} />
+      <div className="ahd-player__art">
+        <HangmanSvg fails={fails} tint={color} />
       </div>
-      {/* Vidas + barra de puntos */}
-      <div className="flex items-center justify-center gap-0.5 mt-2">
-        {Array.from({ length: LIVES }).map((_, i) => (
-          <span key={i} className={`w-2 h-2 rounded-full ${i < lives ? 'bg-rose-500' : 'bg-slate-200'}`} />
-        ))}
-      </div>
-      <div className="flex gap-1 mt-2">
-        {Array.from({ length: target }).map((_, i) => (
-          <span key={i} className="h-1.5 flex-1 rounded" style={{ background: i < points ? color : '#e2e8f0' }} />
-        ))}
+      {/* Vidas + rondas ganadas */}
+      <div className="ahd-player__foot">
+        <Lives total={LIVES} left={lives} />
+        <span className="ahd-player__rounds" aria-label={`${points} de ${target} rondas`}>
+          {Array.from({ length: target }).map((_, i) => (
+            <i key={i} className={i < points ? 'is-on' : ''} />
+          ))}
+        </span>
       </div>
     </div>
   );
 }
 
-function Loading() { return <div className="min-h-[50vh] flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-violet-600" /></div>; }
-function Err({ text }) { return <div className="p-8 text-center"><X className="w-10 h-10 mx-auto mb-2 text-rose-500" /><p className="font-bold">Error</p><p className="text-sm text-slate-500">{text}</p></div>; }
+function Loading() {
+  return (
+    <GameShell accent="#f97316" accent2="#ec4899">
+      <GameLoading label="Preparando el duelo…" />
+    </GameShell>
+  );
+}
+function Err({ text }) {
+  return (
+    <GameShell accent="#f97316" accent2="#ec4899">
+      <GameEmpty title="Error">{text}</GameEmpty>
+    </GameShell>
+  );
+}

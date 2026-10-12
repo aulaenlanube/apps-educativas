@@ -8,17 +8,30 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  Castle, GraduationCap, Swords, Trophy, Star, BookOpen, Skull,
-  Target, Crown, ScrollText, RotateCcw, Shield, Settings2,
+  Castle, Swords, Trophy, Skull, Target, Crown, ScrollText, Shield,
+  RefreshCw, LayoutGrid, Waves, BookOpen, Library,
 } from 'lucide-react';
 import { getRoscoData, getRunnerData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, ModeSelect, ResultsScreen, GameLoading, GameEmpty, GameButton, Segmented,
+} from '../_shared/kit';
+import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import FortalezaGame from './FortalezaGame';
 import { createSounds } from './sound';
 import { mulberry32, seededShuffle, CATEGORY_COLORS, EXAM_VICTORY_LEVEL } from './engine';
-import { QUALITY_LEVELS, loadQualityPref, saveQualityPref } from './quality';
 import './LaFortaleza.css';
+
+// Colores de la app (icono: torres doradas y tejados sobre cielo violeta)
+const SHELL = { accent: '#a855f7', accent2: '#f59e0b', theme: 'dark', className: 'fort-shell' };
+const SCOPE_STYLE = { '--gk-accent': '#a855f7', '--gk-accent-2': '#f59e0b' };
+
+const OUTCOME = {
+  victory: { title: '¡Fortaleza defendida!', icon: Trophy, tone: 'gold' },
+  defeat: { title: 'La Biblioteca ha caído…', icon: Skull, tone: 'red' },
+  finished: { title: '¡Buena defensa!', icon: Castle, tone: 'violet' },
+};
 
 const MIN_WORDS_PER_CAT = 4;
 const MIN_QUESTIONS = 8;
@@ -211,12 +224,6 @@ const LaFortaleza = ({ onGameComplete }) => {
   const [showHelp, setShowHelp] = useState(false);
   const [showStudy, setShowStudy] = useState(false);
   const [studyTab, setStudyTab] = useState('categorias');
-  const [gfxPref, setGfxPref] = useState(loadQualityPref);
-
-  const pickQuality = useCallback((pref) => {
-    saveQualityPref(pref);
-    setGfxPref(pref);
-  }, []);
 
   // La estrella de valoración (FAB global de AppRunnerPage) solo debe verse
   // en la selección de modo: en partida y resumen tapa el HUD a pantalla
@@ -301,8 +308,6 @@ const LaFortaleza = ({ onGameComplete }) => {
 
   // --- derivados del resumen ---
   const nota = result ? Math.round((result.academic.correct / Math.max(result.academic.total, 1)) * 100) / 10 : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
 
   // --- material de estudio ---
   const glossary = useMemo(() => {
@@ -316,143 +321,9 @@ const LaFortaleza = ({ onGameComplete }) => {
     return groups;
   }, [allQuestions]);
 
-  if (loading) {
-    return <div className="fort-root"><div className="fort-card"><div className="fort-loading">🏰 Levantando murallas...</div></div></div>;
-  }
-
-  const enoughData = Object.keys(allCategories).length >= 2 && allQuestions.length >= MIN_QUESTIONS;
-  if (!enoughData) {
-    return (
-      <div className="fort-root"><div className="fort-card">
-        <div className="fort-title"><Castle size={26} /> La Fortaleza</div>
-        <p className="fort-empty">Todavía no hay contenido suficiente para esta asignatura. Se necesitan al menos 2 categorías de palabras y {MIN_QUESTIONS} preguntas. ¡Vuelve pronto!</p>
-      </div></div>
-    );
-  }
-
-  return (
-    <div className="fort-root">
-      {/* Cielo decorativo (orbes) tras la selección y el resumen */}
-      {screen !== 'playing' && <div className="fort-sky" aria-hidden="true" />}
-      {/* ============ SELECCIÓN DE MODO ============ */}
-      {screen === 'select' && (
-        <motion.div className="fort-card" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="fort-title-row">
-            <div className="fort-title"><Castle size={26} /> La Fortaleza</div>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <p className="fort-subject">{subjectInfo.icon} {subjectInfo.nombre}</p>
-          <p className="fort-tagline">Defiende la Biblioteca: tus aciertos construyen torres, tu conocimiento las dispara.</p>
-
-          <div className="fort-modes">
-            <motion.button className="fort-mode practice" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startGame('practice')}>
-              <span className="fort-mode-icon"><Swords size={30} /></span>
-              <span className="fort-mode-name">🟢 Práctica</span>
-              <span className="fort-mode-desc">Supervivencia sin fin · preguntas tipo test · colores de pista · ¿hasta qué nivel llegas?</span>
-            </motion.button>
-            <motion.button className="fort-mode exam" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => startGame('exam')}>
-              <span className="fort-mode-icon"><GraduationCap size={30} /></span>
-              <span className="fort-mode-name">🔴 Examen</span>
-              <span className="fort-mode-desc">Aguanta hasta el nivel {EXAM_VICTORY_LEVEL} · escribir y tipo test · sin pistas · nota /10</span>
-            </motion.button>
-          </div>
-
-          <button className="fort-study-btn" onClick={() => setShowStudy(true)}>
-            <BookOpen size={16} /> Ver material de estudio
-          </button>
-
-          <div className="fort-gfx-row">
-            <span className="fort-gfx-row-label"><Settings2 size={14} /> Gráficos</span>
-            <button className={gfxPref === 'auto' ? 'active' : ''} onClick={() => pickQuality('auto')}>🪄 Auto</button>
-            {QUALITY_LEVELS.map((l) => (
-              <button key={l.id} className={gfxPref === l.id ? 'active' : ''} onClick={() => pickQuality(l.id)}>
-                {l.icon} {l.name}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-
-      {/* ============ PARTIDA ============ */}
-      {screen === 'playing' && run && (
-        <FortalezaGame
-          key={run.seed}
-          seed={run.seed}
-          mode={mode}
-          categories={run.categories}
-          questions={run.questions}
-          bossQuestions={run.bossQuestions}
-          pools={run.pools}
-          sounds={sounds}
-          onEnd={handleEnd}
-          onExit={handleExit}
-        />
-      )}
-
-      {/* ============ RESUMEN ============ */}
-      {screen === 'summary' && result && (
-        <motion.div className="fort-card" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}>
-          <div className={`fort-result-banner ${result.outcome}`}>
-            {result.outcome === 'victory' && <><Trophy size={40} /><h2>¡Fortaleza defendida! 🎉</h2></>}
-            {result.outcome === 'defeat' && <><Skull size={40} /><h2>La Biblioteca ha caído...</h2></>}
-            {result.outcome === 'finished' && <><Castle size={40} /><h2>¡Buena defensa!</h2></>}
-          </div>
-
-          {mode === 'exam' ? (
-            <div className={`fort-nota ${notaColor}`}>
-              <div className="fort-nota-ring" style={{ '--fort-grade': nota }}>
-                <div className="fort-nota-big">{nota.toFixed(1)}<span className="fort-nota-small">/10</span></div>
-              </div>
-              <div className="fort-nota-msg">{notaMsg}</div>
-            </div>
-          ) : (
-            <div className="fort-wave-reached">🌊 Has llegado al nivel de amenaza <strong>{result.level}</strong></div>
-          )}
-
-          {result.endless && (
-            <div className="fort-endless-line">
-              ⚔️ Asedio infinito: {result.lives > 0 ? 'aguantaste' : 'caíste en el'} nivel <strong>{result.level}</strong> — la nota se selló al ganar
-            </div>
-          )}
-
-          <div className="fort-result-score"><Star size={18} /> {result.score.toLocaleString('es-ES')} puntos</div>
-
-          <div className="fort-breakdown">
-            <div className="fort-breakdown-item">
-              <ScrollText size={16} />
-              <span>Preguntas</span>
-              <strong>{result.academic.questions.c}/{result.academic.questions.t}</strong>
-            </div>
-            <div className="fort-breakdown-item">
-              <Target size={16} />
-              <span>Clasificaciones</span>
-              <strong>{result.academic.classify.c}/{result.academic.classify.t}</strong>
-            </div>
-            <div className="fort-breakdown-item">
-              <Crown size={16} />
-              <span>Jefes</span>
-              <strong>{result.academic.boss.c}/{result.academic.boss.t}</strong>
-            </div>
-            <div className="fort-breakdown-item">
-              <Swords size={16} />
-              <span>Enemigos abatidos</span>
-              <strong>{result.stats.kills}</strong>
-            </div>
-            {result.stats.shielded > 0 && (
-              <div className="fort-breakdown-item">
-                <Shield size={16} />
-                <span>Parados por la muralla externa</span>
-                <strong>{result.stats.shielded}</strong>
-              </div>
-            )}
-          </div>
-
-          <div className="fort-summary-actions">
-            <button className="fort-btn-launch" onClick={() => setScreen('select')}><RotateCcw size={16} /> Jugar otra vez</button>
-          </div>
-        </motion.div>
-      )}
-
+  // Modales de ayuda y estudio: comparten el ámbito oscuro del kit (sin caja)
+  const modals = (
+    <div className="gk-shell gk-theme-dark fort-portal" style={SCOPE_STYLE}>
       {/* ============ INSTRUCCIONES ============ */}
       <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="La Fortaleza">
         <h3>🏰 Objetivo</h3>
@@ -528,13 +399,19 @@ const LaFortaleza = ({ onGameComplete }) => {
       {/* ============ MATERIAL DE ESTUDIO ============ */}
       <InstructionsModal isOpen={showStudy} onClose={() => setShowStudy(false)} title="Material de estudio">
         <div className="fort-study-tabs">
-          <button className={studyTab === 'categorias' ? 'active' : ''} onClick={() => setStudyTab('categorias')}>📦 Categorías</button>
-          <button className={studyTab === 'glosario' ? 'active' : ''} onClick={() => setStudyTab('glosario')}>📖 Glosario</button>
+          <Segmented
+            options={[
+              { value: 'categorias', label: 'Categorías', icon: Library },
+              { value: 'glosario', label: 'Glosario', icon: BookOpen },
+            ]}
+            value={studyTab}
+            onChange={setStudyTab}
+          />
         </div>
         {studyTab === 'categorias' ? (
           Object.entries(allCategories).map(([cat, words], i) => (
-            <div key={cat} className="fort-study-cat">
-              <h3 style={{ color: CATEGORY_COLORS[i % CATEGORY_COLORS.length] }}>{formatCategoryName(cat)}</h3>
+            <div key={cat} className="fort-study-cat" style={{ '--cat': CATEGORY_COLORS[i % CATEGORY_COLORS.length] }}>
+              <h3>{formatCategoryName(cat)}</h3>
               <div className="fort-study-words">
                 {words.map((w) => <span key={w} className="fort-study-chip">{w}</span>)}
               </div>
@@ -553,6 +430,220 @@ const LaFortaleza = ({ onGameComplete }) => {
       </InstructionsModal>
     </div>
   );
+
+  if (loading) {
+    return (
+      <div className="fort-root">
+        <GameShell {...SHELL}>
+          <GameLoading label="Levantando murallas…" />
+        </GameShell>
+      </div>
+    );
+  }
+
+  const enoughData = Object.keys(allCategories).length >= 2 && allQuestions.length >= MIN_QUESTIONS;
+  if (!enoughData) {
+    return (
+      <div className="fort-root">
+        <GameShell {...SHELL}>
+          <GameHeader onHelp={() => setShowHelp(true)} />
+          <GameEmpty title="Aún no hay contenido suficiente">
+            Para defender la Biblioteca se necesitan al menos 2 categorías de palabras y {MIN_QUESTIONS} preguntas
+            en esta asignatura. ¡Vuelve pronto!
+          </GameEmpty>
+        </GameShell>
+        {modals}
+      </div>
+    );
+  }
+
+  const academicStats = result ? [
+    { icon: ScrollText, tone: 'progress', label: 'Preguntas', value: `${result.academic.questions.c}/${result.academic.questions.t}` },
+    { icon: Target, tone: 'good', label: 'Clasificaciones', value: `${result.academic.classify.c}/${result.academic.classify.t}` },
+    { icon: Crown, tone: 'streak', label: 'Jefes', value: `${result.academic.boss.c}/${result.academic.boss.t}` },
+    { icon: Swords, tone: 'lives', label: 'Enemigos abatidos', value: result.stats.kills },
+    ...(result.stats.shielded > 0 ? [{ icon: Shield, tone: 'time', label: 'Parados por la muralla', value: result.stats.shielded }] : []),
+  ] : [];
+
+  return (
+    <div className="fort-root">
+      {/* ============ SELECCIÓN DE MODO ============ */}
+      {screen === 'select' && (
+        <GameShell {...SHELL}>
+          <ModeSelect
+            description="Defiende la Biblioteca: tus aciertos construyen torres y tu conocimiento las dispara."
+            modes={[
+              {
+                id: 'practice', tone: 'easy', icon: Swords, title: 'Práctica',
+                desc: 'Supervivencia sin fin con preguntas tipo test. ¿Hasta qué nivel llegas?',
+                features: ['Colores de pista en los enemigos', 'Sin límite de niveles'],
+              },
+              {
+                id: 'exam', tone: 'exam', title: 'Examen',
+                desc: `Aguanta hasta el nivel ${EXAM_VICTORY_LEVEL} respondiendo por escrito y tipo test, sin pistas.`,
+                features: ['Nota sobre 10', 'Puntos por defender la Biblioteca'],
+              },
+            ]}
+            onSelect={startGame}
+            onHelp={() => setShowHelp(true)}
+            onStudy={() => setShowStudy(true)}
+            extra={<GraphicsQualitySelector className="gfxsel-on-dark fort-gfx" />}
+            footer={subjectInfo.nombre ? <span className="fort-subject">{subjectInfo.icon} {subjectInfo.nombre}</span> : null}
+          />
+        </GameShell>
+      )}
+
+      {/* ============ PARTIDA ============ */}
+      {screen === 'playing' && run && (
+        <FortalezaGame
+          key={run.seed}
+          seed={run.seed}
+          mode={mode}
+          categories={run.categories}
+          questions={run.questions}
+          bossQuestions={run.bossQuestions}
+          pools={run.pools}
+          sounds={sounds}
+          onEnd={handleEnd}
+          onExit={handleExit}
+        />
+      )}
+
+      {/* ============ RESUMEN: EXAMEN (nota /10) ============ */}
+      {screen === 'summary' && result && mode === 'exam' && (
+        <GameShell {...SHELL}>
+          <ResultsScreen
+            title={OUTCOME[result.outcome]?.title || 'Examen terminado'}
+            subtitle={`La Fortaleza · ${subjectInfo.icon} ${subjectInfo.nombre}`}
+            nota={nota}
+            points={result.score}
+            stats={academicStats}
+            actions={[
+              { label: 'Repetir examen', onClick: () => startGame('exam'), icon: RefreshCw },
+              { label: 'Cambiar de modo', onClick: () => setScreen('select'), icon: LayoutGrid, variant: 'soft' },
+            ]}
+          >
+            {result.endless && (
+              <div className="fort-endless">
+                <span className="fort-endless__ico"><Swords size={18} /></span>
+                <span>
+                  <strong>Asedio infinito:</strong> {result.lives > 0 ? 'aguantaste' : 'caíste en'} el nivel <strong>{result.level}</strong>.
+                  La nota se selló al ganar.
+                </span>
+              </div>
+            )}
+          </ResultsScreen>
+        </GameShell>
+      )}
+
+      {/* ============ RESUMEN: PRÁCTICA ============ */}
+      {screen === 'summary' && result && mode !== 'exam' && (
+        <GameShell {...SHELL}>
+          <motion.div
+            className={`fort-sum fort-sum--${OUTCOME[result.outcome]?.tone || 'violet'}`}
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+          >
+            <div className="fort-sum__top">
+              <span className="gk-chip gk-chip--mode gk-tone-easy"><Swords size={13} /> Práctica</span>
+              <h2 className="fort-sum__title">{OUTCOME[result.outcome]?.title || '¡Partida terminada!'}</h2>
+              <p className="fort-sum__subtitle">La Fortaleza · {subjectInfo.icon} {subjectInfo.nombre}</p>
+            </div>
+            <div className="fort-sum__hero">
+              <span className="fort-sum__burst" aria-hidden="true" />
+              <FortCrest level={result.level} tone={OUTCOME[result.outcome]?.tone || 'violet'} />
+              <div className="fort-sum__verdict">
+                <span className="fort-sum__kicker"><Waves size={16} /> Nivel de amenaza alcanzado</span>
+                <strong>Nivel {result.level}</strong>
+                <span className="fort-sum__points"><Trophy size={16} /> {result.score.toLocaleString('es-ES')} <small>puntos</small></span>
+              </div>
+            </div>
+            <div className="fort-sum__stats">
+              {academicStats.map((st) => (
+                <div key={st.label} className={`fort-sum__stat gk-stat--${st.tone}`}>
+                  <span className="gk-stat__icon"><st.icon size={15} /></span>
+                  <span className="fort-sum__stat-value">{st.value}</span>
+                  <span className="fort-sum__stat-label">{st.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="fort-sum__actions">
+              <GameButton size="lg" icon={RefreshCw} onClick={() => startGame('practice')}>Otra partida</GameButton>
+              <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={() => setScreen('select')}>Cambiar de modo</GameButton>
+            </div>
+          </motion.div>
+        </GameShell>
+      )}
+
+      {modals}
+    </div>
+  );
 };
+
+// Escudo heráldico de la fortaleza con el nivel alcanzado (ilustración propia).
+// Un solo ejemplar en pantalla: los ids de gradiente no se repiten.
+const CREST_TONES = {
+  gold: { light: '#fef3c7', base: '#f59e0b', dark: '#92400e', inner: '#78350f' },
+  violet: { light: '#ede9fe', base: '#a855f7', dark: '#4c1d95', inner: '#3b0764' },
+  red: { light: '#fee2e2', base: '#ef4444', dark: '#7f1d1d', inner: '#450a0a' },
+};
+
+function FortCrest({ level, tone = 'violet' }) {
+  const c = CREST_TONES[tone] || CREST_TONES.violet;
+  const big = String(level).length > 2;
+  return (
+    <svg className="fort-crest" viewBox="0 0 140 160" role="img" aria-label={`Nivel ${level}`}>
+      <defs>
+        <linearGradient id="fort-crest-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={c.light} />
+          <stop offset=".35" stopColor={c.base} />
+          <stop offset="1" stopColor={c.dark} />
+        </linearGradient>
+        <radialGradient id="fort-crest-inner" cx=".5" cy=".3" r=".8">
+          <stop offset="0" stopColor={c.base} stopOpacity=".55" />
+          <stop offset="1" stopColor={c.inner} />
+        </radialGradient>
+        <linearGradient id="fort-crest-stone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fff7ed" />
+          <stop offset="1" stopColor="#d6b07a" />
+        </linearGradient>
+      </defs>
+      {/* sombra */}
+      <ellipse cx="70" cy="152" rx="40" ry="5" fill="#000" opacity=".28" />
+      {/* almenas */}
+      <g fill="url(#fort-crest-stone)" stroke="#a16207" strokeOpacity=".45" strokeWidth="1.2">
+        <rect x="26" y="8" width="16" height="18" rx="2.5" />
+        <rect x="62" y="4" width="16" height="22" rx="2.5" />
+        <rect x="98" y="8" width="16" height="18" rx="2.5" />
+      </g>
+      {/* escudo */}
+      <path d="M70 18 L122 30 V78 C122 112 98 134 70 146 C42 134 18 112 18 78 V30 Z" fill="url(#fort-crest-body)" />
+      <path d="M70 18 L122 30 V78 C122 112 98 134 70 146 C42 134 18 112 18 78 V30 Z" fill="none" stroke="#fff" strokeOpacity=".45" strokeWidth="2" />
+      <path d="M70 30 L111 39.5 V78 C111 105 92 123 70 133 C48 123 29 105 29 78 V39.5 Z" fill="url(#fort-crest-inner)" />
+      {/* brillo */}
+      <path d="M34 44 C46 38 58 36 70 36" stroke="#fff" strokeOpacity=".5" strokeWidth="3" strokeLinecap="round" fill="none" />
+      {/* número del nivel */}
+      <text
+        x="70"
+        y={big ? 98 : 102}
+        textAnchor="middle"
+        fontFamily="Fredoka, Nunito, system-ui, sans-serif"
+        fontWeight="800"
+        fontSize={big ? 40 : 52}
+        fill="#fff"
+        stroke={c.dark}
+        strokeWidth="1.5"
+        paintOrder="stroke"
+      >
+        {level}
+      </text>
+      {/* cinta */}
+      <path d="M22 112 H118 L110 124 L118 136 H22 L30 124 Z" fill={c.dark} />
+      <path d="M30 110 H110 V130 H30 Z" fill="url(#fort-crest-stone)" />
+      <text x="70" y="125" textAnchor="middle" fontFamily="Fredoka, Nunito, system-ui, sans-serif" fontWeight="800" fontSize="12" letterSpacing="2" fill={c.inner}>NIVEL</text>
+    </svg>
+  );
+}
 
 export default LaFortaleza;

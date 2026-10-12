@@ -1,0 +1,149 @@
+/* ==========================================================================
+   TestScreen (examen del Supermercado Matemático) — rediseño 2026 sobre el kit.
+   Prefijo tsc-. Estantería de productos con etiqueta de precio, ticket con la
+   pregunta y caja para la respuesta. Solo se anima transform/opacity.
+   ========================================================================== */
+
+/* ---------- Estantería ---------- */
+.tsc-shelf { position: relative; padding: 4px 6px 0; }
+.tsc-shelf__items {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 6px 12px;
+}
+.tsc-shelf__plank {
+  display: block;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .45), transparent 40%),
+    linear-gradient(90deg, #b45309, #d97706 30%, #c2410c 70%, #92400e);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18), 0 10px 16px -10px rgba(120, 53, 15, .8);
+}
+.tsc-product {
+  position: relative;
+  flex: 0 1 122px;
+  min-width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px 10px;
+  border-radius: 18px;
+  text-align: center;
+  background: var(--gk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--gk-line), 0 4px 0 var(--gk-key-edge), 0 12px 20px -16px rgba(30, 20, 90, .6);
+  animation: gk-pop .4s cubic-bezier(.34, 1.56, .64, 1) backwards;
+}
+.tsc-product:nth-child(2) { animation-delay: .04s; }
+.tsc-product:nth-child(3) { animation-delay: .08s; }
+.tsc-product:nth-child(4) { animation-delay: .12s; }
+.tsc-product:nth-child(5) { animation-delay: .16s; }
+.tsc-product:nth-child(n+6) { animation-delay: .2s; }
+.tsc-product__emoji {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  background: radial-gradient(circle at 40% 30%, #fff, color-mix(in srgb, var(--gk-accent) 14%, var(--gk-inset)) 70%);
+}
+.tsc-product__name { font-size: .92rem; font-weight: 700; color: var(--gk-ink); }
+.tsc-product__price {
+  position: relative;
+  padding: 2px 10px 2px 14px;
+  border-radius: 6px 10px 10px 6px;
+  font-size: .9rem;
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
+}
+.tsc-product__price::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .85);
+}
+
+/* ---------- Ticket con la pregunta ---------- */
+.tsc-mission { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px; animation: gk-pop .45s cubic-bezier(.34, 1.56, .64, 1) both; }
+.tsc-mission__kicker { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fdba74; }
+.tsc-mission__text { margin: 0; font-family: 'Nunito', var(--gk-font); font-size: clamp(1.15rem, 2.4vw, 1.45rem); font-weight: 800; line-height: 1.45; color: #fff; text-wrap: pretty; }
+
+/* ---------- Caja: respuesta ---------- */
+.tsc-answer { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+.tsc-answer__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  max-width: 420px;
+}
+.tsc-answer__field input {
+  width: 100%;
+  padding: 14px 54px 14px 18px;
+  border: 0;
+  border-radius: 18px;
+  outline: none;
+  font-family: var(--gk-font);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gk-ink);
+  font-variant-numeric: tabular-nums;
+  background: var(--gk-inset);
+  box-shadow: inset 0 2px 5px rgba(30, 20, 90, .14), inset 0 0 0 1.5px var(--gk-line);
+  transition: box-shadow .2s ease;
+}
+.tsc-answer__field input::placeholder { color: var(--gk-ink-3); font-weight: 600; font-size: 1.1rem; }
+.tsc-answer__field input:focus { box-shadow: inset 0 2px 5px rgba(30, 20, 90, .14), inset 0 0 0 2px var(--gk-accent), 0 0 0 4px color-mix(in srgb, var(--gk-accent) 20%, transparent); }
+.tsc-answer__unit {
+  position: absolute;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  pointer-events: none;
+}
+
+/* ---------- Corrección ---------- */
+.tsc-fb__q { display: block; margin-bottom: 6px; }
+.tsc-fb__row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tsc-fb__ans { display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 10px; border-radius: 10px; font-weight: 800; }
+.tsc-fb__ans small { font-size: .64rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
+.tsc-fb__ans.is-ok,
+.tsc-fb__ans.is-right { color: #065f46; background: #d1fae5; }
+.tsc-fb__ans.is-right { box-shadow: inset 0 0 0 1.5px #10b981; }
+.tsc-fb__ans.is-ko { color: #9f1239; background: #ffe4e6; }
+html.dark .tsc-fb__ans.is-ok,
+html.dark .tsc-fb__ans.is-right { color: #6ee7b7; background: rgba(16, 185, 129, .16); }
+html.dark .tsc-fb__ans.is-ko { color: #fda4af; background: rgba(244, 63, 94, .16); }
+
+@media (max-width: 720px) {
+  .tsc-shelf__items { gap: 8px; }
+  .tsc-product { flex-basis: 98px; min-width: 88px; }
+  .tsc-product { padding: 10px 6px 8px; }
+  .tsc-product__emoji { width: 44px; height: 44px; font-size: 1.6rem; }
+  .tsc-answer .gk-btn { width: 100%; }
+  .tsc-answer__field { max-width: none; }
+}
+html.dark .tsc-product__emoji { background: radial-gradient(circle at 40% 30%, rgba(255, 255, 255, .32), rgba(255, 255, 255, .06) 72%); }

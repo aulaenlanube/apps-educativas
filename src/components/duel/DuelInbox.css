@@ -1,0 +1,258 @@
+/* Arena de duelos (DuelInbox) — rediseño 2026. Cartas "VS" oscuras (estilo
+   pantalla de combate) que funcionan igual en tema claro y oscuro.
+   Solo transform/opacity en animaciones; sin backdrop-filter. */
+
+.dib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 14px;
+}
+
+.dib-card {
+  --c1: #4f46e5; /* tú */
+  --c2: #e11d48; /* rival */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 24px;
+  color: #fff;
+  font-family: var(--dk-font);
+  background:
+    radial-gradient(90% 70% at 50% 0%, color-mix(in srgb, var(--c2) 40%, transparent), transparent 70%),
+    linear-gradient(180deg, #221d58, #130f35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .16),
+    0 4px 0 #0b0826,
+    0 22px 38px -24px color-mix(in srgb, var(--c2) 80%, #000);
+  transition: transform .2s ease;
+}
+.dib-card:hover { transform: translateY(-3px); }
+.dib-card.is-task { --c2: #9333ea; }
+.dib-card.is-outgoing { --c2: #0891b2; }
+html.dark .dib-card { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 4px 0 #05031a, 0 22px 38px -24px #000; }
+
+/* ---------- Cabecera ---------- */
+.dib-card__top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.dib-tag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--c2) 70%, #fff), var(--c2));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3), 0 3px 10px -4px var(--c2);
+}
+.dib-hiddenflag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, .12);
+}
+.dib-stakechip {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 900;
+  color: #fde68a;
+  background: rgba(253, 230, 138, .12);
+  box-shadow: inset 0 0 0 1px rgba(253, 230, 138, .35);
+}
+
+/* ---------- Escenario VS ---------- */
+.dib-vs {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  padding: 16px 8px 12px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 90% at 50% 50%, rgba(255, 255, 255, .16), transparent 70%),
+    linear-gradient(105deg, var(--c1) 0%, color-mix(in srgb, var(--c1) 60%, #000) 49.4%, color-mix(in srgb, var(--c2) 60%, #000) 50.6%, var(--c2) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.dib-vs::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -30%;
+  bottom: -30%;
+  width: 3px;
+  margin-left: -1.5px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, .85), transparent);
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.dib-fighter { position: relative; z-index: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.dib-fighter__ava {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 19px;
+  background: linear-gradient(140deg, #fff, rgba(255, 255, 255, .45));
+  box-shadow: 0 12px 20px -10px rgba(0, 0, 0, .7);
+}
+.dib-fighter.is-me .dib-fighter__ava { transform: rotate(-4deg); }
+.dib-fighter.is-rival .dib-fighter__ava { transform: rotate(4deg); }
+.dib-fighter__name {
+  max-width: 100%;
+  margin-top: 8px;
+  font-size: .95rem;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+}
+.dib-teacher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 3px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 800;
+  color: #78350f;
+  background: #fde68a;
+}
+
+.dib-mystery {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: repeating-linear-gradient(135deg, #312e81 0 8px, #1e1b4b 8px 16px);
+}
+.dib-mystery__emoji { font-size: 2.3rem; line-height: 1; opacity: .9; }
+.dib-mystery__q {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fde68a;
+  text-shadow: 0 2px 0 #92400e;
+}
+
+.dib-vs__mark {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 4px 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fef08a, #f59e0b 55%, #c2410c);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .92), 0 0 0 8px rgba(245, 158, 11, .35), 0 12px 22px -6px rgba(0, 0, 0, .7);
+}
+.dib-vs__mark span { font-size: 1.15rem; font-weight: 900; font-style: italic; letter-spacing: -.02em; color: #7c2d12; text-shadow: 0 1px 0 rgba(255, 255, 255, .5); }
+.dib-vs__mark.is-hot { animation: dib-pulse 1.7s ease-in-out infinite; }
+
+/* ---------- Juego ---------- */
+.dib-game {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+}
+.dib-game__fallback { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(140deg, #818cf8, #7c3aed); }
+.dib-game__name { flex: 1; min-width: 0; font-size: .95rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dib-game__bo { flex-shrink: 0; padding: 2px 8px; border-radius: 999px; font-size: .72rem; font-weight: 800; color: #fde68a; background: rgba(253, 230, 138, .14); }
+
+/* ---------- Lo que hay en juego ---------- */
+.dib-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+.dib-info__stake {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .25);
+}
+.dib-info__stake span { font-size: .6rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+.dib-info__stake strong { font-size: 1.1rem; font-weight: 900; color: #fde68a; white-space: nowrap; }
+.dib-info p { margin: 0; font-size: .8rem; font-weight: 500; line-height: 1.38; color: rgba(255, 255, 255, .88); }
+.dib-info p strong { color: #fff; font-weight: 800; }
+.dib-info p strong.is-win { color: #6ee7b7; }
+.dib-info p strong.is-lose { color: #fda4af; }
+.dib-info__warn { color: #fcd34d; font-weight: 800; }
+
+/* ---------- Pie: identidad + acciones ---------- */
+.dib-card__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.dib-card__actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.dib-reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--dk-font);
+  font-size: .76rem;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .32);
+  transition: background-color .2s ease;
+}
+.dib-reveal:hover { background: rgba(255, 255, 255, .18); }
+.dib-reveal.is-on { color: #a7f3d0; background: rgba(16, 185, 129, .18); box-shadow: inset 0 0 0 1px rgba(52, 211, 153, .55); }
+.dib-reveal:disabled { opacity: .5; cursor: default; }
+.dib-waiting { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 800; color: rgba(255, 255, 255, .78); }
+.dib-waiting__dot { width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; animation: dib-blink 1.3s ease-in-out infinite; }
+
+@keyframes dib-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes dib-blink { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+
+@media (max-width: 720px) {
+  /* carrusel deslizable (una carta y media a la vista) */
+  .dib-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 88%;
+    margin: 0 -20px;
+    padding: 2px 20px 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .dib-grid::-webkit-scrollbar { display: none; }
+  .dib-grid > :only-child { grid-column: auto; }
+  .dib-card { padding: 12px; scroll-snap-align: start; }
+  .dib-card:hover { transform: none; }
+  .dib-vs__mark { width: 46px; height: 46px; }
+  .dib-info { align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dib-vs__mark.is-hot, .dib-waiting__dot { animation: none; }
+}

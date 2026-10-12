@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Lock, X } from 'lucide-react';
+import { MessageSquare, Lock, X, Send } from 'lucide-react';
 import { getMyPhrases, teacherGetMyPhrases } from '@/services/phraseService';
 import useDuelActor from '@/hooks/useDuelActor';
+import './DuelChat.css';
 
 // Cooldown progresivo (anti-spam): 10s la primera vez, 15s la siguiente, 20s
 // la tercera y vuelve a 10s en la cuarta. Cíclico. La duración del bocadillo
@@ -38,6 +39,8 @@ export default function PhraseLauncher({
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [cooldownUntil, setCooldownUntil] = useState(0);
+  // Duración del cooldown en curso: solo para pintar el anillo que se vacía.
+  const [cooldownTotal, setCooldownTotal] = useState(0);
   const [now, setNow] = useState(Date.now());
   // Contador de envíos para indexar COOLDOWN_SCHEDULE_MS. Persiste mientras
   // el componente vive (toda la sala/partida); no se resetea en cada envío.
@@ -97,6 +100,7 @@ export default function PhraseLauncher({
     channel.broadcast(eventName, payload);
     const idx = sendCountRef.current % COOLDOWN_SCHEDULE_MS.length;
     setCooldownUntil(Date.now() + COOLDOWN_SCHEDULE_MS[idx]);
+    setCooldownTotal(COOLDOWN_SCHEDULE_MS[idx]);
     sendCountRef.current += 1;
     setOpen(false);
     onSent?.(payload);
@@ -110,44 +114,57 @@ export default function PhraseLauncher({
     .map((i) => slots.find((s) => s.slot === i) || null)
     .filter(Boolean);
 
+  // Anillo del cooldown (r = 27 en un viewBox de 60).
+  const RING_C = 2 * Math.PI * 27;
+  const ringLeft = cooling && cooldownTotal ? Math.min(1, remaining / cooldownTotal) : 0;
+
   return (
-    <div className="fixed bottom-4 left-4 z-[55] pointer-events-none">
-      <div className="relative pointer-events-auto">
+    <div className="dch-launcher">
+      <div className="dch-launcher__inner">
         <AnimatePresence>
           {open && (
             <motion.div
               ref={popoverRef}
-              initial={{ opacity: 0, y: 10, scale: 0.92 }}
+              initial={{ opacity: 0, y: 12, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.95, transition: { duration: 0.15 } }}
               transition={{ type: 'spring', stiffness: 360, damping: 24 }}
-              className="absolute bottom-[64px] left-0 w-[280px] sm:w-[320px] bg-white border-2 border-violet-300 rounded-2xl shadow-2xl p-2"
+              className="dch-pop"
+              role="menu"
+              aria-label="Tus frases"
             >
-              <div className="flex items-center justify-between px-2 py-1 mb-1 border-b border-slate-100">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-violet-600 flex items-center gap-1">
-                  <MessageSquare className="w-3.5 h-3.5" /> Tus frases
+              <div className="dch-pop__head">
+                <span className="dch-pop__badge" aria-hidden="true"><MessageSquare size={15} /></span>
+                <span className="dch-pop__titles">
+                  <span className="dch-pop__title">Tus frases</span>
+                  <span className="dch-pop__hint">Elige una y tu rival la verá</span>
                 </span>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="p-1 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600"
+                  className="dch-pop__close"
                   aria-label="Cerrar"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X size={15} />
                 </button>
               </div>
-              <div className="flex flex-col gap-1.5">
-                {ordered.map((s) => (
-                  <button
+              <div className="dch-pop__list">
+                {ordered.map((s, i) => (
+                  <motion.button
                     key={s.slot}
                     type="button"
+                    role="menuitem"
                     onClick={() => send(s)}
-                    className="text-left px-3 py-2 rounded-xl border-2 border-violet-100 hover:border-violet-400 hover:bg-violet-50 active:scale-[0.97] transition-all text-sm font-semibold text-slate-800"
+                    className="dch-chip"
                     title={s.text}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.035 * i, duration: 0.2 }}
                   >
-                    <span className="text-lg mr-1.5 align-middle">{s.emoji}</span>
-                    <span className="align-middle">{s.text}</span>
-                  </button>
+                    <span className="dch-chip__emoji" aria-hidden="true">{s.emoji}</span>
+                    <span className="dch-chip__text">{s.text}</span>
+                    <span className="dch-chip__send" aria-hidden="true"><Send size={14} /></span>
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
@@ -160,19 +177,33 @@ export default function PhraseLauncher({
           onClick={() => !cooling && setOpen((v) => !v)}
           disabled={cooling}
           whileTap={!cooling ? { scale: 0.92 } : undefined}
-          className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl border-2 transition-all
-            ${cooling
-              ? 'bg-slate-200 border-slate-300 text-slate-400 cursor-not-allowed'
-              : open
-                ? 'bg-gradient-to-br from-violet-600 to-fuchsia-600 border-white text-white'
-                : 'bg-gradient-to-br from-violet-500 to-fuchsia-500 border-white text-white hover:scale-105'}`}
+          className={`dch-fab${cooling ? ' is-cooling' : ''}${open ? ' is-open' : ''}`}
           aria-label="Decir una frase"
+          aria-expanded={open}
+          title={cooling ? `Podrás hablar en ${Math.ceil(remaining / 1000)} s` : 'Decir una frase'}
         >
-          {cooling ? <Lock className="w-5 h-5" /> : <MessageSquare className="w-6 h-6" />}
-          {cooling && (
-            <span className="absolute -top-1 -right-1 bg-white text-slate-700 text-[10px] font-black px-1.5 py-0.5 rounded-full shadow border border-slate-200">
-              {Math.ceil(remaining / 1000)}s
-            </span>
+          {cooling ? (
+            <>
+              <svg className="dch-fab__ring" viewBox="0 0 60 60" aria-hidden="true">
+                <circle className="dch-fab__ring-track" cx="30" cy="30" r="27" />
+                <circle
+                  className="dch-fab__ring-arc"
+                  cx="30"
+                  cy="30"
+                  r="27"
+                  strokeDasharray={RING_C}
+                  strokeDashoffset={RING_C * (1 - ringLeft)}
+                  transform="rotate(-90 30 30)"
+                />
+              </svg>
+              <span className="dch-fab__secs">{Math.ceil(remaining / 1000)}</span>
+              <span className="dch-fab__lock" aria-hidden="true"><Lock size={10} /></span>
+            </>
+          ) : (
+            <>
+              {!open && <span className="dch-fab__ping" aria-hidden="true" />}
+              {open ? <X size={24} /> : <MessageSquare size={24} />}
+            </>
           )}
         </motion.button>
       </div>

@@ -1,125 +1,132 @@
-import React, { useMemo } from 'react';
-import { buildColumnPlan } from './UniversalSumBoard'; // Reutilizamos la lógica de columnas de sumas
-import '/src/apps/_shared/Restas.css'; // Usamos el CSS de restas
+import React from 'react';
+import { ColumnOperationBoard } from './UniversalSumBoard'; // Misma rejilla y lógica de columnas que las sumas
+import { OpGrid, OpGuide, OpDigit, OpComma, OpOperator, OpRule, OpSlot, placeOf } from './MathOperationLayout';
+import '/src/apps/_shared/MathBoxShared.css';
+import '/src/apps/_shared/Restas.css';
 
 /**
- * Tablero Universal para Restas.
- * Misma estructura que SumBoard pero con operador de resta.
+ * Tablero Universal para Restas (1º): misma estructura que el de sumas con el
+ * signo de restar. API original intacta.
  */
-const UniversalSubtractionBoard = ({
-  nums,
-  resultSlots,
-  carrySlots,
-  actions,
-  activeSlot,
-  showCarries, // En restas, esto controlará si se ven las cajas de "llevadas" (préstamos)
-  validation,
-  minIntegerDigits = 2
-}) => {
-  // Calculamos la estructura visual (reutilizamos la lógica robusta de Sumas)
-  const plan = useMemo(() => buildColumnPlan(nums, minIntegerDigits), [nums, minIntegerDigits]);
+const UniversalSubtractionBoard = (props) => <ColumnOperationBoard operator="−" {...props} />;
 
-  // -- Event Handlers --
-  const onDragOver = (e) => e.preventDefault();
+/**
+ * Ceros a la izquierda: en el cuaderno no se escriben ("07" → "7"). Devuelve,
+ * por cifra, si se pinta. Nunca oculta las unidades ni una cifra modificada
+ * por una llevada. Solo presentación.
+ */
+export function hideLeadingZeros(digits, intDigits) {
+  let leading = true;
+  return digits.map((d, i) => {
+    const isZero = String(d?.value) === '0' && !d?.modified;
+    if (leading && isZero && i < intDigits - 1) return false;
+    leading = false;
+    return true;
+  });
+}
 
-  const handleDrop = (type, index, e) => {
+/**
+ * Tablero de resta con préstamo ("me llevo una") para 2º-5º.
+ * Solo presentación: cada app calcula valores y estados y los pasa aquí.
+ *
+ * props:
+ * - top           : string con las cifras del minuendo (sin coma), una por columna
+ * - bottom        : [{ value, modified }] cifras del sustraendo (modified = +1 por llevada)
+ * - intDigits     : nº de cifras enteras (la coma va antes de la cifra intDigits)
+ * - decimals      : nº de cifras decimales (0 = sin coma)
+ * - showTopComma  : pinta también la coma en el minuendo (por defecto true)
+ * - resultSlots, carrySlots : arrays de strings
+ * - resultState(i), carryState(i) : '' | 'correct' | 'incorrect'
+ * - activeSlot    : { type: 'result' | 'carry', index }
+ * - onSelect(slot): tocar una casilla
+ * - onDropDigit(slot, digit): soltar un número arrastrado sobre una casilla (opcional)
+ * - showHelp      : muestra las burbujas de préstamo
+ */
+export function BorrowSubtractionBoard({
+  top, bottom, intDigits, decimals = 0, showTopComma = true,
+  resultSlots, carrySlots, resultState, carryState, activeSlot, onSelect, onDropDigit, showHelp,
+}) {
+  const total = top.length;
+  const topShown = hideLeadingZeros(top.split('').map((v) => ({ value: v })), intDigits);
+  const bottomShown = hideLeadingZeros(bottom, intDigits);
+  const dropOn = (slot) => (onDropDigit ? (e) => {
     e.preventDefault();
     const data = e.dataTransfer.getData('text/plain');
-    if (!/^\d$/.test(data)) return;
-    if (type === 'result') actions.updateResult(index, data);
-    if (type === 'carry') actions.updateCarry(index, data);
-    actions.setActiveSlot({ type, index });
-  };
+    if (/^\d$/.test(data)) onDropDigit(slot, Number(data));
+  } : undefined);
+  const R_LABEL = 1;
+  const R_TOP = 2;
+  const R_BOTTOM = 3;
+  const R_RULE = 4;
+  const R_RESULT = 5;
 
-  const handleClick = (type, index, e) => {
-    e.stopPropagation();
-    // Si clicamos el mismo slot activo, lo deseleccionamos, si no, lo activamos
-    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
-      actions.setActiveSlot(null);
-    } else {
-      actions.setActiveSlot({ type, index });
+  const columns = ['op'];
+  const pieces = [];
+  let col = 2;
+  for (let i = 0; i < total; i++) {
+    if (decimals > 0 && i === intDigits) {
+      columns.push('comma');
+      if (showTopComma) pieces.push(<OpComma key="cm-t" r={R_TOP} c={col} />);
+      pieces.push(<OpComma key="cm-b" r={R_BOTTOM} c={col} />);
+      pieces.push(<OpComma key="cm-r" r={R_RESULT} c={col} />);
+      col++;
     }
-  };
+    const gapCol = col;
+    const cellCol = col + 1;
+    columns.push('gap', 'cell');
+    col += 2;
 
-  // -- Clases CSS --
-  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
-  
-  const getValidationClass = (type, idx) => {
-    if (!validation?.show) return '';
-    const userVal = (type === 'result' ? resultSlots[idx] : carrySlots[idx]) || '';
-    const expected = (type === 'result' ? validation.expectedResult[idx] : validation.expectedCarries?.[idx])?.toString() || '0';
-    
-    // Lógica para ceros a la izquierda en resultado (vacío = correcto si es 0 a la izq)
-    if (type === 'result' && userVal === '' && expected === '0' && 
-       (validation.firstNonZeroIdx === -1 || idx < validation.firstNonZeroIdx)) {
-      return '';
+    const pos = i < intDigits ? intDigits - 1 - i : -(i - intDigits + 1);
+    const [, placeName] = placeOf(pos);
+    pieces.push(<OpGuide key={`g-${i}`} c={cellCol} pos={pos} alt={i % 2 === 1} labelRow={R_LABEL} />);
+
+    if (i !== 0) {
+      pieces.push(
+        <OpSlot
+          key={`b-${i}`}
+          r={R_TOP}
+          c={gapCol}
+          kind="borrow"
+          className="opb-borrow"
+          value={carrySlots[i]}
+          state={carryState(i)}
+          selected={activeSlot?.type === 'carry' && activeSlot?.index === i}
+          hidden={!showHelp}
+          label={`Llevada en las ${placeName.toLowerCase()}`}
+          onSelect={() => onSelect({ type: 'carry', index: i })}
+          onDrop={dropOn({ type: 'carry', index: i })}
+        />
+      );
     }
-    // Lógica para llevadas (vacío = 0)
-    if (type === 'carry' && userVal === '' && expected === '0') return 'correct';
-    
-    return userVal === expected ? 'correct' : 'incorrect';
-  };
-
-  let digitCounter = 0;
+    if (topShown[i]) pieces.push(<OpDigit key={`t-${i}`} r={R_TOP} c={cellCol}>{top[i]}</OpDigit>);
+    if (bottomShown[i]) {
+      pieces.push(
+        <OpDigit key={`s-${i}`} r={R_BOTTOM} c={cellCol} modified={bottom[i]?.modified}>{bottom[i]?.value}</OpDigit>
+      );
+    }
+    pieces.push(
+      <OpSlot
+        key={`r-${i}`}
+        r={R_RESULT}
+        c={cellCol}
+        kind="result"
+        value={resultSlots[i]}
+        state={resultState(i)}
+        selected={activeSlot?.type === 'result' && activeSlot?.index === i}
+        label={`Resultado: ${placeName.toLowerCase()}`}
+        onSelect={() => onSelect({ type: 'result', index: i })}
+        onDrop={dropOn({ type: 'result', index: i })}
+      />
+    );
+  }
 
   return (
-    <div className={`board ${!showCarries ? 'carries-hidden' : ''}`}>
-      <div className="operator">-</div>
-
-      {Array.from({ length: plan.totalCols }).map((_, colIdx) => {
-        const isComma = colIdx === plan.commaIndex;
-        // En restas, las "llevadas" (auxiliares) suelen ir arriba también
-        const showCarryBox = !isComma && colIdx !== plan.totalCols - 1;
-        
-        let currentDigitIdx = null;
-        if (!isComma) {
-          currentDigitIdx = digitCounter;
-          digitCounter++;
-        }
-
-        return (
-          <div className="column" key={colIdx}>
-            {/* Caja de Llevada / Préstamo */}
-            {showCarryBox ? (
-              <div
-                className={`box carry-box ${getValidationClass('carry', currentDigitIdx)} ${isSelected('carry', currentDigitIdx) ? 'selected' : ''}`}
-                onDragOver={onDragOver}
-                onDrop={(e) => handleDrop('carry', currentDigitIdx, e)}
-                onClick={(e) => handleClick('carry', currentDigitIdx, e)}
-              >
-                {carrySlots[currentDigitIdx]}
-              </div>
-            ) : (
-              <div className="carry-placeholder" />
-            )}
-
-            {/* Filas de números (operandos) */}
-            {plan.rows.map((row, rIdx) => (
-              <div className="digit-display" key={rIdx}>{row[colIdx] ?? ' '}</div>
-            ))}
-
-            <hr className="operation-line" />
-
-            {/* Caja de Resultado o Coma */}
-            {isComma ? (
-              <div className="box comma-box"><span>,</span></div>
-            ) : (
-              <div
-                className={`box result-box ${getValidationClass('result', currentDigitIdx)} ${isSelected('result', currentDigitIdx) ? 'selected' : ''}`}
-                onDragOver={onDragOver}
-                onDrop={(e) => handleDrop('result', currentDigitIdx, e)}
-                onClick={(e) => handleClick('result', currentDigitIdx, e)}
-              >
-                {resultSlots[currentDigitIdx]}
-              </div>
-            )}
-          </div>
-        );
-      })}
-      
-      <div className="operator-spacer" />
-    </div>
+    <OpGrid columns={columns} rows={['label', 'num', 'num', 'rule', 'result']} label="Resta" className="opb-grid--borrow">
+      {pieces}
+      <OpOperator r={R_BOTTOM} symbol="−" />
+      <OpRule r={R_RULE} />
+    </OpGrid>
   );
-};
+}
 
 export default UniversalSubtractionBoard;

@@ -1,7 +1,17 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { ChevronLeft, Save, Play, Trash2, Users, User, Check, AlertTriangle } from 'lucide-react';
+import {
+  ChevronLeft, Save, Play, Trash2, Users, User, Check, AlertTriangle, Eraser, ArrowUp, ArrowRight,
+  ArrowDown, ArrowLeft, Lightbulb, Pencil,
+} from 'lucide-react';
 import { FloorTile, WallTile, WaterTile, HoleTile, EnergyItem, EnergyStack, CrateTile, TargetFlag, biomeForLevel, BIOME_INFO } from './PixelTiles';
 import Robot from './Robot';
+import PbDialog from './PbDialog';
+import { GameShell, GameHeader, Panel, Chip, GameButton, Segmented } from '../_shared/kit';
+
+// Editor de niveles de "Programa al Robot" (rediseño 2026 sobre el kit).
+// Solo presentación: la lógica de pintado, validación y guardado es la de antes.
+const SHELL = { accent: '#f59e0b', accent2: '#ec4899' };
+const at = (x, y) => ({ '--x': x, '--y': y });
 
 const makeDefaultWorld = (cols = 8, rows = 8) => ({
   cols, rows,
@@ -12,22 +22,23 @@ const makeDefaultWorld = (cols = 8, rows = 8) => ({
 
 const SIZES = [8, 10, 12];
 
+// Cada herramienta se dibuja con su propia pieza del tablero (no con emojis).
 const TOOLS = [
-  { key: 'robot',  label: 'Robot',    icon: '🤖', color: '#60a5fa' },
-  { key: 'target', label: 'Meta',     icon: '🏁', color: '#fbbf24' },
-  { key: 'wall',   label: 'Muro',     icon: '🧱', color: '#111' },
-  { key: 'water',  label: 'Agua',     icon: '💧', color: '#3b82f6' },
-  { key: 'hole',   label: 'Hoyo',     icon: '🕳️', color: '#0f172a' },
-  { key: 'crate',  label: 'Caja',     icon: '📦', color: '#b45309' },
-  { key: 'item',   label: 'Energía',  icon: '🔋', color: '#22c55e' },
-  { key: 'erase',  label: 'Borrar',   icon: '❌', color: '#ef4444' },
+  { key: 'robot',  label: 'Robot',   art: () => <Robot dir="S" moving={false} /> },
+  { key: 'target', label: 'Meta',    art: () => <TargetFlag /> },
+  { key: 'wall',   label: 'Muro',    art: (b) => <WallTile x={0} y={0} biome={b} /> },
+  { key: 'water',  label: 'Agua',    art: (b) => <WaterTile x={0} y={0} biome={b} /> },
+  { key: 'hole',   label: 'Hoyo',    art: (b) => <HoleTile biome={b} /> },
+  { key: 'crate',  label: 'Caja',    art: (b) => <CrateTile biome={b} /> },
+  { key: 'item',   label: 'Energía', art: () => <EnergyItem /> },
+  { key: 'erase',  label: 'Borrar',  art: () => <Eraser size={22} strokeWidth={2.4} /> },
 ];
 
 const DIRS = [
-  { key: 'N', label: '↑' },
-  { key: 'E', label: '→' },
-  { key: 'S', label: '↓' },
-  { key: 'W', label: '←' },
+  { key: 'N', label: 'Norte', Icon: ArrowUp },
+  { key: 'E', label: 'Este', Icon: ArrowRight },
+  { key: 'S', label: 'Sur', Icon: ArrowDown },
+  { key: 'W', label: 'Oeste', Icon: ArrowLeft },
 ];
 
 export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canShare, onBack, onSaved, onPlay, editTarget }) {
@@ -195,175 +206,189 @@ export default function LevelEditor({ gradeId, level, grade, biomeIdx = 0, canSh
       cells.push(
         <div
           key={k}
-          className="pb-ed-cell"
+          className="pbx-cell pbx-ed-cell"
           onClick={() => placeAt(x, y)}
-          style={{ left: x * cellPx, top: y * cellPx, width: cellPx, height: cellPx }}
+          style={at(x, y)}
           title={`(${x}, ${y})${itemN > 1 ? ` · ×${itemN}` : ''}`}
         >
-          <div className="pb-ed-floor"><FloorTile x={x} y={y} biome={biome} /></div>
-          {isWall && <div className="pb-ed-overlay"><WallTile x={x} y={y} biome={biome} /></div>}
-          {isWater && <div className="pb-ed-overlay"><WaterTile x={x} y={y} biome={biome} /></div>}
-          {isHole && <div className="pb-ed-overlay"><HoleTile biome={biome} /></div>}
-          {isCrate && <div className="pb-ed-overlay"><CrateTile biome={biome} /></div>}
+          <div className="pbx-ed-layer"><FloorTile x={x} y={y} biome={biome} /></div>
+          {isWall && <div className="pbx-ed-layer"><WallTile x={x} y={y} biome={biome} /></div>}
+          {isWater && <div className="pbx-ed-layer"><WaterTile x={x} y={y} biome={biome} /></div>}
+          {isHole && <div className="pbx-ed-layer"><HoleTile biome={biome} /></div>}
+          {isCrate && <div className="pbx-ed-layer"><CrateTile biome={biome} /></div>}
           {itemN > 0 && !isWall && !isWater && !isHole && !isCrate && (
-            <div className="pb-ed-item">{itemN > 1 ? <EnergyStack count={itemN} /> : <EnergyItem />}</div>
+            <div className="pbx-ed-item">{itemN > 1 ? <EnergyStack count={itemN} /> : <EnergyItem />}</div>
           )}
           {isTarget && !isWall && !isWater && !isHole && !isCrate && (
-            <div className="pb-ed-target"><TargetFlag /></div>
+            <div className="pbx-ed-target"><TargetFlag /></div>
           )}
           {isRobot && (
-            <div className="pb-ed-robot"><Robot dir={world.robot.dir} moving={false} /></div>
+            <div className="pbx-ed-robot"><Robot dir={world.robot.dir} moving={false} /></div>
           )}
         </div>
       );
     }
   }
 
-  return (
-    <div className="pb-root">
-      <div className="pb-frame pb-frame-play">
-        <div className="pb-play-header">
-          <button className="pb-icon-btn" onClick={onBack}><ChevronLeft size={16} /> Volver</button>
-          <div className="pb-play-title">
-            <span className="pb-play-emoji">🎨</span>
-            <span className="pb-play-text">Crear nivel</span>
-          </div>
-          <div className="pb-spacer" />
-          <button className="pb-btn pb-btn-ghost" onClick={handlePlay} disabled={saving}>
-            <Play size={14} /> Probar
-          </button>
-          <button className="pb-btn pb-btn-primary" onClick={handleSave} disabled={saving}>
-            <Save size={14} /> {saving ? 'Guardando…' : 'Guardar'}
-          </button>
-        </div>
+  const toolInfo = TOOLS.find((t) => t.key === tool);
 
-        <div className="pb-ed-body">
-          {/* Col izquierda: herramientas + grid */}
-          <div className="pb-ed-main">
-            <div className="pb-ed-tools">
-              <div className="pb-ed-tools-row">
-                {TOOLS.map((t) => (
-                  <button
-                    key={t.key}
-                    className={`pb-ed-tool ${tool === t.key ? 'active' : ''}`}
-                    onClick={() => setTool(t.key)}
-                    style={tool === t.key ? { borderColor: t.color, background: `${t.color}22` } : undefined}
-                  >
-                    <span className="pb-ed-tool-icon">{t.icon}</span>
-                    <span className="pb-ed-tool-label">{t.label}</span>
-                  </button>
-                ))}
-              </div>
-              {tool === 'robot' && (
-                <div className="pb-ed-dir">
-                  <span>Dirección:</span>
+  return (
+    <GameShell {...SHELL} wide className="pbx">
+      <GameHeader
+        subtitle={editTarget?.id ? 'Editar nivel' : 'Crear nivel'}
+        right={(
+          <>
+            <GameButton variant="soft" size="sm" icon={ChevronLeft} onClick={onBack}>Volver</GameButton>
+            <GameButton variant="soft" size="sm" icon={Play} onClick={handlePlay} disabled={saving}>Probar</GameButton>
+            <GameButton size="sm" icon={Save} onClick={handleSave} disabled={saving}>{saving ? 'Guardando…' : 'Guardar'}</GameButton>
+          </>
+        )}
+      />
+
+      <div className="pbx-ed">
+        <div className="pbx-ed__main">
+          {/* Herramientas */}
+          <Panel variant="surface" className="pbx-ed__tools">
+            <div className="pbx-section-title"><Pencil size={16} /> Herramienta <small>{toolInfo?.label}</small></div>
+            <div className="pbx-ed__toolgrid" role="radiogroup" aria-label="Herramientas">
+              {TOOLS.map((t) => (
+                <button
+                  key={t.key}
+                  type="button"
+                  role="radio"
+                  aria-checked={tool === t.key}
+                  className={`pbx-tool is-${t.key} ${tool === t.key ? 'is-active' : ''}`}
+                  onClick={() => setTool(t.key)}
+                >
+                  <span className="pbx-tool__art">{t.art(biome)}</span>
+                  <span className="pbx-tool__label">{t.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {tool === 'robot' && (
+              <div className="pbx-ed__opt">
+                <span className="pbx-ed__opt-label">Dirección</span>
+                <div className="pbx-ed__dirs">
                   {DIRS.map((d) => (
                     <button
                       key={d.key}
-                      className={`pb-ed-dir-btn ${robotDir === d.key ? 'active' : ''}`}
+                      type="button"
+                      className={`pbx-chipbtn ${robotDir === d.key ? 'is-active' : ''}`}
                       onClick={() => changeRobotDir(d.key)}
-                    >{d.label}</button>
+                      aria-label={d.label}
+                      title={d.label}
+                    ><d.Icon size={16} strokeWidth={2.6} /></button>
                   ))}
                 </div>
-              )}
-              {tool === 'item' && (
-                <div className="pb-ed-dir">
-                  <span>Cantidad por casilla:</span>
+              </div>
+            )}
+            {tool === 'item' && (
+              <div className="pbx-ed__opt">
+                <span className="pbx-ed__opt-label">Cantidad por casilla</span>
+                <div className="pbx-ed__dirs">
                   {[1, 2, 3, 5, 9].map((n) => (
                     <button
                       key={n}
-                      className={`pb-ed-dir-btn ${itemCount === n ? 'active' : ''}`}
+                      type="button"
+                      className={`pbx-chipbtn ${itemCount === n ? 'is-active' : ''}`}
                       onClick={() => setItemCount(n)}
                       title={`Pintará casillas con ${n} unidad${n > 1 ? 'es' : ''}`}
                     >×{n}</button>
                   ))}
-                  <span className="pb-ed-hint-sm">(clic sobre una con ítem suma 1)</span>
                 </div>
-              )}
-              <div className="pb-ed-size">
-                <span>Tamaño del tablero:</span>
-                {SIZES.map((s) => (
-                  <button
-                    key={s}
-                    className={`pb-ed-dir-btn ${world.cols === s ? 'active' : ''}`}
-                    onClick={() => changeSize(s)}
-                  >{s}×{s}</button>
-                ))}
+                <span className="pbx-ed__hint">Clic sobre una casilla con energía: suma 1.</span>
               </div>
-              <div className="pb-ed-tools-hint">💡 Haz clic en una casilla para aplicar la herramienta. Las cajas 📦 se destruyen con disparar láser.</div>
-            </div>
-
-            <div
-              className={`pb-board pb-biome-${biome} pb-ed-grid`}
-              style={{
-                width: world.cols * cellPx,
-                height: world.rows * cellPx,
-                background: BIOME_INFO[biome]?.bg,
-                '--pb-cell': `${cellPx}px`,
-              }}
-            >
-              {cells}
-              <div className="pb-grid-overlay" />
-            </div>
-
-            <div className="pb-ed-actions-row">
-              <button className="pb-btn pb-btn-ghost" onClick={clearAll}><Trash2 size={14} /> Vaciar</button>
-              <span className="pb-ed-counter">
-                🧱 {world.walls.length} · 💧 {world.water.length} · 🕳️ {world.holes.length} · 📦 {(world.crates || []).length} · 🔋 {totalUnitsOf(world.items)}
-              </span>
-            </div>
-          </div>
-
-          {/* Col derecha: metadatos */}
-          <div className="pb-ed-meta">
-            <label className="pb-ed-label">Título</label>
-            <input
-              className="pb-ed-input" value={title} onChange={(e) => setTitle(e.target.value)}
-              placeholder="Mi nivel imposible" maxLength={80}
-            />
-
-            <label className="pb-ed-label">Descripción</label>
-            <textarea
-              className="pb-ed-textarea" value={description} onChange={(e) => setDescription(e.target.value)}
-              placeholder="Explica qué tiene que hacer el robot…" rows={4} maxLength={400}
-            />
-
-            {canShare && (
-              <label className="pb-ed-share">
-                <input type="checkbox" checked={shared} onChange={(e) => setShared(e.target.checked)} />
-                <span><Users size={14} /> Compartir con mi clase</span>
-              </label>
             )}
-
-            {err && <div className="pb-error">⚠ {err}</div>}
-
-            <div className="pb-ed-info">
-              <div><User size={12} /> Nivel: {level} {grade}º</div>
-              <div><Check size={12} /> Se practica con los bloques de tu curso.</div>
+            <div className="pbx-ed__opt">
+              <span className="pbx-ed__opt-label">Tamaño del tablero</span>
+              <Segmented
+                size="sm"
+                value={world.cols}
+                onChange={changeSize}
+                options={SIZES.map((sz) => ({ value: sz, label: `${sz}×${sz}` }))}
+              />
             </div>
-          </div>
-        </div>
-      </div>
-      {pendingConfirm && (
-        <div className="pb-modal-backdrop" onClick={() => setPendingConfirm(null)}>
-          <div className="pb-dialog" role="alertdialog" aria-modal="true" aria-labelledby="pb-editor-confirm-title" onClick={(e) => e.stopPropagation()}>
-            <div className="pb-dialog-icon is-danger" aria-hidden="true"><AlertTriangle size={22} /></div>
-            <h3 id="pb-editor-confirm-title">{pendingConfirm.title}</h3>
-            <p>{pendingConfirm.text}</p>
-            <div className="pb-dialog-actions">
-              <button className="pb-btn pb-btn-ghost" onClick={() => setPendingConfirm(null)}>Cancelar</button>
-              <button
-                className="pb-btn pb-btn-danger"
-                onClick={() => { pendingConfirm.onConfirm(); setPendingConfirm(null); }}
-                autoFocus
+            <div className="pbx-ed__tip"><Lightbulb size={15} /> Haz clic en una casilla para aplicar la herramienta. Las cajas se destruyen con «disparar láser».</div>
+          </Panel>
+
+          {/* Tablero */}
+          <div className="pbx-arena pbx-arena--editor">
+            <div className="pbx-arena__board">
+              <div
+                className={`pbx-board pbx-biome-${biome} has-grid pbx-ed-board`}
+                style={{
+                  '--cols': world.cols,
+                  '--rows': world.rows,
+                  '--cmax': `${cellPx}px`,
+                  background: BIOME_INFO[biome]?.bg,
+                }}
               >
-                {pendingConfirm.confirmLabel}
-              </button>
+                {cells}
+                <div className="pbx-grid-overlay" />
+              </div>
+            </div>
+            <div className="pbx-ed__counts">
+              <span className="pbx-legend__item"><span className="pbx-legend__ico"><WallTile x={0} y={0} biome={biome} /></span>{world.walls.length}</span>
+              <span className="pbx-legend__item"><span className="pbx-legend__ico"><WaterTile x={0} y={0} biome={biome} /></span>{world.water.length}</span>
+              <span className="pbx-legend__item"><span className="pbx-legend__ico"><HoleTile biome={biome} /></span>{world.holes.length}</span>
+              <span className="pbx-legend__item"><span className="pbx-legend__ico"><CrateTile biome={biome} /></span>{(world.crates || []).length}</span>
+              <span className="pbx-legend__item"><span className="pbx-legend__ico"><EnergyItem /></span>{totalUnitsOf(world.items)}</span>
+              <GameButton variant="ghost" size="sm" icon={Trash2} onClick={clearAll}>Vaciar</GameButton>
             </div>
           </div>
         </div>
-      )}
-    </div>
+
+        {/* Metadatos */}
+        <Panel variant="surface" className="pbx-ed__meta">
+          <label className="pbx-label" htmlFor="pbx-ed-title">Título</label>
+          <input
+            id="pbx-ed-title"
+            className="pbx-input" value={title} onChange={(e) => setTitle(e.target.value)}
+            placeholder="Mi nivel imposible" maxLength={80}
+          />
+
+          <label className="pbx-label" htmlFor="pbx-ed-desc">Descripción</label>
+          <textarea
+            id="pbx-ed-desc"
+            className="pbx-input pbx-input--area" value={description} onChange={(e) => setDescription(e.target.value)}
+            placeholder="Explica qué tiene que hacer el robot…" rows={4} maxLength={400}
+          />
+
+          {canShare && (
+            <label className="pbx-switch">
+              <input type="checkbox" checked={shared} onChange={(e) => setShared(e.target.checked)} />
+              <span className="pbx-switch__track" aria-hidden="true"><span className="pbx-switch__knob" /></span>
+              <span className="pbx-switch__text"><Users size={15} /> Compartir con mi clase</span>
+            </label>
+          )}
+
+          {err && <div className="pbx-error"><AlertTriangle size={15} /> {err}</div>}
+
+          <div className="pbx-ed__info">
+            <Chip icon={User}>Nivel: {level} {grade}º</Chip>
+            <Chip icon={Check}>Se practica con los bloques de tu curso</Chip>
+          </div>
+        </Panel>
+      </div>
+
+      <PbDialog
+        open={!!pendingConfirm}
+        tone="danger"
+        title={pendingConfirm?.title}
+        text={pendingConfirm?.text}
+        onClose={() => setPendingConfirm(null)}
+        actions={[
+          { label: 'Cancelar', variant: 'soft', onClick: () => setPendingConfirm(null) },
+          {
+            label: pendingConfirm?.confirmLabel || 'Aceptar',
+            variant: 'danger',
+            onClick: () => { pendingConfirm?.onConfirm(); setPendingConfirm(null); },
+            autoFocus: true,
+          },
+        ]}
+      />
+    </GameShell>
   );
 }
 

@@ -1,17 +1,27 @@
 // src/apps/juego-memoria/JuegoMemoria.jsx
+// Rediseño 2026 sobre el kit de interfaz (_shared/kit). Pantalla previa con
+// el tamaño del tablero y los ajustes (antes en un modal de configuración),
+// fase de memorización con cuenta atrás, cartas con giro 3D (dorso rosa con
+// lunares y número de tecla) y resumen con la nota. Reglas y tracking intactos.
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Brain, Check, Clock, Grid3x3, LayoutGrid, RefreshCw, Search, Settings2, Shuffle,
+  Sparkles, Target, Timer, Hourglass, GraduationCap,
+} from 'lucide-react';
 import { getRunnerData } from '../../services/gameDataService';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressBar, Panel, Chip, GameButton,
+  ModeSelect, Segmented, ResultsScreen, GameLoading, GameEmpty,
+} from '../_shared/kit';
 import './JuegoMemoria.css';
 
 const GAME_TIME = 60; // 1 minute
 const MEMORIZE_TIME = 5; // 5 seconds
-const GRID_SIZE = 9;
 // eslint-disable-next-line no-unused-vars
 const FIXED_SEQUENCE = [4, 0, 8, 2, 6, 1, 7, 3, 5]; // Predefined non-sequential order for "Fixed" mode (LEGACY - NOT USED)
-
-
 
 const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGameComplete }) => {
     const [words, setWords] = useState([]);
@@ -31,10 +41,11 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
     const [gridSize, setGridSize] = useState(9); // 6, 9, 12
     const [gameTime, setGameTime] = useState(60); // 40, 60, 80
     const [errorWaitTime, setErrorWaitTime] = useState(2); // 1, 2, 3
-    const [showSettings, setShowSettings] = useState(false);
+    // Pantalla previa (CLAUDE.md §3): la partida no arranca hasta pulsar un tablero.
+    const [started, setStarted] = useState(false);
+    const [pendingStart, setPendingStart] = useState(false);
 
     // Config Options
-    const GRID_OPTIONS = [6, 9, 12];
     const TIME_OPTIONS = [40, 60, 80];
     const WAIT_OPTIONS = [1, 2, 3];
 
@@ -72,8 +83,6 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
         }
         return newArray;
     };
-
-
 
     // Function to load words - Extracted to be reusable
     const fetchWords = async () => {
@@ -139,11 +148,21 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
         }
     };
 
-    // Initial Load
+    // Initial Load (tras elegir tablero en la pantalla previa)
     useEffect(() => {
+        if (!started) return;
         fetchWords();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [grade, subjectId]);
+
+    // Arranque desde la pantalla previa: se lanza en el render siguiente a fijar
+    // el tamaño del tablero para que fetchWords use la configuración elegida.
+    useEffect(() => {
+        if (!pendingStart) return;
+        setPendingStart(false);
+        fetchWords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pendingStart]);
 
     const handleNewGame = async () => {
         // 1. Hide everything immediately to avoid showcasing old words
@@ -195,10 +214,6 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
             if (timerRef.current) clearInterval(timerRef.current);
         }
     }, [gameState]);
-
-
-
-
 
     const handleBoxClick = (index) => {
         if (gameState !== 'playing') return;
@@ -262,8 +277,6 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
         }
     };
 
-
-
     // Keypad Support
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -278,7 +291,7 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
             }
 
             // Alpha keys for 10, 11, 12
-            // 10 -> 'a', 11 -> 'b', 12 -> 'c' 
+            // 10 -> 'a', 11 -> 'b', 12 -> 'c'
             if (gridSize >= 10) {
                 if (key === 'a') handleBoxClick(9); // Index 9 is box 10
                 if (key === 'b' && gridSize >= 11) handleBoxClick(10); // Index 10 is box 11
@@ -290,316 +303,263 @@ const JuegoMemoria = ({ level = 'eso', grade = 1, subjectId = 'biologia', onGame
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState, revealedIndex, correctIndices, targetOrder, currentIndex, gridSize]);
 
+    // --- Pantalla previa ---
+    const empezar = (size) => {
+        setGridSize(size);
+        setStarted(true);
+        setPendingStart(true);
+    };
 
+    // Volver a los ajustes: se para la partida (estado inicial 'loading', sin
+    // relojes) y se ocultan las palabras.
+    const volverAAjustes = () => {
+        setStarted(false);
+        setGameState('loading');
+        setWords([]);
+        setCorrectIndices(new Set());
+        setRevealedIndex(null);
+        setErrorIndex(null);
+        setErrorCountdown(null);
+        setErrorMsg(null);
+    };
 
     const targetWord = words.length > 0 && targetOrder.length > 0 ? words[targetOrder[currentIndex]] : '';
+    const shellProps = { accent: '#ec4899', accent2: '#8b5cf6', className: 'jm-shell' };
+
+    const instrucciones = (
+        <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar a Juego de Memoria">
+            <h3>🎯 Objetivo</h3>
+            <p>Encuentra las palabras ocultas, en el orden que se te piden, antes de que se agote el tiempo.</p>
+            <h3>🕹️ Cómo se juega</h3>
+            <ul>
+                <li>Tienes <strong>{MEMORIZE_TIME} segundos</strong> al inicio para memorizar la ubicación de las palabras.</li>
+                <li>Haz clic en una carta (o usa los números 1-9 y las letras A-C) para revelarla.</li>
+                <li>Si aciertas, la carta se queda visible.</li>
+                <li>Si fallas, la carta se marca en <strong>rojo</strong>, esperas {errorWaitTime} s y el progreso vuelve a empezar.</li>
+            </ul>
+            <h3>⚙️ Ajustes</h3>
+            <ul>
+                <li><strong>Orden fijo:</strong> se genera un orden al inicio y se mantiene toda la partida. Si fallas, sigues buscando la misma palabra.</li>
+                <li><strong>Orden aleatorio:</strong> el orden se reorganiza cada vez que cometes un error.</li>
+            </ul>
+            <div className="instr-tips"><strong>🎓 Examen:</strong> todas las partidas cuentan para la nota (sobre 10).</div>
+        </InstructionsModal>
+    );
+
+    // --- Pantalla previa: tablero y ajustes ---
+    if (!started) {
+        const modes = [
+            { id: 6, tone: 'easy', icon: Grid3x3, title: '6 cartas', desc: 'Un tablero corto para entrar en calor.', features: ['Tablero 3 × 2', `${MEMORIZE_TIME} s para memorizar`] },
+            { id: 9, tone: 'medium', icon: Grid3x3, title: '9 cartas', desc: 'El clásico: nueve posiciones que recordar.', features: ['Tablero 3 × 3', `${MEMORIZE_TIME} s para memorizar`] },
+            { id: 12, tone: 'hard', icon: Brain, title: '12 cartas', desc: 'Para memorias de élite.', features: ['Tablero 4 × 3', `${MEMORIZE_TIME} s para memorizar`] },
+        ];
+        return (
+            <GameShell {...shellProps}>
+                <ModeSelect
+                    modes={modes}
+                    onSelect={empezar}
+                    onHelp={() => setShowHelp(true)}
+                    extra={(
+                        <Panel variant="surface" className="jm-settings">
+                            <div className="jm-settings__title"><Settings2 size={16} /> Ajustes de la partida</div>
+                            <div className="jm-settings__row">
+                                <span className="jm-settings__label"><Timer size={15} /> Tiempo de juego</span>
+                                <Segmented size="sm" value={gameTime} onChange={setGameTime} options={TIME_OPTIONS.map((t) => ({ value: t, label: `${t} s` }))} />
+                            </div>
+                            <div className="jm-settings__row">
+                                <span className="jm-settings__label"><Hourglass size={15} /> Espera tras fallo</span>
+                                <Segmented size="sm" value={errorWaitTime} onChange={setErrorWaitTime} options={WAIT_OPTIONS.map((w) => ({ value: w, label: `${w} s` }))} />
+                            </div>
+                            <div className="jm-settings__row">
+                                <span className="jm-settings__label"><Shuffle size={15} /> Orden</span>
+                                <Segmented size="sm" value={isRandomOrder} onChange={setIsRandomOrder} options={[{ value: false, label: 'Fijo' }, { value: true, label: 'Aleatorio' }]} />
+                            </div>
+                        </Panel>
+                    )}
+                    footer={<span className="jm-foot"><GraduationCap size={15} /> Todas las partidas cuentan como examen · nota sobre 10</span>}
+                />
+                {instrucciones}
+            </GameShell>
+        );
+    }
+
+    // --- Resumen ---
+    if (gameState === 'won' || gameState === 'lost') {
+        const won = gameState === 'won';
+        const nota = won ? 10 : Math.round((correctIndices.size / gridSize) * 100) / 10;
+        const pts = correctIndices.size * 100 + (won ? Math.max(0, Math.round(300 * (timeLeft / GAME_TIME))) : 0);
+        return (
+            <GameShell {...shellProps}>
+                <ResultsScreen
+                    title={won ? '¡Enhorabuena!' : '¡Tiempo agotado!'}
+                    subtitle={won ? '¡Has encontrado todas las palabras!' : 'Se acabó el tiempo.'}
+                    nota={nota}
+                    points={pts}
+                    stats={[
+                        { icon: Target, tone: 'good', label: 'Encontradas', value: `${correctIndices.size}/${gridSize}` },
+                        { icon: Clock, tone: 'time', label: 'Tiempo restante', value: `${Number(timeLeft).toFixed(1)}s` },
+                        { icon: Sparkles, tone: 'accent', label: 'Categoría', value: category || '—' },
+                    ]}
+                    actions={[
+                        { label: 'Jugar de nuevo', onClick: handleNewGame, icon: RefreshCw },
+                        { label: 'Cambiar ajustes', onClick: volverAAjustes, icon: LayoutGrid, variant: 'soft' },
+                    ]}
+                />
+                {instrucciones}
+            </GameShell>
+        );
+    }
+
+    const cols = gridSize === 12 ? 4 : 3;
 
     return (
-        <div className="memory-game-container full-screen">
-            {/* Fondo decorativo: orbes de luz + destellos */}
-            <div className="memoria-fx" aria-hidden="true">
-                <span className="memoria-fx-orb a" />
-                <span className="memoria-fx-orb b" />
-                <span className="memoria-fx-star s1" />
-                <span className="memoria-fx-star s2" />
-                <span className="memoria-fx-star s3" />
-                <span className="memoria-fx-star s4" />
-            </div>
+        <GameShell {...shellProps}>
+            <GameHeader
+                mode="exam"
+                modeLabel={`Examen · ${gridSize} cartas`}
+                onHelp={() => setShowHelp(true)}
+                right={(
+                    <Hud>
+                        <HudStat icon={Target} tone="good" value={`${correctIndices.size}/${gridSize}`} label="Encontradas" />
+                        <HudStat
+                            icon={Timer}
+                            tone={gameState === 'playing' && timeLeft <= 10 ? 'bad' : 'time'}
+                            value={gameState === 'memorize' ? `${memorizeTimeLeft}s` : `${Math.ceil(Number(timeLeft))}s`}
+                            label={gameState === 'memorize' ? 'Memoriza' : 'Tiempo'}
+                        />
+                    </Hud>
+                )}
+            />
 
-            <h1 className="game-title">
-                <span className="memoria-title-icon" aria-hidden="true">🧠</span>
-                Juego de Memoria
-            </h1>
+            {errorMsg ? (
+                <GameEmpty title="No se puede empezar" action={<GameButton icon={LayoutGrid} onClick={volverAAjustes}>Cambiar ajustes</GameButton>}>
+                    {errorMsg}
+                </GameEmpty>
+            ) : words.length === 0 ? (
+                <GameLoading label="Repartiendo cartas…" />
+            ) : (
+                <>
+                    <Panel variant="screen" className={`jm-target is-${gameState}`}>
+                        {category && (
+                            <span className={`jm-target__cat ${gameState === 'shaking' ? 'gk-anim-shake' : ''}`}>
+                                <Sparkles size={13} /> {category.replace(/_/g, ' ')}
+                            </span>
+                        )}
+                        <AnimatePresence mode="wait">
+                            {gameState === 'memorize' ? (
+                                <motion.div key="memo" className="jm-target__body" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+                                    <MemoRing left={memorizeTimeLeft} total={MEMORIZE_TIME} />
+                                    <div className="jm-target__text">
+                                        <span className="jm-target__label"><Brain size={14} /> Fase de memorización</span>
+                                        <strong className="jm-target__word is-memo">¡Memoriza las posiciones!</strong>
+                                    </div>
+                                </motion.div>
+                            ) : gameState === 'playing' ? (
+                                <motion.div key="play" className="jm-target__body" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+                                    <span className="jm-target__scope" aria-hidden="true"><Search size={24} /></span>
+                                    <div className="jm-target__text">
+                                        <span className="jm-target__label">Encuentra</span>
+                                        <motion.strong
+                                            key={targetWord}
+                                            className="jm-target__word"
+                                            initial={{ opacity: 0, y: 10, scale: 0.92 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            transition={{ type: 'spring', stiffness: 420, damping: 22 }}
+                                        >
+                                            {targetWord}
+                                        </motion.strong>
+                                    </div>
+                                    <span className="jm-target__step">{Math.min(currentIndex + 1, gridSize)}/{gridSize}</span>
+                                </motion.div>
+                            ) : (
+                                <motion.div key="wait" className="jm-target__body" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                                    <div className="jm-target__text">
+                                        <span className="jm-target__label"><Shuffle size={14} /> Barajando</span>
+                                        <strong className="jm-target__word is-memo">Nuevas cartas…</strong>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </Panel>
 
-            {category && (
-                <div className={`category-badge ${gameState === 'shaking' ? 'category-shake' : ''}`}>
-                    📖 {category.replace(/_/g, ' ')}
-                </div>
-            )}
-
-            {errorMsg && <div className="error-msg">{errorMsg}</div>}
-
-            {/* Target Word Display Container - Used for Memorize Instruction AND Target Word */}
-            {(gameState === 'playing' || gameState === 'memorize') && (
-                <div className="target-word-container">
-                    {gameState === 'memorize' ? (
-                        <>
-                            <span className="target-label text-yellow-400">🧠 FASE DE MEMORIZACIÓN</span>
-                            <span className="target-word text-xl blink">¡Memoriza las posiciones!</span>
-                        </>
-                    ) : (
-                        <>
-                            <span className="target-label">ENCUENTRA:</span>
-                            <motion.span
-                                key={targetWord}
-                                className="target-word"
-                                initial={{ opacity: 0, y: 10, scale: 0.92 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                transition={{ type: 'spring', stiffness: 420, damping: 22 }}
-                            >
-                                {targetWord}
-                            </motion.span>
-                        </>
+                    {gameState === 'playing' && (
+                        <ProgressBar value={timeLeft} max={gameTime} tone={timeLeft <= 10 ? 'bad' : timeLeft <= gameTime / 2 ? 'warn' : 'good'} label="Tiempo restante" />
                     )}
-                </div>
+
+                    <div className={`jm-grid ${gameState === 'memorize' ? 'is-memorizing' : ''}`} style={{ '--jm-cols': cols }}>
+                        {words.map((word, idx) => {
+                            const isRevealed = gameState === 'memorize' ||
+                                revealedIndex === idx ||
+                                correctIndices.has(idx) ||
+                                gameState === 'lost' ||
+                                gameState === 'won';
+                            const isCorrect = correctIndices.has(idx);
+                            const isError = errorIndex === idx;
+                            const isHit = revealedIndex === idx && !isError && gameState === 'playing';
+                            return (
+                                <button
+                                    type="button"
+                                    key={idx}
+                                    className={[
+                                        'jm-card',
+                                        isRevealed && 'is-flipped',
+                                        isCorrect && 'is-correct',
+                                        isHit && 'is-hit',
+                                        isError && 'is-error',
+                                        gameState === 'shaking' && 'is-shaking',
+                                    ].filter(Boolean).join(' ')}
+                                    style={{ animationDelay: gameState === 'shaking' ? `${(idx % 4) * 0.05}s` : undefined }}
+                                    onClick={() => handleBoxClick(idx)}
+                                    aria-label={isRevealed ? String(word) : `Carta ${idx + 1}`}
+                                >
+                                    <span className="jm-card__inner">
+                                        <span className="jm-card__back" aria-hidden="true">
+                                            <span className="jm-card__num">{idx < 9 ? idx + 1 : String.fromCharCode(65 + (idx - 9))}</span>
+                                        </span>
+                                        <span className="jm-card__face">
+                                            <span className="jm-card__word">{word}</span>
+                                            {isCorrect && <span className="jm-card__check" aria-hidden="true"><Check size={13} strokeWidth={3.5} /></span>}
+                                            {isError && (
+                                                <span className="jm-card__penalty">
+                                                    <Hourglass size={13} /> {Number(errorCountdown).toFixed(1)}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </>
             )}
 
-
-            <div className={`memory-grid grid-${gridSize} ${gameState === 'memorize' ? 'memorizing' : ''}`}>
-                {words.map((word, idx) => {
-                    const isRevealed = gameState === 'memorize' ||
-                        revealedIndex === idx ||
-                        correctIndices.has(idx) ||
-                        gameState === 'lost' ||
-                        gameState === 'won';
-
-                    return (
-                        <div
-                            key={idx}
-                            className={`memory-box ${isRevealed ? 'revealed' : ''} ${correctIndices.has(idx) ? 'correct' : ''} ${gameState === 'shaking' ? 'shaking' : ''} ${errorIndex === idx ? 'error' : ''}`}
-                            onClick={() => handleBoxClick(idx)}
-                        >
-                            <div className="memory-card-inner">
-                                {/* Front: Hidden State (Face Down) */}
-                                <div className="memory-card-front">
-                                    <div className="card-pattern"></div>
-                                    <span className="card-number">
-                                        {idx < 9 ? idx + 1 : String.fromCharCode(65 + (idx - 9))}
-                                    </span>
-                                </div>
-
-                                {/* Back: Revealed State (Face Up) */}
-                                <div className="memory-card-back">
-                                    <span className="word-text">{word}</span>
-                                    {errorIndex === idx && (
-                                        <div className="error-countdown">
-                                            <span>⏱️</span>
-                                            <span>{Number(errorCountdown).toFixed(1)}</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
+            <div className="jm-footer">
+                <GameButton variant="soft" size="sm" icon={Settings2} onClick={volverAAjustes}>Ajustes</GameButton>
+                <GameButton variant="ghost" size="sm" icon={RefreshCw} onClick={handleNewGame} disabled={gameState === 'shaking'}>Nueva partida</GameButton>
+                <span className="jm-footer__info">
+                    <Chip tone="soft" icon={Timer}>{gameTime} s</Chip>
+                    <Chip tone="soft" icon={Hourglass}>Espera {errorWaitTime} s</Chip>
+                    <Chip tone="soft" icon={Shuffle}>{isRandomOrder ? 'Aleatorio' : 'Fijo'}</Chip>
+                </span>
             </div>
 
-            <div className="game-status-bar">
-                <div className="status-group-top">
-                    <div className="timer-box">
-                        <span className="timer-icon">⏱️</span>
-                        <span className={`timer-val ${gameState === 'playing' && timeLeft <= 10 ? 'is-danger' : ''} ${gameState === 'memorize' ? 'is-memorize' : ''}`}>{gameState === 'memorize' ? memorizeTimeLeft : Number(timeLeft).toFixed(1)}s</span>
-                    </div>
-                    <div className="phase-indicator">
-                        {/* Status messages handled in top container now */}
-                    </div>
-                </div>
+            {instrucciones}
+        </GameShell>
+    );
+};
 
-                <div className="status-group-bottom">
-                    <button className="help-btn" onClick={() => setShowHelp(true)} title="Instrucciones">
-                        ❓ Ayuda
-                    </button>
-                    <button className="restart-btn-new" onClick={handleNewGame} title="Nueva Partida">
-                        ✨ Nueva partida
-                    </button>
-                    <button className="settings-btn" onClick={() => setShowSettings(true)} title="Configuración">
-                        ⚙️
-                    </button>
-                </div>
-            </div>
-
-
-
-
-            {/* Won / Lost Messages (Modal Style) */}
-            <AnimatePresence>
-                {(gameState === 'won' || gameState === 'lost') && (
-                    <motion.div
-                        className="game-result-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <motion.div
-                            className="result-modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                        >
-                            {(() => {
-                                const won = gameState === 'won';
-                                const nota = won ? 10 : Math.round((correctIndices.size / GRID_SIZE) * 100) / 10;
-                                const notaColor = nota >= 8 ? '#059669' : nota >= 5 ? '#2563eb' : '#dc2626';
-                                const notaBg = nota >= 8 ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : nota >= 5 ? 'linear-gradient(135deg, #dbeafe, #bfdbfe)' : 'linear-gradient(135deg, #fee2e2, #fecaca)';
-                                const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
-                                const pts = correctIndices.size * 100 + (won ? Math.max(0, Math.round(300 * (timeLeft / GAME_TIME))) : 0);
-                                return (
-                                    <div className="result-msg" style={{ textAlign: 'center' }}>
-                                        <div className={`memoria-result-badge ${won ? 'is-won' : 'is-lost'}`}>{won ? '🎉' : '⏳'}</div>
-                                        <h1>{won ? '¡ENHORABUENA!' : '¡TIEMPO AGOTADO!'}</h1>
-                                        <p>{won ? '¡Has encontrado todas las palabras!' : 'Se acabó el tiempo.'}</p>
-                                        <div className="memoria-nota" style={{ '--memoria-nota-bg': notaBg }}>
-                                            <div className="memoria-nota-ring fx-grade-ring" style={{ '--fx-grade': nota, '--fx-grade-color': notaColor }}>
-                                                <div className="memoria-nota-num">
-                                                    {nota.toFixed(1)}<span className="memoria-nota-den">/10</span>
-                                                </div>
-                                            </div>
-                                            <div className="memoria-nota-msg"><strong>{notaMsg}</strong></div>
-                                        </div>
-                                        <div className="memoria-points">
-                                            <span aria-hidden="true">⭐</span>
-                                            <span className="memoria-points-val">{pts.toLocaleString('es-ES')}</span>
-                                            <span className="memoria-points-label">puntos</span>
-                                        </div>
-                                    </div>
-                                );
-                            })()}
-
-                            <button className="restart-btn-modal" onClick={handleNewGame}>
-                                ✨ Jugar de nuevo
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-
-            {/* Settings Modal */}
-            <AnimatePresence>
-                {showSettings && (
-                    <motion.div
-                        className="modal-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setShowSettings(false)}
-                    >
-                        <motion.div
-                            className="settings-modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="close-btn" onClick={() => setShowSettings(false)}>✖</button>
-                            <h2>⚙️ Configuración</h2>
-
-                            <div className="setting-group">
-                                <label>Número de Cajas:</label>
-                                <div className="slider-container">
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        max="2"
-                                        step="1"
-                                        value={GRID_OPTIONS.indexOf(gridSize)}
-                                        onChange={(e) => setGridSize(GRID_OPTIONS[parseInt(e.target.value)])}
-                                    />
-                                    <div className="slider-labels">
-                                        {GRID_OPTIONS.map(val => (
-                                            <span key={val} className={gridSize === val ? 'active' : ''}>{val}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="setting-group">
-                                <label>Tiempo de Juego:</label>
-                                <div className="options-row">
-                                    {TIME_OPTIONS.map(time => (
-                                        <button
-                                            key={time}
-                                            className={`option-btn ${gameTime === time ? 'active' : ''}`}
-                                            onClick={() => setGameTime(time)}
-                                        >
-                                            {time}s
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="setting-group">
-                                <label>Tiempo de Espera (Error):</label>
-                                <div className="options-row">
-                                    {WAIT_OPTIONS.map(wait => (
-                                        <button
-                                            key={wait}
-                                            className={`option-btn ${errorWaitTime === wait ? 'active' : ''}`}
-                                            onClick={() => setErrorWaitTime(wait)}
-                                        >
-                                            {wait}s
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="setting-group">
-                                <label>Modo de Orden (Dado 🎲):</label>
-                                <div className="options-row">
-                                    <button
-                                        className={`option-btn ${!isRandomOrder ? 'active' : ''}`}
-                                        onClick={() => setIsRandomOrder(false)}
-                                    >
-                                        Fijo
-                                    </button>
-                                    <button
-                                        className={`option-btn ${isRandomOrder ? 'active' : ''}`}
-                                        onClick={() => setIsRandomOrder(true)}
-                                    >
-                                        Aleatorio
-                                    </button>
-                                </div>
-                            </div>
-
-                            <button className="confirm-settings-btn" onClick={() => {
-                                setShowSettings(false);
-                                handleNewGame();
-                            }}>
-                                ✅ Guardar y Nueva Partida
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-
-            {/* Help Modal */}
-            <AnimatePresence>
-                {showHelp && (
-                    <motion.div
-                        className="help-modal-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setShowHelp(false)}
-                    >
-                        <motion.div
-                            className="help-modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="close-help-btn" onClick={() => setShowHelp(false)}>✖</button>
-                            <h2>📜 Instrucciones</h2>
-                            <ul>
-                                <li><strong>Objetivo:</strong> Encuentra las palabras ocultas antes de que se agote el tiempo.</li>
-                                <li>Tienes <strong>5 segundos</strong> al inicio para memorizar la ubicación de las palabras.</li>
-                                <li>Haz clic en una carta (o usa los números 1-9) para revelarla.</li>
-                                <li>Si aciertas, la carta se queda visible.</li>
-                                <li>Si fallas, la carta se marcará en <strong>rojo</strong> y tendrás que esperar {errorWaitTime} segundos.</li>
-                            </ul>
-                            <h3 className="mt-4 mb-2 text-lg font-bold text-blue-400 border-b border-gray-700 pb-1">⚙️ Configuración (Dado 🎲)</h3>
-                            <ul>
-                                <li><strong>Izquierda (Desactivado):</strong> Modo Fijo. Se genera un orden aleatorio al inicio, pero este orden se mantiene durante toda la partida. Si fallas, sigues buscando la misma palabra.</li>
-                                <li><strong>Derecha (Activado):</strong> Modo Aleatorio. El orden de las palabras se reorganiza cada vez que cometes un error, cambiando la siguiente palabra a encontrar.</li>
-                            </ul>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-        </div >
+// Cuenta atrás de la memorización: aro que se vacía cada segundo.
+const MemoRing = ({ left, total }) => {
+    const r = 22;
+    const c = 2 * Math.PI * r;
+    return (
+        <span className="jm-memo-ring" role="timer" aria-label={`${left} segundos para memorizar`}>
+            <svg viewBox="0 0 56 56" aria-hidden="true">
+                <circle cx="28" cy="28" r={r} className="jm-memo-ring__track" />
+                <circle cx="28" cy="28" r={r} className="jm-memo-ring__arc" strokeDasharray={c} strokeDashoffset={c * (1 - left / total)} transform="rotate(-90 28 28)" />
+            </svg>
+            <span key={left} className="jm-memo-ring__num">{left}</span>
+        </span>
     );
 };
 

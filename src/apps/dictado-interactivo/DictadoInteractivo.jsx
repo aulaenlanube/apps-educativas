@@ -1,4 +1,8 @@
 // src/apps/dictado-interactivo/DictadoInteractivo.jsx
+// Rediseño 2026 sobre el kit de interfaz de juego (_shared/kit): pantalla previa
+// de modos, altavoz protagonista con ondas, selector de velocidad, renglón de
+// cuaderno para escribir, corrección letra a letra en fichas y resumen con la
+// nota /10. La voz, la puntuación y el tracking no cambian.
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,11 +10,18 @@ import confetti from 'canvas-confetti';
 import {
   RefreshCw, Timer, Trophy, Star, X,
   Check, Flame, ArrowRight, Lightbulb,
-  Volume2, VolumeX,
+  Volume2, VolumeX, Turtle, Rabbit, Gauge, LayoutGrid, Target, SpellCheck,
+  Headphones, Type, AlignLeft, Infinity as InfinityIcon,
 } from 'lucide-react';
 import { getRoscoData, getOrdenaFrasesData } from '../../services/gameDataService';
 import materiasData from '../../../public/data/materias.json';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, GameHeader, Hud, HudStat, ProgressDots, ProgressBar, Panel, Chip,
+  GameButton, Segmented, ModeSelect, ModeChip, RoundBanner, ResultsScreen, FeedbackItem,
+  GameLoading, GameEmpty,
+} from '../_shared/kit';
+import useArtIds from '@/components/art/useArtIds';
 import './DictadoInteractivo.css';
 
 const normalize = (s) =>
@@ -109,7 +120,8 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   const [palabras, setPalabras] = useState([]);
   const [frases, setFrases] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [gameMode, setGameMode] = useState('easy');
+  // null = pantalla previa de modos (CLAUDE.md §3: el modo se elige ANTES de jugar)
+  const [gameMode, setGameMode] = useState(null); // null | 'easy' | 'medium' | 'exam'
 
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -212,7 +224,7 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   }, [palabras, frases, gameMode]);
 
   useEffect(() => {
-    if (!loading && (palabras.length > 0 || frases.length > 0)) startGame();
+    if (!loading && gameMode && (palabras.length > 0 || frases.length > 0)) startGame();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, gameMode, startGame]);
 
@@ -233,7 +245,7 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   // --- Timer por palabra (examen) ---
   useEffect(() => {
     const cfg = MODE_CONFIG[gameMode];
-    if (!cfg.timer || status !== 'playing') {
+    if (!cfg || !cfg.timer || status !== 'playing') {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
@@ -257,7 +269,8 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   }, [currentIndex, status, gameMode, questions]);
 
   const currentQ = questions[currentIndex];
-  const cfg = MODE_CONFIG[gameMode];
+  // En la pantalla previa aún no hay modo: valores de Fácil solo para que el render no falle.
+  const cfg = MODE_CONFIG[gameMode] || MODE_CONFIG.easy;
 
   // --- Enviar respuesta ---
   const submitAnswer = useCallback(() => {
@@ -334,273 +347,459 @@ const DictadoInteractivo = ({ onGameComplete }) => {
   const isExam = gameMode === 'exam';
   const isFinished = status === 'won';
   const nota = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) / 10 : 0;
-  const notaColor = nota >= 8 ? 'excellent' : nota >= 5 ? 'good' : 'fail';
-  const notaMsg = nota >= 9 ? '¡Excelente! 🌟' : nota >= 7 ? '¡Muy bien! 👏' : nota >= 5 ? 'Aprobado 💪' : 'Necesitas repasar 📖';
 
-  if (loading) return <div className="dictado-root"><div className="dictado-card"><div className="dictado-loading">Cargando...</div></div></div>;
+  // --- Registro de cada pregunta (solo presentación: progreso y repaso final) ---
+  const [roundLog, setRoundLog] = useState([]);
+  const [playPulse, setPlayPulse] = useState(0); // ondas del altavoz al pulsar "escuchar"
+  useEffect(() => { setRoundLog([]); }, [questions]);
+  useEffect(() => {
+    if (status !== 'correct' && status !== 'wrong') return;
+    setRoundLog((prev) => {
+      const next = [...prev];
+      next[currentIndex] = {
+        ok: status === 'correct',
+        typed: answer.trim(),
+        timedOut: status === 'wrong' && timeLeft === 0 && !!MODE_CONFIG[gameMode]?.timer,
+      };
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- solo al cerrar cada pregunta
+  }, [status, currentIndex]);
+
+  // --- Render ---
+  const shellProps = { accent: '#f97316', accent2: '#f59e0b' };
+
+  const instructions = (
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar al Dictado">
+      <h3>🎯 Objetivo</h3>
+      <p>El sistema <strong>pronuncia</strong> una palabra o frase y tú debes <strong>escribirla con la ortografía correcta</strong>. Se evalúa letra a letra.</p>
+
+      <h3>🕹️ Cómo se juega</h3>
+      <ul>
+        <li>Al comenzar cada pregunta se reproduce automáticamente el audio.</li>
+        <li>Pulsa el altavoz 🔊 o <strong>Repetir</strong> para volver a escucharlo (limitado según el modo).</li>
+        <li>Escribe lo que hayas escuchado y pulsa <kbd>Enter</kbd>.</li>
+        <li>El sistema compara <strong>letra por letra</strong> y resalta aciertos y errores.</li>
+        <li>La comparación ignora tildes para decidir acierto, pero si las escribes perfectas obtienes <strong>puntos extra</strong>.</li>
+      </ul>
+
+      <h3>📝 Feedback visual</h3>
+      <ul>
+        <li><strong>Verde</strong>: letra correcta en la posición correcta.</li>
+        <li><strong>Rojo</strong>: letra incorrecta (se muestra la esperada debajo).</li>
+        <li><strong>Gris tachado</strong>: letra sobrante.</li>
+        <li><strong>Hueco azul</strong>: letra que faltaba.</li>
+      </ul>
+
+      <h3>🎓 Modos</h3>
+      <div className="instr-modes">
+        <div className="instr-mode easy"><strong>🟢 Fácil</strong>8 dictados · velocidad inicial lenta · repeticiones ilimitadas + pista visible</div>
+        <div className="instr-mode medium"><strong>🟡 Medio</strong>10 dictados · velocidad normal · 3 repeticiones por palabra</div>
+        <div className="instr-mode exam"><strong>🔴 Examen</strong>10 dictados mixtos · 1 repetición · 20s/pregunta · nota /10</div>
+      </div>
+      <div className="instr-tips"><strong>🎚️ Velocidad:</strong> puedes elegir Lento 🐢 / Normal ⚡ / Rápido 🚀 en cualquier momento para adaptar el audio a tu ritmo.</div>
+      <div className="instr-tips"><strong>♾️ Siempre terminas:</strong> aunque falles, la partida no se acaba; completarás todas las palabras.</div>
+
+      <div className="instr-tips"><strong>💡 Consejo:</strong> presta atención a las tildes y a las letras silenciosas (h, b/v, g/j). ¡Las tildes dan puntos extra!</div>
+      <div className="instr-tips"><strong>🔊 Audio:</strong> se usa la voz del sistema. Si no oyes nada, sube el volumen o usa Chrome/Edge.</div>
+    </InstructionsModal>
+  );
+
+  if (loading) {
+    return (
+      <GameShell {...shellProps}>
+        <GameLoading label="Afinando la voz…" />
+      </GameShell>
+    );
+  }
   if (palabras.length === 0 && frases.length === 0) {
-    return <div className="dictado-root"><div className="dictado-card"><div className="dictado-title"><span>✍️</span> Dictado</div><div className="dictado-empty"><p>No hay datos para esta asignatura.</p></div></div></div>;
+    return (
+      <GameShell {...shellProps}>
+        <GameHeader onHelp={() => setShowHelp(true)} />
+        <GameEmpty title="Sin dictados">No hay datos para esta asignatura.</GameEmpty>
+        {instructions}
+      </GameShell>
+    );
   }
 
+  // --- Pantalla previa: elegir modo (CLAUDE.md §3) ---
+  if (!gameMode) {
+    const modes = [
+      {
+        id: 'easy', tone: 'easy', title: 'Fácil',
+        desc: 'Palabras dictadas despacio y con su definición como pista.',
+        features: ['8 dictados', 'Repeticiones ilimitadas', 'Pista con la definición'],
+      },
+      {
+        id: 'medium', tone: 'medium', title: 'Medio',
+        desc: 'Velocidad normal y solo tres repeticiones por palabra.',
+        features: ['10 dictados', '3 repeticiones por palabra', 'Bonus por tildes perfectas'],
+      },
+      {
+        id: 'exam', tone: 'exam', title: 'Examen',
+        desc: 'Palabras y frases, una sola repetición y 20 s por pregunta.',
+        features: ['Nota sobre 10', '1 repetición · 20 s', 'Puntos por racha y rapidez'],
+      },
+    ];
+    return (
+      <GameShell {...shellProps}>
+        <ModeSelect
+          modes={modes}
+          onSelect={(id) => setGameMode(id)}
+          onHelp={() => setShowHelp(true)}
+          footer={<span className="dict-modes-foot"><Headphones size={14} /> Mejor con auriculares · usa Chrome o Edge para oír la voz</span>}
+        />
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const backToModes = () => {
+    if (typeof window !== 'undefined' && window.speechSynthesis) window.speechSynthesis.cancel();
+    setGameMode(null);
+    setStatus('idle');
+    setQuestions([]);
+  };
+
+  // --- Partida terminada ---
+  if (isFinished) {
+    const actions = [
+      { label: 'Jugar otra vez', onClick: startGame, icon: RefreshCw },
+      { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+    ];
+    if (isExam) {
+      return (
+        <GameShell {...shellProps}>
+          <ResultsScreen
+            title="¡Dictado completado!"
+            subtitle={`Dictado · ${subjectInfo.icon} ${subjectInfo.nombre || 'General'}`}
+            nota={nota}
+            points={score}
+            stats={[
+              { icon: Target, tone: 'good', label: 'Aciertos', value: `${correctCount}/${questions.length}` },
+              { icon: Flame, tone: 'streak', label: 'Racha máxima', value: maxStreak },
+              { icon: X, tone: 'bad', label: 'Fallos', value: mistakes },
+            ]}
+            actions={actions}
+          >
+            {questions.map((q, i) => {
+              const log = roundLog[i];
+              return (
+                <FeedbackItem key={`${q.text}-${i}`} index={i + 1} ok={!!log?.ok} title={q.text}>
+                  {q.type === 'phrase' ? 'Frase' : 'Palabra'} · {log?.timedOut || !log?.typed
+                    ? 'sin responder a tiempo'
+                    : <>escribiste «<span className={log.ok ? 'dict-typed is-ok' : 'dict-typed is-ko'}>{log.typed}</span>»</>}
+                </FeedbackItem>
+              );
+            })}
+          </ResultsScreen>
+          {instructions}
+        </GameShell>
+      );
+    }
+    return (
+      <GameShell {...shellProps}>
+        <motion.div
+          className="dict-sum"
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+        >
+          <div className="dict-sum__head">
+            <NotebookArt />
+            <div className="dict-sum__titles">
+              <ModeChip mode={gameMode} label={cfg.label} />
+              <h2>¡Dictado completado!</h2>
+              <p>{subjectInfo.icon} {subjectInfo.nombre || 'General'}</p>
+            </div>
+          </div>
+          <div className="dict-sum__score">
+            <span className="dict-sum__points">
+              <Trophy size={18} /> {score.toLocaleString('es-ES')} <small>puntos</small>
+            </span>
+            <div className="dict-sum__stats">
+              <span className="dict-sum__stat gk-stat--good"><span className="gk-stat__icon"><Check size={14} /></span><b>{correctCount}/{questions.length}</b> aciertos</span>
+              <span className="dict-sum__stat gk-stat--streak"><span className="gk-stat__icon"><Flame size={14} /></span><b>{maxStreak}</b> racha máxima</span>
+            </div>
+          </div>
+          <div className="dict-sum__words" aria-label="Dictados de la partida">
+            {questions.map((q, i) => (
+              <span key={`${q.text}-${i}`} className={`dict-sum__word ${roundLog[i]?.ok ? 'is-ok' : 'is-ko'}`}>
+                {roundLog[i]?.ok ? <Check size={13} strokeWidth={3} /> : <X size={13} strokeWidth={3} />} {q.text}
+              </span>
+            ))}
+          </div>
+          <div className="dict-sum__actions">
+            {actions.map((a, i) => (
+              <GameButton key={a.label} variant={a.variant || (i === 0 ? 'primary' : 'soft')} size="lg" icon={a.icon} onClick={a.onClick}>
+                {a.label}
+              </GameButton>
+            ))}
+          </div>
+        </motion.div>
+        {instructions}
+      </GameShell>
+    );
+  }
+
+  const roundOver = status === 'correct' || status === 'wrong';
+  const lastLog = roundLog[currentIndex];
+  const replaysFinite = replaysLeft !== Infinity;
+  const canReplay = status === 'playing' && (replaysLeft === Infinity || replaysLeft > 0);
+  const speedIcons = { slow: Turtle, normal: Gauge, fast: Rabbit };
+
   return (
-    <div className="dictado-root">
-      <motion.div className="dictado-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        {/* Fondo decorativo (orbes + rejilla + margen de cuaderno) */}
-        <div className="dictado-fx" aria-hidden="true">
-          <span className="dictado-fx-orb a" />
-          <span className="dictado-fx-orb b" />
-          <span className="dictado-fx-grid" />
-          <span className="dictado-fx-spark s1" />
-          <span className="dictado-fx-spark s2" />
-          <span className="dictado-fx-spark s3" />
-        </div>
-
-        {/* Header */}
-        <div className="dictado-header">
-          <div className="dictado-title">
-            <span className="dictado-emoji">✍️</span>
-            <span>Dictado</span>
-            <InstructionsButton onClick={() => setShowHelp(true)} />
-          </div>
-          <div className="dictado-stats">
+    <GameShell {...shellProps}>
+      <GameHeader
+        mode={gameMode}
+        modeLabel={cfg.label}
+        onHelp={() => setShowHelp(true)}
+        right={(
+          <Hud>
             {cfg.timer && !isFinished && status === 'playing' && (
-              <div className={`dictado-stat timer ${timeLeft <= 5 ? 'danger' : ''}`}>
-                <Timer size={14} /> <span>{timeLeft}s</span>
+              <HudStat icon={Timer} tone={timeLeft <= 5 ? 'lives' : 'time'} value={`${timeLeft}s`} label="Tiempo" />
+            )}
+            {mistakes > 0 && <HudStat icon={X} tone="bad" value={mistakes} label="Fallos" />}
+            {streak >= 2 && <HudStat icon={Flame} tone="streak" value={streak} label="Racha" />}
+            <HudStat icon={Star} tone="score" value={score.toLocaleString('es-ES')} label="Puntos" />
+          </Hud>
+        )}
+      />
+
+      {questions.length > 0 && (
+        <ProgressDots total={questions.length} current={currentIndex} results={roundLog.map((l) => l?.ok)} />
+      )}
+
+      {!currentQ ? (
+        <GameLoading label="Preparando el dictado…" />
+      ) : (
+        <div className="dict-stage">
+          <div className="dict-meta">
+            <Chip tone="accent" icon={currentQ.type === 'phrase' ? AlignLeft : Type}>
+              {currentQ.type === 'phrase' ? 'Frase' : 'Palabra'} {currentIndex + 1} de {questions.length}
+            </Chip>
+            {cfg.timer && status === 'playing' && (
+              <div className="dict-timebar">
+                <ProgressBar value={timeLeft} max={cfg.timer} tone={timeLeft > 10 ? 'good' : timeLeft > 5 ? 'warn' : 'bad'} />
               </div>
             )}
-            {mistakes > 0 && (
-              <div className="dictado-stat lives" title="Fallos">
-                <X size={14} color="#ef4444" /> <span>{mistakes}</span>
-              </div>
-            )}
-            {streak >= 2 && (
-              <motion.div className="dictado-stat streak" key={streak} initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
-                <Flame size={14} /> <span>{streak}</span>
-              </motion.div>
-            )}
-            <div className="dictado-stat score">
-              <Star size={14} />
-              <motion.span key={score} initial={{ scale: 1.35 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>
-                {score.toLocaleString('es-ES')}
-              </motion.span>
-            </div>
           </div>
-        </div>
 
-        <div className="dictado-subtitle">{subjectInfo.icon} {subjectInfo.nombre || 'General'}</div>
-
-        {/* Tabs */}
-        <div className="dictado-gamemode-tabs">
-          {Object.entries(MODE_CONFIG).map(([key, c]) => (
-            <button key={key} className={`dictado-gamemode-tab ${gameMode === key ? 'active' : ''} ${key}`} onClick={() => setGameMode(key)}>
-              <span>{c.icon}</span>
-              <span className="dictado-tab-label">{c.label}</span>
-              <span className="dictado-tab-sub">{c.questions} · {c.replays === Infinity ? '∞ repeticiones' : `${c.replays} rep.`}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Resultado */}
-        <AnimatePresence>
-          {isFinished && (
-            <motion.div className={`dictado-result ${status}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <div className="dictado-result-icon"><Trophy size={48} /></div>
-              <h2 className="dictado-result-title">¡Dictado completado! 🎉</h2>
-
-              {isExam ? (
-                <>
-                  <div className={`dictado-nota ${notaColor}`}>
-                    <div className="dictado-nota-ring fx-grade-ring" style={{ '--fx-grade': nota }}>
-                      <div className="dictado-nota-big">{nota.toFixed(1)}<span className="dictado-nota-small">/10</span></div>
-                    </div>
-                    <div className="dictado-nota-msg">{notaMsg}</div>
-                  </div>
-                  <div className="dictado-result-record"><Star size={14} /> <span>{score.toLocaleString('es-ES')}</span> <span className="dictado-result-record-label">puntos · ¡supérate!</span></div>
-                </>
-              ) : (
-                <>
-                  <div className="dictado-result-score">{score.toLocaleString('es-ES')}</div>
-                  <div className="dictado-result-score-label">puntos</div>
-                </>
-              )}
-
-              <div className="dictado-result-stats">
-                <div className="dictado-result-stat"><Check size={14} /> {correctCount}/{questions.length}</div>
-                <div className="dictado-result-stat"><Flame size={14} /> Racha: {maxStreak}</div>
-              </div>
-              <button className="dictado-btn primary" onClick={startGame}><RefreshCw size={16} /> Jugar otra vez</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Juego */}
-        {!isFinished && currentQ && (
-          <>
-            <div className="dictado-progress-row">
-              <span className="dictado-progress-label">{currentIndex + 1}/{questions.length}</span>
-              <div className="dictado-progress-bar"><div className="dictado-progress-fill" style={{ width: `${(currentIndex / questions.length) * 100}%` }} /></div>
-              {currentQ.type === 'phrase' && <span className="dictado-type-tag">Frase</span>}
-            </div>
-
-            {/* Audio del dictado */}
-            <AnimatePresence mode="wait">
-              <motion.div key={currentIndex} className="dictado-clue" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
+          {/* Audio del dictado */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Panel variant="screen" className="dict-audio">
                 {!ttsReady ? (
-                  <div className="dictado-clue-hint" style={{ background: '#fef3c7', borderColor: '#fcd34d', color: '#78350f' }}>
-                    <VolumeX size={16} /> Tu navegador no soporta audio. Usa Chrome o Edge.
+                  <div className="dict-audio__off">
+                    <VolumeX size={22} /> Tu navegador no soporta audio. Usa Chrome o Edge.
                   </div>
                 ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center' }}>
+                  <div className="dict-audio__row">
                     <button
-                      onClick={repeatDictation}
+                      type="button"
+                      onClick={() => { if (canReplay) setPlayPulse((k) => k + 1); repeatDictation(); }}
                       disabled={status !== 'playing' || (replaysLeft !== Infinity && replaysLeft <= 0)}
-                      className="dictado-send-btn"
-                      style={{ width: 72, height: 72, borderRadius: 20, flexShrink: 0 }}
+                      className="dict-speaker"
                       title="Escuchar de nuevo"
                       aria-label="Escuchar de nuevo"
                     >
-                      <Volume2 size={30} />
+                      <span key={`${currentIndex}-${playPulse}`} className="dict-speaker__waves" aria-hidden="true">
+                        <i /><i /><i />
+                      </span>
+                      <span className="dict-speaker__body"><Volume2 size={38} /></span>
                     </button>
-                    <div style={{ fontSize: 13, color: 'var(--app-text-secondary)', textAlign: 'left', lineHeight: 1.35 }}>
-                      <div style={{ fontWeight: 700, color: 'var(--app-text)', marginBottom: 2 }}>
-                        🎧 Escucha con atención
-                      </div>
+                    <div className="dict-audio__info">
+                      <strong>Escucha con atención</strong>
                       {replaysLeft === Infinity ? (
-                        <span>Repite las veces que quieras</span>
+                        <span className="dict-audio__sub"><InfinityIcon size={15} /> Repite las veces que quieras</span>
                       ) : replaysLeft > 0 ? (
-                        <span>{replaysLeft} {replaysLeft === 1 ? 'repetición' : 'repeticiones'} disponibles</span>
+                        <span className="dict-audio__sub">{replaysLeft === 1 ? '1 repetición disponible' : `${replaysLeft} repeticiones disponibles`}</span>
                       ) : (
-                        <span style={{ color: '#ef4444' }}>Sin repeticiones — escribe lo que recuerdes</span>
+                        <span className="dict-audio__sub is-out">Sin repeticiones — escribe lo que recuerdes</span>
+                      )}
+                      {replaysFinite && (
+                        <span className="dict-pips" aria-hidden="true">
+                          {Array.from({ length: MODE_CONFIG[gameMode].replays }).map((_, i) => (
+                            <i key={i} className={i < replaysLeft ? 'is-on' : ''} />
+                          ))}
+                        </span>
                       )}
                     </div>
-                  </div>
-                )}
-                {/* Selector de velocidad de reproduccion */}
-                {ttsReady && (
-                  <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 12, flexWrap: 'wrap' }}>
-                    {Object.entries(PLAYBACK_SPEEDS).map(([key, s]) => (
-                      <button
-                        key={key}
-                        onClick={() => setPlaybackSpeed(key)}
-                        className={`dictado-lifeline ${playbackSpeed === key ? '' : 'ghost'}`}
-                        style={{
-                          background: playbackSpeed === key ? '#a855f7' : undefined,
-                          color: playbackSpeed === key ? '#fff' : undefined,
-                          borderColor: playbackSpeed === key ? '#a855f7' : undefined,
-                          fontWeight: 700,
-                        }}
-                        title={`Velocidad ${s.label.toLowerCase()}`}
-                      >
-                        <span>{s.icon}</span> {s.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {cfg.showHint && currentQ.hint && (
-                  <div className="dictado-clue-hint" style={{ marginTop: 10 }}>
-                    <Lightbulb size={16} /> Pista: {currentQ.hint}
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Input */}
-            <div className={`dictado-input-wrap ${status === 'correct' ? 'correct' : ''} ${status === 'wrong' ? 'wrong' : ''}`}>
-              <input
-                ref={inputRef}
-                type="text"
-                className="dictado-input"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Escribe lo que has escuchado..."
-                autoComplete="off"
-                spellCheck="false"
-                disabled={status !== 'playing'}
-              />
-              <button className="dictado-send-btn" onClick={submitAnswer} disabled={status !== 'playing' || !answer.trim()}>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-
-            {/* Diff visual */}
-            <AnimatePresence>
-              {diff && (status === 'correct' || status === 'wrong') && (
-                <motion.div className={`dictado-diff ${status}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-                  <div className="dictado-diff-title">{status === 'correct' ? '✅ ¡Correcto!' : '❌ Solución correcta:'}</div>
-                  <div className="dictado-diff-chars">
-                    {diff.map((d, i) => (
-                      <span key={i} className={`dictado-diff-char ${d.correct ? 'ok' : d.missing ? 'missing' : d.extra ? 'extra' : 'wrong'}`}>
-                        {d.correct ? d.char : d.missing ? d.expected : d.extra ? d.char : (
-                          <><span className="dictado-diff-got">{d.char}</span><span className="dictado-diff-exp">{d.expected}</span></>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                  {status === 'wrong' && (
-                    <div className="dictado-diff-expected">
-                      <strong>Respuesta correcta:</strong> {currentQ.text}
+                    {/* Selector de velocidad de reproduccion */}
+                    <div className="dict-speed">
+                      <span className="dict-speed__label">Velocidad</span>
+                      <Segmented
+                        size="sm"
+                        value={playbackSpeed}
+                        onChange={setPlaybackSpeed}
+                        options={Object.entries(PLAYBACK_SPEEDS).map(([key, s]) => ({ value: key, label: s.label, icon: speedIcons[key] }))}
+                      />
                     </div>
-                  )}
-                  {status === 'correct' && normalize(answer.trim()) === normalize(currentQ.text) && answer.trim() !== currentQ.text && (
-                    <div className="dictado-diff-ortho">💡 Con tildes perfectas: <strong>{currentQ.text}</strong> (+50 pts extra)</div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Ayudas */}
-            <div className="dictado-lifelines">
-              <button
-                className="dictado-lifeline"
-                onClick={repeatDictation}
-                disabled={status !== 'playing' || !ttsReady || (replaysLeft !== Infinity && replaysLeft <= 0)}
-              >
-                <Volume2 size={14} /> Repetir
-                {replaysLeft !== Infinity && replaysLeft > 0 && (
-                  <span className="dictado-lifeline-count">{replaysLeft}</span>
+                  </div>
                 )}
-              </button>
-              <button className="dictado-lifeline ghost" onClick={startGame}><RefreshCw size={14} /> Nuevo</button>
+              </Panel>
+              {cfg.showHint && currentQ.hint && (
+                <div className="dict-hint">
+                  <span className="dict-hint__icon"><Lightbulb size={17} /></span>
+                  <span><b>Pista:</b> {currentQ.hint}</span>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Renglón para escribir */}
+          <div className={`dict-write is-${status}`}>
+            <span className="dict-write__margin" aria-hidden="true" />
+            <input
+              ref={inputRef}
+              type="text"
+              className="dict-input"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Escribe lo que has escuchado..."
+              autoComplete="off"
+              spellCheck="false"
+              disabled={status !== 'playing'}
+            />
+            <GameButton
+              variant="primary"
+              size="lg"
+              icon={ArrowRight}
+              onClick={submitAnswer}
+              disabled={status !== 'playing' || !answer.trim()}
+              aria-label="Comprobar"
+              className="dict-send"
+            />
+          </div>
+
+          {/* Corrección letra a letra */}
+          <AnimatePresence>
+            {diff && roundOver && (
+              <motion.div
+                className={`dict-diff is-${status}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="dict-diff__chars">
+                  {diff.map((d, i) => (
+                    <span
+                      key={i}
+                      className={`dict-char ${d.correct ? 'is-ok' : d.missing ? 'is-missing' : d.extra ? 'is-extra' : 'is-wrong'} ${(d.char || d.expected) === ' ' ? 'is-space' : ''}`}
+                      style={{ '--i': i }}
+                    >
+                      {d.correct ? d.char : d.missing ? d.expected : d.extra ? d.char : (
+                        <><span className="dict-char__got">{d.char}</span><span className="dict-char__exp">{d.expected}</span></>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <RoundBanner
+            show={roundOver}
+            status={status === 'correct' ? 'won' : 'lost'}
+            title={status === 'correct'
+              ? '¡Correcto!'
+              : lastLog?.timedOut ? '¡Se acabó el tiempo!' : 'Casi… revisa la ortografía'}
+            subtitle={status === 'correct'
+              ? (normalize(answer.trim()) === normalize(currentQ.text) && answer.trim() !== currentQ.text
+                ? <>Con tildes perfectas: <strong>{currentQ.text}</strong> (+20 puntos extra)</>
+                : 'Ortografía perfecta, tildes incluidas.')
+              : <>Respuesta correcta: <strong>{currentQ.text}</strong></>}
+          />
+
+          {/* Ayudas */}
+          {!roundOver && (
+            <div className="dict-tools">
+              <GameButton
+                variant="soft"
+                icon={Volume2}
+                onClick={() => { if (canReplay) setPlayPulse((k) => k + 1); repeatDictation(); }}
+                disabled={status !== 'playing' || !ttsReady || (replaysLeft !== Infinity && replaysLeft <= 0)}
+                className="dict-life"
+              >
+                Repetir
+                {replaysLeft !== Infinity && replaysLeft > 0 && (
+                  <b className="dict-life__count">{replaysLeft}</b>
+                )}
+              </GameButton>
+              <GameButton variant="ghost" icon={RefreshCw} onClick={startGame}>Nuevo</GameButton>
             </div>
-          </>
-        )}
-      </motion.div>
-
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo jugar al Dictado">
-        <h3>🎯 Objetivo</h3>
-        <p>El sistema <strong>pronuncia</strong> una palabra o frase y tú debes <strong>escribirla con la ortografía correcta</strong>. Se evalúa letra a letra.</p>
-
-        <h3>🕹️ Cómo se juega</h3>
-        <ul>
-          <li>Al comenzar cada pregunta se reproduce automáticamente el audio.</li>
-          <li>Pulsa el botón 🔊 <strong>Repetir</strong> para volver a escucharlo (limitado según el modo).</li>
-          <li>Escribe lo que hayas escuchado y pulsa <kbd>Enter</kbd>.</li>
-          <li>El sistema compara <strong>letra por letra</strong> y resalta aciertos y errores.</li>
-          <li>La comparación ignora tildes para decidir acierto, pero si las escribes perfectas obtienes <strong>puntos extra</strong>.</li>
-        </ul>
-
-        <h3>📝 Feedback visual</h3>
-        <ul>
-          <li><strong>Verde</strong>: letra correcta en la posición correcta.</li>
-          <li><strong>Rojo</strong>: letra incorrecta (se muestra la esperada debajo).</li>
-          <li><strong>Gris tachado</strong>: letra sobrante.</li>
-          <li><strong>Hueco azul</strong>: letra que faltaba.</li>
-        </ul>
-
-        <h3>🎓 Modos</h3>
-        <div className="instr-modes">
-          <div className="instr-mode easy"><strong>🟢 Fácil</strong>8 dictados · velocidad inicial lenta · repeticiones ilimitadas + pista visible</div>
-          <div className="instr-mode medium"><strong>🟡 Medio</strong>10 dictados · velocidad normal · 3 repeticiones por palabra</div>
-          <div className="instr-mode exam"><strong>🔴 Examen</strong>10 dictados mixtos · 1 repetición · 20s/pregunta · nota /10</div>
+          )}
         </div>
-        <div className="instr-tips"><strong>🎚️ Velocidad:</strong> puedes elegir Lento 🐢 / Normal ⚡ / Rápido 🚀 en cualquier momento para adaptar el audio a tu ritmo.</div>
-        <div className="instr-tips"><strong>♾️ Siempre terminas:</strong> aunque falles, la partida no se acaba; completarás todas las palabras.</div>
+      )}
 
-        <div className="instr-tips"><strong>💡 Consejo:</strong> presta atención a las tildes y a las letras silenciosas (h, b/v, g/j). ¡Las tildes dan puntos extra!</div>
-        <div className="instr-tips"><strong>🔊 Audio:</strong> se usa la voz del sistema. Si no oyes nada, sube el volumen o usa Chrome/Edge.</div>
-      </InstructionsModal>
-    </div>
+      <div className="dict-footer">
+        {!isExam && (
+          <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={backToModes}>
+            Cambiar modo
+          </GameButton>
+        )}
+        <span className="dict-footer__info">
+          <SpellCheck size={14} /> Se corrige letra a letra · las tildes perfectas suman puntos
+        </span>
+      </div>
+
+      {instructions}
+    </GameShell>
+  );
+};
+
+// Ilustración del resumen: cuaderno pautado con un gran visto bueno y un lápiz.
+const NotebookArt = () => {
+  const [id, url] = useArtIds();
+  return (
+    <svg className="dict-sum__art" viewBox="0 0 120 96" aria-hidden="true">
+      <defs>
+        <radialGradient id={id('shadow')} cx=".5" cy=".5" r=".5">
+          <stop offset="0" stopColor="#7c2d12" stopOpacity=".35" />
+          <stop offset="1" stopColor="#7c2d12" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id={id('paper')} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#ffedd5" />
+        </linearGradient>
+        <linearGradient id={id('check')} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#34d399" />
+          <stop offset="1" stopColor="#059669" />
+        </linearGradient>
+        <linearGradient id={id('pencil')} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fdba74" />
+          <stop offset=".5" stopColor="#f97316" />
+          <stop offset="1" stopColor="#c2410c" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="58" cy="89" rx="50" ry="6" fill={url('shadow')} />
+      <g transform="rotate(-5 56 48)">
+        <rect x="20" y="12" width="70" height="76" rx="7" fill="#fdba74" />
+        <rect x="16" y="8" width="70" height="76" rx="7" fill={url('paper')} />
+        {[24, 34, 44, 54, 64, 74].map((y) => (
+          <path key={y} d={`M24 ${y} H80`} stroke="#bfdbfe" strokeWidth="1.2" />
+        ))}
+        <path d="M30 8 V84" stroke="#fda4af" strokeWidth="1.4" />
+        {[18, 38, 58, 78].map((y) => <circle key={y} cx="16" cy={y} r="3" fill="#fed7aa" />)}
+        <path d="M36 21 q3 -5 6 0 t6 0 t6 0 t6 0" stroke="#4338ca" strokeWidth="2" strokeLinecap="round" fill="none" />
+        <path d="M36 31 q3 -5 6 0 t6 0 t6 0" stroke="#4338ca" strokeWidth="2" strokeLinecap="round" fill="none" />
+        <path d="M40 56 l10 10 l20 -24" stroke={url('check')} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </g>
+      <g transform="translate(92 30) rotate(32)">
+        <rect x="-4" y="0" width="8" height="40" rx="2" fill={url('pencil')} />
+        <rect x="-4" y="-6" width="8" height="6" rx="2" fill="#f9a8d4" />
+        <path d="M-4 40 L0 50 L4 40 Z" fill="#fde7c8" />
+        <path d="M-1.4 46.5 L0 50 L1.4 46.5 Z" fill="#334155" />
+      </g>
+      <path d="M108 12 q1 5 6 6 q-5 1 -6 6 q-1 -5 -6 -6 q5 -1 6 -6Z" fill="#fbbf24" />
+    </svg>
   );
 };
 

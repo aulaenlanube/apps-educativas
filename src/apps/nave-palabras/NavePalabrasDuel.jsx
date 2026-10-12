@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Rocket, Swords, Trophy, X, LogOut, Skull } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Rocket, Swords, Trophy, LogOut, Skull, Target, Clock, Zap } from 'lucide-react';
 import { getRunnerData } from '@/services/gameDataService';
 import useDuel from '@/hooks/useDuel';
 import DuelChatBar from '@/components/duel/DuelChatBar';
+import UserAvatar from '@/components/ui/UserAvatar';
+import { GameShell, GameHeader, Hud, HudStat, Chip, ProgressBar, GameButton, GameLoading, GameEmpty } from '../_shared/kit';
 import { Ship } from './NavePalabras';
 import './NavePalabras.css';
 
@@ -544,8 +545,26 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [me?.isHost, channel?.isConnected, me?.id]);
 
-  if (duel.err) return <Err text={duel.err} />;
-  if (duel.loading || loading || !me || !rival) return <Loading />;
+  // Escala del escenario: la física trabaja en 800×520 fijos; aquí solo se
+  // ajusta el dibujo al ancho real del contenedor (solo vista).
+  const [viewScale, setViewScale] = useState(1);
+  const arenaMounted = !(duel.err || duel.loading || loading || !me || !rival);
+  useLayoutEffect(() => {
+    if (!arenaMounted) return undefined;
+    const el = arenaRef.current;
+    if (!el) return undefined;
+    const update = () => setViewScale(el.clientWidth / ARENA_W || 1);
+    update();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [arenaMounted]);
+
+  const shellProps = { theme: 'dark', accent: '#6366f1', accent2: '#ec4899', className: 'np' };
+
+  if (duel.err) return <Err text={duel.err} shellProps={shellProps} />;
+  if (duel.loading || loading || !me || !rival) return <Loading shellProps={shellProps} />;
 
   const myScore    = state?.scores?.[me.id] ?? 0;
   const rivalScore = state?.scores?.[rival.id] ?? 0;
@@ -553,6 +572,8 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
   const rivalKills = state?.kills?.[rival.id] ?? 0;
   const endsAt     = state?.endsAt ?? null;
   const secondsLeft = endsAt ? Math.max(0, Math.ceil((endsAt - performance.now()) / 1000)) : 60;
+  const target = formatName(state?.targetCat || targetCat) || '—';
+  const iWon = winnerId === me.id;
 
   // Vista compartida (coordenadas absolutas). Host se ve ABAJO, guest ARRIBA
   // en ambas pantallas — evita desincronías entre física y render.
@@ -563,30 +584,47 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
   }) : [];
 
   return (
-    <div className="np-root">
-      <div className="np-nebula" aria-hidden="true" />
-      <div className={`np-head ${state?.startedAt ? 'np-head-playing' : ''}`}>
-        {!state?.startedAt && (
-          <div className="np-badge"><Swords className="w-4 h-4" /> Nave Palabras · Duelo</div>
+    <GameShell {...shellProps}>
+      <GameHeader
+        compact
+        right={(
+          <Hud>
+            <Chip tone="accent" icon={Swords}>Duelo</Chip>
+            <HudStat icon={Clock} tone="time" value={`${secondsLeft}s`} label="Tiempo" />
+          </Hud>
         )}
-        <div className="np-hud">⏱ <span className={secondsLeft <= 10 ? 'np-time-low' : ''}>{secondsLeft}s</span></div>
-        <div className="np-hud">🎯 {formatName(state?.targetCat || targetCat) || '—'}</div>
-        <div className="np-hud" style={{ background: 'rgba(34, 211, 238, 0.25)' }} title={`Cadencia de disparo (fallos ${state?.penalties?.[me.id] || 0}/3)`}>
-          Tú: ★{myScore} 💀{myKills}{' '}
-          <span className="np-hud-speed" style={{ marginLeft: 4 }}>
-            {[0, 1, 2].map(i => (
-              <span key={i} className={i < (MAX_PENALTY - (state?.penalties?.[me.id] || 0)) ? 'np-spd-on' : 'np-spd-off'}>⚡</span>
-            ))}
-          </span>
+      />
+
+      <div className="np-duel-head">
+        <Pilot
+          name="Tú"
+          sub={me.name}
+          avatar={{ code: me.selectedAvatarCode, emoji: me.emoji, color: me.color }}
+          color="#22d3ee"
+          score={myScore}
+          kills={myKills}
+          penalty={state?.penalties?.[me.id] || 0}
+        />
+        <span className="np-vs" aria-hidden="true">VS</span>
+        <Pilot
+          rivalSide
+          name={rival.hidden ? 'Rival' : rival.name}
+          sub={rival.hidden ? 'Oculto' : 'Rival'}
+          avatar={{ code: rival.hidden ? null : rival.selectedAvatarCode, emoji: rival.emoji, color: rival.hidden ? null : rival.color }}
+          color="#f472b6"
+          score={rivalScore}
+          kills={rivalKills}
+          penalty={state?.penalties?.[rival.id] || 0}
+        />
+      </div>
+
+      <div className="np-bar">
+        <div className="np-target">
+          <span className="np-target__icon"><Target size={18} /></span>
+          <span className="np-target__text"><small>Dispara a</small><strong>{target}</strong></span>
         </div>
-        <div className="np-hud" style={{ background: 'rgba(244, 114, 182, 0.25)' }} title={`Cadencia de disparo rival (fallos ${state?.penalties?.[rival.id] || 0}/3)`}>
-          {rival.hidden ? 'Rival' : rival.name}: ★{rivalScore} 💀{rivalKills}{' '}
-          <span className="np-hud-speed" style={{ marginLeft: 4 }}>
-            {[0, 1, 2].map(i => (
-              <span key={i} className={i < (MAX_PENALTY - (state?.penalties?.[rival.id] || 0)) ? 'np-spd-on' : 'np-spd-off'}>⚡</span>
-            ))}
-          </span>
-        </div>
+        <span className="np-cadence"><Skull size={15} /> <span className="np-cadence__label">Derribar al rival: +{KILL_BONUS}</span></span>
+        <div className="np-timebar"><ProgressBar value={secondsLeft} max={60} tone={secondsLeft <= 10 ? 'bad' : secondsLeft <= 25 ? 'warn' : 'good'} label="Tiempo restante" /></div>
       </div>
 
       <div
@@ -601,8 +639,11 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
         onTouchStart={onPointerDown}
         onTouchEnd={onPointerUp}
       >
-        <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H }}>
-          <div className="np-stars" />
+        <div className="np-viewport" style={{ width: ARENA_W, height: ARENA_H, transform: `scale(${viewScale})` }}>
+          <div className="np-space" aria-hidden="true">
+            <span className="np-space__stars" />
+            <span className="np-space__stars np-space__stars--b" />
+          </div>
 
           {/* Flash + texto de fallo */}
           <AnimatePresence>
@@ -630,12 +671,7 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
           </AnimatePresence>
 
           {/* zona palabras (banda central) */}
-          <div style={{
-            position: 'absolute', left: 0, right: 0, top: WORD_BAND_TOP, height: WORD_BAND_BOT - WORD_BAND_TOP,
-            background: 'linear-gradient(180deg, rgba(168,85,247,0.08), rgba(34,211,238,0.08), rgba(168,85,247,0.08))',
-            borderTop: '1px dashed rgba(168, 85, 247, 0.3)',
-            borderBottom: '1px dashed rgba(34, 211, 238, 0.3)',
-          }} />
+          <div className="np-band" style={{ top: WORD_BAND_TOP, height: WORD_BAND_BOT - WORD_BAND_TOP }} aria-hidden="true" />
 
           {/* palabras */}
           {(state?.words || []).map(w => {
@@ -645,8 +681,8 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
             return (
               <div key={w.id}
                 className={`np-word ${cls}`}
-                style={{ left: w.x, top: w.y, width: w.w, height: WORD_H }}>
-                {w.text}
+                style={{ width: w.w, height: WORD_H, transform: `translate(${w.x}px, ${w.y}px)` }}>
+                <span className="np-word__text">{w.text}</span>
               </div>
             );
           })}
@@ -656,24 +692,12 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
             <div className="np-invert-banner">⚠️ ¡CONTROLES INVERTIDOS!</div>
           )}
 
-          {/* proyectiles */}
-          {(state?.projs || []).map(p => {
-            // si somos guest, los proyectiles del rival (host) van "hacia abajo" en lógica
-            // pero desde la perspectiva guest queremos que los del rival vengan de arriba hacia abajo.
-            // La lógica ya está bien porque broadcasteamos state absoluto.
-            const mine = p.owner === me.id;
-            return (
-              <div key={p.id}
-                className="np-proj"
-                style={{
-                  left: p.x, top: p.y, width: PROJ_W, height: PROJ_H,
-                  background: mine
-                    ? 'linear-gradient(180deg, #fff, #22d3ee)'
-                    : 'linear-gradient(180deg, #fff, #f472b6)',
-                  boxShadow: mine ? '0 0 10px #22d3ee' : '0 0 10px #f472b6',
-                }} />
-            );
-          })}
+          {/* proyectiles (estado absoluto difundido por el host) */}
+          {(state?.projs || []).map(p => (
+            <div key={p.id}
+              className={`np-proj ${p.owner === me.id ? '' : 'is-rival'}`}
+              style={{ width: PROJ_W, height: PROJ_H, transform: `translate(${p.x}px, ${p.y}px)` }} />
+          ))}
 
           {/* naves */}
           {renderShips.map(({ id, s, viewY, isMine }) => {
@@ -681,13 +705,8 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
               // marca respawn
               const remain = Math.max(0, Math.ceil(((s.respawnAt ?? 0) - performance.now()) / 1000));
               return (
-                <div key={id} style={{
-                  position: 'absolute', left: s.x, top: viewY,
-                  width: SHIP_W, height: SHIP_H,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#fca5a5', fontWeight: 900, fontSize: 14,
-                }}>
-                  <Skull className="w-4 h-4 mr-1" /> {remain}s
+                <div key={id} className="np-dead" style={{ width: SHIP_W, height: SHIP_H, transform: `translate(${s.x}px, ${viewY}px)` }}>
+                  <Skull size={16} /> {remain}s
                 </div>
               );
             }
@@ -706,13 +725,18 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
             {countdown != null && countdown > 0 && (
               <motion.div
                 key={countdown}
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={{ scale: 1.1, opacity: 1 }}
-                exit={{ scale: 1.4, opacity: 0 }}
-                className="np-overlay" style={{ background: 'rgba(10,12,50,0.6)' }}>
-                <div className="np-countdown" style={{ fontSize: 90, fontWeight: 900, color: '#22d3ee', textShadow: '0 0 30px #22d3ee' }}>
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="np-overlay">
+                <motion.span
+                  className="np-countdown"
+                  initial={{ scale: 0.6 }}
+                  animate={{ scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                >
                   {countdown}
-                </div>
+                </motion.span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -720,43 +744,76 @@ export default function NavePalabrasDuel({ onGameComplete, registerDuelExit }) {
           {/* fin */}
           {finished && (
             <div className="np-overlay">
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="np-panel np-panel-end"
-                style={{ borderColor: winnerId === me.id ? '#10b981' : '#ef4444' }}>
-                <Trophy className="np-trophy" style={{ color: winnerId === me.id ? '#fbbf24' : '#94a3b8' }} />
-                <h2 className="np-title">
-                  {winnerId === me.id ? '¡HAS GANADO!' : 'Has perdido'}
-                </h2>
-                <div className="np-stats-row">
-                  <div><div className="np-stat-n" style={{ color: '#22d3ee' }}>{myScore}</div><div className="np-stat-l">Tú</div></div>
-                  <div><div className="np-stat-n" style={{ color: '#f472b6' }}>{rivalScore}</div><div className="np-stat-l">Rival</div></div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 240, damping: 18 }}
+                className={`np-duel-end ${iWon ? '' : 'is-lost'}`}
+              >
+                <span className="np-duel-end__badge"><Trophy size={36} /></span>
+                <strong className="np-duel-end__title">{iWon ? '¡Has ganado!' : 'Has perdido'}</strong>
+                <div className="np-duel-end__scores">
+                  <span className="np-duel-end__score is-me"><b>{myScore}</b><small>Tú</small></span>
+                  <span className="np-duel-end__score is-rival"><b>{rivalScore}</b><small>Rival</small></span>
                 </div>
-                <div className="np-actions-row">
-                  <Button onClick={() => navigate('/mi-panel')} className="np-play-btn">
-                    <LogOut className="w-4 h-4 mr-2" /> Salir a mi panel
-                  </Button>
-                </div>
+                <GameButton size="lg" icon={LogOut} onClick={() => navigate('/mi-panel')}>Salir a mi panel</GameButton>
               </motion.div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Mobile fire */}
+      {/* Disparo táctil */}
       <div className="np-mobile-fire">
-        <button
+        <GameButton
+          variant="danger"
+          size="lg"
+          icon={Rocket}
           onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
           onTouchEnd={() => { keysRef.current.fire = false; }}
           onMouseDown={() => { keysRef.current.fire = true; }}
           onMouseUp={() => { keysRef.current.fire = false; }}
-          className="np-fire-btn">
-          <Rocket className="w-6 h-6" /> DISPARAR
-        </button>
+          className="np-fire-btn"
+        >
+          Disparar
+        </GameButton>
       </div>
       <DuelChatBar channel={channel} me={me} rival={rival} />
+    </GameShell>
+  );
+}
+
+function Pilot({ name, sub, color, score, kills, penalty, avatar, rivalSide = false }) {
+  return (
+    <div className={`np-pilot ${rivalSide ? 'np-pilot--rival' : ''}`} style={{ '--np-p': color }}>
+      <span className="np-pilot__avatar">
+        <UserAvatar selectedAvatarCode={avatar?.code} avatarEmoji={avatar?.emoji} avatarColor={avatar?.color} size="md" />
+        <span className="np-pilot__ship" aria-hidden="true">
+          <svg viewBox="0 0 70 36" width="30" height="16">
+            <path d="M35 2 L60 20 L50 30 L35 24 L20 30 L10 20 Z" fill={color} />
+            <circle cx="35" cy="18" r="4" fill="#fff" />
+          </svg>
+        </span>
+      </span>
+      <div className="np-pilot__info">
+        <span className="np-pilot__name">{name}{sub && sub !== name ? <small style={{ opacity: 0.7, fontWeight: 700 }}> · {sub}</small> : null}</span>
+        <span className="np-pilot__stats">
+          <b className="np-pilot__score">{score}</b>
+          <span title="Derribos"><Skull size={13} /> {kills}</span>
+          <span className="np-cadence__bolts" title={`Cadencia de disparo (fallos ${penalty}/3)`}>
+            {[0, 1, 2].map(i => (
+              <span key={i} className={`np-bolt ${i < (MAX_PENALTY - penalty) ? 'is-on' : ''}`}><Zap size={13} /></span>
+            ))}
+          </span>
+        </span>
+      </div>
     </div>
   );
 }
 
-function Loading() { return <div className="min-h-[50vh] flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-violet-600" /></div>; }
-function Err({ text }) { return <div className="p-8 text-center"><X className="w-10 h-10 mx-auto mb-2 text-rose-500" /><p className="font-bold">Error</p><p className="text-sm text-slate-500">{text}</p></div>; }
+function Loading({ shellProps }) {
+  return <GameShell {...shellProps}><GameLoading label="Conectando con tu rival…" /></GameShell>;
+}
+function Err({ text, shellProps }) {
+  return <GameShell {...shellProps}><GameEmpty title="No se puede jugar el duelo">{text}</GameEmpty></GameShell>;
+}

@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Plus, Trash2, Save, ArrowLeft, Search, BookOpen, Edit3,
-  ChevronDown, ChevronUp, GripVertical, Copy, FileText, X, AlertTriangle
+  ChevronDown, ChevronUp, FileText, X, AlertTriangle, Check, ListOrdered, Info, Shuffle,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { getRoscoData } from '@/services/gameDataService';
+import { DashCard, DashButton, DashEmpty, ProgressRing } from '@/components/dashboard/kit';
+import BrandLoader from '@/components/ui/BrandLoader';
+import { QBEmblem, QBShape, SHAPE_NAMES } from './QBArt';
 import materiasData from '../../../public/data/materias.json';
+import './QuizTemplateEditor.css';
 
 const LEVELS = [
   { id: 'primaria', label: 'Primaria', grades: [1, 2, 3, 4, 5, 6] },
@@ -23,6 +28,54 @@ function shuffle(arr) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+/* ───────────── Piezas de presentación ───────────── */
+
+const DIFFICULTY = {
+  1: { label: 'Fácil', cls: 'is-easy' },
+  2: { label: 'Media', cls: 'is-mid' },
+  3: { label: 'Difícil', cls: 'is-hard' },
+};
+
+function DifficultyPill({ value }) {
+  const d = DIFFICULTY[value];
+  if (!d) return null;
+  return <span className={`qte-diff ${d.cls}`} title={`Dificultad ${value}`}>{d.label}</span>;
+}
+
+// Las 4 respuestas con los colores y formas del juego; la correcta, marcada.
+function AnswerTiles({ q }) {
+  const opts = Array.isArray(q.options) ? q.options : [];
+  if (opts.length === 0) {
+    return (
+      <p className="qte-q__solo">
+        <Check size={14} /> {q.correct}
+      </p>
+    );
+  }
+  return (
+    <div className="qte-answers">
+      {opts.map((opt, k) => {
+        const isCorrect = typeof q.correctIndex === 'number' ? k === q.correctIndex : opt === q.correct;
+        return (
+          <div
+            key={k}
+            className={`qte-ans qte-ans--c${k % 4} ${isCorrect ? 'is-correct' : ''}`}
+            title={`${SHAPE_NAMES[k % 4]}${isCorrect ? ' · respuesta correcta' : ''}`}
+          >
+            <span className="qte-ans__shape"><QBShape kind={k % 4} size={18} /></span>
+            <span className="qte-ans__text">{opt}</span>
+            {isCorrect && <span className="qte-ans__ok" aria-label="Respuesta correcta"><Check size={13} strokeWidth={3.5} /></span>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ConfirmPortal({ children }) {
+  return createPortal(children, document.body);
 }
 
 export default function QuizTemplateEditor({ templateId, onBack, onSaved }) {
@@ -249,207 +302,275 @@ export default function QuizTemplateEditor({ templateId, onBack, onSaved }) {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600" />
+      <div className="qte-loading">
+        <BrandLoader variant="inline" label="Cargando batalla…" />
       </div>
     );
   }
 
+  // ── Presentación ──
+  const saveDisabled = saving || questions.length < 4 || !name.trim();
+  const missing = Math.max(0, 4 - questions.length);
+  const roscoCount = questions.filter((q) => q.source === 'rosco').length;
+  const customCount = questions.length - roscoCount;
+
   return (
-    <div className="space-y-4">
+    <div className="qte">
       {/* Exit confirmation modal */}
-      <AnimatePresence>
-        {showExitConfirm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
-            onClick={() => setShowExitConfirm(false)}
-          >
+      <ConfirmPortal>
+        <AnimatePresence>
+          {showExitConfirm && (
             <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-xl"
-              onClick={(e) => e.stopPropagation()}
+              key="qte-exit"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.16 }}
+              className="qte-portal qte-overlay"
+              onClick={() => setShowExitConfirm(false)}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
-                  <AlertTriangle className="w-5 h-5 text-amber-600" />
+              <motion.div
+                initial={{ scale: 0.94, y: 14 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.96, opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                className="qte-dialog"
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="qte-exit-title"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="qte-dialog__head">
+                  <span className="qte-dialog__icon"><AlertTriangle size={24} /></span>
+                  <div>
+                    <h3 id="qte-exit-title">Cambios sin guardar</h3>
+                    <p className="qte-dialog__sub">Tienes {questions.length} pregunta{questions.length !== 1 ? 's' : ''}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-slate-800">Cambios sin guardar</h3>
-                  <p className="text-xs text-slate-500">Tienes {questions.length} pregunta{questions.length !== 1 ? 's' : ''}</p>
+                <p className="qte-dialog__text">
+                  Has modificado preguntas de esta plantilla. Si sales ahora sin guardar, los cambios se perderán.
+                </p>
+                <div className="qte-dialog__actions">
+                  <button
+                    type="button"
+                    onClick={() => { setShowExitConfirm(false); onBack(); }}
+                    className="qte-btn-ghost-danger"
+                  >
+                    Salir sin guardar
+                  </button>
+                  <DashButton
+                    variant="emerald"
+                    icon={Save}
+                    onClick={async () => { setShowExitConfirm(false); await handleSave(true); }}
+                    disabled={saving || questions.length === 0}
+                  >
+                    Guardar y salir
+                  </DashButton>
                 </div>
-              </div>
-              <p className="text-sm text-slate-600 mb-4">
-                Has modificado preguntas de esta plantilla. Si sales ahora sin guardar, los cambios se perderan.
-              </p>
-              <div className="flex gap-2 justify-end">
-                <button
-                  onClick={() => { setShowExitConfirm(false); onBack(); }}
-                  className="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-xl text-sm font-medium hover:bg-red-100 transition-colors"
-                >
-                  Salir sin guardar
-                </button>
-                <button
-                  onClick={async () => { setShowExitConfirm(false); await handleSave(true); }}
-                  disabled={saving || questions.length === 0}
-                  className="px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold hover:bg-green-700 transition-colors disabled:opacity-50"
-                >
-                  <Save className="w-4 h-4 inline mr-1" />
-                  Guardar y salir
-                </button>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </ConfirmPortal>
 
-      {/* Header */}
-      <div className="flex items-center gap-3 flex-wrap">
-        <button onClick={handleBack}
-          className="flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800 transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Volver
-        </button>
-        <h2 className="text-lg font-bold text-slate-800">
-          {templateId ? 'Editar batalla' : 'Nueva Batalla'}
-        </h2>
-        <span className="text-xs text-slate-400 ml-auto">{questions.length} preguntas</span>
-      </div>
-
-      {/* Name & Description */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div>
-          <label className="text-xs font-medium text-slate-500 mb-1 block">Nombre *</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Ej: Repaso Tema 5 Lengua"
-            maxLength={80}
-            className="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
-          />
+      {/* ═══ Cabecera ═══ */}
+      <header className="qte-head">
+        <div className="qte-head__art" aria-hidden="true">
+          <span className="qte-head__spot" />
+          {[0, 1, 2, 3].map((k) => (
+            <span key={k} className={`qte-head__shape qte-head__shape--${k}`}><QBShape kind={k} size={22} /></span>
+          ))}
         </div>
-        <div>
-          <label className="text-xs font-medium text-slate-500 mb-1 block">Descripcion</label>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Opcional"
-            maxLength={200}
-            className="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
-          />
+        <div className="qte-head__top">
+          <button type="button" onClick={handleBack} className="qte-back">
+            <ArrowLeft size={16} /> Volver
+          </button>
+          <span className="qte-head__kicker">{templateId ? 'Editar batalla' : 'Nueva batalla'}</span>
         </div>
-      </div>
+        <div className="qte-head__main">
+          <span className="qte-head__emblem"><QBEmblem size={84} /></span>
+          <div className="qte-head__text">
+            <h2 className="qte-head__title">{name.trim() || 'Batalla sin nombre'}</h2>
+            <p className="qte-head__desc">
+              {description.trim() || 'Elige preguntas del banco del Rosco o escribe las tuyas. Cada pregunta tiene 4 respuestas.'}
+            </p>
+          </div>
+          <div className="qte-head__side">
+            <div className="qte-counter">
+              <ProgressRing value={Math.min(questions.length, 4)} max={4} size={66} stroke={10} tone={missing === 0 ? 'good' : 'amber'} label={`${questions.length} preguntas`}>
+                <span className="qte-counter__n">{questions.length}</span>
+              </ProgressRing>
+              <span className="qte-counter__text">
+                <strong>{questions.length === 1 ? 'pregunta' : 'preguntas'}</strong>
+                <small>{missing > 0 ? `Mínimo 4 · faltan ${missing}` : 'Mínimo alcanzado'}</small>
+              </span>
+            </div>
+            <DashButton variant="emerald" size="lg" icon={Save} onClick={handleSave} disabled={saveDisabled}>
+              {saving ? 'Guardando…' : 'Guardar'}
+            </DashButton>
+          </div>
+        </div>
+      </header>
 
-      {/* Action buttons */}
-      <div className="flex gap-2 flex-wrap">
+      {/* ═══ Avisos de validación ═══ */}
+      {!saving && (!name.trim() || missing > 0) && (
+        <div className="qte-notice" role="status">
+          <Info size={18} />
+          <span>
+            Para guardar
+            {!name.trim() && <> ponle un <b>nombre</b> a la batalla</>}
+            {!name.trim() && missing > 0 && ' y'}
+            {missing > 0 && <> añade <b>{missing} pregunta{missing !== 1 ? 's' : ''} más</b> (mínimo 4)</>}
+            .
+          </span>
+        </div>
+      )}
+
+      {/* ═══ Datos ═══ */}
+      <DashCard icon={FileText} tone="violet" title="Datos de la batalla" subtitle="Así la verás al elegirla en «Iniciar batalla»">
+        <div className="qte-fields">
+          <label className="qte-field">
+            <span className="qte-field__label">
+              Nombre <em>*</em>
+              <span className="qte-field__count">{name.length}/80</span>
+            </span>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Ej: Repaso Tema 5 Lengua"
+              maxLength={80}
+              className="qte-input"
+            />
+          </label>
+          <label className="qte-field">
+            <span className="qte-field__label">
+              Descripción
+              <span className="qte-field__count">{description.length}/200</span>
+            </span>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Opcional"
+              maxLength={200}
+              className="qte-input"
+            />
+          </label>
+        </div>
+      </DashCard>
+
+      {/* ═══ Añadir preguntas ═══ */}
+      <div className="qte-sources" role="group" aria-label="Añadir preguntas">
         <button
+          type="button"
           onClick={() => { setShowBrowser(true); setShowCustom(false); }}
-          className="flex items-center gap-1.5 px-3 py-2 bg-blue-50 text-blue-700 border border-blue-200 rounded-xl text-sm font-medium hover:bg-blue-100 transition-colors"
+          className={`qte-source qte-source--rosco ${showBrowser ? 'is-on' : ''}`}
+          aria-pressed={showBrowser}
         >
-          <BookOpen className="w-4 h-4" /> Buscar en roscos
+          <span className="qte-source__ico"><BookOpen size={22} /></span>
+          <span className="qte-source__text">
+            <strong>Buscar en roscos</strong>
+            <small>Definiciones del Rosco por curso y asignatura</small>
+          </span>
         </button>
         <button
+          type="button"
           onClick={() => { setShowCustom(true); setShowBrowser(false); }}
-          className="flex items-center gap-1.5 px-3 py-2 bg-purple-50 text-purple-700 border border-purple-200 rounded-xl text-sm font-medium hover:bg-purple-100 transition-colors"
+          className={`qte-source qte-source--custom ${showCustom ? 'is-on' : ''}`}
+          aria-pressed={showCustom}
         >
-          <Edit3 className="w-4 h-4" /> Pregunta personalizada
-        </button>
-        <button
-          onClick={handleSave}
-          disabled={saving || questions.length < 4 || !name.trim()}
-          className="flex items-center gap-1.5 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold hover:bg-green-700 transition-colors disabled:opacity-50 ml-auto"
-        >
-          <Save className="w-4 h-4" /> {saving ? 'Guardando...' : 'Guardar'}
+          <span className="qte-source__ico"><Edit3 size={22} /></span>
+          <span className="qte-source__text">
+            <strong>Pregunta personalizada</strong>
+            <small>Escribe la pregunta y sus 4 respuestas</small>
+          </span>
         </button>
       </div>
 
       {/* ── Rosco Browser ── */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {showBrowser && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="bg-blue-50 border border-blue-200 rounded-2xl p-4 overflow-hidden"
+          <motion.section
+            key="qte-browser"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="qte-pane qte-pane--rosco"
           >
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-bold text-blue-800 flex items-center gap-1.5">
-                <BookOpen className="w-4 h-4" /> Banco de preguntas del Rosco
-              </h3>
-              <button onClick={() => setShowBrowser(false)} className="text-blue-400 hover:text-blue-700">
-                <X className="w-4 h-4" />
+            <div className="qte-pane__head">
+              <span className="qte-pane__ico"><BookOpen size={18} /></span>
+              <h3 className="qte-pane__title">Banco de preguntas del Rosco</h3>
+              <button type="button" onClick={() => setShowBrowser(false)} className="qte-iconbtn" title="Cerrar" aria-label="Cerrar banco del Rosco">
+                <X size={16} />
               </button>
             </div>
 
-            <div className="flex gap-2 flex-wrap mb-3">
-              <select value={browseLevel} onChange={(e) => setBrowseLevel(e.target.value)}
-                className="px-2 py-1.5 border border-blue-200 rounded-lg text-xs bg-white">
-                {LEVELS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
-              </select>
-              <select value={browseGrade} onChange={(e) => setBrowseGrade(e.target.value)}
-                className="px-2 py-1.5 border border-blue-200 rounded-lg text-xs bg-white">
-                {(browseLevel === 'primaria' ? [1,2,3,4,5,6] : [1,2,3,4]).map((g) => (
-                  <option key={g} value={g}>{g}o</option>
-                ))}
-              </select>
-              <select value={browseSubject} onChange={(e) => setBrowseSubject(e.target.value)}
-                className="px-2 py-1.5 border border-blue-200 rounded-lg text-xs bg-white flex-1 min-w-[120px]">
-                {browseSubjects.map((s) => (
-                  <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
-                ))}
-              </select>
-              <div className="relative flex-1 min-w-[140px]">
-                <Search className="w-3.5 h-3.5 absolute left-2 top-1/2 -translate-y-1/2 text-blue-400" />
-                <input
-                  type="text"
-                  value={roscoSearch}
-                  onChange={(e) => setRoscoSearch(e.target.value)}
-                  placeholder="Filtrar..."
-                  className="w-full pl-7 pr-2 py-1.5 border border-blue-200 rounded-lg text-xs bg-white"
-                />
-              </div>
+            <div className="qte-filters">
+              <label className="qte-filter">
+                <span>Etapa</span>
+                <select value={browseLevel} onChange={(e) => setBrowseLevel(e.target.value)} className="qte-select">
+                  {LEVELS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+                </select>
+              </label>
+              <label className="qte-filter qte-filter--grade">
+                <span>Curso</span>
+                <select value={browseGrade} onChange={(e) => setBrowseGrade(e.target.value)} className="qte-select">
+                  {(browseLevel === 'primaria' ? [1,2,3,4,5,6] : [1,2,3,4]).map((g) => (
+                    <option key={g} value={g}>{g}º</option>
+                  ))}
+                </select>
+              </label>
+              <label className="qte-filter qte-filter--grow">
+                <span>Asignatura</span>
+                <select value={browseSubject} onChange={(e) => setBrowseSubject(e.target.value)} className="qte-select">
+                  {browseSubjects.map((s) => (
+                    <option key={s.id} value={s.id}>{s.icon} {s.nombre}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="qte-filter qte-filter--grow">
+                <span>Buscar</span>
+                <span className="qte-search">
+                  <Search size={15} />
+                  <input
+                    type="text"
+                    value={roscoSearch}
+                    onChange={(e) => setRoscoSearch(e.target.value)}
+                    placeholder="Filtrar..."
+                    className="qte-input qte-input--search"
+                  />
+                </span>
+              </label>
             </div>
 
             {roscoLoading ? (
-              <div className="flex justify-center py-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" />
-              </div>
+              <div className="qte-loading qte-loading--sm"><BrandLoader variant="inline" /></div>
             ) : filteredRosco.length === 0 ? (
-              <p className="text-sm text-blue-400 text-center py-4">No se encontraron preguntas</p>
+              <p className="qte-pane__empty">No se encontraron preguntas</p>
             ) : (
-              <div className="max-h-60 overflow-y-auto space-y-1">
+              <div className="qte-rlist">
                 {filteredRosco.map((item, i) => {
                   const added = isAdded(item.question, item.answer);
                   return (
                     <div
                       key={`${item.answer}-${i}`}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs ${
-                        added ? 'bg-green-100 text-green-700' : 'bg-white hover:bg-blue-100 text-slate-700'
-                      }`}
+                      className={`qte-rrow ${added ? 'is-added' : ''}`}
                     >
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium truncate">{item.question}</p>
-                        <p className="text-slate-400">R: {item.answer}</p>
+                      <span className="qte-rrow__letter" aria-hidden="true">{item.letra ? String(item.letra).toUpperCase() : '·'}</span>
+                      <div className="qte-rrow__text">
+                        <p className="qte-rrow__q">{item.question}</p>
+                        <p className="qte-rrow__a">R: <b>{item.answer}</b></p>
                       </div>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                        item.difficulty === 1 ? 'bg-green-100 text-green-700' :
-                        item.difficulty === 3 ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
-                      }`}>D{item.difficulty}</span>
+                      <DifficultyPill value={item.difficulty} />
                       <button
+                        type="button"
                         onClick={() => addRoscoQuestion(item)}
                         disabled={added}
-                        className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-colors ${
-                          added
-                            ? 'bg-green-200 text-green-700 cursor-default'
-                            : 'bg-blue-600 text-white hover:bg-blue-700'
-                        }`}
+                        className={`qte-rrow__add ${added ? 'is-added' : ''}`}
                       >
-                        {added ? 'Anadida' : '+ Anadir'}
+                        {added ? <><Check size={14} /> Añadida</> : <><Plus size={14} /> Añadir</>}
                       </button>
                     </div>
                   );
@@ -457,117 +578,168 @@ export default function QuizTemplateEditor({ templateId, onBack, onSaved }) {
               </div>
             )}
 
-            <p className="text-[10px] text-blue-400 mt-2 text-right">
-              {filteredRosco.length} preguntas disponibles · {questions.filter((q) => q.source === 'rosco').length} anadidas del rosco
+            <p className="qte-pane__foot">
+              {filteredRosco.length} preguntas disponibles · {questions.filter((q) => q.source === 'rosco').length} añadidas del rosco
             </p>
-          </motion.div>
+          </motion.section>
         )}
       </AnimatePresence>
 
       {/* ── Custom Question Form ── */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {showCustom && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="bg-purple-50 border border-purple-200 rounded-2xl p-4 overflow-hidden"
+          <motion.section
+            key="qte-custom"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="qte-pane qte-pane--custom"
           >
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-bold text-purple-800 flex items-center gap-1.5">
-                <Edit3 className="w-4 h-4" /> Pregunta personalizada
-              </h3>
-              <button onClick={() => setShowCustom(false)} className="text-purple-400 hover:text-purple-700">
-                <X className="w-4 h-4" />
+            <div className="qte-pane__head">
+              <span className="qte-pane__ico"><Edit3 size={18} /></span>
+              <h3 className="qte-pane__title">Pregunta personalizada</h3>
+              <button type="button" onClick={() => setShowCustom(false)} className="qte-iconbtn" title="Cerrar" aria-label="Cerrar pregunta personalizada">
+                <X size={16} />
               </button>
             </div>
 
-            <div className="space-y-2">
-              <input
-                type="text" value={customQ} onChange={(e) => setCustomQ(e.target.value)}
-                placeholder="Escribe la pregunta..."
-                maxLength={300}
-                className="w-full px-3 py-2 border border-purple-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-purple-300"
-              />
-              <div className="grid grid-cols-2 gap-2">
+            <div className="qte-custom">
+              <label className="qte-field">
+                <span className="qte-field__label">
+                  Pregunta
+                  <span className="qte-field__count">{customQ.length}/300</span>
+                </span>
                 <input
-                  type="text" value={customCorrect} onChange={(e) => setCustomCorrect(e.target.value)}
-                  placeholder="Respuesta CORRECTA"
-                  maxLength={100}
-                  className="px-3 py-2 border-2 border-green-300 rounded-xl text-sm bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-300"
+                  type="text" value={customQ} onChange={(e) => setCustomQ(e.target.value)}
+                  placeholder="Escribe la pregunta..."
+                  maxLength={300}
+                  className="qte-input qte-input--lg"
                 />
-                <input
-                  type="text" value={customWrong1} onChange={(e) => setCustomWrong1(e.target.value)}
-                  placeholder="Respuesta incorrecta 1"
-                  maxLength={100}
-                  className="px-3 py-2 border border-red-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-200"
-                />
-                <input
-                  type="text" value={customWrong2} onChange={(e) => setCustomWrong2(e.target.value)}
-                  placeholder="Respuesta incorrecta 2"
-                  maxLength={100}
-                  className="px-3 py-2 border border-red-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-200"
-                />
-                <input
-                  type="text" value={customWrong3} onChange={(e) => setCustomWrong3(e.target.value)}
-                  placeholder="Respuesta incorrecta 3"
-                  maxLength={100}
-                  className="px-3 py-2 border border-red-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-200"
-                />
+              </label>
+              <div className="qte-custom__answers">
+                <label className="qte-opt is-correct">
+                  <span className="qte-opt__badge"><Check size={14} strokeWidth={3} /></span>
+                  <input
+                    type="text" value={customCorrect} onChange={(e) => setCustomCorrect(e.target.value)}
+                    placeholder="Respuesta CORRECTA"
+                    maxLength={100}
+                    className="qte-opt__input"
+                  />
+                </label>
+                <label className="qte-opt">
+                  <span className="qte-opt__badge"><X size={14} strokeWidth={3} /></span>
+                  <input
+                    type="text" value={customWrong1} onChange={(e) => setCustomWrong1(e.target.value)}
+                    placeholder="Respuesta incorrecta 1"
+                    maxLength={100}
+                    className="qte-opt__input"
+                  />
+                </label>
+                <label className="qte-opt">
+                  <span className="qte-opt__badge"><X size={14} strokeWidth={3} /></span>
+                  <input
+                    type="text" value={customWrong2} onChange={(e) => setCustomWrong2(e.target.value)}
+                    placeholder="Respuesta incorrecta 2"
+                    maxLength={100}
+                    className="qte-opt__input"
+                  />
+                </label>
+                <label className="qte-opt">
+                  <span className="qte-opt__badge"><X size={14} strokeWidth={3} /></span>
+                  <input
+                    type="text" value={customWrong3} onChange={(e) => setCustomWrong3(e.target.value)}
+                    placeholder="Respuesta incorrecta 3"
+                    maxLength={100}
+                    className="qte-opt__input"
+                  />
+                </label>
               </div>
-              <button
-                onClick={addCustomQuestion}
-                className="flex items-center gap-1 px-4 py-2 bg-purple-600 text-white rounded-xl text-sm font-bold hover:bg-purple-700 transition-colors"
-              >
-                <Plus className="w-4 h-4" /> Anadir pregunta
-              </button>
+              <div className="qte-custom__foot">
+                <span className="qte-custom__hint"><Shuffle size={14} /> Las respuestas se barajan al añadir la pregunta.</span>
+                <DashButton variant="primary" icon={Plus} onClick={addCustomQuestion}>
+                  Añadir pregunta
+                </DashButton>
+              </div>
             </div>
-          </motion.div>
+          </motion.section>
         )}
       </AnimatePresence>
 
       {/* ── Question list ── */}
-      {questions.length === 0 ? (
-        <div className="text-center py-8 text-slate-400">
-          <FileText className="w-10 h-10 mx-auto mb-2 opacity-40" />
-          <p className="text-sm">Anade preguntas desde el banco del rosco o crea las tuyas propias</p>
-        </div>
-      ) : (
-        <div className="space-y-1.5">
-          {questions.map((q, i) => (
-            <motion.div
-              key={`${q.question}-${i}`}
-              layout
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <span className="text-xs font-bold text-slate-400 w-6 text-center">{i + 1}</span>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-700 truncate">{q.question}</p>
-                <p className="text-xs text-slate-400">
-                  R: <span className="text-green-600 font-semibold">{q.correct}</span>
-                  <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500">
-                    {q.source === 'custom' ? 'Manual' : 'Rosco'}
-                  </span>
-                </p>
+      <DashCard
+        icon={ListOrdered}
+        tone="indigo"
+        title="Preguntas de la batalla"
+        subtitle={questions.length > 0
+          ? `${questions.length} pregunta${questions.length !== 1 ? 's' : ''} · ${roscoCount} del Rosco · ${customCount} propia${customCount !== 1 ? 's' : ''}`
+          : 'Se jugarán en este orden'}
+      >
+        {questions.length === 0 ? (
+          <DashEmpty
+            title="Todavía no hay preguntas"
+            action={(
+              <div className="qte-empty-actions">
+                <DashButton variant="sky" icon={BookOpen} onClick={() => { setShowBrowser(true); setShowCustom(false); }}>Buscar en roscos</DashButton>
+                <DashButton variant="primary" icon={Edit3} onClick={() => { setShowCustom(true); setShowBrowser(false); }}>Pregunta personalizada</DashButton>
               </div>
-              <div className="flex items-center gap-0.5">
-                <button onClick={() => moveQuestion(i, -1)} disabled={i === 0}
-                  className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-30">
-                  <ChevronUp className="w-3.5 h-3.5" />
-                </button>
-                <button onClick={() => moveQuestion(i, 1)} disabled={i === questions.length - 1}
-                  className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-30">
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
-                <button onClick={() => removeQuestion(i)}
-                  className="p-1 text-red-400 hover:text-red-600">
-                  <Trash2 className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+            )}
+          >
+            Añade preguntas desde el banco del rosco o crea las tuyas propias.
+          </DashEmpty>
+        ) : (
+          <div className="qte-qlist">
+            {questions.map((q, i) => (
+              <motion.article
+                key={`${q.question}-${i}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="qte-q"
+              >
+                <header className="qte-q__head">
+                  <span className="qte-q__num">{i + 1}</span>
+                  <div className="qte-q__titles">
+                    <p className="qte-q__text">{q.question}</p>
+                    <div className="qte-q__meta">
+                      <span className={`qte-src ${q.source === 'custom' ? 'is-custom' : 'is-rosco'}`}>
+                        {q.source === 'custom' ? 'Manual' : 'Rosco'}
+                      </span>
+                      <DifficultyPill value={q.difficulty} />
+                    </div>
+                  </div>
+                  <div className="qte-q__tools">
+                    <button type="button" onClick={() => moveQuestion(i, -1)} disabled={i === 0}
+                      className="qte-iconbtn qte-iconbtn--sm" title="Subir" aria-label={`Subir la pregunta ${i + 1}`}>
+                      <ChevronUp size={16} />
+                    </button>
+                    <button type="button" onClick={() => moveQuestion(i, 1)} disabled={i === questions.length - 1}
+                      className="qte-iconbtn qte-iconbtn--sm" title="Bajar" aria-label={`Bajar la pregunta ${i + 1}`}>
+                      <ChevronDown size={16} />
+                    </button>
+                    <button type="button" onClick={() => removeQuestion(i)}
+                      className="qte-iconbtn qte-iconbtn--sm qte-iconbtn--danger" title="Quitar" aria-label={`Quitar la pregunta ${i + 1}`}>
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
+                </header>
+                <AnswerTiles q={q} />
+              </motion.article>
+            ))}
+          </div>
+        )}
+      </DashCard>
+
+      {/* ═══ Barra fija de guardado (listas largas) ═══ */}
+      {questions.length > 3 && (
+        <div className="qte-dock">
+          <span className="qte-dock__info">
+            <b>{questions.length}</b> pregunta{questions.length !== 1 ? 's' : ''}
+            {!name.trim() && <em> · falta el nombre</em>}
+          </span>
+          <DashButton variant="emerald" icon={Save} onClick={handleSave} disabled={saveDisabled}>
+            {saving ? 'Guardando…' : 'Guardar batalla'}
+          </DashButton>
         </div>
       )}
     </div>

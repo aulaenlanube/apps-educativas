@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import UserAvatar from '@/components/ui/UserAvatar';
 import PhraseLauncher from './PhraseLauncher';
+import './DuelChat.css';
 
 const RECEIVED_DURATION_MS = 5000;
 
@@ -60,13 +61,15 @@ export default function DuelChatBar({ channel, me, rival, onIncoming }) {
             animate={{ opacity: 1, x: 0, y: 0 }}
             exit={{ opacity: 0, x: 40, transition: { duration: 0.2 } }}
             transition={{ type: 'spring', stiffness: 340, damping: 24 }}
-            className="fixed top-4 right-4 z-[60] flex items-end gap-2 max-w-[calc(100vw-2rem)] sm:max-w-md pointer-events-none"
+            className="dch-toast"
+            role="status"
+            aria-live="polite"
           >
             <motion.div
               initial={{ scale: 0.6 }}
               animate={{ scale: [1, 1.08, 1] }}
               transition={{ duration: 0.5, times: [0, 0.4, 1] }}
-              className="shrink-0"
+              className="dch-toast__avatar"
             >
               <UserAvatar
                 selectedAvatarCode={rival?.hidden ? null : rival?.selectedAvatarCode}
@@ -81,34 +84,23 @@ export default function DuelChatBar({ channel, me, rival, onIncoming }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 380, damping: 22, delay: 0.05 }}
-              className="relative px-4 py-2.5 rounded-2xl bg-white border-2 border-violet-300 shadow-2xl"
+              className="dch-bubble"
             >
-              {/* Cola del bocadillo apuntando al avatar (a la izquierda). */}
-              <span
-                aria-hidden
-                className="absolute left-[-9px] bottom-3 w-0 h-0"
-                style={{
-                  borderTop: '8px solid transparent',
-                  borderBottom: '8px solid transparent',
-                  borderRight: '10px solid #c4b5fd',
-                }}
-              />
-              <span
-                aria-hidden
-                className="absolute left-[-6px] bottom-[14px] w-0 h-0"
-                style={{
-                  borderTop: '6px solid transparent',
-                  borderBottom: '6px solid transparent',
-                  borderRight: '8px solid white',
-                }}
-              />
-              <p className="text-[10px] uppercase font-bold tracking-widest text-violet-500 mb-0.5">
+              {/* Cola del bocadillo apuntando al centro del avatar (a la izquierda). */}
+              <span aria-hidden className="dch-bubble__tail" />
+              <p className="dch-bubble__name">
                 {rival?.hidden ? 'Rival' : (rival?.name || 'Rival')}
               </p>
-              <p className="text-sm sm:text-base font-semibold text-slate-800 leading-snug">
-                <span className="text-xl mr-1.5 align-middle">{received.emoji}</span>
-                {received.text}
+              <p className="dch-bubble__text">
+                <span className="dch-bubble__emoji">{received.emoji}</span>
+                <span>{received.text}</span>
               </p>
+              {/* Barra que se vacía durante los 5 s que dura el bocadillo. */}
+              <span
+                aria-hidden
+                className="dch-bubble__timer"
+                style={{ animationDuration: `${RECEIVED_DURATION_MS}ms` }}
+              />
             </motion.div>
           </motion.div>
         )}

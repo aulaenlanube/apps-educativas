@@ -1,0 +1,197 @@
+/* ==========================================================================
+   Mi Zona (usuario libre) — rediseño 2026 sobre el kit de paneles (dk-*).
+   Prefijo fz-. Solo transform/opacity en animaciones; tema oscuro con
+   html.dark (las variables --dk-* ya cambian solas); móvil a 720px.
+   ========================================================================== */
+
+.fz-shell { min-height: 100vh; }
+.fz-page .dk-page__inner { padding-top: clamp(14px, 2.4vw, 26px); }
+
+.fz-stack { display: flex; flex-direction: column; gap: clamp(16px, 2.2vw, 24px); }
+.fz-panel { display: flex; flex-direction: column; gap: 16px; }
+.fz-loading { display: grid; place-items: center; min-height: 260px; }
+.fz-muted { margin: 4px 0 0; font-size: .88rem; font-weight: 600; color: var(--dk-ink-3); }
+
+/* ---------- Sigue jugando ---------- */
+.fz-apps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+}
+.fz-app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 12px 14px;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--dk-font);
+  color: var(--dk-ink);
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(251, 146, 60, .16), transparent 65%),
+    var(--dk-surface-2);
+  box-shadow: inset 0 0 0 1px var(--dk-line), 0 5px 0 var(--dk-edge), 0 14px 26px -18px rgba(120, 40, 20, .45);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.fz-app:hover:not(:disabled) { transform: translateY(-4px); }
+.fz-app:active:not(:disabled) { transform: translateY(2px); box-shadow: inset 0 0 0 1px var(--dk-line), 0 1px 0 var(--dk-edge); }
+.fz-app:disabled { cursor: default; opacity: .75; }
+.fz-app:focus-visible { outline: 3px solid color-mix(in srgb, var(--dk-hero-1) 55%, transparent); outline-offset: 3px; }
+.fz-app__icon { display: grid; place-items: center; width: 64px; height: 64px; filter: drop-shadow(0 10px 12px rgba(120, 40, 20, .25)); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1); }
+.fz-app:hover .fz-app__icon { transform: scale(1.08) rotate(-4deg); }
+.fz-app__emoji {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  font-size: 2rem;
+  background: linear-gradient(140deg, #fdba74, #f472b6);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .14);
+}
+.fz-app__name { margin-top: 4px; font-size: .98rem; font-weight: 800; line-height: 1.15; }
+.fz-app__meta { margin-bottom: 6px; font-size: .76rem; font-weight: 700; color: var(--dk-ink-3); line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.fz-app__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(120deg, var(--dk-hero-1), var(--dk-hero-2));
+  opacity: .9;
+  transform: translateY(0);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.fz-app:hover .fz-app__play { opacity: 1; transform: translateY(-1px); }
+
+/* ---------- Actividad + lateral ---------- */
+.fz-split { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: clamp(14px, 2vw, 20px); align-items: start; }
+.fz-side { display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px); }
+
+.fz-feed { list-style: none; margin: 0; padding: 4px 10px 12px; }
+.fz-feed__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 18px;
+  transition: background-color .2s ease;
+}
+.fz-feed__row + .fz-feed__row { box-shadow: inset 0 1px 0 var(--dk-line); }
+.fz-feed__row:hover { background: color-mix(in srgb, var(--dk-inset) 70%, transparent); }
+.fz-feed__row.is-dropped .fz-feed__icon { opacity: .6; }
+.fz-feed__icon { flex-shrink: 0; display: grid; place-items: center; width: 44px; height: 44px; }
+.fz-feed__emoji { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; font-size: 1.4rem; background: var(--dk-inset); }
+.fz-feed__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.fz-feed__title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: .98rem; font-weight: 800; color: var(--dk-ink); line-height: 1.2; }
+.fz-feed__meta { font-size: .8rem; font-weight: 600; color: var(--dk-ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fz-feed__side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.fz-feed__nota { font-size: .82rem; }
+.fz-feed__nonota { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font-weight: 800; color: var(--dk-ink-3); box-shadow: inset 0 0 0 5px var(--dk-inset); }
+.fz-feed__score { display: flex; flex-direction: column; align-items: flex-end; min-width: 74px; line-height: 1.1; }
+.fz-feed__score strong { font-size: 1rem; font-weight: 800; color: var(--dk-ink); font-variant-numeric: tabular-nums; }
+.fz-feed__score small { font-size: .72rem; font-weight: 700; color: var(--dk-ink-3); }
+.fz-feed__row.is-dropped .fz-feed__score small { color: #e11d48; }
+html.dark .fz-feed__row.is-dropped .fz-feed__score small { color: #fb7185; }
+
+.fz-mode { padding: 2px 8px; border-radius: 999px; font-size: .68rem; font-weight: 800; letter-spacing: .02em; }
+.fz-mode--exam { color: #9f1239; background: #ffe4e6; }
+.fz-mode--practice { color: #065f46; background: #d1fae5; }
+.fz-mode--duel { color: #5b21b6; background: #ede9fe; }
+html.dark .fz-mode--exam { color: #fecdd3; background: rgba(225, 29, 72, .28); }
+html.dark .fz-mode--practice { color: #a7f3d0; background: rgba(16, 185, 129, .24); }
+html.dark .fz-mode--duel { color: #ddd6fe; background: rgba(139, 92, 246, .3); }
+
+/* ---------- Logros ---------- */
+.fz-trophy { display: flex; align-items: center; gap: 16px; padding: 4px 0 12px; }
+.fz-trophy__num { font-size: 1.2rem; }
+.fz-trophy__text { display: flex; flex-direction: column; gap: 2px; }
+.fz-trophy__text strong { font-size: 1.3rem; font-weight: 800; color: var(--dk-ink); }
+.fz-trophy__text span { font-size: .86rem; font-weight: 600; color: var(--dk-ink-2); }
+
+.fz-badges { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fz-badge {
+  --rar: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px 8px;
+  border-radius: 18px;
+  text-align: center;
+  background: color-mix(in srgb, var(--rar) 12%, var(--dk-surface-2));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--rar) 45%, transparent);
+}
+.fz-badge span { font-size: .72rem; font-weight: 800; line-height: 1.15; color: var(--dk-ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.fz-badge--rare { --rar: #3b82f6; }
+.fz-badge--epic { --rar: #a855f7; }
+.fz-badge--legendary { --rar: #f59e0b; }
+.fz-badge--mythic { --rar: #ef4444; }
+
+/* ---------- Llamada a jugar ---------- */
+.fz-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px 18px 10px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(80% 120% at 0% 100%, rgba(255, 255, 255, .22), transparent 60%),
+    linear-gradient(125deg, var(--dk-hero-1), var(--dk-hero-2) 60%, var(--dk-hero-3));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 24px 44px -26px color-mix(in srgb, var(--dk-hero-2) 80%, #000);
+}
+.fz-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .22) 1.2px, transparent 1.6px);
+  background-size: 20px 20px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 90% at 100% 0%, #000, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 90% at 100% 0%, #000, transparent 70%);
+}
+.fz-cta__robot { width: 110px; flex-shrink: 0; margin: -10px 0 -18px; }
+.fz-cta__text { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.fz-cta__text h2 { margin: 0; font-size: 1.3rem; font-weight: 800; }
+.fz-cta__text p { margin: 0; font-size: .9rem; font-weight: 600; color: rgba(255, 255, 255, .88); }
+.fz-cta .dk-btn { --b1: #fff; --b2: #fde68a; color: #9a3412; box-shadow: inset 0 1px 0 #fff, 0 4px 0 rgba(0, 0, 0, .18), 0 10px 20px -10px rgba(0, 0, 0, .4); }
+
+.fz-foot { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 0; font-size: .78rem; font-weight: 700; color: var(--dk-ink-3); }
+
+/* ---------- Secciones heredadas (logros/comentarios) ---------- */
+.fz-panel > * { border-radius: 26px; }
+
+@media (max-width: 1024px) {
+  .fz-split { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .fz-stats.dk-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fz-stats .dk-stat { padding: 14px; border-radius: 20px; }
+  .fz-stats .dk-stat__icon { width: 34px; height: 34px; border-radius: 12px; right: 10px; top: 10px; }
+  .fz-stats .dk-stat__icon svg { width: 16px; height: 16px; }
+  .fz-stats .dk-stat__value { font-size: 1.35rem; padding-right: 36px; }
+  .fz-stats .dk-stat__label { font-size: .68rem; }
+  .fz-stats .dk-stat__sub { font-size: .74rem; }
+  .fz-apps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fz-feed { padding: 2px 4px 10px; }
+  .fz-feed__row { gap: 10px; padding: 10px 8px; }
+  .fz-feed__side { gap: 8px; }
+  .fz-feed__score { min-width: 56px; }
+  .fz-cta { padding: 16px 16px 16px 6px; }
+  .fz-cta__robot { width: 84px; }
+  .fz-page .dk-hero__actions .dk-btn { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fz-app, .fz-app__icon, .fz-app__play { transition: none; }
+}

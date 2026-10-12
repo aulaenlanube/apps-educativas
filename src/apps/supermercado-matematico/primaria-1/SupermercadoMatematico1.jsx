@@ -1,8 +1,7 @@
 // src/apps/supermercado-matematico/primaria-1/SupermercadoMatematico1.jsx
 import React from 'react';
-import '@/apps/_shared/SupermercadoShared.css';
 import { useSupermercadoGame } from '@/hooks/useSupermercadoGame';
-import TestScreen from '@/apps/_shared/TestScreen';
+import SupermercadoTienda from '../SupermercadoTienda';
 
 const productos = [ { nombre: "Leche", emoji: "🥛", precio: 1 }, { nombre: "Pan", emoji: "🍞", precio: 1 }, { nombre: "Manzana", emoji: "🍎", precio: 1 }, { nombre: "Huevo", emoji: "🥚", precio: 2 }, { nombre: "Zumo", emoji: "🧃", precio: 2 }, { nombre: "Queso", emoji: "🧀", precio: 3 }];
 
@@ -24,40 +23,14 @@ const generarNuevaMision = () => {
 const SupermercadoMatematico1 = ({ onGameComplete } = {}) => {
     const game = useSupermercadoGame({ generarNuevaMision, withTimer: false });
 
-    if (game.isTestMode) {
-        return <TestScreen game={game} productos={productos} onGameComplete={onGameComplete} />;
-    }
-
+    // Interfaz común (tienda, ticket, caja y examen): ../SupermercadoTienda.jsx
     return (
-        <div id="supermercado-app-container">
-            <h1 className="supermercado-title gradient-text text-5xl font-bold mb-6">🛒 Supermercado Matemático</h1>
-            <div id="panel-productos">{productos.map(p => (
-                <div key={p.nombre} className="producto">
-                    <span className="producto-emoji" aria-hidden="true">{p.emoji}</span>
-                    <span className="producto-nombre">{p.nombre}</span>
-                    <span className="producto-precio">{p.precio}€</span>
-                </div>
-            ))}</div>
-            
-            <div className="mode-selection">
-                <button onClick={game.startPracticeMission} className="btn-mode active">Práctica Libre</button>
-                <button onClick={game.startTest} className="btn-mode">Iniciar examen</button>
-            </div>
-
-            {/* AÑADIDO ref={game.containerRef} AQUÍ */}
-            <div className="mision" ref={game.containerRef}>
-                <h2>¡Tu Misión!</h2>
-                <p id="textoMision">{game.mision.texto}</p>
-            </div>
-
-            <div className="respuesta-usuario">
-                <label htmlFor="respuesta">¿Cuánto cuesta en total? (€)</label>
-                <input type="number" value={game.respuesta} onChange={(e) => game.setRespuesta(e.target.value)} />
-                <button onClick={game.checkPracticeAnswer}>Comprobar</button>
-            </div>
-            <div id="feedback" className={game.feedback.clase}>{game.feedback.texto}</div>
-            <button id="btnNuevaMision" onClick={game.startPracticeMission}>¡Otra Misión!</button>
-        </div>
+        <SupermercadoTienda
+            game={game}
+            productos={productos}
+            onGameComplete={onGameComplete}
+            pregunta="¿Cuánto cuesta en total? (€)"
+        />
     );
 };
 

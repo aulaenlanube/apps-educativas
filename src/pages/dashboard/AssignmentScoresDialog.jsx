@@ -1,22 +1,42 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { ClipboardList, ArrowUp, ArrowDown, Minus, CheckCircle2, XCircle, Trophy } from 'lucide-react';
+import { ClipboardList, ArrowUp, ArrowDown, ArrowDownAZ, CheckCircle2, XCircle, Trophy, Users, Target, CalendarClock, MinusCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle,
+  Dialog, DialogContent, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
 import BrandLoader from '@/components/ui/BrandLoader';
+import UserAvatar from '@/components/ui/UserAvatar';
+import AppIcon, { hasAppIcon } from '@/components/AppIcon';
+import { ProgressRing } from '@/components/dashboard/kit';
+import './teacherPanels.css';
 
 function formatDate(dateStr) {
   if (!dateStr) return null;
   return new Date(dateStr).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-function notaColor(nota) {
-  if (nota == null) return 'text-slate-400';
-  if (nota >= 8) return 'text-green-600';
-  if (nota >= 5) return 'text-blue-600';
-  return 'text-red-500';
+const fmt1 = (v) => Number(v).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+// Franja de color de una nota (≥8 verde, ≥5 azul, <5 rojo; sin intentos gris).
+function notaBand(nota, attempted) {
+  if (!attempted) return 'none';
+  if (nota >= 8) return 'good';
+  if (nota >= 5) return 'ok';
+  return 'bad';
 }
+
+const BANDS = [
+  { id: 'good', label: '≥ 8' },
+  { id: 'ok', label: '5 – 8' },
+  { id: 'bad', label: '< 5' },
+  { id: 'none', label: 'Sin intentos' },
+];
+
+const SORTS = [
+  { id: 'desc', icon: ArrowDown, label: 'Nota', title: 'Mejor nota primero' },
+  { id: 'asc', icon: ArrowUp, label: 'Nota', title: 'Peor nota primero' },
+  { id: 'name', icon: ArrowDownAZ, label: 'A–Z', title: 'Por nombre' },
+];
 
 export default function AssignmentScoresDialog({ open, onOpenChange, assignment }) {
   const [loading, setLoading] = useState(false);
@@ -73,154 +93,170 @@ export default function AssignmentScoresDialog({ open, onOpenChange, assignment 
     };
   }, [scores]);
 
+  // Reparto por franjas de color (solo para la barra de distribución)
+  const distribution = useMemo(() => {
+    const counts = { good: 0, ok: 0, bad: 0, none: 0 };
+    scores.forEach(s => { counts[notaBand(Number(s.best_nota ?? 0), s.best_nota != null)] += 1; });
+    return counts;
+  }, [scores]);
+
   if (!assignment) return null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <ClipboardList className="w-5 h-5 text-purple-500" />
-            {assignment.title || assignment.app_name}
-          </DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-4">
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            {assignment.title && (
-              <span className="px-2 py-1 rounded-full bg-slate-100 text-slate-600">{assignment.app_name}</span>
-            )}
-            <span className="px-2 py-1 rounded-full bg-purple-50 text-purple-700">
-              Nota mínima: <strong>{minScore}/10</strong>
+      <DialogContent className="tp-root tp-dialog tp-dialog--lg">
+        <header className="tp-dhead">
+          <div className="tp-dhead__row">
+            <span className={`tp-dhead__icon ${hasAppIcon(assignment.app_id) ? 'tp-dhead__icon--app' : ''}`}>
+              {hasAppIcon(assignment.app_id) ? <AppIcon appId={assignment.app_id} size={46} /> : <ClipboardList size={26} />}
             </span>
-            {assignment.weight > 1 && (
-              <span className="px-2 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold shadow-sm">
-                x{assignment.weight} en la nota final
-              </span>
-            )}
-            {assignment.term && (
-              <span className="px-2 py-1 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow-sm">
-                {assignment.term}ª Evaluación
-              </span>
-            )}
+            <div className="tp-dhead__text">
+              <DialogTitle className="tp-dhead__title">{assignment.title || assignment.app_name}</DialogTitle>
+              <DialogDescription className="tp-dhead__sub">Mejor nota de cada alumno en modo examen</DialogDescription>
+            </div>
+          </div>
+          <div className="tp-dhead__chips">
+            {assignment.title && <span className="tp-glass">{assignment.app_name}</span>}
+            <span className="tp-glass"><Target size={13} /> Nota mínima: {minScore}/10</span>
+            {assignment.weight > 1 && <span className="tp-glass tp-glass--gold">x{assignment.weight} en la nota final</span>}
+            {assignment.term && <span className="tp-glass">{assignment.term}ª Evaluación</span>}
             {assignment.due_date && (
-              <span className="px-2 py-1 rounded-full bg-amber-50 text-amber-700">
-                Fecha límite: {formatDate(assignment.due_date)}
-              </span>
+              <span className="tp-glass"><CalendarClock size={13} /> Fecha límite: {formatDate(assignment.due_date)}</span>
             )}
           </div>
+        </header>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-2">
-            <div className="rounded-xl bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-100 p-3 text-center">
-              <div className="text-xs text-slate-500">Han jugado</div>
-              <div className="text-lg font-bold text-slate-800">{stats.played}/{stats.total}</div>
+        <div className="tp-dbody">
+          {/* Indicadores */}
+          <div className="tp-sstats">
+            <div className="tp-sstat dk-tone-blue">
+              <span className="tp-sstat__icon"><Users size={20} /></span>
+              <span className="tp-sstat__text">
+                <span className="tp-sstat__value">{stats.played}/{stats.total}</span>
+                <span className="tp-sstat__label">Han jugado</span>
+              </span>
             </div>
-            <div className="rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 p-3 text-center">
-              <div className="text-xs text-slate-500">Aprobados</div>
-              <div className="text-lg font-bold text-green-600">{stats.passed}</div>
+            <div className="tp-sstat dk-tone-emerald">
+              <span className="tp-sstat__icon"><CheckCircle2 size={20} /></span>
+              <span className="tp-sstat__text">
+                <span className="tp-sstat__value">{stats.passed}</span>
+                <span className="tp-sstat__label">Aprobados</span>
+              </span>
             </div>
-            <div className="rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 p-3 text-center">
-              <div className="text-xs text-slate-500">Nota media</div>
-              <div className="text-lg font-bold text-amber-600">{stats.avg != null ? stats.avg : '—'}</div>
+            <div className="tp-sstat dk-tone-slate">
+              <span className="tp-sstat__icon"><MinusCircle size={20} /></span>
+              <span className="tp-sstat__text">
+                <span className="tp-sstat__value">{stats.total - stats.played}</span>
+                <span className="tp-sstat__label">Sin intentar</span>
+              </span>
+            </div>
+            <div className="tp-sstat">
+              {stats.avg != null ? (
+                <ProgressRing value={stats.avg} max={10} size={46} stroke={11} label={`Nota media ${stats.avg}`} />
+              ) : (
+                <span className="tp-sstat__icon dk-tone-amber"><Trophy size={20} /></span>
+              )}
+              <span className="tp-sstat__text">
+                <span className="tp-sstat__value">{stats.avg != null ? fmt1(stats.avg) : '—'}</span>
+                <span className="tp-sstat__label">Nota media</span>
+              </span>
             </div>
           </div>
 
-          {/* Sort toggle */}
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-700">Alumnos</span>
-            <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-0.5">
-              <button
-                onClick={() => setSortOrder('desc')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all ${
-                  sortOrder === 'desc' ? 'bg-white text-purple-700 shadow-sm' : 'text-slate-500 hover:text-slate-700'
-                }`}
-                title="Mejor nota primero"
-              >
-                <ArrowDown className="w-3 h-3" /> Nota
-              </button>
-              <button
-                onClick={() => setSortOrder('asc')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all ${
-                  sortOrder === 'asc' ? 'bg-white text-purple-700 shadow-sm' : 'text-slate-500 hover:text-slate-700'
-                }`}
-                title="Peor nota primero"
-              >
-                <ArrowUp className="w-3 h-3" /> Nota
-              </button>
-              <button
-                onClick={() => setSortOrder('name')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all ${
-                  sortOrder === 'name' ? 'bg-white text-purple-700 shadow-sm' : 'text-slate-500 hover:text-slate-700'
-                }`}
-                title="Por nombre"
-              >
-                <Minus className="w-3 h-3" /> A–Z
-              </button>
+          {/* Reparto por franjas */}
+          {!loading && stats.total > 0 && (
+            <div className="tp-dist">
+              <div className="tp-dist__bar" role="img" aria-label="Reparto de notas">
+                {BANDS.map(b => (distribution[b.id] > 0 ? (
+                  <span key={b.id} className={`tp-dist__seg tp-band--${b.id}`} style={{ flexGrow: distribution[b.id] }} />
+                ) : null))}
+              </div>
+              <div className="tp-dist__legend">
+                {BANDS.map(b => (
+                  <span key={b.id}><i className={`tp-dot tp-band--${b.id}`} />{b.label}: <strong>{distribution[b.id]}</strong></span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Orden */}
+          <div className="tp-tabletools">
+            <h3 className="tp-tabletools__title">Alumnos</h3>
+            <div className="tp-seg tp-seg--sm">
+              {SORTS.map(s => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => setSortOrder(s.id)}
+                  className={`tp-seg__btn ${sortOrder === s.id ? 'is-on' : ''}`}
+                  title={s.title}
+                >
+                  <s.icon size={13} /> {s.label}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* List */}
+          {/* Matriz de notas */}
           {loading ? (
-            <div className="flex justify-center py-8">
-              <BrandLoader variant="inline" />
-            </div>
+            <div className="tp-center"><BrandLoader variant="inline" /></div>
           ) : sortedScores.length === 0 ? (
-            <div className="text-center py-8 text-slate-400 text-sm">No hay alumnos en este grupo.</div>
+            <div className="tp-arena__empty" style={{ marginTop: 10 }}>No hay alumnos en este grupo.</div>
           ) : (
-            <ol className="space-y-2">
+            <div className="tp-table" role="table" aria-label="Notas de la tarea">
+              <div className="tp-trow tp-trow--head" role="row">
+                <span role="columnheader">#</span>
+                <span role="columnheader">Alumno</span>
+                <span role="columnheader" className="tp-col-state">Estado</span>
+                <span role="columnheader">Nota</span>
+              </div>
               {sortedScores.map((s, idx) => {
                 const isTop = sortOrder === 'desc' && idx === 0 && s.best_nota != null;
+                const attempted = s.best_nota != null;
+                const band = notaBand(Number(s.best_nota ?? 0), attempted);
                 return (
-                  <li
-                    key={s.student_id}
-                    className={`flex items-center gap-3 rounded-xl border p-3 transition-colors ${
-                      isTop ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-200' : 'bg-white border-slate-100 hover:border-purple-200'
-                    }`}
-                  >
-                    <span className="w-6 text-center text-xs font-bold text-slate-400">{idx + 1}</span>
-                    <span
-                      className="w-9 h-9 rounded-full flex items-center justify-center text-lg shrink-0"
-                      style={{ backgroundColor: s.avatar_color || '#e9d5ff' }}
-                    >
-                      {s.avatar_emoji || '🙂'}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-sm font-semibold text-slate-800 truncate">{s.display_name}</span>
-                        {isTop && <Trophy className="w-3.5 h-3.5 text-amber-500" />}
-                      </div>
-                      <div className="text-xs text-slate-400">
-                        {s.best_nota != null ? (
-                          <>
-                            {s.attempts_count} {s.attempts_count === 1 ? 'intento' : 'intentos'}
-                            {s.last_played_at && ` · ${formatDate(s.last_played_at)}`}
-                          </>
-                        ) : (
-                          'Sin intentos'
-                        )}
+                  <div key={s.student_id} role="row" className={`tp-trow ${isTop ? 'is-top' : ''}`}>
+                    <span className={`tp-rank ${isTop ? 'tp-rank--1' : ''}`}>{idx + 1}</span>
+                    <div className="tp-who">
+                      <UserAvatar
+                        avatarEmoji={s.avatar_emoji || '🙂'}
+                        avatarColor={s.avatar_color}
+                        selectedAvatarCode={s.selected_avatar_code}
+                        size="sm"
+                      />
+                      <div className="tp-who__text">
+                        <div className="tp-who__name">
+                          <span>{s.display_name}</span>
+                          {isTop && <Trophy size={14} color="#f59e0b" />}
+                        </div>
+                        <div className="tp-who__sub">
+                          {attempted ? (
+                            <>
+                              {s.attempts_count} {s.attempts_count === 1 ? 'intento' : 'intentos'}
+                              {s.last_played_at && ` · ${formatDate(s.last_played_at)}`}
+                            </>
+                          ) : (
+                            'Sin intentos'
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      {s.best_nota != null ? (
-                        s.passed ? (
-                          <CheckCircle2 className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <XCircle className="w-4 h-4 text-red-400" />
-                        )
+                    <span className={`tp-state tp-col-state ${attempted ? (s.passed ? 'tp-state--pass' : 'tp-state--fail') : 'tp-state--none'}`}>
+                      {attempted ? (
+                        s.passed
+                          ? <><CheckCircle2 size={15} /> Aprobado</>
+                          : <><XCircle size={15} /> Suspenso</>
                       ) : (
-                        <XCircle className="w-4 h-4 text-slate-300" />
+                        <><XCircle size={15} /> Pendiente</>
                       )}
-                      <span className={`text-lg font-bold min-w-[3.5ch] text-right ${notaColor(s.best_nota ?? 0)}`}>
-                        {Number(s.best_nota ?? 0).toFixed(1)}
-                      </span>
-                      <span className="text-xs text-slate-400">/10</span>
-                    </div>
-                  </li>
+                    </span>
+                    <span className={`tp-nota tp-band--${band}`}>
+                      {fmt1(Number(s.best_nota ?? 0))}<small>/10</small>
+                    </span>
+                  </div>
                 );
               })}
-            </ol>
+            </div>
           )}
         </div>
       </DialogContent>

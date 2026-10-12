@@ -161,7 +161,13 @@ const SubjectPage = () => {
             exit="exit"
             className="w-full"
           >
-            <div className="text-center">
+            <div className="np-hero">
+            {/* La mascota acompaña la elección de asignatura con su repertorio de
+                "profe" (lee, se pone gafas, escribe en la pizarra…). */}
+            <div className="np-hero__robot np-enter" style={{ '--i': 1 }}>
+              <Mascot context="subjects" />
+            </div>
+            <div className="text-center np-hero__text">
               <div className="np-enter mb-5" style={{ '--i': 0 }}>
                 <span className="np-kicker">
                   <span className="np-kicker__dot" aria-hidden="true" />
@@ -186,6 +192,7 @@ const SubjectPage = () => {
                   <p className="text-lg md:text-xl">¡Selecciona {isSpecialLevel ? 'un bloque' : 'una asignatura'} para ver las apps disponibles!</p>
                 </div>
               </div>
+            </div>
             </div>
 
             {subjectsForCourse.length > 0 ? (

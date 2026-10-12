@@ -8,8 +8,14 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Target as TargetIcon, BookOpen, Square, Trophy } from 'lucide-react';
-import InstructionsModal, { InstructionsButton } from '../_shared/InstructionsModal';
+import {
+  Target as TargetIcon, Square, Trophy, Crosshair as CrosshairIcon, RefreshCw, LayoutGrid, Settings2,
+  BookOpen, Flame, Pause, Sprout, Zap, GraduationCap, Info,
+} from 'lucide-react';
+import InstructionsModal from '../_shared/InstructionsModal';
+import {
+  GameShell, ModeSelect, ResultsScreen, GameLoading, GameEmpty, GameButton,
+} from '../_shared/kit';
 import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
 import useGraphicsQuality from '@/hooks/useGraphicsQuality';
 import { QUALITY_LABELS } from '@/services/graphicsQuality';
@@ -23,7 +29,7 @@ import { buildPool, poolUsable } from './engine/pool';
 import { clearTextureCache } from './engine/wordTexture';
 import { pickPair } from './engine/flyers';
 import {
-  DIFICULTADES, MODOS, DEF_BONUS_MULT, notaColor, notaMensaje,
+  DIFICULTADES, MODOS, DEF_BONUS_MULT,
   SCORE_PRINCIPAL, SCORE_SECUNDARIA,
   DEBUFF, DEBUFF_TYPES, MISS_DEBUFF_CHANCE,
   BUFF, BUFF_TYPES,
@@ -70,6 +76,18 @@ const MODE_DESC = {
   dificil: 'Menos tiempo, cadencia rápida y más definiciones. Para expertos.',
   examen: 'Tu nota sale de las definiciones que encuentres y aciertes.',
 };
+
+// Presentación de cada modo en la pantalla previa (tono del kit + icono)
+const MODE_UI = {
+  facil: { tone: 'easy', icon: Sprout },
+  medio: { tone: 'medium', icon: Flame },
+  dificil: { tone: 'hard', icon: Zap },
+  examen: { tone: 'exam', icon: GraduationCap },
+};
+const SHELL = { accent: '#8b5cf6', accent2: '#22d3ee', theme: 'dark', className: 'cz3d-shell' };
+const SCOPE_STYLE = { '--gk-accent': '#8b5cf6', '--gk-accent-2': '#22d3ee' };
+// nombres de categoría de la BD (snake_case) legibles en pantalla
+const prettyCat = (name) => String(name || '').replace(/[_-]+/g, ' ').trim();
 
 const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subjectProp, onGameComplete, isPaused }) => {
   const routeParams = useParams();
@@ -382,6 +400,10 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
   const cursoLabel = level === 'bachillerato' ? `${grade}º Bach` : `${grade}º ESO`;
 
   // ====================== RENDER ======================
+  const modosVisibles = pool ? MODOS.filter((m) => m !== 'examen' || pool.definitions.length > 0) : [];
+  const asignaturaLabel = prettyCat(asignatura).replace(/^./, (ch) => ch.toUpperCase());
+  const sumMode = hud?.mode && DIFICULTADES[hud.mode] ? hud.mode : 'medio';
+
   return (
     <div className="cz3d-root">
       {/* Fondo 3D de la plataforma (la isla orbitando): el MISMO que se ve al elegir
@@ -394,72 +416,122 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
         />
       )}
 
-      {/* ============ CARGA / ERROR ============ */}
-      {loading && (
-        <div className="cz3d-center">
-          <div className="cz3d-spinner" />
-          <p>Cargando vocabulario de {cursoLabel}…</p>
-        </div>
-      )}
-      {!loading && (loadError || !pool) && (
-        <div className="cz3d-center">
-          <span className="cz3d-big-emoji">🛰️</span>
-          <h2>Sin vocabulario disponible</h2>
-          <p>No hay suficientes palabras para <strong>{asignatura}</strong> en {cursoLabel}.<br />Prueba con otra asignatura o curso.</p>
-        </div>
-      )}
-
-      {/* ============ SELECCIÓN ============ */}
-      {screen === 'select' && !loading && pool && (
-        <motion.div className="cz3d-select" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="cz3d-hero">
-            <span className="cz3d-hero-icon" aria-hidden="true">🎯</span>
-            <h1>Cazapalabras 3D</h1>
-            <p className="cz3d-hero-sub">
-              Dispara a las palabras del entorno y aprende vocabulario y definiciones de <strong>{asignatura}</strong> · {cursoLabel}
-            </p>
-            <InstructionsButton className="cz3d-help-btn" onClick={() => setShowHelp(true)} />
-          </div>
-
-          <div className="cz3d-modes">
-            {/* El examen puntúa por definiciones acertadas; si la asignatura no tiene
-                definiciones del rosco, la nota sería siempre 0 → se oculta ese modo. */}
-            {MODOS.filter((m) => m !== 'examen' || pool.definitions.length > 0).map((m) => {
-              const d = DIFICULTADES[m];
-              return (
-                <motion.button
-                  key={m}
-                  type="button"
-                  className={`cz3d-mode ${m}`}
-                  whileHover={{ scale: 1.03, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => start(m)}
-                >
-                  <span className="cz3d-mode-icon">{d.icon}</span>
-                  <span className="cz3d-mode-name">{d.label}</span>
-                  <span className="cz3d-mode-desc">{MODE_DESC[m]}</span>
-                  <span className="cz3d-mode-time">⏱ {d.durationSec}s</span>
-                </motion.button>
-              );
-            })}
-          </div>
-          {pool.definitions.length === 0 && (
-            <p className="cz3d-modes-note">ℹ️ El modo <strong>Examen</strong> no está disponible para esta asignatura (no tiene definiciones).</p>
+      {/* ============ CARGA / ERROR / SELECCIÓN / RESUMEN (capa con scroll propio) ============ */}
+      {screen !== 'play' && (
+        <div className="cz3d-scroll">
+          {loading && (
+            <GameShell {...SHELL}>
+              <GameLoading label={`Cargando vocabulario de ${cursoLabel}…`} />
+            </GameShell>
+          )}
+          {!loading && (loadError || !pool) && (
+            <GameShell {...SHELL}>
+              <GameEmpty title="Sin vocabulario disponible">
+                No hay suficientes palabras para <strong>{prettyCat(asignatura)}</strong> en {cursoLabel}. Prueba con otra asignatura o curso.
+              </GameEmpty>
+            </GameShell>
           )}
 
-          <div className="cz3d-select-actions">
-            <button type="button" className="cz3d-study-btn" onClick={() => setShowVocab(true)}>
-              <BookOpen size={16} /> Ver material de estudio
-            </button>
-          </div>
+          {/* ============ SELECCIÓN ============ */}
+          {screen === 'select' && !loading && pool && (
+            <GameShell {...SHELL} className={`cz3d-shell ${modosVisibles.length === 4 ? 'cz3d-shell--four' : ''}`}>
+              <ModeSelect
+                description={`Dispara a las palabras que surcan el cielo y aprende vocabulario y definiciones de ${asignaturaLabel} · ${cursoLabel}.`}
+                modes={modosVisibles.map((m) => {
+                  const d = DIFICULTADES[m];
+                  return {
+                    id: m,
+                    tone: MODE_UI[m].tone,
+                    icon: MODE_UI[m].icon,
+                    title: d.label,
+                    desc: MODE_DESC[m],
+                    features: d.isExam
+                      ? ['Nota sobre 10 por definiciones', `${d.durationSec} s de partida`]
+                      : [`${d.durationSec} s de partida`, `Definición cada ${d.defEverySec} s`],
+                  };
+                })}
+                onSelect={start}
+                onHelp={() => setShowHelp(true)}
+                onStudy={() => setShowVocab(true)}
+                extra={<GraphicsQualitySelector className="gfxsel-on-dark cz3d-gfx" />}
+                footer={pool.definitions.length === 0 ? (
+                  <span className="cz3d-note"><Info size={14} /> El modo <strong>Examen</strong> no está disponible para esta asignatura (no tiene definiciones).</span>
+                ) : null}
+              />
+            </GameShell>
+          )}
 
-          <GraphicsQualitySelector className="gfxsel-on-dark cz3d-gfx" />
-        </motion.div>
+          {/* ============ RESUMEN: EXAMEN ============ */}
+          {screen === 'summary' && summary && summary.isExam && (
+            <GameShell {...SHELL}>
+              <ResultsScreen
+                subtitle={`Cazapalabras 3D · ${asignaturaLabel} · ${cursoLabel}`}
+                nota={Number(summary.nota) || 0}
+                points={summary.score}
+                stats={[
+                  { icon: BookOpen, tone: 'good', label: 'Definiciones', value: `${summary.defSolved}/${summary.defPresented}` },
+                  { icon: TargetIcon, tone: 'score', label: 'Palabras', value: summary.wordsHit },
+                  { icon: Flame, tone: 'streak', label: 'Mejor combo', value: `×${summary.bestCombo}` },
+                ]}
+                actions={[
+                  { label: 'Repetir examen', onClick: () => start(gsRef.current.mode), icon: RefreshCw },
+                  { label: 'Cambiar de modo', onClick: () => setScreen('select'), icon: LayoutGrid, variant: 'soft' },
+                ]}
+              />
+            </GameShell>
+          )}
+
+          {/* ============ RESUMEN: PRÁCTICA ============ */}
+          {screen === 'summary' && summary && !summary.isExam && (
+            <GameShell {...SHELL}>
+              <motion.div
+                className="cz3d-sum"
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+              >
+                <div className="cz3d-sum__top">
+                  <span className={`gk-chip gk-chip--mode gk-tone-${MODE_UI[sumMode].tone}`}>
+                    {React.createElement(MODE_UI[sumMode].icon, { size: 13 })} {DIFICULTADES[sumMode].label}
+                  </span>
+                  <h2 className="cz3d-sum__title">¡Partida terminada!</h2>
+                  <p className="cz3d-sum__subtitle">Cazapalabras 3D · {asignaturaLabel} · {cursoLabel}</p>
+                </div>
+                <div className="cz3d-sum__hero">
+                  <span className="cz3d-sum__burst" aria-hidden="true" />
+                  <TargetBadge />
+                  <div className="cz3d-sum__verdict">
+                    <span className="cz3d-sum__kicker"><Trophy size={15} /> Puntuación final</span>
+                    <strong>{summary.score.toLocaleString('es-ES')}</strong>
+                    <span className="cz3d-sum__unit">puntos</span>
+                  </div>
+                </div>
+                <div className="cz3d-sum__stats">
+                  {[
+                    { icon: TargetIcon, tone: 'score', label: 'Palabras', value: summary.wordsHit },
+                    { icon: BookOpen, tone: 'good', label: 'Definiciones', value: `${summary.defSolved}/${summary.defPresented}` },
+                    { icon: Flame, tone: 'streak', label: 'Mejor combo', value: `×${summary.bestCombo}` },
+                  ].map((st) => (
+                    <div key={st.label} className={`cz3d-sum__stat gk-stat--${st.tone}`}>
+                      <span className="gk-stat__icon"><st.icon size={15} /></span>
+                      <span className="cz3d-sum__stat-value">{st.value}</span>
+                      <span className="cz3d-sum__stat-label">{st.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="cz3d-sum__actions">
+                  <GameButton size="lg" icon={RefreshCw} onClick={() => start(gsRef.current.mode)}>Otra partida</GameButton>
+                  <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={() => setScreen('select')}>Cambiar de modo</GameButton>
+                </div>
+              </motion.div>
+            </GameShell>
+          )}
+        </div>
       )}
 
       {/* ============ JUEGO ============ */}
       {screen === 'play' && (
-        <div className="cz3d-play">
+        <div className="cz3d-play gk-shell gk-theme-dark" style={SCOPE_STYLE}>
           <GameCanvas
             tier={tier}
             prefAuto={pref === 'auto'}
@@ -506,13 +578,14 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
                   transition={{ type: 'spring', stiffness: 360, damping: 26 }}
                 >
-                  <span className="cz3d-catbanner-tag">
-                    {catBanner.isChange ? '🔄 ¡CAMBIO DE CATEGORÍAS!' : '🎯 DISPARA A ESTAS CATEGORÍAS'}
+                  <span className={`cz3d-catbanner__tag ${catBanner.isChange ? 'is-change' : ''}`}>
+                    {catBanner.isChange ? <RefreshCw size={18} /> : <CrosshairIcon size={18} />}
+                    {catBanner.isChange ? '¡Cambio de categorías!' : 'Dispara a estas categorías'}
                   </span>
-                  <span className="cz3d-catbanner-cats">
+                  <span className="cz3d-catbanner__cats">
                     {catBanner.cats.map((c) => (
-                      <span key={c.name} className={`cz3d-catbanner-cat ${c.role === 'principal' ? 't5' : 't2'}`}>
-                        {c.name} <b>+{c.points}</b>
+                      <span key={c.name} className={`cz3d-catbanner__cat ${c.role === 'principal' ? 't5' : 't2'}`}>
+                        {prettyCat(c.name)} <b>+{c.points}</b>
                       </span>
                     ))}
                   </span>
@@ -520,110 +593,137 @@ const Cazapalabras3D = ({ level: levelProp, grade: gradeProp, subjectId: subject
               )}
             </AnimatePresence>
           </div>
-          <button type="button" className="cz3d-exit" onClick={endGame}>
-            <Square size={14} /> Terminar
-          </button>
-          {isPaused && <div className="cz3d-paused"><span>⏸️ En pausa</span></div>}
+          <GameButton variant="danger" size="sm" icon={Square} className="cz3d-exit" onClick={endGame} title="Terminar la partida" aria-label="Terminar la partida">
+            <span className="cz3d-hide-sm">Terminar</span>
+          </GameButton>
+          {isPaused && (
+            <div className="cz3d-paused">
+              <span className="cz3d-paused__card"><span className="cz3d-paused__ico"><Pause size={22} /></span> En pausa</span>
+            </div>
+          )}
         </div>
       )}
 
-      {/* ============ RESUMEN ============ */}
-      {screen === 'summary' && summary && (
-        <motion.div className="cz3d-summary" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-          {summary.isExam ? (
+      {/* Ámbito del kit sin caja (display: contents) para avisos y modales de la raíz */}
+      <div className="gk-shell gk-theme-dark cz3d-portal" style={SCOPE_STYLE}>
+        {/* ============ TOAST CALIDAD ============ */}
+        <AnimatePresence>
+          {gfxToast && (
+            <motion.div className="cz3d-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+              <span className="cz3d-toast__ico"><Settings2 size={14} /></span> {gfxToast}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ============ INSTRUCCIONES ============ */}
+        <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
+          <h3>🎯 Cómo se juega</h3>
+          <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para apuntar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para apuntar y toca para disparar. Estás de pie en la isla: la cámara no se mueve sola, eres tú quien apunta.</p>
+          <h3>🛩️ Dianas voladoras</h3>
+          <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
+          <h3>⭐ Gemas de bonificación</h3>
+          <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota) y además una <strong>ventaja temporal</strong>: <b>⚡ disparo rápido</b>, <b>🚀 mirilla más ágil</b> o <b>⏱ segundos extra</b>. Cada ventaja muestra su <strong>barra de duración</strong> en pantalla. Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
+          <h3>⚡ Gemas trampa (riesgo)</h3>
+          <p>Las <strong>gemas moradas</strong> dan <strong>aún más puntos</strong>, pero al acertarlas <strong>fastidian tu mirilla</strong> unos segundos: <b>🐌 más lenta</b>, <b>🔄 al revés</b> o <b>📳 que vibra</b>. ¡Tú decides si el premio compensa! Ojo: <strong>fallar</strong> (disparar una palabra que no puntúa) también puede provocar uno de estos castigos.</p>
+          <h3>🗂️ Solo 2 categorías puntúan (¡y van cambiando!)</h3>
+          <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Cada poco tiempo <strong>cambian las categorías que puntúan</strong> y se avisa <strong>en grande sobre la mirilla</strong>: ¡atento al cambio! Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando.</p>
+          <h3>📖 Retos de definición</h3>
+          <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra vuela <strong>entre las demás</strong> (<strong>no se resalta</strong>): tienes que reconocerla y dispararle al vuelo. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
+          <h3>🎓 Modos de juego</h3>
+          <div className="instr-modes">
+            <div className="instr-mode easy"><strong>Fácil</strong>Más tiempo y definiciones más espaciadas.</div>
+            <div className="instr-mode medium"><strong>Medio · Difícil</strong>Más ritmo, palabras más pequeñas y más definiciones.</div>
+            <div className="instr-mode exam"><strong>Examen</strong>Tu nota /10 sale de las definiciones que encuentres y aciertes.</div>
+          </div>
+          <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano en la pantalla de inicio.</p>
+        </InstructionsModal>
+
+        {/* ============ MATERIAL DE ESTUDIO ============ */}
+        {pool && (
+        <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
+          {studyCats.length > 0 && (
             <>
-              <h2>Resultado del examen</h2>
-              <div className="cz3d-nota" style={{ color: notaColor(summary.nota), borderColor: notaColor(summary.nota), '--cz3d-grade': Math.max(0, Math.min(10, Number(summary.nota) || 0)) }}>
-                {Number(summary.nota).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
-              </div>
-              <p className="cz3d-nota-msg" style={{ color: notaColor(summary.nota) }}>{notaMensaje(summary.nota)}</p>
-            </>
-          ) : (
-            <>
-              <h2>¡Partida terminada!</h2>
-              <div className="cz3d-final-score"><Trophy size={26} /> {summary.score.toLocaleString('es-ES')} pts</div>
+              <h3>🗂️ Categorías que pueden puntuar</h3>
+              {studyCats.length >= 2 && (
+                <p className="cz3d-study-note">Durante la partida, 2 de estas categorías puntúan a la vez (+5 y +2) y <strong>van cambiando</strong>.</p>
+              )}
+              {studyCats.map((c) => {
+                if (!c.words.length) return null;
+                return (
+                  <div key={c.name} className="cz3d-study-cat">
+                    <h4>{prettyCat(c.name)}</h4>
+                    <div className="cz3d-study-words">
+                      {c.words.map((w) => <span key={w} className="cz3d-study-chip">{w}</span>)}
+                    </div>
+                  </div>
+                );
+              })}
             </>
           )}
-          <div className="cz3d-summary-stats">
-            <div><strong>{summary.score.toLocaleString('es-ES')}</strong><span>puntos</span></div>
-            <div><strong>{summary.wordsHit}</strong><span>palabras</span></div>
-            <div><strong>{summary.defSolved}/{summary.defPresented}</strong><span>definiciones</span></div>
-            <div><strong>×{summary.bestCombo}</strong><span>mejor combo</span></div>
-          </div>
-          <div className="cz3d-summary-actions">
-            <button type="button" className="cz3d-btn-primary" onClick={() => setScreen('select')}>
-              <TargetIcon size={16} /> Jugar otra vez
-            </button>
-          </div>
-        </motion.div>
-      )}
-
-      {/* ============ TOAST CALIDAD ============ */}
-      <AnimatePresence>
-        {gfxToast && (
-          <motion.div className="cz3d-toast" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            ⚙️ {gfxToast}
-          </motion.div>
+          {studyOther.length > 0 && (
+            <div className="cz3d-study-cat is-decoy">
+              <h4>Otras palabras (señuelos, no puntúan)</h4>
+              <div className="cz3d-study-words">
+                {studyOther.map((w) => <span key={w} className="cz3d-study-chip">{w}</span>)}
+              </div>
+              <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>huir válidas</strong> que estuvieran volando.</p>
+            </div>
+          )}
+          {pool.definitions.length > 0 && (
+            <>
+              <h3>📖 Palabras con definición</h3>
+              {pool.definitions.map((d, i) => (
+                <p key={`${d.word}-${i}`} className="cz3d-vocab-row"><strong>{d.word}:</strong> {d.definition}</p>
+              ))}
+            </>
+          )}
+        </InstructionsModal>
         )}
-      </AnimatePresence>
-
-      {/* ============ INSTRUCCIONES ============ */}
-      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cazapalabras 3D">
-        <h3>🎯 Cómo se juega</h3>
-        <p><strong>En ordenador:</strong> haz clic para capturar el ratón; luego <strong>mueve el ratón</strong> para apuntar y <strong>haz clic</strong> para disparar a la mirilla (pulsa <kbd>ESC</kbd> para soltar el ratón). <strong>En tablet/móvil:</strong> arrastra para apuntar y toca para disparar. Estás de pie en la isla: la cámara no se mueve sola, eres tú quien apunta.</p>
-        <h3>🛩️ Dianas voladoras</h3>
-        <p>Las palabras <strong>no están quietas</strong>: surcan el cielo describiendo arcos. Unas <strong>cruzan</strong> de lado a lado y otras se <strong>lanzan hacia arriba</strong> y caen. Síguelas con la mirilla y <strong>dispara en el momento justo</strong> antes de que escapen. Aparecen en <strong>distintos tamaños</strong>: las más <strong>pequeñas</strong> son difíciles de acertar (a mayor dificultad, más diminutas).</p>
-        <h3>⭐ Gemas de bonificación</h3>
-        <p>De vez en cuando cruza una <strong>gema dorada</strong> pequeña y <strong>muy rápida</strong>. Acertarla da <strong>puntos extra</strong> (no cuenta para la nota) y además una <strong>ventaja temporal</strong>: <b>⚡ disparo rápido</b>, <b>🚀 mirilla más ágil</b> o <b>⏱ segundos extra</b>. Cada ventaja muestra su <strong>barra de duración</strong> en pantalla. Fallar no penaliza, así que dispara solo si puedes alcanzarla.</p>
-        <h3>⚡ Gemas trampa (riesgo)</h3>
-        <p>Las <strong>gemas moradas</strong> dan <strong>aún más puntos</strong>, pero al acertarlas <strong>fastidian tu mirilla</strong> unos segundos: <b>🐌 más lenta</b>, <b>🔄 al revés</b> o <b>📳 que vibra</b>. ¡Tú decides si el premio compensa! Ojo: <strong>fallar</strong> (disparar una palabra que no puntúa) también puede provocar uno de estos castigos.</p>
-        <h3>🗂️ Solo 2 categorías puntúan (¡y van cambiando!)</h3>
-        <p>Todas las palabras se ven <strong>igual</strong>: no hay pistas. Mira la leyenda de abajo: la categoría <b style={{ color: '#fde68a' }}>principal da +5</b> y la <b style={{ color: '#a5f3fc' }}>secundaria +2</b>. Cada poco tiempo <strong>cambian las categorías que puntúan</strong> y se avisa <strong>en grande sobre la mirilla</strong>: ¡atento al cambio! Reconoce a qué categoría pertenece cada palabra y <strong>léela antes de disparar</strong>. El resto <strong>no puntúan</strong>: si disparas una, <strong>no pierdes puntos pero huyen varias válidas</strong> que estuvieran volando.</p>
-        <h3>📖 Retos de definición</h3>
-        <p>De vez en cuando aparece una <strong>definición</strong> arriba. Esa palabra vuela <strong>entre las demás</strong> (<strong>no se resalta</strong>): tienes que reconocerla y dispararle al vuelo. En el examen, <strong>tu nota sale de estas definiciones</strong>.</p>
-        <p>La calidad gráfica se adapta a tu equipo automáticamente; puedes cambiarla a mano abajo.</p>
-      </InstructionsModal>
-
-      {/* ============ MATERIAL DE ESTUDIO ============ */}
-      {pool && (
-      <InstructionsModal isOpen={showVocab} onClose={() => setShowVocab(false)} title={`Material de estudio · ${asignatura}`}>
-        {studyCats.length > 0 && (
-          <>
-            <h3>🗂️ Categorías que pueden puntuar</h3>
-            {studyCats.length >= 2 && (
-              <p className="cz3d-study-note">Durante la partida, 2 de estas categorías puntúan a la vez (+5 y +2) y <strong>van cambiando</strong>.</p>
-            )}
-            {studyCats.map((c) => {
-              if (!c.words.length) return null;
-              return (
-                <div key={c.name} className="cz3d-study-cat">
-                  <h4>✓ {c.name}</h4>
-                  <p className="cz3d-study-words">{c.words.join(' · ')}</p>
-                </div>
-              );
-            })}
-          </>
-        )}
-        {studyOther.length > 0 && (
-          <div className="cz3d-study-cat">
-            <h4 className="pen">🚫 Otras palabras (señuelos, no puntúan)</h4>
-            <p className="cz3d-study-words">{studyOther.join(' · ')}</p>
-            <p className="cz3d-study-note">Dispararlas no resta puntos, pero hace <strong>huir válidas</strong> que estuvieran volando.</p>
-          </div>
-        )}
-        {pool.definitions.length > 0 && (
-          <>
-            <h3>📖 Palabras con definición</h3>
-            {pool.definitions.map((d, i) => (
-              <p key={`${d.word}-${i}`} className="cz3d-vocab-row"><strong>{d.word}:</strong> {d.definition}</p>
-            ))}
-          </>
-        )}
-      </InstructionsModal>
-      )}
+      </div>
     </div>
   );
 };
+
+// Diana dibujada para el resumen de práctica (un solo ejemplar en pantalla).
+function TargetBadge() {
+  return (
+    <svg className="cz3d-target" viewBox="0 0 160 160" aria-hidden="true">
+      <defs>
+        <radialGradient id="cz3d-tg-glow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stopColor="#22d3ee" stopOpacity=".45" />
+          <stop offset="1" stopColor="#22d3ee" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="cz3d-tg-ring" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd" />
+          <stop offset="1" stopColor="#6d28d9" />
+        </linearGradient>
+        <linearGradient id="cz3d-tg-core" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fde68a" />
+          <stop offset="1" stopColor="#f59e0b" />
+        </linearGradient>
+        <linearGradient id="cz3d-tg-arrow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#f0abfc" />
+          <stop offset="1" stopColor="#c026d3" />
+        </linearGradient>
+      </defs>
+      <circle cx="80" cy="80" r="78" fill="url(#cz3d-tg-glow)" />
+      <ellipse cx="80" cy="146" rx="42" ry="6" fill="#000" opacity=".3" />
+      <circle cx="80" cy="80" r="60" fill="url(#cz3d-tg-ring)" />
+      <circle cx="80" cy="80" r="60" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="2" />
+      <circle cx="80" cy="80" r="46" fill="#1e1b4b" />
+      <circle cx="80" cy="80" r="40" fill="url(#cz3d-tg-ring)" />
+      <circle cx="80" cy="80" r="27" fill="#1e1b4b" />
+      <circle cx="80" cy="80" r="21" fill="url(#cz3d-tg-core)" />
+      <circle cx="80" cy="80" r="8" fill="#fff" opacity=".9" />
+      <path d="M44 46 C54 36 66 31 80 30" stroke="#fff" strokeOpacity=".55" strokeWidth="4" strokeLinecap="round" fill="none" />
+      {/* flecha clavada en el centro */}
+      <path d="M80 80 L132 28" stroke="url(#cz3d-tg-arrow)" strokeWidth="6" strokeLinecap="round" />
+      <path d="M124 22 L142 18 L138 36 Z" fill="#a21caf" />
+      <path d="M126 16 L138 12 M134 30 L146 26" stroke="#f0abfc" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="80" cy="80" r="5" fill="#a21caf" />
+    </svg>
+  );
+}
 
 // Espejo del estado autoritativo → props del HUD.
 function snapshot(gs) {

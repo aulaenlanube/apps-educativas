@@ -235,6 +235,10 @@ html:not([data-fx="high"]) .glass-hdr__aurora { animation: none; background-posi
 html:not([data-fx="high"]) .glass-hdr__edge { animation: none; background-position: 50% 0; }
 html:not([data-fx="high"]) .glass-hdr__sweep { animation-duration: 16s; }
 html[data-fx="low"] .glass-hdr__sweep { display: none; }
+/* En bajo no hay backdrop-filter (fx.css): sin desenfoque, el cristal casi
+   transparente dejaría leer el contenido que pasa por debajo del logo y el menú. */
+html[data-fx="low"] .glass-hdr { background-color: rgba(255, 255, 255, 0.95); }
+html.dark[data-fx="low"] .glass-hdr { background-color: rgba(2, 6, 23, 0.94); }
 html[data-fx="low"] .glass-hdr__aurora { filter: none; mix-blend-mode: normal; opacity: .35; }
 
 /* ---- Accesibilidad: sin movimiento si el usuario lo pide (cristal estático) ---- */

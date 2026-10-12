@@ -3,6 +3,8 @@ import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Restas.css';
 import MathOperationLayout from '../../_shared/MathOperationLayout';
 import OperationTestBoard from '../../_shared/OperationTestBoard';
+import { OpGrid, OpGuide, OpDigit, OpComma, OpOperator, OpRule, OpSlot, placeOf } from '../../_shared/MathOperationLayout';
+import { hideLeadingZeros } from '../../_shared/UniversalSubtractionBoard';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -117,24 +119,35 @@ const RestasPrimaria6 = ({ onGameComplete } = {}) => {
 
   const exitTest = () => { setIsTestMode(false); setShowResults(false); generateNewProblem(); };
 
+  // Examen: coloca un número en la casilla idx (la activa, o la de destino al
+  // arrastrar). Misma lógica que antes tenía handlePaletteClick.
+  const applyTestDigit = (idx, val) => {
+    const strVal = val.toString();
+    const next = [...testResultSlots];
+    next[idx] = strVal;
+    setTestResultSlots(next);
+    const nextIdx = idx - 1;
+    setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+  };
+
+  // Práctica: coloca un número en la casilla index (activa o de destino).
+  const applyDigit = (index, val) => {
+    const newSlots = [...userSlots];
+    newSlots[index] = val.toString();
+    setUserSlots(newSlots);
+    const nextIdx = index - 1;
+    if (nextIdx >= 0) setActiveSlot({ index: nextIdx });
+    else setActiveSlot(null);
+  };
+
   const handlePaletteClick = (val) => {
     if (isTestMode) {
       if (testActiveIdx == null) return;
-      const strVal = val.toString();
-      const next = [...testResultSlots];
-      next[testActiveIdx] = strVal;
-      setTestResultSlots(next);
-      const nextIdx = testActiveIdx - 1;
-      setTestActiveIdx(nextIdx >= 0 ? nextIdx : null);
+      applyTestDigit(testActiveIdx, val);
       return;
     }
     if (!activeSlot) return;
-    const newSlots = [...userSlots];
-    newSlots[activeSlot.index] = val.toString();
-    setUserSlots(newSlots);
-    const nextIdx = activeSlot.index - 1;
-    if (nextIdx >= 0) setActiveSlot({ index: nextIdx });
-    else setActiveSlot(null);
+    applyDigit(activeSlot.index, val);
   };
 
   const checkAnswer = () => {
@@ -153,11 +166,78 @@ const RestasPrimaria6 = ({ onGameComplete } = {}) => {
     }
   };
 
-  const columnTemplate = "60px ";
-  let gridColumnsCSS = "35px ";
-  for (let i = 0; i < structure.maxIntDigits; i++) gridColumnsCSS += columnTemplate;
-  if (structure.maxDecimalPlaces > 0) gridColumnsCSS += "35px ";
-  for (let i = 0; i < structure.maxDecimalPlaces; i++) gridColumnsCSS += columnTemplate;
+  // --- Tablero (solo presentación) ---
+  // Rejilla: [signo] [cifras… (coma)]; filas: valor posicional, minuendo,
+  // sustraendo, raya y resultado (siempre visible). La fila que falta son casillas.
+  const renderBoard = () => {
+    const R_LABEL = 1;
+    const R_ROW1 = 2;
+    const R_ROW2 = 3;
+    const R_RULE = 4;
+    const R_RESULT = 5;
+    const targetStr = problemData.hiddenPart === 'minuend' ? structure.n1Str : structure.n2Str;
+    const showInput = problemData.hiddenPart === 'minuend' ? 'row1' : 'row2';
+    const asDigits = (str) => str.split('').map((value) => ({ value }));
+    const shown1 = hideLeadingZeros(asDigits(structure.n1Str), structure.maxIntDigits);
+    const shown2 = hideLeadingZeros(asDigits(structure.n2Str), structure.maxIntDigits);
+    const shownRes = hideLeadingZeros(asDigits(structure.resStr), structure.maxIntDigits);
+
+    const columns = ['op'];
+    const pieces = [];
+    let col = 2;
+    for (let i = 0; i < structure.totalDigits; i++) {
+      if (i === structure.maxIntDigits && structure.maxDecimalPlaces > 0) {
+        columns.push('comma');
+        pieces.push(<OpComma key="cm-1" r={R_ROW1} c={col} />);
+        pieces.push(<OpComma key="cm-2" r={R_ROW2} c={col} />);
+        pieces.push(<OpComma key="cm-r" r={R_RESULT} c={col} />);
+        col++;
+      }
+      columns.push('cell');
+      const pos = i < structure.maxIntDigits ? structure.maxIntDigits - 1 - i : -(i - structure.maxIntDigits + 1);
+      const [, placeName] = placeOf(pos);
+      pieces.push(<OpGuide key={`g-${i}`} c={col} pos={pos} alt={i % 2 === 1} labelRow={R_LABEL} />);
+
+      const isFilled = userSlots[i] !== '';
+      const isCorrectDigit = userSlots[i] === targetStr[i];
+      const cellClass = feedback.text && isFilled ? (isCorrectDigit ? 'correct' : 'incorrect') : '';
+      const slot = (r, c) => (
+        <OpSlot
+          key={`input-${i}`}
+          r={r}
+          c={c}
+          kind="result"
+          value={userSlots[i]}
+          state={cellClass}
+          selected={activeSlot?.index === i}
+          label={`${showInput === 'row1' ? 'Minuendo' : 'Sustraendo'}: ${placeName.toLowerCase()}`}
+          onSelect={() => setActiveSlot({ index: i })}
+          onDrop={(e) => {
+            e.preventDefault();
+            const data = e.dataTransfer.getData('text/plain');
+            if (/^\d$/.test(data)) applyDigit(i, Number(data));
+          }}
+        />
+      );
+
+      // Fila 1 (Minuendo)
+      if (showInput === 'row1') pieces.push(slot(R_ROW1, col));
+      else if (shown1[i]) pieces.push(<OpDigit key={`n1-${i}`} r={R_ROW1} c={col}>{structure.n1Str[i]}</OpDigit>);
+      // Fila 2 (Sustraendo)
+      if (showInput === 'row2') pieces.push(slot(R_ROW2, col));
+      else if (shown2[i]) pieces.push(<OpDigit key={`n2-${i}`} r={R_ROW2} c={col}>{structure.n2Str[i]}</OpDigit>);
+      // Fila 4 (Resultado - siempre visible)
+      if (shownRes[i]) pieces.push(<OpDigit key={`res-${i}`} r={R_RESULT} c={col}>{structure.resStr[i]}</OpDigit>);
+      col++;
+    }
+    return (
+      <OpGrid columns={columns} rows={['label', 'num', 'num', 'rule', 'result']} label="Completa la resta" className="opb-grid--missing">
+        {pieces}
+        <OpOperator r={R_ROW2} symbol="−" />
+        <OpRule r={R_RULE} />
+      </OpGrid>
+    );
+  };
 
   return (
     <MathOperationLayout
@@ -166,9 +246,9 @@ const RestasPrimaria6 = ({ onGameComplete } = {}) => {
       feedback={feedback}
       onCheck={checkAnswer}
       onNew={generateNewProblem}
-      newLabel="Nuevo Problema"
+      newLabel="Nuevo problema"
       onPaletteClick={handlePaletteClick}
-      paletteLabel="Toca los números 👇"
+      padLayout="side"
       onGameComplete={onGameComplete}
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
@@ -181,13 +261,16 @@ const RestasPrimaria6 = ({ onGameComplete } = {}) => {
       instructions={
         <>
           <h3>Objetivo</h3>
-          <p>Encuentra el numero que falta en la resta: puede ser el minuendo (arriba) o el sustraendo (abajo).</p>
-          <h3>Como se juega</h3>
+          <p>Encuentra el número que falta en la resta: puede ser el minuendo (arriba) o el sustraendo (abajo).</p>
+          <h3>Cómo se juega</h3>
           <ul>
-            <li>Pulsa en una casilla vacia para seleccionarla.</li>
-            <li>Luego pulsa un numero de la paleta inferior para colocarlo.</li>
-            <li>Observa el resultado (siempre visible) para deducir el numero correcto.</li>
+            <li>Toca una casilla vacía para seleccionarla.</li>
+            <li>Después toca un número del teclado para colocarlo (o arrástralo hasta la casilla).</li>
+            <li>Fíjate en el resultado (siempre visible) para deducir el número que falta.</li>
+            <li>Pulsa <strong>Comprobar</strong> para ver qué casillas están bien (verde) o mal (rojo).</li>
           </ul>
+          <h3>Examen</h3>
+          <p>5 restas seguidas: escribe solo el resultado. La nota llega al final.</p>
         </>
       }
     >
@@ -199,82 +282,10 @@ const RestasPrimaria6 = ({ onGameComplete } = {}) => {
           resultSlots={testResultSlots}
           activeSlotIndex={testActiveIdx}
           onSlotClick={(i) => setTestActiveIdx(i)}
+          onSlotDrop={applyTestDigit}
         />
       ) : (
-      <div
-        id="problem-area"
-        style={{
-          display: 'inline-grid', justifyItems: 'center', alignItems: 'center',
-          gridGap: '5px 0', gridTemplateRows: '60px 60px 12px 60px',
-          gridTemplateColumns: gridColumnsCSS
-        }}
-      >
-        <div className="operator" style={{ gridRow: '2', gridColumn: '1' }}>-</div>
-        <hr className="operation-line" style={{ gridRow: '3', gridColumn: `2 / span ${structure.totalDigits + (structure.maxDecimalPlaces > 0 ? 1 : 0)}` }} />
-
-        {(() => {
-          const elements = [];
-          let currentGridCol = 2;
-          const targetStr = problemData.hiddenPart === 'minuend' ? structure.n1Str : structure.n2Str;
-          const showInput = problemData.hiddenPart === 'minuend' ? 'row1' : 'row2';
-
-          for (let i = 0; i < structure.totalDigits; i++) {
-            if (i === structure.maxIntDigits && structure.maxDecimalPlaces > 0) {
-              elements.push(
-                <React.Fragment key="comma">
-                  <div className="digit-display" style={{ gridRow: '1', gridColumn: currentGridCol }}>{showInput === 'row1' ? '' : ','}</div>
-                  <div className="digit-display" style={{ gridRow: '2', gridColumn: currentGridCol }}>,</div>
-                  <div className="digit-display" style={{ gridRow: '4', gridColumn: currentGridCol }}>,</div>
-                </React.Fragment>
-              );
-              currentGridCol++;
-            }
-
-            // Fila 1 (Minuendo)
-            if (showInput === 'row1') {
-              const isFilled = userSlots[i] !== '';
-              const isCorrectDigit = userSlots[i] === targetStr[i];
-              const cellClass = feedback.text && isFilled ? (isCorrectDigit ? 'correct' : 'incorrect') : '';
-              elements.push(
-                <div key={`input-${i}`}
-                  className={`box result-box ${cellClass} ${activeSlot?.index === i ? 'selected' : ''}`}
-                  style={{ gridRow: '1', gridColumn: String(currentGridCol), cursor: 'pointer' }}
-                  onClick={() => setActiveSlot({ index: i })}
-                >{userSlots[i]}</div>
-              );
-            } else {
-              elements.push(
-                <div key={`n1-${i}`} className="digit-display" style={{ gridRow: '1', gridColumn: String(currentGridCol) }}>{structure.n1Str[i]}</div>
-              );
-            }
-
-            // Fila 2 (Sustraendo)
-            if (showInput === 'row2') {
-              const isFilled = userSlots[i] !== '';
-              const isCorrectDigit = userSlots[i] === targetStr[i];
-              const cellClass = feedback.text && isFilled ? (isCorrectDigit ? 'correct' : 'incorrect') : '';
-              elements.push(
-                <div key={`input2-${i}`}
-                  className={`box result-box ${cellClass} ${activeSlot?.index === i ? 'selected' : ''}`}
-                  style={{ gridRow: '2', gridColumn: String(currentGridCol), cursor: 'pointer' }}
-                  onClick={() => setActiveSlot({ index: i })}
-                >{userSlots[i]}</div>
-              );
-            } else {
-              elements.push(
-                <div key={`n2-${i}`} className="digit-display" style={{ gridRow: '2', gridColumn: String(currentGridCol) }}>{structure.n2Str[i]}</div>
-              );
-            }
-
-            // Fila 4 (Resultado - siempre visible)
-            elements.push(
-              <div key={`res-${i}`} className="digit-display" style={{ gridRow: '4', gridColumn: String(currentGridCol) }}>{structure.resStr[i]}</div>
-            );
-            currentGridCol++;
-          }
-          return elements;
-        })()}
-      </div>
+        renderBoard()
       )}
     </MathOperationLayout>
   );
