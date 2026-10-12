@@ -50,6 +50,61 @@
 
 .robo svg * { transform-box: view-box; }
 
+/* ---------- Escenario: elipse oscurecida detrás del robot ----------
+   Separa la mascota de los fondos con mucho detalle (ciudad 3D, espacio,
+   ilustraciones): una viñeta elíptica azul-violeta profunda —nunca negra— cuyo
+   núcleo cubre la silueta con margen y que se funde suavemente un poco más allá
+   del robot; encima, un foco de luz suave tras la cabeza y un perfil de luz muy
+   tenue en el borde. Estática: sin filtros ni animación (coste cero por frame).
+   Por contexto: intensidad --robo-stage (0..1), tamaño --robo-stage-w/-h (en %
+   de .robo; redúcelo donde un contenedor con overflow:hidden la recortaría) y
+   color --robo-stage-rgb. */
+.robo {
+  --robo-stage: 1;
+  --robo-stage-w: 172%;
+  --robo-stage-h: 142%;
+  --robo-stage-rgb: 10, 8, 34;
+  --robo-stage-rim: 167, 139, 250;
+}
+html:not(.dark) .robo { --robo-stage-rgb: 22, 14, 60; }
+/* Superficies claras sin fondo 3D detrás (login, estados vacíos de los paneles):
+   elipse más suave y teñida de violeta → realza sin "ensuciar" la tarjeta. */
+html:not(.dark) .login-robot .robo,
+html:not(.dark) .dk-empty__robot .robo {
+  --robo-stage: .5;
+  --robo-stage-rgb: 67, 46, 158;
+}
+/* Sobre degradados de color (cabecera del panel, tarjetas de llamada a la acción):
+   un punto menos para no apagar el color de la tarjeta. */
+.dk-hero__mascot .robo,
+.fz-cta__robot .robo { --robo-stage: .78; }
+.robo__stage {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  width: var(--robo-stage-w);
+  height: var(--robo-stage-h);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--robo-stage);
+  background:
+    /* foco de luz tras la cabeza: da volumen y evita un "agujero" plano */
+    radial-gradient(26% 24% at 50% 36%, rgba(var(--robo-stage-rim), .14), transparent 72%),
+    /* perfil de luz en el borde de la elipse */
+    radial-gradient(closest-side, transparent 60%, rgba(var(--robo-stage-rim), .08) 66%, transparent 73%),
+    /* viñeta oscura */
+    radial-gradient(closest-side,
+      rgba(var(--robo-stage-rgb), .92) 0%,
+      rgba(var(--robo-stage-rgb), .88) 30%,
+      rgba(var(--robo-stage-rgb), .76) 45%,
+      rgba(var(--robo-stage-rgb), .52) 57%,
+      rgba(var(--robo-stage-rgb), .26) 67%,
+      rgba(var(--robo-stage-rgb), .08) 75%,
+      transparent 81%);
+}
+
 /* ---------- Halo + pedestal holográfico ---------- */
 
 .robo__halo {

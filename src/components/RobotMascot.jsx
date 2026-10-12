@@ -21,7 +21,9 @@ import './RobotMascot.css';
 //   - `act` + `actKey` fuerzan un número concreto (la tragaperras pide 'press',
 //     'watch' y 'cheer'); `onActEnd(id)` avisa al terminar.
 // Las animaciones en bucle son CSS (RobotMascot.css) para no cargar el hilo de React.
-// API: <RobotMascot isTalking onClick expression="default|confused" context act actKey onActEnd quips />.
+// API: <RobotMascot isTalking onClick expression="default|confused" context act actKey onActEnd quips stage />.
+// `stage` (por defecto true): elipse oscurecida detrás del robot para que destaque sobre
+// fondos con mucho detalle; su intensidad la ajusta cada contexto con --robo-stage (CSS).
 
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
@@ -29,7 +31,7 @@ const SPARK_COLORS = ['#a78bfa', '#f472b6', '#fbbf24', '#22d3ee', '#818cf8'];
 
 const RobotMascot = ({
     isTalking = false, onClick, expression = 'default', className = '', style,
-    context = null, act: forcedAct = null, actKey = 0, onActEnd, quips = true,
+    context = null, act: forcedAct = null, actKey = 0, onActEnd, quips = true, stage = true,
 }) => {
     const reduceMotion = useReducedMotion();
     const rootRef = useRef(null);
@@ -226,6 +228,8 @@ const RobotMascot = ({
             aria-label="Robot de EduApps: pulsa para que te diga algo"
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(e); } }}
         >
+            {/* Escenario: elipse oscurecida que separa al robot del fondo (ciudad, espacio…) */}
+            {stage && <div className="robo__stage" aria-hidden="true" />}
             {/* Halo y anillos holográficos del pedestal (HTML para poder usar blur barato) */}
             <div className="robo__halo" aria-hidden="true" />
             <div className="robo__pedestal" aria-hidden="true">
