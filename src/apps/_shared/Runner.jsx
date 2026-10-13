@@ -2,27 +2,33 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ConfettiProvider } from "./ConfettiProvider";
 import {
   RefreshCw, Shuffle, ListChecks, Star, Target, Clock, LayoutGrid,
-  SlidersHorizontal, Gamepad2, GraduationCap, ArrowUp, Gauge, ArrowDownToLine,
+  SlidersHorizontal, Gamepad2, GraduationCap, ArrowUp, Gauge, ArrowDownToLine, Flame,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
 import { createWordPicker, runnerCategories } from './runnerWords';
+import { createWorld, step as stepWorld, jump as jumpWorld, CUBE } from './runnerEngine';
 import InstructionsModal from './InstructionsModal';
 import {
-  GameShell, GameHeader, Hud, HudStat, GameButton, ModeSelect, ResultsScreen,
+  GameShell, GameHeader, Hud, HudStat, Lives, GameButton, ModeSelect, ResultsScreen,
   GameLoading, GameEmpty,
 } from './kit';
 import './Runner.css';
 
 // --- CONFIGURACIÓN BASE ---
+// La física, los bloques de la pista y las colisiones viven en runnerEngine.js
+// (sin React, probado con simulaciones); el reparto de palabras en runnerWords.js.
 const DEFAULT_GRAVITY = 1;
-const DEFAULT_JUMP_FORCE = 18;
-const CUBE_SIZE = 40;
-const BASE_SPAWN_DISTANCE = 600;
 // Suelo de la pista (px). Las entidades se colocan con left:0 / bottom:GROUND y
-// se mueven con transform (ver placeEntity): sin maquetar ni repintar la pista.
+// se mueven con transform (ver placeAll): sin maquetar ni repintar la pista.
 const GROUND = 60;
 const tf = (x, y) => `translate3d(${x}px, ${-y}px, 0)`;
+// Vidas: en práctica se aprende del fallo y se sigue; en examen, como siempre,
+// el primer fallo termina la carrera (la nota es palabras/10).
+const PRACTICE_LIVES = 3;
+const GRACE_MS = 1500;       // tras perder una vida: parpadeo sin choques
+const STAR_MS = 10000;       // invencibilidad de la estrella
+const MISSED_SHOWN = 10;
 
 // --- PERSONAJES --- (el aspecto de cada cubo está en Runner.css: rn-char--0/1/2)
 const CHARACTERS = [
@@ -30,6 +36,16 @@ const CHARACTERS = [
   { id: 1, name: "Neón" },
   { id: 2, name: "Sombra" }
 ];
+
+const formatCat = (name) => (name ? name.replace(/_/g, ' ').toUpperCase() : '');
+
+// Tamaño de letra de la ficha según lo larga que sea la palabra
+const itemFont = (text) => {
+  if (text.length > 25) return '9px';
+  if (text.length > 18) return '11px';
+  if (text.length > 12) return '12.5px';
+  return '14px';
+};
 
 const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   const [gameState, setGameState] = useState('start');
@@ -46,49 +62,51 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   const [showHints, setShowHints] = useState(true);
   const [showCheatSheet, setShowCheatSheet] = useState(false);
 
-  // Estado visual para la invencibilidad
+  // Estado visual
   const [isInvincible, setIsInvincible] = useState(false);
+  const [livesLeft, setLivesLeft] = useState(PRACTICE_LIVES);
+  const [combo, setCombo] = useState(0);
+  const [toast, setToast] = useState(null);           // { key, word, cat } al fallar en práctica
+  const [lastMistake, setLastMistake] = useState(null); // { word, cat } o { spike: true }
 
   // Resultado de la última partida tal y como se registró (el resumen pinta esto).
   const [runResult, setRunResult] = useState(null);
 
   // Versión de la lista de entidades: React solo vuelve a pintar la pista cuando
-  // aparece o desaparece algo (spawn, recogida, explosión), no en cada frame.
-  // El movimiento lo aplica el bucle directamente en el DOM (transform).
+  // aparece o desaparece algo (bloque nuevo, recogida, explosión), no en cada
+  // frame. El movimiento lo aplica el bucle directamente en el DOM (transform).
   const [, setListVersion] = useState(0);
   const bumpList = useCallback(() => setListVersion((v) => v + 1), []);
-  const nodesRef = useRef(new Map());
-  const gridRef = useRef(null);
-  const charRef = useRef(null);
-  const nextIdRef = useRef(1);
-  const pickerRef = useRef(null);
 
   // Refs para el bucle de juego
   const isPlayingRef = useRef(false);
-  const playerRef = useRef({ x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false });
+  const worldRef = useRef(null);
   const rotationRef = useRef(0);
   const collectedWordsRef = useRef([]);
-  const entitiesRef = useRef([]);
+  const missedRef = useRef([]);
   const explosionsRef = useRef([]);
+  const popsRef = useRef([]);
   const bgOffsetRef = useRef(0);
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
-
-  // Ref para el contenedor del jugador (posición, no rotación)
   const playerWrapperRef = useRef(null);
+  const nodesRef = useRef(new Map());
+  const gridRef = useRef(null);
+  const cityRef = useRef(null);
+  const charRef = useRef(null);
+  const fxIdRef = useRef(1);
+  const toastTimerRef = useRef(null);
 
-  // --- REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
   const lastTimeRef = useRef(0);
-  const distanceTraveledRef = useRef(0);
   const invincibleUntilRef = useRef(0);
+  const graceUntilRef = useRef(0);
+  const livesRef = useRef(PRACTICE_LIVES);
+  const comboRef = useRef(0);
 
   // Refs de acceso rápido
   const targetTypeRef = useRef(null);
   const gameStartRef = useRef(0);
   const gameDataRef = useRef(null);
-  const speedRef = useRef(8);
-  const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
-  const gravityRef = useRef(DEFAULT_GRAVITY);
   const showHintsRef = useRef(true);
 
   // 1. CARGA DE DATOS DINÁMICA
@@ -128,11 +146,6 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     setTargetType(types[nextIndex]);
   };
 
-  const formatMissionName = (name) => {
-    if (!name) return "";
-    return name.replace(/_/g, " ").toUpperCase();
-  };
-
   useEffect(() => {
     if (gameState === 'start' && gameData) {
       randomizeMission();
@@ -147,30 +160,37 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     setShowHints(hints);
 
     targetTypeRef.current = targetType;
-    // reparto de palabras de esta partida (40-60 % de la misión, ver runnerWords.js)
-    pickerRef.current = createWordPicker(gameDataRef.current, targetType);
+    showHintsRef.current = hints;
     setScore(0);
     gameStartRef.current = Date.now();
     setGameState('playing');
     isPlayingRef.current = true;
 
-    speedRef.current = configSpeed[0];
-    gravityRef.current = configGravity[0];
-    jumpForceRef.current = DEFAULT_JUMP_FORCE;
-    showHintsRef.current = hints;
+    worldRef.current = createWorld({
+      speed: configSpeed[0],
+      gravity: configGravity[0],
+      // reparto de palabras de esta partida (50-60 % de la misión, ver runnerWords.js)
+      picker: createWordPicker(gameDataRef.current, targetType),
+      viewWidth: gameContainerRef.current?.clientWidth || 1000,
+    });
 
-    playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     rotationRef.current = 0;
     if (charRef.current) charRef.current.style.transform = 'rotate(0deg)';
-    entitiesRef.current = [];
     collectedWordsRef.current = [];
+    missedRef.current = [];
     explosionsRef.current = [];
+    popsRef.current = [];
     invincibleUntilRef.current = 0;
+    graceUntilRef.current = 0;
+    livesRef.current = hints ? PRACTICE_LIVES : 1;
+    comboRef.current = 0;
+    setLivesLeft(livesRef.current);
+    setCombo(0);
+    setToast(null);
+    setLastMistake(null);
     setIsInvincible(false);
     bgOffsetRef.current = 0;
-
     lastTimeRef.current = 0;
-    distanceTraveledRef.current = 0;
     bumpList();
 
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
@@ -178,12 +198,8 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   };
 
   const jump = useCallback(() => {
-    if (!isPlayingRef.current) return;
-
-    if (playerRef.current.y <= 0.5 || playerRef.current.onPlatform) {
-      playerRef.current.velocityY = jumpForceRef.current;
-      playerRef.current.isJumping = true;
-      playerRef.current.onPlatform = false;
+    if (!isPlayingRef.current || !worldRef.current) return;
+    if (jumpWorld(worldRef.current)) {
       rotationRef.current += 90;
       // el giro del cubo va por CSS (transition): fuera del bucle de React
       if (charRef.current) charRef.current.style.transform = `rotate(${rotationRef.current}deg)`;
@@ -201,106 +217,25 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [jump]);
 
-  // 3. GENERADOR DE OBSTÁCULOS
-  const spawnEntities = () => {
-    const data = gameDataRef.current;
-    if (!data || !pickerRef.current) return;
-
-    // nacen justo fuera de la pista, también en pantallas muy anchas
-    const startX = Math.max(1000, (gameContainerRef.current?.clientWidth || 0) + 40);
-    // Patrones: 0: Pinchos, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Encadenadas, 5: ESTRELLA
-    const rand = Math.random();
-    let pattern = 0;
-
-    if (rand < 0.25) pattern = 0;
-    else if (rand < 0.45) pattern = 1;
-    else if (rand < 0.65) pattern = 2;
-    else if (rand < 0.80) pattern = 3;
-    else if (rand < 0.95) pattern = 4;
-    else pattern = 5;
-
-    const uid = () => nextIdRef.current++;
-    // la palabra solo se saca si este patrón lleva palabra (así el reparto 40-60 %
-    // se cumple sobre las palabras que de verdad salen)
-    const makeItem = () => {
-      const { text, valid } = pickerRef.current.next();
-      return { id: uid(), type: 'item', text, valid, x: startX, y: 0, width: 120, height: 40 };
-    };
-
-    if (pattern === 0) {
-      const spikeRandom = Math.random();
-      const getSpikeDims = () => {
-        const r = Math.random();
-        if (r < 0.20) return { w: 30, h: 30 };
-        if (r > 0.85) return { w: 50, h: 60 };
-        return { w: 40, h: 40 };
-      };
-
-      const s1 = getSpikeDims();
-      entitiesRef.current.push({ id: uid(), type: 'spike', x: startX, y: 0, width: s1.w, height: s1.h });
-
-      if (spikeRandom > 0.5) {
-        const s2 = getSpikeDims();
-        entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 40, y: 0, width: s2.w, height: s2.h });
-      }
-      if (spikeRandom > 0.75) {
-        const s3 = getSpikeDims();
-        entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 80, y: 0, width: s3.w, height: s3.h });
-      }
-
-    } else if (pattern === 1) {
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
-      const itemEntity = makeItem();
-      itemEntity.x += 20; itemEntity.y = 130;
-      entitiesRef.current.push(itemEntity);
-
-    } else if (pattern === 2) {
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 100, width: 160, height: 40 });
-      entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 60, y: 0, width: 40, height: 40 });
-      const itemEntity = makeItem();
-      itemEntity.x += 20; itemEntity.y = 180;
-      entitiesRef.current.push(itemEntity);
-
-    } else if (pattern === 3) {
-      const itemEntity = makeItem();
-      itemEntity.y = 60;
-      entitiesRef.current.push(itemEntity);
-
-    } else if (pattern === 4) {
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 120, height: 40 });
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX + 160, y: 170, width: 140, height: 40 });
-      const itemEntity = makeItem();
-      itemEntity.x = startX + 180; itemEntity.y = 250;
-      entitiesRef.current.push(itemEntity);
-
-    } else if (pattern === 5) {
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 120, height: 40 });
-      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
-
-      entitiesRef.current.push({
-        id: uid(),
-        type: 'star',
-        x: startX + 210,
-        y: 280,
-        width: 40, height: 40
-      });
-    }
+  // 3. EFECTOS (explosión, "+1", aviso de fallo)
+  const spawnFx = (list, data, ms) => {
+    const fx = { id: fxIdRef.current++, ...data };
+    list.current.push(fx);
     bumpList();
-  };
-
-  const spawnExplosion = (x, y) => {
-    explosionsRef.current.push({
-      id: nextIdRef.current++,
-      x: x,
-      y: y,
-    });
-    bumpList();
-    // dura 500 ms (animación CSS); luego se quita de la lista
     setTimeout(() => {
-      explosionsRef.current = explosionsRef.current.slice(1);
+      list.current = list.current.filter((f) => f !== fx);
       bumpList();
-    }, 520);
+    }, ms);
   };
+  const spawnExplosion = (x, y) => spawnFx(explosionsRef, { x, y }, 520);
+  const spawnPop = (x, y, text, tone) => spawnFx(popsRef, { x, y, text, tone }, 900);
+
+  const showMistake = (word, cat) => {
+    clearTimeout(toastTimerRef.current);
+    setToast({ key: Date.now(), word, cat });
+    toastTimerRef.current = setTimeout(() => setToast(null), 2600);
+  };
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
 
   const gameOver = () => {
     // Una sola vez por partida: dos choques en el mismo frame llamarían dos veces.
@@ -338,165 +273,115 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     });
   };
 
-  const checkAABB = (r1, r2) => {
-    return (
-      r1.x < r2.x + r2.width &&
-      r1.x + r1.width > r2.x &&
-      r1.y < r2.y + r2.height &&
-      r1.y + r1.height > r2.y
-    );
+  // Choque con pincho o palabra incorrecta: con estrella o parpadeo se rompe;
+  // si no, se pierde una vida (en examen solo hay una).
+  const hitHazard = (ent, now) => {
+    if (invincibleUntilRef.current > now) {
+      ent.gone = true;
+      spawnExplosion(ent.x, ent.y);
+      return false;
+    }
+    if (graceUntilRef.current > now) return false;
+    const mistake = ent.type === 'item'
+      ? { word: ent.text, cat: ent.category }
+      : { spike: true };
+    setLastMistake(mistake);
+    comboRef.current = 0;
+    setCombo(0);
+    livesRef.current -= 1;
+    setLivesLeft(livesRef.current);
+    if (livesRef.current <= 0) { gameOver(); return true; }
+    graceUntilRef.current = now + GRACE_MS;
+    ent.gone = true;
+    spawnExplosion(ent.x, ent.y);
+    if (mistake.word) showMistake(mistake.word, mistake.cat);
+    gameContainerRef.current?.classList.remove('is-shake');
+    void gameContainerRef.current?.offsetWidth;
+    gameContainerRef.current?.classList.add('is-shake');
+    return false;
   };
 
-  // 4. BUCLE DE JUEGO OPTIMIZADO
+  // 4. BUCLE DE JUEGO
   const gameLoop = (timestamp) => {
     if (!isPlayingRef.current) return;
 
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-
     const deltaTime = timestamp - lastTimeRef.current;
     lastTimeRef.current = timestamp;
 
+    // tras una pausa (pestaña oculta) no se salta medio nivel de golpe
     if (deltaTime > 100) {
       reqRef.current = requestAnimationFrame(gameLoop);
       return;
     }
 
+    const w = worldRef.current;
     const timeScale = deltaTime / 16.67;
-    const currentSpeed = speedRef.current * timeScale;
+    const events = stepWorld(w, timeScale);
+    const now = Date.now();
 
-    // Actualizar fondo (la rejilla repite cada 50 px)
-    bgOffsetRef.current -= currentSpeed * 0.5;
-    if (bgOffsetRef.current <= -100) bgOffsetRef.current += 100;
+    // fondo: rejilla (repite cada 50 px) y ciudad lejana en paralaje
+    bgOffsetRef.current -= w.speed * timeScale * 0.5;
+    if (bgOffsetRef.current <= -1200) bgOffsetRef.current += 1200;
 
-    // Actualizar jugador (gravedad)
-    playerRef.current.velocityY -= gravityRef.current * timeScale;
-    playerRef.current.y += playerRef.current.velocityY * timeScale;
-
-    // Colisión con suelo
-    if (playerRef.current.y < 0) {
-      playerRef.current.y = 0;
-      playerRef.current.velocityY = 0;
-      playerRef.current.isJumping = false;
-      playerRef.current.onPlatform = false;
-    }
-
-    // Spawn de entidades
-    distanceTraveledRef.current += currentSpeed;
-    if (distanceTraveledRef.current >= BASE_SPAWN_DISTANCE) {
-      spawnEntities();
-      distanceTraveledRef.current = 0;
-    }
-
-    // Revisar fin de invencibilidad visual
-    if (invincibleUntilRef.current > 0 && Date.now() > invincibleUntilRef.current) {
+    if (invincibleUntilRef.current > 0 && now > invincibleUntilRef.current) {
       invincibleUntilRef.current = 0;
       setIsInvincible(false);
     }
 
-    const pRect = {
-      x: playerRef.current.x + 8, y: playerRef.current.y,
-      width: CUBE_SIZE - 16, height: CUBE_SIZE - 4
-    };
-
-    let landedOnPlatform = false;
-
-    entitiesRef.current.forEach(ent => {
-      ent.x -= currentSpeed;
-
-      if (ent.x > -200 && ent.x < 200 && !ent.collected) {
-        const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
-
-        if (ent.type === 'star') {
-          if (checkAABB(pRect, eRect)) {
-            ent.collected = true;
-            bumpList();
-            invincibleUntilRef.current = Date.now() + 10000; // 10 segundos
-            setIsInvincible(true);
-          }
-        }
-
-        if (ent.type === 'spike') {
-          const spikeRect = {
-            x: ent.x + (ent.width * 0.25),
-            y: ent.y,
-            width: ent.width * 0.5,
-            height: ent.height * 0.6
-          };
-          if (checkAABB(pRect, spikeRect)) {
-            if (invincibleUntilRef.current > 0) { // Check ref
-              spawnExplosion(ent.x, ent.y);
-              ent.collected = true;
-            } else {
-              gameOver(); return;
-            }
-          }
-        }
-
-        if (ent.type === 'platform') {
-          if (
-            playerRef.current.velocityY <= 0 &&
-            pRect.y >= ent.y + ent.height - 15 &&
-            pRect.y <= ent.y + ent.height + 25 &&
-            pRect.x + pRect.width > ent.x &&
-            pRect.x < ent.x + ent.width
-          ) {
-            playerRef.current.y = ent.y + ent.height;
-            playerRef.current.velocityY = 0;
-            playerRef.current.isJumping = false;
-            playerRef.current.onPlatform = true;
-            landedOnPlatform = true;
-          }
-        }
-
-        if (ent.type === 'item') {
-          if (checkAABB(pRect, eRect)) {
-            if (ent.valid) {
-              ent.collected = true;
-              collectedWordsRef.current.push(ent.text);
-              setScore(prev => prev + 1);
-            } else {
-              if (invincibleUntilRef.current > 0) { // Check ref
-                spawnExplosion(ent.x, ent.y);
-                ent.collected = true;
-              } else {
-                gameOver(); return;
-              }
-            }
-          }
-        }
+    let listChanged = false;
+    for (const e of events) {
+      if (e.type === 'spawn') listChanged = true;
+      else if (e.type === 'despawn') {
+        listChanged = true;
+        for (const m of e.missed) missedRef.current.push(m.text);
+      } else if (e.type === 'star') {
+        e.ent.gone = true;
+        invincibleUntilRef.current = now + STAR_MS;
+        setIsInvincible(true);
+        listChanged = true;
+      } else if (e.type === 'collect') {
+        e.ent.gone = true;
+        collectedWordsRef.current.push(e.ent.text);
+        setScore(prev => prev + 1);
+        comboRef.current += 1;
+        setCombo(comboRef.current);
+        const c = comboRef.current;
+        spawnPop(e.ent.x + e.ent.width / 2, e.ent.y + 44, c >= 3 ? `+1 · racha ${c}` : '+1', c >= 5 ? 'hot' : 'good');
+        listChanged = true;
+      } else if (e.type === 'spike' || e.type === 'wrong') {
+        if (hitHazard(e.ent, now)) return; // fin de partida
+        listChanged = true;
       }
-    });
-
-    if (!landedOnPlatform && playerRef.current.y > 0) {
-      playerRef.current.onPlatform = false;
     }
 
-    // --- ANIMACIÓN DE DERRAPE (SKID) ---
-    // Si el jugador está en el suelo o en una plataforma, activamos la clase CSS
-    // Usamos playerWrapperRef para que el efecto no rote
-    const isGrounded = playerRef.current.y <= 0.1 || playerRef.current.onPlatform;
+    // parpadeo mientras dura la gracia tras perder una vida
     if (playerWrapperRef.current) {
-      if (isGrounded) {
-        playerWrapperRef.current.classList.add('on-ground');
-      } else {
-        playerWrapperRef.current.classList.remove('on-ground');
-      }
+      playerWrapperRef.current.classList.toggle('is-hurt', graceUntilRef.current > now);
     }
 
-    const before = entitiesRef.current.length;
-    entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
-    if (entitiesRef.current.length !== before) bumpList();
+    if (listChanged) bumpList();
     placeAll();
     reqRef.current = requestAnimationFrame(gameLoop);
   };
 
   // Coloca en el DOM (transform) lo que se ha movido en este frame: jugador,
-  // rejilla y entidades. Sin React ni cambios de maquetación.
+  // fondo y entidades. Sin React ni cambios de maquetación.
   const placeAll = () => {
-    if (playerWrapperRef.current) playerWrapperRef.current.style.transform = tf(playerRef.current.x, playerRef.current.y);
-    if (gridRef.current) gridRef.current.style.transform = `translate3d(${bgOffsetRef.current}px, 0, 0)`;
+    const w = worldRef.current;
+    if (!w) return;
+    const p = w.player;
+    const pw = playerWrapperRef.current;
+    if (pw) {
+      pw.style.transform = tf(p.x, p.y);
+      // derrape: partículas bajo el cubo cuando toca suelo o plataforma
+      pw.classList.toggle('on-ground', p.y <= 0.1 || p.onPlatform);
+    }
+    const off = bgOffsetRef.current;
+    if (gridRef.current) gridRef.current.style.transform = `translate3d(${off % 100}px, 0, 0)`;
+    if (cityRef.current) cityRef.current.style.transform = `translate3d(${off * 0.25}px, 0, 0)`;
     const nodes = nodesRef.current;
-    for (const ent of entitiesRef.current) {
+    for (const ent of w.entities) {
       const el = nodes.get(ent.id);
       if (el) el.style.transform = tf(ent.x, ent.y);
     }
@@ -536,26 +421,29 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
   const shellProps = { theme: 'dark', accent: '#a855f7', accent2: '#fb923c', className: 'rn' };
   const isExam = !showHints;
-  const missionName = formatMissionName(targetType);
+  const missionName = formatCat(targetType);
 
   const modals = (
     <>
       <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} title="Cómo jugar a Education Dash">
         <h3>🎯 Objetivo</h3>
         <p>
-          Corre sin parar y <strong>atrapa solo las palabras de tu misión</strong>. Si chocas con un pincho
-          o tocas una palabra que no es de la misión, se acaba la partida.
+          Corre sin parar y <strong>atrapa solo las palabras de tu misión</strong>. Esquiva los pinchos y
+          las palabras que no son de la misión: si tocas una, el juego te dice a qué grupo pertenece de verdad.
         </p>
         <h3>🕹️ Controles</h3>
         <ul>
           <li><kbd>Espacio</kbd> o <kbd>↑</kbd> para saltar. También puedes hacer clic o tocar la pantalla.</li>
           <li>Puedes aterrizar sobre las plataformas para llegar a las palabras altas.</li>
+          <li>En los <strong>cruces</strong> hay una palabra abajo y otra arriba: decide si saltas o sigues por el suelo.</li>
+          <li>Hay escalones, escaleras y plataformas que suben y bajan: mide bien el salto.</li>
           <li>La <strong>estrella</strong> te hace invencible 10 segundos: rompes pinchos y palabras incorrectas.</li>
+          <li>Encadena aciertos para hacer <strong>racha</strong>. La carrera se acelera poco a poco.</li>
         </ul>
         <h3>🎓 Modos de juego</h3>
         <div className="instr-modes">
-          <div className="instr-mode easy"><strong>Práctica</strong> Las palabras de la misión se ven en verde y las demás en rojo.</div>
-          <div className="instr-mode exam"><strong>Examen</strong> Sin colores. 10 palabras = un 10, y bonus si eres rápido.</div>
+          <div className="instr-mode easy"><strong>Práctica</strong> Las palabras de la misión se ven en verde y las demás en rojo. Tienes 3 vidas.</div>
+          <div className="instr-mode exam"><strong>Examen</strong> Sin colores y sin vidas extra: el primer fallo termina la carrera. 10 palabras = un 10, y bonus si eres rápido.</div>
         </div>
       </InstructionsModal>
       <InstructionsModal isOpen={showCheatSheet} onClose={() => setShowCheatSheet(false)} title="Guía de misiones">
@@ -600,8 +488,8 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       <GameShell {...shellProps}>
         <ModeSelect
           modes={[
-            { id: 'practice', tone: 'easy', icon: Gamepad2, title: 'Práctica', desc: 'Las palabras de tu misión brillan en verde; las demás, en rojo.', features: ['Pistas de color', 'Para entrenar'] },
-            { id: 'exam', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Sin colores: lee cada palabra antes de saltar a por ella.', features: ['Nota sobre 10', 'Bonus por rapidez'] },
+            { id: 'practice', tone: 'easy', icon: Gamepad2, title: 'Práctica', desc: 'Las palabras de tu misión brillan en verde; las demás, en rojo.', features: ['Pistas de color', '3 vidas', 'Te explica cada fallo'] },
+            { id: 'exam', tone: 'exam', icon: GraduationCap, title: 'Examen', desc: 'Sin colores: lee cada palabra antes de saltar a por ella.', features: ['Nota sobre 10', 'Un solo fallo', 'Bonus por rapidez'] },
           ]}
           onSelect={(id) => startGame(id === 'practice')}
           onHelp={() => setShowInstructions(true)}
@@ -683,16 +571,23 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
             { label: 'Cambiar de modo', onClick: () => setGameState('start'), icon: LayoutGrid, variant: 'soft' },
           ]}
         >
+          <MistakeNote mistake={lastMistake} mission={missionName} />
           {words > 0 && (
             <div className="rn-collected">
               {collectedWordsRef.current.map((w, i) => <span key={i} className="rn-collected__chip">{w}</span>)}
             </div>
           )}
+          <MissedWords words={missedRef.current} />
         </ResultsScreen>
         {modals}
       </GameShell>
     );
   }
+
+
+  const w = worldRef.current;
+  const entities = w ? w.entities : [];
+  const player = w ? w.player : { x: 100, y: 0 };
 
   return (
     <GameShell {...shellProps}>
@@ -702,7 +597,9 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
         compact
         right={(
           <Hud>
+            {!isExam && <Lives total={PRACTICE_LIVES} left={Math.max(0, livesLeft)} />}
             {isInvincible && <HudStat icon={Star} tone="streak" value={`${timeLeft}s`} label="Invencible" />}
+            {combo >= 2 && <HudStat icon={Flame} tone="streak" value={`x${combo}`} label="Racha" />}
             <HudStat icon={ListChecks} tone="good" value={score.toString().padStart(3, '0')} label="Palabras" />
           </Hud>
         )}
@@ -710,7 +607,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
       <div className="rn-mission">
         <span className="rn-mission__icon"><Target size={18} /></span>
-        <span className="rn-mission__text"><small>Misión</small><strong>{missionName}</strong></span>
+        <span className="rn-mission__text"><small>Misión · atrapa solo</small><strong>{missionName}</strong></span>
         {!isExam && (
           <span className="rn-mission__legend">
             <i className="is-good" /> Atrapa <i className="is-bad" /> Esquiva
@@ -721,6 +618,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       <div
         className={`rn-screen ${isInvincible ? 'is-invincible' : ''}`}
         ref={gameContainerRef}
+        onAnimationEnd={(e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('is-shake'); }}
         onMouseDown={(e) => {
           if (gameState === 'playing') {
             e.preventDefault();
@@ -734,19 +632,20 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
           }
         }}
       >
-        {/* Decorado: cielo synthwave con sol y montañas (estático) */}
+        {/* Decorado: cielo synthwave con sol, montañas y ciudad lejana en paralaje */}
         <div className="rn-sky" aria-hidden="true">
           <span className="rn-sky__sun" />
           <span className="rn-sky__hills" />
+          <div className="rn-city" ref={cityRef} />
         </div>
-        <div className="rn-grid" ref={gridRef} style={{ transform: `translate3d(${bgOffsetRef.current}px, 0, 0)` }} aria-hidden="true" />
+        <div className="rn-grid" ref={gridRef} aria-hidden="true" />
         <div className="rn-ground" aria-hidden="true" />
 
         {/* JUGADOR */}
         <div
           ref={playerWrapperRef}
           className="rn-player"
-          style={{ left: 0, bottom: `${GROUND}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transform: tf(playerRef.current.x, playerRef.current.y) }}
+          style={{ left: 0, bottom: `${GROUND}px`, width: `${CUBE}px`, height: `${CUBE}px`, transform: tf(player.x, player.y) }}
         >
           {/* Partículas fuera del personaje para que no roten */}
           <div className="skid-particles">
@@ -757,13 +656,16 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
           {renderCharacter(selectedChar)}
         </div>
 
-        {/* EXPLOSIONES */}
+        {/* EXPLOSIONES y "+1" (no se mueven con la pista) */}
         {explosionsRef.current.map(exp => (
           <div key={exp.id} className="rn-boom" style={{ left: exp.x, bottom: GROUND + exp.y }} />
         ))}
+        {popsRef.current.map(pop => (
+          <span key={pop.id} className={`rn-pop is-${pop.tone}`} style={{ left: pop.x, bottom: GROUND + pop.y }}>{pop.text}</span>
+        ))}
 
-        {entitiesRef.current.map(ent => {
-          if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
+        {entities.map(ent => {
+          if (ent.gone) return null; // recogida o rota
           // posición con transform (el bucle la actualiza en placeAll)
           const pos = { left: 0, bottom: `${GROUND}px`, transform: tf(ent.x, ent.y) };
           const reg = (el) => { if (el) nodesRef.current.set(ent.id, el); else nodesRef.current.delete(ent.id); };
@@ -779,25 +681,36 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
             return <div key={ent.id} ref={reg} className="rn-spike" style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px` }} />;
           }
           if (ent.type === 'platform') {
-            return <div key={ent.id} ref={reg} className="rn-platform" style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px` }} />;
+            const kind = ent.lift ? 'is-lift' : ent.stair != null ? `is-stair is-stair-${ent.stair}` : '';
+            return <div key={ent.id} ref={reg} className={`rn-platform ${kind}`} style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px` }} />;
           }
           if (ent.type === 'item') {
             const tone = showHintsRef.current ? (ent.valid ? 'is-good' : 'is-bad') : 'is-neutral';
-            // Ajuste dinámico de tamaño de fuente para evitar desbordamiento
-            const getFontSize = (text) => {
-              if (text.length > 25) return '8px';
-              if (text.length > 18) return '10px';
-              if (text.length > 12) return '12px';
-              return '14px';
-            };
             return (
-              <div key={ent.id} ref={reg} className={`rn-item ${tone}`} style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
+              <div key={ent.id} ref={reg} className={`rn-item ${tone} ${ent.fork ? 'is-fork' : ''}`} style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: itemFont(ent.text) }}>
                 {ent.text}
               </div>
             );
           }
           return null;
         })}
+
+        {/* Aviso de fallo (práctica): qué era la palabra de verdad */}
+        <AnimatePresence>
+          {toast && gameState === 'playing' && (
+            <motion.div
+              key={toast.key}
+              className="rn-toast"
+              initial={{ opacity: 0, y: -14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.22 }}
+            >
+              <strong>«{toast.word}»</strong> no es de {missionName}
+              {toast.cat && <span> · es de <b>{formatCat(toast.cat)}</b></span>}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* GAME OVER (práctica) */}
         {gameState === 'gameover' && (
@@ -818,11 +731,13 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
               <strong className="rn-over__title">
                 {score > 0 ? <>¡{score} {score === 1 ? 'palabra' : 'palabras'}!</> : '¡Inténtalo de nuevo!'}
               </strong>
+              <MistakeNote mistake={lastMistake} mission={missionName} />
               {collectedWordsRef.current.length > 0 && (
                 <div className="rn-collected">
                   {collectedWordsRef.current.map((w, i) => <span key={i} className="rn-collected__chip" style={{ animationDelay: `${i * 50}ms` }}>{w}</span>)}
                 </div>
               )}
+              <MissedWords words={missedRef.current} />
               <div className="rn-over__actions">
                 <GameButton size="lg" icon={RefreshCw} onClick={() => startGame(true)} autoFocus>Otra carrera</GameButton>
                 <GameButton size="lg" variant="soft" icon={LayoutGrid} onClick={() => setGameState('start')}>Menú</GameButton>
@@ -846,6 +761,33 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       </div>
       {modals}
     </GameShell>
+  );
+};
+
+// Por qué terminó la carrera (para aprender del fallo)
+const MistakeNote = ({ mistake, mission }) => {
+  if (!mistake) return null;
+  if (mistake.spike) return <p className="rn-why">Te has pinchado. ¡Salta antes de llegar a los pinchos!</p>;
+  return (
+    <p className="rn-why">
+      <strong>«{mistake.word}»</strong> no es de {mission}
+      {mistake.cat && <> · es de <b>{formatCat(mistake.cat)}</b></>}
+    </p>
+  );
+};
+
+// Palabras de la misión que pasaron sin recoger: repaso al terminar
+const MissedWords = ({ words }) => {
+  const uniq = [...new Set(words)];
+  if (!uniq.length) return null;
+  return (
+    <div className="rn-missed">
+      <span className="rn-missed__title">También eran de tu misión</span>
+      <div className="rn-missed__list">
+        {uniq.slice(0, MISSED_SHOWN).map((w) => <span key={w} className="rn-missed__chip">{w}</span>)}
+        {uniq.length > MISSED_SHOWN && <span className="rn-missed__more">+{uniq.length - MISSED_SHOWN}</span>}
+      </div>
+    </div>
   );
 };
 
