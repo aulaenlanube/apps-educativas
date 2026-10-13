@@ -1,8 +1,10 @@
 /* ==========================================================================
    Education Dash (Runner) — rediseño 2026 sobre el kit (_shared/kit), con
-   estética arcade synthwave. Prefijo rn-. El bucle de juego sigue colocando
-   cada entidad con left/bottom en px dentro de .rn-screen (450 px de alto,
-   suelo de 60 px) y añade/quita la clase .on-ground en el jugador.
+   estética arcade synthwave. Prefijo rn-. Las entidades y el jugador están
+   anclados en left:0 / bottom:60px (suelo) dentro de .rn-screen (450 px de
+   alto) y el bucle de juego los mueve con transform: translate3d (sin maquetar
+   ni repintar la pista en cada frame; React solo pinta cuando aparece o
+   desaparece algo). El bucle añade/quita .on-ground en el jugador.
    Las entidades se mueven cada frame: sin filter ni backdrop-filter en ellas.
    ========================================================================== */
 
@@ -112,6 +114,8 @@
   user-select: none;
   touch-action: none;
   isolation: isolate;
+  /* lo que pasa dentro de la pista no recalcula nada fuera de ella */
+  contain: layout paint style;
   background: linear-gradient(180deg, #12062e 0%, #2a0c5c 40%, #6b1d7a 72%, #c2337a 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, .08),
@@ -183,6 +187,7 @@
   position: absolute;
   inset: 0 -100px 0 0;
   z-index: 1;
+  will-change: transform;
   pointer-events: none;
   background-image:
     linear-gradient(to right, rgba(192, 132, 252, .22) 1px, transparent 1px),
@@ -206,7 +211,9 @@
 }
 
 /* ---------- Jugador (cubo) ---------- */
-.rn-player { position: absolute; z-index: 20; display: flex; align-items: center; justify-content: center; }
+.rn-player { position: absolute; z-index: 20; display: flex; align-items: center; justify-content: center; will-change: transform; }
+/* giro de 90° por salto (jump() cambia el transform del cubo) */
+.rn-player .rn-char { transition: transform .6s cubic-bezier(.25, 1, .5, 1), box-shadow .2s ease; }
 .rn-char {
   --c1: #fef08a;
   --c2: #facc15;
@@ -244,6 +251,8 @@
 .rn-char__mouth { position: absolute; left: 30%; right: 30%; bottom: 20%; height: 10%; border-radius: 999px; background: rgba(0, 0, 0, .5); }
 
 /* ---------- Entidades ---------- */
+/* cada una en su capa: el bucle solo cambia su transform */
+.rn-spike, .rn-platform, .rn-item, .rn-star { will-change: transform; backface-visibility: hidden; }
 .rn-spike {
   position: absolute;
   z-index: 10;
@@ -401,6 +410,16 @@ html[data-fx="high"] .rn-star svg { animation: rn-bob 1s ease-in-out infinite; }
 }
 @keyframes rn-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes rn-boom { 0% { transform: scale(.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+
+/* ---------- Nivel de efectos (html[data-fx], uiFx.js) ---------- */
+/* Equipos modestos: fuera scanlines, rejilla enmascarada, brillo del sol y
+   halos de las fichas; la pista queda igual de legible. */
+html[data-fx="low"] .rn-screen::after { display: none; }
+html[data-fx="low"] .rn-grid { -webkit-mask-image: none; mask-image: none; opacity: .45; }
+html[data-fx="low"] .rn-sky__sun { box-shadow: none; }
+html:not([data-fx="high"]) .rn-item,
+html:not([data-fx="high"]) .rn-platform { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .3), inset 0 -3px 0 rgba(0, 0, 0, .25); }
+html:not([data-fx="high"]) .rn-platform { box-shadow: inset 0 3px 0 #67e8f9, inset 0 -3px 0 rgba(0, 0, 0, .35); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {

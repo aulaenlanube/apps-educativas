@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getRunnerData } from '../../services/gameDataService';
+import { createWordPicker, runnerCategories } from './runnerWords';
 import InstructionsModal from './InstructionsModal';
 import {
   GameShell, GameHeader, Hud, HudStat, GameButton, ModeSelect, ResultsScreen,
@@ -18,6 +19,10 @@ const DEFAULT_GRAVITY = 1;
 const DEFAULT_JUMP_FORCE = 18;
 const CUBE_SIZE = 40;
 const BASE_SPAWN_DISTANCE = 600;
+// Suelo de la pista (px). Las entidades se colocan con left:0 / bottom:GROUND y
+// se mueven con transform (ver placeEntity): sin maquetar ni repintar la pista.
+const GROUND = 60;
+const tf = (x, y) => `translate3d(${x}px, ${-y}px, 0)`;
 
 // --- PERSONAJES --- (el aspecto de cada cubo está en Runner.css: rn-char--0/1/2)
 const CHARACTERS = [
@@ -47,8 +52,16 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   // Resultado de la última partida tal y como se registró (el resumen pinta esto).
   const [runResult, setRunResult] = useState(null);
 
-  // Tick para forzar renderizado en React
-  const [, setTick] = useState(0);
+  // Versión de la lista de entidades: React solo vuelve a pintar la pista cuando
+  // aparece o desaparece algo (spawn, recogida, explosión), no en cada frame.
+  // El movimiento lo aplica el bucle directamente en el DOM (transform).
+  const [, setListVersion] = useState(0);
+  const bumpList = useCallback(() => setListVersion((v) => v + 1), []);
+  const nodesRef = useRef(new Map());
+  const gridRef = useRef(null);
+  const charRef = useRef(null);
+  const nextIdRef = useRef(1);
+  const pickerRef = useRef(null);
 
   // Refs para el bucle de juego
   const isPlayingRef = useRef(false);
@@ -99,14 +112,15 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
   const randomizeMission = useCallback((data = gameData) => {
     if (!data) return;
-    const types = Object.keys(data);
+    const types = runnerCategories(data);
+    if (types.length === 0) return;
     const random = types[Math.floor(Math.random() * types.length)];
     setTargetType(random);
   }, [gameData]);
 
   const changeMission = () => {
     if (!gameData) return;
-    const types = Object.keys(gameData);
+    const types = runnerCategories(gameData);
     if (types.length === 0) return;
 
     const currentIndex = types.indexOf(targetType);
@@ -133,6 +147,8 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     setShowHints(hints);
 
     targetTypeRef.current = targetType;
+    // reparto de palabras de esta partida (40-60 % de la misión, ver runnerWords.js)
+    pickerRef.current = createWordPicker(gameDataRef.current, targetType);
     setScore(0);
     gameStartRef.current = Date.now();
     setGameState('playing');
@@ -145,6 +161,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     rotationRef.current = 0;
+    if (charRef.current) charRef.current.style.transform = 'rotate(0deg)';
     entitiesRef.current = [];
     collectedWordsRef.current = [];
     explosionsRef.current = [];
@@ -154,6 +171,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
     lastTimeRef.current = 0;
     distanceTraveledRef.current = 0;
+    bumpList();
 
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
     reqRef.current = requestAnimationFrame(gameLoop);
@@ -167,6 +185,8 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       playerRef.current.isJumping = true;
       playerRef.current.onPlatform = false;
       rotationRef.current += 90;
+      // el giro del cubo va por CSS (transition): fuera del bucle de React
+      if (charRef.current) charRef.current.style.transform = `rotate(${rotationRef.current}deg)`;
     }
   }, []);
 
@@ -184,9 +204,10 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
   // 3. GENERADOR DE OBSTÁCULOS
   const spawnEntities = () => {
     const data = gameDataRef.current;
-    if (!data) return;
+    if (!data || !pickerRef.current) return;
 
-    const startX = 1000;
+    // nacen justo fuera de la pista, también en pantallas muy anchas
+    const startX = Math.max(1000, (gameContainerRef.current?.clientWidth || 0) + 40);
     // Patrones: 0: Pinchos, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Encadenadas, 5: ESTRELLA
     const rand = Math.random();
     let pattern = 0;
@@ -198,16 +219,12 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     else if (rand < 0.95) pattern = 4;
     else pattern = 5;
 
-    const types = Object.keys(data);
-    const randomType = types[Math.floor(Math.random() * types.length)];
-    const list = data[randomType];
-    const itemText = list[Math.floor(Math.random() * list.length)];
-
-    const itemEntity = {
-      id: Date.now() + Math.random(),
-      type: 'item',
-      text: itemText,
-      x: startX, y: 0, width: 120, height: 40
+    const uid = () => nextIdRef.current++;
+    // la palabra solo se saca si este patrón lleva palabra (así el reparto 40-60 %
+    // se cumple sobre las palabras que de verdad salen)
+    const makeItem = () => {
+      const { text, valid } = pickerRef.current.next();
+      return { id: uid(), type: 'item', text, valid, x: startX, y: 0, width: 120, height: 40 };
     };
 
     if (pattern === 0) {
@@ -220,59 +237,69 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       };
 
       const s1 = getSpikeDims();
-      entitiesRef.current.push({ id: Date.now(), type: 'spike', x: startX, y: 0, width: s1.w, height: s1.h });
+      entitiesRef.current.push({ id: uid(), type: 'spike', x: startX, y: 0, width: s1.w, height: s1.h });
 
       if (spikeRandom > 0.5) {
         const s2 = getSpikeDims();
-        entitiesRef.current.push({ id: Date.now() + 1, type: 'spike', x: startX + 40, y: 0, width: s2.w, height: s2.h });
+        entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 40, y: 0, width: s2.w, height: s2.h });
       }
       if (spikeRandom > 0.75) {
         const s3 = getSpikeDims();
-        entitiesRef.current.push({ id: Date.now() + 2, type: 'spike', x: startX + 80, y: 0, width: s3.w, height: s3.h });
+        entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 80, y: 0, width: s3.w, height: s3.h });
       }
 
     } else if (pattern === 1) {
-      entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
+      const itemEntity = makeItem();
       itemEntity.x += 20; itemEntity.y = 130;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 2) {
-      entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 100, width: 160, height: 40 });
-      entitiesRef.current.push({ id: Date.now() + 2, type: 'spike', x: startX + 60, y: 0, width: 40, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 100, width: 160, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'spike', x: startX + 60, y: 0, width: 40, height: 40 });
+      const itemEntity = makeItem();
       itemEntity.x += 20; itemEntity.y = 180;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 3) {
+      const itemEntity = makeItem();
       itemEntity.y = 60;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 4) {
-      entitiesRef.current.push({ id: Date.now() + 'p1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
-      entitiesRef.current.push({ id: Date.now() + 'p2', type: 'platform', x: startX + 160, y: 170, width: 140, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 120, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX + 160, y: 170, width: 140, height: 40 });
+      const itemEntity = makeItem();
       itemEntity.x = startX + 180; itemEntity.y = 250;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 5) {
-      entitiesRef.current.push({ id: Date.now() + 'pstar1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
-      entitiesRef.current.push({ id: Date.now() + 'pstar2', type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX, y: 50, width: 120, height: 40 });
+      entitiesRef.current.push({ id: uid(), type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
 
       entitiesRef.current.push({
-        id: Date.now() + 'star',
+        id: uid(),
         type: 'star',
         x: startX + 210,
         y: 280,
         width: 40, height: 40
       });
     }
+    bumpList();
   };
 
   const spawnExplosion = (x, y) => {
     explosionsRef.current.push({
-      id: Date.now() + Math.random(),
+      id: nextIdRef.current++,
       x: x,
       y: y,
-      timestamp: Date.now()
     });
+    bumpList();
+    // dura 500 ms (animación CSS); luego se quita de la lista
+    setTimeout(() => {
+      explosionsRef.current = explosionsRef.current.slice(1);
+      bumpList();
+    }, 520);
   };
 
   const gameOver = () => {
@@ -337,9 +364,9 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
     const timeScale = deltaTime / 16.67;
     const currentSpeed = speedRef.current * timeScale;
 
-    // Actualizar fondo
+    // Actualizar fondo (la rejilla repite cada 50 px)
     bgOffsetRef.current -= currentSpeed * 0.5;
-    if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
+    if (bgOffsetRef.current <= -100) bgOffsetRef.current += 100;
 
     // Actualizar jugador (gravedad)
     playerRef.current.velocityY -= gravityRef.current * timeScale;
@@ -359,9 +386,6 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       spawnEntities();
       distanceTraveledRef.current = 0;
     }
-
-    // Limpiar explosiones viejas (duran 500ms)
-    explosionsRef.current = explosionsRef.current.filter(exp => Date.now() - exp.timestamp < 500);
 
     // Revisar fin de invencibilidad visual
     if (invincibleUntilRef.current > 0 && Date.now() > invincibleUntilRef.current) {
@@ -385,6 +409,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
         if (ent.type === 'star') {
           if (checkAABB(pRect, eRect)) {
             ent.collected = true;
+            bumpList();
             invincibleUntilRef.current = Date.now() + 10000; // 10 segundos
             setIsInvincible(true);
           }
@@ -425,10 +450,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
         if (ent.type === 'item') {
           if (checkAABB(pRect, eRect)) {
-            const targetList = gameDataRef.current[targetTypeRef.current];
-            const isValid = targetList.includes(ent.text);
-
-            if (isValid) {
+            if (ent.valid) {
               ent.collected = true;
               collectedWordsRef.current.push(ent.text);
               setScore(prev => prev + 1);
@@ -461,22 +483,46 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
       }
     }
 
+    const before = entitiesRef.current.length;
     entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
-    setTick(prev => prev + 1);
+    if (entitiesRef.current.length !== before) bumpList();
+    placeAll();
     reqRef.current = requestAnimationFrame(gameLoop);
+  };
+
+  // Coloca en el DOM (transform) lo que se ha movido en este frame: jugador,
+  // rejilla y entidades. Sin React ni cambios de maquetación.
+  const placeAll = () => {
+    if (playerWrapperRef.current) playerWrapperRef.current.style.transform = tf(playerRef.current.x, playerRef.current.y);
+    if (gridRef.current) gridRef.current.style.transform = `translate3d(${bgOffsetRef.current}px, 0, 0)`;
+    const nodes = nodesRef.current;
+    for (const ent of entitiesRef.current) {
+      const el = nodes.get(ent.id);
+      if (el) el.style.transform = tf(ent.x, ent.y);
+    }
   };
 
   useEffect(() => {
     return () => { isPlayingRef.current = false; cancelAnimationFrame(reqRef.current); };
   }, []);
 
+  // El marcador de invencibilidad cuenta los segundos: con el bucle fuera de
+  // React hay que refrescarlo aparte (4 veces por segundo, solo mientras dura).
+  useEffect(() => {
+    if (!isInvincible) return undefined;
+    const id = setInterval(bumpList, 250);
+    return () => clearInterval(id);
+  }, [isInvincible, bumpList]);
+
   // --- PRESENTACIÓN (rediseño 2026 con el kit, estética arcade retro) ---
   const [showInstructions, setShowInstructions] = useState(false);
 
+  // En partida el giro lo pone jump() en charRef (style.transform); aquí solo
+  // se fija el inicial, para que un re-render no lo pise.
   const renderCharacter = (charIndex, isPreview = false) => (
     <div
+      ref={isPreview ? undefined : charRef}
       className={`rn-char rn-char--${charIndex} ${isInvincible && !isPreview ? 'is-invincible' : ''}`}
-      style={!isPreview ? { transform: `rotate(${rotationRef.current}deg)`, transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' } : {}}
     >
       <span className="rn-char__eye rn-char__eye--l" />
       <span className="rn-char__eye rn-char__eye--r" />
@@ -693,14 +739,14 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
           <span className="rn-sky__sun" />
           <span className="rn-sky__hills" />
         </div>
-        <div className="rn-grid" style={{ transform: `translateX(${bgOffsetRef.current}px)` }} aria-hidden="true" />
+        <div className="rn-grid" ref={gridRef} style={{ transform: `translate3d(${bgOffsetRef.current}px, 0, 0)` }} aria-hidden="true" />
         <div className="rn-ground" aria-hidden="true" />
 
         {/* JUGADOR */}
         <div
           ref={playerWrapperRef}
           className="rn-player"
-          style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px` }}
+          style={{ left: 0, bottom: `${GROUND}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transform: tf(playerRef.current.x, playerRef.current.y) }}
         >
           {/* Partículas fuera del personaje para que no roten */}
           <div className="skid-particles">
@@ -713,30 +759,30 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
 
         {/* EXPLOSIONES */}
         {explosionsRef.current.map(exp => (
-          <div key={exp.id} className="rn-boom" style={{ left: exp.x, bottom: 60 + exp.y }} />
+          <div key={exp.id} className="rn-boom" style={{ left: exp.x, bottom: GROUND + exp.y }} />
         ))}
 
         {entitiesRef.current.map(ent => {
           if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
+          // posición con transform (el bucle la actualiza en placeAll)
+          const pos = { left: 0, bottom: `${GROUND}px`, transform: tf(ent.x, ent.y) };
+          const reg = (el) => { if (el) nodesRef.current.set(ent.id, el); else nodesRef.current.delete(ent.id); };
 
           if (ent.type === 'star') {
             return (
-              <div key={ent.id} className="rn-star" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
+              <div key={ent.id} ref={reg} className="rn-star" style={pos}>
                 <RunnerStar />
               </div>
             );
           }
           if (ent.type === 'spike') {
-            return <div key={ent.id} className="rn-spike" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
+            return <div key={ent.id} ref={reg} className="rn-spike" style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px` }} />;
           }
           if (ent.type === 'platform') {
-            return <div key={ent.id} className="rn-platform" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
+            return <div key={ent.id} ref={reg} className="rn-platform" style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px` }} />;
           }
           if (ent.type === 'item') {
-            const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current]
-              ? gameDataRef.current[targetTypeRef.current].includes(ent.text)
-              : false;
-            const tone = showHintsRef.current ? (isTarget ? 'is-good' : 'is-bad') : 'is-neutral';
+            const tone = showHintsRef.current ? (ent.valid ? 'is-good' : 'is-bad') : 'is-neutral';
             // Ajuste dinámico de tamaño de fuente para evitar desbordamiento
             const getFontSize = (text) => {
               if (text.length > 25) return '8px';
@@ -745,7 +791,7 @@ const Runner = ({ level, grade, subjectId, onGameComplete }) => {
               return '14px';
             };
             return (
-              <div key={ent.id} className={`rn-item ${tone}`} style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
+              <div key={ent.id} ref={reg} className={`rn-item ${tone}`} style={{ ...pos, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
                 {ent.text}
               </div>
             );
