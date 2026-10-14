@@ -479,6 +479,9 @@ html[data-fx="high"] .rn-star svg { animation: rn-bob 1s ease-in-out infinite; }
 }
 .rn-over__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
 .rn-collected { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-height: 140px; overflow-y: auto; }
+/* listas del final: se pueden desplazar (rueda o dedo) pero sin barra de scroll visible */
+.rn-over, .rn-collected { scrollbar-width: none; -ms-overflow-style: none; }
+.rn-over::-webkit-scrollbar, .rn-collected::-webkit-scrollbar { display: none; }
 .rn-collected__chip {
   padding: 4px 11px;
   border-radius: 10px;
