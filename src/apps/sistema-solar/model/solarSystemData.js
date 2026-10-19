@@ -26,18 +26,18 @@ export const solarSystemData = [
         description: {
             primaryBasic: "Es la estrella que nos da luz y calor. ¡Es gigante!",
             primaryAdvanced: "El Sol es una estrella enorme de gas caliente. Es el centro de nuestro sistema solar y su gravedad mantiene a todos los planetas girando a su alrededor.",
-            secondary: "El Sol es una estrella de tipo G (enana amarilla) que constituye el 99.86% de la masa del sistema solar. Su energía proviene de la fusión nuclear de hidrógeno en helio en su núcleo, alcanzando temperaturas de 15 millones de grados Celsius.",
+            secondary: "El Sol es una estrella de tipo G (enana amarilla) que constituye el 99,86% de la masa del sistema solar. Su energía proviene de la fusión nuclear de hidrógeno en helio en su núcleo, alcanzando temperaturas de 15 millones de grados Celsius.",
         },
         advanced: {
             composition: {
-                elements: ["Hidrógeno (73.46%)", "Helio (24.85%)", "Oxígeno (0.77%)", "Carbono (0.29%)"],
+                elements: ["Hidrógeno (73,46%)", "Helio (24,85%)", "Oxígeno (0,77%)", "Carbono (0,29%)"],
                 compounds: ["Plasma (Gas ionizado)", "Vientos solares (Protones y electrones)"]
             },
             geography: "No tiene superficie sólida. Se divide en núcleo, zona radiativa, zona convectiva, fotosfera, cromosfera y corona.",
             curiosities: [
                 "El Sol pierde 4 millones de toneladas de masa cada segundo convertidas en energía.",
-                "Tardaría 170.000 años para que un fotón viaje desde el núcleo hasta la superficie.",
-                "Cabe un millón de Tierras dentro del Sol."
+                "La energía que hoy sale de su superficie se produjo en el núcleo hace decenas de miles de años: tanto tarda en abrirse paso hacia fuera.",
+                "Dentro del Sol cabrían unos 1,3 millones de Tierras."
             ],
             hotspots: [
                 { pos: [0, 8.5, 0], title: "Corona Solar", desc: "La capa más externa, que curiosamente es mucho más caliente que la superficie.", zoom: 1.2, tilt: 0.8 },
@@ -64,15 +64,15 @@ export const solarSystemData = [
         advanced: {
             composition: {
                 elements: ["Hierro (Núcleo 70%)", "Silicio", "Magnesio", "Calcio"],
-                compounds: ["Silicatos (Corteza y manto)", "Oxígeno metálico"]
+                compounds: ["Silicatos (corteza y manto)", "Sulfuros"]
             },
             geography: "Superficie similar a la Luna con llanuras lisas y grandes escarpes (fallas tectónicas) que sugieren que el planeta se está 'encogiendo'.",
             curiosities: [
-                "Un día en Mercurio dura 59 días terrestres.",
-                "Es el único planeta cuyo núcleo es proporcionalmente más grande que la Tierra.",
+                "Gira sobre sí mismo en 59 días, pero de un amanecer al siguiente pasan 176 días terrestres: ¡dos de sus años!",
+                "Su núcleo de hierro ocupa más del 80 % de su radio: proporcionalmente, el mayor de los planetas rocosos.",
                 "A pesar de estar cerca del Sol, posee hielo en sus polos norte y sur."
             ],
-            // Radio 0.38
+            // Radio 0,38
             hotspots: [
                 { pos: [0, 0.38, 0], title: "Polo Norte", desc: "Se ha detectado hielo de agua en cráteres que están siempre a la sombra.", zoom: 0.6, tilt: 1.2 }, // Polo
                 { pos: [0.35, 0.15, 0], title: "Cuenca Caloris", desc: "Uno de los cráteres de impacto más grandes del Sistema Solar.", zoom: 0.5, tilt: 0.3 }, // Lat 30
@@ -97,16 +97,16 @@ export const solarSystemData = [
         },
         advanced: {
             composition: {
-                elements: ["Dióxido de Carbono (96.5%)", "Nitrógeno (3.5%)"],
+                elements: ["Dióxido de Carbono (96,5%)", "Nitrógeno (3,5%)"],
                 compounds: ["Ácido Sulfúrico (Nubes)", "Dióxido de azufre", "Argón"]
             },
             geography: "Superficie dominada por llanuras volcánicas, dos grandes continentes (Ishtar Terra y Aphrodite Terra) y miles de volcanes.",
             curiosities: [
                 "Un día en Venus es más largo que su año.",
                 "La presión atmosférica es 90 veces superior a la de la Tierra.",
-                "Es el objeto más brillante en el cielo nocturno después de la Luna."
+                "Es el astro más brillante del cielo nocturno después de la Luna."
             ],
-            // Radio 0.95
+            // Radio 0,95
             hotspots: [
                 { pos: [0, 1.05, 0], title: "Nubes de Ácido", desc: "Capas densas que reflejan la luz y atrapan el calor infernal.", zoom: 1.3, tilt: 0.8 },
                 { pos: [0.4, 0.1, 0.85], title: "Maat Mons", desc: "El volcán más alto de Venus con 8 km de altura.", zoom: 0.6, tilt: 0.4 }, // Ecuador
@@ -134,7 +134,7 @@ export const solarSystemData = [
             {
                 id: 'moon',
                 name: 'Luna',
-                size: 0.27, // AJUSTE: Tamaño más realista relativo a Tierra (1.0 vs 0.27)
+                size: 0.27, // AJUSTE: Tamaño más realista relativo a Tierra (1,0 vs 0,27)
                 distance: 3, // Distancia visual
                 speed: 0.03,
                 textureUrl: moonTexture,
@@ -151,11 +151,11 @@ export const solarSystemData = [
                     },
                     geography: "Tierras altas (cráteres) y mares (llanuras de basalto volcánico). Tiene montañas más altas que el Everest.",
                     curiosities: [
-                        "La Luna se aleja de la Tierra unos 3.8 cm por año.",
+                        "La Luna se aleja de la Tierra unos 3,8 cm por año.",
                         "Solo vemos una cara de la Luna debido a la rotación sincrónica.",
-                        "Tiene terremotos o 'lunamotos' menores."
+                        "Tiene terremotos débiles, los «lunamotos», que detectaron los sismómetros del Apolo."
                     ],
-                    // Radio 0.27
+                    // Radio 0,27
                     hotspots: [
                         { pos: [0.1, 0.05, 0.25], title: "Mar de la Tranquilidad", desc: "Donde aterrizó el Apolo 11 en 1969.", zoom: 0.4, tilt: 0.6 },
                         { pos: [0.05, -0.2, 0.15], title: "Cráter Tycho", desc: "Uno de los cráteres más brillantes y visibles.", zoom: 0.5, tilt: 0.3 }, // Hemisferio Sur visible
@@ -176,7 +176,7 @@ export const solarSystemData = [
                 "La mayoría de la Tierra es hierro, oxígeno y silicio.",
                 "Es el único planeta con placas tectónicas activas."
             ],
-            // Radio 1.0
+            // Radio 1,0
             hotspots: [
                 { pos: [0.95, 0.3, 0], title: "Atmósfera", desc: "Protege de la radiación y mantiene la temperatura.", zoom: 1.2, tilt: 1.0 },
                 { pos: [-0.5, 0, 0.86], title: "Océano Pacífico", desc: "Cubre gran parte del planeta y regula el clima.", zoom: 0.6, tilt: -0.2 }, // Zona agua
@@ -197,7 +197,7 @@ export const solarSystemData = [
         description: {
             primaryBasic: "El 'Planeta Rojo'. Tiene volcanes gigantes.",
             primaryAdvanced: "Marte es rojo por el óxido (como el hierro oxidado). Tiene el volcán más grande de todo el sistema solar, el Monte Olimpo.",
-            secondary: "Marte es un planeta desértico y frío. Su color rojo se debe al óxido de hierro. Alberga el Monte Olimpo, el volcán más grande del sistema solar, y valles que sugieren que el agua fluyó por su superficie en el pasado.",
+            secondary: "Marte es un planeta desértico y frío. Su color rojo se debe al óxido de hierro. Alberga el Monte Olimpo, el volcán más alto del sistema solar, y valles que sugieren que el agua fluyó por su superficie en el pasado.",
         },
         advanced: {
             composition: {
@@ -206,13 +206,13 @@ export const solarSystemData = [
             },
             geography: "Cañones gigantes (Valles Marineris), volcanes extintos y casquetes polares de hielo y CO2.",
             curiosities: [
-                "Tardaría un año en Marte casi el doble que en la Tierra.",
+                "Un año marciano dura 687 días terrestres: casi el doble que el nuestro.",
                 "Posee dos lunas pequeñas llamadas Fobos y Deimos.",
                 "La gravedad en Marte es el 38% de la terrestre."
             ],
-            // Radio 0.53
+            // Radio 0,53
             hotspots: [
-                { pos: [-0.3, 0.15, 0.4], title: "Monte Olimpo", desc: "El volcán más grande del sistema solar (21 km de alto).", zoom: 0.4, tilt: 0.9 }, // 18N
+                { pos: [-0.3, 0.15, 0.4], title: "Monte Olimpo", desc: "El volcán más alto del sistema solar: unos 22 km sobre la llanura que lo rodea.", zoom: 0.4, tilt: 0.9 }, // 18N
                 { pos: [0.1, -0.1, 0.5], title: "Valles Marineris", desc: "Un sistema de cañones tan largo como toda Europa.", zoom: 0.5, tilt: 0.1 }, // 14S
                 { pos: [0, 0.53, 0], title: "Casquete Polar", desc: "Mezcla de hielo de agua y hielo seco (dióxido de carbono).", zoom: 0.6, tilt: 1.2 }, // Polo N
                 { pos: [0.4, 0.15, 0.3], title: "Crater Jezero", desc: "Donde el rover Perseverance busca rastros de vida antigua.", zoom: 0.4, tilt: 0.4 } // 18N
@@ -231,22 +231,22 @@ export const solarSystemData = [
         description: {
             primaryBasic: "Es el planeta más grande de todos. ¡Es gigante!",
             primaryAdvanced: "Júpiter es una bola gigante de gas. Tiene una tormenta roja enorme que lleva girando siglos, llamada la Gran Mancha Roja.",
-            secondary: "Júpiter es un gigante gaseoso, el planeta más grande del sistema solar (más de 300 veces la masa de la Tierra). Su Gran Mancha Roja es una tormenta anticiclónica más grande que la Tierra. Tiene docenas de lunas, como Europa y Ganímedes.",
+            secondary: "Júpiter es un gigante gaseoso, el planeta más grande del sistema solar (más de 300 veces la masa de la Tierra). Su Gran Mancha Roja es una tormenta anticiclónica más ancha que la Tierra. Tiene más de 90 lunas, como Europa y Ganímedes.",
         },
         advanced: {
             composition: {
                 elements: ["Hidrógeno (89%)", "Helio (10%)"],
-                compounds: ["Metano", "Amoníaco", "Metano cristalino"]
+                compounds: ["Amoníaco (nubes)", "Hidrosulfuro de amonio", "Agua", "Metano"]
             },
             geography: "No tiene superficie sólida; las nubes crean franjas y remolinos. En el interior hay hidrógeno metálico líquido.",
             curiosities: [
-                "Tiene un campo magnético 14 veces más fuerte que el de la Tierra.",
+                "Su campo magnético es unas 20.000 veces más potente que el terrestre: su magnetosfera es la mayor estructura del Sistema Solar.",
                 "Gira tan rápido que un día dura solo 10 horas.",
-                "Tiene 95 lunas reconocidas hasta la fecha."
+                "Se le conocen más de 90 lunas; las cuatro grandes (Ío, Europa, Ganímedes y Calisto) las descubrió Galileo en 1610."
             ],
-            // Radio 3.8
+            // Radio 3,8
             hotspots: [
-                { pos: [1.5, -1.2, 3.2], title: "Gran Mancha Roja", desc: "Una tormenta gigante donde caben dos Tierras.", zoom: 0.5, tilt: -0.2 }, // Lat -22 aprox
+                { pos: [1.5, -1.2, 3.2], title: "Gran Mancha Roja", desc: "Una tormenta más ancha que la Tierra (unos 16.000 km), observada desde hace más de 150 años y que está encogiendo.", zoom: 0.5, tilt: -0.2 }, // Lat -22 aprox
                 { pos: [0, 3.8, 0], title: "Auroras Polares", desc: "Intensa radiación que crea luces brillantes en los polos.", zoom: 0.8, tilt: 1.2 }, // Polo
                 { pos: [-3.5, 0.5, 1], title: "Bandas de Nubes", desc: "Vientos de 600 km/h que crean las franjas de colores.", zoom: 1.0, tilt: 0.2 }, // Ecuador
                 { pos: [0, 0, 4.0], title: "Hidrógeno Metálico", desc: "Bajo la presión extrema, el hidrógeno se vuelve conductor.", zoom: 1.5, tilt: 0 } // Frente
@@ -269,24 +269,24 @@ export const solarSystemData = [
         description: {
             primaryBasic: "Es famoso por sus preciosos anillos.",
             primaryAdvanced: "Saturno es otro gigante de gas, pero tiene unos anillos brillantes hechos de hielo y rocas que giran a su alrededor.",
-            secondary: "Saturno es conocido por su complejo sistema de anillos compuestos principalmente de partículas de hielo y roca. Es el planeta menos denso; flotaría en el agua. Titán, su luna más grande, tiene una atmósfera densa.",
+            secondary: "Saturno es conocido por su complejo sistema de anillos compuestos principalmente de partículas de hielo y roca. Es el planeta menos denso (0,69 g/cm³, menos que el agua). Titán, su luna más grande, tiene una atmósfera densa.",
         },
         advanced: {
             composition: {
                 elements: ["Hidrógeno (96%)", "Helio (3%)"],
-                compounds: ["Etano", "Metano", "Metano gaseoso"]
+                compounds: ["Amoníaco (nubes)", "Metano", "Etano"]
             },
             geography: "Similar a Júpiter, con atmósfera de hidrógeno-helio y posibles nubes de amoníaco e hidrosulfuro amónico.",
             curiosities: [
-                "Sus anillos son tan finos que podrías ver a través de ellos.",
-                "Tarda unos 29.5 años terrestres en rodear el Sol.",
+                "Sus anillos miden más de 270.000 km de lado a lado, pero casi nunca más de 1 km de grosor.",
+                "Tarda unos 29,5 años terrestres en rodear el Sol.",
                 "La luna Titán tiene mares de metano líquido."
             ],
-            // Radio 3.2
+            // Radio 3,2
             hotspots: [
                 { pos: [0, 3.1, 0.5], title: "Vórtice Hexagonal", desc: "Una extraña corriente de aire con forma de hexágono en el polo norte.", zoom: 0.5, tilt: 1.3 }, // Polo N visible
                 { pos: [1.5, 0.5, 2.7], title: "Atmósfera Dorada", desc: "Nubes de amoníaco que le dan su característico color pálido.", zoom: 0.7, tilt: 0.2 },
-                { pos: [6.5, 0, 0], title: "Anillo A", desc: "La sección más externa y brillante de los anillos principales.", zoom: 1.2, tilt: 0.5 }, // En el anillo (radio > 4.2)
+                { pos: [6.5, 0, 0], title: "Anillo A", desc: "La sección más externa y brillante de los anillos principales.", zoom: 1.2, tilt: 0.5 }, // En el anillo (radio > 4,2)
                 { pos: [-4.5, 0, 2], title: "División de Cassini", desc: "Espacio aparentemente vacío entre los dos anillos más brillantes.", zoom: 1.1, tilt: 0.4 } // En el anillo
             ]
         }
@@ -314,9 +314,9 @@ export const solarSystemData = [
             curiosities: [
                 "Es el planeta más frío del sistema solar con -224°C.",
                 "Tiene anillos verticales debido a su inclinación extrema.",
-                "Su día dura 17 horas, pero su año 84 años terrestres."
+                "Su día dura 17 horas, pero su año, 84 años terrestres."
             ],
-            // Radio 1.8
+            // Radio 1,8
             hotspots: [
                 { pos: [0, 0, 1.8], title: "Polo Sur Iluminado", desc: "Debido a su inclinación, los polos reciben luz directa durante años.", zoom: 0.6, tilt: 0.0 }, // Apunta a Z
                 { pos: [0, 2.5, 0], title: "Anillos Verticales", desc: "Al estar tumbado, sus anillos parecen rodearlo de arriba a abajo.", zoom: 1.2, tilt: 1.5 }, // Arriba visualmente
@@ -337,20 +337,20 @@ export const solarSystemData = [
         description: {
             primaryBasic: "Es el planeta más lejano y ventoso.",
             primaryAdvanced: "Es oscuro, frío y ventoso. Está tan lejos que tarda casi 165 años en dar una vuelta al Sol.",
-            secondary: "Neptuno es el planeta más lejano del Sol (ahora que Plutón es planeta enano). Tiene los vientos más fuertes del sistema solar (2.100 km/h). Su intenso color azul se debe al metano en su atmósfera.",
+            secondary: "Neptuno es el planeta más lejano del Sol (Plutón es un planeta enano desde 2006). Tiene los vientos más fuertes del sistema solar (más de 2.000 km/h). Su intenso color azul se debe al metano en su atmósfera.",
         },
         advanced: {
             composition: {
-                elements: ["Hidrógeno (80%)", "Helio (19%)", "Metano (1.5%)"],
+                elements: ["Hidrógeno (80%)", "Helio (19%)", "Metano (1,5%)"],
                 compounds: ["Hielo", "Silicatos", "Amoníaco fundido"]
             },
             geography: "Dinámica atmosférica extrema con tormentas gigantescas (Gran Mancha Oscura) y un manto líquido de alta presión.",
             curiosities: [
                 "Fue descubierto mediante cálculos matemáticos antes de verse.",
-                "Tritón, su luna más grande, es el único satélite que orbita al revés.",
+                "Tritón, su luna más grande, es la única luna grande que orbita al revés de lo que gira su planeta.",
                 "Se cree que puede llover diamantes en su interior."
             ],
-            // Radio 1.75
+            // Radio 1,75
             hotspots: [
                 { pos: [0.8, -0.6, 1.4], title: "Gran Mancha Oscura", desc: "Una tormenta del tamaño de la Tierra que desaparece y vuelve.", zoom: 0.6, tilt: -0.3 }, // Lat -20 aprox
                 { pos: [-1.2, 0.8, -0.9], title: "Vientos Supersónicos", desc: "Los más rápidos del sistema solar, superando los 2.000 km/h.", zoom: 0.8, tilt: 0.4 },

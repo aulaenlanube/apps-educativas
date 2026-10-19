@@ -1,307 +1,239 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ListOrdered, Link2, Trophy, Check, Sun, CheckCheck, Clock, RefreshCw, Orbit } from 'lucide-react';
-import { GameButton, ResultsScreen, FeedbackItem } from '../_shared/kit';
-import { solarSystemData } from './model/solarSystemData';
-import { aciertosOrden, resultadoDesafio } from './desafioScoring';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, Reorder } from 'framer-motion';
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, CheckCheck, ArrowRight, Eye, Check, X, Sun, GripVertical, ListOrdered } from 'lucide-react';
+import { GameButton, FeedbackItem } from '../_shared/kit';
+import { FACTS, PLANET_IDS, BODY_COLOR, bodyName } from './model/planetFacts';
+import { ORDER_CRITERIA, orderRoundsFor, correctOrder, scrambled } from './model/questions';
+import { mulberry32, randomSeed } from './model/rng';
+import { aciertosOrden } from './desafioScoring';
+import { missionResult, buildPayload, speedBonus } from './missionScoring';
+import { MissionTopBar, MissionResults } from './ui/MissionFrame';
+import PlanetOrb from './ui/PlanetOrb';
 import './SolarSystemActivity.css';
 
-const fmtTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+// Se mantiene la exportación para quien importaba el orbe desde aquí
+export { PlanetOrb };
 
-// Planeta dibujado con CSS (esfera con luz, bandas o anillos según el cuerpo).
-// Lo comparten el desafío y la interfaz del simulador (barra inferior, ficha).
-export const PlanetOrb = ({ id, color, size = 24 }) => (
-    <span className={`ss-orb ss-orb--${id}`} style={{ '--pc': color, '--s': `${size}px` }} aria-hidden="true">
-        {(id === 'saturn' || id === 'uranus') && <span className="ss-orb__ring" />}
-    </span>
-);
+// «Ordena el Sistema Solar» (antes «Desafío de planetas»): una o varias
+// rondas según el curso (distancia, tamaño, masa, densidad). Se arrastran
+// las tarjetas (o se mueven con las flechas). Cuenta lo que está en su sitio
+// en la PRIMERA comprobación de cada ronda; después se puede corregir hasta
+// resolverla, para aprender. Al terminar la última ronda se llama a
+// onComplete UNA vez (doneRef) con el payload de buildPayload (mode 'test').
+// «Repetir» vuelve a montar el componente (key en SistemaSolar).
 
-const PHASES = [
-    { n: 1, label: 'Ordena', Icon: ListOrdered },
-    { n: 2, label: 'Relaciona', Icon: Link2 },
-    { n: 3, label: '¡Misión!', Icon: Trophy },
-];
+const ROUND_PAR = 70;           // segundos de referencia por ronda
+const ROUND_SPEED_MAX = 120;    // bonus máximo de rapidez por ronda
 
-// Fin de la actividad = las dos fases resueltas. Se registra UNA vez por desafío
-// (onComplete → onGameComplete; single_mode: cuenta para la tarea) con la nota de
-// lo acertado a la primera (ver desafioScoring.js). "Repetir desafío" vuelve a
-// montar el componente (key en SistemaSolar): desafío nuevo = registro nuevo.
-const SolarSystemActivity = ({ onClose, onComplete, onRestart }) => {
-    const [phase, setPhase] = useState(1); // 1: Ordering, 2: Matching, 3: Success
-    const [orderedPlanets, setOrderedPlanets] = useState([]);
-    const [selectedPlanet, setSelectedPlanet] = useState(null);
-    const [selectedConcept, setSelectedConcept] = useState(null);
-    const [matches, setMatches] = useState({});
-    const [isWrong, setIsWrong] = useState(false);
-    const [summary, setSummary] = useState(null);
+function useNarrow() {
+  const q = '(max-width: 720px)';
+  const [narrow, setNarrow] = useState(() => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(q).matches : false));
+  useEffect(() => {
+    if (!window.matchMedia) return undefined;
+    const m = window.matchMedia(q);
+    const on = () => setNarrow(m.matches);
+    m.addEventListener?.('change', on);
+    return () => m.removeEventListener?.('change', on);
+  }, []);
+  return narrow;
+}
 
-    // Puntuación: lo que se hace a la primera
-    const startedAtRef = useRef(Date.now());
-    const firstOrderRef = useRef(null);         // ids en la 1ª comprobación del orden
-    const failedMatchRef = useRef(new Set());   // planetas con algún emparejamiento fallido
-    const completedRef = useRef(false);
+function sizeScale(id) {
+  // tamaño relativo (raíz) para la revelación de la ronda de tamaño
+  return 0.42 + 0.58 * Math.sqrt(FACTS[id].radiusRel / FACTS.jupiter.radiusRel);
+}
 
-    // Filter planets (exclude sun for ordering if needed, but user said "order planets", usually 8)
-    const planetsOnly = useMemo(() => solarSystemData.filter(p => p.type === 'planet'), []);
+export default function OrderMission({ mission, stage, onComplete, onExit, onRestart, onHub, onExplore, outcome }) {
+  const narrow = useNarrow();
+  const seed = useMemo(() => randomSeed(), []);
+  const rng = useMemo(() => mulberry32(seed), [seed]);
+  const rounds = useMemo(() => orderRoundsFor(stage), [stage]);
 
-    // Correct order by distance
-    const correctOrderIds = useMemo(() => planetsOnly.map(p => p.id), [planetsOnly]);
+  const [round, setRound] = useState(0);
+  const [items, setItems] = useState(() => scrambled(PLANET_IDS, rng));
+  const [checks, setChecks] = useState(0);
+  const [marks, setMarks] = useState(null); // {id: bool} tras comprobar
+  const [solved, setSolved] = useState(false);
+  const [firstHits, setFirstHits] = useState([]);
+  const [points, setPoints] = useState(0);
+  const [summary, setSummary] = useState(null);
 
-    // Characteristic associations - Pick a random hotspot for each planet
-    const concepts = useMemo(() => {
-        return planetsOnly.map(planet => {
-            const hotspots = planet.advanced?.hotspots || [];
-            const randomHotspot = hotspots.length > 0
-                ? hotspots[Math.floor(Math.random() * hotspots.length)]
-                : { title: planet.name, desc: "Característica de este cuerpo celeste." };
-            return {
-                id: planet.id,
-                title: randomHotspot.title,
-                desc: randomHotspot.desc
-            };
-        });
-    }, [planetsOnly]);
+  const startRef = useRef(Date.now());
+  const roundStart = useRef(Date.now());
+  const bonusRef = useRef(0);
+  const doneRef = useRef(false);
 
-    // Shuffle initially
-    useEffect(() => {
-        const shuffled = [...planetsOnly].sort(() => Math.random() - 0.5);
-        setOrderedPlanets(shuffled);
-    }, [planetsOnly]);
+  const crit = ORDER_CRITERIA[rounds[round]];
+  const target = useMemo(() => correctOrder(crit.id), [crit.id]);
+  const total = rounds.length * PLANET_IDS.length;
 
-    const shuffledConcepts = useMemo(() => [...concepts].sort(() => Math.random() - 0.5), [concepts]);
+  const move = (i, dir) => {
+    const j = i + dir;
+    if (j < 0 || j >= items.length || solved) return;
+    const n = [...items];
+    [n[i], n[j]] = [n[j], n[i]];
+    setItems(n);
+    setMarks(null);
+  };
 
-    // Phase 1 Logic: Drag and Drop (Simple version using buttons to move)
-    const movePlanet = (index, direction) => {
-        const newOrder = [...orderedPlanets];
-        const targetIndex = index + direction;
-        if (targetIndex < 0 || targetIndex >= newOrder.length) return;
+  const check = () => {
+    if (solved) return;
+    const hits = aciertosOrden(items, target);
+    const ok = hits === target.length;
+    if (checks === 0) {
+      const secs = (Date.now() - roundStart.current) / 1000;
+      const bonus = Math.round(speedBonus(secs, ROUND_PAR, ROUND_SPEED_MAX) * (hits / target.length));
+      bonusRef.current += bonus;
+      setFirstHits((f) => [...f, hits]);
+      setPoints((p) => p + hits * 100 + bonus);
+    }
+    setChecks((c) => c + 1);
+    setMarks(Object.fromEntries(items.map((id, i) => [id, id === target[i]])));
+    if (ok) setSolved(true);
+  };
 
-        [newOrder[index], newOrder[targetIndex]] = [newOrder[targetIndex], newOrder[index]];
-        setOrderedPlanets(newOrder);
-    };
+  const reveal = () => {
+    setItems(target);
+    setMarks(Object.fromEntries(target.map((id) => [id, true])));
+    setSolved(true);
+  };
 
-    const checkOrder = () => {
-        const currentIds = orderedPlanets.map(p => p.id);
-        const isCorrect = JSON.stringify(currentIds) === JSON.stringify(correctOrderIds);
-        if (firstOrderRef.current === null) firstOrderRef.current = currentIds;
+  const nextRound = () => {
+    if (round + 1 >= rounds.length) {
+      if (doneRef.current) return;
+      doneRef.current = true;
+      const durationSeconds = (Date.now() - startRef.current) / 1000;
+      const correct = firstHits.reduce((a, b) => a + b, 0);
+      const result = missionResult({ correct, total, bonus: bonusRef.current, bonusMax: rounds.length * ROUND_SPEED_MAX });
+      setSummary({ result, durationSeconds });
+      onComplete?.(buildPayload(result, durationSeconds), result);
+      return;
+    }
+    setRound((r) => r + 1);
+    setItems(scrambled(PLANET_IDS, rng));
+    setChecks(0);
+    setMarks(null);
+    setSolved(false);
+    roundStart.current = Date.now();
+  };
 
-        if (isCorrect) {
-            setPhase(2);
-        } else {
-            setIsWrong(true);
-            setTimeout(() => setIsWrong(false), 1000);
-        }
-    };
-
-    // Phase 2 Logic: Matching
-    useEffect(() => {
-        if (selectedPlanet && selectedConcept) {
-            if (selectedPlanet === selectedConcept) {
-                setMatches(prev => ({ ...prev, [selectedPlanet]: true }));
-                setSelectedPlanet(null);
-                setSelectedConcept(null);
-            } else {
-                failedMatchRef.current.add(selectedPlanet);
-                setIsWrong(true);
-                setTimeout(() => {
-                    setIsWrong(false);
-                    setSelectedPlanet(null);
-                    setSelectedConcept(null);
-                }, 1000);
-            }
-        }
-    }, [selectedPlanet, selectedConcept]);
-
-    useEffect(() => {
-        if (Object.keys(matches).length === planetsOnly.length && planetsOnly.length > 0) {
-            setPhase(3);
-            if (completedRef.current) return;
-            completedRef.current = true;
-            const durationSeconds = Math.max(1, Math.round((Date.now() - startedAtRef.current) / 1000));
-            const firstOrder = firstOrderRef.current || [];
-            const orderHits = aciertosOrden(firstOrder, correctOrderIds);
-            const matchHits = planetsOnly.filter(p => !failedMatchRef.current.has(p.id)).length;
-            const r = resultadoDesafio({ orderHits, matchHits, planets: planetsOnly.length, durationSeconds });
-            setSummary({
-                ...r,
-                orderHits,
-                matchHits,
-                durationSeconds,
-                orderOk: new Set(correctOrderIds.filter((id, i) => firstOrder[i] === id)),
-                matchFailed: new Set(failedMatchRef.current),
-            });
-            onComplete?.({
-                mode: 'practice',
-                score: r.points,
-                maxScore: r.maxScore,
-                correctAnswers: r.correct,
-                totalQuestions: r.total,
-                durationSeconds,
-                nota: r.nota,
-            });
-        }
-    }, [matches, planetsOnly, correctOrderIds, onComplete]);
-
+  if (summary) {
     return (
-        <div className="ssa-overlay">
-            {/* Campo de estrellas decorativo detrás del panel */}
-            <div className="ssa-starfield" aria-hidden="true">
-                {Array.from({ length: 18 }, (_, i) => (
-                    <span key={i} style={{ left: `${(i * 47) % 96 + 2}%`, top: `${(i * 29) % 92 + 4}%`, animationDelay: `${(i % 6) * -0.7}s` }} />
-                ))}
-            </div>
-            <motion.div
-                className={`ssa-panel ${isWrong ? 'is-wrong gk-anim-shake' : ''}`}
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 240, damping: 24 }}
-            >
-                <div className="ssa-head">
-                    <span className="ssa-head__badge"><Trophy size={22} /></span>
-                    <div className="ssa-head__text">
-                        <h2>Desafío del Sistema Solar</h2>
-                        <p>Fase {phase}: {phase === 1 ? 'Ordena los planetas por distancia al Sol' : phase === 2 ? 'Asocia cada planeta con su característica' : '¡Misión completada!'}</p>
-                    </div>
-                    <button type="button" className="gk-iconbtn" onClick={onClose} aria-label="Cerrar desafío" title="Cerrar">
-                        <X size={18} />
-                    </button>
-                </div>
-
-                <ol className="ssa-steps" aria-label="Fases">
-                    {PHASES.map(({ n, label, Icon }) => (
-                        <li key={n} className={`ssa-step ${phase > n ? 'is-done' : ''} ${phase === n ? 'is-current' : ''}`}>
-                            <span className="ssa-step__dot">{phase > n ? <Check size={15} strokeWidth={3} /> : <Icon size={15} />}</span>
-                            <span className="ssa-step__label">{label}</span>
-                        </li>
-                    ))}
-                </ol>
-
-                <div className="ssa-body">
-                    {phase === 1 && (
-                        <div className="ssa-order">
-                            <div className="ssa-order__sun" aria-hidden="true">
-                                <span className="ssa-order__sunball" />
-                                <span className="ssa-order__sunlabel"><Sun size={13} /> Sol</span>
-                            </div>
-                            <div className="ssa-order__track">
-                                {orderedPlanets.map((planet, index) => (
-                                    <motion.div
-                                        layout
-                                        key={planet.id}
-                                        className="ssa-card"
-                                        style={{ '--pc': planet.color }}
-                                        transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                                    >
-                                        <span className="ssa-card__pos">{index + 1}</span>
-                                        <PlanetOrb id={planet.id} color={planet.color} size={46} />
-                                        <span className="ssa-card__name">{planet.name}</span>
-                                        <div className="ssa-card__ctrl">
-                                            <button type="button" onClick={() => movePlanet(index, -1)} disabled={index === 0} aria-label={`Acercar ${planet.name} al Sol`}>
-                                                <ChevronLeft size={16} strokeWidth={3} />
-                                            </button>
-                                            <button type="button" onClick={() => movePlanet(index, 1)} disabled={index === orderedPlanets.length - 1} aria-label={`Alejar ${planet.name} del Sol`}>
-                                                <ChevronRight size={16} strokeWidth={3} />
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                            <p className="ssa-hint">Usa las flechas para mover cada planeta: el más cercano al Sol va a la izquierda.</p>
-                        </div>
-                    )}
-
-                    {phase === 2 && (
-                        <div className="ssa-match">
-                            <div className="ssa-col">
-                                <h3 className="ssa-col__head">Planetas</h3>
-                                {planetsOnly.map(planet => (
-                                    <button
-                                        type="button"
-                                        key={planet.id}
-                                        className={`ssa-planet ${selectedPlanet === planet.id ? 'is-selected' : ''} ${matches[planet.id] ? 'is-matched' : ''}`}
-                                        style={{ '--pc': planet.color }}
-                                        onClick={() => !isWrong && !matches[planet.id] && setSelectedPlanet(planet.id)}
-                                    >
-                                        <PlanetOrb id={planet.id} color={planet.color} size={30} />
-                                        <span>{planet.name}</span>
-                                        {matches[planet.id] && <span className="ssa-tick"><Check size={13} strokeWidth={3.5} /></span>}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className={`ssa-col ssa-col--concepts ${selectedPlanet ? 'is-ready' : ''}`}>
-                                <h3 className="ssa-col__head">Características</h3>
-                                {shuffledConcepts.map(concept => (
-                                    <button
-                                        type="button"
-                                        key={concept.id}
-                                        className={`gk-answer ssa-concept ${selectedConcept === concept.id ? 'is-selected' : ''} ${matches[concept.id] ? 'is-correct' : ''}`}
-                                        onClick={() => !isWrong && !matches[concept.id] && setSelectedConcept(concept.id)}
-                                    >
-                                        <span className="gk-answer__text">
-                                            <strong>{concept.title}</strong>
-                                            <small>{concept.desc}</small>
-                                        </span>
-                                        {matches[concept.id] && <span className="gk-answer__mark"><Check size={18} strokeWidth={3} /></span>}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {phase === 3 && summary && (
-                        <ResultsScreen
-                            title="¡Desafío completado!"
-                            subtitle="Cuenta lo que aciertas a la primera"
-                            nota={summary.nota}
-                            points={summary.points}
-                            stats={[
-                                { icon: ListOrdered, tone: 'good', label: 'Orden a la primera', value: `${summary.orderHits}/${planetsOnly.length}` },
-                                { icon: Link2, tone: 'good', label: 'Parejas a la primera', value: `${summary.matchHits}/${planetsOnly.length}` },
-                                { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(summary.durationSeconds) },
-                            ]}
-                            actions={[
-                                { label: 'Repetir desafío', onClick: onRestart, icon: RefreshCw },
-                                { label: 'Volver al simulador', onClick: onClose, icon: Orbit, variant: 'soft' },
-                            ]}
-                        >
-                            {planetsOnly.map((planet, i) => {
-                                const orderOk = summary.orderOk.has(planet.id);
-                                const matchOk = !summary.matchFailed.has(planet.id);
-                                const concept = concepts.find(c => c.id === planet.id);
-                                return (
-                                    <FeedbackItem key={planet.id} index={i + 1} ok={orderOk && matchOk} title={planet.name}>
-                                        Orden: {orderOk ? 'en su sitio' : `iba en la posición ${i + 1}`} · Característica:{' '}
-                                        <strong>{concept?.title}</strong> {matchOk ? '(a la primera)' : '(tras fallar)'}
-                                    </FeedbackItem>
-                                );
-                            })}
-                        </ResultsScreen>
-                    )}
-                </div>
-
-                {phase < 3 && (
-                    <div className="ssa-foot">
-                        <AnimatePresence>
-                            {isWrong && (
-                                <motion.span
-                                    className="ssa-wrong"
-                                    initial={{ opacity: 0, y: 6 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0 }}
-                                >
-                                    <X size={15} strokeWidth={3} /> {phase === 1 ? 'Aún no es el orden correcto' : 'Esa pareja no coincide'}
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                        <GameButton variant="soft" onClick={onClose}>Cancelar</GameButton>
-                        {phase === 1 && (
-                            <GameButton variant="primary" icon={CheckCheck} onClick={checkOrder}>Verificar orden</GameButton>
-                        )}
-                    </div>
-                )}
-            </motion.div>
-        </div>
+      <div className="ssq-overlay">
+        <MissionResults
+          mission={mission}
+          result={summary.result}
+          durationSeconds={summary.durationSeconds}
+          stats={[{ icon: ListOrdered, tone: 'accent', label: 'Rondas', value: rounds.length }]}
+          outcome={outcome}
+          onRestart={onRestart}
+          onHub={onHub}
+          onExplore={onExplore}
+        >
+          {rounds.map((rid, i) => {
+            const c = ORDER_CRITERIA[rid];
+            return (
+              <FeedbackItem key={rid} index={i + 1} ok={firstHits[i] === PLANET_IDS.length} title={`${c.title}: ${firstHits[i]}/8 a la primera`}>
+                {correctOrder(rid).map((id) => `${bodyName(id)} (${c.show(FACTS[id])})`).join(' → ')}
+              </FeedbackItem>
+            );
+          })}
+        </MissionResults>
+      </div>
     );
-};
+  }
 
-export default SolarSystemActivity;
+  const hitsNow = marks ? Object.values(marks).filter(Boolean).length : 0;
+  const reveal3d = solved && crit.id === 'size';
+  const Prev = narrow ? ChevronUp : ChevronLeft;
+  const Next = narrow ? ChevronDown : ChevronRight;
+
+  return (
+    <div className="ssq-overlay">
+      <div className="ssq-panel sso-panel" style={{ '--mt': mission.tone }}>
+        <MissionTopBar
+          mission={mission}
+          label={`Ronda ${round + 1} de ${rounds.length}`}
+          index={round}
+          total={rounds.length}
+          results={firstHits.map((h) => h === PLANET_IDS.length)}
+          points={points}
+          streak={0}
+          onExit={onExit}
+        />
+
+        <section className={`sso-board ${solved ? 'is-solved' : ''}`}>
+          <header className="sso-head">
+            <h2>{crit.title}</h2>
+            <p>Ordena los 8 planetas {crit.id === 'distance' ? 'del más cercano al más lejano del Sol' : `de ${crit.from.toLowerCase()} a ${crit.to.toLowerCase()}`}.</p>
+          </header>
+
+          <div className="sso-axis" aria-hidden="true">
+            <span className="sso-axis__from">{crit.id === 'distance' && <Sun size={14} />} {crit.from}</span>
+            <span className="sso-axis__line" />
+            <span className="sso-axis__to">{crit.to}</span>
+          </div>
+
+          <div className={`sso-track ${crit.id === 'distance' ? 'has-sun' : ''}`}>
+            {crit.id === 'distance' && <span className="sso-sun" aria-hidden="true" />}
+            <Reorder.Group axis={narrow ? 'y' : 'x'} values={items} onReorder={(v) => { if (!solved) { setItems(v); setMarks(null); } }} className="sso-list">
+              {items.map((id, i) => {
+                const mark = marks ? marks[id] : null;
+                return (
+                  <Reorder.Item
+                    key={id}
+                    value={id}
+                    className={`sso-card ${mark === true ? 'is-ok' : mark === false ? 'is-ko' : ''}`}
+                    style={{ '--pc': BODY_COLOR[id] }}
+                    dragListener={!solved}
+                    whileDrag={{ scale: 1.06, zIndex: 5 }}
+                  >
+                    <span className="sso-card__pos">{i + 1}</span>
+                    <span className="sso-card__grip" aria-hidden="true"><GripVertical size={14} /></span>
+                    <motion.span className="sso-card__orb" animate={{ scale: reveal3d ? sizeScale(id) : 1 }} transition={{ type: 'spring', stiffness: 160, damping: 16 }}>
+                      <PlanetOrb id={id} size={narrow ? 40 : 54} />
+                    </motion.span>
+                    <span className="sso-card__name">{bodyName(id)}</span>
+                    {solved && <span className="sso-card__val">{crit.show(FACTS[id])}</span>}
+                    {mark != null && !solved && (
+                      <span className={`sso-card__mark ${mark ? 'is-ok' : 'is-ko'}`}>{mark ? <Check size={13} strokeWidth={3.5} /> : <X size={13} strokeWidth={3.5} />}</span>
+                    )}
+                    {!solved && (
+                      <span className="sso-card__ctrl">
+                        <button type="button" onPointerDown={(e) => e.stopPropagation()} onClick={() => move(i, -1)} disabled={i === 0} aria-label={`Mover ${bodyName(id)} antes`}>
+                          <Prev size={16} strokeWidth={3} />
+                        </button>
+                        <button type="button" onPointerDown={(e) => e.stopPropagation()} onClick={() => move(i, 1)} disabled={i === items.length - 1} aria-label={`Mover ${bodyName(id)} después`}>
+                          <Next size={16} strokeWidth={3} />
+                        </button>
+                      </span>
+                    )}
+                  </Reorder.Item>
+                );
+              })}
+            </Reorder.Group>
+          </div>
+
+          <footer className="sso-foot">
+            <p className={`sso-status ${solved ? 'is-ok' : marks ? 'is-ko' : ''}`} aria-live="polite">
+              {solved
+                ? `¡Ronda resuelta! A la primera: ${firstHits[round] ?? 0} de 8.`
+                : marks
+                  ? `${hitsNow} de 8 en su sitio. Corrige los rojos y vuelve a comprobar (la nota ya cuenta la 1ª comprobación).`
+                  : narrow ? 'Arrastra las tarjetas o usa las flechas. Arriba va el primero.' : 'Arrastra las tarjetas o usa las flechas. A la izquierda va el primero.'}
+            </p>
+            <div className="sso-actions">
+              {!solved && checks >= 2 && <GameButton variant="soft" icon={Eye} onClick={reveal}>Ver solución</GameButton>}
+              {!solved && <GameButton variant="primary" icon={CheckCheck} onClick={check}>Comprobar</GameButton>}
+              {solved && (
+                <GameButton variant="success" iconRight={ArrowRight} onClick={nextRound} autoFocus>
+                  {round + 1 >= rounds.length ? 'Ver resultado' : 'Siguiente ronda'}
+                </GameButton>
+              )}
+            </div>
+          </footer>
+        </section>
+      </div>
+    </div>
+  );
+}

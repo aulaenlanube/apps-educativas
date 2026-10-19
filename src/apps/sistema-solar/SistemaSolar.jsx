@@ -1,1602 +1,798 @@
-import React, { useRef, useState, useMemo, useEffect, useCallback } from 'react';
+// src/apps/sistema-solar/SistemaSolar.jsx
+// Sistema Solar 3D: explorador + misiones con nota (app single_mode).
+//
+//   Explorar  → escena 3D (scene/SolarScene) con tres escalas, ficha de cada
+//               astro (ui/PlanetSheet), puntos de interés y vídeos.
+//   Interior  → visor de capas que se abre y se separa (scene/InteriorScene).
+//   Misiones  → centro de misiones (ui/MissionHub) con 6 juegos y progreso
+//               local por estrellas/rango (progress.js).
+//
+// CONTRATO DE REGISTRO (CLAUDE.md §3 y §5): explorar NO registra nada. Cada
+// misión terminada llama a onGameComplete UNA vez con el payload de
+// missionScoring.buildPayload → { mode: 'test', score, maxScore,
+// correctAnswers, totalQuestions, durationSeconds, nota }. Cada misión vive
+// en un montaje propio (key = run): repetir = partida nueva = registro nuevo.
+// Además de la guarda (useRef) de cada misión, aquí se ignora un segundo
+// aviso del mismo run.
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Stars, Html, useTexture } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import * as THREE from 'three';
-import AppOrientationWarning from '../_shared/AppOrientationWarning';
-import InstructionsModal from '../_shared/InstructionsModal';
 import {
-    Check, X, HelpCircle, ChevronDown, ChevronUp, Compass, Gauge, Eye, Puzzle, RotateCcw, Ruler,
-    ArrowDownToLine, Thermometer, RotateCw, Orbit, Satellite, Sun, FlaskConical, Globe2, Lightbulb,
-    BarChart3, AlertTriangle, PlayCircle, Settings2,
+  Check, X, HelpCircle, ChevronDown, Gauge, Eye, RotateCcw, PlayCircle, Pause, Play, Rocket, Star,
+  Settings2, Tag, Orbit, CalendarClock, Sparkles,
 } from 'lucide-react';
-import AppIcon, { hasAppIcon } from '@/components/AppIcon';
-import { GameShell, GameButton, useAppMeta, cleanAppName } from '../_shared/kit';
+import InstructionsModal from '../_shared/InstructionsModal';
+import AppIcon from '@/components/AppIcon';
+import GraphicsQualitySelector from '@/components/ui/GraphicsQualitySelector';
+import FrameLimiter from '@/components/ui/bg3d/FrameLimiter';
+import useGraphicsQuality from '@/hooks/useGraphicsQuality';
+import {
+  GLOBAL_QUALITY_PARAMS, effectiveDpr, createFpsGovernor, lowerTier, QUALITY_LABELS, isWebGLAvailable, markWebGLUnavailable,
+} from '@/services/graphicsQuality';
+import { GameShell, GameButton, Segmented, ConfirmDialog, useAppMeta, cleanAppName } from '../_shared/kit';
 import { solarSystemData } from './model/solarSystemData';
-import SolarSystemActivity, { PlanetOrb } from './SolarSystemActivity';
+import { BODY_COLOR, BODY_ORDER, PLANET_IDS, bodyName } from './model/planetFacts';
+import { INTERIOR_IDS } from './model/interiors';
+import { MISSIONS, missionById, tierFor } from './model/missions';
+import {
+  loadProgress, saveProgress, recordMission, markBody, markInterior, totalStars, rankFor, isUnlocked, starsForNota, MAX_STARS,
+} from './progress';
+import SolarScene from './scene/SolarScene';
+import InteriorScene from './scene/InteriorScene';
+import { sceneQuality } from './scene/quality';
+import { SCALE_MODES, VISUAL, meanLongitude } from './scene/layout';
+import PlanetOrb from './ui/PlanetOrb';
+import PlanetSheet from './ui/PlanetSheet';
+import InteriorPanel from './ui/InteriorPanel';
+import MissionHub from './ui/MissionHub';
+import QuizMission from './ui/QuizMission';
+import RiddleMission from './ui/RiddleMission';
+import LayersMission from './ui/LayersMission';
+import OrderMission from './SolarSystemActivity';
 import './SistemaSolar.css';
+import './ui/missions.css';
 
-// --- HELPER PARA DESCRIPCIONES ---
-const getDescription = (planet, level, grade) => {
-    if (!planet || !planet.description) return "Descripción no disponible.";
-    if (level === 'eso') return planet.description.secondary;
-    if (level === 'primaria') {
-        if (['1', '2', '3'].includes(grade)) return planet.description.primaryBasic;
-        return planet.description.primaryAdvanced;
-    }
-    return planet.description.secondary;
+/* ───────────────────────── Datos de apoyo ───────────────────────── */
+
+const BODY_DATA = {};
+solarSystemData.forEach((p) => {
+  BODY_DATA[p.id] = p;
+  p.moons?.forEach((m) => { BODY_DATA[m.id] = m; });
+});
+
+const NAV_IDS = BODY_ORDER; // Sol, planetas y la Luna junto a la Tierra
+
+const TOTAL_SPOTS = Object.values(BODY_DATA).reduce((n, b) => n + (b.advanced?.hotspots?.length || 0), 0);
+
+// Vídeos de divulgación (Kurzgesagt en español)
+const VIDEOS = {
+  sun: { id: 'R89xJYeExPc', title: 'El Sol: nuestra estrella' },
+  mercury: { id: 'r0JuWXs7lPA', title: 'Las estrellas más grandes del universo' },
+  venus: { id: 'vyyK3om1a10', title: 'Cómo terraformar Venus (rápidamente)' },
+  mars: { id: 'u1CZH4OrxBk', title: 'Marte: el planeta rojo' },
+  jupiter: { id: 'TFhRXnE2xck', title: 'Agujeros negros: los monstruos del universo' },
+  saturn: { id: 'fD69KtLjjfQ', title: 'Estrellas de neutrones: los astros más extremos' },
+  uranus: { id: 'duIDvO_QGBY', title: 'Agujeros de gusano: ¿se puede viajar por el espacio-tiempo?' },
+  neptune: { id: '5NBQ2PBiobM', title: 'Cómo construir una Esfera de Dyson' },
+  moon: { id: 'rF7llfSvEmY', title: 'La Luna: nuestro satélite natural' },
 };
 
-// --- LUZ DE CÁMARA (Linterna para inspección) ---
-const CameraLight = () => {
-    const lightRef = useRef();
-    useFrame(({ camera }) => {
-        if (lightRef.current) {
-            lightRef.current.position.copy(camera.position);
-        }
-    });
-    return <pointLight ref={lightRef} intensity={0.8} distance={60} decay={2} color="#ffffff" />;
+const SPEEDS = [0.1, 0.25, 0.5, 1, 2, 5, 10, 20];
+
+function useMedia(query, initial = false) {
+  const [m, setM] = useState(() => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : initial));
+  useEffect(() => {
+    if (!window.matchMedia) return undefined;
+    const mq = window.matchMedia(query);
+    const on = () => setM(mq.matches);
+    mq.addEventListener?.('change', on);
+    return () => mq.removeEventListener?.('change', on);
+  }, [query]);
+  return m;
 }
 
-// --- SUN CORONA GLOW ---
-const SunCorona = ({ size }) => {
-    const coronaRef = useRef();
-    const coronaRef2 = useRef();
-    const coronaRef3 = useRef();
+/* ───────────────────────── Piezas DOM de la escena ───────────────────────── */
 
-    useFrame(({ clock }) => {
-        const t = clock.getElapsedTime();
-        if (coronaRef.current) {
-            coronaRef.current.rotation.z = t * 0.05;
-            coronaRef.current.scale.setScalar(1 + Math.sin(t * 0.8) * 0.04);
-        }
-        if (coronaRef2.current) {
-            coronaRef2.current.rotation.z = -t * 0.03;
-            coronaRef2.current.scale.setScalar(1 + Math.sin(t * 0.5 + 1) * 0.06);
-        }
-        if (coronaRef3.current) {
-            coronaRef3.current.rotation.z = t * 0.02;
-            coronaRef3.current.scale.setScalar(1 + Math.sin(t * 1.2 + 2) * 0.03);
-        }
-    });
+const _n = new THREE.Vector3();
+const _w = new THREE.Vector3();
+const _c = new THREE.Vector3();
 
-    return (
-        <group>
-            {/* Inner glow */}
-            <mesh ref={coronaRef}>
-                <sphereGeometry args={[size * 1.15, 64, 64]} />
-                <meshBasicMaterial
-                    color="#FDB813"
-                    transparent
-                    opacity={0.15}
-                    side={THREE.BackSide}
-                />
-            </mesh>
-            {/* Mid glow */}
-            <mesh ref={coronaRef2}>
-                <sphereGeometry args={[size * 1.35, 48, 48]} />
-                <meshBasicMaterial
-                    color="#ff8c00"
-                    transparent
-                    opacity={0.06}
-                    side={THREE.BackSide}
-                />
-            </mesh>
-            {/* Outer halo */}
-            <mesh ref={coronaRef3}>
-                <sphereGeometry args={[size * 1.8, 32, 32]} />
-                <meshBasicMaterial
-                    color="#ff4500"
-                    transparent
-                    opacity={0.025}
-                    side={THREE.BackSide}
-                />
-            </mesh>
-            {/* Point light glow effect */}
-            <pointLight position={[0, 0, 0]} intensity={3} distance={size * 6} decay={2} color="#FDB813" />
-        </group>
-    );
-};
-
-// --- ATMOSPHERIC GLOW HALO ---
-const AtmosphereGlow = ({ size, color, intensity = 0.12 }) => {
-    const glowRef = useRef();
-
-    useFrame(({ clock }) => {
-        if (glowRef.current) {
-            const t = clock.getElapsedTime();
-            glowRef.current.scale.setScalar(1 + Math.sin(t * 0.4) * 0.01);
-        }
-    });
-
-    return (
-        <mesh ref={glowRef}>
-            <sphereGeometry args={[size * 1.08, 48, 48]} />
-            <meshBasicMaterial
-                color={color}
-                transparent
-                opacity={intensity}
-                side={THREE.BackSide}
-            />
-        </mesh>
-    );
-};
-
-// --- SHOOTING STARS ---
-const ShootingStar = () => {
-    const meshRef = useRef();
-    const trailRef = useRef();
-    const data = useMemo(() => ({
-        startPos: new THREE.Vector3(
-            (Math.random() - 0.5) * 600,
-            (Math.random() - 0.5) * 300 + 100,
-            (Math.random() - 0.5) * 600
-        ),
-        direction: new THREE.Vector3(
-            (Math.random() - 0.5) * 2,
-            -Math.random() * 1.5 - 0.5,
-            (Math.random() - 0.5) * 2
-        ).normalize(),
-        speed: 80 + Math.random() * 120,
-        delay: Math.random() * 15,
-        duration: 0.8 + Math.random() * 1.2,
-        length: 3 + Math.random() * 5,
-    }), []);
-
-    const timeRef = useRef(data.delay);
-    const activeRef = useRef(false);
-
-    useFrame((_, delta) => {
-        timeRef.current -= delta;
-
-        if (timeRef.current <= 0 && !activeRef.current) {
-            activeRef.current = true;
-            timeRef.current = data.duration;
-            if (meshRef.current) {
-                meshRef.current.position.copy(data.startPos);
-                meshRef.current.visible = true;
-            }
-            if (trailRef.current) trailRef.current.visible = true;
-        }
-
-        if (activeRef.current) {
-            timeRef.current -= delta;
-            const progress = 1 - (timeRef.current / data.duration);
-
-            if (meshRef.current) {
-                meshRef.current.position.addScaledVector(data.direction, data.speed * delta);
-                meshRef.current.material.opacity = Math.max(0, 1 - progress * progress);
-            }
-
-            if (trailRef.current) {
-                trailRef.current.position.copy(meshRef.current.position);
-                trailRef.current.position.addScaledVector(data.direction, -data.length);
-                trailRef.current.material.opacity = Math.max(0, 0.4 * (1 - progress));
-            }
-
-            if (timeRef.current <= 0) {
-                activeRef.current = false;
-                timeRef.current = 8 + Math.random() * 20; // Random next appearance
-                if (meshRef.current) meshRef.current.visible = false;
-                if (trailRef.current) trailRef.current.visible = false;
-                // Reset position
-                data.startPos.set(
-                    (Math.random() - 0.5) * 600,
-                    (Math.random() - 0.5) * 300 + 100,
-                    (Math.random() - 0.5) * 600
-                );
-            }
-        }
-    });
-
-    return (
-        <>
-            <mesh ref={meshRef} visible={false}>
-                <sphereGeometry args={[0.15, 8, 8]} />
-                <meshBasicMaterial color="#ffffff" transparent opacity={1} />
-            </mesh>
-            <mesh ref={trailRef} visible={false}>
-                <sphereGeometry args={[0.08, 6, 6]} />
-                <meshBasicMaterial color="#aaccff" transparent opacity={0.4} />
-            </mesh>
-        </>
-    );
-};
-
-const ShootingStars = () => {
-    return (
-        <group>
-            {[...Array(5)].map((_, i) => (
-                <ShootingStar key={i} />
-            ))}
-        </group>
-    );
-};
-
-// --- COSMIC DUST (Subtle floating particles) ---
-const CosmicDust = () => {
-    const pointsRef = useRef();
-    const count = 300;
-
-    const positions = useMemo(() => {
-        const pos = new Float32Array(count * 3);
-        for (let i = 0; i < count; i++) {
-            pos[i * 3] = (Math.random() - 0.5) * 500;
-            pos[i * 3 + 1] = (Math.random() - 0.5) * 200;
-            pos[i * 3 + 2] = (Math.random() - 0.5) * 500;
-        }
-        return pos;
-    }, []);
-
-    useFrame(({ clock }) => {
-        if (pointsRef.current) {
-            pointsRef.current.rotation.y = clock.getElapsedTime() * 0.003;
-        }
-    });
-
-    return (
-        <points ref={pointsRef}>
-            <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={count}
-                    array={positions}
-                    itemSize={3}
-                />
-            </bufferGeometry>
-            <pointsMaterial
-                color="#6366f1"
-                size={0.3}
-                transparent
-                opacity={0.25}
-                sizeAttenuation
-                blending={THREE.AdditiveBlending}
-                depthWrite={false}
-            />
-        </points>
-    );
-};
-
-// --- ASTEROID BELT (Instanced for performance) ---
-const ASTEROID_COUNT = 600;
-const BELT_INNER = 29;
-const BELT_OUTER = 38;
-const BELT_CENTER = (BELT_INNER + BELT_OUTER) / 2;
-const BELT_WIDTH = (BELT_OUTER - BELT_INNER) / 2;
-
-const AsteroidBelt = ({ simSpeed, isPaused, showLabels }) => {
-    const meshRef = useRef();
-    const dummy = useMemo(() => new THREE.Object3D(), []);
-
-    // Pre-compute asteroid transforms once
-    const asteroidData = useMemo(() => {
-        const data = [];
-        for (let i = 0; i < ASTEROID_COUNT; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            // Gaussian-like distribution around center
-            const r = BELT_CENTER + (Math.random() - 0.5 + (Math.random() - 0.5)) * BELT_WIDTH;
-            const y = (Math.random() - 0.5) * 1.8; // Vertical spread
-            const scale = 0.03 + Math.random() * 0.12;
-            const rotX = Math.random() * Math.PI * 2;
-            const rotY = Math.random() * Math.PI * 2;
-            const rotZ = Math.random() * Math.PI * 2;
-            // Individual orbit speed variation
-            const speedFactor = 0.8 + Math.random() * 0.4;
-            data.push({ angle, r, y, scale, rotX, rotY, rotZ, speedFactor });
-        }
-        return data;
-    }, []);
-
-    useFrame((_, delta) => {
-        if (!meshRef.current) return;
-        const orbitDelta = isPaused ? 0 : delta * simSpeed * 0.3;
-
-        for (let i = 0; i < ASTEROID_COUNT; i++) {
-            const a = asteroidData[i];
-            if (!isPaused) {
-                a.angle += orbitDelta * a.speedFactor * (1 / (a.r * 0.05));
-            }
-            // Self-rotation
-            a.rotX += delta * 0.2;
-            a.rotY += delta * 0.15;
-
-            dummy.position.set(
-                Math.cos(a.angle) * a.r,
-                a.y,
-                Math.sin(a.angle) * a.r
-            );
-            dummy.rotation.set(a.rotX, a.rotY, a.rotZ);
-            dummy.scale.setScalar(a.scale);
-            dummy.updateMatrix();
-            meshRef.current.setMatrixAt(i, dummy.matrix);
-        }
-        meshRef.current.instanceMatrix.needsUpdate = true;
-    });
-
-    return (
-        <group>
-            <instancedMesh ref={meshRef} args={[null, null, ASTEROID_COUNT]}>
-                <dodecahedronGeometry args={[1, 0]} />
-                <meshStandardMaterial
-                    color="#8a7d6b"
-                    roughness={0.85}
-                    metalness={0.15}
-                    emissive="#4a3f30"
-                    emissiveIntensity={0.05}
-                />
-            </instancedMesh>
-
-            {/* Subtle dust glow ring */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                <ringGeometry args={[BELT_INNER, BELT_OUTER, 128]} />
-                <meshBasicMaterial
-                    color="#a0906e"
-                    transparent
-                    opacity={0.015}
-                    side={THREE.DoubleSide}
-                    blending={THREE.AdditiveBlending}
-                    depthWrite={false}
-                />
-            </mesh>
-
-            {showLabels && (
-                <Html position={[0, 3, BELT_CENTER]} center distanceFactor={20} style={{ pointerEvents: 'none' }}>
-                    <div className="ss-label ss-label--belt">Cinturón de Asteroides</div>
-                </Html>
-            )}
-        </group>
-    );
-};
-
-// --- MANEJO DE ERRORES DE TEXTURA ---
-class TextureErrorBoundary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { hasError: false };
+// Punto de interés pegado a la superficie; se apaga cuando queda de espaldas
+function Hotspot({ position, title, desc, onClick, isVisited, isActive }) {
+  const ref = useRef();
+  const dom = useRef();
+  const back = useRef(null);
+  useFrame(({ camera }) => {
+    if (!ref.current || !dom.current) return;
+    ref.current.getWorldPosition(_w);
+    ref.current.parent.getWorldPosition(_c);
+    _n.copy(_w).sub(_c).normalize();
+    const isBack = _n.dot(_c.copy(camera.position).sub(_w).normalize()) < -0.05;
+    if (isBack !== back.current) {
+      back.current = isBack;
+      dom.current.classList.toggle('is-back', isBack);
     }
-
-    static getDerivedStateFromError(error) {
-        return { hasError: true };
-    }
-
-    componentDidCatch(error, errorInfo) {
-        console.warn("Error loading texture:", error);
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return this.props.fallback;
-        }
-        return this.props.children;
-    }
-}
-
-const TexturedMaterial = ({ textureUrl, emissive, emissiveIntensity, isSun }) => {
-    const texture = useTexture(textureUrl);
-    return (
-        <meshStandardMaterial
-            map={texture}
-            emissive={emissive || '#000000'}
-            emissiveIntensity={emissiveIntensity || 0}
-            emissiveMap={isSun ? texture : null}
-            roughness={isSun ? 1 : 0.5}
-            metalness={isSun ? 0 : 0.1}
-        />
-    );
-};
-
-const ColoredMaterial = ({ color, emissive, emissiveIntensity }) => {
-    return (
-        <meshStandardMaterial
-            color={color}
-            emissive={emissive || '#000000'}
-            emissiveIntensity={emissiveIntensity || 0}
-            roughness={0.5}
-            metalness={0.1}
-        />
-    );
-};
-
-// --- COMPONENTE MATERIAL SEGURO ---
-const PlanetMaterial = ({ color, emissive, emissiveIntensity, textureUrl, isSun }) => {
-    if (textureUrl) {
-        return (
-            <TextureErrorBoundary fallback={<ColoredMaterial color={color} emissive={emissive} emissiveIntensity={emissiveIntensity} />}>
-                <React.Suspense fallback={<ColoredMaterial color={color} emissive={emissive} emissiveIntensity={emissiveIntensity} />}>
-                    <TexturedMaterial
-                        textureUrl={textureUrl}
-                        emissive={emissive}
-                        emissiveIntensity={emissiveIntensity}
-                        isSun={isSun}
-                    />
-                </React.Suspense>
-            </TextureErrorBoundary>
-        );
-    }
-
-    return <ColoredMaterial color={color} emissive={emissive} emissiveIntensity={emissiveIntensity} />;
-};
-
-// --- COMPONENTE NUBES ---
-const CloudLayer = ({ textureUrl, size }) => {
-    const texture = useTexture(textureUrl);
-
-    return (
-        <mesh>
-            <sphereGeometry args={[size * 1.015, 64, 64]} />
-            <meshStandardMaterial
-                map={texture}
-                transparent={true}
-                opacity={0.8}
-                blending={THREE.AdditiveBlending}
-                side={THREE.DoubleSide}
-                depthWrite={false}
-            />
-        </mesh>
-    );
-};
-
-// --- COMPONENTE ANILLOS MEJORADO ---
-const Hotspot = ({ position, title, desc, onClick, isVisited, isActive }) => {
-    return (
-        <Html position={position} center className="ss-hotspot-wrap">
-            <div className={`ss-hotspot ${isVisited ? 'is-visited' : ''} ${isActive ? 'is-active' : ''}`}>
-                <button
-                    type="button"
-                    className="ss-hotspot__dot"
-                    aria-label={title}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onClick({ title, desc });
-                    }}
-                >
-                    {isVisited ? <Check size={10} strokeWidth={4} /> : <span className="ss-hotspot__pulse"></span>}
-                </button>
-                {isActive && (
-                    <div className="ss-hotspot__card">
-                        <h4>{title}</h4>
-                        <p>{desc}</p>
-                    </div>
-                )}
+  });
+  return (
+    <group ref={ref} position={position}>
+      <Html center zIndexRange={[14, 0]} className="ss-hotspot-wrap">
+        <div ref={dom} className={`ss-hotspot ${isVisited ? 'is-visited' : ''} ${isActive ? 'is-active' : ''}`}>
+          <button type="button" className="ss-hotspot__dot" aria-label={title} onClick={(e) => { e.stopPropagation(); onClick(); }}>
+            {isVisited ? <Check size={10} strokeWidth={4} /> : <span className="ss-hotspot__pulse" />}
+          </button>
+          {isActive && (
+            <div className="ss-hotspot__card">
+              <h4>{title}</h4>
+              <p>{desc}</p>
             </div>
-        </Html>
-    );
-};
-
-// --- COMPONENTE ANILLOS MEJORADO ---
-// Material con textura del anillo: el hook useTexture vive en su propio
-// componente (antes se llamaba dentro de un condicional del JSX de PlanetRing).
-const RingTextureMaterial = ({ textureUrl }) => {
-    const texture = useTexture(textureUrl);
-    return (
-        <meshStandardMaterial
-            map={texture}
-            side={THREE.DoubleSide}
-            transparent
-            opacity={0.9}
-        />
-    );
-};
-
-const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
-    const finalInner = innerRadius || size * 1.4;
-    const finalOuter = outerRadius || size * 2.2;
-    const ref = useRef();
-
-    useEffect(() => {
-        if (ref.current && textureUrl) {
-            const geometry = ref.current.geometry;
-            const pos = geometry.attributes.position;
-            const uv = geometry.attributes.uv;
-            const count = pos.count;
-            for (let i = 0; i < count; i++) {
-                const x = pos.getX(i);
-                const y = pos.getY(i);
-                const r = Math.sqrt(x * x + y * y);
-                const v = (r - finalInner) / (finalOuter - finalInner);
-                uv.setXY(i, v, 0.5);
-            }
-            geometry.attributes.uv.needsUpdate = true;
-        }
-    }, [finalInner, finalOuter, textureUrl]);
-
-    return (
-        <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[finalInner, finalOuter, 128]} />
-            {textureUrl ? (
-                <TextureErrorBoundary fallback={<meshStandardMaterial color="#C0C0C0" side={THREE.DoubleSide} transparent opacity={0.6} />}>
-                    <React.Suspense fallback={<meshStandardMaterial color="#C0C0C0" side={THREE.DoubleSide} transparent opacity={0.6} />}>
-                        <RingTextureMaterial textureUrl={textureUrl} />
-                    </React.Suspense>
-                </TextureErrorBoundary>
-            ) : (
-                <meshStandardMaterial
-                    color="#C0C0C0"
-                    side={THREE.DoubleSide}
-                    transparent
-                    opacity={0.6}
-                />
-            )}
-        </mesh>
-    );
-};
-
-// --- ORBIT GLOW RING ---
-const GlowOrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05, color = '#4f6bff' }) => {
-    // Hooks antes de cualquier return (reglas de los hooks)
-    const glowRef = useRef();
-
-    useFrame(({ clock }) => {
-        if (glowRef.current) {
-            glowRef.current.material.opacity = opacity * (0.7 + Math.sin(clock.getElapsedTime() * 0.3 + distance) * 0.3);
-        }
-    });
-
-    if (distance <= 0 || !visible) return null;
-    const halfThickness = thickness / 2;
-
-    return (
-        <group>
-            {/* Main orbit line */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                <ringGeometry args={[distance - halfThickness, distance + halfThickness, 256]} />
-                <meshBasicMaterial color="#ffffff" transparent opacity={opacity} side={THREE.DoubleSide} />
-            </mesh>
-            {/* Glow layer */}
-            <mesh ref={glowRef} rotation={[-Math.PI / 2, 0, 0]}>
-                <ringGeometry args={[distance - halfThickness * 4, distance + halfThickness * 4, 256]} />
-                <meshBasicMaterial
-                    color={color}
-                    transparent
-                    opacity={opacity * 0.4}
-                    side={THREE.DoubleSide}
-                    blending={THREE.AdditiveBlending}
-                    depthWrite={false}
-                />
-            </mesh>
-        </group>
-    );
-};
-
-// --- PANEL DE CONFIGURACIÓN ---
-const RING_PATH = 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831';
-
-// Deslizador con relleno (solo presentación: mismo input y mismo onChange)
-const RangeField = ({ label, display, min, max, step, value, onChange }) => (
-    <label className="ss-range">
-        <span className="ss-range__row">
-            <span className="ss-range__label">{label}</span>
-            <span className="ss-range__value">{display}</span>
-        </span>
-        <input
-            type="range"
-            min={min} max={max} step={step}
-            value={value}
-            onChange={onChange}
-            style={{ '--p': `${((value - min) / (max - min)) * 100}%` }}
-        />
-    </label>
-);
-
-const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount, onLaunchActivity, onHelp }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const meta = useAppMeta();
-    const remaining = totalCount - visitedCount;
-    const percentage = Math.round((visitedCount / totalCount) * 100);
-
-    return (
-        <section className={`ss-control ${isOpen ? 'is-open' : ''}`} aria-label="Centro de control">
-            <div className="ss-control__head">
-                <button type="button" className="ss-control__toggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
-                    {meta.appId && hasAppIcon(meta.appId) ? (
-                        <span className="ss-control__icon"><AppIcon appId={meta.appId} size={40} /></span>
-                    ) : (
-                        <span className="ss-control__icon ss-control__icon--gear"><Settings2 size={20} /></span>
-                    )}
-                    <span className="ss-control__titles">
-                        <strong>{cleanAppName(meta.name) || 'Sistema Solar 3D'}</strong>
-                        <span>{isOpen ? 'Ajustes del simulador' : 'Centro de control'}</span>
-                    </span>
-                    {!isOpen && (
-                        <span className={`ss-control__pct ${percentage === 100 ? 'is-full' : ''}`}>{percentage}%</span>
-                    )}
-                    <span className={`ss-control__chev ${isOpen ? 'is-up' : ''}`}><ChevronDown size={18} /></span>
-                </button>
-                <button type="button" className="gk-iconbtn" onClick={onHelp} title="Cómo se juega" aria-label="Cómo se juega">
-                    <HelpCircle size={18} />
-                </button>
-            </div>
-
-            <div className="ss-hud">
-                <div className="ss-hud__ring">
-                    <svg viewBox="0 0 36 36" aria-hidden="true">
-                        <path className="ss-hud__track" d={RING_PATH} />
-                        <path className="ss-hud__arc" style={{ strokeDasharray: `${percentage}, 100` }} d={RING_PATH} />
-                    </svg>
-                    <span>{percentage}%</span>
-                </div>
-                <div className="ss-hud__info">
-                    <div className="ss-hud__row">
-                        <span className="ss-hud__label">Sistema explorado</span>
-                        <span className="ss-hud__value">{visitedCount}<small>/{totalCount}</small></span>
-                    </div>
-                    <div className="ss-hud__dots" aria-hidden="true">
-                        {[...Array(totalCount)].map((_, i) => (
-                            <i key={i} className={i < visitedCount ? 'is-found' : ''}></i>
-                        ))}
-                    </div>
-                    <span className={`ss-hud__msg ${remaining > 0 ? '' : 'is-done'}`}>
-                        {remaining > 0 ? `${remaining} puntos de interés por descubrir` : '¡Base de datos completa! Ponte a prueba'}
-                    </span>
-                </div>
-            </div>
-
-            {/* Desafío: la actividad con nota (cuenta para las tareas) */}
-            <div className="ss-challenge">
-                <GameButton variant="warning" icon={Puzzle} onClick={onLaunchActivity} className="ss-challenge__cta">
-                    Desafío de planetas
-                </GameButton>
-                <span className="ss-challenge__note">Nota /10 · cuenta para tus tareas</span>
-            </div>
-
-            {isOpen && (
-                <div className="ss-control__deploy">
-                    <div className="ss-sec">
-                        <h4 className="ss-sec__title"><Compass size={14} /> Navegación</h4>
-                        <p className="ss-sec__text">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
-                    </div>
-
-                    <div className="ss-sec">
-                        <h4 className="ss-sec__title"><Gauge size={14} /> Simulación cinética</h4>
-                        <RangeField
-                            label="Velocidad orbital"
-                            display={`x${config.simSpeed.toFixed(1)}`}
-                            min={0.1} max={5} step={0.1}
-                            value={config.simSpeed}
-                            onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
-                        />
-                        <RangeField
-                            label="Velocidad de rotación"
-                            display={`x${config.rotationSpeed.toFixed(1)}`}
-                            min={0} max={10} step={0.1}
-                            value={config.rotationSpeed}
-                            onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
-                        />
-                    </div>
-
-                    <div className="ss-sec">
-                        <h4 className="ss-sec__title"><Eye size={14} /> Visualización avanzada</h4>
-                        <RangeField
-                            label="Opacidad de las órbitas"
-                            display={`${Math.round(config.orbitOpacity * 100)}%`}
-                            min={0} max={0.5} step={0.01}
-                            value={config.orbitOpacity}
-                            onChange={(e) => setConfig({ ...config, orbitOpacity: parseFloat(e.target.value) })}
-                        />
-                        <RangeField
-                            label="Grosor de las órbitas"
-                            display={config.orbitThickness.toFixed(2)}
-                            min={0.01} max={0.3} step={0.01}
-                            value={config.orbitThickness}
-                            onChange={(e) => setConfig({ ...config, orbitThickness: parseFloat(e.target.value) })}
-                        />
-                    </div>
-
-                    <div className="ss-sec ss-sec--foot">
-                        <GameButton variant="soft" size="sm" icon={RotateCcw} onClick={onResetProgress} className="ss-reset">
-                            Reiniciar exploración
-                        </GameButton>
-                        <p className="ss-credits">
-                            Simulador del Sistema Solar v3.0 · Texturas de{' '}
-                            <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
-                        </p>
-                    </div>
-                </div>
-            )}
-        </section>
-    );
-};
-
-// --- COMPONENTE LUNA ---
-const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, isSelected, onHotspotClick, visitedHotspots, activeHotspots, onVideoClick }) => {
-    const moonGroupRef = useRef();
-    const moonMeshRef = useRef();
-
-    useEffect(() => {
-        if (registerRef && moonGroupRef.current) {
-            registerRef(moon.id, moonGroupRef);
-        }
-    }, [registerRef, moon.id]);
-
-    const initialAngle = useMemo(() => Math.random() * Math.PI * 2, []);
-    const angleRef = useRef(initialAngle);
-
-    useFrame((state, delta) => {
-        if (moonMeshRef.current) {
-            moonMeshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
-        }
-
-        if (!isPaused) {
-            angleRef.current += (moon.speed * 10) * simSpeed * delta;
-        }
-
-        if (moonGroupRef.current) {
-            moonGroupRef.current.position.x = Math.cos(angleRef.current) * moon.distance;
-            moonGroupRef.current.position.z = Math.sin(angleRef.current) * moon.distance;
-        }
-    });
-
-    return (
-        <>
-            <group ref={moonGroupRef}>
-                <mesh
-                    ref={moonMeshRef}
-                    onClick={(e) => { e.stopPropagation(); onClick(moon); }}
-                    onPointerOver={() => document.body.style.cursor = 'pointer'}
-                    onPointerOut={() => document.body.style.cursor = 'auto'}
-                >
-                    <sphereGeometry args={[moon.size, 32, 32]} />
-                    <PlanetMaterial
-                        color={moon.color}
-                        textureUrl={moon.textureUrl}
-                    />
-                </mesh>
-
-                {isSelected === moon.id && moon.advanced?.hotspots?.map((hs, index) => {
-                    const hotspotId = `${moon.id}-${index}`;
-                    return (
-                        <Hotspot
-                            key={index}
-                            position={hs.pos}
-                            title={hs.title}
-                            desc={hs.desc}
-                            isVisited={visitedHotspots[hotspotId]}
-                            onClick={(data) => onHotspotClick(data, hotspotId)}
-                            isActive={!!activeHotspots[hotspotId]}
-                        />
-                    );
-                })}
-
-                {/* Video Star Hotspot for Moon */}
-                <VideoStarHotspot planetId={moon.id} planetSize={moon.size} onVideoClick={onVideoClick} />
-            </group>
-            <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                <ringGeometry args={[moon.distance - 0.03, moon.distance + 0.03, 128]} />
-                <meshBasicMaterial color="#ffffff" transparent opacity={0.15} side={THREE.DoubleSide} />
-            </mesh>
-        </>
-    );
-};
-
-// --- ATMOSPHERE COLOR MAP ---
-const atmosphereColors = {
-    sun: null,
-    mercury: null,
-    venus: '#E3BB76',
-    earth: '#4fc3f7',
-    mars: '#ff7043',
-    jupiter: '#F9CA24',
-    saturn: '#F0932B',
-    uranus: '#7ED6DF',
-    neptune: '#5c6bc0',
-};
-
-// --- YOUTUBE VIDEO DATA (Kurzgesagt ES) ---
-const planetVideos = {
-    sun: { id: 'R89xJYeExPc', title: 'El Sol: nuestra estrella', label: '☀️ El Sol' },
-    mercury: { id: 'r0JuWXs7lPA', title: 'Las estrellas más grandes del universo', label: '⭐ Estrellas Gigantes' },
-    venus: { id: 'vyyK3om1a10', title: 'Cómo terraformar Venus (rápidamente)', label: '🔥 Terraformar Venus' },
-    mars: { id: 'u1CZH4OrxBk', title: 'Marte: el planeta rojo', label: '🚀 Marte' },
-    jupiter: { id: 'TFhRXnE2xck', title: 'Agujeros negros: los monstruos del universo', label: '🕳️ Agujeros Negros' },
-    saturn: { id: 'fD69KtLjjfQ', title: 'Estrellas de neutrones: los astros más extremos', label: '💫 Estrellas de Neutrones' },
-    uranus: { id: 'duIDvO_QGBY', title: 'Agujeros de gusano: ¿se puede viajar por el espacio-tiempo?', label: '🌀 Agujeros de Gusano' },
-    neptune: { id: '5NBQ2PBiobM', title: 'Cómo construir una Esfera de Dyson', label: '🔆 Esfera de Dyson' },
-    moon: { id: 'rF7llfSvEmY', title: 'La Luna: nuestro satélite natural', label: '🌙 La Luna' },
-};
-
-// --- DATOS FÍSICOS REALES ---
-const planetStats = {
-    sun: {
-        diameter: '1.392.700 km', gravity: '274 m/s²', avgTemp: '5.500°C (superficie)',
-        rotationPeriod: '~25 días', orbitalPeriod: '—', moonCount: '—',
-        distanceFromSun: '—', sizeRatio: 109, gravityRatio: 28,
-    },
-    mercury: {
-        diameter: '4.879 km', gravity: '3,7 m/s²', avgTemp: '167°C (media)',
-        rotationPeriod: '59 días', orbitalPeriod: '88 días', moonCount: 0,
-        distanceFromSun: '57,9 M km', sizeRatio: 0.38, gravityRatio: 0.38,
-    },
-    venus: {
-        diameter: '12.104 km', gravity: '8,87 m/s²', avgTemp: '464°C',
-        rotationPeriod: '243 días', orbitalPeriod: '225 días', moonCount: 0,
-        distanceFromSun: '108,2 M km', sizeRatio: 0.95, gravityRatio: 0.91,
-    },
-    earth: {
-        diameter: '12.742 km', gravity: '9,8 m/s²', avgTemp: '15°C',
-        rotationPeriod: '23 h 56 min', orbitalPeriod: '365,25 días', moonCount: 1,
-        distanceFromSun: '149,6 M km', sizeRatio: 1, gravityRatio: 1,
-    },
-    mars: {
-        diameter: '6.779 km', gravity: '3,71 m/s²', avgTemp: '-65°C',
-        rotationPeriod: '24 h 37 min', orbitalPeriod: '687 días', moonCount: 2,
-        distanceFromSun: '227,9 M km', sizeRatio: 0.53, gravityRatio: 0.38,
-    },
-    jupiter: {
-        diameter: '139.820 km', gravity: '24,79 m/s²', avgTemp: '-110°C',
-        rotationPeriod: '9 h 55 min', orbitalPeriod: '11,86 años', moonCount: 95,
-        distanceFromSun: '778,5 M km', sizeRatio: 10.97, gravityRatio: 2.53,
-    },
-    saturn: {
-        diameter: '116.460 km', gravity: '10,44 m/s²', avgTemp: '-140°C',
-        rotationPeriod: '10 h 42 min', orbitalPeriod: '29,46 años', moonCount: 146,
-        distanceFromSun: '1.434 M km', sizeRatio: 9.14, gravityRatio: 1.07,
-    },
-    uranus: {
-        diameter: '50.724 km', gravity: '8,87 m/s²', avgTemp: '-195°C',
-        rotationPeriod: '17 h 14 min', orbitalPeriod: '84 años', moonCount: 28,
-        distanceFromSun: '2.871 M km', sizeRatio: 3.98, gravityRatio: 0.91,
-    },
-    neptune: {
-        diameter: '49.244 km', gravity: '11,15 m/s²', avgTemp: '-200°C',
-        rotationPeriod: '16 h 06 min', orbitalPeriod: '164,8 años', moonCount: 16,
-        distanceFromSun: '4.495 M km', sizeRatio: 3.86, gravityRatio: 1.14,
-    },
-    moon: {
-        diameter: '3.474 km', gravity: '1,62 m/s²', avgTemp: '-23°C (media)',
-        rotationPeriod: '27,3 días', orbitalPeriod: '27,3 días', moonCount: '—',
-        distanceFromSun: '—', sizeRatio: 0.27, gravityRatio: 0.17,
-    },
-};
-
-// --- VIDEO STAR HOTSPOT (3D) ---
-const VideoStarHotspot = ({ planetId, planetSize, onVideoClick }) => {
-    const videoData = planetVideos[planetId];
-    if (!videoData) return null;
-
-    // Position the star at an angle above the planet
-    const yPos = planetSize * 0.6;
-    const xPos = -planetSize * 0.85;
-
-    return (
-        <Html position={[xPos, yPos, 0]} center distanceFactor={planetId === 'sun' ? 24 : 8} style={{ pointerEvents: 'auto' }}>
-            <button
-                type="button"
-                className="ss-star"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onVideoClick(videoData);
-                }}
-                title={videoData.title}
-                aria-label={`Ver vídeo: ${videoData.title}`}
-            >
-                <svg className="ss-star__svg" viewBox="0 0 24 24" width="22" height="22">
-                    <polygon
-                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                        fill="currentColor"
-                    />
-                </svg>
-                <span className="ss-star__ring"></span>
-                <span className="ss-star__ring is-delay"></span>
-            </button>
-        </Html>
-    );
-};
-
-// --- VIDEO MODAL (rendered via Portal to escape Canvas stacking context) ---
-const VideoModal = ({ video, onClose }) => {
-    // Escape para cerrar (el hook va antes del return condicional: reglas de hooks)
-    useEffect(() => {
-        if (!video) return undefined;
-        const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
-        window.addEventListener('keydown', handleKey);
-        return () => window.removeEventListener('keydown', handleKey);
-    }, [video, onClose]);
-
-    if (!video) return null;
-
-    return createPortal(
-        <div className="ss-video" onClick={onClose}>
-            <div className="ss-video__card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={video.title}>
-                <div className="ss-video__head">
-                    <span className="ss-video__badge"><PlayCircle size={14} /> Kurzgesagt</span>
-                    <h3>{video.title}</h3>
-                    <button type="button" className="ss-video__close" onClick={onClose} aria-label="Cerrar vídeo">
-                        <X size={20} />
-                    </button>
-                </div>
-                <div className="ss-video__player">
-                    <iframe
-                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        style={{ width: '100%', height: '100%', border: 'none' }}
-                    ></iframe>
-                </div>
-                <div className="ss-video__foot">En Pocas Palabras – Kurzgesagt</div>
-            </div>
-        </div>,
-        document.body
-    );
-};
-
-// --- PLANETA INDIVIDUAL ---
-const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots, activeHotspots, onVideoClick }) => {
-    const groupRef = useRef();
-    const meshRef = useRef();
-
-    const initialAngle = useMemo(() => Math.random() * Math.PI * 2, []);
-    const angleRef = useRef(initialAngle);
-
-    useEffect(() => {
-        if (registerRef && groupRef.current) {
-            registerRef(planet.id, groupRef);
-        }
-    }, [registerRef, planet.id]);
-
-    useFrame((state, delta) => {
-        if (meshRef.current) {
-            meshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
-        }
-
-        if (planet.distance > 0) {
-            if (!isPaused) {
-                angleRef.current += (planet.speed * 5) * simSpeed * delta;
-            }
-
-            if (groupRef.current) {
-                groupRef.current.position.x = Math.cos(angleRef.current) * planet.distance;
-                groupRef.current.position.z = Math.sin(angleRef.current) * planet.distance;
-            }
-        }
-    });
-
-    const currentSize = planet.size;
-    const atmosphereColor = atmosphereColors[planet.id];
-
-    return (
-        <group ref={groupRef}>
-            <mesh
-                ref={meshRef}
-                onClick={(e) => { e.stopPropagation(); onClick(planet); }}
-                onPointerOver={() => document.body.style.cursor = 'pointer'}
-                onPointerOut={() => document.body.style.cursor = 'auto'}
-            >
-                <sphereGeometry args={[currentSize, 64, 64]} />
-                <PlanetMaterial
-                    color={planet.color}
-                    emissive={planet.emissive}
-                    emissiveIntensity={planet.emissiveIntensity}
-                    textureUrl={planet.textureUrl}
-                    isSun={planet.id === 'sun'}
-                />
-
-                {planet.cloudTextureUrl && (
-                    <CloudLayer textureUrl={planet.cloudTextureUrl} size={currentSize} />
-                )}
-            </mesh>
-
-            {/* Sun Corona */}
-            {planet.id === 'sun' && <SunCorona size={currentSize} />}
-
-            {/* Atmospheric glow for planets with atmosphere */}
-            {atmosphereColor && (
-                <AtmosphereGlow
-                    size={currentSize}
-                    color={atmosphereColor}
-                    intensity={planet.id === 'earth' ? 0.18 : 0.1}
-                />
-            )}
-
-            {planet.hasRings && (
-                <PlanetRing
-                    size={currentSize}
-                    textureUrl={planet.ringTextureUrl}
-                    innerRadius={planet.ringInnerRadius}
-                    outerRadius={planet.ringOuterRadius}
-                />
-            )}
-
-            {showLabels && (
-                <Html position={[0, currentSize + 1.5, 0]} center distanceFactor={12} style={{ pointerEvents: 'none' }}>
-                    <div className="ss-label" style={{ opacity: isPaused ? 0.5 : 1, '--pc': planet.color }}>{planet.name}</div>
-                </Html>
-            )}
-
-            {isSelected === planet.id && planet.advanced?.hotspots?.map((hs, index) => {
-                const hotspotId = `${planet.id}-${index}`;
-                return (
-                    <Hotspot
-                        key={index}
-                        position={hs.pos}
-                        title={hs.title}
-                        desc={hs.desc}
-                        isVisited={visitedHotspots[hotspotId]}
-                        onClick={(data) => onHotspotClick(data, hotspotId)}
-                        isActive={!!activeHotspots[hotspotId]}
-                    />
-                );
-            })}
-
-            {/* Video Star Hotspot */}
-            <VideoStarHotspot planetId={planet.id} planetSize={currentSize} onVideoClick={onVideoClick} />
-
-            {planet.moons && planet.moons.map((moon) => (
-                <Moon
-                    key={moon.id}
-                    moon={moon}
-                    simSpeed={simSpeed}
-                    rotationSpeed={rotationSpeed}
-                    onClick={onClick}
-                    registerRef={registerRef}
-                    isPaused={isPaused}
-                    isSelected={isSelected}
-                    onHotspotClick={onHotspotClick}
-                    visitedHotspots={visitedHotspots}
-                    activeHotspots={activeHotspots}
-                    onVideoClick={onVideoClick}
-                />
-            ))}
-        </group>
-    );
-};
-
-const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot }) => {
-    const currentTarget = useRef(new THREE.Vector3(0, 0, 0));
-    const vec3_1 = useRef(new THREE.Vector3());
-    const vec3_2 = useRef(new THREE.Vector3());
-    const vec3_3 = useRef(new THREE.Vector3());
-
-    const isUserInteractingRef = useRef(false);
-    const interactionTimeoutRef = useRef(null);
-    const eventsInit = useRef(false);
-
-    useEffect(() => {
-        isUserInteractingRef.current = false;
-        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
-    }, [selectedPlanetId]);
-
-    useFrame(({ camera, controls }, delta) => {
-        if (!controls) return;
-
-        if (!eventsInit.current) {
-            controls.addEventListener('start', () => {
-                isUserInteractingRef.current = true;
-                if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
-            });
-            controls.addEventListener('end', () => {
-                interactionTimeoutRef.current = setTimeout(() => {
-                    isUserInteractingRef.current = false;
-                }, 4000);
-            });
-            eventsInit.current = true;
-        }
-
-        const isUserInteracting = isUserInteractingRef.current;
-
-        if (selectedPlanetId && planetRefs.current[selectedPlanetId]?.current) {
-            const planetGroup = planetRefs.current[selectedPlanetId].current;
-
-            planetGroup.getWorldPosition(vec3_1.current);
-            const targetVec = vec3_1.current;
-
-            currentTarget.current.lerp(targetVec, delta * 8);
-            controls.target.copy(currentTarget.current);
-
-            let planetData = solarSystemData.find(p => p.id === selectedPlanetId);
-            if (!planetData) {
-                for (let i = 0; i < solarSystemData.length; i++) {
-                    const p = solarSystemData[i];
-                    if (p.moons) {
-                        const moon = p.moons.find(m => m.id === selectedPlanetId);
-                        if (moon) { planetData = moon; break; }
-                    }
-                }
-            }
-
-            const size = planetData?.size || 1;
-            const baseDist = size * 3.5;
-            const zoomFactor = 1 / (config?.zoomLevel || 1);
-            const idealDist = baseDist * zoomFactor;
-
-            if (!isUserInteracting) {
-                vec3_2.current.subVectors(camera.position, currentTarget.current).normalize();
-                const direction = vec3_2.current;
-
-                vec3_3.current.copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
-                const goalPos = vec3_3.current;
-
-                camera.position.lerp(goalPos, delta * 2.0);
-            }
-
-        } else {
-            vec3_1.current.set(0, 0, 0);
-            currentTarget.current.lerp(vec3_1.current, delta * 4);
-            controls.target.copy(currentTarget.current);
-
-            const defaultCamPos = vec3_3.current.set(0, 80, 140);
-
-            if (!isUserInteracting) {
-                camera.position.lerp(defaultCamPos, delta * 1);
-            }
-        }
-    });
-
-    return null;
-};
-
-// --- INFO PANEL ---
-const STAT_ITEMS = [
-    { key: 'diameter', label: 'Diámetro', Icon: Ruler },
-    { key: 'gravity', label: 'Gravedad', Icon: ArrowDownToLine },
-    { key: 'avgTemp', label: 'Temperatura', Icon: Thermometer },
-    { key: 'rotationPeriod', label: 'Rotación', Icon: RotateCw },
-    { key: 'orbitalPeriod', label: 'Órbita', Icon: Orbit },
-    { key: 'moonCount', label: 'Satélites', Icon: Satellite },
-];
-const BODY_KIND = { star: 'Estrella', planet: 'Planeta' };
-
-const CompareRow = ({ label, ratio, fill, mark, color, dim }) => (
-    <div className="ss-compare__row">
-        <span className="ss-compare__label">{label} <small>vs Tierra</small></span>
-        <span className="ss-compare__track">
-            <span className="ss-compare__fill" style={{ transform: `scaleX(${fill / 100})`, background: color, opacity: dim ? 0.75 : 1 }} />
-            <span className="ss-compare__mark" style={{ left: `${mark}%` }} title="Tierra" />
-        </span>
-        <span className="ss-compare__ratio">×{ratio}</span>
-    </div>
-);
-
-const InfoPanel = ({ planet, level, grade, onClose }) => {
-    const [showAdvanced, setShowAdvanced] = useState(false);
-    if (!planet) return null;
-
-    const description = getDescription(planet, level, grade);
-    const stats = planetStats[planet.id];
-
-    // Compute comparison bar widths (capped at 100% for visual clarity)
-    const sizeBarWidth = stats ? Math.min((stats.sizeRatio / 11) * 100, 100) : 0;
-    const gravityBarWidth = stats ? Math.min((stats.gravityRatio / 3) * 100, 100) : 0;
-
-    return (
-        <aside className={`ss-info ${showAdvanced ? 'is-expanded' : ''}`} style={{ '--pc': planet.color }} aria-label={`Ficha: ${planet.name}`}>
-            <div className="ss-info__head">
-                <PlanetOrb id={planet.id} color={planet.color} size={58} />
-                <div className="ss-info__titles">
-                    <span className="ss-info__kind">{BODY_KIND[planet.type] || 'Satélite'}</span>
-                    <h2>{planet.name}</h2>
-                </div>
-                <button type="button" className="ss-exit" onClick={onClose}>
-                    <X size={15} strokeWidth={3} /> Salir
-                </button>
-            </div>
-
-            <div className="ss-info__body">
-                <p className="ss-info__desc">{description}</p>
-
-                {/* --- FICHA TÉCNICA --- */}
-                {stats && (
-                    <section className="ss-tech">
-                        <h4 className="ss-sec__title"><BarChart3 size={14} /> Ficha técnica</h4>
-                        <div className="ss-tech__grid">
-                            {STAT_ITEMS.map(({ key, label, Icon }) => (
-                                <div key={key} className="ss-tech__cell">
-                                    <span className="ss-tech__icon"><Icon size={14} /></span>
-                                    <span className="ss-tech__label">{label}</span>
-                                    <span className="ss-tech__value">{stats[key]}</span>
-                                </div>
-                            ))}
-                        </div>
-
-                        {stats.distanceFromSun !== '—' && (
-                            <div className="ss-tech__row">
-                                <span className="ss-tech__icon"><Sun size={14} /></span>
-                                <span className="ss-tech__label">Distancia al Sol</span>
-                                <span className="ss-tech__value">{stats.distanceFromSun}</span>
-                            </div>
-                        )}
-
-                        {planet.id !== 'sun' && planet.id !== 'moon' && (
-                            <div className="ss-compare">
-                                <CompareRow label="Tamaño" ratio={stats.sizeRatio} fill={sizeBarWidth} mark={Math.min((1 / 11) * 100, 100)} color={planet.color} />
-                                <CompareRow label="Gravedad" ratio={stats.gravityRatio} fill={gravityBarWidth} mark={Math.min((1 / 3) * 100, 100)} color={planet.color} dim />
-                            </div>
-                        )}
-                    </section>
-                )}
-
-                <button
-                    type="button"
-                    className={`ss-more ${showAdvanced ? 'is-on' : ''}`}
-                    onClick={() => setShowAdvanced(!showAdvanced)}
-                >
-                    {showAdvanced ? <ChevronUp size={17} /> : <FlaskConical size={17} />}
-                    {showAdvanced ? 'Menos información' : 'Composición y datos'}
-                </button>
-
-                {showAdvanced && planet.advanced && (
-                    <div className="ss-adv">
-                        <section className="ss-adv__block">
-                            <h4><FlaskConical size={14} /> Composición química</h4>
-                            <div className="ss-adv__chips">
-                                <span className="ss-adv__k">Elementos</span>
-                                {planet.advanced.composition.elements.map((e) => <span key={e} className="ss-chip">{e}</span>)}
-                            </div>
-                            <div className="ss-adv__chips">
-                                <span className="ss-adv__k">Compuestos</span>
-                                {planet.advanced.composition.compounds.map((c) => <span key={c} className="ss-chip">{c}</span>)}
-                            </div>
-                        </section>
-                        <section className="ss-adv__block">
-                            <h4><Globe2 size={14} /> Geografía y estructura</h4>
-                            <p>{planet.advanced.geography}</p>
-                        </section>
-                        <section className="ss-adv__block">
-                            <h4><Lightbulb size={14} /> Curiosidades técnicas</h4>
-                            <ul>
-                                {planet.advanced.curiosities.map((c, i) => (
-                                    <li key={i}>{c}</li>
-                                ))}
-                            </ul>
-                        </section>
-                    </div>
-                )}
-            </div>
-        </aside>
-    );
-};
-
-// --- COMPONENTE MODAL DE REINICIO ---
-const ResetModal = ({ isOpen, onConfirm, onCancel }) => {
-    if (!isOpen) return null;
-    return (
-        <div className="ss-confirm" role="dialog" aria-modal="true" aria-label="Reiniciar exploración">
-            <div className="ss-confirm__card">
-                <span className="ss-confirm__icon"><AlertTriangle size={26} /></span>
-                <h3>¿Reiniciar la exploración?</h3>
-                <p>Se borrarán todos tus puntos de interés visitados y volverás al estado inicial del sistema.</p>
-                <div className="ss-confirm__actions">
-                    <GameButton variant="soft" onClick={onCancel}>Cancelar</GameButton>
-                    <GameButton variant="danger" icon={RotateCcw} onClick={onConfirm}>Confirmar reinicio</GameButton>
-                </div>
-            </div>
+          )}
         </div>
-    );
-};
+      </Html>
+    </group>
+  );
+}
 
-// --- PLANET NAV BAR ---
-const PlanetNavBar = ({ planets, selectedPlanet, onSelect }) => {
-    return (
-        <nav className="ss-nav" aria-label="Cuerpos celestes">
-            {planets.map((planet) => {
-                const active = selectedPlanet?.id === planet.id;
-                return (
-                    <button
-                        type="button"
-                        key={planet.id}
-                        className={`ss-nav__item ${active ? 'is-active' : ''}`}
-                        onClick={() => onSelect(planet)}
-                        title={planet.name}
-                        aria-pressed={active}
-                        style={{ '--pc': planet.color }}
-                    >
-                        <PlanetOrb id={planet.id} color={planet.color} size={24} />
-                        <span className="ss-nav__name">{planet.name}</span>
-                    </button>
-                );
-            })}
-        </nav>
-    );
-};
+function VideoStar({ video, onOpen }) {
+  return (
+    <Html position={[-1.05, 0.75, 0]} center zIndexRange={[14, 0]}>
+      <button type="button" className="ss-star" onClick={(e) => { e.stopPropagation(); onOpen(video); }} title={video.title} aria-label={`Ver vídeo: ${video.title}`}>
+        <svg className="ss-star__svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="currentColor" />
+        </svg>
+        <span className="ss-star__ring" />
+        <span className="ss-star__ring is-delay" />
+      </button>
+    </Html>
+  );
+}
 
-// --- COMPONENTE PRINCIPAL ---
+function normalizedSpot(id, pos) {
+  const vis = VISUAL[id]?.size || 1;
+  const n = pos.map((v) => v / vis);
+  const len = Math.hypot(...n) || 1;
+  const k = len < 1.03 ? 1.03 / len : 1;
+  return n.map((v) => v * k);
+}
+
+function VideoModal({ video, onClose }) {
+  useEffect(() => {
+    if (!video) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [video, onClose]);
+  if (!video) return null;
+  return createPortal(
+    <div className="ss-video" onClick={onClose}>
+      <div className="ss-video__card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={video.title}>
+        <div className="ss-video__head">
+          <span className="ss-video__badge"><PlayCircle size={14} /> Kurzgesagt</span>
+          <h3>{video.title}</h3>
+          <button type="button" className="ss-video__close" onClick={onClose} aria-label="Cerrar vídeo"><X size={20} /></button>
+        </div>
+        <div className="ss-video__player">
+          <iframe
+            src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
+            title={video.title}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{ width: '100%', height: '100%', border: 'none' }}
+          />
+        </div>
+        <div className="ss-video__foot">En Pocas Palabras – Kurzgesagt</div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+function GovernorTicker({ onDowngrade }) {
+  const gov = useRef(null);
+  if (!gov.current) gov.current = createFpsGovernor({ onDowngrade });
+  useFrame((_, dt) => gov.current.tick(dt));
+  return null;
+}
+
+/* ───────────────────────── Centro de mando ───────────────────────── */
+
+function RangeField({ label, display, min, max, step, value, onChange }) {
+  return (
+    <label className="ss-range">
+      <span className="ss-range__row">
+        <span className="ss-range__label">{label}</span>
+        <span className="ss-range__value">{display}</span>
+      </span>
+      <input type="range" min={min} max={max} step={step} value={value} onChange={onChange} style={{ '--p': `${((value - min) / (max - min)) * 100}%` }} />
+    </label>
+  );
+}
+
+function SimClock({ simRef, paused }) {
+  const [years, setYears] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setYears(simRef.current.years), 500);
+    return () => clearInterval(id);
+  }, [simRef]);
+  const date = new Date(Date.now() + years * 365.25 * 86400000);
+  const label = date.toLocaleDateString('es-ES', { month: 'short', year: 'numeric' });
+  return (
+    <span className={`ss-clock ${paused ? 'is-paused' : ''}`}>
+      <CalendarClock size={14} /> {years < 0.02 ? 'Hoy' : label}
+    </span>
+  );
+}
+
+function ControlPanel({
+  progress, onMissions, onHelp, mode, onMode, config, setConfig, simRef, onReset, narrow, explored,
+}) {
+  const [open, setOpen] = useState(false);
+  const meta = useAppMeta();
+  const stars = totalStars(progress);
+  const { rank, next, progress: pr } = rankFor(stars);
+  const speedIdx = Math.max(0, SPEEDS.indexOf(config.speed));
+  const secsPerYear = Math.round(60 / config.speed);
+
+  return (
+    <section className={`ss-control ${open ? 'is-open' : ''}`} aria-label="Centro de mando">
+      <div className="ss-control__head">
+        <button type="button" className="ss-control__toggle" onClick={() => setOpen(!open)} aria-expanded={open}>
+          <span className="ss-control__icon"><AppIcon appId="sistema-solar" size={narrow ? 34 : 40} /></span>
+          <span className="ss-control__titles">
+            <strong>{cleanAppName(meta.name) || 'Sistema Solar 3D'}</strong>
+            <span>{open ? 'Ajustes del simulador' : 'Centro de mando'}</span>
+          </span>
+          <span className="ss-control__stars" title={`${stars} de ${MAX_STARS} estrellas`}><Star size={13} fill="currentColor" /> {stars}</span>
+          <span className={`ss-control__chev ${open ? 'is-up' : ''}`}><Settings2 size={17} /></span>
+        </button>
+        <button type="button" className="gk-iconbtn" onClick={onHelp} title="Cómo funciona" aria-label="Cómo funciona"><HelpCircle size={18} /></button>
+      </div>
+
+      <div className="ss-rankline">
+        <span className="ss-rankline__name"><Sparkles size={13} /> {rank.name}</span>
+        <span className="ss-rankline__bar"><i style={{ transform: `scaleX(${pr})` }} /></span>
+        <span className="ss-rankline__next">{next ? `${next.min - stars} ★ para subir` : 'Rango máximo'}</span>
+      </div>
+
+      <div className="ss-challenge">
+        <GameButton variant="warning" icon={Rocket} onClick={onMissions} className="ss-challenge__cta">Misiones</GameButton>
+        <span className="ss-challenge__note">6 juegos con nota /10 · cuentan para tus tareas</span>
+      </div>
+
+      <div className="ss-scale">
+        <span className="ss-sec__title"><Eye size={13} /> Escala</span>
+        <Segmented size="sm" options={SCALE_MODES.map((m) => ({ value: m.id, label: narrow ? m.label.replace(' reales', '') : m.label }))} value={mode} onChange={onMode} />
+      </div>
+
+      <div className="ss-simrow">
+        <button type="button" className="ss-play" onClick={() => setConfig({ ...config, paused: !config.paused })} aria-label={config.paused ? 'Reanudar órbitas' : 'Pausar órbitas'}>
+          {config.paused ? <Play size={15} /> : <Pause size={15} />}
+        </button>
+        <SimClock simRef={simRef} paused={config.paused} />
+        <span className="ss-simrow__rate">1 año = {secsPerYear >= 60 ? `${Math.round(secsPerYear / 60)} min` : `${secsPerYear} s`}</span>
+      </div>
+
+      {open && (
+        <div className="ss-control__deploy">
+          <div className="ss-sec">
+            <h4 className="ss-sec__title"><Gauge size={14} /> Simulación</h4>
+            <RangeField
+              label="Velocidad del tiempo"
+              display={`×${String(config.speed).replace('.', ',')}`}
+              min={0} max={SPEEDS.length - 1} step={1}
+              value={speedIdx}
+              onChange={(e) => setConfig({ ...config, speed: SPEEDS[Number(e.target.value)] })}
+            />
+            <RangeField
+              label="Giro de los planetas"
+              display={`×${config.spin.toFixed(1).replace('.', ',')}`}
+              min={0} max={4} step={0.1}
+              value={config.spin}
+              onChange={(e) => setConfig({ ...config, spin: parseFloat(e.target.value) })}
+            />
+            <p className="ss-sec__text">Los periodos son reales y proporcionales: Mercurio da 4 vueltas mientras la Tierra da una. Las posiciones de partida son las de hoy.</p>
+          </div>
+          <div className="ss-sec">
+            <h4 className="ss-sec__title"><Orbit size={14} /> Visualización</h4>
+            <div className="ss-toggles">
+              <button type="button" className={`ss-toggle ${config.orbits ? 'is-on' : ''}`} onClick={() => setConfig({ ...config, orbits: !config.orbits })} aria-pressed={config.orbits}><Orbit size={14} /> Órbitas</button>
+              <button type="button" className={`ss-toggle ${config.labels ? 'is-on' : ''}`} onClick={() => setConfig({ ...config, labels: !config.labels })} aria-pressed={config.labels}><Tag size={14} /> Nombres</button>
+            </div>
+            <RangeField
+              label="Brillo de las órbitas"
+              display={`${Math.round(config.orbitOpacity * 100)} %`}
+              min={0.05} max={0.6} step={0.01}
+              value={config.orbitOpacity}
+              onChange={(e) => setConfig({ ...config, orbitOpacity: parseFloat(e.target.value) })}
+            />
+          </div>
+          <div className="ss-sec">
+            <h4 className="ss-sec__title"><Settings2 size={14} /> Calidad gráfica</h4>
+            <GraphicsQualitySelector className="gfxsel-on-dark" />
+          </div>
+          <div className="ss-sec ss-sec--foot">
+            <p className="ss-sec__text">Diario: {explored.bodies}/10 astros · {explored.spots}/{TOTAL_SPOTS} puntos de interés · {explored.interiors}/10 interiores.</p>
+            <GameButton variant="soft" size="sm" icon={RotateCcw} onClick={onReset} className="ss-reset">Reiniciar puntos de interés</GameButton>
+            <p className="ss-credits">
+              Texturas: <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a> · Datos: NASA
+            </p>
+          </div>
+        </div>
+      )}
+      {!open && !narrow && <button type="button" className="ss-control__more" onClick={() => setOpen(true)}><ChevronDown size={15} /> Más ajustes</button>}
+    </section>
+  );
+}
+
+function NavBar({ selected, onSelect, highlight }) {
+  return (
+    <nav className="ss-nav" aria-label="Astros">
+      {NAV_IDS.map((id) => {
+        const active = selected === id;
+        return (
+          <button
+            type="button" key={id}
+            className={`ss-nav__item ${active ? 'is-active' : ''} ${id === 'moon' ? 'is-moon' : ''} ${highlight?.[id] ? `is-${highlight[id]}` : ''}`}
+            onClick={() => onSelect(id)}
+            title={bodyName(id)}
+            aria-pressed={active}
+            style={{ '--pc': BODY_COLOR[id] }}
+          >
+            <PlanetOrb id={id} size={id === 'moon' ? 20 : 26} />
+            <span className="ss-nav__name">{bodyName(id)}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
+/* ───────────────────────── Componente principal ───────────────────────── */
+
 const SistemaSolar = ({ level, grade, onGameComplete }) => {
-    const [selectedPlanet, setSelectedPlanet] = useState(null);
-    const [activeHotspots, setActiveHotspots] = useState({});
-    const [lastClickedHotspot, setLastClickedHotspot] = useState(null);
-    const [introVisible, setIntroVisible] = useState(true);
-    const [activeVideo, setActiveVideo] = useState(null);
-    const [showActivity, setShowActivity] = useState(false);
-    // Cada desafío es un montaje nuevo de SolarSystemActivity (key) → un registro nuevo
-    const [activityRun, setActivityRun] = useState(0);
-    const [showHelp, setShowHelp] = useState(false);
+  const stage = useMemo(() => tierFor(level, grade), [level, grade]);
+  const narrow = useMedia('(max-width: 720px)');
+  const reduced = useMedia('(prefers-reduced-motion: reduce)');
 
-    const [visitedHotspots, setVisitedHotspots] = useState(() => {
-        try {
-            const saved = localStorage.getItem('solarSystem_visited');
-            return saved ? JSON.parse(saved) : {};
-        } catch (e) {
-            console.error("Error reading localStorage", e);
-            return {};
-        }
-    });
+  // ---- calidad gráfica global + governor (patrón de laboratorio-fisica) ----
+  const { pref, tier: prefTier } = useGraphicsQuality();
+  const [tierOverride, setTierOverride] = useState(null);
+  useEffect(() => { setTierOverride(null); }, [pref, prefTier]);
+  const gfxTier = tierOverride || prefTier;
+  const Q = sceneQuality(gfxTier);
+  const P = GLOBAL_QUALITY_PARAMS[gfxTier] || GLOBAL_QUALITY_PARAMS.medium;
+  const [ctxKey, setCtxKey] = useState(0);
+  const [toast, setToast] = useState(null);
+  const toastTimer = useRef(null);
+  const [webgl] = useState(() => isWebGLAvailable());
+  const [glFailed, setGlFailed] = useState(false);
 
-    const [showResetModal, setShowResetModal] = useState(false);
-    const [isResetting, setIsResetting] = useState(false);
-    const planetRefs = useRef({});
+  const showToast = useCallback((msg) => {
+    setToast(msg);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(null), 4500);
+  }, []);
+  useEffect(() => () => clearTimeout(toastTimer.current), []);
 
-    // Dismiss intro
-    useEffect(() => {
-        const timer = setTimeout(() => setIntroVisible(false), 3500);
-        return () => clearTimeout(timer);
-    }, []);
+  const handleDowngrade = useCallback(() => {
+    const nxt = lowerTier(gfxTier);
+    if (nxt === gfxTier) return;
+    setTierOverride(nxt);
+    showToast(`Rendimiento bajo: calidad ajustada a ${QUALITY_LABELS[nxt]}`);
+  }, [gfxTier, showToast]);
 
-    useEffect(() => {
-        try {
-            localStorage.setItem('solarSystem_visited', JSON.stringify(visitedHotspots));
-        } catch (e) {
-            console.error("Error saving to localStorage", e);
-        }
-    }, [visitedHotspots]);
+  const onCreated = useCallback(({ gl }) => {
+    gl.domElement.addEventListener('webglcontextlost', (e) => {
+      e.preventDefault();
+      setTimeout(() => setCtxKey((k) => k + 1), 350);
+    }, false);
+  }, []);
 
-    const totalHotspots = useMemo(() => {
-        let count = 0;
-        solarSystemData.forEach(planet => {
-            if (planet.advanced?.hotspots) count += planet.advanced.hotspots.length;
-            if (planet.moons) {
-                planet.moons.forEach(moon => {
-                    if (moon.advanced?.hotspots) count += moon.advanced.hotspots.length;
-                });
-            }
-        });
-        return count;
-    }, []);
+  // ---- estado de la app ----
+  const [view, setView] = useState('explore'); // explore | interior | hub | mission
+  const [selectedId, setSelectedId] = useState(null);
+  const [scaleMode, setScaleMode] = useState('visual');
+  const [config, setConfig] = useState({ speed: 1, spin: 1, orbits: true, labels: true, orbitOpacity: 0.3, paused: false });
+  const [interior, setInterior] = useState({ bodyId: 'earth', open: true, explode: false, selected: null });
+  const [mission, setMission] = useState(null); // { id, run }
+  const [missionDone, setMissionDone] = useState(false);
+  const [outcome, setOutcome] = useState(null);
+  const [missionFocus, setMissionFocus] = useState(null);
+  const [missionScene, setMissionScene] = useState(null);
+  const [pickEvent, setPickEvent] = useState(null);
+  const pickSeq = useRef(0);
+  const reported = useRef(new Set());
+  const [video, setVideo] = useState(null);
+  const [showHelp, setShowHelp] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
+  const [intro, setIntro] = useState(true);
+  const [activeSpots, setActiveSpots] = useState({});
 
-    const [config, setConfig] = useState({
-        simSpeed: 0.5,
-        rotationSpeed: 0.5,
-        showOrbits: true,
-        showLabels: true,
-        zoomLevel: 1,
-        orbitOpacity: 0.15,
-        orbitThickness: 0.05
-    });
+  const simRef = useRef(null);
+  if (!simRef.current) {
+    const now = new Date();
+    simRef.current = { angles: Object.fromEntries([...PLANET_IDS.map((id) => [id, meanLongitude(id, now)]), ['moon', 0]]), sizes: {}, years: 0 };
+  }
 
-    // Desafío terminado → registro de la partida (single_mode: cuenta para la tarea)
-    const handleDesafioComplete = useCallback((payload) => {
-        onGameComplete?.(payload);
-    }, [onGameComplete]);
+  // ---- progreso local ----
+  const [progress, setProgress] = useState(() => loadProgress(level));
+  const progressRef = useRef(progress);
+  useEffect(() => { progressRef.current = progress; saveProgress(level, progress); }, [progress, level]);
 
-    const handleVideoClick = useCallback((videoData) => {
-        setActiveVideo(videoData);
-    }, []);
+  const [visited, setVisited] = useState(() => {
+    try {
+      const saved = localStorage.getItem('solarSystem_visited');
+      const v = saved ? JSON.parse(saved) : {};
+      return v && typeof v === 'object' ? v : {};
+    } catch {
+      return {};
+    }
+  });
+  useEffect(() => {
+    try { localStorage.setItem('solarSystem_visited', JSON.stringify(visited)); } catch { /* modo privado */ }
+  }, [visited]);
 
-    const handlePlanetClick = useCallback((planet) => {
-        if (selectedPlanet?.id !== planet.id) {
-            setSelectedPlanet(planet);
-            setActiveHotspots({});
-            setLastClickedHotspot(null);
-        }
-    }, [selectedPlanet?.id]);
+  const explored = {
+    bodies: Object.keys(progress.bodies).length,
+    interiors: Object.keys(progress.interiors).length,
+    spots: Object.keys(visited).length,
+    spotsTotal: TOTAL_SPOTS,
+  };
 
-    const handleHotspotClick = useCallback((data, hotspotId) => {
-        setActiveHotspots(prev => ({
-            ...prev,
-            [hotspotId]: data
-        }));
-        setLastClickedHotspot(data);
-        setVisitedHotspots(prev => ({
-            ...prev,
-            [hotspotId]: true
-        }));
-    }, []);
+  useEffect(() => {
+    const t = setTimeout(() => setIntro(false), reduced ? 600 : 3000);
+    return () => clearTimeout(t);
+  }, [reduced]);
 
-    const handleResetProgress = () => {
-        setShowResetModal(true);
-    };
+  // ---- explorar ----
+  const selectBody = useCallback((id) => {
+    setSelectedId((cur) => (cur === id ? cur : id));
+    setActiveSpots({});
+    setProgress((p) => markBody(p, id));
+  }, []);
 
-    const confirmReset = () => {
-        setShowResetModal(false);
-        setIsResetting(true);
+  const closeSheet = useCallback(() => { setSelectedId(null); setActiveSpots({}); }, []);
 
-        setTimeout(() => {
-            setVisitedHotspots({});
-            setActiveHotspots({});
-            setLastClickedHotspot(null);
-            setSelectedPlanet(null);
-            setIsResetting(false);
-        }, 2500);
-    };
+  const openInterior = useCallback((id) => {
+    const bodyId = INTERIOR_IDS.includes(id) ? id : 'earth';
+    setInterior({ bodyId, open: true, explode: false, selected: null });
+    setView('interior');
+    setProgress((p) => markInterior(p, bodyId));
+  }, []);
 
-    const handleClose = () => {
-        setSelectedPlanet(null);
-        setActiveHotspots({});
-        setLastClickedHotspot(null);
-    };
+  const handleSpot = useCallback((key, data) => {
+    setActiveSpots({ [key]: data });
+    setVisited((v) => ({ ...v, [key]: true }));
+  }, []);
 
-    const registerPlanetRef = useCallback((id, ref) => {
-        planetRefs.current[id] = ref;
-    }, []);
-
-    const visitedCount = Object.keys(visitedHotspots).length;
-
-    // Orbit glow colors for each planet
-    const orbitColors = {
-        mercury: '#9e9e9e',
-        venus: '#e6a85c',
-        earth: '#4fc3f7',
-        mars: '#ff7043',
-        jupiter: '#ffd54f',
-        saturn: '#ffb74d',
-        uranus: '#80deea',
-        neptune: '#7986cb'
-    };
-
-    const isVideoOpen = !!activeVideo;
-
+  const extras = useCallback((id) => {
+    if (view !== 'explore' || selectedId !== id) return null;
+    const spots = BODY_DATA[id]?.advanced?.hotspots || [];
     return (
-        <GameShell
-            theme="dark"
-            wide
-            accent="#818cf8"
-            accent2="#fbbf24"
-            className={`ss-shell ${isVideoOpen ? 'is-video' : ''} ${introVisible ? 'is-intro' : ''}`}
-        >
-            <AppOrientationWarning />
-            {/* Intro cinematográfica */}
-            <div className={`ss-intro ${introVisible ? 'is-visible' : ''}`} aria-hidden={!introVisible}>
-                <div className="ss-intro__content">
-                    <span className="ss-intro__halo" aria-hidden="true" />
-                    <span className="ss-intro__icon"><AppIcon appId="sistema-solar" size={120} /></span>
-                    <h1 className="ss-intro__title">Sistema Solar 3D</h1>
-                    <p className="ss-intro__subtitle">Explora el universo</p>
-                    <div className="ss-intro__bar">
-                        <div className="ss-intro__fill"></div>
-                    </div>
-                </div>
-            </div>
-
-            <ConfigPanel
-                config={config}
-                setConfig={setConfig}
-                onResetProgress={handleResetProgress}
-                visitedCount={visitedCount}
-                totalCount={totalHotspots}
-                onLaunchActivity={() => setShowActivity(true)}
-                onHelp={() => setShowHelp(true)}
+      <>
+        {spots.map((hs, i) => {
+          const key = `${id}-${i}`;
+          return (
+            <Hotspot
+              key={key}
+              position={normalizedSpot(id, hs.pos)}
+              title={hs.title}
+              desc={hs.desc}
+              isVisited={!!visited[key]}
+              isActive={!!activeSpots[key]}
+              onClick={() => handleSpot(key, hs)}
             />
-
-            {showActivity && (
-                <SolarSystemActivity
-                    key={activityRun}
-                    onClose={() => setShowActivity(false)}
-                    onComplete={handleDesafioComplete}
-                    onRestart={() => setActivityRun((n) => n + 1)}
-                />
-            )}
-
-            {/* Escena 3D en su propio contexto de apilado: las etiquetas <Html> de drei
-                no pueden pintarse por encima de los paneles de la interfaz */}
-            <div className="ss-scene">
-            <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows frameloop={(isVideoOpen || showActivity) ? 'never' : 'always'}>
-                {!showActivity && (
-                    <>
-                        <color attach="background" args={['#020205']} />
-
-                        <ambientLight intensity={0.4} />
-                        <pointLight position={[0, 0, 0]} intensity={1.5} distance={1000} decay={0} color="#FDB813" />
-                        <CameraLight />
-                        <Stars radius={350} depth={100} count={10000} factor={6} saturation={0} fade speed={0.8} />
-                        <CosmicDust />
-                        <ShootingStars />
-
-                        <OrbitControls
-                            enablePan={!selectedPlanet}
-                            enableZoom={true}
-                            enableDamping={true}
-                            dampingFactor={0.1}
-                            makeDefault
-                        />
-
-                        <CameraController
-                            selectedPlanetId={selectedPlanet?.id}
-                            planetRefs={planetRefs}
-                            config={config}
-                            activeHotspot={lastClickedHotspot}
-                        />
-
-                        <React.Suspense fallback={null}>
-                            {solarSystemData.map((planet) => (
-                                <React.Fragment key={planet.id}>
-                                    <Planet
-                                        planet={planet}
-                                        isPaused={!!selectedPlanet}
-                                        onClick={handlePlanetClick}
-                                        registerRef={registerPlanetRef}
-                                        simSpeed={config.simSpeed}
-                                        rotationSpeed={config.rotationSpeed}
-                                        showLabels={config.showLabels}
-                                        isSelected={selectedPlanet?.id}
-                                        onHotspotClick={handleHotspotClick}
-                                        visitedHotspots={visitedHotspots}
-                                        activeHotspots={activeHotspots}
-                                        onVideoClick={handleVideoClick}
-                                    />
-                                    <GlowOrbitPath
-                                        distance={planet.distance}
-                                        visible={config.showOrbits}
-                                        opacity={config.orbitOpacity}
-                                        thickness={config.orbitThickness}
-                                        color={orbitColors[planet.id] || '#4f6bff'}
-                                    />
-                                </React.Fragment>
-                            ))}
-
-                            {/* Asteroid Belt between Mars and Jupiter */}
-                            <AsteroidBelt
-                                simSpeed={config.simSpeed}
-                                isPaused={!!selectedPlanet}
-                                showLabels={config.showLabels}
-                            />
-                        </React.Suspense>
-                    </>
-                )}
-                {showActivity && <color attach="background" args={['#010103']} />}
-            </Canvas>
-            </div>
-
-            <InfoPanel
-                planet={selectedPlanet}
-                level={level}
-                grade={grade}
-                onClose={handleClose}
-            />
-
-            <PlanetNavBar
-                planets={solarSystemData}
-                selectedPlanet={selectedPlanet}
-                onSelect={handlePlanetClick}
-            />
-
-            <ResetModal
-                isOpen={showResetModal}
-                onConfirm={confirmReset}
-                onCancel={() => setShowResetModal(false)}
-            />
-
-            <VideoModal
-                video={activeVideo}
-                onClose={() => setActiveVideo(null)}
-            />
-
-            <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo explorar el Sistema Solar">
-                <h3>🌌 Objetivo</h3>
-                <p>
-                    Viaja por el <strong>Sistema Solar en 3D</strong>: descubre cada planeta, su ficha técnica y
-                    todos sus <strong>puntos de interés</strong>.
-                </p>
-                <h3>🕹️ Cómo se explora</h3>
-                <ul>
-                    <li>Toca un planeta en la escena o en la <strong>barra inferior</strong> para viajar hasta él y abrir su ficha.</li>
-                    <li>Los <strong>puntos dorados</strong> sobre el planeta son puntos de interés: tócalos para leerlos (cuentan en tu progreso).</li>
-                    <li>La <strong>estrella</strong> junto al planeta abre un vídeo de divulgación.</li>
-                    <li>Arrastra para girar la cámara y usa la rueda del ratón para el zoom.</li>
-                </ul>
-                <h3>🧭 Centro de control</h3>
-                <p>
-                    Arriba a la derecha verás cuánto has explorado. Despliégalo para ajustar la simulación.
-                </p>
-                <h3>🏆 Desafío de planetas</h3>
-                <p>
-                    Cuando hayas explorado, pulsa <strong>Desafío de planetas</strong>: ordena los planetas por distancia al Sol
-                    y relaciona cada uno con su característica. Tu <strong>nota sobre 10</strong> sale de lo que aciertes
-                    a la primera, y cada desafío terminado cuenta para tus tareas (además de puntos por rapidez).
-                </p>
-            </InstructionsModal>
-
-            {/* Animación de reinicio del sistema */}
-            <div className={`ss-reboot ${isResetting ? 'is-active' : ''}`} aria-hidden={!isResetting}>
-                <div className="ss-reboot__wipe"></div>
-                <div className="ss-reboot__scan"></div>
-                <div className="ss-reboot__bar"></div>
-                <div className="ss-reboot__text">
-                    <strong>Reiniciando sistema</strong>
-                    <span>Borrando datos y calibrando telescopios…</span>
-                </div>
-            </div>
-        </GameShell>
+          );
+        })}
+        {VIDEOS[id] && <VideoStar video={VIDEOS[id]} onOpen={setVideo} />}
+      </>
     );
+  }, [view, selectedId, visited, activeSpots, handleSpot]);
+
+  // ---- misiones ----
+  const startMission = useCallback((id) => {
+    setMission({ id, run: `${id}-${Date.now()}` });
+    setMissionDone(false);
+    setOutcome(null);
+    setMissionFocus(null);
+    setMissionScene(null);
+    setSelectedId(null);
+    setView('mission');
+  }, []);
+
+  const restartMission = useCallback(() => {
+    setMission((m) => (m ? { ...m, run: `${m.id}-${Date.now()}` } : m));
+    setMissionDone(false);
+    setOutcome(null);
+    setMissionFocus(null);
+    setMissionScene(null);
+  }, []);
+
+  const toHub = useCallback(() => { setMission(null); setMissionDone(false); setMissionFocus(null); setView('hub'); }, []);
+  const toExplore = useCallback(() => { setMission(null); setMissionDone(false); setMissionFocus(null); setView('explore'); }, []);
+
+  const handleMissionComplete = useCallback((payload) => {
+    const m = mission;
+    if (!m || reported.current.has(m.run)) return;
+    reported.current.add(m.run);
+    onGameComplete?.(payload);
+    const prev = progressRef.current;
+    const nextP = recordMission(prev, m.id, { nota: payload.nota, points: payload.score });
+    const before = rankFor(totalStars(prev));
+    const after = rankFor(totalStars(nextP));
+    setOutcome({
+      stars: starsForNota(payload.nota),
+      prevStars: prev.missions[m.id]?.stars || 0,
+      record: !!prev.missions[m.id] && payload.nota > (prev.missions[m.id].best || 0),
+      newRank: after.index > before.index ? after.rank.name : null,
+      unlocked: MISSIONS.filter((x) => !isUnlocked(x, prev) && isUnlocked(x, nextP)).map((x) => x.title),
+    });
+    setProgress(nextP);
+    setMissionDone(true);
+  }, [mission, onGameComplete]);
+
+  const pick = useCallback((id) => {
+    pickSeq.current += 1;
+    setPickEvent({ id, seq: pickSeq.current });
+  }, []);
+
+  // ---- reinicio de puntos de interés (modal propio) ----
+  const doReset = () => {
+    setConfirmReset(false);
+    setIsResetting(true);
+    setTimeout(() => {
+      setVisited({});
+      setActiveSpots({});
+      setSelectedId(null);
+      setIsResetting(false);
+    }, reduced ? 200 : 2200);
+  };
+
+  // Escape cierra lo que haya abierto al explorar
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== 'Escape' || video) return;
+      if (view === 'interior') setView('explore');
+      else if (view === 'hub') setView('explore');
+      else if (view === 'explore' && selectedId) closeSheet();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [view, selectedId, video, closeSheet]);
+
+  // ---- qué pinta la escena ----
+  const mDef = mission ? missionById(mission.id) : null;
+  const kind = mDef?.kind;
+  const inMission = view === 'mission' && !!mDef;
+  const sceneKind = (view === 'interior' || (inMission && kind === 'layers')) ? 'interior' : 'system';
+  const overlayFull = !!video || view === 'hub' || (inMission && (kind === 'order' || kind === 'quiz' || missionDone));
+  const frameloop = overlayFull ? 'never' : Q.fps ? 'demand' : 'always';
+
+  let scene = null;
+  if (sceneKind === 'interior') {
+    const ms = inMission ? missionScene : null;
+    scene = (
+      <InteriorScene
+        Q={Q}
+        tier={stage}
+        reduced={reduced}
+        bodyId={ms ? ms.bodyId : interior.bodyId}
+        open={ms ? 1 : interior.open ? 1 : 0}
+        explode={ms ? 1 : interior.explode ? 1 : 0}
+        selected={ms ? ms.selected : interior.selected}
+        feedback={ms ? ms.feedback : null}
+        markerMode={ms ? ms.markerMode : narrow ? 'numbers' : 'names'}
+        frame={narrow ? 'bottom' : inMission ? 'right' : 'left'}
+        showMarkers={ms ? true : interior.open}
+        onPick={inMission ? pick : (id) => setInterior((s) => ({ ...s, selected: s.selected === id ? null : id }))}
+      />
+    );
+  } else {
+    const riddle = inMission && kind === 'riddle';
+    const focus = riddle ? missionFocus : view === 'explore' ? selectedId : null;
+    scene = (
+      <SolarScene
+        Q={Q}
+        simRef={simRef}
+        mode={riddle ? 'visual' : scaleMode}
+        focusId={focus}
+        paused={config.paused || !!focus}
+        speed={config.speed}
+        spin={config.spin}
+        showOrbits={config.orbits}
+        orbitOpacity={config.orbitOpacity}
+        showLabels={config.labels}
+        onBodyClick={riddle ? pick : view === 'explore' ? selectBody : undefined}
+        extras={extras}
+        reduced={reduced}
+        frame={riddle ? 'bottom' : narrow ? 'bottom' : 'left'}
+      />
+    );
+  }
+
+  const runKey = mission?.run;
+  const missionProps = mission && mDef ? {
+    mission: mDef,
+    stage,
+    outcome,
+    onComplete: handleMissionComplete,
+    onExit: toHub,
+    onRestart: restartMission,
+    onHub: toHub,
+    onExplore: toExplore,
+  } : null;
+
+  const showWebGL = webgl && !glFailed;
+
+  return (
+    <GameShell
+      theme="dark"
+      wide
+      accent="#818cf8"
+      accent2="#fbbf24"
+      className={`ss-shell ss-view-${view} ${video ? 'is-video' : ''} ${intro ? 'is-intro' : ''} ${overlayFull ? 'is-covered' : ''} ${selectedId && view === 'explore' ? 'has-sheet' : ''}`}
+    >
+
+      <div className={`ss-intro ${intro ? 'is-visible' : ''}`} aria-hidden={!intro}>
+        <div className="ss-intro__content">
+          <span className="ss-intro__halo" aria-hidden="true" />
+          <span className="ss-intro__icon"><AppIcon appId="sistema-solar" size={120} /></span>
+          <h1 className="ss-intro__title">Sistema Solar 3D</h1>
+          <p className="ss-intro__subtitle">Explora · descubre · supera misiones</p>
+          <div className="ss-intro__bar"><div className="ss-intro__fill" /></div>
+        </div>
+      </div>
+
+      <div className="ss-scene">
+        {showWebGL ? (
+          <SceneBoundary onError={() => { markWebGLUnavailable(); setGlFailed(true); }}>
+            <Canvas
+              key={`${gfxTier}-${ctxKey}`}
+              dpr={effectiveDpr(gfxTier)}
+              gl={{ antialias: P.antialias, powerPreference: 'high-performance' }}
+              camera={{ position: [0, 300, 640], fov: 45, near: 0.1, far: 14000 }}
+              frameloop={frameloop}
+              onCreated={onCreated}
+            >
+              {frameloop === 'demand' && <FrameLimiter fps={Q.fps} />}
+              {pref === 'auto' && gfxTier !== 'low' && <GovernorTicker key={gfxTier} onDowngrade={handleDowngrade} />}
+              <Suspense fallback={null}>{scene}</Suspense>
+            </Canvas>
+          </SceneBoundary>
+        ) : (
+          <div className="ss-nogl">
+            <div className="ss-nogl__orbits" aria-hidden="true">
+              {PLANET_IDS.map((id, i) => <span key={id} style={{ '--i': i + 1, '--pc': BODY_COLOR[id] }}><i /></span>)}
+            </div>
+            <p>Este navegador no puede mostrar gráficos 3D (WebGL desactivado). Puedes consultar las fichas y jugar las misiones igualmente.</p>
+          </div>
+        )}
+      </div>
+
+      {view === 'explore' && (
+        <>
+          <ControlPanel
+            progress={progress}
+            onMissions={() => { setSelectedId(null); setView('hub'); }}
+            onHelp={() => setShowHelp(true)}
+            mode={scaleMode}
+            onMode={(m) => { setScaleMode(m); setSelectedId(null); }}
+            config={config}
+            setConfig={setConfig}
+            simRef={simRef}
+            onReset={() => setConfirmReset(true)}
+            narrow={narrow}
+            explored={explored}
+          />
+          {scaleMode !== 'visual' && !selectedId && (
+            <div className="ss-scalehint" role="status">
+              <Eye size={15} /> {SCALE_MODES.find((m) => m.id === scaleMode).hint}
+            </div>
+          )}
+          {selectedId && (
+            <PlanetSheet
+              key={selectedId}
+              id={selectedId}
+              body={BODY_DATA[selectedId]}
+              stage={stage}
+              level={level}
+              grade={grade}
+              onClose={closeSheet}
+              onInterior={() => openInterior(selectedId)}
+              video={VIDEOS[selectedId]}
+              onVideo={() => setVideo(VIDEOS[selectedId])}
+              found={(BODY_DATA[selectedId]?.advanced?.hotspots || []).filter((_, i) => visited[`${selectedId}-${i}`]).length}
+              foundTotal={BODY_DATA[selectedId]?.advanced?.hotspots?.length || 0}
+            />
+          )}
+          <NavBar selected={selectedId} onSelect={selectBody} />
+        </>
+      )}
+
+      {view === 'interior' && (
+        <InteriorPanel
+          bodyId={interior.bodyId}
+          stage={stage}
+          open={interior.open}
+          explode={interior.explode}
+          selected={interior.selected}
+          onBody={(id) => { setInterior({ bodyId: id, open: true, explode: false, selected: null }); setProgress((p) => markInterior(p, id)); }}
+          onOpen={(open) => setInterior((s) => ({ ...s, open, explode: open ? s.explode : false }))}
+          onExplode={(explode) => setInterior((s) => ({ ...s, explode }))}
+          onSelect={(id) => setInterior((s) => ({ ...s, selected: id }))}
+          onClose={() => { setView('explore'); setSelectedId(interior.bodyId); }}
+        />
+      )}
+
+      {view === 'hub' && (
+        <MissionHub progress={progress} stage={stage} explored={explored} onStart={startMission} onClose={() => setView('explore')} />
+      )}
+
+      {inMission && kind === 'order' && <OrderMission key={runKey} {...missionProps} />}
+      {inMission && kind === 'quiz' && <QuizMission key={runKey} {...missionProps} />}
+      {inMission && kind === 'riddle' && (
+        <>
+          <RiddleMission key={runKey} {...missionProps} pickEvent={pickEvent} onFocus={setMissionFocus} />
+          {!missionDone && <NavBar selected={missionFocus} onSelect={pick} />}
+        </>
+      )}
+      {inMission && kind === 'layers' && <LayersMission key={runKey} {...missionProps} pickEvent={pickEvent} onScene={setMissionScene} />}
+
+      {toast && <div className="ss-toast" role="status">{toast}</div>}
+
+      <ConfirmDialog
+        open={confirmReset}
+        tone="danger"
+        title="¿Reiniciar los puntos de interés?"
+        confirmLabel="Sí, reiniciar"
+        onConfirm={doReset}
+        onCancel={() => setConfirmReset(false)}
+      >
+        Se borrarán los puntos de interés descubiertos en este dispositivo. Tus estrellas y misiones no se tocan.
+      </ConfirmDialog>
+
+      <VideoModal video={video} onClose={() => setVideo(null)} />
+
+      <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title="Cómo funciona el Sistema Solar 3D">
+        <h3>🔭 Explorar</h3>
+        <ul>
+          <li>Toca un astro en la escena (o en la <strong>barra inferior</strong>) para volar hasta él y abrir su <strong>ficha</strong>: datos, comparación con la Tierra, «Tú allí» (tu peso y tu edad) y misiones espaciales.</li>
+          <li>Los <strong>puntos dorados</strong> son puntos de interés; la <strong>estrella</strong> abre un vídeo.</li>
+          <li>Cambia la <strong>escala</strong>: visual, distancias reales o tamaños reales. ¡Verás lo enorme que es el Sistema Solar!</li>
+          <li>Los planetas parten de su posición real de hoy y giran con sus periodos reales. Arrastra para girar la cámara y usa la rueda o dos dedos para el zoom.</li>
+        </ul>
+        <h3>🧅 Interior en 3D</h3>
+        <p>Desde la ficha, pulsa <strong>Ver el interior en 3D</strong>: el astro se abre por la mitad y puedes separar sus capas y tocarlas para conocerlas.</p>
+        <h3>🚀 Misiones</h3>
+        <ul>
+          <li><strong>Ordena el Sistema Solar</strong>, <strong>¿Qué planeta soy?</strong>, <strong>¿Más o menos?</strong>, <strong>Viaje al interior</strong>, <strong>Plan de vuelo</strong> y el <strong>Gran examen</strong>.</li>
+          <li>Cada misión terminada tiene <strong>nota sobre 10</strong> (lo que aciertas a la primera) y cuenta para tus tareas. Además ganas puntos por rapidez, racha y usar pocas pistas.</li>
+          <li>Con 5, 7 y 9 consigues 1, 2 o 3 estrellas. Las estrellas suben tu rango y desbloquean misiones nuevas.</li>
+        </ul>
+      </InstructionsModal>
+
+      <div className={`ss-reboot ${isResetting ? 'is-active' : ''}`} aria-hidden={!isResetting}>
+        <div className="ss-reboot__wipe" />
+        <div className="ss-reboot__scan" />
+        <div className="ss-reboot__bar" />
+        <div className="ss-reboot__text">
+          <strong>Reiniciando el diario</strong>
+          <span>Calibrando telescopios…</span>
+        </div>
+      </div>
+    </GameShell>
+  );
 };
+
+// Si el renderer no se puede crear (WebGL bloqueado a mitad), no tumbamos la app
+class SceneBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { failed: false }; }
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(err) { console.warn('[sistema-solar] escena 3D desactivada:', err?.message); this.props.onError?.(); }
+  render() { return this.state.failed ? null : this.props.children; }
+}
 
 export default SistemaSolar;
