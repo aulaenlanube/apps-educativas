@@ -6,7 +6,7 @@
 // Uso:
 //   node tools/app-shots.mjs --path=/curso/primaria/3/lengua/app/ahorcado --out=<dir> \
 //     --steps="shot:modos; click:text=Palabras; wait:800; shot:juego; press:A; press:E; shot:letras" \
-//     [--width=1280] [--height=900] [--theme=dark] [--fx=high|medium|low] [--mock=student] [--full]
+//     [--width=1280] [--height=900] [--theme=dark] [--fx=high|medium|low] [--mock=student] [--full] [--gl]
 //
 // Pasos (separados por ';'):
 //   shot:<nombre>          captura de la ventana (o de la página entera con --full)
@@ -35,7 +35,9 @@ const steps = String(args.steps || 'shot:inicio').split(';').map((s) => s.trim()
 const prefix = args.prefix || (String(args.path || 'page').split('/').filter(Boolean).pop() || 'page');
 
 await fs.mkdir(out, { recursive: true });
-const browser = await puppeteer.launch({ headless: true, ...chromeLaunchOpts(['--no-sandbox', '--disable-3d-apis']) });
+// --gl: WebGL por software (SwiftShader) para capturar escenas 3D; sin él, sin 3D (más rápido)
+const glArgs = args.gl ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] : ['--disable-3d-apis'];
+const browser = await puppeteer.launch({ headless: true, ...chromeLaunchOpts(['--no-sandbox', ...glArgs]) });
 const errors = [];
 try {
   const page = await browser.newPage();
