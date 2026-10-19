@@ -254,6 +254,41 @@ export async function getOrdenaHistoriasData(level, grade, subjectId) {
 }
 
 /**
+ * Frases / historias con su bloque temático (formato: [{ s, t }], t = bloque o null).
+ * Usado por: OrdenaLaFraseJuego, OrdenaLaHistoriaJuego (selector de bloque).
+ * Si la RPC falla, cae al formato antiguo sin bloques para que el juego siga funcionando.
+ */
+async function getOrdenaConBloques(kind, level, grade, subjectId) {
+  const key = cacheKey(`ordena_${kind}_bloques`, level, grade, subjectId);
+  const cached = getCached(key);
+  if (cached) return cached;
+
+  const r = resolveADParams(level, grade, subjectId);
+  const { data, error } = await supabase.rpc(`get_ordena_${kind}_bloques`, {
+    p_level: r.level,
+    p_grade: parseInt(r.grade),
+    p_subject: r.subject
+  });
+
+  if (error) {
+    console.error(`Error cargando ordena ${kind} con bloques:`, error.message);
+    const plano = kind === 'frases'
+      ? await getOrdenaFrasesData(level, grade, subjectId)
+      : await getOrdenaHistoriasData(level, grade, subjectId);
+    return (plano || []).map((s) => ({ s, t: null }));
+  }
+
+  const result = deepParseJSON(data || []);
+  setCache(key, result);
+  return result;
+}
+
+export const getOrdenaFrasesConBloques = (level, grade, subjectId) =>
+  getOrdenaConBloques('frases', level, grade, subjectId);
+export const getOrdenaHistoriasConBloques = (level, grade, subjectId) =>
+  getOrdenaConBloques('historias', level, grade, subjectId);
+
+/**
  * Obtener frases detective (formato: ["frase1", "frase2", ...])
  * Usado por: DetectiveDePalabrasJuego
  */

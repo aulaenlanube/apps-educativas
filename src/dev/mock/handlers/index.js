@@ -12,7 +12,7 @@ import { tableHandlers } from './tables.js';
  */
 export const PASSTHROUGH_RPCS = new Set([
   'get_rosco_data', 'get_rosco_data_global', 'get_runner_data', 'get_intruso_data', 'get_parejas_data',
-  'get_ordena_frases_data', 'get_ordena_historias_data', 'get_detective_data', 'get_comprension_data',
+  'get_ordena_frases_data', 'get_ordena_historias_data', 'get_ordena_frases_bloques', 'get_ordena_historias_bloques', 'get_detective_data', 'get_comprension_data',
   'get_app_content', 'get_jokes', 'get_subjects', 'get_app_avg_rating', 'get_bulk_avg_ratings',
   'get_robot_missions', 'get_group_public_info',
 ]);

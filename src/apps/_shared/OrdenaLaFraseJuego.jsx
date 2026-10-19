@@ -2,11 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
-import { getOrdenaFrasesData } from '../../services/gameDataService';
+import { getOrdenaFrasesConBloques } from '../../services/gameDataService';
+import { useBloquesTematicos, BloquePicker } from './BloquesTematicos';
 import { GameShell, GameHeader, GameLoading, GameEmpty } from './kit';
 
 // Colores del icono de la app (fichas blancas sobre baldosa rosa + ficha índigo)
 const SHELL = { accent: '#f43f5e', accent2: '#8b5cf6' };
+// Mínimo de frases distintas para ofrecer un bloque (examen = 5; margen para no repetir).
+const MIN_FRASES_BLOQUE = 12;
 
 const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -16,13 +19,14 @@ const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const conTemporizador = (level === 'primaria' && grade >= 3) || level === 'eso';
-  const game = useOrdenaLaFraseGame(frases || [], conTemporizador);
+  const { bloques, bloque, setBloque, elementos } = useBloquesTematicos(frases, MIN_FRASES_BLOQUE);
+  const game = useOrdenaLaFraseGame(elementos, conTemporizador);
 
   useEffect(() => {
     const cargarContenido = async () => {
       setIsLoading(true);
       const asignatura = level === 'primaria' ? (subjectId || 'general') : subjectId;
-      const frasesData = await getOrdenaFrasesData(level, grade, asignatura);
+      const frasesData = await getOrdenaFrasesConBloques(level, grade, asignatura);
       setFrases(frasesData || []);
       setIsLoading(false);
     };
@@ -48,7 +52,15 @@ const OrdenaLaFraseJuego = ({ onGameComplete } = {}) => {
   }
 
   // Un único componente UI gestiona práctica y test
-  return <OrdenaLaFraseUI game={game} onGameComplete={onGameComplete} total={frases.length} />;
+  return (
+    <OrdenaLaFraseUI
+      game={game}
+      onGameComplete={onGameComplete}
+      total={elementos.length}
+      bloque={bloque}
+      filters={<BloquePicker bloques={bloques} value={bloque} onChange={setBloque} total={frases.length} unidad="frases" />}
+    />
+  );
 };
 
 export default OrdenaLaFraseJuego;

@@ -9,7 +9,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight, BookOpen, HelpCircle, Clock, Flame, GraduationCap, RefreshCw,
-  Sprout, Star, Target, Trophy, Gamepad2, Check, X, AlertTriangle,
+  Sprout, Star, Target, Trophy, Gamepad2, Check, X, AlertTriangle, Layers,
 } from 'lucide-react';
 import AppIcon, { hasAppIcon } from '@/components/AppIcon';
 import { useAppMeta } from './AppMetaContext';
@@ -55,7 +55,7 @@ export function GameShell({ children, accent, accent2, theme = 'auto', wide = fa
 //   mode: 'easy' | 'medium' | 'exam' | 'practice' | null → chip de color (modeLabel cambia el texto)
 //   onHelp: abre las instrucciones; onStudy: material de estudio
 //   right: contenido extra (p. ej. <Hud>)
-export function GameHeader({ title, subtitle, icon, mode, modeLabel, onHelp, onStudy, right, compact = false }) {
+export function GameHeader({ title, subtitle, icon, mode, modeLabel, topic, onHelp, onStudy, right, compact = false }) {
   const meta = useAppMeta();
   const name = title || cleanAppName(meta.name);
   const course = subtitle ?? courseLabel(meta);
@@ -71,6 +71,7 @@ export function GameHeader({ title, subtitle, icon, mode, modeLabel, onHelp, onS
           <div className="gk-header__meta">
             {course && <span className="gk-chip gk-chip--soft">{course}</span>}
             {mode && <ModeChip mode={mode} label={modeLabel} />}
+            {topic && <span className="gk-chip gk-chip--soft gk-header__topic" title={topic}><Layers size={13} />{topic}</span>}
           </div>
         </div>
       </div>
@@ -265,7 +266,7 @@ const DEFAULT_MODE_ICON = { easy: Sprout, practice: Gamepad2, medium: Flame, exa
 // Pantalla de inicio de la app: héroe con icono y descripción + tarjetas de modo.
 //   modes: [{ id, tone: 'easy'|'medium'|'exam', title, desc, features?: [], icon?, cta? }]
 //   onSelect(id); extra: controles opcionales (p. ej. <Segmented>) bajo las tarjetas
-export function ModeSelect({ title, description, modes, onSelect, onHelp, onStudy, extra, footer, icon }) {
+export function ModeSelect({ title, description, modes, onSelect, onHelp, onStudy, filters, extra, footer, icon }) {
   const meta = useAppMeta();
   const name = title || cleanAppName(meta.name);
   const desc = description ?? meta.description;
@@ -291,6 +292,8 @@ export function ModeSelect({ title, description, modes, onSelect, onHelp, onStud
           )}
         </div>
       </div>
+
+      {filters && <div className="gk-modes__filters">{filters}</div>}
 
       <div className={cx('gk-modes__grid', modes.length === 2 && 'gk-modes__grid--two')}>
         {modes.map((m, i) => {

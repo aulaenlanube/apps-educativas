@@ -2,11 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
 import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
-import { getOrdenaHistoriasData } from '../../services/gameDataService';
+import { getOrdenaHistoriasConBloques } from '../../services/gameDataService';
+import { useBloquesTematicos, BloquePicker } from './BloquesTematicos';
 import { GameShell, GameHeader, GameLoading, GameEmpty } from './kit';
 
 // Colores del icono de la app (amanecer → noche: la historia avanza)
 const SHELL = { accent: '#f97316', accent2: '#6366f1' };
+// Mínimo de historias distintas para ofrecer un bloque (examen = 5; margen para no repetir).
+const MIN_HISTORIAS_BLOQUE = 8;
 
 const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   const { level, grade: gradeParam, subjectId } = useParams();
@@ -19,14 +22,15 @@ const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const conTemporizador = grade >= 3;
-  const game = useOrdenaLaHistoriaGame(historias || [], conTemporizador);
+  const { bloques, bloque, setBloque, elementos } = useBloquesTematicos(historias, MIN_HISTORIAS_BLOQUE);
+  const game = useOrdenaLaHistoriaGame(elementos, conTemporizador);
 
   useEffect(() => {
     let vivo = true;
     const cargar = async () => {
       setIsLoading(true);
       const asignatura = level === 'primaria' ? (subjectId || 'general') : subjectId;
-      const data = await getOrdenaHistoriasData(level, grade, asignatura);
+      const data = await getOrdenaHistoriasConBloques(level, grade, asignatura);
       if (!vivo) return;
       setHistorias(Array.isArray(data) ? data : []);
       setIsLoading(false);
@@ -54,7 +58,15 @@ const OrdenaLaHistoriaJuego = ({ onGameComplete } = {}) => {
   }
 
   // Un único UI que muestra práctica o test según game.isTestMode
-  return <OrdenaLaHistoriaUI game={game} onGameComplete={onGameComplete} total={historias.length} />;
+  return (
+    <OrdenaLaHistoriaUI
+      game={game}
+      onGameComplete={onGameComplete}
+      total={elementos.length}
+      bloque={bloque}
+      filters={<BloquePicker bloques={bloques} value={bloque} onChange={setBloque} total={historias.length} unidad="historias" />}
+    />
+  );
 };
 
 export default OrdenaLaHistoriaJuego;

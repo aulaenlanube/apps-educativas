@@ -1,0 +1,60 @@
+/* Selector de bloque temático (Ordena la Frase / Ordena la Historia). Vive dentro del GameShell (variables --gk-*). */
+.bqt { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
+.bqt__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gk-ink-3);
+}
+.bqt__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px;
+  max-width: 860px;
+  border-radius: 18px;
+  background: var(--gk-inset);
+  box-shadow: inset 0 1px 3px rgba(30, 20, 90, .14);
+}
+.bqt__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 12px;
+  font-family: var(--gk-font);
+  font-weight: 700;
+  font-size: .86rem;
+  color: var(--gk-ink-2);
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.bqt__opt:hover { color: var(--gk-ink); background: var(--gk-surface-2); }
+.bqt__opt.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--gk-accent), var(--gk-accent-2));
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--gk-accent) 55%, #1e1b4b), 0 8px 16px -10px var(--gk-accent);
+}
+.bqt__count {
+  min-width: 22px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--gk-ink-3);
+  background: var(--gk-surface-2);
+}
+.bqt__opt.is-active .bqt__count { color: #fff; background: rgba(255, 255, 255, .22); }
+
+@media (max-width: 720px) {
+  .bqt__list { gap: 4px; padding: 4px; }
+  .bqt__opt { padding: 6px 10px; font-size: .8rem; }
+}

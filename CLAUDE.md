@@ -22,7 +22,8 @@ Reutiliza datos existentes (ver [src/services/gameDataService.js](src/services/g
 | `getRunnerData(level, grade, asig)` | `{categoria: [palabras]}` | Runner, Memoria, Clasificador, Lluvia, Excavación, Snake, Torre |
 | `getIntrusoData` | `[{categoria, correctos, intrusos}]` | Busca el Intruso |
 | `getParejasData` | `[{term_a, term_b}]` | Parejas de Cartas |
-| `getOrdenaFrasesData` / `getOrdenaHistoriasData` | Frases / historias | Ordena la Frase, Ordena la Historia |
+| `getOrdenaFrasesData` / `getOrdenaHistoriasData` | Frases / historias | Dictado, Ahorcado, Criptograma, Mascota |
+| `getOrdenaFrasesConBloques` / `getOrdenaHistoriasConBloques` | `[{s, t}]` (t = bloque temático) | Ordena la Frase, Ordena la Historia (selector de bloque, `_shared/BloquesTematicos.jsx`) |
 | `getDetectiveData` | Frases con palabras clave | Detective de Palabras |
 | `getComprensionData` | `[{title, text_content, questions}]` | Comprensión Escrita/Oral |
 | `getAppContent(tipo, level?, grade?)` | JSON libre | Mesa Crafteo, Terminal Retro, Bloques, Personajes, Banco Recursos |

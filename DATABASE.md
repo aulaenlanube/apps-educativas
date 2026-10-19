@@ -15,8 +15,8 @@
 | `runner_categories` | Categorías con palabras (runner, snake, memoria, lluvia, excavación…) | `subject_id`, `level`, `grades[]`, `category_name`, `words` (jsonb) |
 | `intruso_sets` | Conjuntos de busca-el-intruso | `subject_id`, `level`, `grades[]`, `category`, `correct_items` (jsonb), `intruder_items` (jsonb) |
 | `parejas_items` | Parejas de cartas | `subject_id`, `level`, `grades[]`, `term_a`, `term_b` |
-| `ordena_frases` | Frases para ordenar | `subject_id`, `level`, `grades[]`, `sentence` |
-| `ordena_historias` | Historias para ordenar (5 frases) | `subject_id`, `level`, `grades[]`, `sentences` (jsonb array) |
+| `ordena_frases` | Frases para ordenar | `subject_id`, `level`, `grades[]`, `sentence`, `topic` (bloque temático) |
+| `ordena_historias` | Historias para ordenar (5 frases) | `subject_id`, `level`, `grades[]`, `sentences` (jsonb array), `topic` (bloque temático) |
 | `detective_sentences` | Frases para detective de palabras | `subject_id`, `level`, `grades[]`, `sentence` |
 | `comprension_texts` | Textos de comprensión lectora/oral | `subject_id`, `level`, `grades[]`, `title`, `text_content`, `questions` (jsonb) |
 | `app_content` | Contenido específico de apps (bloques, terminal, personajes, banco recursos…) | `app_type`, `subject_id`, `level`, `grades[]`, `content` (jsonb) |
@@ -230,6 +230,7 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 | `get_parejas_data` | `p_level, p_grade, p_subject` |
 | `get_ordena_frases_data` | `p_level, p_grade, p_subject` |
 | `get_ordena_historias_data` | `p_level, p_grade, p_subject` |
+| `get_ordena_frases_bloques` / `get_ordena_historias_bloques` | `p_level, p_grade, p_subject` → `[{s, t}]` (t = bloque temático) |
 | `get_detective_data` | `p_level, p_grade, p_subject` |
 | `get_comprension_data` | `p_level, p_grade, p_subject` |
 | `get_app_content` | `p_app_type, p_level?, p_grade?` |

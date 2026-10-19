@@ -43,7 +43,7 @@ const nodeColor = (t) => {
   return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
 };
 
-const OrdenaLaHistoriaUI = ({ game, onGameComplete, total = 0 }) => {
+const OrdenaLaHistoriaUI = ({ game, onGameComplete, total = 0, bloque = null, filters = null }) => {
   // null = pantalla previa de modos (CLAUDE.md §3); 'practice' = práctica libre.
   // El examen lo marca el propio hook (game.isTestMode).
   const [view, setView] = useState(null);
@@ -354,6 +354,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete, total = 0 }) => {
         >
           <GameHeader
             mode="exam"
+            topic={bloque}
             onHelp={() => setShowHelp(true)}
             right={(
               <Hud>
@@ -412,7 +413,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete, total = 0 }) => {
     };
     return (
       <GameShell {...SHELL}>
-        <ModeSelect modes={modes} onSelect={onSelect} onHelp={() => setShowHelp(true)} extra={fontPicker} />
+        <ModeSelect modes={modes} onSelect={onSelect} onHelp={() => setShowHelp(true)} filters={filters} extra={fontPicker} />
         {instructions}
       </GameShell>
     );
@@ -430,6 +431,7 @@ const OrdenaLaHistoriaUI = ({ game, onGameComplete, total = 0 }) => {
       >
         <GameHeader
           mode="easy"
+          topic={bloque}
           modeLabel="Práctica"
           onHelp={() => setShowHelp(true)}
           right={(

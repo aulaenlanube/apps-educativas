@@ -134,6 +134,7 @@ html.dark .gk-shell.gk-theme-auto,
 }
 .gk-header--compact .gk-title { font-size: 1.3rem; }
 .gk-header__meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.gk-header__topic { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .gk-header__right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-left: auto; }
 
 .gk-iconbtn {
@@ -551,6 +552,7 @@ html.dark .gk-shell.gk-theme-auto,
 .gk-mode:hover .gk-mode__cta svg { transform: translateX(3px); }
 .gk-mode__cta svg { transition: transform .2s ease; }
 .gk-modes__extra { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.gk-modes__filters { display: flex; justify-content: center; }
 .gk-modes__footer { display: flex; justify-content: center; color: var(--gk-ink-3); font-size: .85rem; font-weight: 700; }
 
 /* ---------- Aviso de ronda ---------- */
