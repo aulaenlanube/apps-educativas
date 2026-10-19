@@ -1,69 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Atom, MousePointerClick, Link2, FlaskConical, X, Check } from 'lucide-react';
+// src/apps/mesa-crafteo/TutorialModal.jsx
+// Cómo se juega (modal propio, nunca window.alert).
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Atom, MousePointerClick, Link2, Shapes, Check, X, Hand } from 'lucide-react';
 import { GameButton } from '../_shared/kit';
 import { FlaskArt } from './CrafteoArt';
-import './MesaCrafteo.css'; // Reusing the main CSS for consistency
 
 const STEPS = [
-    { Icon: Atom, title: 'Selecciona elementos', text: 'Elige los átomos que necesitas en el panel de la derecha.' },
-    { Icon: MousePointerClick, title: 'Construye en 3D', text: 'Haz clic en el espacio para colocar el primer átomo. Arrastra para girar la cámara y usa la rueda para el zoom.' },
-    { Icon: Link2, title: 'Crea enlaces', text: 'Haz clic en los puertos verdes de un átomo para conectar ahí el elemento seleccionado.' },
-    { Icon: FlaskConical, title: 'Craftea', text: 'Cuando tengas la estructura correcta, pulsa Craftear (o Enviar respuesta en el examen).' },
+    { Icon: Atom, title: 'Elige un elemento', text: 'Toca una ficha de abajo y el átomo aparece en la mesa. Los puntitos de la ficha son los enlaces que puede formar (su valencia).' },
+    { Icon: MousePointerClick, title: 'Une átomos', text: 'Cada átomo muestra huecos brillantes: sus enlaces libres. Al tocar otra ficha se une al átomo marcado en ámbar. Toca un átomo para elegir dónde irá el siguiente, o arrastra la ficha hasta el hueco que quieras.' },
+    { Icon: Link2, title: 'Dobles y triples', text: 'Toca un enlace para hacerlo doble o triple (los dos átomos necesitan huecos libres). Con «Enlazar» unes dos átomos para cerrar un anillo.' },
+    { Icon: Shapes, title: 'Geometría real', text: 'Los átomos se colocan solos según la teoría VSEPR: los pares solitarios (puntos lilas) empujan a los enlaces y por eso el agua es angular.' },
+    { Icon: Hand, title: 'Mira y comprueba', text: 'Arrastra para girar la vista y usa la rueda o dos dedos para el zoom. Cuando no quedan huecos, la molécula se comprueba sola.' },
 ];
 
-const TutorialModal = ({ onClose }) => {
-    const [dontShowAgain] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        // Animation delay
-        const timer = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleClose = () => {
-        if (dontShowAgain) {
-            localStorage.setItem('mesa_crafteo_tutorial_seen', 'true');
-        }
-        setIsVisible(false);
-        setTimeout(onClose, 300); // Wait for animation
-    };
-
-    return (
-        <div className={`mc-tutorial ${isVisible ? 'is-visible' : ''}`} onClick={handleClose}>
-            <div className="mc-tutorial__card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Cómo se juega">
-                <button type="button" className="gk-iconbtn mc-tutorial__close" onClick={handleClose} aria-label="Cerrar">
-                    <X size={18} />
-                </button>
-                <div className="mc-tutorial__hero">
-                    <FlaskArt status="ok" className="mc-tutorial__art" />
-                    <div>
-                        <span className="mc-kicker">Laboratorio de química</span>
-                        <h2>Bienvenido al laboratorio</h2>
-                        <p>Experimenta y crea moléculas reales conectando átomos en un entorno 3D.</p>
-                    </div>
-                </div>
-
-                <ol className="mc-tutorial__steps">
-                    {STEPS.map(({ Icon, title, text }, i) => (
-                        <li key={title} className="mc-tutorial__step" style={{ '--i': i }}>
-                            <span className="mc-tutorial__num"><Icon size={18} /><b>{i + 1}</b></span>
-                            <div>
-                                <strong>{title}</strong>
-                                <p>{text}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ol>
-
-                <div className="mc-tutorial__foot">
-                    <GameButton variant="success" size="lg" icon={Check} onClick={handleClose}>
-                        ¡Entendido, vamos allá!
-                    </GameButton>
+const TutorialModal = ({ onClose }) => (
+    <motion.div className="mc-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+        <motion.div
+            className="mc-sheet mc-tutorial"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Cómo se juega"
+            initial={{ y: 26, opacity: 0, scale: 0.98 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 16, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+            onClick={(e) => e.stopPropagation()}
+        >
+            <button type="button" className="gk-iconbtn mc-sheet__close" onClick={onClose} aria-label="Cerrar"><X size={18} /></button>
+            <div className="mc-tutorial__hero">
+                <FlaskArt status="ok" className="mc-tutorial__art" />
+                <div>
+                    <span className="mc-kicker">Laboratorio de química</span>
+                    <h2>Cómo se juega</h2>
+                    <p>Construye moléculas reales átomo a átomo y descubre su forma en 3D.</p>
                 </div>
             </div>
-        </div>
-    );
-};
+            <ol className="mc-tutorial__steps">
+                {STEPS.map(({ Icon, title, text }, i) => (
+                    <li key={title} className="mc-tutorial__step">
+                        <span className="mc-tutorial__num"><Icon size={18} /><b>{i + 1}</b></span>
+                        <div><strong>{title}</strong><p>{text}</p></div>
+                    </li>
+                ))}
+            </ol>
+            <div className="mc-tutorial__foot">
+                <GameButton variant="success" size="lg" icon={Check} onClick={onClose}>¡Entendido, vamos allá!</GameButton>
+            </div>
+        </motion.div>
+    </motion.div>
+);
 
 export default TutorialModal;
