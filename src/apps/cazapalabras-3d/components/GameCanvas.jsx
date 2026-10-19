@@ -13,6 +13,7 @@ import {
 import Scene from './Scene';
 import Effects from './Effects';
 import { CAM, DEBUFF, BUFF } from '../engine/config';
+import ContextLossGuard from '@/components/ui/bg3d/ContextLossGuard';
 
 function Governor({ onDowngrade }) {
   const ref = useRef(null);
@@ -30,13 +31,11 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
   const onCreated = useCallback(({ gl }) => {
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.18;
-    const el = gl.domElement;
-    el.addEventListener('webglcontextlost', (e) => {
-      e.preventDefault();
-      setLost(true); // congela el render-loop: no rasterizar sobre el contexto muerto
-      setTimeout(() => { setLost(false); setCtxKey((k) => k + 1); }, 350);
-    }, false);
   }, []);
+  // Pérdida de contexto: congela el render-loop (no rasterizar sobre el contexto
+  // muerto) y remonta (ver ContextLossGuard: sin bucle al cambiar de calidad)
+  const onContextLostNow = useCallback(() => setLost(true), []);
+  const onContextLost = useCallback(() => { setLost(false); setCtxKey((k) => k + 1); }, []);
 
   const handleDowngrade = useCallback(() => {
     const next = lowerTier(tier);
@@ -170,6 +169,7 @@ function GameCanvas({ tier, prefAuto, onAutoDowngrade, gameRef, controlRef, onHi
         camera={{ position: CAM.pos, fov: 62, near: 0.1, far: 240 }}
         onCreated={onCreated}
       >
+        <ContextLossGuard onLost={onContextLost} onLostNow={onContextLostNow} />
         {prefAuto && <Governor onDowngrade={handleDowngrade} />}
         <Scene gameRef={gameRef} controlRef={controlRef} onHit={onHit} quality={Q} tier={tier} amb={amb} />
         {Q.bloom && <Effects />}

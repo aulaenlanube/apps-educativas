@@ -16,6 +16,7 @@ import {
 } from '@/services/graphicsQuality';
 import { tierParams } from './quality';
 import LabEnvironment from './LabEnvironment';
+import ContextLossGuard from '@/components/ui/bg3d/ContextLossGuard';
 
 export function createActivity() {
   let until = 0; let continuous = false; let raf = 0; let last = 0;
@@ -47,9 +48,11 @@ function Pump({ activity, fps }) {
   return null;
 }
 
-function Governor({ onDowngrade }) {
+function Governor({ onDowngrade, capFps }) {
   const gov = useRef(null);
-  if (!gov.current) gov.current = createFpsGovernor({ onDowngrade });
+  // Solo baja si no llega a ~60 % del tope de fps de su nivel (el tope de
+  // medio/bajo ya está por debajo de 42: antes bajaba siempre).
+  if (!gov.current) gov.current = createFpsGovernor({ onDowngrade, minFps: Math.min(42, Math.round(capFps * 0.6)) });
   // En modo "demand" hay huecos sin fotogramas: solo cuentan los seguidos.
   useFrame((_, dt) => { if (dt < 0.2) gov.current.tick(dt); });
   return null;
@@ -124,12 +127,7 @@ export default function LabCanvas({
   const P = tierParams(tier);
   const [ctxKey, setCtxKey] = useState(0);
 
-  const onCreated = useCallback(({ gl }) => {
-    gl.domElement.addEventListener('webglcontextlost', (e) => {
-      e.preventDefault();
-      setTimeout(() => setCtxKey((k) => k + 1), 350);
-    }, false);
-  }, []);
+  const onContextLost = useCallback(() => setCtxKey((k) => k + 1), []);
 
   const handleDowngrade = useCallback(() => {
     const next = lowerTier(tier);
@@ -146,7 +144,6 @@ export default function LabCanvas({
         dpr={effectiveDpr(tier)}
         gl={{ antialias: G.antialias, powerPreference: 'high-performance', alpha: false }}
         camera={{ position: [0, 1.4, 7], fov: 40, near: 0.1, far: 140 }}
-        onCreated={onCreated}
         className="mc-canvas"
       >
         <color attach="background" args={['#070b1d']} />
@@ -156,8 +153,9 @@ export default function LabCanvas({
         <directionalLight position={[4, 7, 6]} intensity={1.7} />
         <directionalLight position={[-4, 2, -6]} intensity={1.35} color="#7dd3fc" />
         <pointLight position={[-5, -1, 4]} intensity={0.5} color="#f0abfc" />
+        <ContextLossGuard onLost={onContextLost} />
         <Pump activity={activity} fps={P.fps} />
-        {prefAuto && <Governor onDowngrade={handleDowngrade} />}
+        {prefAuto && <Governor onDowngrade={handleDowngrade} capFps={P.fps} />}
         <LabEnvironment params={P} extentRef={extentRef} />
         <Suspense fallback={null}>{children}</Suspense>
         <OrbitControls

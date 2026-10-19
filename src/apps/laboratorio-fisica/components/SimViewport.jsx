@@ -14,6 +14,7 @@ import {
 } from '@/services/graphicsQuality';
 import LabEnvironment from './LabEnvironment';
 import { DEFAULT_AMBIENCE } from '../engine/ambiences';
+import ContextLossGuard from '@/components/ui/bg3d/ContextLossGuard';
 
 function GovernorTicker({ onDowngrade }) {
   const govRef = useRef(null);
@@ -38,14 +39,9 @@ export default function SimViewport({
   const amb = ambience || DEFAULT_AMBIENCE;
   const [ctxKey, setCtxKey] = useState(0);
 
-  const onCreated = useCallback(({ gl }) => {
-    const el = gl.domElement;
-    el.addEventListener('webglcontextlost', (e) => {
-      e.preventDefault();
-      // pequeño respiro y remount: la escena se reconstruye desde `world`
-      setTimeout(() => setCtxKey((k) => k + 1), 350);
-    }, false);
-  }, []);
+  // Pérdida de contexto → pequeño respiro y remount: la escena se reconstruye
+  // desde `world` (ver ContextLossGuard: sin bucle al cambiar de calidad)
+  const onContextLost = useCallback(() => setCtxKey((k) => k + 1), []);
 
   const handleDowngrade = useCallback(() => {
     const next = lowerTier(tier);
@@ -60,8 +56,8 @@ export default function SimViewport({
         shadows={Q.shadows}
         gl={{ antialias: Q.antialias, powerPreference: 'high-performance' }}
         camera={{ position: camera?.position || [9, 6, 11], fov: camera?.fov || 45 }}
-        onCreated={onCreated}
       >
+        <ContextLossGuard onLost={onContextLost} />
         <color attach="background" args={[amb.sky]} />
         <fog attach="fog" args={[amb.horizon, amb.fog[0], amb.fog[1]]} />
         <ambientLight intensity={amb.ambient ?? 0.5} />

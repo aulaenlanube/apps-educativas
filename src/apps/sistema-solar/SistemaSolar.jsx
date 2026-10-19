@@ -53,6 +53,7 @@ import LayersMission from './ui/LayersMission';
 import OrderMission from './SolarSystemActivity';
 import './SistemaSolar.css';
 import './ui/missions.css';
+import ContextLossGuard from '@/components/ui/bg3d/ContextLossGuard';
 
 /* ───────────────────────── Datos de apoyo ───────────────────────── */
 
@@ -383,12 +384,8 @@ const SistemaSolar = ({ level, grade, onGameComplete }) => {
     showToast(`Rendimiento bajo: calidad ajustada a ${QUALITY_LABELS[nxt]}`);
   }, [gfxTier, showToast]);
 
-  const onCreated = useCallback(({ gl }) => {
-    gl.domElement.addEventListener('webglcontextlost', (e) => {
-      e.preventDefault();
-      setTimeout(() => setCtxKey((k) => k + 1), 350);
-    }, false);
-  }, []);
+  // Pérdida de contexto → remontar (ver ContextLossGuard: sin bucle al cambiar de calidad)
+  const onContextLost = useCallback(() => setCtxKey((k) => k + 1), []);
 
   // ---- estado de la app ----
   const [view, setView] = useState('explore'); // explore | interior | hub | mission
@@ -655,8 +652,8 @@ const SistemaSolar = ({ level, grade, onGameComplete }) => {
               gl={{ antialias: P.antialias, powerPreference: 'high-performance' }}
               camera={{ position: [0, 300, 640], fov: 45, near: 0.1, far: 14000 }}
               frameloop={frameloop}
-              onCreated={onCreated}
             >
+              <ContextLossGuard onLost={onContextLost} />
               {frameloop === 'demand' && <FrameLimiter fps={Q.fps} />}
               {pref === 'auto' && gfxTier !== 'low' && <GovernorTicker key={gfxTier} onDowngrade={handleDowngrade} />}
               <Suspense fallback={null}>{scene}</Suspense>
