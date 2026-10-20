@@ -38,6 +38,7 @@
 | 2026-05-18 | ia-en-educacion | NotebookLM para docentes: tu temario en podcast en 5 minutos | `notebooklm-para-docentes-temario-en-podcast` |
 | 2026-06-12 | ia-en-educacion | Corrección con IA vs manual: lo que vimos al compararlas | `ia-vs-correccion-manual-en-clase` |
 | 2026-06-12 | innovacion-educativa | FP en auge: cómo orientar la decisión desde la ESO | `boom-fp-como-orientar-desde-la-eso` |
+| 2026-10-20 | abp | Trabajo en equipo en ABP: cómo evitar al alumno polizón | `trabajo-en-equipo-abp-alumno-polizon` |
 
 ---
 
