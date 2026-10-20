@@ -31,7 +31,7 @@
 
 ## Blog
 
-27 artículos publicados. Texto completo en https://apps-educativas.com/llms-full.txt
+28 artículos publicados. Texto completo en https://apps-educativas.com/llms-full.txt
 
 ### Plataforma EduApps
 
@@ -73,6 +73,7 @@ Aula invertida, vídeo como deber y tiempo de clase para práctica guiada.
 
 Proyectos transversales, evaluación por producto y retos reales.
 
+- [Trabajo en equipo en ABP: cómo evitar al alumno polizón](https://apps-educativas.com/blog/trabajo-en-equipo-abp-alumno-polizon): El alumno que no trabaja y aprueba gracias al equipo hunde cualquier ABP. Roles rotativos, contrato de equipo y evidencias individuales para evitarlo mañana.
 - [ABP: cómo diseñar un proyecto que de verdad enganche](https://apps-educativas.com/blog/aprendizaje-basado-en-proyectos-como-disenar-uno-que-enganche): Cómo diseñar un Aprendizaje Basado en Proyectos que funcione en el aula: producto final, evaluación por fases, rol del docente y errores que matan cualquier ABP.
 
 ### Innovación educativa
