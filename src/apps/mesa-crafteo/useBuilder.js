@@ -6,7 +6,8 @@
 //    pasa al último colocado que tenga huecos. Mesa vacía → primer átomo.
 //  · Tocar un átomo o uno de sus huecos lo selecciona (el siguiente irá ahí).
 //  · Tocar un enlace sube su orden 1 → 2 → 3 (si los dos átomos tienen hueco) y vuelve a 1.
-//  · Modo Enlazar: tocar dos átomos con hueco los une (cerrar anillos).
+//  · Modo Enlazar: tocar dos átomos con hueco los une (cerrar anillos); si ya
+//    estaban unidos, el enlace sube de orden (otra forma de hacer O=O).
 import { useCallback, useMemo, useRef, useState } from 'react';
 import {
   emptyModel, addAtom, linkAtoms, cycleBond, removeAtom, attachTarget, atomStatus, findBond, neighborsOf,
@@ -87,7 +88,15 @@ export default function useBuilder() {
           if (!s || s.room < 1) { msg = 'Ese átomo no tiene huecos libres para otro enlace.'; return prev; }
           return { ...prev, linkFrom: id };
         }
-        if (findBond(prev.model, prev.linkFrom, id)) { msg = 'Esos dos átomos ya están unidos: toca el enlace para hacerlo doble.'; return { ...prev, linkFrom: id }; }
+        const bond = findBond(prev.model, prev.linkFrom, id);
+        if (bond) {
+          const sa = atomStatus(prev.model, prev.linkFrom); const sb = atomStatus(prev.model, id);
+          if (bond.order >= 3 || sa.room < 1 || sb.room < 1) { msg = 'Esos dos átomos no admiten otro enlace entre ellos.'; return { ...prev, linkFrom: id }; }
+          const m = cycleBond(prev.model, prev.linkFrom, id);
+          const order = findBond(m, prev.linkFrom, id).order;
+          msg = order === 2 ? '¡Enlace doble!' : '¡Enlace triple!';
+          return commit(prev, { model: m, layout: computeLayout(m, prev.layout), link: false, linkFrom: null, selected: attachTarget(m, id) ?? id });
+        }
         const m = linkAtoms(prev.model, prev.linkFrom, id);
         if (!m) { msg = 'Los dos átomos necesitan un hueco libre para unirse.'; return prev; }
         const lay = computeLayout(m, null, { fresh: true });

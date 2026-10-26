@@ -99,6 +99,13 @@ export function cycleBond(model, a, b) {
   return { ...model, bonds: model.bonds.map((x) => (x === bond ? { ...x, order } : x)) };
 }
 
+// Enlaces que aún pueden subir de orden porque a los dos átomos les quedan
+// huecos libres (sin contar el octeto expandido). Son los que se resaltan.
+export function upgradableBonds(model) {
+  return model.bonds.filter((b) => b.order < 3
+    && atomStatus(model, b.a).free > 0 && atomStatus(model, b.b).free > 0);
+}
+
 // Componentes conexas (listas de ids).
 export function components(model) {
   const seen = new Set();

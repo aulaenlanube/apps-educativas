@@ -116,7 +116,7 @@ function LonePair({ dir, radius, res }) {
 
 export default function MoleculeView({
   model, layout, params, selectedId = null, attachId = null, nextSlot = null, linkFrom = null, dropTarget = null,
-  showLP = true, showSlots = true, interactive = true, celebrateKey = 0,
+  showLP = true, showSlots = true, interactive = true, celebrateKey = 0, hintBonds = null,
   onAtomTap, onSlotTap, onBondTap, pickerRef, extentRef, activity, spawnFrom,
 }) {
   const res = useResources(params);
@@ -279,8 +279,9 @@ export default function MoleculeView({
       if (b.hit) {
         b.hit.position.copy(pa).addScaledVector(dir, L / 2);
         b.hit.quaternion.copy(tmpQ);
-        b.hit.scale.set(0.2, L * 0.55, 0.2);
+        b.hit.scale.set(0.3, L * 0.55, 0.3);
       }
+      if (b.glow) b.glow.position.copy(pa).addScaledVector(dir, L / 2);
     });
     if (moving) activity?.wake(120);
   });
@@ -369,6 +370,11 @@ export default function MoleculeView({
                 onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
                 onPointerOut={() => { document.body.style.cursor = ''; }}
               />
+            )}
+            {/* enlace que admite ser doble/triple: halo para que se vea que se puede tocar */}
+            {interactive && hintBonds?.has(b.key) && (
+              <sprite scale={0.85} material={res.glowMat('bond-hint', '#22d3ee', 1)} renderOrder={1}
+                ref={(m) => { const e = bondNodes.current.get(b.key); if (e) e.glow = m; }} />
             )}
           </group>
         );

@@ -31,7 +31,7 @@ import { EXAM_DIFFICULTY, computeCrafteoNota, computeCrafteoScore, crafteoMaxSco
 import { MOLECULES, MOLECULE_BY_ID, courseRank, moleculesForRank } from './chem/molecules';
 import { tokenInfo } from './chem/elements';
 import {
-  emptyModel, isSaturated, matchesMolecule, diagnose, identify, atomStatus,
+  emptyModel, isSaturated, matchesMolecule, diagnose, identify, atomStatus, upgradableBonds,
 } from './chem/graph';
 import { displayOf } from './chem/display';
 import {
@@ -563,7 +563,7 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
   // Solo desarrollo: gancho para las capturas automáticas (tools/app-shots.mjs).
   useEffect(() => {
     if (!import.meta.env.DEV) return undefined;
-    window.__mcDebug = { builder, session, startLevel, worlds, pickerRef };
+    window.__mcDebug = { builder, session, startLevel, worlds, worldLevels, pickerRef };
     return () => { delete window.__mcDebug; };
   });
 
@@ -577,11 +577,11 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
     if (builder.link) return { text: builder.linkFrom == null ? 'Modo enlazar: toca el primer átomo.' : 'Ahora toca el segundo átomo para unirlos.', tone: 'info' };
     if (!m.atoms.length) return { text: phone ? 'Toca un elemento de abajo para ponerlo en la mesa.' : 'Toca un elemento de abajo (o arrástralo) para ponerlo en la mesa.', tone: 'info' };
     const target = session.target || (session.kind === 'exam' ? session.questions[session.index] : null);
-    if (builder.attachId == null && !isSaturated(m)) return { text: 'Quedan huecos que no caben: toca un enlace para hacerlo doble o triple.', tone: 'info' };
+    if (builder.attachId == null && !isSaturated(m)) return { text: 'Quedan huecos que no caben: toca el enlace que brilla para hacerlo doble o triple (o pulsa «Enlazar» y toca sus dos átomos).', tone: 'info' };
     if (target && session.kind !== 'exam') {
       const need = target.atoms.length;
       const free = m.atoms.reduce((s, a) => s + atomStatus(m, a.id).free, 0);
-      if (m.atoms.length === need && free > 0) return { text: '¡Ya están todos los átomos! Los huecos que sobran piden enlaces dobles o triples: toca un enlace.', tone: 'info' };
+      if (m.atoms.length === need && free > 0) return { text: '¡Ya están todos los átomos! Los huecos que sobran piden enlaces dobles o triples: toca el enlace que brilla entre dos átomos.', tone: 'info' };
     }
     const at = builder.attachId != null ? m.atoms.find((a) => a.id === builder.attachId) : null;
     if (at) return { text: `El siguiente átomo se unirá al ${tokenInfo(at.tok).label} marcado. Toca otro átomo para cambiarlo.`, tone: 'info' };
@@ -608,6 +608,16 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
   const courseText = meta.level ? (meta.grade && meta.level !== 'ad' ? `${meta.grade}º ${LEVEL_LABEL[meta.level] || meta.level}` : (LEVEL_LABEL[meta.level] || meta.level)) : '';
   const target = session?.kind === 'exam' ? session.questions[session.index] : session?.target;
   const reveal = levelReveal(session);
+  // Enlaces que se resaltan para invitar a hacerlos dobles/triples: cuando ya
+  // no cabe ningún átomo más o (fuera del examen) ya están todos los átomos.
+  const hintBonds = useMemo(() => {
+    const m = builder.model;
+    if (!interactive || screen !== 'play' || builder.link || !m.bonds.length) return null;
+    const allPlaced = session?.kind !== 'exam' && target && m.atoms.length >= target.atoms.length;
+    if (builder.attachId != null && !allPlaced) return null;
+    const keys = upgradableBonds(m).map((b) => `${Math.min(b.a, b.b)}-${Math.max(b.a, b.b)}`);
+    return keys.length ? new Set(keys) : null;
+  }, [builder.model, builder.attachId, builder.link, interactive, screen, session?.kind, target]);
   const albumHave = progress.album.filter((id) => pool.some((m) => m.id === id)).length;
 
   // Memorizado: el reloj del HUD re-renderiza la app cada medio segundo y, sin
@@ -638,6 +648,7 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
         showSlots={showSlots}
         interactive={interactive}
         celebrateKey={celebrateKey}
+        hintBonds={hintBonds}
         onAtomTap={onAtomTap}
         onSlotTap={builder.tapSlot}
         onBondTap={onBondTap}
@@ -659,6 +670,7 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
           showSlots={showSlots}
           selectedId={interactive ? builder.selected : null}
           attachId={interactive ? builder.attachId : null}
+          hintBonds={hintBonds}
           onAtomTap={onAtomTap}
           onSlotTap={builder.tapSlot}
           onBondTap={onBondTap}
@@ -669,7 +681,7 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
   )), [
     webgl, tier, pref, insets, autoRotate, viewKey, builder.model, builder.layout, builder.selected, builder.attachId,
     builder.nextSlot, builder.linkFrom, builder.tapSlot, builder.spawnFrom, dropTarget, showLP, showSlots, interactive,
-    celebrateKey, params, reduced, onAtomTap, onBondTap, activity, screen,
+    celebrateKey, params, reduced, onAtomTap, onBondTap, activity, screen, hintBonds,
   ]);
 
   const topbar = (chip, hud) => (
@@ -702,7 +714,7 @@ const MesaCrafteo = ({ level: levelProp, grade = 1, corso, onGameComplete }) => 
       <div className="mc-dock__tools">
         <button type="button" className="mc-tool" onClick={builder.undo} disabled={!builder.canUndo} title="Deshacer (Ctrl+Z)"><Undo2 size={18} /><span>Deshacer</span></button>
         <button type="button" className="mc-tool" onClick={builder.removeSelected} disabled={!builder.model.atoms.length} title="Quitar el átomo seleccionado (Supr)"><Eraser size={18} /><span>Quitar</span></button>
-        <button type="button" className={`mc-tool ${builder.link ? 'is-on' : ''}`} onClick={builder.toggleLink} disabled={builder.model.atoms.length < 3} aria-pressed={builder.link} title="Unir dos átomos (para cerrar anillos)"><Link2 size={18} /><span>Enlazar</span></button>
+        <button type="button" className={`mc-tool ${builder.link ? 'is-on' : ''}`} onClick={builder.toggleLink} disabled={builder.model.atoms.length < 2} aria-pressed={builder.link} title="Unir dos átomos (cerrar anillos o hacer doble/triple un enlace)"><Link2 size={18} /><span>Enlazar</span></button>
         <button type="button" className="mc-tool" onClick={builder.clear} disabled={!builder.model.atoms.length} title="Vaciar la mesa"><Trash2 size={18} /><span>Vaciar</span></button>
         <button type="button" className={`mc-tool ${showLP ? 'is-on' : ''}`} onClick={() => setShowLP((v) => !v)} aria-pressed={showLP} title="Mostrar pares solitarios">{showLP ? <Eye size={18} /> : <EyeOff size={18} />}<span>Pares</span></button>
         {webgl && <button type="button" className="mc-tool" onClick={() => setViewKey((k) => k + 1)} title="Centrar la vista"><Crosshair size={18} /><span>Centrar</span></button>}

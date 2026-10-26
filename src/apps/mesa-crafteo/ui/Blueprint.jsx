@@ -11,7 +11,7 @@ const SCALE = 46; // px por unidad
 
 export default function Blueprint({
   model, layout: layoutProp, className = '', interactive = false, showSlots = false, showLP = false,
-  selectedId = null, attachId = null, onAtomTap, onSlotTap, onBondTap, title, mystery = false,
+  selectedId = null, attachId = null, onAtomTap, onSlotTap, onBondTap, title, mystery = false, hintBonds = null,
 }) {
   const layout = useMemo(
     () => layoutProp || computeLayout(model, null, { fresh: true, display: true }),
@@ -50,7 +50,7 @@ export default function Blueprint({
         </radialGradient>
       </defs>
       {bonds.map(({ b, A, B, nx, ny, offs }) => (
-        <g key={`${b.a}-${b.b}`} className="mc-bp__bond"
+        <g key={`${b.a}-${b.b}`} className={`mc-bp__bond${interactive && hintBonds?.has(`${Math.min(b.a, b.b)}-${Math.max(b.a, b.b)}`) ? ' is-hint' : ''}`}
           onClick={interactive ? () => onBondTap?.(b.a, b.b) : undefined}>
           {offs.map((o) => (
             <line key={o} x1={A.x + nx * o} y1={A.y + ny * o} x2={B.x + nx * o} y2={B.y + ny * o} />

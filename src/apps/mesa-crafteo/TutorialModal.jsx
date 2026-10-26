@@ -9,7 +9,7 @@ import { FlaskArt } from './CrafteoArt';
 const STEPS = [
     { Icon: Atom, title: 'Elige un elemento', text: 'Toca una ficha de abajo y el átomo aparece en la mesa. Los puntitos de la ficha son los enlaces que puede formar (su valencia).' },
     { Icon: MousePointerClick, title: 'Une átomos', text: 'Cada átomo muestra huecos brillantes: sus enlaces libres. Al tocar otra ficha se une al átomo marcado en ámbar. Toca un átomo para elegir dónde irá el siguiente, o arrastra la ficha hasta el hueco que quieras.' },
-    { Icon: Link2, title: 'Dobles y triples', text: 'Toca un enlace para hacerlo doble o triple (los dos átomos necesitan huecos libres). Con «Enlazar» unes dos átomos para cerrar un anillo.' },
+    { Icon: Link2, title: 'Dobles y triples', text: 'Cuando a dos átomos unidos les sobran huecos, el palito que los une brilla en azul: tócalo para hacerlo doble, y otra vez para triple (O₂: O=O). También vale pulsar «Enlazar» y tocar los dos átomos. Con «Enlazar» cierras anillos.' },
     { Icon: Shapes, title: 'Geometría real', text: 'Los átomos se colocan solos según la teoría VSEPR: los pares solitarios (puntos lilas) empujan a los enlaces y por eso el agua es angular.' },
     { Icon: Hand, title: 'Mira y comprueba', text: 'Arrastra para girar la vista y usa la rueda o dos dedos para el zoom. Cuando no quedan huecos, la molécula se comprueba sola.' },
 ];
