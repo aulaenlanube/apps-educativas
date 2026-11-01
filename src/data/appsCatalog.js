@@ -24,6 +24,11 @@ export const CATALOG_CATEGORIES = [
     "emoji": "🔬"
   },
   {
+    "id": "geografia",
+    "label": "Geografía",
+    "emoji": "🌍"
+  },
+  {
     "id": "programacion",
     "label": "Programación y robótica",
     "emoji": "🤖"
@@ -86,6 +91,8 @@ export const CONCEPT_CATEGORY = {
   "celula-animal": "ciencia",
   "celula-vegetal": "ciencia",
   "infografias-interactivas": "ciencia",
+  "explorador-mundo": "geografia",
+  "explorador-espana": "geografia",
   "programacion-bloques": "programacion",
   "misiones-roboticas": "programacion",
   "laboratorio-robotica": "programacion",
@@ -185,6 +192,8 @@ export const APP_ID_TO_CONCEPT = {
   "celula-animal": "celula-animal",
   "celula-vegetal": "celula-vegetal",
   "infografias-interactivas": "infografias-interactivas",
+  "explorador-mundo": "explorador-mundo",
+  "explorador-espana": "explorador-espana",
   "programacion-bloques": "programacion-bloques",
   "misiones-roboticas": "misiones-roboticas",
   "laboratorio-robotica": "laboratorio-robotica",
@@ -2117,6 +2126,75 @@ export const APP_CONCEPTS = {
       "Usa la pantalla completa para ver los detalles más finos sin distracciones.",
       "No tengas prisa al enviar: revisa que todas las respuestas reflejan lo que recuerdas de la infografía.",
       "Aprovecha la corrección final para releer las preguntas falladas; repetir la infografía después suele subir bastante la nota."
+    ]
+  },
+  "explorador-mundo": {
+    "key": "explorador-mundo",
+    "name": "Explorador del Mundo",
+    "emoji": "🌍",
+    "queEs": "Explorador del Mundo es un mapa del mundo interactivo con ocho minijuegos para aprender dónde está cada país, qué forma tiene, cuál es su bandera, su capital y sus ciudades más importantes, además de los continentes, los océanos, el relieve (ríos, montañas, desiertos, mares y lagos) y las fronteras. También se puede jugar en duelo contra un compañero.",
+    "porQueRelevante": "Situar países y continentes es la base de la geografía y ayuda a entender las noticias, la historia y la economía. Jugando con el mapa, las siluetas y las banderas se aprende mucho más rápido que memorizando listas, y el contenido crece con el curso: desde los continentes en 1.º de Primaria hasta los 195 países en la ESO y el Bachillerato.",
+    "comoFunciona": "Elige el modo (Fácil, Medio o Examen) y, si quieres, una parte del mundo. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos mezcladas y recibes una nota sobre 10. Después de cada respuesta ves la ficha del país. El Atlas te deja explorar los 195 países con su bandera, capital, población, silueta y vecinos.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen y, si quieres, un continente.",
+      "En Fácil o Medio, elige un minijuego: ¿Dónde está?, Siluetas, Banderas, Continentes y océanos, Capitales, Relieve, Grandes ciudades o Fronteras.",
+      "Responde tocando una opción o tocando en el mapa (arrastra para moverte y haz zoom con la rueda, los botones o pellizcando).",
+      "Lee la ficha que aparece después de cada respuesta: así se aprende de los fallos.",
+      "Abre el Atlas desde el botón del libro para estudiar cada país antes del examen, o reta a un compañero a un duelo."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "3 opciones, pistas gratis, el mapa se acerca al continente y tienes 3 intentos."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "4 opciones más parecidas, el mapa del mundo entero y 2 intentos. La pista resta la mitad de los puntos."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas de todos los minijuegos, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+      }
+    ],
+    "consejos": [
+      "Fíjate en las capitales que no son la ciudad más poblada: Canberra y Sídney, Ankara y Estambul, Brasilia y São Paulo…",
+      "Los puntos blancos del mapa son países muy pequeños, como el Vaticano o Mónaco.",
+      "Responder rápido y encadenar aciertos da puntos extra.",
+      "Usa el filtro de continente para repasar una zona del mundo cada día."
+    ]
+  },
+  "explorador-espana": {
+    "key": "explorador-espana",
+    "name": "Explorador de España",
+    "emoji": "🗺️",
+    "queEs": "Explorador de España es un mapa interactivo para aprender las comunidades autónomas, las provincias, sus capitales y banderas, y el relieve de España: ríos, montañas, mares e islas. También se puede jugar en duelo contra un compañero.",
+    "porQueRelevante": "Conocer el mapa de España es un contenido básico de Ciencias Sociales y de Geografía. Jugar con el mapa, las siluetas y las banderas ayuda a fijarlo mucho mejor que memorizar listas, y el contenido crece con el curso: de las comunidades en Primaria a las provincias, las vertientes y las fronteras en la ESO.",
+    "comoFunciona": "Elige Fácil, Medio o Examen. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos mezcladas y recibes una nota sobre 10. Canarias aparece en un recuadro abajo a la izquierda y Ceuta y Melilla son los puntos del norte de África. El Atlas te deja repasar cada comunidad y provincia con su ficha.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen.",
+      "En Fácil o Medio, elige un minijuego: ¿Dónde está?, Siluetas, Banderas, Capitales, Provincias, Relieve o Fronteras.",
+      "Responde tocando una opción o tocando en el mapa (arrastra y haz zoom para ver mejor).",
+      "Lee la ficha que aparece después de cada respuesta.",
+      "Abre el Atlas para estudiar, o reta a un compañero a un duelo."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "Mapa con colores, pistas gratis y 3 intentos; en las provincias, el mapa se acerca a su zona."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "Opciones con comunidades vecinas, mapa sin colores y 2 intentos. La pista resta la mitad de los puntos."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+      }
+    ],
+    "consejos": [
+      "Cuidado con las capitales que no son capital de provincia: Santiago de Compostela y Mérida.",
+      "Andalucía tiene 8 provincias y Castilla y León, 9: son las que más tienen.",
+      "Los ríos del norte van al Cantábrico, los del oeste al Atlántico y el Ebro, el Júcar y el Segura, al Mediterráneo."
     ]
   },
   "programacion-bloques": {

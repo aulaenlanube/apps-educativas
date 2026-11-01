@@ -10,7 +10,7 @@ import {
   appMayorMenor6, appOrdenaNumeros6, appLongitudComparar, appLongitudOrdenar, appMasaComparar, appMasaOrdenar, appCapacidadComparar, appCapacidadOrdenar, appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal, appLaboratorioRobotica,
   appMisionesRoboticas, appReglaDeTres, appPorcentajes,
-  appInfografiasInteractivas
+  appInfografiasInteractivas, appExploradorMundo, appExploradorEspana
 } from './commonApps';
 
 export const esoSubjects = materiasData.eso;
@@ -31,7 +31,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appExploradorMundo, appExploradorEspana, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
@@ -97,7 +97,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appExploradorMundo, appExploradorEspana, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
@@ -163,7 +163,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appExploradorMundo, appExploradorEspana, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
@@ -229,7 +229,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appExploradorMundo, appExploradorEspana, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [

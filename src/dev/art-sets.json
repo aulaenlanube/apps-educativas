@@ -130,7 +130,9 @@
   "infografias-interactivas",
   "la-fortaleza",
   "laboratorio-fisica",
-  "cazapalabras-3d"
+  "cazapalabras-3d",
+  "explorador-mundo",
+  "explorador-espana"
  ],
  "src/components/icons/badge/set1.jsx": [
   "first_game",

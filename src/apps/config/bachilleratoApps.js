@@ -8,7 +8,7 @@ import {
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appLaboratorioFisica,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal,
-  appInfografiasInteractivas, appCazapalabras3D
+  appInfografiasInteractivas, appCazapalabras3D, appExploradorMundo, appExploradorEspana
 } from './commonApps';
 
 export const bachilleratoSubjects = materiasData.bachillerato;
@@ -36,6 +36,11 @@ const appsMatematicas = [
   appInfografiasInteractivas, appFraccionesESO, appLaboratorioFunciones2D, appVisualizador3D, appOrdenaBolas, ...appsBase
 ];
 
+// Geografía (2.º): los dos exploradores; Historia del Mundo, el del mundo; Historia de España, el de España.
+const appsGeografia = [appExploradorMundo, appExploradorEspana, ...appsBase];
+const appsHistoriaMundo = [appExploradorMundo, ...appsBase];
+const appsHistoriaEspana = [appExploradorEspana, ...appsBase];
+
 const appsTutoria = [
   appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, ...appsBase
 ];
@@ -51,7 +56,7 @@ export const bachilleratoApps = {
     'lengua':               [...appsBase],
     'matematicas':          [...appsMatematicas],
     'filosofia':            [...appsBase],
-    'historia-mundo':       [...appsBase],
+    'historia-mundo':       [...appsHistoriaMundo],
     'biologia':             [...appsBiologia],
     'fisica':               [...appsCiencias],
     'dibujo-tecnico':       [...appsBase],
@@ -69,7 +74,7 @@ export const bachilleratoApps = {
   '2': {
     'lengua':               [...appsBase],
     'matematicas':          [...appsMatematicas],
-    'historia-espana':      [...appsBase],
+    'historia-espana':      [...appsHistoriaEspana],
     'filosofia':            [...appsBase],
     'biologia':             [...appsBiologia],
     'fisica':               [...appsCiencias],
@@ -77,7 +82,7 @@ export const bachilleratoApps = {
     'dibujo-tecnico':       [...appsBase],
     'economia-empresa':     [...appsBase],
     'latin':                [...appsBase],
-    'geografia':            [...appsBase],
+    'geografia':            [...appsGeografia],
     'arte':                 [...appsBase],
     'tecnologia':           [...appsTecnologia],
     'ingles':               [...appsIdioma],

@@ -27,6 +27,7 @@ const CATALOG_CATEGORIES = [
   { id: 'comprension', label: 'Comprensión lectora y oral', emoji: '📖' },
   { id: 'matematicas', label: 'Matemáticas', emoji: '🧮' },
   { id: 'ciencia', label: 'Ciencia y naturaleza', emoji: '🔬' },
+  { id: 'geografia', label: 'Geografía', emoji: '🌍' },
   { id: 'programacion', label: 'Programación y robótica', emoji: '🤖' },
   { id: 'tutoria', label: 'Tutoría y bienestar', emoji: '🤝' },
 ];
@@ -55,6 +56,9 @@ const CONCEPT_CATEGORY = {
   'laboratorio-fisica': 'ciencia', 'mesa-crafteo': 'ciencia', 'entrenador-tabla': 'ciencia',
   'sistema-solar': 'ciencia', 'celula-animal': 'ciencia', 'celula-vegetal': 'ciencia',
   'infografias-interactivas': 'ciencia',
+  // Geografía
+  'explorador-mundo': 'geografia',
+  'explorador-espana': 'geografia',
   // Programación y robótica
   'programacion-bloques': 'programacion', 'misiones-roboticas': 'programacion',
   'laboratorio-robotica': 'programacion', 'terminal-retro': 'programacion',

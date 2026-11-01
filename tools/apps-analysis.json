@@ -2671,6 +2671,105 @@
     }
   },
   {
+    "key": "explorador-mundo",
+    "name": "Explorador del Mundo",
+    "emoji": "🌍",
+    "internal": {
+      "resumen": "Mapa del mundo interactivo (SVG) con ocho minijuegos de geografía: localizar países, siluetas, banderas, continentes y océanos, capitales, relieve (ríos, cordilleras, desiertos, mares y lagos), grandes ciudades y fronteras, más duelo 1 vs 1. Una sola app para todos los cursos: el curso decide qué países entran (5 escalones) y qué minijuegos se desbloquean. Incluye un atlas con la ficha de los 195 países como material de estudio.",
+      "software": "Configuración del motor común de mapas src/apps/_shared/geo (GeoQuizApp: modos, minijuegos, partida, resultados y tracking; QuizPlay: preguntas; MapView: mapa SVG con zoom por viewBox, arrastre, pellizco, capas, accidentes geográficos tocables y puntos para microestados; Atlas; GeoDuel: duelo; paths.js y scoring.js). Lo propio está en src/apps/explorador-mundo: mundoConfig.jsx (configuración), geo/world.js (Natural Earth I centrada en 11° E, cuerpo principal de cada país sin ultramar, vecinos por arcos compartidos, glifos de continentes y relieve bajo demanda), engine/config.js y engine/questions.js (generadores puros y testeados), data/ (países, extras y relieve) y components/ (ilustraciones y ficha del atlas). Datos: public/data/geo/world-50m.json y relief-50m.json (Natural Earth, dominio público) generados con tools/build-world-geo.mjs.",
+      "jugabilidad": "Pantalla previa con Fácil / Medio / Examen y selector de región (todo el mundo o un continente, desde 3.º de Primaria). Fácil y Medio llevan a la elección de minijuego; cada ronda son 10 preguntas. Fácil: 3 opciones, pistas gratis, mapa acercado al continente y coloreado, 3 intentos. Medio: 4 opciones parecidas, mapa del mundo, pista con penalización, 2 intentos. Examen: 10 preguntas mezcladas de todos los minijuegos del curso, sin pistas y con un intento. Tras cada respuesta, ficha del país y explicación; los aciertos avanzan solos.",
+      "educativo": "Geografía política del mundo: continentes y océanos (Primaria), países y su localización, banderas, capitales (desde 3.º de Primaria), grandes ciudades y la diferencia entre capital y ciudad más poblada (ESO), y fronteras terrestres (3.º-4.º ESO y Bachillerato). Escalones: 20 países en 1.º-2.º de Primaria, 51 en 3.º-4.º, 114 en 5.º-6.º (Europa completa), 168 en 1.º-2.º de ESO y los 195 desde 3.º de ESO.",
+      "datos": "Contenido local: data/countries.js (195 estados: 193 de la ONU + Vaticano y Palestina, con capital, continente, subregión, población, ciudad más poblada, escalón y notas para capitales discutidas) y data/extras.js (territorios dependientes o disputados con su nota, océanos, banderas parecidas y ~100 ciudades famosas). Banderas SVG 4:3 de flag-icons (MIT) en public/images/flags/. No usa Supabase para el contenido.",
+      "integracion": "Modos estándar easy/medium/exam en pantalla previa. Práctica → onGameComplete mode 'practice' con score 0 al terminar cada ronda (como Ahorcado). Examen → mode 'test' con nota = aciertos/10·10, score = puntos paralelos (100 por acierto + rapidez + racha) y maxScore teórico; si se abandona a mitad, se registra la nota parcial (lo no contestado cuenta como fallo), protegido por ref para enviar una sola vez. Duelo 1 vs 1 (ExploradorMundoDuel → GeoDuel): carrera de 10 preguntas simultáneas, el anfitrión corrige y difunde el estado; solo el anfitrión llama a onGameComplete con mode 'duel'. Registrada en Ciencias Sociales (Primaria 1-6), Geografía e Historia (ESO 1-4), Historia del Mundo (Bach 1) y Geografía (Bach 2). Contenedor ancho (WIDE_APP_IDS).",
+      "ideasMejora": [
+        "Modo de escritura (teclear el país o la capital) para Bachillerato.",
+        "Rondas temáticas elegidas por el docente (solo Europa, solo capitales…) al asignar la tarea.",
+        "Mapa de Europa por regiones y de América Latina por países con el mismo motor."
+      ]
+    },
+    "user": {
+      "queEs": "Explorador del Mundo es un mapa del mundo interactivo con ocho minijuegos para aprender dónde está cada país, qué forma tiene, cuál es su bandera, su capital y sus ciudades más importantes, además de los continentes, los océanos, el relieve (ríos, montañas, desiertos, mares y lagos) y las fronteras. También se puede jugar en duelo contra un compañero.",
+      "porQueRelevante": "Situar países y continentes es la base de la geografía y ayuda a entender las noticias, la historia y la economía. Jugando con el mapa, las siluetas y las banderas se aprende mucho más rápido que memorizando listas, y el contenido crece con el curso: desde los continentes en 1.º de Primaria hasta los 195 países en la ESO y el Bachillerato.",
+      "comoFunciona": "Elige el modo (Fácil, Medio o Examen) y, si quieres, una parte del mundo. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos mezcladas y recibes una nota sobre 10. Después de cada respuesta ves la ficha del país. El Atlas te deja explorar los 195 países con su bandera, capital, población, silueta y vecinos.",
+      "instrucciones": [
+        "Elige Fácil, Medio o Examen y, si quieres, un continente.",
+        "En Fácil o Medio, elige un minijuego: ¿Dónde está?, Siluetas, Banderas, Continentes y océanos, Capitales, Relieve, Grandes ciudades o Fronteras.",
+        "Responde tocando una opción o tocando en el mapa (arrastra para moverte y haz zoom con la rueda, los botones o pellizcando).",
+        "Lee la ficha que aparece después de cada respuesta: así se aprende de los fallos.",
+        "Abre el Atlas desde el botón del libro para estudiar cada país antes del examen, o reta a un compañero a un duelo."
+      ],
+      "modos": [
+        {
+          "nombre": "Fácil",
+          "descripcion": "3 opciones, pistas gratis, el mapa se acerca al continente y tienes 3 intentos."
+        },
+        {
+          "nombre": "Medio",
+          "descripcion": "4 opciones más parecidas, el mapa del mundo entero y 2 intentos. La pista resta la mitad de los puntos."
+        },
+        {
+          "nombre": "Examen",
+          "descripcion": "10 preguntas mezcladas de todos los minijuegos, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+        }
+      ],
+      "consejos": [
+        "Fíjate en las capitales que no son la ciudad más poblada: Canberra y Sídney, Ankara y Estambul, Brasilia y São Paulo…",
+        "Los puntos blancos del mapa son países muy pequeños, como el Vaticano o Mónaco.",
+        "Responder rápido y encadenar aciertos da puntos extra.",
+        "Usa el filtro de continente para repasar una zona del mundo cada día."
+      ]
+    }
+  },
+  {
+    "key": "explorador-espana",
+    "name": "Explorador de España",
+    "emoji": "🗺️",
+    "internal": {
+      "resumen": "Mapa interactivo de España con siete minijuegos: localizar comunidades y provincias, siluetas, banderas autonómicas, capitales (con trampas como Santiago, Mérida o Vitoria-Gasteiz), provincias de cada comunidad, relieve (ríos y vertientes, sistemas montañosos, mares e islas) y fronteras, más duelo 1 vs 1. Comparte el motor de mapas con el Explorador del Mundo.",
+      "software": "Configuración del motor común src/apps/_shared/geo (GeoQuizApp, QuizPlay, MapView, Atlas, GeoDuel). Lo propio está en src/apps/explorador-espana: espanaConfig.jsx, geo/spain.js (dos capas jugables, comunidades y provincias, con proyección cónica conforme; Canarias en un recuadro con su propia proyección; vecinos por límite compartido en cada capa; límites autonómicos sobre las provincias; islas recortadas de la geometría provincial; países vecinos como contexto), engine/config.js y engine/questions.js (generadores puros y testeados), data/spain.js (17 comunidades, Ceuta, Melilla y 50 provincias con códigos INE), data/relief.js (ríos con vertiente, sistemas montañosos esquemáticos, mares e islas) y components/ (fichas del atlas e ilustraciones). Datos: public/data/geo/espana.json (IGN vía es-atlas, CC BY 4.0; ríos de Natural Earth) y public/images/flags/es/ generados con tools/build-espana-geo.mjs.",
+      "jugabilidad": "Igual que el Explorador del Mundo: pantalla previa Fácil / Medio / Examen, elección de minijuego y rondas de 10 preguntas. Fácil: mapa coloreado por comunidades, acercado a la zona en las provincias, pistas y 3 intentos. Medio: distractores vecinos y mapa sin colores, 2 intentos. Examen: 10 preguntas mezcladas, un intento, nota /10.",
+      "educativo": "Geografía de España del currículo: comunidades autónomas desde 1.º de Primaria; capitales y relieve básico desde 3.º; provincias, vertientes y relieve completo desde 5.º; siluetas de provincias y fronteras en la ESO y Bachillerato (Geografía de 2.º).",
+      "datos": "Contenido local: data/spain.js y data/relief.js. Geometría del Instituto Geográfico Nacional (CC BY 4.0) vía es-atlas; ríos de Natural Earth 1:10m (dominio público) y cinco ríos cortos trazados de forma esquemática; sistemas montañosos esquemáticos. Banderas: de franjas dibujadas según cada Estatuto, flag-icons (MIT) y Wikimedia Commons (créditos en las instrucciones).",
+      "integracion": "Mismo tracking que el Explorador del Mundo (práctica mode 'practice' con score 0; examen mode 'test' con nota y puntos; nota parcial si se abandona). Duelo 1 vs 1 con ExploradorEspanaDuel → GeoDuel. Registrada en Ciencias Sociales (Primaria 1-6), Geografía e Historia (ESO 1-4), Geografía e Historia de España (Bach 2). Contenedor ancho (WIDE_APP_IDS).",
+      "ideasMejora": [
+        "Capitales de provincia con la ciudad más poblada de cada una.",
+        "Municipios más poblados de cada comunidad (es-atlas trae los municipios).",
+        "Comarcas o islas menores para Atención a la Diversidad y 2.º de Bachillerato."
+      ]
+    },
+    "user": {
+      "queEs": "Explorador de España es un mapa interactivo para aprender las comunidades autónomas, las provincias, sus capitales y banderas, y el relieve de España: ríos, montañas, mares e islas. También se puede jugar en duelo contra un compañero.",
+      "porQueRelevante": "Conocer el mapa de España es un contenido básico de Ciencias Sociales y de Geografía. Jugar con el mapa, las siluetas y las banderas ayuda a fijarlo mucho mejor que memorizar listas, y el contenido crece con el curso: de las comunidades en Primaria a las provincias, las vertientes y las fronteras en la ESO.",
+      "comoFunciona": "Elige Fácil, Medio o Examen. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos mezcladas y recibes una nota sobre 10. Canarias aparece en un recuadro abajo a la izquierda y Ceuta y Melilla son los puntos del norte de África. El Atlas te deja repasar cada comunidad y provincia con su ficha.",
+      "instrucciones": [
+        "Elige Fácil, Medio o Examen.",
+        "En Fácil o Medio, elige un minijuego: ¿Dónde está?, Siluetas, Banderas, Capitales, Provincias, Relieve o Fronteras.",
+        "Responde tocando una opción o tocando en el mapa (arrastra y haz zoom para ver mejor).",
+        "Lee la ficha que aparece después de cada respuesta.",
+        "Abre el Atlas para estudiar, o reta a un compañero a un duelo."
+      ],
+      "modos": [
+        {
+          "nombre": "Fácil",
+          "descripcion": "Mapa con colores, pistas gratis y 3 intentos; en las provincias, el mapa se acerca a su zona."
+        },
+        {
+          "nombre": "Medio",
+          "descripcion": "Opciones con comunidades vecinas, mapa sin colores y 2 intentos. La pista resta la mitad de los puntos."
+        },
+        {
+          "nombre": "Examen",
+          "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+        }
+      ],
+      "consejos": [
+        "Cuidado con las capitales que no son capital de provincia: Santiago de Compostela y Mérida.",
+        "Andalucía tiene 8 provincias y Castilla y León, 9: son las que más tienen.",
+        "Los ríos del norte van al Cantábrico, los del oeste al Atlántico y el Ebro, el Júcar y el Segura, al Mediterráneo."
+      ]
+    }
+  },
+  {
     "key": "programacion-bloques",
     "name": "Programa al Robot (bloques)",
     "emoji": "🤖",

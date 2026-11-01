@@ -12,6 +12,7 @@ Plataforma React + Vite con backend Supabase. Apps educativas para **Primaria (1
 - Carpeta `src/apps/<nombre-app>/` (kebab-case).
 - Componente: `<Nombre>.jsx` + estilos: `<Nombre>.css`.
 - Reutiliza `_shared/` (Runner, RoscoUI, NumerosRomanosGame, TestScreen, etc.) si existe un patrón similar.
+- **Apps de mapas**: motor común en `_shared/geo/` (GeoQuizApp + QuizPlay + MapView + Atlas + GeoDuel). Una app nueva de mapas es una configuración (ver `explorador-mundo/mundoConfig.jsx` y `explorador-espana/espanaConfig.jsx`) con su geometría y sus generadores de preguntas puros (tests en `src/__tests__/explorador-*.test.js`).
 
 ### 2. Fuente de datos
 Reutiliza datos existentes (ver [src/services/gameDataService.js](src/services/gameDataService.js)):
@@ -172,7 +173,7 @@ Dos tipos, diferenciados por `duels.assignment_pair_id`:
 - `bonus_duelos_total = clamp(task_bonus + personal_delta, −0,5, +0,5)`.
 
 ### Modo `'duel'` en `game_sessions`
-Las partidas lanzadas desde un Duel component (AhorcadoDuel, SnakeDuel, OrdenaBolasDuel, NavePalabrasDuel) guardan la sesión con `mode='duel'` para que **no cuenten como intento de examen** en la tarea. Solo el ledger dicta el resultado del duelo.
+Las partidas lanzadas desde un Duel component (AhorcadoDuel, SnakeDuel, OrdenaBolasDuel, NavePalabrasDuel, GeoDuel de los Exploradores) guardan la sesión con `mode='duel'` para que **no cuenten como intento de examen** en la tarea. Solo el ledger dicta el resultado del duelo.
 
 ### Frases de duelo (chat predefinido)
 Cada alumno configura **4 frases** en su perfil ([DuelPhrasesEditor](src/components/duel/DuelPhrasesEditor.jsx)) elegidas del catálogo `duel_phrase_definitions` (20 default + 15 spicy desbloqueables). El componente reutilizable [PhraseLauncher](src/components/duel/PhraseLauncher.jsx) renderiza un único **botón flotante en la esquina inferior izquierda** que al pulsarse despliega un popover con las 4 frases equipadas. Reutilizado en duelos 1 vs 1 (a través de [DuelChatBar](src/components/duel/DuelChatBar.jsx), event `phrase_message`) y en Quiz Battle (sala de espera y pantalla de resultados, event `battle:phrase_message`). **Cooldown progresivo cíclico 10s → 15s → 20s → 10s → ...** (anti-spam: la cuarta frase vuelve a esperar 10s). El bocadillo del rival/jugador sale del **centro del avatar/emoji** (cola apuntando al medio del círculo) y desaparece a los 5s — la duración del bocadillo y el cooldown del botón son cosas independientes. En duelos, además del bocadillo anclado al avatar, se muestra una notificación fija arriba-derecha con el avatar del rival al lado. **No se persiste el chat** (efímero). Tabla pivote `student_duel_phrases (student_id, slot 0-3, phrase_id)`. RPCs: `phrase_list_definitions`, `student_get_my_phrases`, `student_set_phrase_slot`. Trigger `_student_seed_default_phrases` da 4 frases iniciales a cada alumno nuevo.

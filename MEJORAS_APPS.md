@@ -4,7 +4,7 @@
 > app (campo `ideasMejora` de APPS_INTERNAL.md) + síntesis de patrones transversales.
 > Es un backlog para implementar en el futuro; no es un compromiso ni un orden de prioridad.
 
-Apps con propuestas: **57** · Ideas registradas: **228**.
+Apps con propuestas: **59** · Ideas registradas: **234**.
 
 ## 🎯 Temas transversales (afectan a varias apps a la vez)
 
@@ -356,6 +356,19 @@ y modos de más tiempo para accesibilidad. Definir un estándar y aplicarlo.
 - [ ] Añadir puntos paralelos (bonus por tiempo/racha) y enviarlos en score/maxScore para cumplir la doble progresión del CLAUDE.md y dar más recorrido al ranking, hoy limitado a un maxScore fijo de 10.
 - [ ] Migrar el catálogo a contenido editable por Supabase (getAppContent) para que profesorado o admin pueda crear nuevas infografías sin desplegar código, e incorporar más temas de Lengua, Historia y Geografía (hoy el catálogo es muy STEM).
 - [ ] Mejorar accesibilidad y feedback: lectura por voz (TTS) de la pregunta y de la solución, barajado de opciones y de preguntas para evitar memorización del orden, y revisión que enlace cada fallo con la zona concreta de la infografía.
+
+
+## 🌍 Geografía
+
+### 🌍 Explorador del Mundo `(explorador-mundo)`
+- [ ] Modo de escritura (teclear el país o la capital) para Bachillerato.
+- [ ] Rondas temáticas elegidas por el docente (solo Europa, solo capitales…) al asignar la tarea.
+- [ ] Mapa de Europa por regiones y de América Latina por países con el mismo motor.
+
+### 🗺️ Explorador de España `(explorador-espana)`
+- [ ] Capitales de provincia con la ciudad más poblada de cada una.
+- [ ] Municipios más poblados de cada comunidad (es-atlas trae los municipios).
+- [ ] Comarcas o islas menores para Atención a la Diversidad y 2.º de Bachillerato.
 
 
 ## 🤖 Programación y robótica

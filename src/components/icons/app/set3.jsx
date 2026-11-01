@@ -1,6 +1,6 @@
 // Ilustraciones de las baldosas de app — set 3 (rediseño 2026).
 // Contrato y guía de estilo: src/components/art/README.md
-// IDS de este set: laboratorio-funciones-2d, visualizador-3d, terminal-retro, programacion-bloques, banco-recursos-tutoria, isla-de-la-calma, generador-personajes-historicos, celula-vegetal, celula-animal, conecta-parejas, criptograma, dictado-interactivo, torre-palabras, velocidad-respuesta, batalla, misiones-roboticas, laboratorio-robotica, infografias-interactivas, la-fortaleza, laboratorio-fisica, cazapalabras-3d
+// IDS de este set: explorador-mundo, explorador-espana, laboratorio-funciones-2d, visualizador-3d, terminal-retro, programacion-bloques, banco-recursos-tutoria, isla-de-la-calma, generador-personajes-historicos, celula-vegetal, celula-animal, conecta-parejas, criptograma, dictado-interactivo, torre-palabras, velocidad-respuesta, batalla, misiones-roboticas, laboratorio-robotica, infografias-interactivas, la-fortaleza, laboratorio-fisica, cazapalabras-3d
 //
 // Cada icono es una baldosa 48×48 (fondo propio rx=12). Reposo: ≤ 2 piezas
 // animadas (solo nivel de efectos alto). Hover: 1-3 piezas.
@@ -1594,7 +1594,161 @@ const Cazapalabras = () => {
   );
 };
 
+/* ======================================================================
+   22. Explorador del Mundo — globo terráqueo de mesa con su aro de latón y
+   una chincheta clavada. Hover: los continentes giran dentro del globo, la
+   chincheta salta y estalla un destello. Reposo: la chincheta flota + un destello.
+   ====================================================================== */
+const XM_AMERICA = 'M12.5 15.2C14.6 13.6 17.6 13.4 19 15.2C19.8 16.4 18.4 17.6 17.6 18.8C16.8 20 17.8 21.4 19.2 22.4C20.6 23.4 20.4 25.6 19.2 27.2C18 28.8 17.6 31 16.4 33.2C15.8 34.2 14.6 33.8 14.4 32.6C14 30.4 14.6 28.2 13.6 26.4C12.6 24.6 11 23.6 10.6 21.6C10.2 19.4 10.8 16.6 12.5 15.2Z';
+const XM_AFRICA = 'M24.6 13.6C26.4 12.6 29.2 12.8 30.6 14.2C31.6 15.2 30.8 16.4 31.8 17.4C33 18.6 34.2 19.2 34.4 21C34.6 22.8 33.4 24.4 32.2 25.8C31 27.2 30.6 29.4 29.2 31C28.4 31.8 27.2 31.4 26.8 30.2C26.2 28.4 26.6 26.6 25.4 25.2C24.4 24 22.8 23.6 22.6 21.8C22.4 20.2 23.6 19.4 23.4 18C23.2 16.4 23.2 14.4 24.6 13.6Z';
+
+const ExploradorMundo = () => {
+  const [id, url] = useArtIds();
+  return (
+    <svg className="art" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <clipPath id={id('globe')}><circle cx="22" cy="23.5" r="12.6" /></clipPath>
+        <radialGradient id={id('sea')} cx="0.36" cy="0.3" r="0.8">
+          <stop offset="0%" stopColor="#7DD3FC" />
+          <stop offset="55%" stopColor="#0284C7" />
+          <stop offset="100%" stopColor="#0C4A6E" />
+        </radialGradient>
+        <MaterialGradient id={id('land')} light="#BBF7D0" base="#22C55E" dark="#15803D" />
+        <MaterialGradient id={id('brass')} light="#FEF3C7" base="#F59E0B" dark="#92400E" />
+        <MaterialGradient id={id('pin')} light="#FECDD3" base="#F43F5E" dark="#9F1239" />
+        <linearGradient id={id('shade')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#082F49" stopOpacity="0" />
+          <stop offset="100%" stopColor="#082F49" stopOpacity="0.55" />
+        </linearGradient>
+        <GlossGradient id={id('gloss')} opacity={0.6} />
+        <ShadowGradient id={id('ground')} color="#1E3A8A" opacity={0.45} />
+      </defs>
+      <TileBg c={['#A5F3FC', '#38BDF8', '#1D4ED8']} vig="#1E3A8A" />
+
+      {/* peana */}
+      <ellipse cx="22" cy="44.4" rx="10.5" ry="1.8" fill={url('ground')} />
+      <rect x="21" y="37.6" width="2" height="3.8" fill={url('brass')} />
+      <rect x="15.4" y="41" width="13.2" height="3" rx="1.5" fill={url('brass')} />
+      <path d="M16.6 41.7H27.4" stroke="#fff" strokeOpacity="0.55" strokeWidth="0.6" strokeLinecap="round" />
+
+      {/* globo */}
+      <circle cx="22" cy="23.5" r="12.6" fill={url('sea')} />
+      <g clipPath={url('globe')}>
+        <g className="art-h-slide" style={{ '--slide': '3.2px' }}>
+          <path d={XM_AMERICA} fill={url('land')} />
+          <path d={XM_AFRICA} fill={url('land')} />
+          <path d="M28.6 11.4C30.6 10.6 33 11.4 34 12.8L31.4 13.4Z" fill={url('land')} />
+        </g>
+        <ellipse cx="22" cy="23.5" rx="12.6" ry="3.4" stroke="#fff" strokeOpacity="0.28" strokeWidth="0.5" />
+        <ellipse cx="22" cy="23.5" rx="5.2" ry="12.6" stroke="#fff" strokeOpacity="0.22" strokeWidth="0.5" />
+        <path d="M22 10.9A12.6 12.6 0 0 1 22 36.1A8.4 12.6 0 0 0 22 10.9Z" fill={url('shade')} transform="rotate(32 22 23.5)" />
+      </g>
+      <ellipse cx="17.2" cy="16.8" rx="5.6" ry="3.2" fill={url('gloss')} transform="rotate(-34 17.2 16.8)" />
+      <path d="M11.9 17.6A12.6 12.6 0 0 1 19.4 11.2" stroke="#fff" strokeOpacity="0.6" strokeWidth="0.8" strokeLinecap="round" />
+
+      {/* aro de latón con sus ejes */}
+      <path d="M13.63 11.54A14.6 14.6 0 0 0 30.37 35.46" stroke={url('brass')} strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M12.4 14.8A14 14 0 0 0 15.4 33" stroke="#FEF3C7" strokeOpacity="0.7" strokeWidth="0.6" strokeLinecap="round" />
+      <circle cx="13.63" cy="11.54" r="1.3" fill={url('brass')} />
+      <circle cx="30.37" cy="35.46" r="1.3" fill={url('brass')} />
+
+      {/* chincheta */}
+      <g className="art-i-bob" style={{ '--amp': '1px', '--dur': '3.2s' }}>
+        <g className="art-h-jump art-o-bottom" style={{ '--jump': '-5px' }}>
+          <ellipse cx="30.4" cy="17.9" rx="1.6" ry="0.7" fill="#082F49" opacity="0.4" />
+          <path d="M33.2 13.4L30.4 17.6" stroke="#CBD5E1" strokeWidth="1" strokeLinecap="round" />
+          <circle cx="34.2" cy="10.4" r="3.7" fill={url('pin')} />
+          <path d="M36.4 11.6A3.7 3.7 0 0 1 32.4 13.6" stroke="#881337" strokeOpacity="0.35" strokeWidth="0.8" strokeLinecap="round" />
+          <circle cx="33" cy="9.2" r="1.15" fill="#fff" opacity="0.85" />
+        </g>
+      </g>
+
+      <g className="art-h-burst" style={{ '--d': '.2s' }}><Sparkle x={34.2} y={10.4} r={4.2} fill="#FEF3C7" /></g>
+      <Sparkle x={41} y={23} r={1.8} idle delay={0.6} />
+      <TileRim shade="#1E3A8A" />
+    </svg>
+  );
+};
+
+/* ======================================================================
+   23. Explorador de España — mapa plegado de la península con las
+   comunidades en colores, las islas y la chincheta de la familia
+   "Explorador". Hover: la chincheta salta y el mapa se inclina un poco.
+   Reposo: la chincheta flota + un destello.
+   ====================================================================== */
+const XE_SPAIN = 'M11.6 16.8L17.4 14.6L23.4 15.4L29 13.8L34.4 16.6L38.6 17.4L37 21.4L33.8 24.2L32.2 28.6L29 31.8L24 34.2L18 35L13.6 33.4L12.6 30.6L13.4 27L12.6 22.6Z';
+const XE_PORTUGAL = 'M8.4 19L12.4 17.8L12.6 22.6L13.4 27L12.6 30.6L13.6 33.4L10.4 33.8L8.6 29.6L7.8 24.6Z';
+const XE_REGIONS = [
+  ['M11.6 16.8L17.4 14.6L23.4 15.4L22 21L15 22L12.6 22.6Z', '#7DD3FC'],
+  ['M23.4 15.4L29 13.8L34.4 16.6L38.6 17.4L37 21.4L30 22L22 21Z', '#FCA5A5'],
+  ['M12.6 22.6L15 22L22 21L22.6 27.6L13.4 27Z', '#BEF264'],
+  ['M22 21L30 22L29.4 27.4L22.6 27.6Z', '#F9A8D4'],
+  ['M30 22L37 21.4L33.8 24.2L32.2 28.6L29.4 27.4Z', '#A5B4FC'],
+  ['M13.4 27L22.6 27.6L29.4 27.4L32.2 28.6L29 31.8L24 34.2L18 35L13.6 33.4L12.6 30.6Z', '#FDE68A'],
+];
+
+const ExploradorEspana = () => {
+  const [id, url] = useArtIds();
+  return (
+    <svg className="art" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id={id('paper')} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#E0F2FE" />
+          <stop offset="100%" stopColor="#7DD3FC" />
+        </linearGradient>
+        <linearGradient id={id('fold')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#0C4A6E" stopOpacity="0" />
+          <stop offset="100%" stopColor="#0C4A6E" stopOpacity="0.28" />
+        </linearGradient>
+        <MaterialGradient id={id('pin')} light="#FECDD3" base="#F43F5E" dark="#9F1239" />
+        <GlossGradient id={id('gloss')} opacity={0.5} />
+        <ShadowGradient id={id('ground')} color="#7F1D1D" opacity={0.4} />
+      </defs>
+      <TileBg c={['#FDE68A', '#F97316', '#B91C1C']} vig="#7F1D1D" />
+
+      <ellipse cx="23" cy="42.4" rx="16" ry="2" fill={url('ground')} />
+      <g className="art-h-tilt" style={{ '--tilt': '-4deg' }}>
+        {/* mapa plegado en tres paneles */}
+        <path d="M5 11.4L18 9L30 11.4L42 9V38L30 40.4L18 38L5 40.4Z" fill={url('paper')} />
+        <path d="M18 9L30 11.4V40.4L18 38Z" fill={url('fold')} />
+        <path d="M5 11.4L18 9L30 11.4L42 9" stroke="#fff" strokeOpacity="0.7" strokeWidth="0.7" strokeLinejoin="round" />
+        <g transform="translate(1.6 6.2)">
+          <path d={XE_PORTUGAL} fill="#E2E8F0" stroke="#94A3B8" strokeWidth="0.4" />
+          {XE_REGIONS.map(([d, c]) => <path key={d} d={d} fill={c} />)}
+          <path d={XE_SPAIN} stroke="#1E293B" strokeOpacity="0.8" strokeWidth="0.5" strokeLinejoin="round" />
+          <path d="M14 21.4Q20 20 24 21.6M15 27.6Q22 28.6 28 27.6" stroke="#2563EB" strokeWidth="0.6" strokeLinecap="round" />
+          {/* Baleares y Canarias */}
+          <path d="M37.6 23.2L39.8 22.6L40.6 23.8L38.8 24.6Z" fill="#C4B5FD" stroke="#4C1D95" strokeWidth="0.35" />
+          <circle cx="36.2" cy="25.8" r="0.8" fill="#C4B5FD" stroke="#4C1D95" strokeWidth="0.3" />
+          <path d="M6 33.2h7.4v4.4H6Z" stroke="#fff" strokeOpacity="0.8" strokeWidth="0.4" strokeDasharray="0.8 0.6" />
+          <circle cx="8" cy="35.6" r="0.7" fill="#FDBA74" />
+          <circle cx="10" cy="35.2" r="0.8" fill="#FDBA74" />
+          <circle cx="11.8" cy="34.6" r="0.7" fill="#FDBA74" />
+        </g>
+        <path d="M6 12.6L16 10.8V15.4C12 15.8 8.6 16.4 6 17.2Z" fill={url('gloss')} />
+      </g>
+
+      {/* chincheta (la misma que en el Explorador del Mundo) */}
+      <g className="art-i-bob" style={{ '--amp': '1px', '--dur': '3.2s' }}>
+        <g className="art-h-jump art-o-bottom" style={{ '--jump': '-5px' }}>
+          <ellipse cx="25.4" cy="25.9" rx="1.6" ry="0.7" fill="#082F49" opacity="0.35" />
+          <path d="M27.4 20.6L25.4 25.6" stroke="#CBD5E1" strokeWidth="1" strokeLinecap="round" />
+          <circle cx="28.4" cy="17.6" r="3.7" fill={url('pin')} />
+          <path d="M30.6 18.8A3.7 3.7 0 0 1 26.6 20.8" stroke="#881337" strokeOpacity="0.35" strokeWidth="0.8" strokeLinecap="round" />
+          <circle cx="27.2" cy="16.4" r="1.15" fill="#fff" opacity="0.85" />
+        </g>
+      </g>
+
+      <g className="art-h-burst" style={{ '--d': '.2s' }}><Sparkle x={28.4} y={17.6} r={4.2} fill="#FEF3C7" /></g>
+      <Sparkle x={41.6} y={6.4} r={1.8} idle delay={0.4} />
+      <TileRim shade="#7F1D1D" />
+    </svg>
+  );
+};
+
 const ICONS = {
+  'explorador-mundo': ExploradorMundo,
+  'explorador-espana': ExploradorEspana,
   'laboratorio-funciones-2d': Funciones2D,
   'visualizador-3d': Visualizador3D,
   'terminal-retro': TerminalRetro,

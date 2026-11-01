@@ -40,6 +40,20 @@ const INSTRUCTIONS = {
       <p>Al mejor de 5 rondas (el primero en ganar 3, gana el duelo).</p>
     </>
   ),
+  'explorador-mundo': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas de geografia: mapas, banderas, siluetas, capitales…</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
+  'explorador-espana': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas sobre el mapa de España: comunidades, provincias, capitales, relieve…</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
 };
 
 const COUNTDOWN_SECONDS = 3;

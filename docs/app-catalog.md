@@ -93,6 +93,20 @@ Todos los niveles donde existan esas asignaturas.
 | mesa-crafteo | Mesa de Crafteo | ESO 1-4 (fis+qui), Bach 1 (fis), Bach 2 (fis+qui) | fisica, quimica |
 | entrenador-tabla | Entrenador Tabla Periodica | ESO 1-4 (fis+qui), Bach 1 (fis), Bach 2 (fis+qui) | fisica, quimica |
 
+### Geografía
+
+| app_id | Nombre | Niveles | Asignaturas |
+|--------|--------|---------|-------------|
+| explorador-mundo | Explorador del Mundo | P1-6 (cs), ESO 1-4 (his), Bach 1 (historia-mundo), Bach 2 (geografia) | ciencias-sociales, historia, historia-mundo, geografia |
+| explorador-espana | Explorador de España | P1-6 (cs), ESO 1-4 (his), Bach 2 (geografia, historia-espana) | ciencias-sociales, historia, geografia, historia-espana |
+
+Comparten el motor de mapas `src/apps/_shared/geo` (GeoQuizApp, QuizPlay, MapView, Atlas, GeoDuel) y ambas tienen duelo 1 vs 1 (carrera de 10 preguntas). Una sola app por mapa para todos los cursos: el curso fija el contenido (mundo: 20 → 51 → 114 → 168 → 195 países; capitales desde P3, relieve desde P5, ciudades desde ESO 1, fronteras desde ESO 3 · España: comunidades desde P1, capitales y relieve desde P3, provincias desde P5, fronteras desde ESO 1). Datos estáticos regenerables con `node tools/build-world-geo.mjs` (mundo y relieve, Natural Earth) y `node tools/build-espana-geo.mjs` (IGN vía es-atlas, ríos y banderas autonómicas).
+
+--------|--------|---------|-------------|
+| explorador-mundo | Explorador del Mundo | P1-6 (cs), ESO 1-4 (his), Bach 1 (historia-mundo), Bach 2 (geografia) | ciencias-sociales, historia, historia-mundo, geografia |
+
+Una sola app para todos los cursos: el curso fija los países (20 → 51 → 114 → 168 → 195) y los minijuegos (capitales desde P3, ciudades desde ESO 1, fronteras desde ESO 3). Datos estáticos: `public/data/geo/world-50m.json` y `public/images/flags/` se regeneran con `node tools/build-world-geo.mjs`.
+
 ---
 
 ## 6. Apps de tutoria (parametrizadas, solo `tutoria`)

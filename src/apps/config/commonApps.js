@@ -118,6 +118,8 @@ const TorrePalabras = lazy(() => import('../torre-palabras/TorrePalabras'));
 const LaFortaleza = lazy(() => import('../la-fortaleza/LaFortaleza'));
 const LaboratorioFisica = lazy(() => import('../laboratorio-fisica/LaboratorioFisica'));
 const InfografiasInteractivas = lazy(() => import('../infografias-interactivas/InfografiasInteractivas'));
+const ExploradorMundo = lazy(() => import('../explorador-mundo/ExploradorMundo'));
+const ExploradorEspana = lazy(() => import('../explorador-espana/ExploradorEspana'));
 
 
 // Apps Comunes
@@ -523,4 +525,20 @@ export const appInfografiasInteractivas = {
   name: '🗺️ Infografías Interactivas',
   description: 'Estudia una infografía y responde a preguntas sobre sus datos para obtener tu nota.',
   component: InfografiasInteractivas
+};
+
+export const appExploradorMundo = {
+  id: 'explorador-mundo',
+  name: '🌍 Explorador del Mundo',
+  description: 'Mapa interactivo con países, continentes, océanos, banderas, capitales y grandes ciudades en siete minijuegos.',
+  component: ExploradorMundo,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
+};
+
+export const appExploradorEspana = {
+  id: 'explorador-espana',
+  name: '🗺️ Explorador de España',
+  description: 'Mapa interactivo de España: comunidades, provincias, capitales, banderas, ríos, montañas e islas.',
+  component: ExploradorEspana,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
 };
