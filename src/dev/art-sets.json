@@ -137,7 +137,8 @@
  "src/components/icons/app/set4.jsx": [
   "explorador-cuerpo",
   "huesos-musculos",
-  "viaje-cuerpo"
+  "viaje-cuerpo",
+  "anatomia-3d"
  ],
  "src/components/icons/badge/set1.jsx": [
   "first_game",

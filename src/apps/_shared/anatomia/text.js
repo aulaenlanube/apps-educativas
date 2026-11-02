@@ -34,7 +34,8 @@ export function nameOf(key, lang) {
 // Nombre internacional (desde ESO), si es distinto del habitual.
 export function sciOf(key, lang) {
   const s = BY_KEY[key];
-  return s?.sci ? s.sci[idx(lang)] || s.sci[0] : null;
+  const sci = s?.sci ? s.sci[idx(lang)] || s.sci[0] : null;
+  return sci && !nameOf(key, lang).toLowerCase().includes(sci.toLowerCase()) ? sci : null;
 }
 
 export const genderOf = (key, lang) => {
@@ -76,6 +77,9 @@ const pick = (key, field, lang) => {
 export const funcOf = (key, lang) => pick(key, 'p', lang);
 export const factOf = (key, lang) => pick(key, 'f', lang);
 export const actOf = (key, lang) => pick(key, 'act', lang);
+// Origen e inserción de un músculo (con artículo: "la fosa supraespinosa de la escápula").
+export const oriOf = (key, lang) => pick(key, 'ori', lang);
+export const insOf = (key, lang) => pick(key, 'ins', lang);
 
 // Tipo de estructura: [singular, plural] y género en valenciano (para "quin/quina").
 const KIND = {
@@ -105,7 +109,9 @@ export function whichKind(key, lang) {
   return `${q} ${k}`;
 }
 
-export const systemName = (id, lang) => SYSTEM_BY_ID[id]?.n[idx(lang)] ?? EXT[id]?.n[idx(lang)] ?? id;
+// Nombre de un sistema, de una zona externa o del grupo de una estructura
+// (el `cont` de una zona: cuadriceps, manguito-rotador…).
+export const systemName = (id, lang) => SYSTEM_BY_ID[id]?.n[idx(lang)] ?? EXT[id]?.n[idx(lang)] ?? BY_KEY[id]?.n[idx(lang)] ?? id;
 
 // "del aparato digestivo" · "of the digestive system" · "de l'aparell digestiu"
 export function ofSystem(id, lang) {

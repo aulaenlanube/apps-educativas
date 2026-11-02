@@ -4,7 +4,9 @@
 // final, ordenar el recorrido completo tocando las paradas.
 import { nameOf, withArt } from '../../_shared/anatomia/text';
 import { shuffle, sequenceQ, textChoiceQ, LOCATE_ATTEMPTS } from '../../_shared/anatomia/qkit';
-import { ROUTES, ROUTE_BY_ID, eventOf, trackFor } from './routes';
+import {
+  ROUTES, ROUTE_BY_ID, eventOf, trackFor, isNear,
+} from './routes';
 
 export const ROUND_SIZE = 10;
 const LI = { es: 0, en: 1, va: 2 };
@@ -87,7 +89,7 @@ function whatQ(ctx, route, stops, i) {
   const ev = eventOf(route.id, s.k);
   if (!ev) return null;
   const trail = trailFor(stops, i);
-  const wrong = shuffle(stops.filter((x) => x.k !== s.k && eventOf(route.id, x.k)), ctx.rng).map((x) => ({ key: x.k, label: tx(eventOf(route.id, x.k), ctx.lang) }));
+  const wrong = shuffle(stops.filter((x) => x.k !== s.k && eventOf(route.id, x.k) && !isNear(route.id, x.k, s.k)), ctx.rng).map((x) => ({ key: x.k, label: tx(eventOf(route.id, x.k), ctx.lang) }));
   // Con pocas paradas, completa con otras rutas.
   const extra = ROUTES.filter((r) => r.id !== route.id).flatMap((r) => trackFor(r, ctx.lv).stops.map((x) => ({ key: `${r.id}:${x.k}`, label: tx(eventOf(r.id, x.k), ctx.lang) }))).filter((o) => o.label);
   const q = textChoiceQ(ctx, {
@@ -107,9 +109,21 @@ function whereQ(ctx, route, stops, i) {
   return textChoiceQ(ctx, {
     prompt: T(ctx).where(tx(ev, ctx.lang)),
     right: { key: s.k, label: nameOf(s.k, ctx.lang) },
-    wrong: stops.filter((x) => x.k !== s.k).map((x) => ({ key: x.k, label: nameOf(x.k, ctx.lang) })),
+    wrong: stops.filter((x) => x.k !== s.k && !isNear(route.id, x.k, s.k)).map((x) => ({ key: x.k, label: nameOf(x.k, ctx.lang) })),
     card: card(route, s.k, ctx.lang),
   });
+}
+
+// Paradas que se preguntan en la primera pasada: todas si caben; si no, las
+// claves (must) y otras repartidas por el recorrido, siempre con la última.
+export function firstPassStops(stops, room) {
+  const all = Array.from({ length: Math.max(0, stops.length - 1) }, (_, j) => j + 1);
+  if (all.length <= room) return all;
+  const must = all.filter((i) => stops[i].must);
+  const rest = all.filter((i) => !stops[i].must);
+  const k = Math.max(0, room - must.length);
+  const pick = k === 0 ? [] : k === 1 ? [rest[rest.length - 1]] : Array.from({ length: k }, (_, j) => rest[Math.round((j * (rest.length - 1)) / (k - 1))]);
+  return [...new Set([...must, ...pick])].sort((a, b) => a - b).slice(0, Math.max(0, room));
 }
 
 function orderQ(ctx, route, main, stops) {
@@ -151,17 +165,23 @@ export function buildRound(ctx0, gameId, n = ROUND_SIZE) {
   const out = stops.length ? [firstQ(ctx, route, stops)] : [];
   const order = stops.length ? orderQ(ctx, route, main, stops) : null;
   const room = n - 1 - (order ? 1 : 0);
-  // Recorre las paradas en orden; si sobran preguntas, vuelve a pasar por ellas.
-  let i = 1; let pass = 0; let guard = 0;
-  while (out.length < 1 + room && guard < n * 8 && stops.length >= 2) {
-    guard += 1;
-    if (i >= stops.length) { i = 1; pass += 1; continue; }
+  // Recorre las paradas en orden (si hay más paradas que preguntas, salta algunas:
+  // ver firstPassStops); si sobran preguntas, vuelve a pasar por ellas.
+  const L = stops.length;
+  for (const i of firstPassStops(stops, room)) {
+    if (out.length >= 1 + room) break;
     const r = ctx.rng();
-    const q = pass === 0
-      ? ((r < 0.5 && nextQ(ctx, route, stops, i)) || (r < 0.78 ? whatQ(ctx, route, stops, i) : whereQ(ctx, route, stops, i)))
-      : (r < 0.5 ? whereQ(ctx, route, stops, i) : whatQ(ctx, route, stops, i));
+    const q = (r < 0.5 && nextQ(ctx, route, stops, i)) || (r < 0.78 ? whatQ(ctx, route, stops, i) : whereQ(ctx, route, stops, i));
     if (q) out.push(q);
-    i += pass === 0 ? 1 : 1 + Math.floor(ctx.rng() * 2);
+  }
+  let i = 1; let guard = 0;
+  while (out.length < 1 + room && guard < n * 8 && L >= 2) {
+    guard += 1;
+    if (i >= L) { i = 1; continue; }
+    const r = ctx.rng();
+    const q = r < 0.5 ? whereQ(ctx, route, stops, i) : whatQ(ctx, route, stops, i);
+    if (q) out.push(q);
+    i += 1 + Math.floor(ctx.rng() * 2);
   }
   if (order) out.push(order);
   // Ruta con muy pocas paradas disponibles: se completa con preguntas de otros viajes.

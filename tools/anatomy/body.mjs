@@ -467,7 +467,28 @@ export function createContext(dir) {
   };
 
   /* ───── músculos que el modelo no trae (láminas sobre la piel) ───── */
-  ctx.patch = (name) => {
+  // Los bordes de una lámina salen en dientes de sierra (triángulos enteros de la
+  // piel): se quitan los picos, triángulos que tocan la lámina por un lado o ninguno.
+  const pruneSpikes = (m, passes = 3) => {
+    let idx = m.idx;
+    for (let p = 0; p < passes; p += 1) {
+      const edges = new Map();
+      const key = (a, b) => (a < b ? `${a},${b}` : `${b},${a}`);
+      for (let t = 0; t < idx.length; t += 3) {
+        for (const [a, b] of [[idx[t], idx[t + 1]], [idx[t + 1], idx[t + 2]], [idx[t + 2], idx[t]]]) edges.set(key(a, b), (edges.get(key(a, b)) || 0) + 1);
+      }
+      const keep = [];
+      for (let t = 0; t < idx.length; t += 3) {
+        const shared = [[idx[t], idx[t + 1]], [idx[t + 1], idx[t + 2]], [idx[t + 2], idx[t]]].filter(([a, b]) => edges.get(key(a, b)) > 1).length;
+        if (shared >= 2) keep.push(idx[t], idx[t + 1], idx[t + 2]);
+      }
+      if (keep.length === idx.length) break;
+      idx = new Uint32Array(keep);
+    }
+    return { pos: m.pos, idx };
+  };
+  ctx.patch = (name) => pruneSpikes(rawPatch(name));
+  const rawPatch = (name) => {
     const l = ctx.landmarks();
     const s = ctx.skin();
     const inPoly = (pt, poly) => {
@@ -487,11 +508,13 @@ export function createContext(dir) {
           const il = l[`iliac${S}`];
           return [[sx * 4, ang[2] + 10], [sx * 4, il[2] - 40], [il[0] * 0.75, il[2] - 6], [il[0] * 1.05, il[2] + 40], [sh[0] - sx * 20, sh[2] - 150], [sh[0] - sx * 26, sh[2] - 70], [ang[0] - sx * 4, ang[2] + 4]];
         });
-        return surfacePatch(s, (c, n) => n[1] > 0.15 && polys.some((p) => inPoly([c[0], c[2]], p)), 3.5);
+        // (la piel trae triángulos con el giro cambiado: sin el límite en y, la
+        // lámina se cuela también por delante del tronco, que se ve de perfil)
+        return surfacePatch(s, (c, n) => n[1] > 0.15 && c[1] > -130 && polys.some((p) => inPoly([c[0], c[2]], p)), 3.5);
       }
       case 'frontal-m': {
         const zTop = l.headTop[2] - 26; const zLow = l.eyeR[2] + 22;
-        return surfacePatch(s, (c, n) => n[1] < -0.45 && c[2] > zLow && c[2] < zTop && Math.abs(c[0]) < 56, 2.5);
+        return surfacePatch(s, (c, n) => n[1] < -0.45 && c[1] < -60 && c[2] > zLow && c[2] < zTop && Math.abs(c[0]) < 56, 2.5);
       }
       case 'temporal-m': {
         const zLow = l.eyeR[2] - 6; const zTop = l.headTop[2] - 42;
@@ -511,14 +534,14 @@ export function createContext(dir) {
           return r < 1 && ix * ix + iz * iz > 1;
         };
         const a = ring(l.eyeR); const b = ring(l.eyeL);
-        return surfacePatch(s, (c, n) => n[1] < -0.3 && (a(c) || b(c)), 2);
+        return surfacePatch(s, (c, n) => n[1] < -0.3 && c[1] < -100 && (a(c) || b(c)), 2);
       }
       case 'orbicular-labios': {
         const e = l.lip;
         return surfacePatch(s, (c, n) => {
           const dx = (c[0] - e[0]) / 31; const dz = (c[2] - e[2]) / 19;
           const ix = (c[0] - e[0]) / 22; const iz = (c[2] - e[2]) / 4;
-          return n[1] < -0.3 && dx * dx + dz * dz < 1 && ix * ix + iz * iz > 1;
+          return n[1] < -0.3 && c[1] < -100 && dx * dx + dz * dz < 1 && ix * ix + iz * iz > 1;
         }, 2);
       }
       default: throw new Error(`Lámina muscular desconocida: ${name}`);

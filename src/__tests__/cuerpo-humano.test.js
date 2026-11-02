@@ -23,6 +23,10 @@ import { judgeMapPick } from '@/apps/_shared/geo/QuizPlay';
 import * as Viaje from '@/apps/viaje-cuerpo/engine/questions';
 import { ROUTES, EV, eventOf, trackFor } from '@/apps/viaje-cuerpo/engine/routes';
 import { HAND_PLATES } from '../../tools/anatomy/hand-plates.mjs';
+import { MUSCLES_DEEP, MUSCLES_A, MUSCLES_P } from '../../tools/anatomy/plates.mjs';
+import { ORIGEN_INSERCION, related } from '@/apps/_shared/anatomia/data/structures';
+import { distractors } from '@/apps/_shared/anatomia/qkit';
+import { oriOf, insOf } from '@/apps/_shared/anatomia/text';
 import { mulberry32 } from '@/apps/sistema-solar/model/rng';
 
 const DATA = 'public/data/anatomia';
@@ -204,6 +208,91 @@ describe('Zonas contenedoras de las láminas dibujadas', () => {
     const sangre = world.scope('sangre');
     expect(judgeMapPick({ kind: 'locate', layer: 'sangre', target: 'globulos-blancos' }, 'linfocito', null, [], sangre)).toBe(true);
     expect(judgeMapPick({ kind: 'locate', layer: 'sangre', target: 'plasma' }, 'globulos-rojos', null, [], sangre)).toBe(false);
+  });
+});
+
+describe('Musculatura profunda, grupos y origen e inserción', () => {
+  it('MUSCLES_DEEP: claves únicas, del catálogo, sin repetir las de mus-a/mus-p y con el mismo grupo que el catálogo', () => {
+    const keys = MUSCLES_DEEP.map((p) => p.k);
+    expect(new Set(keys).size).toBe(keys.length);
+    const shallow = new Set([...MUSCLES_A, ...MUSCLES_P].map((p) => p.k));
+    for (const p of MUSCLES_DEEP) {
+      expect(BY_KEY[p.k]?.t, p.k).toBe('mus');
+      expect(shallow.has(p.k), p.k).toBe(false);
+      expect(p.grp ?? null, p.k).toBe(BY_KEY[p.k].grp ?? null);
+      p.el.forEach((re) => expect(re.source, p.k).toMatch(/\(left\|right\)|^\^spinalis\$$/i));
+    }
+    expect(STRUCTURES.filter((s) => s.t === 'mus').length).toBeGreaterThanOrEqual(75);
+  });
+
+  it('los grupos apuntan a claves del catálogo y las láminas profundas los usan como cont', () => {
+    for (const s of STRUCTURES) {
+      if (s.grp && s.s !== 'ext' && s.t !== 'reg') expect(BY_KEY[s.grp], `${s.k} → ${s.grp}`).toBeTruthy();
+      (s.sim || []).forEach((k) => expect(BY_KEY[k], `${s.k} sim ${k}`).toBeTruthy());
+    }
+    const conts = (id) => [...world.layer(id).values()].map((e) => e.cont);
+    expect(conts('mus-prof-a').filter((c) => c === 'cuadriceps').length).toBeGreaterThanOrEqual(3);
+    expect(conts('mus-prof-p').filter((c) => c === 'isquiotibiales').length).toBe(3);
+    expect(conts('mus-prof-p').filter((c) => c === 'manguito-rotador').length).toBeGreaterThanOrEqual(3);
+    const q = { kind: 'locate-group', layer: 'mus-prof-a', target: 'cuadriceps' };
+    expect(judgeMapPick(q, 'vasto-lateral', 'cuadriceps', [], world)).toBe(true);
+    expect(judgeMapPick(q, 'aductor-largo', 'aductores', [], world)).toBe(false);
+  });
+
+  it('un músculo y su grupo (o uno de acción parecida) no salen como opción falsa', () => {
+    expect(related('recto-femoral', 'cuadriceps')).toBe(true);
+    expect(related('cuadriceps', 'vasto-medial')).toBe(true);
+    expect(related('menisco-medial', 'menisco')).toBe(true);
+    expect(related('braquial', 'biceps')).toBe(true);
+    expect(related('vasto-lateral', 'recto-femoral')).toBe(false);
+    expect(related('cuello', 'cabeza')).toBe(false);
+    const ctx = { difficulty: 'exam', lang: 'es', rng: mulberry32(3) };
+    for (let i = 0; i < 20; i += 1) {
+      const ds = distractors({ ...ctx, rng: mulberry32(i) }, 'recto-femoral', ['cuadriceps', 'iliopsoas', 'vasto-lateral', 'sartorio', 'aductores', 'gemelos'], 3);
+      expect(ds).not.toContain('cuadriceps');
+      expect(ds).not.toContain('iliopsoas');
+    }
+  });
+
+  it('origen e inserción: músculos del catálogo, en los tres idiomas', () => {
+    for (const k of Object.keys(ORIGEN_INSERCION)) {
+      expect(BY_KEY[k]?.t, k).toBe('mus');
+      for (const lang of ['es', 'en', 'va']) {
+        expect(oriOf(k, lang), `${k} ${lang}`).toBeTruthy();
+        expect(insOf(k, lang), `${k} ${lang}`).toBeTruthy();
+      }
+    }
+    expect(Object.keys(ORIGEN_INSERCION).length).toBeGreaterThanOrEqual(40);
+  });
+
+  it('el minijuego de origen e inserción no repite respuestas entre las opciones', () => {
+    for (const lang of ['es', 'en', 'va']) {
+      setLang(lang);
+      for (let seed = 1; seed <= 12; seed += 1) {
+        const ctx = { lv: 6, region: 'all', difficulty: 'exam', world, lang, rng: mulberry32(seed * 31) };
+        const qs = HM.buildRound(ctx, 'origen', 10);
+        expect(qs).toHaveLength(10);
+        for (const q of qs) {
+          checkQuestion(q, ctx);
+          if (q.kind === 'choice') {
+            const labels = q.options.map((o) => o.label);
+            expect(new Set(labels).size, q.prompt).toBe(labels.length);
+            const right = q.answer[0];
+            q.options.filter((o) => o.key !== right).forEach((o) => expect(related(o.key, right), `${q.prompt}: ${o.key}`).toBe(false));
+          }
+        }
+      }
+    }
+    setLang('es');
+  });
+
+  it('láminas nuevas: perfiles, músculos profundos, rodilla y hombro', () => {
+    for (const id of ['mus-prof-a', 'mus-prof-p', 'esq-l', 'mus-l', 'rodilla', 'hombro']) expect(index.plates[id], id).toBeTruthy();
+    const rod = world.layer('rodilla');
+    for (const k of ['ligamento-cruzado-anterior', 'menisco-medial', 'menisco-lateral', 'ligamento-colateral-medial']) expect(rod.get(k)?.area, k).toBeGreaterThan(1500);
+    expect(rod.get('rotula').covered).toBe(true);
+    const hom = world.layer('hombro');
+    for (const k of ['supraespinoso', 'bursa-subacromial', 'rodete-glenoideo', 'tendon-biceps']) expect(hom.get(k)?.area, k).toBeGreaterThan(1500);
   });
 });
 

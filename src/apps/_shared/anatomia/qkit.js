@@ -1,7 +1,7 @@
 // Piezas comunes de las preguntas de las apps del cuerpo humano. Funciones
 // puras: reciben el contexto { lv, difficulty, rng, lang, world, used } y
 // devuelven preguntas en el formato del motor de mapas (geo/QuizPlay.jsx).
-import { BY_KEY, STRUCTURES } from './data/structures';
+import { BY_KEY, STRUCTURES, related } from './data/structures';
 import { SYSTEMS, SYSTEM_BY_ID } from './data/systems';
 import { PLATE_BY_ID } from './data/plates';
 import {
@@ -57,7 +57,8 @@ export function distractorsFilled(ctx, target, pool, n) {
 export function distractors(ctx, target, pool, n, { exclude = [] } = {}) {
   const t = BY_KEY[target];
   const banned = new Set([target, ...exclude]);
-  const cand = [...new Set(pool)].filter((k) => !banned.has(k) && BY_KEY[k] && nameOf(k, ctx.lang) !== nameOf(target, ctx.lang));
+  // (sin el grupo de la respuesta ni sus miembros, ni músculos de acción parecida)
+  const cand = [...new Set(pool)].filter((k) => !banned.has(k) && BY_KEY[k] && nameOf(k, ctx.lang) !== nameOf(target, ctx.lang) && !related(k, target));
   const out = [];
   const take = (list) => {
     for (const k of shuffle(list, ctx.rng)) {
@@ -76,14 +77,14 @@ export function distractors(ctx, target, pool, n, { exclude = [] } = {}) {
   return out.slice(0, n);
 }
 
-const explainOf = (key, lang) => {
+export const explainOf = (key, lang) => {
   const f = factOf(key, lang);
   if (f) return f;
   const p = funcOf(key, lang) || actOf(key, lang);
   return p ? upperFirst(p) + '.' : undefined;
 };
-const cardOf = (key, lang) => ({ title: nameOf(key, lang), sub: systemName(BY_KEY[key]?.s, lang) });
-const nameLabel = (key, ctx) => {
+export const cardOf = (key, lang) => ({ title: nameOf(key, lang), sub: systemName(BY_KEY[key]?.s, lang) });
+export const nameLabel = (key, ctx) => {
   const sci = ctx.lv >= 4 ? sciOf(key, ctx.lang) : null;
   return sci ? `${nameOf(key, ctx.lang)} (${sci})` : nameOf(key, ctx.lang);
 };

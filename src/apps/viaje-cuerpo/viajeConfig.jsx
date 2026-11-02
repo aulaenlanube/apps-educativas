@@ -26,6 +26,8 @@ const ARTS = {
   vida: { plate: 'embarazo', x: 50, y: 50, zoom: 1.05, icon: Sparkles },
   hormona: { plate: 'endocrino', x: 50, y: 20, zoom: 1.6, icon: Sparkles },
   defensa: { plate: 'linfatico', x: 50, y: 30, zoom: 1.4, icon: ScanLine },
+  esfuerzo: { plate: 'vas-a', ghost: 'a', x: 50, y: 60, zoom: 2, icon: HeartPulse },
+  humo: { plate: 'bronquios-a', x: 50, y: 50, zoom: 1.15, icon: Wind },
   atlas: { plate: 'vas-a', x: 50, y: 30, zoom: 1.3, ratio: '1 / 1' },
 };
 
@@ -53,6 +55,7 @@ const TEXTS = {
         <ul>
           <li><strong>El bocado</strong> (digestión) y <strong>La bocanada</strong> (respiración).</li>
           <li><strong>El glóbulo rojo</strong> (circulación), <strong>La gota</strong> (excreción), <strong>El impulso</strong> (acto reflejo), <strong>La luz</strong> (vista), <strong>El sonido</strong> (oído) y <strong>La vida</strong> (reproducción), desde 5.º.</li>
+          <li><strong>El esfuerzo</strong> (el oxígeno hasta el músculo que trabaja) y <strong>El humo</strong> (lo que daña el tabaco), desde 1.º de ESO.</li>
           <li><strong>La hormona</strong> (desde 3.º de ESO) y <strong>La defensa</strong> (Bachillerato).</li>
         </ul>
         <p>En cada viaje: toca la primera parada, adivina la siguiente (la estela te enseña por dónde has pasado), elige qué ocurre en cada sitio y, al final, <strong>ordena el recorrido completo</strong> tocando las paradas.</p>
@@ -88,6 +91,7 @@ const TEXTS = {
         <ul>
           <li><strong>The bite</strong> (digestion) and <strong>A breath of air</strong> (breathing).</li>
           <li><strong>The red blood cell</strong>, <strong>The drop</strong>, <strong>The nerve impulse</strong>, <strong>Light</strong>, <strong>Sound</strong> and <strong>Life</strong> in higher years.</li>
+          <li><strong>The workout</strong> (oxygen on its way to a working muscle) and <strong>The smoke</strong> (the damage tobacco does), from Year 8.</li>
           <li><strong>The hormone</strong> and <strong>The defence</strong> for older students.</li>
         </ul>
         <p>In each journey: tap the first stop, guess the next one (the trail shows where you have been), choose what happens at each place and, at the end, <strong>put the whole route in order</strong>.</p>
@@ -123,6 +127,7 @@ const TEXTS = {
         <ul>
           <li><strong>La mossegada</strong> (digestió) i <strong>L'alenada</strong> (respiració).</li>
           <li><strong>El glòbul roig</strong>, <strong>La gota</strong>, <strong>L'impuls</strong>, <strong>La llum</strong>, <strong>El so</strong> i <strong>La vida</strong> des de 5é.</li>
+          <li><strong>L'esforç</strong> (l'oxigen fins al múscul que treballa) i <strong>El fum</strong> (el que danya el tabac), des de 1r d'ESO.</li>
           <li><strong>L'hormona</strong> (des de 3r d'ESO) i <strong>La defensa</strong> (Batxillerat).</li>
         </ul>
         <p>En cada viatge: toca la primera parada, endevina la següent (l'estela t'ensenya per on has passat), tria què passa a cada lloc i, al final, <strong>ordena el recorregut complet</strong>.</p>

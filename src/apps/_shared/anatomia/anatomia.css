@@ -140,10 +140,14 @@ html[data-fx="high"] .ana-scene__scan { opacity: 1; animation: ana-scan 9s linea
 
 /* atlas: tres columnas (láminas · lámina · ficha) */
 .ana-atlas .gq-atlas__body { grid-template-columns: 250px minmax(0, 1fr) 320px; }
+.ana-atlas .gq-atlas__body.is-3d { grid-template-columns: 250px minmax(0, 1fr); }
+.ana-atlas__3d { min-height: 0; overflow: auto; }
+.ana-atlas__3d .a3d-stage { height: min(72vh, 720px); }
+.ana-plate-btn__thumb--3d { display: grid; place-items: center; color: #67e8f9; background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, .28), rgba(8, 20, 38, .9)); }
 .ana-atlas .ana-atlas__plates { min-height: 0; }
 .ana-atlas .gq-map--atlas { width: 100%; }
 @media (max-width: 1100px) {
-  .ana-atlas .gq-atlas__body { grid-template-columns: 1fr; grid-template-rows: auto minmax(300px, 1fr) auto; overflow-y: auto; }
+  .ana-atlas .gq-atlas__body { grid-template-columns: 1fr; grid-template-rows: max-content minmax(max(300px, min(50vh, 460px)), 1fr) auto; overflow-y: auto; }
   .ana-atlas .ana-atlas__plates { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; }
   .ana-atlas .ana-atlas__cat { flex: none; }
   .ana-atlas .ana-atlas__cat div { display: flex; gap: 8px; }
@@ -193,3 +197,232 @@ html[data-fx="high"] .ana-qcard svg circle:nth-of-type(2) { transform-origin: 60
   .ana-map.gq-map--game { aspect-ratio: 3 / 4; max-height: 62vh; }
   .gq-stage--map .ana-map { aspect-ratio: 1 / 1; }
 }
+
+/* ───────── órganos vivos: el corazón late (~70 lpm), los pulmones respiran (~14 rpm) ─────────
+   Solo transform, solo con efectos altos y sin movimiento reducido (world.jsx
+   tampoco los pinta si no). Se paran con la estructura marcada o la partida en pausa. */
+.ana-live { transform-box: fill-box; }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-fx="high"] .ana-live--beat { animation: ana-beat .857s ease-in-out infinite; }
+  html[data-fx="high"] .ana-live--breath { animation: ana-breath 4.3s ease-in-out infinite; }
+}
+html[data-fx] .ana-live.is-paused { animation: none; }
+.gq-play.is-paused .ana-live { animation-play-state: paused; }
+@keyframes ana-beat {
+  0% { transform: scale(1); }
+  12% { transform: scale(1.035); }
+  24% { transform: scale(1.004); }
+  34% { transform: scale(1.02); }
+  50%, 100% { transform: scale(1); }
+}
+@keyframes ana-breath {
+  0%, 100% { transform: scale(1, 1); }
+  40%, 50% { transform: scale(1.018, 1.032); }
+}
+
+/* ───────── deslizador de capas (atlas) ───────── */
+/* Vertical, en el borde izquierdo (las láminas de cuerpo entero son altas y
+   estrechas: los lados quedan libres). Arriba la piel, abajo el esqueleto. */
+.ana-layers {
+  --ana-thumb: 30px;
+  position: absolute;
+  left: 10px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: min(400px, calc(100% - 70px));
+  padding: 9px 12px 10px 9px;
+  border-radius: 18px;
+  color: #cffafe;
+  background: rgba(8, 20, 38, .8);
+  border: 1px solid rgba(103, 232, 249, .3);
+  box-shadow: 0 12px 26px -16px rgba(0, 0, 0, .9);
+}
+.ana-layers__head { display: flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #a5f3fc; }
+.ana-layers__head svg { flex: none; color: #67e8f9; }
+.ana-layers__body { display: flex; flex: 1; min-height: 0; gap: 8px; }
+.ana-layers__rail {
+  position: relative;
+  flex: none;
+  width: var(--ana-thumb);
+  border-radius: 999px;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+.ana-layers__rail:active { cursor: grabbing; }
+.ana-layers__track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 8px;
+  margin-left: -4px;
+  border-radius: 999px;
+  background: var(--ana-rail, #67e8f9);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .12);
+}
+.ana-layers__stop {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #0b1626;
+  border: 2px solid rgba(255, 255, 255, .8);
+  pointer-events: none;
+}
+.ana-layers__stop.is-on { background: #fff; }
+.ana-layers__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--ana-thumb);
+  height: var(--ana-thumb);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, #ffffff, #cffafe 55%, #67e8f9);
+  border: 3px solid #0e7490;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .55);
+  pointer-events: none;
+}
+.ana-layers__rail:focus-visible .ana-layers__thumb { box-shadow: 0 0 0 4px rgba(103, 232, 249, .6), 0 3px 10px rgba(0, 0, 0, .55); }
+.ana-layers__ticks { position: relative; flex: none; min-width: 62px; }
+.ana-layers__ticks button {
+  position: absolute;
+  left: -6px;
+  height: 28px;
+  padding: 0 4px 0 6px;
+  transform: translateY(-50%);
+  font: inherit;
+  font-size: .74rem;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+  white-space: nowrap;
+  color: #8fd3e3;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.ana-layers__ticks button.is-on { color: #fff; }
+.ana-layers__ticks button:hover { color: #ecfeff; }
+@media (max-width: 720px) {
+  .ana-layers { --ana-thumb: 28px; left: 6px; bottom: 8px; gap: 6px; padding: 7px 6px 8px 6px; height: min(340px, calc(100% - 62px)); }
+  .ana-layers__head span { display: none; }
+  .ana-layers__head { justify-content: center; }
+  .ana-layers__ticks { min-width: 0; }
+  .ana-layers__ticks button { left: 4px; height: 22px; padding: 0 7px; font-size: .64rem; line-height: 22px; background: rgba(8, 20, 38, .82); border-radius: 999px; }
+  .ana-layers__ticks button.is-on { background: #0e7490; }
+}
+
+/* ───────── pronunciación ───────── */
+.ana-speak {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 13px;
+  color: var(--gk-ink, #0f172a);
+  background: color-mix(in srgb, #67e8f9 16%, var(--gk-surface-2, #fff));
+  border: 1px solid color-mix(in srgb, #67e8f9 50%, transparent);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.ana-speak:hover { transform: translateY(-1px); }
+.ana-speak:active { transform: scale(.93); }
+.ana-speak:focus-visible { outline: 3px solid color-mix(in srgb, #67e8f9 60%, transparent); outline-offset: 2px; }
+.ana-speak svg { color: #22d3ee; }
+html[data-fx="high"] .ana-speak.is-talking svg { animation: ana-talk .5s ease-in-out infinite alternate; }
+@keyframes ana-talk { to { transform: scale(1.18); opacity: .75; } }
+.ana-facts__speak { margin-left: auto; }
+.ana-speak--fb { width: 34px; height: 34px; margin-left: 2px; }
+
+/* ───────── imprimir: diálogo (dentro del atlas) ───────── */
+.ana-atlas__tools .ana-atlas__print svg { color: #a5f3fc; }
+.ana-printdlg {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  border-radius: inherit;
+  background: rgba(4, 10, 24, .72);
+}
+.ana-printdlg__box { width: min(540px, 100%); max-height: 100%; overflow-y: auto; }
+.ana-printdlg__icon { --dt-1: #67e8f9; --dt-2: #0e7490; }
+.gk-dialog .ana-printdlg__sub { margin: 0 0 14px; font-size: .9rem; }
+.gk-dialog .ana-printdlg__sub strong { color: var(--gk-ink); }
+.ana-printdlg__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; text-align: left; }
+.ana-printdlg__opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  font: inherit;
+  text-align: left;
+  color: var(--gk-ink-2);
+  background: var(--gk-surface);
+  border: 1.5px solid var(--gk-line);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.ana-printdlg__opt:hover { transform: translateY(-1px); }
+.ana-printdlg__opt.is-on {
+  color: var(--gk-ink);
+  background: color-mix(in srgb, #67e8f9 14%, var(--gk-surface-2));
+  border-color: #67e8f9;
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, .22);
+}
+.ana-printdlg__opt svg { flex: none; margin-top: 2px; color: #67e8f9; }
+.ana-printdlg__opt span { display: flex; flex-direction: column; gap: 3px; }
+.ana-printdlg__opt strong { font-size: .98rem; color: var(--gk-ink); }
+.ana-printdlg__opt small { font-family: 'Nunito', var(--gk-font); font-size: .8rem; font-weight: 600; line-height: 1.3; }
+.ana-printdlg__which { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: .85rem; font-weight: 700; color: var(--gk-ink-2); }
+.ana-printdlg__which > span { display: inline-flex; align-items: center; gap: 5px; }
+.gk-dialog .ana-printdlg__note { margin: 0 0 14px; font-size: .8rem; color: var(--gk-ink-3); }
+@media (max-width: 520px) {
+  .ana-printdlg__opts { grid-template-columns: 1fr; }
+}
+
+/* ───────── imprimir: la hoja (solo existe durante el trabajo de impresión) ───────── */
+.ana-print-root { display: none; }
+@media print {
+  html.ana-printing,
+  html.ana-printing body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  html.ana-printing body > *:not(.ana-print-root) { display: none !important; }
+  html.ana-printing .ana-print-root {
+    display: block;
+    color: #0f172a;
+    font-family: 'Nunito', system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+.ana-print-page { display: flex; flex-direction: column; gap: 3mm; break-after: page; page-break-after: always; }
+.ana-print-page:last-child { break-after: auto; page-break-after: auto; }
+.ana-print-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2mm 6mm; padding-bottom: 2.5mm; border-bottom: .6mm solid #0e7490; }
+.ana-print-head small { display: block; font-size: 8pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #0e7490; }
+.ana-print-head h1 { margin: 1mm 0 0; font-family: 'Fredoka', 'Nunito', system-ui, sans-serif; font-size: 19pt; font-weight: 600; line-height: 1.1; color: #0f172a; }
+.ana-print-head h1 span { color: #0e7490; }
+.ana-print-fields { display: flex; gap: 5mm; font-size: 9.5pt; font-weight: 700; color: #334155; white-space: nowrap; }
+.ana-print-fields i { display: inline-block; width: 20mm; margin-left: 1.5mm; border-bottom: .3mm solid #475569; }
+.ana-print-fields i.is-long { width: 40mm; }
+.ana-print-task { margin: 0; font-size: 10pt; font-weight: 700; color: #334155; }
+.ana-print-main { display: flex; align-items: flex-start; justify-content: center; gap: 6mm; }
+.ana-print-fig { display: block; flex: none; overflow: visible; font-family: 'Nunito', system-ui, sans-serif; }
+.ana-print-answers { flex: none; display: grid; grid-auto-flow: column; column-gap: 4mm; margin: 0; padding: 0; list-style: none; }
+.ana-print-answers li { display: flex; align-items: flex-end; gap: 2mm; padding-bottom: 1.2mm; font-size: 9pt; }
+.ana-print-answers b { flex: none; display: inline-grid; place-items: center; width: 5.4mm; height: 5.4mm; border: .3mm solid #0f172a; border-radius: 50%; font-size: 8pt; }
+.ana-print-answers i { flex: 1; height: 0; margin-bottom: .7mm; border-bottom: .3mm solid #94a3b8; }
+.ana-print-key { columns: 2; column-gap: 10mm; margin: 3mm 0 0; padding: 0; list-style: none; font-size: 11.5pt; font-weight: 600; }
+.ana-print-key li { break-inside: avoid; padding: 1.6mm 0; border-bottom: .2mm solid #e2e8f0; }
+.ana-print-key b { display: inline-grid; place-items: center; min-width: 6mm; height: 6mm; margin-right: 2.5mm; border-radius: 50%; font-size: 8.5pt; color: #fff; background: #0f172a; }
+.ana-print-foot { padding-top: 1.5mm; font-size: 7.5pt; color: #64748b; border-top: .2mm solid #e2e8f0; }

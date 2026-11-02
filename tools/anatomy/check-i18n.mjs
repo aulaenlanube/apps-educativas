@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Comprueba las traducciones de src/apps/_shared/anatomia/i18n/<lang>.js:
-// cada estructura con p/f/act en castellano debe tenerlos traducidos (y nada más).
+// cada estructura con p/f/act/ori/ins en castellano debe tenerlos traducidos (y nada más).
 // Uso: node tools/anatomy/check-i18n.mjs en|va
 import { STRUCTURES } from '../../src/apps/_shared/anatomia/data/structures.js';
 
@@ -10,7 +10,7 @@ const { default: T } = await import(`../../src/apps/_shared/anatomia/i18n/${lang
 const missing = []; const extra = [];
 let total = 0;
 for (const s of STRUCTURES) {
-  for (const f of ['p', 'f', 'act']) {
+  for (const f of ['p', 'f', 'act', 'ori', 'ins']) {
     if (!s[f]) { if (T[s.k]?.[f]) extra.push(`${s.k}.${f}`); continue; }
     total += 1;
     const v = T[s.k]?.[f];

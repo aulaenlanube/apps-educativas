@@ -51,6 +51,7 @@ const CatalogoPage = lazy(() => import('@/pages/CatalogoPage.jsx'));
 // Galería de ilustraciones: solo en desarrollo (en producción esta rama se elimina en el build).
 const ArtGallery = import.meta.env.DEV ? lazy(() => import('@/dev/ArtGallery.jsx')) : null;
 const KitGallery = import.meta.env.DEV ? lazy(() => import('@/dev/KitGallery.jsx')) : null;
+const Anatomy3DLab = import.meta.env.DEV ? lazy(() => import('@/dev/Anatomy3DLab.jsx')) : null;
 const MascotLab = import.meta.env.DEV ? lazy(() => import('@/dev/MascotLab.jsx')) : null;
 const DashKitGallery = import.meta.env.DEV ? lazy(() => import('@/dev/DashKitGallery.jsx')) : null;
 
@@ -204,6 +205,7 @@ const router = createBrowserRouter(
     },
     ...(ArtGallery ? [{ path: '/__art', element: <SuspensePage><ArtGallery /></SuspensePage> }] : []),
     ...(KitGallery ? [{ path: '/__kit', element: <SuspensePage><KitGallery /></SuspensePage> }] : []),
+    ...(Anatomy3DLab ? [{ path: '/__anatomia3d', element: <SuspensePage><Anatomy3DLab /></SuspensePage> }] : []),
     ...(MascotLab ? [{ path: '/__mascot', element: <SuspensePage><MascotLab /></SuspensePage> }] : []),
     ...(DashKitGallery ? [{ path: '/__dash-kit', element: <SuspensePage><DashKitGallery /></SuspensePage> }] : []),
     { path: '*', element: <SuspensePage><NotFoundPage /></SuspensePage> },

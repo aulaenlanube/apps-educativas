@@ -1,15 +1,16 @@
 // Piezas visuales compartidas por las apps del cuerpo humano.
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Activity, Bone, Brain, Dumbbell, Ear, Eye, HeartPulse, Info, Lightbulb, Microscope, ScanLine, Sparkles, Wind,
+  Activity, Anchor, Bone, Brain, Dumbbell, Ear, Eye, HeartPulse, Info, Lightbulb, MapPin, Microscope, ScanLine, Sparkles, Volume2, Wind,
 } from 'lucide-react';
 import { BY_KEY } from './data/structures';
 import { SYSTEM_BY_ID } from './data/systems';
 import { PLATE_BY_ID } from './data/plates';
 import { APP_UI } from './uiStrings';
 import {
-  nameOf, sciOf, funcOf, factOf, actOf, systemName, upperFirst, getLang,
+  nameOf, sciOf, funcOf, factOf, actOf, oriOf, insOf, systemName, upperFirst, getLang,
 } from './text';
+import { speak, useSpeechVoice } from './speech';
 
 const IMG = (id) => `/images/anatomia/${id}.webp`;
 const GHOST = { a: '/images/anatomia/ghost-a.webp', p: '/images/anatomia/ghost-p.webp' };
@@ -79,6 +80,27 @@ export const makeRenderSubject = (extra = {}) => (q, done) => {
   return extra[s?.type]?.(q, done) ?? null;
 };
 
+/* ───────── pronunciación ───────── */
+
+// Altavoz que lee `text` en el idioma `lang`. No se pinta si el navegador no
+// tiene síntesis de voz o no tiene ninguna voz de ese idioma.
+export function SpeakButton({ text, lang = getLang(), className = '' }) {
+  const voice = useSpeechVoice(lang);
+  const [talking, setTalking] = useState(false);
+  if (!voice || !text) return null;
+  const label = (APP_UI[lang] || APP_UI.es).listen;
+  const say = (e) => {
+    e.stopPropagation();
+    const u = speak(text, lang, voice, { onEnd: () => setTalking(false) });
+    setTalking(Boolean(u));
+  };
+  return (
+    <button type="button" className={`ana-speak${talking ? ' is-talking' : ''} ${className}`} onClick={say} aria-label={`${label}: ${text}`} title={label}>
+      <Volume2 size={17} aria-hidden="true" />
+    </button>
+  );
+}
+
 /* ───────── ficha de una estructura ───────── */
 
 export function StructureFacts({ k, lv = 6, lang = getLang(), platesWith = [], onPlate }) {
@@ -89,6 +111,9 @@ export function StructureFacts({ k, lv = 6, lang = getLang(), platesWith = [], o
   const sci = lv >= 4 ? sciOf(k, lang) : null;
   const fn = funcOf(k, lang);
   const act = actOf(k, lang);
+  // origen e inserción: desde 3.º de ESO (en Bachillerato es contenido de examen)
+  const ori = lv >= 5 ? oriOf(k, lang) : null;
+  const ins = lv >= 5 ? insOf(k, lang) : null;
   const fact = factOf(k, lang);
   return (
     <div className="ana-facts">
@@ -98,6 +123,7 @@ export function StructureFacts({ k, lv = 6, lang = getLang(), platesWith = [], o
           <strong>{nameOf(k, lang)}</strong>
           {sci && <small>{t.sci}: {sci}</small>}
         </div>
+        <SpeakButton text={nameOf(k, lang)} lang={lang} className="ana-facts__speak" />
       </div>
       <div className="ana-facts__chips">
         <span className="ana-chip" style={{ '--c': sys?.color }}>{systemName(s.s, lang)}</span>
@@ -106,6 +132,8 @@ export function StructureFacts({ k, lv = 6, lang = getLang(), platesWith = [], o
       </div>
       {fn && <p className="ana-facts__block"><Info size={16} /><span><b>{t.function}:</b> {upperFirst(fn)}.</span></p>}
       {act && <p className="ana-facts__block"><Dumbbell size={16} /><span><b>{t.action}:</b> {upperFirst(act)}.</span></p>}
+      {ori && <p className="ana-facts__block"><MapPin size={16} /><span><b>{t.origin}:</b> {upperFirst(ori)}.</span></p>}
+      {ins && <p className="ana-facts__block"><Anchor size={16} /><span><b>{t.insertion}:</b> {upperFirst(ins)}.</span></p>}
       {fact && <p className="ana-facts__block"><Lightbulb size={16} /><span><b>{t.fact}</b> {fact}</span></p>}
       {platesWith.length > 1 && onPlate && (
         <div>

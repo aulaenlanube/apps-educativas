@@ -10,6 +10,7 @@ const ExploradorEspanaDuel = lazy(() => import('../explorador-espana/ExploradorE
 const ExploradorCuerpoDuel = lazy(() => import('../explorador-cuerpo/ExploradorCuerpoDuel'));
 const HuesosMusculosDuel = lazy(() => import('../huesos-musculos/HuesosMusculosDuel'));
 const ViajeCuerpoDuel = lazy(() => import('../viaje-cuerpo/ViajeCuerpoDuel'));
+const Anatomia3DDuel = lazy(() => import('../anatomia-3d/Anatomia3DDuel'));
 
 // Mapa app_id -> componente duelable. Se monta desde AppRunnerPage
 // cuando la URL incluye ?duel=<id>.
@@ -24,6 +25,7 @@ export const DUEL_COMPONENTS = {
   'explorador-cuerpo': ExploradorCuerpoDuel,
   'huesos-musculos': HuesosMusculosDuel,
   'viaje-cuerpo': ViajeCuerpoDuel,
+  'anatomia-3d': Anatomia3DDuel,
 };
 
 export function getDuelComponent(appId) {

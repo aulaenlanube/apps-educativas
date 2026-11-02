@@ -134,7 +134,7 @@ const APP_HEADER_PRESETS = {
 };
 
 // Apps "wide" usan header standard pero contenedor ancho
-const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques', 'explorador-mundo', 'explorador-espana', 'explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo'];
+const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques', 'explorador-mundo', 'explorador-espana', 'explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo', 'anatomia-3d'];
 const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 
 /**

@@ -20,16 +20,21 @@
 //   languages: [{ id, label }]          idiomas del contenido (selector en la pantalla previa)
 //   defaultLang(level, subjectId)       idioma inicial
 //   localize(lang) → config             la configuración en ese idioma (textos, preguntas…)
+//   renderQuestion?(q, opts): preguntas propias (kind 'custom'), ver QuizPlay
+//   viewModes?: [{ id, label }] + defaultViewMode?(level, subjectId, lv): vistas del
+//     tablero (p. ej. láminas o 3D); la elegida llega como `view` a prepare (4.º
+//     argumento: { view }), buildRound y atlas (3.er argumento: { view }).
 //   ui                                  textos del motor (ver ./ui.js)
 //   Atlas                               componente de atlas propio (mismas props que ./Atlas)
 //   renderSubject(q, done)              visual de tipos de pregunta propios
 //   mapHud(q, { done })                 controles propios sobre el mapa de la pregunta
+//   feedbackExtra(q, { correct })       algo propio en la ficha de la respuesta (solo práctica)
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  ArrowLeft, ArrowRight, Clock, Compass, Flame, Globe2, GraduationCap, Languages, LayoutGrid, RefreshCw, Target,
+  ArrowLeft, ArrowRight, Box, Clock, Compass, Flame, Globe2, GraduationCap, Languages, LayoutGrid, RefreshCw, Target,
 } from 'lucide-react';
 import InstructionsModal from '../InstructionsModal';
 import {
@@ -60,6 +65,7 @@ export default function GeoQuizApp({ config, onGameComplete }) {
   const grade = useMemo(() => parseInt(gradeParam, 10), [gradeParam]);
   const lv = useMemo(() => config.levelFor(level, grade, subjectId), [config, level, grade, subjectId]);
   const [lang, setLang] = useState(() => config.defaultLang?.(level, subjectId) ?? null);
+  const [viewMode, setViewMode] = useState(() => config.defaultViewMode?.(level, subjectId, lv) ?? null);
   const c = useMemo(() => (config.localize ? config.localize(lang) : config), [config, lang]);
   const ui = useMemo(() => mergeUi(c.ui), [c]);
   const shell = { ...c.shell, wide: true };
@@ -143,20 +149,20 @@ export default function GeoQuizApp({ config, onGameComplete }) {
     try {
       if (config.prepare) {
         setScreen('pending');
-        await config.prepare(gameId, world, lv);
+        await config.prepare(gameId, world, lv, { view: viewMode });
       }
     } catch (err) {
       console.error(`${config.title}: no se pudieron cargar los datos del minijuego`, err);
       setLoadError(true);
       return;
     }
-    const questions = c.buildRound({ lv, region, difficulty: diff, world, lang }, gameId, ROUND_SIZE);
+    const questions = c.buildRound({ lv, region, difficulty: diff, world, lang, view: viewMode }, gameId, ROUND_SIZE);
     trackedRef.current = false;
     liveRef.current = { exam: gameId === 'exam', startedAt: Date.now(), results: [], points: 0 };
     setRound({ id: Date.now(), gameId, questions, difficulty: diff });
     setSummary(null);
     setScreen('play');
-  }, [world, config, c, lv, region, lang]);
+  }, [world, config, c, lv, region, lang, viewMode]);
 
   // Un minijuego pedido antes de que el mapa terminara de cargar.
   useEffect(() => {
@@ -231,7 +237,7 @@ export default function GeoQuizApp({ config, onGameComplete }) {
     </InstructionsModal>
   );
 
-  const atlasConfig = useMemo(() => (world ? c.atlas(world, lv) : null), [world, c, lv]);
+  const atlasConfig = useMemo(() => (world ? c.atlas(world, lv, { view: viewMode }) : null), [world, c, lv, viewMode]);
   const AtlasView = c.Atlas || Atlas;
   const atlas = atlasConfig && <AtlasView open={atlasOpen} onClose={() => setAtlasOpen(false)} world={world} atlas={atlasConfig} />;
   const openHelp = () => setShowHelp(true);
@@ -266,6 +272,12 @@ export default function GeoQuizApp({ config, onGameComplete }) {
         <Segmented size="sm" value={lang} onChange={setLang} options={c.languages.map((l) => ({ value: l.id, label: l.label }))} />
       </div>
     ) : null;
+    const viewPicker = c.viewModes ? (
+      <div className="gq-region gq-view">
+        <span className="gq-region__label"><Box size={15} /> {c.viewLabel}</span>
+        <Segmented size="sm" value={viewMode} onChange={setViewMode} options={c.viewModes.map((v) => ({ value: v.id, label: v.label }))} />
+      </div>
+    ) : null;
     const regionPicker = regions ? (
       <div className="gq-region">
         <span className="gq-region__label"><Compass size={15} /> {c.regionQuestion}</span>
@@ -279,7 +291,7 @@ export default function GeoQuizApp({ config, onGameComplete }) {
           onSelect={chooseMode}
           onHelp={openHelp}
           onStudy={openAtlas}
-          filters={langPicker || regionPicker ? <>{langPicker}{regionPicker}</> : null}
+          filters={langPicker || regionPicker || viewPicker ? <>{langPicker}{viewPicker}{regionPicker}</> : null}
           extra={(
             <div className="gq-modes-extra">
               <button type="button" className="gq-atlas-cta" onClick={openAtlas} disabled={!world}>
@@ -414,6 +426,8 @@ export default function GeoQuizApp({ config, onGameComplete }) {
           ui={ui}
           renderSubject={c.renderSubject}
           mapHud={c.mapHud}
+          feedbackExtra={c.feedbackExtra}
+          renderQuestion={c.renderQuestion}
         />
       )}
       <ConfirmDialog

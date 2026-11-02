@@ -12,11 +12,12 @@
 //   views.world                   encuadre inicial
 //   nameOf(key)                   nombre para tooltips y etiquetas
 //   Backdrop?: componente         fondo propio en lugar del mar (láminas del cuerpo
-//                                 humano): recibe { world, k, vb } y pinta dentro del SVG
+//                                 humano): recibe { world, k, vb, states } y pinta dentro del SVG
 //   className?: string            clase extra del lienzo (tema de la app)
 // entry = { key, name, cont (grupo), d, parts: [{ cont, d }], centroid, marker, terr?, fill? }
 // feature = { key, name, kind: 'line' | 'area' | 'point', type, d?, xy }
 // `hud`: controles HTML propios encima del lienzo (capas, lupa…).
+// `homeView`: encuadre del botón «Encuadre inicial» si no es la vista pedida.
 import React, { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Plus, Minus, Maximize2 } from 'lucide-react';
 
@@ -207,6 +208,7 @@ function MapView({
   overlay,
   onPick,
   hud = null,
+  homeView = null,
   className = '',
   ariaLabel = 'Mapa',
 }) {
@@ -396,7 +398,7 @@ function MapView({
       onPointerLeave={() => setTip(null)}
     >
       <svg viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`} className="gq-map__svg" role="img" aria-label={ariaLabel}>
-        {world.Backdrop ? <world.Backdrop world={world} k={k} vb={vb} /> : <MapBase world={world} />}
+        {world.Backdrop ? <world.Backdrop world={world} k={k} vb={vb} states={states} /> : <MapBase world={world} />}
         {seas.length > 0 && <Features features={seas} states={states} pickable={featuresPickable} className="gq-feats--sea" />}
         <Lands entries={layer} states={states} colorBy={colorBy} group={groupByContinent} />
         {meshes?.map((m) => <path key={m.key} d={m.d} className={`gq-mesh ${m.cls || ''}`} pointerEvents="none" />)}
@@ -414,7 +416,7 @@ function MapView({
         <div className="gq-map__ctrls" onPointerDown={(e) => e.stopPropagation()}>
           <button type="button" onClick={() => zoomButton(0.6)} aria-label="Acercar" title="Acercar"><Plus size={18} /></button>
           <button type="button" onClick={() => zoomButton(1.6)} aria-label="Alejar" title="Alejar"><Minus size={18} /></button>
-          <button type="button" onClick={() => animateTo(target, 500)} aria-label="Encuadre inicial" title="Encuadre inicial"><Maximize2 size={16} /></button>
+          <button type="button" onClick={() => animateTo(homeView || target, 500)} aria-label="Encuadre inicial" title="Encuadre inicial"><Maximize2 size={16} /></button>
         </div>
       )}
     </div>

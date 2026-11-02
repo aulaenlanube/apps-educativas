@@ -2,13 +2,19 @@
 // cada lámina (public/data/anatomia/<id>.json) es un ámbito con sus propias
 // coordenadas, su ilustración de fondo y sus estructuras tocables. Las láminas
 // se cargan bajo demanda (world.ensure) antes de cada ronda.
-import React, { useEffect, useId, useRef } from 'react';
+import React, {
+  useEffect, useId, useRef, useState, useSyncExternalStore,
+} from 'react';
 import { motion } from 'framer-motion';
+import useFxTier from '@/hooks/useFxTier';
 import { BY_KEY } from './data/structures';
 import { nameOf, systemName } from './text';
+import { livingOf, livingPaused, originPct } from './living';
+import { layerMix, dominantLayer } from './layers';
 
 const BASE = '/data/anatomia';
 const EMPTY = new Map();
+const NONE = [];
 let indexP = null;
 const plateP = new Map();
 
@@ -89,13 +95,99 @@ function XrayLens({ lens, k }) {
   );
 }
 
-function PlateBackdrop({ world, k }) {
+/* ───────── órganos vivos: corazón que late y pulmones que respiran ───────── */
+
+// Solo con nivel de efectos alto y sin movimiento reducido (el CSS también lo exige).
+const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+function useLiveMotion() {
+  const fx = useFxTier();
+  const [still, setStill] = useState(reducedMotion);
+  useEffect(() => {
+    const mq = typeof window !== 'undefined' ? window.matchMedia?.('(prefers-reduced-motion: reduce)') : null;
+    if (!mq?.addEventListener) return undefined;
+    const on = () => setStill(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return fx === 'high' && !still;
+}
+
+const LIVE = new WeakMap();
+const livingFor = (plate) => {
+  if (!LIVE.has(plate)) LIVE.set(plate, livingOf(plate));
+  return LIVE.get(plate);
+};
+
+// Grupo que late o respira (escala desde su origen). Con `clip`, una copia de la
+// lámina recortada por la silueta de la estructura; si no, lo que lleve dentro.
+function LiveGroup({ group, plate, states, clip = false, children }) {
+  const id = `ana-live-${useId().replace(/:/g, '')}`;
+  const cls = `ana-live ana-live--${group.type}${livingPaused(group, states) ? ' is-paused' : ''}`;
+  return (
+    <g className={cls} style={{ transformOrigin: originPct(group, plate.w, plate.h) }}>
+      {clip ? (
+        <>
+          <defs>
+            <clipPath id={id}>
+              {group.keys.map((key) => <path key={key} d={plate.entries.get(key).d} clipRule="evenodd" />)}
+            </clipPath>
+          </defs>
+          <image href={plate.img} width={plate.w} height={plate.h} clipPath={`url(#${id})`} />
+        </>
+      ) : children}
+    </g>
+  );
+}
+
+// Imagen de una lámina con sus órganos vivos (si toca).
+function PlateImage({ plate, states, live }) {
+  const groups = live ? livingFor(plate) : NONE;
+  const whole = groups.find((g) => g.whole);
+  const img = <image href={plate.img} width={plate.w} height={plate.h} className="ana-bd__img" />;
+  return (
+    <>
+      {whole ? <LiveGroup group={whole} plate={plate} states={states}>{img}</LiveGroup> : img}
+      {groups.filter((g) => !g.whole).map((g) => <LiveGroup key={g.type} group={g} plate={plate} states={states} clip />)}
+    </>
+  );
+}
+
+function PlateBackdrop({ world, k, states }) {
   const p = world.plate;
+  const live = useLiveMotion();
   return (
     <g className="ana-bd" pointerEvents="none">
       {p.ghost && <image href={p.ghost} width={p.w} height={p.h} className="ana-bd__ghost" />}
-      <image href={p.img} width={p.w} height={p.h} className="ana-bd__img" />
+      <PlateImage plate={p} states={states} live={live} />
       {world.lens && <XrayLens lens={world.lens} k={k} />}
+    </g>
+  );
+}
+
+// Capas del cuerpo entero fundidas según el deslizador del atlas (world.mix):
+// la de dentro debajo y la de fuera encima, solo con opacidad. Las marcas
+// (seleccionada…) son de la capa dominante.
+function LayersBackdrop({ world, k, states }) {
+  const { v, lens } = useSyncExternalStore(world.mix.subscribe, world.mix.get, world.mix.get);
+  const live = useLiveMotion();
+  const { layers } = world;
+  const mix = layerMix(v, layers.length);
+  const dom = dominantLayer(v, layers.length);
+  const ghost = layers.find((p) => p.ghost)?.ghost;
+  const order = layers.map((_, i) => i).reverse();
+  return (
+    <g className="ana-bd" pointerEvents="none">
+      {ghost && <image href={ghost} width={world.width} height={world.height} className="ana-bd__ghost" />}
+      {order.map((i) => {
+        const o = mix[i];
+        const on = o > 0.002;
+        return (
+          <g key={layers[i].id} opacity={o} visibility={on ? 'visible' : 'hidden'}>
+            <PlateImage plate={layers[i]} states={i === dom ? states : null} live={live && on} />
+          </g>
+        );
+      })}
+      {lens && <XrayLens lens={lens} k={k} />}
     </g>
   );
 }
@@ -257,12 +349,26 @@ export function makeBodyWorld(index, loader) {
       if (!scopes.has(id)) scopes.set(id, makeScope(plate));
       return scopes.get(id);
     },
+    // Lo que enseña la lupa de rayos X sobre otra lámina (cargada).
+    lensOf(id) {
+      const lp = plates.get(id);
+      return lp ? { img: lp.img, ghost: lp.ghost, w: lp.w, h: lp.h, r: 90 } : null;
+    },
     // Ámbito con lupa de rayos X sobre otra lámina (atlas).
     scopeWithLens(id, lensId) {
       const base = world.scope(id);
-      const lp = plates.get(lensId);
-      if (!lp || base === world) return base;
-      return { ...base, lens: { img: lp.img, ghost: lp.ghost, w: lp.w, h: lp.h, r: 90 } };
+      const lens = world.lensOf(lensId);
+      if (!lens || base === world) return base;
+      return { ...base, lens };
+    },
+    // Ámbito de capas (atlas): láminas de cuerpo entero con el mismo encuadre,
+    // fundidas por el deslizador. `mix` = createMixStore() (valor y lupa); las
+    // zonas tocables las pasa el atlas (las de la capa dominante).
+    scopeLayers(ids, mix) {
+      const ps = ids.map((id) => plates.get(id));
+      if (ps.length < 2 || ps.some((p) => !p)) return null;
+      const base = world.scope(ids[0]);
+      return { ...base, id: `capas:${ids.join('+')}`, layers: ps, mix, lens: null, Backdrop: LayersBackdrop };
     },
     layer: (id) => plates.get(id)?.entries || EMPTY,
     nameOf: (key) => nameOf(key),

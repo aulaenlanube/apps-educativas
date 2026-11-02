@@ -75,6 +75,13 @@ const INSTRUCTIONS = {
       <p>Gana quien sume mas puntos al final.</p>
     </>
   ),
+  'anatomia-3d': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas sobre el cuerpo humano en 3D: girad el cuerpo, acercaos y tocad la estructura o elegid su nombre.</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
 };
 
 const COUNTDOWN_SECONDS = 3;

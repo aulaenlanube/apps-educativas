@@ -8,10 +8,22 @@
 //          near? (corte), grow? (px de zona de toque extra), bias? (contexto al fondo),
 //          regions? (cuerpo: partes externas), ao? }
 
-import { mergeMeshes } from './meshes.mjs';
+import { mergeMeshes, loadElement, elementsMatching, bbox } from './meshes.mjs';
 
 const P = (k, el, x = {}) => ({ k, el: [].concat(el), ...x });
 const mergeLungs = (c) => mergeMeshes(Object.values(c.lungs()));
+// Piezas que el modelo trae repetidas (mismo nombre y misma malla, como el
+// hioides): pintadas dos veces se pisan y salen oscuras y granuladas.
+const once = (re) => (c) => {
+  const seen = new Set();
+  return mergeMeshes(elementsMatching(c.names, [re]).map((f) => loadElement(c.dir, f)).filter((m) => {
+    const b = bbox(m);
+    const id = `${m.idx.length}|${b.min.map(Math.round)}|${b.max.map(Math.round)}`;
+    if (seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  }));
+};
 const C = (el, x = {}) => ({ el: [].concat(el), ...x });
 const S = '(left|right) ';
 
@@ -20,7 +32,7 @@ const S = '(left|right) ';
 const SKELETON = [
   P('craneo', [/^(frontal bone|occipital bone|sphenoid bone|ethmoid|vomer)$/i, new RegExp(`^${S}(parietal bone|temporal bone|nasal bone|zygomatic bone|lacrimal bone|palatine bone|inferior nasal concha)$`, 'i'), /^(left |right )?maxilla$/i, /upper .*(tooth|incisor|canine|molar|premolar)/i], { mat: 'bone', sub: [{ re: /tooth|incisor|canine|molar/i, mat: 'tooth' }] }),
   P('mandibula', [/^mandible$/i, /lower .*(tooth|incisor|canine|molar|premolar)/i], { mat: 'bone', sub: [{ re: /tooth|incisor|canine|molar/i, mat: 'tooth' }] }),
-  P('hioides', [/^hyoid bone$/i], { mat: 'bone' }),
+  P('hioides', [], { mesh: once(/^hyoid bone$/i), mat: 'bone' }),
   P('columna', [/^((first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth) (cervical|thoracic|lumbar) vertebra|atlas|axis)$/i, /^intervertebral disk/i], { mat: 'bone', sub: [{ re: /disk/i, mat: 'cartilage' }] }),
   P('sacro', [/^sacrum$/i], { mat: 'bone' }),
   P('coxis', [], { mesh: (c) => c.proc.coccyx(), mat: 'bone' }),
@@ -97,6 +109,123 @@ const MUSCLE_CTX = [
   // (sin el oblicuo externo: ya se pinta partido en recto del abdomen y oblicuo)
   C([RE_MUSCLE], { not: [NOT_MUSCLE, /platysma|external oblique/i], mat: 'muscle', color: '#a83a32', fiber: 'auto', ctx: true }),
   C([/iliotibial tract|linea alba|flexor retinaculum|extensor retinaculum/i], { mat: 'tendon', ctx: true }),
+];
+
+/* ───────── musculatura profunda (3.º-4.º ESO y Bachillerato) ───────── */
+
+// Músculos que en mus-a / mus-p quedan tapados por los superficiales o van
+// dentro de un grupo. Claves únicas y estables (las reutiliza el modelo 3D), sin
+// repetir las de MUSCLES_A / MUSCLES_P. Las regex pillan los dos lados; cada
+// lámina puede quedarse con uno (oneSide).
+// grp = grupo del catálogo al que pertenece (structures.js): cuando ese grupo es
+// una pieza de MUSCLES_A / MUSCLES_P (cuadriceps, isquiotibiales, aductores,
+// gemelos, iliopsoas, erectores, flexores-antebrazo) estas piezas son parte de
+// las suyas; 'manguito-rotador' solo existe en el catálogo.
+const M = (k, el, x = {}) => P(k, el, { mat: 'muscle', fiber: 'auto', ...x });
+const UP = [0, 0, 1];
+export const MUSCLES_DEEP = [
+  // cuello y nuca
+  M('escalenos', [/^(left|right) scalenus (anterior|medius|posterior)$/i]),
+  M('elevador-escapula', [/^(left|right) levator scapulae$/i]),
+  M('esplenio', [/^(left|right) splenius (capitis|cervicis)$/i]),
+  M('semiespinoso', [/^(left|right) semispinalis capitis$/i], { fiber: UP }),
+  // hombro y brazo
+  M('pectoral-menor', [/^(left|right) pectoralis minor$/i]),
+  M('supraespinoso', [/^(left|right) supraspinatus$/i], { grp: 'manguito-rotador' }),
+  M('subescapular', [/^(left|right) subscapularis$/i], { grp: 'manguito-rotador' }),
+  M('redondo-menor', [/^(left|right) teres minor$/i], { grp: 'manguito-rotador' }),
+  M('coracobraquial', [/^(left|right) coracobrachialis$/i]),
+  M('braquial', [/^(left|right) brachialis$/i], { fiber: UP }),
+  // antebrazo
+  M('pronador-redondo', [/^(humeral|ulnar) head of (left|right) pronator teres$/i], { grp: 'flexores-antebrazo' }),
+  M('supinador', [/^(left|right) supinator$/i]),
+  M('flexor-profundo', [/^(left|right) flexor digitorum profundus$/i], { grp: 'flexores-antebrazo', fiber: UP }),
+  M('flexor-largo-pulgar', [/^(left|right) flexor pollicis longus$/i], { grp: 'flexores-antebrazo', fiber: UP }),
+  M('pronador-cuadrado', [/^(left|right) pronator quadratus$/i], { fiber: [1, 0, 0] }),
+  // tronco
+  M('psoas-mayor', [/^(left|right) psoas major$/i], { grp: 'iliopsoas' }),
+  M('iliaco', [/^(left|right) iliacus$/i], { grp: 'iliopsoas' }),
+  M('iliocostal', [/^(left|right) iliocostalis (lumborum|thoracis|cervicis)$/i], { grp: 'erectores', fiber: UP }),
+  M('longisimo', [/^(left|right) longissimus (thoracis|cervicis|capitis)$/i], { grp: 'erectores', fiber: UP }),
+  M('espinoso', [/^(left|right) spinalis thoracis$/i, /^spinalis$/i], { grp: 'erectores', fiber: UP }),
+  // cadera
+  M('gluteo-menor', [/^(left|right) gluteus minimus$/i]),
+  M('piriforme', [/^(left|right) piriformis$/i]),
+  // muslo
+  M('recto-femoral', [/^(left|right) rectus femoris$/i], { grp: 'cuadriceps', fiber: UP }),
+  M('vasto-lateral', [/^(left|right) vastus lateralis$/i], { grp: 'cuadriceps', fiber: UP }),
+  M('vasto-medial', [/^(left|right) vastus medialis$/i], { grp: 'cuadriceps', fiber: UP }),
+  M('vasto-intermedio', [/^(left|right) vastus intermedius$/i], { grp: 'cuadriceps', fiber: UP }),
+  M('biceps-femoral', [/^(long|short) head of (left|right) biceps femoris$/i], { grp: 'isquiotibiales', fiber: UP }),
+  M('semitendinoso', [/^(left|right) semitendinosus$/i], { grp: 'isquiotibiales', fiber: UP }),
+  M('semimembranoso', [/^(left|right) semimembranosus$/i], { grp: 'isquiotibiales', fiber: UP }),
+  M('aductor-mayor', [/^(left|right) adductor (magnus|minimus)$/i], { grp: 'aductores' }),
+  M('aductor-largo', [/^(left|right) adductor longus$/i], { grp: 'aductores' }),
+  M('aductor-corto', [/^(left|right) adductor brevis$/i], { grp: 'aductores' }),
+  M('pectineo', [/^(left|right) pectineus$/i], { grp: 'aductores' }),
+  M('gracil', [/^(left|right) gracilis$/i], { grp: 'aductores', fiber: UP }),
+  // pierna
+  M('gemelo-interno', [/^medial head of (left|right) gastrocnemius$/i], { grp: 'gemelos', fiber: UP }),
+  M('gemelo-externo', [/^lateral head of (left|right) gastrocnemius$/i], { grp: 'gemelos', fiber: UP }),
+  M('popliteo', [/^(left|right) popliteus$/i]),
+  M('tibial-posterior', [/^(left|right) tibialis posterior$/i], { fiber: UP }),
+  M('flexor-largo-dedos', [/^(left|right) flexor digitorum longus$/i], { fiber: UP }),
+  M('flexor-largo-dedo-gordo', [/^(left|right) flexor hallucis longus$/i], { fiber: UP }),
+  M('extensor-largo-dedos', [/^(left|right) extensor digitorum longus$/i], { fiber: UP }),
+];
+
+// Una pieza solo de un lado del sujeto ('left' | 'right').
+const oneSide = (p, side) => ({ ...p, el: p.el.map((r) => new RegExp(r.source.replace(/\(left\|right\)/g, side), r.flags)) });
+const DM = (k) => MUSCLES_DEEP.find((p) => p.k === k);
+const SM = (k) => [...MUSCLES_A, ...MUSCLES_P].find((p) => p.k === k);
+
+// Lo que tapa la capa profunda (no se pinta en mus-prof-a / mus-prof-p).
+const SUPERFICIAL = /sternocleidomastoid|platysma|trapezius|deltoid|pectoralis major|external oblique|serratus posterior|gluteus maximus|biceps brachii|brachioradialis|flexor carpi radialis|palmaris longus|flexor digitorum superficialis|flexor carpi ulnaris|sartorius|tensor fasciae latae|gastrocnemius|plantaris/i;
+const DEEP_CTX = (not) => [
+  C([RE_MUSCLE], { not: [NOT_MUSCLE, SUPERFICIAL, /intercostal muscle/i, ...not], mat: 'muscle', color: '#a83a32', fiber: 'auto', ctx: true }),
+  C([/flexor retinaculum|extensor retinaculum/i], { mat: 'tendon', ctx: true }),
+];
+
+// El modelo solo trae los intercostales del lado izquierdo: el derecho es su
+// reflejo. Externos, internos e íntimos van en una sola malla (si no, sus
+// superficies, casi iguales, se pisan y salen bordes en dientes de sierra).
+const mirrorX = (m) => {
+  const pos = new Float32Array(m.pos);
+  for (let i = 0; i < pos.length; i += 3) pos[i] = -pos[i];
+  const idx = new Uint32Array(m.idx);
+  for (let t = 0; t < idx.length; t += 3) [idx[t + 1], idx[t + 2]] = [idx[t + 2], idx[t + 1]];
+  return { pos, idx };
+};
+const INTERCOSTAL = [/^(external|internal|innermost) intercostal muscle$/i];
+const INTERCOSTALES_LR = [
+  P('intercostales', [], { mesh: (c) => c.get(INTERCOSTAL), mat: 'muscle', fiber: [1, 0, -0.6] }),
+  P('intercostales', [], { mesh: (c) => mirrorX(c.get(INTERCOSTAL)), mat: 'muscle', fiber: [-1, 0, -0.6] }),
+];
+
+// Vista anterior: en la pierna derecha del sujeto (izquierda de la lámina) se
+// quitan también el recto femoral, el aductor largo y el pectíneo para ver el
+// vasto intermedio y el aductor corto.
+const MUSCLES_DEEP_A = [
+  DM('escalenos'), DM('pectoral-menor'), SM('serrato'), ...INTERCOSTALES_LR, DM('subescapular'),
+  DM('coracobraquial'), DM('braquial'), DM('pronador-redondo'), DM('supinador'), DM('flexor-profundo'),
+  DM('flexor-largo-pulgar'), DM('pronador-cuadrado'),
+  P('diafragma', [/^diaphragm$/i], { mat: 'muscle', color: '#b85a4c', fiber: 'auto' }),
+  DM('psoas-mayor'), DM('iliaco'), SM('gluteo-medio'), DM('gluteo-menor'),
+  oneSide(DM('recto-femoral'), 'left'), DM('vasto-lateral'), DM('vasto-medial'), DM('vasto-intermedio'),
+  oneSide(DM('aductor-largo'), 'left'), oneSide(DM('pectineo'), 'left'), DM('aductor-corto'), DM('aductor-mayor'), DM('gracil'),
+  SM('tibial-anterior'), DM('extensor-largo-dedos'), SM('peroneos'), SM('soleo'),
+];
+// Vista posterior: en el lado derecho del sujeto (derecha de la lámina) se
+// quitan el glúteo medio, los gemelos y el sóleo para ver el glúteo menor, el
+// poplíteo, el tibial posterior y los flexores largos.
+const MUSCLES_DEEP_P = [
+  DM('esplenio'), DM('semiespinoso'), DM('elevador-escapula'), SM('romboides'),
+  DM('supraespinoso'), SM('infraespinoso'), DM('redondo-menor'), SM('redondo-mayor'), SM('triceps'), ...INTERCOSTALES_LR,
+  DM('iliocostal'), DM('longisimo'), DM('espinoso'),
+  oneSide(SM('gluteo-medio'), 'left'), DM('gluteo-menor'), DM('piriforme'),
+  DM('biceps-femoral'), DM('semitendinoso'), DM('semimembranoso'), DM('aductor-mayor'), DM('gracil'), DM('vasto-lateral'),
+  oneSide(DM('gemelo-interno'), 'left'), oneSide(DM('gemelo-externo'), 'left'), oneSide(SM('soleo'), 'left'), oneSide(SM('tendon-aquiles'), 'left'),
+  DM('popliteo'), DM('tibial-posterior'), DM('flexor-largo-dedos'), DM('flexor-largo-dedo-gordo'),
 ];
 
 /* ───────── vasos ───────── */
@@ -195,6 +324,35 @@ export const PLATES = [
   { id: 'esq-p', view: 'posterior', frame: 'body', height: 1800, parts: SKELETON, grow: 3 },
   { id: 'mus-a', view: 'anterior', frame: 'body', height: 1800, parts: MUSCLES_A, context: [...MUSCLE_CTX, ...SKELETON_CTX.map((p) => ({ ...p, color: '#cdbf9f' }))], grow: 2 },
   { id: 'mus-p', view: 'posterior', frame: 'body', height: 1800, parts: MUSCLES_P, context: [...MUSCLE_CTX, ...SKELETON_CTX.map((p) => ({ ...p, color: '#cdbf9f' }))], grow: 2 },
+  {
+    id: 'mus-prof-a',
+    view: 'anterior',
+    frame: 'body',
+    height: 1800,
+    parts: MUSCLES_DEEP_A,
+    context: [...DEEP_CTX([/^right (rectus femoris|adductor longus|pectineus)$/i]), ...SKELETON_CTX.map((p) => ({ ...p, color: '#cdbf9f' }))],
+    grow: 2,
+  },
+  {
+    id: 'mus-prof-p',
+    view: 'posterior',
+    frame: 'body',
+    height: 1800,
+    parts: MUSCLES_DEEP_P,
+    context: [...DEEP_CTX([/^right (gluteus medius|soleus)$/i]), ...SKELETON_CTX.map((p) => ({ ...p, color: '#cdbf9f' }))],
+    grow: 2,
+  },
+  // Perfil (lado izquierdo del sujeto: mira a la izquierda de la lámina).
+  { id: 'esq-l', view: 'lateral-i', frame: 'body', height: 1800, parts: SKELETON, grow: 3 },
+  {
+    id: 'mus-l',
+    view: 'lateral-i',
+    frame: 'body',
+    height: 1800,
+    parts: [...new Map([...MUSCLES_A, ...MUSCLES_P].map((p) => [p.k, p])).values()],
+    context: [...MUSCLE_CTX, ...SKELETON_CTX.map((p) => ({ ...p, color: '#cdbf9f' }))],
+    grow: 2,
+  },
   {
     id: 'org-a',
     view: 'anterior',
@@ -496,3 +654,5 @@ export const PLATES = [
 
 export const MUSCLE_RE = { RE_MUSCLE, NOT_MUSCLE };
 export const VESSEL_MAT = vesselMat;
+// Piezas reutilizadas por el modelo 3D (tools/anatomy/model3d.mjs).
+export { P, C, S, SKELETON, MUSCLES_A, MUSCLES_P, MUSCLE_CTX, VAS, VAS_CTX, ORGANS_A, NERV, ART, VEIN };

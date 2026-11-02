@@ -94,6 +94,7 @@ export const CONCEPT_CATEGORY = {
   "explorador-cuerpo": "ciencia",
   "huesos-musculos": "ciencia",
   "viaje-cuerpo": "ciencia",
+  "anatomia-3d": "ciencia",
   "explorador-mundo": "geografia",
   "explorador-espana": "geografia",
   "programacion-bloques": "programacion",
@@ -198,6 +199,7 @@ export const APP_ID_TO_CONCEPT = {
   "explorador-cuerpo": "explorador-cuerpo",
   "huesos-musculos": "huesos-musculos",
   "viaje-cuerpo": "viaje-cuerpo",
+  "anatomia-3d": "anatomia-3d",
   "explorador-mundo": "explorador-mundo",
   "explorador-espana": "explorador-espana",
   "programacion-bloques": "programacion-bloques",
@@ -2230,6 +2232,39 @@ export const APP_CONCEPTS = {
     "consejos": [
       "Repasa las láminas en el Atlas antes de viajar.",
       "Si fallas una parada, fíjate en la estela: te enseña el camino correcto."
+    ]
+  },
+  "anatomia-3d": {
+    "key": "anatomia-3d",
+    "name": "Anatomía 3D",
+    "emoji": "🧍",
+    "queEs": "Anatomía 3D es un cuerpo humano completo en 3D hecho con un modelo anatómico real. Lo puedes girar, acercarte, quitarle capas como si lo pelaras, mirar debajo de la piel con una lupa de rayos X, cortarlo como en un escáner y desmontar el cráneo o el corazón.",
+    "porQueRelevante": "Los libros enseñan el cuerpo en dibujos planos, pero los órganos están unos delante de otros. Girar el cuerpo, quitar capas y cortarlo ayuda a entender de verdad dónde está cada cosa y a preparar la anatomía de ESO, Bachillerato y Educación Física.",
+    "comoFunciona": "Elige el modo y el idioma y después un minijuego. Gira el cuerpo con el dedo o el ratón, acércate con dos dedos o la rueda y toca, elige o arrastra según la pregunta. El Laboratorio 3D (botón del libro) sirve para estudiar con todas las herramientas.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen y el idioma.",
+      "Elige un minijuego: ¿Dónde está?, ¿Qué es?, Monta el cuerpo, ¿Qué hay debajo? o Cortes y TAC (según tu curso).",
+      "Gira el cuerpo arrastrando y acércate con dos dedos o la rueda del ratón.",
+      "En Monta el cuerpo, arrastra la pieza que brilla hasta su sitio.",
+      "Abre el Laboratorio 3D para estudiar: capas, rayos X, cortes, despiece y la ficha de cada estructura."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "3 opciones, 3 intentos y la cámara empieza cerca; al montar se marca el hueco."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "4 opciones y 2 intentos; muchas veces hay que buscar en el cuerpo entero."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas, un intento. Nota sobre 10 y puntos por rapidez y racha."
+      }
+    ],
+    "consejos": [
+      "Usa la lupa de rayos X del Laboratorio para ver qué órgano hay debajo de cada zona.",
+      "Antes de un examen, prueba los cortes: el plano sagital separa derecha e izquierda; el frontal, delante y detrás; el transversal, arriba y abajo."
     ]
   },
   "explorador-mundo": {

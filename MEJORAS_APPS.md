@@ -4,7 +4,7 @@
 > app (campo `ideasMejora` de APPS_INTERNAL.md) + síntesis de patrones transversales.
 > Es un backlog para implementar en el futuro; no es un compromiso ni un orden de prioridad.
 
-Apps con propuestas: **62** · Ideas registradas: **243**.
+Apps con propuestas: **63** · Ideas registradas: **246**.
 
 ## 🎯 Temas transversales (afectan a varias apps a la vez)
 
@@ -371,6 +371,11 @@ y modos de más tiempo para accesibilidad. Definir un estándar y aplicarlo.
 - [ ] Viajes del oxígeno hasta una célula muscular durante el ejercicio.
 - [ ] Narración en audio de cada parada.
 - [ ] Viaje del medicamento (absorción y eliminación) para Bachillerato.
+
+### 🧍 Anatomía 3D `(anatomia-3d)`
+- [ ] Esqueleto con más articulaciones (columna, muñeca, pronación).
+- [ ] Oído interno y aparato reproductor en 3D.
+- [ ] Recorridos narrados con audio.
 
 
 ## 🌍 Geografía

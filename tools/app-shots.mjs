@@ -16,6 +16,10 @@
 //   wait:<ms>              espera
 //   scroll:<y>             desplaza la ventana a y px
 //   eval:<js>              ejecuta JS en la página (depuración)
+//   tap:<x>,<y>            clic del ratón en esas coordenadas de la ventana (escenas 3D, lienzos)
+//   move:<x>,<y>           mueve el ratón a esas coordenadas (lupas, resaltados)
+//   drag:<x>,<y>,<dx>,<dy> arrastra el ratón (girar una escena 3D)
+//   dragel:<sel1>|<sel2>   arrastra del centro de un elemento al centro de otro (montar piezas)
 // Imprime las rutas de las capturas y los errores de consola/página.
 import path from 'node:path';
 import fs from 'node:fs/promises';
@@ -93,6 +97,25 @@ try {
     else if (cmd === 'wait') await new Promise((r) => setTimeout(r, Number(arg) || 500));
     else if (cmd === 'scroll') await page.evaluate((y) => window.scrollTo(0, y), Number(arg) || 0);
     else if (cmd === 'eval') console.log('eval →', await page.evaluate(arg));
+    else if (cmd === 'dragel') {
+      const [a, b] = arg.split('|');
+      const ra = await page.$eval(a, (e) => { const r = e.getBoundingClientRect(); return [r.x + r.width / 2, r.y + r.height / 2]; }).catch(() => null);
+      const rb = await page.$eval(b, (e) => { const r = e.getBoundingClientRect(); return [r.x + r.width / 2, r.y + r.height / 2]; }).catch(() => null);
+      if (!ra || !rb) errors.push(`dragel: no encuentro ${!ra ? a : b}`);
+      else {
+        await page.mouse.move(ra[0], ra[1], { steps: 3 });
+        await page.mouse.down();
+        await page.mouse.move(rb[0], rb[1], { steps: 16 });
+        await page.mouse.up();
+        await new Promise((r) => setTimeout(r, 300));
+      }
+    } else if (cmd === 'tap' || cmd === 'move' || cmd === 'drag') {
+      const [x, y, dx = 0, dy = 0] = arg.split(',').map(Number);
+      await page.mouse.move(x, y, { steps: 4 });
+      if (cmd === 'tap') await page.mouse.click(x, y);
+      if (cmd === 'drag') { await page.mouse.down(); await page.mouse.move(x + dx, y + dy, { steps: 12 }); await page.mouse.up(); }
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
 } finally {
   await browser.close();

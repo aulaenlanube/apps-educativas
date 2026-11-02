@@ -123,6 +123,7 @@ const ExploradorEspana = lazy(() => import('../explorador-espana/ExploradorEspan
 const ExploradorCuerpo = lazy(() => import('../explorador-cuerpo/ExploradorCuerpo'));
 const HuesosMusculos = lazy(() => import('../huesos-musculos/HuesosMusculos'));
 const ViajeCuerpo = lazy(() => import('../viaje-cuerpo/ViajeCuerpo'));
+const Anatomia3D = lazy(() => import('../anatomia-3d/Anatomia3D'));
 
 
 // Apps Comunes
@@ -549,7 +550,7 @@ export const appExploradorEspana = {
 export const appExploradorCuerpo = {
   id: 'explorador-cuerpo',
   name: '🫀 Explorador del Cuerpo Humano',
-  description: 'Láminas de un cuerpo humano real en 3D: partes del cuerpo, órganos, sentidos, aparatos y sistemas, por dentro, reproducción, tejidos, hormonas y salud. En castellano, valenciano e inglés.',
+  description: 'El cuerpo humano en láminas y en 3D: partes del cuerpo, órganos, sentidos, aparatos y sistemas, por dentro, reproducción, tejidos, hormonas y salud, con atlas por capas y lupa de rayos X. En castellano, valenciano e inglés.',
   component: ExploradorCuerpo,
   duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
 };
@@ -557,7 +558,7 @@ export const appExploradorCuerpo = {
 export const appHuesosMusculos = {
   id: 'huesos-musculos',
   name: '🦴 Huesos y Músculos',
-  description: 'El aparato locomotor a fondo: esqueleto, músculos, cráneo, columna, mano y pie, articulaciones, músculos en acción, movimientos con un maniquí animado y biomecánica. En tres idiomas.',
+  description: 'El aparato locomotor a fondo: esqueleto, músculos superficiales y profundos, origen e inserción, cráneo, columna, mano, pie, rodilla y hombro, articulaciones, músculos en acción, movimientos con un esqueleto 3D articulado y biomecánica. En tres idiomas.',
   component: HuesosMusculos,
   duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
 };
@@ -565,7 +566,15 @@ export const appHuesosMusculos = {
 export const appViajeCuerpo = {
   id: 'viaje-cuerpo',
   name: '🤖 Viaje por el Cuerpo',
-  description: 'El robot recorre el cuerpo por dentro siguiendo la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida. En tres idiomas.',
+  description: 'El robot recorre el cuerpo por dentro, en láminas o volando en 3D, siguiendo la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida. En tres idiomas.',
   component: ViajeCuerpo,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
+};
+
+export const appAnatomia3D = {
+  id: 'anatomia-3d',
+  name: '🧍 Anatomía 3D',
+  description: 'Un cuerpo humano completo en 3D que se gira, se pela por capas, se mira con rayos X, se corta como en un escáner y se monta pieza a pieza. Laboratorio 3D y cinco minijuegos en tres idiomas.',
+  component: Anatomia3D,
   duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
 };

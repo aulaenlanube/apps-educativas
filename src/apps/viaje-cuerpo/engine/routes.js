@@ -1,13 +1,15 @@
 // Rutas de Viaje por el Cuerpo: el robot recorre el cuerpo siguiendo el
 // alimento, el aire, la sangre, la orina, el impulso nervioso, la luz, el
-// sonido, una hormona, las defensas y la vida.
+// sonido, una hormona, las defensas y la vida; y, en Educación Física y salud,
+// el oxígeno hasta el músculo que hace ejercicio y el humo del tabaco.
 //
 // route = { id, from (nivel), t: [es,en,va], d: [es,en,va], tracks: [track] }
 // track = { lv: [min, max], main (lámina del recorrido completo), stops: [stop] }
-// stop  = { k (clave del catálogo), plate (lámina, por defecto la principal), lv (nivel mínimo) }
+// stop  = { k (clave del catálogo), plate (lámina, por defecto la principal), lv (nivel mínimo),
+//          must (parada clave: siempre se pregunta aunque haya más paradas que preguntas) }
 // EV[clave] = qué ocurre en esa parada [es, en, va] (por ruta, si cambia).
 
-const S = (k, plate, lv) => ({ k, plate, lv });
+const S = (k, plate, lv, must) => ({ k, plate, lv, must });
 
 export const ROUTES = [
   {
@@ -93,6 +95,40 @@ export const ROUTES = [
     d: ['Un mensaje químico viaja por la sangre.', 'A chemical message travels in the blood.', 'Un missatge químic viatja per la sang.'],
     tracks: [
       { lv: [5, 6], main: 'endocrino', stops: [S('hipotalamo'), S('hipofisis'), S('tiroides'), S('suprarrenales'), S('pancreas')] },
+    ],
+  },
+  {
+    // Educación Física: el oxígeno, del aire al músculo que corre
+    id: 'esfuerzo',
+    from: 4,
+    t: ['El esfuerzo', 'The workout', "L'esforç"],
+    d: ['Corre con el oxígeno desde el aire hasta el músculo.', 'Run with oxygen from the air to a working muscle.', "Corre amb l'oxigen des de l'aire fins al múscul."],
+    tracks: [
+      {
+        lv: [4, 6],
+        main: 'vas-a',
+        stops: [
+          S('fosas-nasales', 'cabeza-s'), S('traquea', 'bronquios-a'), S('bronquios', 'bronquios-a'), S('alveolos', 'alveolo'), S('capilares-alveolo', 'alveolo', 5),
+          S('venas-pulmonares'), S('corazon', null, 0, true), S('aorta'), S('aorta-abdominal'), S('iliacas-a'), S('arteria-femoral'), S('cuadriceps', 'mus-a', 0, true), S('vena-femoral', null, 5),
+        ],
+      },
+    ],
+  },
+  {
+    // Salud: el humo del tabaco y la nicotina
+    id: 'humo',
+    from: 4,
+    t: ['El humo', 'The smoke', 'El fum'],
+    d: ['Lo que el tabaco hace a su paso por el cuerpo.', 'What tobacco smoke does on its way through the body.', 'El que el tabac fa al seu pas pel cos.'],
+    tracks: [
+      {
+        lv: [4, 6],
+        main: 'cabeza-s',
+        stops: [
+          S('boca'), S('faringe'), S('laringe'), S('traquea'), S('bronquios', 'bronquios-a'), S('bronquiolos', 'bronquios-a'),
+          S('alveolos', 'alveolo'), S('capilares-alveolo', 'alveolo', 0, true), S('corazon', 'org-a'), S('cerebro', 'org-a', 0, true),
+        ],
+      },
     ],
   },
   {
@@ -210,13 +246,47 @@ export const EV = {
   timo: ['En el timo maduran los linfocitos T que coordinan la defensa.', 'T cells, which coordinate the defence, mature in the thymus.', 'Al tim maduren els limfòcits T que coordinen la defensa.'],
   bazo: ['El bazo filtra la sangre y destruye microbios y glóbulos rojos viejos.', 'The spleen filters the blood and destroys germs and old red blood cells.', 'La melsa filtra la sang i destruïx microbis i glòbuls rojos vells.'],
   'medula-osea': ['La médula ósea fabrica nuevos glóbulos blancos para la defensa.', 'Bone marrow makes new white blood cells for the defence.', 'La medul·la òssia fabrica nous glòbuls blancs per a la defensa.'],
+
+  /* El esfuerzo: el oxígeno del aire al músculo que corre */
+  'fosas-nasales@esfuerzo': ['Empiezas a correr: respiras más deprisa y más hondo, y el aire entra por la nariz y también por la boca.', 'You start running: you breathe faster and more deeply, and air comes in through your nose and your mouth too.', "Comences a córrer: respires més de pressa i més profundament, i l'aire entra pel nas i també per la boca."],
+  'traquea@esfuerzo': ['Por este tubo con anillos de cartílago pasa ahora mucho más aire cada minuto que en reposo.', 'Much more air now goes through this tube with rings of cartilage every minute than at rest.', 'Per aquest tub amb anells de cartílag passa ara molt més aire cada minut que en repòs.'],
+  'bronquios@esfuerzo': ['El aire se reparte entre los dos pulmones; con el esfuerzo, estos tubos se ensanchan un poco para que pase mejor.', 'The air is shared between the two lungs; during exercise these tubes widen a little so it flows more easily.', "L'aire es repartix entre els dos pulmons; amb l'esforç, aquests tubs s'eixamplen una mica perquè passe millor."],
+  'alveolos@esfuerzo': ['En estos saquitos el oxígeno pasa a la sangre; al hacer ejercicio entra más aire y llega más sangre, y el intercambio es mucho mayor.', 'In these tiny sacs oxygen passes into the blood; during exercise more air comes in and more blood arrives, so much more gas is exchanged.', "En aquests saquets l'oxigen passa a la sang; en fer exercici entra més aire i arriba més sang, i l'intercanvi és molt més gran."],
+  'capilares-alveolo@esfuerzo': ['La sangre deja aquí el CO₂ que ha traído de los músculos y se carga de oxígeno.', 'Here the blood drops off the CO₂ it brought from the muscles and loads up with oxygen.', "Ací la sang deixa el CO₂ que ha portat dels músculs i es carrega d'oxigen."],
+  'venas-pulmonares@esfuerzo': ['La sangre, ya cargada de oxígeno, va de los pulmones al corazón.', 'Blood, now full of oxygen, flows from the lungs to the heart.', "La sang, ja carregada d'oxigen, va dels pulmons al cor."],
+  'corazon@esfuerzo': ['Late más deprisa y con más fuerza: puede pasar de unos 70 latidos por minuto en reposo a más de 150 al correr.', 'It beats faster and harder: from about 70 beats a minute at rest to more than 150 when running.', "Batega més de pressa i amb més força: pot passar d'uns 70 batecs per minut en repòs a més de 150 en córrer."],
+  'aorta@esfuerzo': ['Sale del ventrículo izquierdo la sangre con oxígeno: al correr, sale hasta cuatro veces más sangre por minuto que en reposo.', 'Oxygen-rich blood leaves the left ventricle: when you run, up to four times more blood leaves every minute than at rest.', "Ix del ventricle esquerre la sang amb oxigen: en córrer, n'ix fins a quatre vegades més per minut que en repòs."],
+  'aorta-abdominal@esfuerzo': ['La sangre baja por el abdomen; durante el ejercicio, al estómago y al intestino les llega menos sangre y a los músculos, mucha más.', 'Blood goes down through the abdomen; during exercise the stomach and gut get less blood and the muscles get much more.', "La sang baixa per l'abdomen; durant l'exercici, a l'estómac i a l'intestí els arriba menys sang i als músculs, molta més."],
+  'iliacas-a@esfuerzo': ['La gran arteria se divide en dos ramas, una hacia cada pierna.', 'The great artery splits into two branches, one for each leg.', 'La gran artèria es dividix en dues branques, una cap a cada cama.'],
+  'arteria-femoral@esfuerzo': ['Baja por el muslo llevando la sangre con oxígeno hasta los músculos que corren.', 'It runs down the thigh, carrying oxygen-rich blood to the running muscles.', 'Baixa per la cuixa portant la sang amb oxigen fins als músculs que corren.'],
+  'cuadriceps@esfuerzo': ['Sus fibras usan el oxígeno para sacar energía de la glucosa y de las grasas; producen CO₂ y calor, y la sangre se lleva el CO₂.', 'Its fibres use oxygen to get energy from glucose and fats; they make CO₂ and heat, and the blood carries the CO₂ away.', "Les seues fibres usen l'oxigen per a traure energia de la glucosa i dels greixos; produïxen CO₂ i calor, i la sang s'emporta el CO₂."],
+  'vena-femoral@esfuerzo': ['La sangre, cargada de CO₂, vuelve hacia el corazón; de allí irá a los pulmones, donde lo expulsamos al espirar cada vez más deprisa.', 'Blood loaded with CO₂ heads back to the heart; from there it goes to the lungs, where we breathe it out faster and faster.', "La sang, carregada de CO₂, torna cap al cor; d'allí anirà als pulmons, on l'expulsem en espirar cada vegada més de pressa."],
+
+  /* El humo: lo que daña el tabaco a su paso */
+  'boca@humo': ['El humo entra caliente: mancha los dientes, da mal aliento y aumenta el riesgo de cáncer de boca.', 'The smoke comes in hot: it stains the teeth, causes bad breath and raises the risk of mouth cancer.', 'El fum entra calent: taca les dents, fa mal alé i augmenta el risc de càncer de boca.'],
+  'faringe@humo': ['El humo irrita y reseca el tubo que comparten el aire y la comida, y facilita las infecciones.', 'The smoke irritates and dries out the tube shared by air and food, and makes infections more likely.', "El fum irrita i resseca el tub que compartixen l'aire i el menjar, i facilita les infeccions."],
+  'laringe@humo': ['Irrita las cuerdas vocales: aparecen la tos y la ronquera. El tabaco es la principal causa del cáncer de esta zona.', 'It irritates the vocal cords: coughing and hoarseness appear. Tobacco is the main cause of cancer here.', 'Irrita les cordes vocals: apareixen la tos i la ronquera. El tabac és la causa principal del càncer en aquesta zona.'],
+  'traquea@humo': ['El humo paraliza los cilios, los pelillos que barren el moco y la suciedad hacia arriba: la suciedad se queda dentro.', 'The smoke paralyses the cilia, the tiny hairs that sweep mucus and dirt upwards: the dirt stays inside.', 'El fum paralitza els cilis, els pèls menuts que agranen el moc i la brutícia cap amunt: la brutícia es queda dins.'],
+  'bronquios@humo': ['Sin cilios que lo barran, el moco se acumula: aparecen la tos del fumador y la bronquitis crónica. Aquí suele empezar el cáncer de pulmón.', "With no cilia to sweep it away, mucus builds up: smoker's cough and chronic bronchitis appear. Lung cancer usually starts here.", "Sense cilis que l'agranen, el moc s'acumula: apareixen la tos del fumador i la bronquitis crònica. Ací sol començar el càncer de pulmó."],
+  'bronquiolos@humo': ['Se inflaman y se estrechan, y cuesta sacar el aire: es la EPOC, una enfermedad que no tiene cura.', 'They become inflamed and narrow, and breathing out gets hard: this is COPD, a disease with no cure.', "S'inflamen i s'estrenyen, i costa traure l'aire: és la MPOC, una malaltia que no té cura."],
+  'alveolos@humo': ['Sus finas paredes se rompen y forman sacos más grandes (enfisema): hay menos superficie para el oxígeno y falta el aire.', 'Their thin walls break down into bigger sacs (emphysema): there is less surface for oxygen and you get short of breath.', "Les seues parets primes es trenquen i formen sacs més grans (emfisema): hi ha menys superfície per a l'oxigen i falta l'aire."],
+  'capilares-alveolo@humo': ['La nicotina y el monóxido de carbono pasan a la sangre en segundos; el monóxido ocupa el sitio del oxígeno en los glóbulos rojos.', 'Nicotine and carbon monoxide pass into the blood in seconds; the carbon monoxide takes the place of oxygen in red blood cells.', "La nicotina i el monòxid de carboni passen a la sang en segons; el monòxid ocupa el lloc de l'oxigen en els glòbuls rojos."],
+  'corazon@humo': ['La nicotina lo acelera y sube la tensión; con los años, el tabaco estrecha las arterias y multiplica el riesgo de infarto.', 'Nicotine speeds it up and raises blood pressure; over the years, tobacco narrows the arteries and greatly increases the risk of a heart attack.', "La nicotina l'accelera i puja la tensió; amb els anys, el tabac estreny les artèries i multiplica el risc d'infart."],
+  'cerebro@humo': ['La nicotina llega en unos segundos y libera dopamina, que da sensación de placer: por eso el tabaco crea adicción.', 'Nicotine arrives within seconds and releases dopamine, which feels good: that is why tobacco is addictive.', 'La nicotina hi arriba en uns segons i allibera dopamina, que dona sensació de plaer: per això el tabac crea addicció.'],
 };
+
+// Paradas de una ruta cuyos sucesos se parecen: no salen como opción falsa la una de la otra.
+export const NEAR = {
+  esfuerzo: [['alveolos', 'capilares-alveolo'], ['corazon', 'aorta'], ['aorta', 'aorta-abdominal'], ['venas-pulmonares', 'capilares-alveolo'], ['cuadriceps', 'vena-femoral']],
+  humo: [['faringe', 'laringe'], ['traquea', 'bronquios'], ['bronquios', 'bronquiolos'], ['bronquiolos', 'alveolos'], ['alveolos', 'capilares-alveolo']],
+};
+export const isNear = (routeId, a, b) => (NEAR[routeId] || []).some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 
 export const eventOf = (routeId, key) => EV[`${key}@${routeId}`] || EV[key];
 
 // Paradas de una ruta en un nivel (y en las láminas disponibles).
 export function trackFor(route, lv) {
   const tr = route.tracks.find((t) => lv >= t.lv[0] && lv <= t.lv[1]) || route.tracks[route.tracks.length - 1];
-  const stops = tr.stops.filter((s) => (s.lv || 0) <= lv).map((s) => ({ k: s.k, plate: s.plate || tr.main }));
+  const stops = tr.stops.filter((s) => (s.lv || 0) <= lv).map((s) => ({ k: s.k, plate: s.plate || tr.main, ...(s.must ? { must: true } : {}) }));
   return { main: tr.main, stops };
 }

@@ -10,9 +10,20 @@
 // g   género/número en castellano (m, f, mp, fp; por defecto m) · gv: en valenciano si cambia
 // sci nombre internacional (se muestra desde ESO): [es, en, va]
 // p   función en castellano, como predicado ("bombea la sangre…") para "¿Qué órgano…?"
-// f   dato curioso en castellano · grp: grupo de las partes externas
+// f   dato curioso en castellano
+// grp grupo al que pertenece: en las partes externas, la zona (cabeza, tronco,
+//     ext-sup, ext-inf); en músculos y partes de huesos y articulaciones, la clave
+//     del conjunto (recto-femoral → cuadriceps, supraespinoso → manguito-rotador,
+//     menisco-medial → menisco, acromion → escapula). En una lámina, el grupo es el
+//     `cont` de la zona: "toca el cuádriceps" acepta cualquiera de sus cabezas, y
+//     nunca sale como opción falsa de uno de sus miembros (ni al revés).
+// sim músculos con una acción parecida: tampoco salen como opción falsa.
 // bt  tipo de hueso (largo, corto, plano, irregular, sesamoideo) · act: acción del músculo
-// Las traducciones de p, f y act están en i18n/en.js e i18n/va.js.
+// ori/ins  origen (punto fijo, el más cercano al tronco) e inserción (el hueso que
+//     mueve) de los músculos principales (Bachillerato y Educación Física): con
+//     artículo, para "¿Qué músculo se origina en la fosa supraespinosa…?". Están en
+//     la tabla ORIGEN_INSERCION del final; las inserciones iguales usan el mismo texto.
+// Las traducciones de p, f, act, ori e ins están en i18n/en.js e i18n/va.js.
 
 const E = (k, s, l, t, n, x = {}) => ({ k, s, l, t, n, ...x });
 
@@ -203,6 +214,23 @@ export const STRUCTURES = [
   E('ligamento', 'articular', 4, 'par', ['Ligamentos', 'Ligaments', 'Lligaments'], { g: 'mp', p: 'unen un hueso con otro hueso' }),
   E('menisco', 'articular', 5, 'par', ['Menisco', 'Meniscus', 'Menisc'], { p: 'amortigua los golpes dentro de la rodilla' }),
   E('tendon', 'muscular', 4, 'par', ['Tendón', 'Tendon', 'Tendó'], { p: 'une un músculo con un hueso' }),
+  // rodilla (lámina rodilla)
+  E('menisco-medial', 'articular', 5, 'par', ['Menisco interno', 'Medial meniscus', 'Menisc intern'], { grp: 'menisco', sci: ['Menisco medial', 'Medial meniscus', 'Menisc medial'], p: 'es el menisco del lado de dentro, con forma de C, y el que más se rompe' }),
+  E('menisco-lateral', 'articular', 5, 'par', ['Menisco externo', 'Lateral meniscus', 'Menisc extern'], { grp: 'menisco', sci: ['Menisco lateral', 'Lateral meniscus', 'Menisc lateral'], p: 'es el menisco del lado de fuera, casi en forma de O' }),
+  E('ligamento-cruzado-anterior', 'articular', 5, 'par', ['Ligamento cruzado anterior', 'Anterior cruciate ligament', 'Lligament encreuat anterior'], { grp: 'ligamento', p: 'impide que la tibia se vaya hacia delante respecto al fémur', f: 'Su rotura es una de las lesiones más típicas del fútbol y del esquí.' }),
+  E('ligamento-cruzado-posterior', 'articular', 5, 'par', ['Ligamento cruzado posterior', 'Posterior cruciate ligament', 'Lligament encreuat posterior'], { grp: 'ligamento', p: 'impide que la tibia se vaya hacia atrás respecto al fémur' }),
+  E('ligamento-colateral-medial', 'articular', 5, 'par', ['Ligamento lateral interno', 'Medial collateral ligament', 'Lligament lateral intern'], { grp: 'ligamento', sci: ['Ligamento colateral medial', 'Medial collateral ligament', 'Lligament col·lateral medial'], p: 'sujeta la rodilla por dentro y evita que se abra por ese lado' }),
+  E('ligamento-colateral-lateral', 'articular', 5, 'par', ['Ligamento lateral externo', 'Lateral collateral ligament', 'Lligament lateral extern'], { grp: 'ligamento', sci: ['Ligamento colateral lateral', 'Lateral collateral ligament', 'Lligament col·lateral lateral'], p: 'une el fémur con el peroné y sujeta la rodilla por fuera' }),
+  E('tendon-rotuliano', 'muscular', 4, 'par', ['Tendón rotuliano', 'Patellar tendon', 'Tendó rotulià'], { grp: 'tendon', s2: ['articular'], sci: ['Ligamento rotuliano (patelar)', 'Patellar ligament', 'Lligament rotulià (patel·lar)'], p: 'une la rótula con la tibia y transmite la fuerza del cuádriceps', f: 'Es el que golpea el médico con el martillo para ver el reflejo rotuliano.' }),
+  E('tendon-cuadriceps', 'muscular', 5, 'par', ['Tendón del cuádriceps', 'Quadriceps tendon', 'Tendó del quàdriceps'], { grp: 'tendon', s2: ['articular'], p: 'une el cuádriceps con la rótula' }),
+  // tobillo (lesiones de Huesos y Músculos; sin lámina)
+  E('ligamentos-tobillo', 'articular', 4, 'par', ['Ligamentos laterales del tobillo', 'Lateral ankle ligaments', 'Lligaments laterals del turmell'], { g: 'mp', grp: 'ligamento', p: 'unen el peroné con el astrágalo y el calcáneo y frenan el pie cuando se tuerce hacia dentro', f: 'El esguince de tobillo es una de las lesiones más frecuentes del deporte.' }),
+  // hombro (lámina hombro)
+  E('acromion', 'oseo', 5, 'par', ['Acromion', 'Acromion', 'Acromi'], { grp: 'escapula', s2: ['articular'], p: 'es el saliente de la escápula que forma la punta del hombro' }),
+  E('cavidad-glenoidea', 'oseo', 5, 'par', ['Cavidad glenoidea', 'Glenoid cavity', 'Cavitat glenoïdal'], { g: 'f', grp: 'escapula', s2: ['articular'], p: 'es el hueco de la escápula donde encaja la cabeza del húmero', f: 'Es muy plana: por eso el hombro es la articulación que más se luxa.' }),
+  E('rodete-glenoideo', 'articular', 6, 'par', ['Rodete glenoideo', 'Glenoid labrum', 'Rodet glenoïdal'], { p: 'es el anillo de fibrocartílago que hace más honda la cavidad glenoidea' }),
+  E('bursa-subacromial', 'articular', 6, 'par', ['Bursa subacromial', 'Subacromial bursa', 'Bursa subacromial'], { g: 'f', p: 'es una bolsa con líquido que deja deslizarse el tendón del supraespinoso bajo el acromion', f: 'Si se inflama (bursitis), duele al levantar el brazo.' }),
+  E('tendon-biceps', 'muscular', 6, 'par', ['Tendón largo del bíceps', 'Long head of biceps tendon', 'Tendó llarg del bíceps'], { grp: 'tendon', s2: ['articular'], p: 'sube por un surco del húmero y entra en el hombro hasta el borde de la cavidad glenoidea' }),
 
   /* ───────── sistema muscular ───────── */
   E('frontal-m', 'muscular', 4, 'mus', ['Frontal', 'Frontalis', 'Frontal'], { act: 'levanta las cejas y arruga la frente' }),
@@ -217,13 +245,13 @@ export const STRUCTURES = [
   E('serrato', 'muscular', 5, 'mus', ['Serrato anterior', 'Serratus anterior', 'Serrat anterior'], { act: 'pega el omóplato a las costillas y lo lleva adelante' }),
   E('biceps', 'muscular', 2, 'mus', ['Bíceps braquial', 'Biceps brachii', 'Bíceps braquial'], { act: 'dobla el codo', f: 'Se llama bíceps porque tiene dos cabezas.' }),
   E('triceps', 'muscular', 3, 'mus', ['Tríceps braquial', 'Triceps brachii', 'Tríceps braquial'], { act: 'estira el codo' }),
-  E('braquiorradial', 'muscular', 6, 'mus', ['Braquiorradial', 'Brachioradialis', 'Braquioradial'], { act: 'dobla el codo con la mano de lado' }),
+  E('braquiorradial', 'muscular', 6, 'mus', ['Braquiorradial', 'Brachioradialis', 'Braquioradial'], { sim: ['biceps'], act: 'dobla el codo con la mano de lado' }),
   E('flexores-antebrazo', 'muscular', 5, 'mus', ['Flexores del antebrazo', 'Forearm flexors', "Flexors de l'avantbraç"], { g: 'mp', act: 'doblan la muñeca y los dedos' }),
   E('extensores-antebrazo', 'muscular', 5, 'mus', ['Extensores del antebrazo', 'Forearm extensors', "Extensors de l'avantbraç"], { g: 'mp', act: 'estiran la muñeca y los dedos' }),
   E('recto-abdominal', 'muscular', 3, 'mus', ['Recto del abdomen', 'Rectus abdominis', "Recte de l'abdomen"], { act: 'dobla el tronco hacia delante', f: 'Sus divisiones forman la famosa "tableta de chocolate".' }),
   E('oblicuo', 'muscular', 4, 'mus', ['Oblicuo externo', 'External oblique', 'Oblic extern'], { act: 'gira e inclina el tronco' }),
   E('dorsal-ancho', 'muscular', 3, 'mus', ['Dorsal ancho', 'Latissimus dorsi', 'Dorsal ample'], { act: 'baja el brazo y lo lleva hacia atrás', f: 'Es el músculo más ancho de la espalda.' }),
-  E('infraespinoso', 'muscular', 6, 'mus', ['Infraespinoso', 'Infraspinatus', 'Infraespinós'], { act: 'gira el brazo hacia fuera' }),
+  E('infraespinoso', 'muscular', 6, 'mus', ['Infraespinoso', 'Infraspinatus', 'Infraespinós'], { grp: 'manguito-rotador', act: 'gira el brazo hacia fuera' }),
   E('redondo-mayor', 'muscular', 6, 'mus', ['Redondo mayor', 'Teres major', 'Rodó major'], { act: 'baja el brazo y lo gira hacia dentro' }),
   E('gluteo-mayor', 'muscular', 3, 'mus', ['Glúteo mayor', 'Gluteus maximus', 'Gluti major'], { act: 'estira la cadera y nos levanta al subir escaleras', f: 'Es el músculo más grande del cuerpo.' }),
   E('gluteo-medio', 'muscular', 5, 'mus', ['Glúteo medio', 'Gluteus medius', 'Gluti mitjà'], { act: 'separa la pierna hacia un lado' }),
@@ -232,7 +260,7 @@ export const STRUCTURES = [
   E('sartorio', 'muscular', 5, 'mus', ['Sartorio', 'Sartorius', 'Sartori'], { act: 'cruza las piernas (como al sentarse a lo indio)', f: 'Es el músculo más largo del cuerpo.' }),
   E('aductores', 'muscular', 4, 'mus', ['Aductores', 'Adductors', 'Adductors'], { g: 'mp', act: 'juntan las piernas' }),
   E('tensor-fascia', 'muscular', 6, 'mus', ['Tensor de la fascia lata', 'Tensor fasciae latae', 'Tensor de la fàscia lata'], { act: 'separa y estabiliza la cadera' }),
-  E('gemelos', 'muscular', 2, 'mus', ['Gemelos', 'Calf muscles (gastrocnemius)', 'Bessons'], { g: 'mp', sci: ['Gastrocnemio', 'Gastrocnemius', 'Gastrocnemi'], act: 'nos ponen de puntillas' }),
+  E('gemelos', 'muscular', 2, 'mus', ['Gemelos', 'Calf muscles (gastrocnemius)', 'Bessons'], { g: 'mp', sci: ['Gastrocnemio', 'Gastrocnemius', 'Gastrocnemi'], sim: ['soleo'], act: 'nos ponen de puntillas' }),
   E('soleo', 'muscular', 5, 'mus', ['Sóleo', 'Soleus', 'Soli'], { act: 'nos pone de puntillas y nos sostiene de pie' }),
   E('tibial-anterior', 'muscular', 4, 'mus', ['Tibial anterior', 'Tibialis anterior', 'Tibial anterior'], { act: 'levanta la punta del pie' }),
   E('peroneos', 'muscular', 6, 'mus', ['Peroneos', 'Fibularis muscles', 'Peroneus'], { g: 'mp', act: 'giran la planta del pie hacia fuera' }),
@@ -242,6 +270,49 @@ export const STRUCTURES = [
   E('iliopsoas', 'muscular', 6, 'mus', ['Psoas ilíaco', 'Iliopsoas', 'Psoes ilíac'], { act: 'dobla la cadera (sube la rodilla)' }),
   E('erectores', 'muscular', 6, 'mus', ['Erectores de la columna', 'Erector spinae', 'Erectors de la columna'], { g: 'mp', act: 'mantienen la espalda recta' }),
   E('romboides', 'muscular', 6, 'mus', ['Romboides', 'Rhomboids', 'Romboides'], { g: 'mp', act: 'juntan los omóplatos' }),
+  // musculatura profunda (láminas mus-prof-a / mus-prof-p) y cabezas de los grupos
+  E('manguito-rotador', 'muscular', 5, 'mus', ['Manguito rotador', 'Rotator cuff', 'Manegot dels rotadors'], { act: 'mantiene la cabeza del húmero encajada en el hombro y lo gira', f: 'Lo forman cuatro músculos: supraespinoso, infraespinoso, redondo menor y subescapular.' }),
+  E('escalenos', 'muscular', 6, 'mus', ['Escalenos', 'Scalenes', 'Escalens'], { g: 'mp', s2: ['respiratorio'], sim: ['intercostales'], act: 'elevan las primeras costillas al respirar con fuerza e inclinan el cuello' }),
+  E('elevador-escapula', 'muscular', 6, 'mus', ['Angular del omóplato', 'Levator scapulae', "Angular de l'omòplat"], { sci: ['Elevador de la escápula', 'Levator scapulae', "Elevador de l'escàpula"], sim: ['trapecio'], act: 'sube el omóplato, como al encoger los hombros' }),
+  E('esplenio', 'muscular', 6, 'mus', ['Esplenio', 'Splenius', 'Espleni'], { sim: ['esternocleidomastoideo', 'semiespinoso', 'longisimo'], act: 'echa la cabeza hacia atrás y la gira hacia su lado' }),
+  E('semiespinoso', 'muscular', 6, 'mus', ['Semiespinoso de la cabeza', 'Semispinalis capitis', 'Semiespinós del cap'], { sim: ['esplenio', 'longisimo'], act: 'echa la cabeza hacia atrás desde lo más profundo de la nuca' }),
+  E('pectoral-menor', 'muscular', 5, 'mus', ['Pectoral menor', 'Pectoralis minor', 'Pectoral menor'], { sim: ['serrato'], act: 'baja el hombro y lo lleva hacia delante' }),
+  E('supraespinoso', 'muscular', 5, 'mus', ['Supraespinoso', 'Supraspinatus', 'Supraespinós'], { grp: 'manguito-rotador', sim: ['deltoides'], act: 'inicia la separación del brazo (los primeros grados de la abducción)', f: 'Su tendón es el que más se lesiona del hombro: pasa por un túnel estrecho bajo el acromion.' }),
+  E('subescapular', 'muscular', 6, 'mus', ['Subescapular', 'Subscapularis', 'Subescapular'], { grp: 'manguito-rotador', sim: ['redondo-mayor', 'pectoral', 'dorsal-ancho'], act: 'es el que más gira el brazo hacia dentro (rotación interna)' }),
+  E('redondo-menor', 'muscular', 6, 'mus', ['Redondo menor', 'Teres minor', 'Rodó menor'], { grp: 'manguito-rotador', sim: ['infraespinoso'], act: 'ayuda al infraespinoso a girar el brazo hacia fuera' }),
+  E('coracobraquial', 'muscular', 6, 'mus', ['Coracobraquial', 'Coracobrachialis', 'Coracobraquial'], { sim: ['pectoral', 'biceps'], act: 'acerca el brazo al cuerpo y lo eleva hacia delante desde la axila' }),
+  E('braquial', 'muscular', 5, 'mus', ['Braquial anterior', 'Brachialis', 'Braquial anterior'], { sci: ['Braquial', 'Brachialis', 'Braquial'], sim: ['biceps', 'braquiorradial'], act: 'dobla el codo con más fuerza que ningún otro músculo, por debajo del bíceps' }),
+  E('pronador-redondo', 'muscular', 6, 'mus', ['Pronador redondo', 'Pronator teres', 'Pronador rodó'], { grp: 'flexores-antebrazo', act: 'gira el antebrazo para poner la palma hacia abajo (pronación)' }),
+  E('supinador', 'muscular', 6, 'mus', ['Supinador corto', 'Supinator', 'Supinador curt'], { sci: ['Supinador', 'Supinator', 'Supinador'], sim: ['biceps'], act: 'gira el antebrazo para poner la palma hacia arriba (supinación)' }),
+  E('flexor-profundo', 'muscular', 6, 'mus', ['Flexor profundo de los dedos', 'Flexor digitorum profundus', 'Flexor profund dels dits'], { grp: 'flexores-antebrazo', act: 'dobla las últimas falanges de los dedos' }),
+  E('flexor-largo-pulgar', 'muscular', 6, 'mus', ['Flexor largo del pulgar', 'Flexor pollicis longus', 'Flexor llarg del polze'], { grp: 'flexores-antebrazo', act: 'dobla la punta del pulgar' }),
+  E('pronador-cuadrado', 'muscular', 6, 'mus', ['Pronador cuadrado', 'Pronator quadratus', 'Pronador quadrat'], { sim: ['pronador-redondo', 'flexores-antebrazo'], act: 'gira el antebrazo junto a la muñeca para poner la palma hacia abajo' }),
+  E('psoas-mayor', 'muscular', 6, 'mus', ['Psoas mayor', 'Psoas major', 'Psoes major'], { grp: 'iliopsoas', act: 'dobla la cadera desde la columna lumbar' }),
+  E('iliaco', 'muscular', 6, 'mus', ['Ilíaco', 'Iliacus', 'Ilíac'], { grp: 'iliopsoas', act: 'dobla la cadera desde el interior de la pelvis' }),
+  E('iliocostal', 'muscular', 6, 'mus', ['Iliocostal', 'Iliocostalis', 'Iliocostal'], { grp: 'erectores', act: 'estira la columna y la inclina hacia su lado: es la columna más externa de los erectores' }),
+  E('longisimo', 'muscular', 6, 'mus', ['Dorsal largo', 'Longissimus', 'Dorsal llarg'], { grp: 'erectores', sci: ['Longísimo', 'Longissimus', 'Longíssim'], act: 'estira la columna y echa la cabeza hacia atrás: es el más largo de los erectores' }),
+  E('espinoso', 'muscular', 6, 'mus', ['Espinoso', 'Spinalis', 'Espinós'], { grp: 'erectores', act: 'estira la columna pegado a las apófisis espinosas de las vértebras' }),
+  E('gluteo-menor', 'muscular', 5, 'mus', ['Glúteo menor', 'Gluteus minimus', 'Gluti menor'], { sim: ['gluteo-medio', 'tensor-fascia'], act: 'separa la pierna y la gira hacia dentro, por debajo del glúteo medio' }),
+  E('piriforme', 'muscular', 6, 'mus', ['Piramidal de la pelvis', 'Piriformis', 'Piramidal de la pelvis'], { sci: ['Piriforme', 'Piriformis', 'Piriforme'], act: 'gira el muslo hacia fuera (rotación externa de la cadera)', f: 'El nervio ciático pasa justo por debajo: si se contractura, puede pinzarlo.' }),
+  E('recto-femoral', 'muscular', 6, 'mus', ['Recto anterior del muslo', 'Rectus femoris', 'Recte anterior de la cuixa'], { grp: 'cuadriceps', sci: ['Recto femoral', 'Rectus femoris', 'Recte femoral'], sim: ['iliopsoas', 'psoas-mayor', 'iliaco', 'pectineo'], act: 'estira la rodilla y además dobla la cadera', f: 'Es la única cabeza del cuádriceps que cruza dos articulaciones: la cadera y la rodilla.' }),
+  E('vasto-lateral', 'muscular', 6, 'mus', ['Vasto externo', 'Vastus lateralis', 'Vast extern'], { grp: 'cuadriceps', sci: ['Vasto lateral', 'Vastus lateralis', 'Vast lateral'], act: 'estira la rodilla desde la cara externa del muslo', f: 'Es la cabeza más grande del cuádriceps.' }),
+  E('vasto-medial', 'muscular', 6, 'mus', ['Vasto interno', 'Vastus medialis', 'Vast intern'], { grp: 'cuadriceps', sci: ['Vasto medial', 'Vastus medialis', 'Vast medial'], act: 'estira la rodilla y sujeta la rótula por dentro' }),
+  E('vasto-intermedio', 'muscular', 6, 'mus', ['Crural', 'Vastus intermedius', 'Crural'], { grp: 'cuadriceps', sci: ['Vasto intermedio', 'Vastus intermedius', 'Vast intermedi'], act: 'estira la rodilla desde lo más profundo del muslo, pegado al fémur' }),
+  E('biceps-femoral', 'muscular', 6, 'mus', ['Bíceps femoral', 'Biceps femoris', 'Bíceps femoral'], { grp: 'isquiotibiales', act: 'dobla la rodilla y gira la pierna hacia fuera' }),
+  E('semitendinoso', 'muscular', 6, 'mus', ['Semitendinoso', 'Semitendinosus', 'Semitendinós'], { grp: 'isquiotibiales', sim: ['semimembranoso'], act: 'dobla la rodilla y gira la pierna hacia dentro con su largo tendón' }),
+  E('semimembranoso', 'muscular', 6, 'mus', ['Semimembranoso', 'Semimembranosus', 'Semimembranós'], { grp: 'isquiotibiales', sim: ['semitendinoso'], act: 'dobla la rodilla y estira la cadera desde la parte más interna y profunda del muslo' }),
+  E('aductor-mayor', 'muscular', 6, 'mus', ['Aductor mayor', 'Adductor magnus', 'Adductor major'], { grp: 'aductores', sim: ['gluteo-mayor'], act: 'es el aductor más grande: junta las piernas y estira la cadera' }),
+  E('aductor-largo', 'muscular', 6, 'mus', ['Aductor largo', 'Adductor longus', 'Adductor llarg'], { grp: 'aductores', act: 'junta las piernas: es el aductor que más se nota junto a la ingle' }),
+  E('aductor-corto', 'muscular', 6, 'mus', ['Aductor corto', 'Adductor brevis', 'Adductor curt'], { grp: 'aductores', act: 'junta las piernas desde debajo del aductor largo y el pectíneo' }),
+  E('pectineo', 'muscular', 6, 'mus', ['Pectíneo', 'Pectineus', 'Pectini'], { grp: 'aductores', sim: ['iliopsoas'], act: 'junta la pierna y dobla la cadera desde el borde del pubis' }),
+  E('gracil', 'muscular', 6, 'mus', ['Recto interno', 'Gracilis', 'Recte intern'], { grp: 'aductores', sci: ['Grácil', 'Gracilis', 'Gràcil'], sim: ['isquiotibiales'], act: 'junta las piernas y dobla la rodilla: es el único aductor que cruza la rodilla' }),
+  E('gemelo-interno', 'muscular', 6, 'mus', ['Gemelo interno', 'Medial head of gastrocnemius', 'Bessó intern'], { grp: 'gemelos', sci: ['Cabeza medial del gastrocnemio', 'Medial head of gastrocnemius', 'Cap medial del gastrocnemi'], sim: ['soleo'], act: 'nos pone de puntillas desde la parte interna de la pantorrilla', f: 'Su rotura de fibras es la famosa "pierna de tenista".' }),
+  E('gemelo-externo', 'muscular', 6, 'mus', ['Gemelo externo', 'Lateral head of gastrocnemius', 'Bessó extern'], { grp: 'gemelos', sci: ['Cabeza lateral del gastrocnemio', 'Lateral head of gastrocnemius', 'Cap lateral del gastrocnemi'], sim: ['soleo'], act: 'nos pone de puntillas desde la parte externa de la pantorrilla' }),
+  E('popliteo', 'muscular', 6, 'mus', ['Poplíteo', 'Popliteus', 'Popliti'], { sim: ['isquiotibiales'], act: 'desbloquea la rodilla al empezar a doblarla' }),
+  E('tibial-posterior', 'muscular', 6, 'mus', ['Tibial posterior', 'Tibialis posterior', 'Tibial posterior'], { act: 'gira la planta del pie hacia dentro y sostiene el arco del pie' }),
+  E('flexor-largo-dedos', 'muscular', 6, 'mus', ['Flexor largo de los dedos', 'Flexor digitorum longus', 'Flexor llarg dels dits'], { act: 'dobla los dedos del pie, menos el gordo' }),
+  E('flexor-largo-dedo-gordo', 'muscular', 6, 'mus', ['Flexor largo del dedo gordo', 'Flexor hallucis longus', 'Flexor llarg del dit gros'], { act: 'dobla el dedo gordo y nos impulsa al caminar' }),
+  E('extensor-largo-dedos', 'muscular', 6, 'mus', ['Extensor largo de los dedos', 'Extensor digitorum longus', 'Extensor llarg dels dits'], { sim: ['tibial-anterior'], act: 'levanta los dedos del pie' }),
 
   /* ───────── sistema nervioso ───────── */
   E('cerebro', 'nervioso', 1, 'org', ['Cerebro', 'Cerebrum (brain)', 'Cervell'], { p: 'controla el pensamiento, la memoria y los movimientos voluntarios', f: 'Tiene unos 86 000 millones de neuronas.' }),
@@ -490,4 +561,89 @@ export const STRUCTURES = [
   E('musculo-cardiaco', 'organizacion', 5, 'tej', ['Músculo cardíaco', 'Cardiac muscle', 'Múscul cardíac'], { p: 'es estriado, solo está en el corazón y nunca se cansa' }),
 ];
 
+/* ───────── origen e inserción de los músculos principales (Bachillerato) ───────── */
+// clave: [origen, inserción]. Mismo punto = mismo texto (no salen como opción falsa).
+const TROQUITER = 'el troquíter (tubérculo mayor) del húmero';
+const TROC_MENOR = 'el trocánter menor del fémur';
+const TROC_MAYOR = 'el trocánter mayor del fémur';
+const EIAS = 'la espina ilíaca anterosuperior';
+const TUB_TIBIA = 'la tuberosidad anterior de la tibia, por el tendón rotuliano';
+const ISQUION = 'la tuberosidad isquiática';
+const PATA_GANSO = 'la cara medial de la tibia (pata de ganso)';
+const AQUILES = 'el calcáneo, por el tendón de Aquiles';
+const LINEA_ASPERA = 'la línea áspera del fémur';
+export const ORIGEN_INSERCION = {
+  masetero: ['el arco cigomático', 'el ángulo y la rama de la mandíbula'],
+  'temporal-m': ['la fosa temporal del cráneo', 'la apófisis coronoides de la mandíbula'],
+  esternocleidomastoideo: ['el manubrio del esternón y la clavícula', 'la apófisis mastoides del temporal'],
+  escalenos: ['las apófisis transversas de las vértebras cervicales', 'las dos primeras costillas'],
+  trapecio: ['el occipital y las apófisis espinosas de C7 a T12', 'la clavícula, el acromion y la espina de la escápula'],
+  'elevador-escapula': ['las apófisis transversas de C1 a C4', 'el ángulo superior de la escápula'],
+  esplenio: ['las apófisis espinosas de C7 a T6 y el ligamento nucal', 'la apófisis mastoides y el occipital'],
+  romboides: ['las apófisis espinosas de C7 a T5', 'el borde medial de la escápula'],
+  serrato: ['las ocho o nueve primeras costillas', 'el borde medial de la escápula, por su cara anterior'],
+  pectoral: ['la clavícula, el esternón y los cartílagos costales', 'el labio lateral de la corredera bicipital del húmero'],
+  'pectoral-menor': ['la tercera, cuarta y quinta costillas', 'la apófisis coracoides de la escápula'],
+  'dorsal-ancho': ['las apófisis espinosas de T7 a L5, el sacro y la cresta ilíaca', 'el fondo de la corredera bicipital del húmero'],
+  deltoides: ['la clavícula, el acromion y la espina de la escápula', 'la tuberosidad deltoidea del húmero'],
+  supraespinoso: ['la fosa supraespinosa de la escápula', TROQUITER],
+  infraespinoso: ['la fosa infraespinosa de la escápula', TROQUITER],
+  'redondo-menor': ['el borde lateral de la escápula', TROQUITER],
+  subescapular: ['la fosa subescapular, en la cara anterior de la escápula', 'el troquín (tubérculo menor) del húmero'],
+  'redondo-mayor': ['el ángulo inferior de la escápula', 'el labio medial de la corredera bicipital del húmero'],
+  biceps: ['la apófisis coracoides y el tubérculo supraglenoideo de la escápula', 'la tuberosidad del radio'],
+  coracobraquial: ['la apófisis coracoides de la escápula', 'la cara medial del húmero, en su mitad'],
+  braquial: ['la mitad inferior de la cara anterior del húmero', 'la apófisis coronoides del cúbito'],
+  triceps: ['el tubérculo infraglenoideo de la escápula y la cara posterior del húmero', 'el olécranon del cúbito'],
+  braquiorradial: ['el borde lateral del húmero, encima del epicóndilo', 'la apófisis estiloides del radio'],
+  'pronador-redondo': ['la epitróclea (epicóndilo medial) del húmero', 'la cara lateral del radio, en su mitad'],
+  supinador: ['el epicóndilo lateral del húmero y el cúbito', 'el tercio superior del radio'],
+  'recto-abdominal': ['el pubis', 'los cartílagos costales de la 5.ª a la 7.ª costilla y el apéndice xifoides'],
+  oblicuo: ['las ocho últimas costillas', 'la cresta ilíaca, el pubis y la línea alba'],
+  diafragma: ['el apéndice xifoides, las seis últimas costillas y las vértebras lumbares', 'el centro frénico, su propio tendón central'],
+  erectores: ['el sacro, la cresta ilíaca y las vértebras lumbares', 'las costillas, las vértebras y la base del cráneo'],
+  iliopsoas: ['las vértebras lumbares y la fosa ilíaca', TROC_MENOR],
+  'psoas-mayor': ['los cuerpos y las apófisis transversas de T12 a L5', TROC_MENOR],
+  iliaco: ['la fosa ilíaca, en la cara interna del coxal', TROC_MENOR],
+  'gluteo-mayor': ['la cara posterior del ilion, el sacro y el cóccix', 'la tuberosidad glútea del fémur y la cintilla iliotibial'],
+  'gluteo-medio': ['la cara externa del ilion', TROC_MAYOR],
+  'gluteo-menor': ['la cara externa del ilion, por debajo del glúteo medio', 'el trocánter mayor del fémur, por delante'],
+  piriforme: ['la cara anterior del sacro', 'el borde superior del trocánter mayor del fémur'],
+  'tensor-fascia': [EIAS, 'la cintilla iliotibial, que llega a la tibia'],
+  sartorio: [EIAS, PATA_GANSO],
+  cuadriceps: ['la espina ilíaca anteroinferior y la diáfisis del fémur', TUB_TIBIA],
+  'recto-femoral': ['la espina ilíaca anteroinferior', TUB_TIBIA],
+  'vasto-lateral': ['el trocánter mayor y la línea áspera del fémur', TUB_TIBIA],
+  'vasto-medial': ['el labio medial de la línea áspera del fémur', TUB_TIBIA],
+  'vasto-intermedio': ['las caras anterior y lateral de la diáfisis del fémur', TUB_TIBIA],
+  isquiotibiales: [ISQUION, 'la tibia y la cabeza del peroné'],
+  'biceps-femoral': ['la tuberosidad isquiática y la línea áspera del fémur', 'la cabeza del peroné'],
+  semitendinoso: [ISQUION, PATA_GANSO],
+  semimembranoso: [ISQUION, 'la cara posterior del cóndilo medial de la tibia'],
+  aductores: ['el pubis y el isquion', LINEA_ASPERA],
+  'aductor-mayor': ['la rama isquiopubiana y la tuberosidad isquiática', 'la línea áspera y el tubérculo del aductor del fémur'],
+  'aductor-largo': ['el cuerpo del pubis', 'la línea áspera del fémur, en su tercio medio'],
+  pectineo: ['la rama superior del pubis', 'la línea pectínea del fémur'],
+  gracil: ['el cuerpo y la rama inferior del pubis', PATA_GANSO],
+  gemelos: ['los cóndilos del fémur', AQUILES],
+  'gemelo-interno': ['el cóndilo medial del fémur', AQUILES],
+  'gemelo-externo': ['el cóndilo lateral del fémur', AQUILES],
+  soleo: ['la cabeza del peroné y la cara posterior de la tibia', AQUILES],
+  popliteo: ['el cóndilo lateral del fémur', 'la cara posterior de la tibia, encima de la línea del sóleo'],
+  'tibial-anterior': ['la cara lateral de la tibia', 'la primera cuña y la base del primer metatarsiano'],
+  'tibial-posterior': ['las caras posteriores de la tibia, el peroné y la membrana interósea', 'el escafoides del pie y otros huesos del tarso'],
+  peroneos: ['la cara lateral del peroné', 'la base del primer y del quinto metatarsianos'],
+};
+for (const s of STRUCTURES) if (ORIGEN_INSERCION[s.k]) [s.ori, s.ins] = ORIGEN_INSERCION[s.k];
+
 export const BY_KEY = Object.fromEntries(STRUCTURES.map((s) => [s.k, s]));
+
+// ¿Son "la misma respuesta" a efectos de opciones falsas? Un músculo y su grupo
+// (recto femoral y cuádriceps), una parte y su conjunto (menisco interno y
+// menisco) o dos músculos con acción parecida (sim). Las partes externas no.
+export function related(a, b) {
+  const A = BY_KEY[a]; const B = BY_KEY[b];
+  if (!A || !B || a === b) return a === b;
+  if (A.s === 'ext' || B.s === 'ext') return false;
+  return A.grp === b || B.grp === a || Boolean(A.sim?.includes(b) || B.sim?.includes(a));
+}

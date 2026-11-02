@@ -1,5 +1,5 @@
 // Iconos de app — set 4 (cuerpo humano).
-// IDS de este set: explorador-cuerpo, huesos-musculos, viaje-cuerpo
+// IDS de este set: explorador-cuerpo, huesos-musculos, viaje-cuerpo, anatomia-3d
 // Contrato y guía: src/components/art/README.md (sin filtros ni SMIL, ids con
 // useArtIds, animación solo con clases art-i-* / art-h-*).
 import React from 'react';
@@ -221,10 +221,77 @@ const ViajeCuerpo = () => {
   );
 };
 
+/* ======================================================================
+   4. Anatomía 3D — un cráneo de marfil sobre la peana giratoria del escáner,
+   rodeado por la órbita de giro (flecha) y la pegatina «3D». Reposo: el
+   cráneo se balancea como si girara. Hover: la órbita da la vuelta y el
+   cráneo se inclina.
+   ====================================================================== */
+const Anatomia3D = () => {
+  const [id, url] = useArtIds();
+  return (
+    <svg className="art" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <MaterialGradient id={id('bone')} light="#FFFBEB" base="#E9DCC0" dark="#A8875C" />
+        <MaterialGradient id={id('base')} light="#A5F3FC" base="#0891B2" dark="#164E63" />
+        <MaterialGradient id={id('tag')} light="#FBCFE8" base="#EC4899" dark="#9D174D" />
+        <linearGradient id={id('orbit')} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#CFFAFE" stopOpacity="0.15" />
+          <stop offset="55%" stopColor="#67E8F9" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#FFFFFF" />
+        </linearGradient>
+        <ShadowGradient id={id('ground')} color="#1E1B4B" opacity={0.5} />
+        <GlossGradient id={id('gloss')} opacity={0.6} />
+      </defs>
+      <TileBg c={['#C4B5FD', '#6366F1', '#0E7490']} vig="#1E1B4B" />
+
+      {/* peana giratoria */}
+      <ellipse cx="23" cy="43.4" rx="13" ry="2" fill={url('ground')} />
+      <ellipse cx="23" cy="40.4" rx="12" ry="3" fill={url('base')} />
+      <ellipse cx="23" cy="39.6" rx="9.4" ry="1.8" stroke="#CFFAFE" strokeOpacity="0.8" strokeWidth="0.7" />
+
+      {/* órbita de giro (detrás) */}
+      <g className="art-h-spin" style={{ '--spin': '200deg' }}>
+        <path d="M8.4 26.6C7 23.4 13.8 20 23 20C32.2 20 39 23.4 37.6 26.6" stroke="#67E8F9" strokeOpacity="0.45" strokeWidth="1.1" strokeLinecap="round" />
+      </g>
+
+      {/* cráneo */}
+      <g className="art-i-sway" style={{ '--amp': '4deg', '--dur': '3.4s' }}>
+        <g className="art-h-tilt" style={{ '--tilt': '-9deg' }}>
+          <path d="M23 9C29.6 9 33.8 13.6 33.8 19.4C33.8 22.6 32.6 24.8 30.8 26.2V30.2C30.8 31.4 29.8 32.4 28.6 32.4H17.4C16.2 32.4 15.2 31.4 15.2 30.2V26.2C13.4 24.8 12.2 22.6 12.2 19.4C12.2 13.6 16.4 9 23 9Z" fill={url('bone')} stroke="#7C5E3A" strokeOpacity="0.45" strokeWidth="0.6" />
+          <path d="M30.2 13.4C32.4 15.4 33.4 18.2 33 21.6C32.6 23.8 31.6 25.2 30.8 26.2V30.2C30.8 31.4 29.8 32.4 28.6 32.4H26.2C28.4 29.6 31 23.4 30.2 13.4Z" fill="#7C5E3A" opacity="0.28" />
+          <ellipse cx="18.8" cy="20.8" rx="3" ry="2.7" fill="#3B2A1A" />
+          <ellipse cx="27.2" cy="20.8" rx="3" ry="2.7" fill="#3B2A1A" />
+          <path d="M23 23.6L21.6 26.6H24.4Z" fill="#3B2A1A" />
+          <path d="M18 29.4H28M19.6 28.2V30.8M21.6 28.2V30.8M23.6 28.2V30.8M25.6 28.2V30.8" stroke="#7C5E3A" strokeOpacity="0.7" strokeWidth="0.6" strokeLinecap="round" />
+          <path d="M15.4 15.8C16.6 12.2 19.4 10.4 22.4 10.2" stroke="#fff" strokeOpacity="0.75" strokeWidth="0.9" strokeLinecap="round" />
+          <ellipse cx="18.4" cy="13.6" rx="2.6" ry="1.2" fill={url('gloss')} transform="rotate(-24 18.4 13.6)" />
+        </g>
+      </g>
+
+      {/* órbita de giro (delante) con flecha */}
+      <g className="art-h-spin" style={{ '--spin': '200deg' }}>
+        <path d="M37.6 26.6C36 30.4 30 32.8 23 32.8C16 32.8 10 30.4 8.4 26.6" stroke={url('orbit')} strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M10.6 24.6L8.2 26.9L11.4 27.8" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+
+      {/* pegatina 3D */}
+      <g className="art-h-pop" style={{ '--pop': '1.15' }}>
+        <rect x="31.4" y="5.2" width="12" height="8.6" rx="3" fill={url('tag')} stroke="#FDF2F8" strokeWidth="0.7" />
+        <path d="M34.3 7.6H36.3C37 7.6 37.4 8 37.4 8.6C37.4 9.1 37 9.5 36.4 9.5C37 9.5 37.5 9.9 37.5 10.5C37.5 11.2 37 11.6 36.3 11.6H34.3M35.6 9.5H36.4" stroke="#fff" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M38.8 7.6V11.6H39.9C41.1 11.6 41.7 10.8 41.7 9.6C41.7 8.4 41.1 7.6 39.9 7.6Z" stroke="#fff" strokeWidth="0.9" strokeLinejoin="round" />
+      </g>
+      <Sparkle x={9.4} y={11.2} r={2} idle delay={0.6} />
+      <TileRim shade="#1E1B4B" />
+    </svg>
+  );
+};
+
 const ICONS = {
   'explorador-cuerpo': ExploradorCuerpo,
   'huesos-musculos': HuesosMusculos,
   'viaje-cuerpo': ViajeCuerpo,
+  'anatomia-3d': Anatomia3D,
 };
 
 export default ICONS;

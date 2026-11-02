@@ -92,9 +92,11 @@ export function Subject({ q, world, done, renderCustom }) {
       const layer = w.layer(s.layer);
       const e = layer.get(s.key);
       const extra = w.questionOverlay;
+      const View = w.View || MapView;
       return (
         <div className="gq-stage gq-stage--map">
-          <MapView
+          <View
+            question={q}
             world={w}
             entries={layer}
             view={s.viewBox || (s.view ? w.views[s.view] || w.views.world : w.views.world)}
@@ -316,21 +318,22 @@ export function useLocateMap(world, q, { tries, done, correct, difficulty, extra
       const e = layer.get(key);
       return e ? { xy: e.centroid, name: e.name } : null;
     };
+    // at: el ancla completa (en un visor 3D, x, y, z)
     const list = tries.map((t) => {
       const a = anchor(t.key);
       if (!a) return null;
       const where = q.kind === 'locate-group' && t.cont ? ` · ${world.groupName(t.cont)}` : '';
-      return { x: a.xy[0], y: a.xy[1], text: `${a.name}${where}`, tone: 'bad' };
+      return { x: a.xy[0], y: a.xy[1], at: a.xy, text: `${a.name}${where}`, tone: 'bad' };
     }).filter(Boolean);
     if (isSeq) {
       q.stops.forEach((k, i) => {
         if (i >= progress && !done) return;
         const a = anchor(k);
-        if (a) list.push({ x: a.xy[0], y: a.xy[1], text: `${i + 1}. ${a.name}`, tone: i < progress || correct ? 'good' : 'target' });
+        if (a) list.push({ x: a.xy[0], y: a.xy[1], at: a.xy, text: `${i + 1}. ${a.name}`, tone: i < progress || correct ? 'good' : 'target' });
       });
     } else if (done && q.kind !== 'locate-group') {
       const a = anchor(q.target);
-      if (a) list.push({ x: a.xy[0], y: a.xy[1], text: a.name, tone: correct ? 'good' : 'target' });
+      if (a) list.push({ x: a.xy[0], y: a.xy[1], at: a.xy, text: a.name, tone: correct ? 'good' : 'target' });
     }
     return [...list, ...(extraLabels || [])];
   }, [isMapQ, isSeq, q, tries, done, correct, world, layer, extraLabels, progress]);
@@ -394,7 +397,7 @@ export function judgeMapPick(q, key, cont, tries, world, progress = 0, pt = null
 
 /* ───────── barra de resultado de la pregunta ───────── */
 
-function Feedback({ q, correct, gain, auto, isLast, onNext, index, ui = UI_ES }) {
+function Feedback({ q, correct, gain, auto, isLast, onNext, index, ui = UI_ES, extra = null }) {
   const c = q.card;
   return (
     <motion.div
@@ -420,6 +423,7 @@ function Feedback({ q, correct, gain, auto, isLast, onNext, index, ui = UI_ES })
             <strong>{c.title}</strong>
             {c.sub && <small>{c.sub}</small>}
           </span>
+          {extra}
         </div>
       )}
       <GameButton
@@ -446,9 +450,13 @@ export function mapHelpText(q, ui = UI_ES) {
 
 /* ───────── pantalla ───────── */
 
+// feedbackExtra(q, { correct }): algo propio junto a la ficha de la respuesta,
+// solo en práctica (p. ej. el botón para escuchar el nombre).
+// renderQuestion(q, { done, correct, difficulty, paused, onAnswer(correct, key, attempt) }):
+// preguntas propias de la app (kind 'custom', p. ej. montar piezas en 3D).
 export default function QuizPlay({
   world, questions, difficulty, gameTitle, gameTitleOf, regionLabel, paused = false,
-  onProgress, onFinish, onExit, onHelp, onStudy, ui = UI_ES, renderSubject, mapHud,
+  onProgress, onFinish, onExit, onHelp, onStudy, ui = UI_ES, renderSubject, mapHud, feedbackExtra, renderQuestion,
 }) {
   const isExam = difficulty === 'exam';
   const [idx, setIdx] = useState(0);
@@ -508,6 +516,11 @@ export default function QuizPlay({
     settle(q.answer.includes(key), key, 1);
   };
 
+  const answerCustom = (correct, key = null, attempt = 1) => {
+    if (phase !== 'ask' || paused) return;
+    settle(Boolean(correct), key, attempt);
+  };
+
   const pickOnMap = (key, cont, pt) => {
     if (phase !== 'ask' || paused) return;
     const ok = judgeMapPick(q, key, cont, tries, mw, progress, pt);
@@ -555,13 +568,14 @@ export default function QuizPlay({
   }, [paused]);
 
   const mw = scopeOf(world, q.layer);
+  const MapComp = mw.View || MapView; // un ámbito puede traer su propio visor (3D)
   const m = useLocateMap(mw, q, { tries, done, correct: lastCorrect, difficulty, progress });
   const triesLeft = m.isMapQ ? q.attempts - tries.length : 0;
   const hintAvailable = !isExam && q.kind === 'choice' && q.hint;
-  const wideVisual = ['map', 'point', 'feature'].includes(q.subject?.type);
+  const wideVisual = ['map', 'point', 'feature'].includes(q.subject?.type) || Boolean(q.subject?.wide);
 
   return (
-    <div className="gq-play">
+    <div className={`gq-play${paused ? ' is-paused' : ''}`}>
       <GameHeader
         mode={difficulty}
         modeLabel={isExam ? ui.modes.exam : `${ui.modes[difficulty]} · ${gameTitle || ''}`}
@@ -598,9 +612,14 @@ export default function QuizPlay({
             )}
           </div>
 
-          {m.isMapQ ? (
+          {q.kind === 'custom' ? (
+            <div className="gq-q__custom">
+              {renderQuestion?.(q, { done, correct: lastCorrect, difficulty, paused, onAnswer: answerCustom })}
+            </div>
+          ) : m.isMapQ ? (
             <div className="gq-q__mapwrap">
-              <MapView
+              <MapComp
+                question={q}
                 world={mw}
                 entries={m.layer}
                 view={m.view}
@@ -640,7 +659,17 @@ export default function QuizPlay({
           )}
 
           {done && (
-            <Feedback q={q} correct={lastCorrect} gain={lastGain} auto={lastCorrect && !paused} isLast={isLast} onNext={next} index={idx} ui={ui} />
+            <Feedback
+              q={q}
+              correct={lastCorrect}
+              gain={lastGain}
+              auto={lastCorrect && !paused}
+              isLast={isLast}
+              onNext={next}
+              index={idx}
+              ui={ui}
+              extra={!isExam ? feedbackExtra?.(q, { correct: lastCorrect }) : null}
+            />
           )}
         </motion.div>
       </AnimatePresence>

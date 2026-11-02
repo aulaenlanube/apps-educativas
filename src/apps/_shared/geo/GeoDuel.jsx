@@ -344,6 +344,7 @@ export default function GeoDuel({ config: baseConfig, onGameComplete, registerDu
   const myKey = mine?.key ?? pending?.key ?? null;
 
   const mw = world && q ? scopeOf(world, q.layer) : world;
+  const MapComp = mw?.View || MapView; // un ámbito puede traer su propio visor (3D)
   const extraLabels = useMemo(() => {
     if (!done || !q || q.kind === 'choice' || !mw) return [];
     const at = (key) => {
@@ -438,7 +439,8 @@ export default function GeoDuel({ config: baseConfig, onGameComplete, registerDu
               <div className="gq-q__prompt"><h2>{q.prompt}</h2></div>
               {m.isMapQ ? (
                 <div className="gq-q__mapwrap">
-                  <MapView
+                  <MapComp
+                    question={q}
                     world={mw}
                     entries={m.layer}
                     view={m.view}

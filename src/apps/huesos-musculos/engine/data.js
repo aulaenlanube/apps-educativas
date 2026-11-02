@@ -4,13 +4,18 @@
 const Z = (zone, keys) => Object.fromEntries(keys.map((k) => [k, zone]));
 export const ZONE = {
   ...Z('cabeza', ['craneo', 'mandibula', 'hioides', 'frontal', 'parietal', 'temporal', 'occipital', 'esfenoides', 'etmoides', 'nasal', 'cigomatico', 'maxilar', 'lagrimal', 'vomer',
-    'frontal-m', 'orbicular-ojos', 'orbicular-labios', 'masetero', 'temporal-m', 'esternocleidomastoideo', 'atlas', 'axis', 'cervicales']),
+    'frontal-m', 'orbicular-ojos', 'orbicular-labios', 'masetero', 'temporal-m', 'esternocleidomastoideo', 'atlas', 'axis', 'cervicales',
+    'escalenos', 'esplenio', 'semiespinoso']),
   ...Z('tronco', ['columna', 'sacro', 'coxis', 'costillas', 'esternon', 'dorsales', 'lumbares', 'discos', 'costillas-verdaderas', 'costillas-falsas', 'costillas-flotantes', 'cartilagos-costales', 'manubrio', 'cuerpo-esternon', 'xifoides',
-    'trapecio', 'pectoral', 'serrato', 'recto-abdominal', 'oblicuo', 'dorsal-ancho', 'intercostales', 'erectores', 'romboides', 'diafragma']),
+    'trapecio', 'pectoral', 'serrato', 'recto-abdominal', 'oblicuo', 'dorsal-ancho', 'intercostales', 'erectores', 'romboides', 'diafragma',
+    'elevador-escapula', 'pectoral-menor', 'iliocostal', 'longisimo', 'espinoso']),
   ...Z('ext-sup', ['clavicula', 'escapula', 'humero', 'radio', 'cubito', 'carpo', 'metacarpo', 'falanges-mano', 'escafoides', 'semilunar', 'piramidal', 'pisiforme', 'trapecio-hueso', 'trapezoide', 'grande', 'ganchoso', 'metacarpianos', 'falanges-proximales', 'falanges-medias', 'falanges-distales',
-    'deltoides', 'biceps', 'triceps', 'braquiorradial', 'flexores-antebrazo', 'extensores-antebrazo', 'infraespinoso', 'redondo-mayor']),
+    'deltoides', 'biceps', 'triceps', 'braquiorradial', 'flexores-antebrazo', 'extensores-antebrazo', 'infraespinoso', 'redondo-mayor',
+    'acromion', 'cavidad-glenoidea', 'manguito-rotador', 'supraespinoso', 'subescapular', 'redondo-menor', 'coracobraquial', 'braquial', 'pronador-redondo', 'supinador', 'flexor-profundo', 'flexor-largo-pulgar', 'pronador-cuadrado']),
   ...Z('ext-inf', ['coxal', 'femur', 'rotula', 'tibia', 'perone', 'tarso', 'metatarso', 'falanges-pie', 'astragalo', 'calcaneo', 'navicular', 'cuboides', 'cunas', 'metatarsianos', 'falanges-pie-d',
-    'gluteo-mayor', 'gluteo-medio', 'iliopsoas', 'tensor-fascia', 'sartorio', 'cuadriceps', 'isquiotibiales', 'aductores', 'gemelos', 'soleo', 'tibial-anterior', 'peroneos', 'tendon-aquiles']),
+    'gluteo-mayor', 'gluteo-medio', 'iliopsoas', 'tensor-fascia', 'sartorio', 'cuadriceps', 'isquiotibiales', 'aductores', 'gemelos', 'soleo', 'tibial-anterior', 'peroneos', 'tendon-aquiles',
+    'psoas-mayor', 'iliaco', 'gluteo-menor', 'piriforme', 'recto-femoral', 'vasto-lateral', 'vasto-medial', 'vasto-intermedio', 'biceps-femoral', 'semitendinoso', 'semimembranoso',
+    'aductor-mayor', 'aductor-largo', 'aductor-corto', 'pectineo', 'gracil', 'gemelo-interno', 'gemelo-externo', 'popliteo', 'tibial-posterior', 'flexor-largo-dedos', 'flexor-largo-dedo-gordo', 'extensor-largo-dedos']),
 };
 export const ZONES = ['cabeza', 'tronco', 'ext-sup', 'ext-inf'];
 
