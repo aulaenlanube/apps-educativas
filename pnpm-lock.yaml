@@ -156,6 +156,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.16
         version: 10.5.0(postcss@8.5.14)
+      d3-contour:
+        specifier: ^4.0.2
+        version: 4.0.2
       es-atlas:
         specifier: 0.6.0
         version: 0.6.0
@@ -2609,6 +2612,10 @@ packages:
 
   d3-array@3.2.4:
     resolution: {integrity: sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==}
+    engines: {node: '>=12'}
+
+  d3-contour@4.0.2:
+    resolution: {integrity: sha512-4EzFTRIikzs47RGmdxbeUvLWtGedDUNkTcmzoeyg4sP/dvCexO47AaQL7VKy/gul85TOxw+IBgA8US2xwbToNA==}
     engines: {node: '>=12'}
 
   d3-geo@3.1.1:
@@ -7230,6 +7237,10 @@ snapshots:
   d3-array@3.2.4:
     dependencies:
       internmap: 2.0.3
+
+  d3-contour@4.0.2:
+    dependencies:
+      d3-array: 3.2.4
 
   d3-geo@3.1.1:
     dependencies:

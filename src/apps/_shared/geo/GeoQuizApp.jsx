@@ -15,12 +15,21 @@
 //   modes: { easy, medium, exam: { desc, features } }
 //   instructions: ReactNode; atlas(world) → config del Atlas; atlasCta: { title, text }
 //   GameArt({ game })                   ilustración de cada minijuego
+// Opcional (cuerpo humano):
+//   levelFor(level, grade, subjectId)   el nivel también puede depender de la asignatura
+//   languages: [{ id, label }]          idiomas del contenido (selector en la pantalla previa)
+//   defaultLang(level, subjectId)       idioma inicial
+//   localize(lang) → config             la configuración en ese idioma (textos, preguntas…)
+//   ui                                  textos del motor (ver ./ui.js)
+//   Atlas                               componente de atlas propio (mismas props que ./Atlas)
+//   renderSubject(q, done)              visual de tipos de pregunta propios
+//   mapHud(q, { done })                 controles propios sobre el mapa de la pregunta
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
-  ArrowLeft, ArrowRight, Clock, Compass, Flame, Globe2, GraduationCap, LayoutGrid, RefreshCw, Target,
+  ArrowLeft, ArrowRight, Clock, Compass, Flame, Globe2, GraduationCap, Languages, LayoutGrid, RefreshCw, Target,
 } from 'lucide-react';
 import InstructionsModal from '../InstructionsModal';
 import {
@@ -30,10 +39,10 @@ import {
 import { maxRoundPoints, notaFrom } from './scoring';
 import QuizPlay from './QuizPlay';
 import Atlas from './Atlas';
+import { mergeUi } from './ui';
 import './geo.css';
 
 export const ROUND_SIZE = 10;
-const MODE_TITLE = { easy: 'Fácil', medium: 'Medio', exam: 'Examen' };
 
 // Texto de la respuesta del alumno para el resumen.
 export function pickedLabel(r, world) {
@@ -46,15 +55,14 @@ export function pickedLabel(r, world) {
   return world?.nameOf(r.picked) || '—';
 }
 
-const fmtTime = (s) => (s >= 60 ? `${Math.floor(s / 60)} min ${Math.round(s % 60)} s` : `${Math.round(s)} s`);
-
-const courseText = (level, grade) => (level === 'primaria' ? `${grade}.º de Primaria` : level === 'eso' ? `${grade}.º de ESO` : level === 'bachillerato' ? `${grade}.º de Bachillerato` : 'tu curso');
-
 export default function GeoQuizApp({ config, onGameComplete }) {
-  const { level, grade: gradeParam } = useParams();
+  const { level, grade: gradeParam, subjectId } = useParams();
   const grade = useMemo(() => parseInt(gradeParam, 10), [gradeParam]);
-  const lv = useMemo(() => config.levelFor(level, grade), [config, level, grade]);
-  const shell = { ...config.shell, wide: true };
+  const lv = useMemo(() => config.levelFor(level, grade, subjectId), [config, level, grade, subjectId]);
+  const [lang, setLang] = useState(() => config.defaultLang?.(level, subjectId) ?? null);
+  const c = useMemo(() => (config.localize ? config.localize(lang) : config), [config, lang]);
+  const ui = useMemo(() => mergeUi(c.ui), [c]);
+  const shell = { ...c.shell, wide: true };
 
   const [world, setWorld] = useState(null);
   const [loadError, setLoadError] = useState(false);
@@ -87,9 +95,9 @@ export default function GeoQuizApp({ config, onGameComplete }) {
     return () => { alive = false; };
   }, [config, reloadKey]);
 
-  const games = useMemo(() => config.games(lv), [config, lv]);
-  const regions = useMemo(() => config.regions(lv), [config, lv]);
-  const regionText = region !== 'all' ? config.regionLabel(region) : null;
+  const games = useMemo(() => c.games(lv), [c, lv]);
+  const regions = useMemo(() => c.regions(lv), [c, lv]);
+  const regionText = region !== 'all' ? c.regionLabel(region) : null;
   const gameTitle = useCallback((id) => games.find((g) => g.id === id)?.title || '', [games]);
 
   const report = useCallback((live, total) => {
@@ -142,13 +150,13 @@ export default function GeoQuizApp({ config, onGameComplete }) {
       setLoadError(true);
       return;
     }
-    const questions = config.buildRound({ lv, region, difficulty: diff, world }, gameId, ROUND_SIZE);
+    const questions = c.buildRound({ lv, region, difficulty: diff, world, lang }, gameId, ROUND_SIZE);
     trackedRef.current = false;
     liveRef.current = { exam: gameId === 'exam', startedAt: Date.now(), results: [], points: 0 };
     setRound({ id: Date.now(), gameId, questions, difficulty: diff });
     setSummary(null);
     setScreen('play');
-  }, [world, config, lv, region]);
+  }, [world, config, c, lv, region, lang]);
 
   // Un minijuego pedido antes de que el mapa terminara de cargar.
   useEffect(() => {
@@ -218,23 +226,24 @@ export default function GeoQuizApp({ config, onGameComplete }) {
   };
 
   const instructions = (
-    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title={`Cómo se juega: ${config.title}`}>
-      {config.instructions}
+    <InstructionsModal isOpen={showHelp} onClose={() => setShowHelp(false)} title={c.helpTitle || `Cómo se juega: ${c.title}`}>
+      {c.instructions}
     </InstructionsModal>
   );
 
-  const atlasConfig = useMemo(() => (world ? config.atlas(world) : null), [world, config]);
-  const atlas = atlasConfig && <Atlas open={atlasOpen} onClose={() => setAtlasOpen(false)} world={world} atlas={atlasConfig} />;
+  const atlasConfig = useMemo(() => (world ? c.atlas(world, lv) : null), [world, c, lv]);
+  const AtlasView = c.Atlas || Atlas;
+  const atlas = atlasConfig && <AtlasView open={atlasOpen} onClose={() => setAtlasOpen(false)} world={world} atlas={atlasConfig} />;
   const openHelp = () => setShowHelp(true);
   const openAtlas = world ? () => setAtlasOpen(true) : undefined;
-  const { GameArt } = config;
+  const { GameArt } = c;
 
   if (loadError) {
     return (
       <GameShell {...shell}>
         <GameHeader onHelp={openHelp} />
-        <GameEmpty title="No se ha podido cargar el mapa" action={<GameButton icon={RefreshCw} onClick={() => { setLoadError(false); setScreen('modes'); setReloadKey((n) => n + 1); }}>Reintentar</GameButton>}>
-          Revisa la conexión a internet y vuelve a intentarlo.
+        <GameEmpty title={ui.loadErrorTitle} action={<GameButton icon={RefreshCw} onClick={() => { setLoadError(false); setScreen('modes'); setReloadKey((n) => n + 1); }}>{ui.retry}</GameButton>}>
+          {ui.loadErrorText}
         </GameEmpty>
         {instructions}
       </GameShell>
@@ -246,10 +255,23 @@ export default function GeoQuizApp({ config, onGameComplete }) {
     const modes = ['easy', 'medium', 'exam'].map((id) => ({
       id,
       tone: id,
-      title: MODE_TITLE[id],
-      desc: typeof config.modes[id].desc === 'function' ? config.modes[id].desc(games.length) : config.modes[id].desc,
-      features: config.modes[id].features,
+      title: ui.modes[id],
+      desc: typeof c.modes[id].desc === 'function' ? c.modes[id].desc(games.length) : c.modes[id].desc,
+      features: c.modes[id].features,
+      cta: ui.play,
     }));
+    const langPicker = c.languages ? (
+      <div className="gq-region gq-lang">
+        <span className="gq-region__label"><Languages size={15} /> {ui.language}</span>
+        <Segmented size="sm" value={lang} onChange={setLang} options={c.languages.map((l) => ({ value: l.id, label: l.label }))} />
+      </div>
+    ) : null;
+    const regionPicker = regions ? (
+      <div className="gq-region">
+        <span className="gq-region__label"><Compass size={15} /> {c.regionQuestion}</span>
+        <Segmented size="sm" value={region} onChange={setRegion} options={[{ value: 'all', label: c.allRegionsLabel }, ...regions.map((r) => ({ value: r.id, label: r.label }))]} />
+      </div>
+    ) : null;
     return (
       <GameShell {...shell}>
         <ModeSelect
@@ -257,26 +279,21 @@ export default function GeoQuizApp({ config, onGameComplete }) {
           onSelect={chooseMode}
           onHelp={openHelp}
           onStudy={openAtlas}
-          filters={regions ? (
-            <div className="gq-region">
-              <span className="gq-region__label"><Compass size={15} /> {config.regionQuestion}</span>
-              <Segmented size="sm" value={region} onChange={setRegion} options={[{ value: 'all', label: config.allRegionsLabel }, ...regions.map((r) => ({ value: r.id, label: r.label }))]} />
-            </div>
-          ) : null}
+          filters={langPicker || regionPicker ? <>{langPicker}{regionPicker}</> : null}
           extra={(
             <div className="gq-modes-extra">
               <button type="button" className="gq-atlas-cta" onClick={openAtlas} disabled={!world}>
                 <span className="gq-atlas-cta__art"><GameArt game="atlas" /></span>
                 <span className="gq-atlas-cta__text">
-                  <strong>{config.atlasCta.title}</strong>
-                  <span>{config.atlasCta.text}</span>
+                  <strong>{c.atlasCta.title}</strong>
+                  <span>{c.atlasCta.text}</span>
                 </span>
                 <ArrowRight size={18} />
               </button>
               <p className="gq-modes-extra__info">
                 {world ? (
-                  <><Globe2 size={14} /> {config.poolText(lv, region)} · {games.length} minijuegos para {courseText(level, grade)}</>
-                ) : 'Cargando el mapa…'}
+                  <><Globe2 size={14} /> {c.poolText(lv, region)} · {ui.gamesFor(games.length, ui.course(level, grade))}</>
+                ) : ui.loadingShort}
               </p>
             </div>
           )}
@@ -290,7 +307,7 @@ export default function GeoQuizApp({ config, onGameComplete }) {
   if (!world || screen === 'pending') {
     return (
       <GameShell {...shell}>
-        <GameLoading label="Desplegando el mapa…" />
+        <GameLoading label={ui.loadingMap} />
       </GameShell>
     );
   }
@@ -299,11 +316,11 @@ export default function GeoQuizApp({ config, onGameComplete }) {
   if (screen === 'hub') {
     return (
       <GameShell {...shell}>
-        <GameHeader mode={difficulty} modeLabel={MODE_TITLE[difficulty]} topic={regionText || undefined} onHelp={openHelp} onStudy={openAtlas} />
+        <GameHeader mode={difficulty} modeLabel={ui.modes[difficulty]} topic={regionText || undefined} onHelp={openHelp} onStudy={openAtlas} />
         <div className="gq-hub">
           <div className="gq-hub__intro">
-            <h2>Elige un minijuego</h2>
-            <p>Cada ronda tiene {ROUND_SIZE} preguntas. {regionText ? `Jugarás con ${config.regionScope(region)}.` : config.allRegionsScope}</p>
+            <h2>{ui.chooseGame}</h2>
+            <p>{ui.roundInfo(ROUND_SIZE)} {regionText ? c.regionScope(region) : c.allRegionsScope}</p>
           </div>
           <div className="gq-hub__grid">
             {games.map((g, i) => (
@@ -319,13 +336,13 @@ export default function GeoQuizApp({ config, onGameComplete }) {
                 <span className="gq-game__art"><GameArt game={g.id} /></span>
                 <span className="gq-game__title">{g.title}</span>
                 <span className="gq-game__desc">{g.desc}</span>
-                {!g.usesRegion && regionText && <span className="gq-game__note">{config.ignoresRegionNote}</span>}
-                <span className="gq-game__cta">Jugar <ArrowRight size={15} /></span>
+                {!g.usesRegion && regionText && <span className="gq-game__note">{c.ignoresRegionNote}</span>}
+                <span className="gq-game__cta">{ui.play} <ArrowRight size={15} /></span>
               </motion.button>
             ))}
           </div>
           <div className="gq-hub__footer">
-            <GameButton variant="soft" size="sm" icon={ArrowLeft} onClick={backToModes}>Cambiar modo o región</GameButton>
+            <GameButton variant="soft" size="sm" icon={ArrowLeft} onClick={backToModes}>{c.changeModeLabel || ui.changeModeRegion}</GameButton>
           </div>
         </div>
         {instructions}
@@ -343,29 +360,29 @@ export default function GeoQuizApp({ config, onGameComplete }) {
       <GameShell {...shell}>
         <ResultsScreen
           mode={isExam ? 'exam' : difficulty}
-          title={isExam ? 'Examen terminado' : '¡Ronda terminada!'}
-          subtitle={isExam ? `${config.title}${where}` : `${gameTitle(summary.gameId)} · ${MODE_TITLE[difficulty]}${where}`}
+          title={isExam ? ui.examDone : ui.roundDone}
+          subtitle={isExam ? `${c.title}${where}` : `${gameTitle(summary.gameId)} · ${ui.modes[difficulty]}${where}`}
           nota={summary.nota}
           points={summary.points}
           stats={[
-            { icon: Target, tone: 'good', label: 'Aciertos', value: `${summary.correct}/${ROUND_SIZE}` },
-            { icon: Flame, tone: 'streak', label: 'Mejor racha', value: summary.best },
-            { icon: Clock, tone: 'time', label: 'Tiempo', value: fmtTime(summary.seconds) },
+            { icon: Target, tone: 'good', label: ui.hits, value: `${summary.correct}/${ROUND_SIZE}` },
+            { icon: Flame, tone: 'streak', label: ui.bestStreakLabel, value: summary.best },
+            { icon: Clock, tone: 'time', label: ui.time, value: ui.fmtTime(summary.seconds) },
           ]}
           actions={isExam ? [
-            { label: 'Otro examen', onClick: again, icon: RefreshCw },
-            { label: 'Cambiar de modo', onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
+            { label: ui.anotherExam, onClick: again, icon: RefreshCw },
+            { label: ui.changeMode, onClick: backToModes, icon: LayoutGrid, variant: 'soft' },
           ] : [
-            { label: 'Otra ronda', onClick: again, icon: RefreshCw },
-            { label: 'Otro minijuego', onClick: () => setScreen('hub'), icon: LayoutGrid, variant: 'soft' },
-            { label: 'Cambiar de modo', onClick: backToModes, icon: GraduationCap, variant: 'ghost' },
+            { label: ui.anotherRound, onClick: again, icon: RefreshCw },
+            { label: ui.otherGame, onClick: () => setScreen('hub'), icon: LayoutGrid, variant: 'soft' },
+            { label: ui.changeMode, onClick: backToModes, icon: GraduationCap, variant: 'ghost' },
           ]}
         >
           {summary.results.map((r, i) => (
             <FeedbackItem key={i} index={i + 1} ok={r.correct} title={r.q.prompt}>
               {r.correct
-                ? <>{r.q.answerLabel}{r.attempt > 1 ? ` · al ${r.attempt}.º intento` : ''}</>
-                : <>Respuesta correcta: <strong>{r.q.answerLabel}</strong> · Tu respuesta: {pickedLabel(r, world)}</>}
+                ? <>{r.q.answerLabel}{r.attempt > 1 ? ui.atTry(r.attempt) : ''}</>
+                : <>{ui.correctAnswer} <strong>{r.q.answerLabel}</strong> · {ui.yourAnswer} {pickedLabel(r, world)}</>}
               {r.q.explain ? <span className="gq-fb-note"> · {r.q.explain}</span> : null}
             </FeedbackItem>
           ))}
@@ -394,18 +411,21 @@ export default function GeoQuizApp({ config, onGameComplete }) {
           onExit={exitPlay}
           onHelp={openHelp}
           onStudy={openAtlas}
+          ui={ui}
+          renderSubject={c.renderSubject}
+          mapHud={c.mapHud}
         />
       )}
       <ConfirmDialog
         open={confirmExit}
-        title="¿Abandonar el examen?"
-        confirmLabel="Sí, abandonar"
-        cancelLabel="Seguir con el examen"
+        title={ui.abandonTitle}
+        confirmLabel={ui.abandonYes}
+        cancelLabel={ui.abandonNo}
         tone="danger"
         onConfirm={confirmAbandon}
         onCancel={() => setConfirmExit(false)}
       >
-        Se guardará la nota con lo que llevas: las preguntas sin contestar cuentan como fallo.
+        {ui.abandonText}
       </ConfirmDialog>
       {instructions}
       {atlas}

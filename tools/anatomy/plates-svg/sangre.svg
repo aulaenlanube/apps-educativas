@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 900">
+<defs>
+  <radialGradient id="sangre-plasma" cx="0.42" cy="0.38" r="0.62">
+    <stop offset="0" stop-color="#fdf4cf"/><stop offset="0.7" stop-color="#f6e4a6"/><stop offset="1" stop-color="#dcc070"/>
+  </radialGradient>
+  <radialGradient id="sangre-vignette" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0.82" stop-color="#8a6a1c" stop-opacity="0"/><stop offset="0.96" stop-color="#7a5a14" stop-opacity="0.28"/><stop offset="1" stop-color="#5a4210" stop-opacity="0.55"/>
+  </radialGradient>
+  <radialGradient id="sangre-rbcG" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#f6a092"/><stop offset="0.38" stop-color="#e86a5c"/><stop offset="0.72" stop-color="#cf3a33"/><stop offset="0.93" stop-color="#b82a2a"/><stop offset="1" stop-color="#8e1b1f"/>
+  </radialGradient>
+  <linearGradient id="sangre-dimple" x1="0.15" y1="0.15" x2="0.85" y2="0.85">
+    <stop offset="0" stop-color="#c63b33"/><stop offset="0.55" stop-color="#ee8a7c"/><stop offset="1" stop-color="#fbc0b4"/>
+  </linearGradient>
+  <linearGradient id="sangre-rbcSide" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f58a7c"/><stop offset="0.5" stop-color="#d63a33"/><stop offset="1" stop-color="#8e1b1f"/>
+  </linearGradient>
+  <radialGradient id="sangre-plt" cx="0.38" cy="0.32" r="0.75">
+    <stop offset="0" stop-color="#e7cdf5"/><stop offset="0.55" stop-color="#b47fd0"/><stop offset="1" stop-color="#6e3d8c"/>
+  </radialGradient>
+  <radialGradient id="sangre-neuCyto" cx="0.4" cy="0.36" r="0.66">
+    <stop offset="0" stop-color="#fbf2f8"/><stop offset="0.7" stop-color="#ecd6e7"/><stop offset="1" stop-color="#b892b6"/>
+  </radialGradient>
+  <radialGradient id="sangre-nuc" cx="0.36" cy="0.3" r="0.8">
+    <stop offset="0" stop-color="#b08ce0"/><stop offset="0.5" stop-color="#6e42a8"/><stop offset="1" stop-color="#3a1b66"/>
+  </radialGradient>
+  <radialGradient id="sangre-nucDark" cx="0.36" cy="0.3" r="0.8">
+    <stop offset="0" stop-color="#8f68c9"/><stop offset="0.5" stop-color="#4f2a8a"/><stop offset="1" stop-color="#26104a"/>
+  </radialGradient>
+  <radialGradient id="sangre-nucLight" cx="0.36" cy="0.3" r="0.8">
+    <stop offset="0" stop-color="#c7aeea"/><stop offset="0.55" stop-color="#8d6cc4"/><stop offset="1" stop-color="#4f3184"/>
+  </radialGradient>
+  <radialGradient id="sangre-lymCyto" cx="0.4" cy="0.36" r="0.66">
+    <stop offset="0" stop-color="#e6f0fd"/><stop offset="0.7" stop-color="#b8d0f2"/><stop offset="1" stop-color="#7f9fd4"/>
+  </radialGradient>
+  <radialGradient id="sangre-monCyto" cx="0.4" cy="0.36" r="0.66">
+    <stop offset="0" stop-color="#eef0f7"/><stop offset="0.7" stop-color="#cfd5e8"/><stop offset="1" stop-color="#8f99bd"/>
+  </radialGradient>
+  <radialGradient id="sangre-eoCyto" cx="0.4" cy="0.36" r="0.66">
+    <stop offset="0" stop-color="#fde6d6"/><stop offset="0.7" stop-color="#f6c4a6"/><stop offset="1" stop-color="#c98767"/>
+  </radialGradient>
+  <radialGradient id="sangre-spec" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </radialGradient>
+  <clipPath id="sangre-field"><circle cx="550" cy="450" r="433"/></clipPath>
+
+  <!-- glóbulo rojo de frente (disco bicóncavo), r=40 -->
+  <g id="sangre-rbc">
+    <circle cx="5" cy="7" r="40" fill="#a8862a" opacity="0.22"/>
+    <circle r="40" fill="url(#sangre-rbcG)" stroke="#7c1016" stroke-width="2"/>
+    <path d="M-29 -19A35 35 0 0 1 19 -30" fill="none" stroke="#ffc2b8" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M30 18A35 35 0 0 1 -18 31" fill="none" stroke="#7c1016" stroke-width="5" stroke-linecap="round" opacity="0.3"/>
+    <circle r="17" fill="url(#sangre-dimple)" opacity="0.85"/>
+  </g>
+  <!-- glóbulo rojo de canto -->
+  <g id="sangre-rbc-side">
+    <path d="M-36 6C-36 24 -26 22 -14 16C-6 13 6 13 14 16C26 22 36 24 36 6Z" fill="#a8862a" opacity="0.2" transform="translate(4,6)"/>
+    <path d="M-39 0C-39 -17 -27 -19 -15 -13C-6 -9 6 -9 15 -13C27 -19 39 -17 39 0C39 17 27 19 15 13C6 9 -6 9 -15 13C-27 19 -39 17 -39 0Z" fill="url(#sangre-rbcSide)" stroke="#7c1016" stroke-width="2"/>
+    <path d="M-30 -8C-24 -12 -18 -11 -12 -8M12 -8C18 -11 24 -12 30 -8" fill="none" stroke="#ffc2b8" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  </g>
+  <!-- plaquetas -->
+  <g id="sangre-plt0">
+    <path d="M-9 -5C-6 -10 4 -10 8 -6C12 -2 11 5 6 8C1 11 -7 10 -10 5C-12 1 -11 -2 -9 -5Z" fill="url(#sangre-plt)" stroke="#5a2d78" stroke-width="1.2"/>
+    <circle cx="-2" cy="-1" r="1.6" fill="#4a1f66"/><circle cx="3" cy="3" r="1.3" fill="#4a1f66"/><circle cx="-4" cy="4" r="1.2" fill="#4a1f66"/>
+  </g>
+  <g id="sangre-plt1">
+    <path d="M-12 -2C-10 -8 -2 -9 4 -7C10 -6 14 -1 12 4C10 9 2 9 -4 7C-10 6 -13 3 -12 -2Z" fill="url(#sangre-plt)" stroke="#5a2d78" stroke-width="1.2"/>
+    <circle cx="-4" cy="0" r="1.6" fill="#4a1f66"/><circle cx="3" cy="-2" r="1.4" fill="#4a1f66"/><circle cx="5" cy="3" r="1.2" fill="#4a1f66"/>
+  </g>
+  <g id="sangre-plt2">
+    <path d="M-7 -8C-1 -11 7 -8 9 -2C11 4 7 9 1 10C-5 11 -10 7 -10 1C-10 -3 -9 -6 -7 -8Z" fill="url(#sangre-plt)" stroke="#5a2d78" stroke-width="1.2"/>
+    <circle cx="-1" cy="-3" r="1.5" fill="#4a1f66"/><circle cx="2" cy="3" r="1.5" fill="#4a1f66"/>
+  </g>
+</defs>
+
+<!-- campo del microscopio con plasma -->
+<circle cx="550" cy="450" r="435" fill="url(#sangre-plasma)" stroke="#8a6a1c" stroke-width="3"/>
+<g clip-path="url(#sangre-field)">
+  <!-- glóbulos rojos -->
+  <use href="#sangre-rbc" transform="translate(266.1 429.3) scale(1)"/><use href="#sangre-rbc" transform="translate(245.7 256.5) rotate(-21.3) scale(1 0.6)"/><use href="#sangre-rbc" transform="translate(799.5 587.2) scale(1)"/><use href="#sangre-rbc" transform="translate(292.2 533.2) scale(1)"/><use href="#sangre-rbc" transform="translate(760.3 666.9) scale(1)"/><use href="#sangre-rbc" transform="translate(236.9 626.2) scale(1)"/><use href="#sangre-rbc" transform="translate(576 231.2) scale(1)"/><use href="#sangre-rbc" transform="translate(760.9 420.2) rotate(16.8) scale(0.9 0.6)"/><use href="#sangre-rbc-side" transform="translate(757.6 163.1) rotate(-32.4) scale(1)"/><use href="#sangre-rbc" transform="translate(293.1 159.3) scale(1)"/><use href="#sangre-rbc" transform="translate(459.3 726.8) scale(1)"/><use href="#sangre-rbc" transform="translate(338.9 224.6) scale(0.9)"/><use href="#sangre-rbc" transform="translate(811.4 303.7) scale(1)"/><use href="#sangre-rbc" transform="translate(305.5 328.9) rotate(-2.8) scale(0.9 0.6)"/><use href="#sangre-rbc" transform="translate(601.4 777.3) scale(1)"/><use href="#sangre-rbc" transform="translate(698.3 770.7) scale(1)"/><use href="#sangre-rbc" transform="translate(550.1 422.2) scale(1)"/><use href="#sangre-rbc" transform="translate(392.3 458.7) scale(1)"/><use href="#sangre-rbc" transform="translate(888 260.4) scale(0.9)"/><use href="#sangre-rbc" transform="translate(563.2 121.6) rotate(-16.5) scale(1 0.6)"/><use href="#sangre-rbc" transform="translate(186.8 404.7) scale(0.9)"/><use href="#sangre-rbc" transform="translate(179.2 515) scale(1)"/><use href="#sangre-rbc" transform="translate(871.6 649.5) scale(1)"/><use href="#sangre-rbc" transform="translate(478.1 130) scale(0.9)"/><use href="#sangre-rbc" transform="translate(653.3 179.6) scale(1)"/><use href="#sangre-rbc-side" transform="translate(463.7 810.8) rotate(7.3) scale(0.9)"/><use href="#sangre-rbc" transform="translate(510 660.4) scale(0.9)"/><use href="#sangre-rbc" transform="translate(473.5 556.8) scale(0.9)"/><use href="#sangre-rbc" transform="translate(796.6 501.2) scale(1)"/><use href="#sangre-rbc" transform="translate(426.8 228.6) scale(1)"/><use href="#sangre-rbc" transform="translate(638 421.4) scale(1)"/><use href="#sangre-rbc" transform="translate(359.6 752.2) rotate(-29.2) scale(1 0.6)"/><use href="#sangre-rbc" transform="translate(886.5 466) scale(1)"/><use href="#sangre-rbc" transform="translate(854.3 384.9) scale(0.9)"/><use href="#sangre-rbc" transform="translate(399.3 90.2) scale(1)"/><use href="#sangre-rbc" transform="translate(682.1 84.1) scale(1)"/><use href="#sangre-rbc" transform="translate(923.2 556) scale(1)"/><use href="#sangre-rbc" transform="translate(794.8 739.3) rotate(-15.8) scale(0.9 0.6)"/><use href="#sangre-rbc" transform="translate(677.4 684.6) scale(1)"/><use href="#sangre-rbc" transform="translate(299.5 687.6) scale(1)"/><use href="#sangre-rbc" transform="translate(707.5 245.9) scale(1)"/><use href="#sangre-rbc" transform="translate(556.9 330) scale(1)"/><use href="#sangre-rbc-side" transform="translate(713.2 507.8) rotate(-10.4) scale(1)"/><use href="#sangre-rbc" transform="translate(728.1 332.4) rotate(-18.8) scale(0.9 0.6)"/><use href="#sangre-rbc" transform="translate(579.1 701.5) scale(0.9)"/><use href="#sangre-rbc" transform="translate(480.7 473.1) scale(0.9)"/><use href="#sangre-rbc" transform="translate(542.8 838.9) scale(1)"/><use href="#sangre-rbc" transform="translate(835.7 194.2) scale(0.9)"/><use href="#sangre-rbc" transform="translate(508.4 61.3) scale(0.9)"/><use href="#sangre-rbc" transform="translate(931.9 366.4) rotate(-12.9) scale(1 0.6)"/><use href="#sangre-rbc" transform="translate(187.2 322.6) scale(1)"/><use href="#sangre-rbc" transform="translate(712.4 590.9) scale(0.9)"/>
+  <!-- plaquetas -->
+  <use href="#sangre-plt1" transform="translate(352.2 141.2) rotate(254.2) scale(1.5)"/><use href="#sangre-plt2" transform="translate(540.3 776.9) rotate(103.7) scale(1.2)"/><use href="#sangre-plt2" transform="translate(487.2 225.6) rotate(289.2) scale(1.5)"/><use href="#sangre-plt0" transform="translate(204.7 458.5) rotate(207.9) scale(1.3)"/><use href="#sangre-plt1" transform="translate(401.6 157.2) rotate(8.4) scale(1.5)"/><use href="#sangre-plt0" transform="translate(404.4 816.9) rotate(312.6) scale(1.5)"/><use href="#sangre-plt0" transform="translate(627.7 832.2) rotate(178.2) scale(1.3)"/><use href="#sangre-plt0" transform="translate(603.7 66.4) rotate(118.2) scale(1.3)"/><use href="#sangre-plt2" transform="translate(821.5 433.9) rotate(337.6) scale(1.5)"/><use href="#sangre-plt1" transform="translate(334.8 418) rotate(132.5) scale(1.4)"/><use href="#sangre-plt1" transform="translate(843.3 703.2) rotate(137.8) scale(1.3)"/><use href="#sangre-plt1" transform="translate(868.9 323.7) rotate(141.4) scale(1.5)"/><use href="#sangre-plt1" transform="translate(520.8 166.8) rotate(11.8) scale(1.3)"/><use href="#sangre-plt0" transform="translate(245.6 344.4) rotate(352.9) scale(1.6)"/>
+
+  <!-- eosinófilo (otro glóbulo blanco) -->
+  <g>
+    <circle cx="398" cy="600" r="62" fill="#a8862a" opacity="0.22"/>
+    <circle cx="392" cy="592" r="62" fill="url(#sangre-eoCyto)" stroke="#a5634a" stroke-width="2"/>
+    <path d="M389.9 622.6A3.2 3.2 0 1 0 396.4 622.6A3.2 3.2 0 1 0 389.9 622.6ZM351.2 630.7A3.9 3.9 0 1 0 358.9 630.7A3.9 3.9 0 1 0 351.2 630.7ZM393.9 575.9A3.6 3.6 0 1 0 401.2 575.9A3.6 3.6 0 1 0 393.9 575.9ZM432.8 585.8A3.9 3.9 0 1 0 440.6 585.8A3.9 3.9 0 1 0 432.8 585.8ZM405.4 552.4A4.5 4.5 0 1 0 414.4 552.4A4.5 4.5 0 1 0 405.4 552.4ZM404.9 636.8A4.4 4.4 0 1 0 413.8 636.8A4.4 4.4 0 1 0 404.9 636.8ZM375 634.3A4.5 4.5 0 1 0 384.1 634.3A4.5 4.5 0 1 0 375 634.3ZM366.2 550.3A4.2 4.2 0 1 0 374.6 550.3A4.2 4.2 0 1 0 366.2 550.3ZM402.7 579.5A4.5 4.5 0 1 0 411.8 579.5A4.5 4.5 0 1 0 402.7 579.5ZM436.3 615.1A4 4 0 1 0 444.4 615.1A4 4 0 1 0 436.3 615.1ZM342.1 574.2A3.4 3.4 0 1 0 348.8 574.2A3.4 3.4 0 1 0 342.1 574.2ZM375.4 545A3.7 3.7 0 1 0 382.8 545A3.7 3.7 0 1 0 375.4 545ZM372 567.3A4.4 4.4 0 1 0 380.9 567.3A4.4 4.4 0 1 0 372 567.3ZM357.5 570.4A4.5 4.5 0 1 0 366.5 570.4A4.5 4.5 0 1 0 357.5 570.4ZM405.9 567A3.8 3.8 0 1 0 413.4 567A3.8 3.8 0 1 0 405.9 567ZM363 626.2A3.6 3.6 0 1 0 370.1 626.2A3.6 3.6 0 1 0 363 626.2ZM392.1 645.5A3.2 3.2 0 1 0 398.5 645.5A3.2 3.2 0 1 0 392.1 645.5ZM396 539.8A3.9 3.9 0 1 0 403.8 539.8A3.9 3.9 0 1 0 396 539.8ZM351 557.8A4.4 4.4 0 1 0 359.7 557.8A4.4 4.4 0 1 0 351 557.8ZM388.6 549.3A3.9 3.9 0 1 0 396.5 549.3A3.9 3.9 0 1 0 388.6 549.3ZM416.3 564.6A4.5 4.5 0 1 0 425.3 564.6A4.5 4.5 0 1 0 416.3 564.6ZM388 611.7A3.7 3.7 0 1 0 395.4 611.7A3.7 3.7 0 1 0 388 611.7ZM375.8 605.1A4 4 0 1 0 383.8 605.1A4 4 0 1 0 375.8 605.1ZM438.2 573.4A3.3 3.3 0 1 0 444.8 573.4A3.3 3.3 0 1 0 438.2 573.4ZM421.4 552.9A4.2 4.2 0 1 0 429.9 552.9A4.2 4.2 0 1 0 421.4 552.9ZM418.9 627.4A3.4 3.4 0 1 0 425.6 627.4A3.4 3.4 0 1 0 418.9 627.4ZM374.7 617.3A4.1 4.1 0 1 0 382.8 617.3A4.1 4.1 0 1 0 374.7 617.3ZM347.5 596A3.6 3.6 0 1 0 354.7 596A3.6 3.6 0 1 0 347.5 596ZM428.4 608.3A3.6 3.6 0 1 0 435.6 608.3A3.6 3.6 0 1 0 428.4 608.3ZM348.1 608.1A3.3 3.3 0 1 0 354.8 608.1A3.3 3.3 0 1 0 348.1 608.1ZM427.2 575.6A4.1 4.1 0 1 0 435.4 575.6A4.1 4.1 0 1 0 427.2 575.6ZM440.5 593A4.6 4.6 0 1 0 449.7 593A4.6 4.6 0 1 0 440.5 593ZM393.2 635A4.4 4.4 0 1 0 401.9 635A4.4 4.4 0 1 0 393.2 635ZM357.5 605.3A4.6 4.6 0 1 0 366.6 605.3A4.6 4.6 0 1 0 357.5 605.3ZM387.8 560.4A3.8 3.8 0 1 0 395.4 560.4A3.8 3.8 0 1 0 387.8 560.4ZM334.2 595.8A4.2 4.2 0 1 0 342.5 595.8A4.2 4.2 0 1 0 334.2 595.8ZM430.7 562A4.2 4.2 0 1 0 439.2 562A4.2 4.2 0 1 0 430.7 562ZM343 586A4.1 4.1 0 1 0 351.2 586A4.1 4.1 0 1 0 343 586ZM417 583.2A3.6 3.6 0 1 0 424.3 583.2A3.6 3.6 0 1 0 417 583.2ZM365.2 638.8A3.4 3.4 0 1 0 371.9 638.8A3.4 3.4 0 1 0 365.2 638.8ZM418.5 615.1A4.1 4.1 0 1 0 426.8 615.1A4.1 4.1 0 1 0 418.5 615.1ZM406 625.1A3.7 3.7 0 1 0 413.3 625.1A3.7 3.7 0 1 0 406 625.1ZM364.4 615.6A4.2 4.2 0 1 0 372.8 615.6A4.2 4.2 0 1 0 364.4 615.6ZM398.7 617.6A3.5 3.5 0 1 0 405.6 617.6A3.5 3.5 0 1 0 398.7 617.6ZM347.7 620.8A3.6 3.6 0 1 0 354.9 620.8A3.6 3.6 0 1 0 347.7 620.8ZM382.7 538.3A4.5 4.5 0 1 0 391.7 538.3A4.5 4.5 0 1 0 382.7 538.3ZM428.9 596.9A4 4 0 1 0 436.8 596.9A4 4 0 1 0 428.9 596.9ZM430.6 624.5A4.5 4.5 0 1 0 439.6 624.5A4.5 4.5 0 1 0 430.6 624.5ZM439.5 604.3A3.5 3.5 0 1 0 446.5 604.3A3.5 3.5 0 1 0 439.5 604.3ZM362.6 560.2A3.9 3.9 0 1 0 370.4 560.2A3.9 3.9 0 1 0 362.6 560.2ZM413.3 544A3.3 3.3 0 1 0 419.9 544A3.3 3.3 0 1 0 413.3 544ZM375.7 556.5A3.2 3.2 0 1 0 382.1 556.5A3.2 3.2 0 1 0 375.7 556.5ZM383.4 570A3.5 3.5 0 1 0 390.4 570A3.5 3.5 0 1 0 383.4 570ZM397.5 559.9A4.3 4.3 0 1 0 406.2 559.9A4.3 4.3 0 1 0 397.5 559.9ZM336.4 606.2A3.9 3.9 0 1 0 344.1 606.2A3.9 3.9 0 1 0 336.4 606.2ZM379.5 644.5A3.9 3.9 0 1 0 387.3 644.5A3.9 3.9 0 1 0 379.5 644.5Z" fill="#e2683f" stroke="#b5452a" stroke-width="0.6"/>
+    <path d="M354 586C352 566 370 562 384 572C392 578 394 588 390 596C384 606 358 606 354 586Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <path d="M388 598C394 586 418 580 428 594C434 606 422 622 406 620C392 618 384 608 388 598Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <ellipse cx="370" cy="562" rx="20" ry="11" fill="url(#sangre-spec)" opacity="0.7"/>
+  </g>
+
+  <!-- neutrófilo: núcleo con varios lóbulos -->
+  <g>
+    <circle cx="457" cy="361" r="80" fill="#a8862a" opacity="0.22"/>
+    <circle cx="450" cy="352" r="80" fill="url(#sangre-neuCyto)" stroke="#9b6f98" stroke-width="2"/>
+    <path d="M485.8 342.2A1.5 1.5 0 1 0 488.7 342.2A1.5 1.5 0 1 0 485.8 342.2ZM399.4 325.8A2.1 2.1 0 1 0 403.5 325.8A2.1 2.1 0 1 0 399.4 325.8ZM473.1 334A1.9 1.9 0 1 0 476.8 334A1.9 1.9 0 1 0 473.1 334ZM404.1 389.7A2.3 2.3 0 1 0 408.7 389.7A2.3 2.3 0 1 0 404.1 389.7ZM412.2 365A2.3 2.3 0 1 0 416.8 365A2.3 2.3 0 1 0 412.2 365ZM386 350.3A1.6 1.6 0 1 0 389.2 350.3A1.6 1.6 0 1 0 386 350.3ZM450.2 298.8A1.9 1.9 0 1 0 454 298.8A1.9 1.9 0 1 0 450.2 298.8ZM405.4 344.5A2.1 2.1 0 1 0 409.5 344.5A2.1 2.1 0 1 0 405.4 344.5ZM421.4 364.4A2.3 2.3 0 1 0 426 364.4A2.3 2.3 0 1 0 421.4 364.4ZM492.3 316.7A1.6 1.6 0 1 0 495.6 316.7A1.6 1.6 0 1 0 492.3 316.7ZM509.7 378.4A1.9 1.9 0 1 0 513.6 378.4A1.9 1.9 0 1 0 509.7 378.4ZM454.1 352A2.4 2.4 0 1 0 458.9 352A2.4 2.4 0 1 0 454.1 352ZM443.1 399.6A2.3 2.3 0 1 0 447.8 399.6A2.3 2.3 0 1 0 443.1 399.6ZM439 419.9A1.8 1.8 0 1 0 442.6 419.9A1.8 1.8 0 1 0 439 419.9ZM464.2 325.3A1.5 1.5 0 1 0 467.3 325.3A1.5 1.5 0 1 0 464.2 325.3ZM433.2 318.7A2.3 2.3 0 1 0 437.8 318.7A2.3 2.3 0 1 0 433.2 318.7ZM459.5 286.5A1.6 1.6 0 1 0 462.8 286.5A1.6 1.6 0 1 0 459.5 286.5ZM416.5 300.8A2.4 2.4 0 1 0 421.3 300.8A2.4 2.4 0 1 0 416.5 300.8ZM469.7 371.5A1.6 1.6 0 1 0 472.8 371.5A1.6 1.6 0 1 0 469.7 371.5ZM411.3 390.8A1.5 1.5 0 1 0 414.4 390.8A1.5 1.5 0 1 0 411.3 390.8ZM412.2 292.2A2.2 2.2 0 1 0 416.6 292.2A2.2 2.2 0 1 0 412.2 292.2ZM502.8 341.6A2.2 2.2 0 1 0 507.2 341.6A2.2 2.2 0 1 0 502.8 341.6ZM433.5 284.8A2.4 2.4 0 1 0 438.3 284.8A2.4 2.4 0 1 0 433.5 284.8ZM413.6 350.2A2.2 2.2 0 1 0 418.1 350.2A2.2 2.2 0 1 0 413.6 350.2ZM417.6 315.4A1.5 1.5 0 1 0 420.7 315.4A1.5 1.5 0 1 0 417.6 315.4ZM482.7 394.9A1.6 1.6 0 1 0 485.9 394.9A1.6 1.6 0 1 0 482.7 394.9ZM399.8 319A2.3 2.3 0 1 0 404.4 319A2.3 2.3 0 1 0 399.8 319ZM443.1 295.5A2.3 2.3 0 1 0 447.6 295.5A2.3 2.3 0 1 0 443.1 295.5ZM514.8 349.5A2.1 2.1 0 1 0 519.1 349.5A2.1 2.1 0 1 0 514.8 349.5ZM399.1 360.6A2.3 2.3 0 1 0 403.7 360.6A2.3 2.3 0 1 0 399.1 360.6ZM497.3 358.4A2.5 2.5 0 1 0 502.2 358.4A2.5 2.5 0 1 0 497.3 358.4ZM473.1 306.9A2.1 2.1 0 1 0 477.4 306.9A2.1 2.1 0 1 0 473.1 306.9ZM485.1 380A2.3 2.3 0 1 0 489.8 380A2.3 2.3 0 1 0 485.1 380ZM434.6 306.2A1.5 1.5 0 1 0 437.7 306.2A1.5 1.5 0 1 0 434.6 306.2ZM464.9 332.2A2.5 2.5 0 1 0 469.9 332.2A2.5 2.5 0 1 0 464.9 332.2ZM488.4 400.5A2.3 2.3 0 1 0 493 400.5A2.3 2.3 0 1 0 488.4 400.5ZM425.4 404.7A1.7 1.7 0 1 0 428.8 404.7A1.7 1.7 0 1 0 425.4 404.7ZM428.1 378.5A1.9 1.9 0 1 0 431.8 378.5A1.9 1.9 0 1 0 428.1 378.5ZM492.2 362.7A2 2 0 1 0 496.2 362.7A2 2 0 1 0 492.2 362.7ZM477.1 352.1A1.7 1.7 0 1 0 480.4 352.1A1.7 1.7 0 1 0 477.1 352.1ZM446.6 328.9A1.8 1.8 0 1 0 450.1 328.9A1.8 1.8 0 1 0 446.6 328.9ZM474.5 387.5A2.1 2.1 0 1 0 478.7 387.5A2.1 2.1 0 1 0 474.5 387.5ZM422.8 394.8A2.2 2.2 0 1 0 427.2 394.8A2.2 2.2 0 1 0 422.8 394.8ZM465.6 311.6A2.2 2.2 0 1 0 470 311.6A2.2 2.2 0 1 0 465.6 311.6ZM425.1 370.9A1.6 1.6 0 1 0 428.3 370.9A1.6 1.6 0 1 0 425.1 370.9ZM436.6 298.4A2.5 2.5 0 1 0 441.6 298.4A2.5 2.5 0 1 0 436.6 298.4ZM447.8 305.8A2.1 2.1 0 1 0 452 305.8A2.1 2.1 0 1 0 447.8 305.8ZM413.8 357.8A1.6 1.6 0 1 0 417.1 357.8A1.6 1.6 0 1 0 413.8 357.8ZM399.2 311.7A2.1 2.1 0 1 0 403.4 311.7A2.1 2.1 0 1 0 399.2 311.7ZM416.7 343.4A2.6 2.6 0 1 0 421.9 343.4A2.6 2.6 0 1 0 416.7 343.4ZM447.1 378.3A1.4 1.4 0 1 0 450 378.3A1.4 1.4 0 1 0 447.1 378.3ZM411.2 403.6A1.9 1.9 0 1 0 415 403.6A1.9 1.9 0 1 0 411.2 403.6ZM408.4 316.2A1.9 1.9 0 1 0 412.2 316.2A1.9 1.9 0 1 0 408.4 316.2ZM483.6 364.8A2.4 2.4 0 1 0 488.3 364.8A2.4 2.4 0 1 0 483.6 364.8ZM399.3 334.2A2.1 2.1 0 1 0 403.5 334.2A2.1 2.1 0 1 0 399.3 334.2ZM454.4 343.6A1.9 1.9 0 1 0 458.2 343.6A1.9 1.9 0 1 0 454.4 343.6ZM463.8 383.3A2 2 0 1 0 467.8 383.3A2 2 0 1 0 463.8 383.3ZM455.6 369.3A2.3 2.3 0 1 0 460.1 369.3A2.3 2.3 0 1 0 455.6 369.3ZM495.5 375.5A1.4 1.4 0 1 0 498.3 375.5A1.4 1.4 0 1 0 495.5 375.5ZM428.2 414.9A1.6 1.6 0 1 0 431.5 414.9A1.6 1.6 0 1 0 428.2 414.9ZM492.9 323.1A2.1 2.1 0 1 0 497.2 323.1A2.1 2.1 0 1 0 492.9 323.1ZM483.4 321A1.7 1.7 0 1 0 486.8 321A1.7 1.7 0 1 0 483.4 321ZM485.5 301.2A1.4 1.4 0 1 0 488.3 301.2A1.4 1.4 0 1 0 485.5 301.2ZM514.2 356.7A1.4 1.4 0 1 0 517.1 356.7A1.4 1.4 0 1 0 514.2 356.7ZM496.6 395.4A2 2 0 1 0 500.5 395.4A2 2 0 1 0 496.6 395.4ZM484.5 293.6A1.6 1.6 0 1 0 487.6 293.6A1.6 1.6 0 1 0 484.5 293.6ZM473.6 415A1.7 1.7 0 1 0 477 415A1.7 1.7 0 1 0 473.6 415ZM411.1 374.5A1.5 1.5 0 1 0 414 374.5A1.5 1.5 0 1 0 411.1 374.5ZM497.3 331.3A2.6 2.6 0 1 0 502.5 331.3A2.6 2.6 0 1 0 497.3 331.3ZM462.8 392.3A1.5 1.5 0 1 0 465.7 392.3A1.5 1.5 0 1 0 462.8 392.3Z" fill="#b98ab4" opacity="0.6"/>
+    <path d="M420 346L448 318M456 318L482 348M480 358L458 384" fill="none" stroke="#4a2582" stroke-width="7" stroke-linecap="round"/>
+    <path d="M392 338C390 318 410 308 426 318C440 326 440 348 428 358C414 368 394 358 392 338Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <path d="M432 308C436 290 462 288 470 304C476 318 464 330 450 330C436 330 428 320 432 308Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <path d="M470 332C484 322 506 334 504 354C502 370 482 374 472 362C464 352 462 340 470 332Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <path d="M436 382C436 366 458 360 470 370C482 380 476 402 458 406C444 408 436 396 436 382Z" fill="url(#sangre-nuc)" stroke="#2f1456" stroke-width="1.6"/>
+    <g fill="#2f1456" opacity="0.45"><circle cx="410" cy="340" r="5"/><circle cx="452" cy="310" r="4"/><circle cx="488" cy="350" r="5"/><circle cx="456" cy="386" r="4.5"/><circle cx="420" cy="350" r="3"/></g>
+    <ellipse cx="420" cy="306" rx="24" ry="12" fill="url(#sangre-spec)" opacity="0.8"/>
+  </g>
+
+  <!-- linfocito: núcleo redondo enorme -->
+  <g>
+    <circle cx="654" cy="326" r="56" fill="#a8862a" opacity="0.22"/>
+    <circle cx="648" cy="318" r="56" fill="url(#sangre-lymCyto)" stroke="#5f7fb8" stroke-width="2"/>
+    <circle cx="651" cy="321" r="45" fill="url(#sangre-nucDark)" stroke="#1f0c3f" stroke-width="1.6"/>
+    <g fill="#1f0c3f" opacity="0.5"><circle cx="636" cy="326" r="7"/><circle cx="666" cy="308" r="6"/><circle cx="662" cy="342" r="5"/><circle cx="642" cy="296" r="4"/></g>
+    <ellipse cx="632" cy="294" rx="16" ry="9" fill="url(#sangre-spec)" opacity="0.7"/>
+  </g>
+
+  <!-- monocito: el más grande, núcleo en forma de riñón -->
+  <g>
+    <circle cx="608" cy="558" r="92" fill="#a8862a" opacity="0.22"/>
+    <circle cx="600" cy="548" r="92" fill="url(#sangre-monCyto)" stroke="#6e78a0" stroke-width="2"/>
+    <path d="M578 475.6A4.4 4.4 0 1 0 586.8 475.6A4.4 4.4 0 1 0 578 475.6ZM594.4 626.1A6.7 6.7 0 1 0 607.7 626.1A6.7 6.7 0 1 0 594.4 626.1ZM612.5 619.2A4.9 4.9 0 1 0 622.3 619.2A4.9 4.9 0 1 0 612.5 619.2ZM541.7 587.3A4.7 4.7 0 1 0 551.1 587.3A4.7 4.7 0 1 0 541.7 587.3ZM518.4 545.9A7.4 7.4 0 1 0 533.3 545.9A7.4 7.4 0 1 0 518.4 545.9ZM560.3 618A4.5 4.5 0 1 0 569.4 618A4.5 4.5 0 1 0 560.3 618ZM648.8 520.5A4.7 4.7 0 1 0 658.3 520.5A4.7 4.7 0 1 0 648.8 520.5ZM629.8 477.5A4.9 4.9 0 1 0 639.7 477.5A4.9 4.9 0 1 0 629.8 477.5ZM538.3 490.7A6.3 6.3 0 1 0 550.9 490.7A6.3 6.3 0 1 0 538.3 490.7Z" fill="#f7f8fc" stroke="#9aa3c4" stroke-width="1"/>
+    <path d="M538 534C534 502 570 486 604 492C640 498 660 526 654 558C650 582 626 596 604 590C590 586 592 566 580 560C568 554 560 578 548 570C538 562 540 548 538 534Z" fill="url(#sangre-nucLight)" stroke="#3a1f6a" stroke-width="1.8"/>
+    <path d="M556 528C570 514 590 508 610 514M620 518C634 528 640 544 636 560M570 544C582 536 600 534 614 540M606 552C618 556 626 566 622 578" fill="none" stroke="#e2d3f6" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+    <ellipse cx="566" cy="490" rx="26" ry="12" fill="url(#sangre-spec)" opacity="0.75"/>
+  </g>
+  <circle cx="550" cy="450" r="435" fill="url(#sangre-vignette)"/>
+</g>
+<path d="M200 260A400 400 0 0 1 420 70" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.18"/>
+<circle cx="550" cy="450" r="435" fill="none" stroke="#c8a64a" stroke-width="1.5" opacity="0.7"/>
+
+<g id="hits" fill="none">
+  <path data-key="plasma" d="M115 450A435 435 0 1 0 985 450A435 435 0 1 0 115 450Z"/>
+  <path data-key="globulos-blancos" d="M350 352A100 100 0 1 0 550 352A100 100 0 1 0 350 352ZM572 318A76 76 0 1 0 724 318A76 76 0 1 0 572 318ZM488 548A112 112 0 1 0 712 548A112 112 0 1 0 488 548ZM328 592A64 64 0 1 0 456 592A64 64 0 1 0 328 592Z"/>
+  <path data-key="globulos-rojos" d="M227.1 429.3A39 39 0 1 0 305.1 429.3A39 39 0 1 0 227.1 429.3ZM209.4 270.6A39 24 -21.3 1 0 282 242.3A39 24 -21.3 1 0 209.4 270.6ZM760.5 587.2A39 39 0 1 0 838.5 587.2A39 39 0 1 0 760.5 587.2ZM253.2 533.2A39 39 0 1 0 331.2 533.2A39 39 0 1 0 253.2 533.2ZM721.3 666.9A39 39 0 1 0 799.3 666.9A39 39 0 1 0 721.3 666.9ZM197.9 626.2A39 39 0 1 0 275.9 626.2A39 39 0 1 0 197.9 626.2ZM537 231.2A39 39 0 1 0 615 231.2A39 39 0 1 0 537 231.2ZM727.4 410.1A35 24 16.8 1 0 794.4 430.3A35 24 16.8 1 0 727.4 410.1ZM723.9 184.6A40 20 -32.4 1 0 791.4 141.7A40 20 -32.4 1 0 723.9 184.6ZM254.1 159.3A39 39 0 1 0 332.1 159.3A39 39 0 1 0 254.1 159.3ZM420.3 726.8A39 39 0 1 0 498.3 726.8A39 39 0 1 0 420.3 726.8ZM303.9 224.6A35 35 0 1 0 373.9 224.6A35 35 0 1 0 303.9 224.6ZM772.4 303.7A39 39 0 1 0 850.4 303.7A39 39 0 1 0 772.4 303.7ZM270.5 330.6A35 24 -2.8 1 0 340.4 327.2A35 24 -2.8 1 0 270.5 330.6ZM562.4 777.3A39 39 0 1 0 640.4 777.3A39 39 0 1 0 562.4 777.3ZM659.3 770.7A39 39 0 1 0 737.3 770.7A39 39 0 1 0 659.3 770.7ZM511.1 422.2A39 39 0 1 0 589.1 422.2A39 39 0 1 0 511.1 422.2ZM353.3 458.7A39 39 0 1 0 431.3 458.7A39 39 0 1 0 353.3 458.7ZM853 260.4A35 35 0 1 0 923 260.4A35 35 0 1 0 853 260.4ZM525.8 132.7A39 24 -16.5 1 0 600.5 110.5A39 24 -16.5 1 0 525.8 132.7ZM151.8 404.7A35 35 0 1 0 221.8 404.7A35 35 0 1 0 151.8 404.7ZM140.2 515A39 39 0 1 0 218.2 515A39 39 0 1 0 140.2 515ZM832.6 649.5A39 39 0 1 0 910.6 649.5A39 39 0 1 0 832.6 649.5ZM443.1 130A35 35 0 1 0 513.1 130A35 35 0 1 0 443.1 130ZM614.3 179.6A39 39 0 1 0 692.3 179.6A39 39 0 1 0 614.3 179.6ZM428 806.2A36 20 7.3 1 0 499.4 815.3A36 20 7.3 1 0 428 806.2ZM475 660.4A35 35 0 1 0 545 660.4A35 35 0 1 0 475 660.4ZM438.5 556.8A35 35 0 1 0 508.5 556.8A35 35 0 1 0 438.5 556.8ZM757.6 501.2A39 39 0 1 0 835.6 501.2A39 39 0 1 0 757.6 501.2ZM387.8 228.6A39 39 0 1 0 465.8 228.6A39 39 0 1 0 387.8 228.6ZM599 421.4A39 39 0 1 0 677 421.4A39 39 0 1 0 599 421.4ZM325.5 771.2A39 24 -29.2 1 0 393.6 733.2A39 24 -29.2 1 0 325.5 771.2ZM847.5 466A39 39 0 1 0 925.5 466A39 39 0 1 0 847.5 466ZM819.3 384.9A35 35 0 1 0 889.3 384.9A35 35 0 1 0 819.3 384.9ZM360.3 90.2A39 39 0 1 0 438.3 90.2A39 39 0 1 0 360.3 90.2ZM643.1 84.1A39 39 0 1 0 721.1 84.1A39 39 0 1 0 643.1 84.1ZM884.2 556A39 39 0 1 0 962.2 556A39 39 0 1 0 884.2 556ZM761.2 748.8A35 24 -15.8 1 0 828.5 729.8A35 24 -15.8 1 0 761.2 748.8ZM638.4 684.6A39 39 0 1 0 716.4 684.6A39 39 0 1 0 638.4 684.6ZM260.5 687.6A39 39 0 1 0 338.5 687.6A39 39 0 1 0 260.5 687.6ZM668.5 245.9A39 39 0 1 0 746.5 245.9A39 39 0 1 0 668.5 245.9ZM517.9 330A39 39 0 1 0 595.9 330A39 39 0 1 0 517.9 330ZM673.8 515A40 20 -10.4 1 0 752.5 500.5A40 20 -10.4 1 0 673.8 515ZM695 343.6A35 24 -18.8 1 0 761.3 321.1A35 24 -18.8 1 0 695 343.6ZM544.1 701.5A35 35 0 1 0 614.1 701.5A35 35 0 1 0 544.1 701.5ZM445.7 473.1A35 35 0 1 0 515.7 473.1A35 35 0 1 0 445.7 473.1ZM503.8 838.9A39 39 0 1 0 581.8 838.9A39 39 0 1 0 503.8 838.9ZM800.7 194.2A35 35 0 1 0 870.7 194.2A35 35 0 1 0 800.7 194.2ZM473.4 61.3A35 35 0 1 0 543.4 61.3A35 35 0 1 0 473.4 61.3ZM893.9 375.1A39 24 -12.9 1 0 970 357.7A39 24 -12.9 1 0 893.9 375.1ZM148.2 322.6A39 39 0 1 0 226.2 322.6A39 39 0 1 0 148.2 322.6ZM677.4 590.9A35 35 0 1 0 747.4 590.9A35 35 0 1 0 677.4 590.9Z"/>
+  <path data-key="plaquetas" d="M332.2 141.2A20 20 0 1 0 372.2 141.2A20 20 0 1 0 332.2 141.2ZM520.3 776.9A20 20 0 1 0 560.3 776.9A20 20 0 1 0 520.3 776.9ZM467.2 225.6A20 20 0 1 0 507.2 225.6A20 20 0 1 0 467.2 225.6ZM184.7 458.5A20 20 0 1 0 224.7 458.5A20 20 0 1 0 184.7 458.5ZM381.6 157.2A20 20 0 1 0 421.6 157.2A20 20 0 1 0 381.6 157.2ZM384.4 816.9A20 20 0 1 0 424.4 816.9A20 20 0 1 0 384.4 816.9ZM607.7 832.2A20 20 0 1 0 647.7 832.2A20 20 0 1 0 607.7 832.2ZM583.7 66.4A20 20 0 1 0 623.7 66.4A20 20 0 1 0 583.7 66.4ZM801.5 433.9A20 20 0 1 0 841.5 433.9A20 20 0 1 0 801.5 433.9ZM314.8 418A20 20 0 1 0 354.8 418A20 20 0 1 0 314.8 418ZM823.3 703.2A20 20 0 1 0 863.3 703.2A20 20 0 1 0 823.3 703.2ZM848.9 323.7A20 20 0 1 0 888.9 323.7A20 20 0 1 0 848.9 323.7ZM500.8 166.8A20 20 0 1 0 540.8 166.8A20 20 0 1 0 500.8 166.8ZM225.6 344.4A20 20 0 1 0 265.6 344.4A20 20 0 1 0 225.6 344.4Z"/>
+  <path data-key="linfocito" d="M591 318A57 57 0 1 0 705 318A57 57 0 1 0 591 318Z"/>
+  <path data-key="neutrofilo" d="M369 352A81 81 0 1 0 531 352A81 81 0 1 0 369 352Z"/>
+  <path data-key="monocito" d="M507 548A93 93 0 1 0 693 548A93 93 0 1 0 507 548Z"/>
+</g>
+</svg>

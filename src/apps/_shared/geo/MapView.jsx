@@ -11,8 +11,12 @@
 //   frames?: string               marcos de recuadros (Canarias)
 //   views.world                   encuadre inicial
 //   nameOf(key)                   nombre para tooltips y etiquetas
+//   Backdrop?: componente         fondo propio en lugar del mar (láminas del cuerpo
+//                                 humano): recibe { world, k, vb } y pinta dentro del SVG
+//   className?: string            clase extra del lienzo (tema de la app)
 // entry = { key, name, cont (grupo), d, parts: [{ cont, d }], centroid, marker, terr?, fill? }
 // feature = { key, name, kind: 'line' | 'area' | 'point', type, d?, xy }
+// `hud`: controles HTML propios encima del lienzo (capas, lupa…).
 import React, { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Plus, Minus, Maximize2 } from 'lucide-react';
 
@@ -202,6 +206,7 @@ function MapView({
   labels,
   overlay,
   onPick,
+  hud = null,
   className = '',
   ariaLabel = 'Mapa',
 }) {
@@ -348,7 +353,13 @@ function MapView({
   const endPointer = (e, cancelled) => {
     const g = gesture.current;
     pointers.current.delete(e.pointerId);
-    if (!cancelled && g?.type === 'pan' && !g.moved && (pickable || featuresPickable) && g.key) onPick?.(g.key, g.cont);
+    if (!cancelled && g?.type === 'pan' && !g.moved && (pickable || featuresPickable) && g.key) {
+      // Punto tocado en coordenadas del mapa (zonas tapadas por otras: ver judgeMapPick).
+      const rect = wrapRef.current.getBoundingClientRect();
+      const v = vbRef.current;
+      const pt = rect.width ? [v.x + ((g.x - rect.left) / rect.width) * v.w, v.y + ((g.y - rect.top) / rect.height) * v.h] : null;
+      onPick?.(g.key, g.cont, pt);
+    }
     if (pointers.current.size === 0) {
       gesture.current = null;
     } else if (g?.type === 'pinch') {
@@ -370,6 +381,7 @@ function MapView({
     pickable && 'is-pickable',
     groupByContinent && 'gq-map--group',
     interactive && 'is-interactive',
+    world.className,
     className,
   ].filter(Boolean).join(' ');
 
@@ -384,7 +396,7 @@ function MapView({
       onPointerLeave={() => setTip(null)}
     >
       <svg viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`} className="gq-map__svg" role="img" aria-label={ariaLabel}>
-        <MapBase world={world} />
+        {world.Backdrop ? <world.Backdrop world={world} k={k} vb={vb} /> : <MapBase world={world} />}
         {seas.length > 0 && <Features features={seas} states={states} pickable={featuresPickable} className="gq-feats--sea" />}
         <Lands entries={layer} states={states} colorBy={colorBy} group={groupByContinent} />
         {meshes?.map((m) => <path key={m.key} d={m.d} className={`gq-mesh ${m.cls || ''}`} pointerEvents="none" />)}
@@ -397,6 +409,7 @@ function MapView({
         {labels?.map((l) => <MapLabel key={`${l.text}-${l.x}`} {...l} k={k} />)}
       </svg>
       {tip && <div className="gq-map__tip" style={{ left: tip.x, top: tip.y }}>{tip.text}</div>}
+      {hud && <div className="gq-map__hud" onPointerDown={(e) => e.stopPropagation()}>{hud}</div>}
       {interactive && controls && (
         <div className="gq-map__ctrls" onPointerDown={(e) => e.stopPropagation()}>
           <button type="button" onClick={() => zoomButton(0.6)} aria-label="Acercar" title="Acercar"><Plus size={18} /></button>

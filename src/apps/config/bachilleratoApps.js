@@ -8,7 +8,7 @@ import {
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appLaboratorioFisica,
   appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal,
-  appInfografiasInteractivas, appCazapalabras3D, appExploradorMundo, appExploradorEspana
+  appInfografiasInteractivas, appCazapalabras3D, appExploradorMundo, appExploradorEspana, appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo
 } from './commonApps';
 
 export const bachilleratoSubjects = materiasData.bachillerato;
@@ -29,7 +29,7 @@ const appsCiencias = [
 ];
 
 const appsBiologia = [
-  appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar, ...appsBase
+  appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo, appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar, ...appsBase
 ];
 
 const appsMatematicas = [
@@ -64,7 +64,7 @@ export const bachilleratoApps = {
     'latin':                [...appsBase],
     'literatura-universal': [...appsBase],
     'tecnologia':           [...appsTecnologia],
-    'ed-fisica':            [...appsBase],
+    'ed-fisica':            [appHuesosMusculos, appViajeCuerpo, ...appsBase],
     'ingles':               [...appsIdioma],
     'valenciano':           [...appsIdioma],
     'frances':              [...appsIdioma],

@@ -7,7 +7,8 @@ import {
   appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
   appBuscaElIntruso, appRosco, appRunner, appNavePalabras, appLluviaDePalabras, appParejas,
   appClasificador, appSnake, appJuegoMemoria, appComprensionEscrita, appComprensionOral,
-  appExcavacionSelectiva, appIslaDeLaCalma, appBancoRecursosTutoria, appGeneradorPersonajes
+  appExcavacionSelectiva, appIslaDeLaCalma, appBancoRecursosTutoria, appGeneradorPersonajes,
+  appExploradorCuerpo
 } from './commonApps';
 
 export const adSubjects = materiasData.ad;
@@ -18,7 +19,7 @@ export const adApps = {
     'tutoria':               [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes],
     // Audición y Lenguaje
     'articulacion':          [appAhorcado, appAnagramas, appSopaDeLetras, appDictadoInteractivo, appVelocidadRespuesta, appLluviaDePalabras, appRosco, appCrucigrama, appJuegoMemoria],
-    'vocabulario':           [appConectaParejas, appSopaDeLetras, appCrucigrama, appAhorcado, appAnagramas, appBuscaElIntruso, appClasificador, appTorrePalabras, appLaFortaleza, appRosco, appMillonario, appLluviaDePalabras, appSnake, appRunner, appNavePalabras, appExcavacionSelectiva],
+    'vocabulario':           [appExploradorCuerpo, appConectaParejas, appSopaDeLetras, appCrucigrama, appAhorcado, appAnagramas, appBuscaElIntruso, appClasificador, appTorrePalabras, appLaFortaleza, appRosco, appMillonario, appLluviaDePalabras, appSnake, appRunner, appNavePalabras, appExcavacionSelectiva],
     'morfosintaxis':         [appOrdenaLaFrase, appDetectiveDePalabras, appDictadoInteractivo, appCriptograma, appAhorcado, appAnagramas, appConectaParejas, appMillonario, appRosco],
     'pragmatica':            [appComprensionEscrita, appComprensionOral, appOrdenaLaHistoria, appOrdenaLaFrase, appConectaParejas, appMillonario, appBuscaElIntruso, appDetectiveDePalabras],
     'conciencia-fonologica': [appAnagramas, appAhorcado, appSopaDeLetras, appDictadoInteractivo, appLluviaDePalabras, appVelocidadRespuesta, appRosco, appCrucigrama],
@@ -30,7 +31,7 @@ export const adApps = {
     'funciones-ejecutivas':  [appTorrePalabras, appClasificador, appOrdenaLaFrase, appOrdenaLaHistoria, appCriptograma, appAnagramas, appCrucigrama, appDetectiveDePalabras, appSnake, appRunner],
     'habilidades-sociales':  [appComprensionEscrita, appComprensionOral, appOrdenaLaHistoria, appIslaDeLaCalma, appConectaParejas, appMillonario, appBuscaElIntruso, appOrdenaLaFrase],
     'razonamiento':          [appBuscaElIntruso, appClasificador, appMillonario, appTorrePalabras, appCriptograma, appAnagramas, appConectaParejas, appOrdenaLaHistoria, appCrucigrama],
-    'autonomia':             [appIslaDeLaCalma, appOrdenaLaHistoria, appOrdenaLaFrase, appClasificador, appTorrePalabras, appComprensionEscrita, appMillonario],
+    'autonomia':             [appExploradorCuerpo, appIslaDeLaCalma, appOrdenaLaHistoria, appOrdenaLaFrase, appClasificador, appTorrePalabras, appComprensionEscrita, appMillonario],
     'lectoescritura-adaptada': [appDictadoInteractivo, appAhorcado, appAnagramas, appSopaDeLetras, appCrucigrama, appDetectiveDePalabras, appOrdenaLaFrase, appLluviaDePalabras, appCriptograma, appVelocidadRespuesta, appRosco],
   }
 };

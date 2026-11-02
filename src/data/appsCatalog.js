@@ -91,6 +91,9 @@ export const CONCEPT_CATEGORY = {
   "celula-animal": "ciencia",
   "celula-vegetal": "ciencia",
   "infografias-interactivas": "ciencia",
+  "explorador-cuerpo": "ciencia",
+  "huesos-musculos": "ciencia",
+  "viaje-cuerpo": "ciencia",
   "explorador-mundo": "geografia",
   "explorador-espana": "geografia",
   "programacion-bloques": "programacion",
@@ -192,6 +195,9 @@ export const APP_ID_TO_CONCEPT = {
   "celula-animal": "celula-animal",
   "celula-vegetal": "celula-vegetal",
   "infografias-interactivas": "infografias-interactivas",
+  "explorador-cuerpo": "explorador-cuerpo",
+  "huesos-musculos": "huesos-musculos",
+  "viaje-cuerpo": "viaje-cuerpo",
   "explorador-mundo": "explorador-mundo",
   "explorador-espana": "explorador-espana",
   "programacion-bloques": "programacion-bloques",
@@ -2126,6 +2132,104 @@ export const APP_CONCEPTS = {
       "Usa la pantalla completa para ver los detalles más finos sin distracciones.",
       "No tengas prisa al enviar: revisa que todas las respuestas reflejan lo que recuerdas de la infografía.",
       "Aprovecha la corrección final para releer las preguntas falladas; repetir la infografía después suele subir bastante la nota."
+    ]
+  },
+  "explorador-cuerpo": {
+    "key": "explorador-cuerpo",
+    "name": "Explorador del Cuerpo Humano",
+    "emoji": "🫀",
+    "queEs": "Explorador del Cuerpo Humano es un atlas interactivo del cuerpo con láminas hechas a partir de un modelo 3D real: piel, músculos, órganos, vasos sanguíneos, nervios y esqueleto, y láminas por dentro del ojo, el oído, la piel, el corazón, el riñón o la neurona. Tiene doce minijuegos y se puede jugar en castellano, valenciano o inglés.",
+    "porQueRelevante": "Saber qué hay dentro de nuestro cuerpo y para qué sirve cada órgano es la base de la salud y de las ciencias. Tocando cada órgano en su sitio y viendo cómo encaja con los demás se aprende mucho mejor que memorizando listas, y el contenido crece con el curso: de las partes del cuerpo en 1.º de Primaria a las áreas del cerebro en Bachillerato.",
+    "comoFunciona": "Elige el modo (Fácil, Medio o Examen), el idioma y, si quieres, un aparato del cuerpo. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos y recibes una nota sobre 10. El Atlas anatómico te deja explorar el cuerpo por capas con una lupa de rayos X.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen, el idioma y, si quieres, un aparato o sistema.",
+      "En Fácil o Medio, elige un minijuego: Partes del cuerpo, ¿Dónde está?, ¿Para qué sirve?, Los sentidos, Aparatos y sistemas, Siluetas, Por dentro…",
+      "Responde tocando la estructura en la lámina (arrastra y haz zoom para las piezas pequeñas) o eligiendo una opción.",
+      "Lee la explicación que aparece después de cada respuesta.",
+      "Abre el Atlas anatómico desde el botón del libro para estudiar o reta a un compañero a un duelo."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "3 opciones, pistas gratis, la lámina empieza cerca de la zona y tienes 3 intentos."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "4 opciones parecidas y 2 intentos. La pista resta la mitad de los puntos."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+      }
+    ],
+    "consejos": [
+      "Usa la lupa de rayos X del Atlas para ver qué hay debajo de los músculos.",
+      "Filtra por aparato para repasar un tema cada día.",
+      "En inglés o valenciano aprendes el vocabulario del cuerpo a la vez."
+    ]
+  },
+  "huesos-musculos": {
+    "key": "huesos-musculos",
+    "name": "Huesos y Músculos",
+    "emoji": "🦴",
+    "queEs": "Huesos y Músculos te enseña el aparato locomotor: los huesos del esqueleto, los músculos, las articulaciones y cómo se mueve el cuerpo, con láminas hechas a partir de un modelo 3D real y un maniquí que hace cada movimiento.",
+    "porQueRelevante": "Conocer los huesos y los músculos ayuda a entender cómo nos movemos, a hacer deporte con cabeza y a prevenir lesiones. Es contenido de Ciencias y de Educación Física, y crece con el curso.",
+    "comoFunciona": "Elige el modo, el idioma y, si quieres, una zona del cuerpo. Toca huesos y músculos en las láminas, identifica la pieza iluminada, adivina qué músculo trabaja en cada ejercicio o qué movimiento hace el maniquí. En el Examen salen preguntas de todo y recibes una nota sobre 10.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen, el idioma y, si quieres, una zona del cuerpo.",
+      "Elige un minijuego: El esqueleto, Los músculos, Músculos en acción, El hueso por dentro, Articulaciones, Huesos en detalle, Movimientos o Biomecánica.",
+      "Toca la pieza en la lámina o elige la respuesta.",
+      "Usa el Atlas con la lupa de rayos X para ver los huesos que hay bajo los músculos."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "3 opciones, pistas gratis, la lámina empieza cerca de la zona y tienes 3 intentos."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "4 opciones parecidas y 2 intentos."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10."
+      }
+    ],
+    "consejos": [
+      "Los músculos trabajan por parejas: cuando uno se contrae, su antagonista se relaja.",
+      "Fíjate en qué parte del maniquí se ilumina: es la que se mueve."
+    ]
+  },
+  "viaje-cuerpo": {
+    "key": "viaje-cuerpo",
+    "name": "Viaje por el Cuerpo",
+    "emoji": "🤖",
+    "queEs": "En Viaje por el Cuerpo el robot de la plataforma se hace diminuto y viaja por dentro del cuerpo: sigue la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida, parada a parada.",
+    "porQueRelevante": "Entender cómo funciona el cuerpo (no solo dónde está cada órgano) es clave en Ciencias. Seguir un recorrido paso a paso ayuda a recordar el orden y lo que pasa en cada sitio.",
+    "comoFunciona": "Elige el modo y el idioma y después un viaje. Toca la primera parada, adivina la siguiente, elige qué ocurre en cada sitio y, al final, ordena todo el recorrido. En el Examen salen preguntas de todos los viajes y recibes una nota sobre 10.",
+    "instrucciones": [
+      "Elige Fácil, Medio o Examen y el idioma.",
+      "Elige un viaje: El bocado, La bocanada, El glóbulo rojo, La gota, El impulso, La luz, El sonido, La vida…",
+      "Toca la siguiente parada en la lámina: la estela te enseña por dónde has pasado.",
+      "Al final, ordena el recorrido tocando las paradas una tras otra."
+    ],
+    "modos": [
+      {
+        "nombre": "Fácil",
+        "descripcion": "3 opciones, pistas gratis y 3 intentos por parada."
+      },
+      {
+        "nombre": "Medio",
+        "descripcion": "4 opciones parecidas y 2 intentos."
+      },
+      {
+        "nombre": "Examen",
+        "descripcion": "10 preguntas mezcladas de todos los viajes, sin pistas y con un solo intento. Nota sobre 10."
+      }
+    ],
+    "consejos": [
+      "Repasa las láminas en el Atlas antes de viajar.",
+      "Si fallas una parada, fíjate en la estela: te enseña el camino correcto."
     ]
   },
   "explorador-mundo": {

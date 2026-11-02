@@ -56,6 +56,7 @@ const CONCEPT_CATEGORY = {
   'laboratorio-fisica': 'ciencia', 'mesa-crafteo': 'ciencia', 'entrenador-tabla': 'ciencia',
   'sistema-solar': 'ciencia', 'celula-animal': 'ciencia', 'celula-vegetal': 'ciencia',
   'infografias-interactivas': 'ciencia',
+  'explorador-cuerpo': 'ciencia', 'huesos-musculos': 'ciencia', 'viaje-cuerpo': 'ciencia',
   // Geografía
   'explorador-mundo': 'geografia',
   'explorador-espana': 'geografia',

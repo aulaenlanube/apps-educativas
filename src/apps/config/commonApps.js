@@ -120,6 +120,9 @@ const LaboratorioFisica = lazy(() => import('../laboratorio-fisica/LaboratorioFi
 const InfografiasInteractivas = lazy(() => import('../infografias-interactivas/InfografiasInteractivas'));
 const ExploradorMundo = lazy(() => import('../explorador-mundo/ExploradorMundo'));
 const ExploradorEspana = lazy(() => import('../explorador-espana/ExploradorEspana'));
+const ExploradorCuerpo = lazy(() => import('../explorador-cuerpo/ExploradorCuerpo'));
+const HuesosMusculos = lazy(() => import('../huesos-musculos/HuesosMusculos'));
+const ViajeCuerpo = lazy(() => import('../viaje-cuerpo/ViajeCuerpo'));
 
 
 // Apps Comunes
@@ -540,5 +543,29 @@ export const appExploradorEspana = {
   name: '🗺️ Explorador de España',
   description: 'Mapa interactivo de España: comunidades, provincias, capitales, banderas, ríos, montañas e islas.',
   component: ExploradorEspana,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
+};
+
+export const appExploradorCuerpo = {
+  id: 'explorador-cuerpo',
+  name: '🫀 Explorador del Cuerpo Humano',
+  description: 'Láminas de un cuerpo humano real en 3D: partes del cuerpo, órganos, sentidos, aparatos y sistemas, por dentro, reproducción, tejidos, hormonas y salud. En castellano, valenciano e inglés.',
+  component: ExploradorCuerpo,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
+};
+
+export const appHuesosMusculos = {
+  id: 'huesos-musculos',
+  name: '🦴 Huesos y Músculos',
+  description: 'El aparato locomotor a fondo: esqueleto, músculos, cráneo, columna, mano y pie, articulaciones, músculos en acción, movimientos con un maniquí animado y biomecánica. En tres idiomas.',
+  component: HuesosMusculos,
+  duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
+};
+
+export const appViajeCuerpo = {
+  id: 'viaje-cuerpo',
+  name: '🤖 Viaje por el Cuerpo',
+  description: 'El robot recorre el cuerpo por dentro siguiendo la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida. En tres idiomas.',
+  component: ViajeCuerpo,
   duel: { supported: true, bestOf: 1, mode: 'quiz-race' }
 };

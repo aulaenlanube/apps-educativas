@@ -8,7 +8,11 @@
 //   kind 'locate'         tocar una región de la capa `layer` (target = key)
 //   kind 'locate-group'   tocar cualquier región de un grupo (target = continente/comunidad)
 //   kind 'locate-feature' tocar un accidente geográfico (target = key de world.features)
+//   kind 'sequence'       tocar en orden las paradas `stops` de la capa `layer` (recorridos)
 //   card                  ficha que se muestra al responder { flag, title, sub }
+//
+// Cada pregunta se pinta sobre `world.scope(layer)` si el mundo tiene varias
+// láminas con coordenadas propias (cuerpo humano); si no, sobre `world`.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
@@ -21,16 +25,19 @@ import { padView } from './paths';
 import { questionPoints } from './scoring';
 import MapView, { MapLabel, PulseRing } from './MapView';
 import { Flag, Glyph, Shape } from './Visuals';
+import { UI_ES } from './ui';
 
 export const AUTO_NEXT_MS = 1700;
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
-const PRAISE = ['¡Correcto!', '¡Muy bien!', '¡Eso es!', '¡Genial!', '¡Perfecto!'];
-const MODE_LABEL = { easy: 'Fácil', medium: 'Medio', exam: 'Examen' };
 const TEXT_ICONS = { capital: Landmark, city: Building2, river: Waves, mountain: Mountain };
+
+// Lámina (o mundo) sobre la que se pinta una capa.
+export const scopeOf = (world, layer) => (world?.scope ? world.scope(layer) : world);
 
 /* ───────── visual de la pregunta ───────── */
 
-export function Subject({ q, world, done }) {
+// renderCustom(q, done): visual propio de la app para tipos que el motor no conoce.
+export function Subject({ q, world, done, renderCustom }) {
   const s = q.subject;
   switch (s?.type) {
     case 'shape':
@@ -81,19 +88,26 @@ export function Subject({ q, world, done }) {
         </div>
       );
     case 'map': {
-      const layer = world.layer(s.layer);
+      const w = scopeOf(world, s.layer);
+      const layer = w.layer(s.layer);
       const e = layer.get(s.key);
+      const extra = w.questionOverlay;
       return (
         <div className="gq-stage gq-stage--map">
           <MapView
-            world={world}
+            world={w}
             entries={layer}
-            view={s.view ? world.views[s.view] : world.views.world}
+            view={s.viewBox || (s.view ? w.views[s.view] || w.views.world : w.views.world)}
             states={{ [s.key]: done ? 'correct' : 'selected' }}
-            interactive={false}
-            meshes={world.meshesFor?.(s.layer)}
+            interactive={Boolean(s.interactive)}
+            meshes={w.meshesFor?.(s.layer)}
             ariaLabel="Mapa con una región marcada"
-            overlay={(kk) => (e ? <PulseRing x={e.centroid[0]} y={e.centroid[1]} k={kk} tone="info" r={20} /> : null)}
+            overlay={(kk) => (
+              <>
+                {extra?.(q, { done, k: kk, subject: true })}
+                {e ? <PulseRing x={e.centroid[0]} y={e.centroid[1]} k={kk} tone="info" r={20} /> : null}
+              </>
+            )}
           />
         </div>
       );
@@ -137,7 +151,7 @@ export function Subject({ q, world, done }) {
       );
     }
     default:
-      return null;
+      return renderCustom?.(q, done) ?? null;
   }
 }
 
@@ -251,10 +265,12 @@ export function Options({ q, world, done, picked, onAnswer, disabled = false, ma
 /* ───────── mapa de las preguntas de localizar ───────── */
 
 // Estado, vista, etiquetas y capas del mapa de una pregunta de localizar.
-// tries: [{ key, cont }] fallos; done/correct: resultado; extraLabels: etiquetas
-// adicionales (duelo: dónde tocó el rival).
-export function useLocateMap(world, q, { tries, done, correct, difficulty, extraLabels }) {
-  const isMapQ = q.kind === 'locate' || q.kind === 'locate-group' || q.kind === 'locate-feature';
+// `world` ya es la lámina de la pregunta (scopeOf). tries: [{ key, cont }]
+// fallos; done/correct: resultado; extraLabels: etiquetas adicionales (duelo:
+// dónde tocó el rival); progress: paradas ya acertadas de un recorrido.
+export function useLocateMap(world, q, { tries, done, correct, difficulty, extraLabels, progress = 0 }) {
+  const isSeq = q.kind === 'sequence';
+  const isMapQ = q.kind === 'locate' || q.kind === 'locate-group' || q.kind === 'locate-feature' || isSeq;
   const layer = world.layer(q.layer);
   const features = useMemo(() => (q.kind === 'locate-feature'
     ? (q.featurePool || []).map((k) => world.features.get(k)).filter(Boolean)
@@ -264,6 +280,13 @@ export function useLocateMap(world, q, { tries, done, correct, difficulty, extra
     if (!isMapQ) return null;
     const s = {};
     tries.forEach((t) => { s[t.key] = 'wrong'; });
+    if (isSeq) {
+      q.stops.forEach((k, i) => {
+        if (i < progress) s[k] = 'correct';
+        else if (done) s[k] = correct ? 'correct' : 'target';
+      });
+      return s;
+    }
     if (done) {
       if (q.kind === 'locate-group') {
         for (const e of layer.values()) if (e.cont === q.target) s[e.key] = correct ? 'correct' : 'target';
@@ -272,17 +295,18 @@ export function useLocateMap(world, q, { tries, done, correct, difficulty, extra
       }
     }
     return s;
-  }, [isMapQ, q, tries, done, correct, layer]);
+  }, [isMapQ, isSeq, q, tries, done, correct, layer, progress]);
 
   const view = useMemo(() => {
     if (!isMapQ) return null;
     if (q.kind === 'locate-group') return done && world.views[q.target] && q.target !== 'antartida' ? world.views[q.target] : world.views[q.view || 'full'];
+    if (isSeq) return q.viewBox || world.views[q.view] || world.views.world;
     if (done) {
       if (q.kind === 'locate-feature') return world.featureView(q.target);
       return padView(world.focusView(q.target, q.layer), 0.1);
     }
-    return world.views[q.view] || world.views.world;
-  }, [isMapQ, q, done, world]);
+    return q.viewBox || world.views[q.view] || world.views.world;
+  }, [isMapQ, isSeq, q, done, world]);
 
   const labels = useMemo(() => {
     if (!isMapQ) return [];
@@ -298,25 +322,63 @@ export function useLocateMap(world, q, { tries, done, correct, difficulty, extra
       const where = q.kind === 'locate-group' && t.cont ? ` · ${world.groupName(t.cont)}` : '';
       return { x: a.xy[0], y: a.xy[1], text: `${a.name}${where}`, tone: 'bad' };
     }).filter(Boolean);
-    if (done && q.kind !== 'locate-group') {
+    if (isSeq) {
+      q.stops.forEach((k, i) => {
+        if (i >= progress && !done) return;
+        const a = anchor(k);
+        if (a) list.push({ x: a.xy[0], y: a.xy[1], text: `${i + 1}. ${a.name}`, tone: i < progress || correct ? 'good' : 'target' });
+      });
+    } else if (done && q.kind !== 'locate-group') {
       const a = anchor(q.target);
       if (a) list.push({ x: a.xy[0], y: a.xy[1], text: a.name, tone: correct ? 'good' : 'target' });
     }
     return [...list, ...(extraLabels || [])];
-  }, [isMapQ, q, tries, done, correct, world, layer, extraLabels]);
+  }, [isMapQ, isSeq, q, tries, done, correct, world, layer, extraLabels, progress]);
 
+  // Capa propia del mundo (estela de un recorrido, robot…) + anillo del objetivo.
+  const extra = world.questionOverlay;
   const overlay = useCallback((kk) => {
-    if (!done || q.kind !== 'locate') return null;
-    const e = layer.get(q.target);
-    return e ? <PulseRing x={e.centroid[0]} y={e.centroid[1]} k={kk} tone={correct ? 'good' : 'target'} /> : null;
-  }, [done, q, layer, correct]);
+    const own = extra?.(q, { done, correct, k: kk, progress });
+    const e = done && q.kind === 'locate' ? layer.get(q.target) : null;
+    if (!own && !e) return null;
+    return (
+      <>
+        {own}
+        {e && <PulseRing x={e.centroid[0]} y={e.centroid[1]} k={kk} tone={correct ? 'good' : 'target'} />}
+      </>
+    );
+  }, [extra, done, q, layer, correct, progress]);
 
   const colorBy = q.colorBy || (q.kind === 'locate' && difficulty === 'easy' ? 'continent' : 'uniform');
   return { isMapQ, layer, features, states, view, labels, overlay, colorBy };
 }
 
+// Una zona cuenta como la pedida si es ella, si queda dentro de ella o, si la
+// pedida está tapada por otras (corona del diente, útero, plasma…), si el punto
+// tocado cae dentro de su contorno completo.
+let probe = null;
+function pointInPath(d, pt) {
+  if (!pt || typeof document === 'undefined' || typeof Path2D === 'undefined') return false;
+  try {
+    probe ||= document.createElement('canvas').getContext('2d');
+    return Boolean(probe?.isPointInPath(new Path2D(d), pt[0], pt[1], 'evenodd'));
+  } catch { return false; }
+}
+function hits(world, layer, target, key, pt) {
+  if (key === target) return true;
+  const e = world?.layer(layer).get(target);
+  if (!e) return false;
+  return Boolean(e.contains?.includes(key) || (e.covered && pointInPath(e.d, pt)));
+}
+
 // ¿Acierta este toque? (null si no cuenta: ya probado o fuera de lo jugable)
-export function judgeMapPick(q, key, cont, tries, world) {
+// En un recorrido, `progress` = paradas ya acertadas: acierta si es la siguiente.
+export function judgeMapPick(q, key, cont, tries, world, progress = 0, pt = null) {
+  if (q.kind === 'sequence') {
+    if (!key || tries.some((t) => t.key === key) || q.stops.slice(0, progress).includes(key)) return null;
+    if (world && !world.layer(q.layer).has(key)) return null;
+    return hits(world, q.layer, q.stops[progress], key, pt);
+  }
   if (q.kind === 'locate-group') {
     if (!cont || tries.some((t) => t.cont === cont)) return null;
     return cont === q.target;
@@ -327,12 +389,12 @@ export function judgeMapPick(q, key, cont, tries, world) {
   }
   if (!key || tries.some((t) => t.key === key)) return null;
   if (world && !world.layer(q.layer).has(key)) return null;
-  return key === q.target;
+  return hits(world, q.layer, q.target, key, pt);
 }
 
 /* ───────── barra de resultado de la pregunta ───────── */
 
-function Feedback({ q, correct, gain, auto, isLast, onNext, index }) {
+function Feedback({ q, correct, gain, auto, isLast, onNext, index, ui = UI_ES }) {
   const c = q.card;
   return (
     <motion.div
@@ -345,10 +407,10 @@ function Feedback({ q, correct, gain, auto, isLast, onNext, index }) {
       <span className="gq-fb__badge">{correct ? <Check size={22} strokeWidth={3} /> : <X size={22} strokeWidth={3} />}</span>
       <div className="gq-fb__text">
         <strong>
-          {correct ? PRAISE[index % PRAISE.length] : 'No era esa'}
+          {correct ? ui.praise[index % ui.praise.length] : ui.wrong}
           {correct && gain > 0 && <span className="gq-fb__gain">+{gain}</span>}
         </strong>
-        {!correct && <span>La respuesta correcta: <b>{q.answerLabel}</b></span>}
+        {!correct && <span>{ui.correctWas} <b>{q.answerLabel}</b></span>}
         {q.explain && <span className="gq-fb__explain"><Lightbulb size={14} /> {q.explain}</span>}
       </div>
       {c && (
@@ -368,28 +430,31 @@ function Feedback({ q, correct, gain, auto, isLast, onNext, index }) {
         autoFocus
         style={auto ? { '--gq-auto': `${AUTO_NEXT_MS}ms` } : undefined}
       >
-        {isLast ? 'Ver resultados' : 'Siguiente'}
+        {isLast ? ui.seeResults : ui.next}
       </GameButton>
     </motion.div>
   );
 }
 
-export function mapHelpText(q) {
-  if (q.kind === 'locate-group') return 'Toca cualquier región de ese grupo';
-  if (q.kind === 'locate-feature') return 'Toca el elemento correcto · arrastra y haz zoom para verlo mejor';
-  return 'Arrastra para moverte · rueda o pellizco para hacer zoom · los puntos son lugares pequeños';
+export function mapHelpText(q, ui = UI_ES) {
+  if (q.helpText) return q.helpText;
+  if (q.kind === 'locate-group') return ui.mapHelp.group;
+  if (q.kind === 'locate-feature') return ui.mapHelp.feature;
+  if (q.kind === 'sequence') return ui.mapHelp.sequence;
+  return ui.mapHelp.default;
 }
 
 /* ───────── pantalla ───────── */
 
 export default function QuizPlay({
   world, questions, difficulty, gameTitle, gameTitleOf, regionLabel, paused = false,
-  onProgress, onFinish, onExit, onHelp, onStudy,
+  onProgress, onFinish, onExit, onHelp, onStudy, ui = UI_ES, renderSubject, mapHud,
 }) {
   const isExam = difficulty === 'exam';
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState('ask');
   const [tries, setTries] = useState([]);
+  const [progress, setProgress] = useState(0); // paradas acertadas (recorridos)
   const [picked, setPicked] = useState(null);
   const [hintOn, setHintOn] = useState(false);
   const [lastGain, setLastGain] = useState(0);
@@ -413,6 +478,7 @@ export default function QuizPlay({
     setIdx((i) => i + 1);
     setPhase('ask');
     setTries([]);
+    setProgress(0);
     setPicked(null);
     setHintOn(false);
     t0.current = performance.now();
@@ -442,11 +508,22 @@ export default function QuizPlay({
     settle(q.answer.includes(key), key, 1);
   };
 
-  const pickOnMap = (key, cont) => {
+  const pickOnMap = (key, cont, pt) => {
     if (phase !== 'ask' || paused) return;
-    const ok = judgeMapPick(q, key, cont, tries, world);
+    const ok = judgeMapPick(q, key, cont, tries, mw, progress, pt);
     if (ok === null) return;
     const attempt = tries.length + 1;
+    if (q.kind === 'sequence') {
+      if (ok) {
+        const n = progress + 1;
+        setProgress(n);
+        if (n >= q.stops.length) settle(true, key, attempt);
+        return;
+      }
+      setTries((t) => [...t, { key, cont }]);
+      if (attempt >= q.attempts) settle(false, key, attempt);
+      return;
+    }
     if (ok) {
       settle(true, key, attempt);
       return;
@@ -477,7 +554,8 @@ export default function QuizPlay({
     if (paused) clearTimeout(timer.current);
   }, [paused]);
 
-  const m = useLocateMap(world, q, { tries, done, correct: lastCorrect, difficulty });
+  const mw = scopeOf(world, q.layer);
+  const m = useLocateMap(mw, q, { tries, done, correct: lastCorrect, difficulty, progress });
   const triesLeft = m.isMapQ ? q.attempts - tries.length : 0;
   const hintAvailable = !isExam && q.kind === 'choice' && q.hint;
   const wideVisual = ['map', 'point', 'feature'].includes(q.subject?.type);
@@ -486,15 +564,15 @@ export default function QuizPlay({
     <div className="gq-play">
       <GameHeader
         mode={difficulty}
-        modeLabel={isExam ? 'Examen' : `${MODE_LABEL[difficulty]} · ${gameTitle || ''}`}
+        modeLabel={isExam ? ui.modes.exam : `${ui.modes[difficulty]} · ${gameTitle || ''}`}
         topic={regionLabel || undefined}
         onHelp={onHelp}
         onStudy={isExam ? undefined : onStudy}
         right={(
           <Hud>
-            <HudStat icon={Hash} tone="progress" value={`${idx + 1}/${questions.length}`} label="Pregunta" />
-            <HudStat icon={Trophy} tone="score" value={live.points.toLocaleString('es-ES')} label="Puntos" />
-            {!isExam && <HudStat icon={Flame} tone="streak" value={live.streak} label="Racha" />}
+            <HudStat icon={Hash} tone="progress" value={`${idx + 1}/${questions.length}`} label={ui.question} />
+            <HudStat icon={Trophy} tone="score" value={live.points.toLocaleString('es-ES')} label={ui.points} />
+            {!isExam && <HudStat icon={Flame} tone="streak" value={live.streak} label={ui.streak} />}
           </Hud>
         )}
       />
@@ -515,7 +593,7 @@ export default function QuizPlay({
             <h2>{q.prompt}</h2>
             {m.isMapQ && !done && (
               <span className="gq-q__tries">
-                {q.attempts > 1 ? <Lives total={q.attempts} left={triesLeft} icon={MapPin} /> : <span className="gq-q__one"><MapPin size={14} /> Un solo intento</span>}
+                {q.attempts > 1 ? <Lives total={q.attempts} left={triesLeft} icon={MapPin} /> : <span className="gq-q__one"><MapPin size={14} /> {ui.oneTry}</span>}
               </span>
             )}
           </div>
@@ -523,7 +601,7 @@ export default function QuizPlay({
           {m.isMapQ ? (
             <div className="gq-q__mapwrap">
               <MapView
-                world={world}
+                world={mw}
                 entries={m.layer}
                 view={m.view}
                 states={m.states}
@@ -532,26 +610,27 @@ export default function QuizPlay({
                 pickable={!done && q.kind !== 'locate-feature'}
                 features={m.features}
                 featuresPickable={!done && q.kind === 'locate-feature'}
-                meshes={world.meshesFor?.(q.layer)}
+                meshes={mw.meshesFor?.(q.layer)}
                 markers={q.kind !== 'locate-feature'}
                 onPick={pickOnMap}
                 labels={m.labels}
                 overlay={m.overlay}
+                hud={mapHud?.(q, { done })}
                 className="gq-map--game"
                 ariaLabel={q.prompt}
               />
-              {!done && <span className="gq-q__maphelp">{mapHelpText(q)}</span>}
+              {!done && <span className="gq-q__maphelp">{mapHelpText(q, ui)}</span>}
             </div>
           ) : (
             <div className={`gq-q__body ${wideVisual ? 'is-wide-visual' : ''}`}>
               <div className="gq-q__visual">
-                <Subject q={q} world={world} done={done} />
+                <Subject q={q} world={world} done={done} renderCustom={renderSubject} />
                 {hintAvailable && !done && (
                   hintOn
                     ? <motion.span className="gq-hint" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}><Lightbulb size={15} /> {q.hint}</motion.span>
                     : (
                       <GameButton variant="warning" size="sm" icon={Lightbulb} onClick={() => setHintOn(true)}>
-                        {difficulty === 'medium' ? 'Pista (−50 % puntos)' : 'Ver pista'}
+                        {difficulty === 'medium' ? ui.hintPaid : ui.hint}
                       </GameButton>
                     )
                 )}
@@ -561,7 +640,7 @@ export default function QuizPlay({
           )}
 
           {done && (
-            <Feedback q={q} correct={lastCorrect} gain={lastGain} auto={lastCorrect && !paused} isLast={isLast} onNext={next} index={idx} />
+            <Feedback q={q} correct={lastCorrect} gain={lastGain} auto={lastCorrect && !paused} isLast={isLast} onNext={next} index={idx} ui={ui} />
           )}
         </motion.div>
       </AnimatePresence>
@@ -569,13 +648,13 @@ export default function QuizPlay({
       <div className="gq-play__footer">
         {isExam ? (
           <>
-            <span className="gq-play__info"><GraduationCap size={14} /> Examen · sin pistas y con un solo intento</span>
-            <GameButton variant="ghost" size="sm" icon={LogOut} onClick={onExit}>Abandonar examen</GameButton>
+            <span className="gq-play__info"><GraduationCap size={14} /> {ui.examFooter}</span>
+            <GameButton variant="ghost" size="sm" icon={LogOut} onClick={onExit}>{ui.abandonExam}</GameButton>
           </>
         ) : (
           <>
-            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={onExit}>Otro minijuego</GameButton>
-            <span className="gq-play__info"><Flame size={14} /> Mejor racha: {live.best}</span>
+            <GameButton variant="soft" size="sm" icon={LayoutGrid} onClick={onExit}>{ui.otherGame}</GameButton>
+            <span className="gq-play__info"><Flame size={14} /> {ui.bestStreak(live.best)}</span>
           </>
         )}
       </div>

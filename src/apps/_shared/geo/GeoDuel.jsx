@@ -14,7 +14,8 @@ import UserAvatar from '@/components/ui/UserAvatar';
 import DuelChatBar from '@/components/duel/DuelChatBar';
 import { GameShell, GameButton, GameLoading, GameEmpty, ProgressDots, ProgressBar } from '../kit';
 import MapView from './MapView';
-import { Subject, Options, useLocateMap, judgeMapPick, mapHelpText } from './QuizPlay';
+import { Subject, Options, useLocateMap, judgeMapPick, mapHelpText, scopeOf } from './QuizPlay';
+import { mergeUi } from './ui';
 import './geo.css';
 
 export const DUEL_QUESTIONS = 10;
@@ -62,11 +63,15 @@ function PlayerChip({ player, label, score, status, side }) {
   );
 }
 
-export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
+export default function GeoDuel({ config: baseConfig, onGameComplete, registerDuelExit }) {
   const { duelId, me, rival, channel, reportResult, loading, err } = useDuel();
   const navigate = useNavigate();
-  const { level, grade } = useParams();
-  const lv = useMemo(() => config.levelFor(level, parseInt(grade, 10)), [config, level, grade]);
+  const { level, grade, subjectId } = useParams();
+  const lv = useMemo(() => baseConfig.levelFor(level, parseInt(grade, 10), subjectId), [baseConfig, level, grade, subjectId]);
+  // Idioma de la asignatura (el mismo para los dos: comparten curso y asignatura).
+  const lang = useMemo(() => baseConfig.defaultLang?.(level, subjectId) ?? null, [baseConfig, level, subjectId]);
+  const config = useMemo(() => (baseConfig.localize ? baseConfig.localize(lang) : baseConfig), [baseConfig, lang]);
+  const ui = useMemo(() => mergeUi(config.ui), [config]);
 
   const [world, setWorld] = useState(null);
   const [loadErr, setLoadErr] = useState(null);
@@ -102,9 +107,9 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
     config.load()
       .then((w) => (config.prepare ? config.prepare('duel', w, lv).then(() => w) : w))
       .then((w) => { if (alive) setWorld(w); })
-      .catch((e) => { if (alive) setLoadErr(e.message || 'No se pudo cargar el mapa'); });
+      .catch((e) => { if (alive) setLoadErr(e.message || ui.loadErrorTitle); });
     return () => { alive = false; };
-  }, [config, lv]);
+  }, [config, lv, ui]);
 
   // Cada pregunta nueva: reloj local y respuesta propia en blanco.
   const enterQuestion = useCallback((s) => {
@@ -157,12 +162,12 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
   }, [publish, goToQuestion, endGame]);
   useEffect(() => { revealRef.current = reveal; }, [reveal]);
 
-  const processAnswer = useCallback(({ by, idx, key, cont, ms }) => {
+  const processAnswer = useCallback(({ by, idx, key, cont, ms, pt }) => {
     if (!me?.isHost) return;
     const s = stateRef.current;
     const q = questionsRef.current?.[idx];
     if (!s || !q || s.phase !== 'question' || s.idx !== idx || s.answers[by]?.[idx]) return;
-    const ok = q.kind === 'choice' ? q.answer.includes(key) : judgeMapPick(q, key, cont, [], worldRef.current);
+    const ok = q.kind === 'choice' ? q.answer.includes(key) : judgeMapPick(q, key, cont, [], scopeOf(worldRef.current, q.layer), 0, Array.isArray(pt) ? pt : null);
     if (ok === null) return;
     const time = Math.max(0, Math.min(QUESTION_MS, Number(ms) || QUESTION_MS));
     const points = duelPoints(ok, time);
@@ -179,7 +184,7 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
   const startGame = useCallback(() => {
     if (!me?.isHost || startedRef.current || !worldRef.current) return;
     startedRef.current = true;
-    const qs = config.buildRound({ lv, region: 'all', difficulty: 'exam', world: worldRef.current }, 'exam', DUEL_QUESTIONS);
+    const qs = config.buildRound({ lv, region: 'all', difficulty: 'exam', world: worldRef.current, lang, duel: true }, 'exam', DUEL_QUESTIONS);
     questionsRef.current = qs;
     setQuestions(qs);
     const init = { phase: 'countdown', idx: 0, answers: { [me.id]: {}, [rival.id]: {} }, scores: { [me.id]: 0, [rival.id]: 0 } };
@@ -200,7 +205,7 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
       timerRef.current = setTimeout(tick, 1000);
     };
     timerRef.current = setTimeout(tick, 1000);
-  }, [me?.isHost, me?.id, rival?.id, config, lv, publish, goToQuestion]);
+  }, [me?.isHost, me?.id, rival?.id, config, lv, lang, publish, goToQuestion]);
 
   // El anfitrión arranca cuando el rival está conectado (o tras una espera).
   const rivalPresent = Boolean(rival?.id && channel?.presence?.some((p) => p.id === rival.id));
@@ -277,13 +282,13 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
     else saveCheckpoint(duelId, { questions, state });
   }, [duelId, questions, state]);
 
-  const answer = (key, cont) => {
+  const answer = (key, cont, pt) => {
     const s = stateRef.current;
     const q = questionsRef.current?.[s?.idx];
     if (!s || !q || s.phase !== 'question' || myPick?.idx === s.idx || s.answers[me.id]?.[s.idx]) return;
-    if (q.kind !== 'choice' && judgeMapPick(q, key, cont, [], worldRef.current) === null) return;
+    if (q.kind !== 'choice' && judgeMapPick(q, key, cont, [], scopeOf(worldRef.current, q.layer)) === null) return;
     setMyPick({ idx: s.idx, key, cont });
-    const payload = { by: me.id, idx: s.idx, key, cont: cont || null, ms: Date.now() - shownAtRef.current };
+    const payload = { by: me.id, idx: s.idx, key, cont: cont || null, ms: Date.now() - shownAtRef.current, ...(pt ? { pt } : {}) };
     if (me.isHost) processRef.current(payload);
     else chanRef.current?.broadcast('answer', payload);
   };
@@ -338,28 +343,29 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
   const pending = myPick?.idx === idx ? myPick : null;
   const myKey = mine?.key ?? pending?.key ?? null;
 
+  const mw = world && q ? scopeOf(world, q.layer) : world;
   const extraLabels = useMemo(() => {
-    if (!done || !q || q.kind === 'choice' || !world) return [];
+    if (!done || !q || q.kind === 'choice' || !mw) return [];
     const at = (key) => {
-      const f = world.features?.get(key);
+      const f = mw.features?.get(key);
       if (f) return f.xy;
-      return world.layer(q.layer).get(key)?.centroid;
+      return mw.layer(q.layer).get(key)?.centroid;
     };
     const list = [];
-    if (mine && !mine.correct) { const xy = at(mine.key); if (xy) list.push({ x: xy[0], y: xy[1], text: `Tú: ${world.nameOf(mine.key)}`, tone: 'bad' }); }
-    if (theirs && !theirs.correct) { const xy = at(theirs.key); if (xy) list.push({ x: xy[0], y: xy[1], text: `${rival?.name}: ${world.nameOf(theirs.key)}`, tone: 'bad' }); }
+    if (mine && !mine.correct) { const xy = at(mine.key); if (xy) list.push({ x: xy[0], y: xy[1], text: `${ui.you}: ${mw.nameOf(mine.key)}`, tone: 'bad' }); }
+    if (theirs && !theirs.correct) { const xy = at(theirs.key); if (xy) list.push({ x: xy[0], y: xy[1], text: `${rival?.name}: ${mw.nameOf(theirs.key)}`, tone: 'bad' }); }
     return list;
-  }, [done, q, world, mine, theirs, rival?.name]);
+  }, [done, q, mw, mine, theirs, rival?.name, ui]);
 
   const fakeQ = q || { kind: 'choice', options: [], answer: [] };
-  const m = useLocateMap(world || { layer: () => new Map(), views: {}, features: new Map() }, fakeQ, {
+  const m = useLocateMap(mw || { layer: () => new Map(), views: {}, features: new Map() }, fakeQ, {
     tries: [], done, correct: Boolean(mine?.correct), difficulty: 'exam', extraLabels,
   });
 
   if (loading || !world || (!questions && !loadErr && !err)) {
     return (
       <GameShell {...shell}>
-        <GameLoading label={loading || !world ? 'Preparando el duelo…' : `Esperando a ${rival?.name || 'tu rival'}…`} />
+        <GameLoading label={loading || !world ? ui.preparingDuel : ui.waitingFor(rival?.name)} />
         {channel && me && rival && <DuelChatBar channel={channel} me={me} rival={rival} />}
       </GameShell>
     );
@@ -367,7 +373,7 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
   if (err || loadErr) {
     return (
       <GameShell {...shell}>
-        <GameEmpty title="No se ha podido cargar el duelo">{err || loadErr}</GameEmpty>
+        <GameEmpty title={ui.duelLoadError}>{err || loadErr}</GameEmpty>
       </GameShell>
     );
   }
@@ -377,20 +383,20 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
   const timeLeft = phase === 'question' ? Math.max(0, deadline - now) : 0;
   const statusOf = (ans, isMe) => {
     if (phase === 'question') {
-      if (ans || (isMe && pending)) return { tone: 'ready', icon: <Check size={12} strokeWidth={3} />, text: 'Ha respondido' };
-      return { tone: 'thinking', icon: <Hourglass size={12} />, text: 'Pensando…' };
+      if (ans || (isMe && pending)) return { tone: 'ready', icon: <Check size={12} strokeWidth={3} />, text: ui.answered };
+      return { tone: 'thinking', icon: <Hourglass size={12} />, text: ui.thinking };
     }
     if (phase === 'reveal') {
-      if (!ans) return { tone: 'bad', icon: <Clock size={12} />, text: 'Sin respuesta' };
+      if (!ans) return { tone: 'bad', icon: <Clock size={12} />, text: ui.noAnswer };
       return ans.correct
         ? { tone: 'good', icon: <Check size={12} strokeWidth={3} />, text: `+${ans.points}` }
-        : { tone: 'bad', icon: <X size={12} strokeWidth={3} />, text: 'Fallo' };
+        : { tone: 'bad', icon: <X size={12} strokeWidth={3} />, text: ui.miss };
     }
     return null;
   };
   const marks = done && q?.kind === 'choice' ? (() => {
     const mk = {};
-    if (mine) (mk[mine.key] ||= []).push({ label: 'Tú', tone: 'me' });
+    if (mine) (mk[mine.key] ||= []).push({ label: ui.you, tone: 'me' });
     if (theirs) (mk[theirs.key] ||= []).push({ label: rival.name, tone: 'rival' });
     return mk;
   })() : undefined;
@@ -405,35 +411,35 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
       <GameShell {...shell}>
         <div className="gq-duel">
           <div className="gq-duel__top">
-            <PlayerChip player={me} label="Tú" score={myScore} status={statusOf(mine, true)} side="me" />
+            <PlayerChip player={me} label={ui.you} score={myScore} status={statusOf(mine, true)} side="me" />
             <span className="gq-duel__vs"><Swords size={20} /><small>{Math.min(idx + 1, questions.length)}/{questions.length}</small></span>
-            <PlayerChip player={rival} label="Rival" score={rivalScore} status={statusOf(theirs, false)} side="rival" />
+            <PlayerChip player={rival} label={ui.rival} score={rivalScore} status={statusOf(theirs, false)} side="rival" />
           </div>
 
           <ProgressDots total={questions.length} current={idx} results={results} />
 
           {phase === 'countdown' ? (
             <motion.div key={countdown} className="gq-duel__countdown" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-              {countdown || '¡Ya!'}
+              {countdown || ui.go}
             </motion.div>
           ) : phase === 'ended' ? (
             <motion.div className={`gq-duel__final ${iWon ? 'is-won' : 'is-lost'}`} initial={{ opacity: 0, scale: 0.92, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
               <span className="gq-duel__medal"><Trophy size={36} /></span>
-              <strong>{iWon ? '¡Has ganado el duelo!' : 'Has perdido el duelo'}</strong>
-              <span>{myScore.toLocaleString('es-ES')} – {rivalScore.toLocaleString('es-ES')} puntos</span>
-              <GameButton variant="soft" icon={LogOut} onClick={() => navigate('/mi-panel')}>Salir a mi panel</GameButton>
+              <strong>{iWon ? ui.duelWon : ui.duelLost}</strong>
+              <span>{myScore.toLocaleString('es-ES')} – {rivalScore.toLocaleString('es-ES')} {ui.pointsSuffix}</span>
+              <GameButton variant="soft" icon={LogOut} onClick={() => navigate('/mi-panel')}>{ui.exitToPanel}</GameButton>
             </motion.div>
           ) : q ? (
             <div className="gq-q">
               <div className="gq-duel__timer">
-                <ProgressBar value={timeLeft} max={QUESTION_MS} tone={timeLeft < 5000 ? 'bad' : 'good'} label="Tiempo" />
+                <ProgressBar value={timeLeft} max={QUESTION_MS} tone={timeLeft < 5000 ? 'bad' : 'good'} label={ui.time} />
                 <span><Clock size={13} /> {Math.ceil(timeLeft / 1000)} s</span>
               </div>
               <div className="gq-q__prompt"><h2>{q.prompt}</h2></div>
               {m.isMapQ ? (
                 <div className="gq-q__mapwrap">
                   <MapView
-                    world={world}
+                    world={mw}
                     entries={m.layer}
                     view={m.view}
                     states={done ? m.states : (pending ? { [pending.key]: 'selected' } : null)}
@@ -442,7 +448,7 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
                     pickable={!done && !pending && q.kind !== 'locate-feature'}
                     features={m.features}
                     featuresPickable={!done && !pending && q.kind === 'locate-feature'}
-                    meshes={world.meshesFor?.(q.layer)}
+                    meshes={mw.meshesFor?.(q.layer)}
                     markers={q.kind !== 'locate-feature'}
                     onPick={answer}
                     labels={done ? m.labels : []}
@@ -450,11 +456,11 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
                     className="gq-map--game"
                     ariaLabel={q.prompt}
                   />
-                  {!done && <span className="gq-q__maphelp">{pending ? `Esperando a ${rival.name}…` : mapHelpText(q)}</span>}
+                  {!done && <span className="gq-q__maphelp">{pending ? ui.waitingFor(rival.name) : mapHelpText(q, ui)}</span>}
                 </div>
               ) : (
                 <div className={`gq-q__body ${['map', 'point', 'feature'].includes(q.subject?.type) ? 'is-wide-visual' : ''}`}>
-                  <div className="gq-q__visual"><Subject q={q} world={world} done={done} /></div>
+                  <div className="gq-q__visual"><Subject q={q} world={world} done={done} renderCustom={config.renderSubject} /></div>
                   <Options q={q} world={world} done={done} picked={myKey} onAnswer={(k) => answer(k)} disabled={Boolean(pending)} marks={marks} />
                 </div>
               )}
@@ -462,8 +468,8 @@ export default function GeoDuel({ config, onGameComplete, registerDuelExit }) {
                 <div className={`gq-fb ${mine?.correct ? 'is-good' : 'is-bad'}`} role="status">
                   <span className="gq-fb__badge">{mine?.correct ? <Check size={22} strokeWidth={3} /> : <X size={22} strokeWidth={3} />}</span>
                   <div className="gq-fb__text">
-                    <strong>{mine?.correct ? '¡Correcto!' : mine ? 'No era esa' : 'Se acabó el tiempo'}{mine?.points ? <span className="gq-fb__gain">+{mine.points}</span> : null}</strong>
-                    <span>Respuesta correcta: <b>{q.answerLabel}</b></span>
+                    <strong>{mine?.correct ? ui.praise[0] : mine ? ui.wrong : ui.timeUp}{mine?.points ? <span className="gq-fb__gain">+{mine.points}</span> : null}</strong>
+                    <span>{ui.correctAnswer} <b>{q.answerLabel}</b></span>
                     {q.explain && <span className="gq-fb__explain">{q.explain}</span>}
                   </div>
                 </div>

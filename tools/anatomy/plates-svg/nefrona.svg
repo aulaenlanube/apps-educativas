@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200">
+<defs>
+  <linearGradient id="nefrona-tissue" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f4bfae" stop-opacity="0.5"/><stop offset="0.385" stop-color="#e9a594" stop-opacity="0.44"/>
+    <stop offset="0.405" stop-color="#c486a2" stop-opacity="0.4"/><stop offset="1" stop-color="#a6688c" stop-opacity="0.42"/>
+  </linearGradient>
+  <linearGradient id="nefrona-mesh" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="930" y2="0">
+    <stop offset="0" stop-color="#d42a2a"/><stop offset="0.5" stop-color="#8a3f9a"/><stop offset="1" stop-color="#2f5fc4"/>
+  </linearGradient>
+  <linearGradient id="nefrona-recta" gradientUnits="userSpaceOnUse" x1="450" y1="0" x2="690" y2="0">
+    <stop offset="0" stop-color="#d42a2a"/><stop offset="0.5" stop-color="#8a3f9a"/><stop offset="1" stop-color="#2f5fc4"/>
+  </linearGradient>
+  <radialGradient id="nefrona-space" cx="0.45" cy="0.4" r="0.6">
+    <stop offset="0" stop-color="#f4fbfd" stop-opacity="0.7"/><stop offset="0.8" stop-color="#cfe6ee" stop-opacity="0.55"/><stop offset="1" stop-color="#9cc3d0" stop-opacity="0.7"/>
+  </radialGradient>
+  <radialGradient id="nefrona-tuftbg" cx="0.4" cy="0.35" r="0.65">
+    <stop offset="0" stop-color="#f08a7a"/><stop offset="1" stop-color="#8c1a1e"/>
+  </radialGradient>
+  <radialGradient id="nefrona-spec" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.8"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </radialGradient>
+  <clipPath id="nefrona-panel"><path d="M80 30L920 30Q970 30 970 80L970 1120Q970 1170 920 1170L80 1170Q30 1170 30 1120L30 80Q30 30 80 30Z"/></clipPath>
+  <path id="nefrona-arrow" d="M-11 -5L2 -5L2 -10L13 0L2 10L2 5L-11 5Z"/>
+
+  <!-- ejes de los túbulos y vasos -->
+  <path id="nefrona-t-pct" d="M350 322C392 344 424 330 428 298C432 262 392 246 402 210C412 172 462 176 472 212C482 250 452 280 482 300C512 320 548 300 542 260C536 222 502 202 516 162C528 124 576 122 582 162C588 202 560 232 556 272C552 322 530 362 528 410L527 472"/>
+  <path id="nefrona-t-henle" d="M527 470L527 1068C527 1120 607 1120 607 1068L607 400"/>
+  <path id="nefrona-t-henleThick" d="M607 790L607 400"/>
+  <path id="nefrona-t-dct" d="M607 402C608 352 650 340 672 362C702 392 742 372 737 332C732 292 682 292 692 252C702 212 752 212 762 242C772 282 802 282 812 252C824 212 792 182 802 152C812 122 846 118 866 134"/>
+  <path id="nefrona-t-cd" d="M880 96L880 1158"/>
+  <path id="nefrona-t-ghost1" d="M970 318C940 318 915 322 890 334"/>
+  <path id="nefrona-t-ghost2" d="M970 640C940 640 915 644 890 656"/>
+  <path id="nefrona-v-ia" d="M70 470L70 40"/>
+  <path id="nefrona-v-aff" d="M70 236C120 236 150 244 196 256"/>
+  <path id="nefrona-v-eff" d="M196 286C166 300 148 332 158 372C164 398 186 414 210 428"/>
+  <path id="nefrona-v-iv" d="M955 40L955 470"/>
+</defs>
+
+<!-- tejido de fondo: corteza (arriba) y médula (abajo) -->
+<path d="M80 30L920 30Q970 30 970 80L970 1120Q970 1170 920 1170L80 1170Q30 1170 30 1120L30 80Q30 30 80 30Z" fill="url(#nefrona-tissue)" stroke="#e7b3ac" stroke-opacity="0.35" stroke-width="2"/>
+<g clip-path="url(#nefrona-panel)">
+  <!-- límite corteza / médula -->
+  <path d="M30 474Q160 462 300 474T560 474T820 474T980 470" fill="none" stroke="#f3c2b6" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.5"/>
+  <!-- corpúsculos y túbulos de otras nefronas, apenas sugeridos -->
+  <g fill="none" stroke="#f6d6d0" opacity="0.13" stroke-width="12" stroke-linecap="round">
+    <path d="M250 480L250 800Q250 830 280 830Q310 830 310 800L310 480M370 480L370 940Q370 968 398 968Q426 968 426 940L426 480M700 480L700 860Q700 890 728 890Q756 890 756 860L756 480M150 480L150 700Q150 726 176 726Q202 726 202 700L202 480"/>
+  </g>
+  <g fill="#f6d6d0" fill-opacity="0.06" stroke="#f6d6d0" stroke-opacity="0.22" stroke-width="5"><circle cx="160" cy="105" r="40"/><circle cx="745" cy="428" r="32"/><circle cx="378" cy="430" r="28"/></g>
+  <!-- capilares peritubulares (corteza) -->
+  <path d="M153.4 76.7Q150.6 96.2 154.1 115.6M210 61Q234.5 61.1 258.3 66.9M210 61Q198.2 91.2 200.6 123.5M258.3 66.9Q269.4 97.6 263 129.7M306.5 78.6Q341.3 75.6 376.2 73.3M306.5 78.6Q320.9 100.5 321.4 126.7M376.2 73.3Q398.7 78.1 421.4 74.6M376.2 73.3Q376.5 95 377.7 116.6M421.4 74.6Q450.5 62.8 481.5 68.4M421.4 74.6Q414.2 96.3 422.7 117.5M481.5 68.4Q510.5 65.7 539.4 61M481.5 68.4Q478.5 97.9 471.4 126.7M539.4 61Q567.8 64.3 594.3 75.2M539.4 61Q531.3 89.3 525.2 118.1M594.3 75.2Q624.2 77.1 651.9 65.7M594.3 75.2Q590.1 97.9 580.9 119M651.9 65.7Q678.2 79 707.6 76.7M651.9 65.7Q661.3 97.5 652.7 129.5M707.6 76.7Q733.9 69.6 760.4 76.1M707.6 76.7Q711.2 102 703.1 126.3M760.4 76.1Q790.1 80.6 819.1 73.1M760.4 76.1Q760.3 97.1 755.8 117.7M819.1 73.1Q844 69.3 867.7 60.7M819.1 73.1Q812.6 101.5 803 129.1M867.7 60.7Q890.3 67 913.5 63.6M867.7 60.7Q869.5 95 869.5 129.3M913.5 63.6Q914.6 90.8 926.3 115.4M154.1 115.6Q177.6 117.6 200.6 123.5M154.1 115.6Q158.1 141.8 156 168.2M200.6 123.5Q210.7 148.7 212.4 175.9M263 129.7Q262.1 150 268.4 169.4M321.4 126.7Q348.9 118.2 377.7 116.6M321.4 126.7Q320.6 152.7 312.4 177.3M377.7 116.6Q400.1 123.4 422.7 117.5M377.7 116.6Q375.4 147.1 364.5 175.6M422.7 117.5Q446.1 126.8 471.4 126.7M471.4 126.7Q498.5 123.9 525.2 118.1M471.4 126.7Q464.5 152.7 472.2 178.5M525.2 118.1Q553.1 116.3 580.9 119M525.2 118.1Q530.2 147.3 528.2 176.8M580.9 119Q616.5 126.1 652.7 129.5M580.9 119Q580.6 149.7 590.7 178.7M652.7 129.5Q678.2 132.7 703.1 126.3M652.7 129.5Q648.7 149.4 644.6 169.3M703.1 126.3Q729.9 125 755.8 117.7M755.8 117.7Q779.3 123.8 803 129.1M755.8 117.7Q755.4 145.5 747.4 172M803 129.1Q836.3 127.9 869.5 129.3M803 129.1Q802.9 150.2 809.3 170.3M869.5 129.3Q896.4 116 926.3 115.4M869.5 129.3Q875.3 151.1 865 171.3M926.3 115.4Q926.5 144.5 913.6 170.7M156 168.2Q185.4 163.2 212.4 175.9M156 168.2Q160.1 193.6 157.5 219.3M212.4 175.9Q241 177.6 268.4 169.4M212.4 175.9Q212.2 201.6 204.1 226M268.4 169.4Q289.5 178.7 312.4 177.3M312.4 177.3Q309.1 195.4 311.5 213.6M364.5 175.6Q393.6 170.8 422.6 176.2M364.5 175.6Q366.2 198.1 378.3 217.3M422.6 176.2Q411.6 195.1 415.6 216.7M472.2 178.5Q500.1 174.6 528.2 176.8M472.2 178.5Q468.8 200.7 482.2 218.7M528.2 176.8Q559.4 178.1 590.7 178.7M528.2 176.8Q532.7 194.2 533.1 212.2M590.7 178.7Q619.1 182.5 644.6 169.3M590.7 178.7Q588.9 202 581.4 224.1M644.6 169.3Q672.5 175.5 699.6 166.6M644.6 169.3Q651.8 195.3 644.8 221.4M699.6 166.6Q723.7 167.5 747.4 172M699.6 166.6Q696.6 192.2 699.1 217.8M747.4 172Q778.3 169.7 809.3 170.3M809.3 170.3Q837.2 169.7 865 171.3M809.3 170.3Q814.7 193.6 809.4 217M865 171.3Q889.3 167.2 913.6 170.7M865 171.3Q871.2 197.2 873.6 223.7M157.5 219.3Q181.2 220.1 204.1 226M157.5 219.3Q150.7 248 144.1 276.7M204.1 226Q231 211.5 261.7 212.3M204.1 226Q199.8 250.2 204.9 274.2M261.7 212.3Q286.7 210.4 311.5 213.6M261.7 212.3Q268.8 239.4 258.1 265.3M311.5 213.6Q344.8 217.3 378.3 217.3M311.5 213.6Q314.3 242.9 308.7 271.8M378.3 217.3Q396.8 212.5 415.6 216.7M378.3 217.3Q368.4 238.3 361.1 260.4M415.6 216.7Q448.7 222.8 482.2 218.7M415.6 216.7Q413.6 246.4 428.3 272.3M482.2 218.7Q479.9 248.3 474.5 277.6M533.1 212.2Q559.3 210.1 581.4 224.1M533.1 212.2Q528.9 241.8 540.5 269.4M581.4 224.1Q612.8 215.1 644.8 221.4M581.4 224.1Q574.6 242.1 580.3 260.5M644.8 221.4Q672 220 699.1 217.8M644.8 221.4Q635.5 242.5 640.1 265.1M699.1 217.8Q731.1 225.2 763.8 222.3M699.1 217.8Q701.9 240.8 701.9 264M763.8 222.3Q786.2 216.1 809.4 217M809.4 217Q841.5 220.9 873.6 223.7M809.4 217Q814.2 242 808.3 266.9M873.6 223.7Q891.9 218.9 910.1 223.5M873.6 223.7Q861.5 250.4 864.7 279.6M910.1 223.5Q908.1 247.6 913.2 271.2M144.1 276.7Q174.5 275.9 204.9 274.2M144.1 276.7Q154.4 298.7 147.7 322.1M204.9 274.2Q230.3 262.9 258.1 265.3M204.9 274.2Q210.7 299.3 209.6 325M258.1 265.3Q283.3 269.3 308.7 271.8M258.1 265.3Q259.9 288.6 256.3 311.7M308.7 271.8Q304.7 293.4 315.1 312.7M361.1 260.4Q394.9 265.1 428.3 272.3M361.1 260.4Q363.1 293.8 369.7 326.6M428.3 272.3Q452.2 268.3 474.5 277.6M428.3 272.3Q419.4 301 428.1 329.7M474.5 277.6Q506.4 264.9 540.5 269.4M474.5 277.6Q481.6 301.6 472 324.7M540.5 269.4Q561.9 271.7 580.3 260.5M540.5 269.4Q530 289.4 530.6 312M580.3 260.5Q609.7 269.5 640.1 265.1M580.3 260.5Q573.3 287.3 580.7 313.9M640.1 265.1Q670.9 257.3 701.9 264M701.9 264Q731.3 276.3 762.9 279.7M701.9 264Q693.7 291.7 702.7 319.1M762.9 279.7Q786.7 277.1 808.3 266.9M762.9 279.7Q756.5 299.7 761.6 320.2M808.3 266.9Q837.5 268.7 864.7 279.6M808.3 266.9Q810.5 292 806.3 316.9M864.7 279.6Q887.8 268.8 913.2 271.2M864.7 279.6Q865.7 298.6 859.1 316.5M147.7 322.1Q178.7 322.4 209.6 325M147.7 322.1Q150.4 341.9 147.9 361.7M209.6 325Q233.7 321.1 256.3 311.7M209.6 325Q200.1 346.3 197.4 369.5M256.3 311.7Q285.7 309.5 315.1 312.7M256.3 311.7Q265.4 337.9 263.4 365.5M315.1 312.7Q321.7 343.7 315.7 374.7M369.7 326.6Q399.2 321.3 428.1 329.7M428.1 329.7Q449.5 322.5 472 324.7M428.1 329.7Q420.5 347.7 430.1 364.7M472 324.7Q499.6 310.6 530.6 312M472 324.7Q476.7 345.2 484.5 364.8M530.6 312Q555.8 310 580.7 313.9M530.6 312Q528.1 338.9 530.7 365.8M580.7 313.9Q616 322.3 651.1 313.3M580.7 313.9Q575.8 344.3 588.6 372.4M651.1 313.3Q677.5 310.9 702.7 319.1M651.1 313.3Q641.9 344.6 638.5 377M702.7 319.1Q732.2 314.7 761.6 320.2M702.7 319.1Q702.7 340.1 697.2 360.3M761.6 320.2Q764.7 343.1 764.5 366.2M806.3 316.9Q832.7 311.2 859.1 316.5M859.1 316.5Q887.6 323.3 916.9 320.9M859.1 316.5Q860.6 344.8 868.7 371.9M916.9 320.9Q923 342.2 922.6 364.3M147.9 361.7Q172.8 364.5 197.4 369.5M147.9 361.7Q145.9 392.7 157.4 421.6M197.4 369.5Q230 361.6 263.4 365.5M197.4 369.5Q204.7 394.1 198.7 419.1M263.4 365.5Q254.9 389.4 254.1 414.8M315.7 374.7Q341.8 364.8 369.7 362.7M369.7 362.7Q399.7 370.4 430.1 364.7M369.7 362.7Q370.1 387.8 362.7 411.7M430.1 364.7Q457.3 362.1 484.5 364.8M484.5 364.8Q507.4 373.9 530.7 365.8M484.5 364.8Q483.4 394.4 480.8 423.8M530.7 365.8Q558.8 376.3 588.6 372.4M530.7 365.8Q532.3 398.1 543.9 428.3M588.6 372.4Q613.9 370 638.5 377M588.6 372.4Q588.5 397.5 587.3 422.6M638.5 377Q665.5 360.7 697.2 360.3M638.5 377Q644.8 400.2 650.8 423.4M697.2 360.3Q730.6 365.6 764.5 366.2M697.2 360.3Q701.3 390.4 705.1 420.5M764.5 366.2Q785 374 805.3 365.6M764.5 366.2Q760.3 390.4 745.8 410.2M805.3 365.6Q837.8 361.2 868.7 371.9M805.3 365.6Q813.9 394.8 813.7 425.3M868.7 371.9Q896.6 374.7 922.6 364.3M868.7 371.9Q869.4 395.3 855.1 413.8M922.6 364.3Q917.5 396.8 912 429.2M157.4 421.6Q178.3 423.8 198.7 419.1M198.7 419.1Q225.8 408.7 254.1 414.8M198.7 419.1Q203.6 438.4 213.3 455.9M254.1 414.8Q289.3 419.9 324.7 417.2M254.1 414.8Q245.4 437.5 250.7 461.2M324.7 417.2Q344.1 417.3 362.7 411.7M324.7 417.2Q321.9 440.2 306.8 457.7M362.7 411.7Q390.3 408.2 415.3 420.5M362.7 411.7Q371.7 436.7 367.8 462.9M415.3 420.5Q407.8 435.8 415.7 450.9M480.8 423.8Q512.4 425.2 543.9 428.3M480.8 423.8Q479 445.1 488 464.5M543.9 428.3Q565.3 422.7 587.3 422.6M543.9 428.3Q529.6 436.8 528.7 453.4M587.3 422.6Q619 425.7 650.8 423.4M587.3 422.6Q592.2 441.6 597.3 460.5M650.8 423.4Q678.1 425.1 705.1 420.5M650.8 423.4Q660.9 438 654.1 454.4M705.1 420.5Q725.8 416.7 745.8 410.2M705.1 420.5Q705 438.5 699.5 455.7M745.8 410.2Q778.9 421.6 813.7 425.3M745.8 410.2Q745.4 432.1 751.7 453M813.7 425.3Q836.7 427.7 855.1 413.8M813.7 425.3Q805.3 440.9 814 456.4M855.1 413.8Q883.1 423.2 912 429.2M855.1 413.8Q867.1 440.3 869 469.4M912 429.2Q914.7 449.5 910.9 469.5M250.7 461.2Q278.6 457.5 306.8 457.7M306.8 457.7Q336.5 469.1 367.8 462.9M367.8 462.9Q390.4 451.6 415.7 450.9M415.7 450.9Q452.1 456.3 488 464.5M488 464.5Q508.7 460.2 528.7 453.4M528.7 453.4Q563.5 452.6 597.3 460.5M597.3 460.5Q625.7 457.1 654.1 454.4M654.1 454.4Q676.8 456.5 699.5 455.7M699.5 455.7Q725.9 459.3 751.7 453M751.7 453Q782.8 455.9 814 456.4M814 456.4Q840.8 466 869 469.4" fill="none" stroke="url(#nefrona-mesh)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <!-- vasos rectos (médula) -->
+  <g fill="none" stroke="url(#nefrona-recta)" stroke-linecap="round" opacity="0.7">
+    <path d="M470 470L470 1080C470 1150 664 1150 664 1080L664 470" stroke-width="7"/>
+    <path d="M490 470L490 1040C490 1092 646 1092 646 1040L646 470" stroke-width="5"/>
+  </g>
+</g>
+
+<!-- arteria y vena interlobulillares, arteriolas -->
+<g fill="none" stroke-linecap="round">
+  <use href="#nefrona-v-ia" stroke="#6b0d12" stroke-width="30"/>
+  <use href="#nefrona-v-iv" stroke="#0f2253" stroke-width="32"/>
+  <use href="#nefrona-v-ia" stroke="#d42a2a" stroke-width="25"/>
+  <use href="#nefrona-v-iv" stroke="#2f5fc4" stroke-width="27"/>
+  <use href="#nefrona-v-ia" stroke="#8c1419" stroke-width="9" transform="translate(4.2,4.8)" opacity="0.45"/>
+  <use href="#nefrona-v-iv" stroke="#1b3c88" stroke-width="9.6" transform="translate(4.5,5.1)" opacity="0.45"/>
+  <use href="#nefrona-v-ia" stroke="#e54a40" stroke-width="13.5" transform="translate(-3,-3.6)"/>
+  <use href="#nefrona-v-iv" stroke="#5684dc" stroke-width="14.4" transform="translate(-3.2,-3.8)"/>
+  <use href="#nefrona-v-ia" stroke="#f78a7e" stroke-width="4.2" transform="translate(-5.1,-6.3)" opacity="0.85"/>
+  <use href="#nefrona-v-iv" stroke="#93b3f0" stroke-width="4.5" transform="translate(-5.4,-6.7)" opacity="0.85"/>
+</g>
+<g fill="none">
+  <use href="#nefrona-v-aff" stroke="#6b0d12" stroke-width="20"/>
+  <use href="#nefrona-v-eff" stroke="#6b0d12" stroke-width="16"/>
+  <use href="#nefrona-v-aff" stroke="#d42a2a" stroke-width="15"/>
+  <use href="#nefrona-v-eff" stroke="#d42a2a" stroke-width="11"/>
+  <use href="#nefrona-v-aff" stroke="#8c1419" stroke-width="6" transform="translate(2.8,3.2)" opacity="0.45"/>
+  <use href="#nefrona-v-eff" stroke="#8c1419" stroke-width="4.8" transform="translate(2.2,2.6)" opacity="0.45"/>
+  <use href="#nefrona-v-aff" stroke="#e54a40" stroke-width="9" transform="translate(-2,-2.4)"/>
+  <use href="#nefrona-v-eff" stroke="#e54a40" stroke-width="7.2" transform="translate(-1.6,-1.9)"/>
+  <use href="#nefrona-v-aff" stroke="#f78a7e" stroke-width="2.8" transform="translate(-3.4,-4.2)" opacity="0.85"/>
+  <use href="#nefrona-v-eff" stroke="#f78a7e" stroke-width="2.2" transform="translate(-2.7,-3.4)" opacity="0.85"/>
+</g>
+
+<path d="M210 428C230 432 250 430 264 418M210 428C214 444 224 456 238 464M210 428C196 440 186 452 182 468" fill="none" stroke="#6b0d12" stroke-width="7" stroke-linecap="round"/>
+<path d="M210 428C230 432 250 430 264 418M210 428C214 444 224 456 238 464M210 428C196 440 186 452 182 468" fill="none" stroke="#d42a2a" stroke-width="4" stroke-linecap="round"/>
+<!-- tubo colector y túbulos de otras nefronas que desembocan en él -->
+<g fill="none" opacity="0.5">
+  <use href="#nefrona-t-ghost1" stroke="#4a2f8c" stroke-width="22"/>
+  <use href="#nefrona-t-ghost2" stroke="#4a2f8c" stroke-width="22"/>
+  <use href="#nefrona-t-ghost1" stroke="#a88be0" stroke-width="17"/>
+  <use href="#nefrona-t-ghost2" stroke="#a88be0" stroke-width="17"/>
+  <use href="#nefrona-t-ghost1" stroke="#6a4cb0" stroke-width="6.6" transform="translate(3.1,3.5)" opacity="0.45"/>
+  <use href="#nefrona-t-ghost2" stroke="#6a4cb0" stroke-width="6.6" transform="translate(3.1,3.5)" opacity="0.45"/>
+  <use href="#nefrona-t-ghost1" stroke="#c4adf0" stroke-width="9.9" transform="translate(-2.2,-2.6)"/>
+  <use href="#nefrona-t-ghost2" stroke="#c4adf0" stroke-width="9.9" transform="translate(-2.2,-2.6)"/>
+  <use href="#nefrona-t-ghost1" stroke="#ece4ff" stroke-width="3.1" transform="translate(-3.7,-4.6)" opacity="0.85"/>
+  <use href="#nefrona-t-ghost2" stroke="#ece4ff" stroke-width="3.1" transform="translate(-3.7,-4.6)" opacity="0.85"/>
+</g>
+<g fill="none">
+  <use href="#nefrona-t-cd" stroke="#4a2f8c" stroke-width="40"/>
+  <use href="#nefrona-t-cd" stroke="#a88be0" stroke-width="35"/>
+  <use href="#nefrona-t-cd" stroke="#6a4cb0" stroke-width="12" transform="translate(5.6,6.4)" opacity="0.45"/>
+  <use href="#nefrona-t-cd" stroke="#c4adf0" stroke-width="18" transform="translate(-4,-4.8)"/>
+  <use href="#nefrona-t-cd" stroke="#ece4ff" stroke-width="5.6" transform="translate(-6.8,-8.4)" opacity="0.85"/>
+</g>
+<ellipse cx="880" cy="96" rx="20" ry="7" fill="#4a2f8c"/>
+<ellipse cx="880" cy="96.5" rx="15" ry="4.5" fill="#2a1660"/>
+
+<!-- asa de Henle (rama descendente fina, ascendente gruesa arriba) -->
+<g fill="none" stroke-linejoin="round">
+  <use href="#nefrona-t-henle" stroke="#7a5c06" stroke-width="22"/>
+  <use href="#nefrona-t-henle" stroke="#f2cf3b" stroke-width="17"/>
+  <use href="#nefrona-t-henle" stroke="#a8820e" stroke-width="6.6" transform="translate(3.1,3.5)" opacity="0.45"/>
+  <use href="#nefrona-t-henle" stroke="#ffe27a" stroke-width="9.9" transform="translate(-2.2,-2.6)"/>
+  <use href="#nefrona-t-henle" stroke="#fff6c8" stroke-width="3.1" transform="translate(-3.7,-4.6)" opacity="0.85"/>
+</g>
+<g fill="none" stroke-linecap="round">
+  <use href="#nefrona-t-henleThick" stroke="#7a5c06" stroke-width="30"/>
+  <use href="#nefrona-t-henleThick" stroke="#f2cf3b" stroke-width="25"/>
+  <use href="#nefrona-t-henleThick" stroke="#a8820e" stroke-width="9" transform="translate(4.2,4.8)" opacity="0.45"/>
+  <use href="#nefrona-t-henleThick" stroke="#ffe27a" stroke-width="13.5" transform="translate(-3,-3.6)"/>
+  <use href="#nefrona-t-henleThick" stroke="#fff6c8" stroke-width="4.2" transform="translate(-5.1,-6.3)" opacity="0.85"/>
+</g>
+<!-- túbulo contorneado distal -->
+<g fill="none" stroke-linejoin="round" stroke-linecap="round">
+  <use href="#nefrona-t-dct" stroke="#1f6a49" stroke-width="30"/>
+  <use href="#nefrona-t-dct" stroke="#5fc495" stroke-width="25"/>
+  <use href="#nefrona-t-dct" stroke="#2c8a5f" stroke-width="9" transform="translate(4.2,4.8)" opacity="0.45"/>
+  <use href="#nefrona-t-dct" stroke="#8fdcb6" stroke-width="13.5" transform="translate(-3,-3.6)"/>
+  <use href="#nefrona-t-dct" stroke="#d3f6e4" stroke-width="4.2" transform="translate(-5.1,-6.3)" opacity="0.85"/>
+</g>
+<!-- túbulo contorneado proximal -->
+<g fill="none" stroke-linejoin="round" stroke-linecap="round">
+  <use href="#nefrona-t-pct" stroke="#7a3d0c" stroke-width="34"/>
+  <use href="#nefrona-t-pct" stroke="#f0a35e" stroke-width="29"/>
+  <use href="#nefrona-t-pct" stroke="#a8581a" stroke-width="10.2" transform="translate(4.8,5.4)" opacity="0.45"/>
+  <use href="#nefrona-t-pct" stroke="#ffbf85" stroke-width="15.3" transform="translate(-3.4,-4.1)"/>
+  <use href="#nefrona-t-pct" stroke="#ffe2c4" stroke-width="4.8" transform="translate(-5.8,-7.1)" opacity="0.85"/>
+</g>
+<!-- ribete en cepillo del túbulo proximal (luz interior) -->
+<use href="#nefrona-t-pct" fill="none" stroke="#b86a28" stroke-width="5" stroke-dasharray="2 3" opacity="0.45"/>
+
+<!-- cápsula de Bowman con el glomérulo -->
+<circle cx="279" cy="275" r="94" fill="#3a6f80" opacity="0.18"/>
+<circle cx="272" cy="270" r="92" fill="url(#nefrona-space)"/>
+<path d="M190 236A92 92 0 1 1 196 312" fill="none" stroke="#6f8f99" stroke-width="17" stroke-linecap="round"/>
+<path d="M190 236A92 92 0 1 1 196 312" fill="none" stroke="#cfe2e6" stroke-width="13" stroke-linecap="round"/>
+<path d="M205 205A92 92 0 0 1 300 182" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<!-- glomérulo: ovillo de capilares -->
+<circle cx="276" cy="268" r="62" fill="url(#nefrona-tuftbg)" opacity="0.55"/>
+<g fill="none" transform="translate(276 268) scale(1.2) translate(-276 -268)">
+  <g stroke="#6b0d12" stroke-width="11"><ellipse cx="256" cy="246" rx="24" ry="14" transform="rotate(30 256 246)"/><ellipse cx="288" cy="242" rx="22" ry="13" transform="rotate(-20 288 242)"/><ellipse cx="306" cy="266" rx="22" ry="14" transform="rotate(70 306 266)"/><ellipse cx="294" cy="294" rx="24" ry="13" transform="rotate(20 294 294)"/><ellipse cx="262" cy="296" rx="22" ry="14" transform="rotate(-35 262 296)"/><ellipse cx="244" cy="274" rx="22" ry="13" transform="rotate(80 244 274)"/><ellipse cx="276" cy="268" rx="20" ry="12" transform="rotate(45 276 268)"/><ellipse cx="272" cy="260" rx="16" ry="10" transform="rotate(-60 272 260)"/><ellipse cx="284" cy="278" rx="16" ry="10" transform="rotate(10 284 278)"/></g>
+  <g stroke="#d42a2a" stroke-width="7.5"><ellipse cx="256" cy="246" rx="24" ry="14" transform="rotate(30 256 246)"/><ellipse cx="288" cy="242" rx="22" ry="13" transform="rotate(-20 288 242)"/><ellipse cx="306" cy="266" rx="22" ry="14" transform="rotate(70 306 266)"/><ellipse cx="294" cy="294" rx="24" ry="13" transform="rotate(20 294 294)"/><ellipse cx="262" cy="296" rx="22" ry="14" transform="rotate(-35 262 296)"/><ellipse cx="244" cy="274" rx="22" ry="13" transform="rotate(80 244 274)"/><ellipse cx="276" cy="268" rx="20" ry="12" transform="rotate(45 276 268)"/><ellipse cx="272" cy="260" rx="16" ry="10" transform="rotate(-60 272 260)"/><ellipse cx="284" cy="278" rx="16" ry="10" transform="rotate(10 284 278)"/></g>
+  <g stroke="#f78a7e" stroke-width="2.5" opacity="0.8" transform="translate(-1.5,-2)"><ellipse cx="256" cy="246" rx="24" ry="14" transform="rotate(30 256 246)"/><ellipse cx="288" cy="242" rx="22" ry="13" transform="rotate(-20 288 242)"/><ellipse cx="306" cy="266" rx="22" ry="14" transform="rotate(70 306 266)"/><ellipse cx="294" cy="294" rx="24" ry="13" transform="rotate(20 294 294)"/><ellipse cx="262" cy="296" rx="22" ry="14" transform="rotate(-35 262 296)"/><ellipse cx="244" cy="274" rx="22" ry="13" transform="rotate(80 244 274)"/><ellipse cx="276" cy="268" rx="20" ry="12" transform="rotate(45 276 268)"/><ellipse cx="272" cy="260" rx="16" ry="10" transform="rotate(-60 272 260)"/><ellipse cx="284" cy="278" rx="16" ry="10" transform="rotate(10 284 278)"/></g>
+</g>
+<circle cx="276" cy="268" r="67" fill="none" stroke="#eef7f9" stroke-width="2" stroke-dasharray="3 4" opacity="0.7"/>
+<ellipse cx="248" cy="222" rx="30" ry="14" fill="url(#nefrona-spec)" opacity="0.6"/>
+
+<!-- flechas: sentido del filtrado y de la sangre -->
+<g fill="#ffffff" opacity="0.8">
+  <use href="#nefrona-arrow" transform="translate(527 640) rotate(90) scale(0.8)"/>
+  <use href="#nefrona-arrow" transform="translate(527 900) rotate(90) scale(0.8)"/>
+  <use href="#nefrona-arrow" transform="translate(607 900) rotate(-90) scale(0.8)"/>
+  <use href="#nefrona-arrow" transform="translate(607 640) rotate(-90)"/>
+  <use href="#nefrona-arrow" transform="translate(880 500) rotate(90)"/>
+  <use href="#nefrona-arrow" transform="translate(880 900) rotate(90)"/>
+  <use href="#nefrona-arrow" transform="translate(130 241) rotate(8) scale(0.8)"/>
+  <use href="#nefrona-arrow" transform="translate(70 360) rotate(-90) scale(0.9)"/>
+  <use href="#nefrona-arrow" transform="translate(955 300) rotate(-90) scale(0.9)"/>
+</g>
+
+<g id="hits" fill="none">
+  <path data-key="capsula-bowman" d="M272 168A102 102 0 1 1 271.9 168Z"/>
+  <path data-key="glomerulo" d="M276 202A66 66 0 1 1 275.9 202Z"/>
+  <path data-key="tubulo-proximal" d="M372 300L382 188L420 160L470 166L500 132L540 110L590 116L606 160L596 214L574 280L566 330L550 410L548 474L506 474L506 410L512 350L470 344L420 356L366 360Z"/>
+  <path data-key="asa-henle" d="M506 474L548 474L548 1060C548 1094 586 1094 586 1060L586 410L628 400L628 1068C628 1150 506 1150 506 1068Z"/>
+  <path data-key="tubulo-distal" d="M628 400L612 350L648 320L700 330L712 290L668 268L668 218L712 186L760 200L788 220L784 160L800 116L850 104L862 118L862 160L838 190L840 260L812 300L770 296L760 360L720 400L680 392L650 400Z"/>
+  <path data-key="tubo-colector" d="M854 86L906 86L906 1170L854 1170Z"/>
+</g>
+</svg>

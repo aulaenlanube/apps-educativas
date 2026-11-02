@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200">
+<defs>
+  <radialGradient id="circulacion-lung" cx="0.35" cy="0.28" r="0.85">
+    <stop offset="0" stop-color="#fbd6dc"/><stop offset="0.5" stop-color="#e9a2ad"/><stop offset="1" stop-color="#9a4f5c"/>
+  </radialGradient>
+  <radialGradient id="circulacion-cut" cx="0.36" cy="0.3" r="0.85">
+    <stop offset="0" stop-color="#f0aa9b"/><stop offset="0.5" stop-color="#d47a6c"/><stop offset="1" stop-color="#9c3f37"/>
+  </radialGradient>
+  <linearGradient id="circulacion-epi" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#d8695b"/><stop offset="0.55" stop-color="#ab3a32"/><stop offset="1" stop-color="#6e1a1b"/>
+  </linearGradient>
+  <radialGradient id="circulacion-ven" cx="0.5" cy="0.55" r="0.7">
+    <stop offset="0" stop-color="#6a92e6"/><stop offset="0.6" stop-color="#2f5fc4"/><stop offset="1" stop-color="#173678"/>
+  </radialGradient>
+  <radialGradient id="circulacion-art" cx="0.5" cy="0.55" r="0.7">
+    <stop offset="0" stop-color="#f26a5e"/><stop offset="0.6" stop-color="#d42a2a"/><stop offset="1" stop-color="#7c1016"/>
+  </radialGradient>
+  <radialGradient id="circulacion-alvzone" cx="0.6" cy="0.45" r="0.7">
+    <stop offset="0" stop-color="#fde3e7" stop-opacity="0.9"/><stop offset="0.75" stop-color="#f4bcc5" stop-opacity="0.75"/><stop offset="1" stop-color="#e08f9c" stop-opacity="0.2"/>
+  </radialGradient>
+  <linearGradient id="circulacion-gLung" gradientUnits="userSpaceOnUse" x1="0" y1="236" x2="0" y2="356">
+    <stop offset="0" stop-color="#3567d0"/><stop offset="0.35" stop-color="#5a5ad0"/><stop offset="0.62" stop-color="#a23c8c"/><stop offset="1" stop-color="#d42a2a"/>
+  </linearGradient>
+  <linearGradient id="circulacion-gLungD" gradientUnits="userSpaceOnUse" x1="0" y1="236" x2="0" y2="356">
+    <stop offset="0" stop-color="#0f2253"/><stop offset="0.5" stop-color="#3a1660"/><stop offset="1" stop-color="#6b0d12"/>
+  </linearGradient>
+  <linearGradient id="circulacion-gLungL" gradientUnits="userSpaceOnUse" x1="0" y1="236" x2="0" y2="356">
+    <stop offset="0" stop-color="#a9c4f6"/><stop offset="0.5" stop-color="#d2b0f0"/><stop offset="1" stop-color="#ffa196"/>
+  </linearGradient>
+  <linearGradient id="circulacion-gBody" gradientUnits="userSpaceOnUse" x1="735" y1="0" x2="265" y2="0">
+    <stop offset="0" stop-color="#d42a2a"/><stop offset="0.38" stop-color="#a23c8c"/><stop offset="0.65" stop-color="#5a5ad0"/><stop offset="1" stop-color="#3567d0"/>
+  </linearGradient>
+  <linearGradient id="circulacion-gBodyD" gradientUnits="userSpaceOnUse" x1="735" y1="0" x2="265" y2="0">
+    <stop offset="0" stop-color="#6b0d12"/><stop offset="0.5" stop-color="#3a1660"/><stop offset="1" stop-color="#0f2253"/>
+  </linearGradient>
+  <linearGradient id="circulacion-gBodyL" gradientUnits="userSpaceOnUse" x1="735" y1="0" x2="265" y2="0">
+    <stop offset="0" stop-color="#ffa196"/><stop offset="0.5" stop-color="#d2b0f0"/><stop offset="1" stop-color="#a9c4f6"/>
+  </linearGradient>
+  <radialGradient id="circulacion-tissue" cx="0.38" cy="0.25" r="0.9">
+    <stop offset="0" stop-color="#f6c7bc"/><stop offset="0.55" stop-color="#e09a8d"/><stop offset="1" stop-color="#a65a52"/>
+  </radialGradient>
+  <linearGradient id="circulacion-cart" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8fb1ba"/><stop offset="0.35" stop-color="#eef7f9"/><stop offset="1" stop-color="#6f8f99"/>
+  </linearGradient>
+  <linearGradient id="circulacion-valve" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0" stop-color="#fffaf1"/><stop offset="1" stop-color="#d9c2a5"/>
+  </linearGradient>
+
+  <!-- ejes de los vasos -->
+  <path id="circulacion-v-pt" d="M512 503L512 452"/>
+  <path id="circulacion-v-rpa" d="M444 231C462 238 478 250 486 268C500 300 508 380 512 470"/>
+  <path id="circulacion-v-lpa" d="M557 231C548 236 541 248 538 264C528 300 516 380 512 470"/>
+  <path id="circulacion-v-pvl" d="M444 361C470 362 495 380 520 410C545 440 565 470 574 512"/>
+  <path id="circulacion-v-pvr" d="M556 361C575 366 592 390 600 420C606 445 610 475 612 512"/>
+  <path id="circulacion-v-ao" d="M798 1005C812 1005 825 996 825 975L825 498C825 448 790 425 740 425C700 425 671 437 671 470L671 503"/>
+  <path id="circulacion-v-vc1" d="M392 592L185 592C160 592 145 607 145 632L145 970C145 995 160 1010 185 1010L212 1010"/>
+  <path id="circulacion-v-vc2" d="M392 530L130 530C104 530 85 549 85 575L85 1055C85 1081 104 1100 130 1100L212 1100"/>
+  <!-- pulmones -->
+  <path id="circulacion-lungL" d="M330 40C380 38 420 60 435 110C448 160 452 220 455 270C458 320 458 370 452 405C400 393 340 384 282 392C205 402 135 420 95 434C78 362 82 252 118 172C158 92 258 42 330 40Z"/>
+  <path id="circulacion-lungR" d="M670 40C620 38 580 60 565 110C552 160 548 220 546 270C545 300 546 318 552 334C574 344 596 360 598 384C599 394 594 400 588 405C640 393 720 385 784 394C830 401 870 418 905 434C922 362 918 252 882 172C842 92 742 42 670 40Z"/>
+  <!-- zona de capilares de cada pulmón -->
+  <path id="circulacion-netzone" d="M448 220C400 212 310 214 258 230C228 242 224 300 230 330C238 360 300 372 448 372Z"/>
+  <!-- corazón esquemático -->
+  <path id="circulacion-heart" d="M400 500C380 505 366 530 366 565C366 610 372 650 392 690C430 760 520 815 596 846C612 852 628 846 640 832C700 765 728 690 730 610C732 560 724 520 702 500C690 494 670 494 652 494L560 492L530 496L494 496C465 490 430 492 400 500Z"/>
+  <path id="circulacion-ra" d="M404 520C392 535 390 570 394 598C397 612 408 618 424 618L470 618C480 618 486 612 486 600L486 528C486 515 478 508 466 508L430 508C418 508 410 512 404 520Z"/>
+  <path id="circulacion-rv" d="M406 636L494 636L494 500L530 500L530 600C532 680 548 760 584 826C520 800 455 752 424 700C412 680 406 658 406 636Z"/>
+  <path id="circulacion-la" d="M548 522C548 510 556 506 568 506L626 506C638 506 644 514 644 526L644 604C644 614 636 618 626 618L566 618C554 618 548 612 548 600Z"/>
+  <path id="circulacion-lv" d="M558 636L656 636L656 500L692 500L698 600C702 690 680 765 628 822C618 832 610 830 606 820C586 765 570 705 560 652Z"/>
+  <clipPath id="circulacion-clip-ra"><use href="#circulacion-ra"/></clipPath>
+  <clipPath id="circulacion-clip-rv"><use href="#circulacion-rv"/></clipPath>
+  <clipPath id="circulacion-clip-la"><use href="#circulacion-la"/></clipPath>
+  <clipPath id="circulacion-clip-lv"><use href="#circulacion-lv"/></clipPath>
+  <clipPath id="circulacion-clip-lungL"><use href="#circulacion-lungL"/></clipPath>
+  <clipPath id="circulacion-clip-lungR"><use href="#circulacion-lungR"/></clipPath>
+  <g id="circulacion-semi">
+    <path d="M-17 -12C-15 2 -3 2 -1 -10C-5 -3 -12 -3 -14 -12Z"/>
+    <path d="M17 -12C15 2 3 2 1 -10C5 -3 12 -3 14 -12Z"/>
+  </g>
+  <path id="circulacion-arrow" d="M-13 -6L3 -6L3 -12L16 0L3 12L3 6L-13 6Z"/>
+  <!-- red capilar (pulmón izquierdo del dibujo) -->
+  <g id="circulacion-lnet" fill="none" stroke-linecap="round">
+    <use href="#circulacion-netzone" fill="url(#circulacion-alvzone)" stroke="#d98794" stroke-width="2" stroke-opacity="0.6"/>
+    <path d="M272.6 240.4a8.9 8.9 0 1 0 17.7 0a8.9 8.9 0 1 0 -17.7 0ZM240.3 252.7a12.4 12.4 0 1 0 24.8 0a12.4 12.4 0 1 0 -24.8 0ZM431.8 247.1a8.9 8.9 0 1 0 17.7 0a8.9 8.9 0 1 0 -17.7 0ZM315.7 298.9a11.7 11.7 0 1 0 23.3 0a11.7 11.7 0 1 0 -23.3 0ZM376.7 334.4a10.6 10.6 0 1 0 21.3 0a10.6 10.6 0 1 0 -21.3 0ZM393.7 288.6a10.8 10.8 0 1 0 21.6 0a10.8 10.8 0 1 0 -21.6 0ZM308.7 348.6a9.3 9.3 0 1 0 18.5 0a9.3 9.3 0 1 0 -18.5 0ZM430.8 339.2a10.5 10.5 0 1 0 21 0a10.5 10.5 0 1 0 -21 0ZM347.1 317.6a8.8 8.8 0 1 0 17.6 0a8.8 8.8 0 1 0 -17.6 0ZM254.1 320.6a11.7 11.7 0 1 0 23.3 0a11.7 11.7 0 1 0 -23.3 0ZM427.8 277.5a9.3 9.3 0 1 0 18.6 0a9.3 9.3 0 1 0 -18.6 0ZM283 355.5a9.4 9.4 0 1 0 18.8 0a9.4 9.4 0 1 0 -18.8 0ZM342 286.1a11.6 11.6 0 1 0 23.1 0a11.6 11.6 0 1 0 -23.1 0ZM343.3 344.8a12.8 12.8 0 1 0 25.5 0a12.8 12.8 0 1 0 -25.5 0ZM291.9 309.5a9.3 9.3 0 1 0 18.6 0a9.3 9.3 0 1 0 -18.6 0ZM252.8 285a11.9 11.9 0 1 0 23.9 0a11.9 11.9 0 1 0 -23.9 0ZM373 272.1a10.5 10.5 0 1 0 21 0a10.5 10.5 0 1 0 -21 0ZM282.4 264.1a12.4 12.4 0 1 0 24.8 0a12.4 12.4 0 1 0 -24.8 0ZM402.8 248.2a10.9 10.9 0 1 0 21.7 0a10.9 10.9 0 1 0 -21.7 0ZM308 246.6a12.6 12.6 0 1 0 25.2 0a12.6 12.6 0 1 0 -25.2 0ZM406 315.2a11.5 11.5 0 1 0 23 0a11.5 11.5 0 1 0 -23 0ZM322.4 323.9a9.2 9.2 0 1 0 18.4 0a9.2 9.2 0 1 0 -18.4 0ZM360.8 249.2a10.1 10.1 0 1 0 20.2 0a10.1 10.1 0 1 0 -20.2 0ZM404.9 358a10.7 10.7 0 1 0 21.3 0a10.7 10.7 0 1 0 -21.3 0ZM315.8 273.1a10.5 10.5 0 1 0 21 0a10.5 10.5 0 1 0 -21 0ZM281.1 290.8a9.2 9.2 0 1 0 18.4 0a9.2 9.2 0 1 0 -18.4 0ZM428.5 302.2a9.9 9.9 0 1 0 19.8 0a9.9 9.9 0 1 0 -19.8 0ZM249.5 346.3a8.4 8.4 0 1 0 16.8 0a8.4 8.4 0 1 0 -16.8 0ZM368.5 297a10.3 10.3 0 1 0 20.5 0a10.3 10.3 0 1 0 -20.5 0ZM345.1 261.7a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0ZM336.1 241.2a9.6 9.6 0 1 0 19.2 0a9.6 9.6 0 1 0 -19.2 0ZM373.2 357.5a8.5 8.5 0 1 0 17.1 0a8.5 8.5 0 1 0 -17.1 0ZM280.2 332.9a9.8 9.8 0 1 0 19.6 0a9.8 9.8 0 1 0 -19.6 0Z" fill="#fbe4e8" fill-opacity="0.55" stroke="#d48d99" stroke-width="1.2" stroke-opacity="0.8"/>
+    <g stroke="url(#circulacion-gLungD)">
+      <path d="M257.1 257.6Q279.1 263 301.8 264M257.1 257.6Q262.5 270.9 264.6 285.2M301.8 264Q316.6 258.1 332.2 261.1M301.8 264Q299.9 274.6 294 283.7M332.2 261.1Q349.5 261.8 366.7 259.4M332.2 261.1Q336.5 273.7 329.9 285.3M366.7 259.4Q383.9 266.9 402.5 264.3M366.7 259.4Q361.9 274.4 365 289.8M402.5 264.3Q417.1 266.4 429.6 258.6M402.5 264.3Q400.6 276.5 399.5 288.8M429.6 258.6Q424.6 269.9 428.9 281.4M264.6 285.2Q279.5 288.5 294 283.7M264.6 285.2Q256.3 294 258.5 305.9M294 283.7Q311.9 285.1 329.9 285.3M294 283.7Q301.6 296.4 297.5 310.6M329.9 285.3Q347.7 285.5 365 289.8M329.9 285.3Q328.2 298.7 327.7 312.1M365 289.8Q382.4 295 399.5 288.8M365 289.8Q362.4 300 367.5 309.2M399.5 288.8Q414.6 286.8 428.9 281.4M399.5 288.8Q401 300.8 403.8 312.7M428.9 281.4Q434.2 296.4 433.2 312.2M258.5 305.9Q278.7 302.6 297.5 310.6M258.5 305.9Q258.1 317.4 265.3 326.4M297.5 310.6Q312.9 305.6 327.7 312.1M297.5 310.6Q294.5 319.9 293.7 329.6M327.7 312.1Q348.1 316.6 367.5 309.2M327.7 312.1Q323.8 320.6 331.3 326.2M367.5 309.2Q385.3 314.6 403.8 312.7M367.5 309.2Q361.3 320.7 362.9 333.7M403.8 312.7Q418.6 318.4 433.2 312.2M403.8 312.7Q401.5 321.3 400.7 330.3M433.2 312.2Q433.7 323.9 431.7 335.5M265.3 326.4Q279.1 331.7 293.7 329.6M293.7 329.6Q312.8 330.7 331.3 326.2M331.3 326.2Q345.7 335.7 362.9 333.7M362.9 333.7Q382 334.8 400.7 330.3M400.7 330.3Q416.2 332.7 431.7 335.5" stroke-width="5"/>
+      <path d="M266.1 243.4Q263.4 251.7 257.1 257.6M310.8 240.1Q305.6 251.8 301.8 264M341.2 237.9Q334.5 248.6 332.2 261.1M375.7 235.3Q368.5 246.4 366.7 259.4M411.5 232.7Q409.4 249.2 402.5 264.3M438.6 230.7Q433.7 244.5 429.6 258.6M265.3 326.4Q269.9 336.7 274.3 347.2M293.7 329.6Q298.1 339.5 302.7 349.3M331.3 326.2Q338.2 338.3 340.3 352.1M362.9 333.7Q369.2 343.2 371.9 354.4M400.7 330.3Q405.7 343.6 409.7 357.2M431.7 335.5Q436.4 347.4 440.7 359.5" stroke-width="8"/>
+      <path d="M448 230C405 229 335 233 258 244M448 360C405 361 335 357 258 346" stroke-width="15"/>
+    </g>
+    <g stroke="url(#circulacion-gLung)">
+      <path d="M257.1 257.6Q279.1 263 301.8 264M257.1 257.6Q262.5 270.9 264.6 285.2M301.8 264Q316.6 258.1 332.2 261.1M301.8 264Q299.9 274.6 294 283.7M332.2 261.1Q349.5 261.8 366.7 259.4M332.2 261.1Q336.5 273.7 329.9 285.3M366.7 259.4Q383.9 266.9 402.5 264.3M366.7 259.4Q361.9 274.4 365 289.8M402.5 264.3Q417.1 266.4 429.6 258.6M402.5 264.3Q400.6 276.5 399.5 288.8M429.6 258.6Q424.6 269.9 428.9 281.4M264.6 285.2Q279.5 288.5 294 283.7M264.6 285.2Q256.3 294 258.5 305.9M294 283.7Q311.9 285.1 329.9 285.3M294 283.7Q301.6 296.4 297.5 310.6M329.9 285.3Q347.7 285.5 365 289.8M329.9 285.3Q328.2 298.7 327.7 312.1M365 289.8Q382.4 295 399.5 288.8M365 289.8Q362.4 300 367.5 309.2M399.5 288.8Q414.6 286.8 428.9 281.4M399.5 288.8Q401 300.8 403.8 312.7M428.9 281.4Q434.2 296.4 433.2 312.2M258.5 305.9Q278.7 302.6 297.5 310.6M258.5 305.9Q258.1 317.4 265.3 326.4M297.5 310.6Q312.9 305.6 327.7 312.1M297.5 310.6Q294.5 319.9 293.7 329.6M327.7 312.1Q348.1 316.6 367.5 309.2M327.7 312.1Q323.8 320.6 331.3 326.2M367.5 309.2Q385.3 314.6 403.8 312.7M367.5 309.2Q361.3 320.7 362.9 333.7M403.8 312.7Q418.6 318.4 433.2 312.2M403.8 312.7Q401.5 321.3 400.7 330.3M433.2 312.2Q433.7 323.9 431.7 335.5M265.3 326.4Q279.1 331.7 293.7 329.6M293.7 329.6Q312.8 330.7 331.3 326.2M331.3 326.2Q345.7 335.7 362.9 333.7M362.9 333.7Q382 334.8 400.7 330.3M400.7 330.3Q416.2 332.7 431.7 335.5" stroke-width="3"/>
+      <path d="M266.1 243.4Q263.4 251.7 257.1 257.6M310.8 240.1Q305.6 251.8 301.8 264M341.2 237.9Q334.5 248.6 332.2 261.1M375.7 235.3Q368.5 246.4 366.7 259.4M411.5 232.7Q409.4 249.2 402.5 264.3M438.6 230.7Q433.7 244.5 429.6 258.6M265.3 326.4Q269.9 336.7 274.3 347.2M293.7 329.6Q298.1 339.5 302.7 349.3M331.3 326.2Q338.2 338.3 340.3 352.1M362.9 333.7Q369.2 343.2 371.9 354.4M400.7 330.3Q405.7 343.6 409.7 357.2M431.7 335.5Q436.4 347.4 440.7 359.5" stroke-width="5.5"/>
+      <path d="M448 230C405 229 335 233 258 244M448 360C405 361 335 357 258 346" stroke-width="12"/>
+    </g>
+    <path d="M440 226C400 225 335 229 262 240M440 356C400 357 335 353 262 342" stroke="url(#circulacion-gLungL)" stroke-width="3.5" opacity="0.85"/>
+  </g>
+</defs>
+
+<!-- ───── marcos de los dos circuitos ───── -->
+<path d="M115 12L885 12Q942 12 942 69L942 352Q942 402 892 402L702 402Q662 402 657 442L652 488L655 545L378 545L374 506Q368 472 330 472L113 472Q58 472 58 417L58 69Q58 12 115 12Z" fill="#7dd3fc" fill-opacity="0.05" stroke="#7dd3fc" stroke-opacity="0.4" stroke-width="3" stroke-dasharray="12 9"/>
+<path d="M100 486L338 486Q378 486 382 522L386 552L650 552L652 452Q658 414 700 414L882 414Q938 414 938 470L938 1131Q938 1188 881 1188L109 1188Q52 1188 52 1131L52 534Q52 486 100 486Z" fill="#fbbf24" fill-opacity="0.045" stroke="#fbbf24" stroke-opacity="0.38" stroke-width="3" stroke-dasharray="12 9"/>
+
+<!-- ───── cuerpo (tejidos) con su red de capilares ───── -->
+<path d="M250 942L760 942Q802 942 802 984L802 1128Q802 1168 760 1168L250 1168Q208 1168 208 1128L208 984Q208 942 250 942Z" fill="url(#circulacion-tissue)" stroke="#6e2a2a" stroke-width="2.5"/>
+<g fill="#f7cdc3" fill-opacity="0.55" stroke="#b8705f" stroke-width="1.2" stroke-opacity="0.6"><ellipse cx="705.4" cy="1123.9" rx="19.2" ry="12.2" transform="rotate(20.3 705.4 1123.9)"/><ellipse cx="710.6" cy="997.7" rx="17.9" ry="14.1" transform="rotate(-58.5 710.6 997.7)"/><ellipse cx="548.7" cy="1131" rx="17.9" ry="14.4" transform="rotate(-58.4 548.7 1131)"/><ellipse cx="282.7" cy="1043" rx="15.9" ry="13.9" transform="rotate(32.4 282.7 1043)"/><ellipse cx="240.1" cy="996.6" rx="15.8" ry="11.4" transform="rotate(5.8 240.1 996.6)"/><ellipse cx="577.5" cy="968.5" rx="19.8" ry="11.4" transform="rotate(-30.2 577.5 968.5)"/><ellipse cx="327.5" cy="1015.5" rx="19.9" ry="11.1" transform="rotate(-24.5 327.5 1015.5)"/><ellipse cx="334" cy="1123.1" rx="15.9" ry="15" transform="rotate(-27.8 334 1123.1)"/><ellipse cx="646.2" cy="1113.7" rx="18.3" ry="13.8" transform="rotate(31.4 646.2 1113.7)"/><ellipse cx="454.9" cy="1065.5" rx="15.6" ry="11.1" transform="rotate(-48.7 454.9 1065.5)"/><ellipse cx="631.5" cy="1064.8" rx="19.1" ry="13.1" transform="rotate(-21.8 631.5 1064.8)"/><ellipse cx="476.8" cy="984.3" rx="15.4" ry="13.5" transform="rotate(-4 476.8 984.3)"/><ellipse cx="486.3" cy="1129.8" rx="19.9" ry="12.9" transform="rotate(-54.7 486.3 1129.8)"/><ellipse cx="528.5" cy="1017.6" rx="19.6" ry="14.6" transform="rotate(-19.1 528.5 1017.6)"/><ellipse cx="540.9" cy="1074.9" rx="18.7" ry="12.6" transform="rotate(13.5 540.9 1074.9)"/><ellipse cx="239.9" cy="1097.5" rx="17.5" ry="12.4" transform="rotate(-39.1 239.9 1097.5)"/><ellipse cx="421.3" cy="1139.5" rx="18" ry="14.3" transform="rotate(-47.6 421.3 1139.5)"/><ellipse cx="769" cy="1023.2" rx="15.9" ry="14.5" transform="rotate(37.4 769 1023.2)"/><ellipse cx="301.8" cy="1083.4" rx="19.6" ry="14.9" transform="rotate(16.5 301.8 1083.4)"/><ellipse cx="590.6" cy="1098.9" rx="15.9" ry="12.1" transform="rotate(-42.6 590.6 1098.9)"/><ellipse cx="680.6" cy="1074.4" rx="18" ry="13.5" transform="rotate(-49.1 680.6 1074.4)"/><ellipse cx="613.4" cy="1143.9" rx="15.8" ry="14.8" transform="rotate(34.6 613.4 1143.9)"/><ellipse cx="576.4" cy="1009" rx="20.3" ry="14.1" transform="rotate(26.3 576.4 1009)"/><ellipse cx="445.4" cy="1016.6" rx="20.8" ry="13.2" transform="rotate(-9.7 445.4 1016.6)"/><ellipse cx="388.1" cy="1112.9" rx="19.4" ry="13.8" transform="rotate(-0.9 388.1 1112.9)"/><ellipse cx="360.9" cy="1042.1" rx="19.6" ry="13.8" transform="rotate(-42 360.9 1042.1)"/><ellipse cx="631.6" cy="962.3" rx="20.5" ry="15" transform="rotate(-54.4 631.6 962.3)"/><ellipse cx="313.7" cy="974" rx="17.3" ry="13.8" transform="rotate(-6.3 313.7 974)"/><ellipse cx="234.5" cy="1051.9" rx="19.7" ry="11.7" transform="rotate(-15.3 234.5 1051.9)"/><ellipse cx="667.7" cy="994.8" rx="16.3" ry="12.4" transform="rotate(37.1 667.7 994.8)"/><ellipse cx="529" cy="975.8" rx="18.5" ry="13" transform="rotate(-47 529 975.8)"/><ellipse cx="723.3" cy="1054.3" rx="17.8" ry="12.2" transform="rotate(-58 723.3 1054.3)"/><ellipse cx="389.9" cy="996.8" rx="17.2" ry="14.7" transform="rotate(-24.5 389.9 996.8)"/><ellipse cx="780.1" cy="1070.9" rx="18.9" ry="12.2" transform="rotate(-8.4 780.1 1070.9)"/><ellipse cx="764" cy="1143.5" rx="20.2" ry="13" transform="rotate(-48.3 764 1143.5)"/><ellipse cx="749.4" cy="967.2" rx="19.3" ry="14.5" transform="rotate(52.2 749.4 967.2)"/><ellipse cx="499.7" cy="1051.9" rx="19.5" ry="11.7" transform="rotate(2.5 499.7 1051.9)"/><ellipse cx="629.6" cy="1019.1" rx="18.2" ry="14.7" transform="rotate(-28.5 629.6 1019.1)"/><ellipse cx="422" cy="1089.4" rx="16.7" ry="12.6" transform="rotate(-45.4 422 1089.4)"/><ellipse cx="273.4" cy="1126" rx="20.2" ry="11.2" transform="rotate(-40.6 273.4 1126)"/></g>
+<g fill="#a65a6a" fill-opacity="0.55"><ellipse cx="707.4" cy="1124.9" rx="5" ry="4" transform="rotate(20.3 705.4 1123.9)"/><ellipse cx="712.6" cy="998.7" rx="5" ry="4" transform="rotate(-58.5 710.6 997.7)"/><ellipse cx="550.7" cy="1132" rx="5" ry="4" transform="rotate(-58.4 548.7 1131)"/><ellipse cx="284.7" cy="1044" rx="5" ry="4" transform="rotate(32.4 282.7 1043)"/><ellipse cx="242.1" cy="997.6" rx="5" ry="4" transform="rotate(5.8 240.1 996.6)"/><ellipse cx="579.5" cy="969.5" rx="5" ry="4" transform="rotate(-30.2 577.5 968.5)"/><ellipse cx="329.5" cy="1016.5" rx="5" ry="4" transform="rotate(-24.5 327.5 1015.5)"/><ellipse cx="336" cy="1124.1" rx="5" ry="4" transform="rotate(-27.8 334 1123.1)"/><ellipse cx="648.2" cy="1114.7" rx="5" ry="4" transform="rotate(31.4 646.2 1113.7)"/><ellipse cx="456.9" cy="1066.5" rx="5" ry="4" transform="rotate(-48.7 454.9 1065.5)"/><ellipse cx="633.5" cy="1065.8" rx="5" ry="4" transform="rotate(-21.8 631.5 1064.8)"/><ellipse cx="478.8" cy="985.3" rx="5" ry="4" transform="rotate(-4 476.8 984.3)"/><ellipse cx="488.3" cy="1130.8" rx="5" ry="4" transform="rotate(-54.7 486.3 1129.8)"/><ellipse cx="530.5" cy="1018.6" rx="5" ry="4" transform="rotate(-19.1 528.5 1017.6)"/><ellipse cx="542.9" cy="1075.9" rx="5" ry="4" transform="rotate(13.5 540.9 1074.9)"/><ellipse cx="241.9" cy="1098.5" rx="5" ry="4" transform="rotate(-39.1 239.9 1097.5)"/><ellipse cx="423.3" cy="1140.5" rx="5" ry="4" transform="rotate(-47.6 421.3 1139.5)"/><ellipse cx="771" cy="1024.2" rx="5" ry="4" transform="rotate(37.4 769 1023.2)"/><ellipse cx="303.8" cy="1084.4" rx="5" ry="4" transform="rotate(16.5 301.8 1083.4)"/><ellipse cx="592.6" cy="1099.9" rx="5" ry="4" transform="rotate(-42.6 590.6 1098.9)"/><ellipse cx="682.6" cy="1075.4" rx="5" ry="4" transform="rotate(-49.1 680.6 1074.4)"/><ellipse cx="615.4" cy="1144.9" rx="5" ry="4" transform="rotate(34.6 613.4 1143.9)"/><ellipse cx="578.4" cy="1010" rx="5" ry="4" transform="rotate(26.3 576.4 1009)"/><ellipse cx="447.4" cy="1017.6" rx="5" ry="4" transform="rotate(-9.7 445.4 1016.6)"/><ellipse cx="390.1" cy="1113.9" rx="5" ry="4" transform="rotate(-0.9 388.1 1112.9)"/><ellipse cx="362.9" cy="1043.1" rx="5" ry="4" transform="rotate(-42 360.9 1042.1)"/><ellipse cx="633.6" cy="963.3" rx="5" ry="4" transform="rotate(-54.4 631.6 962.3)"/><ellipse cx="315.7" cy="975" rx="5" ry="4" transform="rotate(-6.3 313.7 974)"/><ellipse cx="236.5" cy="1052.9" rx="5" ry="4" transform="rotate(-15.3 234.5 1051.9)"/><ellipse cx="669.7" cy="995.8" rx="5" ry="4" transform="rotate(37.1 667.7 994.8)"/><ellipse cx="531" cy="976.8" rx="5" ry="4" transform="rotate(-47 529 975.8)"/><ellipse cx="725.3" cy="1055.3" rx="5" ry="4" transform="rotate(-58 723.3 1054.3)"/><ellipse cx="391.9" cy="997.8" rx="5" ry="4" transform="rotate(-24.5 389.9 996.8)"/><ellipse cx="782.1" cy="1071.9" rx="5" ry="4" transform="rotate(-8.4 780.1 1070.9)"/><ellipse cx="766" cy="1144.5" rx="5" ry="4" transform="rotate(-48.3 764 1143.5)"/><ellipse cx="751.4" cy="968.2" rx="5" ry="4" transform="rotate(52.2 749.4 967.2)"/><ellipse cx="501.7" cy="1052.9" rx="5" ry="4" transform="rotate(2.5 499.7 1051.9)"/><ellipse cx="631.6" cy="1020.1" rx="5" ry="4" transform="rotate(-28.5 629.6 1019.1)"/><ellipse cx="424" cy="1090.4" rx="5" ry="4" transform="rotate(-45.4 422 1089.4)"/><ellipse cx="275.4" cy="1127" rx="5" ry="4" transform="rotate(-40.6 273.4 1126)"/></g>
+<path d="M232 950Q505 938 778 950" fill="none" stroke="#fff3ef" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+<g fill="none" stroke-linecap="round">
+  <g stroke="url(#circulacion-gBodyD)">
+    <path d="M301.9 973.8Q320.4 979.7 339.7 977.3M301.9 973.8Q304.2 996.2 306.7 1018.6M339.7 977.3Q359.5 978.8 379.3 976.4M339.7 977.3Q338.5 998.8 348.7 1017.8M379.3 976.4Q405.8 975.8 430 986.4M379.3 976.4Q373.1 992.2 378.3 1008.4M430 986.4Q448.8 979.6 467.7 973.3M430 986.4Q432 999.2 429.4 1011.9M467.7 973.3Q489.6 976.1 511.3 979.9M467.7 973.3Q469.9 991.2 466.9 1008.9M511.3 979.9Q528.6 973.5 546.1 979.3M511.3 979.9Q504 996.5 505.3 1014.6M546.1 979.3Q572.4 979.4 598.6 978.7M546.1 979.3Q550 996.4 558.8 1011.6M598.6 978.7Q616.6 973.7 634.4 979.5M598.6 978.7Q598.7 993.9 596.4 1008.9M634.4 979.5Q641.3 995.8 639.5 1013.4M306.7 1018.6Q327.6 1012.3 348.7 1017.8M306.7 1018.6Q298.3 1030.7 296.4 1045.3M348.7 1017.8Q363.2 1012.3 378.3 1008.4M348.7 1017.8Q340.2 1033.1 336.6 1050.2M378.3 1008.4Q403.8 1010 429.4 1011.9M378.3 1008.4Q379.3 1030.7 381.4 1052.9M429.4 1011.9Q448.3 1013.2 466.9 1008.9M429.4 1011.9Q429.6 1027.8 430.3 1043.7M466.9 1008.9Q485.9 1013.5 505.3 1014.6M466.9 1008.9Q465.7 1026.1 471.3 1042.4M505.3 1014.6Q531.7 1006.6 558.8 1011.6M505.3 1014.6Q514.5 1030.8 515.2 1049.3M558.8 1011.6Q577.2 1005.2 596.4 1008.9M558.8 1011.6Q563.7 1030 556.8 1047.8M596.4 1008.9Q617.3 1017.6 639.5 1013.4M596.4 1008.9Q585.8 1027 588.6 1047.9M639.5 1013.4Q635.9 1032.9 639.2 1052.5M296.4 1045.3Q315.9 1052.8 336.6 1050.2M296.4 1045.3Q304.7 1064.6 303.1 1085.6M336.6 1050.2Q358.6 1057.7 381.4 1052.9M336.6 1050.2Q339.7 1066 346.5 1080.6M381.4 1052.9Q407.1 1054.9 430.3 1043.7M381.4 1052.9Q377.5 1063.9 382.5 1074.4M430.3 1043.7Q450.6 1036.5 471.3 1042.4M430.3 1043.7Q423.5 1063.8 428.4 1084.4M471.3 1042.4Q492.5 1050.6 515.2 1049.3M471.3 1042.4Q476.1 1058.8 471.7 1075.4M515.2 1049.3Q536.1 1052.5 556.8 1047.8M515.2 1049.3Q512 1063.8 505 1076.9M556.8 1047.8Q572.7 1044.6 588.6 1047.9M556.8 1047.8Q549.5 1063.7 551.2 1081M588.6 1047.9Q614.1 1047.7 639.2 1052.5M588.6 1047.9Q591.8 1064.2 587.1 1080.2M639.2 1052.5Q629.3 1060.5 632.6 1072.8M303.1 1085.6Q325.6 1090 346.5 1080.6M303.1 1085.6Q306.7 1100.3 302.5 1114.7M346.5 1080.6Q363.4 1071.1 382.5 1074.4M346.5 1080.6Q350.7 1098.7 348.8 1117.2M382.5 1074.4Q406.9 1073 428.4 1084.4M382.5 1074.4Q389.5 1090.5 382.8 1106.6M428.4 1084.4Q448.8 1074.1 471.7 1075.4M428.4 1084.4Q425.9 1099.9 420.7 1114.7M471.7 1075.4Q488.2 1077.9 505 1076.9M471.7 1075.4Q469.8 1090.8 468.1 1106.2M505 1076.9Q528.2 1077.6 551.2 1081M505 1076.9Q505.2 1097.3 503.3 1117.7M551.2 1081Q569.2 1083.6 587.1 1080.2M551.2 1081Q555.5 1096.9 553.5 1113.3M587.1 1080.2Q609.4 1073.7 632.6 1072.8M587.1 1080.2Q596.2 1097.6 596.1 1117.2M632.6 1072.8Q638.8 1093.1 639.8 1114.4M302.5 1114.7Q325.3 1121.1 348.8 1117.2M302.5 1114.7Q305.3 1132.1 294.8 1146.3M348.8 1117.2Q364.2 1106.8 382.8 1106.6M348.8 1117.2Q347.7 1130.8 336.1 1138M382.8 1106.6Q400.7 1115.7 420.7 1114.7M382.8 1106.6Q390.5 1127.7 387.4 1149.9M420.7 1114.7Q443.9 1107.9 468.1 1106.2M420.7 1114.7Q421.8 1131.3 424 1147.7M468.1 1106.2Q484 1117.2 503.3 1117.7M468.1 1106.2Q463.8 1126.4 463.2 1147M503.3 1117.7Q528.1 1112.9 553.5 1113.3M503.3 1117.7Q512.9 1132.7 513.9 1150.5M553.5 1113.3Q574.9 1114 596.1 1117.2M553.5 1113.3Q553.4 1128 550 1142.3M596.1 1117.2Q618.1 1118.9 639.8 1114.4M596.1 1117.2Q593.3 1133.4 590.3 1149.5M639.8 1114.4Q636 1127 636.2 1140.2M294.8 1146.3Q315.7 1143.1 336.1 1138M336.1 1138Q361 1147 387.4 1149.9M387.4 1149.9Q406 1152.9 424 1147.7M424 1147.7Q443.5 1141.6 463.2 1147M463.2 1147Q488.9 1143.7 513.9 1150.5M513.9 1150.5Q531.1 1142.7 550 1142.3M550 1142.3Q570.6 1143.4 590.3 1149.5M590.3 1149.5Q613.7 1147 636.2 1140.2" stroke-width="5"/>
+    <path d="M688 998Q662.4 985.2 634.4 979.5M688 998Q664.8 1008.9 639.5 1013.4M690 1063Q665.1 1055.4 639.2 1052.5M690 1063Q661.3 1067.7 632.6 1072.8M688 1124Q664.3 1117.1 639.8 1114.4M688 1124Q661.1 1128.9 636.2 1140.2M301.9 973.8Q279.6 993.4 255 1010M306.7 1018.6Q280.7 1015.3 255 1010M296.4 1045.3Q276.6 1026.6 255 1010M303.1 1085.6Q279.2 1093.5 255 1100M302.5 1114.7Q277.8 1110.5 255 1100M294.8 1146.3Q271.8 1125.9 255 1100" stroke-width="8.5"/>
+    <path d="M722 1035Q703.9 1017.5 688 998M722 1035Q706 1049 690 1063M722 1035Q707 1080.3 688 1124" stroke-width="12"/>
+    <path d="M800 1005Q760.4 1018.5 722 1035M255 1010Q229.5 1009.6 204 1010M255 1100Q229.5 1100.9 204 1100" stroke-width="17"/>
+  </g>
+  <g stroke="url(#circulacion-gBody)">
+    <path d="M301.9 973.8Q320.4 979.7 339.7 977.3M301.9 973.8Q304.2 996.2 306.7 1018.6M339.7 977.3Q359.5 978.8 379.3 976.4M339.7 977.3Q338.5 998.8 348.7 1017.8M379.3 976.4Q405.8 975.8 430 986.4M379.3 976.4Q373.1 992.2 378.3 1008.4M430 986.4Q448.8 979.6 467.7 973.3M430 986.4Q432 999.2 429.4 1011.9M467.7 973.3Q489.6 976.1 511.3 979.9M467.7 973.3Q469.9 991.2 466.9 1008.9M511.3 979.9Q528.6 973.5 546.1 979.3M511.3 979.9Q504 996.5 505.3 1014.6M546.1 979.3Q572.4 979.4 598.6 978.7M546.1 979.3Q550 996.4 558.8 1011.6M598.6 978.7Q616.6 973.7 634.4 979.5M598.6 978.7Q598.7 993.9 596.4 1008.9M634.4 979.5Q641.3 995.8 639.5 1013.4M306.7 1018.6Q327.6 1012.3 348.7 1017.8M306.7 1018.6Q298.3 1030.7 296.4 1045.3M348.7 1017.8Q363.2 1012.3 378.3 1008.4M348.7 1017.8Q340.2 1033.1 336.6 1050.2M378.3 1008.4Q403.8 1010 429.4 1011.9M378.3 1008.4Q379.3 1030.7 381.4 1052.9M429.4 1011.9Q448.3 1013.2 466.9 1008.9M429.4 1011.9Q429.6 1027.8 430.3 1043.7M466.9 1008.9Q485.9 1013.5 505.3 1014.6M466.9 1008.9Q465.7 1026.1 471.3 1042.4M505.3 1014.6Q531.7 1006.6 558.8 1011.6M505.3 1014.6Q514.5 1030.8 515.2 1049.3M558.8 1011.6Q577.2 1005.2 596.4 1008.9M558.8 1011.6Q563.7 1030 556.8 1047.8M596.4 1008.9Q617.3 1017.6 639.5 1013.4M596.4 1008.9Q585.8 1027 588.6 1047.9M639.5 1013.4Q635.9 1032.9 639.2 1052.5M296.4 1045.3Q315.9 1052.8 336.6 1050.2M296.4 1045.3Q304.7 1064.6 303.1 1085.6M336.6 1050.2Q358.6 1057.7 381.4 1052.9M336.6 1050.2Q339.7 1066 346.5 1080.6M381.4 1052.9Q407.1 1054.9 430.3 1043.7M381.4 1052.9Q377.5 1063.9 382.5 1074.4M430.3 1043.7Q450.6 1036.5 471.3 1042.4M430.3 1043.7Q423.5 1063.8 428.4 1084.4M471.3 1042.4Q492.5 1050.6 515.2 1049.3M471.3 1042.4Q476.1 1058.8 471.7 1075.4M515.2 1049.3Q536.1 1052.5 556.8 1047.8M515.2 1049.3Q512 1063.8 505 1076.9M556.8 1047.8Q572.7 1044.6 588.6 1047.9M556.8 1047.8Q549.5 1063.7 551.2 1081M588.6 1047.9Q614.1 1047.7 639.2 1052.5M588.6 1047.9Q591.8 1064.2 587.1 1080.2M639.2 1052.5Q629.3 1060.5 632.6 1072.8M303.1 1085.6Q325.6 1090 346.5 1080.6M303.1 1085.6Q306.7 1100.3 302.5 1114.7M346.5 1080.6Q363.4 1071.1 382.5 1074.4M346.5 1080.6Q350.7 1098.7 348.8 1117.2M382.5 1074.4Q406.9 1073 428.4 1084.4M382.5 1074.4Q389.5 1090.5 382.8 1106.6M428.4 1084.4Q448.8 1074.1 471.7 1075.4M428.4 1084.4Q425.9 1099.9 420.7 1114.7M471.7 1075.4Q488.2 1077.9 505 1076.9M471.7 1075.4Q469.8 1090.8 468.1 1106.2M505 1076.9Q528.2 1077.6 551.2 1081M505 1076.9Q505.2 1097.3 503.3 1117.7M551.2 1081Q569.2 1083.6 587.1 1080.2M551.2 1081Q555.5 1096.9 553.5 1113.3M587.1 1080.2Q609.4 1073.7 632.6 1072.8M587.1 1080.2Q596.2 1097.6 596.1 1117.2M632.6 1072.8Q638.8 1093.1 639.8 1114.4M302.5 1114.7Q325.3 1121.1 348.8 1117.2M302.5 1114.7Q305.3 1132.1 294.8 1146.3M348.8 1117.2Q364.2 1106.8 382.8 1106.6M348.8 1117.2Q347.7 1130.8 336.1 1138M382.8 1106.6Q400.7 1115.7 420.7 1114.7M382.8 1106.6Q390.5 1127.7 387.4 1149.9M420.7 1114.7Q443.9 1107.9 468.1 1106.2M420.7 1114.7Q421.8 1131.3 424 1147.7M468.1 1106.2Q484 1117.2 503.3 1117.7M468.1 1106.2Q463.8 1126.4 463.2 1147M503.3 1117.7Q528.1 1112.9 553.5 1113.3M503.3 1117.7Q512.9 1132.7 513.9 1150.5M553.5 1113.3Q574.9 1114 596.1 1117.2M553.5 1113.3Q553.4 1128 550 1142.3M596.1 1117.2Q618.1 1118.9 639.8 1114.4M596.1 1117.2Q593.3 1133.4 590.3 1149.5M639.8 1114.4Q636 1127 636.2 1140.2M294.8 1146.3Q315.7 1143.1 336.1 1138M336.1 1138Q361 1147 387.4 1149.9M387.4 1149.9Q406 1152.9 424 1147.7M424 1147.7Q443.5 1141.6 463.2 1147M463.2 1147Q488.9 1143.7 513.9 1150.5M513.9 1150.5Q531.1 1142.7 550 1142.3M550 1142.3Q570.6 1143.4 590.3 1149.5M590.3 1149.5Q613.7 1147 636.2 1140.2" stroke-width="3"/>
+    <path d="M688 998Q662.4 985.2 634.4 979.5M688 998Q664.8 1008.9 639.5 1013.4M690 1063Q665.1 1055.4 639.2 1052.5M690 1063Q661.3 1067.7 632.6 1072.8M688 1124Q664.3 1117.1 639.8 1114.4M688 1124Q661.1 1128.9 636.2 1140.2M301.9 973.8Q279.6 993.4 255 1010M306.7 1018.6Q280.7 1015.3 255 1010M296.4 1045.3Q276.6 1026.6 255 1010M303.1 1085.6Q279.2 1093.5 255 1100M302.5 1114.7Q277.8 1110.5 255 1100M294.8 1146.3Q271.8 1125.9 255 1100" stroke-width="6"/>
+    <path d="M722 1035Q703.9 1017.5 688 998M722 1035Q706 1049 690 1063M722 1035Q707 1080.3 688 1124" stroke-width="9"/>
+    <path d="M800 1005Q760.4 1018.5 722 1035M255 1010Q229.5 1009.6 204 1010M255 1100Q229.5 1100.9 204 1100" stroke-width="14"/>
+  </g>
+  <g stroke="url(#circulacion-gBodyL)" opacity="0.8" transform="translate(-1,-2)">
+    <path d="M722 1035Q703.9 1017.5 688 998M722 1035Q706 1049 690 1063M722 1035Q707 1080.3 688 1124" stroke-width="2.5"/>
+    <path d="M800 1005Q760.4 1018.5 722 1035M255 1010Q229.5 1009.6 204 1010M255 1100Q229.5 1100.9 204 1100" stroke-width="4"/>
+  </g>
+</g>
+
+<!-- ───── pulmones ───── -->
+<g>
+  <use href="#circulacion-lungL" fill="url(#circulacion-lung)" stroke="#8e4a58" stroke-width="2.5"/>
+  <use href="#circulacion-lungR" fill="url(#circulacion-lung)" stroke="#8e4a58" stroke-width="2.5"/>
+  <g fill="none" stroke="#7a3846" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+    <path d="M436 150C380 220 250 330 150 412"/>
+    <path d="M308 264C240 262 170 262 100 268"/>
+    <path d="M566 162C640 230 760 330 860 414"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" opacity="0.5">
+    <path d="M165 150C200 100 260 66 320 60" stroke-width="7"/>
+    <path d="M610 92C640 66 680 58 720 62" stroke-width="5"/>
+  </g>
+  <g clip-path="url(#circulacion-clip-lungL)"><use href="#circulacion-lungL" fill="none" stroke="#6e2f3d" stroke-width="22" opacity="0.35" transform="translate(9,10)"/></g>
+  <g clip-path="url(#circulacion-clip-lungR)"><use href="#circulacion-lungR" fill="none" stroke="#6e2f3d" stroke-width="22" opacity="0.35" transform="translate(9,10)"/></g>
+</g>
+<!-- tráquea y bronquios -->
+<g>
+  <path d="M482 0L518 0L518 128C540 140 556 156 566 182L548 190C540 170 526 156 500 150C474 156 460 170 452 190L434 182C444 156 460 140 482 128Z" fill="url(#circulacion-cart)" stroke="#6f8f99" stroke-width="2"/>
+  <g fill="none" stroke="#6f8f99" stroke-width="2" opacity="0.7">
+    <path d="M483 16Q500 22 517 16M483 38Q500 44 517 38M483 60Q500 66 517 60M483 82Q500 88 517 82M483 104Q500 110 517 104"/>
+    <path d="M462 152Q470 160 474 168M446 168Q455 174 460 184M538 152Q530 160 526 168M554 168Q545 174 540 184"/>
+  </g>
+</g>
+<!-- redes capilares de los pulmones -->
+<use href="#circulacion-lnet"/>
+<use href="#circulacion-lnet" transform="translate(1000 0) scale(-1 1)"/>
+
+<!-- ───── vasos por detrás del corazón ───── -->
+<g fill="none">
+  <use href="#circulacion-v-pvl" stroke="#6b0d12" stroke-width="26"/>
+  <use href="#circulacion-v-pvr" stroke="#6b0d12" stroke-width="26"/>
+  <use href="#circulacion-v-vc1" stroke="#0f2253" stroke-width="32"/>
+  <use href="#circulacion-v-vc2" stroke="#0f2253" stroke-width="32"/>
+  <use href="#circulacion-v-pvl" stroke="#d42a2a" stroke-width="21"/>
+  <use href="#circulacion-v-pvr" stroke="#d42a2a" stroke-width="21"/>
+  <use href="#circulacion-v-vc1" stroke="#2f5fc4" stroke-width="27"/>
+  <use href="#circulacion-v-vc2" stroke="#2f5fc4" stroke-width="27"/>
+  <use href="#circulacion-v-pvl" stroke="#8c1419" stroke-width="7.8" transform="translate(4.2,4.4)" opacity="0.5"/>
+  <use href="#circulacion-v-pvr" stroke="#8c1419" stroke-width="7.8" transform="translate(4.2,4.4)" opacity="0.5"/>
+  <use href="#circulacion-v-vc1" stroke="#1b3c88" stroke-width="9.6" transform="translate(5.1,5.4)" opacity="0.5"/>
+  <use href="#circulacion-v-vc2" stroke="#1b3c88" stroke-width="9.6" transform="translate(5.1,5.4)" opacity="0.5"/>
+  <use href="#circulacion-v-pvl" stroke="#e54a40" stroke-width="13.5" transform="translate(-2.3,-3.1)" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pvr" stroke="#e54a40" stroke-width="13.5" transform="translate(-2.3,-3.1)" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-vc1" stroke="#5684dc" stroke-width="16.6" transform="translate(-2.9,-3.8)"/>
+  <use href="#circulacion-v-vc2" stroke="#5684dc" stroke-width="16.6" transform="translate(-2.9,-3.8)"/>
+  <use href="#circulacion-v-pvl" stroke="#f78a7e" stroke-width="4.7" transform="translate(-4.7,-5.7)" opacity="0.8" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pvr" stroke="#f78a7e" stroke-width="4.7" transform="translate(-4.7,-5.7)" opacity="0.8" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-vc1" stroke="#93b3f0" stroke-width="5.8" transform="translate(-5.8,-7)" opacity="0.8"/>
+  <use href="#circulacion-v-vc2" stroke="#93b3f0" stroke-width="5.8" transform="translate(-5.8,-7)" opacity="0.8"/>
+  <use href="#circulacion-v-pvl" stroke="#ffffff" stroke-width="2" transform="translate(-5.7,-7)" opacity="0.45" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pvr" stroke="#ffffff" stroke-width="2" transform="translate(-5.7,-7)" opacity="0.45" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-vc1" stroke="#ffffff" stroke-width="2" transform="translate(-7,-8.6)" opacity="0.45"/>
+  <use href="#circulacion-v-vc2" stroke="#ffffff" stroke-width="2" transform="translate(-7,-8.6)" opacity="0.45"/>
+</g>
+
+<!-- ───── corazón ───── -->
+<use href="#circulacion-heart" fill="url(#circulacion-cut)"/>
+<use href="#circulacion-heart" fill="none" stroke="#5c1214" stroke-width="18"/>
+<use href="#circulacion-heart" fill="none" stroke="url(#circulacion-epi)" stroke-width="14"/>
+<path d="M382 560C382 530 392 512 410 506M600 498C630 496 660 498 690 504" fill="none" stroke="#f3a090" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+<use href="#circulacion-ra" fill="url(#circulacion-ven)"/>
+<use href="#circulacion-rv" fill="url(#circulacion-ven)"/>
+<use href="#circulacion-la" fill="url(#circulacion-art)"/>
+<use href="#circulacion-lv" fill="url(#circulacion-art)"/>
+<!-- aberturas: válvulas AV, cavas y venas pulmonares -->
+<path d="M420 612L472 612L472 640L420 640Z" fill="#2f5fc4"/>
+<path d="M568 612L630 612L630 640L568 640Z" fill="#d42a2a"/>
+<path d="M369 517Q388 514 406 518L406 542Q388 546 369 543Z M367 579Q384 576 400 580L400 604Q384 608 367 605Z" fill="#2f5fc4"/>
+<path d="M369 517Q388 514 406 518M369 543Q388 546 406 542M367 579Q384 576 400 580M367 605Q384 608 400 604" fill="none" stroke="#0f2253" stroke-width="1.8"/>
+<path d="M562 496L586 496L585 512Q574 516 563 512Z M600 496L624 496L623 512Q612 516 601 512Z" fill="#d42a2a"/>
+<path d="M562 496L563 512M586 496L585 512M600 496L601 512M624 496L623 512" fill="none" stroke="#6b0d12" stroke-width="1.8"/>
+<g fill="none" stroke-width="12">
+  <use href="#circulacion-ra" stroke="#0b1d4a" opacity="0.5" transform="translate(5,6)" clip-path="url(#circulacion-clip-ra)"/>
+  <use href="#circulacion-rv" stroke="#0b1d4a" opacity="0.5" transform="translate(5,6)" clip-path="url(#circulacion-clip-rv)"/>
+  <use href="#circulacion-la" stroke="#4a070b" opacity="0.5" transform="translate(5,6)" clip-path="url(#circulacion-clip-la)"/>
+  <use href="#circulacion-lv" stroke="#4a070b" opacity="0.5" transform="translate(5,6)" clip-path="url(#circulacion-clip-lv)"/>
+</g>
+<g fill="none" stroke-width="2">
+  <use href="#circulacion-ra" stroke="#0f2253"/>
+  <use href="#circulacion-rv" stroke="#0f2253"/>
+  <use href="#circulacion-la" stroke="#6b0d12"/>
+  <use href="#circulacion-lv" stroke="#6b0d12"/>
+</g>
+<g fill="url(#circulacion-valve)" stroke="#8d6d50" stroke-width="1.3">
+  <path d="M418 618C422 638 428 652 438 664L445 659C436 648 430 636 428 618Z"/>
+  <path d="M472 618C468 638 462 652 452 664L445 659C454 648 460 636 462 618Z"/>
+  <path d="M566 618C570 638 576 652 586 664L593 659C584 648 578 636 576 618Z"/>
+  <path d="M630 618C626 638 620 652 610 664L603 659C612 648 618 636 620 618Z"/>
+</g>
+
+<!-- ───── arteria pulmonar (delante) ───── -->
+<g fill="none">
+  <use href="#circulacion-v-rpa" stroke="#0f2253" stroke-width="30"/>
+  <use href="#circulacion-v-lpa" stroke="#0f2253" stroke-width="30"/>
+  <use href="#circulacion-v-pt" stroke="#0f2253" stroke-width="40"/>
+  <use href="#circulacion-v-rpa" stroke="#2f5fc4" stroke-width="25"/>
+  <use href="#circulacion-v-lpa" stroke="#2f5fc4" stroke-width="25"/>
+  <use href="#circulacion-v-pt" stroke="#2f5fc4" stroke-width="35"/>
+  <use href="#circulacion-v-rpa" stroke="#1b3c88" stroke-width="9" transform="translate(4.8,5.1)" opacity="0.5"/>
+  <use href="#circulacion-v-lpa" stroke="#1b3c88" stroke-width="9" transform="translate(4.8,5.1)" opacity="0.5"/>
+  <use href="#circulacion-v-pt" stroke="#1b3c88" stroke-width="12" transform="translate(6.4,6.8)" opacity="0.5"/>
+  <use href="#circulacion-v-rpa" stroke="#5684dc" stroke-width="15.6" transform="translate(-2.7,-3.6)" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-lpa" stroke="#5684dc" stroke-width="15.6" transform="translate(-2.7,-3.6)" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pt" stroke="#5684dc" stroke-width="20.8" transform="translate(-3.6,-4.8)"/>
+  <use href="#circulacion-v-rpa" stroke="#93b3f0" stroke-width="5.4" transform="translate(-5.4,-6.6)" opacity="0.8" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-lpa" stroke="#93b3f0" stroke-width="5.4" transform="translate(-5.4,-6.6)" opacity="0.8" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pt" stroke="#93b3f0" stroke-width="7.2" transform="translate(-7.2,-8.8)" opacity="0.8"/>
+  <use href="#circulacion-v-rpa" stroke="#ffffff" stroke-width="2" transform="translate(-6.6,-8.1)" opacity="0.45" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-lpa" stroke="#ffffff" stroke-width="2" transform="translate(-6.6,-8.1)" opacity="0.45" stroke-dasharray="0 12 3000"/>
+  <use href="#circulacion-v-pt" stroke="#ffffff" stroke-width="2.4" transform="translate(-8.8,-10.8)" opacity="0.45"/>
+</g>
+<!-- ───── aorta ───── -->
+<g fill="none">
+  <use href="#circulacion-v-ao" stroke="#6b0d12" stroke-width="44"/>
+  <use href="#circulacion-v-ao" stroke="#d42a2a" stroke-width="39"/>
+  <use href="#circulacion-v-ao" stroke="#8c1419" stroke-width="13.2" transform="translate(7,7.5)" opacity="0.5"/>
+  <use href="#circulacion-v-ao" stroke="#e54a40" stroke-width="22.9" transform="translate(-4,-5.3)" stroke-dasharray="0 14 3000"/>
+  <use href="#circulacion-v-ao" stroke="#f78a7e" stroke-width="7.9" transform="translate(-7.9,-9.7)" opacity="0.8" stroke-dasharray="0 14 3000"/>
+  <use href="#circulacion-v-ao" stroke="#ffffff" stroke-width="2.6" transform="translate(-9.7,-11.9)" opacity="0.45" stroke-dasharray="0 14 3000"/>
+</g>
+<g fill="url(#circulacion-valve)" stroke="#8d6d50" stroke-width="1.2">
+  <use href="#circulacion-semi" transform="translate(512 506)"/>
+  <use href="#circulacion-semi" transform="translate(671 506) scale(1.1)"/>
+</g>
+
+<!-- flechas de sentido -->
+<g fill="#ffffff" opacity="0.75">
+  <use href="#circulacion-arrow" transform="translate(512 470) rotate(-90)"/>
+  <use href="#circulacion-arrow" transform="translate(493 315) rotate(-100)"/>
+  <use href="#circulacion-arrow" transform="translate(532 315) rotate(-80)"/>
+  <use href="#circulacion-arrow" transform="translate(470 368) rotate(18)"/>
+  <use href="#circulacion-arrow" transform="translate(600 418) rotate(72)"/>
+  <use href="#circulacion-arrow" transform="translate(760 425)"/>
+  <use href="#circulacion-arrow" transform="translate(825 640) rotate(90)"/>
+  <use href="#circulacion-arrow" transform="translate(825 860) rotate(90)"/>
+  <use href="#circulacion-arrow" transform="translate(145 800) rotate(-90)"/>
+  <use href="#circulacion-arrow" transform="translate(85 800) rotate(-90)"/>
+  <use href="#circulacion-arrow" transform="translate(280 592)"/>
+  <use href="#circulacion-arrow" transform="translate(280 530)"/>
+  <use href="#circulacion-arrow" transform="translate(770 1006) rotate(180)" opacity="0.8"/>
+</g>
+
+<g id="hits" fill="none">
+  <path data-key="circulacion-menor" d="M115 12L885 12Q942 12 942 69L942 352Q942 402 892 402L702 402Q662 402 657 442L652 488L655 545L378 545L374 506Q368 472 330 472L113 472Q58 472 58 417L58 69Q58 12 115 12Z"/>
+  <path data-key="circulacion-mayor" d="M100 486L338 486Q378 486 382 522L386 552L650 552L652 452Q658 414 700 414L882 414Q938 414 938 470L938 1131Q938 1188 881 1188L109 1188Q52 1188 52 1131L52 534Q52 486 100 486Z"/>
+  <path data-key="pulmones" d="M330 40C380 38 420 60 435 110C448 160 452 220 455 270C458 320 458 370 452 405C400 393 340 384 282 392C205 402 135 420 95 434C78 362 82 252 118 172C158 92 258 42 330 40Z M670 40C620 38 580 60 565 110C552 160 548 220 546 270C545 300 546 318 552 334C574 344 596 360 598 384C599 394 594 400 588 405C640 393 720 385 784 394C830 401 870 418 905 434C922 362 918 252 882 172C842 92 742 42 670 40Z"/>
+  <path data-key="capilares-pulmon" d="M452 216C400 208 310 210 255 226C222 240 218 300 225 332C234 364 300 376 452 376Z M548 216C600 208 690 210 745 226C778 240 782 300 775 332C766 364 700 376 548 376Z"/>
+  <path data-key="corazon" d="M400 500C380 505 366 530 366 565C366 610 372 650 392 690C430 760 520 815 596 846C612 852 628 846 640 832C700 765 728 690 730 610C732 560 724 520 702 500C690 494 670 494 652 494L560 492L530 496L494 496C465 490 430 492 400 500Z"/>
+  <path data-key="venas-pulmonares" d="M440 345C475 345 505 362 532 396C556 426 580 462 590 500L558 506C548 474 530 448 510 424C488 398 468 380 440 378Z M560 345C590 350 610 376 616 410C622 440 626 474 628 500L596 504C594 474 590 446 584 424C578 400 570 384 556 378Z"/>
+  <path data-key="arteria-pulmonar" d="M490 500L490 470C485 400 478 320 468 285C460 262 450 250 436 246L444 214C466 220 486 236 498 260C506 274 510 290 512 300C514 290 518 274 526 260C536 240 550 226 566 216L572 246C560 252 554 262 552 285C546 320 538 400 534 470L534 500Z"/>
+  <path data-key="aorta" d="M650 500L650 466C650 425 690 402 740 402C805 402 848 435 848 498L848 976C848 1005 828 1028 798 1028L790 1028L790 982L802 982L802 500C802 465 778 448 740 448C710 448 694 456 694 476L694 500Z"/>
+  <path data-key="venas-cavas" d="M370 510L130 510C92 510 64 538 64 575L64 1055C64 1093 92 1122 130 1122L214 1122L214 1080L130 1080C116 1080 106 1070 106 1055L106 575C106 561 116 552 130 552L370 552Z M370 572L185 572C148 572 124 596 124 632L124 970C124 1007 148 1030 185 1030L214 1030L214 990L185 990C174 990 166 982 166 970L166 632C166 621 174 612 185 612L370 612Z"/>
+  <path data-key="capilares-cuerpo" d="M222 956L790 956L790 1156L222 1156Z"/>
+</g>
+</svg>

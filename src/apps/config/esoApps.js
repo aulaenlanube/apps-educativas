@@ -10,7 +10,7 @@ import {
   appMayorMenor6, appOrdenaNumeros6, appLongitudComparar, appLongitudOrdenar, appMasaComparar, appMasaOrdenar, appCapacidadComparar, appCapacidadOrdenar, appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
   appFraccionesESO, appSistemaSolar, appCelulaAnimal, appCelulaVegetal, appLaboratorioRobotica,
   appMisionesRoboticas, appReglaDeTres, appPorcentajes,
-  appInfografiasInteractivas, appExploradorMundo, appExploradorEspana
+  appInfografiasInteractivas, appExploradorMundo, appExploradorEspana, appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo
 } from './commonApps';
 
 export const esoSubjects = materiasData.eso;
@@ -39,7 +39,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
+    'biologia': [appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo, appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
       appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
@@ -60,7 +60,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appHuesosMusculos, appViajeCuerpo, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
@@ -105,7 +105,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
+    'biologia': [appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo, appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
       appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
@@ -126,7 +126,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appHuesosMusculos, appViajeCuerpo, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
@@ -171,7 +171,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
+    'biologia': [appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo, appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
       appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
@@ -192,7 +192,7 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appHuesosMusculos, appViajeCuerpo, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
@@ -238,10 +238,10 @@ export const esoApps = {
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
-      appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appHuesosMusculos, appViajeCuerpo, appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
+    'biologia': [appExploradorCuerpo, appHuesosMusculos, appViajeCuerpo, appInfografiasInteractivas, appCelulaAnimal, appCelulaVegetal, appSistemaSolar,
       appJuegoMemoria, appBuscaElIntruso, appRunner, appNavePalabras, appExcavacionSelectiva, appCazapalabras3D, appRosco, appAhorcado, appCrucigrama, appSopaDeLetras, appMillonario, appAnagramas, appCriptograma, appVelocidadRespuesta, appConectaParejas, appDictadoInteractivo, appTorrePalabras, appLaFortaleza, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],

@@ -24,6 +24,7 @@ import subject4 from '@/components/icons/subject/set4';
 import app1 from '@/components/icons/app/set1';
 import app2 from '@/components/icons/app/set2';
 import app3 from '@/components/icons/app/set3';
+import app4 from '@/components/icons/app/set4';
 
 const MAPS = {
   'grade-primaria': gradePrimaria,
@@ -35,6 +36,7 @@ const MAPS = {
   'app-set1': app1,
   'app-set2': app2,
   'app-set3': app3,
+  'app-set4': app4,
   'badge-set1': badge1,
   'badge-set2': badge2,
   'badge-set3': badge3,

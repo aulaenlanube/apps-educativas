@@ -3,12 +3,13 @@ import ArtFrame from '@/components/art/ArtFrame';
 import SET1 from '@/components/icons/app/set1';
 import SET2 from '@/components/icons/app/set2';
 import SET3 from '@/components/icons/app/set3';
+import SET4 from '@/components/icons/app/set4';
 
 // Icono (baldosa) de cada app (rediseño 2026). Dibujos en src/components/icons/app/*
 // con el contrato de rendimiento de src/components/art/README.md: sin filtros ni
 // animaciones inline; en reposo como mucho un destello (nivel de efectos alto,
 // en pantalla) y la animación vistosa al pasar el ratón por la tarjeta (.group).
-const allIcons = { ...SET1, ...SET2, ...SET3 };
+const allIcons = { ...SET1, ...SET2, ...SET3, ...SET4 };
 
 // Aliases para apps que comparten icono (variantes por curso)
 const aliases = {

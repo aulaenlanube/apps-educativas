@@ -4,7 +4,7 @@
 > app (campo `ideasMejora` de APPS_INTERNAL.md) + síntesis de patrones transversales.
 > Es un backlog para implementar en el futuro; no es un compromiso ni un orden de prioridad.
 
-Apps con propuestas: **59** · Ideas registradas: **234**.
+Apps con propuestas: **62** · Ideas registradas: **243**.
 
 ## 🎯 Temas transversales (afectan a varias apps a la vez)
 
@@ -356,6 +356,21 @@ y modos de más tiempo para accesibilidad. Definir un estándar y aplicarlo.
 - [ ] Añadir puntos paralelos (bonus por tiempo/racha) y enviarlos en score/maxScore para cumplir la doble progresión del CLAUDE.md y dar más recorrido al ranking, hoy limitado a un maxScore fijo de 10.
 - [ ] Migrar el catálogo a contenido editable por Supabase (getAppContent) para que profesorado o admin pueda crear nuevas infografías sin desplegar código, e incorporar más temas de Lengua, Historia y Geografía (hoy el catálogo es muy STEM).
 - [ ] Mejorar accesibilidad y feedback: lectura por voz (TTS) de la pregunta y de la solución, barajado de opciones y de preguntas para evitar memorización del orden, y revisión que enlace cada fallo con la zona concreta de la infografía.
+
+### 🫀 Explorador del Cuerpo Humano `(explorador-cuerpo)`
+- [ ] Versión 3D del cuerpo con las mismas mallas, claves y fichas.
+- [ ] Láminas de músculos profundos y vista lateral.
+- [ ] Modo de escritura (teclear el nombre) para Bachillerato.
+
+### 🦴 Huesos y Músculos `(huesos-musculos)`
+- [ ] Músculos profundos y vistas laterales.
+- [ ] Origen e inserción de cada músculo para Bachillerato.
+- [ ] Rutinas de calentamiento que nombren los músculos trabajados.
+
+### 🤖 Viaje por el Cuerpo `(viaje-cuerpo)`
+- [ ] Viajes del oxígeno hasta una célula muscular durante el ejercicio.
+- [ ] Narración en audio de cada parada.
+- [ ] Viaje del medicamento (absorción y eliminación) para Bachillerato.
 
 
 ## 🌍 Geografía

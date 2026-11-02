@@ -2671,6 +2671,149 @@
     }
   },
   {
+    "key": "explorador-cuerpo",
+    "name": "Explorador del Cuerpo Humano",
+    "emoji": "🫀",
+    "internal": {
+      "resumen": "Atlas interactivo del cuerpo humano con doce minijuegos: partes del cuerpo, órganos (¿dónde está? / ¿qué es?), funciones, sentidos, aparatos y sistemas, siluetas, láminas por dentro, reproducción, células y tejidos, glándulas y hormonas, salud y lenguaje médico, más duelo 1 vs 1. Una sola app para todos los cursos (6 niveles) y en castellano, valenciano e inglés.",
+      "software": "Motor común de mapas src/apps/_shared/geo (GeoQuizApp, QuizPlay, MapView, GeoDuel) generalizado con ámbitos por lámina (world.scope), fondo ilustrado (Backdrop), textos traducibles (geo/ui.js), configuración localizada (localize) y el tipo de pregunta 'sequence' (recorridos). Lo común del cuerpo humano está en src/apps/_shared/anatomia: catálogo de 426 estructuras con nombre en castellano, inglés y valenciano (data/structures.js + i18n/en.js, i18n/va.js), sistemas, metadatos de láminas, world.jsx (carga de láminas bajo demanda, lupa de rayos X, estela y robot de los recorridos), qkit.js (piezas de pregunta), BodyAtlas.jsx (atlas por capas) y makeConfig.jsx (fábrica de configuración). Láminas: public/data/anatomia/*.json + public/images/anatomia/*.webp generadas con tools/build-anatomy.mjs: 24 renderizadas por software desde las mallas 3D de BodyParts3D (CC BY 4.0) con pulmones, hígado, médula, tiroides, nervios periféricos y algunos músculos reconstruidos o procedurales, y 28 dibujadas a mano en SVG (tools/anatomy/plates-svg, contrato en su README). Lo propio: src/apps/explorador-cuerpo (cuerpoConfig.jsx, engine/config.js con niveles, minijuegos y filtro por aparato, engine/questions.js con generadores puros testeados).",
+      "jugabilidad": "Pantalla previa con Fácil / Medio / Examen, selector de idioma (por defecto según la asignatura: Inglés → inglés, Valenciano → valenciano) y filtro por aparato o sistema desde 3.º de Primaria. Rondas de 10 preguntas: tocar la estructura en la lámina (con zoom y arrastre; en Fácil la lámina empieza acercada a la zona y hay 3 intentos), elegir el nombre de la parte iluminada, siluetas, funciones, sistema al que pertenece, tocar cualquier órgano de un aparato y ordenar niveles de organización.",
+      "educativo": "Primaria: partes del cuerpo, cara, sentidos, órganos principales y sus funciones, aparatos digestivo, respiratorio, circulatorio y excretor; desde 5.º, sistema nervioso, órganos de los sentidos por dentro y reproducción (esquemas). ESO: niveles de organización y tejidos, corazón, encéfalo, riñón y nefrona, alvéolo, neurona, glándulas y hormonas, sistema inmunitario y salud. Bachillerato: áreas cerebrales, grandes vasos, lenguaje médico (raíces, planos y términos de posición). Nomenclatura internacional entre paréntesis desde ESO.",
+      "datos": "Contenido local (sin Supabase): catálogo de estructuras, datos extra (sentidos, hormonas, enfermedades, raíces, términos de posición) y láminas estáticas en public/.",
+      "integracion": "Tracking estándar del motor de mapas: práctica mode 'practice' con score 0; examen mode 'test' con nota /10 y puntos paralelos; nota parcial al abandonar. Duelo 1 vs 1 (ExploradorCuerpoDuel → GeoDuel) en el idioma de la asignatura, sin recorridos para ordenar. Registrada en Ciencias Naturales, Inglés y Valenciano (Primaria 1-6), Biología y Geología (ESO 1-4), Biología (Bach 1-2) y Atención a la Diversidad (Vocabulario y Autonomía). Contenedor ancho.",
+      "ideasMejora": [
+        "Versión 3D del cuerpo con las mismas mallas, claves y fichas.",
+        "Láminas de músculos profundos y vista lateral.",
+        "Modo de escritura (teclear el nombre) para Bachillerato."
+      ]
+    },
+    "user": {
+      "queEs": "Explorador del Cuerpo Humano es un atlas interactivo del cuerpo con láminas hechas a partir de un modelo 3D real: piel, músculos, órganos, vasos sanguíneos, nervios y esqueleto, y láminas por dentro del ojo, el oído, la piel, el corazón, el riñón o la neurona. Tiene doce minijuegos y se puede jugar en castellano, valenciano o inglés.",
+      "porQueRelevante": "Saber qué hay dentro de nuestro cuerpo y para qué sirve cada órgano es la base de la salud y de las ciencias. Tocando cada órgano en su sitio y viendo cómo encaja con los demás se aprende mucho mejor que memorizando listas, y el contenido crece con el curso: de las partes del cuerpo en 1.º de Primaria a las áreas del cerebro en Bachillerato.",
+      "comoFunciona": "Elige el modo (Fácil, Medio o Examen), el idioma y, si quieres, un aparato del cuerpo. En Fácil y Medio eliges un minijuego y juegas rondas de 10 preguntas; en el Examen salen preguntas de todos los minijuegos y recibes una nota sobre 10. El Atlas anatómico te deja explorar el cuerpo por capas con una lupa de rayos X.",
+      "instrucciones": [
+        "Elige Fácil, Medio o Examen, el idioma y, si quieres, un aparato o sistema.",
+        "En Fácil o Medio, elige un minijuego: Partes del cuerpo, ¿Dónde está?, ¿Para qué sirve?, Los sentidos, Aparatos y sistemas, Siluetas, Por dentro…",
+        "Responde tocando la estructura en la lámina (arrastra y haz zoom para las piezas pequeñas) o eligiendo una opción.",
+        "Lee la explicación que aparece después de cada respuesta.",
+        "Abre el Atlas anatómico desde el botón del libro para estudiar o reta a un compañero a un duelo."
+      ],
+      "modos": [
+        {
+          "nombre": "Fácil",
+          "descripcion": "3 opciones, pistas gratis, la lámina empieza cerca de la zona y tienes 3 intentos."
+        },
+        {
+          "nombre": "Medio",
+          "descripcion": "4 opciones parecidas y 2 intentos. La pista resta la mitad de los puntos."
+        },
+        {
+          "nombre": "Examen",
+          "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10 y puntos por rapidez y racha."
+        }
+      ],
+      "consejos": [
+        "Usa la lupa de rayos X del Atlas para ver qué hay debajo de los músculos.",
+        "Filtra por aparato para repasar un tema cada día.",
+        "En inglés o valenciano aprendes el vocabulario del cuerpo a la vez."
+      ]
+    }
+  },
+  {
+    "key": "huesos-musculos",
+    "name": "Huesos y Músculos",
+    "emoji": "🦴",
+    "internal": {
+      "resumen": "El aparato locomotor a fondo con ocho minijuegos: esqueleto, músculos, huesos en detalle (cráneo, columna, tórax, mano y pie), el hueso por dentro, articulaciones, músculos en acción (acciones, ejercicios y antagonistas), movimientos con un maniquí animado y biomecánica (palancas, contracciones, planos y ejes). Tres idiomas y duelo 1 vs 1.",
+      "software": "Motor común de mapas src/apps/_shared/geo (GeoQuizApp, QuizPlay, MapView, GeoDuel) generalizado con ámbitos por lámina (world.scope), fondo ilustrado (Backdrop), textos traducibles (geo/ui.js), configuración localizada (localize) y el tipo de pregunta 'sequence' (recorridos). Lo común del cuerpo humano está en src/apps/_shared/anatomia: catálogo de 426 estructuras con nombre en castellano, inglés y valenciano (data/structures.js + i18n/en.js, i18n/va.js), sistemas, metadatos de láminas, world.jsx (carga de láminas bajo demanda, lupa de rayos X, estela y robot de los recorridos), qkit.js (piezas de pregunta), BodyAtlas.jsx (atlas por capas) y makeConfig.jsx (fábrica de configuración). Láminas: public/data/anatomia/*.json + public/images/anatomia/*.webp generadas con tools/build-anatomy.mjs: 24 renderizadas por software desde las mallas 3D de BodyParts3D (CC BY 4.0) con pulmones, hígado, médula, tiroides, nervios periféricos y algunos músculos reconstruidos o procedurales, y 28 dibujadas a mano en SVG (tools/anatomy/plates-svg, contrato en su README). Lo propio: src/apps/huesos-musculos (hmConfig.jsx, engine/config.js, engine/data.js con zonas, tipos de hueso y articulación, movimientos, ejercicios, antagonistas, palancas y contracciones, engine/questions.js, components/MovementFigure.jsx con el maniquí animado).",
+      "jugabilidad": "Igual que el Explorador del Cuerpo Humano, con filtro por zona del cuerpo (cabeza y cuello, tronco, brazos, piernas). En Movimientos un maniquí de perfil o de frente hace el movimiento (va a la posición final, se mantiene y reaparece para que el sentido no sea ambiguo) y se pregunta qué movimiento es, qué músculo lo hace o en qué plano se hace.",
+      "educativo": "Huesos y músculos principales (Primaria), tipos de huesos y articulaciones, partes del hueso largo y de la articulación sinovial, huesos del cráneo, la columna, el tórax, la mano y el pie, músculos por zonas, acciones y antagonistas, músculos que trabajan en cada ejercicio (Educación Física), movimientos articulares, palancas de 1.º, 2.º y 3.er género, contracción concéntrica, excéntrica e isométrica y planos y ejes del movimiento (Bachillerato).",
+      "datos": "Contenido local (catálogo común + engine/data.js) y láminas estáticas en public/.",
+      "integracion": "Tracking estándar del motor de mapas y duelo 1 vs 1 (HuesosMusculosDuel → GeoDuel). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). Contenedor ancho.",
+      "ideasMejora": [
+        "Músculos profundos y vistas laterales.",
+        "Origen e inserción de cada músculo para Bachillerato.",
+        "Rutinas de calentamiento que nombren los músculos trabajados."
+      ]
+    },
+    "user": {
+      "queEs": "Huesos y Músculos te enseña el aparato locomotor: los huesos del esqueleto, los músculos, las articulaciones y cómo se mueve el cuerpo, con láminas hechas a partir de un modelo 3D real y un maniquí que hace cada movimiento.",
+      "porQueRelevante": "Conocer los huesos y los músculos ayuda a entender cómo nos movemos, a hacer deporte con cabeza y a prevenir lesiones. Es contenido de Ciencias y de Educación Física, y crece con el curso.",
+      "comoFunciona": "Elige el modo, el idioma y, si quieres, una zona del cuerpo. Toca huesos y músculos en las láminas, identifica la pieza iluminada, adivina qué músculo trabaja en cada ejercicio o qué movimiento hace el maniquí. En el Examen salen preguntas de todo y recibes una nota sobre 10.",
+      "instrucciones": [
+        "Elige Fácil, Medio o Examen, el idioma y, si quieres, una zona del cuerpo.",
+        "Elige un minijuego: El esqueleto, Los músculos, Músculos en acción, El hueso por dentro, Articulaciones, Huesos en detalle, Movimientos o Biomecánica.",
+        "Toca la pieza en la lámina o elige la respuesta.",
+        "Usa el Atlas con la lupa de rayos X para ver los huesos que hay bajo los músculos."
+      ],
+      "modos": [
+        {
+          "nombre": "Fácil",
+          "descripcion": "3 opciones, pistas gratis, la lámina empieza cerca de la zona y tienes 3 intentos."
+        },
+        {
+          "nombre": "Medio",
+          "descripcion": "4 opciones parecidas y 2 intentos."
+        },
+        {
+          "nombre": "Examen",
+          "descripcion": "10 preguntas mezcladas, sin pistas y con un solo intento. Nota sobre 10."
+        }
+      ],
+      "consejos": [
+        "Los músculos trabajan por parejas: cuando uno se contrae, su antagonista se relaja.",
+        "Fíjate en qué parte del maniquí se ilumina: es la que se mueve."
+      ]
+    }
+  },
+  {
+    "key": "viaje-cuerpo",
+    "name": "Viaje por el Cuerpo",
+    "emoji": "🤖",
+    "internal": {
+      "resumen": "El robot de la plataforma recorre el cuerpo por dentro en diez viajes: el bocado (digestión), la bocanada (respiración), el glóbulo rojo (doble circulación), la gota (excreción y nefrona), el impulso (acto reflejo), la luz (vista), el sonido (oído), la vida (reproducción), la hormona (eje hipotálamo-hipófisis-tiroides) y la defensa (sistema inmunitario). Tres idiomas y duelo 1 vs 1.",
+      "software": "Motor común de mapas src/apps/_shared/geo (GeoQuizApp, QuizPlay, MapView, GeoDuel) generalizado con ámbitos por lámina (world.scope), fondo ilustrado (Backdrop), textos traducibles (geo/ui.js), configuración localizada (localize) y el tipo de pregunta 'sequence' (recorridos). Lo común del cuerpo humano está en src/apps/_shared/anatomia: catálogo de 426 estructuras con nombre en castellano, inglés y valenciano (data/structures.js + i18n/en.js, i18n/va.js), sistemas, metadatos de láminas, world.jsx (carga de láminas bajo demanda, lupa de rayos X, estela y robot de los recorridos), qkit.js (piezas de pregunta), BodyAtlas.jsx (atlas por capas) y makeConfig.jsx (fábrica de configuración). Láminas: public/data/anatomia/*.json + public/images/anatomia/*.webp generadas con tools/build-anatomy.mjs: 24 renderizadas por software desde las mallas 3D de BodyParts3D (CC BY 4.0) con pulmones, hígado, médula, tiroides, nervios periféricos y algunos músculos reconstruidos o procedurales, y 28 dibujadas a mano en SVG (tools/anatomy/plates-svg, contrato en su README). Lo propio: src/apps/viaje-cuerpo (viajeConfig.jsx, engine/routes.js con rutas por nivel, paradas en láminas y qué ocurre en cada una en tres idiomas, engine/questions.js). La estela del recorrido y el robot animado los pinta world.jsx (questionOverlay).",
+      "jugabilidad": "Cada viaje es un minijuego de 10 preguntas en orden: primera parada, ¿cuál es la siguiente parada? (con la estela y el robot que se desplaza sobre la lámina), ¿qué ocurre en esta parada?, ¿dónde ocurre esto? y, al final, ordenar el recorrido completo tocando las paradas (pregunta 'sequence' con intentos según el modo). El examen mezcla preguntas sueltas de todos los viajes del curso.",
+      "educativo": "Funciones de nutrición, relación y reproducción: digestión y absorción, ventilación e intercambio de gases, circulación mayor y menor con cavidades y válvulas, formación de la orina, acto reflejo, recorrido de la luz y del sonido, fecundación y embarazo, regulación hormonal y defensa inmunitaria. Más paradas cuanto mayor es el curso.",
+      "datos": "Contenido local (engine/routes.js + catálogo común) y láminas estáticas en public/.",
+      "integracion": "Tracking estándar del motor de mapas y duelo 1 vs 1 (ViajeCuerpoDuel → GeoDuel, sin preguntas de ordenar). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). Contenedor ancho.",
+      "ideasMejora": [
+        "Viajes del oxígeno hasta una célula muscular durante el ejercicio.",
+        "Narración en audio de cada parada.",
+        "Viaje del medicamento (absorción y eliminación) para Bachillerato."
+      ]
+    },
+    "user": {
+      "queEs": "En Viaje por el Cuerpo el robot de la plataforma se hace diminuto y viaja por dentro del cuerpo: sigue la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida, parada a parada.",
+      "porQueRelevante": "Entender cómo funciona el cuerpo (no solo dónde está cada órgano) es clave en Ciencias. Seguir un recorrido paso a paso ayuda a recordar el orden y lo que pasa en cada sitio.",
+      "comoFunciona": "Elige el modo y el idioma y después un viaje. Toca la primera parada, adivina la siguiente, elige qué ocurre en cada sitio y, al final, ordena todo el recorrido. En el Examen salen preguntas de todos los viajes y recibes una nota sobre 10.",
+      "instrucciones": [
+        "Elige Fácil, Medio o Examen y el idioma.",
+        "Elige un viaje: El bocado, La bocanada, El glóbulo rojo, La gota, El impulso, La luz, El sonido, La vida…",
+        "Toca la siguiente parada en la lámina: la estela te enseña por dónde has pasado.",
+        "Al final, ordena el recorrido tocando las paradas una tras otra."
+      ],
+      "modos": [
+        {
+          "nombre": "Fácil",
+          "descripcion": "3 opciones, pistas gratis y 3 intentos por parada."
+        },
+        {
+          "nombre": "Medio",
+          "descripcion": "4 opciones parecidas y 2 intentos."
+        },
+        {
+          "nombre": "Examen",
+          "descripcion": "10 preguntas mezcladas de todos los viajes, sin pistas y con un solo intento. Nota sobre 10."
+        }
+      ],
+      "consejos": [
+        "Repasa las láminas en el Atlas antes de viajar.",
+        "Si fallas una parada, fíjate en la estela: te enseña el camino correcto."
+      ]
+    }
+  },
+  {
     "key": "explorador-mundo",
     "name": "Explorador del Mundo",
     "emoji": "🌍",

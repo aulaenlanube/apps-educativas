@@ -54,6 +54,27 @@ const INSTRUCTIONS = {
       <p>Gana quien sume mas puntos al final.</p>
     </>
   ),
+  'explorador-cuerpo': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas sobre el cuerpo humano: órganos, sentidos, aparatos, funciones…</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
+  'huesos-musculos': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas sobre huesos, músculos, articulaciones y movimientos.</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
+  'viaje-cuerpo': (
+    <>
+      <p>Respondeis a la vez las mismas 10 preguntas sobre los viajes por el cuerpo: digestión, respiración, circulación…</p>
+      <p>Teneis 20 segundos por pregunta y un solo intento. Cada acierto da 100 puntos y la rapidez, hasta 50 mas.</p>
+      <p>Gana quien sume mas puntos al final.</p>
+    </>
+  ),
 };
 
 const COUNTDOWN_SECONDS = 3;

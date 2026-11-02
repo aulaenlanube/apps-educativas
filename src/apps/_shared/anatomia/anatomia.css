@@ -1,0 +1,195 @@
+/* Tema "escáner médico" de las apps del cuerpo humano (Explorador del Cuerpo
+   Humano, Huesos y Músculos, Viaje por el Cuerpo). Se apoya en el motor de
+   mapas (src/apps/_shared/geo/geo.css): aquí solo cambia el lienzo, las zonas
+   tocables y lo propio (estela del recorrido, robot, lupa, fichas). */
+
+/* ───────── lienzo ───────── */
+.ana-map {
+  --ana-cyan: #67e8f9;
+  --ana-grid: rgba(103, 232, 249, .07);
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(34, 211, 238, .13), transparent 70%),
+    linear-gradient(var(--ana-grid) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, var(--ana-grid) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(ellipse at 50% 0%, #10294a 0%, #0b1626 55%, #060d18 100%);
+  border-color: rgba(103, 232, 249, .22);
+}
+.ana-map .gq-map__svg image { image-rendering: auto; }
+.ana-bd__ghost { opacity: .9; }
+
+/* zonas tocables: invisibles hasta que se pasa por encima o se marcan */
+.ana-map .gq-land {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.4px;
+  transition: fill .18s ease, stroke .18s ease;
+}
+.ana-map.is-pickable .gq-land:hover {
+  fill: rgba(103, 232, 249, .2);
+  stroke: rgba(165, 243, 252, .95);
+}
+.ana-map .gq-land.is-correct { fill: rgba(74, 222, 128, .45); stroke: #86efac; }
+.ana-map .gq-land.is-wrong { fill: rgba(251, 113, 133, .36); stroke: #fda4af; }
+.ana-map .gq-land.is-target { fill: rgba(251, 191, 36, .45); stroke: #fcd34d; }
+.ana-map .gq-land.is-selected { fill: rgba(250, 204, 21, .55); stroke: #fef08a; stroke-width: 2px; }
+.ana-map .gq-land.is-dim { fill: rgba(6, 13, 24, .58); }
+.ana-map .gq-land.is-neighbor { fill: rgba(167, 139, 250, .22); stroke: #c4b5fd; }
+.ana-map--atlas-tint .gq-land { fill: color-mix(in srgb, var(--f, #67e8f9) 16%, transparent); }
+
+.ana-map .gq-hl { stroke-width: 2.4px; }
+.ana-map .gq-hl.is-correct { stroke: #bbf7d0; }
+.ana-map .gq-hl.is-wrong { stroke: #fecdd3; }
+.ana-map .gq-hl.is-target { stroke: #fde68a; stroke-width: 2.8px; }
+.ana-map .gq-hl.is-selected { stroke: #fef9c3; stroke-width: 2.8px; }
+
+/* puntos de estructuras diminutas */
+.ana-map .gq-mk__dot { fill: rgba(103, 232, 249, .85); stroke: #0b1626; }
+.ana-map .gq-mk.is-correct .gq-mk__dot { fill: #4ade80; }
+.ana-map .gq-mk.is-wrong .gq-mk__dot { fill: #fb7185; }
+.ana-map .gq-mk.is-target .gq-mk__dot { fill: #fbbf24; }
+
+/* etiquetas con halo oscuro (sobre fondo de escáner) */
+.ana-map .gq-lbl__halo { stroke: rgba(6, 13, 24, .92); }
+.ana-map .gq-lbl__text { fill: #e0f2fe; }
+.ana-map .gq-lbl.is-good .gq-lbl__text { fill: #bbf7d0; }
+.ana-map .gq-lbl.is-bad .gq-lbl__text { fill: #fecdd3; }
+.ana-map .gq-lbl.is-target .gq-lbl__text { fill: #fde68a; }
+.ana-map .gq-lbl.is-info .gq-lbl__text { fill: #a5f3fc; }
+.ana-map .gq-lbl__pin { stroke: #0b1626; }
+.ana-map .gq-map__ctrls button { background: rgba(8, 20, 38, .82); color: #cffafe; border-color: rgba(103, 232, 249, .3); }
+.ana-map .gq-map__tip { background: rgba(8, 20, 38, .94); color: #e0f2fe; border: 1px solid rgba(103, 232, 249, .35); }
+
+/* ───────── recorridos ───────── */
+.ana-trail__glow { fill: none; stroke: rgba(103, 232, 249, .22); stroke-linecap: round; stroke-linejoin: round; }
+.ana-trail__line { fill: none; stroke: #a5f3fc; stroke-linecap: round; stroke-linejoin: round; }
+.ana-trail__dot { fill: #22d3ee; stroke: #ecfeff; stroke-width: 1.2px; vector-effect: non-scaling-stroke; }
+html[data-fx="high"] .ana-trail.is-active .ana-trail__line { animation: ana-march 1.2s linear infinite; }
+@keyframes ana-march { to { stroke-dashoffset: -28; } }
+.ana-robot { pointer-events: none; }
+
+/* ───────── lupa de rayos X ───────── */
+.ana-lens__bg { fill: #07111f; }
+.ana-lens__ring { fill: none; stroke: #67e8f9; }
+.ana-lens { transition: opacity .2s ease; }
+
+/* ───────── escena de fondo de la app ───────── */
+.ana-scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.ana-scene__grid {
+  position: absolute; inset: -10%;
+  background:
+    linear-gradient(rgba(103, 232, 249, .055) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(90deg, rgba(103, 232, 249, .055) 1px, transparent 1px) 0 0 / 34px 34px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
+}
+.ana-scene__glow { position: absolute; width: 60%; height: 50%; left: 20%; top: 6%; background: radial-gradient(ellipse, rgba(34, 211, 238, .16), transparent 70%); }
+.ana-scene__scan { position: absolute; left: 0; right: 0; height: 120px; top: -120px; background: linear-gradient(transparent, rgba(103, 232, 249, .08), transparent); opacity: 0; }
+html[data-fx="high"] .ana-scene__scan { opacity: 1; animation: ana-scan 9s linear infinite; }
+@keyframes ana-scan { to { transform: translateY(calc(100vh + 240px)); } }
+
+/* ───────── arte de los minijuegos (miniaturas de láminas) ───────── */
+.ana-art {
+  position: relative; display: block; width: 100%; overflow: hidden; border-radius: 14px;
+  background: radial-gradient(ellipse at 50% 40%, #12305a, #0a1626 70%);
+  box-shadow: inset 0 0 0 1px rgba(103, 232, 249, .25);
+}
+.ana-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ana-art__ghost { opacity: .9; }
+.ana-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent 40%); pointer-events: none; }
+.ana-art__icon { position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; color: #ecfeff; background: rgba(8, 20, 38, .78); border: 1px solid rgba(103, 232, 249, .4); }
+
+/* ───────── ficha de estructura ───────── */
+.ana-facts { display: flex; flex-direction: column; gap: 12px; }
+.ana-facts__head { display: flex; gap: 12px; align-items: flex-start; }
+.ana-facts__swatch { flex: none; width: 14px; height: 44px; border-radius: 6px; background: linear-gradient(180deg, var(--c), var(--cd)); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 55%, transparent); }
+.ana-facts__title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ana-facts__title strong { font-family: 'Fredoka', system-ui, sans-serif; font-size: 1.35rem; line-height: 1.15; color: var(--gk-ink); }
+.ana-facts__title small { color: var(--gk-ink-3); font-size: .82rem; }
+.ana-facts__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ana-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: .75rem; font-weight: 700; color: var(--gk-ink); background: color-mix(in srgb, var(--c, #67e8f9) 18%, var(--gk-surface)); border: 1px solid color-mix(in srgb, var(--c, #67e8f9) 45%, transparent); }
+.ana-facts__block { display: flex; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--gk-inset); color: var(--gk-ink-2); font-size: .9rem; line-height: 1.45; }
+.ana-facts__block svg { flex: none; margin-top: 2px; color: var(--gk-accent); }
+.ana-facts__block b { color: var(--gk-ink); }
+.ana-facts__plates { display: flex; flex-wrap: wrap; gap: 6px; }
+.ana-facts__plates button { font: inherit; font-size: .78rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--gk-line); background: var(--gk-surface); color: var(--gk-ink-2); cursor: pointer; }
+.ana-facts__plates button:hover { border-color: var(--gk-accent); color: var(--gk-ink); }
+
+/* ───────── atlas anatómico ───────── */
+.ana-atlas__plates { display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding: 4px 2px 12px; }
+.ana-atlas__cat h5 { margin: 0 0 6px; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gk-ink-3); }
+.ana-atlas__cat div { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.ana-plate-btn { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 6px; border-radius: 12px; border: 1px solid var(--gk-line); background: var(--gk-surface); color: var(--gk-ink-2); cursor: pointer; text-align: left; font: inherit; font-size: .76rem; font-weight: 700; line-height: 1.2; }
+.ana-plate-btn.is-on { border-color: var(--gk-accent); color: var(--gk-ink); box-shadow: 0 0 0 2px color-mix(in srgb, var(--gk-accent) 35%, transparent); }
+.ana-plate-btn__thumb { position: relative; height: 70px; border-radius: 8px; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #12305a, #0a1626 75%); }
+.ana-plate-btn__thumb img { position: absolute; inset: 4px; width: calc(100% - 8px); height: calc(100% - 8px); object-fit: contain; }
+.ana-atlas__tools { position: absolute; left: 10px; top: 10px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; }
+.ana-atlas__tools button { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; font: inherit; font-size: .8rem; font-weight: 700; color: #cffafe; background: rgba(8, 20, 38, .84); border: 1px solid rgba(103, 232, 249, .32); cursor: pointer; }
+.ana-atlas__tools button.is-on { background: rgba(14, 116, 144, .9); border-color: #67e8f9; color: #fff; }
+.ana-atlas__tools select { font: inherit; font-size: .8rem; font-weight: 700; padding: 5px 8px; border-radius: 999px; color: #cffafe; background: rgba(8, 20, 38, .9); border: 1px solid rgba(103, 232, 249, .32); }
+.ana-atlas__loading { position: absolute; inset: 0; display: grid; place-items: center; color: #a5f3fc; font-weight: 700; }
+
+/* ───────── figura de movimientos (Huesos y Músculos) ───────── */
+.ana-move { width: min(100%, 340px); aspect-ratio: 1; }
+.ana-move__fig .seg { transition: transform .9s cubic-bezier(.45, 0, .2, 1); transform-box: view-box; }
+.ana-move__label { font-family: 'Fredoka', system-ui, sans-serif; font-weight: 700; fill: #a5f3fc; }
+
+@media (max-width: 720px) {
+  .ana-atlas__cat div { grid-template-columns: repeat(auto-fill, minmax(98px, 1fr)); }
+  .ana-plate-btn__thumb { height: 56px; }
+  .ana-facts__title strong { font-size: 1.15rem; }
+}
+
+/* atlas: tres columnas (láminas · lámina · ficha) */
+.ana-atlas .gq-atlas__body { grid-template-columns: 250px minmax(0, 1fr) 320px; }
+.ana-atlas .ana-atlas__plates { min-height: 0; }
+.ana-atlas .gq-map--atlas { width: 100%; }
+@media (max-width: 1100px) {
+  .ana-atlas .gq-atlas__body { grid-template-columns: 1fr; grid-template-rows: auto minmax(300px, 1fr) auto; overflow-y: auto; }
+  .ana-atlas .ana-atlas__plates { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; }
+  .ana-atlas .ana-atlas__cat { flex: none; }
+  .ana-atlas .ana-atlas__cat div { display: flex; gap: 8px; }
+  .ana-atlas .ana-plate-btn { width: 110px; flex: none; }
+  .ana-atlas .gq-atlas__card { overflow: visible; }
+}
+
+/* visual de las preguntas de texto */
+.ana-qcard svg { width: 120px; height: 120px; }
+html[data-fx="high"] .ana-qcard svg circle:nth-of-type(2) { transform-origin: 60px 60px; animation: ana-spin 14s linear infinite; }
+@keyframes ana-spin { to { transform: rotate(360deg); } }
+.gq-atlas-cta__art .ana-art { border-radius: 16px; }
+.gq-game__art:has(.ana-art) { background: none; box-shadow: none; }
+.gq-game:hover .ana-art img { transform: scale(var(--z, 1.05)); }
+
+/* figura de movimientos: va a la posición final, se mantiene, se funde y reaparece */
+.ana-move-stage { padding: 6px; }
+@keyframes ana-mv {
+  0%, 10% { transform: rotate(var(--a0)); opacity: 1; }
+  58%, 80% { transform: rotate(var(--a1)); opacity: 1; }
+  88% { transform: rotate(var(--a1)); opacity: 0; }
+  92% { transform: rotate(var(--a0)); opacity: 0; }
+  100% { transform: rotate(var(--a0)); opacity: 1; }
+}
+@keyframes ana-mv-spin { from { transform: rotate(var(--a0)); } to { transform: rotate(var(--a1)); } }
+@keyframes ana-mv-x {
+  0%, 10% { transform: translateX(var(--x0)); opacity: 1; }
+  58%, 80% { transform: translateX(var(--x1)); opacity: 1; }
+  88% { opacity: 0; }
+  92% { transform: translateX(var(--x0)); opacity: 0; }
+  100% { transform: translateX(var(--x0)); opacity: 1; }
+}
+@keyframes ana-mv-sx {
+  0%, 10% { transform: scaleX(var(--s0)); }
+  58%, 80% { transform: scaleX(var(--s1)); }
+  90% { transform: scaleX(var(--s1)); }
+  92%, 100% { transform: scaleX(var(--s0)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ana-move [style*="animation"] { animation-duration: 5s !important; }
+}
+
+/* Las láminas del cuerpo suelen ser verticales: más altura que los mapas. */
+.ana-map.gq-map--game { aspect-ratio: 16 / 10; max-height: 70vh; }
+.gq-stage--map .ana-map { aspect-ratio: 4 / 3; }
+@media (max-width: 720px) {
+  .ana-map.gq-map--game { aspect-ratio: 3 / 4; max-height: 62vh; }
+  .gq-stage--map .ana-map { aspect-ratio: 1 / 1; }
+}

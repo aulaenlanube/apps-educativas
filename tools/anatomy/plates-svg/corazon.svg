@@ -1,0 +1,355 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100">
+<defs>
+  <!-- superficie de corte del miocardio -->
+  <radialGradient id="corazon-cut" cx="0.36" cy="0.3" r="0.85">
+    <stop offset="0" stop-color="#f0aa9b"/>
+    <stop offset="0.5" stop-color="#d47a6c"/>
+    <stop offset="1" stop-color="#9c3f37"/>
+  </radialGradient>
+  <linearGradient id="corazon-epi" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#d8695b"/>
+    <stop offset="0.55" stop-color="#ab3a32"/>
+    <stop offset="1" stop-color="#6e1a1b"/>
+  </linearGradient>
+  <radialGradient id="corazon-ven" cx="0.55" cy="0.58" r="0.7">
+    <stop offset="0" stop-color="#6a92e6"/>
+    <stop offset="0.55" stop-color="#2f5fc4"/>
+    <stop offset="1" stop-color="#173678"/>
+  </radialGradient>
+  <radialGradient id="corazon-art" cx="0.55" cy="0.58" r="0.7">
+    <stop offset="0" stop-color="#f26a5e"/>
+    <stop offset="0.55" stop-color="#d42a2a"/>
+    <stop offset="1" stop-color="#7c1016"/>
+  </radialGradient>
+  <linearGradient id="corazon-valve" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0" stop-color="#fffaf1"/>
+    <stop offset="0.6" stop-color="#f1e2cd"/>
+    <stop offset="1" stop-color="#cdb393"/>
+  </linearGradient>
+  <linearGradient id="corazon-pap" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ec9b8b"/>
+    <stop offset="1" stop-color="#a9463d"/>
+  </linearGradient>
+  <linearGradient id="corazon-lumA" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#7a0f15"/>
+    <stop offset="1" stop-color="#d0302c"/>
+  </linearGradient>
+  <linearGradient id="corazon-lumV" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#132f6c"/>
+    <stop offset="1" stop-color="#2f5fc4"/>
+  </linearGradient>
+
+  <!-- ejes de los vasos (se pintan como tubos con varios trazos) -->
+  <path id="corazon-v-rpa" d="M650 298C540 294 330 290 190 292"/>
+  <path id="corazon-v-rpa1" d="M64 246C100 270 140 290 200 292"/>
+  <path id="corazon-v-rpa2" d="M64 342C100 318 140 296 200 292"/>
+  <path id="corazon-v-ao" d="M563 530C556 440 520 330 500 245C490 160 540 125 625 125C720 125 790 170 790 270L790 560"/>
+  <path id="corazon-v-bct" d="M505 10C518 40 528 70 537 106"/>
+  <path id="corazon-v-lcc" d="M612 8C613 30 614 55 616 92"/>
+  <path id="corazon-v-lsc" d="M735 10C715 35 700 60 688 97"/>
+  <path id="corazon-v-pvl1" d="M52 410C120 410 180 418 240 436"/>
+  <path id="corazon-v-pvl2" d="M52 505C120 505 180 505 240 505"/>
+  <path id="corazon-v-pvr1" d="M830 446C870 426 910 414 962 412"/>
+  <path id="corazon-v-pvr2" d="M830 515C870 508 910 505 962 505"/>
+  <path id="corazon-v-svc" d="M279.5 30L279.5 452"/>
+  <path id="corazon-v-ivc" d="M267.5 1084L267.5 700"/>
+  <path id="corazon-v-pt" d="M458 482C468 420 500 360 560 325C600 302 630 298 655 298"/>
+  <path id="corazon-v-ptl" d="M458 482C468 420 500 360 560 325C600 302 640 298 700 297C800 293 860 289 905 286"/>
+  <path id="corazon-v-lpa" d="M620 300C700 298 800 292 905 286"/>
+  <path id="corazon-v-lpa1" d="M895 286C925 280 945 262 970 236"/>
+  <path id="corazon-v-lpa2" d="M895 286C925 292 945 310 970 336"/>
+
+  <!-- contorno exterior del corazón y cavidades -->
+  <path id="corazon-heart" d="M237 438C198 452 174 510 174 580C174 640 196 688 230 708L312 730C330 820 385 900 470 960C545 1010 610 1042 668 1044C735 1046 800 995 836 905C866 830 874 720 858 630C852 598 842 578 832 566C852 540 856 470 834 438C812 408 770 400 728 404C690 408 655 425 632 452C620 468 616 495 615 530L511 530L503 489L413 475C392 462 362 448 340 446L322 438Z"/>
+  <path id="corazon-ra" d="M247 372Q280 392 313 372L314 448C340 462 365 478 385 500C395 530 396 600 396 650C397 670 402 685 408 694L318 708L301 710L301 782Q268 798 234 782L234 706C210 690 194 650 193 590C192 520 210 470 247 452Z"/>
+  <path id="corazon-rv" d="M318 708C335 740 355 800 395 850C450 915 530 958 598 975C604 972 606 962 600 952C565 880 540 790 527 700C520 640 514 580 508 540L503 489L413 475C417 520 421 600 420 650C419 670 415 685 412 692Z"/>
+  <path id="corazon-la" d="M642 590C636 560 634 520 640 488C644 470 650 462 657 458C680 432 730 425 770 428C805 432 826 455 830 490C833 520 820 552 800 575L752 590Z"/>
+  <path id="corazon-lv" d="M520 530C540 590 575 650 592 720C610 800 635 880 660 940C668 958 676 968 684 968C712 966 752 925 772 860C788 800 792 700 782 640C775 612 765 598 752 590L642 590C628 575 612 556 606 530Z"/>
+  <clipPath id="corazon-clip-ra"><use href="#corazon-ra"/></clipPath>
+  <clipPath id="corazon-clip-rv"><use href="#corazon-rv"/></clipPath>
+  <clipPath id="corazon-clip-la"><use href="#corazon-la"/></clipPath>
+  <clipPath id="corazon-clip-lv"><use href="#corazon-lv"/></clipPath>
+  <clipPath id="corazon-clip-heart"><use href="#corazon-heart"/></clipPath>
+
+  <!-- válvula semilunar (dos valvas en copa), eje local: anillo en y=0 -->
+  <g id="corazon-semi">
+    <path d="M-20 -15C-13 -3 13 -3 20 -15C12 -9 -12 -9 -20 -15Z" fill="#c6a986" stroke="#8d6d50" stroke-width="1.2"/>
+    <path d="M-44 -27C-41 4 -6 4 -2 -24C-9 -7 -35 -7 -38 -27Z" fill="url(#corazon-valve)" stroke="#8d6d50" stroke-width="1.6"/>
+    <path d="M44 -27C41 4 6 4 2 -24C9 -7 35 -7 38 -27Z" fill="url(#corazon-valve)" stroke="#8d6d50" stroke-width="1.6"/>
+  </g>
+  <!-- flecha de sentido -->
+  <path id="corazon-arrow" d="M-15 -7L4 -7L4 -14L19 0L4 14L4 7L-15 7Z"/>
+</defs>
+
+<!-- ───────── vasos por detrás ───────── -->
+<!-- arteria pulmonar derecha (pasa por detrás de la aorta y la cava superior) -->
+<g fill="none">
+  <use href="#corazon-v-rpa" stroke="#0f2253" stroke-width="64"/>
+  <use href="#corazon-v-rpa1" stroke="#0f2253" stroke-width="44"/>
+  <use href="#corazon-v-rpa2" stroke="#0f2253" stroke-width="44"/>
+  <use href="#corazon-v-rpa" stroke="#2f5fc4" stroke-width="59"/>
+  <use href="#corazon-v-rpa1" stroke="#2f5fc4" stroke-width="39"/>
+  <use href="#corazon-v-rpa2" stroke="#2f5fc4" stroke-width="39"/>
+  <use href="#corazon-v-rpa" stroke="#1b3c88" stroke-width="20" transform="translate(5,13)" opacity="0.6"/>
+  <use href="#corazon-v-rpa2" stroke="#1b3c88" stroke-width="12" transform="translate(5,8)" opacity="0.6" stroke-dasharray="0 14 900"/>
+  <use href="#corazon-v-rpa1" stroke="#5684dc" stroke-width="22" transform="translate(-3,-5)" stroke-dasharray="0 14 900"/>
+  <use href="#corazon-v-rpa2" stroke="#5684dc" stroke-width="22" transform="translate(-3,-5)" stroke-dasharray="0 14 900"/>
+  <use href="#corazon-v-rpa" stroke="#5684dc" stroke-width="34" transform="translate(-3,-8)"/>
+  <use href="#corazon-v-rpa" stroke="#93b3f0" stroke-width="10" transform="translate(-4,-15)" opacity="0.75"/>
+  <use href="#corazon-v-rpa1" stroke="#93b3f0" stroke-width="7" transform="translate(-4,-9)" opacity="0.7" stroke-dasharray="0 18 900"/>
+</g>
+<ellipse cx="64" cy="246" rx="22" ry="6.5" transform="rotate(-56 64 246)" fill="#0f2253"/>
+<ellipse cx="64" cy="246" rx="16" ry="4" transform="rotate(-56 64 246)" fill="#081638"/>
+<ellipse cx="64" cy="342" rx="22" ry="6.5" transform="rotate(56 64 342)" fill="#0f2253"/>
+<ellipse cx="64" cy="342" rx="16" ry="4" transform="rotate(56 64 342)" fill="#081638"/>
+
+<!-- ramas del cayado -->
+<g fill="none">
+  <use href="#corazon-v-bct" stroke="#6b0d12" stroke-width="40"/>
+  <use href="#corazon-v-lcc" stroke="#6b0d12" stroke-width="30"/>
+  <use href="#corazon-v-lsc" stroke="#6b0d12" stroke-width="34"/>
+  <use href="#corazon-v-bct" stroke="#d42a2a" stroke-width="35"/>
+  <use href="#corazon-v-lcc" stroke="#d42a2a" stroke-width="25"/>
+  <use href="#corazon-v-lsc" stroke="#d42a2a" stroke-width="29"/>
+  <use href="#corazon-v-bct" stroke="#e85246" stroke-width="16" transform="translate(-5,-3)" stroke-dasharray="0 12 900"/>
+  <use href="#corazon-v-lcc" stroke="#e85246" stroke-width="11" transform="translate(-4,-2)" stroke-dasharray="0 12 900"/>
+  <use href="#corazon-v-lsc" stroke="#e85246" stroke-width="13" transform="translate(-4,-3)" stroke-dasharray="0 12 900"/>
+  <use href="#corazon-v-bct" stroke="#fb9a8e" stroke-width="5" transform="translate(-8,-4)" stroke-dasharray="0 16 900" opacity="0.8"/>
+  <use href="#corazon-v-lcc" stroke="#fb9a8e" stroke-width="4" transform="translate(-6,-2)" stroke-dasharray="0 16 900" opacity="0.8"/>
+  <use href="#corazon-v-lsc" stroke="#fb9a8e" stroke-width="4" transform="translate(-7,-4)" stroke-dasharray="0 16 900" opacity="0.8"/>
+</g>
+<ellipse cx="505" cy="10" rx="20" ry="6" transform="rotate(-22 505 10)" fill="#6b0d12"/>
+<ellipse cx="505" cy="10" rx="14.5" ry="3.8" transform="rotate(-22 505 10)" fill="#3a0508"/>
+<ellipse cx="612" cy="8" rx="15" ry="5" fill="#6b0d12"/>
+<ellipse cx="612" cy="8" rx="10" ry="3" fill="#3a0508"/>
+<ellipse cx="735" cy="10" rx="17" ry="5.5" transform="rotate(37 735 10)" fill="#6b0d12"/>
+<ellipse cx="735" cy="10" rx="12" ry="3.4" transform="rotate(37 735 10)" fill="#3a0508"/>
+
+<!-- aorta: ascendente, cayado y descendente -->
+<g fill="none">
+  <use href="#corazon-v-ao" stroke="#6b0d12" stroke-width="104"/>
+  <use href="#corazon-v-ao" stroke="#d42a2a" stroke-width="98"/>
+  <use href="#corazon-v-ao" stroke="#8c1419" stroke-width="30" transform="translate(16,16)" opacity="0.45"/>
+  <use href="#corazon-v-ao" stroke="#e44a40" stroke-width="56" transform="translate(-9,-12)"/>
+  <use href="#corazon-v-ao" stroke="#f58a7e" stroke-width="20" transform="translate(-18,-22)" opacity="0.8"/>
+  <use href="#corazon-v-ao" stroke="#ffffff" stroke-width="6" transform="translate(-23,-27)" opacity="0.45"/>
+</g>
+
+<!-- sombra del tronco pulmonar sobre la aorta -->
+<use href="#corazon-v-pt" fill="none" stroke="#3a0508" stroke-width="92" opacity="0.3" transform="translate(8,10)"/>
+<!-- tronco pulmonar y arteria pulmonar izquierda (delante) -->
+<g fill="none">
+  <use href="#corazon-v-pt" stroke="#0f2253" stroke-width="92" stroke-linecap="round"/>
+  <use href="#corazon-v-lpa" stroke="#0f2253" stroke-width="72"/>
+  <use href="#corazon-v-lpa1" stroke="#0f2253" stroke-width="46"/>
+  <use href="#corazon-v-lpa2" stroke="#0f2253" stroke-width="46"/>
+  <use href="#corazon-v-pt" stroke="#2f5fc4" stroke-width="86" stroke-linecap="round"/>
+  <use href="#corazon-v-lpa" stroke="#2f5fc4" stroke-width="66"/>
+  <use href="#corazon-v-lpa1" stroke="#2f5fc4" stroke-width="41"/>
+  <use href="#corazon-v-lpa2" stroke="#2f5fc4" stroke-width="41"/>
+  <use href="#corazon-v-lpa" stroke="#1b3c88" stroke-width="20" transform="translate(4,16)" opacity="0.6"/>
+  <use href="#corazon-v-lpa2" stroke="#1b3c88" stroke-width="12" transform="translate(6,6)" opacity="0.6"/>
+  <use href="#corazon-v-pt" stroke="#1b3c88" stroke-width="26" transform="translate(14,14)" opacity="0.55" stroke-linecap="round"/>
+  <use href="#corazon-v-lpa1" stroke="#5684dc" stroke-width="22" transform="translate(-4,-4)"/>
+  <use href="#corazon-v-lpa2" stroke="#5684dc" stroke-width="22" transform="translate(-4,-4)"/>
+  <use href="#corazon-v-lpa" stroke="#5684dc" stroke-width="38" transform="translate(-3,-9)"/>
+  <use href="#corazon-v-pt" stroke="#5684dc" stroke-width="50" transform="translate(-8,-10)" stroke-linecap="round"/>
+  <use href="#corazon-v-ptl" stroke="#5684dc" stroke-width="36" transform="translate(-6,-9)" stroke-linecap="round"/>
+  <use href="#corazon-v-ptl" stroke="#93b3f0" stroke-width="15" transform="translate(-13,-18)" opacity="0.8" stroke-linecap="round"/>
+    <use href="#corazon-v-lpa1" stroke="#93b3f0" stroke-width="7" transform="translate(-6,-8)" opacity="0.7"/>
+  <use href="#corazon-v-ptl" stroke="#ffffff" stroke-width="4.5" transform="translate(-16,-22)" opacity="0.45" stroke-linecap="round"/>
+  </g>
+<ellipse cx="970" cy="236" rx="23" ry="6.5" transform="rotate(44 970 236)" fill="#0f2253"/>
+<ellipse cx="970" cy="236" rx="17" ry="4" transform="rotate(44 970 236)" fill="#081638"/>
+<ellipse cx="970" cy="336" rx="23" ry="6.5" transform="rotate(-44 970 336)" fill="#0f2253"/>
+<ellipse cx="970" cy="336" rx="17" ry="4" transform="rotate(-44 970 336)" fill="#081638"/>
+<!-- venas pulmonares -->
+<g fill="none">
+  <use href="#corazon-v-pvl1" stroke="#6b0d12" stroke-width="42"/>
+  <use href="#corazon-v-pvl2" stroke="#6b0d12" stroke-width="42"/>
+  <use href="#corazon-v-pvr1" stroke="#6b0d12" stroke-width="42"/>
+  <use href="#corazon-v-pvr2" stroke="#6b0d12" stroke-width="42"/>
+  <use href="#corazon-v-pvl1" stroke="#d42a2a" stroke-width="37"/>
+  <use href="#corazon-v-pvl2" stroke="#d42a2a" stroke-width="37"/>
+  <use href="#corazon-v-pvr1" stroke="#d42a2a" stroke-width="37"/>
+  <use href="#corazon-v-pvr2" stroke="#d42a2a" stroke-width="37"/>
+  <use href="#corazon-v-pvl1" stroke="#8c1419" stroke-width="10" transform="translate(2,10)" opacity="0.5"/>
+  <use href="#corazon-v-pvl2" stroke="#8c1419" stroke-width="10" transform="translate(2,10)" opacity="0.5"/>
+  <use href="#corazon-v-pvr1" stroke="#8c1419" stroke-width="10" transform="translate(2,10)" opacity="0.5"/>
+  <use href="#corazon-v-pvr2" stroke="#8c1419" stroke-width="10" transform="translate(2,10)" opacity="0.5"/>
+  <use href="#corazon-v-pvl1" stroke="#e7564b" stroke-width="20" transform="translate(-2,-5)" stroke-dasharray="0 10 900"/>
+  <use href="#corazon-v-pvl2" stroke="#e7564b" stroke-width="20" transform="translate(-2,-5)" stroke-dasharray="0 10 900"/>
+  <use href="#corazon-v-pvr1" stroke="#e7564b" stroke-width="20" transform="translate(-2,-5)"/>
+  <use href="#corazon-v-pvr2" stroke="#e7564b" stroke-width="20" transform="translate(-2,-5)"/>
+  <use href="#corazon-v-pvl1" stroke="#fb9a8e" stroke-width="6" transform="translate(-3,-10)" opacity="0.75" stroke-dasharray="0 12 900"/>
+  <use href="#corazon-v-pvl2" stroke="#fb9a8e" stroke-width="6" transform="translate(-3,-10)" opacity="0.75" stroke-dasharray="0 12 900"/>
+  <use href="#corazon-v-pvr1" stroke="#fb9a8e" stroke-width="6" transform="translate(-3,-10)" opacity="0.75"/>
+  <use href="#corazon-v-pvr2" stroke="#fb9a8e" stroke-width="6" transform="translate(-3,-10)" opacity="0.75"/>
+</g>
+<g fill="#6b0d12">
+  <ellipse cx="52" cy="410" rx="6" ry="21"/><ellipse cx="52" cy="505" rx="6" ry="21"/>
+  <ellipse cx="962" cy="412" rx="6" ry="21"/><ellipse cx="962" cy="505" rx="6" ry="21"/>
+</g>
+<g fill="#3a0508">
+  <ellipse cx="52" cy="410" rx="3.5" ry="16"/><ellipse cx="52" cy="505" rx="3.5" ry="16"/>
+  <ellipse cx="962" cy="412" rx="3.5" ry="16"/><ellipse cx="962" cy="505" rx="3.5" ry="16"/>
+</g>
+
+<!-- vena cava inferior -->
+<ellipse cx="267.5" cy="1084" rx="45" ry="11" fill="#0f2253"/>
+<ellipse cx="267.5" cy="1083" rx="40" ry="8" fill="#2f5fc4"/>
+<g fill="none">
+  <use href="#corazon-v-ivc" stroke="#0f2253" stroke-width="90"/>
+  <use href="#corazon-v-ivc" stroke="#2f5fc4" stroke-width="84"/>
+  <use href="#corazon-v-ivc" stroke="#1b3c88" stroke-width="24" transform="translate(22,0)" opacity="0.6"/>
+  <use href="#corazon-v-ivc" stroke="#5684dc" stroke-width="46" transform="translate(-10,-6)"/>
+  <use href="#corazon-v-ivc" stroke="#93b3f0" stroke-width="16" transform="translate(-20,-10)" opacity="0.75"/>
+  <use href="#corazon-v-ivc" stroke="#ffffff" stroke-width="5" transform="translate(-24,-12)" opacity="0.4"/>
+</g>
+
+<!-- vena cava superior -->
+<g fill="none">
+  <use href="#corazon-v-svc" stroke="#0f2253" stroke-width="85"/>
+  <use href="#corazon-v-svc" stroke="#2f5fc4" stroke-width="79"/>
+  <use href="#corazon-v-svc" stroke="#1b3c88" stroke-width="22" transform="translate(21,0)" opacity="0.6"/>
+  <use href="#corazon-v-svc" stroke="#5684dc" stroke-width="44" transform="translate(-9,-6)" stroke-dasharray="0 8 900"/>
+  <use href="#corazon-v-svc" stroke="#93b3f0" stroke-width="15" transform="translate(-18,-8)" opacity="0.75" stroke-dasharray="0 10 900"/>
+  <use href="#corazon-v-svc" stroke="#ffffff" stroke-width="5" transform="translate(-22,-10)" opacity="0.4" stroke-dasharray="0 12 900"/>
+</g>
+<ellipse cx="279.5" cy="30" rx="42.5" ry="10.5" fill="#0f2253"/>
+<ellipse cx="279.5" cy="30.5" rx="35" ry="7" fill="#081638"/>
+<path d="M245 31Q279.5 40 314 31" fill="none" stroke="#6f95e6" stroke-width="2" opacity="0.6"/>
+
+<!-- ───────── corazón cortado ───────── -->
+<use href="#corazon-heart" fill="url(#corazon-cut)"/>
+<!-- fibras del miocardio -->
+<g fill="none" stroke="#a5463d" stroke-width="2" stroke-linecap="round" opacity="0.45" clip-path="url(#corazon-clip-heart)">
+  <path d="M812 640C826 720 822 820 790 900"/>
+  <path d="M830 660C842 740 836 830 806 912"/>
+  <path d="M796 960C760 1000 712 1022 668 1024"/>
+  <path d="M556 610C575 680 600 760 628 850"/>
+  <path d="M544 640C560 720 582 800 610 880"/>
+  <path d="M342 770C365 830 405 880 470 930"/>
+  <path d="M208 560C206 620 214 660 230 690"/>
+  <path d="M700 990C680 996 660 1000 640 996"/>
+</g>
+<!-- epicardio (superficie externa que asoma en el borde) -->
+<path d="M237 438C198 452 174 510 174 580C174 640 196 688 230 708L312 730C330 820 385 900 470 960C545 1010 610 1042 668 1044C735 1046 800 995 836 905C866 830 874 720 858 630C852 598 842 578 832 566C852 540 856 470 834 438C812 408 770 400 728 404C690 408 655 425 632 452C620 468 616 495 615 530M413 475C392 462 362 448 340 446L322 438" fill="none" stroke="#5c1214" stroke-width="25" stroke-linejoin="round"/>
+<path d="M237 438C198 452 174 510 174 580C174 640 196 688 230 708L312 730C330 820 385 900 470 960C545 1010 610 1042 668 1044C735 1046 800 995 836 905C866 830 874 720 858 630C852 598 842 578 832 566C852 540 856 470 834 438C812 408 770 400 728 404C690 408 655 425 632 452C620 468 616 495 615 530M413 475C392 462 362 448 340 446L322 438" fill="none" stroke="url(#corazon-epi)" stroke-width="21" stroke-linejoin="round"/>
+<path d="M200 520C210 480 228 458 250 446M650 438C690 412 740 404 790 412" fill="none" stroke="#f3a090" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+<!-- cavidades -->
+<use href="#corazon-ra" fill="url(#corazon-ven)"/>
+<use href="#corazon-rv" fill="url(#corazon-ven)"/>
+<use href="#corazon-la" fill="url(#corazon-art)"/>
+<use href="#corazon-lv" fill="url(#corazon-art)"/>
+<!-- sombra interior (arriba-izquierda) y reflejo (abajo-derecha) de cada cavidad -->
+<g fill="none" stroke-width="18">
+  <use href="#corazon-ra" stroke="#0b1d4a" opacity="0.55" transform="translate(7,8)" clip-path="url(#corazon-clip-ra)"/>
+  <use href="#corazon-rv" stroke="#0b1d4a" opacity="0.55" transform="translate(7,8)" clip-path="url(#corazon-clip-rv)"/>
+  <use href="#corazon-la" stroke="#4a070b" opacity="0.55" transform="translate(7,8)" clip-path="url(#corazon-clip-la)"/>
+  <use href="#corazon-lv" stroke="#4a070b" opacity="0.55" transform="translate(7,8)" clip-path="url(#corazon-clip-lv)"/>
+</g>
+<g fill="none" stroke-width="8">
+  <use href="#corazon-ra" stroke="#9db8f2" opacity="0.5" transform="translate(-4,-5)" clip-path="url(#corazon-clip-ra)"/>
+  <use href="#corazon-rv" stroke="#9db8f2" opacity="0.5" transform="translate(-4,-5)" clip-path="url(#corazon-clip-rv)"/>
+  <use href="#corazon-la" stroke="#ff9d90" opacity="0.5" transform="translate(-4,-5)" clip-path="url(#corazon-clip-la)"/>
+  <use href="#corazon-lv" stroke="#ff9d90" opacity="0.5" transform="translate(-4,-5)" clip-path="url(#corazon-clip-lv)"/>
+</g>
+<g fill="none" stroke-width="2.2">
+  <use href="#corazon-ra" stroke="#0f2253"/>
+  <use href="#corazon-rv" stroke="#0f2253"/>
+  <use href="#corazon-la" stroke="#6b0d12"/>
+  <use href="#corazon-lv" stroke="#6b0d12"/>
+</g>
+<!-- trabéculas carnosas -->
+<g fill="none" stroke-linecap="round" opacity="0.55">
+  <path d="M700 955C712 935 728 925 745 915" stroke="#a5463d" stroke-width="5"/>
+  <path d="M672 950C676 930 680 915 690 902" stroke="#a5463d" stroke-width="4"/>
+</g>
+<!-- desembocadura de las venas pulmonares en la aurícula izquierda -->
+<path d="M818 434C834 428 848 421 864 415L864 447C848 452 834 459 822 466Z" fill="url(#corazon-art)"/>
+<path d="M816 500C832 498 848 495 864 493L864 525C848 527 832 530 818 533Z" fill="url(#corazon-art)"/>
+<path d="M818 434C834 428 848 421 864 415M822 466C834 459 848 452 864 447M816 500C832 498 848 495 864 493M818 533C832 530 848 527 864 525" fill="none" stroke="#6b0d12" stroke-width="2"/>
+<!-- detalles de la aurícula derecha: músculos pectíneos, fosa oval y seno coronario -->
+<g fill="none" stroke="#1d4396" stroke-width="5" stroke-linecap="round" opacity="0.6">
+  <path d="M212 520C228 528 240 540 248 556"/>
+  <path d="M206 560C222 566 236 578 244 594"/>
+  <path d="M206 600C222 604 236 614 244 630"/>
+  <path d="M212 640C226 642 238 650 246 662"/>
+</g>
+<ellipse cx="360" cy="575" rx="20" ry="34" fill="#4a77d6" stroke="#1d4396" stroke-width="2" opacity="0.8"/>
+<ellipse cx="324" cy="688" rx="11" ry="7" fill="#0b1d4a" opacity="0.8"/>
+<!-- banda moderadora (del tabique al músculo papilar anterior) -->
+<path d="M556 862C522 864 478 880 436 896C432 900 434 910 440 910C480 896 522 884 558 880Z" fill="url(#corazon-pap)" stroke="#7a2a25" stroke-width="1.5"/>
+<!-- músculos papilares -->
+<g fill="url(#corazon-pap)" stroke="#7a2a25" stroke-width="1.6">
+  <path d="M404 902C396 872 389 848 395 834C401 824 413 829 417 843C423 864 432 884 446 900Z"/>
+  <path d="M552 812C532 802 512 794 503 799C495 805 499 815 511 820C525 826 541 836 555 846Z"/>
+  <path d="M800 802C780 782 762 762 750 750C742 742 746 731 756 733C770 737 786 752 802 770Z"/>
+  <path d="M744 922C725 892 708 866 702 849C698 839 706 832 714 838C728 852 748 870 768 888Z"/>
+</g>
+<!-- cuerdas tendinosas -->
+<g fill="none" stroke="#fbf1e2" stroke-width="2" stroke-linecap="round" opacity="0.9">
+  <path d="M343 793L396 836M349 788L399 834"/>
+  <path d="M385 786L401 833M389 784L502 801M384 786L503 806"/>
+  <path d="M670 690L704 843M666 690L700 845M672 688L748 742"/>
+  <path d="M725 676L750 740M728 672L755 738M722 676L708 840"/>
+</g>
+<!-- válvula tricúspide -->
+<g fill="url(#corazon-valve)" stroke="#8d6d50" stroke-width="1.6">
+  <path d="M312 703C318 735 328 766 340 794C345 799 352 795 351 788C344 760 336 733 330 705Z"/>
+  <path d="M417 692C410 724 401 753 391 785C388 792 380 792 380 785C388 754 395 723 400 694Z"/>
+</g>
+<!-- válvula mitral -->
+<g fill="url(#corazon-valve)" stroke="#8d6d50" stroke-width="1.6">
+  <path d="M634 586C638 624 650 656 664 690C668 697 677 694 676 687C664 653 656 622 653 590Z"/>
+  <path d="M758 590C751 618 742 646 729 675C726 682 717 680 718 673C729 646 736 618 740 590Z"/>
+</g>
+<path d="M314 704L412 692M636 590L756 590" fill="none" stroke="#e9d7bf" stroke-width="3" stroke-dasharray="2 5" opacity="0.6"/>
+
+<!-- raíz aórtica abierta y válvula aórtica -->
+<path d="M519 530L607 530L603 472Q560 490 514 472Z" fill="url(#corazon-lumA)"/>
+<path d="M514 472Q560 490 603 472" fill="none" stroke="#6b0d12" stroke-width="2.5"/>
+<path d="M514 472Q560 490 603 472" fill="none" stroke="#f58a7e" stroke-width="1.5" transform="translate(0,-3)" opacity="0.7"/>
+<use href="#corazon-semi" transform="translate(563 530)"/>
+
+<!-- raíz pulmonar abierta y válvula pulmonar -->
+<path d="M419 477L497 489L505 449Q466 456 434 424Z" fill="url(#corazon-lumV)"/>
+<path d="M434 424Q466 456 505 449" fill="none" stroke="#0f2253" stroke-width="2.5"/>
+<path d="M434 424Q466 456 505 449" fill="none" stroke="#93b3f0" stroke-width="1.5" transform="translate(0,-3)" opacity="0.7"/>
+<use href="#corazon-semi" transform="translate(458 483) rotate(8.8) scale(0.9)"/>
+
+<!-- flechas de sentido de la sangre -->
+<g fill="#ffffff" opacity="0.7">
+  <use href="#corazon-arrow" transform="translate(279 230) rotate(90)"/>
+  <use href="#corazon-arrow" transform="translate(267 960) rotate(-90)"/>
+  <use href="#corazon-arrow" transform="translate(290 600) rotate(70)"/>
+  <use href="#corazon-arrow" transform="translate(468 640) rotate(-85)"/>
+  <use href="#corazon-arrow" transform="translate(640 125)"/>
+  <use href="#corazon-arrow" transform="translate(810 291)"/>
+  <use href="#corazon-arrow" transform="translate(150 292) rotate(180)"/>
+  <use href="#corazon-arrow" transform="translate(915 412) rotate(180)"/>
+  <use href="#corazon-arrow" transform="translate(915 505) rotate(180)"/>
+  <use href="#corazon-arrow" transform="translate(110 410)"/>
+  <use href="#corazon-arrow" transform="translate(110 505)"/>
+  <use href="#corazon-arrow" transform="translate(730 520) rotate(95)"/>
+  <use href="#corazon-arrow" transform="translate(600 680) rotate(-108)"/>
+</g>
+
+<g id="hits" fill="none">
+  <path data-key="auricula-d" d="M237 438L322 438L340 446C362 448 392 462 413 475L406 520L408 650L412 692L318 708L310 730L230 708C196 688 174 640 174 580C174 510 198 452 237 438Z"/>
+  <path data-key="auricula-i" d="M615 530L632 452C655 425 690 408 728 404C770 400 812 408 834 438C856 470 852 540 832 566L752 590L642 590C628 575 616 552 615 530Z"/>
+  <path data-key="ventriculo-d" d="M318 708L412 692L408 650L406 520L413 475L503 489L508 540C514 580 520 640 527 700C540 790 565 880 600 952L612 1040C545 1010 470 960 470 960C400 910 340 830 312 730Z"/>
+  <path data-key="ventriculo-i" d="M511 530L615 530C616 552 628 575 642 590L752 590L832 566C842 578 852 598 858 630C874 720 866 830 836 905C800 995 735 1046 668 1044L612 1040L600 952C565 880 540 790 527 700C520 640 514 580 508 540Z"/>
+  <path data-key="tabique" d="M498 492L524 522C545 590 575 650 594 720C612 800 637 880 662 940C670 958 678 968 690 970L640 1004L596 962C562 880 538 790 524 700C517 640 510 580 496 540Z"/>
+  <path data-key="aorta" d="M511 532L500 450L472 340L452 250L455 168L480 118L484 10L526 4L540 84L596 74L596 6L630 6L634 73L680 80L716 0L756 22L722 96L790 118L840 190L844 400L736 400L736 275L718 205L680 180L625 177L575 182L557 220L566 300L590 390L604 450L616 532Z"/>
+  <path data-key="arteria-pulmonar" d="M413 472L419 420L445 375L485 336L530 296L575 270L625 256L660 252L760 260L860 252L895 248L940 214L960 205L990 232L955 270L948 286L955 300L990 334L962 362L935 342L900 326L800 330L700 336L650 342L615 344L575 360L548 380L520 410L506 445L503 489Z M322 262L460 260L470 328L322 325Z M237 262L190 260L150 250L110 228L75 220L46 240L60 270L95 292L60 316L46 344L75 366L110 350L150 330L190 326L237 326Z"/>
+  <path data-key="venas-pulmonares" d="M40 386L190 388L237 400L237 436L190 432L40 432Z M40 482L180 482L180 528L40 528Z M856 388L975 386L975 434L862 438Z M862 482L975 482L975 528L862 530Z"/>
+  <path data-key="vena-cava-sup" d="M234 16L325 16L325 438L234 438Z"/>
+  <path data-key="vena-cava-inf" d="M220 712L310 730L316 1098L218 1098Z"/>
+  <path data-key="valvula-tricuspide" d="M304 694L424 680L416 740L398 802L334 808L316 752Z"/>
+  <path data-key="valvula-mitral" d="M628 578L766 578L750 640L732 692L656 704L638 640Z"/>
+  <path data-key="valvula-pulmonar" d="M406 446L510 460L507 500L408 488Z"/>
+  <path data-key="valvula-aortica" d="M512 496L616 496L618 546L512 546Z"/>
+</g>
+</svg>

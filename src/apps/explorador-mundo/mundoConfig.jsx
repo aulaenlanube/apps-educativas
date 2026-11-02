@@ -73,7 +73,7 @@ export const mundoConfig = {
   regionLabel,
   regionQuestion: '¿Qué parte del mundo quieres explorar?',
   allRegionsLabel: 'Todo el mundo',
-  regionScope: (id) => `los países de ${regionLabel(id)}`,
+  regionScope: (id) => `Jugarás con los países de ${regionLabel(id)}.`,
   allRegionsScope: 'Jugarás con países de todo el mundo.',
   ignoresRegionNote: 'Usa el mundo entero',
   poolText: (lv, region) => `${poolSize(lv, region)} países en juego`,
