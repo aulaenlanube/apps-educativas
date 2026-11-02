@@ -2702,7 +2702,7 @@ _Sin modos diferenciados._
 
 **Datos.** Contenido local (sin Supabase): catálogo de estructuras, datos extra (sentidos, hormonas, enfermedades, raíces, términos de posición) y láminas estáticas en public/.
 
-**Integración.** Tracking estándar del motor de mapas: práctica mode 'practice' con score 0; examen mode 'test' con nota /10 y puntos paralelos; nota parcial al abandonar. Duelo 1 vs 1 (ExploradorCuerpoDuel → GeoDuel) en el idioma de la asignatura, sin recorridos para ordenar. Registrada en Ciencias Naturales, Inglés y Valenciano (Primaria 1-6), Biología y Geología (ESO 1-4), Biología (Bach 1-2) y Atención a la Diversidad (Vocabulario y Autonomía). Contenedor ancho.
+**Integración.** Tracking estándar del motor de mapas: práctica mode 'practice' con score 0; examen mode 'test' con nota /10 y puntos paralelos; nota parcial al abandonar. Duelo 1 vs 1 (ExploradorCuerpoDuel → GeoDuel) en el idioma de la asignatura, sin recorridos para ordenar. Registrada en Ciencias Naturales, Inglés y Valenciano (Primaria 1-6), Biología y Geología (ESO 1-4), Biología (Bach 1-2) y Atención a la Diversidad (Vocabulario y Autonomía). A pantalla completa (preset 'escenario' de AppRunnerPage: barra fina con «Volver a» y el escenario llenando la ventana).
 
 **Ideas de mejora.**
 - Versión 3D del cuerpo con las mismas mallas, claves y fichas.
@@ -2750,7 +2750,7 @@ _Sin modos diferenciados._
 
 **Datos.** Contenido local (catálogo común + engine/data.js) y láminas estáticas en public/.
 
-**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (HuesosMusculosDuel → GeoDuel). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). Contenedor ancho.
+**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (HuesosMusculosDuel → GeoDuel). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). A pantalla completa (preset 'escenario' de AppRunnerPage: barra fina con «Volver a» y el escenario llenando la ventana).
 
 **Ideas de mejora.**
 - Músculos profundos y vistas laterales.
@@ -2796,7 +2796,7 @@ _Sin modos diferenciados._
 
 **Datos.** Contenido local (engine/routes.js + catálogo común) y láminas estáticas en public/.
 
-**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (ViajeCuerpoDuel → GeoDuel, sin preguntas de ordenar). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). Contenedor ancho.
+**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (ViajeCuerpoDuel → GeoDuel, sin preguntas de ordenar). Registrada en Ciencias Naturales (Primaria 3-6), Biología y Geología y Educación Física (ESO 1-4), Biología (Bach 1-2) y Educación Física (Bach 1). A pantalla completa (preset 'escenario' de AppRunnerPage: barra fina con «Volver a» y el escenario llenando la ventana).
 
 **Ideas de mejora.**
 - Viajes del oxígeno hasta una célula muscular durante el ejercicio.
@@ -2842,7 +2842,7 @@ _Sin modos diferenciados._
 
 **Datos.** Modelo 3D estático en public/ (unos 1,7 MB todo el cuerpo en ligero y 5 MB en detalle, cargado por capas) y catálogo común de estructuras.
 
-**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (Anatomia3DDuel → GeoDuel). Registrada en Ciencias Naturales 5.º-6.º, Biología y Educación Física de ESO y Bachillerato. Necesita WebGL; la calidad gráfica global elige el nivel de detalle.
+**Integración.** Tracking estándar del motor de mapas y duelo 1 vs 1 (Anatomia3DDuel → GeoDuel). Registrada en Ciencias Naturales 5.º-6.º, Biología y Educación Física de ESO y Bachillerato. Necesita WebGL; la calidad gráfica global elige el nivel de detalle. A pantalla completa (preset 'escenario' de AppRunnerPage: barra fina con «Volver a» y el escenario llenando la ventana).
 
 **Ideas de mejora.**
 - Esqueleto con más articulaciones (columna, muñeca, pronación).

@@ -34,12 +34,16 @@ export const cleanAppName = (name = '') =>
 //   wide: ocupa todo el ancho del contenedor de AppRunnerPage
 //   scene: decorado propio de la app (plató, cielo, mar…). Se pinta en la capa
 //          de fondo del escenario, por detrás del contenido y sin z-index negativos.
-export function GameShell({ children, accent, accent2, theme = 'auto', wide = false, scene = null, className = '', style }) {
+//   stage: a pantalla completa (llena la ventana, sin tarjeta; desplaza su propio
+//          contenido). Por defecto lo decide AppRunnerPage (layout 'stage').
+export function GameShell({ children, accent, accent2, theme = 'auto', wide = false, stage, scene = null, className = '', style }) {
+  const meta = useAppMeta();
+  const isStage = stage ?? meta.layout === 'stage';
   const s = { ...style };
   if (accent) s['--gk-accent'] = accent;
   if (accent2) s['--gk-accent-2'] = accent2;
   return (
-    <div className={cx('gk-shell', `gk-theme-${theme}`, wide && 'gk-shell--wide', className)} style={s}>
+    <div className={cx('gk-shell', `gk-theme-${theme}`, wide && 'gk-shell--wide', isStage && 'gk-shell--stage', className)} style={s}>
       <div className="gk-shell__bg" aria-hidden="true">
         <span className="gk-shell__glow gk-shell__glow--a" />
         <span className="gk-shell__glow gk-shell__glow--b" />

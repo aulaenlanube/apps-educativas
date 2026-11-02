@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { AnimatedBorderButton } from '@/components/NavBackButton';
+import { NavPill } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoApps, esoSubjects, primariaApps, primariaSubjects, bachilleratoApps, bachilleratoSubjects, adApps, adSubjects } from '@/apps/appList';
@@ -149,15 +149,9 @@ const AppListPage = () => {
             <div className="relative min-h-screen overflow-x-hidden">
                 <div className="relative z-10">
                 <Header subtitle={headerSubtitle}>
-                    <AnimatedBorderButton
-                        onClick={() => navigate(`/curso/${level}/${grade}`)}
-                        colors={['#ffffff', '#ffffff']}
-                        glowColor="rgba(255,255,255,0.45)"
-                        borderColor="#ffffff"
-                        shape="arrow"
-                    >
-                        Asignaturas
-                    </AnimatedBorderButton>
+                    <NavPill kicker="Volver a" onClick={() => navigate(`/curso/${level}/${grade}`)}>
+                        {isSpecialLevel ? 'Bloques' : 'Asignaturas'}
+                    </NavPill>
                 </Header>
                 <main className="container mx-auto px-6 py-16">
                   {/* Wrapper con `filter` (igual que SubjectPage): deja un filter:blur(0px)

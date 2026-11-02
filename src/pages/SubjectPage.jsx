@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { ChevronRight, Sparkles } from 'lucide-react';
-import { NavArrowButton, AnimatedBorderButton } from '@/components/NavBackButton';
+import { ChevronRight, Sparkles, Home } from 'lucide-react';
+import { NavPill, NavArrow } from '@/components/NavBackButton';
 import Header from '@/components/layout/Header';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import { esoSubjects, primariaSubjects, bachilleratoSubjects, adSubjects } from '@/apps/appList';
@@ -89,6 +89,7 @@ const SubjectPage = () => {
   const currentIndex = allSteps.findIndex(s => s.level === level && String(s.grade) === String(grade));
   const prevStep = currentIndex > 0 ? allSteps[currentIndex - 1] : null;
   const nextStep = currentIndex < allSteps.length - 1 ? allSteps[currentIndex + 1] : null;
+  const stepLabel = (s) => (s.level === 'ad' ? levelNames.ad : `${s.grade}º ${levelNames[s.level]}`);
 
   React.useEffect(() => {
     if (prevIndexRef.current !== null) {
@@ -141,15 +142,7 @@ const SubjectPage = () => {
       <div className="relative min-h-screen overflow-x-hidden">
         <div className="relative z-10">
         <Header>
-          <AnimatedBorderButton
-            onClick={() => navigate('/')}
-            colors={['#ffffff', '#ffffff']}
-            glowColor="rgba(255,255,255,0.45)"
-            borderColor="#ffffff"
-            shape="arrow"
-          >
-            Inicio
-          </AnimatedBorderButton>
+          <NavPill icon={Home} onClick={() => navigate('/')}>Inicio</NavPill>
         </Header>
         <main className="container mx-auto px-6 py-16">
           <motion.div
@@ -177,13 +170,13 @@ const SubjectPage = () => {
               </div>
               <div className="flex items-center justify-center space-x-3 md:space-x-8 mb-4">
                 {prevStep && (
-                  <NavArrowButton direction="left" colors={['#ffffff', '#ffffff']} borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
+                  <NavArrow direction="left" label={stepLabel(prevStep)} onClick={() => navigate(`/curso/${prevStep.level}/${prevStep.grade}`)} />
                 )}
 
                 <AnimatedGradientTitle className="text-5xl md:text-6xl tracking-tight uppercase whitespace-nowrap">{fullTitle}</AnimatedGradientTitle>
 
                 {nextStep && (
-                  <NavArrowButton direction="right" colors={['#ffffff', '#ffffff']} borderColor="#ffffff" glowColor="rgba(255,255,255,0.5)" onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
+                  <NavArrow direction="right" label={stepLabel(nextStep)} onClick={() => navigate(`/curso/${nextStep.level}/${nextStep.grade}`)} />
                 )}
               </div>
               <div className="relative inline-flex flex-col items-center mt-2">

@@ -162,6 +162,8 @@
 /* preguntas propias de Anatomía 3D (montar piezas) y sujetos 3D */
 .a3d-q { position: relative; }
 .a3d-q .gq-map { aspect-ratio: 16 / 10; max-height: 70vh; }
+.gk-shell--stage .a3d-q { display: flex; flex-direction: column; }
+.gk-shell--stage .a3d-q > .gq-map { flex: 1 1 0; min-height: 0; aspect-ratio: auto; max-height: none; }
 .a3d-q__bar {
   position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
   pointer-events: none;

@@ -57,6 +57,32 @@
 }
 .gk-shell--wide { max-width: none; }
 
+/* A pantalla completa (AppRunnerPage, preset 'escenario'): el escenario llena la
+   ventana bajo la barra fina, sin tarjeta, y desplaza su propio contenido. Los
+   menús quedan centrados; la partida estira su lienzo hasta abajo (geo.css). */
+.gk-shell--stage {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.gk-shell--stage > .gk-shell__body {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: clamp(10px, 1.4vw, 18px) clamp(12px, 2.2vw, 30px) clamp(12px, 1.6vw, 20px);
+  gap: clamp(10px, 1.4vw, 16px);
+}
+.gk-shell--stage > .gk-shell__bg { position: fixed; border-radius: 0; }
+
 /* tema oscuro: con el tema de la plataforma o forzado por la app */
 html.dark .gk-shell.gk-theme-auto,
 .gk-shell.gk-theme-dark {

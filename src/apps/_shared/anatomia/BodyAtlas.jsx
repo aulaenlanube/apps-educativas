@@ -12,6 +12,7 @@ import {
   Info, ScanLine, Search, X, RotateCcw, Layers, Printer, Box,
 } from 'lucide-react';
 import { isWebGLAvailable } from '@/services/graphicsQuality';
+import { useAppMeta } from '../kit/AppMetaContext';
 import { VIEW_TEXT } from '../anatomia3d/ui3d';
 import MapView from '../geo/MapView';
 import { BY_KEY, STRUCTURES } from './data/structures';
@@ -40,6 +41,7 @@ const viewOf = (id) => (id.endsWith('-p') ? 'p' : 'a');
 const asView = (id, v) => (v === 'p' ? id.replace(/-a$/, '-p') : id.replace(/-p$/, '-a'));
 
 export default function BodyAtlas({ open, onClose, world, atlas }) {
+  const stage = useAppMeta().layout === 'stage'; // app a pantalla completa: el atlas también
   const lang = atlas.lang || 'es';
   const t = APP_UI[lang] || APP_UI.es;
   const li = LI[lang] ?? 0;
@@ -186,7 +188,7 @@ export default function BodyAtlas({ open, onClose, world, atlas }) {
   const pairLabel = pair ? (VIEW_LABEL[world.index.plates[pair]?.view]?.[li] && world.index.plates[pair]?.kind === 'render' && world.index.plates[plateId]?.kind === 'render' ? VIEW_LABEL[world.index.plates[pair].view][li] : PLATE_BY_ID[pair]?.t[li]) : null;
 
   return createPortal(
-    <motion.div className="gq-atlas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="dialog" aria-modal="true" aria-label={atlas.title}>
+    <motion.div className={`gq-atlas${stage ? ' gq-atlas--stage' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="dialog" aria-modal="true" aria-label={atlas.title}>
       <motion.div className="gk-shell gk-theme-dark gq-atlas__panel ana-atlas" initial={{ y: 24, scale: 0.98 }} animate={{ y: 0, scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 26 }}>
         <header className="gq-atlas__top">
           <div className="gq-atlas__title">

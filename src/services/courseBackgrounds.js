@@ -114,7 +114,14 @@ export function courseBackgroundEnabledForApp(appId, presetName, appFlag) {
 // string). Fuente única compartida por AppRunnerPage (estilo del header) y por
 // el fondo persistente (PersistentCourseBackground) para decidir, a partir de la
 // URL, si una app individual debe mostrar el fondo de curso.
+// Apps a pantalla completa (preset 'escenario'): la app ocupa toda la ventana,
+// sin tarjeta ni fondo de curso, con una barra fina para volver a la asignatura.
+// Las del cuerpo humano, cuyo lienzo (láminas o 3D) necesita todo el espacio.
+export const STAGE_APP_IDS = ['explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo', 'anatomia-3d'];
+export const isStageApp = (appId = '') => STAGE_APP_IDS.includes(appId);
+
 export function getHeaderPresetName(appId = '') {
+  if (isStageApp(appId)) return 'escenario';
   if (appId === 'terminal-retro') return 'dark-green';
   if (appId.startsWith('isla-de-la-calma')) return 'calma';
   if (appId === 'laboratorio-fisica') return 'inmersivo';

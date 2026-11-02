@@ -137,10 +137,10 @@ export default function NotificationBell({ variant = 'default' }) {
         aria-label="Notificaciones"
         aria-expanded={open}
         title="Notificaciones"
-        className={`nb-trigger relative flex items-center justify-center w-9 h-9 rounded-full transition-colors focus:outline-none ${
+        className={`nb-trigger relative flex items-center justify-center rounded-full transition-colors focus:outline-none ${
           isGlass
-            ? 'border border-white/15 bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 focus:ring-2 focus:ring-white/20'
-            : 'border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 focus:ring-2 focus:ring-purple-300'
+            ? 'w-10 h-10 border border-white/15 hover:border-white/30 bg-[#141034]/80 hover:bg-[#221c50]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] focus:ring-2 focus:ring-white/25'
+            : 'w-9 h-9 border border-purple-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 focus:ring-2 focus:ring-purple-300'
         }${unreadCount > 0 ? ' has-unread' : ''}${open ? ' is-open' : ''}`}
       >
         <Bell className={`nb-trigger__bell w-4.5 h-4.5 ${isGlass ? 'text-white/85' : 'text-gray-600 dark:text-slate-200'}`} />

@@ -5,8 +5,9 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart, Trophy, Swords, XCircle } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { AnimatedBorderButton } from '@/components/NavBackButton';
-import { findAppById } from '@/apps/appList';
+import { NavPill } from '@/components/NavBackButton';
+import FullscreenToggle from '@/components/ui/FullscreenToggle';
+import { findAppById, subjectNameOf } from '@/apps/appList';
 import { getDuelComponent } from '@/apps/config/duelComponents';
 import { useGameTracker } from '@/hooks/useGameTracker';
 import { useAuth } from '@/contexts/AuthContext';
@@ -45,7 +46,11 @@ import { AppMetaProvider } from '@/apps/_shared/kit/AppMetaContext';
 // showHeartAndTrophy: si muestra los botones corazón y trofeo
 // isAbsolute:        si la barra es absolute positioned (superpuesta al contenido)
 // containerClass:    max-width del contenedor de la app
-// useAnimatedBack:   si usa AnimatedBorderButton en vez de Button para volver
+// useAnimatedBack:   si usa el botón de navegación común (NavPill) en vez de Button para volver
+// stage:             app a pantalla completa (barra fina + la app ocupa el resto de la ventana)
+
+// Botón redondo de cristal oscuro (corazón, trofeo): mismo estilo que NavPill.
+const GLASS_ICON_BTN = 'h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-white/15 hover:border-white/30 bg-[#141034]/80 hover:bg-[#221c50]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_10px_24px_-14px_rgba(0,0,0,0.75)] transition-all group';
 
 const APP_HEADER_PRESETS = {
     standard: {
@@ -120,8 +125,8 @@ const APP_HEADER_PRESETS = {
     inmersivo: {
         bgClass: 'bg-[#0b1026]',
         btnBackClass: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0',
-        btnHeartClass: 'bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 text-pink-300 border border-white/15 hover:border-pink-300/40 shadow-md transition-all group rounded-xl',
-        btnRankingClass: 'bg-slate-900/35 backdrop-blur-md hover:bg-slate-900/55 text-amber-300 border border-white/15 hover:border-amber-300/40 shadow-md transition-all group rounded-xl',
+        btnHeartClass: `${GLASS_ICON_BTN} text-pink-300`,
+        btnRankingClass: `${GLASS_ICON_BTN} text-amber-300`,
         iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-300 transition-all duration-300',
         iconRankingClass: 'h-5 w-5 transition-all duration-300',
         showUserControls: true,
@@ -131,10 +136,28 @@ const APP_HEADER_PRESETS = {
         useAnimatedBack: true,
         glassChrome: true,
     },
+    // Apps a pantalla completa (las del cuerpo humano, ver isStageApp en
+    // courseBackgrounds.js): la ventana entera es el escenario de la app, sin
+    // tarjeta ni fondo de curso; arriba solo una barra fina con «Volver a…».
+    escenario: {
+        bgClass: 'bg-[#060b1a]',
+        btnBackClass: '',
+        btnHeartClass: `${GLASS_ICON_BTN} text-pink-300 np-stage__donate`,
+        btnRankingClass: `${GLASS_ICON_BTN} text-amber-300`,
+        iconHeartClass: 'h-5 w-5 fill-transparent group-hover:fill-pink-300 transition-all duration-300',
+        iconRankingClass: 'h-5 w-5 transition-all duration-300',
+        showUserControls: true,
+        showHeartAndTrophy: true,
+        isAbsolute: false,
+        containerClass: 'w-full',
+        useAnimatedBack: true,
+        glassChrome: true,
+        stage: true,
+    },
 };
 
 // Apps "wide" usan header standard pero contenedor ancho
-const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques', 'explorador-mundo', 'explorador-espana', 'explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo', 'anatomia-3d'];
+const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques', 'explorador-mundo', 'explorador-espana'];
 const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 
 /**
@@ -293,6 +316,8 @@ const AppRunnerPage = () => {
         : `/curso/${level}/${grade}`;
 
     const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
+    // Botón común: «Volver a» + destino («Biología y Geología» / «Asignaturas»)
+    const backLabel = (hasSubject && subjectNameOf(level, grade, activeSubjectId)) || (hasSubject ? 'la asignatura' : 'Asignaturas');
 
     const handleBackClick = useCallback(() => {
         if (duelId && duelForfeitRef.current) {
@@ -367,7 +392,9 @@ const AppRunnerPage = () => {
             />
 
             <div
-                className={`min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${useCourseBg ? 'bg-transparent' : preset.bgClass} relative overflow-hidden`}
+                className={preset.stage
+                    ? `np-stage ${preset.bgClass}`
+                    : `min-h-screen flex flex-col items-center justify-start ${preset.isAbsolute ? 'p-0' : 'pt-2 px-4 pb-4'} ${useCourseBg ? 'bg-transparent' : preset.bgClass} relative overflow-hidden`}
                 style={useCourseBg ? { isolation: 'isolate' } : undefined}
             >
 
@@ -375,18 +402,14 @@ const AppRunnerPage = () => {
                 {/* El fondo 3D de curso lo monta PersistentCourseBackground (en App),
                     detrás de todo; aquí el contenedor solo se vuelve transparente. */}
 
-                <div className={`${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} np-runner-bar flex items-center gap-3`}>
+                <div className={preset.stage
+                    ? 'np-stage__bar'
+                    : `${preset.isAbsolute ? 'absolute top-6 left-6 right-6 z-30 w-auto' : `w-full ${preset.containerClass} relative z-30 mb-4`} np-runner-bar flex items-center gap-3`}>
 
                     {preset.useAnimatedBack ? (
-                        <AnimatedBorderButton
-                            onClick={handleBackClick}
-                            colors={['#ffffff', '#ffffff']}
-                            glowColor="rgba(255,255,255,0.45)"
-                            borderColor="#ffffff"
-                            shape="arrow"
-                        >
-                            {backButtonText}
-                        </AnimatedBorderButton>
+                        <NavPill kicker="Volver a" onClick={handleBackClick} title={backButtonText}>
+                            {backLabel}
+                        </NavPill>
                     ) : (
                         <Button
                             onClick={handleBackClick}
@@ -415,10 +438,23 @@ const AppRunnerPage = () => {
                             >
                                 <Trophy className={chrome.iconRankingClass} />
                             </Button>
+
+                            {preset.stage && (
+                                <AppRatingPanel
+                                    appId={app.id}
+                                    appName={app.name}
+                                    level={level}
+                                    grade={grade}
+                                    subjectId={activeSubjectId}
+                                    variant="bar"
+                                />
+                            )}
                         </>
                     )}
 
                     <div className="flex-1" />
+
+                    {preset.stage && <FullscreenToggle className="np-glass-icon-btn" />}
 
                     {preset.showUserControls && !authLoading && isAuthenticated && (
                         <>
@@ -440,7 +476,7 @@ const AppRunnerPage = () => {
                     )}
                 </div>
 
-                <div className={`${preset.containerClass} relative`}>
+                <div className={preset.stage ? 'np-stage__main' : `${preset.containerClass} relative`}>
                     <Suspense fallback={
                         <div className="flex flex-col items-center justify-center gap-4 py-32" role="status" aria-live="polite">
                             <div className="np-loader" />
@@ -456,6 +492,7 @@ const AppRunnerPage = () => {
                             grade,
                             subjectId: activeSubjectId,
                             isDuel: !!duelId,
+                            layout: preset.stage ? 'stage' : 'page',
                         }}>
                             <AppToRender
                                 isPaused={isDonationModalOpen}
@@ -470,14 +507,16 @@ const AppRunnerPage = () => {
                 </div>
             </div>
 
-            <AppRatingPanel
-                appId={app.id}
-                appName={app.name}
-                level={level}
-                grade={grade}
-                subjectId={activeSubjectId}
-                variant={ratingVariant}
-            />
+            {!preset.stage && (
+                <AppRatingPanel
+                    appId={app.id}
+                    appName={app.name}
+                    level={level}
+                    grade={grade}
+                    subjectId={activeSubjectId}
+                    variant={ratingVariant}
+                />
+            )}
 
             <RatingPromptModal
                 appId={app.id}

@@ -46,3 +46,6 @@ export const findAppById = (id, level, grade, subjectId) => {
 
   return null; // si no encuentra la app, devolvemos null
 };
+// Nombre visible de una asignatura (o bloque) de un curso: «Biología y Geología».
+export const subjectNameOf = (level, grade, subjectId) =>
+  levelRegistry[level]?.subjects?.[grade]?.find((s) => s.id === subjectId)?.nombre || null;

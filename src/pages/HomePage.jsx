@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import {
   BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award,
-  UserCog, SlidersHorizontal, ArrowRight, Calculator, Atom, Globe2, Music, Puzzle, FlaskConical, Languages, Palette,
+  UserCog, SlidersHorizontal, ArrowRight, Calculator, Atom, Globe2, Music, Puzzle, FlaskConical, Languages, Palette, User,
 } from 'lucide-react';
-import { AnimatedBorderButton } from '@/components/NavBackButton';
+import { NavPill } from '@/components/NavBackButton';
 import { Link, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
@@ -321,14 +321,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <Header>
-        <AnimatedBorderButton
-          onClick={() => setIsModalOpen(true)}
-          colors={['#ffffff', '#ffffff']}
-          glowColor="rgba(255,255,255,0.45)"
-          borderColor="#ffffff"
-        >
-          Quién soy
-        </AnimatedBorderButton>
+        <NavPill icon={User} tone="soft" onClick={() => setIsModalOpen(true)}>Quién soy</NavPill>
       </Header>
 
       {/* ===== HERO ===== */}

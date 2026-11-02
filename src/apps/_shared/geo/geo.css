@@ -532,6 +532,96 @@ html[data-fx="high"] .gq-ring__wave { animation-iteration-count: infinite; }
 .gq-play__footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .gq-play__info { display: inline-flex; align-items: center; gap: 6px; font-size: .86rem; font-weight: 600; color: var(--gk-ink-3); }
 
+/* ---------- A pantalla completa (GameShell stage, apps del cuerpo) ----------
+   La partida llena el alto de la ventana y el lienzo (mapa, lámina o 3D) se
+   estira hasta abajo. La línea de ayuda y la ficha del resultado flotan sobre
+   el lienzo en vez de empujarlo (así la cámara 3D no se reencuadra). */
+.gk-shell--stage .gq-play,
+.gk-shell--stage .gq-duel { flex: 1 1 auto; min-height: 0; }
+.gk-shell--stage .gq-q { position: relative; flex: 1 1 auto; min-height: 0; gap: 10px; }
+.gk-shell--stage .gq-q__mapwrap,
+.gk-shell--stage .gq-q__custom { position: relative; flex: 1 1 0; min-height: 300px; display: flex; flex-direction: column; }
+.gk-shell--stage .gq-q__mapwrap > .gq-map,
+.gk-shell--stage .gq-q__custom > *,
+.gk-shell--stage .gq-q__visual > .gq-stage--map,
+.gk-shell--stage .gq-q__visual > .gq-map,
+.gk-shell--stage .gq-stage--map > .gq-map {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+}
+.gk-shell--stage .gq-q__maphelp {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 4;
+  max-width: calc(100% - 24px);
+  padding: 6px 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #cbd5e1;
+  background: rgba(6, 12, 30, .8);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.gk-shell--stage .gq-q--map > .gq-fb,
+.gk-shell--stage .gq-q--custom > .gq-fb,
+.gk-shell--stage .gq-duel .gq-q > .gq-fb {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 6;
+  max-width: 980px;
+  margin: 0 auto;
+  background-color: #17143f;
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--gq-fb-c) 18%, transparent), transparent);
+  box-shadow: inset 0 0 0 2px var(--gq-fb-c), 0 26px 50px -18px rgba(0, 0, 0, .9);
+}
+.gk-shell--stage .gq-q__body { flex: 1 1 0; min-height: 320px; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+.gk-shell--stage .gq-q__visual { min-height: 0; justify-content: center; }
+.gk-shell--stage .gq-q__body > .gq-options { align-self: center; }
+/* cabecera de la partida compacta: en pantallas anchas, título, puntos de
+   progreso y marcador en UNA fila (la cabecera se "disuelve" en la rejilla). */
+.gk-shell--stage .gq-play > .gk-header .gk-header__icon > * { width: 42px; height: 42px; }
+.gk-shell--stage .gq-play > .gk-header .gk-title { font-size: clamp(1.15rem, 1.7vw, 1.45rem); }
+.gk-shell--stage .gq-play > .gk-header .gk-header__text { gap: 4px; }
+.gk-shell--stage .gq-play .gk-dot { width: 27px; height: 27px; font-size: .74rem; }
+.gk-shell--stage .gq-play .gk-dots { gap: 6px; }
+@media (min-width: 1100px) {
+  .gk-shell--stage .gq-play {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 18px;
+  }
+  .gk-shell--stage .gq-play > .gk-header { display: contents; }
+  .gk-shell--stage .gq-play > .gk-header > .gk-header__id { grid-column: 1; grid-row: 1; }
+  .gk-shell--stage .gq-play > .gk-header > .gk-header__right { grid-column: 3; grid-row: 1; justify-self: end; }
+  .gk-shell--stage .gq-play > .gk-dots { grid-column: 2; grid-row: 1; flex-wrap: nowrap; }
+  .gk-shell--stage .gq-play > .gq-q { grid-column: 1 / -1; grid-row: 2; align-self: stretch; }
+  .gk-shell--stage .gq-play > .gq-play__footer { grid-column: 1 / -1; grid-row: 3; }
+}
+
+@media (max-width: 720px) {
+  /* móvil: sin el nombre de la app (ya está en la barra) y marcador en una fila */
+  .gk-shell--stage .gq-play > .gk-header .gk-header__id { display: none; }
+  .gk-shell--stage .gq-play > .gk-header .gk-header__right { flex-wrap: nowrap; }
+  .gk-shell--stage .gq-play .gk-stat__label { display: none; }
+  .gk-shell--stage .gq-play .gk-dot { width: 24px; height: 24px; font-size: .68rem; }
+  .gk-shell--stage .gq-play .gk-dots { gap: 4px; flex-wrap: nowrap; }
+  .gk-shell--stage .gq-q__mapwrap, .gk-shell--stage .gq-q__custom { min-height: 340px; }
+  .gk-shell--stage .gq-q__body { grid-template-rows: minmax(280px, 1fr) auto; min-height: 0; }
+  .gk-shell--stage .gq-q__maphelp { bottom: 8px; font-size: .76rem; }
+}
+
 /* ---------- Atlas ---------- */
 .gq-atlas {
   position: fixed;

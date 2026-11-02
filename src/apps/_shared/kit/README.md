@@ -16,7 +16,7 @@ import {
 
 | Pieza | Para qué |
 |---|---|
-| `GameShell accent accent2 theme wide scene` | Escenario de la app (sustituye a la "tarjeta blanca"). `accent`/`accent2` = colores del icono de la app. `theme="dark"` para apps de ambiente nocturno; por defecto sigue el tema. `scene` = decorado propio de la app (se pinta en la capa de fondo; no uses z-index negativos dentro del escenario). |
+| `GameShell accent accent2 theme wide stage scene` | Escenario de la app (sustituye a la "tarjeta blanca"). `accent`/`accent2` = colores del icono de la app. `theme="dark"` para apps de ambiente nocturno; por defecto sigue el tema. `scene` = decorado propio de la app (se pinta en la capa de fondo; no uses z-index negativos dentro del escenario). `stage` = a pantalla completa (llena la ventana sin tarjeta y desplaza su propio contenido); por defecto lo decide AppRunnerPage con `layout: 'stage'` en `useAppMeta()` (apps del preset `'escenario'`). |
 | `GameHeader mode modeLabel topic onHelp onStudy right` | Icono + nombre + curso (de `useAppMeta`, no hay que pasarlos), chip del modo, chip opcional `topic` (bloque temático elegido) y marcador a la derecha. |
 | `Hud` + `HudStat icon tone value label` | Marcador. `tone`: score, streak, lives, time, progress, good, bad, accent. |
 | `Lives total left` · `ProgressDots total current results` · `ProgressBar value max tone` | Vidas, progreso del examen (results = array de true/false), tiempo. |

@@ -11,7 +11,7 @@ import StarRating from './StarRating';
  *
  * Props:
  *  - appId, appName, level, grade, subjectId: identifies the app version
- *  - variant: 'default' | 'retro' | 'fullscreen' | 'glass' (visual style matching app type)
+ *  - variant: 'default' | 'retro' | 'fullscreen' | 'glass' | 'bar' (visual style matching app type; 'bar' = dentro de la barra de las apps a pantalla completa)
  */
 export default function AppRatingPanel({ appId, appName, level, grade, subjectId, variant = 'default' }) {
   const { user, student, role, displayName, isAuthenticated } = useAuth();
@@ -244,7 +244,14 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
 
   // FAB button styles — alto contraste en todas las variantes para que se vea
   // sobre cualquier fondo (claro/oscuro/full-screen).
-  const fabClass = variant === 'retro'
+  // 'bar': botón redondo dentro de la barra de las apps a pantalla completa
+  // (AppRunnerPage, preset 'escenario'), en vez de flotar sobre el escenario.
+  const posClass = variant === 'bar'
+    ? 'relative w-10 h-10 sm:w-11 sm:h-11 shrink-0'
+    : 'fixed bottom-6 right-6 z-[6000] w-14 h-14';
+  const fabClass = variant === 'bar'
+    ? 'border border-white/15 hover:border-white/30 bg-[#141034]/80 hover:bg-[#221c50]/90 text-sky-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_10px_24px_-14px_rgba(0,0,0,0.75)]'
+    : variant === 'retro'
     ? 'bg-black border-2 border-green-500 text-green-400 hover:bg-green-900/50 hover:shadow-[0_0_15px_rgba(0,255,0,0.5)]'
     : variant === 'fullscreen'
       ? 'bg-gradient-to-br from-purple-600 to-pink-600 border-2 border-white/30 text-white shadow-2xl hover:scale-110'
@@ -260,10 +267,11 @@ export default function AppRatingPanel({ appId, appName, level, grade, subjectId
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: 'spring' }}
         onClick={() => setOpen(true)}
-        className={`app-rating-fab fixed bottom-6 right-6 z-[6000] w-14 h-14 rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
+        className={`app-rating-fab ${posClass} rounded-full flex items-center justify-center transition-all focus:outline-none ${fabClass}`}
         title="Valorar esta app"
+        aria-label="Valorar esta app"
       >
-        <Star className="w-6 h-6" />
+        <Star className={variant === 'bar' ? 'w-5 h-5' : 'w-6 h-6'} />
       </motion.button>
 
       {/* Panel */}

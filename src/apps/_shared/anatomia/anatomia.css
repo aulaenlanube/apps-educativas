@@ -143,6 +143,12 @@ html[data-fx="high"] .ana-scene__scan { opacity: 1; animation: ana-scan 9s linea
 .ana-atlas .gq-atlas__body.is-3d { grid-template-columns: 250px minmax(0, 1fr); }
 .ana-atlas__3d { min-height: 0; overflow: auto; }
 .ana-atlas__3d .a3d-stage { height: min(72vh, 720px); }
+/* app a pantalla completa: el atlas ocupa toda la ventana y el cuerpo 3D, todo el alto */
+.gq-atlas--stage { padding: 0; background: #060b1a; }
+.gq-atlas--stage .gq-atlas__panel.gk-shell { width: 100%; height: 100%; border-radius: 0; box-shadow: none; }
+.gq-atlas--stage .ana-atlas__3d { display: flex; flex-direction: column; overflow: hidden; }
+.gq-atlas--stage .ana-atlas__3d > .a3d-explorer { flex: 1 1 auto; min-height: 0; grid-template-rows: minmax(0, 1fr) auto; }
+.gq-atlas--stage .ana-atlas__3d .a3d-explorer .a3d-stage { height: auto; min-height: 360px; }
 .ana-plate-btn__thumb--3d { display: grid; place-items: center; color: #67e8f9; background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, .28), rgba(8, 20, 38, .9)); }
 .ana-atlas .ana-atlas__plates { min-height: 0; }
 .ana-atlas .gq-map--atlas { width: 100%; }

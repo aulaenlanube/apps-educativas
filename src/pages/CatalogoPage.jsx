@@ -2,9 +2,9 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen, ArrowRight } from 'lucide-react';
+import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen, ArrowRight, Home } from 'lucide-react';
 import Header from '@/components/layout/Header';
-import { AnimatedBorderButton } from '@/components/NavBackButton';
+import { NavPill } from '@/components/NavBackButton';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
 import AppIcon, { hasAppIcon } from '@/components/AppIcon';
 import {
@@ -315,15 +315,7 @@ const CatalogoPage = () => {
       <div className="relative min-h-screen overflow-x-hidden">
         <div className="relative z-10">
           <Header subtitle="Catálogo de Apps">
-            <AnimatedBorderButton
-              onClick={() => navigate('/')}
-              colors={['#ffffff', '#ffffff']}
-              glowColor="rgba(255,255,255,0.45)"
-              borderColor="#ffffff"
-              shape="arrow"
-            >
-              Inicio
-            </AnimatedBorderButton>
+            <NavPill icon={Home} onClick={() => navigate('/')}>Inicio</NavPill>
           </Header>
 
           <main className="container mx-auto px-6 py-12">
