@@ -266,23 +266,38 @@ export default function GeoQuizApp({ config, onGameComplete }) {
       features: c.modes[id].features,
       cta: ui.play,
     }));
+    // Ajustes previos (idioma, vista, zona) en un panel con secciones separadas:
+    // los selectores cortos en una línea y la zona como fichas que saltan de línea.
     const langPicker = c.languages ? (
-      <div className="gq-region gq-lang">
-        <span className="gq-region__label"><Languages size={15} /> {ui.language}</span>
+      <section className="gq-setup__group">
+        <span className="gq-setup__label"><Languages size={14} /> {ui.language}</span>
         <Segmented size="sm" value={lang} onChange={setLang} options={c.languages.map((l) => ({ value: l.id, label: l.label }))} />
-      </div>
+      </section>
     ) : null;
     const viewPicker = c.viewModes ? (
-      <div className="gq-region gq-view">
-        <span className="gq-region__label"><Box size={15} /> {c.viewLabel}</span>
+      <section className="gq-setup__group">
+        <span className="gq-setup__label"><Box size={14} /> {c.viewLabel}</span>
         <Segmented size="sm" value={viewMode} onChange={setViewMode} options={c.viewModes.map((v) => ({ value: v.id, label: v.label }))} />
-      </div>
+      </section>
     ) : null;
     const regionPicker = regions ? (
-      <div className="gq-region">
-        <span className="gq-region__label"><Compass size={15} /> {c.regionQuestion}</span>
-        <Segmented size="sm" value={region} onChange={setRegion} options={[{ value: 'all', label: c.allRegionsLabel }, ...regions.map((r) => ({ value: r.id, label: r.label }))]} />
-      </div>
+      <section className="gq-setup__group gq-setup__group--wide">
+        <span className="gq-setup__label" id="gq-region-label"><Compass size={14} /> {c.regionQuestion}</span>
+        <div className="gq-chips" role="radiogroup" aria-labelledby="gq-region-label">
+          {[{ id: 'all', label: c.allRegionsLabel }, ...regions].map((r) => (
+            <button
+              key={r.id}
+              type="button"
+              role="radio"
+              aria-checked={region === r.id}
+              className={`gq-chip${region === r.id ? ' is-active' : ''}`}
+              onClick={() => setRegion(r.id)}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+      </section>
     ) : null;
     return (
       <GameShell {...shell}>
@@ -291,7 +306,7 @@ export default function GeoQuizApp({ config, onGameComplete }) {
           onSelect={chooseMode}
           onHelp={openHelp}
           onStudy={openAtlas}
-          filters={langPicker || regionPicker || viewPicker ? <>{langPicker}{viewPicker}{regionPicker}</> : null}
+          filters={langPicker || regionPicker || viewPicker ? <div className="gq-setup">{langPicker}{viewPicker}{regionPicker}</div> : null}
           extra={(
             <div className="gq-modes-extra">
               <button type="button" className="gq-atlas-cta" onClick={openAtlas} disabled={!world}>
