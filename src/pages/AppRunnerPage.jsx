@@ -136,7 +136,7 @@ const APP_HEADER_PRESETS = {
         useAnimatedBack: true,
         glassChrome: true,
     },
-    // Apps a pantalla completa (las del cuerpo humano, ver isStageApp en
+    // Apps a pantalla completa (las de mapas y del cuerpo humano, ver isStageApp en
     // courseBackgrounds.js): la ventana entera es el escenario de la app, sin
     // tarjeta ni fondo de curso; arriba solo una barra fina con «Volver a…».
     escenario: {
@@ -157,7 +157,7 @@ const APP_HEADER_PRESETS = {
 };
 
 // Apps "wide" usan header standard pero contenedor ancho
-const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques', 'explorador-mundo', 'explorador-espana'];
+const WIDE_APP_IDS = ['visualizador-3d', 'romanos', 'laboratorio-funciones-2d', 'fracciones-eso', 'excavacion-selectiva', 'misiones-roboticas', 'laboratorio-robotica', 'programacion-bloques'];
 const WIDE_CONTAINER_CLASS = 'max-w-[1600px] w-[85%] px-0';
 
 /**

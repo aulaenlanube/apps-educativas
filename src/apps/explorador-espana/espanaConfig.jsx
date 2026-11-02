@@ -5,6 +5,7 @@ import {
   CCAA, CCAA_BY_ID, PROVINCES, ZONES, FLAG_CREDITS, provKey, ccaaShort, ccaaFlag, isProvKey,
 } from './data/spain';
 import { loadSpain } from './geo/spain';
+import MapScene from '../_shared/geo/MapScene';
 import { courseLevel, gamesFor, poolText } from './engine/config';
 import { buildRound } from './engine/questions';
 import { CcaaFacts, ProvFacts, GibraltarCard } from './components/SpainFacts';
@@ -58,7 +59,7 @@ const instructions = (
 export const espanaConfig = {
   id: 'explorador-espana',
   title: 'Explorador de España',
-  shell: { accent: '#ef4444', accent2: '#f59e0b' },
+  shell: { accent: '#ef4444', accent2: '#f59e0b', theme: 'dark', scene: <MapScene /> },
   load: loadSpain,
   levelFor: courseLevel,
   games: gamesFor,

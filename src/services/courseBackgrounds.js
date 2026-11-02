@@ -116,8 +116,11 @@ export function courseBackgroundEnabledForApp(appId, presetName, appFlag) {
 // URL, si una app individual debe mostrar el fondo de curso.
 // Apps a pantalla completa (preset 'escenario'): la app ocupa toda la ventana,
 // sin tarjeta ni fondo de curso, con una barra fina para volver a la asignatura.
-// Las del cuerpo humano, cuyo lienzo (láminas o 3D) necesita todo el espacio.
-export const STAGE_APP_IDS = ['explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo', 'anatomia-3d'];
+// Las de mapas y del cuerpo humano, cuyo lienzo (mapa, láminas o 3D) necesita todo el espacio.
+export const STAGE_APP_IDS = [
+  'explorador-mundo', 'explorador-espana',
+  'explorador-cuerpo', 'huesos-musculos', 'viaje-cuerpo', 'anatomia-3d',
+];
 export const isStageApp = (appId = '') => STAGE_APP_IDS.includes(appId);
 
 export function getHeaderPresetName(appId = '') {

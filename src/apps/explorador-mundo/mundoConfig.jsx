@@ -3,6 +3,7 @@
 import React from 'react';
 import { COUNTRIES, CONTINENTS, INHABITED } from './data/countries';
 import { loadWorld, loadRelief } from './geo/world';
+import MapScene from '../_shared/geo/MapScene';
 import {
   LEVELS, REGIONS, courseLevel, gamesFor, poolSize, regionLabel,
 } from './engine/config';
@@ -64,7 +65,7 @@ const instructions = (
 export const mundoConfig = {
   id: 'explorador-mundo',
   title: 'Explorador del Mundo',
-  shell: { accent: '#0ea5e9', accent2: '#10b981' },
+  shell: { accent: '#0ea5e9', accent2: '#10b981', theme: 'dark', scene: <MapScene /> },
   load: loadWorld,
   prepare: (gameId, world, lv) => (needsRelief(gameId, lv) ? loadRelief(world) : Promise.resolve(world)),
   levelFor: courseLevel,

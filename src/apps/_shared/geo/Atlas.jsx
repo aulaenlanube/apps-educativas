@@ -14,13 +14,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { Globe2, Search, X, Map as MapIcon, List, Info } from 'lucide-react';
-import { Segmented } from '../kit';
+import { Segmented, useAppMeta } from '../kit';
 import MapView from './MapView';
 import { Flag } from './Visuals';
 
 const norm = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
 export default function Atlas({ open, onClose, world, atlas }) {
+  // app a pantalla completa: el atlas también, y oscuro como la app
+  const stage = useAppMeta().layout === 'stage';
   const [selected, setSelected] = useState(null);
   const [other, setOther] = useState(null);
   const [filter, setFilter] = useState('all');
@@ -100,8 +102,8 @@ export default function Atlas({ open, onClose, world, atlas }) {
   if (!open) return null;
 
   return createPortal(
-    <motion.div className="gq-atlas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="dialog" aria-modal="true" aria-label={atlas.title}>
-      <motion.div className="gk-shell gk-theme-auto gq-atlas__panel" initial={{ y: 24, scale: 0.98 }} animate={{ y: 0, scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 26 }}>
+    <motion.div className={`gq-atlas${stage ? ' gq-atlas--stage' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="dialog" aria-modal="true" aria-label={atlas.title}>
+      <motion.div className={`gk-shell ${stage ? 'gk-theme-dark' : 'gk-theme-auto'} gq-atlas__panel`} initial={{ y: 24, scale: 0.98 }} animate={{ y: 0, scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 26 }}>
         <header className="gq-atlas__top">
           <div className="gq-atlas__title">
             <span className="gq-atlas__logo"><Globe2 size={20} /></span>
