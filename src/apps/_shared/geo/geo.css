@@ -728,6 +728,23 @@ html[data-fx="high"] .gq-ring__wave { animation-iteration-count: infinite; }
   .gk-shell--stage .gq-play .gk-dots { gap: 4px; flex-wrap: nowrap; }
   .gk-shell--stage .gq-q__mapwrap, .gk-shell--stage .gq-q__custom { min-height: 340px; }
   .gk-shell--stage .gq-q__body { grid-template-rows: minmax(280px, 1fr) auto; min-height: 0; }
+  /* Preguntas de opciones: no caben en el alto, así que la pregunta desplaza
+     por dentro (cabecera y barra de abajo quedan fijas) y el cuerpo ocupa su
+     alto natural. La ficha del resultado entra DEBAJO de las opciones y el
+     foco de «Siguiente» baja la vista hasta ella. Cada pregunta es un
+     elemento nuevo (key), así que empieza arriba. Las de mapa y las propias
+     siguen llenando el alto con la ficha flotando encima; el duelo no cambia.
+     flex-basis 0: que la pregunta no estire la partida (si no, desplazaría el
+     escenario entero y el marcador se iría arriba). El margen negativo con su
+     relleno deja sitio a las sombras, que el desplazamiento recortaría. */
+  .gk-shell--stage .gq-play > .gq-q:not(.gq-q--map):not(.gq-q--custom) {
+    flex-basis: 0;
+    margin-inline: -8px;
+    padding: 0 8px 10px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .gk-shell--stage .gq-play > .gq-q > .gq-q__body { flex: 0 0 auto; }
   /* la ayuda, a la izquierda: a la derecha están los botones de zoom */
   .gk-shell--stage .gq-q__maphelp { left: 8px; right: 56px; bottom: 8px; max-width: none; font-size: .76rem; transform: none; }
 }

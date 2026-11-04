@@ -477,6 +477,14 @@ export default function QuizPlay({
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
+  // Cada pregunta empieza arriba. A pantalla completa en el móvil, las de
+  // opciones desplazan dentro de su propia caja (nueva en cada pregunta), pero
+  // una de mapa que no cabe desplaza el escenario entero, que si no conservaría
+  // lo bajado en el menú o por el foco de «Siguiente» de la pregunta anterior.
+  const startAtTop = useCallback((el) => {
+    el?.closest('.gk-shell--stage')?.scrollTo(0, 0);
+  }, []);
+
   const next = useCallback(() => {
     clearTimeout(timer.current);
     if (idx + 1 >= questions.length) {
@@ -596,6 +604,7 @@ export default function QuizPlay({
       <AnimatePresence mode="wait">
         <motion.div
           key={idx}
+          ref={startAtTop}
           className={`gq-q ${m.isMapQ ? 'gq-q--map' : ''}${q.kind === 'custom' ? ' gq-q--custom' : ''}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
