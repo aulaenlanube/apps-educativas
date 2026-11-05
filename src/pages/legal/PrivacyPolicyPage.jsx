@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
         <link rel="canonical" href="https://apps-educativas.com/politica-privacidad" />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <LegalLayout title="Política de Privacidad" updatedAt="21 de abril de 2026">
+      <LegalLayout title="Política de Privacidad" updatedAt="5 de noviembre de 2026">
         <h2>1. Responsable del tratamiento</h2>
         <p>
           <strong>Responsable:</strong> Eduardo Torregrosa Llácer<br />
@@ -27,6 +27,7 @@ export default function PrivacyPolicyPage() {
           <li><strong>Docentes:</strong> correo electrónico, nombre mostrado, contraseña (cifrada), grupos creados, actividad en la plataforma.</li>
           <li><strong>Alumnado:</strong> nombre de usuario, nombre mostrado, avatar, grupo al que pertenecen, resultados de las sesiones de juego, XP e insignias. De forma opcional el alumno puede vincular un email para recuperación de contraseña.</li>
           <li><strong>Visitantes no registrados:</strong> datos agregados y anonimizados de navegación recogidos por Google Analytics (páginas visitadas, tiempo en la página, dispositivo, país/región, navegador), solo si aceptan el uso de cookies analíticas.</li>
+          <li><strong>Quien envía una propuesta en «Propón una app»:</strong> la app que propone, el curso o la asignatura, su correo electrónico y una huella cifrada (no reversible) de su dirección IP, que solo sirve para limitar envíos abusivos.</li>
           <li><strong>Datos técnicos:</strong> dirección IP (anonimizada para analítica), navegador, sistema operativo, logs de servidor durante el tiempo necesario para depurar errores.</li>
         </ul>
 
@@ -35,6 +36,7 @@ export default function PrivacyPolicyPage() {
           <li><strong>Prestación del servicio</strong> (alta de cuentas docentes y alumnado, guardado de progreso, gestión de grupos y tareas): ejecución del contrato/relación de uso — art. 6.1.b RGPD.</li>
           <li><strong>Soporte y comunicaciones de servicio</strong>: interés legítimo del responsable — art. 6.1.f RGPD.</li>
           <li><strong>Cumplimiento de obligaciones legales</strong> (fiscales, contables, de seguridad): art. 6.1.c RGPD.</li>
+          <li><strong>Propuestas de apps («Propón una app»)</strong>: estudiar la propuesta y responder por correo. Base legal: consentimiento — art. 6.1.a RGPD, que se da marcando la casilla del formulario y puede retirarse en cualquier momento.</li>
           <li><strong>Analítica web con Google Analytics</strong>: consentimiento — art. 6.1.a RGPD. Se solicita mediante el banner de cookies y puede revocarse en cualquier momento.</li>
         </ul>
 
@@ -66,6 +68,7 @@ export default function PrivacyPolicyPage() {
         <h2>6. Plazo de conservación</h2>
         <ul>
           <li>Cuentas docentes y de alumnado: mientras la cuenta esté activa. Si solicitas su supresión se elimina en un plazo máximo de 30 días, salvo obligaciones legales de conservación.</li>
+          <li>Propuestas de apps: hasta que se responden y, como máximo, 12 meses desde el envío; después se borran automáticamente.</li>
           <li>Datos agregados de analítica: hasta 14 meses en Google Analytics.</li>
           <li>Logs técnicos: 90 días.</li>
         </ul>

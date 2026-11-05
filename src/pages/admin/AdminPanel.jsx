@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Users, Users2, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks, Sparkles, Quote } from 'lucide-react';
+import { Shield, Users, Users2, Gamepad2, BarChart3, MessageSquare, ArrowLeft, RefreshCw, Database, Zap, ListChecks, Sparkles, Quote, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -15,6 +15,7 @@ import AppsModeReport from './AppsModeReport';
 import GroupsPanel from './GroupsPanel';
 import AvatarsPanel from './AvatarsPanel';
 import PhrasesPanel from './PhrasesPanel';
+import AppProposalsPanel from './AppProposalsPanel';
 import BrandLoader from '@/components/ui/BrandLoader';
 
 const AdminPanel = () => {
@@ -39,6 +40,7 @@ const AdminPanel = () => {
     { id: 'users', label: 'Usuarios', icon: Users },
     { id: 'groups', label: 'Grupos', icon: Users2 },
     { id: 'feedback', label: 'Feedback', icon: MessageSquare },
+    { id: 'proposals', label: 'Propuestas', icon: Lightbulb },
     { id: 'stats', label: 'Estadisticas', icon: Gamepad2 },
     { id: 'data', label: 'Datos', icon: Database },
     { id: 'xp', label: 'Experiencia', icon: Zap },
@@ -97,7 +99,7 @@ const AdminPanel = () => {
           </motion.div>
 
           {/* Tabs */}
-          <div className="flex gap-1 bg-white/80 backdrop-blur-sm rounded-xl p-1 mb-6 border border-slate-200 w-fit">
+          <div className="flex flex-wrap gap-1 bg-white/80 backdrop-blur-sm rounded-xl p-1 mb-6 border border-slate-200 w-fit max-w-full">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (
@@ -129,6 +131,7 @@ const AdminPanel = () => {
               )}
               {activeTab === 'groups' && <GroupsPanel />}
               {activeTab === 'feedback' && <FeedbackPanel />}
+              {activeTab === 'proposals' && <AppProposalsPanel />}
               {activeTab === 'stats' && <GlobalStats stats={globalStats} />}
               {activeTab === 'data' && <DataExplorer />}
               {activeTab === 'xp' && <XPConfigPanel />}

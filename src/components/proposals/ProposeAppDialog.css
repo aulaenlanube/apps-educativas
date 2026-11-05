@@ -1,0 +1,206 @@
+/* «Propón una app» — hoja de cristal clara (oscura con html.dark). */
+
+.propose-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 12, 41, .62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+}
+
+.propose-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  border-radius: 26px;
+  padding: 1.5rem 1.5rem 1.35rem;
+  color: #1e1b4b;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(167, 139, 250, .22), transparent 60%),
+    radial-gradient(90% 60% at 100% 100%, rgba(244, 114, 182, .16), transparent 65%),
+    #fff;
+  border: 1px solid rgba(255, 255, 255, .8);
+  box-shadow: 0 40px 90px -30px rgba(15, 10, 60, .75);
+}
+
+.propose-head { display: flex; align-items: flex-start; gap: .9rem; margin-bottom: 1.1rem; }
+.propose-head__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899 60%, #f59e0b);
+  box-shadow: 0 12px 26px -12px rgba(236, 72, 153, .9);
+}
+.propose-head__title { font-size: 1.45rem; font-weight: 800; line-height: 1.15; }
+.propose-head__sub { margin-top: .25rem; font-size: .95rem; color: #4c4776; }
+.propose-close {
+  margin-left: auto;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: #4c4776;
+  background: rgba(99, 102, 241, .08);
+  transition: background .2s ease;
+}
+.propose-close:hover { background: rgba(99, 102, 241, .18); }
+.propose-close:focus-visible { outline: 3px solid rgba(167, 139, 250, .8); outline-offset: 2px; }
+
+.propose-form { display: flex; flex-direction: column; gap: .95rem; }
+.propose-field { display: flex; flex-direction: column; gap: .35rem; }
+.propose-label { font-size: .92rem; font-weight: 700; }
+.propose-input {
+  width: 100%;
+  border-radius: 14px;
+  padding: .75rem .9rem;
+  font-size: 1rem;
+  color: #1e1b4b;
+  background: #fff;
+  border: 1px solid #d9d6f5;
+  box-shadow: inset 0 1px 2px rgba(15, 10, 60, .06);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.propose-input::placeholder { color: #8a86ad; }
+.propose-input:focus { outline: none; border-color: #a78bfa; box-shadow: 0 0 0 4px rgba(167, 139, 250, .28); }
+.propose-input--area { resize: vertical; min-height: 84px; }
+
+.propose-suggest {
+  border-radius: 16px;
+  padding: .8rem .85rem .7rem;
+  background: linear-gradient(160deg, rgba(16, 185, 129, .1), rgba(99, 102, 241, .08));
+  border: 1px solid rgba(16, 185, 129, .3);
+}
+.propose-suggest__title { font-size: .85rem; font-weight: 800; color: #047857; margin-bottom: .45rem; }
+.propose-suggest__list { display: flex; flex-direction: column; gap: .35rem; }
+.propose-suggest__item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .4rem .55rem;
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(255, 255, 255, .75);
+  transition: background .2s ease, transform .2s ease;
+}
+.propose-suggest__item:hover { background: #fff; transform: translateX(2px); }
+.propose-suggest__item:focus-visible { outline: 3px solid rgba(16, 185, 129, .6); outline-offset: 1px; }
+.propose-suggest__emoji { width: 28px; text-align: center; font-size: 1.3rem; }
+.propose-suggest__name { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.propose-suggest__meta { font-size: .78rem; color: #4c4776; white-space: nowrap; }
+.propose-suggest__hint { margin-top: .45rem; font-size: .78rem; color: #4c4776; }
+
+/* Campo trampa: fuera de pantalla (no display:none, que algunos bots detectan). */
+.propose-hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+.propose-privacy {
+  border-radius: 14px;
+  padding: .7rem .85rem;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: #4c4776;
+  background: rgba(99, 102, 241, .06);
+  border: 1px dashed rgba(99, 102, 241, .3);
+}
+.propose-privacy__title { display: flex; align-items: center; gap: .35rem; font-weight: 800; color: #3730a3; margin-bottom: .2rem; }
+.propose-privacy a { color: #6d28d9; font-weight: 600; text-decoration: underline; }
+.propose-privacy__list { display: flex; flex-direction: column; gap: .1rem; }
+.propose-privacy__list strong { color: #3730a3; }
+.propose-privacy__minor { margin-top: .3rem; font-style: italic; }
+
+.propose-consent { display: flex; align-items: flex-start; gap: .6rem; font-size: .9rem; cursor: pointer; }
+.propose-consent input { margin-top: .2rem; width: 1.1rem; height: 1.1rem; accent-color: #8b5cf6; flex: none; }
+
+.propose-error {
+  border-radius: 12px;
+  padding: .6rem .8rem;
+  font-size: .9rem;
+  font-weight: 600;
+  color: #991b1b;
+  background: rgba(239, 68, 68, .1);
+  border: 1px solid rgba(239, 68, 68, .35);
+}
+
+.propose-actions { display: flex; justify-content: flex-end; gap: .6rem; flex-wrap: wrap; margin-top: .2rem; }
+.propose-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  padding: .7rem 1.15rem;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #3730a3;
+  background: rgba(99, 102, 241, .1);
+  transition: background .2s ease, transform .2s ease, opacity .2s ease;
+}
+.propose-btn:hover { background: rgba(99, 102, 241, .18); }
+.propose-btn:focus-visible { outline: 3px solid rgba(167, 139, 250, .8); outline-offset: 2px; }
+.propose-btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed, #db2777 65%, #f59e0b);
+  box-shadow: 0 12px 26px -12px rgba(219, 39, 119, .9);
+}
+.propose-btn--primary:hover { background: linear-gradient(135deg, #6d28d9, #be185d 65%, #d97706); transform: translateY(-1px); }
+.propose-btn--primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.propose-done { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .6rem; padding: 1rem 0 .4rem; }
+.propose-done__icon { color: #10b981; }
+.propose-done__title { font-size: 1.3rem; font-weight: 800; }
+.propose-done__text { color: #4c4776; max-width: 380px; margin-bottom: .6rem; }
+
+/* ---------- Tema oscuro ---------- */
+html.dark .propose-sheet {
+  color: #eef2ff;
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(139, 92, 246, .32), transparent 60%),
+    radial-gradient(90% 60% at 100% 100%, rgba(236, 72, 153, .2), transparent 65%),
+    #17133a;
+  border-color: rgba(255, 255, 255, .12);
+}
+html.dark .propose-head__sub,
+html.dark .propose-done__text,
+html.dark .propose-suggest__meta,
+html.dark .propose-suggest__hint,
+html.dark .propose-privacy { color: #c7c3ee; }
+html.dark .propose-close { color: #c7c3ee; background: rgba(255, 255, 255, .08); }
+html.dark .propose-close:hover { background: rgba(255, 255, 255, .16); }
+html.dark .propose-input { color: #eef2ff; background: rgba(15, 12, 41, .7); border-color: rgba(255, 255, 255, .16); }
+html.dark .propose-input::placeholder { color: #8f8bbd; }
+html.dark .propose-suggest { background: linear-gradient(160deg, rgba(16, 185, 129, .16), rgba(99, 102, 241, .14)); border-color: rgba(52, 211, 153, .35); }
+html.dark .propose-suggest__title { color: #6ee7b7; }
+html.dark .propose-suggest__item { background: rgba(255, 255, 255, .07); }
+html.dark .propose-suggest__item:hover { background: rgba(255, 255, 255, .13); }
+html.dark .propose-privacy { background: rgba(255, 255, 255, .05); border-color: rgba(167, 139, 250, .35); }
+html.dark .propose-privacy__title { color: #c4b5fd; }
+html.dark .propose-privacy__list strong { color: #ddd6fe; }
+html.dark .propose-privacy a { color: #d8b4fe; }
+html.dark .propose-error { color: #fecaca; background: rgba(239, 68, 68, .16); }
+html.dark .propose-btn { color: #e0e7ff; background: rgba(255, 255, 255, .1); }
+html.dark .propose-btn:hover { background: rgba(255, 255, 255, .18); }
+html.dark .propose-btn--primary { color: #fff; background: linear-gradient(135deg, #7c3aed, #db2777 65%, #f59e0b); }
+
+@media (max-width: 720px) {
+  .propose-overlay { align-items: flex-end; padding: 0; }
+  .propose-sheet { max-width: none; max-height: 94dvh; border-radius: 24px 24px 0 0; padding: 1.2rem 1.05rem 1.1rem; }
+  .propose-head__title { font-size: 1.25rem; }
+  .propose-actions { flex-wrap: nowrap; }
+  .propose-actions .propose-btn { flex: none; padding: .75rem 1rem; }
+  .propose-actions .propose-btn--primary { flex: 1; white-space: nowrap; }
+}

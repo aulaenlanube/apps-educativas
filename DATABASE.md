@@ -5,7 +5,7 @@
 
 ---
 
-## Tablas (46)
+## Tablas (47)
 
 ### Contenido educativo
 
@@ -117,6 +117,7 @@ Las tablas `students` y `teachers` ganan también `selected_avatar_code` (FK a `
 | `app_feedback` | Hilos de feedback sobre apps | `user_type`, `user_id`, `app_id`, `app_name`, `level`, `grade`, `subject_id`, `status` (open/resolved) |
 | `app_feedback_messages` | Mensajes dentro de un hilo | `feedback_id`, `sender_type`, `sender_id`, `sender_name`, `message` |
 | `app_ratings` | Valoraciones numéricas de apps | `user_type`, `user_id`, `app_id`, `level`, `grade`, `subject_id`, `rating` (1-5) |
+| `app_proposals` | «Propón una app»: propuestas del público (dato personal: correo). RLS sin políticas; solo vía RPC. Se purgan a los 12 meses | `idea`, `curso`, `email`, `consent_at`, `suggested_apps[]`, `ip_hash` (SHA-256), `status` (nueva/respondida/descartada), `admin_notes` |
 
 ---
 
@@ -353,6 +354,8 @@ Suma de `points_bonus` de los avatares desbloqueados (`student_avatars` joined c
 |---|---|
 | `create_feedback` / `get_user_feedbacks` / `get_feedback_messages` / `user_reply_feedback` | — |
 | `upsert_app_rating` / `delete_app_rating` / `get_user_rating` / `get_app_avg_rating` / `get_bulk_avg_ratings` / `get_user_difficulty` | — |
+| `submit_app_proposal` (anon) | `p_idea, p_curso, p_email, p_consent, p_website` (trampa), `p_elapsed_ms, p_source, p_suggested_apps` → `{ok}` / `{ok:false, error}`; límites 3/h y 10/día por IP, 3/día por correo, 60/h global |
+| `admin_list_app_proposals` / `admin_update_app_proposal` / `admin_delete_app_proposal` (admin) | `p_status` · `p_id, p_status, p_notes` · `p_id` |
 
 ### Admin
 | Función | Argumentos |
