@@ -1,6 +1,7 @@
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { createLogger, defineConfig } from 'vite';
+import appStatsPlugin from './tools/vite-plugin-app-stats.mjs';
 
 const isDev = process.env.NODE_ENV !== 'production';
 let inlineEditPlugin, editModeDevPlugin;
@@ -238,6 +239,7 @@ export default defineConfig({
 	plugins: [
 		...(isDev ? [inlineEditPlugin(), editModeDevPlugin()] : []),
 		react(),
+		appStatsPlugin(),
 		addTransformIndexHtml
 	],
 	server: {
@@ -315,4 +317,4 @@ export default defineConfig({
 			}
 		}
 	}
-});
+});

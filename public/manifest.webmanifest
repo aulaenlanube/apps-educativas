@@ -1,7 +1,7 @@
 {
   "name": "Apps Educativas",
   "short_name": "Apps Educativas",
-  "description": "Plataforma gratuita con más de 50 apps y juegos educativos para Primaria, ESO y Bachillerato.",
+  "description": "Plataforma gratuita con 67 apps y juegos educativos y 4550 adaptaciones por curso y asignatura para Primaria, ESO, Bachillerato y Atención a la Diversidad.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

@@ -1,6 +1,6 @@
 # EduApps — Apps educativas interactivas para primaria y secundaria
 
-Plataforma web gratuita con **más de 100 apps educativas** para **Primaria (1º-6º)**, **ESO (1º-4º)**, **Bachillerato (1º-2º)** y **Atención a la Diversidad**. Cada app es un mini-juego diseñado para reforzar contenidos curriculares; todas comparten un sistema común de modos de dificultad, nota sobre 10, gamificación y evaluación.
+Plataforma web gratuita con <!-- cifras:apps -->**67 apps educativas** y **4550 adaptaciones** por curso y asignatura<!-- /cifras:apps --> para **Primaria (1º-6º)**, **ESO (1º-4º)**, **Bachillerato (1º-2º)** y **Atención a la Diversidad**. Cada app es un mini-juego diseñado para reforzar contenidos curriculares; todas comparten un sistema común de modos de dificultad, nota sobre 10, gamificación y evaluación.
 
 Producción: <https://apps-educativas.com>
 
@@ -115,7 +115,7 @@ El bonus por **nivel** es global (no por evaluación); duelos y batallas se asig
 
 ```
 src/
-  apps/                    # 100+ apps educativas (1 carpeta por app)
+  apps/                    # una carpeta por app (cifras: public/datos/cifras-apps.json)
     _shared/               # Componentes reutilizables (Runner, RoscoUI, NumerosRomanos...)
     config/                # commonApps.js, primariaApps.js, esoApps.js, bachilleratoApps.js, duelableApps.js
     rosco/, ahorcado/, snake/, quiz-battle/, ...

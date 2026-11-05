@@ -1,0 +1,9 @@
+# /datos/*.json: datos públicos que leen herramientas externas (p. ej. los
+# vídeos leen /datos/cifras-apps.json). CORS abierto porque son públicos y no
+# llevan credenciales; caché corta para que una app nueva se vea el mismo día.
+<IfModule mod_headers.c>
+  <FilesMatch "\.json$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>

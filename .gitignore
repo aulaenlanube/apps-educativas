@@ -120,3 +120,6 @@ dist-ssr
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 .mcp.json
+
+# Cifras públicas generadas en cada build (tools/generate-app-stats.mjs)
+public/datos/cifras-apps.json

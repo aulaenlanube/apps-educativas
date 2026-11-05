@@ -126,15 +126,41 @@ const ViajeCuerpo = lazy(() => import('../viaje-cuerpo/ViajeCuerpo'));
 const Anatomia3D = lazy(() => import('../anatomia-3d/Anatomia3D'));
 
 
+// ─── Campos de registro que alimentan las cifras públicas ───────────────────
+// (src/data/appStats.js → /datos/cifras-apps.json, portada y /adaptaciones)
+//
+// addedAt (obligatorio, 'AAAA-MM-DD' o 'AAAA-MM-DDTHH:MM'): cuándo se publicó
+//   la app. La más reciente es la «Última app añadida» de la portada. Si
+//   publicas dos el mismo día, añade la hora para que no empaten (el test
+//   src/__tests__/app-stats.test.js falla si la más reciente no es única).
+//   Las fechas anteriores a nov-2026 salen del primer commit de git en el que
+//   aparece el id en el registro.
+// family (opcional): solo para las VERSIONES POR CURSO de un mismo juego
+//   (Sumas de 1.º, de 2.º…). Todas las versiones cuentan como UNA app y cada
+//   una suma sus adaptaciones. Dos versiones de una familia nunca pueden
+//   estar en la misma asignatura de un curso (si lo están, son apps distintas).
+export const APP_FAMILIES = {
+  'sumas': { name: '➕ Sumas' },
+  'restas': { name: '➖ Restas' },
+  'multiplicaciones': { name: '✖️ Multiplicaciones' },
+  'divisiones': { name: '➗ Divisiones' },
+  'supermercado-matematico': { name: '🛒 Supermercado Matemático' },
+  'numeros-romanos': { name: '🏛️ Números Romanos' },
+  'mayor-menor': { name: '⚖️ Mayor, Menor o Igual' },
+  'ordena-numeros': { name: '🔢 Ordena los Números' },
+};
+
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
   id: 'laboratorio-funciones-2d',
+  addedAt: '2026-01-04',
   name: '📈 Laboratorio de Funciones 2D',
   description: 'Explora y visualiza funciones matemáticas en un plano cartesiano interactivo.',
   component: LaboratorioFunciones2D
 };
 export const appMesaCrafteo = {
   id: 'mesa-crafteo',
+  addedAt: '2025-12-27',
   name: '🧪 Mesa de Crafteo',
   description: 'Simula el crafteo de moléculas a partir de elementos químicos.',
   component: MesaCrafteo
@@ -142,6 +168,7 @@ export const appMesaCrafteo = {
 
 export const appEntrenadorTabla = {
   id: 'entrenador-tabla',
+  addedAt: '2025-12-27',
   name: '🔬 Entrenador de Tabla Periódica',
   description: 'Aprende nombres, símbolos y números atómicos de forma divertida.',
   component: EntrenadorTabla
@@ -149,6 +176,7 @@ export const appEntrenadorTabla = {
 
 export const appLaboratorioFisica = {
   id: 'laboratorio-fisica',
+  addedAt: '2026-06-12',
   name: '🧲 Laboratorio de Física 3D',
   description: 'Simulador 3D de fuerzas y fluidos: experimenta, supera retos y examínate.',
   component: LaboratorioFisica
@@ -156,6 +184,7 @@ export const appLaboratorioFisica = {
 
 export const appIslaDeLaCalma = {
   id: 'isla-de-la-calma',
+  addedAt: '2025-07-28',
   name: '🏝️ Isla de la Calma',
   description: 'Un ejercicio de respiración guiada para encontrar la calma.',
   component: IslaDeLaCalma
@@ -163,6 +192,7 @@ export const appIslaDeLaCalma = {
 
 export const appOrdenaLaFrase = {
   id: 'ordena-la-frase',
+  addedAt: '2025-07-31',
   name: '📝 Ordena la Frase',
   description: 'Arrastra las palabras para construir frases con sentido.',
   component: OrdenaLaFraseJuego
@@ -170,6 +200,7 @@ export const appOrdenaLaFrase = {
 
 export const appOrdenaLaHistoria = {
   id: 'ordena-la-historia',
+  addedAt: '2025-07-31',
   name: '📚 Ordena la Historia',
   description: 'Pon en orden los eventos para reconstruir un relato.',
   component: OrdenaLaHistoriaJuego
@@ -177,6 +208,7 @@ export const appOrdenaLaHistoria = {
 
 export const appDetectiveDePalabras = {
   id: 'detective-de-palabras',
+  addedAt: '2025-08-03',
   name: '🕵️‍♂️ Detective de Palabras',
   description: 'Encuentra los espacios ocultos para separar las palabras de la frase.',
   component: DetectiveDePalabras
@@ -184,6 +216,7 @@ export const appDetectiveDePalabras = {
 
 export const appGeneradorPersonajes = {
   id: 'generador-personajes-historicos',
+  addedAt: '2025-08-31',
   name: '✨ Generador de personajes históricos',
   description: 'Genera personajes históricos aleatorios con filtros por sexo y categoría.',
   component: GeneradorPersonajes
@@ -191,6 +224,7 @@ export const appGeneradorPersonajes = {
 
 export const appBuscaElIntruso = {
   id: 'busca-el-intruso',
+  addedAt: '2025-09-01',
   name: '🔎 Busca el Intruso',
   description: 'Encuentra el concepto que no encaja con los demás.',
   component: BuscaElIntruso
@@ -198,6 +232,7 @@ export const appBuscaElIntruso = {
 
 export const appRosco = {
   id: 'rosco-del-saber',
+  addedAt: '2025-12-09',
   name: '🅿️ El Rosco del Saber',
   description: 'Adivina la palabra que se esconde detrás de cada letra.',
   component: RoscoJuego,
@@ -206,6 +241,7 @@ export const appRosco = {
 
 export const appOrdenaBolas = {
   id: 'ordena-bolas',
+  addedAt: '2025-12-11',
   name: '🔴 Ordena las Bolas',
   description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
   component: OrdenaBolas,
@@ -214,6 +250,7 @@ export const appOrdenaBolas = {
 
 export const appRunner = {
   id: 'runner',
+  addedAt: '2025-12-12',
   name: '🟨 Education Dash',
   description: 'Corre, salta y atrapa los elementos correctos.',
   component: Runner
@@ -221,6 +258,7 @@ export const appRunner = {
 
 export const appNavePalabras = {
   id: 'nave-palabras',
+  addedAt: '2026-04-21',
   name: '🚀 Nave Palabras',
   description: 'Pilota tu nave y dispara a las palabras de la categoría. 60 segundos. Incluye modo duelo.',
   component: NavePalabras,
@@ -229,6 +267,7 @@ export const appNavePalabras = {
 
 export const appVisualizador3D = {
   id: 'visualizador-3d',
+  addedAt: '2025-12-14',
   name: '🧊 Laboratorio de Figuras 3D',
   description: 'Explora, rota y analiza las principales figuras geométricas en 3D.',
   component: VisualizadorFiguras3D
@@ -236,6 +275,7 @@ export const appVisualizador3D = {
 
 export const appLluviaDePalabras = {
   id: 'lluvia-de-palabras',
+  addedAt: '2025-12-16',
   name: '🌧️ Lluvia de Palabras',
   description: 'Atrapa las palabras correctas que caen del cielo.',
   component: LluviaDePalabras
@@ -243,6 +283,7 @@ export const appLluviaDePalabras = {
 
 export const appParejas = {
   id: 'parejas',
+  addedAt: '2025-12-15',
   name: '🃏 Parejas de Cartas',
   description: 'Entrena tu memoria visual encontrando las parejas.',
   component: ParejasDeCartas
@@ -250,6 +291,7 @@ export const appParejas = {
 
 export const appClasificador = {
   id: 'clasificador',
+  addedAt: '2025-12-16',
   name: '🗂️ Clasificador',
   description: 'Clasifica los conceptos en su categoría correcta.',
   component: Clasificador
@@ -257,6 +299,7 @@ export const appClasificador = {
 
 export const appSnake = {
   id: 'snake',
+  addedAt: '2025-12-17',
   name: '🐍 Snake',
   description: 'Guía a la serpiente para comer las palabras del tema correcto.',
   component: Snake,
@@ -265,6 +308,7 @@ export const appSnake = {
 
 export const appComprensionEscrita = {
   id: 'comprension-escrita',
+  addedAt: '2025-12-18',
   name: '📖 Comprensión Escrita',
   description: 'Mejora tu comprensión escrita con textos y preguntas.',
   component: LenguaComprensionEscrita
@@ -272,6 +316,7 @@ export const appComprensionEscrita = {
 
 export const appComprensionOral = {
   id: 'comprension-oral',
+  addedAt: '2025-12-18',
   name: '🎧 Comprensión Oral',
   description: 'Desarrolla tus habilidades de comprensión auditiva con ejercicios prácticos.',
   component: LenguaComprensionOral
@@ -279,84 +324,87 @@ export const appComprensionOral = {
 
 export const appExcavacionSelectiva = {
   id: 'excavacion-selectiva',
+  addedAt: '2025-12-21',
   name: '⛏️ Excavación Selectiva',
   description: 'Aprende mientras excavas selectivamente.',
   component: ExcavacionSelectiva
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)
-export const appNumerosRomanos3 = { id: 'numeros-romanos-3', name: '🏛️ Números Romanos (Básico)', description: 'Aprende los números romanos del 1 al 20.', component: NumerosRomanos3 };
-export const appNumerosRomanos4 = { id: 'numeros-romanos-4', name: '🏛️ Números Romanos (Intermedio)', description: 'Practica números romanos hasta el 100.', component: NumerosRomanos4 };
-export const appNumerosRomanos5 = { id: 'numeros-romanos-5', name: '🏛️ Números Romanos (Avanzado)', description: 'Domina los números romanos hasta el 3999.', component: NumerosRomanos5 };
-export const appNumerosRomanos6 = { id: 'numeros-romanos-6', name: '🏛️ Números Romanos (Experto)', description: 'Aprende los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanos6 };
-export const appNumerosRomanosESO = { id: 'numeros-romanos-eso', name: '🏛️ Números Romanos (ESO)', description: 'Domina los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanosESO };
+export const appNumerosRomanos3 = { id: 'numeros-romanos-3', family: 'numeros-romanos', addedAt: '2025-12-06', name: '🏛️ Números Romanos (Básico)', description: 'Aprende los números romanos del 1 al 20.', component: NumerosRomanos3 };
+export const appNumerosRomanos4 = { id: 'numeros-romanos-4', family: 'numeros-romanos', addedAt: '2025-12-06', name: '🏛️ Números Romanos (Intermedio)', description: 'Practica números romanos hasta el 100.', component: NumerosRomanos4 };
+export const appNumerosRomanos5 = { id: 'numeros-romanos-5', family: 'numeros-romanos', addedAt: '2026-01-03', name: '🏛️ Números Romanos (Avanzado)', description: 'Domina los números romanos hasta el 3999.', component: NumerosRomanos5 };
+export const appNumerosRomanos6 = { id: 'numeros-romanos-6', family: 'numeros-romanos', addedAt: '2026-01-03', name: '🏛️ Números Romanos (Experto)', description: 'Aprende los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanos6 };
+export const appNumerosRomanosESO = { id: 'numeros-romanos-eso', family: 'numeros-romanos', addedAt: '2026-01-04', name: '🏛️ Números Romanos (ESO)', description: 'Domina los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanosESO };
 
-export const appMayorMenor1 = { id: 'mayor-menor-1', name: '⚖️ Mayor, Menor o Igual', description: 'Aprende a comparar números del 1 al 20.', component: MayorMenor1 };
-export const appMayorMenor2 = { id: 'mayor-menor-2', name: '⚖️ Comparar Números', description: 'Compara números hasta el 100 y sumas sencillas.', component: MayorMenor2 };
-export const appMayorMenor3 = { id: 'mayor-menor-3', name: '⚖️ Comparar Multiplicaciones', description: 'Compara resultados de tablas de multiplicar.', component: MayorMenor3 };
-export const appMayorMenor4 = { id: 'mayor-menor-4', name: '⚖️ Comparar Operaciones', description: '¿Qué resultado es mayor? Operaciones combinadas.', component: MayorMenor4 };
-export const appMayorMenor5 = { id: 'mayor-menor-5', name: '⚖️ Comparar Decimales', description: 'Compara números decimales con precisión.', component: MayorMenor5 };
-export const appMayorMenor6 = { id: 'mayor-menor-6', name: '⚖️ Reto de Comparación', description: 'Expresiones matemáticas complejas.', component: MayorMenor6 };
+export const appMayorMenor1 = { id: 'mayor-menor-1', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Mayor, Menor o Igual', description: 'Aprende a comparar números del 1 al 20.', component: MayorMenor1 };
+export const appMayorMenor2 = { id: 'mayor-menor-2', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Comparar Números', description: 'Compara números hasta el 100 y sumas sencillas.', component: MayorMenor2 };
+export const appMayorMenor3 = { id: 'mayor-menor-3', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Comparar Multiplicaciones', description: 'Compara resultados de tablas de multiplicar.', component: MayorMenor3 };
+export const appMayorMenor4 = { id: 'mayor-menor-4', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Comparar Operaciones', description: '¿Qué resultado es mayor? Operaciones combinadas.', component: MayorMenor4 };
+export const appMayorMenor5 = { id: 'mayor-menor-5', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Comparar Decimales', description: 'Compara números decimales con precisión.', component: MayorMenor5 };
+export const appMayorMenor6 = { id: 'mayor-menor-6', family: 'mayor-menor', addedAt: '2025-12-06', name: '⚖️ Reto de Comparación', description: 'Expresiones matemáticas complejas.', component: MayorMenor6 };
 
-export const appOrdenaNumeros1 = { id: 'ordena-numeros-1', name: '🔢 Ordena los Números', description: 'Ordena de menor a mayor hasta el 20.', component: OrdenaNumeros1 };
-export const appOrdenaNumeros2 = { id: 'ordena-numeros-2', name: '🔢 Ordena hasta 100', description: 'Ordena números y sumas hasta el 100.', component: OrdenaNumeros2 };
-export const appOrdenaNumeros3 = { id: 'ordena-numeros-3', name: '🔢 Ordena Multiplicaciones', description: 'Ordena resultados de las tablas de multiplicar.', component: OrdenaNumeros3 };
-export const appOrdenaNumeros4 = { id: 'ordena-numeros-4', name: '🔢 Ordena Operaciones', description: 'Ordena operaciones combinadas de menor a mayor.', component: OrdenaNumeros4 };
-export const appOrdenaNumeros5 = { id: 'ordena-numeros-5', name: '🔢 Ordena Decimales', description: 'Ordena números decimales de menor a mayor.', component: OrdenaNumeros5 };
-export const appOrdenaNumeros6 = { id: 'ordena-numeros-6', name: '🔢 Reto de Ordenación', description: 'Ordena expresiones matemáticas complejas.', component: OrdenaNumeros6 };
+export const appOrdenaNumeros1 = { id: 'ordena-numeros-1', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Ordena los Números', description: 'Ordena de menor a mayor hasta el 20.', component: OrdenaNumeros1 };
+export const appOrdenaNumeros2 = { id: 'ordena-numeros-2', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Ordena hasta 100', description: 'Ordena números y sumas hasta el 100.', component: OrdenaNumeros2 };
+export const appOrdenaNumeros3 = { id: 'ordena-numeros-3', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Ordena Multiplicaciones', description: 'Ordena resultados de las tablas de multiplicar.', component: OrdenaNumeros3 };
+export const appOrdenaNumeros4 = { id: 'ordena-numeros-4', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Ordena Operaciones', description: 'Ordena operaciones combinadas de menor a mayor.', component: OrdenaNumeros4 };
+export const appOrdenaNumeros5 = { id: 'ordena-numeros-5', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Ordena Decimales', description: 'Ordena números decimales de menor a mayor.', component: OrdenaNumeros5 };
+export const appOrdenaNumeros6 = { id: 'ordena-numeros-6', family: 'ordena-numeros', addedAt: '2026-04-18', name: '🔢 Reto de Ordenación', description: 'Ordena expresiones matemáticas complejas.', component: OrdenaNumeros6 };
 
-export const appLongitudComparar = { id: 'longitud-comparar', name: '📏 Longitud: Comparar', description: 'Compara medidas de longitud (mm, cm, m, km…).', component: LongitudComparar };
-export const appLongitudOrdenar = { id: 'longitud-ordenar', name: '📏 Longitud: Ordenar', description: 'Ordena medidas de longitud de menor a mayor.', component: LongitudOrdenar };
-export const appMasaComparar = { id: 'masa-comparar', name: '⚖️ Masa: Comparar', description: 'Compara medidas de masa (mg, g, kg…).', component: MasaComparar };
-export const appMasaOrdenar = { id: 'masa-ordenar', name: '⚖️ Masa: Ordenar', description: 'Ordena medidas de masa de menor a mayor.', component: MasaOrdenar };
-export const appCapacidadComparar = { id: 'capacidad-comparar', name: '💧 Capacidad: Comparar', description: 'Compara medidas de capacidad (ml, cl, l…).', component: CapacidadComparar };
-export const appCapacidadOrdenar = { id: 'capacidad-ordenar', name: '💧 Capacidad: Ordenar', description: 'Ordena medidas de capacidad de menor a mayor.', component: CapacidadOrdenar };
+export const appLongitudComparar = { id: 'longitud-comparar', addedAt: '2026-04-29', name: '📏 Longitud: Comparar', description: 'Compara medidas de longitud (mm, cm, m, km…).', component: LongitudComparar };
+export const appLongitudOrdenar = { id: 'longitud-ordenar', addedAt: '2026-04-29', name: '📏 Longitud: Ordenar', description: 'Ordena medidas de longitud de menor a mayor.', component: LongitudOrdenar };
+export const appMasaComparar = { id: 'masa-comparar', addedAt: '2026-04-29', name: '⚖️ Masa: Comparar', description: 'Compara medidas de masa (mg, g, kg…).', component: MasaComparar };
+export const appMasaOrdenar = { id: 'masa-ordenar', addedAt: '2026-04-29', name: '⚖️ Masa: Ordenar', description: 'Ordena medidas de masa de menor a mayor.', component: MasaOrdenar };
+export const appCapacidadComparar = { id: 'capacidad-comparar', addedAt: '2026-04-29', name: '💧 Capacidad: Comparar', description: 'Compara medidas de capacidad (ml, cl, l…).', component: CapacidadComparar };
+export const appCapacidadOrdenar = { id: 'capacidad-ordenar', addedAt: '2026-04-29', name: '💧 Capacidad: Ordenar', description: 'Ordena medidas de capacidad de menor a mayor.', component: CapacidadOrdenar };
 
 
 // --- NUEVAS EXPORTACIONES DE APPS DE PRIMARIA ---
 
 // Sumas
-export const appSumasPrimaria1 = { id: 'sumas-primaria-1', name: '➕ Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 };
-export const appSumasPrimaria2 = { id: 'sumas-primaria-2-drag', name: '➕ Sumas con llevadas', description: 'Resuelve sumas de dos cifras.', component: SumasPrimaria2 };
-export const appSumasPrimaria3 = { id: 'sumas-primaria-3-drag', name: '➕ Sumas con llevadas', description: 'Sumas de 3 y 4 cifras.', component: SumasPrimaria3 };
-export const appSumasPrimaria4 = { id: 'sumas-primaria-4-drag', name: '➕ Sumas triples', description: 'Sumas complejas.', component: SumasPrimaria4 };
-export const appSumasPrimaria5 = { id: 'sumas-primaria-5-drag', name: '➕ Sumas con decimales', description: 'Sumas con decimales.', component: SumasPrimaria5 };
-export const appSumasPrimaria6 = { id: 'sumas-primaria-6-drag', name: '➕ Sumas triples con Decimales', description: 'Sumas avanzadas.', component: SumasPrimaria6 };
+export const appSumasPrimaria1 = { id: 'sumas-primaria-1', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 };
+export const appSumasPrimaria2 = { id: 'sumas-primaria-2-drag', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas con llevadas', description: 'Resuelve sumas de dos cifras.', component: SumasPrimaria2 };
+export const appSumasPrimaria3 = { id: 'sumas-primaria-3-drag', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas con llevadas', description: 'Sumas de 3 y 4 cifras.', component: SumasPrimaria3 };
+export const appSumasPrimaria4 = { id: 'sumas-primaria-4-drag', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas triples', description: 'Sumas complejas.', component: SumasPrimaria4 };
+export const appSumasPrimaria5 = { id: 'sumas-primaria-5-drag', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas con decimales', description: 'Sumas con decimales.', component: SumasPrimaria5 };
+export const appSumasPrimaria6 = { id: 'sumas-primaria-6-drag', family: 'sumas', addedAt: '2025-08-13', name: '➕ Sumas triples con Decimales', description: 'Sumas avanzadas.', component: SumasPrimaria6 };
 
 // Restas
-export const appRestasPrimaria1 = { id: 'restas-primaria-1', name: '➖ Restas sin llevadas', description: 'Restas de 2 cifras sin llevadas', component: RestasPrimaria1 };
-export const appRestasPrimaria2 = { id: 'restas-primaria-2', name: '➖ Restas con llevadas', description: 'Restas de 2 cifras con llevadas', component: RestasPrimaria2 };
-export const appRestasPrimaria3 = { id: 'restas-primaria-3', name: '➖ Restas con llevadas', description: 'Restas de 3 y 4 cifras.', component: RestasPrimaria3 };
-export const appRestasPrimaria4 = { id: 'restas-primaria-4', name: '➖ Restas con decimal', description: 'Introducción a decimales.', component: RestasPrimaria4 };
-export const appRestasPrimaria5 = { id: 'restas-primaria-5', name: '➖ Restas con decimales', description: 'Restas complejas.', component: RestasPrimaria5 };
-export const appRestasPrimaria6 = { id: 'restas-primaria-6', name: '➖ Restas a completar', description: 'Completa la resta.', component: RestasPrimaria6 };
+export const appRestasPrimaria1 = { id: 'restas-primaria-1', family: 'restas', addedAt: '2025-08-16', name: '➖ Restas sin llevadas', description: 'Restas de 2 cifras sin llevadas', component: RestasPrimaria1 };
+export const appRestasPrimaria2 = { id: 'restas-primaria-2', family: 'restas', addedAt: '2025-08-17', name: '➖ Restas con llevadas', description: 'Restas de 2 cifras con llevadas', component: RestasPrimaria2 };
+export const appRestasPrimaria3 = { id: 'restas-primaria-3', family: 'restas', addedAt: '2025-08-17', name: '➖ Restas con llevadas', description: 'Restas de 3 y 4 cifras.', component: RestasPrimaria3 };
+export const appRestasPrimaria4 = { id: 'restas-primaria-4', family: 'restas', addedAt: '2025-08-17', name: '➖ Restas con decimal', description: 'Introducción a decimales.', component: RestasPrimaria4 };
+export const appRestasPrimaria5 = { id: 'restas-primaria-5', family: 'restas', addedAt: '2025-08-17', name: '➖ Restas con decimales', description: 'Restas complejas.', component: RestasPrimaria5 };
+export const appRestasPrimaria6 = { id: 'restas-primaria-6', family: 'restas', addedAt: '2025-08-17', name: '➖ Restas a completar', description: 'Completa la resta.', component: RestasPrimaria6 };
 
 // Multiplicaciones
-export const appMultiplicacionesPrimaria3 = { id: 'multiplicaciones-primaria-3', name: '✖️ Multiplicaciones', description: 'Multiplicador de 1 cifra.', component: MultiplicacionesPrimaria3 };
-export const appMultiplicacionesPrimaria4 = { id: 'multiplicaciones-primaria-4', name: '✖️ Multiplicaciones', description: 'Varias cifras.', component: MultiplicacionesPrimaria4 };
-export const appMultiplicacionesPrimaria5 = { id: 'multiplicaciones-primaria-5', name: '✖️ Multiplicaciones', description: 'Varios dígitos.', component: MultiplicacionesPrimaria5 };
-export const appMultiplicacionesPrimaria6 = { id: 'multiplicaciones-primaria-6', name: '✖️ Multiplicaciones', description: 'Con decimales.', component: MultiplicacionesPrimaria6 };
+export const appMultiplicacionesPrimaria3 = { id: 'multiplicaciones-primaria-3', family: 'multiplicaciones', addedAt: '2025-08-17', name: '✖️ Multiplicaciones', description: 'Multiplicador de 1 cifra.', component: MultiplicacionesPrimaria3 };
+export const appMultiplicacionesPrimaria4 = { id: 'multiplicaciones-primaria-4', family: 'multiplicaciones', addedAt: '2025-08-17', name: '✖️ Multiplicaciones', description: 'Varias cifras.', component: MultiplicacionesPrimaria4 };
+export const appMultiplicacionesPrimaria5 = { id: 'multiplicaciones-primaria-5', family: 'multiplicaciones', addedAt: '2025-08-17', name: '✖️ Multiplicaciones', description: 'Varios dígitos.', component: MultiplicacionesPrimaria5 };
+export const appMultiplicacionesPrimaria6 = { id: 'multiplicaciones-primaria-6', family: 'multiplicaciones', addedAt: '2025-08-17', name: '✖️ Multiplicaciones', description: 'Con decimales.', component: MultiplicacionesPrimaria6 };
 
 // Divisiones
-export const appDivisionesPrimaria4 = { id: 'divisiones-primaria-4', name: '➗ Divisiones', description: 'Iniciación a la división.', component: DivisionesPrimaria4 };
-export const appDivisionesPrimaria5 = { id: 'divisiones-primaria-5', name: '➗ Divisiones', description: 'Divisores de 2 y 3 cifras.', component: DivisionesPrimaria5 };
-export const appDivisionesPrimaria6 = { id: 'divisiones-primaria-6', name: '➗ Divisiones', description: 'Con decimales.', component: DivisionesPrimaria6 };
+export const appDivisionesPrimaria4 = { id: 'divisiones-primaria-4', family: 'divisiones', addedAt: '2025-12-13', name: '➗ Divisiones', description: 'Iniciación a la división.', component: DivisionesPrimaria4 };
+export const appDivisionesPrimaria5 = { id: 'divisiones-primaria-5', family: 'divisiones', addedAt: '2025-12-13', name: '➗ Divisiones', description: 'Divisores de 2 y 3 cifras.', component: DivisionesPrimaria5 };
+export const appDivisionesPrimaria6 = { id: 'divisiones-primaria-6', family: 'divisiones', addedAt: '2025-12-13', name: '➗ Divisiones', description: 'Con decimales.', component: DivisionesPrimaria6 };
 
 // Supermercado
-export const appSupermercadoMatematico1 = { id: 'supermercado-matematico-1', name: '🛒 Supermercado Matemático', description: 'Resuelve sumas sencillas.', component: SupermercadoMatematico1 };
-export const appSupermercadoMatematico2 = { id: 'supermercado-matematico-2', name: '🛒 Supermercado Matemático', description: 'Suma precios con llevadas.', component: SupermercadoMatematico2 };
-export const appSupermercadoMatematico3 = { id: 'supermercado-matematico-3', name: '🛒 Supermercado Matemático', description: 'Multiplicaciones.', component: SupermercadoMatematico3 };
-export const appSupermercadoMatematico4 = { id: 'supermercado-matematico-4', name: '🛒 Supermercado Matemático', description: 'Decimales.', component: SupermercadoMatematico4 };
-export const appSupermercadoMatematico5 = { id: 'supermercado-matematico-5', name: '🛒 Supermercado Matemático', description: 'Calcula el cambio.', component: SupermercadoMatematico5 };
-export const appSupermercadoMatematico6 = { id: 'supermercado-matematico-6', name: '🛒 Supermercado Matemático', description: 'Descuentos.', component: SupermercadoMatematico6 };
+export const appSupermercadoMatematico1 = { id: 'supermercado-matematico-1', family: 'supermercado-matematico', addedAt: '2025-07-26', name: '🛒 Supermercado Matemático', description: 'Resuelve sumas sencillas.', component: SupermercadoMatematico1 };
+export const appSupermercadoMatematico2 = { id: 'supermercado-matematico-2', family: 'supermercado-matematico', addedAt: '2025-07-26', name: '🛒 Supermercado Matemático', description: 'Suma precios con llevadas.', component: SupermercadoMatematico2 };
+export const appSupermercadoMatematico3 = { id: 'supermercado-matematico-3', family: 'supermercado-matematico', addedAt: '2025-07-27', name: '🛒 Supermercado Matemático', description: 'Multiplicaciones.', component: SupermercadoMatematico3 };
+export const appSupermercadoMatematico4 = { id: 'supermercado-matematico-4', family: 'supermercado-matematico', addedAt: '2025-07-27', name: '🛒 Supermercado Matemático', description: 'Decimales.', component: SupermercadoMatematico4 };
+export const appSupermercadoMatematico5 = { id: 'supermercado-matematico-5', family: 'supermercado-matematico', addedAt: '2025-07-27', name: '🛒 Supermercado Matemático', description: 'Calcula el cambio.', component: SupermercadoMatematico5 };
+export const appSupermercadoMatematico6 = { id: 'supermercado-matematico-6', family: 'supermercado-matematico', addedAt: '2025-07-27', name: '🛒 Supermercado Matemático', description: 'Descuentos.', component: SupermercadoMatematico6 };
 export const appTerminalRetro = {
   id: 'terminal-retro',
+  addedAt: '2026-01-08',
   name: '📟 Terminal de Hackeo',
   description: 'Hackea el sistema introduciendo los comandos correctos en la consola.',
   component: TerminalRetro
 };
 export const appProgramacionBloques = {
   id: 'programacion-bloques',
+  addedAt: '2026-04-18',
   name: '🤖 Programa al Robot',
   description: 'Editor de bloques con variables, bucles, condiciones y funciones. Ve tu programa en Python, Java y C.',
   component: ProgramacionBloques
@@ -364,6 +412,7 @@ export const appProgramacionBloques = {
 
 export const appLaboratorioRobotica = {
   id: 'laboratorio-robotica',
+  addedAt: '2026-04-17',
   name: '🤖 Laboratorio de Robótica',
   description: 'Monta circuitos electrónicos y proyectos con Arduino conectando cables. 5 ejercicios por curso con 3 modos de dificultad.',
   component: LaboratorioRobotica
@@ -371,6 +420,7 @@ export const appLaboratorioRobotica = {
 
 export const appMisionesRoboticas = {
   id: 'misiones-roboticas',
+  addedAt: '2026-04-17',
   name: '🤖 Programa al Robot',
   description: 'Programa a un robot con bloques visuales tipo puzzle: movimientos, bucles, condicionales y sensores. 10 misiones por curso con 3 modos.',
   component: MisionesRoboticas
@@ -378,6 +428,7 @@ export const appMisionesRoboticas = {
 
 export const appBancoRecursosTutoria = {
   id: 'banco-recursos-tutoria',
+  addedAt: '2026-01-13',
   name: '🎓 Banco de Recursos Tutoriales',
   description: 'Dossier completo de dinámicas y recursos para la acción tutorial.',
   component: BancoRecursosTutoria
@@ -385,6 +436,7 @@ export const appBancoRecursosTutoria = {
 
 export const appRotacionesGrid = {
   id: 'rotaciones-grid',
+  addedAt: '2026-01-26',
   name: '🔄 Giros y Rotaciones',
   description: 'Dibuja las figuras resultantes de aplicar rotaciones sobre una cuadrícula.',
   component: RotacionesGrid
@@ -392,6 +444,7 @@ export const appRotacionesGrid = {
 
 export const appReglaDeTres = {
   id: 'regla-de-tres',
+  addedAt: '2026-04-29',
   name: '📐 Regla de Tres',
   description: 'Resuelve problemas de proporcionalidad directa e inversa.',
   component: ReglaDeTres
@@ -399,6 +452,7 @@ export const appReglaDeTres = {
 
 export const appPorcentajes = {
   id: 'porcentajes-proporciones',
+  addedAt: '2026-04-29',
   name: '📊 Porcentajes y Proporciones',
   description: 'Practica porcentajes, aumentos, descuentos, IVA, escalas y repartos proporcionales.',
   component: Porcentajes
@@ -406,6 +460,7 @@ export const appPorcentajes = {
 
 export const appSistemaSolar = {
   id: 'sistema-solar',
+  addedAt: '2026-02-09',
   name: '🌌 Sistema Solar 3D',
   description: 'Explora y aprende sobre los planetas de nuestro sistema solar en 3D.',
   component: SistemaSolar
@@ -413,6 +468,7 @@ export const appSistemaSolar = {
 
 export const appCazapalabras3D = {
   id: 'cazapalabras-3d',
+  addedAt: '2026-06-13',
   name: '🎯 Cazapalabras 3D',
   description: 'Shooter 3D en primera persona: dispara a las palabras y aprende vocabulario y definiciones.',
   component: Cazapalabras3D
@@ -420,6 +476,7 @@ export const appCazapalabras3D = {
 
 export const appFraccionesESO = {
   id: 'fracciones-eso',
+  addedAt: '2026-01-26',
   name: '🧮 Fracciones PRO',
   description: 'Domina las sumas, restas, multiplicaciones, m.c.m. y M.C.D. de fracciones.',
   component: FraccionesESO
@@ -427,6 +484,7 @@ export const appFraccionesESO = {
 
 export const appCelulaAnimal = {
   id: 'celula-animal',
+  addedAt: '2026-02-11',
   name: '🔬 La Célula Animal',
   description: 'Explora la célula animal en detalle: orgánulos, funciones y curiosidades.',
   component: CelulaAnimal
@@ -434,6 +492,7 @@ export const appCelulaAnimal = {
 
 export const appCelulaVegetal = {
   id: 'celula-vegetal',
+  addedAt: '2026-02-12',
   name: '🌿 La Célula Vegetal',
   description: 'Descubre las partes de la célula vegetal, la fotosíntesis y la pared celular.',
   component: CelulaVegetal
@@ -441,6 +500,7 @@ export const appCelulaVegetal = {
 
 export const appJuegoMemoria = {
   id: 'juego-memoria',
+  addedAt: '2026-02-14',
   name: '🧠 Juego de Memoria',
   description: 'Memoriza las palabras y encuéntralas antes de que se acabe el tiempo.',
   component: JuegoMemoria
@@ -448,6 +508,7 @@ export const appJuegoMemoria = {
 
 export const appAhorcado = {
   id: 'ahorcado',
+  addedAt: '2026-04-08',
   name: '🎯 Ahorcado',
   description: 'Adivina la palabra o la frase letra a letra antes de que se agoten las vidas.',
   component: Ahorcado,
@@ -456,6 +517,7 @@ export const appAhorcado = {
 
 export const appCrucigrama = {
   id: 'crucigrama',
+  addedAt: '2026-04-08',
   name: '🧩 Crucigrama',
   description: 'Completa el crucigrama con las palabras del vocabulario. Tres tamaños y modo examen.',
   component: Crucigrama
@@ -463,6 +525,7 @@ export const appCrucigrama = {
 
 export const appSopaDeLetras = {
   id: 'sopa-de-letras',
+  addedAt: '2026-04-08',
   name: '🔍 Sopa de Letras',
   description: 'Encuentra las palabras ocultas en la sopa. Tres tamaños y modo examen con pistas.',
   component: SopaDeLetras
@@ -470,6 +533,7 @@ export const appSopaDeLetras = {
 
 export const appMillonario = {
   id: 'millonario',
+  addedAt: '2026-04-08',
   name: '💰 Millonario',
   description: 'Tipo test con 4 opciones. Niveles fácil/medio/examen y comodines 50:50, público y cambio.',
   component: Millonario
@@ -477,6 +541,7 @@ export const appMillonario = {
 
 export const appAnagramas = {
   id: 'anagramas',
+  addedAt: '2026-04-08',
   name: '🔀 Anagramas',
   description: 'Ordena las fichas de colores para formar la palabra correcta. Con rachas, multiplicadores y comodines.',
   component: Anagramas
@@ -484,6 +549,7 @@ export const appAnagramas = {
 
 export const appCriptograma = {
   id: 'criptograma',
+  addedAt: '2026-04-09',
   name: '🔐 Criptograma',
   description: 'Descifra la frase secreta adivinando qué letra se esconde tras cada número.',
   component: Criptograma
@@ -491,6 +557,7 @@ export const appCriptograma = {
 
 export const appVelocidadRespuesta = {
   id: 'velocidad-respuesta',
+  addedAt: '2026-04-09',
   name: '⚡ Velocidad',
   description: 'Lee la definición y escribe la respuesta antes de que se acabe el tiempo. Modo arcade.',
   component: VelocidadRespuesta
@@ -498,6 +565,7 @@ export const appVelocidadRespuesta = {
 
 export const appConectaParejas = {
   id: 'conecta-parejas',
+  addedAt: '2026-04-09',
   name: '🧲 Conecta Parejas',
   description: 'Une cada palabra con su definición. Líneas de colores conectan los aciertos.',
   component: ConectaParejas
@@ -505,6 +573,7 @@ export const appConectaParejas = {
 
 export const appDictadoInteractivo = {
   id: 'dictado-interactivo',
+  addedAt: '2026-04-09',
   name: '✍️ Dictado',
   description: 'Escribe la palabra o frase correcta evaluando letra a letra. Bonus por ortografía perfecta.',
   component: DictadoInteractivo
@@ -512,6 +581,7 @@ export const appDictadoInteractivo = {
 
 export const appTorrePalabras = {
   id: 'torre-palabras',
+  addedAt: '2026-04-09',
   name: '🏗️ Torre de Palabras',
   description: 'Clasifica cada palabra en su categoría para apilar bloques. ¡Construye la torre más alta!',
   component: TorrePalabras
@@ -519,6 +589,7 @@ export const appTorrePalabras = {
 
 export const appLaFortaleza = {
   id: 'la-fortaleza',
+  addedAt: '2026-06-10',
   name: '🏰 La Fortaleza',
   description: 'Tower defense educativo: responde preguntas para ganar monedas, construye torres de categoría y defiende la Biblioteca.',
   component: LaFortaleza
@@ -526,6 +597,7 @@ export const appLaFortaleza = {
 
 export const appInfografiasInteractivas = {
   id: 'infografias-interactivas',
+  addedAt: '2026-05-13',
   name: '🗺️ Infografías Interactivas',
   description: 'Estudia una infografía y responde a preguntas sobre sus datos para obtener tu nota.',
   component: InfografiasInteractivas
@@ -533,6 +605,7 @@ export const appInfografiasInteractivas = {
 
 export const appExploradorMundo = {
   id: 'explorador-mundo',
+  addedAt: '2026-11-02T00:39',
   name: '🌍 Explorador del Mundo',
   description: 'Mapa interactivo con países, continentes, océanos, banderas, capitales y grandes ciudades en siete minijuegos.',
   component: ExploradorMundo,
@@ -541,6 +614,7 @@ export const appExploradorMundo = {
 
 export const appExploradorEspana = {
   id: 'explorador-espana',
+  addedAt: '2026-11-02T00:39',
   name: '🗺️ Explorador de España',
   description: 'Mapa interactivo de España: comunidades, provincias, capitales, banderas, ríos, montañas e islas.',
   component: ExploradorEspana,
@@ -549,6 +623,7 @@ export const appExploradorEspana = {
 
 export const appExploradorCuerpo = {
   id: 'explorador-cuerpo',
+  addedAt: '2026-11-02T16:32',
   name: '🫀 Explorador del Cuerpo Humano',
   description: 'El cuerpo humano en láminas y en 3D: partes del cuerpo, órganos, sentidos, aparatos y sistemas, por dentro, reproducción, tejidos, hormonas y salud, con atlas por capas y lupa de rayos X. En castellano, valenciano e inglés.',
   component: ExploradorCuerpo,
@@ -557,6 +632,7 @@ export const appExploradorCuerpo = {
 
 export const appHuesosMusculos = {
   id: 'huesos-musculos',
+  addedAt: '2026-11-02T16:32',
   name: '🦴 Huesos y Músculos',
   description: 'El aparato locomotor a fondo: esqueleto, músculos superficiales y profundos, origen e inserción, cráneo, columna, mano, pie, rodilla y hombro, articulaciones, músculos en acción, movimientos con un esqueleto 3D articulado y biomecánica. En tres idiomas.',
   component: HuesosMusculos,
@@ -565,6 +641,7 @@ export const appHuesosMusculos = {
 
 export const appViajeCuerpo = {
   id: 'viaje-cuerpo',
+  addedAt: '2026-11-02T16:32',
   name: '🤖 Viaje por el Cuerpo',
   description: 'El robot recorre el cuerpo por dentro, en láminas o volando en 3D, siguiendo la comida, el aire, la sangre, la orina, un impulso nervioso, la luz, el sonido, una hormona, las defensas y la vida. En tres idiomas.',
   component: ViajeCuerpo,
@@ -573,6 +650,7 @@ export const appViajeCuerpo = {
 
 export const appAnatomia3D = {
   id: 'anatomia-3d',
+  addedAt: '2026-11-02T20:33',
   name: '🧍 Anatomía 3D',
   description: 'Un cuerpo humano completo en 3D que se gira, se pela por capas, se mira con rayos X, se corta como en un escáner y se monta pieza a pieza. Laboratorio 3D y cinco minijuegos en tres idiomas.',
   component: Anatomia3D,

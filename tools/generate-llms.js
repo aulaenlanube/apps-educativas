@@ -23,6 +23,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
+import { loadAppStats } from './app-registry.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,14 +34,26 @@ const SITE = 'https://apps-educativas.com';
 // Lo primero que lee un LLM. Concreto y verificable: nada de "innovadora".
 
 const SITE_NAME = 'Apps Educativas';
+
+// Cifras del registro de apps (src/data/appStats.js): nunca a mano.
+const APP_STATS = await loadAppStats();
+const { fillStatsPlaceholders, formatCount } = await import(
+  pathToFileURL(path.join(ROOT, 'src', 'data', 'appStats.js')).href
+);
+const fillStats = (text) => fillStatsPlaceholders(text, APP_STATS);
+
 const SITE_SUMMARY =
-  'Plataforma web gratuita con más de 100 apps y juegos educativos para ' +
+  `Plataforma web gratuita con ${formatCount(APP_STATS.apps)} apps y juegos educativos ` +
+  `y ${formatCount(APP_STATS.adaptaciones)} adaptaciones por curso y asignatura para ` +
   'Primaria (1.º-6.º), ESO (1.º-4.º), Bachillerato (1.º-2.º) y Atención a la ' +
   'Diversidad. Se juega desde el navegador, sin descargas, sin publicidad y ' +
   'sin registro. El profesorado puede crear grupos, asignar tareas con modo ' +
   'examen y seguir la nota del alumnado.';
 
 const SITE_NOTES = [
+  'Una adaptación es una app en un curso y una asignatura concretos, con el contenido de ese curso y esa asignatura.' +
+    (APP_STATS.ultima_app ? ` Última app añadida: ${APP_STATS.ultima_app.nombre}.` : ''),
+  'Cifras actualizadas en JSON: ' + `${SITE}/datos/cifras-apps.json`,
   'Autor: Edu Torregrosa, profesor de informática en un instituto público de la Comunidad Valenciana.',
   'El alumnado juega sin cuenta; el registro solo hace falta para el panel del docente.',
   'Contenido completo del blog en texto plano: ' + `${SITE}/llms-full.txt`,
@@ -53,6 +66,7 @@ const SITE_NOTES = [
 const STATIC_PAGES = [
   { loc: '/', title: 'Portada', desc: 'Acceso por etapa y curso a todas las apps educativas.' },
   { loc: '/catalogo', title: 'Catálogo de apps', desc: 'Ficha de cada app: qué es, cómo se juega y en qué cursos y asignaturas está disponible.' },
+  { loc: '/adaptaciones', title: 'Todas las adaptaciones', desc: `Las ${formatCount(APP_STATS.adaptaciones)} adaptaciones de las ${formatCount(APP_STATS.apps)} apps: en qué niveles, cursos y asignaturas está cada una.` },
   { loc: '/blog', title: 'Blog', desc: 'Artículos sobre IA en educación, gamificación, metodologías activas y atención a la diversidad.' },
 ];
 
@@ -101,7 +115,8 @@ async function loadPosts() {
   const posts = [];
   for (const file of files) {
     if (!file.endsWith('.md')) continue;
-    const raw = await fs.readFile(path.join(postsDir, file), 'utf8');
+    // Los posts pueden llevar {{apps}}, {{adaptaciones}}…: se rellenan aquí igual que en la web.
+    const raw = fillStats(await fs.readFile(path.join(postsDir, file), 'utf8'));
     const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
     if (!match) continue;
 

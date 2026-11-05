@@ -5,9 +5,9 @@
   "private": true,
   "packageManager": "pnpm@11.1.2",
   "scripts": {
-    "dev": "node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite",
-    "build": "node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite build && node tools/prerender.mjs",
-    "build:nopre": "node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite build",
+    "dev": "node tools/generate-app-stats.mjs && node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite",
+    "build": "node tools/generate-app-stats.mjs && node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite build && node tools/prerender.mjs",
+    "build:nopre": "node tools/generate-app-stats.mjs && node tools/generate-llms.js && node tools/generate-sitemap.mjs && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run",
