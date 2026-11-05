@@ -34,6 +34,10 @@ const { BLOG_CATEGORIES } = await import(
 const STATIC_URLS = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
 
+  // Catálogo y listado de adaptaciones (cambian al publicar una app)
+  { loc: '/catalogo', changefreq: 'weekly', priority: '0.9' },
+  { loc: '/adaptaciones', changefreq: 'weekly', priority: '0.8' },
+
   // Primaria
   ...['1', '2', '3', '4', '5', '6'].map((g) => ({
     loc: `/curso/primaria/${g}`,

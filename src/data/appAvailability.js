@@ -29,7 +29,7 @@ for (const { level, label, apps, subjects } of LEVELS) {
       for (const app of list) {
         if (!app || !app.id) continue;
         if (!meta[app.id]) {
-          meta[app.id] = { id: app.id, name: app.name, description: app.description };
+          meta[app.id] = { id: app.id, name: app.name, description: app.description, family: app.family || null };
         }
         if (!availability[app.id]) availability[app.id] = [];
         availability[app.id].push({

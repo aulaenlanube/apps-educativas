@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen, ArrowRight, Home } from 'lucide-react';
+import { Search, ChevronDown, Play, X, ListChecks, Lightbulb, GraduationCap, BookOpen, ArrowRight, Home, ListTree } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import { NavPill } from '@/components/NavBackButton';
 import { AnimatedGradientTitle } from '@/components/ui/GradientTitle';
@@ -14,6 +14,9 @@ import {
   CATALOG_CATEGORIES, CONCEPT_CATEGORY, APP_ID_TO_CONCEPT, APP_VARIANT_SCOPE, APP_CONCEPTS,
 } from '@/data/appsCatalog';
 import { tiltProps, accentFor } from './navTilt';
+import useProposeAppDialog from '@/components/proposals/useProposeAppDialog';
+import { formatCount } from '@/data/appStats';
+import APP_STATS from 'virtual:app-stats';
 import './NavPages.css';
 
 const LEVEL_FILTERS = [
@@ -33,6 +36,7 @@ function buildItems() {
     const { emoji, text } = splitEmoji(meta.name);
     return {
       id,
+      appKey: meta.family || id, // las versiones por curso (Sumas 1.º…6.º) son una sola app
       name: text || meta.name,
       emoji,
       description: meta.description || (concept && concept.queEs) || '',
@@ -292,13 +296,17 @@ const CatalogoPage = () => {
     return map;
   }, [filtered]);
 
-  const totalApps = items.length;
+  // Cifras oficiales (src/data/appStats.js): las tarjetas son una por versión,
+  // pero las versiones por curso de un mismo juego cuentan como una app.
+  const totalApps = APP_STATS.apps;
+  const appsIn = (list) => new Set(list.map((it) => it.appKey)).size;
+  const [openPropose, proposeDialog, preloadPropose] = useProposeAppDialog('catalogo');
 
   return (
     <>
       <Helmet>
         <title>Catálogo de Apps — Todos los juegos educativos | Apps Educativas</title>
-        <meta name="description" content={`Catálogo completo de las ${totalApps} apps y juegos educativos de la plataforma: qué son, para qué sirven, cómo se juegan y en qué cursos y asignaturas están disponibles. Gratis, sin descargas y sin registro.`} />
+        <meta name="description" content={`Catálogo completo de las ${formatCount(totalApps)} apps y juegos educativos de la plataforma (${formatCount(APP_STATS.adaptaciones)} adaptaciones por curso y asignatura): qué son, para qué sirven, cómo se juegan y dónde están disponibles. Gratis, sin descargas y sin registro.`} />
         <link rel="canonical" href="https://apps-educativas.com/catalogo" />
         <meta property="og:title" content="Catálogo de Apps Educativas" />
         <meta property="og:description" content="Descubre todas las apps y juegos educativos: qué son, por qué son relevantes y cómo se juegan." />
@@ -324,13 +332,21 @@ const CatalogoPage = () => {
                 <span className="np-kicker">
                   <span className="np-kicker__dot" aria-hidden="true" />
                   Todas las apps
-                  <span className="np-count">{totalApps}</span>
+                  <span className="np-count">{formatCount(totalApps)}</span>
                 </span>
               </div>
               <AnimatedGradientTitle className="text-4xl md:text-6xl">Catálogo de Apps</AnimatedGradientTitle>
               <p className="np-sub text-base md:text-lg mt-4 max-w-3xl mx-auto leading-relaxed" style={{ display: 'block' }}>
-                Explora todas las apps y juegos de la plataforma. Pulsa en cualquiera para ver <strong>qué es</strong>, <strong>por qué es útil</strong> y <strong>cómo se juega</strong>, y entra a probarla en cualquier curso o asignatura. Gratis y sin registro.
+                Explora las <strong>{formatCount(totalApps)} apps</strong> de la plataforma, con <strong>{formatCount(APP_STATS.adaptaciones)} adaptaciones</strong> a cada curso y asignatura. Pulsa en cualquiera para ver <strong>qué es</strong>, <strong>por qué es útil</strong> y <strong>cómo se juega</strong>, y entra a probarla. Gratis y sin registro.
               </p>
+              <div className="flex flex-wrap justify-center gap-3 mt-5">
+                <Link to="/adaptaciones" className="np-chip inline-flex items-center gap-2 no-underline">
+                  <ListTree className="w-4 h-4" aria-hidden="true" /> Ver todas las adaptaciones
+                </Link>
+                <button type="button" className="np-chip np-chip--active inline-flex items-center gap-2" onClick={openPropose} onPointerEnter={preloadPropose}>
+                  <Lightbulb className="w-4 h-4" aria-hidden="true" /> Propón una app
+                </button>
+              </div>
             </motion.div>
 
             {/* Buscador + filtros */}
@@ -378,7 +394,7 @@ const CatalogoPage = () => {
                       <div className="flex items-center gap-3 mb-7 np-enter">
                         <span className="np-section-emoji" aria-hidden="true">{cat.emoji}</span>
                         <h2 className="np-section-title text-2xl md:text-3xl font-black text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{cat.label}</h2>
-                        <span className="np-count">{list.length}</span>
+                        <span className="np-count">{appsIn(list)}</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
                         {list.map((it, i) => (
@@ -399,6 +415,7 @@ const CatalogoPage = () => {
       <AnimatePresence>
         {selected && <AppModal key={selected.id} item={selected} onClose={() => setSelected(null)} />}
       </AnimatePresence>
+      {proposeDialog}
     </>
   );
 };

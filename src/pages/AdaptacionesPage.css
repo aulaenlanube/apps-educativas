@@ -1,0 +1,217 @@
+/* /adaptaciones — listado de todas las adaptaciones agrupadas por app.
+   Mismo lenguaje que el catálogo (NavPages.css): cristal claro sobre el fondo
+   3D en tema claro, cristal oscuro en tema oscuro. */
+
+.adp-lead {
+  max-width: 46rem;
+  margin: 1.1rem auto 0;
+  padding: .9rem 1.4rem;
+  border-radius: 20px;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .92);
+  background: linear-gradient(160deg, rgba(15, 12, 41, .58), rgba(15, 12, 41, .36));
+  border: 1px solid rgba(255, 255, 255, .16);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.adp-lead strong { color: #fde68a; }
+
+/* Tarjetas por nivel (también filtran) */
+.adp-levels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+  max-width: 60rem;
+  margin: 0 auto 1.75rem;
+}
+.adp-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  padding: .85rem .6rem;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  background: rgba(15, 12, 41, .42);
+  border: 1px solid rgba(255, 255, 255, .18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: transform .3s var(--fx-ease-spring, ease-out), background .25s ease, border-color .25s ease;
+}
+.adp-level:hover { transform: translateY(-2px); background: rgba(15, 12, 41, .55); }
+.adp-level:focus-visible { outline: 3px solid rgba(167, 139, 250, .85); outline-offset: 2px; }
+.adp-level.is-active { border-color: transparent; background: var(--fx-grad); box-shadow: 0 12px 30px -12px rgba(236, 72, 153, .85); }
+.adp-level__name { font-size: .82rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; opacity: .9; }
+.adp-level__num { font-size: 1.9rem; font-weight: 900; line-height: 1.1; }
+.adp-level__meta { font-size: .78rem; opacity: .8; }
+
+.adp-showing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem .9rem;
+  margin: 0 auto 1.25rem;
+  font-size: .92rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+}
+.adp-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .25rem .7rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  color: #fff;
+  text-shadow: none;
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .25);
+}
+.adp-clear:hover { background: rgba(255, 255, 255, .24); }
+
+/* Lista */
+.adp-list { display: flex; flex-direction: column; gap: .7rem; max-width: 60rem; margin: 0 auto; }
+
+.adp-card {
+  border-radius: 22px;
+  color: #1e1b4b;
+  background: linear-gradient(160deg, rgba(255, 255, 255, .93), rgba(255, 255, 255, .8));
+  border: 1px solid rgba(255, 255, 255, .8);
+  box-shadow: 0 16px 36px -20px rgba(15, 10, 60, .7);
+  /* Sin content-visibility: con alturas estimadas, ?app=<id> bajaba a un sitio equivocado. */
+  scroll-margin-top: 96px; /* que la cabecera fija no tape la app de ?app=<id> */
+}
+.adp-card__head {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  width: 100%;
+  padding: .8rem 1rem;
+  text-align: left;
+  border-radius: 22px;
+}
+.adp-card__head:focus-visible { outline: 3px solid rgba(139, 92, 246, .75); outline-offset: 2px; }
+.adp-card__icon { flex: none; width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+.adp-card__emoji { font-size: 2rem; line-height: 1; }
+.adp-card__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .15rem; }
+.adp-card__name { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; font-size: 1.08rem; font-weight: 800; line-height: 1.2; }
+.adp-card__levels { font-size: .85rem; color: #4c4776; }
+.adp-card__match { color: #6d28d9; font-weight: 800; }
+.adp-card__count {
+  flex: none;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 800;
+  color: #4c1d95;
+  background: rgba(139, 92, 246, .12);
+  white-space: nowrap;
+}
+.adp-card__chev { flex: none; color: #6d28d9; transition: transform .3s ease; }
+.adp-card.is-open .adp-card__chev { transform: rotate(180deg); }
+
+.adp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  padding: .12rem .5rem;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #78350f;
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+}
+
+.adp-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  padding: .2rem 1rem 1rem;
+  border-top: 1px solid rgba(99, 102, 241, .14);
+  margin: 0 .2rem;
+  padding-top: .8rem;
+}
+.adp-row { display: grid; grid-template-columns: 12.5rem 1fr; gap: .4rem .9rem; align-items: start; }
+.adp-row__label { display: flex; flex-direction: column; padding-top: .3rem; }
+.adp-row__grade { font-size: .9rem; font-weight: 800; }
+.adp-row__variant { font-size: .78rem; color: #6d28d9; font-weight: 600; }
+.adp-row__chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+.adp-chip {
+  display: inline-flex;
+  padding: .32rem .7rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: #3730a3;
+  text-decoration: none;
+  background: rgba(99, 102, 241, .09);
+  border: 1px solid rgba(99, 102, 241, .2);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.adp-chip:hover { color: #fff; background: #7c3aed; border-color: #7c3aed; }
+.adp-chip:focus-visible { outline: 3px solid rgba(139, 92, 246, .7); outline-offset: 1px; }
+
+.adp-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  max-width: 60rem;
+  margin: 2.25rem auto 0;
+  padding: 1.4rem 1.6rem;
+}
+.adp-cta__title { font-size: 1.3rem; font-weight: 800; color: #fff; }
+.adp-cta__text { color: rgba(224, 231, 255, .85); }
+
+.adp-foot {
+  max-width: 60rem;
+  margin: 1.4rem auto 0;
+  text-align: center;
+  font-size: .82rem;
+  color: rgba(255, 255, 255, .8);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+}
+.adp-foot a { text-decoration: underline; font-weight: 700; color: #fde68a; }
+
+/* ---------- Tema oscuro ---------- */
+html.dark .adp-card {
+  color: #eef2ff;
+  background: linear-gradient(160deg, rgba(30, 27, 75, .88), rgba(15, 12, 41, .8));
+  border-color: rgba(255, 255, 255, .12);
+  box-shadow: 0 16px 36px -20px rgba(0, 0, 0, .9);
+}
+html.dark .adp-card__levels { color: #c7c3ee; }
+html.dark .adp-card__match { color: #d8b4fe; }
+html.dark .adp-card__count { color: #e9d5ff; background: rgba(167, 139, 250, .18); }
+html.dark .adp-card__chev { color: #c4b5fd; }
+html.dark .adp-card__body { border-top-color: rgba(255, 255, 255, .1); }
+html.dark .adp-row__variant { color: #d8b4fe; }
+html.dark .adp-chip { color: #e0e7ff; background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .16); }
+html.dark .adp-chip:hover { color: #fff; background: #7c3aed; border-color: #7c3aed; }
+
+@media (max-width: 720px) {
+  .adp-levels { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+  .adp-level__num { font-size: 1.5rem; }
+  .adp-card__head {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 20px;
+    grid-template-areas: 'icon text chev' 'icon count chev';
+    gap: .25rem .65rem;
+    padding: .7rem .75rem;
+  }
+  .adp-card__icon { grid-area: icon; width: 40px; height: 40px; align-self: start; }
+  .adp-card__text { grid-area: text; }
+  .adp-card__count { grid-area: count; justify-self: start; padding: .15rem .6rem; font-size: .76rem; }
+  .adp-card__chev { grid-area: chev; align-self: center; }
+  .adp-row { grid-template-columns: 1fr; gap: .3rem; }
+  .adp-row__label { flex-direction: row; flex-wrap: wrap; gap: .1rem .5rem; align-items: baseline; padding-top: 0; }
+  .adp-cta { padding: 1.2rem 1.1rem; }
+  .adp-cta .fx-btn { width: 100%; justify-content: center; }
+}

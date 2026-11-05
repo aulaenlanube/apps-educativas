@@ -3,6 +3,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 import {
   BookOpen, Star, Sparkles, GraduationCap, Users, Trophy, HeartHandshake, Brain, Play, Gamepad2, Award,
   UserCog, SlidersHorizontal, ArrowRight, Calculator, Atom, Globe2, Music, Puzzle, FlaskConical, Languages, Palette, User,
+  Lightbulb, ListTree,
 } from 'lucide-react';
 import { NavPill } from '@/components/NavBackButton';
 import { Link, useOutletContext } from 'react-router-dom';
@@ -13,6 +14,10 @@ import GradeCardIcon from '@/components/GradeCardIcon';
 import TiltCard from '@/components/ui/TiltCard';
 import AnimatedNumber from '@/components/ui/AnimatedNumber';
 import useSEO from '@/hooks/useSEO';
+import useProposeAppDialog from '@/components/proposals/useProposeAppDialog';
+// Cifras calculadas del registro de apps en cada build (src/data/appStats.js).
+import APP_STATS from 'virtual:app-stats';
+import { formatCount } from '@/data/appStats';
 import './HomePage.css';
 
 const primaryGrades = [
@@ -49,9 +54,13 @@ const ORBIT_CHIPS = [
   { icon: Palette, label: 'Arte', color: '#fb923c' },
 ];
 
+const APPS_TXT = formatCount(APP_STATS.apps);
+const ADAPT_TXT = formatCount(APP_STATS.adaptaciones);
+
 const STATS = [
-  { value: 50, suffix: '+', label: 'apps educativas' },
-  { value: 13, suffix: '', label: 'cursos y etapas' },
+  { value: APP_STATS.apps, suffix: '', label: 'apps educativas' },
+  { value: APP_STATS.adaptaciones, suffix: '', label: 'adaptaciones por curso y asignatura' },
+  { value: APP_STATS.cursos, suffix: '', label: 'cursos y etapas' },
   { value: 128, suffix: '', label: 'insignias' },
   { value: 70, suffix: '', label: 'avatares' },
   { value: 101, suffix: '', label: 'niveles de XP' },
@@ -216,27 +225,51 @@ function AITerminal() {
   );
 }
 
-function StatsStrip() {
+// Contador: cifras exactas del momento + última app + adaptaciones + propuesta.
+function StatsStrip({ onPropose, onProposeIntent }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+  const latest = APP_STATS.ultima_app;
   return (
-    <motion.div
+    <motion.section
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="home-stats fx-glass-dark"
+      className="home-counter fx-glass-dark"
+      aria-label={`${APPS_TXT} apps y ${ADAPT_TXT} adaptaciones`}
     >
-      {STATS.map((s) => (
-        <div key={s.label} className="home-stats__item">
-          <span className="home-stats__value fx-text-grad">
-            <AnimatedNumber value={inView ? s.value : 0} duration={1400} />{s.suffix}
-          </span>
-          <span className="home-stats__label">{s.label}</span>
+      <div className="home-stats">
+        {STATS.map((s) => (
+          <div key={s.label} className="home-stats__item">
+            <span className="home-stats__value fx-text-grad">
+              <AnimatedNumber value={inView ? s.value : 0} duration={1400} format={formatCount} />{s.suffix}
+            </span>
+            <span className="home-stats__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+      <div className="home-counter__foot">
+        {latest && (
+          <Link to={latest.ruta} className="home-counter__latest no-underline">
+            <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span>Última app añadida: <strong>{latest.nombre}</strong></span>
+            <ArrowRight className="w-4 h-4 shrink-0 home-counter__latest-arrow" aria-hidden="true" />
+          </Link>
+        )}
+        <div className="home-counter__actions">
+          <Link to="/adaptaciones" className="home-counter__btn no-underline">
+            <ListTree className="w-4 h-4" aria-hidden="true" />
+            Ver todas las adaptaciones
+          </Link>
+          <button type="button" className="home-counter__btn home-counter__btn--accent" onClick={onPropose} onPointerEnter={onProposeIntent} onFocus={onProposeIntent}>
+            <Lightbulb className="w-4 h-4" aria-hidden="true" />
+            Propón una app
+          </button>
         </div>
-      ))}
-    </motion.div>
+      </div>
+    </motion.section>
   );
 }
 
@@ -306,10 +339,11 @@ const HomePage = () => {
   const { setIsModalOpen } = useOutletContext();
   const heroRef = useRef(null);
   usePauseWhenOffscreen(heroRef);
+  const [openPropose, proposeDialog, preloadPropose] = useProposeAppDialog('portada');
 
   useSEO({
     title: 'Apps Educativas — Juegos interactivos para Primaria, ESO y Bachillerato',
-    description: 'Plataforma gratuita con más de 50 apps educativas y juegos interactivos para Primaria (1º-6º), ESO y Bachillerato. Lengua, matemáticas, ciencias, inglés, tutoría y atención a la diversidad. Rosco, ahorcado, quiz battle, duelos 1 vs 1 y panel del docente.',
+    description: `Plataforma gratuita con ${APPS_TXT} apps educativas y ${ADAPT_TXT} adaptaciones por curso y asignatura para Primaria (1.º-6.º), ESO, Bachillerato y Atención a la Diversidad. Rosco, ahorcado, quiz battle, duelos 1 vs 1 y panel del docente.`,
     canonical: 'https://apps-educativas.com/',
   });
 
@@ -353,8 +387,8 @@ const HomePage = () => {
               transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-lg md:text-2xl text-white/90 drop-shadow-md max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8"
             >
-              Descubre las mejores apps educativas organizadas por cursos.{' '}
-              Desde 1º de Primaria hasta 2º de Bachillerato, ¡el aprendizaje nunca fue tan divertido!
+              <strong className="text-white">{APPS_TXT} apps</strong> y <strong className="text-white">{ADAPT_TXT} adaptaciones</strong> a cada curso y asignatura,{' '}
+              desde 1.º de Primaria hasta 2.º de Bachillerato. ¡El aprendizaje nunca fue tan divertido!
             </motion.p>
 
             <motion.div
@@ -424,7 +458,7 @@ const HomePage = () => {
       {/* ===== CIFRAS ===== */}
       <div className="px-6 relative z-10">
         <div className="container mx-auto max-w-5xl">
-          <StatsStrip />
+          <StatsStrip onPropose={openPropose} onProposeIntent={preloadPropose} />
         </div>
       </div>
 
@@ -630,6 +664,7 @@ const HomePage = () => {
           </motion.div>
         </div>
       </motion.section>
+      {proposeDialog}
     </div>
   );
 };

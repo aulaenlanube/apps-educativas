@@ -259,12 +259,14 @@ html[data-fx="low"] .home-orbit__chip { animation-play-state: paused; }
 @media (min-width: 1024px) { .home-scroll-hint { display: block; } }
 
 /* ---------- Cifras ---------- */
+/* Contador (cifras exactas: virtual:app-stats). El cristal va en el panel;
+   la tira de cifras y el pie con la última app y los botones, dentro. */
+.home-counter { border-radius: 26px; overflow: hidden; }
 .home-stats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: .5rem;
   padding: 1.4rem 1.2rem;
-  border-radius: 26px;
 }
 .home-stats__item {
   display: flex;
@@ -283,7 +285,59 @@ html[data-fx="low"] .home-orbit__chip { animation-play-state: paused; }
   background: linear-gradient(transparent, rgba(255,255,255,.25), transparent);
 }
 .home-stats__value { font-size: clamp(1.8rem, 3.6vw, 2.8rem); font-weight: 800; line-height: 1.1; }
-.home-stats__label { font-size: .85rem; color: rgba(224, 231, 255, .75); font-weight: 500; }
+.home-stats__label { font-size: .85rem; color: rgba(224, 231, 255, .75); font-weight: 500; max-width: 12rem; line-height: 1.25; }
+
+.home-counter__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1rem;
+  padding: .85rem 1.2rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  background: rgba(15, 12, 41, .22);
+}
+.home-counter__latest {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-width: 0;
+  padding: .45rem .85rem;
+  border-radius: 999px;
+  color: #fde68a;
+  font-size: .95rem;
+  font-weight: 600;
+  background: rgba(251, 191, 36, .1);
+  border: 1px solid rgba(251, 191, 36, .32);
+  transition: background .25s ease, border-color .25s ease;
+}
+.home-counter__latest strong { color: #fff; font-weight: 800; }
+.home-counter__latest:hover { background: rgba(251, 191, 36, .2); border-color: rgba(251, 191, 36, .6); }
+.home-counter__latest:hover .home-counter__latest-arrow { transform: translateX(3px); }
+.home-counter__latest-arrow { transition: transform .3s var(--fx-ease-spring, ease-out); }
+.home-counter__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+.home-counter__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1.05rem;
+  border-radius: 14px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .28);
+  transition: background .25s ease, border-color .25s ease, transform .25s var(--fx-ease-spring, ease-out);
+}
+.home-counter__btn:hover { background: rgba(255, 255, 255, .2); border-color: rgba(255, 255, 255, .5); transform: translateY(-2px); }
+.home-counter__btn:focus-visible,
+.home-counter__latest:focus-visible { outline: 3px solid rgba(167, 139, 250, .85); outline-offset: 2px; }
+.home-counter__btn--accent {
+  border-color: transparent;
+  background: linear-gradient(135deg, #7c3aed, #db2777 65%, #f59e0b);
+  box-shadow: 0 10px 24px -12px rgba(219, 39, 119, .9);
+}
+.home-counter__btn--accent:hover { background: linear-gradient(135deg, #6d28d9, #be185d 65%, #d97706); border-color: transparent; }
 
 /* ---------- Bloque IA ---------- */
 .home-ai { border-radius: 30px; }
@@ -549,10 +603,16 @@ html.dark .home-feature__desc { color: #cbd5e1; }
 @media (max-width: 1023px) {
   .home-hero { min-height: 0; }
   .home-hero__robot { max-width: 440px; }
+  .home-stats { grid-template-columns: repeat(3, 1fr); row-gap: 1.1rem; }
+  .home-stats__item:nth-child(3n + 1)::before { display: none; }
 }
 @media (max-width: 720px) {
   .home-stats { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 1rem; padding: 1.1rem .6rem; }
   .home-stats__item { flex: 0 0 33%; }
+  .home-counter__foot { flex-direction: column; align-items: stretch; padding: .8rem .8rem .9rem; }
+  .home-counter__latest { justify-content: center; font-size: .9rem; }
+  .home-counter__actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .home-counter__btn { justify-content: center; font-size: .88rem; padding: .6rem .5rem; text-align: center; }
   .home-stats__item::before { display: none; }
   .home-stats__label { font-size: .75rem; }
   .home-ai__inner { padding: 2rem 1.25rem; }

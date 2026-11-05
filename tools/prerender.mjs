@@ -88,6 +88,7 @@ async function collectRoutes() {
   return [
     '/',
     '/catalogo',
+    '/adaptaciones',
     '/blog',
     ...BLOG_CATEGORIES.map((c) => `/blog/categoria/${c.slug}`),
     ...postSlugs.map((s) => `/blog/${s}`),

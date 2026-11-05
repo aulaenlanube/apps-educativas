@@ -48,6 +48,7 @@ const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage.jsx'));
 const BlogCategoryPage = lazy(() => import('@/pages/BlogCategoryPage.jsx'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage.jsx'));
 const CatalogoPage = lazy(() => import('@/pages/CatalogoPage.jsx'));
+const AdaptacionesPage = lazy(() => import('@/pages/AdaptacionesPage.jsx'));
 // Galería de ilustraciones: solo en desarrollo (en producción esta rama se elimina en el build).
 const ArtGallery = import.meta.env.DEV ? lazy(() => import('@/dev/ArtGallery.jsx')) : null;
 const KitGallery = import.meta.env.DEV ? lazy(() => import('@/dev/KitGallery.jsx')) : null;
@@ -123,6 +124,7 @@ const router = createBrowserRouter(
           children: [
             { index: true, element: <HomePage /> },
             { path: 'catalogo', element: <SuspensePage><CatalogoPage /></SuspensePage> },
+            { path: 'adaptaciones', element: <SuspensePage><AdaptacionesPage /></SuspensePage> },
             { path: 'curso/:level/:grade', element: <SuspensePage><SubjectPage /></SuspensePage> },
             { path: 'curso/:level/:grade/:subjectId', element: <SuspensePage><AppListPage /></SuspensePage> },
             { path: 'politica-privacidad', element: <SuspensePage><PrivacyPolicyPage /></SuspensePage> },
