@@ -92,7 +92,7 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 ```
 
 ### 7. Registro en config (5 ficheros)
-1. `src/apps/config/commonApps.js` — definir `appMiApp = { id, name, description, component }`.
+1. `src/apps/config/commonApps.js` — definir `appMiApp = { id, addedAt, name, description, component }`. **`addedAt` es obligatorio** (`'AAAA-MM-DD'` del día en que se publica; si publicas dos el mismo día, añade la hora: `'AAAA-MM-DDTHH:MM'`): la más reciente sale en la portada como «Última app añadida» y el test `app-stats.test.js` falla si falta o si la más reciente empata. Si es la **versión por curso** de un juego que ya existe (Sumas de 1.º, de 2.º…), añade también `family: '<familia>'` (en `APP_FAMILIES`): cuenta como la misma app y suma adaptaciones. Ver «Cifras de la plataforma».
 2. `src/apps/config/primariaApps.js` — añadir a las listas de asignaturas.
 3. `src/apps/config/esoApps.js` — idem.
 4. `src/apps/config/bachilleratoApps.js` — añadir a `appsBase` (se hereda a todas las asignaturas).
@@ -122,6 +122,19 @@ pnpm run deploy  # produce dist/, empaqueta y sube a Hostinger vía SSH
 `build` encadena `generate-llms.js → generate-sitemap.mjs → vite build → prerender.mjs`. El prerender vuelca un HTML estático por ruta pública (necesario porque la SPA es invisible para los crawlers que no ejecutan JS) y **aborta el build** si alguna página no acaba con exactamente 1 canonical, 1 description y 1 title. Si una ruta pública nueva debe indexarse, añádela a `collectRoutes()` en [tools/prerender.mjs](tools/prerender.mjs). Detalles en [BLOG_SEO_GEO.md](BLOG_SEO_GEO.md) §7.
 
 **Nunca pongas `<meta>` de página en [index.html](index.html)** (canonical, description, og:url/title/description): es la plantilla de todas las rutas y se sirve en todas. Cada página fija los suyos con `useSEO` o `<Helmet>`.
+
+---
+
+## Cifras de la plataforma (apps y adaptaciones)
+
+La web nunca escribe una cifra a mano: todas salen del registro de apps y se recalculan en cada `pnpm run build`/`dev`. **Al registrar una app nueva (con su `addedAt`), la cifra, la «Última app añadida» y /adaptaciones se actualizan solas.**
+
+- **De dónde salen**: `src/apps/config/{primaria,eso,bachillerato,ad}Apps.js` (dónde está cada app) + `commonApps.js` (nombres, `addedAt`, `family`). El cálculo es una función pura, `src/data/appStats.js`, que comparten el script de build, la web, llms.txt y los tests (`src/__tests__/app-stats.test.js`).
+- **App**: cada juego distinto. Las versiones por curso de un mismo juego (Sumas 1.º…6.º, Números Romanos, Supermercado…, marcadas con `family`) son UNA app. Las definiciones que no están en ningún curso (p. ej. `misiones-roboticas`) no cuentan.
+- **Adaptación**: una app en un curso y una asignatura concretos, con el contenido de ese curso y esa asignatura = cada entrada (app, nivel, curso, asignatura) del registro (la misma tupla que avatares y rankings tratan como «app distinta»). Las apps que Bachillerato hereda de `appsBase` cuentan: cada asignatura de Bachillerato tiene su propio banco de contenido.
+- **Contrato público** `https://apps-educativas.com/datos/cifras-apps.json` (lo genera `tools/generate-app-stats.mjs`; lo leen los vídeos desde otro repo, así que **no renombres ni quites campos**; para cambios incompatibles sube `version`): `version`, `apps`, `adaptaciones`, `cursos`, `por_nivel.{primaria,eso,bachillerato,ad}.{nombre,apps,adaptaciones,cursos}`, `ultima_app.{id,nombre,ruta,url}` y `generado` (ISO). CORS abierto en `public/datos/.htaccess`. El fichero está en `.gitignore` (se genera en cada build).
+- **Dónde se usan**: portada (contador + «Última app añadida» + «Ver todas las adaptaciones» + «Propón una app»), `/adaptaciones` (listado completo), `/catalogo`, JSON-LD de `index.html` y posts (marcadores `{{apps}}`, `{{adaptaciones}}`, `{{cursos}}`, `{{ultima_app}}`, ver BLOG_SEO_GEO.md), `llms.txt`, descripción del manifest y README (entre `<!-- cifras:apps -->`). En código: `import APP_STATS from 'virtual:app-stats'` (resumen, mínimo, `tools/vite-plugin-app-stats.mjs`) o `@/data/appIndex` (índice completo; carga todo el registro, solo en páginas perezosas).
+- **«Propón una app»**: `src/components/proposals/` → RPC `submit_app_proposal` (tabla `app_proposals`, RLS sin políticas: el público solo inserta vía RPC con consentimiento, campo trampa, tiempo mínimo y límite de envíos; se borra a los 12 meses). Se contestan en /admin → Propuestas, que avisa si lo pedido ya existe.
 
 ---
 
@@ -258,7 +271,7 @@ La nota del panel **Resumen** del alumno y el desglose de la pestaña **Tareas**
 | `src/contexts/ThemeContext.jsx` | Tema claro/oscuro (por usuario) |
 | `public/data/materias.json` | Catálogo de asignaturas |
 | `tools/deploy.mjs` | Script de deploy a Hostinger |
-| `DATABASE.md` | Estructura completa de la BD (46 tablas, 150+ RPCs, 128 insignias) |
+| `DATABASE.md` | Estructura completa de la BD (47 tablas, 150+ RPCs, 128 insignias) |
 
 ---
 

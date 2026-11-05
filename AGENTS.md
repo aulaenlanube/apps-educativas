@@ -89,7 +89,7 @@ const asignatura = subjectId || (level === 'primaria' ? 'lengua' : 'general');
 ```
 
 ### 7. Registro en config (5 ficheros)
-1. `src/apps/config/commonApps.js` — definir `appMiApp = { id, name, description, component }`.
+1. `src/apps/config/commonApps.js` — definir `appMiApp = { id, addedAt, name, description, component }`. `addedAt` (`'AAAA-MM-DD'`, obligatorio) alimenta la «Última app añadida»; las versiones por curso de un juego existente llevan además `family`. Ver «Cifras de la plataforma» en CLAUDE.md.
 2. `src/apps/config/primariaApps.js` — añadir a las listas de asignaturas.
 3. `src/apps/config/esoApps.js` — idem.
 4. `src/apps/config/bachilleratoApps.js` — añadir a `appsBase` (se hereda a todas las asignaturas).
