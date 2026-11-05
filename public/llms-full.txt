@@ -1,6 +1,6 @@
 # Apps Educativas — contenido completo del blog
 
-> Plataforma web gratuita con más de 100 apps y juegos educativos para Primaria (1.º-6.º), ESO (1.º-4.º), Bachillerato (1.º-2.º) y Atención a la Diversidad. Se juega desde el navegador, sin descargas, sin publicidad y sin registro. El profesorado puede crear grupos, asignar tareas con modo examen y seguir la nota del alumnado.
+> Plataforma web gratuita con 67 apps y juegos educativos y 4550 adaptaciones por curso y asignatura para Primaria (1.º-6.º), ESO (1.º-4.º), Bachillerato (1.º-2.º) y Atención a la Diversidad. Se juega desde el navegador, sin descargas, sin publicidad y sin registro. El profesorado puede crear grupos, asignar tareas con modo examen y seguir la nota del alumnado.
 
 Texto íntegro de los 28 artículos publicados en https://apps-educativas.com/blog.
 Índice de enlaces y estructura del sitio en https://apps-educativas.com/llms.txt
@@ -2212,7 +2212,7 @@ Importante saberlo antes de planificar: solo **cuatro apps** del catálogo sopor
 - **Snake palabras** (ordenar la palabra serpenteando).
 - **Ordena Bolas** (lógica de ordenación).
 
-El resto de las apps (más de 50) están pensadas para juego individual, tareas estándar o Quiz Battle. Si tu alumnado pregunta "¿y por qué no puedo retar a un duelo en Anagramas?", la respuesta es que el componente de duelo solo está implementado en esas cuatro — son las que mejor se prestan a una partida corta y simétrica.
+El resto de las 67 apps de la plataforma ([aquí puedes ver todas sus adaptaciones](/adaptaciones)) están pensadas para juego individual, tareas estándar o Quiz Battle. Si tu alumnado pregunta "¿y por qué no puedo retar a un duelo en Anagramas?", la respuesta es que el componente de duelo solo está implementado en esas cuatro — son las que mejor se prestan a una partida corta y simétrica.
 
 ## Duelo 1 vs 1 (personal): el pique sano del recreo
 
@@ -2408,7 +2408,7 @@ El duelo personal lo inicia un alumno retando a un compañero, eligiendo app y a
 
 **¿En qué apps se pueden hacer duelos 1 vs 1?**
 
-En cuatro apps: Rosco del Saber, Ahorcado, Snake palabras y Ordena Bolas. El resto del catálogo (más de 50 apps) está pensado para juego individual, tareas estándar o Quiz Battle, pero no para el formato 1 vs 1 en tiempo real.
+En cuatro apps: Rosco del Saber, Ahorcado, Snake palabras y Ordena Bolas. El resto del catálogo (la plataforma tiene 67 apps) está pensado para juego individual, tareas estándar o Quiz Battle, pero no para el formato 1 vs 1 en tiempo real.
 
 **¿Cuántos alumnos pueden jugar a Quiz Battle a la vez?**
 
@@ -2958,7 +2958,7 @@ A partir de ahí, ya tiene su panel con apps, tareas, resumen, ranking. Listo pa
 
 Una vez tienes el grupo creado y el alumnado dentro, sin configurar nada más están disponibles:
 
-- **50+ apps del curso del grupo**, en modos Fácil / Medio / Examen.
+- **Todas las apps del curso del grupo**, en modos Fácil / Medio / Examen (la plataforma tiene 67 apps y 4550 adaptaciones por curso y asignatura: [ver todas las adaptaciones](/adaptaciones)).
 - **Ranking automático** entre el alumnado de cada grupo, app por app.
 - **Sistema de niveles** (101 niveles, XP por cada partida).
 - **Avatares** desbloqueables (106 disponibles agrupados por rareza — explicado en el [post sobre el sistema de nota](/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares)).
@@ -4254,7 +4254,7 @@ Tres cosas pequeñas que puedes implementar la semana que viene sin reorganizar 
 
 Si te animas con la siguiente capa, integra estas tres en una secuencia gamificada (ver [el post de gamificación](/blog/gamificacion-en-el-aula-lo-que-funciona)) — encajan como un guante.
 
-Y si quieres material que ya aplique estas prácticas (recuperación espaciada, multimodalidad, feedback inmediato), en [apps-educativas.com](https://www.apps-educativas.com) hay decenas de apps diseñadas con estos principios en mente. La columna vertebral pedagógica está aquí.
+Y si quieres material que ya aplique estas prácticas (recuperación espaciada, multimodalidad, feedback inmediato), en [apps-educativas.com](https://www.apps-educativas.com) hay 67 apps diseñadas con estos principios en mente ([ver todas sus adaptaciones](/adaptaciones)). La columna vertebral pedagógica está aquí.
 
 Nos vemos en el siguiente.
 
@@ -4492,7 +4492,7 @@ Cuatro meses después del lanzamiento, apps-educativas.com cubre matemáticas, l
 
 ## Resumen rápido
 
-- En enero de 2026, apps-educativas.com supera las 20 apps interactivas para Primaria y ESO.
+- En enero de 2026, apps-educativas.com superaba las 20 apps interactivas para Primaria y ESO; hoy tiene 67 apps y 4550 adaptaciones por curso y asignatura.
 - Las matemáticas cubren sumas, restas, multiplicaciones y divisiones con ayudas paso a paso.
 - Hay juegos con mecánicas reconocibles: Geometry Dash educativo, Snake con palabras, Pasapalabra, Minecraft de reciclaje.
 - Cada app tiene tres modos (fácil, medio, examen) y devuelve nota sobre 10.
@@ -4575,7 +4575,7 @@ Nos vemos en el próximo vídeo.
 
 **¿Cuántas apps hay disponibles en apps-educativas.com a principios de 2026?**
 
-Más de 20 apps interactivas, divididas en matemáticas, lengua, comprensión, ciencias y juegos transversales para Primaria y ESO.
+Más de 20 apps interactivas, divididas en matemáticas, lengua, comprensión, ciencias y juegos transversales para Primaria y ESO. Hoy son 67 apps con 4550 adaptaciones por curso y asignatura, de Primaria a Bachillerato y Atención a la Diversidad.
 
 **¿Las apps tienen nota como un examen real?**
 

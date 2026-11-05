@@ -153,6 +153,6 @@ Tres cosas pequeñas que puedes implementar la semana que viene sin reorganizar 
 
 Si te animas con la siguiente capa, integra estas tres en una secuencia gamificada (ver [el post de gamificación](/blog/gamificacion-en-el-aula-lo-que-funciona)) — encajan como un guante.
 
-Y si quieres material que ya aplique estas prácticas (recuperación espaciada, multimodalidad, feedback inmediato), en [apps-educativas.com](https://www.apps-educativas.com) hay decenas de apps diseñadas con estos principios en mente. La columna vertebral pedagógica está aquí.
+Y si quieres material que ya aplique estas prácticas (recuperación espaciada, multimodalidad, feedback inmediato), en [apps-educativas.com](https://www.apps-educativas.com) hay {{apps}} apps diseñadas con estos principios en mente ([ver todas sus adaptaciones](/adaptaciones)). La columna vertebral pedagógica está aquí.
 
 Nos vemos en el siguiente.

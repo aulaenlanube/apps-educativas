@@ -3,9 +3,16 @@
 // markdown. Vite carga los .md como strings con import.meta.glob.
 
 import yaml from 'js-yaml';
+import APP_STATS from 'virtual:app-stats';
+import { fillStatsPlaceholders } from '@/data/appStats';
 import { BLOG_CATEGORIES } from './categories';
 
 const VALID_CATEGORIES = new Set(BLOG_CATEGORIES.map((c) => c.slug));
+
+// Cifras de la plataforma en los posts: escribe {{apps}}, {{adaptaciones}},
+// {{cursos}} o {{ultima_app}} y se sustituyen por los datos del momento
+// (src/data/appStats.js). Nunca escribas la cifra a mano: se queda vieja.
+export const fillPostStats = (text) => fillStatsPlaceholders(text, APP_STATS);
 
 function parseFrontmatter(raw) {
   // Espera bloque ---\n...\n--- al inicio. Devuelve { data, body }.
@@ -31,8 +38,13 @@ const rawFiles = import.meta.glob('./posts/*.md', {
 
 function buildPostsIndex() {
   const posts = [];
-  for (const [path, raw] of Object.entries(rawFiles)) {
-    const { data, body } = parseFrontmatter(raw);
+  for (const [path, rawFile] of Object.entries(rawFiles)) {
+    // El frontmatter (tldr, faq, excerpt) también admite los marcadores.
+    const { data } = parseFrontmatter(fillPostStats(rawFile));
+    // El cuerpo se guarda SIN rellenar (`bodyTemplate`) para que el editor de
+    // admin conserve los marcadores; `body` es el texto ya rellenado.
+    const { body: bodyTemplate } = parseFrontmatter(rawFile);
+    const body = fillPostStats(bodyTemplate);
     if (!data.slug || !data.title || !data.date) {
       // En dev nos enteramos rápido si falta algo crítico.
       if (import.meta.env?.DEV) {
@@ -69,6 +81,7 @@ function buildPostsIndex() {
         : [],
       tags: Array.isArray(data.tags) ? data.tags : [],
       body,
+      bodyTemplate,
       // Estimación tosca de lectura: ~200 palabras/minuto.
       readingMinutes: Math.max(2, Math.round(body.split(/\s+/).length / 200)),
     });

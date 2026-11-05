@@ -112,7 +112,8 @@ Reglas para el TL;DR:
 - 3-5 bullets, máximo.
 - Cada bullet ≤ 20 palabras.
 - **Una afirmación factual por bullet**, no opiniones.
-- Sin "hablaremos de", "veremos cómo": frases directas. Mal: "Hablamos del lanzamiento de la web". Bien: "apps-educativas.com es una plataforma gratuita con 50+ apps para 1.º Primaria a 4.º ESO".
+- Sin "hablaremos de", "veremos cómo": frases directas. Mal: "Hablamos del lanzamiento de la web". Bien: "apps-educativas.com es una plataforma gratuita con {{apps}} apps y {{adaptaciones}} adaptaciones por curso y asignatura".
+- **Cifras de la plataforma: nunca a mano.** Escribe `{{apps}}`, `{{adaptaciones}}`, `{{cursos}}` o `{{ultima_app}}` (en el cuerpo, `tldr`, `faq` o `excerpt`) y la web, `llms-full.txt` y el JSON-LD los sustituyen por las cifras del momento (ver «Cifras de la plataforma» en CLAUDE.md). Una cifra escrita a mano («más de 50 apps») se queda vieja en cuanto se publica una app. Si la frase da la cifra en el cuerpo, enlaza a [/adaptaciones](/adaptaciones). Las cifras con fecha («en enero de 2026 había 20») sí van a mano: son historia.
 
 ### Principio número 4: FAQ al final
 

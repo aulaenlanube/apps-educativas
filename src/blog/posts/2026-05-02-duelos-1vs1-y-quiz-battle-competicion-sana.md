@@ -23,7 +23,7 @@ faq:
   - q: "¿Qué diferencia hay entre un duelo personal y un duelo-tarea?"
     a: "El duelo personal lo inicia un alumno retando a un compañero, eligiendo app y apuesta (0 amistoso, 0,1, 0,2 o 0,3). El duelo-tarea lo crea el docente sobre todo el grupo: la plataforma empareja por nota media y solo el ganador suma +0,10 en el ledger — el perdedor no es penalizado. El stake del docente se ignora en este caso."
   - q: "¿En qué apps se pueden hacer duelos 1 vs 1?"
-    a: "En cuatro apps: Rosco del Saber, Ahorcado, Snake palabras y Ordena Bolas. El resto del catálogo (más de 50 apps) está pensado para juego individual, tareas estándar o Quiz Battle, pero no para el formato 1 vs 1 en tiempo real."
+    a: "En cuatro apps: Rosco del Saber, Ahorcado, Snake palabras y Ordena Bolas. El resto del catálogo (la plataforma tiene {{apps}} apps) está pensado para juego individual, tareas estándar o Quiz Battle, pero no para el formato 1 vs 1 en tiempo real."
   - q: "¿Cuántos alumnos pueden jugar a Quiz Battle a la vez?"
     a: "Hasta 30 jugadores en la misma sala. El docente abre la sala desde el panel, comparte el código de 6 dígitos y los alumnos se unen desde su panel. La sala puede ser de un grupo concreto (con modo individual o por equipos) o abierta (cualquier alumno con el código)."
   - q: "¿Puede un Quiz Battle no contar para la nota?"
@@ -58,7 +58,7 @@ Importante saberlo antes de planificar: solo **cuatro apps** del catálogo sopor
 - **Snake palabras** (ordenar la palabra serpenteando).
 - **Ordena Bolas** (lógica de ordenación).
 
-El resto de las apps (más de 50) están pensadas para juego individual, tareas estándar o Quiz Battle. Si tu alumnado pregunta "¿y por qué no puedo retar a un duelo en Anagramas?", la respuesta es que el componente de duelo solo está implementado en esas cuatro — son las que mejor se prestan a una partida corta y simétrica.
+El resto de las {{apps}} apps de la plataforma ([aquí puedes ver todas sus adaptaciones](/adaptaciones)) están pensadas para juego individual, tareas estándar o Quiz Battle. Si tu alumnado pregunta "¿y por qué no puedo retar a un duelo en Anagramas?", la respuesta es que el componente de duelo solo está implementado en esas cuatro — son las que mejor se prestan a una partida corta y simétrica.
 
 ## Duelo 1 vs 1 (personal): el pique sano del recreo
 

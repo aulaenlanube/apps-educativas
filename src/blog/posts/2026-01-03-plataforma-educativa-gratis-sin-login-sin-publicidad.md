@@ -17,14 +17,14 @@ keywords:
   - Mesa de crafteo
   - modo examen
 tldr:
-  - "En enero de 2026, apps-educativas.com supera las 20 apps interactivas para Primaria y ESO."
+  - "En enero de 2026, apps-educativas.com superaba las 20 apps interactivas para Primaria y ESO; hoy tiene {{apps}} apps y {{adaptaciones}} adaptaciones por curso y asignatura."
   - "Las matemáticas cubren sumas, restas, multiplicaciones y divisiones con ayudas paso a paso."
   - "Hay juegos con mecánicas reconocibles: Geometry Dash educativo, Snake con palabras, Pasapalabra, Minecraft de reciclaje."
   - "Cada app tiene tres modos (fácil, medio, examen) y devuelve nota sobre 10."
   - "Sigue siendo 100 % gratuita, sin publicidad y sin login para el alumnado."
 faq:
   - q: "¿Cuántas apps hay disponibles en apps-educativas.com a principios de 2026?"
-    a: "Más de 20 apps interactivas, divididas en matemáticas, lengua, comprensión, ciencias y juegos transversales para Primaria y ESO."
+    a: "Más de 20 apps interactivas, divididas en matemáticas, lengua, comprensión, ciencias y juegos transversales para Primaria y ESO. Hoy son {{apps}} apps con {{adaptaciones}} adaptaciones por curso y asignatura, de Primaria a Bachillerato y Atención a la Diversidad."
   - q: "¿Las apps tienen nota como un examen real?"
     a: "Sí. Cada app tiene tres modos: fácil (con muchas ayudas), medio (con algunas) y examen (sin red). El modo examen devuelve una nota sobre 10."
   - q: "¿Qué apps replican mecánicas de juegos famosos?"

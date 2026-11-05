@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, Sparkles, HelpCircle, Pencil } from 'lucide-react';
 import Header from '@/components/layout/Header';
-import { getPostBySlug, getRelatedPosts } from '@/blog/loader';
+import { getPostBySlug, getRelatedPosts, fillPostStats } from '@/blog/loader';
 import { getCategory } from '@/blog/categories';
 import { formatDateLong, buildCategoryUrl, buildPostUrl, buildAbsoluteUrl } from '@/blog/utils';
 import BlogProse from '@/components/blog/BlogProse';
@@ -56,7 +56,9 @@ export default function BlogPostPage() {
   }
 
   const category = getCategory(post.category);
-  const bodyToRender = overrideBody ?? post.body;
+  // Plantilla (con {{apps}}…) para el editor; rellenada para leer.
+  const bodySource = overrideBody ?? post.bodyTemplate;
+  const bodyToRender = fillPostStats(bodySource);
   const dateModified = overrideUpdatedAt ? overrideUpdatedAt.slice(0, 10) : post.date;
   const related = getRelatedPosts(post.slug, 3);
   const canonical = `${SITE_URL}${buildPostUrl(post.slug)}`;
@@ -311,7 +313,7 @@ export default function BlogPostPage() {
       {editing && (
         <BlogPostEditor
           slug={post.slug}
-          initialBody={bodyToRender}
+          initialBody={bodySource}
           onClose={() => setEditing(false)}
           onSaved={(b, t) => { setOverrideBody(b); setOverrideUpdatedAt(t); setEditing(false); }}
           onReset={() => { setOverrideBody(null); setOverrideUpdatedAt(null); setEditing(false); }}

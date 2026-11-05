@@ -154,7 +154,7 @@ A partir de ahí, ya tiene su panel con apps, tareas, resumen, ranking. Listo pa
 
 Una vez tienes el grupo creado y el alumnado dentro, sin configurar nada más están disponibles:
 
-- **50+ apps del curso del grupo**, en modos Fácil / Medio / Examen.
+- **Todas las apps del curso del grupo**, en modos Fácil / Medio / Examen (la plataforma tiene {{apps}} apps y {{adaptaciones}} adaptaciones por curso y asignatura: [ver todas las adaptaciones](/adaptaciones)).
 - **Ranking automático** entre el alumnado de cada grupo, app por app.
 - **Sistema de niveles** (101 niveles, XP por cada partida).
 - **Avatares** desbloqueables (106 disponibles agrupados por rareza — explicado en el [post sobre el sistema de nota](/blog/nota-del-alumno-tareas-duelos-batallas-nivel-avatares)).
